@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="70dp"
+    android:background="@color/signal_background_primary">
 
     <TextView
         android:id="@+id/description"

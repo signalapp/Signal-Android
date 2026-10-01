@@ -34,6 +34,8 @@ data class PhoneNumberEntryState(
   val preExistingRegistrationData: PreExistingRegistrationData? = null,
   val restoredSvrCredentials: List<SvrCredentials> = emptyList(),
   val pendingRestoreOption: PendingRestoreOption? = null,
+  /** Whether the user saw the archive restore selection screen. */
+  val sawArchiveRestoreSelectionScreen: Boolean = false,
   val initialized: Boolean = false,
   /** Whether the entered number has a plausible length for the selected country code. */
   val isNumberPossible: Boolean = false,
@@ -64,7 +66,7 @@ data class PhoneNumberEntryState(
       }
     }
 
-  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, accountId=${accountId?.censor()}, accountIdError=$accountIdError, sessionE164=$sessionE164, sessionMetadata=$sessionMetadata, smsVerificationCodeRequest=$smsVerificationCodeRequest, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid,  isLinkAndSyncAvailable=$isLinkAndSyncAvailable, isPhoneNumberlessRegistrationAvailable=$isPhoneNumberlessRegistrationAvailable)"
+  override fun toString(): String = "PhoneNumberEntryState(regionCode=$regionCode, countryCode=$countryCode, countryName=$countryName, countryEmoji=$countryEmoji, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, accountId=${accountId?.censor()}, accountIdError=$accountIdError, sessionE164=$sessionE164, sessionMetadata=$sessionMetadata, smsVerificationCodeRequest=$smsVerificationCodeRequest, showSpinner=$showSpinner, dialogs=$dialogs, preExistingRegistrationData=${preExistingRegistrationData?.let { "present" }}, restoredSvrCredentials=${restoredSvrCredentials.size} items, pendingRestoreOption=$pendingRestoreOption, sawArchiveRestoreSelectionScreen=$sawArchiveRestoreSelectionScreen, initialized=$initialized, isNumberPossible=$isNumberPossible, isNumberInvalid=$isNumberInvalid,  isLinkAndSyncAvailable=$isLinkAndSyncAvailable, isPhoneNumberlessRegistrationAvailable=$isPhoneNumberlessRegistrationAvailable)"
 
   data class Dialogs(
     /** Asks the user to confirm the number they entered before submitting it. */

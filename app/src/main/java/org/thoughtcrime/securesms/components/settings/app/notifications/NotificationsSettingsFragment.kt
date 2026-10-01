@@ -38,7 +38,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.ComposeFragment
@@ -65,9 +64,7 @@ import org.thoughtcrime.securesms.util.viewModel
 class NotificationsSettingsFragment : ComposeFragment() {
 
   private val viewModel: NotificationsSettingsViewModel by viewModel {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-    NotificationsSettingsViewModel.Factory(sharedPreferences).create(NotificationsSettingsViewModel::class.java)
+    NotificationsSettingsViewModel.Factory().create(NotificationsSettingsViewModel::class.java)
   }
 
   private val appSettingsRouter: AppSettingsRouter by viewModel {
@@ -221,7 +218,7 @@ open class DefaultNotificationsSettingsCallbacks(
   }
 
   override fun setMessageNotificationVibration(enabled: Boolean) {
-    viewModel.setMessageNotificationsEnabled(enabled)
+    viewModel.setMessageNotificationVibration(enabled)
   }
 
   override fun setMessasgeNotificationLedColor(selection: String) {
@@ -460,7 +457,7 @@ fun NotificationsSettingsScreen(
             text = stringResource(R.string.preferences__vibrate),
             checked = state.messageNotificationsState.vibrateEnabled,
             enabled = state.messageNotificationsState.notificationsEnabled,
-            onCheckChanged = callbacks::setMessageNotificationsEnabled
+            onCheckChanged = callbacks::setMessageNotificationVibration
           )
         }
 

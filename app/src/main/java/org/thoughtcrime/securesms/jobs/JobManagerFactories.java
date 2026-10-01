@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.migrations.CopyUsernameToSignalStoreMigrationJ
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.DeleteDeprecatedLogsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DirectoryRefreshMigrationJob;
+import org.thoughtcrime.securesms.migrations.DisableUnreadReminderMigrationJob;
 import org.thoughtcrime.securesms.migrations.DuplicateE164MigrationJob;
 import org.thoughtcrime.securesms.migrations.E164FormattingMigrationJob;
 import org.thoughtcrime.securesms.migrations.EmojiDownloadMigrationJob;
@@ -82,6 +83,7 @@ import org.thoughtcrime.securesms.migrations.KeyTransparencyFailureMigrationJob;
 import org.thoughtcrime.securesms.migrations.KeyTransparencyUsernameMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.LocalArchiveReconciliationMigrationJob;
+import org.thoughtcrime.securesms.migrations.MentionsStorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.OptimizeMessageSearchIndexMigrationJob;
 import org.thoughtcrime.securesms.migrations.PassingMigrationJob;
@@ -281,6 +283,7 @@ public final class JobManagerFactories {
       put(RestoreAttachmentJob.KEY,                    new RestoreAttachmentJob.Factory());
       put(RestoreAttachmentThumbnailJob.KEY,           new RestoreAttachmentThumbnailJob.Factory());
       put(RestoreLocalAttachmentJob.KEY,               new RestoreLocalAttachmentJob.Factory());
+      put(RestoreNotificationsJob.KEY,                 new RestoreNotificationsJob.Factory());
       put(RestoreOptimizedMediaJob.KEY,                new RestoreOptimizedMediaJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,                new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                      new RetrieveProfileJob.Factory());
@@ -344,6 +347,7 @@ public final class JobManagerFactories {
       put(DatabaseMigrationJob.KEY,                       new DatabaseMigrationJob.Factory());
       put(DeleteDeprecatedLogsMigrationJob.KEY,           new DeleteDeprecatedLogsMigrationJob.Factory());
       put(DirectoryRefreshMigrationJob.KEY,               new DirectoryRefreshMigrationJob.Factory());
+      put(DisableUnreadReminderMigrationJob.KEY,          new DisableUnreadReminderMigrationJob.Factory());
       put(DuplicateE164MigrationJob.KEY,                  new DuplicateE164MigrationJob.Factory());
       put(E164FormattingMigrationJob.KEY,                 new E164FormattingMigrationJob.Factory());
       put(EmojiDownloadMigrationJob.KEY,                  new EmojiDownloadMigrationJob.Factory());
@@ -358,6 +362,7 @@ public final class JobManagerFactories {
       put(KeyTransparencyUsernameMigrationJob.KEY,        new KeyTransparencyUsernameMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                         new LegacyMigrationJob.Factory());
       put(LocalArchiveReconciliationMigrationJob.KEY,     new LocalArchiveReconciliationMigrationJob.Factory());
+      put(MentionsStorageServiceMigrationJob.KEY,         new MentionsStorageServiceMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                       new MigrationCompleteJob.Factory());
       put(OptimizeMessageSearchIndexMigrationJob.KEY,     new OptimizeMessageSearchIndexMigrationJob.Factory());
       put(PinOptOutMigration.KEY,                         new PinOptOutMigration.Factory());

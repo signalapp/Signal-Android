@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2026 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<resources>
+  <!-- Tab labels -->
+  <!-- Label of the tab that shows the emoji page of the media keyboard. Noun. -->
+  <string name="MediaKeyboard__emoji">Emoji</string>
+  <!-- Label of the tab that shows the sticker page of the media keyboard. Plural noun. -->
+  <string name="MediaKeyboard__stickers">Greamáin</string>
+  <!-- Label of the tab that shows the GIF page of the media keyboard. Plural noun. -->
+  <string name="MediaKeyboard__gifs">GIFanna</string>
+
+  <!-- Search -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
+  <string name="MediaKeyboard__search_emoji">Cuardaigh emoji</string>
+  <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
+  <string name="MediaKeyboard__search_stickers">Cuardaigh greamáin</string>
+  <!-- Placeholder text in the search field at the top of the GIF page, and in the media keyboard search field while the GIF tab is showing. -->
+  <string name="MediaKeyboard__search_gifs">Cuardaigh GIFanna</string>
+  <!-- Accessibility description for the magnifying glass button in the media keyboard top bar that opens search. Verb, as an action the button performs. -->
+  <string name="MediaKeyboard__search">Cuardaigh</string>
+  <!-- Accessibility description for the back button that closes media keyboard search and returns to the tabs. -->
+  <string name="MediaKeyboard__close_search">Dún an cuardach</string>
+  <!-- Accessibility description for the button that erases whatever has been typed into the media keyboard search field. -->
+  <string name="MediaKeyboard__clear_search">Glan an cuardach</string>
+  <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
+  <string name="MediaKeyboard__no_results_found">Gan toradh</string>
+
+  <!-- Emoji page -->
+  <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
+  <string name="MediaKeyboard__backspace">Cúlspás</string>
+  <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
+  <string name="MediaKeyboard__recently_used">Úsáidte le déanaí</string>
+  <!-- Header for the emoji category holding faces and people. -->
+  <string name="MediaKeyboard__smileys_and_people">Straoiseoga agus Daoine</string>
+  <!-- Header for the emoji category holding animals and plants. -->
+  <string name="MediaKeyboard__nature">An Dúlra</string>
+  <!-- Header for the emoji category holding food and drink. -->
+  <string name="MediaKeyboard__food">Bia</string>
+  <!-- Header for the emoji category holding sports and hobbies. -->
+  <string name="MediaKeyboard__activities">Gníomhaíochtaí</string>
+  <!-- Header for the emoji category holding travel, buildings and places. -->
+  <string name="MediaKeyboard__places">Áiteanna</string>
+  <!-- Header for the emoji category holding everyday objects. -->
+  <string name="MediaKeyboard__objects">Rudaí</string>
+  <!-- Header for the emoji category holding symbols and signs. -->
+  <string name="MediaKeyboard__symbols">Siombailí</string>
+  <!-- Header for the emoji category holding country and region flags. Plural noun, the flags themselves. -->
+  <string name="MediaKeyboard__flags">Bratacha</string>
+  <!-- Header for the emoji category holding text emoticons such as :-) -->
+  <string name="MediaKeyboard__emoticons">Straoiseoga</string>
+
+  <!-- Sticker page -->
+  <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
+  <string name="MediaKeyboard__manage_stickers">Bainistigh greamáin</string>
+  <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
+  <string name="MediaKeyboard__send">Seol</string>
+  <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
+  <string name="MediaKeyboard__view_pack">Féach ar an mbeart</string>
+  <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack\'s menu. -->
+  <string name="MediaKeyboard__more_options">Tuilleadh roghanna</string>
+  <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
+  <string name="MediaKeyboard__remove_pack">Bain</string>
+  <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
+  <string name="MediaKeyboard__remove_sticker_pack_question">Bain an beart greamán?</string>
+  <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">Bainfear an beart greamán leis sin. Ní bheidh tú in ann é a chur leis arís gan nasc nó teachtaireacht ghreamáin.</string>
+  <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
+  <string name="MediaKeyboard__clear_recents">Glan an chuid le déanaí</string>
+
+  <!-- Gif page -->
+  <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
+  <string name="MediaKeyboard__trending">Treochtáil</string>
+  <!-- Label of the GIF quick search chip that searches for celebration GIFs. A search topic, not an instruction to the user. -->
+  <string name="MediaKeyboard__celebrate">Ceiliúradh</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs about love. The noun, not the verb. -->
+  <string name="MediaKeyboard__love">Grá</string>
+  <!-- Label of the GIF quick search chip that searches for thumbs up GIFs. The hand gesture, as a noun. -->
+  <string name="MediaKeyboard__thumbs_up">Ordóga Suas</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone surprised. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__surprised">Iontas</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone excited. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__excited">Ar Bís</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone sad. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__sad">Brónach</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__angry">Feargach</string>
+  <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
+  <string name="MediaKeyboard__couldnt_load_gifs">Níorbh fhéidir GIFanna a lódáil. Seiceáil do nasc agus triail arís.</string>
+  <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
+  <string name="MediaKeyboard__retry">Atriail</string>
+</resources>

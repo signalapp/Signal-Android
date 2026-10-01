@@ -25,14 +25,14 @@ import org.signal.appsettings.account.AccountSettingsScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
 import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpNavArgs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.appsettings.R as AppSettingsR
@@ -42,10 +42,6 @@ import org.signal.appsettings.R as AppSettingsR
  * legacy nav graph.
  */
 class AccountSettingsFragment : ComposeFragment() {
-
-  companion object {
-    private val TAG = Log.tag(AccountSettingsFragment::class)
-  }
 
   private val viewModel: AccountSettingsViewModel by viewModels()
 
@@ -82,7 +78,13 @@ class AccountSettingsFragment : ComposeFragment() {
       onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
     )
 
-    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics) }
+    val deleteAccountBiometrics = rememberBiometricsAuthentication(
+      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_confirm_its_you),
+      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_delete_your_account_confirm_its_you),
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
+    )
+
+    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics, deleteAccountBiometrics) }
 
     AccountSettingsScreen(
       state = state,
@@ -90,7 +92,12 @@ class AccountSettingsFragment : ComposeFragment() {
     )
   }
 
-  private fun handleAction(action: AccountSettingsAction, removalBiometrics: BiometricsAuthentication, signalLoginBiometrics: BiometricsAuthentication) {
+  private fun handleAction(
+    action: AccountSettingsAction,
+    removalBiometrics: BiometricsAuthentication,
+    signalLoginBiometrics: BiometricsAuthentication,
+    deleteAccountBiometrics: BiometricsAuthentication
+  ) {
     when (action) {
       AccountSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       AccountSettingsAction.LaunchCreatePinFlow -> pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinCreate(requireContext()))
@@ -101,7 +108,7 @@ class AccountSettingsFragment : ComposeFragment() {
           viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
         }
       }
-      AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_signalLoginViewDetailsFragment)
+      AccountSettingsAction.NavigateToSignalLoginDetails -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment)
       AccountSettingsAction.NavigateToTotpSetup -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
       is AccountSettingsAction.NavigateToRenameTotpApp -> {
         findNavController().safeNavigate(
@@ -117,15 +124,19 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.ShowAuthenticationFailed -> toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
       AccountSettingsAction.ShowTotpAppRemoved -> toast(AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed)
       AccountSettingsAction.ShowTotpAppRemovalFailed -> toast(AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app)
-      // TODO Open the two-factor authentication support article once one exists.
-      AccountSettingsAction.OpenLearnMore -> Log.w(TAG, "There's no support article to open yet.")
+      is AccountSettingsAction.OpenSupportArticle -> CommunicationActions.openBrowserLink(requireContext(), action.url)
       AccountSettingsAction.NavigateToAdvancedPinSettings -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_advancedPinSettingsActivity)
       AccountSettingsAction.NavigateToChangePhoneNumber -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
       AccountSettingsAction.NavigateToDeviceTransfer -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
       AccountSettingsAction.NavigateToExportAccountData -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_exportAccountFragment)
+      AccountSettingsAction.AuthenticateToDeleteAccount -> {
+        deleteAccountBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.DeleteAccountAuthenticated)
+        }
+      }
       AccountSettingsAction.NavigateToDeleteAccount -> findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
       AccountSettingsAction.OpenPlayStore -> PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
-      AccountSettingsAction.LaunchReRegistration -> startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
+      AccountSettingsAction.LaunchReRegistration -> startActivity(RegistrationIntents.newIntentForReRegistration(requireContext()))
       AccountSettingsAction.WipeAllData -> {
         if (!ServiceUtil.getActivityManager(AppDependencies.application).clearApplicationUserData()) {
           viewModel.onEvent(AccountSettingsEvent.DataWipeFailed)

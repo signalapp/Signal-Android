@@ -148,8 +148,8 @@ interface NetworkController {
    *
    * Retries for the same [purchaseIdentifier] must reuse the same [receiptCredentialRequest].
    *
-   * Implementations must apply the same validations to the returned credential as are applied to one-time donation
-   * receipts, and the expected receipt expiration is `purchaseDate + 5 * 366` days, plus padding for clock skew.
+   * The expected receipt expiration is `purchaseDate + 5 * 366` days. [RegistrationRepository] validates the level
+   * and expiration of the credential this issues.
    *
    * `POST /v1/login-purchase/receipt_credentials`
    */
@@ -569,10 +569,11 @@ interface NetworkController {
    */
   data class ProvisioningMessage(
     val accountEntropyPool: String,
-    val e164: String,
+    val aci: ACI,
+    val e164: String?,
     val pin: String?,
     val aciIdentityKeyPair: IdentityKeyPair,
-    val pniIdentityKeyPair: IdentityKeyPair,
+    val pniIdentityKeyPair: IdentityKeyPair?,
     val platform: Platform,
     val tier: Tier?,
     val backupTimestampMs: Long?,

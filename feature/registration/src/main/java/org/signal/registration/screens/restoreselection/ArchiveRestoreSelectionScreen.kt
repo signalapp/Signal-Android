@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -35,6 +36,7 @@ import androidx.compose.ui.window.DialogProperties
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
@@ -79,6 +81,11 @@ private fun OnePaneLayout(
   OnePaneRegistrationScaffold(
     modifier = modifier.fillMaxSize(),
     params = params,
+    footer = if (state.isSkipping) {
+      { SkipProgressFooter(params) }
+    } else {
+      null
+    },
     content = { paddingValues ->
       Column(
         modifier = Modifier
@@ -113,6 +120,11 @@ private fun TwoPaneLayout(
       .fillMaxSize()
       .testTag(TestTags.ARCHIVE_RESTORE_SELECTION_SCREEN),
     params = params,
+    footer = if (state.isSkipping) {
+      { SkipProgressFooter(params) }
+    } else {
+      null
+    },
     firstPane = { paddingValues ->
       Column(
         modifier = Modifier
@@ -134,6 +146,27 @@ private fun TwoPaneLayout(
       }
     }
   )
+}
+
+@Composable
+private fun SkipProgressFooter(params: RegistrationScaffold.Params) {
+  RegistrationScaffold.FooterSurface(isElevated = false) {
+    Box(
+      contentAlignment = Alignment.Center,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 16.dp, bottom = params.edgeInset)
+    ) {
+      CircularProgressIndicator(
+        modifier = Modifier
+          .size(48.dp)
+          .testTag(TestTags.ARCHIVE_RESTORE_SELECTION_SPINNER),
+        strokeWidth = 4.dp,
+        color = MaterialTheme.colorScheme.primary,
+        trackColor = MaterialTheme.colorScheme.surfaceVariant
+      )
+    }
+  }
 }
 
 @Composable
@@ -163,7 +196,6 @@ private fun RestoreOptions(state: ArchiveRestoreSelectionState, onEvent: (Archiv
     RestoreOptionCard(
       option = option,
       enabled = !state.isSkipping,
-      showSpinner = state.isSkipping && option == ArchiveRestoreOption.None,
       onClick = { onEvent(ArchiveRestoreSelectionScreenEvents.RestoreOptionSelected(option)) }
     )
   }
@@ -173,7 +205,6 @@ private fun RestoreOptions(state: ArchiveRestoreSelectionState, onEvent: (Archiv
 private fun RestoreOptionCard(
   option: ArchiveRestoreOption,
   enabled: Boolean,
-  showSpinner: Boolean,
   onClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -217,7 +248,6 @@ private fun RestoreOptionCard(
         title = stringResource(R.string.ArchiveRestoreSelectionScreen__skip_restore_title),
         subtitle = stringResource(R.string.ArchiveRestoreSelectionScreen__skip_restore_description),
         enabled = enabled,
-        showSpinner = showSpinner,
         onClick = onClick,
         modifier = modifier.testTag(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
       )
@@ -232,32 +262,26 @@ private fun SelectionCard(
   subtitle: String,
   onClick: () -> Unit,
   enabled: Boolean = true,
-  showSpinner: Boolean = false,
   modifier: Modifier = Modifier
 ) {
   Card(
     onClick = onClick,
     enabled = enabled,
     colors = CardDefaults.cardColors(
-      containerColor = MaterialTheme.colorScheme.surfaceContainerLow
+      containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+      contentColor = MaterialTheme.colorScheme.onSurface,
+      disabledContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+      disabledContentColor = MaterialTheme.colorScheme.onSurface
     ),
     modifier = modifier.fillMaxWidth()
   ) {
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(16.dp)
+      modifier = Modifier
+        .padding(16.dp)
+        .alpha(if (enabled) 1f else Rows.DISABLED_ALPHA)
     ) {
-      if (showSpinner) {
-        Box(contentAlignment = Alignment.Center, modifier = Modifier.size(48.dp)) {
-          CircularProgressIndicator(
-            modifier = Modifier.size(24.dp),
-            strokeWidth = 3.dp,
-            color = MaterialTheme.colorScheme.primary
-          )
-        }
-      } else {
-        Icon(imageVector = imageVector, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
-      }
+      Icon(imageVector = imageVector, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp))
 
       Spacer(modifier = Modifier.width(16.dp))
 
@@ -283,6 +307,20 @@ private fun ArchiveRestoreSelectionScreenPreview() {
     ArchiveRestoreSelectionScreen(
       state = ArchiveRestoreSelectionState(
         restoreOptions = listOf(ArchiveRestoreOption.SignalSecureBackup, ArchiveRestoreOption.LocalBackup, ArchiveRestoreOption.DeviceTransfer, ArchiveRestoreOption.None)
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun ArchiveRestoreSelectionScreenSkippingPreview() {
+  Previews.Preview {
+    ArchiveRestoreSelectionScreen(
+      state = ArchiveRestoreSelectionState(
+        restoreOptions = listOf(ArchiveRestoreOption.SignalSecureBackup, ArchiveRestoreOption.LocalBackup, ArchiveRestoreOption.DeviceTransfer, ArchiveRestoreOption.None),
+        isSkipping = true
       ),
       onEvent = {}
     )

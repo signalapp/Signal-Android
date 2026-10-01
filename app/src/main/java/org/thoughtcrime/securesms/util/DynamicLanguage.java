@@ -5,7 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.util.dynamiclanguage.LanguageString;
 
 import java.util.Locale;
@@ -46,7 +46,7 @@ public class DynamicLanguage {
   }
 
   private static Locale getSelectedLocale(Context context) {
-    Locale locale = LanguageString.parseLocale(SignalStore.settings().getLanguage());
+    Locale locale = LanguageString.parseLocale(PlainTextKeyValueStore.getLanguage());
     if (locale == null) {
       return Locale.getDefault();
     } else {

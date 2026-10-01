@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2026 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+<resources>
+  <!-- Tab labels -->
+  <!-- Label of the tab that shows the emoji page of the media keyboard. Noun. -->
+  <string name="MediaKeyboard__emoji">表情</string>
+  <!-- Label of the tab that shows the sticker page of the media keyboard. Plural noun. -->
+  <string name="MediaKeyboard__stickers">貼圖</string>
+  <!-- Label of the tab that shows the GIF page of the media keyboard. Plural noun. -->
+  <string name="MediaKeyboard__gifs">動態圖檔</string>
+
+  <!-- Search -->
+  <!-- Placeholder text in the search field at the top of the emoji page, and in the media keyboard search field while the emoji tab is showing. -->
+  <string name="MediaKeyboard__search_emoji">搜尋表情符號</string>
+  <!-- Placeholder text in the search field at the top of the sticker page, and in the media keyboard search field while the sticker tab is showing. -->
+  <string name="MediaKeyboard__search_stickers">搜尋貼圖</string>
+  <!-- Placeholder text in the search field at the top of the GIF page, and in the media keyboard search field while the GIF tab is showing. -->
+  <string name="MediaKeyboard__search_gifs">搜尋 GIF</string>
+  <!-- Accessibility description for the magnifying glass button in the media keyboard top bar that opens search. Verb, as an action the button performs. -->
+  <string name="MediaKeyboard__search">搜尋</string>
+  <!-- Accessibility description for the back button that closes media keyboard search and returns to the tabs. -->
+  <string name="MediaKeyboard__close_search">關閉搜尋</string>
+  <!-- Accessibility description for the button that erases whatever has been typed into the media keyboard search field. -->
+  <string name="MediaKeyboard__clear_search">清除搜尋</string>
+  <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
+  <string name="MediaKeyboard__no_results_found">未找到結果</string>
+
+  <!-- Emoji page -->
+  <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
+  <string name="MediaKeyboard__backspace">退格鍵</string>
+  <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
+  <string name="MediaKeyboard__recently_used">最近使用的</string>
+  <!-- Header for the emoji category holding faces and people. -->
+  <string name="MediaKeyboard__smileys_and_people">笑臉 &amp; 人們</string>
+  <!-- Header for the emoji category holding animals and plants. -->
+  <string name="MediaKeyboard__nature">自然</string>
+  <!-- Header for the emoji category holding food and drink. -->
+  <string name="MediaKeyboard__food">食物</string>
+  <!-- Header for the emoji category holding sports and hobbies. -->
+  <string name="MediaKeyboard__activities">活動</string>
+  <!-- Header for the emoji category holding travel, buildings and places. -->
+  <string name="MediaKeyboard__places">地方</string>
+  <!-- Header for the emoji category holding everyday objects. -->
+  <string name="MediaKeyboard__objects">物品</string>
+  <!-- Header for the emoji category holding symbols and signs. -->
+  <string name="MediaKeyboard__symbols">符號</string>
+  <!-- Header for the emoji category holding country and region flags. Plural noun, the flags themselves. -->
+  <string name="MediaKeyboard__flags">旗幟</string>
+  <!-- Header for the emoji category holding text emoticons such as :-) -->
+  <string name="MediaKeyboard__emoticons">表情符號</string>
+
+  <!-- Sticker page -->
+  <!-- Accessibility description for the button in the media keyboard top bar that opens the screen where sticker packs are managed. -->
+  <string name="MediaKeyboard__manage_stickers">管理貼圖</string>
+  <!-- Menu option that sends a sticker, on a long-pressed sticker, or the whole pack as a link, in a sticker pack header\'s menu. Verb, imperative. -->
+  <string name="MediaKeyboard__send">傳送</string>
+  <!-- Menu option, on a long-pressed sticker and in a sticker pack header\'s menu, that opens the pack the sticker belongs to. Verb phrase, imperative. -->
+  <string name="MediaKeyboard__view_pack">檢視貼圖包</string>
+  <!-- Accessibility description for the three-dot button at the end of a sticker pack header, which opens that pack\'s menu. -->
+  <string name="MediaKeyboard__more_options">更多選項</string>
+  <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
+  <string name="MediaKeyboard__remove_pack">移除</string>
+  <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
+  <string name="MediaKeyboard__remove_sticker_pack_question">要移除貼圖包嗎？</string>
+  <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
+  <string name="MediaKeyboard__this_will_remove_the_sticker_pack">這會移除貼圖包。若無連結或貼圖訊息，你將無法再次新增貼圖包。</string>
+  <!-- Menu option in the recently used header\'s menu that forgets every recently used sticker. Verb phrase, imperative. -->
+  <string name="MediaKeyboard__clear_recents">清除最近項目</string>
+
+  <!-- Gif page -->
+  <!-- Label of the GIF quick search chip that shows the GIFs trending right now. -->
+  <string name="MediaKeyboard__trending">熱門</string>
+  <!-- Label of the GIF quick search chip that searches for celebration GIFs. A search topic, not an instruction to the user. -->
+  <string name="MediaKeyboard__celebrate">慶祝</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs about love. The noun, not the verb. -->
+  <string name="MediaKeyboard__love">愛</string>
+  <!-- Label of the GIF quick search chip that searches for thumbs up GIFs. The hand gesture, as a noun. -->
+  <string name="MediaKeyboard__thumbs_up">拇指比讚</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone surprised. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__surprised">驚訝</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone excited. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__excited">興奮</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone sad. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__sad">傷心</string>
+  <!-- Label of the GIF quick search chip that searches for GIFs of someone angry. Adjective describing the mood in the GIFs. -->
+  <string name="MediaKeyboard__angry">憤怒</string>
+  <!-- Error message shown in place of the GIF grid when the GIFs could not be fetched. -->
+  <string name="MediaKeyboard__couldnt_load_gifs">無法載入 GIF。請檢查你的網路連線，然後再試一次。</string>
+  <!-- Button shown with the GIF loading error that tries the fetch again. Verb, imperative. -->
+  <string name="MediaKeyboard__retry">重試</string>
+</resources>

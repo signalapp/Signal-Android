@@ -39,7 +39,12 @@ class TotpNavArgsTest {
 
   @Test
   fun `a newly paired app carries its id but no renamed app`() {
-    val arguments = Bundle().apply { putLong(TotpNavArgs.ARG_APP_ID, 7) }
+    val arguments = Bundle().apply {
+      putLong(TotpNavArgs.ARG_APP_ID, 7)
+      putBoolean(TotpNavArgs.ARG_RENAMING, false)
+      putString(TotpNavArgs.ARG_APP_NAME, "")
+      putLong(TotpNavArgs.ARG_APP_CREATED_AT, TotpNavArgs.NO_CREATED_AT)
+    }
 
     assertThat(TotpNavArgs.appId(arguments)).isEqualTo(7L)
     assertThat(TotpNavArgs.renamedApp(arguments)).isNull()
@@ -51,5 +56,13 @@ class TotpNavArgsTest {
 
     assertThat(TotpNavArgs.appId(arguments)).isEqualTo(APP.id)
     assertThat(TotpNavArgs.renamedApp(arguments)).isEqualTo(APP)
+  }
+
+  @Test
+  fun `a rename of an app whose metadata couldn't be read carries no name or date`() {
+    val app = TotpApp(id = 7, name = null, createdAt = null)
+    val arguments = Bundle().apply { TotpNavArgs.putRenamedApp(this, app) }
+
+    assertThat(TotpNavArgs.renamedApp(arguments)).isEqualTo(app)
   }
 }

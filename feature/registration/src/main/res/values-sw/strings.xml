@@ -55,6 +55,8 @@
     <string name="RegistrationActivity_next">Ifuatayo</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">Sajili bila namba</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">Tumia kitambulisho cha akaunti</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Je, nambari iliyo hapa chini ni sahihi?</string>
     <!-- Dialog body to confirm phone number -->
@@ -161,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Endelea bila kuhamisha</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Jumbe na picha na video hazitahamishwa</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Kutoka kwenye folda la hifadhi</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Kutoka kwenye faili ya hifadhi nakala</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Chagua nakala uliyohifadhi</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Kutoka kwenye simu yako ya zamani</string>
     <!-- Subtitle for the device transfer option card -->
@@ -211,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">ingiza nenosiri la nakalahifadhi</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Kauli ya siri ya hifadhi ya kifaa chako ni code ya tarakimu 30 inayohitajika ili kurejesha akaunti na data yako.</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">Ufunguo wa kurejesha akaunti</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">Neno la siri</string>
     <!-- Error text when passphrase is too long -->
@@ -230,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">Ufunguo wa kurejesha akaunti</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">Hakuna ufunguo wa kurejesha akaunti?</string>
-    <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">Ndefu sana (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Ufunguo wa kurejesha akaunti batili</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -254,8 +246,6 @@
     <string name="LocalBackupRestoreScreen__restoring_backup">Inarejesha nakala iliyohifadhiwa</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Tafadhali subiri wakati jumbe na data yako inarejeshwa.</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">Endelea</string>
     <!-- Title shown when restore fails -->
@@ -568,41 +558,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Akaunti yako sasa iko kwenye kifaa hiki.</string>
     <string name="DeviceTransferComplete__continue_registration">Endelea</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">Anzisha wasifu wako</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Wasifu wako na mabadiliko yake yataonwa na watu unaowatumia jumbe, wawasiliani na vikundi.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">Jina la kwanza (linahitajika)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">Jina la mwisho (la hiari)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">Ifuatayo</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">Weka umbo</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Nani anaweza kunipata kupitia kwa nambari?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Mtu yeyote mwenye nambari yako ya simu ataona kuwa upo Signal na anaweza kuanza gumzo na wewe.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Hakuna atakayeweza kuona kuwa upo Signal isipokuwa utakapowatumia ujumbe au tayari una gumzo nao.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">Kila mtu</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">Hakuna mtu</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Una uhakika?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Mipangilio ya \"Nani anayeweza kunipata kupitia nambari\" kwenda \"Hakuna\" itafanya iwe ngumu kwa watu kukupata kwenye Signal.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Ghairi</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">Hifadhi</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">Rudi nyuma</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Imeshindwa kupakia captcha</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -616,7 +571,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Sajili bila namba ya simu ukitumia Signal Login. Kwa ununuzi wa mara moja, utapata ufunguo wa akaunti ili uanze.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Sajili bila namba ya simu ukitumia Signal Login. Kwa ununuzi wa mara moja, utapata kitambulisho cha akaunti ili uanze.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">Jifunze zaidi</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -630,7 +585,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Nina Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Tumia ufunguo wako wa akaunti uliopo</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Tumia maelezo ya login yaliyopo</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Ingia katika akaunti na uirejeshe</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -644,19 +599,47 @@
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Ununuzi wako haujakamilika. Hujatozwa.</string>
     <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
-    <string name="SignalLoginPaymentScreen__unavailable">Unavailable</string>
+    <string name="SignalLoginPaymentScreen__unavailable">Haipatikani</string>
     <!-- Label for the button that retries loading the purchase price after it failed to load. -->
     <string name="SignalLoginPaymentScreen__retry">Jaribu Upya</string>
     <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
-    <string name="SignalLoginPaymentScreen__already_paid">Already paid</string>
+    <string name="SignalLoginPaymentScreen__already_paid">Tayari imelipwa</string>
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
-    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login can\'t be purchased on this device right now. Try again later.</string>
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Signal Login haiwezi kununuliwa kwenye kifaa hiki sasa hivi. Jaribu tena baadaye.</string>
     <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
-    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Your payment is still processing. Come back and tap continue once it goes through, and you won\'t be charged again.</string>
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Malipo yako bado yanachakatwa. Rudi kisha bofya endelea mara yatakapofanikiwa na hautatozwa tena.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Sasisha huduma za Google Play</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Ili ununue Signal Login, sasisha huduma za Google Play kwenye kifaa hiki.</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">Sasisha</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Huduma za Google Play hazipo</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Ili ununue Signal Login, huduma za Google Play zinapaswa kuwekwa.</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">Weka Huduma za Google Play</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Huduma za Google Play zinasasisha</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Ili ununue Signal Login tafadhali subiri huduma za Google Play zimalize kusasishwa.</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Play inahitajika</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Ili ununue Signal Login, washa huduma za Google Play kwenye kifaa hiki na uingia kwenye duka la Google Play.</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">Huwezi kununua Signal Login kwa sababu kifaa hiki hakitumii huduma za Google Play. Wasiliana na mtengeneza simu kwa usaidizi.</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Ili ununue Signal Login, tafadhali ingia katika akaunti ya duka la Google Play.</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Huwezi kununua Signal Login katika toleo hili la Signal. Weka Signal kutoka kwenye duka la Google Play ili ununue.</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">Fungua Play Store</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
@@ -665,30 +648,32 @@
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Asante kwa ununuzi wako. Tumia Signal Login yako kujisajili na kurejesha akaunti yako. Iwapo utasahau ufunguo wako, hutaweza kurejesha akaunti yako.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Hifadhi kwenye kidhibiti cha manenosiri</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginInfoScreen__no_password_manager_available">You don\'t have a password manager set up.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Hifadhi mwenyewe</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signal Login yako haijahifadhiwa. Tafadhali yahifadhi mwenyewe badala yake.</string>
     <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
-    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error confirming login info</string>
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">Hitilafu katika uthibitishaji wa maelezo ya login</string>
     <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Your Signal Login could not be confirmed. Make sure you\'ve saved it in your password manager, or save it manually.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Maelezo yako ya Signal Login hayathibitishwa. Hakikisha umeuhifadhi kwenye kidhibiti cha manenosiri au uhifadhi mwenyewe.</string>
 
     <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
     <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Thibitisha kuwa maelezo yako ya login yamehifadhiwa</string>
     <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Confirm that your Signal Login was saved correctly. You will be prompted to fill in your saved password in the next step.</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Thibitisha kuwa maelezo yako ya Signal Login yamehifadhiwa kwa usahihi. Utaombwa ujaze nenosiri lako ulilohifadhi kwenye hatua inayofuata.</string>
     <!-- Action button that starts checking the password manager for the Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Confirm login info</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Thibitisha maelezo ya login</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">See login info again</string>
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">Angalia tena maelezo ya login</string>
 
     <!-- Save Signal Login screen -->
     <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Save your Signal Login</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Hifadhi maelezo yako ya Signal Login yako</string>
     <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
-    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Store your Signal Login somewhere safe and secure. Never share your login info with anyone.</string>
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Hifadhi maelezo yako ya Signal Login yako mahali salama. Usiwahi kumpa mtu yeyote maelezo yako ya login.</string>
     <!-- Action button that saves the Signal Login to a PDF file. -->
     <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">Hifadhi kama PDF</string>
     <!-- Action button for users who are done recording their Signal Login. -->
@@ -696,17 +681,15 @@
 
     <!-- Sheet that double-checks the user really saved their Signal Login -->
     <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Confirm your login info is saved</string>
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Thibitisha kuwa maelezo yako ya login yamehifadhiwa</string>
     <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
-    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">You will be prompted to sign in with your Signal Login next. Make sure you\'ve saved or copied these details. Signal will not be able to help you recover your account.</string>
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">Wakati ujao utaombwa uingie katika akaunti yako ukitumia Signal Login. Hakikisha umehifadhi au kunakili maelezo haya. Signal haitaweza kukusaidia kurejesha akaunti yako.</string>
     <!-- Action button confirming the Signal Login is saved. -->
     <string name="ConfirmLoginSavedBottomSheet__continue">Endelea</string>
     <!-- Action button that sends the user back to their Signal Login. -->
-    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Show login info again</string>
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Onyesha tena maelezo ya login</string>
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
-    <!-- Error shown when too many characters were entered in an account ID field. First placeholder is how many were entered, second is the maximum. -->
-    <string name="AccountIdField__too_long">Ndefu sana. Herufi %1$d kati ya %2$d.</string>
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
     <string name="AccountIdField__invalid_account_id">ID ya akaunti si sahihi</string>
 
@@ -730,11 +713,11 @@
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
     <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Kitambulisho cha akaunti au ufunguo wa kurejesha akaunti si sahihi</string>
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Enter your Signal Login to confirm it was recorded correctly.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Weka maelezo yako ya Signal Login ili uthibitishe kuwa yamerekodiwa kwa usahihi.</string>
     <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
-    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Show login info again</string>
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Onyesha tena maelezo ya login</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
-    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">That doesn\'t match the Signal Login you were shown</string>
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">Hiyo hailingani na maelezo ya Signal Login uliyoonyeshwa</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -747,12 +730,8 @@
     <string name="AddUsernameScreen__username">Jina la mtumiaji</string>
     <!-- Helper text below the username field. Followed by a "learn more" link. -->
     <string name="AddUsernameScreen__usernames_are_always_paired_with_a_set_of_numbers">Majina ya watumiaji huwa yana seti ya tarakimu.</string>
-    <!-- Link in the helper text that opens an explanation of the digits paired with a username. -->
+    <!-- Link in the helper text that opens a support article about usernames. -->
     <string name="AddUsernameScreen__learn_more">Jifunze zaidi</string>
-    <!-- Title of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__what_is_this_number">Hii ni nambari gani?</string>
-    <!-- Body of the dialog explaining the digits paired with a username. -->
-    <string name="AddUsernameScreen__these_digits_help_keep">Tarakimu hizi ni usaidizi wa kuliweka jina lako la mtumiaji siri ili uweze kuepuka jumbe usizozihitaji. Shiriki jina lako la mtumiaji na watu na makundi unayopenda kuzungumza nayo tu. Ukibadili jina lako la mtumiaji, utapata seti mpya ya tarakimu.</string>
     <!-- Button that skips choosing a username. -->
     <string name="AddUsernameScreen__skip">Ruka</string>
     <!-- Button that submits the chosen username. -->
@@ -782,7 +761,7 @@
     <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
     <string name="AddUsernameScreen__are_you_sure">Una uhakika?</string>
     <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
-    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Without a username people won\'t be able to find you on Signal.</string>
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Bila jina la mtumiaji watu hawataweza kukupata kwenye Signal.</string>
     <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
     <string name="AddUsernameScreen__cancel">Ghairi</string>
     <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
@@ -802,7 +781,7 @@
     <!-- Title of the two-factor authentication code entry screen -->
     <string name="TotpEntryScreen__two_factor_authentication">Uthibitishaji wa hatua mbili</string>
     <!-- Subtitle explaining where to find the code -->
-    <string name="TotpEntryScreen__to_continue_enter_the_code">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TotpEntryScreen__to_continue_enter_the_code">Ili uendelee weka code ya tarakimu 6 kutoka kwenye programu yako ya kithibitishaji.</string>
     <!-- Button text to cancel entering a code -->
     <string name="TotpEntryScreen__cancel">Ghairi</string>
 

@@ -11,9 +11,18 @@ sealed interface SignalLoginPaymentScreenActions {
   /** Open the article explaining Signal Login. */
   data object OpenLearnMoreArticle : SignalLoginPaymentScreenActions
 
+  /** Open the article explaining why Google Play is required to buy a Signal Login. */
+  data object OpenPaymentUnavailableArticle : SignalLoginPaymentScreenActions
+
   /**
    * Launch the Google Play purchase sheet. The UI layer owns the activity, launches [launcher], and reports the
    * outcome back as [SignalLoginPaymentScreenEvents.PurchaseFlowCompleted].
    */
   data class LaunchPurchaseFlow(val launcher: PurchaseLauncher) : SignalLoginPaymentScreenActions
+
+  /** Ask Google Play services to make itself available, installing or updating itself as needed. */
+  data object MakeGooglePlayServicesAvailable : SignalLoginPaymentScreenActions
+
+  /** Open the Play Store, so the user can sign into it. */
+  data object OpenPlayStore : SignalLoginPaymentScreenActions
 }

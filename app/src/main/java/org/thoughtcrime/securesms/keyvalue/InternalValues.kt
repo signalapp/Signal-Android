@@ -5,6 +5,7 @@ import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
+import org.thoughtcrime.securesms.keyvalue.protos.RemoteConfigOverrides
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -45,6 +46,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
     const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
     const val ISSUE_NOTIFY_TIMES: String = "internal.issue_notify_times"
+    const val REMOTE_CONFIG_OVERRIDES: String = "internal.remote_config_overrides"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -229,6 +231,18 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   /** Enable ANR detector forcing a crash. */
   var anrDetectionCrashes by booleanValue(ANR_DETECTION_CRASH, true).falseForExternalUsers()
+
+  private var remoteConfigOverridesProto: RemoteConfigOverrides by protoValue(REMOTE_CONFIG_OVERRIDES, RemoteConfigOverrides(), RemoteConfigOverrides.ADAPTER)
+
+  /**
+   * Locally-overridden [RemoteConfig] values, keyed by config key. This isn't gated on the
+   * internal user flag, because it's read while remote config is initializing.
+   */
+  var remoteConfigOverrides: Map<String, String>
+    get() = remoteConfigOverridesProto.valueByKey
+    set(value) {
+      remoteConfigOverridesProto = RemoteConfigOverrides(valueByKey = value)
+    }
 
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {
     return this.withPrecondition { RemoteConfig.internalUser }

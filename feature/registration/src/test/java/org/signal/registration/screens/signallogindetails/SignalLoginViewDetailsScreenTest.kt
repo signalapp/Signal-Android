@@ -7,6 +7,7 @@ package org.signal.registration.screens.signallogindetails
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -51,6 +52,25 @@ class SignalLoginViewDetailsScreenTest {
   }
 
   @Test
+  fun `when the screen is displayed, the beta disclaimer is shown`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
+  }
+
+  @Config(qualifiers = "w1280dp-h800dp-xhdpi")
+  @Test
+  fun `when the window is wide, both panes are shown`() {
+    setContent(showResetRecoveryKeyButton = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_ACCOUNT_ID_BLOCK).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_RECOVERY_KEY_BLOCK).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsDisplayed()
+  }
+
+  @Test
   fun `when the account key copy button is clicked, CopyAccountIdClicked is emitted`() {
     setContent()
 
@@ -68,13 +88,63 @@ class SignalLoginViewDetailsScreenTest {
     assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(RECOVERY_KEY))
   }
 
-  private fun setContent() {
+  @Test
+  fun `when the screen does not offer the password manager, the save to password manager button is not shown`() {
+    setContent(showSaveToPasswordManagerButton = false)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsNotDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_AS_PDF_BUTTON).assertIsDisplayed()
+  }
+
+  @Test
+  fun `when there is no password manager, the save to password manager button is still shown and clickable`() {
+    setContent(isPasswordManagerAvailable = false)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed().performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
+  }
+
+  @Test
+  fun `when the screen cannot reset the recovery key, the reset button is not shown`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
+  }
+
+  @Test
+  fun `when the reset recovery key button is clicked, ResetRecoveryKeyClicked is emitted`() {
+    setContent(showResetRecoveryKeyButton = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked)
+  }
+
+  @Test
+  fun `when the reset limit is still loading, a spinner replaces the reset button`() {
+    setContent(showResetRecoveryKeyButton = true, resetRecoveryKeyButtonLoading = true)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_SPINNER).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
+  }
+
+  private fun setContent(
+    showSaveToPasswordManagerButton: Boolean = true,
+    isPasswordManagerAvailable: Boolean = true,
+    showResetRecoveryKeyButton: Boolean = false,
+    resetRecoveryKeyButtonLoading: Boolean = false
+  ) {
     composeTestRule.setContent {
       SignalTheme {
         SignalLoginViewDetailsScreen(
           state = SignalLoginViewDetailsState(
             accountKey = ACCOUNT_KEY,
-            recoveryKey = RECOVERY_KEY
+            recoveryKey = RECOVERY_KEY,
+            showSaveToPasswordManagerButton = showSaveToPasswordManagerButton,
+            isPasswordManagerAvailable = isPasswordManagerAvailable,
+            showResetRecoveryKeyButton = showResetRecoveryKeyButton,
+            resetRecoveryKeyButtonLoading = resetRecoveryKeyButtonLoading
           ),
           onEvent = { events += it }
         )

@@ -90,7 +90,6 @@ import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ui.restore.local.RestoreLocalBackupActivity
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
@@ -236,15 +235,6 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               Toast.makeText(context, "Invalid credentials!", Toast.LENGTH_SHORT).show()
             }
           },
-          onImportNewStyleLocalBackupClicked = {
-            MaterialAlertDialogBuilder(context)
-              .setTitle("Are you sure?")
-              .setMessage("After you choose a file to import, this will delete all of your chats, then restore them from the file! Only do this on a test device!")
-              .setPositiveButton("Wipe and restore") { _, _ ->
-                startActivity(RestoreLocalBackupActivity.getIntent(context, finish = false))
-              }
-              .show()
-          },
           onDeleteRemoteBackup = {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
@@ -354,7 +344,6 @@ fun Tabs(
 fun Screen(
   state: ScreenState,
   onExportNewStyleLocalBackupClicked: () -> Unit = {},
-  onImportNewStyleLocalBackupClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
   onEnqueueReconciliationClicked: () -> Unit = {},
@@ -589,12 +578,6 @@ fun Screen(
         text = "Wipe all data and restore from file",
         label = "Erases all content on your device, followed by a restore of an encrypted backup selected from disk.",
         onClick = onImportEncryptedBackupFromDiskClicked
-      )
-
-      Rows.TextRow(
-        text = "Wipe all data and restore a new-style local backup",
-        label = "Erases all content on your device, followed by a restore of a previously-generated new-style local backup.",
-        onClick = onImportNewStyleLocalBackupClicked
       )
 
       Rows.TextRow(

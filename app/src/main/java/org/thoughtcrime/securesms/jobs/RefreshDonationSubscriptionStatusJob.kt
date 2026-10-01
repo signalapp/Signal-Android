@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -66,10 +67,10 @@ class RefreshDonationSubscriptionStatusJob private constructor(parameters: Param
       return
     }
 
-    val activeSubscription = AppDependencies.donationsService.getSubscription(subscriber.subscriberId).resultOrThrow
+    val activeSubscription = SignalNetwork.donationsService.getSubscription(subscriber.subscriberId).resultOrThrow
 
     if (activeSubscription.isActive) {
-      val endOfCurrentPeriod = activeSubscription.activeSubscription.endOfCurrentPeriod
+      val endOfCurrentPeriod = activeSubscription.activeSubscription!!.endOfCurrentPeriod
       if (endOfCurrentPeriod > SignalStore.inAppPayments.getLastEndOfPeriod()) {
         Log.i(TAG, "Server reports active subscription with newer end-of-period. Updating local state.")
         SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod)

@@ -67,8 +67,8 @@ object StickerManagementRepository {
 
       reader.asSequence().forEachIndexed { index, record ->
         when {
-          record.isInstalled -> installedPacks.add(record)
           BlessedPacks.contains(record.packId) -> blessedPacks.add(record)
+          record.isInstalled -> installedPacks.add(record)
           else -> availablePacks.add(record)
         }
         sortOrderById[StickerPackId(record.packId)] = index

@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.Emoj
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
@@ -68,7 +67,7 @@ class EmojiKeyboardPageViewModel(private val repository: EmojiKeyboardPageReposi
 
   companion object {
     fun getStartingTab(): String {
-      return if (RecentEmojiPageModel.hasRecents(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY)) {
+      return if (RecentEmojiPageModel.hasRecents(AppDependencies.application, RecentEmojiPageModel.RECENT_STORAGE_KEY)) {
         RecentEmojiPageModel.KEY
       } else {
         EmojiCategory.PEOPLE.key

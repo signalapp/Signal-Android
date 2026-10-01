@@ -50,7 +50,7 @@ class SignalCallLinkManager(
 
     Log.d(TAG, "Requesting call link credential response.")
 
-    when (val result: NetworkResult<CreateCallLinkCredentialResponse> = SignalNetwork.calling.createCallLinkCredential(request)) {
+    when (val result: NetworkResult<CreateCallLinkCredentialResponse> = SignalNetwork.callingApi.createCallLinkCredential(request)) {
       is NetworkResult.Success -> {
         Log.d(TAG, "Requesting call link credential.")
 

@@ -42,6 +42,10 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * Most callers should use {@link #isPhoneNumberSharingEnabled()}.
    */
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return PhoneNumberSharingMode.NOBODY;
+    }
+
     return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.DEFAULT.serialize()));
   }
 
@@ -58,6 +62,10 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public @NonNull PhoneNumberDiscoverabilityMode getPhoneNumberDiscoverabilityMode() {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE;
+    }
+
     // The default for existing users is to be discoverable, but new users are set to UNDECIDED in onFirstEverAppLaunch
     return PhoneNumberDiscoverabilityMode.deserialize(getInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.DISCOVERABLE.serialize()));
   }

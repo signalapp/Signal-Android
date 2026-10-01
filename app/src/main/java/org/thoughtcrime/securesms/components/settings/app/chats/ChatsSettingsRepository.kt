@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.chats
 
-import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -9,11 +8,8 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class ChatsSettingsRepository {
-
-  private val context: Context = AppDependencies.application
 
   fun syncLinkPreviewsState() {
     SignalExecutors.BOUNDED.execute {
@@ -23,9 +19,9 @@ class ChatsSettingsRepository {
       StorageSyncHelper.scheduleSyncForDataChange()
       AppDependencies.jobManager.add(
         MultiDeviceConfigurationUpdateJob(
-          TextSecurePreferences.isReadReceiptsEnabled(context),
-          TextSecurePreferences.isTypingIndicatorsEnabled(context),
-          TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+          SignalStore.settings.isReadReceiptsEnabled,
+          SignalStore.settings.isTypingIndicatorsEnabled,
+          SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
           isLinkPreviewsEnabled
         )
       )

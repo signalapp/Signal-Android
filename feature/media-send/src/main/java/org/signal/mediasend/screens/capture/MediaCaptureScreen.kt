@@ -219,7 +219,7 @@ private fun MediaCaptureScreenWithManySelectedMediaPreview() {
 }
 
 @Composable
-private fun rememberPreviewCaptureState(): MediaCaptureState = remember {
+internal fun rememberPreviewCaptureState(): MediaCaptureState = remember {
   MediaCaptureState(
     isCameraFirst = true,
     storiesEnabled = true,

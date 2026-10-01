@@ -14,6 +14,7 @@ private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=620dp,height=720dp,orien
 private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=720dp,height=620dp,orientation=landscape"
 private const val FOLDABLE_PORTRAIT = "spec:width=850dp,height=881dp,orientation=portrait"
 private const val FOLDABLE_LANDSCAPE = "spec:width=881dp,height=850dp,orientation=landscape"
+private const val SMALL_TABLET_LANDSCAPE = "spec:width=960dp,height=600dp,orientation=landscape"
 private const val TABLET_PORTRAIT = "spec:width=800dp,height=1280dp,orientation=portrait"
 private const val TABLET_LANDSCAPE = "spec:width=1280dp,height=800dp,orientation=landscape"
 
@@ -27,7 +28,11 @@ annotation class NightPreview()
 @NightPreview
 annotation class DayNightPreviews
 
-@Preview(name = "rtl", locale = "ar")
+/**
+ * Renders with English strings in a right-to-left layout. The Arab script forces RTL while the language stays
+ * English, so these screenshots don't churn when new translations land.
+ */
+@Preview(name = "rtl", locale = "b+en+Arab")
 annotation class RtlPreview
 
 @Preview(name = "phone portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = PHONE_PORTRAIT)
@@ -56,6 +61,13 @@ annotation class FoldablePortraitNightPreview
 
 @Preview(name = "foldable landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = FOLDABLE_LANDSCAPE)
 annotation class FoldableLandscapeDayPreview
+
+/**
+ * A small tablet in landscape: expanded width, but the shortest height of any non-phone window, which is where
+ * fixed-height content runs out of room first.
+ */
+@Preview(name = "small tablet landscape (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = SMALL_TABLET_LANDSCAPE)
+annotation class SmallTabletLandscapeDayPreview
 
 @Preview(name = "tablet portrait (day)", uiMode = Configuration.UI_MODE_NIGHT_NO, device = TABLET_PORTRAIT)
 annotation class TabletPortraitDayPreview
@@ -113,7 +125,7 @@ annotation class BreakpointPreviews
 
 /**
  * The screenshot test matrix, sized to catch UI regressions rather than to enumerate configurations: each device
- * in both orientations, a dark-mode pass over one representative size per device, and an RTL locale.
+ * in both orientations, a dark-mode pass over one representative size per device, and a right-to-left pass.
  */
 @PhonePortraitDayPreview
 @PhoneLandscapeDayPreview

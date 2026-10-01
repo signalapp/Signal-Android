@@ -231,7 +231,7 @@ class UploadAttachmentToArchiveJob private constructor(
     val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
 
     val form: AttachmentUploadForm? = if (existingSpec == null) {
-      when (val formResult = AppDependencies.archiveService.getMediaUploadForm(ciphertextLength)) {
+      when (val formResult = SignalNetwork.archiveService.getMediaUploadForm(ciphertextLength)) {
         is Either.Right -> formResult.value
         is Either.Left -> return when (val error = formResult.value) {
           is ArchiveError.ApplicationError -> {
@@ -314,7 +314,7 @@ class UploadAttachmentToArchiveJob private constructor(
     progressServiceController.use {
       val uploadResult: AttachmentUploadResult = attachmentStream.use { stream ->
         when (
-          val result = SignalNetwork.attachments.uploadAttachmentV4(
+          val result = SignalNetwork.attachmentApi.uploadAttachmentV4(
             form = form,
             key = key,
             iv = iv,

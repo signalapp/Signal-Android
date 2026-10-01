@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import androidx.annotation.VisibleForTesting
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
@@ -744,8 +745,9 @@ private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage
   } else if (profileChangeDetails?.learnedProfileName != null) {
     val e164 = profileChangeDetails.learnedProfileName.e164?.e164ToLong()
     val username = profileChangeDetails.learnedProfileName.username
-    if (e164 != null || username.isNotNullOrBlank()) {
-      ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = e164, username = username))
+    val sharedName = profileChangeDetails.learnedProfileName.sharedName
+    if (e164 != null || username.isNotNullOrBlank() || sharedName.isNotNullOrBlank()) {
+      ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = e164, username = username, sharedName = sharedName))
     } else {
       Log.w(TAG, ExportSkips.emptyLearnedProfileChange(this.dateSent))
       null
@@ -1087,9 +1089,23 @@ private fun BackupMessageRecord.toRemoteContactMessage(reactionRecords: List<Rea
           postcode = address.postalCode ?: "",
           country = address.country ?: ""
         ).takeUnless { it.street.isBlank() && it.pobox.isBlank() && it.neighborhood.isBlank() && it.city.isBlank() && it.region.isBlank() && it.postcode.isBlank() && it.country.isBlank() }
-      }
+      },
+      aci = ServiceId.ACI.parseOrNull(sharedContact.aci)?.takeIf { it.isValid }?.toByteString() ?: ByteString.EMPTY,
+      nickname = sharedContact.nickname.toRemote(),
+      note = sharedContact.note ?: ""
     ),
     reactions = reactionRecords.toRemote(exportState)
+  )
+}
+
+private fun Contact.SignalNickname?.toRemote(): ContactAttachment.SignalNickname? {
+  if (this == null || this.isEmpty) {
+    return null
+  }
+
+  return ContactAttachment.SignalNickname(
+    given = this.given ?: "",
+    family = this.family ?: ""
   )
 }
 

@@ -7,7 +7,10 @@
 
 package org.signal.registration
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Parcelable
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
@@ -26,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,6 +44,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
@@ -62,6 +67,7 @@ import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
 import org.signal.registration.screens.addusername.AddUsernameScreen
+import org.signal.registration.screens.addusername.AddUsernameScreenActions
 import org.signal.registration.screens.addusername.AddUsernameViewModel
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
@@ -76,9 +82,6 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
-import org.signal.registration.screens.createprofile.CreateProfileScreen
-import org.signal.registration.screens.createprofile.CreateProfileScreenEvents
-import org.signal.registration.screens.createprofile.CreateProfileViewModel
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteScreen
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteViewModel
 import org.signal.registration.screens.devicetransfer.instructions.DeviceTransferInstructionsScreen
@@ -87,8 +90,6 @@ import org.signal.registration.screens.devicetransfer.progress.DeviceTransferPro
 import org.signal.registration.screens.devicetransfer.progress.DeviceTransferProgressViewModel
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupScreen
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupViewModel
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityScreen
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityViewModel
 import org.signal.registration.screens.linkaccount.LinkAccountScreen
 import org.signal.registration.screens.linkaccount.LinkAccountScreenAction
 import org.signal.registration.screens.linkaccount.LinkAccountViewModel
@@ -124,8 +125,8 @@ import org.signal.registration.screens.signallogincredentials.SignalLoginCredent
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenEvents
 import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryViewModel
 import org.signal.registration.screens.signallogincredentials.SignalLoginManualSaveConfirmationViewModel
-import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsScreenActions
-import org.signal.registration.screens.signallogindetails.SignalLoginViewDetailsViewModel
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsAction
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsViewModel
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenActions
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenEvents
@@ -389,12 +390,6 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object DeviceTransferComplete : RegistrationRoute
 
   @Serializable
-  data object Profile : RegistrationRoute
-
-  @Serializable
-  data class PhoneNumberDiscoverability(val initialDiscoverable: Boolean) : RegistrationRoute
-
-  @Serializable
   data object FullyComplete : RegistrationRoute
 }
 
@@ -403,13 +398,7 @@ private const val COUNTRY_CODE_RESULT = "country_code_result"
 private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
 private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
-private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
-private const val PIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059792"
-private const val CLIPBOARD_TIMEOUT_SECONDS = 60
-
-// TODO [phonenumberless] Point at the real support article once it exists.
-private const val SIGNAL_LOGIN_LEARN_MORE_URL = "https://support.signal.org/"
 
 /** Opens [url] in a browser, surfacing a toast if the device has none. */
 private fun openUrl(context: Context, url: String) {
@@ -417,6 +406,22 @@ private fun openUrl(context: Context, url: String) {
     when (error) {
       OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
     }
+  }
+}
+
+/** Opens the Play Store app so the user can sign into it, falling back to the web store when it is not installed. */
+private fun openPlayStore(context: Context) {
+  val intent = Intent(Intent.ACTION_VIEW, "market://details?id=com.android.vending".toUri()).apply {
+    setPackage("com.android.vending")
+    if (context !is Activity) {
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+  }
+
+  try {
+    context.startActivity(intent)
+  } catch (_: ActivityNotFoundException) {
+    openUrl(context, "https://play.google.com/store/apps/")
   }
 }
 
@@ -724,7 +729,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val purchaseScope = rememberCoroutineScope()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
+
+        SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle -> openUrl(context, "https://support.signal.org/hc/articles/11228705649690")
 
         is SignalLoginPaymentScreenActions.LaunchPurchaseFlow -> {
           purchaseScope.launch {
@@ -736,6 +743,16 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
             viewModel.onEvent(SignalLoginPaymentScreenEvents.PurchaseFlowCompleted(result))
           }
         }
+
+        SignalLoginPaymentScreenActions.MakeGooglePlayServicesAvailable -> {
+          if (activity != null) {
+            GoogleApiAvailability.getInstance()
+              .makeGooglePlayServicesAvailable(activity)
+              .addOnCompleteListener { viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded) }
+          }
+        }
+
+        SignalLoginPaymentScreenActions.OpenPlayStore -> openPlayStore(context)
       }
     }
 
@@ -778,6 +795,10 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
             viewModel.onEvent(SignalLoginInfoScreenEvents.SavedCredentialRetrieved(credential))
           }
         }
+
+        SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable -> {
+          Toast.makeText(context, R.string.SignalLoginInfoScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
+        }
       }
     }
 
@@ -791,8 +812,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.SignalLoginViewDetails> {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val viewModel: SignalLoginViewDetailsViewModel = viewModel {
-      SignalLoginViewDetailsViewModel(
+    val viewModel: RegistrationSignalLoginDetailsViewModel = viewModel {
+      RegistrationSignalLoginDetailsViewModel(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
@@ -812,19 +833,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginViewDetailsScreenActions.LaunchSaveToPasswordManager -> {
-          scope.launch {
-            SignalCredentialManager.saveCredential(
-              activityContext = context,
-              username = viewModel.state.value.accountKey,
-              password = viewModel.state.value.recoveryKey
-            )
-          }
-        }
+        RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
-        SignalLoginViewDetailsScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
-
-        is SignalLoginViewDetailsScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
+        is RegistrationSignalLoginDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
 
@@ -861,7 +872,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       when (action) {
         SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
-        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboard(context, action.text, CLIPBOARD_TIMEOUT_SECONDS)
+        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
 
@@ -900,7 +911,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
       }
     }
 
@@ -961,6 +972,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        AddUsernameScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/6712070553754")
+      }
+    }
 
     AddUsernameScreen(
       state = state,
@@ -998,7 +1015,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, PIN_LEARN_MORE_URL)
+        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/360007059792")
       }
     }
 
@@ -1287,42 +1304,6 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferCompleteScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.Profile> {
-    val viewModel: CreateProfileViewModel = viewModel {
-      CreateProfileViewModel(
-        repository = registrationRepository,
-        parentEventEmitter = registrationViewModel::onEvent
-      )
-    }
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    ResultEffect<Boolean>(registrationViewModel.resultBus, PHONE_NUMBER_DISCOVERABILITY_RESULT) { discoverable ->
-      viewModel.onEvent(CreateProfileScreenEvents.DiscoverabilityChanged(discoverable))
-    }
-
-    CreateProfileScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.PhoneNumberDiscoverability> { key ->
-    val viewModel: PhoneNumberDiscoverabilityViewModel = viewModel {
-      PhoneNumberDiscoverabilityViewModel(
-        initialDiscoverable = key.initialDiscoverable,
-        parentEventEmitter = registrationViewModel::onEvent,
-        resultBus = registrationViewModel.resultBus,
-        resultKey = PHONE_NUMBER_DISCOVERABILITY_RESULT
-      )
-    }
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    PhoneNumberDiscoverabilityScreen(
       state = state,
       onEvent = viewModel::onEvent
     )

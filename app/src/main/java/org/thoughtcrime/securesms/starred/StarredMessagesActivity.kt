@@ -81,11 +81,11 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
@@ -365,11 +365,11 @@ private class StarredMessageClickListener(
   override fun onLinkPreviewClicked(linkPreview: LinkPreview) = Unit
   override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
   override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) = Unit
-  override fun onStickerClicked(stickerLocator: StickerLocator) = Unit
+  override fun onStickerClicked(stickerSlide: StickerSlide) = Unit
   override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) = Unit
   override fun onSharedContactDetailsClicked(contact: Contact, avatarTransitionView: View) = Unit
   override fun onAddToContactsClicked(contact: Contact) = Unit
-  override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) = Unit
+  override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) = Unit
   override fun onInviteSharedContactClicked(contact: Contact) = Unit
   override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
   override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit

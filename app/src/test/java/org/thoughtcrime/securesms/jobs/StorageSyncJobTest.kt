@@ -638,7 +638,7 @@ class StorageSyncJobTest {
     SignalDatabase.recipients.updateStorageId(recipients.self, StorageSyncHelper.generateKey())
     Recipient.self().live().refresh()
 
-    val accountRecord = StorageSyncHelper.buildAccountRecord(ApplicationProvider.getApplicationContext(), Recipient.self())
+    val accountRecord = StorageSyncHelper.buildAccountRecord(Recipient.self())
     remoteStorage.setRemoteState(listOf(accountRecord))
 
     val result = runJob(StorageSyncJob.forLocalChange())
@@ -764,7 +764,7 @@ class StorageSyncJobTest {
 
   /** Our account record as another device would have rewritten it: same contents, [backupTier] swapped in, under a fresh storage id so that we see it as remote-only. */
   private fun accountRecordWithBackupTier(backupTier: Long?): SignalStorageRecord {
-    val record = StorageSyncHelper.buildAccountRecord(ApplicationProvider.getApplicationContext(), Recipient.self())
+    val record = StorageSyncHelper.buildAccountRecord(Recipient.self())
 
     return record.copy(
       id = StorageId.forAccount(StorageSyncHelper.generateKey()),

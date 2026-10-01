@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.aepentry
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -58,6 +59,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.passwordmanager.compose.attachPasswordAutoFillHelper
 import org.signal.passwordmanager.compose.passwordAutoFillHelper
@@ -275,6 +277,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
   var requestFocus by remember { mutableStateOf(true) }
   val keyboardController = LocalSoftwareKeyboardController.current
   val autoFillHelper = passwordAutoFillHelper { onEvent(EnterAepEvents.BackupKeyChanged(it)) }
+  val interactionSource = remember { MutableInteractionSource() }
 
   TextField(
     value = state.recoveryKey.enteredText,
@@ -282,7 +285,8 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
       onEvent(EnterAepEvents.BackupKeyChanged(it))
       autoFillHelper.onValueChanged(it)
     },
-    label = { Text(stringResource(R.string.EnterAepScreen__recovery_key)) },
+    label = { TextFields.Label(stringResource(R.string.EnterAepScreen__recovery_key), state.recoveryKey.enteredText.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     textStyle = MaterialTheme.typography.bodyLarge.copy(
       fontFamily = MonoTypeface.fontFamily(),
       lineHeight = 36.sp
@@ -307,8 +311,7 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
       }
     ),
     supportingText = {
-      when (val error = state.recoveryKey.error) {
-        is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
+      when (state.recoveryKey.error) {
         is AepValidationError.Invalid -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
         is AepValidationError.Incorrect -> Text(stringResource(R.string.EnterAepScreen__incorrect_recovery_key))
         null -> {}

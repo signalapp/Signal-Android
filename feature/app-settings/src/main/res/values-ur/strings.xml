@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">پاس کیی</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · شامل کیا گیا %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">دو مرحلہ جاتی توثیق کے اختیارات کھولیں</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">نام تبدیل کریں</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">سائن ان کرتے وقت آپ ایک وقتی تصدیقی کوڈز کے لیے اس ایپ کو استعمال نہیں کر سکیں گے۔</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">دو مرحلہ جاتی طریقے کو ہٹانے کے لیے ان لاک کریں</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">اس طریقے کو ہٹانے کے لیے، تصدیق کریں کہ یہ آپ ہی ہیں</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login دیکھنے کے لیے ان لاک کریں</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">اپنا Signal Login دیکھنے کے لیے، تصدیق کریں کہ یہ آپ ہی ہیں</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">اس بات کی تصدیق کے لیے ان لاک کریں کہ یہ آپ ہی ہیں</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">اپنا اکاؤنٹ حذف کرنے کے لیے، تصدیق کریں کہ یہ آپ ہی ہیں</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">تصدیق درکار ہے</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">توثیق کار ایپ شامل نہیں کر سکتے</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">آپ %1$d سے زیادہ توثیق کار ایپس شامل نہیں کر سکتے۔ پہلے ایک کو ہٹانے کی کوشش کریں۔</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">آپ %1$d سے زیادہ دو مرحلہ جاتی توثیق کے طریقے شامل نہیں کر سکتے۔ پہلے ایک کو ہٹانے کی کوشش کریں۔</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">آپ کے دو مرحلہ جاتی توثیق کے طریقے لوڈ نہیں ہو سکے۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">توثیق کار ایپ ہٹا دی گئی ہے</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">اپنا کوڈ درج کریں</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">اپنی توثیق کار ایپ سے 6 ہندسوں کا کوڈ درج کریں۔</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">کوڈ</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">ہو گیا</string>
+    <string name="TotpCodeEntryScreen__next">اگلا</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">غلط کوڈ۔ اب اپنی توثیق کار ایپ میں دکھایا جانے والا کوڈ درج کریں۔</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal تک رسائی نہیں ہو سکی۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">توثیق کار</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">نام منتخب کریں</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">توثیق کار ایپ کا نام تبدیل کرنا</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">نام محفوظ نہیں کیا جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">اپنا اکاؤنٹ حذف کرنے سے یہ ہو گا:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">اپنا فون نمبر درج کریں</string>
+    <string name="DeleteAccountFragment__delete_account">اکاؤنٹ حذف کریں</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اپنے اکاؤنٹ کی معلومات اور پروفائل کی تصویر حذف کریں</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">اپنے تمام میسجز حذف کریں</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">اپنے ادائیگیوں کے اکاؤنٹ میں %1$s کو حذف کریں</string>
+    <string name="DeleteAccountFragment__no_country_code">ملک کا کوئی کوڈ بتایا نہیں ہے</string>
+    <string name="DeleteAccountFragment__no_number">کوئی نمبر نہیں بتایا گیا</string>
+    <string name="DeleteAccountFragment__the_phone_number">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
+    <string name="DeleteAccountFragment__are_you_sure">کیا آپ کو یقین ہے کہ آپ اپنا اکاؤنٹ ختم کرنا چاہتے ہیں؟</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">اس سے آپ کا Signal اکاؤنٹ حذف ہو جائے گا اور ایپلیکیشن کو دوبارہ ری سیٹ کرے گا۔ کارروائی مکمل ہونے کے بعد ایپ بند ہو جائے گی۔</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">مقامی ڈیٹا کو حذف کرنے میں ناکام۔ آپ اسے سسٹم ایپلیکیشن کی ترتیبات میں دستی طور پر صاف کرسکتے ہیں۔</string>
+    <string name="DeleteAccountFragment__launch_app_settings">ایپ کی ترتیبات لانچ کریں</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">گروپس چھوڑنا…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">اکاؤنٹ حذف کرنا…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">اپنی سبسکرپشن منسوخ کرنا…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">آپ کتنے گروپس کا حصہ ہیں ان کی تعداد پر منحصر، اس میں کچھ منٹ لگ سکتے ہیں</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">صارفی ڈیٹا حذف کرنا اور ایپ کو دوبارہ ترتیب دینا</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">اکاؤنٹ حذف نہیں کیا گیا</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">حذف کی کارروائی کی تکمیل کے دوران مسئلہ پیش آیا تھا۔ اپنا نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">اپنا اکاؤنٹ یوزر نیم \"%1$s\" کے ساتھ حذف کرنے سے ایسا ہو گا:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">اپنے اکاؤنٹ کی معلومات اور پروفائل کی تصویر بشمول اپنا یوزر نیم \"%1$s\" حذف کریں</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">اس کارروائی کو کالعدم نہیں کیا جا سکتا</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">اس سے آپ کا \"%1$s\" یوزر نیم والا Signal اکاؤنٹ حذف ہو جائے گا اور ایپلیکیشن کو دوبارہ ری سیٹ کر دے گا۔ کارروائی مکمل ہونے کے بعد ایپ بند ہو جائے گی۔</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">جی ہاں، میرا اکاؤنٹ حذف کریں</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">اپنے ملک کا انتخاب کریں</string>
+    <string name="RegistrationActivity_phone_number_description">فون نمبر</string>
 </resources>

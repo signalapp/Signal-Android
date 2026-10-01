@@ -17,7 +17,10 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performImeAction
+import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ApplicationProvider
+import assertk.assertThat
+import assertk.assertions.hasLength
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,7 +29,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.R
-import org.signal.registration.screens.shared.AccountIdError
+import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.test.TestTags
 
 /**
@@ -253,19 +256,25 @@ class PhoneNumberScreenTest {
   }
 
   @Test
-  fun `an over-long account ID says why it can't be submitted`() {
+  fun `account ID entry turns away anything typed past a complete ID`() {
     // Given
+    var emittedEvent: PhoneNumberEntryScreenEvents? = null
+
     composeTestRule.setContent {
       SignalTheme {
         PhoneNumberScreen(
-          state = accountIdState().copy(accountIdError = AccountIdError.TooLong(34)),
-          onEvent = {}
+          state = accountIdState(),
+          onEvent = { emittedEvent = it }
         )
       }
     }
 
+    // When
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_PHONE_FIELD).performTextInput("ff")
+
     // Then
-    composeTestRule.onNodeWithText(context.getString(R.string.AccountIdField__too_long, 34, 32)).assertExists()
+    val newValue = (emittedEvent as PhoneNumberEntryScreenEvents.NationalNumberChanged).newValue
+    assertThat(newValue).hasLength(AccountIdFormat.ACCOUNT_ID_LENGTH)
   }
 
   @Test
@@ -324,6 +333,42 @@ class PhoneNumberScreenTest {
     assert(emittedEvent == null) {
       "Expected no event when tapping the country code in account ID mode but got $emittedEvent"
     }
+  }
+
+  @Test
+  fun `the numberless button offers to register without a number when the user has no existing account`() {
+    // Given
+    composeTestRule.setContent {
+      SignalTheme {
+        PhoneNumberScreen(
+          state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
+          onEvent = {}
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_register_without_number)).assertExists()
+  }
+
+  @Test
+  fun `the numberless button offers to use an account ID when the user has an existing account`() {
+    // Given
+    composeTestRule.setContent {
+      SignalTheme {
+        PhoneNumberScreen(
+          state = PhoneNumberEntryState(
+            isPhoneNumberlessRegistrationAvailable = true,
+            sawArchiveRestoreSelectionScreen = true
+          ),
+          onEvent = {}
+        )
+      }
+    }
+
+    // Then
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_use_account_id)).assertExists()
+    composeTestRule.onNodeWithText(context.getString(R.string.RegistrationActivity_register_without_number)).assertDoesNotExist()
   }
 
   private fun accountIdState(accountId: String = "a6b284822e3283d07f2391360a4c2b91") = PhoneNumberEntryState(

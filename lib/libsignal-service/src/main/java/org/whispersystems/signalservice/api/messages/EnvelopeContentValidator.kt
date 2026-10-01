@@ -108,8 +108,8 @@ object EnvelopeContentValidator {
       return Result.Invalid("[DataMessage] Style body range on quote is missing a start or length!")
     }
 
-    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.hasInvalidBounds(dataMessage.quote.text)) {
-      return Result.Invalid("[DataMessage] Quote body range with out-of-bounds start/length!")
+    if (dataMessage.quote != null && dataMessage.quote.bodyRanges.hasInvalidBounds(dataMessage.quote.text, allowOutOfBounds = true)) {
+      return Result.Invalid("[DataMessage] Quote body range with negative start/length!")
     }
 
     if (dataMessage.contact.any { it.avatar != null && it.avatar.avatar.isPresentAndInvalid() }) {
@@ -414,7 +414,10 @@ object EnvelopeContentValidator {
       return Result.Invalid("[StoryMessage] Style body range is missing a start or length!")
     }
 
-    if (storyMessage.bodyRanges.hasInvalidBounds(storyMessage.textAttachment?.text)) {
+    // Body ranges apply to the text of a text story, or to the caption of a media story.
+    val storyText: String? = storyMessage.textAttachment?.text ?: storyMessage.fileAttachment?.caption
+
+    if (storyMessage.bodyRanges.hasInvalidBounds(storyText)) {
       return Result.Invalid("[StoryMessage] Body range with out-of-bounds start/length!")
     }
 
@@ -502,11 +505,15 @@ object EnvelopeContentValidator {
   }
 
   private fun AttachmentPointer?.isNullOrInvalid(): Boolean {
-    return this == null || (this.cdnId == null && this.cdnKey == null)
+    return this == null || (this.cdnId == null && this.cdnKey == null) || this.hasOversizedAudioWaveform()
   }
 
   private fun AttachmentPointer?.isPresentAndInvalid(): Boolean {
-    return this != null && (this.cdnId == null && this.cdnKey == null)
+    return this != null && ((this.cdnId == null && this.cdnKey == null) || this.hasOversizedAudioWaveform())
+  }
+
+  private fun AttachmentPointer.hasOversizedAudioWaveform(): Boolean {
+    return this.audioWaveform != null && this.audioWaveform.size > SignalServiceMessageLimits.MAX_AUDIO_WAVEFORM_BAR_COUNT
   }
 
   private fun String?.isValidServiceId(): Boolean {

@@ -53,12 +53,18 @@ import kotlin.time.toDuration
 object RemoteConfig {
   private val TAG = Log.tag(RemoteConfig::class.java)
 
+  private const val INTERNAL_USER_KEY: String = "android.internalUser"
+
   // region Core behavior
 
   private val FETCH_INTERVAL = 2.hours
 
   @VisibleForTesting
   val REMOTE_VALUES: MutableMap<String, Any> = TreeMap()
+
+  /** Internal-user-only values that sit in front of [REMOTE_VALUES]. */
+  @Volatile
+  private var overrideValues: Map<String, String> = emptyMap()
 
   @VisibleForTesting
   val configsByKey: MutableMap<String, Config<*>> = mutableMapOf()
@@ -100,6 +106,7 @@ object RemoteConfig {
 
       SignalStore.remoteConfig.currentConfig = mapToJson(pending)
       REMOTE_VALUES.putAll(pending)
+      loadOverrides()
       triggerFlagChangeListeners(changes)
 
       Log.i(TAG, "init() $REMOTE_VALUES")
@@ -124,7 +131,7 @@ object RemoteConfig {
   @WorkerThread
   @Throws(IOException::class)
   fun refreshSync() {
-    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfig.getRemoteConfig())
+    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfigApi.getRemoteConfig())
     update(result.config)
   }
 
@@ -347,6 +354,71 @@ object RemoteConfig {
 
   // endregion
 
+  // region Internal overrides
+
+  /** The raw value a config reads from, preferring an internal override over what the service sent us. */
+  private fun effectiveRawValue(key: String): Any? {
+    val overrides = overrideValues
+    return if (overrides.isEmpty()) REMOTE_VALUES[key] else overrides[key] ?: REMOTE_VALUES[key]
+  }
+
+  /**
+   * Overriding [INTERNAL_USER_KEY] would hide internal settings, and with it the only way to clear the override, so
+   * it's left out. Note [internalUserDisabled] already offers that experiment in a form that a restart undoes.
+   */
+  private fun isOverridable(key: String): Boolean = configsByKey.containsKey(key) && key != INTERNAL_USER_KEY
+
+  /** Reads any persisted overrides into memory. Only internal users can have them. */
+  private fun loadOverrides() {
+    overrideValues = emptyMap()
+
+    // Read through the config rather than the delegate, which would re-enter the init() we're in the middle of.
+    if (configsByKey[INTERNAL_USER_KEY]?.resolve() != true) {
+      return
+    }
+
+    overrideValues = SignalStore.internal.remoteConfigOverrides.filterKeys { isOverridable(it) }
+
+    if (overrideValues.isNotEmpty()) {
+      Log.w(TAG, "[Override] Reading with ${overrideValues.size} local override(s)! $overrideValues")
+    }
+  }
+
+  /** Every config that internal settings is allowed to override, keyed by the key used to identify it on the service. */
+  @get:Synchronized
+  val overridableConfigs: Map<String, Config<*>>
+    get() = TreeMap(configsByKey.filterKeys { isOverridable(it) })
+
+  /** The raw values that sit in front of the ones from the service, keyed by config key. */
+  @JvmStatic
+  var overrides: Map<String, String>
+    @Synchronized
+    get() = TreeMap(overrideValues)
+
+    @Synchronized
+    set(value) {
+      val previous = overrideValues
+      val updated: Map<String, String> = TreeMap(value.filterKeys { isOverridable(it) })
+
+      overrideValues = updated
+
+      Log.w(TAG, "[Override] Before: $previous")
+      Log.w(TAG, "[Override] After : $updated")
+
+      val changes = (previous.keys + updated.keys)
+        .filter { previous[it] != updated[it] }
+        .associateWith { key ->
+          ConfigChange(
+            oldValue = previous[key] ?: REMOTE_VALUES[key],
+            newValue = updated[key] ?: REMOTE_VALUES[key]
+          )
+        }
+
+      triggerFlagChangeListeners(changes)
+    }
+
+  // endregion
+
   // region Conversion utilities
   private fun Any?.asBoolean(defaultValue: Boolean): Boolean {
     return when (this) {
@@ -410,6 +482,7 @@ object RemoteConfig {
 
     /**
      * If this is false, the remote value of the flag will be ignored, and we'll only ever use the default value.
+     * An internal override still applies, so that inactive flags remain testable.
      */
     val active: Boolean,
 
@@ -438,8 +511,14 @@ object RemoteConfig {
         }
       }
 
-      return transformer(REMOTE_VALUES[key])
+      return transformer(effectiveRawValue(key))
     }
+
+    /** What this config resolves to right now, for readers that don't have a property to delegate to. */
+    internal fun resolve(): T = transformer(effectiveRawValue(key))
+
+    /** What this config would resolve to if the service hadn't sent us anything. */
+    internal fun resolveDefault(): T = transformer(null)
   }
 
   private fun remoteBoolean(
@@ -590,6 +669,16 @@ object RemoteConfig {
     !value.asBoolean(false)
   }
 
+  /**
+   * Whether to use the rewritten contact sharing flow, which lists Signal connections alongside the address book and can share a contact by ACI.
+   */
+  @JvmStatic
+  val contactSharingV2: Boolean by remoteBoolean(
+    key = "android.contactSharingV2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   /** Whether or not to use the UUID in verification codes.  */
   val verifyV2: Boolean by remoteBoolean(
     key = "android.verifyV2",
@@ -648,7 +737,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("internalUser")
   val internalUser: Boolean by remoteValue(
-    key = "android.internalUser",
+    key = INTERNAL_USER_KEY,
     hotSwappable = true
   ) { value ->
     when {
@@ -1469,6 +1558,23 @@ object RemoteConfig {
   val unreadReminderIntervalSeconds: Long by remoteLong(
     key = "client.unreadReminderIntervalSeconds",
     defaultValue = 3.days.inWholeSeconds,
+    hotSwappable = true
+  )
+
+  /** The maximum number of authenticator apps a user can have on their account. */
+  val maxTotpApps: Int by remoteInt(
+    key = "global.maxTotpApps",
+    defaultValue = 2,
+    hotSwappable = true
+  )
+
+  /**
+   * The maximum number of two-factor methods of every kind, authenticator apps and passkeys alike, a user can have on
+   * their account. Every method counts against this, so it's the limit on the total rather than on any one kind.
+   */
+  val maxMfaKeys: Int by remoteInt(
+    key = "global.maxMfaKeys",
+    defaultValue = 10,
     hotSwappable = true
   )
   // endregion

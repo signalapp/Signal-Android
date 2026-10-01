@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">പാസ്‌കീ</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s ചേർത്തു</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">ടു-ഫാക്ടർ പ്രാമാണീകരണ ഓപ്ഷനുകൾ തുറക്കുക</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">പേര് മാറ്റുക</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">നിങ്ങൾ സൈൻ ഇൻ ചെയ്യുമ്പോൾ ഒറ്റത്തവണ സ്ഥിരീകരണ കോഡുകൾക്കായി ഈ ആപ്പ് ഉപയോഗിക്കാൻ കഴിയില്ല.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ടു-ഫാക്ടർ രീതി നീക്കംചെയ്യാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ഈ രീതി നീക്കംചെയ്യാൻ, ഇത് നിങ്ങൾ തന്നെയാണെന്ന് സ്ഥിരീകരിക്കുക</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login കാണാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">നിങ്ങളുടെ Signal Login കാണുന്നതിന്, ഇത് നിങ്ങൾ തന്നെയാണെന്ന് സ്ഥിരീകരിക്കുക</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കാൻ അൺലോക്ക് ചെയ്യുക</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കാൻ, അത് നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കുക</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">പരിശോധിച്ചുറപ്പിക്കേണ്ടതുണ്ട്</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">ഓതന്റിക്കേറ്റർ ആപ്പ് ചേർക്കാൻ കഴിയില്ല</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">നിങ്ങൾക്ക് %1$d-ൽ കൂടുതൽ ഓതന്റിക്കേറ്റർ ആപ്പുകൾ ചേർക്കാൻ കഴിയില്ല. ആദ്യം ഒരെണ്ണം നീക്കം ചെയ്യാൻ ശ്രമിക്കുക.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">നിങ്ങൾക്ക് %1$d-ൽ കൂടുതൽ ടു-ഫാക്ടർ ഓതന്റിക്കേഷൻ രീതികൾ ചേർക്കാൻ കഴിയില്ല. ആദ്യം ഒരെണ്ണം നീക്കം ചെയ്യാൻ ശ്രമിക്കുക.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">നിങ്ങളുടെ ടു-ഫാക്ടർ പ്രാമാണീകരണ രീതികൾ ലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">ഓതന്റിക്കേറ്റർ ആപ്പ് നീക്കം ചെയ്‌തു</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">നിങ്ങളുടെ കോഡ് നൽകുക</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">നിങ്ങളുടെ ഓതന്റിക്കേറ്റർ ആപ്പിൽ നിന്നുള്ള 6 അക്ക കോഡ് നൽകുക.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">കോഡ്</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">പൂർത്തിയായി</string>
+    <string name="TotpCodeEntryScreen__next">അടുത്തത്</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">കോഡ് തെറ്റാണ്. നിങ്ങളുടെ ഓതൻ്റിക്കേറ്റർ ആപ്പിൽ ഇപ്പോൾ കാണിക്കുന്ന കോഡ് നൽകുക.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal-മായി ബന്ധപ്പെടാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">ഓതന്റിക്കേറ്റർ</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ഒരു പേര് തിരഞ്ഞെടുക്കുക</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">ഓതന്റിക്കേറ്റർ ആപ്പിന്റെ പേര് മാറ്റി</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">പേര് സംരക്ഷിക്കാനായില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
+    <string name="DeleteAccountFragment__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കും</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">നിങ്ങളുടെ അക്കൗണ്ട് വിവരങ്ങളും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കും</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">നിങ്ങളുടെ എല്ലാ സന്ദേശങ്ങളും ഇല്ലാതാക്കും</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ടിലെ %1$s ഇല്ലാതാക്കുക</string>
+    <string name="DeleteAccountFragment__no_country_code">രാജ്യ കോഡുകളൊന്നും വ്യക്തമാക്കിയിട്ടില്ല</string>
+    <string name="DeleteAccountFragment__no_number">നമ്പർ വ്യക്തമാക്കിയിട്ടില്ല</string>
+    <string name="DeleteAccountFragment__the_phone_number">നിങ്ങൾ നൽകിയ ഫോൺ നമ്പർ നിങ്ങളുടെ അക്കൗണ്ടുമായി പൊരുത്തപ്പെടുന്നില്ല.</string>
+    <string name="DeleteAccountFragment__are_you_sure">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കണം എന്ന് ഉറപ്പാണോ?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ഇത് നിങ്ങളുടെ Signal അക്കൗണ്ട് ഇല്ലാതാക്കുകയും ആപ്ലിക്കേഷൻ റീസെറ്റ് ചെയ്യുകയും ചെയ്യും. പ്രക്രിയ പൂർത്തിയായ ശേഷം ആപ്പ് അടയ്‌ക്കും.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">ലോക്കൽ ഡാറ്റ ഇല്ലാതാക്കാനായില്ല. സിസ്റ്റം ആപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ നിങ്ങൾക്ക് ഇത് നേരിട്ട് ഇല്ലാതാക്കാം.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">ആപ്പ് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">ഗ്രൂപ്പുകള്‍ വിട്ടുപോകുന്നു…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">അക്കൗണ്ട് ഇല്ലാതാക്കുന്നു…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">നിങ്ങളുടെ സബ്‍സ്ക്രിപ്ഷൻ റദ്ദാക്കുന്നു…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">നിങ്ങൾ ഉൾപ്പെടുന്ന ഗ്രൂപ്പുകളുടെ എണ്ണം അനുസരിച്ച്, ഇതിന് കുറച്ച് സമയമെടുത്തേക്കാം</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ഉപയോക്തൃ ഡാറ്റ ഇല്ലാതാക്കുകയും ആപ്പ് പുനഃസജ്ജമാക്കുകയും ചെയ്യുന്നു</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">അക്കൗണ്ട് ഇല്ലാതാക്കിയില്ല</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">ഇല്ലാതാക്കൽ പ്രക്രിയ പൂർത്തിയാക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" എന്ന ഉപയോക്തൃനാമത്തിലുള്ള നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">നിങ്ങളുടെ \"%1$s\" എന്ന ഉപയോക്തൃനാമം ഉൾപ്പെടെയുള്ള അക്കൗണ്ട് വിവരങ്ങളും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കുക</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">ഈ പ്രവൃത്തി പഴയപടിയാക്കാനാകില്ല</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ഇത് \"%1$s\" എന്ന ഉപയോക്തൃനാമത്തിലുള്ള നിങ്ങളുടെ Signal അക്കൗണ്ട് ഇല്ലാതാക്കുകയും ആപ്ലിക്കേഷൻ പുനഃക്രമീകരിക്കുകയും ചെയ്യും. ഈ പ്രോസസ് പൂർത്തിയായതിന് ശേഷം ആപ്പ് അടയ്ക്കും.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">അതെ, എൻ്റെ അക്കൗണ്ട് ഇല്ലാതാക്കുക</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുക്കുക</string>
+    <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
 </resources>

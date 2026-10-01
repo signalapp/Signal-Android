@@ -117,7 +117,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
 
     binding.content.viewOnceToggle.setOnClickListener {
-      viewModel.message = null
       viewModel.isViewOnce = true
 
       dismissAllowingStateLoss()

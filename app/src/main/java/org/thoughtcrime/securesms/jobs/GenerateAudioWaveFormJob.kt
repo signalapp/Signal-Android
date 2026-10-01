@@ -26,14 +26,19 @@ class GenerateAudioWaveFormJob private constructor(private val attachmentId: Att
 
     @JvmStatic
     fun enqueue(attachmentId: AttachmentId) {
-      AppDependencies.jobManager.add(GenerateAudioWaveFormJob(attachmentId))
+      AppDependencies.jobManager.add(GenerateAudioWaveFormJob(attachmentId, queue = "GenerateAudioWaveFormJob"))
+    }
+
+    @JvmStatic
+    fun forUploadChain(attachmentId: AttachmentId): GenerateAudioWaveFormJob {
+      return GenerateAudioWaveFormJob(attachmentId, queue = null)
     }
   }
 
-  private constructor(attachmentId: AttachmentId) : this(
+  private constructor(attachmentId: AttachmentId, queue: String?) : this(
     attachmentId,
     Parameters.Builder()
-      .setQueue("GenerateAudioWaveFormJob")
+      .setQueue(queue)
       .setLifespan(1.days.inWholeMilliseconds)
       .setMaxAttempts(1)
       .build()

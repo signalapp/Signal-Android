@@ -7,6 +7,7 @@ package org.signal.appsettings.account
 
 import android.app.Application
 import android.text.format.DateUtils
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -15,10 +16,13 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performSemanticsAction
 import assertk.assertThat
 import assertk.assertions.contains
 import org.junit.Rule
@@ -329,7 +333,6 @@ class AccountSettingsScreenTest {
     setContent(createState(signalLogin = signalLogin()))
 
     composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_TAG).assertIsDisplayed()
-    composeTestRule.onNodeWithTag(SignalLoginTestTags.BETA_DISCLAIMER).assertIsDisplayed()
   }
 
   @Test
@@ -366,9 +369,26 @@ class AccountSettingsScreenTest {
     setContent(createState(signalLogin = signalLogin(twoFactorMethods = METHODS)))
 
     for (method in METHODS) {
-      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(method.name))
-      composeTestRule.onNodeWithText(method.name).assertIsDisplayed()
+      val name = method.name!!
+      composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(name))
+      composeTestRule.onNodeWithText(name).assertIsDisplayed()
     }
+  }
+
+  @Test
+  fun givenAMethodWhoseMetadataCouldntBeRead_whenScreenDisplayed_thenIExpectAnUnknownRowThatCanStillBeRemoved() {
+    val method = TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = null)
+    setContent(createState(signalLogin = signalLogin(twoFactorMethods = listOf(method))))
+
+    val unknown = context.getString(R.string.AccountSettingsFragment__unknown)
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.SCROLLER).performScrollToNode(hasText(unknown))
+    composeTestRule.onNodeWithText(unknown).assertIsDisplayed()
+    composeTestRule.onNodeWithText(context.getString(R.string.AccountSettingsFragment__authenticator_app)).assertIsDisplayed()
+
+    composeTestRule.onAllNodesWithTag(AccountSettingsTestTags.BUTTON_METHOD_MENU)[0].performClick()
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.MENU_ITEM_REMOVE).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.RemoveMethodClicked(method))
   }
 
   /** Authenticator apps and passkeys share one list, so a row's subtitle is what says which kind it is. */
@@ -412,7 +432,7 @@ class AccountSettingsScreenTest {
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_CONFIRM_REMOVE_TOTP_APP).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    assertThat(events).contains(AccountSettingsEvent.RemoveTotpAppConfirmed(METHODS[0].id))
   }
 
   @Test
@@ -422,8 +442,39 @@ class AccountSettingsScreenTest {
     composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_TOTP_APPS_REACHED).assertIsDisplayed()
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
 
-    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked)
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
     assertThat(events).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun givenTheMaxMfaKeysDialog_whenIClickLearnMore_thenIExpectLearnMoreAndDismissEvents() {
+    setContent(createState(signalLogin = signalLogin(), dialog = Dialog.MaxMfaKeysReached))
+
+    composeTestRule.onNodeWithTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED).assertIsDisplayed()
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
+    assertThat(events).contains(AccountSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun whenIClickTheSignalLoginLearnMore_thenIExpectLearnMoreForTheSignalLoginArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11197884108826"))
+  }
+
+  @Test
+  fun whenIClickTheTwoFactorLearnMore_thenIExpectLearnMoreForTheTwoFactorArticle() {
+    setContent(createState(signalLogin = signalLogin()))
+
+    scrollTo(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+    clickLink(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+
+    assertThat(events).contains(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
   }
 
   @Test
@@ -473,9 +524,18 @@ class AccountSettingsScreenTest {
   private fun signalLogin(
     twoFactorMethods: List<TwoFactorMethod> = emptyList(),
     loadState: LoadState = LoadState.LOADED,
-    maxTotpApps: Int = 2
+    maxTotpApps: Int = 2,
+    maxMfaKeys: Int = 10
   ): AccountSettingsState.SignalLogin {
-    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps)
+    return AccountSettingsState.SignalLogin(twoFactorMethods = twoFactorMethods, loadState = loadState, maxTotpApps = maxTotpApps, maxMfaKeys = maxMfaKeys)
+  }
+
+  /** Links inside an [androidx.compose.ui.text.AnnotatedString] have no bounds to tap, so their click action is invoked directly. */
+  private fun clickLink(testTag: String) {
+    composeTestRule.onNodeWithTag(testTag)
+      .onChildren()
+      .onFirst()
+      .performSemanticsAction(SemanticsActions.OnClick)
   }
 
   private fun scrollTo(testTag: String) {

@@ -74,6 +74,7 @@ class AccountSettingsViewModelTest {
     every { repository.getPinKeyboardType() } returns PinKeyboardType.NUMERIC
     every { repository.isPhoneNumberless() } returns false
     every { repository.getMaxTotpApps() } returns 2
+    every { repository.getMaxMfaKeys() } returns 10
     coEvery { repository.getTwoFactorMethods() } returns AccountSettingsRepository.TwoFactorMethodsResult.Success(emptyList())
     coEvery { repository.removeTotpApp(any()) } returns true
     every { repository.verifyLocalPin(any()) } answers { firstArg<String>() == CORRECT_PIN }
@@ -322,6 +323,7 @@ class AccountSettingsViewModelTest {
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP, PASSKEY)
     assertThat(viewModel.state.value.signalLogin?.loadState).isEqualTo(LoadState.LOADED)
     assertThat(viewModel.state.value.signalLogin?.maxTotpApps).isEqualTo(2)
+    assertThat(viewModel.state.value.signalLogin?.maxMfaKeys).isEqualTo(10)
   }
 
   /** An empty list says nothing on its own, so the screen leans on the load state to know we haven't heard back yet. */
@@ -373,7 +375,7 @@ class AccountSettingsViewModelTest {
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToTotpSetup)
   }
 
-  /** Passkeys share the list but not the limit, so they can't be what stops another app from being added. */
+  /** The app limit is the more specific of the two, so it's what an account with room to spare overall is told about. */
   @Test
   fun `AddTotpAppClicked explains the limit when there's no room for another app`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
@@ -385,6 +387,22 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.AddTotpAppClicked)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTotpAppsReached)
+    assertThat(actions).isEmpty()
+  }
+
+  /** Every second factor counts against one overall limit, so a passkey can be what leaves no room for another app. */
+  @Test
+  fun `AddTotpAppClicked explains the overall limit when there's no room for another second factor`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    every { repository.getMaxMfaKeys() } returns 2
+    coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP, PASSKEY)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddTotpAppClicked)
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxMfaKeysReached)
     assertThat(actions).isEmpty()
   }
 
@@ -480,25 +498,29 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     coVerify { repository.removeTotpApp(TOTP_APP.id) }
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemoved)
   }
 
-  /** The open dialog is what says which app is being removed, so a confirmation without one has no app to act on. */
+  /** The dialog dismisses itself before it confirms, so the removal has to survive the dismissal that lands first. */
   @Test
-  fun `RemoveTotpAppConfirmed without the confirmation dialog removes nothing`() = runTest(testDispatcher) {
+  fun `RemoveTotpAppConfirmed removes the app even though the dialog dismissed itself first`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { repository.getTwoFactorMethods() } returns methods(TOTP_APP)
 
     val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
+    viewModel.onEvent(AccountSettingsEvent.DialogDismissed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
-    coVerify(exactly = 0) { repository.removeTotpApp(any()) }
-    assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP)
+    coVerify { repository.removeTotpApp(TOTP_APP.id) }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemoved)
   }
 
   /** The list is what tells the user the app is gone, so it has to be read again rather than assumed. */
@@ -512,7 +534,7 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
 
     coEvery { repository.getTwoFactorMethods() } returns methods()
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).isEmpty()
   }
@@ -527,7 +549,7 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(TOTP_APP))
-    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed)
+    viewModel.onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(TOTP_APP.id))
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowTotpAppRemovalFailed)
     assertThat(viewModel.state.value.signalLogin!!.twoFactorMethods).containsExactly(TOTP_APP)
@@ -540,9 +562,9 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.LearnMoreClicked)
+    viewModel.onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690"))
 
-    assertThat(actions.last()).isEqualTo(AccountSettingsAction.OpenLearnMore)
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.OpenSupportArticle("https://support.signal.org/hc/articles/11228705649690"))
   }
 
   @Test
@@ -567,6 +589,26 @@ class AccountSettingsViewModelTest {
     viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToSignalLoginDetails)
+  }
+
+  @Test
+  fun `DeleteAccountClicked asks for the screen lock first`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.DeleteAccountClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToDeleteAccount)
+  }
+
+  @Test
+  fun `DeleteAccountAuthenticated opens the delete account screen`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.DeleteAccountAuthenticated)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToDeleteAccount)
   }
 
   private fun methods(vararg methods: TwoFactorMethod) = AccountSettingsRepository.TwoFactorMethodsResult.Success(methods.toList())

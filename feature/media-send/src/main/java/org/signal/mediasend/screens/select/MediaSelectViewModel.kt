@@ -44,7 +44,7 @@ internal class MediaSelectViewModel(
   /** Passed straight through: the rail follows it, and nothing about it is this screen's to decide. */
   val selectionAdditions: Flow<Media>,
   private val repository: MediaSendRepository = MediaSendDependencies.mediaSendRepository
-) : EventDrivenViewModel<MediaSelectScreenEvents>(TAG) {
+) : EventDrivenViewModel<MediaSelectScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(MediaSelectViewModel::class)

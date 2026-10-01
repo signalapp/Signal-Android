@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.testutil
 
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
@@ -59,10 +58,7 @@ class RecipientTestRule : TestRule {
   private val extras = object : ExternalResource() {
     override fun before() {
       mockkStatic(AppDependencies::class)
-      every { AppDependencies.recipientCache } returns LiveRecipientCache(
-        ApplicationProvider.getApplicationContext(),
-        Runnable::run
-      )
+      every { AppDependencies.recipientCache } returns LiveRecipientCache(Runnable::run)
 
       mockkObject(RemoteConfig)
 
@@ -71,6 +67,7 @@ class RecipientTestRule : TestRule {
       every { signalStore.account.e164 } returns selfE164
       every { signalStore.account.requireE164() } returns selfE164
       every { signalStore.account.isRegistered } returns true
+      every { signalStore.account.isUnauthorizedReceived } returns false
       every { signalStore.account.deviceId } returns 1
       every { signalStore.account.isMultiDevice } returns false
       every { signalStore.account.isLinkedDevice } returns false

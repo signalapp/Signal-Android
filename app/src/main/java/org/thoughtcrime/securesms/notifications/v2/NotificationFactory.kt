@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
@@ -258,8 +257,9 @@ object NotificationFactory {
       setWhen(conversation)
       addReplyActions(conversation)
       setOnlyAlertOnce(!shouldAlert)
+      setSilent(!shouldAlert)
       addMessages(conversation)
-      setPriority(TextSecurePreferences.getNotificationPriority(context))
+      setPriority(SignalStore.settings.messageNotificationPriority)
       setLights()
       setAlarms(conversation.recipient)
       setTicker(conversation.mostRecentNotification.getStyledPrimaryText(context, true))
@@ -280,6 +280,7 @@ object NotificationFactory {
       return
     }
 
+    val hasNewNotifications: Boolean = state.notificationItems.any { it.isNewNotification }
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
     builder.apply {
@@ -300,8 +301,9 @@ object NotificationFactory {
       setWhen(state.mostRecentNotification)
       addMarkAsReadAction(state)
       addMessages(state)
-      setOnlyAlertOnce(!state.notificationItems.any { it.isNewNotification })
-      setPriority(TextSecurePreferences.getNotificationPriority(context))
+      setOnlyAlertOnce(!hasNewNotifications)
+      setSilent(!hasNewNotifications)
+      setPriority(SignalStore.settings.messageNotificationPriority)
       setLights()
       setAlarms(state.mostRecentSender)
       setTicker(state.mostRecentNotification?.getStyledPrimaryText(context, true))

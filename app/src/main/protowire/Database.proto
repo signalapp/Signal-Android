@@ -63,8 +63,9 @@ message TemporalAuthCredentialResponses {
 }
 
 message AudioWaveFormData {
-    int64 durationUs = 1;
-    bytes waveForm   = 2;
+    int64 durationUs     = 1;
+    bytes waveForm       = 2;
+    bool  senderProvided = 3;
 }
 
 message ProfileChangeDetails {
@@ -77,6 +78,7 @@ message ProfileChangeDetails {
         oneof PreviouslyKnownAs {
             string e164 = 1;
             string username = 2;
+            string sharedName = 3;
         }
     }
 

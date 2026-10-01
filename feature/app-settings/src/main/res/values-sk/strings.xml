@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Prístupový kľúč</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Pridané %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">Otvoriť možnosti dvojfaktorovej autentifikácie</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">Premenovať</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Túto aplikáciu nebudete môcť použiť na jednorazové overovacie kódy, keď sa prihlásite.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odomknite pre odstránenie dvojfaktorovej metódy</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Ak chcete túto metódu odstrániť, potvrďte, že ste to vy</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Odomknite pre zobrazenie Signal Login</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Ak chcete zobraziť svoj Signal Login, potvrďte, že ste to vy</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Odomknite a potvrďte, že ste to vy</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Ak chcete vymazať svoj účet, potvrďte, že ste to vy</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">Vyžaduje sa overenie</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">Nie je možné pridať aplikáciu na autentifikáciu</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">Nemôžete pridať viac ako %1$d aplikácie na autentifikáciu. Skúste najprv jednu odstrániť.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Nemôžete pridať viac ako %1$d metódy dvojfaktorovej autentifikácie. Skúste najprv jednu odstrániť.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Nepodarilo sa načítať vaše metódy dvojfaktorovej autentifikácie. Skontrolujte svoje pripojenie a skúste to znova.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">Aplikácia na autentifikáciu bola odstránená</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">Zadajte svoj kód</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Zadajte 6-miestny kód z vašej aplikácie na autentifikáciu.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">Kód</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">Hotovo</string>
+    <string name="TotpCodeEntryScreen__next">Ďalej</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Nesprávny kód. Zadajte kód zobrazený vo vašej aplikácii na autentifikáciu.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Nepodarilo sa spojiť so Signalom. Skontrolujte svoje pripojenie a skúste to znova.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Authenticator</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">Zvoľte názov</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">Aplikácia na autentifikáciu bola premenovaná</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">Názov sa nepodarilo uložiť. Skontrolujte svoje pripojenie a skúste to znova.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Vymazanie účtu spôsobí:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Zadajte svoje telefónne číslo</string>
+    <string name="DeleteAccountFragment__delete_account">Vymazať účet</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Vymazanie informácií o vašom účte a profilovej fotky</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Vymazanie všetkých vašich správ</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Vymazanie %1$s z vášho platobného účtu</string>
+    <string name="DeleteAccountFragment__no_country_code">Chýba kód krajiny</string>
+    <string name="DeleteAccountFragment__no_number">Chýba telefónne číslo</string>
+    <string name="DeleteAccountFragment__the_phone_number">Zadané telefónne číslo sa nezhoduje s telefónnym číslom vášho účtu.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Naozaj chcete vymazať svoj účet?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tým sa odstráni váš Signal účet a obnoví sa aplikácia. Aplikácia sa po dokončení procesu zavrie.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepodarilo sa odstrániť lokálne údaje. Môžete ich manuálne vymazať v systémových nastaveniach aplikácie.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Spustiť nastavenía aplikácie</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Opúšťajú sa skupiny…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Odstraňuje sa účet…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Ruší sa vaše predplatné…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">V závislosti od počtu skupín, v ktorých ste, to môže trvať niekoľko minút</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Odstraňovanie používateľských údajov a resetovanie aplikácie</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Účet nebol vymazaný</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Pri dokončovaní procesu odstránenia sa vyskytol problém. Skontrolujte pripojenie k sieti a skúste to znova.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Vymazanie účtu s používateľským menom „%1$s“ spôsobí:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Vymazanie informácií o vašom účte a profilovej fotky vrátane používateľského mena „%1$s“</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Tento krok sa nedá vrátiť späť</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Týmto sa odstráni váš účet Signal s používateľským menom „%1$s“ a aplikácia sa resetuje. Po dokončení tohto procesu sa aplikácia zatvorí.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Áno, vymazať môj účet</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
+    <string name="RegistrationActivity_phone_number_description">Telefónne číslo</string>
 </resources>

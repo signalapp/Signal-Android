@@ -1,10 +1,5 @@
 package org.thoughtcrime.securesms.payments.backup.phrase;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.signal.core.util.ClearClipboardAlarmReceiver;
-import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Mnemonic;
-import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -37,13 +29,13 @@ import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 
 public class PaymentsRecoveryPhraseFragment extends Fragment {
 
-  private static final int SPAN_COUNT = 2;
+  private static final int SPAN_COUNT                = 2;
+  private static final int CLIPBOARD_TIMEOUT_SECONDS = 30;
 
   public PaymentsRecoveryPhraseFragment() {
     super(R.layout.payments_recovery_phrase_fragment);
@@ -102,14 +94,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
   }
 
   private void copyWordsToClipboard(List<String> words) {
-    ClipboardManager clipboardManager = ServiceUtil.getClipboardManager(requireContext());
-    clipboardManager.setPrimaryClip(ClipData.newPlainText(getString(R.string.app_name), Util.join(words, " ")));
-
-    AlarmManager  alarmManager       = ServiceUtil.getAlarmManager(requireContext());
-    Intent        alarmIntent        = new Intent(requireContext(), ClearClipboardAlarmReceiver.class);
-    PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(requireContext(), 0, alarmIntent, PendingIntentFlags.mutable());
-
-    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(30), pendingAlarmIntent);
+    Util.copyToClipboardSensitive(requireContext(), Util.join(words, " "), CLIPBOARD_TIMEOUT_SECONDS);
   }
 
   private void setUpForConfirmation(@NonNull TextView message,

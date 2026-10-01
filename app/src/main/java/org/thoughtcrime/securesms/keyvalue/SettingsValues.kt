@@ -3,22 +3,25 @@ package org.thoughtcrime.securesms.keyvalue
 import android.content.Context
 import android.net.Uri
 import android.provider.Settings
+import androidx.annotation.ArrayRes
+import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
+import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
+import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SingleLiveEvent
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 import java.util.Arrays
 import java.util.Random
 import kotlin.math.abs
 
 @Suppress("DEPRECATION")
-class SettingsValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
+class SettingsValues internal constructor(store: KeyValueStore, private val context: Context) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(SettingsValues::class.java)
@@ -37,7 +40,6 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
 
     const val THEME = "settings.theme"
     const val MESSAGE_FONT_SIZE = "settings.message.font.size"
-    const val LANGUAGE = "settings.language"
     const val PREFER_SYSTEM_EMOJI = "settings.use.system.emoji"
     const val ENTER_KEY_SENDS = "settings.enter.key.sends"
     const val BACKUPS_ENABLED = "settings.backups.enabled"
@@ -80,6 +82,21 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     private const val SCREEN_LOCK_TIMEOUT = "settings.screen.lock.timeout"
     private const val AUTOMATIC_VERIFICATION_ENABLED = "settings.automatic.verification.enabled"
     private const val FORCE_WEBSOCKET_MODE = "settings.force.websocket.mode.2"
+    private const val MESSAGE_LED_BLINK_PATTERN_CUSTOM = "settings.message.led.blink.custom"
+    private const val MESSAGE_NOTIFICATION_PRIORITY = "settings.message.notification.priority"
+    private const val MEDIA_KEYBOARD_MODE = "settings.media.keyboard.mode"
+    private const val LOCAL_BACKUP_NEXT_TIME = "settings.backups.next.time"
+    private const val MEDIA_DOWNLOAD_MOBILE = "settings.media.download.mobile"
+    private const val MEDIA_DOWNLOAD_WIFI = "settings.media.download.wifi"
+    private const val MEDIA_DOWNLOAD_ROAMING = "settings.media.download.roaming"
+
+    const val SCREEN_SECURITY_ENABLED = "settings.screen.security.enabled"
+    const val INCOGNITO_KEYBOARD_ENABLED = "settings.incognito.keyboard.enabled"
+    const val READ_RECEIPTS_ENABLED = "settings.read.receipts.enabled"
+    const val TYPING_INDICATORS_ENABLED = "settings.typing.indicators.enabled"
+    const val SHOW_UNIDENTIFIED_DELIVERY_INDICATORS = "settings.show.unidentified.delivery.indicators"
+    const val UNIVERSAL_UNIDENTIFIED_ACCESS = "settings.universal.unidentified.access"
+    const val ALWAYS_RELAY_CALLS = "settings.always.relay.calls"
 
     const val BACKUP_DEFAULT_HOUR = 2
     const val BACKUP_DEFAULT_MINUTE = 0
@@ -90,6 +107,10 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
   init {
     if (!store.containsKey(SCREEN_LOCK_ENABLED) && !Environment.IS_INSTRUMENTATION) {
       migrateFromSharedPrefsV1(context)
+    }
+
+    if (!store.containsKey(SCREEN_SECURITY_ENABLED) && !Environment.IS_INSTRUMENTATION) {
+      migrateFromSharedPrefsV2(context)
     }
   }
 
@@ -113,7 +134,6 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     CALL_DATA_MODE,
     THREAD_TRIM_LENGTH,
     THREAD_TRIM_ENABLED,
-    LANGUAGE,
     THEME,
     MESSAGE_FONT_SIZE,
     PREFER_SYSTEM_EMOJI,
@@ -140,7 +160,17 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     PASSPHRASE_TIMEOUT_ENABLED,
     PASSPHRASE_TIMEOUT,
     SCREEN_LOCK_ENABLED,
-    SCREEN_LOCK_TIMEOUT
+    SCREEN_LOCK_TIMEOUT,
+    SCREEN_SECURITY_ENABLED,
+    INCOGNITO_KEYBOARD_ENABLED,
+    READ_RECEIPTS_ENABLED,
+    TYPING_INDICATORS_ENABLED,
+    SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
+    UNIVERSAL_UNIDENTIFIED_ACCESS,
+    ALWAYS_RELAY_CALLS,
+    MEDIA_DOWNLOAD_MOBILE,
+    MEDIA_DOWNLOAD_WIFI,
+    MEDIA_DOWNLOAD_ROAMING
   )
 
   val onConfigurationSettingChanged: LiveData<String>
@@ -193,17 +223,13 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     }
 
   var theme: Theme
-    get() = Theme.deserialize(getString(THEME, TextSecurePreferences.getTheme(AppDependencies.application)))
+    get() = Theme.deserialize(getString(THEME, if (DynamicTheme.systemThemeAvailable()) "system" else "light"))
     set(value) {
       putString(THEME, value.serialize())
       configurationSettingChanged.postValue(THEME)
     }
 
-  var messageFontSize: Int
-    get() = getInteger(MESSAGE_FONT_SIZE, TextSecurePreferences.getMessageBodyTextSize(AppDependencies.application))
-    set(value) {
-      putInteger(MESSAGE_FONT_SIZE, value)
-    }
+  var messageFontSize: Int by integerValue(MESSAGE_FONT_SIZE, 16)
 
   fun getMessageQuoteFontSize(context: Context): Int {
     val currentMessageSize = messageFontSize
@@ -222,30 +248,11 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     return possibleQuoteSizes[sizeIndex]
   }
 
-  var language: String
-    get() = TextSecurePreferences.getLanguage(AppDependencies.application)
-    set(value) {
-      TextSecurePreferences.setLanguage(AppDependencies.application, value)
-      configurationSettingChanged.postValue(LANGUAGE)
-    }
+  var isPreferSystemEmoji: Boolean by booleanValue(PREFER_SYSTEM_EMOJI, false)
 
-  var isPreferSystemEmoji: Boolean
-    get() = getBoolean(PREFER_SYSTEM_EMOJI, TextSecurePreferences.isSystemEmojiPreferred(AppDependencies.application))
-    set(value) {
-      putBoolean(PREFER_SYSTEM_EMOJI, value)
-    }
+  var isEnterKeySends: Boolean by booleanValue(ENTER_KEY_SENDS, false)
 
-  var isEnterKeySends: Boolean
-    get() = getBoolean(ENTER_KEY_SENDS, TextSecurePreferences.isEnterSendsEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(ENTER_KEY_SENDS, value)
-    }
-
-  var isBackupEnabled: Boolean
-    get() = getBoolean(BACKUPS_ENABLED, TextSecurePreferences.isBackupEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(BACKUPS_ENABLED, value)
-    }
+  var isBackupEnabled: Boolean by booleanValue(BACKUPS_ENABLED, false)
 
   val backupHour: Int
     get() = getInteger(BACKUPS_SCHEDULE_HOUR, BACKUP_DEFAULT_HOUR)
@@ -289,27 +296,17 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     putInteger(SIGNAL_BACKUPS_SCHEDULE_MINUTE, minute)
   }
 
-  var isSmsDeliveryReportsEnabled: Boolean
-    get() = getBoolean(SMS_DELIVERY_REPORTS_ENABLED, TextSecurePreferences.isSmsDeliveryReportsEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(SMS_DELIVERY_REPORTS_ENABLED, value)
-    }
+  var localBackupNextTime: Long by longValue(LOCAL_BACKUP_NEXT_TIME, -1)
 
-  var isWifiCallingCompatibilityModeEnabled: Boolean
-    get() = getBoolean(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED, TextSecurePreferences.isWifiSmsEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED, value)
-    }
+  var isSmsDeliveryReportsEnabled: Boolean by booleanValue(SMS_DELIVERY_REPORTS_ENABLED, false)
 
-  var isMessageNotificationsEnabled: Boolean
-    get() = getBoolean(MESSAGE_NOTIFICATIONS_ENABLED, TextSecurePreferences.isNotificationsEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(MESSAGE_NOTIFICATIONS_ENABLED, value)
-    }
+  var isWifiCallingCompatibilityModeEnabled: Boolean by booleanValue(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED, false)
+
+  var isMessageNotificationsEnabled: Boolean by booleanValue(MESSAGE_NOTIFICATIONS_ENABLED, true)
 
   var messageNotificationSound: Uri
     get() {
-      var result = getString(MESSAGE_NOTIFICATION_SOUND, TextSecurePreferences.getNotificationRingtone(AppDependencies.application).toString())
+      var result = getString(MESSAGE_NOTIFICATION_SOUND, Settings.System.DEFAULT_NOTIFICATION_URI.toString())
 
       if (result.startsWith("file:")) {
         result = Settings.System.DEFAULT_NOTIFICATION_URI.toString()
@@ -321,38 +318,23 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
       putString(MESSAGE_NOTIFICATION_SOUND, value.toString())
     }
 
-  var isMessageVibrateEnabled: Boolean
-    get() = getBoolean(MESSAGE_VIBRATE_ENABLED, TextSecurePreferences.isNotificationVibrateEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(MESSAGE_VIBRATE_ENABLED, value)
-    }
+  var isMessageVibrateEnabled: Boolean by booleanValue(MESSAGE_VIBRATE_ENABLED, true)
 
-  var messageLedColor: String
-    get() = getString(MESSAGE_LED_COLOR, TextSecurePreferences.getNotificationLedColor(AppDependencies.application))
-    set(value) {
-      putString(MESSAGE_LED_COLOR, value)
-    }
+  var messageLedColor: String by stringValue(MESSAGE_LED_COLOR, "blue")
 
-  var messageLedBlinkPattern: String
-    get() = getString(MESSAGE_LED_BLINK_PATTERN, TextSecurePreferences.getNotificationLedPattern(AppDependencies.application))
-    set(value) {
-      putString(MESSAGE_LED_BLINK_PATTERN, value)
-    }
+  var messageLedBlinkPattern: String by stringValue(MESSAGE_LED_BLINK_PATTERN, "500,2000")
 
-  var isMessageNotificationsInChatSoundsEnabled: Boolean
-    get() = getBoolean(MESSAGE_IN_CHAT_SOUNDS_ENABLED, TextSecurePreferences.isInThreadNotifications(AppDependencies.application))
-    set(value) {
-      putBoolean(MESSAGE_IN_CHAT_SOUNDS_ENABLED, value)
-    }
+  val messageLedBlinkPatternCustom: String
+    get() = getString(MESSAGE_LED_BLINK_PATTERN_CUSTOM, "500,2000")
 
-  var messageNotificationsRepeatAlerts: Int
-    get() = getInteger(MESSAGE_REPEAT_ALERTS, TextSecurePreferences.getRepeatAlertsCount(AppDependencies.application))
-    set(value) {
-      putInteger(MESSAGE_REPEAT_ALERTS, value)
-    }
+  var isMessageNotificationsInChatSoundsEnabled: Boolean by booleanValue(MESSAGE_IN_CHAT_SOUNDS_ENABLED, true)
+
+  var messageNotificationsRepeatAlerts: Int by integerValue(MESSAGE_REPEAT_ALERTS, 0)
+
+  var messageNotificationPriority: Int by integerValue(MESSAGE_NOTIFICATION_PRIORITY, NotificationCompat.PRIORITY_HIGH)
 
   var messageNotificationsPrivacy: NotificationPrivacyPreference
-    get() = NotificationPrivacyPreference(getString(MESSAGE_NOTIFICATION_PRIVACY, TextSecurePreferences.getNotificationPrivacy(AppDependencies.application).toString()))
+    get() = NotificationPrivacyPreference(getString(MESSAGE_NOTIFICATION_PRIVACY, "all"))
     set(value) {
       putString(MESSAGE_NOTIFICATION_PRIVACY, value.toString())
     }
@@ -386,15 +368,11 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     putBoolean(INCLUDE_MUTED_IN_BADGE_COUNT, include)
   }
 
-  var isCallNotificationsEnabled: Boolean
-    get() = getBoolean(CALL_NOTIFICATIONS_ENABLED, TextSecurePreferences.isCallNotificationsEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(CALL_NOTIFICATIONS_ENABLED, value)
-    }
+  var isCallNotificationsEnabled: Boolean by booleanValue(CALL_NOTIFICATIONS_ENABLED, true)
 
   var callRingtone: Uri
     get() {
-      var result = getString(CALL_RINGTONE, TextSecurePreferences.getCallNotificationRingtone(AppDependencies.application).toString())
+      var result = getString(CALL_RINGTONE, Settings.System.DEFAULT_RINGTONE_URI.toString())
 
       if (result != null && result.startsWith("file:")) {
         result = Settings.System.DEFAULT_RINGTONE_URI.toString()
@@ -406,17 +384,9 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
       putString(CALL_RINGTONE, value.toString())
     }
 
-  var isCallVibrateEnabled: Boolean
-    get() = getBoolean(CALL_VIBRATE_ENABLED, TextSecurePreferences.isCallNotificationVibrateEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(CALL_VIBRATE_ENABLED, value)
-    }
+  var isCallVibrateEnabled: Boolean by booleanValue(CALL_VIBRATE_ENABLED, true)
 
-  var isNotifyWhenContactJoinsSignal: Boolean
-    get() = getBoolean(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, TextSecurePreferences.isNewContactsNotificationEnabled(AppDependencies.application))
-    set(value) {
-      putBoolean(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, value)
-    }
+  var isNotifyWhenContactJoinsSignal: Boolean by booleanValue(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, false)
 
   var universalExpireTimer: Int by integerValue(UNIVERSAL_EXPIRE_TIMER, 0)
 
@@ -448,6 +418,20 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
 
   var screenLockTimeout: Long by longValue(SCREEN_LOCK_TIMEOUT, 0)
 
+  var isScreenSecurityEnabled: Boolean by booleanValue(SCREEN_SECURITY_ENABLED, false)
+
+  var isIncognitoKeyboardEnabled: Boolean by booleanValue(INCOGNITO_KEYBOARD_ENABLED, false)
+
+  var isReadReceiptsEnabled: Boolean by booleanValue(READ_RECEIPTS_ENABLED, false)
+
+  var isTypingIndicatorsEnabled: Boolean by booleanValue(TYPING_INDICATORS_ENABLED, false)
+
+  var isShowUnidentifiedDeliveryIndicatorsEnabled: Boolean by booleanValue(SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, false)
+
+  var isUniversalUnidentifiedAccess: Boolean by booleanValue(UNIVERSAL_UNIDENTIFIED_ACCESS, false)
+
+  var isTurnOnly: Boolean by booleanValue(ALWAYS_RELAY_CALLS, false)
+
   var automaticVerificationEnabled: Boolean
     get() = getBoolean(AUTOMATIC_VERIFICATION_ENABLED, true)
     set(value) {
@@ -469,6 +453,42 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
       putInteger(FORCE_WEBSOCKET_MODE, value.serialize())
     }
 
+  var mediaKeyboardMode: MediaKeyboardMode
+    get() = MediaKeyboardMode.valueOf(getString(MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name))
+    set(value) {
+      putString(MEDIA_KEYBOARD_MODE, value.name)
+    }
+
+  var mobileMediaDownloadAllowed: Set<String>
+    get() = getMediaDownloadAllowed(MEDIA_DOWNLOAD_MOBILE, R.array.pref_media_download_mobile_data_default)
+    set(value) {
+      setMediaDownloadAllowed(MEDIA_DOWNLOAD_MOBILE, value)
+    }
+
+  var wifiMediaDownloadAllowed: Set<String>
+    get() = getMediaDownloadAllowed(MEDIA_DOWNLOAD_WIFI, R.array.pref_media_download_wifi_default)
+    set(value) {
+      setMediaDownloadAllowed(MEDIA_DOWNLOAD_WIFI, value)
+    }
+
+  var roamingMediaDownloadAllowed: Set<String>
+    get() = getMediaDownloadAllowed(MEDIA_DOWNLOAD_ROAMING, R.array.pref_media_download_roaming_default)
+    set(value) {
+      setMediaDownloadAllowed(MEDIA_DOWNLOAD_ROAMING, value)
+    }
+
+  private fun getMediaDownloadAllowed(key: String, @ArrayRes defaultValuesRes: Int): Set<String> {
+    if (!store.containsKey(key)) {
+      return context.resources.getStringArray(defaultValuesRes).toSet()
+    }
+
+    return getList(key, StringStringSerializer).requireNoNulls().toSet()
+  }
+
+  private fun setMediaDownloadAllowed(key: String, allowed: Set<String>) {
+    putList(key, allowed.toList(), StringStringSerializer)
+  }
+
   private fun getUri(key: String): Uri? {
     val uri = getString(key, "")
 
@@ -479,14 +499,147 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
     }
   }
 
+  /**
+   * V1 backups made before these settings moved into this store carry them as shared prefs rather than key-values. The shared-prefs
+   * migration has already run by the time a restore happens, so the restored prefs need to be re-read afterwards or the user silently
+   * loses their privacy and security choices.
+   */
+  fun restoreLegacySharedPrefsAfterBackupRestore() {
+    Log.i(TAG, "Restoring legacy privacy settings from shared prefs.")
+
+    val writer = store.beginWrite()
+
+    val booleanKeys = mapOf(
+      "pref_screen_security" to SCREEN_SECURITY_ENABLED,
+      "pref_incognito_keyboard" to INCOGNITO_KEYBOARD_ENABLED,
+      "pref_read_receipts" to READ_RECEIPTS_ENABLED,
+      "pref_typing_indicators" to TYPING_INDICATORS_ENABLED,
+      "pref_show_unidentifed_delivery_indicators" to SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
+      "pref_universal_unidentified_access" to UNIVERSAL_UNIDENTIFIED_ACCESS,
+      "pref_turn_only" to ALWAYS_RELAY_CALLS
+    )
+
+    for ((legacyKey, key) in booleanKeys) {
+      if (LegacySharedPrefs.contains(context, legacyKey)) {
+        writer.putBoolean(key, LegacySharedPrefs.getBoolean(context, legacyKey, false))
+      }
+    }
+
+    if (LegacySharedPrefs.contains(context, "pref_notification_privacy")) {
+      writer.putString(MESSAGE_NOTIFICATION_PRIVACY, LegacySharedPrefs.getString(context, "pref_notification_privacy", "all"))
+    }
+
+    writer.commit()
+  }
+
   private fun migrateFromSharedPrefsV1(context: Context) {
     Log.i(TAG, "[V1] Migrating screen lock values from shared prefs.")
 
-    putBoolean(PASSPHRASE_DISABLED, TextSecurePreferences.getBooleanPreference(context, "pref_disable_passphrase", true))
-    putBoolean(PASSPHRASE_TIMEOUT_ENABLED, TextSecurePreferences.getBooleanPreference(context, "pref_timeout_passphrase", false))
-    putInteger(PASSPHRASE_TIMEOUT, TextSecurePreferences.getIntegerPreference(context, "pref_timeout_interval", 5 * 60))
-    putBoolean(SCREEN_LOCK_ENABLED, TextSecurePreferences.getBooleanPreference(context, "pref_android_screen_lock", false))
-    putLong(SCREEN_LOCK_TIMEOUT, TextSecurePreferences.getLongPreference(context, "pref_android_screen_lock_timeout", 0))
+    putBoolean(PASSPHRASE_DISABLED, LegacySharedPrefs.getBoolean(context, "pref_disable_passphrase", true))
+    putBoolean(PASSPHRASE_TIMEOUT_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_timeout_passphrase", false))
+    putInteger(PASSPHRASE_TIMEOUT, LegacySharedPrefs.getInteger(context, "pref_timeout_interval", 5 * 60))
+    putBoolean(SCREEN_LOCK_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_android_screen_lock", false))
+    putLong(SCREEN_LOCK_TIMEOUT, LegacySharedPrefs.getLong(context, "pref_android_screen_lock_timeout", 0))
+  }
+
+  /**
+   * These settings used to live in shared prefs. Some of them were already mirrored into this store, but with a shared-prefs read as
+   * their default, so for those we only migrate the ones this store doesn't already have a value for.
+   */
+  private fun migrateFromSharedPrefsV2(context: Context) {
+    Log.i(TAG, "[V2] Migrating settings from shared prefs.")
+
+    val writer = store.beginWrite()
+
+    if (!store.containsKey(THEME)) {
+      writer.putString(THEME, LegacySharedPrefs.getString(context, "pref_theme", if (DynamicTheme.systemThemeAvailable()) "system" else "light"))
+    }
+    if (!store.containsKey(MESSAGE_FONT_SIZE)) {
+      writer.putInteger(MESSAGE_FONT_SIZE, LegacySharedPrefs.getIntegerFromString(context, "pref_message_body_text_size", 16))
+    }
+    if (!store.containsKey(PREFER_SYSTEM_EMOJI)) {
+      writer.putBoolean(PREFER_SYSTEM_EMOJI, LegacySharedPrefs.getBoolean(context, "pref_system_emoji", false))
+    }
+    if (!store.containsKey(ENTER_KEY_SENDS)) {
+      writer.putBoolean(ENTER_KEY_SENDS, LegacySharedPrefs.getBoolean(context, "pref_enter_sends", false))
+    }
+    if (!store.containsKey(BACKUPS_ENABLED)) {
+      writer.putBoolean(BACKUPS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_backup_enabled", false))
+    }
+    if (!store.containsKey(SMS_DELIVERY_REPORTS_ENABLED)) {
+      writer.putBoolean(SMS_DELIVERY_REPORTS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_delivery_report_sms", false))
+    }
+    if (!store.containsKey(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED)) {
+      writer.putBoolean(WIFI_CALLING_COMPATIBILITY_MODE_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_wifi_sms", false))
+    }
+    if (!store.containsKey(MESSAGE_NOTIFICATIONS_ENABLED)) {
+      writer.putBoolean(MESSAGE_NOTIFICATIONS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_key_enable_notifications", true))
+    }
+    if (!store.containsKey(MESSAGE_NOTIFICATION_SOUND)) {
+      writer.putString(MESSAGE_NOTIFICATION_SOUND, LegacySharedPrefs.getRingtone(context, "pref_key_ringtone", Settings.System.DEFAULT_NOTIFICATION_URI))
+    }
+    if (!store.containsKey(MESSAGE_VIBRATE_ENABLED)) {
+      writer.putBoolean(MESSAGE_VIBRATE_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_key_vibrate", true))
+    }
+    if (!store.containsKey(MESSAGE_LED_COLOR)) {
+      writer.putString(MESSAGE_LED_COLOR, LegacySharedPrefs.getString(context, "pref_led_color", "blue"))
+    }
+    if (!store.containsKey(MESSAGE_LED_BLINK_PATTERN)) {
+      writer.putString(MESSAGE_LED_BLINK_PATTERN, LegacySharedPrefs.getString(context, "pref_led_blink", "500,2000"))
+    }
+    if (!store.containsKey(MESSAGE_IN_CHAT_SOUNDS_ENABLED)) {
+      writer.putBoolean(MESSAGE_IN_CHAT_SOUNDS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_key_inthread_notifications", true))
+    }
+    if (!store.containsKey(MESSAGE_REPEAT_ALERTS)) {
+      writer.putInteger(MESSAGE_REPEAT_ALERTS, LegacySharedPrefs.getIntegerFromString(context, "pref_repeat_alerts", 0))
+    }
+    if (!store.containsKey(MESSAGE_NOTIFICATION_PRIVACY)) {
+      writer.putString(MESSAGE_NOTIFICATION_PRIVACY, LegacySharedPrefs.getString(context, "pref_notification_privacy", "all"))
+    }
+    if (!store.containsKey(CALL_NOTIFICATIONS_ENABLED)) {
+      writer.putBoolean(CALL_NOTIFICATIONS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_call_notifications", true))
+    }
+    if (!store.containsKey(CALL_RINGTONE)) {
+      writer.putString(CALL_RINGTONE, LegacySharedPrefs.getRingtone(context, "pref_call_ringtone", Settings.System.DEFAULT_RINGTONE_URI))
+    }
+    if (!store.containsKey(CALL_VIBRATE_ENABLED)) {
+      val systemVibrateWhenRinging = Settings.System.getInt(context.contentResolver, Settings.System.VIBRATE_WHEN_RINGING, 1) == 1
+      writer.putBoolean(CALL_VIBRATE_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_call_vibrate", systemVibrateWhenRinging))
+    }
+    if (!store.containsKey(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL)) {
+      writer.putBoolean(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, LegacySharedPrefs.getBoolean(context, "pref_enable_new_contacts_notifications", false))
+    }
+
+    writer.putString(MESSAGE_LED_BLINK_PATTERN_CUSTOM, LegacySharedPrefs.getString(context, "pref_led_blink_custom", "500,2000"))
+    writer.putInteger(MESSAGE_NOTIFICATION_PRIORITY, LegacySharedPrefs.getIntegerFromString(context, "pref_notification_priority", NotificationCompat.PRIORITY_HIGH))
+    writer.putString(MEDIA_KEYBOARD_MODE, LegacySharedPrefs.getString(context, "pref_media_keyboard_mode", MediaKeyboardMode.EMOJI.name))
+    writer.putLong(LOCAL_BACKUP_NEXT_TIME, LegacySharedPrefs.getLong(context, "pref_backup_next_time", -1))
+    writer.putBoolean(INCOGNITO_KEYBOARD_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_incognito_keyboard", false))
+    writer.putBoolean(READ_RECEIPTS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_read_receipts", false))
+    writer.putBoolean(TYPING_INDICATORS_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_typing_indicators", false))
+    writer.putBoolean(SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, LegacySharedPrefs.getBoolean(context, "pref_show_unidentifed_delivery_indicators", false))
+    writer.putBoolean(UNIVERSAL_UNIDENTIFIED_ACCESS, LegacySharedPrefs.getBoolean(context, "pref_universal_unidentified_access", false))
+    writer.putBoolean(ALWAYS_RELAY_CALLS, LegacySharedPrefs.getBoolean(context, "pref_turn_only", false))
+
+    // Only migrate an explicit choice -- when there was none, the getters fall back to the same resource defaults shared prefs used to.
+    val mediaDownloadKeys = mapOf(
+      "pref_media_download_mobile" to MEDIA_DOWNLOAD_MOBILE,
+      "pref_media_download_wifi" to MEDIA_DOWNLOAD_WIFI,
+      "pref_media_download_roaming" to MEDIA_DOWNLOAD_ROAMING
+    )
+
+    for ((legacyKey, key) in mediaDownloadKeys) {
+      val legacyValue = LegacySharedPrefs.getStringSet(context, legacyKey, null)
+
+      if (legacyValue != null) {
+        writer.putBlob(key, SignalStoreList(contents = legacyValue.toList()).encode())
+      }
+    }
+
+    // Written last so that it acts as the marker for this migration having run.
+    writer.putBoolean(SCREEN_SECURITY_ENABLED, LegacySharedPrefs.getBoolean(context, "pref_screen_security", false))
+
+    writer.commit()
   }
 
   enum class CensorshipCircumventionEnabled(private val value: Int) {
@@ -520,6 +673,13 @@ class SettingsValues internal constructor(store: KeyValueStore, context: Context
         return entries.firstOrNull { it.value == value } ?: throw IllegalArgumentException("Bad value: $value")
       }
     }
+  }
+
+  /** NEVER rename these -- they're persisted by name. */
+  enum class MediaKeyboardMode {
+    EMOJI,
+    STICKER,
+    GIF
   }
 
   enum class Theme(private val value: String) {

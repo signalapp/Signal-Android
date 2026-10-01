@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.lock.v2.SvrConstants
  */
 class AccountSettingsViewModel(
   private val repository: AccountSettingsRepository = AccountSettingsRepository()
-) : EventDrivenViewModel<AccountSettingsEvent>(TAG) {
+) : EventDrivenViewModel<AccountSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(AccountSettingsViewModel::class)
@@ -91,8 +91,8 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AddTotpAppClicked -> {
         applyAddTotpAppClicked()
       }
-      AccountSettingsEvent.LearnMoreClicked -> {
-        _actions.send(AccountSettingsAction.OpenLearnMore)
+      is AccountSettingsEvent.LearnMoreClicked -> {
+        _actions.send(AccountSettingsAction.OpenSupportArticle(event.url))
       }
       is AccountSettingsEvent.RenameMethodClicked -> {
         applyRenameMethodClicked(event.method)
@@ -106,8 +106,8 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AuthenticationFailed -> {
         _actions.send(AccountSettingsAction.ShowAuthenticationFailed)
       }
-      AccountSettingsEvent.RemoveTotpAppConfirmed -> {
-        applyRemoveTotpAppConfirmed()
+      is AccountSettingsEvent.RemoveTotpAppConfirmed -> {
+        applyRemoveTotpAppConfirmed(event.appId)
       }
       AccountSettingsEvent.AdvancedPinSettingsClicked -> {
         _actions.send(AccountSettingsAction.NavigateToAdvancedPinSettings)
@@ -138,6 +138,9 @@ class AccountSettingsViewModel(
         _actions.send(AccountSettingsAction.ShowDataWipeFailed)
       }
       AccountSettingsEvent.DeleteAccountClicked -> {
+        _actions.send(AccountSettingsAction.AuthenticateToDeleteAccount)
+      }
+      AccountSettingsEvent.DeleteAccountAuthenticated -> {
         _actions.send(AccountSettingsAction.NavigateToDeleteAccount)
       }
       AccountSettingsEvent.DialogDismissed -> {
@@ -184,10 +187,11 @@ class AccountSettingsViewModel(
   }
 
   private suspend fun applyAddTotpAppClicked() {
-    if (_state.value.signalLogin?.atMaxTotpApps == true) {
-      _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
-    } else {
-      _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+    val signalLogin = _state.value.signalLogin
+    when {
+      signalLogin?.atMaxTotpApps == true -> _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
+      signalLogin?.atMaxMfaKeys == true -> _state.update { it.copy(dialog = Dialog.MaxMfaKeysReached) }
+      else -> _actions.send(AccountSettingsAction.NavigateToTotpSetup)
     }
   }
 
@@ -214,11 +218,9 @@ class AccountSettingsViewModel(
     }
   }
 
-  private suspend fun applyRemoveTotpAppConfirmed() {
-    val dialog = _state.value.dialog as? Dialog.ConfirmRemoveTotpApp ?: return
-
+  private suspend fun applyRemoveTotpAppConfirmed(appId: Long) {
     _state.update { it.copy(dialog = Dialog.None) }
-    removeTotpApp(dialog.appId)
+    removeTotpApp(appId)
   }
 
   private suspend fun removeTotpApp(appId: Long) {
@@ -244,7 +246,7 @@ class AccountSettingsViewModel(
         clientDeprecated = repository.isClientDeprecated(),
         isPhoneNumberless = isPhoneNumberless,
         // Held onto across refreshes so a resume doesn't drop the list back to its loading state.
-        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps()) else null
+        signalLogin = if (isPhoneNumberless) it.signalLogin ?: SignalLogin(maxTotpApps = repository.getMaxTotpApps(), maxMfaKeys = repository.getMaxMfaKeys()) else null
       )
     }
 

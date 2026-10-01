@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository;

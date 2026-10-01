@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">อุปกรณ์ของคุณไม่รองรับการบันทึกวิดีโอ</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">แตะสำหรับรูปภาพ กดค้างสำหรับวิดีโอ</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">ถ่ายรูป</string>
-  <string name="CameraXFragment_change_camera_description">เปลี่ยนกล้อง</string>
-  <string name="CameraXFragment_open_gallery_description">เปิดอัลบั้มภาพ</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">อนุญาตให้เข้าถึง</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">ไม่สามารถถ่ายภาพได้ โปรดลองอีกครั้ง</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">ไม่สามารถประมวลผลรูปภาพได้ โปรดลองอีกครั้ง</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">สลับกล้อง</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">ปิดแฟลชอยู่</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">เปิดแฟลชอยู่</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">แฟลชอัตโนมัติ</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">ส่ง</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">หยุดชั่วคราว</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
@@ -244,6 +228,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">ดูเหมือนว่าคุณพยายามจะเชื่อมโยงอุปกรณ์ Signal แตะดำเนินการต่อ จากนั้นให้แตะ \"เชื่อมโยงอุปกรณ์เครื่องใหม่\" แล้วสแกนคิวอาร์โค้ดอีกครั้ง</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">ทำต่อ</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">ไม่สามารถถ่ายโอนบัญชีได้</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">อุปกรณ์ที่เป็นปลายทางของการถ่ายโอนมีเวอร์ชันเก่าเกินไป โปรดอัปเดต Signal บนอุปกรณ์เครื่องนั้นแล้วลองอีกครั้ง</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

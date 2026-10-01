@@ -12,17 +12,17 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
 
   val accountValues = AccountValues(store, context)
   val svrValues = SvrValues(store)
-  val registrationValues = RegistrationValues(store)
-  val pinValues = PinValues(store)
+  val registrationValues = RegistrationValues(store, context)
+  val pinValues = PinValues(store, context)
   val remoteConfigValues = RemoteConfigValues(store)
   val storageServiceValues = StorageServiceValues(store)
-  val uiHintValues = UiHintValues(store)
-  val tooltipValues = TooltipValues(store)
-  val miscValues = MiscellaneousValues(store)
+  val uiHintValues = UiHintValues(store, context)
+  val tooltipValues = TooltipValues(store, context)
+  val miscValues = MiscellaneousValues(store, context)
   val internalValues = InternalValues(store)
   val emojiValues = EmojiValues(store)
   val settingsValues = SettingsValues(store, context)
-  val certificateValues = CertificateValues(store)
+  val certificateValues = CertificateValues(store, context)
   val phoneNumberPrivacyValues = PhoneNumberPrivacyValues(store)
   val onboardingValues = OnboardingValues(store)
   val wallpaperValues = WallpaperValues(store)
@@ -35,12 +35,10 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val notificationProfileValues = NotificationProfileValues(store)
   val releaseChannelValues = ReleaseChannelValues(store)
   val storyValues = StoryValues(store)
-  val apkUpdateValues = ApkUpdateValues(store)
-  val backupValues = BackupValues(store)
+  val apkUpdateValues = ApkUpdateValues(store, context)
+  val backupValues = BackupValues(store, context)
   val callQualityValues = CallQualityValues(store)
   val labsValues = LabsValues(store)
-
-  val plainTextValues = PlainTextSharedPrefsDataStore(context)
 
   companion object {
 
@@ -147,6 +145,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     @JvmStatic
     fun onPostBackupRestore() {
       instance!!.store.resetCache()
+      instance!!.settingsValues.restoreLegacySharedPrefsAfterBackupRestore()
     }
 
     @JvmStatic
@@ -272,6 +271,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val story: StoryValues
       get() = instance!!.storyValues
 
+    @JvmStatic
+    @get:JvmName("apkUpdate")
     val apkUpdate: ApkUpdateValues
       get() = instance!!.apkUpdateValues
 
@@ -292,9 +293,6 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
 
     val groupsV2AciAuthorizationCache: GroupsV2AuthorizationSignalStoreCache
       get() = GroupsV2AuthorizationSignalStoreCache.createAciCache(instance!!.store)
-
-    val plaintext: PlainTextSharedPrefsDataStore
-      get() = instance!!.plainTextValues
 
     fun getPreferenceDataStore(): PreferenceDataStore {
       return SignalPreferenceDataStore(instance!!.store)

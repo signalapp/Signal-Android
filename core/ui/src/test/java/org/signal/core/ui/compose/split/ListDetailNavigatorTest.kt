@@ -64,18 +64,48 @@ class ListDetailNavigatorTest {
   }
 
   /**
-   * A root that is not displayed can still be pushed to — a deep link arriving for another root leaves it
-   * waiting there rather than switching the window to it.
+   * A deep link arriving for another root brings that root forward: content nobody can see would be no
+   * arrival at all.
    */
   @Test
-  fun `when pushing detail onto another root, then the displayed stack is untouched`() = runTest {
+  fun `when pushing detail onto another root, then that root is displayed`() = runTest {
     val navigator = navigator()
 
     navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.OTHER))
 
     assertEquals(listOf(TestListKey.ROOT), navigator[TestListKey.ROOT])
     assertEquals(listOf(TestListKey.OTHER, detail), navigator[TestListKey.OTHER])
-    assertEquals(TestListKey.ROOT, navigator.currentRoot.value)
+    assertEquals(TestListKey.OTHER, navigator.currentRoot.value)
+  }
+
+  /**
+   * AND-9169: a notification opening a chat while the detail fills the window has to leave the window
+   * where the user put it. The push carries the root switch, so nothing asks for the list on the way.
+   */
+  @Test
+  fun `given a full screen detail, when pushing detail onto another root, then the pane stays put`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+    navigator.processEvent(ListDetailEvents.AnchorSelected(PaneAnchor.DETAIL_ONLY))
+
+    navigator.processEvent(ListDetailEvents.Push(otherDetail, TestListKey.OTHER))
+
+    assertEquals(TestListKey.OTHER, navigator.currentRoot.value)
+    assertEquals(PaneAnchor.DETAIL_ONLY, navigator.paneAnchor.value)
+  }
+
+  /**
+   * AND-9169 again, for the split window: the divider stays where it was dragged rather than snapping to
+   * an end.
+   */
+  @Test
+  fun `given a split window, when pushing detail, then the pane stays split`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.AnchorSelected(PaneAnchor.SPLIT))
+
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+
+    assertEquals(PaneAnchor.SPLIT, navigator.paneAnchor.value)
   }
 
   @Test
@@ -214,8 +244,8 @@ class ListDetailNavigatorTest {
   @Test
   fun `when moving to another root, then the displayed detail is that root's`() = runTest {
     val navigator = navigator()
-    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
     navigator.processEvent(ListDetailEvents.Push(otherDetail, TestListKey.OTHER))
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
     settle()
 
     assertEquals(detail, navigator.detail.value)

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import android.content.Context
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -7,6 +8,7 @@ import okio.withLock
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.LongSerializer
+import org.signal.core.util.crypto.KeyStoreHelper
 import org.signal.core.util.logging.Log
 import org.signal.network.util.JsonUtil
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -29,7 +31,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 
-class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
+class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
   companion object {
     val TAG = Log.tag(BackupValues::class.java)
     private const val KEY_MESSAGE_CREDENTIALS = "backup.messageCredentials"
@@ -40,6 +42,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.mediaCdnReadCredentialsTimestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
+    private const val KEY_BACKUP_LAST_UNCOMPRESSED_SIZE = "backup.lastUncompressedSize"
+    private const val KEY_LOCAL_BACKUP_LAST_UNCOMPRESSED_SIZE = "backup.lastLocalBackupUncompressedSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_BACKUP_TIER_INTERNAL_OVERRIDE = "backup.backupTier.internalOverride"
     private const val KEY_BACKUP_TIMESTAMP_RESTORED = "backup.backupTimeRestored"
@@ -68,6 +72,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MESSAGE_BACKUP_INITIALIZED = "backup.messageBackupInitialized"
     private const val KEY_MEDIA_BACKUP_INITIALIZED = "backup.mediaBackupInitialized"
     private const val KEY_IMPORTED_EMPTY_ANDROID_SETTINGS = "backup.importedEmptyAndroidSettings"
+    private const val KEY_V1_BACKUP_PASSPHRASE = "backup.v1BackupPassphrase"
+    private const val KEY_V1_BACKUP_PASSPHRASE_MIGRATED = "backup.v1BackupPassphraseMigrated"
 
     const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
@@ -124,14 +130,63 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     if (!store.containsKey(KEY_MESSAGE_BACKUP_INITIALIZED)) {
       migrateSplitBackupsInitialized()
     }
+
+    if (!store.getBoolean(KEY_V1_BACKUP_PASSPHRASE_MIGRATED, false)) {
+      migrateV1BackupPassphrase(context)
+    }
   }
 
   public override fun onFirstEverAppLaunch() = Unit
   public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
+  /**
+   * The passphrase for legacy (v1) local backups. This store is already encrypted, so unlike the shared-prefs home it used to
+   * have, there's no need to seal it with the keystore by hand.
+   */
+  var v1BackupPassphrase: String?
+    get() = getString(KEY_V1_BACKUP_PASSPHRASE, null)?.stripSpaces()
+    set(value) {
+      putString(KEY_V1_BACKUP_PASSPHRASE, value)
+    }
+
+  /**
+   * Pulls the v1 backup passphrase out of shared prefs, where it lived as a hand-sealed blob because it predates this store.
+   *
+   * Do not alter. If you need to migrate more stuff, create a new method.
+   */
+  private fun migrateV1BackupPassphrase(context: Context) {
+    Log.i(TAG, "[V1Passphrase] Migrating the legacy backup passphrase out of shared prefs.")
+
+    val sealed = LegacySharedPrefs.getStringOrNull(context, "pref_encrypted_backup_passphrase")
+
+    val passphrase = if (sealed != null) {
+      try {
+        String(KeyStoreHelper.unseal(KeyStoreHelper.SealedData.fromString(sealed)))
+      } catch (e: Exception) {
+        // Nothing we can do to recover it -- better to lose the passphrase than to fail to construct the store at all.
+        Log.w(TAG, "[V1Passphrase] Failed to unseal the legacy passphrase! The user will have to re-enter it.", e)
+        null
+      }
+    } else {
+      LegacySharedPrefs.getStringOrNull(context, "pref_backup_passphrase")
+    }
+
+    store
+      .beginWrite()
+      .putString(KEY_V1_BACKUP_PASSPHRASE, passphrase?.stripSpaces())
+      .putBoolean(KEY_V1_BACKUP_PASSPHRASE_MIGRATED, true)
+      .commit()
+  }
+
+  private fun String.stripSpaces(): String = this.replace(" ", "")
+
   var cachedMediaCdnPath: String? by stringValue(KEY_CDN_MEDIA_PATH, null)
 
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
+
+  var lastBackupUncompressedSize: Long? by nullableLongValue(KEY_BACKUP_LAST_UNCOMPRESSED_SIZE, null)
+
+  var lastLocalBackupUncompressedSize: Long? by nullableLongValue(KEY_LOCAL_BACKUP_LAST_UNCOMPRESSED_SIZE, null)
 
   private val deletionStateValue = enumValue(KEY_BACKUP_DELETION_STATE, DeletionState.NONE, DeletionState.serializer)
   private var internalDeletionState by deletionStateValue
@@ -330,6 +385,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           clearNotEnoughRemoteStorageSpace()
           clearMessageBackupFailureSheetWatermark()
           backupCreationError = null
+          lastBackupUncompressedSize = null
 
           clearArchiveVerificationState()
 
@@ -507,12 +563,23 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    */
   var importedEmptyAndroidSettings by booleanValue(KEY_IMPORTED_EMPTY_ANDROID_SETTINGS, false)
 
+  private var internalMessageCuttoffDuration: Duration? by durationValue(KEY_MESSAGE_CUTOFF_DURATION, null)
+
   /**
    * If set, this represents how far back we should backup messages. For instance, if the returned value is 1 year in milliseconds, you should back up
    * every message within the last year. If unset, back up all messages. We only cutoff old messages for users whose backup is over the
    * size limit, which is *extraordinarily* rare, so this value is almost always null.
+   *
+   * Changing this changes which messages a remote backup contains, so [lastBackupUncompressedSize] no longer describes it and is cleared.
    */
-  var messageCuttoffDuration: Duration? by durationValue(KEY_MESSAGE_CUTOFF_DURATION, null)
+  var messageCuttoffDuration: Duration?
+    get() = internalMessageCuttoffDuration
+    set(value) {
+      if (value != internalMessageCuttoffDuration) {
+        lastBackupUncompressedSize = null
+      }
+      internalMessageCuttoffDuration = value
+    }
 
   /**
    * The last threshold we used for backing up messages. Messages sent before this time were not included in the backup.

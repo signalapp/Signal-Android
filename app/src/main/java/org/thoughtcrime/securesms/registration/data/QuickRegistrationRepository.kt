@@ -49,6 +49,26 @@ object QuickRegistrationRepository {
   }
 
   /**
+   * Whether the new device that generated [data] can handle this account. A phone-numberless account can only be
+   * transferred to a new device that advertises [Capability.Numberless].
+   */
+  fun isNewDeviceCompatible(data: String): Boolean {
+    if (!SignalStore.account.isPhoneNumberless) {
+      return true
+    }
+
+    return Capability.Numberless in Uri.parse(data).getCapabilities()
+  }
+
+  private fun Uri.getCapabilities(): Set<Capability> {
+    return this.getQueryParameter("capabilities")
+      ?.split(",")
+      ?.mapNotNull { value -> Capability.entries.firstOrNull { it.value == value } }
+      ?.toSet()
+      ?: emptySet()
+  }
+
+  /**
    * Send registration provisioning message to new device.
    */
   fun transferAccount(reRegisterUri: String, restoreMethodToken: String): TransferAccountResult {
@@ -56,6 +76,14 @@ object QuickRegistrationRepository {
       Log.w(TAG, "Invalid quick re-register qr data")
       return TransferAccountResult.FAILED
     }
+
+    if (!isNewDeviceCompatible(reRegisterUri)) {
+      Log.w(TAG, "New device cannot accept a phone-numberless account")
+      return TransferAccountResult.NEW_DEVICE_OUTDATED
+    }
+
+    val e164 = SignalStore.account.e164
+    val pniIdentityKey = SignalStore.account.pniIdentityKeyOrNull
 
     val uri = Uri.parse(reRegisterUri)
 
@@ -71,12 +99,12 @@ object QuickRegistrationRepository {
       val publicKey = ECPublicKey(decode(publicKeyEncoded))
 
       SignalNetwork
-        .provisioning
+        .provisioningApi
         .sendReRegisterDeviceProvisioningMessage(
           ephemeralId,
           publicKey,
           RegistrationProvisionMessage(
-            e164 = SignalStore.account.requireE164(),
+            e164 = e164,
             aci = SignalStore.account.requireAci().toByteString(),
             accountEntropyPool = SignalStore.account.accountEntropyPool.value,
             pin = SignalStore.svr.pin,
@@ -91,8 +119,8 @@ object QuickRegistrationRepository {
             restoreMethodToken = restoreMethodToken,
             aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
             aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
-            pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
-            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString(),
+            pniIdentityKeyPublic = pniIdentityKey?.publicKey?.serialize()?.toByteString(),
+            pniIdentityKeyPrivate = pniIdentityKey?.privateKey?.serialize()?.toByteString(),
             backupVersion = SignalStore.backup.lastBackupProtoVersion
           )
         )
@@ -150,7 +178,7 @@ object QuickRegistrationRepository {
     Log.d(TAG, "Waiting for restore method with token: ***${restoreMethodToken.takeLast(4)}")
     while (retries-- > 0 && result !is NetworkResult.Success && coroutineContext.isActive) {
       Log.d(TAG, "Waiting, remaining tries: $retries")
-      result = SignalNetwork.provisioning.waitForRestoreMethod(restoreMethodToken)
+      result = SignalNetwork.provisioningApi.waitForRestoreMethod(restoreMethodToken)
       Log.d(TAG, "Result: $result")
     }
 
@@ -165,6 +193,11 @@ object QuickRegistrationRepository {
 
   enum class TransferAccountResult {
     SUCCESS,
-    FAILED
+    FAILED,
+    NEW_DEVICE_OUTDATED
+  }
+
+  private enum class Capability(val value: String) {
+    Numberless("nopni")
   }
 }

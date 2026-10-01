@@ -36,7 +36,7 @@ class SignalLoginInfoViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   isPasswordManagerAvailable: Boolean
-) : EventDrivenViewModel<SignalLoginInfoScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginInfoScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginInfoViewModel::class)
@@ -104,6 +104,7 @@ class SignalLoginInfoViewModel(
       }
 
       is SignalLoginInfoScreenEvents.SaveManuallyClicked -> {
+        stateEmitter(state.copy(dialogs = SignalLoginInfoState.Dialogs()))
         parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginViewDetailsForManualSave)
       }
 
@@ -130,6 +131,12 @@ class SignalLoginInfoViewModel(
     isRetry: Boolean,
     stateEmitter: (SignalLoginInfoState) -> Unit
   ) {
+    if (!state.isPasswordManagerAvailable) {
+      Log.w(TAG, "[SaveToPasswordManager] There is no password manager on this device.")
+      _actions.trySend(SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable)
+      return
+    }
+
     val accountId = state.passwordManagerAccountId
     val recoveryKey = state.passwordManagerRecoveryKey
 

@@ -17,6 +17,13 @@ interface ConversationAdapterBridge {
     const val PAYLOAD_NAME_COLORS = 1
     const val PAYLOAD_SELECTED = 2
     const val PAYLOAD_PARENT_SCROLLING = 3
+
+    /**
+     * The pulse highlight is rendered entirely by the item decoration, so items that receive this
+     * payload deliberately do nothing. It exists so that requesting a pulse does not force a full
+     * rebind of an item that is already on screen.
+     */
+    const val PAYLOAD_PULSE = 4
   }
 
   fun hasNoConversationMessages(): Boolean

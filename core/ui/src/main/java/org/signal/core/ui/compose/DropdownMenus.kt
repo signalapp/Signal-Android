@@ -56,6 +56,7 @@ object DropdownMenus {
     controller: MenuController = remember { MenuController() },
     offsetX: Dp = dimensionResource(id = R.dimen.gutter),
     offsetY: Dp = 0.dp,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     content: @Composable ColumnScope.(MenuController) -> Unit
   ) {
     Menu(
@@ -64,6 +65,7 @@ object DropdownMenus {
       modifier = modifier,
       offsetX = offsetX,
       offsetY = offsetY,
+      contentPadding = contentPadding,
       content = { content(controller) }
     )
   }
@@ -79,6 +81,7 @@ object DropdownMenus {
     modifier: Modifier = Modifier,
     offsetX: Dp = dimensionResource(id = R.dimen.gutter),
     offsetY: Dp = 0.dp,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     content: @Composable ColumnScope.() -> Unit
   ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = RoundedCornerShape(18.dp))) {
@@ -93,6 +96,7 @@ object DropdownMenus {
         modifier = modifier
           .background(SignalTheme.colors.colorSurface2)
           .widthIn(min = 220.dp)
+          .padding(contentPadding)
       )
     }
   }

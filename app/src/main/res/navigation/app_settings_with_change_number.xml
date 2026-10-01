@@ -217,8 +217,8 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_accountSettingsFragment_to_signalLoginViewDetailsFragment"
-            app:destination="@id/signalLoginViewDetailsFragment"
+            android:id="@+id/action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -240,9 +240,17 @@
     </fragment>
 
     <fragment
-        android:id="@+id/signalLoginViewDetailsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsFragment"
-        android:label="signal_login_view_details_fragment" />
+        android:id="@+id/settingsSignalLoginDetailsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.signallogin.SettingsSignalLoginDetailsFragment"
+        android:label="settings_signal_login_details_fragment">
+        <action
+            android:id="@+id/action_settingsSignalLoginDetailsFragment_to_backupKeyDisplayFragment"
+            app:destination="@id/backupKeyDisplayFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
 
     <fragment
         android:id="@+id/authenticatorSetupFragment"
@@ -281,6 +289,11 @@
             app:argType="long" />
 
         <argument
+            android:name="renaming"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
             android:name="app_name"
             android:defaultValue=""
             app:argType="string" />
@@ -315,8 +328,7 @@
     <fragment
         android:id="@+id/deleteAccountFragment"
         android:name="org.thoughtcrime.securesms.delete.DeleteAccountFragment"
-        android:label="delete_account_fragment"
-        tools:layout="@layout/delete_account_fragment">
+        android:label="delete_account_fragment">
 
         <action
             android:id="@+id/action_deleteAccountFragment_to_deleteAccountCountryFragment"
@@ -516,6 +528,14 @@
         <action
             android:id="@+id/action_backupsPreferenceFragment_to_backupKeyDisplayFragment"
             app:destination="@id/backupKeyDisplayFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_localBackupsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -1010,6 +1030,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalIssuesFragment"
             app:destination="@id/internalIssuesFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalRemoteConfigFragment"
+            app:destination="@id/internalRemoteConfigFragment" />
     </fragment>
 
     <fragment
@@ -1081,6 +1104,11 @@
         android:id="@+id/internalIssuesFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.issues.InternalIssuesFragment"
         android:label="internal_issues_fragment" />
+
+    <fragment
+        android:id="@+id/internalRemoteConfigFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.remoteconfig.InternalRemoteConfigFragment"
+        android:label="internal_remote_config_fragment" />
 
     <!-- endregion -->
 
@@ -1381,6 +1409,14 @@
         <action
             android:id="@+id/action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment"
             app:destination="@id/backupKeyDisplayFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"

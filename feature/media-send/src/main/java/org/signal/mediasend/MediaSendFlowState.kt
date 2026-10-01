@@ -56,6 +56,11 @@ data class MediaSendFlowState(
    */
   val message: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
   /**
+   * The [message] held aside while view-once is on, since a view-once send cannot carry a body. Turning view-once back
+   * off puts it back, so the toggle is not a silent way to lose what was already typed.
+   */
+  val viewOnceStashedMessage: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
+  /**
    * If non-null, this media was the first capture from the camera and may be
    * removed if the user backs out of camera-first flow.
    */

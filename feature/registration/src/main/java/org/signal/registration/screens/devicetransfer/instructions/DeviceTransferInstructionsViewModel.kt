@@ -20,7 +20,7 @@ import org.signal.registration.screens.util.navigateTo
 
 class DeviceTransferInstructionsViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferInstructionsScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferInstructionsScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferInstructionsViewModel::class)

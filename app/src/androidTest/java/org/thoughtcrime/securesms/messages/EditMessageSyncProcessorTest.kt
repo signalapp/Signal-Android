@@ -207,7 +207,7 @@ class EditMessageSyncProcessorTest {
     }
 
     fun cleanup() {
-      SignalDatabase.rawDatabase.withinTransaction { db ->
+      SignalDatabase.writableDatabase.withinTransaction { db ->
         SignalDatabase.threads.deleteAllConversations()
         db.execSQL("DELETE FROM sqlite_sequence WHERE name = '${MessageTable.TABLE_NAME}'")
         db.execSQL("DELETE FROM sqlite_sequence WHERE name = '${ThreadTable.TABLE_NAME}'")

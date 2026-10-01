@@ -14,7 +14,6 @@ import com.google.zxing.Result
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.QRCodeReader
 import org.signal.core.util.logging.Log
-import java.nio.IntBuffer
 
 /**
  * Wraps [QRCodeReader] for use from API19 or API21+.
@@ -43,9 +42,9 @@ class QrProcessor {
       return null
     }
 
-    val buffer = IntBuffer.allocate((bitmap.byteCount / 4) + 1)
-    bitmap.copyPixelsToBuffer(buffer)
-    return getScannedData(RGBLuminanceSource(bitmap.width, bitmap.height, buffer.array()))
+    val pixels = IntArray(bitmap.width * bitmap.height)
+    bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+    return getScannedData(RGBLuminanceSource(bitmap.width, bitmap.height, pixels))
   }
 
   private fun getScannedData(source: LuminanceSource): String? {

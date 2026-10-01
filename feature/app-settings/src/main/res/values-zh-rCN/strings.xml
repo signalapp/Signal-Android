@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">通行密钥</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s 添加</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">打开双重身份验证选项</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">重命名</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">当您登录时，您将无法使用此应用获取一次性验证码。</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">解锁以移除双重身份验证方式</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">如要移除此方式，请确认您的身份</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">解锁以查看 Signal Login</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">如要查看您的 Signal Login，请确认您的身份</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">请解锁以确认您的身份</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">如要删除账户，请确认您的身份</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">需要验证</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">无法添加身份验证器应用</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">您最多只能添加 %1$d 个身份验证器应用。请先移除其他应用。</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">您最多只能添加 %1$d 个双重身份验证方式。请先移除其他方式。</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">无法加载您的双重身份验证方式。请检查您的网络连接并重试。</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">身份验证器应用已移除</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">输入您的验证码</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">请输入您的身份验证器应用生成的 6 位数验证码。</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">二维码</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">完成</string>
+    <string name="TotpCodeEntryScreen__next">下一步</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">验证码不正确。请输入您的身份验证器应用当前显示的验证码。</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">无法连接 Signal。请检查您的网络连接并重试。</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">身份验证器</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">选择一个名称</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">身份验证器应用已重命名</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">无法保存名称。请检查您的网络连接并重试。</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">删除账户将会：</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">输入您的手机号码</string>
+    <string name="DeleteAccountFragment__delete_account">删除账户</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的账户信息和个人资料照片</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">删除您付款账户中的 %1$s</string>
+    <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
+    <string name="DeleteAccountFragment__no_number">未指定号码</string>
+    <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的账户不符。</string>
+    <string name="DeleteAccountFragment__are_you_sure">您确定要删除您的账户吗？</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">此操作将会删除您的 Signal 账户并重置 Signal 应用。应用将会在这个过程完成后关闭。</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">删除本地数据失败。您可以手动在系统的应用设置中进行清除。</string>
+    <string name="DeleteAccountFragment__launch_app_settings">打开应用设置</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">正在离开群组…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">正在删除账户…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的定期捐款……</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">根据您所加入的群组数量，这可能需要数分钟</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在删除用户数据和重置应用</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">账户未能删除</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">完成删除步骤时出现问题。请检查您的网络连接并重试。</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">删除用户名为“%1$s”的账户会：</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">删除您的账户信息及头像，包括您的用户名“%1$s”</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">此操作无法撤销</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">这会删除您用户名为“%1$s”的 Signal 账户，并重置 Signal 应用。应用将会在删除完成后关闭。</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">是的，删除我的账户</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">选择国家</string>
+    <string name="RegistrationActivity_phone_number_description">手机号码</string>
 </resources>

@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
@@ -108,10 +107,10 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val profile = profileAndCredential.getProfile()
 
-    if (Util.isEmpty(profile.getName()) &&
-      Util.isEmpty(profile.getAvatar()) &&
-      Util.isEmpty(profile.getAbout()) &&
-      Util.isEmpty(profile.getAboutEmoji())
+    if (Util.isEmpty(profile.name) &&
+      Util.isEmpty(profile.avatar) &&
+      Util.isEmpty(profile.about) &&
+      Util.isEmpty(profile.aboutEmoji)
     ) {
       Log.w(TAG, "The profile we retrieved was empty! Ignoring it.")
 
@@ -125,13 +124,13 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    setProfileName(profile.getName())
-    setProfileAbout(profile.getAbout(), profile.getAboutEmoji())
-    setProfileAvatar(profile.getAvatar())
-    setProfileCapabilities(profile.getCapabilities())
-    setProfileBadges(profile.getBadges())
-    ensureUnidentifiedAccessCorrect(profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess())
-    ensurePhoneNumberSharingIsCorrect(profile.getPhoneNumberSharing())
+    setProfileName(profile.name)
+    setProfileAbout(profile.about, profile.aboutEmoji)
+    setProfileAvatar(profile.avatar)
+    setProfileCapabilities(profile.capabilities)
+    setProfileBadges(profile.badges)
+    ensureUnidentifiedAccessCorrect(profile.unidentifiedAccess, profile.unrestrictedUnidentifiedAccess)
+    ensurePhoneNumberSharingIsCorrect(profile.phoneNumberSharing)
 
     profileAndCredential.getExpiringProfileKeyCredential()
       .ifPresent { setExpiringProfileKeyCredential(self, ProfileKeyUtil.getSelfProfileKey(), it) }
@@ -213,8 +212,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       return
     }
 
-    if (TextSecurePreferences.isUniversalUnidentifiedAccess(context) != universalUnidentifiedAccess) {
-      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + TextSecurePreferences.isUniversalUnidentifiedAccess(context) + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
+    if (SignalStore.settings.isUniversalUnidentifiedAccess != universalUnidentifiedAccess) {
+      Log.w(TAG, "The universal access flag doesn't match our local value (local: " + SignalStore.settings.isUniversalUnidentifiedAccess + ", remote: " + universalUnidentifiedAccess + ")! Refreshing attributes.")
       AppDependencies.jobManager.add(RefreshAttributesJob())
       return
     }
@@ -287,8 +286,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       .toSet()
 
     val remoteDonorBadgeIds = badges
-      .filter { it.getCategory() == Badge.Category.Donor.code }
-      .map { it.getId() }
+      .filter { it.category == Badge.Category.Donor.code }
+      .map { it.id }
       .toSet()
 
     val remoteHasSubscriptionBadges = remoteDonorBadgeIds.any { isSubscription(it) }
@@ -315,18 +314,19 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
         var isDueToPaymentFailure = false
         if (subscriber != null) {
-          val response = AppDependencies.donationsService
+          val response = SignalNetwork.donationsService
             .getSubscription(subscriber.subscriberId)
 
           if (response.getResult().isPresent()) {
             val activeSubscription = response.getResult().get()
-            if (activeSubscription.isFailedPayment()) {
+            if (activeSubscription.isFailedPayment) {
               Log.d(TAG, "Unexpected expiry due to payment failure.", true)
               isDueToPaymentFailure = true
             }
 
-            if (activeSubscription.getChargeFailure() != null) {
-              Log.d(TAG, "Active payment contains a charge failure: " + activeSubscription.getChargeFailure().getCode(), true)
+            val chargeFailure = activeSubscription.chargeFailure
+            if (chargeFailure != null) {
+              Log.d(TAG, "Active payment contains a charge failure: " + chargeFailure.code, true)
             }
           }
 
@@ -376,8 +376,8 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
       SignalStore.inAppPayments.setExpiredGiftBadge(null)
     }
 
-    val userHasVisibleBadges = badges.any { it.isVisible() }
-    val userHasInvisibleBadges = badges.any { !it.isVisible() }
+    val userHasVisibleBadges = badges.any { it.visible }
+    val userHasInvisibleBadges = badges.any { !it.visible }
 
     val appBadges = badges.map { Badges.fromServiceBadge(it) }
 
@@ -439,7 +439,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
 
     val localUsernameLink = SignalStore.account.usernameLink ?: return
 
-    when (val usernameFetchResult = SignalNetwork.username.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
+    when (val usernameFetchResult = SignalNetwork.usernameApi.getDecryptedUsernameFromLinkServerIdAndEntropy(localUsernameLink.serverId, localUsernameLink.entropy)) {
       is RequestResult.Success -> {
         val remoteUsername = usernameFetchResult.result
 

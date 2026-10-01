@@ -326,7 +326,15 @@ object MessageDecryptor {
   ): Result {
     if (ServiceId.parseOrNull(envelope.destinationServiceId, envelope.destinationServiceIdBinary) == SignalStore.account.pni) {
       Log.w(TAG, "${logPrefix(envelope)} Decryption error for message sent to our PNI! Ignoring.")
-      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+
+      if (envelope.type == Envelope.Type.PREKEY_MESSAGE) {
+        Log.w(TAG, "${logPrefix(envelope)} Decryption error was on a prekey message. Forcing a prekey rotation.", true)
+        followUpOperations += FollowUpOperation {
+          PreKeysSyncJob.create(forceRotationRequested = true).asChain()
+        }
+      }
+
+      return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
     }
 
     val contentHint: ContentHint = ContentHint.fromType(protocolException.contentHint)

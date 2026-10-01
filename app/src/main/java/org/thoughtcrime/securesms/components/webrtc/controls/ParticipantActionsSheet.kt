@@ -33,6 +33,7 @@ import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -119,7 +120,7 @@ private fun ParticipantActionsSheetContent(
 
     Rows.TextRow(
       text = stringResource(id = R.string.CallParticipantSheet__remove_from_call),
-      icon = painterResource(id = R.drawable.symbol_minus_circle_24),
+      icon = SignalIcons.MinusCircle.painter,
       onClick = {
         onRemoveFromCall(callParticipant)
         onDismiss()

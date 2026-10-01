@@ -14,9 +14,11 @@ import assertk.assertions.isFalse
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -61,16 +63,14 @@ class AddUsernameViewModelTest {
   }
 
   @Test
-  fun `LearnMoreClicked shows the dialog explaining the discriminator`() = runTest(testDispatcher) {
+  fun `LearnMoreClicked emits an action to open the learn more article`() = runTest(testDispatcher) {
+    val actions = mutableListOf<AddUsernameScreenActions>()
+    backgroundScope.launch(testDispatcher) { viewModel.actions.collect { actions.add(it) } }
+
     viewModel.onEvent(AddUsernameScreenEvents.LearnMoreClicked)
     advanceUntilIdle()
 
-    assertThat(viewModel.state.value.dialogs.learnMore).isTrue()
-
-    viewModel.onEvent(AddUsernameScreenEvents.LearnMoreDialogDismissed)
-    advanceUntilIdle()
-
-    assertThat(viewModel.state.value.dialogs.learnMore).isFalse()
+    assertThat(actions).containsExactly(AddUsernameScreenActions.OpenLearnMoreArticle)
   }
 
   @Test
@@ -139,6 +139,8 @@ class AddUsernameViewModelTest {
     advanceUntilIdle()
     viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
     advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorFocusLost)
+    advanceUntilIdle()
 
     assertThat(viewModel.state.value.isDiscriminatorUserSet).isFalse()
     assertThat(viewModel.state.value.discriminator).isEqualTo("45")
@@ -176,8 +178,8 @@ class AddUsernameViewModelTest {
   }
 
   @Test
-  fun `clearing a service-assigned discriminator empties the field`() = runTest(testDispatcher) {
-    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+  fun `emptying the discriminator while still focused does not reserve`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45")) andThen RequestResult.Success(Username("maya.99"))
 
     viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
     advanceUntilIdle()
@@ -186,8 +188,87 @@ class AddUsernameViewModelTest {
 
     assertThat(viewModel.state.value.discriminator).isEmpty()
     assertThat(viewModel.state.value.isDiscriminatorUserSet).isFalse()
-    assertThat(viewModel.state.value.requestedDiscriminator).isNull()
     assertThat(viewModel.state.value.validationError).isNull()
+    coVerify(exactly = 1) { mockRepository.reserveUsername("maya") }
+  }
+
+  @Test
+  fun `an emptied discriminator keeps the entry submittable while the user decides`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.reservation).isEqualTo(Username("maya.45"))
+    assertThat(viewModel.state.value.isSubmittable).isTrue()
+  }
+
+  @Test
+  fun `emptying a user-typed discriminator drops its reservation`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+    coEvery { mockRepository.reserveUsername("maya", "77") } returns RequestResult.Success(Username("maya.77"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged("77"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.discriminator).isEmpty()
+    assertThat(viewModel.state.value.isDiscriminatorUserSet).isFalse()
+    assertThat(viewModel.state.value.reservation).isNull()
+    assertThat(viewModel.state.value.isSubmittable).isFalse()
+  }
+
+  @Test
+  fun `NextClicked cannot confirm a discriminator the user just erased`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+    coEvery { mockRepository.reserveUsername("maya", "77") } returns RequestResult.Success(Username("maya.77"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged("77"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.NextClicked)
+    advanceUntilIdle()
+
+    coVerify(exactly = 0) { mockRepository.confirmUsername(any()) }
+    assertThat(parentEvents).isEmpty()
+  }
+
+  @Test
+  fun `losing focus with an empty discriminator hands it back to the service`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45")) andThen RequestResult.Success(Username("maya.99"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorChanged(""))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorFocusLost)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.discriminator).isEqualTo("99")
+    assertThat(viewModel.state.value.isDiscriminatorUserSet).isFalse()
+    assertThat(viewModel.state.value.reservation).isEqualTo(Username("maya.99"))
+    assertThat(viewModel.state.value.isSubmittable).isTrue()
+  }
+
+  @Test
+  fun `losing focus with a discriminator still in the field reserves nothing new`() = runTest(testDispatcher) {
+    coEvery { mockRepository.reserveUsername("maya") } returns RequestResult.Success(Username("maya.45"))
+
+    viewModel.onEvent(AddUsernameScreenEvents.UsernameChanged("maya"))
+    advanceUntilIdle()
+    viewModel.onEvent(AddUsernameScreenEvents.DiscriminatorFocusLost)
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.discriminator).isEqualTo("45")
+    coVerify(exactly = 1) { mockRepository.reserveUsername("maya") }
   }
 
   @Test

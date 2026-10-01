@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.keyvalue.MiscellaneousValues
+import org.thoughtcrime.securesms.keyvalue.RateLimitValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
@@ -106,6 +107,7 @@ class IndividualSendJobV2Test {
   private val recipientId: RecipientId = RecipientId.from(2L)
 
   private lateinit var misc: MiscellaneousValues
+  private lateinit var rateLimit: RateLimitValues
 
   private lateinit var recipient: Recipient
   private lateinit var self: Recipient
@@ -128,6 +130,10 @@ class IndividualSendJobV2Test {
     misc = mockk(relaxUnitFun = true)
     every { misc.isClientDeprecated } returns false
     every { SignalStore.misc } returns misc
+
+    rateLimit = mockk(relaxUnitFun = true)
+    every { rateLimit.needsRecaptcha() } returns false
+    every { SignalStore.rateLimit } returns rateLimit
 
     every { signalStore.account.aci } returns selfAci
     every { signalStore.account.requireAci() } returns selfAci

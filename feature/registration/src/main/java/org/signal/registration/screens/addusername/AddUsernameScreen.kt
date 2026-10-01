@@ -6,6 +6,7 @@
 package org.signal.registration.screens.addusername
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -33,13 +34,18 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -60,6 +66,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.UsernameUtil
 import org.signal.libsignal.usernames.Username
 import org.signal.registration.R
@@ -112,15 +119,6 @@ fun AddUsernameScreen(
       dismiss = stringResource(R.string.AddUsernameScreen__cancel),
       onConfirm = { onEvent(AddUsernameScreenEvents.SkipConfirmed) },
       onDismiss = { onEvent(AddUsernameScreenEvents.SkipDialogDismissed) }
-    )
-  }
-
-  if (state.dialogs.learnMore) {
-    Dialogs.SimpleMessageDialog(
-      title = stringResource(R.string.AddUsernameScreen__what_is_this_number),
-      message = stringResource(R.string.AddUsernameScreen__these_digits_help_keep),
-      dismiss = stringResource(android.R.string.ok),
-      onDismiss = { onEvent(AddUsernameScreenEvents.LearnMoreDialogDismissed) }
     )
   }
 
@@ -225,6 +223,7 @@ private fun ColumnScope.UsernameEntry(
   onEvent: (AddUsernameScreenEvents) -> Unit
 ) {
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
   val validationMessage: String? = state.validationError?.message()
 
   LaunchedEffect(Unit) {
@@ -248,7 +247,8 @@ private fun ColumnScope.UsernameEntry(
   TextField(
     value = state.username,
     onValueChange = { onEvent(AddUsernameScreenEvents.UsernameChanged(it)) },
-    label = { Text(stringResource(R.string.AddUsernameScreen__username)) },
+    label = { TextFields.Label(stringResource(R.string.AddUsernameScreen__username), state.username.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     singleLine = true,
     enabled = !state.showSpinner,
     isError = state.validationError != null,
@@ -343,6 +343,8 @@ private fun DiscriminatorField(
 ) {
   val textStyle = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.onSurface)
   val textMeasurer = rememberTextMeasurer()
+  val focusManager = LocalFocusManager.current
+  var wasFocused by remember { mutableStateOf(false) }
 
   val width = with(LocalDensity.current) {
     val content = textMeasurer.measure(state.discriminator, textStyle).size.width
@@ -363,13 +365,21 @@ private fun DiscriminatorField(
     ),
     keyboardActions = KeyboardActions(
       onDone = {
-        if (state.isSubmittable) {
+        if (state.discriminator.isBlank()) {
+          focusManager.clearFocus()
+        } else if (state.isSubmittable) {
           onEvent(AddUsernameScreenEvents.NextClicked)
         }
       }
     ),
     modifier = Modifier
       .width(width)
+      .onFocusChanged { focusState ->
+        if (wasFocused && !focusState.isFocused) {
+          onEvent(AddUsernameScreenEvents.DiscriminatorFocusLost)
+        }
+        wasFocused = focusState.isFocused
+      }
       .testTag(TestTags.ADD_USERNAME_DISCRIMINATOR_FIELD)
   )
 }

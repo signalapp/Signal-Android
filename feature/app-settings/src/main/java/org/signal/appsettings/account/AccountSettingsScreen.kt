@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -43,12 +44,14 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
@@ -65,7 +68,6 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
 import org.signal.signallogin.beta.SignalLoginBetaTag
 import org.signal.core.ui.R as CoreUiR
 
@@ -73,6 +75,7 @@ import org.signal.core.ui.R as CoreUiR
 object AccountSettingsTestTags {
   const val SCROLLER = "scroller"
   const val CARD_SIGNAL_LOGIN = "card-signal-login"
+  const val LINK_SIGNAL_LOGIN_LEARN_MORE = "link-signal-login-learn-more"
   const val ROW_SET_UP_TWO_FACTOR = "row-set-up-two-factor"
   const val MENU_ITEM_AUTHENTICATOR_APP = "menu-item-authenticator-app"
   const val ROW_TWO_FACTOR_METHOD = "row-two-factor-method"
@@ -81,6 +84,7 @@ object AccountSettingsTestTags {
   const val MENU_ITEM_REMOVE = "menu-item-remove"
   const val TWO_FACTOR_LOADING = "two-factor-loading"
   const val TWO_FACTOR_LOAD_FAILED_MESSAGE = "two-factor-load-failed-message"
+  const val LINK_TWO_FACTOR_LEARN_MORE = "link-two-factor-learn-more"
   const val ROW_MODIFY_PIN = "row-modify-pin"
   const val ROW_PIN_REMINDER = "row-pin-reminder"
   const val ROW_REGISTRATION_LOCK = "row-registration-lock"
@@ -97,6 +101,7 @@ object AccountSettingsTestTags {
   const val DIALOG_CONFIRM_REGISTRATION_LOCK = "dialog-confirm-registration-lock"
   const val DIALOG_CONFIRM_REMOVE_TOTP_APP = "dialog-confirm-remove-totp-app"
   const val DIALOG_MAX_TOTP_APPS_REACHED = "dialog-max-totp-apps-reached"
+  const val DIALOG_MAX_MFA_KEYS_REACHED = "dialog-max-mfa-keys-reached"
   const val PIN_INPUT = "pin-input"
   const val PIN_KEYBOARD_TOGGLE = "pin-keyboard-toggle"
 }
@@ -125,21 +130,18 @@ fun AccountSettingsScreen(
         }
 
         item {
-          SignalLoginBetaDisclaimer(
-            modifier = Modifier
-              .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-              .padding(bottom = 12.dp)
-          )
-        }
-
-        item {
           SignalLoginCard(
             onClick = { onEvent(AccountSettingsEvent.AccountAndRecoveryClicked) }
           )
         }
 
         item {
-          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__your_signal_login_is_used_to_recover))
+          SectionFooter(
+            text = stringResource(R.string.AccountSettingsFragment__your_signal_login_is_used_to_recover),
+            url = "https://support.signal.org/hc/articles/11197884108826",
+            onEvent = onEvent,
+            modifier = Modifier.testTag(AccountSettingsTestTags.LINK_SIGNAL_LOGIN_LEARN_MORE)
+          )
         }
 
         item {
@@ -192,7 +194,12 @@ fun AccountSettingsScreen(
         }
 
         item {
-          SectionFooter(text = stringResource(R.string.AccountSettingsFragment__use_a_second_form_of_authentication))
+          SectionFooter(
+            text = stringResource(R.string.AccountSettingsFragment__use_a_second_form_of_authentication),
+            url = "https://support.signal.org/hc/articles/11228705649690",
+            onEvent = onEvent,
+            modifier = Modifier.testTag(AccountSettingsTestTags.LINK_TWO_FACTOR_LEARN_MORE)
+          )
         }
 
         item {
@@ -361,8 +368,9 @@ fun AccountSettingsScreen(
         RegistrationLockConfirmationDialog(dialog, onEvent)
       }
     }
-    is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(onEvent = onEvent)
+    is Dialog.ConfirmRemoveTotpApp -> ConfirmRemoveTotpAppDialog(appId = dialog.appId, onEvent = onEvent)
     Dialog.MaxTotpAppsReached -> MaxTotpAppsReachedDialog(maxApps = state.signalLogin?.maxTotpApps ?: 0, onEvent = onEvent)
+    Dialog.MaxMfaKeysReached -> MaxMfaKeysReachedDialog(maxMfaKeys = state.signalLogin?.maxMfaKeys ?: 0, onEvent = onEvent)
   }
 }
 
@@ -379,21 +387,7 @@ private fun SetUpTwoFactorRow(
 
   Box(modifier = modifier) {
     Rows.TextRow(
-      icon = {
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .size(40.dp)
-            .clip(CircleShape)
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-        ) {
-          Icon(
-            imageVector = SignalIcons.Plus.imageVector,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurface
-          )
-        }
-      },
+      icon = { TwoFactorRowIcon(icon = SignalIcons.Plus) },
       text = {
         TextAndLabel(text = stringResource(R.string.AccountSettingsFragment__set_up))
       },
@@ -401,7 +395,10 @@ private fun SetUpTwoFactorRow(
       modifier = Modifier.testTag(AccountSettingsTestTags.ROW_SET_UP_TWO_FACTOR)
     )
 
-    DropdownMenus.Menu(controller = menuController) { controller ->
+    DropdownMenus.Menu(
+      controller = menuController,
+      contentPadding = PaddingValues(vertical = 12.dp)
+    ) { controller ->
       DropdownMenus.Item(
         leadingIconResId = CoreUiR.drawable.symbol_device_phone_24,
         text = {
@@ -433,7 +430,7 @@ private fun TwoFactorMethodRow(
 ) {
   val context = LocalContext.current
   val addedTime = remember(method.createdAt) {
-    DateUtils.getRelativeDateTimeString(context, method.createdAt, DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, 0).toString()
+    method.createdAt?.let { DateUtils.getRelativeDateTimeString(context, it, DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, 0).toString() }
   }
 
   val icon = when (method.kind) {
@@ -447,17 +444,15 @@ private fun TwoFactorMethodRow(
   }
 
   Rows.TextRow(
-    icon = {
-      Icon(
-        painter = icon.painter,
-        contentDescription = null,
-        tint = MaterialTheme.colorScheme.onSurface
-      )
-    },
+    icon = { TwoFactorRowIcon(icon = icon) },
     text = {
       TextAndLabel(
-        text = method.name,
-        label = stringResource(R.string.AccountSettingsFragment__s_added_s, kindName, addedTime)
+        text = method.name ?: stringResource(R.string.AccountSettingsFragment__unknown),
+        label = if (addedTime != null) {
+          stringResource(R.string.AccountSettingsFragment__s_added_s, kindName, addedTime)
+        } else {
+          kindName
+        }
       )
 
       TwoFactorMethodMenuButton(
@@ -467,6 +462,30 @@ private fun TwoFactorMethodRow(
     },
     modifier = modifier.testTag(AccountSettingsTestTags.ROW_TWO_FACTOR_METHOD)
   )
+}
+
+/**
+ * The circled icon shared by every row in the two-factor list, so that all of the row text lines up regardless of
+ * which icon the row uses.
+ */
+@Composable
+private fun TwoFactorRowIcon(
+  icon: SignalIcons,
+  modifier: Modifier = Modifier
+) {
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = modifier
+      .size(40.dp)
+      .clip(CircleShape)
+      .background(MaterialTheme.colorScheme.surfaceVariant)
+  ) {
+    Icon(
+      painter = icon.painter,
+      contentDescription = null,
+      tint = MaterialTheme.colorScheme.onSurface
+    )
+  }
 }
 
 @Composable
@@ -556,24 +575,28 @@ private fun SignalLoginCard(
 }
 
 /**
- * Explanatory text shown underneath a section, ending in a "Learn more" link that has nowhere to go yet.
+ * Explanatory text shown underneath a section, ending in a "Learn more" link that opens the support article at [url].
  */
 @Composable
 private fun SectionFooter(
   text: String,
+  url: String,
+  onEvent: (AccountSettingsEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val learnMore = stringResource(R.string.AccountSettingsFragment__learn_more)
-  val primaryColor = MaterialTheme.colorScheme.primary
-
   Text(
-    text = remember(text, learnMore, primaryColor) {
-      buildAnnotatedString {
-        append(text)
-        append(" ")
-        withStyle(SpanStyle(color = primaryColor)) {
-          append(learnMore)
-        }
+    text = buildAnnotatedString {
+      append(text)
+      append(" ")
+
+      withLink(
+        LinkAnnotation.Clickable(
+          tag = "learn-more",
+          styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary)),
+          linkInteractionListener = { onEvent(AccountSettingsEvent.LearnMoreClicked(url)) }
+        )
+      ) {
+        append(stringResource(R.string.AccountSettingsFragment__learn_more))
       }
     },
     style = MaterialTheme.typography.bodyMedium,
@@ -599,13 +622,14 @@ private fun DeleteAllDataConfirmationDialog(
 
 @Composable
 private fun ConfirmRemoveTotpAppDialog(
+  appId: Long,
   onEvent: (AccountSettingsEvent) -> Unit
 ) {
   Dialogs.SimpleAlertDialog(
     title = stringResource(R.string.AccountSettingsFragment__remove_authenticator_app),
     body = stringResource(R.string.AccountSettingsFragment__you_wont_be_able_to_use_this_app),
     confirm = stringResource(R.string.AccountSettingsFragment__remove),
-    onConfirm = { onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed) },
+    onConfirm = { onEvent(AccountSettingsEvent.RemoveTotpAppConfirmed(appId)) },
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(android.R.string.cancel),
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
@@ -625,9 +649,28 @@ private fun MaxTotpAppsReachedDialog(
     onConfirm = {},
     onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
     dismiss = stringResource(R.string.AccountSettingsFragment__learn_more),
-    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked) },
+    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690")) },
     onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
     modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_TOTP_APPS_REACHED)
+  )
+}
+
+/** Shown when there's still room for another authenticator app, but not for another second factor of any kind. */
+@Composable
+private fun MaxMfaKeysReachedDialog(
+  maxMfaKeys: Int,
+  onEvent: (AccountSettingsEvent) -> Unit
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.AccountSettingsFragment__cant_add_authenticator_app),
+    body = stringResource(R.string.AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods, maxMfaKeys),
+    confirm = stringResource(android.R.string.ok),
+    onConfirm = {},
+    onDismiss = { onEvent(AccountSettingsEvent.DialogDismissed) },
+    dismiss = stringResource(R.string.AccountSettingsFragment__learn_more),
+    onDeny = { onEvent(AccountSettingsEvent.LearnMoreClicked("https://support.signal.org/hc/articles/11228705649690")) },
+    onDismissRequest = { onEvent(AccountSettingsEvent.DialogDismissed) },
+    modifier = Modifier.testTag(AccountSettingsTestTags.DIALOG_MAX_MFA_KEYS_REACHED)
   )
 }
 
@@ -696,8 +739,7 @@ private fun ConfirmPinToDisableRemindersDialog(
     text = {
       Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-          text = stringResource(R.string.preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin),
-          textAlign = TextAlign.Center
+          text = stringResource(R.string.preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin)
         )
 
         TextField(
@@ -867,7 +909,7 @@ private fun ConfirmPinToDisableRemindersDialogPreview() {
 @Composable
 private fun ConfirmRemoveTotpAppDialogPreview() {
   Previews.Preview {
-    ConfirmRemoveTotpAppDialog(onEvent = {})
+    ConfirmRemoveTotpAppDialog(appId = 1, onEvent = {})
   }
 }
 
@@ -879,8 +921,17 @@ private fun MaxTotpAppsReachedDialogPreview() {
   }
 }
 
+@DayNightPreviews
+@Composable
+private fun MaxMfaKeysReachedDialogPreview() {
+  Previews.Preview {
+    MaxMfaKeysReachedDialog(maxMfaKeys = 10, onEvent = {})
+  }
+}
+
 private val PREVIEW_TWO_FACTOR_METHODS = listOf(
   TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Bitwarden Authenticator", createdAt = System.currentTimeMillis()),
   TwoFactorMethod(id = 2, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = "Twilio Authy", createdAt = System.currentTimeMillis()),
+  TwoFactorMethod(id = 3, kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP, name = null, createdAt = null),
   TwoFactorMethod(id = 1, kind = TwoFactorMethod.Kind.PASSKEY, name = "Pixel Phone", createdAt = System.currentTimeMillis())
 )

@@ -1,5 +1,6 @@
 package org.signal.camera
 
+import android.os.Build
 import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -91,6 +92,9 @@ fun CameraScreen(
   val lifecycleOwner = LocalLifecycleOwner.current
   val isInPreview = LocalInspectionMode.current
 
+  // Older android versions need to use embedded
+  val resolvedImplementationMode = if (Build.VERSION.SDK_INT <= 24) ImplementationMode.EMBEDDED else implementationMode
+
   var surfaceRequest by remember { mutableStateOf<SurfaceRequest?>(null) }
 
   KeepScreenOnEffect(enabled = state.isRecording)
@@ -152,7 +156,7 @@ fun CameraScreen(
         val currentSurfaceRequest = surfaceRequest!!
 
         CameraXViewfinder(
-          implementationMode = implementationMode,
+          implementationMode = resolvedImplementationMode,
           surfaceRequest = currentSurfaceRequest,
           coordinateTransformer = coordinateTransformer,
           contentScale = if (fillViewport) ContentScale.Crop else ContentScale.Fit,

@@ -38,6 +38,7 @@ import org.signal.registration.fakes.FakeNetworkController
 import org.signal.registration.fakes.FakeOneTimePurchaseApi
 import org.signal.registration.fakes.FakeStorageController
 import org.signal.registration.fakes.SystemOutLogger
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -246,6 +247,52 @@ class SignalLoginPurchaseTest {
     val result = purchaseAndRegister()
 
     assertThat(result).isInstanceOf(SignalLoginPurchaseResult.RegistrationFailed::class)
+    assertThat(purchaseApi.consumedTokens).isEmpty()
+  }
+
+  // ==================== credential validation ====================
+
+  @Test
+  fun `a credential with the wrong level is rejected`() = runTest {
+    networkController.onCreateLoginPurchaseReceiptCredential = { request ->
+      RequestResult.Success(networkController.issueLoginReceiptCredential(request, level = FakeNetworkController.LOGIN_RECEIPT_LEVEL + 1))
+    }
+
+    assertCredentialRejected()
+  }
+
+  @Test
+  fun `a credential whose expiration is not day aligned is rejected`() = runTest {
+    networkController.onCreateLoginPurchaseReceiptCredential = { request ->
+      RequestResult.Success(networkController.issueLoginReceiptCredential(request, expirationSeconds = networkController.defaultReceiptExpirationSeconds() + 1))
+    }
+
+    assertCredentialRejected()
+  }
+
+  @Test
+  fun `a credential that expires too far in the future is rejected`() = runTest {
+    networkController.onCreateLoginPurchaseReceiptCredential = { request ->
+      RequestResult.Success(networkController.issueLoginReceiptCredential(request, expirationSeconds = networkController.defaultReceiptExpirationSeconds() + 7.days.inWholeSeconds))
+    }
+
+    assertCredentialRejected()
+  }
+
+  @Test
+  fun `a credential that has already expired is rejected`() = runTest {
+    networkController.onCreateLoginPurchaseReceiptCredential = { request ->
+      RequestResult.Success(networkController.issueLoginReceiptCredential(request, expirationSeconds = networkController.defaultReceiptExpirationSeconds() - FakeNetworkController.LOGIN_RECEIPT_LIFESPAN.inWholeSeconds))
+    }
+
+    assertCredentialRejected()
+  }
+
+  private suspend fun assertCredentialRejected() {
+    val result = purchaseAndRegister()
+
+    assertThat(result).isInstanceOf(SignalLoginPurchaseResult.UnknownError::class)
+    assertThat(networkController.lastRegisterAccountRequest).isNull()
     assertThat(purchaseApi.consumedTokens).isEmpty()
   }
 

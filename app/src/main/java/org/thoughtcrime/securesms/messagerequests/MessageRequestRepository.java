@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -67,18 +67,18 @@ public final class MessageRequestRepository {
     GroupInfo             groupInfo    = GroupInfo.ZERO;
 
     if (groupRecord.isPresent()) {
-      List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
+      List<RecipientId> memberIds      = groupRecord.get().getMembers();
+      RecipientId       selfId         = Recipient.self().getId();
+      List<Recipient>   membersPreview = memberIds.stream().filter(id -> !id.equals(selfId)).limit(MAX_MEMBER_NAMES).map(Recipient::resolved).collect(Collectors.toList());
+
       if (groupRecord.get().getHasV2GroupProperties()) {
-        boolean         groupHasExistingContacts = recipients.stream().filter(r -> !r.isSelf()).anyMatch(r -> r.isProfileSharing() || r.isSystemContact());
-        List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
+        boolean         groupHasExistingContacts = SignalDatabase.recipients().hasAnyProfileSharingOrSystemContact(memberIds);
         DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
         boolean         nameVerified             = groupRecord.get().getVerifiedNameHash() != null && Arrays.equals(GroupTable.computeVerifiedNameHash(groupRecord.get().getTitle()), groupRecord.get().getVerifiedNameHash());
 
         groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview, groupRecord.get().isMember(), groupRecord.get().isTerminated(), nameVerified);
       } else {
-        List<Recipient> membersPreview = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
-
-        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false, false);
+        groupInfo = new GroupInfo(memberIds.size(), 0, "", false, membersPreview, groupRecord.get().isActive(), false, false);
       }
     }
 

@@ -283,7 +283,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   }
 
   private fun displayBackupKey() {
-    findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    if (SignalStore.account.isPhoneNumberless) {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment)
+    } else {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -473,7 +477,11 @@ private fun RemoteBackupsSettingsContent(
       }
 
       if (state.isLinkedDevice) {
-        appendReducedBackupDetailsItems(state)
+        appendReducedBackupDetailsItems(
+          state = state,
+          backupRestoreState = backupRestoreState,
+          contentCallbacks = contentCallbacks
+        )
       } else if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
         appendBackupDeletionItems(
           backupDeleteState = backupDeleteState,
@@ -969,7 +977,9 @@ private fun LazyListScope.appendBackupDetailsItems(
 }
 
 private fun LazyListScope.appendReducedBackupDetailsItems(
-  state: RemoteBackupsSettingsState
+  state: RemoteBackupsSettingsState,
+  backupRestoreState: BackupRestoreState,
+  contentCallbacks: ContentCallbacks
 ) {
   item {
     Dividers.Default()
@@ -977,6 +987,14 @@ private fun LazyListScope.appendReducedBackupDetailsItems(
 
   item {
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+  }
+
+  if (backupRestoreState is BackupRestoreState.Restoring) {
+    appendRestoreFromBackupStatusData(
+      backupRestoreState = backupRestoreState,
+      canRestoreUsingCellular = state.canRestoreUsingCellular,
+      contentCallbacks = contentCallbacks
+    )
   }
 
   item {

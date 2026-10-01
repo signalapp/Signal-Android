@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
@@ -1165,7 +1164,7 @@ class RegistrationViewModel : ViewModel() {
         )
 
         if (message.readReceipts != null) {
-          TextSecurePreferences.setReadReceiptsEnabled(context, message.readReceipts!!)
+          SignalStore.settings.isReadReceiptsEnabled = message.readReceipts!!
         }
 
         RegistrationRepository.registerAccountLocally(context, data)

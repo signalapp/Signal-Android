@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.util.ExceptionHelper;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
 
 import java.io.IOException;
@@ -28,6 +28,7 @@ public final class RotateCertificateJob extends BaseJob {
   public RotateCertificateJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("__ROTATE_SENDER_CERTIFICATE__")
+                           .setMaxInstancesForFactory(1)
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
@@ -58,7 +59,7 @@ public final class RotateCertificateJob extends BaseJob {
       return;
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account().isUnauthorizedReceived()) {
       Log.i(TAG, "No longer authorized. Ignoring.");
       return;
     }
@@ -76,8 +77,8 @@ public final class RotateCertificateJob extends BaseJob {
 
         try {
           switch (certificateType) {
-            case ACI_AND_E164: certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificate()); break;
-            case ACI_ONLY    : certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificateForPhoneNumberPrivacy()); break;
+            case ACI_AND_E164: certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificateApi().getSenderCertificate()); break;
+            case ACI_ONLY    : certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificateApi().getSenderCertificateForPhoneNumberPrivacy()); break;
             default          : throw new AssertionError();
           }
         } catch (NonSuccessfulResponseCodeException e) {
@@ -94,7 +95,13 @@ public final class RotateCertificateJob extends BaseJob {
       }
     }
 
-    SealedSenderConstraint.markValid();
+    markRotated();
+  }
+
+  @WorkerThread
+  public static void markRotated() {
+    SignalStore.certificate().setLastRotationTime(System.currentTimeMillis());
+    SealedSenderConstraint.refresh();
   }
 
   @Override

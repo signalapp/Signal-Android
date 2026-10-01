@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsExactly
 import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.startsWith
@@ -46,6 +46,7 @@ class TotpRepositoryTest {
     private const val NOW = 1_700_000_000_000L
     private const val ACCOUNT_NAME = "8B4A1F0C"
     private const val CODE = "123456"
+    private const val DEFAULT_NAME = "Authenticator"
     private const val KEY_ID = 1
 
     private val KEY = ByteArray(32) { it.toByte() }
@@ -58,7 +59,7 @@ class TotpRepositoryTest {
 
   private var now = NOW
   private val api = mockk<AccountApiV2>()
-  private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now })
+  private val repository = TotpRepository(api = api, masterKeyProvider = { MASTER_KEY }, clock = { now }, defaultAppName = { DEFAULT_NAME })
 
   @Before
   fun setUp() {
@@ -181,13 +182,13 @@ class TotpRepositoryTest {
 
   /** The service wants metadata at confirmation time, and the user hasn't been asked for a name yet. */
   @Test
-  fun `a key is confirmed without a name, stamped with the time it was confirmed`() = runTest {
+  fun `a key is confirmed with a default name, stamped with the time it was confirmed`() = runTest {
     val metadata = slot<MfaMetadata>()
     coEvery { api.confirmTotpKey(any(), capture(metadata), any()) } returns RequestResult.Success(KEY_ID)
 
     repository.confirmPendingApp(CODE)
 
-    assertThat(metadata.captured.name).isEqualTo("")
+    assertThat(metadata.captured.name).isEqualTo(DEFAULT_NAME)
     assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
   }
 
@@ -207,14 +208,14 @@ class TotpRepositoryTest {
     assertThat(apps.first().createdAt).isEqualTo(NOW)
   }
 
-  /** Metadata we can't read was written under some other key, so listing it as a nameless app would be worse than omitting it. */
+  /** The user still needs to be able to see and remove a key even if we can't read its name. */
   @Test
-  fun `a key whose metadata can't be read is left out of the list`() = runTest {
+  fun `a key whose metadata can't be read still shows up without a name or date`() = runTest {
     coEvery { api.listMfaKeys(any()) } returns RequestResult.Success(
       listOf(ConfirmedMfaKey(id = KEY_ID, metadata = null, kind = MfaKeyKind.TOTP))
     )
 
-    assertThat((repository.getTotpApps() as AppsResult.Success).apps).isEmpty()
+    assertThat((repository.getTotpApps() as AppsResult.Success).apps).containsExactly(TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null))
   }
 
   /** The list is about what's on the account, not what this client understands, so a newer device's key still shows. */
@@ -255,6 +256,18 @@ class TotpRepositoryTest {
     assertThat(repository.renameTotpApp(app, "Aegis on my tablet")).isEqualTo(UpdateResult.Success)
 
     assertThat(metadata.captured.name).isEqualTo("Aegis on my tablet")
+    assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
+  }
+
+  @Test
+  fun `renaming an app whose metadata couldn't be read stamps it with the current time`() = runTest {
+    val metadata = slot<MfaMetadata>()
+    coEvery { api.setMfaKeyMetadata(eq(KEY_ID), capture(metadata), any()) } returns RequestResult.Success(Unit)
+    val app = TotpApp(id = KEY_ID.toLong(), name = null, createdAt = null)
+
+    assertThat(repository.renameTotpApp(app, "Aegis")).isEqualTo(UpdateResult.Success)
+
+    assertThat(metadata.captured.name).isEqualTo("Aegis")
     assertThat(metadata.captured.createdAt).isEqualTo(Instant.ofEpochMilli(NOW))
   }
 

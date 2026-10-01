@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">패스키</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s에 추가됨</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">2단계 인증 옵션 열기</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">이름 변경</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">로그인할 때 이 앱으로 일회용 인증 코드를 받을 수 없게 됩니다.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">2단계 인증 수단을 삭제하려면 잠금을 해제하세요</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">이 인증 수단을 삭제하려면 본인 확인이 필요합니다</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login을 확인하려면 잠금을 해제하세요</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Signal Login을 확인하려면 본인 확인이 필요합니다</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">본인 확인을 위해 잠금을 해제해 주세요</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">계정을 삭제하려면 본인 확인이 필요합니다.</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">인증 필요</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">인증 앱을 추가할 수 없음</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">인증 앱은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">2단계 인증 수단은 최대 %1$d개까지만 등록할 수 있습니다. 기존 앱 하나를 삭제한 후 다시 시도해 주세요.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">2단계 인증 수단을 불러올 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">인증 앱이 삭제됨</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">코드 입력</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">인증 앱에 표시된 6자리 코드를 입력하세요.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">코드</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">확인</string>
+    <string name="TotpCodeEntryScreen__next">다음</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">올바르지 않은 코드입니다. 지금 인증 앱에 표시된 코드를 입력하세요.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal에 연결할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">인증 앱</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">이름을 선택하세요</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">인증 앱 이름이 변경됨</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">이름을 저장할 수 없습니다. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제할 경우:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요</string>
+    <string name="DeleteAccountFragment__delete_account">계정 삭제</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">계정 정보와 프로필 사진을 삭제합니다.</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">모든 메시지를 삭제합니다.</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">결제 계정에서 %1$s 삭제</string>
+    <string name="DeleteAccountFragment__no_country_code">지정된 국가 코드가 없습니다.</string>
+    <string name="DeleteAccountFragment__no_number">지정된 전화번호가 없습니다.</string>
+    <string name="DeleteAccountFragment__the_phone_number">입력한 전화번호가 내 계정과 일치하지 않습니다.</string>
+    <string name="DeleteAccountFragment__are_you_sure">정말 계정을 삭제하시겠어요?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">진행 시 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 자동으로 종료됩니다.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">로컬 데이터를 삭제하지 못했습니다. 기기의 애플리케이션 설정에서 직접 삭제할 수 있습니다.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">앱 설정 시작</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">그룹을 나가는 중…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">계정을 삭제하는 중…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">구독을 취소하는 중…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">참여 중인 그룹 수에 따라 몇 분 정도 걸릴 수 있습니다.</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">사용자 데이터를 삭제하고 앱을 초기화하는 중</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">계정을 삭제하지 못함</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">삭제를 완료하지 못했습니다. 네트워크 연결 상태를 확인하고 다시 시도해 주세요.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">사용자 이름이 \"%1$s\"인 계정을 삭제하면 다음 사항이 진행됩니다.</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">사용자 이름(\"%1$s\")을 포함한 계정 정보 및 프로필 사진이 삭제됩니다.</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">이 작업은 취소할 수 없습니다.</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">진행 시 사용자 이름이 \"%1$s\"인 Signal 계정이 삭제되며 앱이 초기화됩니다. 프로세스가 완료되면 앱이 종료됩니다.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">네, 계정을 삭제해 주세요.</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">국가 선택</string>
+    <string name="RegistrationActivity_phone_number_description">전화번호</string>
 </resources>

@@ -64,7 +64,7 @@ class ManageDonationsViewModel : ViewModel() {
             manageDonationsState.copy(
               isLoaded = true,
               nonVerifiedMonthlyDonation = if (redemptionStatus is DonationRedemptionJobStatus.PendingExternalVerification) redemptionStatus.nonVerifiedMonthlyDonation else null,
-              subscriptionRedemptionState = deriveRedemptionState(redemptionStatus, latestPayment),
+              subscriptionRedemptionState = deriveRedemptionState(redemptionStatus),
               activeSubscription = activeSubscription
             )
           }
@@ -77,8 +77,8 @@ class ManageDonationsViewModel : ViewModel() {
         .collect { redemptionStatus ->
           val pendingOneTimeDonation = when (redemptionStatus) {
             is DonationRedemptionJobStatus.PendingExternalVerification -> redemptionStatus.pendingOneTimeDonation
-            DonationRedemptionJobStatus.PendingReceiptRedemption,
-            DonationRedemptionJobStatus.PendingReceiptRequest -> {
+            is DonationRedemptionJobStatus.PendingReceiptRedemption,
+            is DonationRedemptionJobStatus.PendingReceiptRequest -> {
               val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.ONE_TIME_DONATION)
               latestPayment?.toPendingOneTimeDonation()
             }
@@ -144,13 +144,13 @@ class ManageDonationsViewModel : ViewModel() {
     )
   }
 
-  private fun deriveRedemptionState(status: DonationRedemptionJobStatus, latestPayment: InAppPaymentTable.InAppPayment?): ManageDonationsState.RedemptionState {
+  private fun deriveRedemptionState(status: DonationRedemptionJobStatus): ManageDonationsState.RedemptionState {
     return when (status) {
       DonationRedemptionJobStatus.None -> ManageDonationsState.RedemptionState.NONE
       DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
 
-      DonationRedemptionJobStatus.PendingKeepAlive -> {
-        if (latestPayment.isPendingBankTransfer()) {
+      is DonationRedemptionJobStatus.PendingKeepAlive -> {
+        if (status.paymentSourceType.isBankTransfer) {
           ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER
         } else {
           ManageDonationsState.RedemptionState.SUBSCRIPTION_REFRESH
@@ -158,20 +158,23 @@ class ManageDonationsViewModel : ViewModel() {
       }
 
       is DonationRedemptionJobStatus.PendingExternalVerification -> {
-        if (latestPayment.isPendingBankTransfer()) {
+        if (status.paymentSourceType.isBankTransfer) {
           ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER
         } else {
           ManageDonationsState.RedemptionState.IN_PROGRESS
         }
       }
 
-      DonationRedemptionJobStatus.PendingReceiptRedemption,
-      DonationRedemptionJobStatus.PendingReceiptRequest -> ManageDonationsState.RedemptionState.IN_PROGRESS
-    }
-  }
+      is DonationRedemptionJobStatus.PendingReceiptRequest -> {
+        if (status.paymentSourceType.isBankTransfer) {
+          ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER
+        } else {
+          ManageDonationsState.RedemptionState.IN_PROGRESS
+        }
+      }
 
-  private fun InAppPaymentTable.InAppPayment?.isPendingBankTransfer(): Boolean {
-    return this != null && (data.paymentMethodType == InAppPaymentData.PaymentMethodType.SEPA_DEBIT || data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL)
+      is DonationRedemptionJobStatus.PendingReceiptRedemption -> ManageDonationsState.RedemptionState.IN_PROGRESS
+    }
   }
 
   private fun InAppPaymentTable.InAppPayment.toPendingOneTimeDonation(): PendingOneTimeDonation? {

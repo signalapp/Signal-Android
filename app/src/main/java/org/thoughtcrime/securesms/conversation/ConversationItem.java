@@ -896,16 +896,20 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private static int getProjectionTop(@NonNull View child) {
-    Projection projection = Projection.relativeToViewRoot(child, null);
-    int        y          = (int) projection.getY();
+  /**
+   * Multiselect boundaries are drawn by an item decoration, so they are relative to the list
+   * rather than to the view root.
+   */
+  private int getProjectionTop(@NonNull View child) {
+    Projection projection = Projection.relativeToParent(this, child, null);
+    int        y          = (int) projection.getY() + getTop();
     projection.release();
     return y;
   }
 
-  private static int getProjectionBottom(@NonNull View child) {
-    Projection projection = Projection.relativeToViewRoot(child, null);
-    int        bottom     = (int) projection.getY() + projection.getHeight();
+  private int getProjectionBottom(@NonNull View child) {
+    Projection projection = Projection.relativeToParent(this, child, null);
+    int        bottom     = (int) projection.getY() + projection.getHeight() + getTop();
     projection.release();
     return bottom;
   }
@@ -1374,7 +1378,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
-      sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), requestManager, locale);
+      sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), conversationMessage.getSharedContactPresentation(), requestManager, locale);
       sharedContactStub.get().setEventListener(sharedContactEventListener);
       sharedContactStub.get().setOnClickListener(sharedContactClickListener);
       sharedContactStub.get().setOnLongClickListener(passthroughClickListener);
@@ -2653,7 +2657,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       return null;
     }
 
-    return Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners)
+    return Projection.relativeToParent(this, bodyBubble, bodyBubbleCorners)
+                     .translateX(getLeft())
+                     .translateY(getTop())
                      .translateX(bodyBubble.getTranslationX())
                      .translateX(getTranslationX())
                      .scale(bodyBubble.getScaleX());
@@ -2770,9 +2776,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
 
     @Override
-    public void onMessageClicked(@NonNull List<Recipient> choices) {
+    public void onMessageClicked(@NonNull Contact contact, @NonNull List<Recipient> choices) {
       if (eventListener != null && batchSelected.isEmpty()) {
-        eventListener.onMessageSharedContactClicked(choices);
+        eventListener.onMessageSharedContactClicked(contact, choices);
       } else {
         passthroughClickListener.onClick(sharedContactStub.get());
       }
@@ -2949,7 +2955,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         performClick();
       } else if (eventListener != null && hasSticker(messageRecord)) {
         //noinspection ConstantConditions
-        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide().asAttachment().stickerLocator);
+        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide());
       }
     }
   }

@@ -20,7 +20,7 @@ import org.signal.core.util.logging.Log
 
 class EditContactNameViewModel(
   private val savedState: SavedStateHandle
-) : EventDrivenViewModel<EditContactNameEvent>(TAG) {
+) : EventDrivenViewModel<EditContactNameEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EditContactNameViewModel::class)

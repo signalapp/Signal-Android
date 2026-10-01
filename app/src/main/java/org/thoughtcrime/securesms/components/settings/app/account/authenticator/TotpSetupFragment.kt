@@ -54,7 +54,7 @@ class TotpSetupFragment : ComposeFragment() {
     when (action) {
       TotpSetupAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       is TotpSetupAction.LaunchTotpApp -> launchTotpApp(action.uri)
-      is TotpSetupAction.CopyKeyToClipboard -> Util.copyToClipboard(requireContext(), action.key)
+      is TotpSetupAction.CopyKeyToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.key)
       TotpSetupAction.ShowKeyCopied -> toast(AppSettingsR.string.TotpSetupScreen__copied_to_clipboard)
       TotpSetupAction.ShowNoTotpAppFound -> toast(AppSettingsR.string.TotpSetupScreen__no_authenticator_app_found)
       TotpSetupAction.NavigateToCodeEntry -> findNavController().safeNavigate(R.id.action_authenticatorSetupFragment_to_authenticatorCodeEntryFragment)
@@ -62,8 +62,11 @@ class TotpSetupFragment : ComposeFragment() {
   }
 
   private fun launchTotpApp(uri: String) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
     try {
-      startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+      startActivity(intent)
     } catch (e: ActivityNotFoundException) {
       Log.w(TAG, "No app is willing to handle the authenticator setup link.", e)
       viewModel.onEvent(TotpSetupEvent.NoTotpAppFound)

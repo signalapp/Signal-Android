@@ -450,6 +450,38 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
+  fun `RegisterWithoutNumber navigates to the Signal Login payment screen`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.SignalLoginPayment>()
+  }
+
+  @Test
+  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when the user has an existing account`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(sawArchiveRestoreSelectionScreen = true),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.SignalLoginCredentialEntry())
+  }
+
+  @Test
   fun `initial state reflects repository link and sync availability`() = runTest {
     every { mockRepository.isLinkAndSyncAvailable } returns true
 
@@ -2218,7 +2250,7 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
-  fun `NationalNumberChanged with an over-long account ID reports the error rather than silently refusing to submit`() = runTest {
+  fun `NationalNumberChanged with an over-long account ID keeps only a complete ID`() = runTest {
     val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
 
     viewModel.applyEvent(
@@ -2228,8 +2260,9 @@ class PhoneNumberEntryViewModelTest {
       stateEmitter
     )
 
-    assertThat(emittedStates.last().accountIdError).isEqualTo(AccountIdError.TooLong(34))
-    assertThat(emittedStates.last().isNextEnabled).isFalse()
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().accountIdError).isNull()
+    assertThat(emittedStates.last().isNextEnabled).isTrue()
   }
 
   @Test

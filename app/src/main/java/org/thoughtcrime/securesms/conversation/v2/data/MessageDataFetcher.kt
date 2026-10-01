@@ -10,6 +10,7 @@ import org.signal.core.util.UuidUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.contactshare.SharedContactPresentation
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.Mention
@@ -127,6 +128,13 @@ object MessageDataFetcher {
       null
     }
 
+    val sharedContactsFuture = executor.submitTimed {
+      messageRecords
+        .filterIsInstance<MmsMessageRecord>()
+        .mapNotNull { record -> record.sharedContacts.firstOrNull()?.let { record.id to it } }
+        .associate { (id, contact) -> id to SharedContactPresentation.resolve(contact) }
+    }
+
     val mentionsResult = mentionsFuture.get()
     val hasBeenQuotedResult = hasBeenQuotedFuture.get()
     val reactionsResult = reactionsFuture.get()
@@ -136,6 +144,7 @@ object MessageDataFetcher {
     val recipientsResult = recipientsFuture.get()
     val pollsResult = pollsFuture.get()
     val memberLabelsResult = memberLabelsFuture?.get()
+    val sharedContactsResult = sharedContactsFuture.get()
 
     val wallTimeMs = (System.nanoTime() - startTimeNanos).nanoseconds.toDouble(DurationUnit.MILLISECONDS)
 
@@ -150,8 +159,9 @@ object MessageDataFetcher {
       payments = paymentsResult.result,
       calls = callsResult.result,
       polls = pollsResult.result,
+      sharedContacts = sharedContactsResult.result,
       memberLabels = memberLabelsResult?.result,
-      timeLog = "mentions: ${mentionsResult.duration}, is-quoted: ${hasBeenQuotedResult.duration}, reactions: ${reactionsResult.duration}, attachments: ${attachmentsResult.duration}, payments: ${paymentsResult.duration}, calls: ${callsResult.duration}, member-labels: ${memberLabelsResult?.duration ?: "n/a"} >> cpuTime: ${cpuTimeMs.roundedString(2)}, wallTime: ${wallTimeMs.roundedString(2)}"
+      timeLog = "mentions: ${mentionsResult.duration}, is-quoted: ${hasBeenQuotedResult.duration}, reactions: ${reactionsResult.duration}, attachments: ${attachmentsResult.duration}, payments: ${paymentsResult.duration}, calls: ${callsResult.duration}, shared-contacts: ${sharedContactsResult.duration}, member-labels: ${memberLabelsResult?.duration ?: "n/a"} >> cpuTime: ${cpuTimeMs.roundedString(2)}, wallTime: ${wallTimeMs.roundedString(2)}"
     )
   }
 
@@ -224,6 +234,7 @@ object MessageDataFetcher {
     val payments: Map<Long, Payment>,
     val calls: Map<Long, CallTable.Call>,
     val polls: Map<Long, PollRecord>,
+    val sharedContacts: Map<Long, SharedContactPresentation>,
     val memberLabels: Map<RecipientId, MemberLabel>?,
     val timeLog: String
   )

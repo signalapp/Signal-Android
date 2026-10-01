@@ -43,7 +43,7 @@ object ProofRequiredExceptionHandler {
     Log.w(TAG, "[Proof Required] Options: ${proofRequired.options}")
 
     if (ProofRequiredException.Option.PUSH_CHALLENGE in proofRequired.options) {
-      when (val result = SignalNetwork.rateLimitChallenge.requestPushChallenge()) {
+      when (val result = SignalNetwork.rateLimitChallengeApi.requestPushChallenge()) {
         is NetworkResult.Success -> {
           Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to $PUSH_CHALLENGE_TIMEOUT ms.")
           val success = PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess()

@@ -40,7 +40,7 @@ class LinkAccountViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   showCreateAccount: Boolean = true
-) : EventDrivenViewModel<LinkAccountScreenEvent>(TAG) {
+) : EventDrivenViewModel<LinkAccountScreenEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(LinkAccountViewModel::class)

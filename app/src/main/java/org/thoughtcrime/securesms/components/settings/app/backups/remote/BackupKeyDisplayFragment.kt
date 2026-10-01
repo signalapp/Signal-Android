@@ -24,6 +24,8 @@ import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.DownloadMediaDialog
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.KeyLimitExceededDialog
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordMode
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
@@ -71,7 +73,7 @@ class BackupKeyDisplayFragment : ComposeFragment() {
       displayWarningDialog = true
     }
 
-    val mode = remember(state.rotationState, state.canRotateKey) {
+    val mode = remember(state.rotationState, state.canRotateKey, state.areBackupsEnabled) {
       if (state.rotationState == BackupKeyRotationState.NOT_STARTED) {
         MessageBackupsKeyRecordMode.CreateNewKey(
           onCreateNewKeyClick = {
@@ -82,7 +84,8 @@ class BackupKeyDisplayFragment : ComposeFragment() {
             findNavController().popBackStack()
           },
           isOptimizedStorageEnabled = state.isOptimizedStorageEnabled,
-          canRotateKey = state.canRotateKey
+          canRotateKey = state.canRotateKey,
+          areBackupsEnabled = state.areBackupsEnabled
         )
       } else {
         MessageBackupsKeyRecordMode.Next(
@@ -95,6 +98,31 @@ class BackupKeyDisplayFragment : ComposeFragment() {
 
     if (state.rotationState == BackupKeyRotationState.GENERATING_KEY || state.rotationState == BackupKeyRotationState.COMMITTING_KEY) {
       Dialogs.IndeterminateProgressDialog()
+    }
+
+    if (state.rotationState == BackupKeyRotationState.NOT_ALLOWED) {
+      val onAcknowledged = {
+        if (args.startWithKeyRotation) {
+          findNavController().popBackStack()
+        } else {
+          viewModel.onRotationRefusalAcknowledged()
+        }
+      }
+
+      if (!state.canRotateKey) {
+        KeyLimitExceededDialog(
+          areBackupsEnabled = state.areBackupsEnabled,
+          onClick = { onAcknowledged() }
+        )
+      } else {
+        DownloadMediaDialog(
+          onTurnOffAndDownloadClick = {
+            viewModel.turnOffOptimizedStorageAndDownloadMedia()
+            findNavController().popBackStack()
+          },
+          onCancelClick = { onAcknowledged() }
+        )
+      }
     }
 
     if (displayWarningDialog) {

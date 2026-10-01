@@ -33,7 +33,7 @@ class WelcomeScreenViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val hasPermissions: () -> Boolean,
   private val getRequiredLinkedDevicePermission: () -> String?
-) : EventDrivenViewModel<WelcomeScreenEvents>(TAG) {
+) : EventDrivenViewModel<WelcomeScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(WelcomeScreenViewModel::class)

@@ -5,11 +5,14 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryAction
@@ -18,6 +21,8 @@ import org.signal.appsettings.totpcodeentry.TotpCodeEntryState
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState.Error
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldAction
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldPresenter
 
 /**
  * Drives the screen that collects a code from the user's authenticator app, which is how the service learns the user
@@ -25,7 +30,7 @@ import org.signal.core.util.logging.Log
  */
 class TotpCodeEntryViewModel(
   private val repository: TotpRepository = TotpRepository()
-) : EventDrivenViewModel<TotpCodeEntryEvent>(TAG) {
+) : EventDrivenViewModel<TotpCodeEntryEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TotpCodeEntryViewModel::class)
@@ -37,16 +42,39 @@ class TotpCodeEntryViewModel(
   val state: StateFlow<TotpCodeEntryState> = _state.asStateFlow()
   val actions: Flow<TotpCodeEntryAction> = _actions.receiveAsFlow()
 
+  private val codeEntryPresenter = CodeEntryFieldPresenter(viewModelScope)
+
+  init {
+    codeEntryPresenter
+      .state
+      .onEach { onEvent(TotpCodeEntryEvent.CodeEntryStateChanged(it)) }
+      .launchIn(viewModelScope)
+
+    codeEntryPresenter
+      .actions
+      .onEach { onEvent(TotpCodeEntryEvent.CodeEntryAction(it)) }
+      .launchIn(viewModelScope)
+  }
+
   override suspend fun processEvent(event: TotpCodeEntryEvent) {
     when (event) {
       TotpCodeEntryEvent.NavigateBackClicked -> {
         _actions.send(TotpCodeEntryAction.NavigateBack)
       }
-      is TotpCodeEntryEvent.CodeChanged -> {
-        val digits = event.code.filter { it.isDigit() }.take(TotpCodeEntryState.CODE_LENGTH)
-        _state.update { it.copy(code = digits, error = Error.None) }
+      is TotpCodeEntryEvent.CodeEntryEvent -> {
+        _state.update { it.copy(error = Error.None) }
+        codeEntryPresenter.onEvent(event.event)
       }
-      TotpCodeEntryEvent.DoneClicked -> {
+      is TotpCodeEntryEvent.CodeEntryStateChanged -> {
+        _state.update { it.copy(codeEntry = event.codeEntryState) }
+      }
+      is TotpCodeEntryEvent.CodeEntryAction -> {
+        when (event.action) {
+          // The user submits with the Next button, so a finished code doesn't need anything done with it here.
+          is CodeEntryFieldAction.CodeEntered -> Unit
+        }
+      }
+      TotpCodeEntryEvent.NextClicked -> {
         if (!_state.value.canSubmit) {
           return
         }

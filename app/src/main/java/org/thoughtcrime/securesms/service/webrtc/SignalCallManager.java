@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.ResultReceiver;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -73,7 +74,6 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.rx.RxStore;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -144,6 +144,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   private WebRtcServiceState            serviceState;
   private RxStore<WebRtcEphemeralState> ephemeralStateStore;
   private boolean                       needsToSetSelfUuid = true;
+  private RelaunchListener              pipRelaunchListener;
 
   private RxStore<Map<RecipientId, CallLinkPeekInfo>> linkPeekInfoStore;
 
@@ -387,6 +388,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void onBluetoothPermissionDenied() {
     process((s, p) -> p.handleBluetoothPermissionDenied(s));
+  }
+
+  public void onMicrophoneSilencedChanged(boolean silenced) {
+    process((s, p) -> p.handleMicrophoneSilencedChanged(s, silenced));
   }
 
   public void selectAudioDevice(@NonNull SignalAudioManager.ChosenAudioDeviceIdentifier desiredDevice) {
@@ -995,7 +1000,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         headerPairs = Collections.emptyList();
       }
 
-      NetworkResult<CallingResponse> result = SignalNetwork.calling()
+      NetworkResult<CallingResponse> result = SignalNetwork.callingApi()
                                                            .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
 
       CallingResponse response = ((NetworkResult.Success<CallingResponse>) result).getResult();
@@ -1172,7 +1177,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           return;
         }
 
-        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
+        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.callingApi().getTurnServerInfo());
 
         // Find *any* provided ttl values as long as they are valid.
         long minTtl = turnServerInfos.stream()
@@ -1197,7 +1202,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> {
       RemotePeer activePeer = s.getCallInfoState().getActivePeer();
       if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
-        return p.handleTurnServerUpdate(s, servers, TextSecurePreferences.isTurnOnly(context));
+        return p.handleTurnServerUpdate(s, servers, SignalStore.settings().isTurnOnly());
       }
 
       Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
@@ -1422,8 +1427,30 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     callManager.addAsset(assetGroup, content);
   }
 
+  /**
+   * Schedules the call activity to be relaunched in PiP the next time the app is foregrounded. Only relevant if the call activity did not survive being
+   * backgrounded, e.g. the user dismissed the PiP window or another app's PiP evicted it. If it did survive, {@link #cancelPipRelaunch()} should be called
+   * to cancel this.
+   */
+  @MainThread
   public void relaunchPipOnForeground() {
-    AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
+    cancelPipRelaunch();
+
+    pipRelaunchListener = new RelaunchListener(AppForegroundObserver.isForegrounded());
+    AppForegroundObserver.addListener(pipRelaunchListener);
+  }
+
+  /**
+   * Cancels any pending PiP relaunch scheduled via {@link #relaunchPipOnForeground()}. Relaunching while the call activity is still alive delivers a
+   * launch-in-PiP intent to it, which pulls it out of PiP and into fullscreen, or forces a deliberately expanded call back into PiP. The former is both
+   * unprompted and, if it happens while the keyguard is going away, can leave the device wedged in a partially-locked state.
+   */
+  @MainThread
+  public void cancelPipRelaunch() {
+    if (pipRelaunchListener != null) {
+      AppForegroundObserver.removeListener(pipRelaunchListener);
+      pipRelaunchListener = null;
+    }
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
@@ -1471,6 +1498,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           });
         }
         AppForegroundObserver.removeListener(this);
+        if (pipRelaunchListener == this) {
+          pipRelaunchListener = null;
+        }
       }
     }
 

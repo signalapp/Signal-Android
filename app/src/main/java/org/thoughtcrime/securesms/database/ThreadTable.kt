@@ -77,7 +77,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.SignalTrace
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
@@ -2459,10 +2458,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           )
         } ?: Recipient.live(recipientId).get()
       } else {
-        RecipientCreator.forIndividual(context, recipientSettings)
+        RecipientCreator.forIndividual(recipientSettings)
       }
 
-      val hasReadReceipt = TextSecurePreferences.isReadReceiptsEnabled(context) && cursor.requireBoolean(HAS_READ_RECEIPT)
+      val hasReadReceipt = SignalStore.settings.isReadReceiptsEnabled && cursor.requireBoolean(HAS_READ_RECEIPT)
       val extraString = cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_EXTRAS))
       val messageExtraBytes = cursor.getBlob(cursor.getColumnIndexOrThrow(SNIPPET_MESSAGE_EXTRAS))
       val messageExtras = if (messageExtraBytes != null) MessageExtras.ADAPTER.decode(messageExtraBytes) else null

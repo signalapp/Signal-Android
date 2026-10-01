@@ -28,6 +28,7 @@ import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
+import org.thoughtcrime.securesms.contactshare.SharedContactPresentation;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
@@ -52,7 +53,8 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
   private TextView               actionButtonView;
   private ConversationItemFooter footer;
 
-  private Contact        contact;
+  private Contact                    contact;
+  private SharedContactPresentation  presentation;
   private Locale         locale;
   private RequestManager requestManager;
   private EventListener  eventListener;
@@ -124,15 +126,20 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     cornerMask.mask(canvas);
   }
 
-  public void setContact(@NonNull Contact contact, @NonNull RequestManager requestManager, @NonNull Locale locale) {
+  public void setContact(@NonNull Contact contact,
+                         @NonNull SharedContactPresentation presentation,
+                         @NonNull RequestManager requestManager,
+                         @NonNull Locale locale)
+  {
     this.requestManager = requestManager;
     this.locale         = locale;
     this.contact        = contact;
+    this.presentation   = presentation;
 
     activeRecipients.values().stream().forEach(recipient ->  recipient.removeForeverObserver(this));
     this.activeRecipients.clear();
 
-    for (RecipientId recipientId : ContactUtil.getExistingRecipients(contact)) {
+    for (RecipientId recipientId : presentation.getRecipientIds()) {
       activeRecipients.put(recipientId, Recipient.live(recipientId));
     }
 
@@ -177,7 +184,9 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
                        ViewUtil.getLeftMargin(disclosureView) +
                        disclosureView.getLayoutParams().width;
 
-    return horizontalPadding + Math.max(nameRowWidth, desiredTextWidth(actionButtonView));
+    int actionWidth = actionButtonView.getVisibility() == VISIBLE ? desiredTextWidth(actionButtonView) : 0;
+
+    return horizontalPadding + Math.max(nameRowWidth, actionWidth);
   }
 
   /**
@@ -245,48 +254,56 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     return new FallbackAvatarDrawable(getContext(), fallbackAvatar).circleCrop();
   }
 
-  /**
-   * Shows message action for e164 contacts we found locally, invite for e164/email, and
-   * add for everything else.
-   */
+  /** Address book membership comes off the recipient snapshot, so this re-runs via {@link #onRecipientChanged}. */
   private void presentActionButtons(@NonNull Contact contact) {
-    List<Recipient> registered = new ArrayList<>(activeRecipients.size());
+    List<Recipient> registered      = new ArrayList<>(activeRecipients.size());
+    boolean         isSystemContact = false;
 
     for (LiveRecipient recipient : activeRecipients.values()) {
       if (recipient.get().getRegistered() == RecipientTable.RegisteredState.REGISTERED) {
         registered.add(recipient.get());
       }
+
+      isSystemContact |= recipient.get().isSystemContact();
     }
 
-    boolean hasInviteTarget = !contact.getPhoneNumbers().isEmpty() || !contact.getEmails().isEmpty();
+    boolean hasContactDetails = !contact.getPhoneNumbers().isEmpty() ||
+                                !contact.getEmails().isEmpty() ||
+                                !contact.getPostalAddresses().isEmpty();
 
-    if (!registered.isEmpty()) {
+    actionButtonView.setVisibility(VISIBLE);
+
+    if (presentation.isOnSignal()) {
       actionButtonView.setText(R.string.SharedContactView_message);
       actionButtonView.setOnClickListener(v -> {
         if (eventListener != null) {
-          eventListener.onMessageClicked(registered);
+          eventListener.onMessageClicked(contact, registered);
         }
       });
-    } else if (hasInviteTarget) {
+    } else if (isSystemContact) {
       actionButtonView.setText(R.string.SharedContactView_invite_to_signal);
       actionButtonView.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onInviteClicked(contact);
         }
       });
-    } else {
+    } else if (hasContactDetails) {
       actionButtonView.setText(R.string.SharedContactView_add_to_contacts);
       actionButtonView.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onAddToContactsClicked(contact);
         }
       });
+    } else {
+      actionButtonView.setText("");
+      actionButtonView.setOnClickListener(null);
+      actionButtonView.setVisibility(GONE);
     }
   }
 
   public interface EventListener {
     void onAddToContactsClicked(@NonNull Contact contact);
     void onInviteClicked(@NonNull Contact contact);
-    void onMessageClicked(@NonNull List<Recipient> choices);
+    void onMessageClicked(@NonNull Contact contact, @NonNull List<Recipient> choices);
   }
 }

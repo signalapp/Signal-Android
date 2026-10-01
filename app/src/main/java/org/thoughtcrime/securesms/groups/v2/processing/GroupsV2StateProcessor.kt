@@ -10,6 +10,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescrip
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMutation
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.Companion.LATEST
@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
@@ -947,7 +946,7 @@ class GroupsV2StateProcessor private constructor(
     }
 
     fun stopAllTypingForGroup() {
-      if (TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application)) {
+      if (SignalStore.settings.isTypingIndicatorsEnabled) {
         val threadId = SignalDatabase.threads.getThreadIdFor(SignalDatabase.recipients.getOrInsertFromGroupId(groupId))
         if (threadId != null) {
           AppDependencies.typingStatusRepository.stopAllTypingForThread(threadId)

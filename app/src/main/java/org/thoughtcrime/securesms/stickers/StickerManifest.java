@@ -69,11 +69,11 @@ public final class StickerManifest {
     private final String        contentType;
     private final Optional<Uri> uri;
 
-    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji, @Nullable String contentType) {
+    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @Nullable String emoji, @Nullable String contentType) {
       this(packId, packKey, id, emoji, contentType, null);
     }
 
-    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @NonNull String emoji, @Nullable String contentType, @Nullable Uri uri) {
+    public Sticker(@NonNull String packId, @NonNull String packKey, int id, @Nullable String emoji, @Nullable String contentType, @Nullable Uri uri) {
       this.packId      = packId;
       this.packKey     = packKey;
       this.id          = id;
@@ -94,7 +94,7 @@ public final class StickerManifest {
       return id;
     }
 
-    public String getEmoji() {
+    public @Nullable String getEmoji() {
       return emoji;
     }
 

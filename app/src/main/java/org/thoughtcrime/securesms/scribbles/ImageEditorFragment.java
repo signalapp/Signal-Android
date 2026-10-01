@@ -67,7 +67,6 @@ import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -361,7 +360,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     TextEntryDialogFragment.Companion.show(
         getChildFragmentManager(),
         textElement,
-        TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()),
+        SignalStore.settings().isIncognitoKeyboardEnabled(),
         selectAll,
         imageEditorHud.getColorIndex()
     );

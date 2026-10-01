@@ -544,14 +544,30 @@ class DemoNetworkController(
 
         if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
           val msg = result.message
+          val aci = ACI.parseOrNull(msg.aci)
+
+          if (aci == null) {
+            Log.w(TAG, "[startProvisioning] Provisioning message was missing a valid ACI")
+            trySend(ProvisioningEvent.Error(IOException("Provisioning message was missing a valid ACI")))
+            return@start
+          }
+
+          val pniPublicKey = msg.pniIdentityKeyPublic
+          val pniPrivateKey = msg.pniIdentityKeyPrivate
+
           trySend(
             ProvisioningEvent.MessageReceived(
               ProvisioningMessage(
                 accountEntropyPool = msg.accountEntropyPool,
-                e164 = msg.e164,
+                aci = aci,
+                e164 = msg.e164?.takeIf { it.isNotEmpty() },
                 pin = msg.pin,
                 aciIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.aciIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.aciIdentityKeyPrivate.toByteArray())),
-                pniIdentityKeyPair = IdentityKeyPair(IdentityKey(msg.pniIdentityKeyPublic.toByteArray()), ECPrivateKey(msg.pniIdentityKeyPrivate.toByteArray())),
+                pniIdentityKeyPair = if (pniPublicKey != null && pniPublicKey.size > 0 && pniPrivateKey != null && pniPrivateKey.size > 0) {
+                  IdentityKeyPair(IdentityKey(pniPublicKey.toByteArray()), ECPrivateKey(pniPrivateKey.toByteArray()))
+                } else {
+                  null
+                },
                 platform = when (msg.platform) {
                   RegistrationProvisionMessage.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
                   RegistrationProvisionMessage.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS

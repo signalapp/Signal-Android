@@ -35,6 +35,7 @@ import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.MfaFailureResponse
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
 import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
@@ -50,7 +51,6 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.RegisteredState
 import org.signal.registration.screens.shared.AccountIdError
-import org.signal.registration.screens.twofactorselection.TwoFactorMethod
 import java.io.IOException
 import java.util.UUID
 import kotlin.time.Duration
@@ -163,11 +163,11 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `AccountIdChanged reports an over-long ID as too long`() = runTest(testDispatcher) {
+  fun `AccountIdChanged ignores anything typed past a complete ID`() = runTest(testDispatcher) {
     val state = applyAccountId(VALID_ACCOUNT_ID + "ab")
 
-    assertThat(state.accountIdError).isEqualTo(AccountIdError.TooLong(34))
-    assertThat(state.isNextEnabled).isFalse()
+    assertThat(state.accountId).isEqualTo(VALID_ACCOUNT_ID)
+    assertThat(state.accountIdError).isNull()
   }
 
   @Test
@@ -175,6 +175,15 @@ class SignalLoginCredentialEntryViewModelTest {
     applyEvent(SignalLoginCredentialEntryState(), SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(VALID_AEP.uppercase()))
 
     assertThat(emittedStates.last().recoveryKey.normalized).isEqualTo(VALID_AEP)
+    assertThat(emittedStates.last().recoveryKey.isValid).isTrue()
+  }
+
+  @Test
+  fun `RecoveryKeyChanged ignores anything typed past a complete key`() = runTest(testDispatcher) {
+    applyEvent(SignalLoginCredentialEntryState(), SignalLoginCredentialEntryScreenEvents.RecoveryKeyChanged(VALID_AEP + "abc"))
+
+    assertThat(emittedStates.last().recoveryKey.normalized).isEqualTo(VALID_AEP)
+    assertThat(emittedStates.last().recoveryKey.error).isNull()
     assertThat(emittedStates.last().recoveryKey.isValid).isTrue()
   }
 
@@ -462,9 +471,9 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `NextClicked requiring a two-factor code navigates to two-factor selection offering only the authenticator app`() = runTest(testDispatcher) {
+  fun `NextClicked requiring a two-factor code navigates directly to TOTP entry`() = runTest(testDispatcher) {
     coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
-      RequestResult.NonSuccess(RegisterAccountError.TotpMissingOrIncorrect)
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true)))
 
     applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
 
@@ -472,9 +481,7 @@ class SignalLoginCredentialEntryViewModelTest {
     assertThat(emittedParentEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
-      .isInstanceOf<RegistrationRoute.TwoFactorSelection>()
-      .prop(RegistrationRoute.TwoFactorSelection::methods)
-      .containsExactly(TwoFactorMethod.AuthenticatorApp)
+      .isEqualTo(RegistrationRoute.TotpEntry)
   }
 
   @Test

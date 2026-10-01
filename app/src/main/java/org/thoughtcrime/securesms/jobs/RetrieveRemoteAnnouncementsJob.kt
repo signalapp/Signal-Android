@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -405,8 +406,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val potentialNoteUrls = mutableListOf<String>()
 
-    if (SignalStore.settings.language != "zz") {
-      potentialNoteUrls += "$this/${SignalStore.settings.language}.json"
+    if (PlainTextKeyValueStore.language != "zz") {
+      potentialNoteUrls += "$this/${PlainTextKeyValueStore.language}.json"
     }
 
     for (index in 0 until localeList.size()) {

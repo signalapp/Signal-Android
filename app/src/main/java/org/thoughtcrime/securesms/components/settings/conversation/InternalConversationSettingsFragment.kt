@@ -178,7 +178,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       val recipient = Recipient.live(recipientId).get()
       val messageCount = 1000
       val startTime = System.currentTimeMillis() - messageCount
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
         for (i in 1..messageCount) {
           val time = startTime + i
@@ -208,7 +208,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       val recipient = Recipient.live(recipientId).get()
       val messageCount = 100
       val startTime = System.currentTimeMillis() - messageCount
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
         for (i in 1..messageCount) {
           val time = startTime + i

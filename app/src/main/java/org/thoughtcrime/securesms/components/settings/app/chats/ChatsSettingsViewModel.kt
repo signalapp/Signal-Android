@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class ChatsSettingsViewModel @JvmOverloads constructor(
   private val repository: ChatsSettingsRepository = ChatsSettingsRepository()
@@ -34,7 +33,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       enterKeySends = SignalStore.settings.isEnterKeySends,
       localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
       folderCount = 0,
-      userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
+      userUnregistered = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered,
       clientDeprecated = SignalStore.misc.isClientDeprecated,
       isPlaintextExportEnabled = RemoteConfig.localPlaintextExport,
       chatExportState = ChatExportState.None

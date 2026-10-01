@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
 import org.thoughtcrime.securesms.util.LinkUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
@@ -47,7 +47,7 @@ class TextStoryPostLinkEntryFragment(private val shouldPreset: Boolean = false) 
     val confirmButton: View = view.findViewById(R.id.confirm_button)
     val shareALinkGroup: Group = view.findViewById(R.id.share_a_link_group)
 
-    input.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+    input.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
     input.addTextChangedListener(
       afterTextChanged = {
         val scheme = "https://"

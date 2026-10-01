@@ -61,33 +61,41 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">សោសម្ងាត់</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · បានបញ្ចូលនៅថ្ងៃទី %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">បើកជម្រើសផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">ប្តូរឈ្មោះ</string>
     <!-- Menu option that removes a second factor -->
-    <string name="AccountSettingsFragment__remove">ដកចេញ</string>
+    <string name="AccountSettingsFragment__remove">លុបចេញ</string>
     <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AccountSettingsFragment__remove_authenticator_app">ដកកម្មវិធីផ្ទៀងផ្ទាត់ចេញ?</string>
+    <string name="AccountSettingsFragment__remove_authenticator_app">លុបកម្មវិធីផ្ទៀងផ្ទាត់ចេញ?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">អ្នកនឹងមិនអាចប្រើកម្មវិធីនេះសម្រាប់លេខកូដផ្ទៀងផ្ទាត់ដែលប្រើតែម្តងបានទេ នៅពេលអ្នកចូលគណនី។</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ដោះសោដើម្បីលុបវិធីផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ដើម្បីលុបវិធីនេះចេញ សូមបញ្ជាក់ថានេះគឺជាអ្នក</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">ដោះសោដើម្បីមើល Signal Login</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">ដើម្បីមើល Signal Login របស់អ្នក សូមបញ្ជាក់ថានេះគឺជាអ្នក</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">ដោះសោដើម្បីបញ្ជាក់ថានេះពិតជាអ្នកមែន</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">ដើម្បីលុបគណនីរបស់អ្នក សូមបញ្ជាក់ថានេះពិតជាអ្នកមែន</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">ទាមទារការផ្ទៀងផ្ទាត់</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">មិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់បានទេ</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d">អ្នកមិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់លើសពី %1$d បានទេ។ សាកល្បងដកមួយចេញសិន។</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">អ្នកមិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់លើសពី %1$d បានទេ។ សាកល្បងលុបមួយចេញសិន។</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">អ្នកមិនអាចបញ្ចូលវិធីផ្ទៀងផ្ទាត់ពីរជំហានលើសពី %1$d បានទេ។ សាកល្បងលុបមួយចេញសិន។</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">មិនអាចផ្ទុកវិធីផ្ទៀងផ្ទាត់ពីរជំហានរបស់អ្នកបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">បានលុបកម្មវិធីផ្ទៀងផ្ទាត់</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -123,7 +131,7 @@
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">រកមិនឃើញកម្មវិធីផ្ទៀងផ្ទាត់ទេ</string>
     <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpSetupScreen__you_cant_add_more_than_d">អ្នកមិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់លើសពី %1$d បានទេ។ សាកល្បងដកមួយចេញសិន។</string>
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">អ្នកមិនអាចបញ្ចូលកម្មវិធីផ្ទៀងផ្ទាត់លើសពី %1$d បានទេ។ សាកល្បងលុបមួយចេញសិន។</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
     <string name="TotpSetupScreen__couldnt_reach_signal">មិនអាចទាក់ទង Signal បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Header of the third step of authenticator app setup -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">បញ្ចូលលេខកូដរបស់អ្នក</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">សូមបញ្ចូលលេខកូដ 6 ខ្ទង់ពីកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នក។</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">លេខកូដ</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">រួចរាល់</string>
+    <string name="TotpCodeEntryScreen__next">បន្ទាប់</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">លេខកូដមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខកូដដែលបង្ហាញនៅក្នុងកម្មវិធីផ្ទៀងផ្ទាត់របស់អ្នកឥឡូវនេះ។</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">មិនអាចទាក់ទង Signal បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">កម្មវិធីផ្ទៀងផ្ទាត់</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ជ្រើសរើសឈ្មោះ</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">បានប្តូរឈ្មោះកម្មវិធីផ្ទៀងផ្ទាត់</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">មិនអាចរក្សាទុកឈ្មោះបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">ការលុបគណនីរបស់អ្នកនឹង៖</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">បញ្ចូលលេខទូរសព្ទរបស់អ្នក</string>
+    <string name="DeleteAccountFragment__delete_account">លុបគណនី</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">លុបព័ត៌មានគណនី និងរូបថតប្រូហ្វាល់របស់អ្នក</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">លុបសាររបស់អ្នកទាំងអស់</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">លុប %1$s នៅក្នុងគណនីទូទាត់របស់អ្នក</string>
+    <string name="DeleteAccountFragment__no_country_code">មិនបានបញ្ជាក់លេខកូដប្រទេស</string>
+    <string name="DeleteAccountFragment__no_number">មិនបានបញ្ជាក់លេខ</string>
+    <string name="DeleteAccountFragment__the_phone_number">លេខទូរសព្ទដែលអ្នកបានបញ្ចូលមិនត្រូវគ្នានឹងលេខក្នុងគណនីរបស់អ្នកទេ។</string>
+    <string name="DeleteAccountFragment__are_you_sure">តើអ្នកប្រាកដទេថា ចង់លុបគណនីរបស់អ្នក?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ការធ្វើបែបនេះនឹងលុបគណនី Signal របស់អ្នក ហើយកំណត់កម្មវិធីនេះឡើងវិញ។ កម្មវិធីនេះនឹងបិទបន្ទាប់ពីដំណើរការនេះបញ្ចប់។</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">មិនអាចលុបទិន្នន័យក្នុងឧបករណ៍បានទេ។ អ្នកអាចលុបវាបានដោយខ្លួនឯងនៅក្នុងការកំណត់កម្មវិធីក្នុងប្រព័ន្ធ។</string>
+    <string name="DeleteAccountFragment__launch_app_settings">បើកការកំណត់របស់កម្មវិធី</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">កំពុងចេញពីក្រុម…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">កំពុងលុបគណនី…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">កំពុងលុបចោលការជាវរបស់អ្នក…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">អាស្រ័យទៅលើចំនួនក្រុមរបស់អ្នក វាប្រហែលចំណាយពេលពីរបីនាទី</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">កំពុងលុបទិន្នន័យអ្នកប្រើ ហើយកំណត់កម្មវិធីឡើងវិញ</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">គណនីមិនត្រូវបានលុប</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">មានបញ្ហាក្នុងការបញ្ចប់ដំណើរការលុប។ សូមពិនិត្យសេវាអុីនធឺណិតរបស់អ្នក រួចព្យាយាមម្ដងទៀត។</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">ការលុបគណនីរបសអ្នកជាមួយឈ្មោះអ្នកប្រើ \"%1$s\" នឹង៖</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">លុបព័ត៌មានគណនី និងរូបភាពប្រូហ្វាល់របស់អ្នក រួមទាំងឈ្មោះអ្នកប្រើ \"%1$s\" របស់អ្នក</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ការធ្វើបែបនេះនឹងលុបគណនី Signal របស់អ្នកជាមួយឈ្មោះអ្នកប្រើ \"%1$s\" ហើយកំណត់កម្មវិធីនេះឡើងវិញ។ កម្មវិធីនឹងបិទបន្ទាប់ពីដំណើរការនេះត្រូវបានបញ្ចប់។</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">បាទ/ចាស លុបគណនីរបស់ខ្ញុំ</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
+    <string name="RegistrationActivity_phone_number_description">លេខទូរសព្ទ</string>
 </resources>

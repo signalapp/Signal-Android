@@ -7,13 +7,13 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.groups.GroupChangeBusyException
+import org.signal.core.util.groups.GroupChangeException
+import org.signal.core.util.groups.GroupChangeFailedException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
-import org.thoughtcrime.securesms.groups.GroupChangeException
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason

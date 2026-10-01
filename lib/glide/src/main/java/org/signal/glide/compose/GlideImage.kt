@@ -6,7 +6,6 @@
 package org.signal.glide.compose
 
 import android.graphics.drawable.Drawable
-import android.widget.ImageView
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -20,7 +19,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.viewinterop.AndroidView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.TransitionOptions
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -32,8 +30,11 @@ import org.signal.glide.apng.ApngOptions
 /**
  * Our very own GlideImage. The GlideImage composable provided by the bumptech library is not suitable because it was is using our encrypted cache decoder/encoder.
  *
- * @param contentScale How the loaded drawable is scaled into the available space. Ignored when [enableApngAnimation] is
- *   set, as that path hands scaling to the underlying [ImageView] via [scaleType].
+ * @param contentScale How the loaded drawable is scaled into the available space. This is applied when drawing, so
+ *   unlike [scaleType], which becomes a Glide request transform, it also reaches an animated APNG.
+ * @param enableApngAnimation Plays the model as an animated APNG when it is one.
+ * @param skipMemoryCache Set this when the same model is loaded at several sizes, so that a stateful resource such as
+ *   an APNG frame decoder is not shared across differently-sized targets.
  */
 @Composable
 fun <T> GlideImage(
@@ -46,63 +47,8 @@ fun <T> GlideImage(
   transition: TransitionOptions<*, Drawable>? = null,
   diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
   contentScale: ContentScale = ContentScale.Crop,
-  enableApngAnimation: Boolean = false
-) {
-  if (enableApngAnimation) {
-    val density = LocalDensity.current
-
-    AndroidView(
-      factory = { context -> ImageView(context) },
-      update = { imageView ->
-        Glide.with(imageView.context)
-          .load(model)
-          .fallback(fallback)
-          .error(error)
-          .diskCacheStrategy(diskCacheStrategy)
-          .set(ApngOptions.ANIMATE, enableApngAnimation)
-          .apply {
-            scaleType.applyTo(this)
-            transition?.let(this::transition)
-
-            if (imageSize != null) {
-              with(density) {
-                this@apply.override(imageSize.width.toPx().toInt(), imageSize.height.toPx().toInt())
-              }
-            }
-          }
-          .into(imageView)
-      },
-      onReset = {
-        Glide.with(it.context).clear(it)
-      },
-      modifier = modifier
-    )
-  } else {
-    GlideImage(
-      model = model,
-      imageSize = imageSize,
-      scaleType = scaleType,
-      fallback = fallback,
-      error = error,
-      transition = transition,
-      diskCacheStrategy = diskCacheStrategy,
-      contentScale = contentScale,
-      modifier = modifier
-    )
-  }
-}
-
-@Composable
-private fun <T> GlideImage(
-  modifier: Modifier = Modifier,
-  model: T?,
-  imageSize: DpSize? = null,
-  scaleType: GlideImageScaleType = GlideImageScaleType.FIT_CENTER,
-  fallback: Drawable? = null,
-  error: Drawable? = fallback,
-  transition: TransitionOptions<*, Drawable>? = null,
-  diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.ALL,
-  contentScale: ContentScale = ContentScale.Crop
+  enableApngAnimation: Boolean = false,
+  skipMemoryCache: Boolean = false
 ) {
   var drawable by remember {
     mutableStateOf<Drawable?>(null)
@@ -122,13 +68,15 @@ private fun <T> GlideImage(
 
   val density = LocalDensity.current
   val context = LocalContext.current
-  DisposableEffect(model, fallback, error, diskCacheStrategy, density, imageSize) {
+  DisposableEffect(model, fallback, error, diskCacheStrategy, density, imageSize, enableApngAnimation, skipMemoryCache) {
     val requestManager = Glide.with(context)
     val builder = requestManager
       .load(model)
       .fallback(fallback)
       .error(error)
       .diskCacheStrategy(diskCacheStrategy)
+      .set(ApngOptions.ANIMATE, enableApngAnimation)
+      .skipMemoryCache(skipMemoryCache)
       .apply {
         scaleType.applyTo(this)
         transition?.let(this::transition)

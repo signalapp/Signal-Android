@@ -18,7 +18,7 @@ plugins {
   alias(libs.plugins.ktlint)
   alias(libs.plugins.compose.compiler)
   alias(libs.plugins.kotlinx.serialization)
-  alias(testLibs.plugins.compose.screenshot)
+  id("com.android.compose.screenshot")
   alias(benchmarkLibs.plugins.baselineprofile)
   id("androidx.navigation.safeargs")
   id("kotlin-parcelize")
@@ -30,8 +30,8 @@ plugins {
 val staticIps = Properties().apply { file("static-ips.properties").reader().use { load(it) } }
 staticIps.stringPropertyNames().forEach { rootProject.extra[it] = staticIps.getProperty(it) }
 
-val canonicalVersionCode = 1750
-val canonicalVersionName = "8.27.1"
+val canonicalVersionCode = 1760
+val canonicalVersionName = "8.30.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -343,11 +343,9 @@ android {
         "proguard/proguard-google-play-services.pro",
         "proguard/proguard-jackson.pro",
         "proguard/proguard-sqlite.pro",
-        "proguard/proguard-appcompat-v7.pro",
         "proguard/proguard-square-okhttp.pro",
         "proguard/proguard-square-okio.pro",
         "proguard/proguard-rounded-image-view.pro",
-        "proguard/proguard-glide.pro",
         "proguard/proguard-shortcutbadger.pro",
         "proguard/proguard-retrofit.pro",
         "proguard/proguard-klinker.pro",
@@ -712,6 +710,8 @@ dependencies {
 
   implementation(project(":feature:app-settings"))
   implementation(project(":feature:camera"))
+  implementation(project(":feature:chat-settings"))
+  implementation(project(":feature:media-keyboard"))
   implementation(project(":feature:registration"))
 
   implementation(libs.androidx.fragment.ktx)
@@ -757,6 +757,8 @@ dependencies {
   implementation(libs.androidx.asynclayoutinflater)
   implementation(libs.androidx.asynclayoutinflater.appcompat)
   implementation(libs.androidx.emoji2)
+  implementation(libs.androidx.paging.runtime)
+  implementation(libs.androidx.paging.compose)
   implementation(libs.firebase.messaging) {
     exclude(group = "com.google.firebase", module = "firebase-core")
     exclude(group = "com.google.firebase", module = "firebase-analytics")

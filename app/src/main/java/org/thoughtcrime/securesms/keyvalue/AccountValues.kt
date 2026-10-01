@@ -26,9 +26,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.RegisteredConstraint
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
+import org.thoughtcrime.securesms.notifications.UnregisteredNotifier
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
@@ -84,6 +84,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_ACI = "account.aci"
     private const val KEY_PNI = "account.pni"
     private const val KEY_IS_REGISTERED = "account.is_registered"
+    private const val KEY_IS_UNAUTHORIZED_RECEIVED = "account.is_unauthorized_received"
     private const val KEY_ACCOUNT_REGISTERED_AT = "account.registered_at"
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
@@ -111,6 +112,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     if (!store.containsKey(KEY_HAS_LINKED_DEVICES)) {
       migrateFromSharedPrefsV3(context)
+    }
+
+    if (!store.containsKey(KEY_IS_UNAUTHORIZED_RECEIVED)) {
+      migrateFromSharedPrefsV4(context)
     }
 
     store.getString(KEY_PNI, null)?.let { pni ->
@@ -517,6 +522,32 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   }
 
   /**
+   * Whether the service has rejected our credentials on the authenticated websocket, i.e. we've been deregistered or unlinked remotely.
+   *
+   * This is distinct from [isRegistered], which tracks whether *we* believe this install completed registration. This flag is the service's verdict, and
+   * it is cleared automatically the next time we successfully authenticate. Note that setting it rotates the profile key, so it is not a free toggle.
+   */
+  var isUnauthorizedReceived: Boolean
+    get() = getBoolean(KEY_IS_UNAUTHORIZED_RECEIVED, false)
+    set(value) {
+      val previous = isUnauthorizedReceived
+
+      putBoolean(KEY_IS_UNAUTHORIZED_RECEIVED, value)
+
+      if (previous != value) {
+        Recipient.self().live().refresh()
+
+        if (value) {
+          UnregisteredNotifier.notify(AppDependencies.application)
+          rotateProfileKey()
+          BackupRepository.haltBackupWritesForDeregistration()
+        } else {
+          UnregisteredNotifier.cancel(AppDependencies.application)
+        }
+      }
+    }
+
+  /**
    * Milliseconds since epoch when account was registered or a negative value if not known.
    */
   var registeredAtTimestamp: Long by longValue(KEY_ACCOUNT_REGISTERED_AT, -1)
@@ -604,7 +635,14 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   private fun clearLocalCredentials() {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))
+    rotateProfileKey()
+  }
 
+  /**
+   * Note that unlike [clearLocalCredentials] this leaves the service password alone, so we can still attempt to authenticate. Important for the
+   * [isUnauthorizedReceived] path, which needs to be able to recover on its own.
+   */
+  private fun rotateProfileKey() {
     val newProfileKey = ProfileKeyUtil.createNew()
     val self = Recipient.self()
 
@@ -630,15 +668,15 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   private fun migrateFromSharedPrefsV1(context: Context) {
     Log.i(TAG, "[V1] Migrating account values from shared prefs.")
 
-    putString(KEY_ACI, TextSecurePreferences.getStringPreference(context, "pref_local_uuid", null))
-    putString(KEY_E164, TextSecurePreferences.getStringPreference(context, "pref_local_number", null))
-    putString(KEY_SERVICE_PASSWORD, TextSecurePreferences.getStringPreference(context, "pref_gcm_password", null))
-    putBoolean(KEY_IS_REGISTERED, TextSecurePreferences.getBooleanPreference(context, "pref_gcm_registered", false))
-    putInteger(KEY_REGISTRATION_ID, TextSecurePreferences.getIntegerPreference(context, "pref_local_registration_id", 0))
-    putBoolean(KEY_FCM_ENABLED, !TextSecurePreferences.getBooleanPreference(context, "pref_gcm_disabled", false))
-    putString(KEY_FCM_TOKEN, TextSecurePreferences.getStringPreference(context, "pref_gcm_registration_id", null))
-    putInteger(KEY_FCM_TOKEN_VERSION, TextSecurePreferences.getIntegerPreference(context, "pref_gcm_registration_id_version", 0))
-    putLong(KEY_FCM_TOKEN_LAST_SET_TIME, TextSecurePreferences.getLongPreference(context, "pref_gcm_registration_id_last_set_time", 0))
+    putString(KEY_ACI, LegacySharedPrefs.getStringOrNull(context, "pref_local_uuid"))
+    putString(KEY_E164, LegacySharedPrefs.getStringOrNull(context, "pref_local_number"))
+    putString(KEY_SERVICE_PASSWORD, LegacySharedPrefs.getStringOrNull(context, "pref_gcm_password"))
+    putBoolean(KEY_IS_REGISTERED, LegacySharedPrefs.getBoolean(context, "pref_gcm_registered", false))
+    putInteger(KEY_REGISTRATION_ID, LegacySharedPrefs.getInteger(context, "pref_local_registration_id", 0))
+    putBoolean(KEY_FCM_ENABLED, !LegacySharedPrefs.getBoolean(context, "pref_gcm_disabled", false))
+    putString(KEY_FCM_TOKEN, LegacySharedPrefs.getStringOrNull(context, "pref_gcm_registration_id"))
+    putInteger(KEY_FCM_TOKEN_VERSION, LegacySharedPrefs.getInteger(context, "pref_gcm_registration_id_version", 0))
+    putLong(KEY_FCM_TOKEN_LAST_SET_TIME, LegacySharedPrefs.getLong(context, "pref_gcm_registration_id_last_set_time", 0))
   }
 
   /** Do not alter. If you need to migrate more stuff, create a new method. */
@@ -713,7 +751,14 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   private fun migrateFromSharedPrefsV3(context: Context) {
     Log.i(TAG, "[V3] Migrating account values from shared prefs.")
 
-    putBoolean(KEY_HAS_LINKED_DEVICES, TextSecurePreferences.getBooleanPreference(context, "pref_multi_device", false))
+    putBoolean(KEY_HAS_LINKED_DEVICES, LegacySharedPrefs.getBoolean(context, "pref_multi_device", false))
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private fun migrateFromSharedPrefsV4(context: Context) {
+    Log.i(TAG, "[V4] Migrating account values from shared prefs.")
+
+    putBoolean(KEY_IS_UNAUTHORIZED_RECEIVED, LegacySharedPrefs.getBoolean(context, "pref_unauthorized_received", false))
   }
 
   private fun SharedPreferences.hasStringData(key: String): Boolean {

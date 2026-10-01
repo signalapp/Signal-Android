@@ -265,6 +265,10 @@ private fun Attachment.toAttachmentPointerProto(): Either<DataMessageError, Atta
   caption?.let { builder.caption(it) }
   blurHash?.let { builder.blurHash(it.hash) }
   uuid?.let { builder.clientUuid(UuidUtil.toByteString(it)) }
+  audioHash?.let { hash ->
+    builder.audioWaveform(hash.waveFormBytes.toByteString())
+    hash.durationSeconds?.let { builder.audioDurationSeconds(it) }
+  }
 
   builder.build()
 }
@@ -352,7 +356,7 @@ private fun LinkPreview.toProto(): Either<DataMessageError, Preview> = either {
 }
 
 private fun Contact.toProto(): Either<DataMessageError, DataMessage.Contact> = either {
-  DataMessage.Contact(
+  val contact = DataMessage.Contact(
     name = DataMessage.Contact.Name(
       givenName = name.givenName,
       familyName = name.familyName,
@@ -387,6 +391,18 @@ private fun Contact.toProto(): Either<DataMessageError, DataMessage.Contact> = e
         ?.bind()
     },
     organization = organization
+  )
+
+  if (!RemoteConfig.contactSharingV2) {
+    return@either contact
+  }
+
+  contact.copy(
+    aciBinary = ACI.parseOrNull(aci)?.takeIf { it.isValid }?.toByteString(),
+    nickname = nickname?.takeUnless { it.isEmpty }?.let {
+      DataMessage.Contact.SignalNickname(given = it.given, family = it.family)
+    },
+    note = note
   )
 }
 

@@ -86,7 +86,13 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
 
           val attachmentUploadJob = AttachmentUploadJob(attachmentId)
 
-          AppDependencies.jobManager.startChain(AttachmentCompressionJob.fromAttachment(it, false, -1))
+          val chain = AppDependencies.jobManager.startChain(AttachmentCompressionJob.fromAttachment(it, false, -1))
+
+          if (MediaUtil.isAudio(it)) {
+            chain.then(GenerateAudioWaveFormJob.forUploadChain(attachmentId))
+          }
+
+          chain
             .then(attachmentUploadJob)
             .enqueue()
 
@@ -315,7 +321,9 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
         caption = Optional.ofNullable(attachment.caption),
         blurHash = Optional.ofNullable(attachment.blurHash).map(BlurHash::hash),
         uploadTimestamp = attachment.uploadTimestamp,
-        uuid = attachment.uuid
+        uuid = attachment.uuid,
+        audioWaveform = attachment.audioHash?.waveFormBytes,
+        audioDurationSeconds = attachment.audioHash?.durationSeconds
       )
     } catch (e: IOException) {
       Log.w(TAG, e)

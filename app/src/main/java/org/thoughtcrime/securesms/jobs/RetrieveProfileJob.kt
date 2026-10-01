@@ -101,7 +101,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val recipientsToFetch = SignalDatabase
       .recipients
       .getRecordsForProfileFetch(recipientIds, debounceThreshold)
-      .map { RecipientCreator.forRecord(context, it) }
+      .map { RecipientCreator.forRecord(it) }
 
     stopwatch.split("resolve")
 
@@ -123,7 +123,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
           id = recipient.id,
           serviceId = recipient.requireServiceId(),
           profileKey = recipient.profileKey?.let { ProfileKey(it) },
-          sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
+          sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessForProfileFetch(recipient, true),
           fetchExpiringCredential = !ExpiringProfileCredentialUtil.isValid(recipient.expiringProfileKeyCredential)
         )
       }
@@ -132,7 +132,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val response: ProfileFetchResult<RecipientId> = runBlocking {
       withContext(Dispatchers.IO) {
-        ProfileRepository(SignalNetwork.profile).fetchProfiles(requests)
+        ProfileRepository(SignalNetwork.profileApi).fetchProfiles(requests)
       }
     }
     stopwatch.split("responses")
@@ -245,11 +245,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       return true
     }
 
-    if (localRecipientRecord.badges != remoteProfile.badges.map { Badges.fromServiceBadge(it) }) {
+    if (localRecipientRecord.badges != remoteProfile.badges.orEmpty().map { Badges.fromServiceBadge(it) }) {
       return true
     }
 
-    if (localRecipientRecord.capabilities.rawBits != maskCapabilitiesToLong(remoteProfile.capabilities)) {
+    val remoteCapabilities = remoteProfile.capabilities
+    if (remoteCapabilities != null && localRecipientRecord.capabilities.rawBits != maskCapabilitiesToLong(remoteCapabilities)) {
       return true
     }
 
@@ -257,7 +258,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val accessMode = deriveUnidentifiedAccessMode(
       profileKey = profileKey,
       unidentifiedAccessVerifier = remoteProfile.unidentifiedAccess,
-      unrestrictedUnidentifiedAccess = remoteProfile.isUnrestrictedUnidentifiedAccess
+      unrestrictedUnidentifiedAccess = remoteProfile.unrestrictedUnidentifiedAccess
     )
 
     if (localRecipientRecord.sealedSenderAccessMode != accessMode) {
@@ -297,7 +298,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val recipientProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey)
 
     val badges = profile.badges?.map { Badges.fromServiceBadge(it) }
-    val accessMode = deriveUnidentifiedAccessMode(recipientProfileKey, profile.unidentifiedAccess, profile.isUnrestrictedUnidentifiedAccess)
+    val accessMode = deriveUnidentifiedAccessMode(recipientProfileKey, profile.unidentifiedAccess, profile.unrestrictedUnidentifiedAccess)
 
     if (badges != null && badges.size != recipient.badges.size) {
       Log.i(TAG, "Likely change in badges for ${recipient.id}. Going from ${recipient.badges.size} badge(s) to ${badges.size}.")
@@ -315,7 +316,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       val profileNameResult = resolveProfileName(recipient, recipientProfileKey, profile.name)
       val aboutResult = resolveProfileAbout(recipientProfileKey, profile.about, profile.aboutEmoji)
       val phoneNumberSharing = resolvePhoneNumberSharing(recipient, recipientProfileKey, profile.phoneNumberSharing)
-      val clearUsername = (recipient.username.isPresent && recipient.hasNonUsernameDisplayName(context)) || profileNameResult?.changed == true
+      val clearUsername = (recipient.username.isPresent && recipient.hasPersistentDisplayName(context)) || profileNameResult?.changed == true
+      val clearSharedName = (!recipient.sharedName.isEmpty && recipient.hasDisplayNameOutrankingSharedName()) || profileNameResult?.changed == true
 
       val update = RecipientTable.ProfileUpdate(
         profileName = if (profileNameResult?.changed == true) profileNameResult.remoteProfileName else null,
@@ -325,7 +327,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         sealedSenderAccessMode = if (accessMode != recipient.sealedSenderAccessMode) accessMode else null,
         phoneNumberSharing = phoneNumberSharing,
         expiringProfileKeyCredential = expiringCredential?.let { Pair(recipientProfileKey, it) },
-        clearUsername = clearUsername
+        clearUsername = clearUsername,
+        clearSharedName = clearSharedName
       )
 
       SignalDatabase.recipients.applyProfileUpdate(recipient.id, update)
@@ -420,17 +423,18 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         !recipient.isGroup &&
         !recipient.isSelf
 
-      var username: String? = null
-      var e164: String? = null
-      if (learnedFirstTime) {
-        username = SignalDatabase.recipients.getUsername(recipient.id)
-        e164 = if (username == null) SignalDatabase.recipients.getE164sForIds(listOf(recipient.id)).firstOrNull() else null
+      val previousName: PreviousName? = if (learnedFirstTime) {
+        recipient.sharedName.takeUnless { it.isEmpty }?.let { PreviousName.SharedName(it.toString()) }
+          ?: SignalDatabase.recipients.getUsername(recipient.id)?.let { PreviousName.Username(it) }
+          ?: SignalDatabase.recipients.getE164sForIds(listOf(recipient.id)).firstOrNull()?.let { PreviousName.E164(it) }
+      } else {
+        null
       }
 
       return if (changed) {
-        ProfileNameResult(remoteProfileName, localProfileName, changed = true, learnedFirstTime, username, e164)
+        ProfileNameResult(remoteProfileName, localProfileName, changed = true, learnedFirstTime, previousName)
       } else if (learnedFirstTime) {
-        ProfileNameResult(remoteProfileName, localProfileName, changed = false, learnedFirstTime, username, e164)
+        ProfileNameResult(remoteProfileName, localProfileName, changed = false, learnedFirstTime, previousName)
       } else {
         null
       }
@@ -477,11 +481,16 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
   private fun handleProfileNameSideEffects(recipient: Recipient, result: ProfileNameResult) {
     if (result.learnedFirstTime) {
-      if (result.username != null || result.e164 != null) {
-        Log.i(TAG, "Learned profile name for first time, inserting event")
-        SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, result.e164, result.username)
+      val previous = result.previousName
+      if (previous == null) {
+        Log.w(TAG, "Learned profile name for first time, but have no previous name for ${recipient.id}")
       } else {
-        Log.w(TAG, "Learned profile name for first time, but do not have username or e164 for ${recipient.id}")
+        Log.i(TAG, "Learned profile name for first time, inserting event")
+        when (previous) {
+          is PreviousName.SharedName -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, sharedName = previous.sharedName)
+          is PreviousName.Username -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, username = previous.username)
+          is PreviousName.E164 -> SignalDatabase.messages.insertLearnedProfileNameChangeMessage(recipient, e164 = previous.e164)
+        }
       }
     }
 
@@ -536,9 +545,15 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val localProfileName: ProfileName,
     val changed: Boolean,
     val learnedFirstTime: Boolean,
-    val username: String?,
-    val e164: String?
+    val previousName: PreviousName?
   )
+
+  /** The name a chat displayed before we learned a profile name. */
+  private sealed interface PreviousName {
+    data class SharedName(val sharedName: String) : PreviousName
+    data class Username(val username: String) : PreviousName
+    data class E164(val e164: String) : PreviousName
+  }
 
   class Factory : Job.Factory<RetrieveProfileJob?> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): RetrieveProfileJob {

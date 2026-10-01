@@ -20,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,7 +45,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsAction
-import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -55,6 +53,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.signallogin.R as SignalLoginR
 
 /**
  * Handles the selection, payment, and changing of a user's backup tier.
@@ -65,7 +64,6 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
     @VisibleForTesting
     const val TIER = "tier"
-    const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
     private const val PDF_MIME_TYPE = "application/pdf"
 
@@ -85,13 +83,15 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     )
   }
 
-  private val signalLoginViewDetailsViewModel: SignalLoginViewDetailsViewModel by viewModels()
+  private val signalLoginDetailsViewModel: MessageBackupsSignalLoginDetailsViewModel by viewModel {
+    MessageBackupsSignalLoginDetailsViewModel(isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()))
+  }
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument(PDF_MIME_TYPE)) { uri: Uri? ->
     if (uri != null) {
       val context = requireContext().applicationContext
       lifecycleScope.launch {
-        val result = SignalLoginPdfRenderer.renderTo(context, uri, signalLoginViewDetailsViewModel.state.value.accountKey, signalLoginViewDetailsViewModel.state.value.recoveryKeyGroups)
+        val result = SignalLoginPdfRenderer.renderTo(context, uri, signalLoginDetailsViewModel.state.value.accountKey, signalLoginDetailsViewModel.state.value.recoveryKeyGroups)
         if (result is Result.Failure) {
           Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
         }
@@ -192,7 +192,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
               onSaveSuccessful = viewModel::onBackupKeySavedToPasswordManager
             )
           },
-          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+          onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveStateCleared = viewModel::onBackupKeySaveStateCleared,
@@ -212,7 +212,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
           onNavigationClick = viewModel::goToPreviousStage,
           mode = remember { MessageBackupsKeyRecordMode.Next(viewModel::goToNextStage) },
-          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+          onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
@@ -246,13 +246,13 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       }
 
       composable(route = MessageBackupsStage.Route.SIGNAL_LOGIN_VIEW_DETAILS.name) {
-        val signalLoginState by signalLoginViewDetailsViewModel.state.collectAsStateWithLifecycle()
+        val signalLoginState by signalLoginDetailsViewModel.state.collectAsStateWithLifecycle()
 
-        CollectActions(signalLoginViewDetailsViewModel.actions) { action -> handleSignalLoginViewDetailsAction(action) }
+        CollectActions(signalLoginDetailsViewModel.actions) { action -> handleSignalLoginViewDetailsAction(action) }
 
         SignalLoginViewDetailsScreen(
           state = signalLoginState,
-          onEvent = signalLoginViewDetailsViewModel::onEvent
+          onEvent = signalLoginDetailsViewModel::onEvent
         )
       }
 
@@ -324,20 +324,23 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     }
   }
 
-  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction) {
+  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction.Shared) {
     when (action) {
       SignalLoginViewDetailsAction.NavigateBack -> viewModel.goToPreviousStage()
       SignalLoginViewDetailsAction.LaunchSaveToPasswordManager -> {
         lifecycleScope.launch {
           SignalCredentialManager.saveCredential(
             activityContext = requireActivity(),
-            username = signalLoginViewDetailsViewModel.state.value.accountKey,
-            password = signalLoginViewDetailsViewModel.state.value.recoveryKey
+            username = signalLoginDetailsViewModel.state.value.accountKey,
+            password = signalLoginDetailsViewModel.state.value.recoveryKey
           )
         }
       }
+      SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
+        Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
+      }
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
-      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboard(requireContext(), action.text, CLIPBOARD_TIMEOUT_SECONDS)
+      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }
   }
 

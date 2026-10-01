@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">आपल्या डिव्हाइसवर व्हिडीओ रेकॉर्डिंग समर्थित नाही</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">फोटो करिता टॅप करा, व्हिडिओ करिता धरून ठेवा</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">कॅप्चर करा</string>
-  <string name="CameraXFragment_change_camera_description">कॅमेरा बदला</string>
-  <string name="CameraXFragment_open_gallery_description">गॅलरी उघडा</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">अॅक्सेस अनुमती द्या</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">फोटो काढता आला नाही. कृपया पुन्हा प्रयत्न करा.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">फोटोवर प्रक्रिया करता आली नाही. कृपया पुन्हा प्रयत्न करा.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">कॅमेरा बदला</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">फ्लॅश बंद आहे</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">फ्लॅश चालू आहे</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">फ्लॅश ऑटो वर आहे</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">पाठवा</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">विराम दिला</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
@@ -246,6 +230,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">आपण Signal डिव्हाइस लिंक करण्याचा प्रयत्न करत आहात असे दिसते. चालू ठेवा वर टॅप करा आणि मग \"नवीन डिव्हाईस लिंक करा\" वर टॅप करा आणि QR कोड पुन्हा स्कॅन करा.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">सुरू ठेवा</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">खाते हस्तांतरित करता येणार नाही</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">तुम्ही ज्या डिव्हाईसवर हस्तांतरण करत आहात तो कालबाह्य झाला आहे. त्या डिव्हाईसवर Signal अद्ययावत करा आणि पुन्हा प्रयत्न करा.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

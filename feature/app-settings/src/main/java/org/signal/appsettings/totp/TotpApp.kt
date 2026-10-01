@@ -6,13 +6,14 @@
 package org.signal.appsettings.totp
 
 /**
- * A single authenticator app configured on the user's account, as shown on the account settings screen.
+ * A single authenticator app configured on the user's account, as shown on the account settings screen. [name] and
+ * [createdAt] are null when the app's metadata couldn't be decrypted.
  */
 data class TotpApp(
   val id: Long,
-  val name: String,
+  val name: String?,
   /** When the app was configured, in epoch milliseconds. */
-  val createdAt: Long
+  val createdAt: Long?
 ) {
   override fun toString(): String = "TotpApp(id=$id)"
 }

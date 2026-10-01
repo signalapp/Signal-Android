@@ -29,7 +29,7 @@ class CountryCodePickerViewModel(
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   initialCountry: Country? = null
-) : EventDrivenViewModel<CountryCodePickerScreenEvents>(TAG) {
+) : EventDrivenViewModel<CountryCodePickerScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(CountryCodePickerViewModel::class)

@@ -12,10 +12,12 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
+import androidx.compose.ui.test.requestFocus
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.contains
 import assertk.assertions.containsExactly
+import assertk.assertions.doesNotContain
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
 import org.junit.Rule
@@ -85,6 +87,37 @@ class AddUsernameScreenTest {
 
     assertThat(emittedEvent).isNotNull()
     assertThat(emittedEvent).isEqualTo(AddUsernameScreenEvents.DiscriminatorChanged("77"))
+  }
+
+  @Test
+  fun `showing the discriminator field does not emit DiscriminatorFocusLost`() {
+    val emittedEvents = mutableListOf<AddUsernameScreenEvents>()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        AddUsernameScreen(state = reservedState, onEvent = { emittedEvents.add(it) })
+      }
+    }
+
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_DISCRIMINATOR_FIELD).assertIsDisplayed()
+
+    assertThat(emittedEvents).doesNotContain(AddUsernameScreenEvents.DiscriminatorFocusLost)
+  }
+
+  @Test
+  fun `when the discriminator field loses focus, DiscriminatorFocusLost is emitted`() {
+    val emittedEvents = mutableListOf<AddUsernameScreenEvents>()
+
+    composeTestRule.setContent {
+      SignalTheme {
+        AddUsernameScreen(state = reservedState, onEvent = { emittedEvents.add(it) })
+      }
+    }
+
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_DISCRIMINATOR_FIELD).requestFocus()
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_FIELD).requestFocus()
+
+    assertThat(emittedEvents).contains(AddUsernameScreenEvents.DiscriminatorFocusLost)
   }
 
   @Test

@@ -27,7 +27,7 @@ import org.signal.registration.screens.util.navigateTo
 class TwoFactorSelectionViewModel(
   methods: List<TwoFactorMethod>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<TwoFactorSelectionScreenEvents>(TAG) {
+) : EventDrivenViewModel<TwoFactorSelectionScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(TwoFactorSelectionViewModel::class)

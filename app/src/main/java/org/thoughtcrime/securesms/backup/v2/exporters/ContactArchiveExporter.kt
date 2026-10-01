@@ -86,6 +86,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .identityState(cursor.optionalInt(IdentityTable.VERIFIED).map { IdentityTable.VerifiedStatus.forState(it) }.orElse(IdentityTable.VerifiedStatus.DEFAULT).toRemote())
       .note(cursor.requireString(RecipientTable.NOTE) ?: "")
       .nickname(cursor.readNickname())
+      .sharedName(cursor.readSharedName())
       .systemGivenName(cursor.requireString(RecipientTable.SYSTEM_GIVEN_NAME) ?: "")
       .systemFamilyName(cursor.requireString(RecipientTable.SYSTEM_FAMILY_NAME) ?: "")
       .systemNickname(cursor.requireString(RecipientTable.SYSTEM_NICKNAME) ?: "")
@@ -113,6 +114,20 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
 private fun Cursor.readNickname(): Contact.Name? {
   val given = this.requireString(RecipientTable.NICKNAME_GIVEN_NAME)
   val family = this.requireString(RecipientTable.NICKNAME_FAMILY_NAME)
+
+  if (given.isNullOrEmpty() && family.isNullOrEmpty()) {
+    return null
+  }
+
+  return Contact.Name(
+    given = given ?: "",
+    family = family ?: ""
+  )
+}
+
+private fun Cursor.readSharedName(): Contact.Name? {
+  val given = this.requireString(RecipientTable.SHARED_GIVEN_NAME)
+  val family = this.requireString(RecipientTable.SHARED_FAMILY_NAME)
 
   if (given.isNullOrEmpty() && family.isNullOrEmpty()) {
     return null

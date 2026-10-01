@@ -14,6 +14,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -80,6 +81,7 @@ import org.signal.core.ui.compose.IconButtons.IconButton
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.TextFields
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.registration.R
@@ -89,6 +91,7 @@ import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.AccountIdErrorText
+import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.shared.AccountIdVisualTransformation
 import org.signal.registration.screens.shared.accountIdTextStyle
 import org.signal.registration.test.TestTags
@@ -267,7 +270,7 @@ private fun OnePaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = scrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -317,7 +320,7 @@ private fun TwoPaneLayout(
       RegistrationScaffold.FooterSurface(
         isElevated = firstPaneScrollState.canScrollForward || secondPaneScrollState.canScrollForward
       ) {
-        NextButton(state, onEvent)
+        NextButton(params, state, onEvent)
       }
     }
   )
@@ -397,26 +400,43 @@ private fun Description(twoPane: Boolean = false) {
 
 @Composable
 private fun NextButton(
+  params: RegistrationScaffold.Params,
   state: PhoneNumberEntryState,
   onEvent: (PhoneNumberEntryScreenEvents) -> Unit
 ) {
+  val arrangement = if (state.isPhoneNumberlessRegistrationAvailable) {
+    Arrangement.SpaceBetween
+  } else {
+    Arrangement.End
+  }
+
   Row(
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 32.dp, vertical = 16.dp),
-    horizontalArrangement = Arrangement.End,
+      .padding(params.footerPadding),
+    horizontalArrangement = arrangement,
     verticalAlignment = Alignment.CenterVertically
   ) {
     if (state.isPhoneNumberlessRegistrationAvailable) {
       TextButton(
         onClick = { onEvent(PhoneNumberEntryScreenEvents.RegisterWithoutNumber) },
         enabled = !state.showSpinner,
-        modifier = Modifier.testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
+        modifier = Modifier
+          .weight(1f, fill = false)
+          .testTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON)
       ) {
-        Text(stringResource(R.string.RegistrationActivity_register_without_number))
+        Text(
+          stringResource(
+            if (state.sawArchiveRestoreSelectionScreen) {
+              R.string.RegistrationActivity_use_account_id
+            } else {
+              R.string.RegistrationActivity_register_without_number
+            }
+          )
+        )
       }
 
-      Spacer(modifier = Modifier.weight(1f))
+      Spacer(modifier = Modifier.width(8.dp))
     }
 
     Buttons.LargeTonal(
@@ -506,6 +526,7 @@ private fun PhoneNumberInputFields(
 ) {
   var phoneNumberTextFieldValue by remember { mutableStateOf(TextFieldValue(state.formattedNumber)) }
   val focusRequester = remember { FocusRequester() }
+  val interactionSource = remember { MutableInteractionSource() }
   val hasValidCountry = state.countryName.isNotEmpty()
   val isAccountId = state.enteredAccountId != null
   val label = if (isAccountId) R.string.RegistrationActivity_account_id else R.string.RegistrationActivity_phone_number_description
@@ -578,14 +599,18 @@ private fun PhoneNumberInputFields(
     TextField(
       value = phoneNumberTextFieldValue,
       onValueChange = { newValue ->
-        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = newValue.text))
-        phoneNumberTextFieldValue = newValue
+        // An account ID that is already complete leaves the state untouched, so there is no re-sync to lean on: the
+        // field has to turn away the extra characters itself.
+        val accepted = if (isAccountId) newValue.copy(text = AccountIdFormat.normalizeAndTruncate(newValue.text)) else newValue
+        onEvent(PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = phoneNumberTextFieldValue.text, newValue = accepted.text))
+        phoneNumberTextFieldValue = accepted
       },
       modifier = Modifier
         .weight(1f)
         .focusRequester(focusRequester)
         .testTag(TestTags.PHONE_NUMBER_PHONE_FIELD),
-      label = { Text(stringResource(label)) },
+      label = { TextFields.Label(stringResource(label), phoneNumberTextFieldValue.text.isNotEmpty(), interactionSource) },
+      interactionSource = interactionSource,
       isError = state.isNumberInvalid || state.accountIdError != null,
       supportingText = supportingText,
       keyboardOptions = if (isAccountId) {
@@ -641,6 +666,20 @@ private fun PhoneNumberScreenRegisterWithoutNumberPreview() {
   Previews.Preview {
     PhoneNumberScreen(
       state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun PhoneNumberScreenUseAccountIdPreview() {
+  Previews.Preview {
+    PhoneNumberScreen(
+      state = PhoneNumberEntryState(
+        isPhoneNumberlessRegistrationAvailable = true,
+        sawArchiveRestoreSelectionScreen = true
+      ),
       onEvent = {}
     )
   }

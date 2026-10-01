@@ -7,6 +7,7 @@ import android.os.Build;
 import android.service.notification.StatusBarNotification;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.signal.core.util.logging.Log;
@@ -15,13 +16,11 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.signal.core.util.ServiceUtil;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -111,8 +110,8 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Attempts to cancel the given notification. If the notification is allowed to be displayed as a
-   * bubble, we do not cancel it.
+   * Attempts to cancel the given notification. If the notification is backing an active bubble, we
+   * suppress it from the shade instead.
    *
    * @return Whether or not the notification is considered cancelled.
    */
@@ -135,8 +134,7 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Cancel method which first checks whether the notification in question is tied to a bubble that
-   * may or may not be displayed by the user.
+   * Cancel method which first checks whether the notification in question is tied to an active bubble.
    *
    * @return true if the notification was cancelled.
    */
@@ -152,9 +150,8 @@ public final class NotificationCancellationHelper {
   }
 
   /**
-   * Checks whether the conversation for the given notification is allowed to be represented as a bubble.
-   *
-   * see {@link BubbleUtil#canBubble} for more information.
+   * Cancelling a notification tears down the bubble it backs, so we hold off while it is showing as a
+   * bubble, even if it is collapsed.
    */
   @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
   private static boolean isCancellable(@NonNull Context context, int notificationId) {
@@ -179,16 +176,54 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    Long                     threadId            = SignalDatabase.threads().getThreadIdFor(recipientId);
-    Optional<ConversationId> focusedThread       = AppDependencies.getMessageNotifier().getVisibleThread();
-    Long                     focusedThreadId     = focusedThread.map(ConversationId::getThreadId).orElse(null);
-    Long                     focusedGroupStoryId = focusedThread.map(ConversationId::getGroupStoryId).orElse(null);
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipientId);
 
-    if (Objects.equals(threadId, focusedThreadId) && focusedGroupStoryId == null) {
+    if (isThread(AppDependencies.getMessageNotifier().getVisibleThread().orElse(null), threadId)) {
       Log.d(TAG, "isCancellable: user entered full screen thread.");
       return true;
     }
 
-    return !BubbleUtil.canBubble(context, recipientId, threadId);
+    boolean showingAsBubble = (notification.flags & Notification.FLAG_BUBBLE) != 0;
+    boolean hasActiveBubble = AppDependencies.getMessageNotifier().getActiveBubbleThreads().stream().anyMatch(bubbleThread -> isThread(bubbleThread, threadId));
+
+    if (showingAsBubble || hasActiveBubble) {
+      Log.d(TAG, "isCancellable: bubble is active (flag: " + showingAsBubble + ", opened: " + hasActiveBubble + "), suppressing instead.");
+      suppressNotification(context, notificationId, notification);
+      return false;
+    }
+
+    return true;
+  }
+
+  private static boolean isThread(@Nullable ConversationId conversationId, @Nullable Long threadId) {
+    return conversationId != null && conversationId.getGroupStoryId() == null && Objects.equals(threadId, conversationId.getThreadId());
+  }
+
+  /**
+   * Re-posts the notification with its shade entry suppressed, which keeps the bubble it backs.
+   */
+  @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
+  private static void suppressNotification(@NonNull Context context, int notificationId, @NonNull Notification notification) {
+    Notification.BubbleMetadata bubbleMetadata = notification.getBubbleMetadata();
+
+    if (bubbleMetadata == null || bubbleMetadata.isNotificationSuppressed() || bubbleMetadata.getIntent() == null) {
+      return;
+    }
+
+    Notification.BubbleMetadata suppressedMetadata = new Notification.BubbleMetadata.Builder(bubbleMetadata.getIntent(), bubbleMetadata.getIcon())
+                                                                                     .setDesiredHeight(bubbleMetadata.getDesiredHeight())
+                                                                                     .setSuppressNotification(true)
+                                                                                     .build();
+
+    Notification suppressed = Notification.Builder.recoverBuilder(context, notification)
+                                                  .setBubbleMetadata(suppressedMetadata)
+                                                  .setOnlyAlertOnce(true)
+                                                  .build();
+
+    try {
+      ServiceUtil.getNotificationManager(context).notify(notificationId, suppressed);
+    } catch (SecurityException e) {
+      Log.w(TAG, "Unable to suppress bubble notification", e);
+    }
   }
 }

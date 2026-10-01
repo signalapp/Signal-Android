@@ -15,7 +15,9 @@ data class ArchiveRestoreSelectionState(
   /** Whether the account already has SVR/PIN data on the server. Determines whether skipping restore leads to PIN entry or PIN creation. */
   val storageCapable: Boolean = false,
   /** Whether the skip is underway. The last of the work it does is a network call, so the skip card shows a spinner until the flow moves on. */
-  val isSkipping: Boolean = false
+  val isSkipping: Boolean = false,
+  /** Whether the account has no phone number, and therefore no PIN. Such an account never goes to PIN entry or PIN creation. */
+  val isPhoneNumberlessAccount: Boolean = false
 ) {
-  override fun toString(): String = "ArchiveRestoreSelectionState(restoreOptions=$restoreOptions, showSkipWarningDialog=$showSkipWarningDialog, restoreMethodToken=${restoreMethodToken?.censor()}, storageCapable=$storageCapable, isSkipping=$isSkipping)"
+  override fun toString(): String = "ArchiveRestoreSelectionState(restoreOptions=$restoreOptions, showSkipWarningDialog=$showSkipWarningDialog, restoreMethodToken=${restoreMethodToken?.censor()}, storageCapable=$storageCapable, isSkipping=$isSkipping, isPhoneNumberlessAccount=$isPhoneNumberlessAccount)"
 }

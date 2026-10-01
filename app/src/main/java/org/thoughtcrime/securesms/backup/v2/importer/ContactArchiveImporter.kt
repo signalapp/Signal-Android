@@ -64,6 +64,8 @@ object ContactArchiveImporter {
       RecipientTable.NOTE to contact.note,
       RecipientTable.NICKNAME_GIVEN_NAME to contact.nickname?.given,
       RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family,
+      RecipientTable.SHARED_GIVEN_NAME to contact.sharedName?.given,
+      RecipientTable.SHARED_FAMILY_NAME to contact.sharedName?.family,
       RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
       RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
       RecipientTable.SYSTEM_NICKNAME to contact.systemNickname,

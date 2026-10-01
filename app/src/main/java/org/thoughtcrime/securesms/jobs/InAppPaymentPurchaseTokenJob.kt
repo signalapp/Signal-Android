@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
@@ -113,7 +114,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
     info("Attempting to link purchase token for purchase")
     info("$purchase")
 
-    val response = AppDependencies.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
+    val response = SignalNetwork.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
       inAppPayment.subscriberId!!,
       purchase.purchaseToken,
       InAppPaymentSubscriberRecord.Type.BACKUP.lock

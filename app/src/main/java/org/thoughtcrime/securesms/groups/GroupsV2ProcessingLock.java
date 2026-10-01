@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.groups.GroupChangeBusyException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.SignalDatabase;

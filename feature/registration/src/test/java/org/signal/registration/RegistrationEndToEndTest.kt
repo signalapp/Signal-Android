@@ -67,6 +67,7 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
+import org.signal.network.api.RegistrationApiV2.MfaFailureResponse
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegistrationLockResponse
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -84,9 +85,11 @@ import org.signal.registration.fakes.FakeStorageController
 import org.signal.registration.fakes.SystemOutLogger
 import org.signal.registration.proto.SvrCredential
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.signal.registration.screens.signalloginpayment.PaymentAvailability
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 import org.signal.registration.test.TestTags
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 import java.time.Duration
 import java.util.UUID
 import kotlin.time.Duration.Companion.days
@@ -588,6 +591,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one from the restored backup" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -640,6 +644,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
     assert(committed.pin == PIN) { "Expected the pin from the restored backup but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -670,8 +675,10 @@ class RegistrationEndToEndTest {
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
     assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
 
-    // The re-registration flag is what tells the app to reclaim the username we just released, and the flow-finished
-    // hook is where it enqueues the job that does it. See AppRegistrationStorageController.
+    // The re-registration flag is what tells the app that this is an established account rather than someone new to
+    // Signal, which is what suppresses the get-started onboarding megaphone and drives the reclaim of the username we
+    // just released. The flow-finished hook is where it enqueues the job that does the reclaim.
+    // See AppRegistrationStorageController.
     assert(storageController.registrationFlowFinishedCount == 1) { "Expected the flow-finished hook to fire exactly once but fired ${storageController.registrationFlowFinishedCount} times" }
   }
 
@@ -807,6 +814,7 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
   }
 
   @Test
@@ -954,6 +962,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one from the restored backup" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -986,6 +995,9 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountEntropyPool == aep.value) { "Expected the committed AEP to be the one the user entered" }
     assert(committed.pin == PIN) { "Expected the pin from the restored backup but was ${committed.pin}" }
+
+    // A COMPLETED decision is what tells the app the user brought their data with them, which is what suppresses the
+    // get-started onboarding megaphone. See AppRegistrationStorageController.setRestoreDecision.
     assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
@@ -1474,6 +1486,7 @@ class RegistrationEndToEndTest {
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 
   @Test
@@ -1537,6 +1550,75 @@ class RegistrationEndToEndTest {
     assert(storageController.restoreDecision == RestoreDecision.SKIPPED) { "Expected SKIPPED restore decision but was ${storageController.restoreDecision}" }
   }
 
+  @Test
+  fun `quick restore from a numberless old device registers by aci and completes with a remote backup`() {
+    enablePhoneNumberlessAccounts()
+
+    val aep = AccountEntropyPool.generate()
+    val oldDeviceAci = ACI.from(UUID.randomUUID())
+
+    // The old device has no phone number, so it sends no e164 and no PNI identity key
+    networkController.onStartProvisioning = {
+      flowOf(
+        ProvisioningEvent.QrCodeReady("https://signal.test/qr"),
+        ProvisioningEvent.MessageReceived(networkController.provisioningMessage(aep = aep, e164 = null, aci = oldDeviceAci))
+      )
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startQuickRestore()
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    startRemoteRestore()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val request = networkController.lastRegisterAccountRequest
+    assert(request?.e164 == null) { "Expected no e164 in the register request but was ${request?.e164}" }
+    assert(request?.aci == oldDeviceAci) { "Expected to register by the provisioned aci $oldDeviceAci but was ${request?.aci}" }
+    assert(request?.recoveryPassword != null) { "Expected a recovery password derived from the provisioned aep" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == null) { "Expected an account with no phone number but was ${committed.accountData?.e164}" }
+    assert(committed.accountEntropyPool == aep.value) { "Expected the committed AEP to be the provisioned one" }
+    assert(committed.pin.isEmpty()) { "Expected no pin for a numberless account but was ${committed.pin}" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `quick restore from a numberless old device can skip restoring and complete registration without creating a pin`() {
+    enablePhoneNumberlessAccounts()
+
+    val oldDeviceAci = ACI.from(UUID.randomUUID())
+
+    networkController.onStartProvisioning = {
+      flowOf(
+        ProvisioningEvent.QrCodeReady("https://signal.test/qr"),
+        ProvisioningEvent.MessageReceived(networkController.provisioningMessage(aep = AccountEntropyPool.generate(), e164 = null, tier = null, aci = oldDeviceAci))
+      )
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startQuickRestore()
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == null) { "Expected an account with no phone number but was ${committed.accountData?.e164}" }
+    assert(committed.accountData?.pni == null) { "Expected no pni for a numberless account but was ${committed.accountData?.pni}" }
+    assert(storageController.restoreDecision == RestoreDecision.SKIPPED) { "Expected SKIPPED restore decision but was ${storageController.restoreDecision}" }
+  }
+
   // -- Phone-numberless registration (Signal Login)
 
   @Test
@@ -1576,6 +1658,84 @@ class RegistrationEndToEndTest {
     assert(request.pniPreKeys == null) { "An account with no phone number has no PNI, so no PNI key material should be sent" }
     assert(networkController.lastSetPinRequest == null) { "Should not have backed up a PIN for an account with no phone number" }
     assert(purchaseApi.consumedTokens == listOf(FakeOneTimePurchaseApi.PURCHASE_TOKEN)) { "Expected the purchase to be consumed once but was ${purchaseApi.consumedTokens}" }
+  }
+
+  @Test
+  fun `registering without a phone number on a device already registered with one commits account data carrying no pni`() {
+    enableSignalLoginRegistration()
+    storageController.preExistingRegistrationData = preExistingRegistrationData(E164)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    val login = registeredSignalLogin()
+
+    recordSignalLoginManually()
+    enterSignalLogin(login)
+    skipUsername()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+
+    val accountData = committed!!.accountData
+    assert(accountData != null) { "Expected account data to be committed" }
+    assert(accountData!!.aci == login.aci.toString()) { "Expected committed ACI ${login.aci} but was ${accountData.aci}" }
+
+    // The device still holds the previous account's E164 and PNI. None of it may leak into the committed data, which is
+    // what the app applies to permanent storage -- a PNI here with no matching key material is unusable.
+    assert(accountData.e164 == null) { "Expected no committed e164 but was ${accountData.e164}" }
+    assert(accountData.pni == null) { "Expected no committed PNI but was ${accountData.pni}" }
+    assert(accountData.pniIdentityKeyPair.size == 0) { "Expected no committed PNI identity key but was ${accountData.pniIdentityKeyPair.size} bytes" }
+    assert(accountData.pniSignedPreKey.size == 0) { "Expected no committed PNI signed pre-key but was ${accountData.pniSignedPreKey.size} bytes" }
+    assert(accountData.pniLastResortKyberPreKey.size == 0) { "Expected no committed PNI last-resort kyber pre-key but was ${accountData.pniLastResortKyberPreKey.size} bytes" }
+    assert(accountData.pniRegistrationId == 0) { "Expected no committed PNI registration id but was ${accountData.pniRegistrationId}" }
+
+    val request = networkController.lastRegisterAccountRequest
+    assert(request != null) { "Expected a registration attempt" }
+    assert(request!!.e164 == null) { "Expected the previous number to be left behind but was ${request.e164}" }
+    assert(request.pniPreKeys == null) { "An account with no phone number has no PNI, so no PNI key material should be sent" }
+  }
+
+  @Test
+  fun `registering a new signal login on a device already registered to another account commits a different aci`() {
+    enableSignalLoginRegistration()
+    val preExisting = preExistingRegistrationData(E164)
+    storageController.preExistingRegistrationData = preExisting
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    val login = registeredSignalLogin()
+
+    recordSignalLoginManually()
+    enterSignalLogin(login)
+
+    waitForTag(TestTags.ADD_USERNAME_FIELD)
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_FIELD).performTextInput(USERNAME)
+    waitForEnabledTag(TestTags.ADD_USERNAME_NEXT_BUTTON)
+    composeTestRule.onNodeWithTag(TestTags.ADD_USERNAME_NEXT_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    // The app detects the switch to a new account by comparing the committed ACI against the device's, and uses it to
+    // re-run the post-registration steps (like setting a profile name) that the previous account already completed.
+    val accountData = storageController.committedData?.accountData
+    assert(accountData != null) { "Expected account data to be committed" }
+    assert(accountData!!.aci == login.aci.toString()) { "Expected committed ACI ${login.aci} but was ${accountData.aci}" }
+    assert(accountData.aci != preExisting.aci.toString()) { "Expected a new account, but the committed ACI is the one already on the device" }
+    assert(!accountData.reRegistration) { "Expected a brand new account to not be flagged as a re-registration" }
+    assert(networkController.lastRegisterAccountRequest?.aci == null) { "Expected the device's existing ACI to not be sent but was ${networkController.lastRegisterAccountRequest?.aci}" }
+    assert(storageController.savedUsername == "$USERNAME.42") { "Expected the confirmed username to be saved but was ${storageController.savedUsername}" }
   }
 
   @Test
@@ -1641,6 +1801,39 @@ class RegistrationEndToEndTest {
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_MANUALLY_BUTTON).performClick()
 
     waitForTag(TestTags.SIGNAL_LOGIN_MANUAL_SAVE_SCREEN)
+  }
+
+  @Test
+  fun `the error confirming a login does not come back when the user returns from recording the login by hand`() {
+    enableSignalLoginRegistration()
+    stubPasswordManager()
+    coEvery { SignalCredentialManager.getCredential(any(), any()) } returns null
+
+    launchRegistrationFlow()
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON).performClick()
+
+    val context = ApplicationProvider.getApplicationContext<Application>()
+    val warning = context.getString(R.string.SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed)
+    waitForText(warning)
+
+    // Recording it by hand is taken straight from the warning rather than by dismissing it first
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON).performClick()
+    waitForTag(TestTags.SIGNAL_LOGIN_MANUAL_SAVE_SCREEN)
+
+    pressSystemBack()
+
+    // Nothing failed on the way back, so the user is not warned all over again
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    assert(composeTestRule.onAllNodesWithText(warning).fetchSemanticsNodes().isEmpty()) {
+      "Expected the warning to be gone after coming back from recording the login by hand"
+    }
   }
 
   @Test
@@ -1796,6 +1989,72 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `a pending restore turns the numberless button into a direct jump to signal login entry`() {
+    enableSignalLoginRegistration()
+    val login = signalLoginFor(reregistration = true)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+
+    // The user already said they have an account to restore, so the purchase screen is skipped entirely
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON).performClick()
+    waitForTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ENTRY_SCREEN)
+    assert(composeTestRule.onAllNodesWithTag(TestTags.SIGNAL_LOGIN_PAYMENT_SCREEN).fetchSemanticsNodes().isEmpty()) {
+      "Expected the Signal Login payment screen to be skipped for a user with a pending restore"
+    }
+
+    enterSignalLogin(login)
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(purchaseApi.launchCount == 0) { "A user with an existing login should never hit Google Play" }
+    assert(networkController.lastCreateSessionE164 == null) { "Expected no verification session for a numberless login" }
+    assert(networkController.lastRegisterAccountRequest?.aci == login.aci) { "Expected the entered login to be reclaimed but was ${networkController.lastRegisterAccountRequest}" }
+  }
+
+  @Test
+  fun `skipping the restore still turns the numberless button into a direct jump to signal login entry`() {
+    enableSignalLoginRegistration()
+    val login = signalLoginFor(reregistration = true)
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    // Declining the restore doesn't change the fact that the user told us they have an account to restore
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_REGISTER_WITHOUT_NUMBER_BUTTON).performClick()
+    waitForTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ENTRY_SCREEN)
+    assert(composeTestRule.onAllNodesWithTag(TestTags.SIGNAL_LOGIN_PAYMENT_SCREEN).fetchSemanticsNodes().isEmpty()) {
+      "Expected the Signal Login payment screen to be skipped for a user who came through the restore flow"
+    }
+
+    enterSignalLogin(login)
+
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_NONE)
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(purchaseApi.launchCount == 0) { "A user with an existing login should never hit Google Play" }
+    assert(networkController.lastCreateSessionE164 == null) { "Expected no verification session for a numberless login" }
+    assert(networkController.lastRegisterAccountRequest?.aci == login.aci) { "Expected the entered login to be reclaimed but was ${networkController.lastRegisterAccountRequest}" }
+  }
+
+  @Test
   fun `typing an account id into the phone number field goes straight to signal login entry with it filled in`() {
     enableSignalLoginRegistration()
     val login = signalLoginFor(reregistration = false)
@@ -1861,13 +2120,15 @@ class RegistrationEndToEndTest {
     useExistingSignalLogin()
     enterSignalLogin(login)
 
-    // The service wants a second factor, so the user picks one and enters a code from it
-    waitForTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION)
-    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION).performClick()
-    waitForTag(TestTags.TOTP_ENTRY_DIGIT_0)
-    composeTestRule.onNodeWithTag(TestTags.TOTP_ENTRY_DIGIT_0).performTextInput(totp)
+    // The authenticator app is the only second factor available, so the user lands straight on code entry
+    waitForTag(CodeEntryFieldTestTags.ROOT)
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput(totp)
 
     waitFor("registration to complete") { registrationComplete }
+
+    assert(composeTestRule.onAllNodesWithTag(TestTags.TWO_FACTOR_SELECTION_AUTHENTICATOR_APP_OPTION).fetchSemanticsNodes().isEmpty()) {
+      "There was only one two-factor method, so the selection screen should have been skipped"
+    }
 
     assert(networkController.lastRegisterAccountRequest?.totp == totp.toInt()) { "Expected the entered code to be sent with the login but was ${networkController.lastRegisterAccountRequest}" }
     assert(storageController.committedData?.accountData?.e164 == null) { "Expected an account with no phone number" }
@@ -1928,7 +2189,24 @@ class RegistrationEndToEndTest {
    * Rebuilds the repository with phone-numberless registration turned on, which is what puts the Signal Login screens
    * in front of the user at all.
    */
-  private fun enableSignalLoginRegistration(isGooglePlayBillingAvailable: Boolean = true) {
+  /** Rebuilds the repository with numberless accounts supported, the precondition for accepting a numberless transfer. */
+  private fun enablePhoneNumberlessAccounts() {
+    repository = RegistrationRepository(
+      context = ApplicationProvider.getApplicationContext<Application>(),
+      networkController = networkController,
+      storageController = storageController,
+      isLinkAndSyncAvailable = false,
+      isPhoneNumberlessRegistrationAvailable = true,
+      isGooglePlayBillingAvailable = true,
+      signalLoginPurchaseApi = purchaseApi,
+      googlePlayServicesStatus = { PaymentAvailability.Available }
+    )
+  }
+
+  private fun enableSignalLoginRegistration(
+    isGooglePlayBillingAvailable: Boolean = true,
+    googlePlayServicesStatus: PaymentAvailability = PaymentAvailability.Available
+  ) {
     repository = RegistrationRepository(
       context = ApplicationProvider.getApplicationContext<Application>(),
       networkController = networkController,
@@ -1936,7 +2214,8 @@ class RegistrationEndToEndTest {
       isLinkAndSyncAvailable = false,
       isPhoneNumberlessRegistrationAvailable = true,
       isGooglePlayBillingAvailable = isGooglePlayBillingAvailable,
-      signalLoginPurchaseApi = purchaseApi
+      signalLoginPurchaseApi = purchaseApi,
+      googlePlayServicesStatus = { googlePlayServicesStatus }
     )
   }
 
@@ -1986,7 +2265,7 @@ class RegistrationEndToEndTest {
           RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect("no such login"))
         }
         requiredTotp != null && request.totp != requiredTotp -> {
-          RequestResult.NonSuccess(RegisterAccountError.TotpMissingOrIncorrect)
+          RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = true)))
         }
         registrationLocked && request.registrationLock != masterKey.deriveRegistrationLock() -> {
           RequestResult.NonSuccess(
@@ -2182,8 +2461,8 @@ class RegistrationEndToEndTest {
 
   /** From the verification code screen: enters all six digits of [code], which submits automatically. */
   private fun submitVerificationCode(code: String) {
-    waitForTag(TestTags.VERIFICATION_CODE_DIGIT_0)
-    composeTestRule.onNodeWithTag(TestTags.VERIFICATION_CODE_DIGIT_0).performTextInput(code)
+    waitForTag(CodeEntryFieldTestTags.ROOT)
+    composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).performTextInput(code)
   }
 
   /** From the PIN creation screen: enters [pin], then re-enters it on the confirmation step. */

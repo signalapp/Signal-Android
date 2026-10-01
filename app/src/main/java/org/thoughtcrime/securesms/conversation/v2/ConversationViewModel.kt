@@ -97,7 +97,6 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -320,7 +319,7 @@ class ConversationViewModel(
         messageRequestState = messageRequestRepository.getMessageRequestState(recipient, threadId),
         groupRecord = groupRecord.orNull(),
         isClientExpired = SignalStore.misc.isClientDeprecated,
-        isUnauthorized = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
+        isUnauthorized = SignalStore.account.isUnauthorizedReceived,
         threadContainsSms = !recipient.isRegistered && !recipient.isPushGroup && !recipient.isSelf && messageRequestRepository.threadContainsSms(threadId)
       )
     }.doOnNext {
@@ -854,7 +853,7 @@ class ConversationViewModel(
     data object Cancelled : PlaintextExportState
   }
 
-  /** A media keyboard is absent by design: MediaKeyboardScaffold registers its own back handler. */
+  /** A media keyboard is absent by design: KeyboardSheetScaffold registers its own back handler. */
   data class BackPressedState(
     val isReactionDelegateShowing: Boolean = false,
     val isSearchRequested: Boolean = false,

@@ -35,7 +35,7 @@ class PinCreationViewModel(
   private val repository: RegistrationRepository,
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<PinCreationScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinCreationScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinCreationViewModel::class)

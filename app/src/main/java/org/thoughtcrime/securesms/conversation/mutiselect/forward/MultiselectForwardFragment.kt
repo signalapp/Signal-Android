@@ -15,10 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -26,16 +22,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -135,9 +127,17 @@ class MultiselectForwardFragment :
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
   private var handler: Handler? = null
 
-  /** Height of the bottom bar's content, excluding any window inset padding it applies. */
+  /** Height of the bottom bar's content, excluding any window inset padding it applies. Bottom sheet layout only. */
   private var bottomBarHeightPx by mutableIntStateOf(0)
   private var isBottomBarVisible by mutableStateOf(false)
+
+  /**
+   * The bottom bar, for the bottom sheet layout only. A sheet's content is peeked and scrollable, so the bar has to
+   * live in the dialog's own container to stay pinned to the bottom of the window. Every other layout renders it in
+   * [MultiselectForwardScreen], where it resolves its window insets from the same composition as the rest of the
+   * screen rather than relying on inset dispatch reaching a view added to someone else's container.
+   */
+  private var sheetBottomBar: ComposeView? = null
 
   private val args: MultiselectForwardFragmentArgs by lazy {
     requireArguments().getParcelableCompat(ARGS, MultiselectForwardFragmentArgs::class.java)!!
@@ -153,6 +153,8 @@ class MultiselectForwardFragment :
 
   @Composable
   override fun FragmentContent() {
+    val bottomBarState by viewModel.bottomBarState.collectAsStateWithLifecycle()
+
     CompositionLocalProvider(LocalFragmentManager provides childFragmentManager) {
       MultiselectForwardScreen(
         isSplitPane = !args.isWrappedInBottomSheet && LocalResources.current.rememberIsSplitPane(),
@@ -160,6 +162,9 @@ class MultiselectForwardFragment :
         contactSearchViewModel = contactSearchViewModel,
         callback = callback,
         mapStateToConfiguration = this@MultiselectForwardFragment::getConfiguration,
+        bottomBarState = bottomBarState,
+        isBottomBarVisible = isBottomBarVisible,
+        onBottomBarEvent = this@MultiselectForwardFragment::onBottomBarEvent,
         contactSearchCallbacks = remember { SearchCallbacks() },
         additionalEntries = findListener<SearchConfigurationProvider>()?.getAdditionalEntries() ?: persistentHashMapOf(),
         bottomContentPadding = with(LocalDensity.current) { (if (isBottomBarVisible) bottomBarHeightPx else 0).toDp() }
@@ -175,54 +180,11 @@ class MultiselectForwardFragment :
     callback = requireListener()
     disposables.bindTo(viewLifecycleOwner.lifecycle)
 
-    val container = callback.getContainer()
-    val title: TextView? = container.findViewById(R.id.title)
-    val bottomBar = ComposeView(requireContext())
-    bottomBar.layoutParams = when (container) {
-      is CoordinatorLayout -> CoordinatorLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT).apply { gravity = Gravity.BOTTOM }
-      is FrameLayout -> FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, Gravity.BOTTOM)
-      else -> ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-    }
-    bottomBar.setContent {
-      val state by viewModel.bottomBarState.collectAsStateWithLifecycle()
-      val imeController = LocalSoftwareKeyboardController.current
-      val isSplitPane = !args.isWrappedInBottomSheet && LocalResources.current.rememberIsSplitPane()
-
-      SignalTheme {
-        Surface(
-          color = remember { Color(callback.getDialogBackgroundColor()) }
-        ) {
-          MultiselectForwardBottomBar(
-            state = state,
-            events = {
-              when (it) {
-                is MultiselectForwardBottomBarEvent.AddMessageUpdate -> {
-                  viewModel.setMessage(it.message)
-                }
-                MultiselectForwardBottomBarEvent.SendClick -> {
-                  imeController?.hide()
-                  onSend()
-                }
-              }
-            },
-            isSplitPane = isSplitPane,
-            modifier = Modifier
-              .fillMaxWidth()
-              .imePadding()
-              .navigationBarsPadding()
-              .onSizeChanged { bottomBarHeightPx = it.height }
-          )
-        }
-      }
-    }
-
     if (args.isWrappedInBottomSheet) {
-      title?.setText(args.title)
+      val container = callback.getContainer()
+      container.findViewById<TextView>(R.id.title)?.setText(args.title)
+      sheetBottomBar = createSheetBottomBar(container).also { container.addView(it) }
     }
-
-    bottomBar.visible = false
-
-    container.addView(bottomBar)
 
     viewLifecycleOwner.lifecycleScope.launch {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -245,17 +207,18 @@ class MultiselectForwardFragment :
 
           viewModel.setAddMessageVisible(!args.forceDisableAddMessage && contactSelection.any { key -> !key.requireRecipientSearchKey().isStory } && args.multiShareArgs.isNotEmpty())
 
-          if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
-            bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
-            bottomBar.visible = true
-            isBottomBarVisible = true
-            if (args.forceDisableAddMessage) {
-              ViewUtil.hideKeyboard(requireContext(), bottomBar)
+          val showBottomBar = contactSelection.isNotEmpty()
+          if (showBottomBar != isBottomBarVisible) {
+            isBottomBarVisible = showBottomBar
+
+            sheetBottomBar?.apply {
+              animation = AnimationUtils.loadAnimation(context, if (showBottomBar) R.anim.slide_fade_from_bottom else R.anim.slide_fade_to_bottom)
+              visible = showBottomBar
             }
-          } else if (contactSelection.isEmpty() && bottomBar.isVisible) {
-            bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_to_bottom)
-            bottomBar.visible = false
-            isBottomBarVisible = false
+
+            if (showBottomBar && args.forceDisableAddMessage) {
+              ViewUtil.hideKeyboard(requireContext(), view)
+            }
           }
         }
       }
@@ -342,8 +305,43 @@ class MultiselectForwardFragment :
   }
 
   override fun onDestroyView() {
+    sheetBottomBar?.let { (it.parent as? ViewGroup)?.removeView(it) }
+    sheetBottomBar = null
     dismissibleDialog?.dismissNow()
     super.onDestroyView()
+  }
+
+  private fun createSheetBottomBar(container: ViewGroup): ComposeView {
+    return ComposeView(requireContext()).apply {
+      layoutParams = when (container) {
+        is CoordinatorLayout -> CoordinatorLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT).apply { gravity = Gravity.BOTTOM }
+        is FrameLayout -> FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT, Gravity.BOTTOM)
+        else -> ViewGroup.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+      }
+
+      setContent {
+        val state by viewModel.bottomBarState.collectAsStateWithLifecycle()
+
+        SignalTheme {
+          MultiselectForwardBottomBarSurface(
+            isSplitPane = false,
+            state = state,
+            backgroundColor = remember { Color(callback.getDialogBackgroundColor()) },
+            events = this@MultiselectForwardFragment::onBottomBarEvent,
+            onContentHeightChanged = { bottomBarHeightPx = it }
+          )
+        }
+      }
+
+      visible = false
+    }
+  }
+
+  private fun onBottomBarEvent(event: MultiselectForwardBottomBarEvent) {
+    when (event) {
+      is MultiselectForwardBottomBarEvent.AddMessageUpdate -> viewModel.setMessage(event.message)
+      MultiselectForwardBottomBarEvent.SendClick -> onSend()
+    }
   }
 
   private fun displayFirstSendConfirmation() {
@@ -366,6 +364,7 @@ class MultiselectForwardFragment :
   }
 
   private fun onSend() {
+    ViewUtil.hideKeyboard(requireContext(), requireView())
     viewModel.setSendEnabled(false)
     viewModel.send(contactSearchViewModel.getSelectedContacts())
   }
@@ -578,8 +577,14 @@ class MultiselectForwardFragment :
     fun exitFlow()
     fun onSearchInputFocused()
     fun setResult(bundle: Bundle)
-    fun getContainer(): ViewGroup
     fun getDialogBackgroundColor(): Int
+
+    /**
+     * The container the bottom bar is added to. Only called when the fragment is wrapped in a bottom sheet -- every
+     * other layout renders the bar inside the fragment's own composition.
+     */
+    fun getContainer(): ViewGroup = error("Only bottom sheet hosts provide a container.")
+
     fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements? = null
 
     /**

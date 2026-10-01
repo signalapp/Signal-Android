@@ -125,7 +125,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
     SenderKeyDistributionMessage message       = messageSender.getOrCreateNewGroupSession(distributionId);
     List<SealedSenderAccess>     access        = Collections.singletonList(SealedSenderAccessUtil.getSealedSenderAccessFor(targetRecipient, createGroupSendFullToken));
 
-    SendMessageResult result = messageSender.sendSenderKeyDistributionMessage(distributionId, address, access, message, Optional.ofNullable(groupId).map(GroupId::getDecodedId), false, false).get(0);
+    SendMessageResult result = messageSender.sendSenderKeyDistributionMessage(distributionId, address, access, message, Optional.ofNullable(groupId).map(GroupId::getDecodedId), false, false, null).get(0);
 
     if (result.isSuccess()) {
       List<SignalProtocolAddress> addresses = result.getSuccess()

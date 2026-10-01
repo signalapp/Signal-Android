@@ -485,7 +485,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(ManagePendingAndRequestingMembersActivity.newIntent(requireContext(), action.groupId))
       }
       is ConversationSettingsAction.NavigateToPermissions -> {
-        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(action.groupId))
+        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToGroupPermissionsFragment(action.groupId))
       }
       is ConversationSettingsAction.ShowLeaveGroupDialog -> {
         LeaveGroupDialog.handleLeavePushGroup(requireActivity(), action.groupId.requirePush(), null)

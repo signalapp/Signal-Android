@@ -21,6 +21,8 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.signal.core.util.Util
+import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -47,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDo
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -97,7 +100,7 @@ object InAppPaymentsRepository {
    * This operation will only be performed if we find a latest payment for the given subscriber id in the END state without cancelation data.
    */
   fun updateInAppPaymentWithCancelation(activeSubscription: ActiveSubscription, subscriberType: InAppPaymentSubscriberRecord.Type) {
-    if (activeSubscription.isCanceled || (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP && activeSubscription.willCancelAtPeriodEnd()) || activeSubscription.isFailedPayment) {
+    if (activeSubscription.isCanceled || (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP && activeSubscription.willCancelAtPeriodEnd) || activeSubscription.isFailedPayment) {
       writeCancelation(subscriberType, activeSubscription.chargeFailure)
     }
   }
@@ -144,7 +147,7 @@ object InAppPaymentsRepository {
    * This operation will only be performed if we find a latest payment for the given subscriber id in the END state with cancelation data
    */
   fun clearCancelation(activeSubscription: ActiveSubscription) {
-    if (!activeSubscription.isCanceled && !activeSubscription.willCancelAtPeriodEnd()) {
+    if (!activeSubscription.isCanceled && !activeSubscription.willCancelAtPeriodEnd) {
       val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return
 
       val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return
@@ -531,7 +534,7 @@ object InAppPaymentsRepository {
     }
 
     if (latestSubscriber != null) {
-      val remoteState = AppDependencies.donationsService.getSubscription(latestSubscriber.subscriberId)
+      val remoteState = SignalNetwork.donationsService.getSubscription(latestSubscriber.subscriberId)
       val result = remoteState.result.getOrNull() ?: return localState
 
       return result.activeSubscription?.isCanceled ?: localState
@@ -588,6 +591,35 @@ object InAppPaymentsRepository {
   }
 
   /**
+   * Whether the service has successfully validated the given Google Play purchase.
+   *
+   * [BillingPurchaseResult.Success.isAcknowledged] is proof when true, but we read it out of the Play Store's local
+   * cache, which can lag the service by twenty minutes or more (AND-9874). A redemption against the subscriber holding
+   * this token is equivalent proof, as it cannot complete unless the service validated the token first.
+   *
+   * A token match alone is not proof: we write it when the subscriber id is created, before the token ever reaches the
+   * service.
+   */
+  @WorkerThread
+  fun isPurchaseValidatedByService(purchase: BillingPurchaseResult): Boolean {
+    if (purchase !is BillingPurchaseResult.Success || purchase.purchaseState != BillingPurchaseState.PURCHASED) {
+      return false
+    }
+
+    if (purchase.isAcknowledged) {
+      return true
+    }
+
+    val subscriber = getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) ?: return false
+    if (subscriber.iapSubscriptionId?.purchaseToken != purchase.purchaseToken) {
+      return false
+    }
+
+    val latestPayment = SignalDatabase.inAppPayments.getLatestBySubscriberId(subscriber.subscriberId) ?: return false
+    return latestPayment.state == InAppPaymentTable.State.END && latestPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
+  }
+
+  /**
    * Gets a non-null subscriber for the given type, or throws.
    */
   @JvmStatic
@@ -630,11 +662,13 @@ object InAppPaymentsRepository {
       emitter.onNext(Optional.ofNullable(latestInAppPayment))
     }.switchMap { inAppPaymentOptional ->
       val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
+      val paymentSourceType = inAppPayment.data.paymentMethodType.toPaymentSourceType()
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
         InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION, InAppPaymentTable.State.REQUIRES_ACTION -> {
           DonationRedemptionJobStatus.PendingExternalVerification(
+            paymentSourceType = paymentSourceType,
             pendingOneTimeDonation = inAppPayment.toPendingOneTimeDonation(),
             nonVerifiedMonthlyDonation = inAppPayment.toNonVerifiedMonthlyDonation()
           )
@@ -642,11 +676,11 @@ object InAppPaymentsRepository {
 
         InAppPaymentTable.State.PENDING, InAppPaymentTable.State.TRANSACTING, InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED -> {
           if (inAppPayment.data.redemption?.keepAlive == true) {
-            DonationRedemptionJobStatus.PendingKeepAlive
+            DonationRedemptionJobStatus.PendingKeepAlive(paymentSourceType)
           } else if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
-            DonationRedemptionJobStatus.PendingReceiptRedemption
+            DonationRedemptionJobStatus.PendingReceiptRedemption(paymentSourceType)
           } else {
-            DonationRedemptionJobStatus.PendingReceiptRequest
+            DonationRedemptionJobStatus.PendingReceiptRequest(paymentSourceType)
           }
         }
 

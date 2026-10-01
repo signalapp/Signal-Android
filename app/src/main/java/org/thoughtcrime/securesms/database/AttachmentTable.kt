@@ -2293,7 +2293,7 @@ class AttachmentTable(
       DATA_SIZE to uploadResult.dataSize,
       DATA_HASH_END to dataHashEnd,
       UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp,
-      BLUR_HASH to uploadResult.blurHash,
+      BLUR_HASH to (uploadResult.blurHash ?: uploadResult.audioHash),
       ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
       ARCHIVE_CDN to null
     )
@@ -3207,7 +3207,7 @@ class AttachmentTable(
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.quoteTargetContentType)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
 
         attachment.stickerLocator?.let { sticker ->
@@ -3271,7 +3271,7 @@ class AttachmentTable(
         put(HEIGHT, attachment.height)
         put(QUOTE, 1)
         put(QUOTE_TARGET_CONTENT_TYPE, attachment.contentType)
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
         put(FILE_NAME, attachment.fileName)
 
         attachment.stickerLocator?.let { sticker ->
@@ -3383,7 +3383,7 @@ class AttachmentTable(
         put(ARCHIVE_TRANSFER_STATE, if (attachment.archiveCdn != null) ArchiveTransferState.FINISHED.value else ArchiveTransferState.NONE.value)
         put(THUMBNAIL_RESTORE_STATE, if (attachment.archiveCdn != null) ThumbnailRestoreState.NEEDS_RESTORE.value else ThumbnailRestoreState.NONE.value)
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
-        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(BLUR_HASH, attachment.getVisualHashStringOrNull())
 
         if (plaintextHash != null) {
           put(DATA_HASH_START, plaintextHash)
@@ -4564,7 +4564,7 @@ class AttachmentTable(
         appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
         appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
         appendLine("Total upload count: $totalUploadCount")
@@ -4592,7 +4592,7 @@ class AttachmentTable(
         appendLine("Total unique data files: $totalUniqueDataFiles")
         appendLine("Total unique media names: $totalUniqueMediaNames")
         appendLine("Last snapshot full-size count: $lastSnapshotFullSizeCount")
-        appendLine("Last snapshot thumbnail count : $lastSnapshotFullSizeCount")
+        appendLine("Last snapshot thumbnail count : $lastSnapshotThumbnailCount")
         appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
 
         if (archiveStatusMediaNameCounts.isNotEmpty()) {

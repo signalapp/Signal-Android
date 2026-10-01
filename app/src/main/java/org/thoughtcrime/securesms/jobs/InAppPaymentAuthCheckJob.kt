@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.util.Environment
@@ -210,9 +211,9 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
     Log.i(TAG, "Setting default payment method...", true)
     val setPaymentMethodResponse = if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
-      AppDependencies.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
+      SignalNetwork.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
+      SignalNetwork.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
     }
 
     when (val result = checkResult(setPaymentMethodResponse)) {
@@ -233,7 +234,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       val updateOperation: LevelUpdateOperation = RecurringInAppPaymentRepository.getOrCreateLevelUpdateOperation(TAG, level)
       Log.d(TAG, "Attempting to set user subscription level to $level", true)
 
-      val updateLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
+      val updateLevelResponse = SignalNetwork.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         level,
         subscriber.currency!!.currencyCode,

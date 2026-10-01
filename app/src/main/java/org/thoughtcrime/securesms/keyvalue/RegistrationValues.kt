@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import android.content.Context
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
@@ -7,7 +8,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistratio
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 
-class RegistrationValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class RegistrationValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(RegistrationValues::class)
@@ -25,9 +26,27 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val RESTORING_ON_NEW_DEVICE = "registration.restoring_on_new_device"
     private const val IN_PROGRESS_DATA_BLOB_URI = "registration.in_progress_data_blob_uri"
 
+    private const val HAS_PROMPTED_PUSH_REGISTRATION = "registration.has_prompted_push_registration"
+
     @VisibleForTesting
     const val RESTORE_DECISION_STATE = "registration.restore_decision_state.2"
   }
+
+  init {
+    if (!store.containsKey(HAS_PROMPTED_PUSH_REGISTRATION)) {
+      migrateFromSharedPrefsV1(context)
+    }
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private fun migrateFromSharedPrefsV1(context: Context) {
+    Log.i(TAG, "[V1] Migrating registration values from shared prefs.")
+
+    putBoolean(HAS_PROMPTED_PUSH_REGISTRATION, LegacySharedPrefs.getBoolean(context, "pref_prompted_push_registration", false))
+  }
+
+  /** Whether we've already walked the user through push registration. */
+  var hasPromptedPushRegistration: Boolean by booleanValue(HAS_PROMPTED_PUSH_REGISTRATION, false)
 
   @Synchronized
   public override fun onFirstEverAppLaunch() {

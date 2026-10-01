@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Subscription
@@ -343,7 +344,7 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   private fun getActiveSubscription(inAppPayment: InAppPaymentTable.InAppPayment): ActiveSubscription {
-    val activeSubscriptionResponse = AppDependencies.donationsService.getSubscription(inAppPayment.subscriberId)
+    val activeSubscriptionResponse = SignalNetwork.donationsService.getSubscription(inAppPayment.subscriberId)
     return if (activeSubscriptionResponse.result.isPresent) {
       activeSubscriptionResponse.result.get()
     } else if (activeSubscriptionResponse.applicationError.isPresent) {
@@ -497,7 +498,7 @@ class InAppPaymentRecurringContextJob private constructor(
     requestContext: ReceiptCredentialRequestContext
   ) {
     info("Submitting receipt credential request")
-    val response: ServiceResponse<ReceiptCredentialResponse> = AppDependencies.donationsService.submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
+    val response: ServiceResponse<ReceiptCredentialResponse> = SignalNetwork.donationsService.submitReceiptCredentialRequestSync(inAppPayment.subscriberId!!, requestContext.request)
 
     if (response.applicationError.isPresent) {
       handleApplicationError(inAppPayment, response)

@@ -19,7 +19,7 @@ class StickerSearchRepository {
   @WorkerThread
   fun search(query: String): List<StickerRecord> {
     if (query.isEmpty()) {
-      return StickerRecordReader(stickerTables.getRecentlyUsedStickers(RECENT_LIMIT)).readAll()
+      return StickerRecordReader(stickerTables.getRecentlyUsedStickers(RECENT_LIMIT)).use { reader -> reader.asSequence().toList() }
     }
 
     val maybeEmojiQuery: List<StickerRecord> = findStickersForEmoji(query)
@@ -36,19 +36,9 @@ class StickerSearchRepository {
 
     return EmojiUtil.getAllRepresentations(searchEmoji)
       .filterNotNull()
-      .map { candidate -> StickerRecordReader(stickerTables.getStickersByEmoji(candidate)).readAll() }
+      .map { candidate ->
+        StickerRecordReader(stickerTables.getStickersByEmoji(candidate)).use { reader -> reader.asSequence().toList() }
+      }
       .flatten()
   }
-}
-
-private fun StickerRecordReader.readAll(): List<StickerRecord> {
-  val stickers: MutableList<StickerRecord> = mutableListOf()
-  use { reader ->
-    var record: StickerRecord? = reader.getNext()
-    while (record != null) {
-      stickers.add(record)
-      record = reader.getNext()
-    }
-  }
-  return stickers
 }

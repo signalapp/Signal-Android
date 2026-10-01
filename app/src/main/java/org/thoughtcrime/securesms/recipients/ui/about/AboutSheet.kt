@@ -121,6 +121,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         },
         profileSharing = recipient.isProfileSharing,
         systemContact = recipient.isSystemContact,
+        hasUsernameOrSharedName = recipient.hasUsernameOrSharedName,
         groupsInCommon = state.groupsInCommonCount,
         note = recipient.note ?: "",
         memberLabel = state.memberLabel,
@@ -188,6 +189,7 @@ private data class AboutModel(
   val formattedE164: String?,
   val profileSharing: Boolean,
   val systemContact: Boolean,
+  val hasUsernameOrSharedName: Boolean = false,
   val groupsInCommon: Int,
   val note: String,
   val memberLabel: MemberLabel? = null,
@@ -305,7 +307,7 @@ private fun Content(
           modifier = Modifier.align(alignment = Alignment.Start),
           onClick = onClickSignalConnections
         )
-      } else if (model.groupsInCommon == 0) {
+      } else if (model.groupsInCommon == 0 && !model.hasUsernameOrSharedName) {
         AboutRow(
           startIcon = ImageVector.vectorResource(id = R.drawable.symbol_chat_badge_24),
           text = stringResource(id = R.string.AboutSheet__pending_message_request),
@@ -513,6 +515,37 @@ private fun ContentPreviewDefault() {
           systemContact = true,
           groupsInCommon = 0,
           note = "GET ME SPIDERMAN BEFORE I BLOW A DANG GASKET"
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewUsernameOrSharedName() {
+  Previews.Preview {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          profileName = "Peter Parker",
+          about = null,
+          verified = false,
+          hasAvatar = false,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = false,
+          systemContact = false,
+          hasUsernameOrSharedName = true,
+          groupsInCommon = 0,
+          note = ""
         ),
         onClickSignalConnections = {},
         onAvatarClicked = {},

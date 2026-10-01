@@ -13,8 +13,10 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNotEmpty
 import assertk.assertions.isNotEqualTo
+import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
+import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
+import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
@@ -207,6 +210,32 @@ class AttachmentTableTest {
     assertThat(secondHighInfo.file).isEqualTo(highInfo.file)
     assertThat(standardInfo.file.exists()).isEqualTo(true)
     assertThat(highInfo.file.exists()).isEqualTo(true)
+  }
+
+  @Test
+  fun finalizeAttachmentAfterUpload_preservesAudioWaveForm() {
+    val blob = AppDependencies.blobs.forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
+    val attachment = createAttachment(1, blob, TransformProperties.empty(), contentType = MediaUtil.AUDIO_AAC)
+    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(-1L, listOf(attachment), emptyList()).values.first()
+
+    SignalDatabase.attachments.writeAudioHash(attachmentId, AudioWaveFormData(durationUs = 5_000_000, waveForm = byteArrayOf(1, 2, 3).toByteString()))
+
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, AttachmentTableTestUtil.createUploadResult(attachmentId))
+
+    val audioHash = SignalDatabase.attachments.getAttachment(attachmentId)!!.audioHash
+    assertThat(audioHash).isNotNull()
+    assertThat(audioHash!!.waveFormBytes.toList()).isEqualTo(listOf<Byte>(1, 2, 3))
+  }
+
+  @Test
+  fun finalizeAttachmentAfterUpload_writesBlurHashWhenPresent() {
+    val blob = AppDependencies.blobs.forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
+    val attachment = createAttachment(1, blob, TransformProperties.empty())
+    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(-1L, listOf(attachment), emptyList()).values.first()
+
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, AttachmentTableTestUtil.createUploadResult(attachmentId, blurHash = "LEHV6nWB2yk8pyo0adR*"))
+
+    assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.blurHash!!.hash).isEqualTo("LEHV6nWB2yk8pyo0adR*")
   }
 
   @Test

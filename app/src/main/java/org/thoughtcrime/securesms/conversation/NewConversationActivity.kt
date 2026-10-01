@@ -14,6 +14,12 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -49,6 +55,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
+import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
+import org.thoughtcrime.securesms.profiles.username.SetUpUsernameBanner
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
@@ -141,6 +149,8 @@ private fun NewConversationScreen(
       }
 
       override fun onInviteToSignal() = context.startActivity(AppSettingsActivity.invite(context))
+      override fun onSetUpUsername() = context.startActivity(EditProfileActivity.getIntentForUsernameEdit(context))
+      override fun onSetUpUsernameBannerDismissed() = viewModel.dismissSetUpUsernameBanner()
       override fun onRefresh() = viewModel.refresh()
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
       override fun onContactsListReset() = viewModel.clearShouldResetContactsList()
@@ -275,6 +285,8 @@ private interface NewConversationUiCallbacks :
   fun onRemoveConfirmed(recipient: Recipient)
   fun onBlockConfirmed(recipient: Recipient)
   fun onUserMessageDismissed(userMessage: UserMessage)
+  fun onSetUpUsername()
+  fun onSetUpUsernameBannerDismissed()
   fun onBackPressed()
 
   object Empty : NewConversationUiCallbacks {
@@ -295,6 +307,8 @@ private interface NewConversationUiCallbacks :
     override fun onRefresh() = Unit
     override fun onContactsListReset() = Unit
     override fun onUserMessageDismissed(userMessage: UserMessage) = Unit
+    override fun onSetUpUsername() = Unit
+    override fun onSetUpUsernameBannerDismissed() = Unit
     override fun onBackPressed() = Unit
   }
 }
@@ -320,7 +334,20 @@ private fun NewConversationRecipientPicker(
         findByPhoneNumber = callbacks
       )
     },
-    modifier = modifier.fillMaxSize()
+    modifier = modifier.fillMaxSize(),
+    belowSearchBar = {
+      AnimatedVisibility(
+        visible = uiState.showSetUpUsernameBanner,
+        enter = fadeIn(tween(150)) + expandVertically(tween(200)),
+        exit = fadeOut(tween(100)) + shrinkVertically(tween(200))
+      ) {
+        SetUpUsernameBanner(
+          onSetUpClick = callbacks::onSetUpUsername,
+          onDismissClick = callbacks::onSetUpUsernameBannerDismissed,
+          modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
+      }
+    }
   )
 }
 

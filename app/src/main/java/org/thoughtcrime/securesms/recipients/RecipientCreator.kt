@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.recipients
 
-import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.core.util.Util
@@ -13,7 +12,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
 import java.util.LinkedList
@@ -32,13 +30,13 @@ object RecipientCreator {
   }
 
   @JvmStatic
-  fun forIndividual(context: Context, record: RecipientRecord): Recipient {
+  fun forIndividual(record: RecipientRecord): Recipient {
     val isSelf = record.e164 != null && record.e164 == SignalStore.account.e164 || record.aci != null && record.aci == SignalStore.account.aci
     val isReleaseChannel = record.id == SignalStore.releaseChannel.releaseChannelRecipientId
     var registeredState = record.registered
 
     if (isSelf) {
-      registeredState = if (SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(context)) {
+      registeredState = if (SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived) {
         RegisteredState.REGISTERED
       } else {
         RegisteredState.NOT_REGISTERED
@@ -110,7 +108,7 @@ object RecipientCreator {
 
   @JvmStatic
   @WorkerThread
-  fun forRecord(context: Context, record: RecipientRecord): Recipient {
+  fun forRecord(record: RecipientRecord): Recipient {
     val recipient = if (record.groupId != null) {
       getGroupRecipientDetails(record)
     } else if (record.distributionListId != null) {
@@ -118,7 +116,7 @@ object RecipientCreator {
     } else if (record.callLinkRoomId != null) {
       getCallLinkRecipientDetails(record)
     } else {
-      forIndividual(context, record)
+      forIndividual(record)
     }
 
     return recipient
@@ -206,6 +204,7 @@ object RecipientCreator {
       phoneNumberSharing = record.phoneNumberSharing,
       nickname = record.nickname,
       note = record.note,
+      sharedName = record.sharedName,
       keyTransparencyData = record.keyTransparencyData
     )
   }

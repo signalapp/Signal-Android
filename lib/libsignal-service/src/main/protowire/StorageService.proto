@@ -146,7 +146,8 @@ message ContactRecord {
   uint64        blockedAtTimestamp      = 27; // 0 means the blocked time is unknown
   OptionalBool  notifyForCallsIfMuted   = 28; // If unset, use the default settings
   OptionalBool  showUnreadReminders     = 29; // If unset, use the default settings
-  // Next ID: 30
+  Name          sharedName              = 30; // Name shared from a third party
+  // Next ID: 31
 }
 
 message GroupV1Record {

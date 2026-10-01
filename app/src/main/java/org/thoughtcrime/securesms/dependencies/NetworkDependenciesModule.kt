@@ -30,10 +30,12 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
+import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.TrustStore
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
+import org.signal.network.service.StorageServiceService
 import org.signal.network.service.UsernameService
 import org.signal.network.util.Tls12SocketFactory
 import org.signal.network.util.TlsProxySocketFactory
@@ -121,6 +123,8 @@ class NetworkDependenciesModule(
     provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
   }
 
+  val networkProxyState: NetworkProxyState = NetworkProxyState()
+
   val groupsV2Authorization: GroupsV2Authorization by lazy {
     val authCache: GroupsV2Authorization.ValueCache = GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AciAuthorizationCache)
     GroupsV2Authorization(signalServiceAccountManager.groupsV2Api, authCache)
@@ -179,6 +183,8 @@ class NetworkDependenciesModule(
   val storageServiceApi: StorageServiceApi by lazy {
     provider.provideStorageServiceApi(authWebSocket, pushServiceSocket)
   }
+
+  val storageService: StorageServiceService by lazy { provider.provideStorageService(storageServiceApi) }
 
   val accountApi: AccountApi by lazy {
     provider.provideAccountApi(authWebSocket)

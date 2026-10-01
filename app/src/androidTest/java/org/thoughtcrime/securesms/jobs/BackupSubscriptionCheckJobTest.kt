@@ -355,7 +355,7 @@ class BackupSubscriptionCheckJobTest {
     verify {
       RecurringInAppPaymentRepository.ensureSubscriberIdSync(
         eq(InAppPaymentSubscriberRecord.Type.BACKUP),
-        eq(true),
+        eq(false),
         eq(IAPSubscriptionId.GooglePlayBillingPurchaseToken(purchaseToken = "test_token"))
       )
     }
@@ -419,7 +419,26 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenUnacknowledgedPurchaseMatchingSubscriber_whenIRun_thenIExpectStateMismatchDetected() {
+  fun givenUnacknowledgedRedeemedPurchaseMatchingSubscriber_whenIRun_thenIExpectSuccessAndNoMismatch() {
+    mockUnacknowledgedPurchase()
+    insertRedeemedInAppPayment(insertSubscriber())
+
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
+      createActiveSubscription(isActive = true)
+    )
+
+    SignalStore.backup.backupTier = MessageBackupTier.PAID
+
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isFalse()
+    verify(exactly = 0) { RecurringInAppPaymentRepository.ensureSubscriberIdSync(any(), any(), any()) }
+  }
+
+  @Test
+  fun givenUnacknowledgedUnredeemedPurchaseMatchingSubscriber_whenIRun_thenIExpectStateMismatchDetected() {
     mockUnacknowledgedPurchase()
     insertSubscriber()
 
@@ -427,12 +446,39 @@ class BackupSubscriptionCheckJobTest {
       createActiveSubscription(isActive = true)
     )
 
+    SignalStore.backup.backupTier = MessageBackupTier.PAID
+
     val job = BackupSubscriptionCheckJob.create()
     val result = job.run()
 
     assertThat(result.isSuccess).isTrue()
     assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isTrue()
     verify(exactly = 0) { RecurringInAppPaymentRepository.ensureSubscriberIdSync(any(), any(), any()) }
+  }
+
+  @Test
+  fun givenUnacknowledgedRedeemedPurchaseMatchingSubscriberWithoutEntitlement_whenIRun_thenIExpectRedemption() {
+    mockUnacknowledgedPurchase()
+    insertRedeemedInAppPayment(insertSubscriber())
+
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
+      createActiveSubscription(isActive = true)
+    )
+
+    SignalStore.backup.backupTier = MessageBackupTier.FREE
+
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isFalse()
+    verify {
+      RecurringInAppPaymentRepository.ensureSubscriberIdSync(
+        eq(InAppPaymentSubscriberRecord.Type.BACKUP),
+        eq(false),
+        eq(IAPSubscriptionId.GooglePlayBillingPurchaseToken(purchaseToken = IAP_TOKEN))
+      )
+    }
   }
 
   @Test
@@ -669,7 +715,9 @@ class BackupSubscriptionCheckJobTest {
     )
   }
 
-  private fun insertSubscriber(token: String = IAP_TOKEN) {
+  private fun insertSubscriber(token: String = IAP_TOKEN): SubscriberId {
+    val subscriberId = SubscriberId.generate()
+
     SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
       InAppPaymentSubscriberRecord(
         type = InAppPaymentSubscriberRecord.Type.BACKUP,
@@ -677,7 +725,21 @@ class BackupSubscriptionCheckJobTest {
         requiresCancel = false,
         paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
         currency = null,
-        subscriberId = SubscriberId.generate()
+        subscriberId = subscriberId
+      )
+    )
+
+    return subscriberId
+  }
+
+  private fun insertRedeemedInAppPayment(subscriberId: SubscriberId) {
+    SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_BACKUP,
+      state = InAppPaymentTable.State.END,
+      subscriberId = subscriberId,
+      endOfPeriod = null,
+      inAppPaymentData = InAppPaymentData(
+        redemption = InAppPaymentData.RedemptionState(stage = InAppPaymentData.RedemptionState.Stage.REDEEMED)
       )
     )
   }

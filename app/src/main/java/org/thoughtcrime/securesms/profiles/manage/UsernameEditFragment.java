@@ -37,8 +37,9 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 public class UsernameEditFragment extends LoggingFragment {
 
-  private static final float DISABLED_ALPHA           = 0.5f;
-  public static final String IGNORE_TEXT_CHANGE_EVENT = "ignore.text.change.event";
+  private static final float  DISABLED_ALPHA           = 0.5f;
+  private static final String USERNAME_SUPPORT_URL     = "https://support.signal.org/hc/articles/6712070553754";
+  public static final  String IGNORE_TEXT_CHANGE_EVENT = "ignore.text.change.event";
 
   public static final int REQUEST_CODE = 4242;
 
@@ -132,7 +133,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
     binding.usernameDescription.setLinkColor(ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorPrimary));
     binding.usernameDescription.setLearnMoreVisible(true);
-    binding.usernameDescription.setOnLinkClickListener(this::onLearnMore);
+    binding.usernameDescription.setLink(USERNAME_SUPPORT_URL);
 
     ViewUtil.focusAndShowKeyboard(binding.usernameText);
   }
@@ -156,15 +157,6 @@ public class UsernameEditFragment extends LoggingFragment {
     } else {
       viewModel.onUsernameSubmitted(false);
     }
-  }
-
-
-  private void onLearnMore(@Nullable View unused) {
-    new MaterialAlertDialogBuilder(requireContext())
-        .setTitle(getString(R.string.UsernameEditFragment__what_is_this_number))
-        .setMessage(R.string.UsernameEditFragment__these_digits_help_keep)
-        .setPositiveButton(android.R.string.ok, (dialog, which) -> {})
-        .show();
   }
 
   private void onUiStateChanged(@NonNull UsernameEditViewModel.State state) {

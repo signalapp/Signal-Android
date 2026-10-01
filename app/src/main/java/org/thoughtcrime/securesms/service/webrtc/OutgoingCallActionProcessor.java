@@ -257,9 +257,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
     RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
     if (activePeer != null) {
-      webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
-                                                           true,
-                                                           currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
+      markNotAccepted(currentState, activePeer.getCallId());
     }
 
     return activeCallDelegate.handleLocalHangup(currentState);
@@ -280,9 +278,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
          callEndReason == CallManager.CallEndReason.TIMEOUT ||
          callEndReason == CallManager.CallEndReason.REMOTE_GLARE))
     {
-      webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
-                                                           true,
-                                                           currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
+      markNotAccepted(currentState, remotePeer.getCallId());
     }
 
     return activeCallDelegate.handleEndedRemote(currentState, callEndReason, remotePeer);
@@ -290,11 +286,15 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
   @Override
   protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEndReason callEndReason, @NonNull RemotePeer remotePeer) {
+    markNotAccepted(currentState, remotePeer.getCallId());
+
     return activeCallDelegate.handleEnded(currentState, callEndReason, remotePeer);
   }
 
   @Override
   protected @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    markNotAccepted(currentState, callId);
+
     return activeCallDelegate.handleSetupFailure(currentState, callId);
   }
 
@@ -306,5 +306,19 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleSetEnableVideo(@NonNull WebRtcServiceState currentState, boolean enable) {
     return callSetupDelegate.handleSetEnableVideo(currentState, enable);
+  }
+
+  /**
+   * Notifies linked devices the active outgoing call ended unaccepted. No-op if {@code callId} isn't the active peer's.
+   */
+  private void markNotAccepted(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+    RemotePeer activePeer = currentState.getCallInfoState().getActivePeer();
+    if (activePeer == null || !activePeer.getCallId().equals(callId)) {
+      return;
+    }
+
+    webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
+                                                         true,
+                                                         currentState.getCallSetupState(activePeer).isEnableVideoOnCreate() || currentState.getLocalDeviceState().getCameraState().isEnabled());
   }
 }

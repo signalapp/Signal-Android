@@ -272,7 +272,7 @@ class ConversationAdapterV2(
       if (recordToPulse != null) {
         pulseRequest = ConversationAdapterBridge.PulseRequest(position, recordToPulse!!.messageRecord.isOutgoing)
       }
-      notifyItemChanged(position)
+      notifyItemChanged(position, ConversationAdapterBridge.PAYLOAD_PULSE)
     }
   }
 
@@ -516,6 +516,10 @@ class ConversationAdapterV2(
 
       if (payload.contains(ConversationAdapterBridge.PAYLOAD_SELECTED)) {
         bindable.updateSelectedState()
+        payloadApplied = true
+      }
+
+      if (payload.contains(ConversationAdapterBridge.PAYLOAD_PULSE)) {
         payloadApplied = true
       }
 

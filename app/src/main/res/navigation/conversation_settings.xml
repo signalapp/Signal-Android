@@ -71,8 +71,8 @@
         </action>
 
         <action
-            android:id="@+id/action_conversationSettingsFragment_to_permissionsSettingsFragment"
-            app:destination="@id/permissionsSettingsFragment"
+            android:id="@+id/action_conversationSettingsFragment_to_groupPermissionsFragment"
+            app:destination="@id/groupPermissionsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -181,8 +181,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/permissionsSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.conversation.permissions.PermissionsSettingsFragment">
+        android:id="@+id/groupPermissionsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.conversation.grouppermissions.GroupPermissionsFragment">
 
         <argument
             android:name="group_id"

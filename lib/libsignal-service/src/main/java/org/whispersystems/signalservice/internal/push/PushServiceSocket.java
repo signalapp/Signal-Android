@@ -357,7 +357,7 @@ public class PushServiceSocket {
       String              responseText = makeServiceRequest(String.format("/v1/messages/%s?story=%s", bundle.getDestination(), story ? "true" : "false"), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, NO_HANDLER, sealedSenderAccess);
       SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
 
-      response.setSentUnidentfied(sealedSenderAccess != null);
+      response.setSentUnidentified(sealedSenderAccess != null);
 
       return response;
     } catch (NotFoundException nfe) {
@@ -1212,10 +1212,10 @@ public class PushServiceSocket {
       case 423:
         RegistrationLockFailure accountLockFailure = readResponseJson(response, RegistrationLockFailure.class);
 
-        throw new LockedException(accountLockFailure.length,
-                                  accountLockFailure.timeRemaining,
-                                  accountLockFailure.svr2Credentials,
-                                  accountLockFailure.svr3Credentials);
+        throw new LockedException(accountLockFailure.getLength(),
+                                  accountLockFailure.getTimeRemaining(),
+                                  accountLockFailure.getSvr2Credentials(),
+                                  accountLockFailure.getSvr3Credentials());
       case 428:
         ProofRequiredResponse proofRequiredResponse = readResponseJson(response, ProofRequiredResponse.class);
         String                retryAfterRaw = response.header("Retry-After");
@@ -1609,23 +1609,6 @@ public class PushServiceSocket {
 
 
   public enum VerificationCodeTransport { SMS, VOICE }
-
-  public static class RegistrationLockFailure {
-    @JsonProperty
-    public int length;
-
-    @JsonProperty
-    public long timeRemaining;
-
-    @JsonProperty("backupCredentials")
-    public AuthCredentials svr1Credentials;
-
-    @JsonProperty
-    public AuthCredentials svr2Credentials;
-
-    @JsonProperty
-    public Svr3Credentials svr3Credentials;
-  }
 
   private static class ConnectionHolder {
 

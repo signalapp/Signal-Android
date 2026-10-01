@@ -11,10 +11,11 @@ import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
+import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -52,7 +53,7 @@ class SignalLoginPaymentViewModelTest {
   fun setup() {
     Dispatchers.setMain(testDispatcher)
     mockRepository = mockk(relaxed = true)
-    every { mockRepository.isGooglePlayBillingAvailable } returns true
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.Available
     parentEventEmitter = {}
     viewModel = SignalLoginPaymentViewModel(
       repository = mockRepository,
@@ -76,6 +77,11 @@ class SignalLoginPaymentViewModelTest {
     return events to { event: RegistrationFlowEvent -> events.add(event) }
   }
 
+  private fun createViewModel(emitter: (RegistrationFlowEvent) -> Unit = parentEventEmitter): SignalLoginPaymentViewModel {
+    clearMocks(mockRepository, answers = false)
+    return SignalLoginPaymentViewModel(repository = mockRepository, parentEventEmitter = emitter)
+  }
+
   private suspend fun applyEvent(state: SignalLoginPaymentState, event: SignalLoginPaymentScreenEvents, emitter: (RegistrationFlowEvent) -> Unit = parentEventEmitter): SignalLoginPaymentState {
     var result = state
     viewModel.applyEvent(state, event, emitter) { result = it }
@@ -92,11 +98,20 @@ class SignalLoginPaymentViewModelTest {
   }
 
   @Test
+  fun `PaymentUnavailableLearnMoreClicked emits an action to open the payment unavailable article`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    viewModel.applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.PaymentUnavailableLearnMoreClicked, parentEventEmitter) {}
+
+    assertThat(actions).containsExactly(SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle)
+  }
+
+  @Test
   fun `Initialize loads the price from the billing library`() = runTest(testDispatcher) {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
+    val state = createViewModel().state.value
 
     assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.Available("$1.99"))
     assertThat(state.hasUnredeemedPurchase).isFalse()
@@ -107,41 +122,153 @@ class SignalLoginPaymentViewModelTest {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Unavailable
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
+    val state = createViewModel().state.value
 
     assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.Unavailable)
   }
 
   @Test
-  fun `Initialize disables the purchase option and skips the price lookup when Play billing is unavailable`() = runTest(testDispatcher) {
-    every { mockRepository.isGooglePlayBillingAvailable } returns false
+  fun `Initialize disables the purchase option and skips the price lookup when purchases can never happen here`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.PurchasesUnavailable
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
-    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.TransientError
+    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
+    val state = createViewModel().state.value
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
-
-    assertThat(state.isPurchaseSupported).isFalse()
     assertThat(state.isPurchaseOptionEnabled).isFalse()
     assertThat(state.selectedOption).isEqualTo(SignalLoginPaymentState.Option.ExistingLogin)
     assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.Unavailable)
+    assertThat(state.dialogs.paymentUnavailable).isTrue()
+    coVerify(exactly = 0) { mockRepository.getSignalLoginPrice() }
   }
 
   @Test
   fun `Initialize keeps the purchase option enabled without Play billing when a purchase is already paid for`() = runTest(testDispatcher) {
-    every { mockRepository.isGooglePlayBillingAvailable } returns false
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.PurchasesUnavailable
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns true
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
+    val state = createViewModel().state.value
 
-    assertThat(state.isPurchaseSupported).isFalse()
     assertThat(state.isPurchaseOptionEnabled).isTrue()
     assertThat(state.selectedOption).isEqualTo(SignalLoginPaymentState.Option.Purchase)
   }
 
   @Test
+  fun `Initialize explains the problem and skips the price lookup when Google Play cannot take a payment`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.ServiceMissing
+    coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
+    val state = createViewModel().state.value
+
+    assertThat(state.paymentAvailability).isEqualTo(PaymentAvailability.ServiceMissing)
+    assertThat(state.dialogs.paymentUnavailable).isTrue()
+    assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.TransientError)
+    assertThat(state.isPurchaseOptionEnabled).isTrue()
+    coVerify(exactly = 0) { mockRepository.getSignalLoginPrice() }
+  }
+
+  @Test
+  fun `ContinueClicked explains the problem instead of starting a purchase Google Play cannot take`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    val state = applyEvent(
+      SignalLoginPaymentState(
+        price = SignalLoginPaymentState.Price.TransientError,
+        paymentAvailability = PaymentAvailability.NotSignedIn
+      ),
+      SignalLoginPaymentScreenEvents.ContinueClicked
+    )
+
+    assertThat(state.dialogs.paymentUnavailable).isTrue()
+    assertThat(state.showSpinner).isFalse()
+    assertThat(actions).isEmpty()
+    coVerify(exactly = 0) { mockRepository.startOrCompleteSignalLoginPurchase() }
+  }
+
+  @Test
+  fun `PriceRetryClicked explains the problem again when Google Play still cannot take a payment`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.ServiceUpdating
+    val viewModel = createViewModel()
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.PaymentUnavailableDialogDismissed)
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.PriceRetryClicked)
+
+    val state = viewModel.state.value
+
+    assertThat(state.paymentAvailability).isEqualTo(PaymentAvailability.ServiceUpdating)
+    assertThat(state.dialogs.paymentUnavailable).isTrue()
+    assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.TransientError)
+    coVerify(exactly = 0) { mockRepository.getSignalLoginPrice() }
+  }
+
+  @Test
+  fun `Foregrounded loads the price once the user has fixed Google Play`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.ServiceUpdating
+    val viewModel = createViewModel()
+    assertThat(viewModel.state.value.dialogs.paymentUnavailable).isTrue()
+
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.Available
+    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded)
+
+    val state = viewModel.state.value
+
+    assertThat(state.paymentAvailability).isEqualTo(PaymentAvailability.Available)
+    assertThat(state.dialogs.paymentUnavailable).isFalse()
+    assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.Available("$1.99"))
+  }
+
+  @Test
+  fun `Foregrounded leaves a dismissed dialog dismissed when nothing changed`() = runTest(testDispatcher) {
+    coEvery { mockRepository.getPaymentAvailability() } returns PaymentAvailability.ServiceInvalid
+    val viewModel = createViewModel()
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.PaymentUnavailableDialogDismissed)
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded)
+
+    val state = viewModel.state.value
+
+    assertThat(state.dialogs.paymentUnavailable).isFalse()
+    coVerify(exactly = 0) { mockRepository.getSignalLoginPrice() }
+  }
+
+  @Test
+  fun `MakeGooglePlayServicesAvailableClicked asks the UI layer to fix Google Play services`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    val state = applyEvent(
+      SignalLoginPaymentState(
+        paymentAvailability = PaymentAvailability.ServiceMissing,
+        dialogs = SignalLoginPaymentState.Dialogs(paymentUnavailable = true)
+      ),
+      SignalLoginPaymentScreenEvents.MakeGooglePlayServicesAvailableClicked
+    )
+
+    assertThat(actions).containsExactly(SignalLoginPaymentScreenActions.MakeGooglePlayServicesAvailable)
+    assertThat(state.dialogs.paymentUnavailable).isFalse()
+  }
+
+  @Test
+  fun `OpenPlayStoreClicked asks the UI layer to open the Play Store`() = runTest(testDispatcher) {
+    val actions = collectActions()
+
+    val state = applyEvent(
+      SignalLoginPaymentState(
+        paymentAvailability = PaymentAvailability.NotSignedIn,
+        dialogs = SignalLoginPaymentState.Dialogs(paymentUnavailable = true)
+      ),
+      SignalLoginPaymentScreenEvents.OpenPlayStoreClicked
+    )
+
+    assertThat(actions).containsExactly(SignalLoginPaymentScreenActions.OpenPlayStore)
+    assertThat(state.dialogs.paymentUnavailable).isFalse()
+  }
+
+  @Test
   fun `OptionSelected ignores the purchase option when it cannot be acted on`() = runTest(testDispatcher) {
     val state = applyEvent(
-      SignalLoginPaymentState(isPurchaseSupported = false, selectedOption = SignalLoginPaymentState.Option.ExistingLogin),
+      SignalLoginPaymentState(
+        paymentAvailability = PaymentAvailability.ServiceInvalid,
+        selectedOption = SignalLoginPaymentState.Option.ExistingLogin
+      ),
       SignalLoginPaymentScreenEvents.OptionSelected(SignalLoginPaymentState.Option.Purchase)
     )
 
@@ -153,7 +280,7 @@ class SignalLoginPaymentViewModelTest {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.TransientError
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
+    val state = createViewModel().state.value
 
     assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.TransientError)
     assertThat(state.isActionEnabled).isFalse()
@@ -161,12 +288,13 @@ class SignalLoginPaymentViewModelTest {
 
   @Test
   fun `PriceRetryClicked re-fetches the price and recovers`() = runTest(testDispatcher) {
-    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
+    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.TransientError
+    val viewModel = createViewModel()
 
-    val state = applyEvent(
-      SignalLoginPaymentState(price = SignalLoginPaymentState.Price.TransientError),
-      SignalLoginPaymentScreenEvents.PriceRetryClicked
-    )
+    coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.PriceRetryClicked)
+
+    val state = viewModel.state.value
 
     assertThat(state.price).isEqualTo(SignalLoginPaymentState.Price.Available("$1.99"))
     assertThat(state.isActionEnabled).isTrue()
@@ -177,10 +305,68 @@ class SignalLoginPaymentViewModelTest {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.TransientError
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
 
-    var state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
-    state = applyEvent(state, SignalLoginPaymentScreenEvents.OptionSelected(SignalLoginPaymentState.Option.ExistingLogin))
+    val viewModel = createViewModel()
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.OptionSelected(SignalLoginPaymentState.Option.ExistingLogin))
 
-    assertThat(state.isActionEnabled).isTrue()
+    assertThat(viewModel.state.value.isActionEnabled).isTrue()
+  }
+
+  @Test
+  fun `a price lookup that is still loading does not block continuing with an existing login`() = runTest(testDispatcher) {
+    val price = CompletableDeferred<SignalLoginPriceResult>()
+    coEvery { mockRepository.getSignalLoginPrice() } coAnswers { price.await() }
+    coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns false
+    val (events, emitter) = collectParentEvents()
+    val viewModel = createViewModel(emitter)
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.OptionSelected(SignalLoginPaymentState.Option.ExistingLogin))
+
+    assertThat(viewModel.state.value.price).isEqualTo(SignalLoginPaymentState.Price.Loading)
+    assertThat(viewModel.state.value.isActionEnabled).isTrue()
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.ContinueClicked)
+
+    assertThat(events).containsExactly(RegistrationFlowEvent.NavigateToScreen(RegistrationRoute.SignalLoginCredentialEntry(), false))
+
+    price.complete(SignalLoginPriceResult.Available("$1.99"))
+
+    assertThat(viewModel.state.value.price).isEqualTo(SignalLoginPaymentState.Price.Available("$1.99"))
+    assertThat(viewModel.state.value.selectedOption).isEqualTo(SignalLoginPaymentState.Option.ExistingLogin)
+  }
+
+  @Test
+  fun `Foregrounded does not start a second lookup while one is in flight`() = runTest(testDispatcher) {
+    val price = CompletableDeferred<SignalLoginPriceResult>()
+    coEvery { mockRepository.getSignalLoginPrice() } coAnswers { price.await() }
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded)
+
+    coVerify(exactly = 1) { mockRepository.getPaymentAvailability() }
+
+    price.complete(SignalLoginPriceResult.Available("$1.99"))
+
+    assertThat(viewModel.state.value.price).isEqualTo(SignalLoginPaymentState.Price.Available("$1.99"))
+  }
+
+  @Test
+  fun `PriceRetryClicked replaces a lookup that is still in flight`() = runTest(testDispatcher) {
+    val stalePrice = CompletableDeferred<SignalLoginPriceResult>()
+    var calls = 0
+    coEvery { mockRepository.getSignalLoginPrice() } coAnswers {
+      calls++
+      if (calls == 1) {
+        stalePrice.await()
+      } else {
+        SignalLoginPriceResult.Available("$2.99")
+      }
+    }
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(SignalLoginPaymentScreenEvents.PriceRetryClicked)
+    stalePrice.complete(SignalLoginPriceResult.Available("$1.99"))
+
+    assertThat(viewModel.state.value.price).isEqualTo(SignalLoginPaymentState.Price.Available("$2.99"))
   }
 
   @Test
@@ -188,7 +374,7 @@ class SignalLoginPaymentViewModelTest {
     coEvery { mockRepository.getSignalLoginPrice() } returns SignalLoginPriceResult.Available("$1.99")
     coEvery { mockRepository.hasUnredeemedSignalLoginPurchase() } returns true
 
-    val state = applyEvent(SignalLoginPaymentState(), SignalLoginPaymentScreenEvents.Initialize)
+    val state = createViewModel().state.value
 
     assertThat(state.hasUnredeemedPurchase).isTrue()
   }

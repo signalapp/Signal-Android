@@ -286,17 +286,23 @@ class FakeNetworkController(
    */
   fun provisioningMessage(
     aep: AccountEntropyPool,
-    e164: String,
+    e164: String?,
     tier: ProvisioningMessage.Tier? = ProvisioningMessage.Tier.PAID,
     pin: String? = null,
-    restoreMethodToken: String = "restore-method-token"
+    restoreMethodToken: String = "restore-method-token",
+    aci: ACI = ACI.from(UUID.randomUUID())
   ): ProvisioningMessage {
     return ProvisioningMessage(
       accountEntropyPool = aep.value,
+      aci = aci,
       e164 = e164,
       pin = pin,
       aciIdentityKeyPair = IdentityKeyPair.generate(),
-      pniIdentityKeyPair = IdentityKeyPair.generate(),
+      pniIdentityKeyPair = if (e164 != null) {
+        IdentityKeyPair.generate()
+      } else {
+        null
+      },
       platform = ProvisioningMessage.Platform.ANDROID,
       tier = tier,
       backupTimestampMs = 1_700_000_000_000,

@@ -12,6 +12,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.emoji.EmojiUtil
@@ -63,7 +64,6 @@ import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.KeyTransparencyApi
 import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
@@ -123,7 +123,6 @@ import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -175,13 +174,13 @@ object SyncMessageProcessor {
 
     when {
       syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, threadRecipient, earlyMessageCacheEntry, batchCache)
-      syncMessage.request != null -> handleSynchronizeRequestMessage(context, syncMessage.request!!, envelope.clientTimestamp!!)
+      syncMessage.request != null -> handleSynchronizeRequestMessage(syncMessage.request!!, envelope.clientTimestamp!!)
       syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.viewed.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewed, envelope.clientTimestamp!!)
       syncMessage.viewOnceOpen != null -> handleSynchronizeViewOnceOpenMessage(context, syncMessage.viewOnceOpen!!, envelope.clientTimestamp!!, earlyMessageCacheEntry, batchCache)
       syncMessage.verified != null -> handleSynchronizeVerifiedMessage(context, syncMessage.verified!!)
       syncMessage.stickerPackOperation.isNotEmpty() -> handleSynchronizeStickerPackOperation(syncMessage.stickerPackOperation, envelope.clientTimestamp!!)
-      syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(context, syncMessage.configuration!!, envelope.clientTimestamp!!)
+      syncMessage.configuration != null -> handleSynchronizeConfigurationMessage(syncMessage.configuration!!, envelope.clientTimestamp!!)
       syncMessage.blocked != null -> handleSynchronizeBlockedListMessage(syncMessage.blocked!!, envelope.clientTimestamp!!)
       syncMessage.fetchLatest?.type != null -> handleSynchronizeFetchMessage(syncMessage.fetchLatest!!.type!!, envelope.clientTimestamp!!)
       syncMessage.messageRequestResponse != null -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse!!, envelope.clientTimestamp!!)
@@ -979,7 +978,7 @@ object SyncMessageProcessor {
     return threadId
   }
 
-  private fun handleSynchronizeRequestMessage(context: Context, message: Request, envelopeTimestamp: Long) {
+  private fun handleSynchronizeRequestMessage(message: Request, envelopeTimestamp: Long) {
     if (SignalStore.account.isPrimaryDevice) {
       log(envelopeTimestamp, "Synchronize request message.")
     } else {
@@ -993,9 +992,9 @@ object SyncMessageProcessor {
       Request.Type.CONFIGURATION -> {
         AppDependencies.jobManager.add(
           MultiDeviceConfigurationUpdateJob(
-            TextSecurePreferences.isReadReceiptsEnabled(context),
-            TextSecurePreferences.isTypingIndicatorsEnabled(context),
-            TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+            SignalStore.settings.isReadReceiptsEnabled,
+            SignalStore.settings.isTypingIndicatorsEnabled,
+            SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
             SignalStore.settings.isLinkPreviewsEnabled
           )
         )
@@ -1136,19 +1135,19 @@ object SyncMessageProcessor {
     }
   }
 
-  private fun handleSynchronizeConfigurationMessage(context: Context, configurationMessage: Configuration, envelopeTimestamp: Long) {
+  private fun handleSynchronizeConfigurationMessage(configurationMessage: Configuration, envelopeTimestamp: Long) {
     log(envelopeTimestamp, "Synchronize configuration message.")
 
     if (configurationMessage.readReceipts != null) {
-      TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.readReceipts!!)
+      SignalStore.settings.isReadReceiptsEnabled = configurationMessage.readReceipts!!
     }
 
     if (configurationMessage.unidentifiedDeliveryIndicators != null) {
-      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, configurationMessage.unidentifiedDeliveryIndicators!!)
+      SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = configurationMessage.unidentifiedDeliveryIndicators!!
     }
 
     if (configurationMessage.typingIndicators != null) {
-      TextSecurePreferences.setTypingIndicatorsEnabled(context, configurationMessage.typingIndicators!!)
+      SignalStore.settings.isTypingIndicatorsEnabled = configurationMessage.typingIndicators!!
     }
 
     if (configurationMessage.linkPreviews != null) {

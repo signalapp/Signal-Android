@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.app.PendingIntent
@@ -44,8 +45,10 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Space
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
@@ -53,27 +56,36 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnNextLayout
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -118,6 +130,8 @@ import org.signal.core.models.database.StickerRecord
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.BottomSheetUtil
+import org.signal.core.ui.compose.keyboard.KeyboardSheetAction
+import org.signal.core.ui.compose.keyboard.KeyboardSheetController
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isSplitPane
@@ -132,6 +146,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.ListenableFuture
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.encourageNewBrowserTab
@@ -142,6 +157,9 @@ import org.signal.core.util.requireParcelableCompat
 import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
 import org.signal.emoji.EmojiEventListener
+import org.signal.mediakeyboard.MediaKeyboardAction
+import org.signal.mediakeyboard.MediaKeyboardTab
+import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.MainActivity
@@ -169,10 +187,6 @@ import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardController
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardEvents
-import org.thoughtcrime.securesms.components.compose.mediakeyboard.MediaKeyboardKey
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
@@ -193,6 +207,8 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearc
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivityV2
+import org.thoughtcrime.securesms.contactshare.SharedContactSource
+import org.thoughtcrime.securesms.contactshare.resolveOrCreateSignalRecipient
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
@@ -206,10 +222,6 @@ import org.thoughtcrime.securesms.conversation.ConversationItemSelection
 import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.ConversationOptionsMenu
-import org.thoughtcrime.securesms.conversation.ConversationReactionDelegate
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnActionSelectedListener
-import org.thoughtcrime.securesms.conversation.ConversationReactionOverlay.OnHideListener
 import org.thoughtcrime.securesms.conversation.ConversationSearchViewModel
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick
 import org.thoughtcrime.securesms.conversation.MarkReadHelper
@@ -217,6 +229,7 @@ import org.thoughtcrime.securesms.conversation.MenuState
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler.getStyling
 import org.thoughtcrime.securesms.conversation.PinnedMessagesBottomSheet
+import org.thoughtcrime.securesms.conversation.ReactionAction
 import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
 import org.thoughtcrime.securesms.conversation.ScheduleMessageContextMenu
 import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
@@ -224,7 +237,6 @@ import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSh
 import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet.Companion.showSchedule
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesBottomSheet
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
-import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
 import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
@@ -257,6 +269,7 @@ import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -264,10 +277,11 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
+import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationBackgroundBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
-import org.thoughtcrime.securesms.databinding.V2ConversationOverlayBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
@@ -275,6 +289,8 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelActivity
@@ -292,13 +308,9 @@ import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
-import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SettingsValues.MediaKeyboardMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
@@ -309,6 +321,7 @@ import org.thoughtcrime.securesms.main.MainNavigationEventSink
 import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
+import org.thoughtcrime.securesms.mediakeyboard.SignalMediaKeyboardRepository
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity
@@ -344,17 +357,21 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
+import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
+import org.thoughtcrime.securesms.stickers.StickerUrl
+import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen
-import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
+import org.thoughtcrime.securesms.stickers.preview.StickerPreviewBottomSheet
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
@@ -375,7 +392,6 @@ import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.atMidnight
@@ -394,6 +410,7 @@ import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.toMillis
 import org.thoughtcrime.securesms.util.viewModel
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -407,6 +424,7 @@ import java.util.Optional
 import java.util.concurrent.ExecutionException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import androidx.compose.ui.graphics.Color as ComposeColor
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -416,13 +434,9 @@ class ConversationFragment :
   LoggingFragment(),
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
   ReactionsBottomSheetDialogFragment.Callback,
-  EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  GifKeyboardPageFragment.Host,
   StickerEventListener,
-  StickerKeyboardPageFragment.Callback,
-  MediaKeyboard.MediaKeyboardListener,
-  EmojiSearchFragment.Callback,
+  StickerSearchDialogFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback,
   ConversationBottomSheetCallback,
@@ -439,10 +453,13 @@ class ConversationFragment :
 
     private const val ACTION_PINNED_SHORTCUT = "action_pinned_shortcut"
     private const val SAVED_STATE_IS_SEARCH_REQUESTED = "is_search_requested"
-    private const val EMOJI_SEARCH_FRAGMENT_TAG = "EmojiSearchFragment"
     private const val MESSAGE_DETAILS_TAG = "MessageDetailsFragment"
 
+    /** Message rows the expanded media keyboard has to leave in view. */
+    private const val MINIMUM_VISIBLE_MESSAGES_DP: Int = 96
+
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
+    private const val STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS: Long = 250L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
     private const val IS_SCROLLED_TO_BOTTOM_THRESHOLD: Int = 2
 
@@ -475,7 +492,6 @@ class ConversationFragment :
 
   private val disposables = LifecycleDisposable()
   private val backgroundBinding by ViewBinderDelegate(bindingFactory = { V2ConversationBackgroundBinding.bind(conversationBackground) })
-  private val overlayBinding by ViewBinderDelegate(bindingFactory = { V2ConversationOverlayBinding.bind(conversationOverlay) })
   private val binding by ViewBinderDelegate(bindingFactory = { V2ConversationFragmentBinding.bind(conversationContent) }, onBindingWillBeDestroyed = { _binding ->
     _binding.conversationInputPanel.embeddedTextEditor.apply {
       setOnEditorActionListener(null)
@@ -538,8 +554,6 @@ class ConversationFragment :
     ConversationSearchViewModel(getString(R.string.note_to_self))
   }
 
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
-
   private val stickerViewModel: StickerSuggestionsViewModel by viewModel {
     StickerSuggestionsViewModel()
   }
@@ -569,7 +583,7 @@ class ConversationFragment :
   private val colorizer = ColorizerV2()
   private val textDraftSaveDebouncer = Debouncer(500)
   private val doubleTapToEditDebouncer = DoubleClickDebouncer(200)
-  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, TextSecurePreferences.RECENT_STORAGE_KEY) }
+  private val recentEmojis: RecentEmojiPageModel by lazy { RecentEmojiPageModel(AppDependencies.application, RecentEmojiPageModel.RECENT_STORAGE_KEY) }
   private val nicknameEditActivityLauncher = registerForActivityResult(NicknameActivity.Contract()) {}
   private val handler = Handler(Looper.getMainLooper())
 
@@ -601,14 +615,13 @@ class ConversationFragment :
       viewModel.setIsSearchRequested(value)
     }
 
+  /** The keyboard the toggle showed before edit mode forced it to emoji. */
   private var previousPage: KeyboardPage? = null
-  private var previousPages: Set<KeyboardPage>? = null
   private var reShowScheduleMessagesBar: Boolean = false
   private var composeTextEventsListener: ComposeTextEventsListener? = null
   private var dataObserver: DataObserver? = null
   private var menuProvider: ConversationOptionsMenu.Provider? = null
   private var scrollListener: ScrollListener? = null
-  private var keyboardEvents: KeyboardEvents? = null
   private var progressDialog: ProgressCardDialogFragment? = null
   private var firstPinRender: Boolean = true
   private var skipNextBackPressHandling: Boolean = false
@@ -633,14 +646,11 @@ class ConversationFragment :
   /** The wallpaper, drawn behind [conversationContent]. */
   private lateinit var conversationBackground: View
 
-  /** The long press overlay, drawn above [conversationContent]. */
-  private lateinit var conversationOverlay: View
-
   private val chatScreenViewModel: ChatScreenViewModel by viewModels()
 
   /** Stable across recomposition, so view code can ask for a keyboard from a click listener. */
-  private val mediaKeyboardController: MediaKeyboardController by lazy(LazyThreadSafetyMode.NONE) {
-    MediaKeyboardController(
+  private val mediaKeyboardController: KeyboardSheetController by lazy(LazyThreadSafetyMode.NONE) {
+    KeyboardSheetController(
       initialKeyboardHeightPx = chatScreenViewModel.getStoredKeyboardHeight(
         isLandscape = isLandscape(),
         minimumPx = resources.getDimensionPixelSize(R.dimen.default_custom_keyboard_size)
@@ -650,6 +660,211 @@ class ConversationFragment :
 
   /** Colours for the scrims ChatScreen paints. */
   private val chatScrims = ChatScrimState()
+
+  /**
+   * Narrows the media keyboard while editing a message, where an edit can only carry text, so
+   * stickers and gifs have nothing to do. Null the rest of the time.
+   */
+  private var mediaKeyboardTabs by mutableStateOf<Set<MediaKeyboardTab>?>(null)
+
+  /**
+   * How much room the expanded media keyboard has to leave the conversation. The toolbar and input
+   * panel are views, so only the fragment can measure them; the rest is message rows.
+   */
+  private var minimumVisibleContentPx by mutableIntStateOf(MINIMUM_VISIBLE_MESSAGES_DP.dp)
+
+  private fun updateMinimumVisibleContent() {
+    if (view == null) {
+      return
+    }
+
+    minimumVisibleContentPx = MINIMUM_VISIBLE_MESSAGES_DP.dp + binding.toolbar.bottom.coerceAtLeast(0) + inputPanel.height
+  }
+
+  private val mediaKeyboardRepository: SignalMediaKeyboardRepository by lazy(LazyThreadSafetyMode.NONE) {
+    SignalMediaKeyboardRepository(requireContext(), recentEmojis)
+  }
+
+  private val stickerConfirmation: ChatStickerConfirmationController by lazy(LazyThreadSafetyMode.NONE) {
+    ChatStickerConfirmationController(
+      onSend = { sticker ->
+        mediaKeyboardRepository.stickers.onStickerUsed(sticker)
+        sendKeyboardSticker(sticker)
+      },
+      onShowingChanged = ::onStickerConfirmationShowingChanged
+    )
+  }
+
+  private var inputPanelCollapseAnimator: ValueAnimator? = null
+
+  /**
+   * Collapses the input panel down behind the keyboard sheet while a sticker waits to be confirmed,
+   * so the conversation reclaims its space.
+   */
+  private fun onStickerConfirmationShowingChanged(showing: Boolean) {
+    inputPanel.importantForAccessibility = if (showing) View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS else View.IMPORTANT_FOR_ACCESSIBILITY_AUTO
+
+    val targetHeight = if (showing) {
+      0
+    } else {
+      inputPanel.measure(
+        View.MeasureSpec.makeMeasureSpec(inputPanel.width, View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+      )
+      inputPanel.measuredHeight
+    }
+
+    inputPanelCollapseAnimator?.cancel()
+    inputPanelCollapseAnimator = ValueAnimator.ofInt(inputPanel.height, targetHeight).apply {
+      duration = STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS
+      interpolator = FastOutSlowInInterpolator()
+      addUpdateListener { animator ->
+        inputPanel.updateLayoutParams { height = animator.animatedValue as Int }
+      }
+      doOnEnd {
+        if (!showing) {
+          inputPanel.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
+        }
+      }
+      start()
+    }
+
+    inputPanel.animate()
+      .alpha(if (showing) 0f else 1f)
+      .setDuration(STICKER_CONFIRMATION_INPUT_PANEL_DURATION_MS)
+      .setInterpolator(FastOutSlowInInterpolator())
+      .start()
+  }
+
+  /**
+   * Dismisses the sticker confirmation and snaps the input panel straight back, so anything that
+   * then grows the panel (like a quote) measures and animates against its real height.
+   */
+  private fun dismissStickerConfirmationImmediately() {
+    stickerConfirmation.dismiss()
+    inputPanelCollapseAnimator?.end()
+    inputPanel.animate().cancel()
+    inputPanel.alpha = 1f
+  }
+
+  private fun sendKeyboardSticker(sticker: KeyboardSticker) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      val record = withContext(Dispatchers.Default) {
+        SignalDatabase.stickers.getSticker(sticker.packId, sticker.stickerId.toInt(), false)
+      }
+
+      if (record != null) {
+        sendSticker(stickerRecord = record, clearCompose = false)
+      }
+    }
+  }
+
+  /** Who a sticker sent now would reply to, matching whether [sendSticker] will attach the quote. */
+  private suspend fun stickerReplyToName(): String? {
+    if (!SignalStore.labs.stickerReplies) {
+      return null
+    }
+
+    val authorId = inputPanel.quote.orNull()?.author ?: return null
+    val author = withContext(Dispatchers.Default) { Recipient.resolved(authorId) }
+
+    return if (author.isSelf) {
+      getString(R.string.ChatStickerConfirmation__reply_to_yourself)
+    } else {
+      getString(R.string.ChatStickerConfirmation__reply_to_s, author.getDisplayName(requireContext()))
+    }
+  }
+
+  private fun onMediaKeyboardAction(action: MediaKeyboardAction) {
+    when (action) {
+      is MediaKeyboardAction.EmojiSelected -> inputPanel.onEmojiSelected(action.emoji)
+
+      MediaKeyboardAction.Backspace -> inputPanel.onKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
+
+      is MediaKeyboardAction.StickerSelected -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          stickerConfirmation.show(action.sticker, stickerReplyToName())
+        }
+      }
+
+      is MediaKeyboardAction.StickerSendClicked -> sendKeyboardSticker(action.sticker)
+
+      is MediaKeyboardAction.GifSelected -> {
+        val image = mediaKeyboardRepository.gifs.getGiphyImage(action.gif.id)
+        if (image != null) {
+          container.hideInput()
+          giphyMp4ViewModel.saveToBlob(image)
+        }
+      }
+
+      MediaKeyboardAction.StickerManagementClicked -> {
+        StickerManagementScreen.show(this)
+        container.hideInput()
+      }
+
+      // A child of this fragment so the dialog's own listener lookups land back here.
+      MediaKeyboardAction.StickerSearchClicked -> {
+        container.onHostWindowShown()
+        StickerSearchDialogFragment.show(childFragmentManager)
+      }
+
+      is MediaKeyboardAction.ViewStickerPackClicked -> {
+        startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(action.packId), StickerPackKey(action.packKey)))
+      }
+
+      // Sending a pack means sending its link, so it goes through the same forward sheet as a
+      // message. A child of this fragment, as with sticker search.
+      is MediaKeyboardAction.SendStickerPackClicked -> {
+        container.onHostWindowShown()
+        MultiselectForwardFragment.showBottomSheet(
+          supportFragmentManager = childFragmentManager,
+          multiselectForwardFragmentArgs = MultiselectForwardFragmentArgs(
+            multiShareArgs = listOf(
+              MultiShareArgs.Builder()
+                .withDraftText(StickerUrl.createShareLink(action.packId, action.packKey))
+                .build()
+            ),
+            title = R.string.StickerManagement_share_sheet_title
+          )
+        )
+      }
+
+      // The keyboard has already confirmed this with the user.
+      is MediaKeyboardAction.RemoveStickerPackConfirmed -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          StickerManagementRepository.uninstallStickerPacks(mapOf(StickerPackId(action.packId) to StickerPackKey(action.packKey)))
+        }
+      }
+
+      // A screen of its own rather than a window over this one, and picking a gif carries on into
+      // media send, so the keyboard has no reason to still be up on the way back.
+      MediaKeyboardAction.GifSearchClicked -> {
+        val recipientId = viewModel.recipientSnapshot?.id ?: return
+        container.hideInput()
+        conversationActivityResultContracts.launchGifSearch(recipientId, composeText.textTrimmed)
+      }
+
+      // Moves the input panel's toggle icon and persists the mode, so the keyboard opens on this tab
+      // next time.
+      is MediaKeyboardAction.TabSelected -> onKeyboardChanged(
+        when (action.tab) {
+          MediaKeyboardTab.EMOJI -> KeyboardPage.EMOJI
+          MediaKeyboardTab.STICKER -> KeyboardPage.STICKER
+          MediaKeyboardTab.GIF -> KeyboardPage.GIF
+        }
+      )
+    }
+  }
+
+  /** Turns a gif picked from the media keyboard into a blob the composer can attach. */
+  private val giphyMp4ViewModel: GiphyMp4ViewModel by activityViewModels { GiphyMp4ViewModel.Factory(isMms()) }
+
+  private var gifProgressDialog: AlertDialog? = null
+
+  private fun dismissGifProgressDialog() {
+    gifProgressDialog?.dismiss()
+    gifProgressDialog = null
+  }
 
   private val container: ChatInputController by lazy(LazyThreadSafetyMode.NONE) {
     ChatInputController(requireContext(), mediaKeyboardController)
@@ -678,13 +893,31 @@ class ConversationFragment :
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
-  private val reactionDelegate: ConversationReactionDelegate by lazy(LazyThreadSafetyMode.NONE) {
-    val conversationReactionStub = Stub<ConversationReactionOverlay>(overlayBinding.conversationReactionScrubberStub)
-    val delegate = ConversationReactionDelegate(conversationReactionStub)
-    delegate.setOnReactionSelectedListener(OnReactionsSelectedListener())
-
-    delegate
+  private val reactionOverlay: ChatReactionOverlayController by lazy(LazyThreadSafetyMode.NONE) {
+    ChatReactionOverlayController(
+      context = requireContext(),
+      hapticView = { chatHost },
+      menuAnchor = { reactionMenuAnchor },
+      onReactionSelected = { messageRecord, emoji ->
+        reactionOverlay.hide()
+        disposables += viewModel.updateReaction(messageRecord, emoji).subscribe()
+      },
+      onCustomReactionSelected = { messageRecord, hasAddedCustomEmoji ->
+        reactionOverlay.hide()
+        onCustomReactionSelected(messageRecord, hasAddedCustomEmoji)
+      },
+      onActionSelected = { action -> reactionActionListener?.onActionSelected(action) },
+      onStartHide = { focusedView -> reactionHideListener?.startHide(focusedView) },
+      onHidden = { reactionHideListener?.onHide() }
+    )
   }
+
+  /** Set for the life of one long press, so the overlay's callbacks reach that message. */
+  private var reactionActionListener: ReactionsToolbarListener? = null
+  private var reactionHideListener: ReactionOverlayHideListener? = null
+
+  private lateinit var reactionMenuAnchor: View
+  private lateinit var chatHost: ViewGroup
 
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
@@ -702,54 +935,127 @@ class ConversationFragment :
     super.onCreate(savedInstanceState)
     SignalLocalMetrics.ConversationOpen.start()
     registerForResults()
+
+    if (args.conversationScreenType.isInBubble) {
+      AppDependencies.messageNotifier.addActiveBubbleThread(ConversationId.forConversation(args.threadId))
+    }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+
+    if (args.conversationScreenType.isInBubble) {
+      AppDependencies.messageNotifier.removeActiveBubbleThread(ConversationId.forConversation(args.threadId))
+    }
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     conversationBackground = inflater.inflate(R.layout.v2_conversation_background, container, false)
     conversationContent = inflater.inflate(R.layout.v2_conversation_fragment, container, false)
-    conversationOverlay = inflater.inflate(R.layout.v2_conversation_overlay, container, false)
 
-    return ComposeView(requireContext()).apply {
+    // Read once here rather than in composition: it only matters when the keyboard's view model is
+    // first created, and it comes from disk.
+    val initialKeyboardTab = preferredKeyboardPage().toMediaKeyboardTab()
+
+    val composition = ComposeView(requireContext()).apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         SignalTheme {
           ChatScreen(
             controller = mediaKeyboardController,
-            onEvent = ::onMediaKeyboardEvent,
+            onScaffoldAction = ::onKeyboardSheetAction,
+            mediaKeyboardRepository = mediaKeyboardRepository,
+            onMediaKeyboardAction = ::onMediaKeyboardAction,
+            mediaKeyboardTabs = mediaKeyboardTabs,
+            mediaKeyboardInitialTab = initialKeyboardTab,
+            minimumVisibleContentPx = minimumVisibleContentPx,
             scrims = chatScrims,
             isBubble = args.conversationScreenType == ConversationScreenType.BUBBLE,
-            backgroundView = conversationBackground,
-            contentView = conversationContent,
-            overlayView = conversationOverlay
+            conversationView = conversationContent,
+            overlayController = reactionOverlay,
+            stickerConfirmation = stickerConfirmation
           )
         }
       }
     }
+
+    // Not the ComposeView itself: showAsDropDown measures from an anchor's bottom and flips a popup
+    // that will not fit below it.
+    reactionMenuAnchor = Space(requireContext())
+
+    // Behind the composition rather than inside it: an AndroidView would put the wallpaper in
+    // Compose's hit path, and a second interop view there costs the conversation its
+    // ACTION_HOVER_EXIT. See stylus-hover-interop.md.
+    chatHost = FrameLayout(requireContext()).apply {
+      addView(conversationBackground)
+      addView(composition)
+      addView(reactionMenuAnchor, FrameLayout.LayoutParams(0, 0))
+    }
+
+    return chatHost
   }
 
   /**
    * Where [target]'s row sits in the overlay's coordinate space. [Projection] walks the layout
    * positions; translations are not part of that walk, so they are added here.
+   *
+   * The overlay is a composition, so there is nothing to project into. It reports where it starts
+   * instead, which is the only reliable measure of its padding: a bubble consumes the insets it is
+   * padded by, leaving it flush with the root.
    */
   private fun overlayOriginOf(target: InteractiveConversationElement, recycler: RecyclerView): PointF {
-    val projection = Projection.relativeToViewWithCommonRoot(target.root, conversationOverlay, null)
+    val projection = Projection.relativeToViewWithCommonRoot(target.root, chatHost, null)
+    val hostOrigin = IntArray(2).also { chatHost.getLocationInWindow(it) }
+    val overlayOrigin = reactionOverlay.originInWindow
     val origin = PointF(
-      projection.x + target.root.translationX,
-      projection.y + target.root.translationY + recycler.translationY
+      projection.x + target.root.translationX - (overlayOrigin.x - hostOrigin[0]),
+      projection.y + target.root.translationY + recycler.translationY - (overlayOrigin.y - hostOrigin[1])
     )
     projection.release()
 
     return origin
   }
 
-  private fun onMediaKeyboardEvent(event: MediaKeyboardEvents) {
-    when (event) {
-      is MediaKeyboardEvents.SystemKeyboardVisibilityChanged -> container.onKeyboardVisibilityChanged(event.visible)
-      MediaKeyboardEvents.SystemKeyboardAnimationEnded -> container.onKeyboardAnimationEnded()
-      is MediaKeyboardEvents.SystemKeyboardHeightMeasured -> chatScreenViewModel.setKeyboardHeight(isLandscape(), event.heightPx)
-      is MediaKeyboardEvents.KeyboardShown -> container.onInputShown(event.key)
-      MediaKeyboardEvents.KeyboardHidden -> container.onInputHidden()
-      MediaKeyboardEvents.DismissedByBack -> Unit
+  private fun onKeyboardSheetAction(action: KeyboardSheetAction) {
+    when (action) {
+      is KeyboardSheetAction.SystemKeyboardVisibilityChanged -> {
+        // The toggle follows what is on screen: the system keyboard can cover one of ours, not just
+        // replace it.
+        inputPanel.setMediaKeyboardToggleOffersIme(!action.visible && container.isInputShowing)
+
+        // The open search field owns the keyboard, so it follows it in and out.
+        if (searchMenuItem?.isActionViewExpanded == true) {
+          val searchView = searchMenuItem?.actionView
+          if (action.visible && searchView?.hasFocus() == false) {
+            searchView.requestFocus()
+          } else if (!action.visible && searchView?.hasFocus() == true) {
+            searchView.clearFocus()
+          }
+        }
+
+        container.onKeyboardVisibilityChanged(action.visible)
+      }
+
+      is KeyboardSheetAction.SystemKeyboardHeightMeasured -> chatScreenViewModel.setKeyboardHeight(isLandscape(), action.heightPx)
+
+      is KeyboardSheetAction.KeyboardShown -> {
+        if (action.key == ChatKeyboards.Media) {
+          onShown()
+        } else {
+          stickerConfirmation.dismiss()
+        }
+      }
+
+      KeyboardSheetAction.KeyboardHidden -> {
+        stickerConfirmation.dismiss()
+        setNavBarBackgroundColor(viewModel.wallpaperSnapshot != null || viewModel.recipientSnapshot?.isReleaseNotes == true)
+        onHidden()
+        container.onInputHidden()
+      }
+
+      // Nothing hangs off these, but a scaffold has every reason to report them.
+      KeyboardSheetAction.SystemKeyboardAnimationEnded,
+      KeyboardSheetAction.DismissedByBack -> Unit
     }
   }
 
@@ -866,9 +1172,33 @@ class ConversationFragment :
       }
       applyToolbarPaddingRunnable = runnable
       rv.post(runnable)
+
+      updateMinimumVisibleContent()
+    }
+
+    inputPanel.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+      updateMinimumVisibleContent()
     }
 
     binding.conversationItemRecycler.addItemDecoration(ChatColorsDrawable.ChatColorsItemDecoration)
+
+    giphyMp4ViewModel.saveResultEvents.observe(viewLifecycleOwner) { result ->
+      when (result) {
+        is GiphyMp4SaveResult.Success -> {
+          dismissGifProgressDialog()
+          onGifSelectSuccess(result.blobUri, result.width, result.height)
+        }
+
+        is GiphyMp4SaveResult.Error -> {
+          dismissGifProgressDialog()
+          toast(R.string.GiphyActivity_error_while_retrieving_full_resolution_gif, toastDuration = Toast.LENGTH_LONG)
+        }
+
+        else -> {
+          gifProgressDialog = SimpleProgressDialog.show(requireContext())
+        }
+      }
+    }
   }
 
   override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -931,6 +1261,7 @@ class ConversationFragment :
       AppDependencies.messageNotifier.clearVisibleThread(ConversationId.forConversation(args.threadId))
     } else {
       AppDependencies.messageNotifier.clearVisibleBubbleThread()
+      AppDependencies.messageNotifier.updateNotification(requireContext())
     }
 
     if (activity?.isFinishing == true) {
@@ -949,14 +1280,14 @@ class ConversationFragment :
 
   override fun onDestroyView() {
     viewModel.collapseAllEvents()
-    keyboardEvents?.let {
-      container.removeInputListener(it)
-      container.removeKeyboardStateListener(it)
-    }
-    keyboardEvents = null
-
     // Fragment-scoped, so anything still waiting on a hide would outlive the binding.
-    container.clearListeners()
+    container.clearPendingActions()
+
+    dismissGifProgressDialog()
+
+    stickerConfirmation.dismiss()
+    inputPanelCollapseAnimator?.cancel()
+    inputPanelCollapseAnimator = null
 
     if (!requireActivity().isChangingConfigurations) {
       (requireActivity().supportFragmentManager.findFragmentByTag(MESSAGE_DETAILS_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
@@ -1028,33 +1359,15 @@ class ConversationFragment :
   }
 
   override fun onReactWithAnyEmojiDialogDismissed() {
-    reactionDelegate.hide()
+    reactionOverlay.hide()
   }
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
-    reactionDelegate.hide()
+    reactionOverlay.hide()
   }
 
   override fun onReactionsDialogDismissed() {
     clearFocusedItem()
-  }
-
-  override fun openEmojiSearch() {
-    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
-    if (fragment == null) {
-      childFragmentManager.commit {
-        add(R.id.emoji_search_container, EmojiSearchFragment(), EMOJI_SEARCH_FRAGMENT_TAG)
-      }
-    }
-  }
-
-  override fun closeEmojiSearch() {
-    val fragment = childFragmentManager.findFragmentByTag(EMOJI_SEARCH_FRAGMENT_TAG)
-    if (fragment != null) {
-      childFragmentManager.commit(allowStateLoss = true) {
-        remove(fragment)
-      }
-    }
   }
 
   override fun onEmojiSelected(emoji: String?) {
@@ -1070,10 +1383,6 @@ class ConversationFragment :
     }
   }
 
-  override fun openStickerSearch() {
-    StickerSearchDialogFragment.show(childFragmentManager)
-  }
-
   override fun onStickerSelected(sticker: StickerRecord) {
     sendSticker(
       stickerRecord = sticker,
@@ -1081,21 +1390,20 @@ class ConversationFragment :
     )
   }
 
+  override fun onStickerSearchDismissed() {
+    container.onHostWindowHidden()
+  }
+
   override fun onStickerManagementClicked() {
     StickerManagementScreen.show(this)
     container.hideInput()
   }
 
-  override fun isMms(): Boolean {
+  private fun isMms(): Boolean {
     return false
   }
 
-  override fun openGifSearch() {
-    val recipientId = viewModel.recipientSnapshot?.id ?: return
-    conversationActivityResultContracts.launchGifSearch(recipientId, composeText.textTrimmed)
-  }
-
-  override fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
+  private fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {
     setMedia(
       uri = blobUri,
       mediaType = SlideFactory.MediaType.from(AppDependencies.blobs.getMimeType(blobUri))!!,
@@ -1105,16 +1413,15 @@ class ConversationFragment :
     )
   }
 
-  override fun onShown() {
+  private fun onShown() {
     inputPanel.mediaKeyboardListener.onShown()
   }
 
-  override fun onHidden() {
+  private fun onHidden() {
     inputPanel.mediaKeyboardListener.onHidden()
-    closeEmojiSearch()
   }
 
-  override fun onKeyboardChanged(page: KeyboardPage) {
+  private fun onKeyboardChanged(page: KeyboardPage) {
     inputPanel.mediaKeyboardListener.onKeyboardChanged(page)
   }
 
@@ -1176,7 +1483,7 @@ class ConversationFragment :
     val state = viewModel.backPressedState.value
 
     when {
-      state.isReactionDelegateShowing -> reactionDelegate.hide()
+      state.isReactionDelegateShowing -> reactionOverlay.hide()
 
       state.isSearchRequested -> searchMenuItem?.collapseActionView()
 
@@ -1413,11 +1720,6 @@ class ConversationFragment :
     dataObserver = DataObserver()
     adapter.registerAdapterDataObserver(dataObserver!!)
 
-    keyboardEvents = KeyboardEvents().also {
-      container.addInputListener(it)
-      container.addKeyboardStateListener(it)
-    }
-
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
 
@@ -1495,7 +1797,7 @@ class ConversationFragment :
       }
     }
 
-    if (TextSecurePreferences.getServiceOutage(context)) {
+    if (SignalStore.misc.serviceOutage) {
       AppDependencies.jobManager.add(ServiceOutageDetectionJob())
     }
 
@@ -1744,7 +2046,7 @@ class ConversationFragment :
     val recipientId: RecipientId = viewModel.recipientSnapshot?.id ?: return
 
     if (mediaType == SlideFactory.MediaType.VCARD) {
-      conversationActivityResultContracts.launchContactShareEditor(uri, recipientId)
+      conversationActivityResultContracts.launchVCardShareEditor(uri, recipientId)
     } else {
       val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
       val media = Media(
@@ -2070,6 +2372,7 @@ class ConversationFragment :
 
   private fun presentChatColors(chatColors: ChatColors) {
     recyclerViewColorizer.setChatColors(chatColors)
+    stickerConfirmation.sendColor = ComposeColor(chatColors.asSingleColor())
     binding.scrollToMention.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.scrollToBottom.setUnreadCountBackgroundTint(chatColors.asSingleColor())
     binding.conversationInputPanel.buttonToggle.background.apply {
@@ -2483,24 +2786,31 @@ class ConversationFragment :
       .addTo(disposables)
   }
 
-  private fun initializeMediaKeyboard() {
-    val keyboardMode: TextSecurePreferences.MediaKeyboardMode = TextSecurePreferences.getMediaKeyboardMode(requireContext())
-    val stickerIntro: Boolean = !TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())
-
-    keyboardPagerViewModel.resetPages()
-    inputPanel.showMediaKeyboardToggle(true)
-
-    val keyboardPage = when (keyboardMode) {
-      TextSecurePreferences.MediaKeyboardMode.EMOJI -> KeyboardPage.EMOJI
-      TextSecurePreferences.MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
-      TextSecurePreferences.MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
+  private fun KeyboardPage.toMediaKeyboardTab(): MediaKeyboardTab {
+    return when (this) {
+      KeyboardPage.EMOJI -> MediaKeyboardTab.EMOJI
+      KeyboardPage.STICKER -> MediaKeyboardTab.STICKER
+      KeyboardPage.GIF -> MediaKeyboardTab.GIF
     }
+  }
 
-    inputPanel.setMediaKeyboardToggleMode(keyboardPage)
-    keyboardPagerViewModel.switchToPage(keyboardPage)
+  /** Which keyboard the toggle should offer, from the mode remembered across runs. */
+  private fun preferredKeyboardPage(): KeyboardPage {
+    return when (SignalStore.settings.mediaKeyboardMode) {
+      MediaKeyboardMode.EMOJI -> KeyboardPage.EMOJI
+      MediaKeyboardMode.STICKER -> KeyboardPage.STICKER
+      MediaKeyboardMode.GIF -> if (RemoteConfig.gifSearchAvailable) KeyboardPage.GIF else KeyboardPage.STICKER
+    }
+  }
+
+  private fun initializeMediaKeyboard() {
+    val stickerIntro: Boolean = !SignalStore.tooltips.hasSeenStickerIntroTooltip()
+
+    inputPanel.showMediaKeyboardToggle(true)
+    inputPanel.setMediaKeyboardToggleMode(preferredKeyboardPage())
 
     if (stickerIntro) {
-      TextSecurePreferences.setMediaKeyboardMode(requireContext(), TextSecurePreferences.MediaKeyboardMode.STICKER)
+      SignalStore.settings.mediaKeyboardMode = MediaKeyboardMode.STICKER
       inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER)
       conversationTooltips.displayStickerIntroductionTooltip(inputPanel.mediaKeyboardToggleAnchorView) {
         EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent::class.java)
@@ -2523,6 +2833,14 @@ class ConversationFragment :
     }
   }
 
+  /**
+   * True from the moment a recording is pressed until its session finishes writing out, which outlasts the recorder
+   * itself: the draft is snapshotted once per second while recording, so the draft can be non-null while the panel
+   * still needs to present as "recording" rather than "reviewing a voice draft".
+   */
+  private val isVoiceRecordingInFlight: Boolean
+    get() = inputPanel.isRecordingInProgress || (this::voiceMessageRecordingDelegate.isInitialized && voiceMessageRecordingDelegate.hasActiveSession())
+
   private fun updateToggleButtonState() {
     val buttonToggle: AnimatingToggle = binding.conversationInputPanel.buttonToggle
     val quickAttachment: HidingLinearLayout = binding.conversationInputPanel.quickAttachmentToggle
@@ -2541,7 +2859,7 @@ class ConversationFragment :
         inlineAttachment.hide(false)
       }
 
-      draftViewModel.voiceNoteDraft != null -> {
+      draftViewModel.voiceNoteDraft != null && !isVoiceRecordingInFlight -> {
         buttonToggle.display(sendButton)
         quickAttachment.hide(true)
         inlineAttachment.hide(true)
@@ -2773,7 +3091,7 @@ class ConversationFragment :
   }
 
   private fun maybeShowSwipeToReplyTooltip() {
-    if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
+    if (!SignalStore.tooltips.hasSeenSwipeToReplyTooltip()) {
       val tooltipText = if (ViewUtil.isLtr(requireContext())) {
         R.string.ConversationFragment_you_can_swipe_to_the_right_reply
       } else {
@@ -2782,7 +3100,7 @@ class ConversationFragment :
 
       snackbar(tooltipText)
 
-      TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true)
+      SignalStore.tooltips.markSwipeToReplyTooltipSeen()
     }
   }
 
@@ -2973,13 +3291,17 @@ class ConversationFragment :
 
   private fun handleReaction(
     conversationMessage: ConversationMessage,
-    onActionSelectedListener: OnActionSelectedListener,
-    selectedConversationModel: SelectedConversationModel,
-    onHideListener: OnHideListener
+    snapshot: ReactionOverlaySnapshot,
+    focusedView: View?
   ) {
-    reactionDelegate.setOnActionSelectedListener(onActionSelectedListener)
-    reactionDelegate.setOnHideListener(onHideListener)
-    reactionDelegate.show(requireActivity(), viewModel.recipientSnapshot!!, conversationMessage, conversationGroupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel, conversationGroupViewModel.canEditGroupInfo())
+    reactionOverlay.show(
+      conversationRecipient = viewModel.recipientSnapshot!!,
+      conversationMessage = conversationMessage,
+      snapshot = snapshot,
+      isNonAdminInAnnouncementGroup = conversationGroupViewModel.isNonAdminInAnnouncementGroup(),
+      canEditGroupInfo = conversationGroupViewModel.canEditGroupInfo(),
+      focusedView = focusedView
+    )
     viewModel.setIsReactionDelegateShowing(true)
     composeText.clearFocus()
   }
@@ -3139,16 +3461,26 @@ class ConversationFragment :
     val (slideDeck, body) = viewModel.getSlideDeckAndBodyForReply(requireContext(), conversationMessage)
     val author = conversationMessage.messageRecord.fromRecipient
 
-    inputPanel.setQuote(
-      Glide.with(this),
-      conversationMessage.messageRecord.dateSent,
-      author,
-      body,
-      slideDeck,
-      conversationMessage.messageRecord.getRecordQuoteType()
-    )
+    val setQuoteAndFocus = {
+      inputPanel.setQuote(
+        Glide.with(this),
+        conversationMessage.messageRecord.dateSent,
+        author,
+        body,
+        slideDeck,
+        conversationMessage.messageRecord.getRecordQuoteType()
+      )
 
-    inputPanel.clickOnComposeInput()
+      inputPanel.clickOnComposeInput()
+    }
+
+    if (stickerConfirmation.isShowing) {
+      dismissStickerConfirmationImmediately()
+      // The collapsed panel has to lay out again first, or the quote measures short and the zero-sized field can't take focus.
+      inputPanel.doOnNextLayout { setQuoteAndFocus() }
+    } else {
+      setQuoteAndFocus()
+    }
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
@@ -3213,6 +3545,13 @@ class ConversationFragment :
     if (record.isPaymentNotification) {
       startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), payment.uuid))
     }
+  }
+
+  private fun handleViewStickerPack(conversationMessage: ConversationMessage) {
+    val record: MmsMessageRecord = conversationMessage.messageRecord as? MmsMessageRecord ?: return
+    val stickerLocator = record.slideDeck.stickerSlide?.asAttachment()?.stickerLocator ?: return
+
+    startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(stickerLocator.packId), StickerPackKey(stickerLocator.packKey)))
   }
 
   private fun showPaymentTombstoneLearnMoreDialog() {
@@ -3428,7 +3767,7 @@ class ConversationFragment :
       val range = computeVerticalScrollRange() - computeVerticalScrollExtent()
       val delta = range - offset
 
-      delta <= IS_SCROLLED_TO_BOTTOM_THRESHOLD
+      delta <= IS_SCROLLED_TO_BOTTOM_THRESHOLD + mediaKeyboardController.expandedOverlapPx
     }
   }
 
@@ -3462,7 +3801,9 @@ class ConversationFragment :
   }
 
   private fun scrollToBottom() {
-    layoutManager.scrollToPositionWithOffset(0, 0)
+    // An expanded media keyboard covers the bottom of the list without the list's height changing, so the newest
+    // message has to be lifted clear of it or it lands behind the sheet.
+    layoutManager.scrollToPositionWithOffset(0, mediaKeyboardController.expandedOverlapPx)
     scrollListener?.onScrolled(binding.conversationItemRecycler, 0, 0)
   }
 
@@ -3665,9 +4006,16 @@ class ConversationFragment :
       LongMessageFragment.create(messageId, isMms).show(childFragmentManager, null)
     }
 
-    override fun onStickerClicked(stickerLocator: StickerLocator) {
+    override fun onStickerClicked(stickerSlide: StickerSlide) {
       context ?: return
-      startActivity(StickerPackPreviewActivity.getIntent(stickerLocator.packId, stickerLocator.packKey))
+      val stickerLocator = stickerSlide.asAttachment().stickerLocator ?: return
+
+      StickerPreviewBottomSheet.show(
+        fragmentManager = childFragmentManager,
+        stickerLocator = stickerLocator,
+        stickerUri = stickerSlide.uri,
+        contentType = stickerSlide.contentType
+      )
     }
 
     override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) {
@@ -3712,10 +4060,21 @@ class ConversationFragment :
       )
     }
 
-    override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
+    override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) {
       val context = context ?: return
-      ContactUtil.selectRecipientThroughDialog(context, choices, Locale.getDefault()) { recipient: Recipient ->
-        CommunicationActions.startConversation(context, recipient, null)
+
+      if (choices.isNotEmpty()) {
+        ContactUtil.selectRecipientThroughDialog(context, choices, Locale.getDefault()) { recipient: Recipient ->
+          CommunicationActions.startConversation(context, recipient, null)
+        }
+        return
+      }
+
+      // A card that carries only an ACI has nobody to pick between and no row yet, so tapping it is
+      // what seeds one.
+      viewLifecycleOwner.lifecycleScope.launch {
+        val recipientId = withContext(SignalDispatchers.IO) { contact.resolveOrCreateSignalRecipient() } ?: return@launch
+        CommunicationActions.startConversation(context, Recipient.resolved(recipientId), null)
       }
     }
 
@@ -4203,15 +4562,19 @@ class ConversationFragment :
         return
       }
 
+      if (reactionOverlay.isShowing) {
+        // Nothing below would be undone by a hide that never comes.
+        Log.w(TAG, "Long press while the reaction overlay is still showing. Ignoring.")
+        return
+      }
+
       val messageRecord = item.getMessageRecord()
 
       // Held, not re-read: teardown has to work from a screen that is already going.
       val recycler = binding.conversationItemRecycler
-      val shade = overlayBinding.reactionsShade
 
       multiselectItemDecoration.setFocusedItem(MultiselectPart.Message(item.conversationMessage))
       recycler.invalidateItemDecorations()
-      shade.visibility = View.VISIBLE
       recycler.suppressLayout(true)
 
       val audioUri = messageRecord.getAudioUriForLongClick()
@@ -4240,21 +4603,19 @@ class ConversationFragment :
       )
 
       val origin = overlayOriginOf(target, recycler)
-      val selectedConversationModel = SelectedConversationModel(
-        bitmap = snapshot,
+      val overlaySnapshot = ReactionOverlaySnapshot(
+        bitmap = snapshot.asImageBitmap(),
         bubbleX = origin.x + snapshotMetrics.snapshotOffset,
         bubbleY = origin.y + bodyBubble.y,
         bubbleWidth = bodyBubble.width,
         contextMenuX = origin.x + snapshotMetrics.contextMenuPadding,
-        audioUri = audioUri,
-        isOutgoing = messageRecord.isOutgoing,
-        focusedView = focusedView,
-        returnPosition = SelectedConversationModel.ReturnPosition {
+        isMessageOnLeft = messageRecord.isOutgoing xor ViewUtil.isLtr(recycler),
+        returnPosition = {
           if (view == null || target.root.parent == null || target.conversationMessage.messageRecord.id != messageRecord.id) {
             null
           } else {
             val current = overlayOriginOf(target, recycler)
-            PointF(current.x + snapshotMetrics.snapshotOffset, current.y + bodyBubble.y)
+            Offset(current.x + snapshotMetrics.snapshotOffset, current.y + bodyBubble.y)
           }
         }
       )
@@ -4269,59 +4630,56 @@ class ConversationFragment :
 
       viewModel.setHideScrollButtonsForReactionOverlay(true)
 
-      handleReaction(
-        item.conversationMessage,
-        ReactionsToolbarListener(item.conversationMessage),
-        selectedConversationModel,
-        object : OnHideListener {
-          override fun startHide(focusedView: View?) {
-            // Ahead of the started check: a dismiss while stopped would leave the chat dimmed.
-            multiselectItemDecoration.hideShade(recycler)
-            ViewUtil.fadeOut(shade, resources.getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE)
+      reactionActionListener = ReactionsToolbarListener(item.conversationMessage)
+      reactionHideListener = object : ReactionOverlayHideListener {
+        override fun startHide(focusedView: View?) {
+          // Ahead of the started check: a dismiss while stopped would leave the chat dimmed.
+          multiselectItemDecoration.hideShade(recycler)
 
-            if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
-              return
-            }
-
-            val searchField = expandedSearchField()
-            if (searchField != null && focusedView == searchField) {
-              // The input panel is gone while search is open, so composeText cannot take the keyboard back.
-              container.showSoftkey(searchField)
-            } else if (focusedView == composeText) {
-              container.showSoftkey(composeText)
-            }
+          if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
+            return
           }
 
-          override fun onHide() {
-            viewModel.setIsReactionDelegateShowing(false)
-
-            // Likewise: otherwise the list stays frozen and the message invisible.
-            recycler.suppressLayout(false)
-            multiselectItemDecoration.setFocusedItem(null)
-            recycler.invalidateItemDecorations()
-            bodyBubble.visibility = View.VISIBLE
-            target.reactionsView.visibility = View.VISIBLE
-            viewModel.setHideScrollButtonsForReactionOverlay(false)
-
-            if (quotedIndicatorVisible && target.quotedIndicatorView != null) {
-              ViewUtil.fadeIn(target.quotedIndicatorView!!, 150)
-            }
-
-            if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
-              return
-            }
-
-            if (selectedConversationModel.audioUri != null) {
-              getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
-            }
-
-            if (mp4Holder != null) {
-              mp4Holder.show()
-              mp4Holder.resume()
-            }
+          val searchField = expandedSearchField()
+          if (searchField != null && focusedView == searchField) {
+            // The input panel is gone while search is open, so composeText cannot take the keyboard back.
+            container.showSoftkey(searchField)
+          } else if (focusedView == composeText) {
+            container.showSoftkey(composeText)
           }
         }
-      )
+
+        override fun onHide() {
+          viewModel.setIsReactionDelegateShowing(false)
+
+          // Likewise: otherwise the list stays frozen and the message invisible.
+          recycler.suppressLayout(false)
+          multiselectItemDecoration.setFocusedItem(null)
+          recycler.invalidateItemDecorations()
+          bodyBubble.visibility = View.VISIBLE
+          target.reactionsView.visibility = View.VISIBLE
+          viewModel.setHideScrollButtonsForReactionOverlay(false)
+
+          if (quotedIndicatorVisible && target.quotedIndicatorView != null) {
+            ViewUtil.fadeIn(target.quotedIndicatorView!!, 150)
+          }
+
+          if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) || activity == null || activity?.isFinishing == true) {
+            return
+          }
+
+          if (audioUri != null) {
+            getVoiceNoteMediaController().resumePlayback(audioUri, messageRecord.id)
+          }
+
+          if (mp4Holder != null) {
+            mp4Holder.show()
+            mp4Holder.resume()
+          }
+        }
+      }
+
+      handleReaction(item.conversationMessage, overlaySnapshot, focusedView)
     }
 
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) {
@@ -4419,7 +4777,7 @@ class ConversationFragment :
 
       searchMenuItem!!.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
         override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-          searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+          searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
           searchView.setOnQueryTextListener(queryListener)
           isSearchRequested = true
           searchViewModel.onSearchOpened()
@@ -4628,27 +4986,16 @@ class ConversationFragment :
     }
   }
 
-  private inner class OnReactionsSelectedListener : ConversationReactionOverlay.OnReactionSelectedListener {
-    override fun onReactionSelected(messageRecord: MessageRecord, emoji: String?) {
-      reactionDelegate.hide()
-
-      if (emoji != null) {
-        disposables += viewModel.updateReaction(messageRecord, emoji).subscribe()
-      }
-    }
-
-    override fun onCustomReactionSelected(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean) {
-      reactionDelegate.hide()
-      disposables += viewModel.updateCustomReaction(messageRecord, hasAddedCustomEmoji)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeBy(
-          onSuccess = {
-            ReactWithAnyEmojiBottomSheetDialogFragment
-              .createForMessageRecord(messageRecord, -1)
-              .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-          }
-        )
-    }
+  private fun onCustomReactionSelected(messageRecord: MessageRecord, hasAddedCustomEmoji: Boolean) {
+    disposables += viewModel.updateCustomReaction(messageRecord, hasAddedCustomEmoji)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy(
+        onSuccess = {
+          ReactWithAnyEmojiBottomSheetDialogFragment
+            .createForMessageRecord(messageRecord, -1)
+            .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        }
+      )
   }
 
   private inner class MotionEventRelayDrain(lifecycleOwner: LifecycleOwner) : MotionEventRelay.Drain {
@@ -4656,7 +5003,7 @@ class ConversationFragment :
 
     override fun accept(motionEvent: MotionEvent): Boolean {
       return if (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
-        reactionDelegate.applyTouchEvent(motionEvent)
+        reactionOverlay.applyTouchEvent(motionEvent)
       } else {
         false
       }
@@ -4665,24 +5012,25 @@ class ConversationFragment :
 
   private inner class ReactionsToolbarListener(
     private val conversationMessage: ConversationMessage
-  ) : OnActionSelectedListener {
-    override fun onActionSelected(action: ConversationReactionOverlay.Action) {
+  ) {
+    fun onActionSelected(action: ReactionAction) {
       when (action) {
-        ConversationReactionOverlay.Action.REPLY -> handleReplyToMessage(conversationMessage)
-        ConversationReactionOverlay.Action.EDIT -> handleEditMessage(conversationMessage)
-        ConversationReactionOverlay.Action.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.RESEND -> handleResend(conversationMessage)
-        ConversationReactionOverlay.Action.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
-        ConversationReactionOverlay.Action.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.MULTISELECT -> handleEnterMultiselect(conversationMessage)
-        ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
-        ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
-        ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
-        ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
-        ConversationReactionOverlay.Action.PIN_MESSAGE -> handlePinMessage(conversationMessage)
-        ConversationReactionOverlay.Action.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
-        ConversationReactionOverlay.Action.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
-        ConversationReactionOverlay.Action.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.REPLY -> handleReplyToMessage(conversationMessage)
+        ReactionAction.EDIT -> handleEditMessage(conversationMessage)
+        ReactionAction.FORWARD -> handleForwardMessageParts(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.RESEND -> handleResend(conversationMessage)
+        ReactionAction.DOWNLOAD -> handleSaveAttachment(conversationMessage.messageRecord as MmsMessageRecord)
+        ReactionAction.COPY -> handleCopyMessage(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.MULTISELECT -> handleEnterMultiselect(conversationMessage)
+        ReactionAction.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
+        ReactionAction.VIEW_INFO -> handleDisplayDetails(conversationMessage)
+        ReactionAction.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+        ReactionAction.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
+        ReactionAction.PIN_MESSAGE -> handlePinMessage(conversationMessage)
+        ReactionAction.UNPIN_MESSAGE -> handleUnpinMessage(conversationMessage.messageRecord.id)
+        ReactionAction.STAR_MESSAGE -> handleStarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.UNSTAR_MESSAGE -> handleUnstarMessages(setOf(conversationMessage.messageRecord.id))
+        ReactionAction.VIEW_STICKER_PACK -> handleViewStickerPack(conversationMessage)
       }
     }
   }
@@ -4774,10 +5122,10 @@ class ConversationFragment :
       )
     }
 
-    override fun onContactSelect(uri: Uri?) {
+    override fun onContactSelect(source: SharedContactSource?) {
       val recipient = viewModel.recipientSnapshot
-      if (uri != null && recipient != null) {
-        conversationActivityResultContracts.launchContactShareEditor(uri, recipient.id)
+      if (source != null && recipient != null) {
+        conversationActivityResultContracts.launchContactShareEditor(source, recipient.id)
       }
     }
 
@@ -4825,7 +5173,7 @@ class ConversationFragment :
     }
 
     override fun reRegisterAction() {
-      startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
+      startActivity(RegistrationIntents.newIntentForReRegistration(requireContext()))
     }
 
     override fun reviewJoinRequestsAction() {
@@ -4919,11 +5267,11 @@ class ConversationFragment :
     }
 
     override fun onReRegisterClicked() {
-      startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
+      startActivity(RegistrationIntents.newIntentForReRegistration(requireContext()))
     }
 
     override fun onReLinkDeviceClicked() {
-      startActivity(RegistrationActivity.newIntentForReLinkDevice(requireContext()))
+      startActivity(RegistrationIntents.newIntentForReLinkDevice(requireContext()))
     }
 
     override fun onCancelGroupRequestClicked() {
@@ -5202,9 +5550,9 @@ class ConversationFragment :
 
     override fun onEnterEditMode() {
       updateToggleButtonState()
-      previousPage = keyboardPagerViewModel.page().value
-      previousPages = keyboardPagerViewModel.pages().value
-      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
+      previousPage = preferredKeyboardPage()
+      mediaKeyboardTabs = setOf(MediaKeyboardTab.EMOJI)
+      // Also persists the mode, so read [previousPage] before this and restore it on the way out.
       onKeyboardChanged(KeyboardPage.EMOJI)
       stickerViewModel.onInputTextUpdated("")
       updateLinkPreviewState()
@@ -5213,13 +5561,9 @@ class ConversationFragment :
     override fun onExitEditMode() {
       updateToggleButtonState()
       draftViewModel.deleteMessageEditDraft()
-      if (previousPages != null) {
-        keyboardPagerViewModel.setPages(previousPages!!)
-        previousPages = null
-      }
-      if (previousPage != null) {
-        keyboardPagerViewModel.switchToPage(previousPage!!)
-        onKeyboardChanged(previousPage!!)
+      mediaKeyboardTabs = null
+      previousPage?.let {
+        onKeyboardChanged(it)
         previousPage = null
       }
       updateLinkPreviewState()
@@ -5327,43 +5671,6 @@ class ConversationFragment :
     }
   }
 
-  private inner class KeyboardEvents :
-    ChatInputController.Listener,
-    ChatInputController.KeyboardStateListener {
-
-    override fun onInputShown(key: MediaKeyboardKey) {
-      if (key == ChatKeyboards.Media) {
-        onShown()
-      }
-    }
-
-    override fun onInputHidden() {
-      setNavBarBackgroundColor(viewModel.wallpaperSnapshot != null || viewModel.recipientSnapshot?.isReleaseNotes == true)
-      onHidden()
-    }
-
-    override fun onKeyboardShown() {
-      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == false) {
-        searchMenuItem?.actionView?.requestFocus()
-      }
-    }
-
-    override fun onKeyboardHidden() {
-      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == true) {
-        searchMenuItem?.actionView?.clearFocus()
-      }
-    }
-
-    override fun onKeyboardAnimationEnded() {
-      if (view == null) {
-        return
-      }
-      if (!container.isKeyboardShowing) {
-        closeEmojiSearch()
-      }
-    }
-  }
-
   //endregion
 
   //region Event Bus
@@ -5379,7 +5686,7 @@ class ConversationFragment :
       return
     }
 
-    if (!TextSecurePreferences.hasSeenStickerIntroTooltip(requireContext())) {
+    if (!SignalStore.tooltips.hasSeenStickerIntroTooltip()) {
       return
     }
 

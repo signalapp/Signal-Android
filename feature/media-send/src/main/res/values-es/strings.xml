@@ -21,7 +21,7 @@
   <!-- Progress dialog message shown while the media being edited is written out to the phone\'s storage. -->
   <string name="MediaSendDialogs__saving_media">Guardando archivo adjunto…</string>
   <!-- Dialog message asking the user to confirm that the media should be added to a group\'s story. The placeholder is the group\'s name. -->
-  <string name="MediaSendDialogs__add_to_the_group_story">Añadir \"%1$s\" a la historia de grupo</string>
+  <string name="MediaSendDialogs__add_to_the_group_story">Añadir a la historia de grupo \"%1$s\"</string>
   <!-- Confirmation button that adds the media to the group\'s story. -->
   <string name="MediaSendDialogs__add_to_story">Añadir a la historia</string>
   <!-- Accessibility label for the row that lets the user add a text message to accompany the media being sent. -->
@@ -133,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">La grabación de vídeo no es compatible con tu dispositivo</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Toca para hacer una foto o mantén pulsado para grabar un vídeo</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Capturar</string>
-  <string name="CameraXFragment_change_camera_description">Cambiar cámara</string>
-  <string name="CameraXFragment_open_gallery_description">Abrir galería</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Permitir acceso</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -173,16 +167,6 @@
   <string name="CameraXFragment_photo_capture_failed">No se ha podido capturar la foto. Inténtalo de nuevo.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">No se ha podido procesar la foto. Inténtalo de nuevo.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Cambiar cámara</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Flash desactivado</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Flash activado</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Flash automático</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Enviar</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Pausado</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
@@ -246,6 +230,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Parece que estás intentando vincular un dispositivo a tu cuenta de Signal. Toca \"Continuar\", selecciona \"Vincular un nuevo dispositivo\" y vuelve a escanear el código QR.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Continuar</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">No se puede transferir la cuenta</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">El dispositivo al que quieres transferir tu cuenta no está actualizado. Descarga la última versión de Signal e inténtalo de nuevo.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

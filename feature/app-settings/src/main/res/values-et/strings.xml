@@ -61,35 +61,43 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Pääsuvõti</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Lisatud %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">Ava kahefaktorilise autentimise valikud</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">Nimeta ümber</string>
     <!-- Menu option that removes a second factor -->
     <string name="AccountSettingsFragment__remove">Eemalda</string>
     <!-- Title of the dialog confirming removal of an authenticator app -->
-    <string name="AccountSettingsFragment__remove_authenticator_app">Kas eemaldada autentimise äpp?</string>
+    <string name="AccountSettingsFragment__remove_authenticator_app">Kas eemaldada autentimisäpp?</string>
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Kui sisse logid, ei ole sul võimalik seda äppi ühekordsete kinnituskoodide jaoks kasutada.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Ava, et kahefaktoriline meetod eemaldada</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Selle meetodi eemaldamiseks kinnita, et see oled sina</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Ava, et Signal Logini vaadata</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Oma Signal Logini nägemiseks kinnita, et see oled sina</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Tee lukust lahti, et kinnitada, et see oled sina</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Konto kustutamiseks kinnita, et see oled sina</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">Vajalik autentimine</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AccountSettingsFragment__cant_add_authenticator_app">Autentimise äppi ei saa lisada</string>
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Autentimisäppi ei saa lisada</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Sa ei saa lisada rohkem kui %1$d autentimise äppi. Proovi enne üks eemaldada.</string>
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Sa ei saa lisada rohkem kui %1$d autentimisäppi. Proovi enne üks eemaldada.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Sa ei saa lisada rohkem kui %1$d kahefaktorilist autentimismeetodit. Proovi enne üks eemaldada.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Sinu kahefaktorilist autentimismeetodit ei saanud laadida. Kontrolli oma ühendust ja proovi uuesti.</string>
     <!-- Toast shown after an authenticator app has been removed -->
-    <string name="AccountSettingsFragment__authenticator_app_removed">Autentimise äpp on eemaldatud</string>
+    <string name="AccountSettingsFragment__authenticator_app_removed">Autentimisäpp on eemaldatud</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
     <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Autentimisäppi ei saanud eemaldada. Kontrolli oma ühendust ja proovi uuesti.</string>
     <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
@@ -123,7 +131,7 @@
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
     <string name="TotpSetupScreen__no_authenticator_app_found">Ühtegi autentimise äppi ei leitud</string>
     <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
-    <string name="TotpSetupScreen__you_cant_add_more_than_d">Sa ei saa lisada rohkem kui %1$d autentimise äppi. Proovi enne üks eemaldada.</string>
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Sa ei saa lisada rohkem kui %1$d autentimisäppi. Proovi enne üks eemaldada.</string>
     <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
     <string name="TotpSetupScreen__couldnt_reach_signal">Signaliga ei saanud ühendust. Kontrolli oma ühendust ja proovi uuesti.</string>
     <!-- Header of the third step of authenticator app setup -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">Sisesta oma kood</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Sisesta oma autentimise äpist 6-kohaline kood.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">Kood</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">Valmis</string>
+    <string name="TotpCodeEntryScreen__next">Edasi</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Vale kood. Sisesta praegu autentimisäpis kuvatav kood.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signaliga ei saanud ühendust. Kontrolli oma ühendust ja proovi uuesti.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Autentimise äpp</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">Vali nimi</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">Autentimise äpp on ümber nimetatud</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">Nime ei saanud salvestada. Kontrolli oma ühendust ja proovi uuesti.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Sinu konto kustutamine tähendab järgmist:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Sisesta enda telefoninumber</string>
+    <string name="DeleteAccountFragment__delete_account">Kustuta konto</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">kustutatakse sinu konto teave ja profiilifoto</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">kustutakse kõik sinu sõnumid</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Kustuta %1$s oma maksete kontol</string>
+    <string name="DeleteAccountFragment__no_country_code">Riigi kood määramata</string>
+    <string name="DeleteAccountFragment__no_number">Number määramata</string>
+    <string name="DeleteAccountFragment__the_phone_number">Sinu sisestatud telefoninumber ei vasta konto telefoninumbrile.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Kas sa tõesti soovid enda kontot kustutada?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">See toiming kustutab sinu Signali konto ja lähtestab rakenduse. Rakendus sulgub pärast protsessi lõpetamist.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Kohalike andmete kustutamine ei õnnestunud. Andmeid saab käsitsi kustutada süsteemi rakenduse sätetest.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Käivita rakenduse sätted</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Gruppidest lahkumine…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Konto kustutamine…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Sinu tellimuse tühistamine…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Sõltuvalt teie gruppide arvust võib selleks kuluda mõni minut</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Kasutajaandmete kustutamine ja rakenduse lähtestamine</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Konto pole kustutatud</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Kustutamisprotsessi käigus tekkis tõrge. Kontrolli enda võrguühendust ja proovi uuesti.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Kui kustutad oma Signali konto kasutajanimega „%1$s“:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Kustuta oma konto teave ja foto, sh oma kasutajanimi „%1$s“</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Seda toimingut ei saa tagasi võtta</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">See toiming kustutab sinu Signali konto kasutajanimega „%1$s“ ja lähtestab rakenduse. Rakendus sulgub pärast selle protsessi lõpuleviimist.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Jah, kustuta mu konto</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Vali oma riik</string>
+    <string name="RegistrationActivity_phone_number_description">Telefoninumber</string>
 </resources>

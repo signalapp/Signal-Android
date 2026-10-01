@@ -47,7 +47,7 @@ class PhoneNumberEntryViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
@@ -151,7 +151,11 @@ class PhoneNumberEntryViewModel(
         parentEventEmitter.navigateTo(RegistrationRoute.LinkAccount())
       }
       is PhoneNumberEntryScreenEvents.RegisterWithoutNumber -> {
-        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        if (state.sawArchiveRestoreSelectionScreen) {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginCredentialEntry())
+        } else {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        }
       }
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))
@@ -216,7 +220,8 @@ class PhoneNumberEntryViewModel(
       smsVerificationCodeRequest = parentState.lastSmsVerificationCodeRequest,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
       restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList(),
-      pendingRestoreOption = parentState.pendingRestoreOption
+      pendingRestoreOption = parentState.pendingRestoreOption,
+      sawArchiveRestoreSelectionScreen = parentState.sawArchiveRestoreSelectionScreen
     )
   }
 
@@ -375,7 +380,7 @@ class PhoneNumberEntryViewModel(
               state = state.copy(preExistingRegistrationData = null)
             }
             is RegisterAccountError.InvalidReceiptCredentialPresentation,
-            RegisterAccountError.TotpMissingOrIncorrect,
+            is RegisterAccountError.TwoFactorRequired,
             RegisterAccountError.PostQuantumRatchetRequired -> {
               Log.w(TAG, "[Register] Unexpected registration error: $error")
               return state.copy(dialogs = state.dialogs.copy(unknownError = true))
@@ -486,7 +491,7 @@ class PhoneNumberEntryViewModel(
             applySessionBasedRegistration(state, e164, parentEventEmitter)
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[LocalRestore] Unexpected registration error: $error")
             state.copy(dialogs = state.dialogs.copy(unknownError = true))

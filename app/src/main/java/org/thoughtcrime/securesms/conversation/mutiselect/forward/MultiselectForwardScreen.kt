@@ -5,6 +5,11 @@
 
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -47,8 +53,11 @@ fun MultiselectForwardScreen(
   contactSearchViewModel: ContactSearchViewModel,
   callback: MultiselectForwardFragment.Callback,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
-  additionalEntries: MappingEntryProvider<Any> = persistentHashMapOf(),
+  bottomBarState: MultiselectForwardBottomBarState,
+  isBottomBarVisible: Boolean,
+  onBottomBarEvent: (MultiselectForwardBottomBarEvent) -> Unit,
   contactSearchCallbacks: ContactSearchCallbacks,
+  additionalEntries: MappingEntryProvider<Any> = persistentHashMapOf(),
   bottomContentPadding: Dp = 0.dp
 ) {
   if (args.isWrappedInBottomSheet) {
@@ -86,6 +95,22 @@ fun MultiselectForwardScreen(
             }
           )
         }
+      },
+      bottomBar = {
+        // While this is hidden the scaffold measures it as empty and falls back to its own window insets, so the list
+        // clears the navigation bar either way.
+        AnimatedVisibility(
+          visible = isBottomBarVisible,
+          enter = slideInVertically { it / 3 } + fadeIn(),
+          exit = slideOutVertically { it / 3 } + fadeOut()
+        ) {
+          MultiselectForwardBottomBarSurface(
+            isSplitPane = isSplitPane,
+            state = bottomBarState,
+            backgroundColor = remember(callback) { Color(callback.getDialogBackgroundColor()) },
+            events = onBottomBarEvent
+          )
+        }
       }
     ) {
       MultiselectForwardContent(
@@ -96,8 +121,7 @@ fun MultiselectForwardScreen(
         mapStateToConfiguration = mapStateToConfiguration,
         contactSearchCallbacks = contactSearchCallbacks,
         modifier = Modifier.padding(it),
-        additionalEntries = additionalEntries,
-        bottomContentPadding = bottomContentPadding
+        additionalEntries = additionalEntries
       )
     }
   }

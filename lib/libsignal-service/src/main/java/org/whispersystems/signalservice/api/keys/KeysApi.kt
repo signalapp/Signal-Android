@@ -250,7 +250,7 @@ class KeysApi(
     return this.map { response ->
       val bundles: MutableList<PreKeyBundle> = LinkedList()
 
-      for (device in response.getDevices()) {
+      for (device in response.devices) {
         var preKey: ECPublicKey? = null
         var signedPreKey: ECPublicKey?
         var signedPreKeySignature: ByteArray?
@@ -260,39 +260,42 @@ class KeysApi(
         var kyberPreKey: KEMPublicKey?
         var kyberPreKeySignature: ByteArray?
 
-        if (device.getSignedPreKey() != null) {
-          val rawSignedPreKeyId = device.getSignedPreKey().keyId
+        val deviceSignedPreKey = device.signedPreKey
+        if (deviceSignedPreKey != null) {
+          val rawSignedPreKeyId = deviceSignedPreKey.keyId
           if (rawSignedPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Signed pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
-          signedPreKey = device.getSignedPreKey().publicKey
+          signedPreKey = deviceSignedPreKey.publicKey
           signedPreKeyId = rawSignedPreKeyId.toInt()
-          signedPreKeySignature = device.getSignedPreKey().signature
+          signedPreKeySignature = deviceSignedPreKey.signature
         } else {
           Log.w(TAG, "No signed prekey for device ${device.deviceId}! Skipping.")
           continue
         }
 
-        if (device.getPreKey() != null) {
-          val rawPreKeyId = device.getPreKey().keyId
+        val devicePreKey = device.preKey
+        if (devicePreKey != null) {
+          val rawPreKeyId = devicePreKey.keyId
           if (rawPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
           preKeyId = rawPreKeyId.toInt()
-          preKey = device.getPreKey().publicKey
+          preKey = devicePreKey.publicKey
         }
 
-        if (device.getKyberPreKey() != null) {
-          val rawKyberPreKeyId = device.getKyberPreKey().keyId
+        val deviceKyberPreKey = device.kyberPreKey
+        if (deviceKyberPreKey != null) {
+          val rawKyberPreKeyId = deviceKyberPreKey.keyId
           if (rawKyberPreKeyId !in 0..Int.MAX_VALUE.toLong()) {
             Log.w(TAG, "Kyber pre-key ID for device ${device.deviceId} is out of valid range! Skipping.")
             continue
           }
-          kyberPreKey = device.getKyberPreKey().publicKey
+          kyberPreKey = deviceKyberPreKey.publicKey
           kyberPreKeyId = rawKyberPreKeyId.toInt()
-          kyberPreKeySignature = device.getKyberPreKey().signature
+          kyberPreKeySignature = deviceKyberPreKey.signature
         } else {
           Log.w(TAG, "No kyber prekey for device ${device.deviceId}! Skipping.")
           continue
@@ -300,14 +303,14 @@ class KeysApi(
 
         bundles.add(
           PreKeyBundle(
-            device.getRegistrationId(),
-            device.getDeviceId(),
+            device.registrationId,
+            device.deviceId,
             preKeyId,
             preKey,
             signedPreKeyId,
             signedPreKey,
             signedPreKeySignature,
-            response.getIdentityKey(),
+            response.identityKey,
             kyberPreKeyId,
             kyberPreKey,
             kyberPreKeySignature

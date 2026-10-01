@@ -216,10 +216,11 @@ class DemoStorageController(private val context: Context) : StorageController {
       RegistrationPreferences.saveProvisioningData(
         NetworkController.ProvisioningMessage(
           accountEntropyPool = data.accountEntropyPool,
-          e164 = accountData.e164.orEmpty(),
+          aci = ACI.parseOrThrow(accountData.aci),
+          e164 = accountData.e164?.takeIf { it.isNotEmpty() },
           pin = data.pin.ifEmpty { null },
           aciIdentityKeyPair = IdentityKeyPair(accountData.aciIdentityKeyPair.toByteArray()),
-          pniIdentityKeyPair = IdentityKeyPair(accountData.pniIdentityKeyPair.toByteArray()),
+          pniIdentityKeyPair = accountData.pniIdentityKeyPair.takeIf { it.size > 0 }?.let { IdentityKeyPair(it.toByteArray()) },
           platform = when (prov.platform) {
             ProvisioningData.Platform.ANDROID -> NetworkController.ProvisioningMessage.Platform.ANDROID
             ProvisioningData.Platform.IOS -> NetworkController.ProvisioningMessage.Platform.IOS

@@ -30,6 +30,7 @@ import org.signal.registration.screens.aepentry.AepInput
 import org.signal.registration.screens.shared.AccountIdError
 import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.twofactorselection.TwoFactorMethod
+import org.signal.registration.screens.twofactorselection.toAuthenticationRoute
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
@@ -41,7 +42,7 @@ class SignalLoginCredentialEntryViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   prefilledAccountId: String? = null
-) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginCredentialEntryViewModel::class)
@@ -123,7 +124,7 @@ class SignalLoginCredentialEntryViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
   ) {
-    val accountId = AccountIdFormat.normalize(event.accountId).ifEmpty { state.accountId }
+    val accountId = AccountIdFormat.normalizeAndTruncate(event.accountId).ifEmpty { state.accountId }
     val filledState = state.copy(
       accountId = accountId,
       accountIdError = AccountIdFormat.validate(accountId),
@@ -242,12 +243,15 @@ class SignalLoginCredentialEntryViewModel(
           is RegisterAccountError.DeviceTransferPossible -> {
             error("[Next] Device transfer possible. This should not happen with RRP-based registration.")
           }
-          RegisterAccountError.TotpMissingOrIncorrect -> {
+          is RegisterAccountError.TwoFactorRequired -> {
             // For now this error only means TOTP, but in the future it will indicate that some two-factor method is
-            // required, so we treat it generically and route through the method selection screen.
-            Log.w(TAG, "[Next] A two-factor code is required. Sending the user to two-factor method selection.")
+            // required, so we treat it generically and let the method list decide where to go.
+            val methods = listOf(TwoFactorMethod.AuthenticatorApp)
+            val route = methods.toAuthenticationRoute()
+
+            Log.w(TAG, "[Next] A two-factor code is required. Sending the user to $route.")
             stateEmitter(inputState.copy(isLoggingIn = false))
-            parentEventEmitter.navigateTo(RegistrationRoute.TwoFactorSelection(methods = listOf(TwoFactorMethod.AuthenticatorApp)))
+            parentEventEmitter.navigateTo(route)
           }
           is RegisterAccountError.InvalidRequest,
           is RegisterAccountError.InvalidReceiptCredentialPresentation,

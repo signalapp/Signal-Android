@@ -7,13 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupJoinInfo;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
-import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;

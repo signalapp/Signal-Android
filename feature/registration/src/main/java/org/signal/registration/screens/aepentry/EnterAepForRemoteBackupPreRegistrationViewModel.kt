@@ -27,7 +27,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForRemoteBackupPreRegistrationViewModel::class)
@@ -142,7 +142,7 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
             error("[Submit] Device transfer possible. This should not happen with RRP-based registration.")
           }
           is RegisterAccountError.InvalidReceiptCredentialPresentation,
-          RegisterAccountError.TotpMissingOrIncorrect,
+          is RegisterAccountError.TwoFactorRequired,
           RegisterAccountError.PostQuantumRatchetRequired -> {
             Log.w(TAG, "[Submit] Unexpected registration error: $error")
             stateEmitter(

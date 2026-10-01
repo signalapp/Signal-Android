@@ -51,8 +51,8 @@ sealed interface AccountSettingsAction {
   /** Tell the user the removal didn't go through, so they know the app is still on the account. */
   data object ShowTotpAppRemovalFailed : AccountSettingsAction
 
-  /** Send the user to a support article about two-factor authentication. */
-  data object OpenLearnMore : AccountSettingsAction
+  /** Send the user to the support article at [url]. */
+  data class OpenSupportArticle(val url: String) : AccountSettingsAction
 
   /** Open the advanced PIN settings screen. */
   data object NavigateToAdvancedPinSettings : AccountSettingsAction
@@ -71,6 +71,9 @@ sealed interface AccountSettingsAction {
 
   /** Open registration so the user can re-register. */
   data object LaunchReRegistration : AccountSettingsAction
+
+  /** Ask the user to get past their screen lock before we send them into the delete account flow. */
+  data object AuthenticateToDeleteAccount : AccountSettingsAction
 
   /** Open the delete account flow. */
   data object NavigateToDeleteAccount : AccountSettingsAction

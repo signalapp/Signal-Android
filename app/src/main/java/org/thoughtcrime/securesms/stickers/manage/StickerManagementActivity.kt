@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.StickerUrl
-import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivity
+import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -57,21 +57,18 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
           uiState = uiState,
           onNavigateBack = ::supportFinishAfterTransition,
           onSetMultiSelectModeEnabled = viewModel::setMultiSelectEnabled,
+          onSetSearchModeEnabled = viewModel::setSearchModeEnabled,
+          onSearchQueryChange = viewModel::onSearchQueryChanged,
           onSnackbarDismiss = viewModel::onSnackbarDismiss,
-          availableTabCallbacks = remember {
-            object : AvailableStickersContentCallbacks {
-              override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
-              override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
-              override fun onShowPreviewClick(pack: AvailableStickerPack) = navigateToStickerPreview(pack.id, pack.key)
-            }
-          },
-          installedTabCallbacks = remember {
-            object : InstalledStickersContentCallbacks {
-              override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
+          callbacks = remember {
+            object : StickerManagementContentCallbacks {
+              override fun onForwardClick(pack: StickerPack) = openShareSheet(pack.id, pack.key)
+              override fun onInstallClick(pack: StickerPack) = viewModel.installStickerPack(pack)
+              override fun onCopyClick(pack: StickerPack) = viewModel.onCopyPack(pack.id, pack.key)
               override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
               override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
               override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
-              override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
+              override fun onSelectionToggle(pack: StickerPack) = viewModel.toggleSelection(pack)
               override fun onSelectAllToggle() = viewModel.toggleSelectAll()
               override fun onReorderableEvent(event: ReorderListEvent) {
                 when (event) {
@@ -81,7 +78,7 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
                 }
               }
 
-              override fun onShowPreviewClick(pack: InstalledStickerPack) = navigateToStickerPreview(pack.id, pack.key)
+              override fun onShowPreviewClick(pack: StickerPack) = navigateToStickerPreview(pack.id, pack.key)
             }
           }
         )
@@ -104,6 +101,6 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
   }
 
   private fun navigateToStickerPreview(packId: StickerPackId, packKey: StickerPackKey) {
-    startActivity(StickerPackPreviewActivity.getIntent(packId.value, packKey.value))
+    startActivity(StickerPackPreviewActivityV2.createIntent(packId, packKey))
   }
 }

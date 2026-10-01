@@ -32,7 +32,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.preference.PreferenceManager
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -53,13 +52,7 @@ import org.thoughtcrime.securesms.util.viewModel
 class AdvancedPrivacySettingsFragment : ComposeFragment() {
 
   private val viewModel: AdvancedPrivacySettingsViewModel by viewModel {
-    val repository = AdvancedPrivacySettingsRepository(requireContext())
-    val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-
-    AdvancedPrivacySettingsViewModel(
-      preferences,
-      repository
-    )
+    AdvancedPrivacySettingsViewModel(AdvancedPrivacySettingsRepository())
   }
 
   private var networkReceiver: NetworkReceiver? = null

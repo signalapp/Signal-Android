@@ -14,7 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -36,9 +35,8 @@ class DataAndStorageSettingsFragment : ComposeFragment() {
 
   private val viewModel: DataAndStorageSettingsViewModel by viewModels(
     factoryProducer = {
-      val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
       val repository = DataAndStorageSettingsRepository()
-      DataAndStorageSettingsViewModel.Factory(preferences, repository)
+      DataAndStorageSettingsViewModel.Factory(repository)
     }
   )
 

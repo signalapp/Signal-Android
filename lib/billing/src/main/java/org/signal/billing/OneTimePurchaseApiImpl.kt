@@ -36,6 +36,7 @@ import org.signal.core.util.billing.OneTimePurchaseResult
 import org.signal.core.util.billing.PurchaseLauncher
 import org.signal.core.util.logging.Log
 import java.util.concurrent.atomic.AtomicReference
+import org.signal.core.util.billing.BillingResponseCode as CoreBillingResponseCode
 
 /**
  * Google Play Billing implementation of [OneTimePurchaseApi] for consumable products.
@@ -62,6 +63,15 @@ internal class OneTimePurchaseApiImpl(
   /** Built on first use, so simply constructing this api does not stand up a Play client or a thread. */
   private val connectionLazy = lazy { BillingClientConnection(context, purchasesUpdatedListener) }
   private val connection: BillingClientConnection get() = connectionLazy.value
+
+  override suspend fun getApiAvailability(): CoreBillingResponseCode = withContext(Dispatchers.IO) {
+    try {
+      connection.withConnection("getApiAvailability") { CoreBillingResponseCode.OK }
+    } catch (e: BillingError) {
+      Log.w(TAG, "[getApiAvailability] Could not reach Google Play billing. Error code: ${e.billingResponseCode}", true)
+      CoreBillingResponseCode.fromBillingLibraryResponseCode(e.billingResponseCode)
+    }
+  }
 
   override suspend fun queryProduct(product: OneTimeProductId): OneTimeProductResult = withContext(Dispatchers.IO) {
     val offer = when (val result = queryOfferDetails(product)) {

@@ -71,12 +71,12 @@ class BackupPlugin : Plugin {
       return "Failed to read forward secrecy metadata!"
     }
 
-    val svrBAuth = when (val result = runBlocking { AppDependencies.archiveService.getSvrBAuth() }) {
+    val svrBAuth = when (val result = runBlocking { SignalNetwork.archiveService.getSvrBAuth() }) {
       is Either.Right -> result.value
       is Either.Left -> return "Failed to read forward secrecy metadata!"
     }
 
-    val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
+    val forwardSecrecyToken = when (val result = SignalNetwork.svrBApi.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
       is SvrBApi.RestoreResult.Success -> result.data.forwardSecrecyToken
       else -> return "Failed to read forward secrecy metadata! $result"
     }

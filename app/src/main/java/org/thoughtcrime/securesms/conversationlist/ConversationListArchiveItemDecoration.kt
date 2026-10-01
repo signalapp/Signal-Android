@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.conversationlist
 
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.os.SystemClock
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * When an item is removed, the gap is held by the items below the space being translated down, OR the items above the space being translated up, OR both.
@@ -15,19 +17,28 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class ConversationListArchiveItemDecoration(val background: Drawable) : RecyclerView.ItemDecoration() {
 
-  private var archiveTriggered: Boolean = false
+  companion object {
+    /** Upper bound on how long after a swipe we're willing to fill a gap, so a missed animation can't leave us armed indefinitely. */
+    private val ARCHIVE_WINDOW = 1.seconds.inWholeMilliseconds
+  }
+
+  private var archiveTriggeredAt: Long = 0
   private var archiveAnimationStarted: Boolean = false
 
   override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-    if (!archiveTriggered) {
+    if (archiveTriggeredAt == 0L) {
+      return
+    }
+
+    if (SystemClock.elapsedRealtime() - archiveTriggeredAt > ARCHIVE_WINDOW) {
+      clearArchiveTrigger()
       return
     }
 
     if (parent.isAnimating) {
       archiveAnimationStarted = true
     } else if (archiveAnimationStarted) {
-      archiveTriggered = false
-      archiveAnimationStarted = false
+      clearArchiveTrigger()
       return
     }
 
@@ -72,8 +83,7 @@ class ConversationListArchiveItemDecoration(val background: Drawable) : Recycler
 
     // A bit unscientific, but this gives us the behavior we want around archiving things in the pinned chat section
     if (gapHeight > singleItemHeight * 2) {
-      archiveTriggered = false
-      archiveAnimationStarted = false
+      clearArchiveTrigger()
       return
     }
 
@@ -82,6 +92,12 @@ class ConversationListArchiveItemDecoration(val background: Drawable) : Recycler
   }
 
   fun onArchiveStarted() {
-    archiveTriggered = true
+    archiveTriggeredAt = SystemClock.elapsedRealtime()
+    archiveAnimationStarted = false
+  }
+
+  private fun clearArchiveTrigger() {
+    archiveTriggeredAt = 0
+    archiveAnimationStarted = false
   }
 }

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -130,7 +131,7 @@ class RestoreAttachmentThumbnailJob private constructor(
       override fun shouldCancel(): Boolean = this@RestoreAttachmentThumbnailJob.isCanceled
     }
 
-    val cdnCredentials = runBlocking { AppDependencies.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn) }.successOrThrow().headers
+    val cdnCredentials = runBlocking { SignalNetwork.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn) }.successOrThrow().headers
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")

@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.contactshare
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.core.content.IntentCompat
 import org.signal.core.util.logging.Log
@@ -23,14 +22,17 @@ class ContactShareEditActivityV2 : PassphraseRequiredActivity() {
     private val TAG = Log.tag(ContactShareEditActivityV2::class)
 
     const val KEY_CONTACTS = "contacts"
-    private const val KEY_CONTACT_URIS = "contact_uris"
+    private const val KEY_SOURCE = "source"
     private const val KEY_RECIPIENT_ID = "recipient_id"
 
-    /** @param recipientId the conversation being sent to, not the contact being shared. */
+    /**
+     * @param source the contact being shared, which may have no address book entry at all.
+     * @param recipientId the conversation being sent to, not the contact being shared.
+     */
     @JvmStatic
-    fun getIntent(context: Context, contactUris: List<Uri>, recipientId: RecipientId): Intent {
+    fun getIntent(context: Context, source: SharedContactSource, recipientId: RecipientId): Intent {
       return Intent(context, ContactShareEditActivityV2::class.java).apply {
-        putParcelableArrayListExtra(KEY_CONTACT_URIS, ArrayList(contactUris))
+        putExtra(KEY_SOURCE, source)
         putExtra(KEY_RECIPIENT_ID, recipientId)
       }
     }
@@ -39,18 +41,18 @@ class ContactShareEditActivityV2 : PassphraseRequiredActivity() {
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     super.onCreate(savedInstanceState, ready)
 
-    val uris: List<Uri> = IntentCompat.getParcelableArrayListExtra(intent, KEY_CONTACT_URIS, Uri::class.java) ?: emptyList()
+    val source = IntentCompat.getParcelableExtra(intent, KEY_SOURCE, SharedContactSource::class.java)
     val recipientId = IntentCompat.getParcelableExtra(intent, KEY_RECIPIENT_ID, RecipientId::class.java)
 
-    if (uris.isEmpty() || recipientId == null) {
-      Log.w(TAG, "No contact uris supplied.")
+    if (source == null || recipientId == null) {
+      Log.w(TAG, "Nothing to share was supplied.")
       finish()
       return
     }
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-        .replace(android.R.id.content, ContactShareEditFragment.create(uris, recipientId))
+        .replace(android.R.id.content, ContactShareEditFragment.create(source, recipientId))
         .commit()
     }
   }

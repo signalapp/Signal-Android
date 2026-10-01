@@ -11,6 +11,13 @@ import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.groups.GroupAlreadyExistsException;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupJoinAlreadyAMemberException;
+import org.signal.core.util.groups.GroupNotAMemberException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -1025,8 +1032,8 @@ final class GroupManagerV2 {
         decryptedChange = decryptChange(Objects.requireNonNull(signedGroupChange));
       } catch (GroupJoinAlreadyAMemberException e) {
         Log.i(TAG, "Server reports that we are already a member of " + groupId);
-        alreadyAFullMember       = e.isFullMember();
-        isAlreadyPendingApproval = e.isPending();
+        alreadyAFullMember       = e.isFullMember;
+        isAlreadyPendingApproval = e.isPending;
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);

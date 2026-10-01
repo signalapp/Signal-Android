@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Any and all tooltips that the conversation can display, and a light amount of related presentation logic.
@@ -30,7 +30,7 @@ class ConversationTooltips(fragment: Fragment) {
       .setTextColor(ContextCompat.getColor(anchor.context, R.color.core_white))
       .setText(R.string.ConversationActivity_new_say_it_with_stickers)
       .setOnDismissListener {
-        TextSecurePreferences.setHasSeenStickerIntroTooltip(anchor.context, true)
+        SignalStore.tooltips.markStickerIntroTooltipSeen()
         onDismiss()
       }
       .show(TooltipPopup.POSITION_ABOVE)

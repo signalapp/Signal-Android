@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 import java.util.Objects;
@@ -336,7 +335,7 @@ public class ComposeText extends EmojiEditText {
       setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
     }
 
-    if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
+    if (SignalStore.settings().isIncognitoKeyboardEnabled()) {
       setImeOptions(getImeOptions() | 16777216);
     }
 

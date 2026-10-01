@@ -49,10 +49,12 @@ public class MarkReadReceiver extends BroadcastReceiver {
         notifier.removeStickyThread(thread);
       }
 
-      NotificationCancellationHelper.cancelLegacy(context, intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
+      int notificationId = intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1);
 
       PendingResult finisher = goAsync();
       SignalExecutors.BOUNDED.execute(() -> {
+        NotificationCancellationHelper.cancel(context, notificationId);
+
         List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
         for (ConversationId thread : threads) {

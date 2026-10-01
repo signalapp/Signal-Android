@@ -323,7 +323,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Drops all tables and recreates them.
    */
   @JvmOverloads
-  fun fullyResetTables(db: SupportSQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
+  fun fullyResetTables(db: SupportSQLiteDatabase = writableDatabase, useTransaction: Boolean = true) {
     if (useTransaction) {
       db.beginTransaction()
     }

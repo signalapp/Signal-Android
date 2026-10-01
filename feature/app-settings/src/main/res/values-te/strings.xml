@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">పాస్ కీ</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s %2$s ను జోడించారు</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">రెండు-కారకాల ప్రామాణీకరణ ఎంపికలను తెరవండి</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">పేరు మార్చండి</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">మీరు సైన్ ఇన్ చేసినప్పుడు వన్-టైమ్ ధృవీకరణ కోడ్‌ల కోసం ఈ యాప్‌ను ఉపయోగించలేరు.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">రెండు-కారకాల పద్ధతిని తొలగించడానికి అన్ లాక్ చేయండి</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ఈ పద్ధతిని తొలగించడానికి, అది మీరేనని నిర్ధారించండి</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Login వీక్షించేందుకు అన్ లాక్ చేయండి</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">మీ Signal Login ను వీక్షించడానికి, అది మీరేనని నిర్ధారించండి</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">అది మీరే అని నిర్ధారించడానికి అన్ లాక్ చేయండి</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">మీ ఖాతాను తొలగించడానికి అది మీరే అని నిర్ధారించండి</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">ప్రమాణీకరణ అవసరం</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">అథెంటికేటర్ యాప్‌ను జోడించలేకపోతున్నాను</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">మీరు %1$d కంటే ఎక్కువ అథెంటికేటర్ యాప్‌లను జోడించలేరు. ముందుగా ఒకదాన్ని తీసివేయడానికి ప్రయత్నించండి.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">మీరు %1$d కంటే ఎక్కువ రెండు-దశల అథెంటికేషన్ పద్ధతులను జోడించలేరు. ముందుగా ఒకదాన్ని తొలగించడానికి ప్రయత్నించండి.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">మీ రెండు-కారకాల ప్రామాణీకరణ పద్ధతులను లోడ్ చేయలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">అథెంటికేటర్ యాప్ తొలగించబడింది</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">మీ కోడ్‌ను ఎంటర్ చేయండి</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">మీ అథెంటికేటర్ యాప్ నుండి 6-అంకెల కోడ్‌ను ఎంటర్ చేయండి.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">కోడ్</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">పూర్తయింది</string>
+    <string name="TotpCodeEntryScreen__next">తరువాత</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">తప్పు కోడ్. ఇప్పుడు మీ ఆథెంటికేటర్ యాప్‌లో ప్రస్తుతం కనిపిస్తున్న కోడ్‌ను నమోదు చేయండి.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal‌ను చేరుకోలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">అథెంటికేటర్</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">ఒక పేరును ఎంచుకోండి</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">అథెంటికేటర్ యాప్ పేరు మార్చబడింది</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">పేరును సేవ్ చేయలేకపోయాము. మీ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">మీ ఖాతాను తొలగించడం అనేది:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
+    <string name="DeleteAccountFragment__delete_account">ఖాతాను తొలగించండి</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">మీ ఖాతా సమాచారం మరియు ప్రొఫైల్ ఫోటోను తొలగిస్తుంది</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">మీ సందేశాలు అన్నింటిని తొలగిస్తుంది</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">మీ చెల్లింపుల ఖాతాలో %1$s తొలగించండి</string>
+    <string name="DeleteAccountFragment__no_country_code">దేశ కోడ్ పేర్కొనబడలేదు</string>
+    <string name="DeleteAccountFragment__no_number">సంఖ్య పేర్కొనబడలేదు</string>
+    <string name="DeleteAccountFragment__the_phone_number">మీరు నమోదు చేసిన ఫోన్ నంబర్ మీ ఖాతాతో సరిపోలలేదు.</string>
+    <string name="DeleteAccountFragment__are_you_sure">మీరు ఖచ్చితంగా మీ ఖాతాను తొలగించాలనుకుంటున్నారా?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ఇది మీ Signal ఖాతాను తొలగిస్తుంది మరియు అప్లికేషన్‌ను రీసెట్ చేస్తుంది. ప్రక్రియ పూర్తయిన తర్వాత యాప్ మూసివేయబడుతుంది.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">స్థానిక డేటాను తొలగించడంలో విఫలమైంది. మీరు దీన్ని సిస్టమ్ అప్లికేషన్ సెట్టింగులలో మాన్యువల్‌గా క్లియర్ చేయవచ్చు.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">అనువర్తన సెట్టింగ్‌లను ప్రారంభించండి</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">గ్రూపులను విడిచిపెడుతోంది…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">ఖాతాను డిలీట్ చేస్తోంది…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">మీ సబ్‌స్క్రిప్షన్‌ను రద్దు చేస్తోంది…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">మీరు ఉన్న గ్రూపుల సంఖ్య ఆధారంగా, దీనికి కొన్ని నిమిషాలు పట్టవచ్చు</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">యూజర్ డేటా డిలీట్ చేసి, యాప్‌ని రీసెట్ చేస్తోంది</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">ఖాతా తొలగించబడలేదు</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">డిలీట్ చేసే ప్రక్రియను పూర్తి చేయడంలో ఒక సమస్య ఉండినది. మీ నెట్‌వర్క్ కనెక్షన్‌ని చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" యూజర్‌నేమ్‌తో ఉన్న మీ ఖాతాను తొలగిస్తే:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">మీ యూజర్‌నేమ్ \"%1$s\" తో సహా మీ ఖాతా సమాచారాన్ని మరియు ప్రొఫైల్ ఫోటోను తొలగించండి</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">ఈ చర్య రద్దు చేయబడదు</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ఇది యూజర్‌నేమ్ \"%1$s\" తో ఉన్న మీ Signal ఖాతాను తొలగించి, అప్లికేషన్‌ను రీసెట్ చేస్తుంది. ఈ ప్రక్రియ పూర్తయిన తరువాత యాప్ మూసివేయబడుతుంది.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">అవును, నా ఖాతాను తొలగించండి</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">మీ దేశాన్ని ఎంచుకోండి</string>
+    <string name="RegistrationActivity_phone_number_description">ఫోను నంబరు</string>
 </resources>

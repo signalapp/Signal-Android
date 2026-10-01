@@ -17,10 +17,13 @@ import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.TooManyTotpKeysException
 import org.signal.libsignal.net.TotpParameters
 import org.signal.network.api.AccountApiV2
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLEncoder
 import java.time.Instant
+import org.signal.appsettings.R as AppSettingsR
 
 /**
  * Everything the authenticator app screens need, sitting between them and the TOTP endpoints on [AccountApiV2].
@@ -30,19 +33,14 @@ import java.time.Instant
  * all this layer does is hand the master key over and map the results into what the screens show.
  */
 class TotpRepository(
-  private val api: AccountApiV2 = SignalNetwork.accountV2,
+  private val api: AccountApiV2 = SignalNetwork.accountApiV2,
   private val masterKeyProvider: () -> MasterKey = { SignalStore.svr.masterKey },
-  private val clock: () -> Long = System::currentTimeMillis
+  private val clock: () -> Long = System::currentTimeMillis,
+  private val defaultAppName: () -> String = { AppDependencies.application.getString(AppSettingsR.string.TotpRepository__authenticator) }
 ) {
 
   companion object {
     private val TAG = Log.tag(TotpRepository::class)
-
-    /**
-     * How many authenticator apps an account may have, which the service enforces. libsignal reports hitting the
-     * limit but doesn't expose the number, so the screens that want to show it get it from here.
-     */
-    const val MAX_APPS = 2
 
     private const val ISSUER = "Signal"
 
@@ -60,8 +58,20 @@ class TotpRepository(
     const val MAX_NAME_LENGTH_GRAPHEMES = 30
   }
 
+  /**
+   * How many authenticator apps the account is allowed at once. libsignal reports hitting the limit but doesn't expose
+   * the number, so the screens that want to show it get it from here.
+   */
   fun getMaxApps(): Int {
-    return MAX_APPS
+    return RemoteConfig.maxTotpApps
+  }
+
+  /**
+   * How many two-factor methods of every kind the account is allowed at once. Authenticator apps share this limit with
+   * passkeys, so it can be reached even when there's room left under [getMaxApps].
+   */
+  fun getMaxMfaKeys(): Int {
+    return RemoteConfig.maxMfaKeys
   }
 
   /**
@@ -104,14 +114,14 @@ class TotpRepository(
   /**
    * Confirms the pending key with a code from the user's authenticator app.
    *
-   * The key is confirmed without a name, because the service wants metadata at confirmation time and the user doesn't
-   * name their app until the screen after this one. Naming it later means a brief window where a key has no name, which
-   * is a better failure than a window where the second factor isn't active yet.
+   * The key is confirmed with a default name, because the service wants metadata at confirmation time and the user
+   * doesn't name their app until the screen after this one. Anything that lists keys in that window shows the default
+   * rather than a nameless entry.
    */
   suspend fun confirmPendingApp(code: String): ConfirmResult {
     val oneTimePassword = code.toIntOrNull() ?: return ConfirmResult.IncorrectCode
 
-    val metadata = MfaMetadata(name = "", createdAt = Instant.ofEpochMilli(clock()))
+    val metadata = MfaMetadata(name = defaultAppName(), createdAt = Instant.ofEpochMilli(clock()))
 
     return when (val result = api.confirmTotpKey(oneTimePassword = oneTimePassword, metadata = metadata, masterKey = masterKeyProvider())) {
       is RequestResult.Success -> {
@@ -135,7 +145,7 @@ class TotpRepository(
     }
   }
 
-  /** The authenticator apps on the account, newest id last, with anything we can't read left out. */
+  /** The authenticator apps on the account, newest id last. Apps whose metadata we can't read have no name or date. */
   suspend fun getTotpApps(): AppsResult {
     val keys = when (val result = api.listMfaKeys(masterKeyProvider())) {
       is RequestResult.Success -> result.result
@@ -150,29 +160,31 @@ class TotpRepository(
       is RequestResult.NonSuccess -> error("Code branch is unreachable")
     }
 
-    val apps = keys.mapNotNull { key ->
+    val apps = keys.map { key ->
       val metadata = key.metadata
       if (metadata == null) {
-        Log.w(TAG, "Couldn't read the metadata for key ${key.id}. Leaving it out of the list.")
-        null
-      } else {
-        TotpApp(
-          id = key.id.toLong(),
-          name = metadata.name,
-          createdAt = metadata.createdAt.toEpochMilli()
-        )
+        Log.w(TAG, "Couldn't read the metadata for key ${key.id}.")
       }
+
+      TotpApp(
+        id = key.id.toLong(),
+        name = metadata?.name,
+        createdAt = metadata?.createdAt?.toEpochMilli()
+      )
     }
 
     return AppsResult.Success(apps)
   }
 
-  /** Renames [app], which means re-encrypting its metadata and handing the whole blob back to the service. */
+  /**
+   * Renames [app], which means re-encrypting its metadata and handing the whole blob back to the service. An app whose
+   * metadata we couldn't read gets stamped with the current time.
+   */
   suspend fun renameTotpApp(app: TotpApp, name: String): UpdateResult {
-    return setMetadata(app.id, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt)))
+    return setMetadata(app.id, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(app.createdAt ?: clock())))
   }
 
-  /** Names a newly confirmed app, which was confirmed without one moments ago. */
+  /** Names a newly confirmed app, replacing the default name it was confirmed with moments ago. */
   suspend fun nameNewTotpApp(appId: Long, name: String): UpdateResult {
     return setMetadata(appId, MfaMetadata(name = name, createdAt = Instant.ofEpochMilli(clock())))
   }

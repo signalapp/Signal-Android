@@ -180,6 +180,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V324_MoveGroupV1Sto
 import org.thoughtcrime.securesms.database.helpers.migration.V325_AddBlockedAtToRecipientTable
 import org.thoughtcrime.securesms.database.helpers.migration.V326_AddUnreadReminderColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V327_AddLastUnreadReminderColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V328_AddSharedNameToRecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -367,10 +368,11 @@ object SignalDatabaseMigrations {
     324 to V324_MoveGroupV1StorageIdsToUnknownIds,
     325 to V325_AddBlockedAtToRecipientTable,
     326 to V326_AddUnreadReminderColumn,
-    327 to V327_AddLastUnreadReminderColumn
+    327 to V327_AddLastUnreadReminderColumn,
+    328 to V328_AddSharedNameToRecipientTable
   )
 
-  const val DATABASE_VERSION = 327
+  const val DATABASE_VERSION = 328
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

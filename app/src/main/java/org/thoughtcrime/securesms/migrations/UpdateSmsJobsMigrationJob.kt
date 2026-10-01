@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 
 /**
  * Updates the data in queued jobs to reflect the new ids SMS messages get assigned during the table merge migration.
@@ -31,7 +31,7 @@ internal class UpdateSmsJobsMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    val idOffset = SignalStore.plaintext.smsMigrationIdOffset
+    val idOffset = PlainTextKeyValueStore.smsMigrationIdOffset
     if (idOffset < 0) {
       Log.w(TAG, "Invalid ID offset of $idOffset -- this shouldn't be possible!")
       return

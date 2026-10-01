@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncValidations
 import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -191,7 +190,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       return
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account.isUnauthorizedReceived) {
       Log.i(TAG, "No longer authorized. Ignoring.")
       return
     }
@@ -258,7 +257,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   private fun performSync(storageServiceKey: StorageKey): Boolean {
     val stopwatch = Stopwatch("StorageSync")
     val db = SignalDatabase.writableDatabase
-    val repository = StorageServiceService(SignalNetwork.storageService)
+    val repository = SignalNetwork.storageService
 
     val localManifest = SignalStore.storageService.manifest
     val fetchRemoteManifest = localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3
@@ -528,7 +527,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     ContactRecordProcessor(identityConflictsPendingRepair).process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
     GroupV2RecordProcessor().process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
     NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
-    AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
+    AccountRecordProcessor(freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
     StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR)
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
     ChatFolderRecordProcessor().process(records.chatFolderRecords, StorageSyncHelper.KEY_GENERATOR)
@@ -575,7 +574,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           if (!self.storageId.contentEquals(id.raw)) {
             throw AssertionError("Local storage ID doesn't match self!")
           }
-          records.add(StorageSyncHelper.buildAccountRecord(context, self))
+          records.add(StorageSyncHelper.buildAccountRecord(self))
         }
 
         ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST -> {

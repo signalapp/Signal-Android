@@ -61,9 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Toegangsleutel</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
-    <string name="AccountSettingsFragment__s_added_s">%1$s · Added %2$s</string>
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s is bygevoeg</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Unknown</string>
     <!-- Content description of the button that opens a second factor\'s options -->
-    <string name="AccountSettingsFragment__open_two_factor_options">Open two-factor authentication options</string>
+    <string name="AccountSettingsFragment__open_two_factor_options">Maak tweefaktor-bevestigingsopsies oop</string>
     <!-- Menu option that renames a second factor -->
     <string name="AccountSettingsFragment__rename">Hernoem</string>
     <!-- Menu option that removes a second factor -->
@@ -73,21 +75,27 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Jy sal nie hierdie toepassing vir eenmalige verifiëringskodes kan gebruik wanneer jy aanteken nie.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Unlock to remove two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Ontsluit om tweefaktormetode te verwyder</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
-    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">To remove this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Om hierdie metode te verwyder, bevestig dat dit jy is</string>
     <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Unlock to view Signal Login</string>
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Ontsluit om Signal Login te besigtig</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
-    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">To view your Signal Login, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Om jou Signal Login te besigtig, bevestig dat dit jy is</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Ontsluit om te bevestig dat dit jy is</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Om jou rekening te skrap, bevestig dat dit jy is</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
     <string name="AccountSettingsFragment__authentication_required">Bevestiging word vereis</string>
     <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__cant_add_authenticator_app">Kan nie bevestigingstoepassing byvoeg nie</string>
     <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
     <string name="AccountSettingsFragment__you_cant_add_more_than_d">Jy kan nie meer as %1$d bevestigingstoepassings byvoeg nie. Probeer om eers een te verwyder.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Jy kan nie meer as %1$d tweefaktor-bevestigingsmetodes byvoeg nie. Probeer om eers een te verwyder.</string>
     <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
-    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Couldn\'t load your two-factor authentication methods. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Kon nie jou tweefaktor-bevestigingsmetodes laai nie. Gaan jou verbinding na en probeer weer.</string>
     <!-- Toast shown after an authenticator app has been removed -->
     <string name="AccountSettingsFragment__authenticator_app_removed">Bevestigingstoepassing verwyder</string>
     <!-- Toast shown when an authenticator app couldn\'t be removed -->
@@ -138,14 +146,16 @@
     <string name="TotpCodeEntryScreen__enter_your_code">Voer jou sleutel in</string>
     <!-- Instructions shown above the code entry field -->
     <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Voer die 6-syfer-kode vanaf jou bevestigingstoepassing in.</string>
-    <!-- Label of the code entry field -->
-    <string name="TotpCodeEntryScreen__code">Kode</string>
     <!-- Button that submits the entered code -->
-    <string name="TotpCodeEntryScreen__done">Klaar</string>
+    <string name="TotpCodeEntryScreen__next">Volgende</string>
     <!-- Error shown under the code field when the code the user entered was rejected -->
     <string name="TotpCodeEntryScreen__incorrect_code">Verkeerde kode. Sleutel nou die kode in wat in jou bevestigingstoepassing gewys word.</string>
     <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
     <string name="TotpCodeEntryScreen__couldnt_reach_signal">Kon nie Signal bereik nie. Gaan jou verbinding na en probeer weer.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Bevestigingstoepassing</string>
+
     <!-- TotpNameEntryScreen -->
     <!-- Title of the screen where the user names an authenticator app -->
     <string name="TotpNameEntryScreen__choose_a_name">Kies \'n naam</string>
@@ -163,4 +173,48 @@
     <string name="TotpNameEntryScreen__authenticator_app_renamed">Bevestigingstoepassing hernoem</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TotpNameEntryScreen__couldnt_save_name">Kon nie naam stoor nie. Gaan jou verbinding na en probeer weer.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Die skrap van jou rekening sal:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Voer jou telefoonnommer in</string>
+    <string name="DeleteAccountFragment__delete_account">Skrap rekening</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Jou rekeninginligting en profielfoto skrap</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Al jou boodskappe skrap</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Skrap %1$s in jou betalingsrekening</string>
+    <string name="DeleteAccountFragment__no_country_code">Geen landkode aangedui nie</string>
+    <string name="DeleteAccountFragment__no_number">Geen nommer aangedui nie</string>
+    <string name="DeleteAccountFragment__the_phone_number">Die telefoonnommer wat jy ingevoer het stem nie met dié van jou rekening ooreen nie.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Is jy seker jy wil jou rekening skrap?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dit sal jou Signal-rekening skrap en die toepassing terugstel. Die toepassing sal toemaak nadat die proses voltooi is.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Kon nie lokale data skrap nie. Jy kan dit handmatig in die stelsel-toepassingsinstellings skrap.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Lanseer toepassingsinstellings</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Groepe word verlaat…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Rekening word geskrap…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Jou intekening word gekanselleer…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dit kan ’n paar minute duur, afhangend van die hoeveelheid groepe waarvan jy lid is</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Gebruikerdata word geskrap en toepassing word teruggestel</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Rekening is nie geskrap nie</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Die skrapproses kon nie voltooi word nie. Gaan jou netwerkverbinding na en probeer weer.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Skrapping van jou rekening met die gebruikersnaam \"%1$s\"sal:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Skrap jou rekeninginligting en profielfoto, met inbegrip van jou gebruikersnaam \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Hierdie aksie kan nie ongedaan gemaak word nie</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Dít sal jou Signal-rekening met die gebruikersnaam \"%1$s\" skrap en die toepassing terugstel. Die toepassing sal toemaak nadat die proses voltooi is.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Ja, skrap my rekening</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Kies jou land</string>
+    <string name="RegistrationActivity_phone_number_description">Telefoonnommer</string>
 </resources>

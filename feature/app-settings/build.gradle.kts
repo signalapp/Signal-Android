@@ -21,6 +21,7 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   // Project dependencies
+  api(project(":lib:ui-components"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
   implementation(project(":lib:signal-login"))

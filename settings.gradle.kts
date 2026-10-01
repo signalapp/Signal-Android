@@ -133,6 +133,8 @@ include(":feature:app-settings")
 include(":feature:registration")
 include(":feature:camera")
 include(":feature:media-send")
+include(":feature:chat-settings")
+include(":feature:media-keyboard")
 
 // Demo apps
 include(":demo:paging")
@@ -146,6 +148,7 @@ include(":demo:image-editor")
 include(":demo:debuglogs-viewer")
 include(":demo:registration")
 include(":demo:camera")
+include(":demo:media-keyboard")
 include(":demo:apng")
 include(":demo:list-detail")
 

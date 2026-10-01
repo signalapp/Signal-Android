@@ -71,6 +71,9 @@ public class ContactUtilTest_getDisplayName {
                                   Collections.emptyList(),
                                   Collections.emptyList(),
                                   Collections.emptyList(),
+                                  null,
+                                  null,
+                                  null,
                                   null);
 
     assertEquals("Paigey", ContactUtil.getDisplayName(contact));
@@ -87,6 +90,9 @@ public class ContactUtilTest_getDisplayName {
                        Collections.emptyList(),
                        Collections.emptyList(),
                        Collections.emptyList(),
+                       null,
+                       null,
+                       null,
                        null);
   }
 
@@ -96,6 +102,9 @@ public class ContactUtilTest_getDisplayName {
                        Collections.emptyList(),
                        Collections.emptyList(),
                        Collections.emptyList(),
+                       null,
+                       null,
+                       null,
                        null);
   }
 }

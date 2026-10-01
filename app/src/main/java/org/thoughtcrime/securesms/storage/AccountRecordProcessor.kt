@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.storage
 
-import android.content.Context
 import okio.ByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
@@ -23,7 +22,6 @@ import java.util.Optional
  * exactly one account record).
  */
 class AccountRecordProcessor(
-  private val context: Context,
   private val self: Recipient,
   private val localAccountRecord: SignalAccountRecord
 ) : DefaultStorageRecordProcessor<SignalAccountRecord>() {
@@ -34,10 +32,9 @@ class AccountRecordProcessor(
 
   private var foundAccountRecord = false
 
-  constructor(context: Context, self: Recipient) : this(
-    context = context,
+  constructor(self: Recipient) : this(
     self = self,
-    localAccountRecord = StorageSyncHelper.buildAccountRecord(context, self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
+    localAccountRecord = StorageSyncHelper.buildAccountRecord(self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
   )
 
   /**
@@ -173,7 +170,7 @@ class AccountRecordProcessor(
   }
 
   override fun updateLocal(update: StorageRecordUpdate<SignalAccountRecord>) {
-    applyAccountStorageSyncUpdates(context, self, update, true)
+    applyAccountStorageSyncUpdates(self, update, true)
   }
 
   override fun compare(lhs: SignalAccountRecord, rhs: SignalAccountRecord): Int {

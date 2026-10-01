@@ -31,7 +31,7 @@ class RegistrationViewModel(
   private val savedStateHandle: SavedStateHandle,
   startDestination: RegistrationRoute? = null,
   private val startFresh: Boolean = false
-) : EventDrivenViewModel<RegistrationFlowEvent>(TAG) {
+) : EventDrivenViewModel<RegistrationFlowEvent>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(RegistrationViewModel::class)

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
-import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -8,11 +7,8 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class PrivacySettingsRepository {
-
-  private val context: Context = AppDependencies.application
 
   fun getBlockedCount(consumer: (Int) -> Unit) {
     SignalExecutors.BOUNDED.execute {
@@ -28,9 +24,9 @@ class PrivacySettingsRepository {
       StorageSyncHelper.scheduleSyncForDataChange()
       AppDependencies.jobManager.add(
         MultiDeviceConfigurationUpdateJob(
-          TextSecurePreferences.isReadReceiptsEnabled(context),
-          TextSecurePreferences.isTypingIndicatorsEnabled(context),
-          TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+          SignalStore.settings.isReadReceiptsEnabled,
+          SignalStore.settings.isTypingIndicatorsEnabled,
+          SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
           SignalStore.settings.isLinkPreviewsEnabled
         )
       )
@@ -38,15 +34,15 @@ class PrivacySettingsRepository {
   }
 
   fun syncTypingIndicatorsState() {
-    val enabled = TextSecurePreferences.isTypingIndicatorsEnabled(context)
+    val enabled = SignalStore.settings.isTypingIndicatorsEnabled
 
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
     AppDependencies.jobManager.add(
       MultiDeviceConfigurationUpdateJob(
-        TextSecurePreferences.isReadReceiptsEnabled(context),
+        SignalStore.settings.isReadReceiptsEnabled,
         enabled,
-        TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
+        SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
         SignalStore.settings.isLinkPreviewsEnabled
       )
     )

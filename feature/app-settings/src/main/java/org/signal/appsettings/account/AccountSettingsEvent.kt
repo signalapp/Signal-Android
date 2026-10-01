@@ -51,8 +51,8 @@ sealed interface AccountSettingsEvent {
   /** The user tapped the authenticator app option in the two-factor set-up menu. */
   data object AddTotpAppClicked : AccountSettingsEvent
 
-  /** The user tapped the learn more link on the dialog explaining the authenticator app limit. */
-  data object LearnMoreClicked : AccountSettingsEvent
+  /** The user tapped a learn more link that should open the support article at [url]. */
+  data class LearnMoreClicked(val url: String) : AccountSettingsEvent
 
   /** The user tapped the rename option in [method]'s overflow menu. */
   data class RenameMethodClicked(val method: TwoFactorMethod) : AccountSettingsEvent
@@ -66,8 +66,8 @@ sealed interface AccountSettingsEvent {
   /** The screen lock turned the user away, so whatever asked for it goes no further. */
   data object AuthenticationFailed : AccountSettingsEvent
 
-  /** The user confirmed removing the authenticator app named by the open dialog, which removes it. */
-  data object RemoveTotpAppConfirmed : AccountSettingsEvent
+  /** The user confirmed removing the authenticator app with [appId], which removes it. */
+  data class RemoveTotpAppConfirmed(val appId: Long) : AccountSettingsEvent
 
   /** The user tapped the advanced PIN settings row. */
   data object AdvancedPinSettingsClicked : AccountSettingsEvent
@@ -96,8 +96,11 @@ sealed interface AccountSettingsEvent {
   /** The fragment reported that clearing application data failed. */
   data object DataWipeFailed : AccountSettingsEvent
 
-  /** The user tapped the delete account row. */
+  /** The user tapped the delete account row, which asks for the screen lock first. */
   data object DeleteAccountClicked : AccountSettingsEvent
+
+  /** The user got past their screen lock, so we can send them into the delete account flow. */
+  data object DeleteAccountAuthenticated : AccountSettingsEvent
 
   /** Dismisses whatever is in [AccountSettingsState.dialog]. */
   data object DialogDismissed : AccountSettingsEvent

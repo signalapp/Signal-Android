@@ -1,16 +1,12 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
-import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class PrivacySettingsViewModel(
-  private val sharedPreferences: SharedPreferences,
   private val repository: PrivacySettingsRepository
 ) : ViewModel() {
 
@@ -26,24 +22,24 @@ class PrivacySettingsViewModel(
   }
 
   fun setReadReceiptsEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.READ_RECEIPTS_PREF, enabled).apply()
+    SignalStore.settings.isReadReceiptsEnabled = enabled
     repository.syncReadReceiptState()
     refresh()
   }
 
   fun setTypingIndicatorsEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.TYPING_INDICATORS, enabled).apply()
+    SignalStore.settings.isTypingIndicatorsEnabled = enabled
     repository.syncTypingIndicatorsState()
     refresh()
   }
 
   fun setScreenSecurityEnabled(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.SCREEN_SECURITY_PREF, enabled).apply()
+    SignalStore.settings.isScreenSecurityEnabled = enabled
     refresh()
   }
 
   fun setIncognitoKeyboard(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.INCOGNITO_KEYBOARD_PREF, enabled).apply()
+    SignalStore.settings.isIncognitoKeyboardEnabled = enabled
     refresh()
   }
 
@@ -68,13 +64,14 @@ class PrivacySettingsViewModel(
 
   private fun getState(): PrivacySettingsState {
     return PrivacySettingsState(
+      hasPhoneNumber = !SignalStore.account.isPhoneNumberless,
       blockedCount = 0,
-      readReceipts = TextSecurePreferences.isReadReceiptsEnabled(AppDependencies.application),
-      typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(AppDependencies.application),
+      readReceipts = SignalStore.settings.isReadReceiptsEnabled,
+      typingIndicators = SignalStore.settings.isTypingIndicatorsEnabled,
       screenLock = SignalStore.settings.screenLockEnabled,
       screenLockActivityTimeout = SignalStore.settings.screenLockTimeout,
-      screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(AppDependencies.application),
-      incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(AppDependencies.application),
+      screenSecurity = SignalStore.settings.isScreenSecurityEnabled,
+      incognitoKeyboard = SignalStore.settings.isIncognitoKeyboardEnabled,
       paymentLock = SignalStore.payments.paymentLock,
       isObsoletePasswordEnabled = !SignalStore.settings.passphraseDisabled,
       isObsoletePasswordTimeoutEnabled = SignalStore.settings.passphraseTimeoutEnabled,
@@ -88,11 +85,10 @@ class PrivacySettingsViewModel(
   }
 
   class Factory(
-    private val sharedPreferences: SharedPreferences,
     private val repository: PrivacySettingsRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(PrivacySettingsViewModel(sharedPreferences, repository)))
+      return requireNotNull(modelClass.cast(PrivacySettingsViewModel(repository)))
     }
   }
 }

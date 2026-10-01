@@ -6,7 +6,6 @@
 package org.signal.registration.screens.verificationcode
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -20,8 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -30,23 +27,17 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.input.key.Key
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.autofill.ContentType
+import androidx.compose.ui.autofill.contentType
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -63,6 +54,7 @@ import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.ContactSupportDialog
 import org.signal.registration.test.TestTags
+import org.signal.uicomponents.codeentryfield.CodeEntryField
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -76,7 +68,6 @@ fun VerificationCodeScreen(
   onEvent: (VerificationCodeScreenEvents) -> Unit,
   modifier: Modifier = Modifier
 ) {
-  val focusRequesters = remember { List(VerificationCodeState.CODE_LENGTH) { FocusRequester() } }
   val snackbarHostState = remember { SnackbarHostState() }
   val resources = LocalResources.current
 
@@ -87,15 +78,6 @@ fun VerificationCodeScreen(
         onEvent(VerificationCodeScreenEvents.CountdownTick)
       }
     }
-  }
-
-  LaunchedEffect(state.autoFillCode) {
-    val code = state.autoFillCode ?: return@LaunchedEffect
-
-    if (code.length == VerificationCodeState.CODE_LENGTH && code.all { it.isDigit() } && !state.isSubmittingCode) {
-      onEvent(VerificationCodeScreenEvents.DigitChanged(0, code))
-    }
-    onEvent(VerificationCodeScreenEvents.ConsumeAutoFillCode)
   }
 
   LaunchedEffect(state.snackbars) {
@@ -113,10 +95,6 @@ fun VerificationCodeScreen(
   }
 
   RequestCodeErrorDialogs(state.dialogs, onEvent)
-
-  LaunchedEffect(state.focusedDigitIndex) {
-    focusRequesters[state.focusedDigitIndex].requestFocus()
-  }
 
   LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
     onEvent(VerificationCodeScreenEvents.Foregrounded)
@@ -145,7 +123,6 @@ fun VerificationCodeScreen(
       is RegistrationScaffold.Params.OnePane -> OnePaneLayout(
         params = layoutParams,
         innerPadding = innerPadding,
-        focusRequesters = focusRequesters,
         state = state,
         onEvent = onEvent
       )
@@ -153,7 +130,6 @@ fun VerificationCodeScreen(
       is RegistrationScaffold.Params.TwoPane -> TwoPaneLayout(
         params = layoutParams,
         innerPadding = innerPadding,
-        focusRequesters = focusRequesters,
         state = state,
         onEvent = onEvent
       )
@@ -209,7 +185,6 @@ private fun RequestCodeErrorDialogs(dialogs: VerificationCodeState.Dialogs, onEv
 private fun OnePaneLayout(
   params: RegistrationScaffold.Params.OnePane,
   innerPadding: PaddingValues,
-  focusRequesters: List<FocusRequester>,
   state: VerificationCodeState,
   onEvent: (VerificationCodeScreenEvents) -> Unit
 ) {
@@ -232,11 +207,7 @@ private fun OnePaneLayout(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        CodeField(
-          focusRequesters = focusRequesters,
-          state = state,
-          emitter = onEvent
-        )
+        CodeField(state, onEvent)
 
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -266,7 +237,6 @@ private fun OnePaneLayout(
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
   innerPadding: PaddingValues,
-  focusRequesters: List<FocusRequester>,
   state: VerificationCodeState,
   onEvent: (VerificationCodeScreenEvents) -> Unit
 ) {
@@ -296,11 +266,7 @@ private fun TwoPaneLayout(
           .verticalScroll(secondPaneScrollState)
           .padding(paddingValues)
       ) {
-        CodeField(
-          focusRequesters = focusRequesters,
-          state = state,
-          emitter = onEvent
-        )
+        CodeField(state, onEvent)
 
         Spacer(modifier = Modifier.height(32.dp))
 
@@ -343,77 +309,24 @@ private fun TroubleButton(onEvent: (VerificationCodeScreenEvents) -> Unit) {
 }
 
 @Composable
-private fun CodeField(
-  focusRequesters: List<FocusRequester>,
-  state: VerificationCodeState,
-  emitter: (VerificationCodeScreenEvents) -> Unit
-) {
-  val digits = state.digits
+private fun CodeField(state: VerificationCodeState, onEvent: (VerificationCodeScreenEvents) -> Unit) {
+  Column(modifier = Modifier.fillMaxWidth()) {
+    CodeEntryField(
+      state = state.codeEntry,
+      onEvent = { onEvent(VerificationCodeScreenEvents.CodeEntryEvent(it)) },
+      enabled = !state.isSubmittingCode,
+      digitSpacing = 4.dp,
+      separatorPadding = 8.dp,
+      modifier = Modifier.contentType(ContentType.SmsOtpCode)
+    )
 
-  Box(
-    modifier = Modifier.fillMaxWidth(),
-    contentAlignment = Alignment.Center
-  ) {
-    Column(modifier = Modifier.align(Alignment.Center)) {
-      Row(
+    if (state.isSubmittingCode) {
+      Spacer(modifier = Modifier.height(16.dp))
+      CircularProgressIndicator(
         modifier = Modifier
-          .fillMaxWidth()
-          .testTag(TestTags.VERIFICATION_CODE_INPUT),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-      ) {
-        for (i in 0..2) {
-          DigitField(
-            value = digits[i],
-            onValueChange = { newValue -> emitter(VerificationCodeScreenEvents.DigitChanged(i, newValue)) },
-            focusRequester = focusRequesters[i],
-            testTag = when (i) {
-              0 -> TestTags.VERIFICATION_CODE_DIGIT_0
-              1 -> TestTags.VERIFICATION_CODE_DIGIT_1
-              else -> TestTags.VERIFICATION_CODE_DIGIT_2
-            },
-            modifier = Modifier.weight(1f, fill = false),
-            enabled = !state.isSubmittingCode
-          )
-          if (i < 2) {
-            Spacer(modifier = Modifier.width(4.dp))
-          }
-        }
-
-        Text(
-          text = "-",
-          style = MaterialTheme.typography.headlineMedium,
-          modifier = Modifier.padding(horizontal = 8.dp),
-          color = if (state.isSubmittingCode) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f) else MaterialTheme.colorScheme.onSurface
-        )
-
-        for (i in 3..5) {
-          if (i > 3) {
-            Spacer(modifier = Modifier.width(4.dp))
-          }
-          DigitField(
-            value = digits[i],
-            onValueChange = { newValue -> emitter(VerificationCodeScreenEvents.DigitChanged(i, newValue)) },
-            focusRequester = focusRequesters[i],
-            testTag = when (i) {
-              3 -> TestTags.VERIFICATION_CODE_DIGIT_3
-              4 -> TestTags.VERIFICATION_CODE_DIGIT_4
-              else -> TestTags.VERIFICATION_CODE_DIGIT_5
-            },
-            modifier = Modifier.weight(1f, fill = false),
-            enabled = !state.isSubmittingCode
-          )
-        }
-      }
-
-      if (state.isSubmittingCode) {
-        Spacer(modifier = Modifier.height(16.dp))
-        CircularProgressIndicator(
-          modifier = Modifier
-            .size(48.dp)
-            .align(Alignment.CenterHorizontally)
-        )
-      }
+          .size(48.dp)
+          .align(Alignment.CenterHorizontally)
+      )
     }
   }
 }
@@ -503,47 +416,6 @@ private fun Description(state: VerificationCodeState, onEvent: (VerificationCode
       color = MaterialTheme.colorScheme.primary
     )
   }
-}
-
-@Composable
-private fun DigitField(
-  value: String,
-  onValueChange: (String) -> Unit,
-  focusRequester: FocusRequester,
-  testTag: String,
-  modifier: Modifier = Modifier,
-  enabled: Boolean = true
-) {
-  TextField(
-    value = value,
-    onValueChange = onValueChange,
-    modifier = modifier
-      .width(48.dp)
-      .focusRequester(focusRequester)
-      .testTag(testTag)
-      .onKeyEvent { keyEvent ->
-        if ((keyEvent.key == Key.Backspace || keyEvent.key == Key.Delete) && value.isEmpty()) {
-          onValueChange("")
-          true
-        } else {
-          false
-        }
-      },
-    textStyle = MaterialTheme.typography.titleLarge.copy(textAlign = TextAlign.Center),
-    singleLine = true,
-    shape = RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp),
-    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-    enabled = enabled,
-    colors = TextFieldDefaults.colors(
-      focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-      unfocusedIndicatorColor = MaterialTheme.colorScheme.outline,
-      disabledIndicatorColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f),
-      disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-    )
-  )
 }
 
 @AllDevicePreviews

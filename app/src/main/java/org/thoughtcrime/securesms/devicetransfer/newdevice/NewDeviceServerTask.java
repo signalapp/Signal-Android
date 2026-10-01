@@ -15,7 +15,6 @@ import org.signal.devicetransfer.NewDeviceRestoreStatus;
 import org.signal.devicetransfer.ServerTask;
 import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.backup.BackupEvent;
-import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -50,7 +49,7 @@ public final class NewDeviceServerTask implements ServerTask {
 
       String passphrase = SignalStore.account().getAccountEntropyPool().getValue();
 
-      BackupPassphrase.set(context, passphrase);
+      SignalStore.backup().setV1BackupPassphrase(passphrase);
       FullBackupImporter.importFile(context,
                                     AttachmentSecretProvider.getInstance(context, AppAttachmentSecretStore.INSTANCE).getOrCreateAttachmentSecret(),
                                     database,

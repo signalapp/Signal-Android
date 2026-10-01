@@ -11,7 +11,9 @@ import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
  * Helper alias for working with JobIds.
@@ -152,6 +154,7 @@ class UploadDependencyGraph private constructor(
      * Each chain consists of:
      *  1. Compression job
      *  1. Resumable upload spec job
+     *  1. Wave form generation job, for audio only
      *  1. Attachment upload job
      *  1. O to 1 copy jobs
      */
@@ -197,9 +200,13 @@ class UploadDependencyGraph private constructor(
       val compressionJob: Job = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1)
       val uploadJob: Job = AttachmentUploadJob(databaseAttachment.attachmentId)
 
-      return uploadJob.id to jobManager
-        .startChain(compressionJob)
-        .then(uploadJob)
+      val chain = jobManager.startChain(compressionJob)
+
+      if (MediaUtil.isAudio(databaseAttachment)) {
+        chain.then(GenerateAudioWaveFormJob.forUploadChain(databaseAttachment.attachmentId))
+      }
+
+      return uploadJob.id to chain.then(uploadJob)
     }
   }
 }

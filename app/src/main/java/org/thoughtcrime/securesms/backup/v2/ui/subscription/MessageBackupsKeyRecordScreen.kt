@@ -91,8 +91,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.signal.core.ui.R as CoreUiR
 
-private const val CLIPBOARD_TIMEOUT_SECONDS = 60
-
 @Stable
 sealed interface MessageBackupsKeyRecordMode {
   data class Next(val onNextClick: () -> Unit) : MessageBackupsKeyRecordMode
@@ -100,7 +98,8 @@ sealed interface MessageBackupsKeyRecordMode {
     val onCreateNewKeyClick: () -> Unit,
     val onTurnOffAndDownloadClick: () -> Unit,
     val isOptimizedStorageEnabled: Boolean,
-    val canRotateKey: Boolean
+    val canRotateKey: Boolean,
+    val areBackupsEnabled: Boolean
   ) : MessageBackupsKeyRecordMode
   data class Passkey(
     val onSaveToPasswordManager: () -> Unit,
@@ -133,7 +132,7 @@ fun MessageBackupsKeyRecordScreen(
     keySaveState = keySaveState,
     canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
     onNavigationClick = { onBackPressedDispatcher?.onBackPressed() },
-    onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+    onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
     onRequestSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveRequested,
     onConfirmSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveConfirmed,
     onSaveToPasswordManagerComplete = backupKeyCredentialManagerHandler::onBackupKeySaveCompleted,
@@ -221,7 +220,6 @@ fun MessageBackupsKeyRecordScreen(
   var displayConfirmKey by remember { mutableStateOf(false) }
   if (displayConfirmKey) {
     val context = LocalContext.current
-    val credentialId = stringResource(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
     val successMessage = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_confirmed)
     ModalBottomSheet(
       sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -231,7 +229,7 @@ fun MessageBackupsKeyRecordScreen(
       ConfirmRecoveryKeySheet(
         onConfirm = {
           coroutineScope.launch {
-            val retrieved = getKeyFromCredentialManager(context, credentialId)
+            val retrieved = getKeyFromCredentialManager(context)
             if (retrieved == backupKey) {
               Toast.makeText(context, successMessage, Toast.LENGTH_SHORT).show()
               (mode as? MessageBackupsKeyRecordMode.Passkey)?.onSaveSuccessful()
@@ -551,6 +549,7 @@ private fun CreateNewKeyButton(
 
   if (displayKeyLimitDialog) {
     KeyLimitExceededDialog(
+      areBackupsEnabled = mode.areBackupsEnabled,
       onClick = { displayKeyLimitDialog = false }
     )
   }
@@ -713,34 +712,6 @@ private fun ColumnScope.CreateNewBackupKeySheetContent(
 }
 
 @Composable
-private fun DownloadMediaDialog(
-  onTurnOffAndDownloadClick: () -> Unit = {},
-  onCancelClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__download_media),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__to_create_a_new_backup_key),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__turn_off_and_download),
-    dismiss = stringResource(android.R.string.cancel),
-    onConfirm = onTurnOffAndDownloadClick,
-    onDeny = onCancelClick
-  )
-}
-
-@Composable
-private fun KeyLimitExceededDialog(
-  onClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_title),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_body),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__ok),
-    onConfirm = {},
-    onDismiss = onClick
-  )
-}
-
-@Composable
 private fun ConfirmationFailureDialog(mode: MessageBackupsKeyRecordMode, onDismiss: () -> Unit) {
   Dialogs.AdvancedAlertDialog(
     title = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_error),
@@ -766,16 +737,27 @@ private suspend fun saveKeyToCredentialManager(
 ): CredentialManagerResult {
   return SignalCredentialManager.saveCredential(
     activityContext = activityContext,
-    username = activityContext.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id),
+    username = credentialId(activityContext),
     password = backupKey
   )
 }
 
 private suspend fun getKeyFromCredentialManager(
-  @UiContext activityContext: Context,
-  id: String
+  @UiContext activityContext: Context
 ): String? {
-  return SignalCredentialManager.getCredential(activityContext, id)?.password
+  return SignalCredentialManager.getCredential(activityContext, credentialId(activityContext))?.password
+}
+
+/**
+ * Numberless accounts file their credential under the ACI, since that is the identifier they log in with.
+ * Everyone else uses a generic Signal-branded id.
+ */
+private fun credentialId(context: Context): String {
+  return if (SignalStore.account.isPhoneNumberless) {
+    SignalStore.account.requireAci().toString().uppercase()
+  } else {
+    context.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
+  }
 }
 
 @DayNightPreviews
@@ -790,7 +772,8 @@ private fun MessageBackupsKeyRecordScreenPreview() {
         onCreateNewKeyClick = {},
         onTurnOffAndDownloadClick = {},
         isOptimizedStorageEnabled = true,
-        canRotateKey = true
+        canRotateKey = true,
+        areBackupsEnabled = true
       )
     )
   }
@@ -848,21 +831,5 @@ private fun CreateNewBackupKeySheetContentPreview() {
     Column {
       CreateNewBackupKeySheetContent()
     }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun DownloadMediaDialogPreview() {
-  Previews.Preview {
-    DownloadMediaDialog()
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun KeyLimitExceededDialogPreview() {
-  Previews.Preview {
-    KeyLimitExceededDialog()
   }
 }

@@ -6,8 +6,14 @@
 package org.signal.registration.screens.signallogininfo
 
 import android.app.Application
+import android.content.Context
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
@@ -20,7 +26,9 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.ui.CoreUiDependenciesRule
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.registration.R
 import org.signal.registration.test.TestTags
 import java.util.UUID
 
@@ -39,6 +47,8 @@ class SignalLoginInfoScreenTest {
   @get:Rule
   val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
+  private val context: Context = ApplicationProvider.getApplicationContext()
+
   private val events = mutableListOf<SignalLoginInfoScreenEvents>()
 
   @Test
@@ -46,6 +56,15 @@ class SignalLoginInfoScreenTest {
     setContent()
 
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked)
+  }
+
+  @Test
+  fun `when there is no password manager, the save to password manager button is still shown and clickable`() {
+    setContent(isPasswordManagerAvailable = false)
+
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).assertIsDisplayed().performClick()
 
     assertThat(events).contains(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked)
   }
@@ -77,15 +96,48 @@ class SignalLoginInfoScreenTest {
     assertThat(events).contains(SignalLoginInfoScreenEvents.SeeLoginInfoAgainClicked)
   }
 
-  private fun setContent(showConfirmSavedSheet: Boolean = false) {
+  @Test
+  fun `the not-confirmed dialog is up for as long as the state says the save could not be confirmed`() {
+    var dialogs by mutableStateOf(SignalLoginInfoState.Dialogs(saveNotConfirmed = true))
+    composeTestRule.setContent {
+      SignalTheme {
+        SignalLoginInfoScreen(
+          state = SignalLoginInfoState(aci = ACI_VALUE, aep = AEP, isPasswordManagerAvailable = true, dialogs = dialogs),
+          onEvent = { events += it }
+        )
+      }
+    }
+
+    composeTestRule.onNodeWithText(context.getString(R.string.SignalLoginInfoScreen__error_confirming_login_info)).assertIsDisplayed()
+
+    dialogs = SignalLoginInfoState.Dialogs()
+
+    composeTestRule.onNodeWithText(context.getString(R.string.SignalLoginInfoScreen__error_confirming_login_info)).assertDoesNotExist()
+  }
+
+  @Test
+  fun `when save manually on the not-confirmed dialog is clicked, SaveManuallyClicked is emitted`() {
+    setContent(dialogs = SignalLoginInfoState.Dialogs(saveNotConfirmed = true))
+
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginInfoScreenEvents.SaveManuallyClicked)
+  }
+
+  private fun setContent(
+    showConfirmSavedSheet: Boolean = false,
+    isPasswordManagerAvailable: Boolean = true,
+    dialogs: SignalLoginInfoState.Dialogs = SignalLoginInfoState.Dialogs()
+  ) {
     composeTestRule.setContent {
       SignalTheme {
         SignalLoginInfoScreen(
           state = SignalLoginInfoState(
             aci = ACI_VALUE,
             aep = AEP,
-            isPasswordManagerAvailable = true,
-            showConfirmSavedSheet = showConfirmSavedSheet
+            isPasswordManagerAvailable = isPasswordManagerAvailable,
+            showConfirmSavedSheet = showConfirmSavedSheet,
+            dialogs = dialogs
           ),
           onEvent = { events += it }
         )

@@ -5,8 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
-
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
@@ -15,6 +13,7 @@ import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore.SaveResult;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus;
+import org.thoughtcrime.securesms.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -357,7 +356,7 @@ public class SignalBaseIdentityKeyStore {
      * To prevent this, writes should first acquire the DB lock before getting the cache lock to ensure we always acquire locks in the same order.
      */
     private void withWriteLock(Runnable runnable) {
-      SQLiteDatabase db = SignalDatabase.getRawDatabase();
+      SQLiteDatabase db = SignalDatabase.identities().getWritableDatabase();
       db.beginTransaction();
       try {
         synchronized (this) {

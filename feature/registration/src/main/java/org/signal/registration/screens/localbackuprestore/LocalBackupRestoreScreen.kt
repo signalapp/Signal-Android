@@ -6,6 +6,7 @@
 package org.signal.registration.screens.localbackuprestore
 
 import android.net.Uri
+import android.text.format.DateFormat
 import android.text.format.Formatter
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -60,7 +61,8 @@ import org.signal.registration.screens.shared.RestoreProgress
 import org.signal.registration.screens.shared.RestoreProgressDialog
 import org.signal.registration.test.TestTags
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.time.ZoneId
+import java.util.Date
 
 @Composable
 fun LocalBackupRestoreScreen(
@@ -251,9 +253,7 @@ private fun BackupInfoCard(
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
-  val formattedDate = remember(backupInfo.date) {
-    backupInfo.date.format(DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a"))
-  }
+  val formattedDate = rememberFormattedBackupDate(backupInfo.date)
   val formattedSize = remember(backupInfo.sizeBytes) {
     backupInfo.sizeBytes?.let { Formatter.formatShortFileSize(context, it) }
   }
@@ -385,9 +385,7 @@ private fun BackupPickerSheetContent(
       ) {
         allBackups.forEach { backup ->
           val isSelected = backup == selected
-          val formattedDate = remember(backup.date) {
-            backup.date.format(DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a"))
-          }
+          val formattedDate = rememberFormattedBackupDate(backup.date)
           val formattedSize = remember(backup.sizeBytes) {
             backup.sizeBytes?.let { Formatter.formatShortFileSize(context, it) }
           }
@@ -632,6 +630,17 @@ private fun ErrorContent(
       CancelButton(onEvent, buttonModifier)
     }
   )
+}
+
+@Composable
+private fun rememberFormattedBackupDate(date: LocalDateTime): String {
+  val context = LocalContext.current
+  return remember(context, date) {
+    val instant = Date.from(date.atZone(ZoneId.systemDefault()).toInstant())
+    val formattedDate = DateFormat.getMediumDateFormat(context).format(instant)
+    val formattedTime = DateFormat.getTimeFormat(context).format(instant)
+    "$formattedDate · $formattedTime"
+  }
 }
 
 @AllDevicePreviews

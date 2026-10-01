@@ -12,7 +12,6 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.contentproviders.BlobProvider
-import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.donations.permits.DonationPermitsRepository
 import org.signal.emoji.EmojiDependencies
@@ -20,6 +19,7 @@ import org.signal.glide.SignalGlideDependencies
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.network.api.AccountApiV2
 import org.signal.network.api.ArchiveApi
@@ -38,11 +38,12 @@ import org.signal.network.api.RegistrationApiV2
 import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
-import org.signal.network.config.HttpProxy
+import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.MessageService
+import org.signal.network.service.StorageServiceService
 import org.signal.network.service.UsernameService
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.BuildConfig
@@ -130,6 +131,7 @@ object AppDependencies {
     SignalGlideDependencies.init(application, SignalGlideDependenciesProvider)
     CameraDependencies.init(application, CameraDependenciesProvider)
     MediaSendDependencies.init(application, MediaSendDependenciesProvider)
+    MediaKeyboardDependencies.init(application, MediaKeyboardDependenciesProvider)
     EmojiDependencies.init(application, EmojiDependenciesProvider)
   }
 
@@ -291,7 +293,7 @@ object AppDependencies {
   val webSocketObserver: LatestValueObservable<WebSocketConnectionState> = LatestValueObservable(_webSocketObserver)
 
   private val _libsignalNetwork = resettableLazy {
-    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
+    provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration(), networkModule.networkProxyState)
   }
 
   @JvmStatic
@@ -341,6 +343,10 @@ object AppDependencies {
   @JvmStatic
   val incomingMessageObserver: IncomingMessageObserver
     get() = networkModule.incomingMessageObserver
+
+  @JvmStatic
+  val networkProxyState: NetworkProxyState
+    get() = networkModule.networkProxyState
 
   @JvmStatic
   val groupsV2Authorization: GroupsV2Authorization
@@ -408,6 +414,9 @@ object AppDependencies {
 
   val storageServiceApi: StorageServiceApi
     get() = networkModule.storageServiceApi
+
+  val storageService: StorageServiceService
+    get() = networkModule.storageService
 
   val accountApi: AccountApi
     get() = networkModule.accountApi
@@ -491,16 +500,6 @@ object AppDependencies {
     networkModule.openConnections()
   }
 
-  fun onSystemHttpProxyChange(systemHttpProxy: HttpProxy?): Boolean {
-    val currentSystemProxy = signalServiceNetworkAccess.getConfiguration().systemHttpProxy.orNull()
-    return if (currentSystemProxy?.host != systemHttpProxy?.host || currentSystemProxy?.port != systemHttpProxy?.port) {
-      resetNetwork()
-      true
-    } else {
-      false
-    }
-  }
-
   interface Provider {
     fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket
     fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration): SignalRestClient
@@ -547,7 +546,7 @@ object AppDependencies {
     fun provideScheduledMessageManager(): ScheduledMessageManager
     fun providePinnedMessageManager(): PinnedMessageManager
     fun provideUnreadReminderManager(): UnreadReminderManager
-    fun provideLibsignalNetwork(config: SignalServiceConfiguration): Network
+    fun provideLibsignalNetwork(config: SignalServiceConfiguration, proxyState: NetworkProxyState): Network
     fun provideBillingApi(): BillingApi
     fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi
     fun provideKeysApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApi
@@ -556,6 +555,7 @@ object AppDependencies {
     fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi
     fun provideRegistrationApiV2(signalRestClient: SignalRestClient): RegistrationApiV2
     fun provideStorageServiceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): StorageServiceApi
+    fun provideStorageService(storageServiceApi: StorageServiceApi): StorageServiceService
     fun provideAuthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.AuthenticatedWebSocket
     fun provideUnauthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.UnauthenticatedWebSocket
     fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi

@@ -11,11 +11,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.groups.GroupChangeBusyException
+import org.signal.core.util.groups.GroupChangeException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.SignalProgressDialog
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException
-import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import java.io.IOException

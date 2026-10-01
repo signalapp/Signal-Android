@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState.Sta
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
+import java.util.concurrent.atomic.AtomicReference
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -417,16 +418,19 @@ class ArchiveUploadProgressTest {
     verify { backup.finishedInitialBackup = true }
   }
 
-  private fun uploadProgress(): ArchiveUploadProgressState {
+  @Suppress("UNCHECKED_CAST")
+  private fun uploadProgressRef(): AtomicReference<ArchiveUploadProgressState> {
     val field = ArchiveUploadProgress::class.java.getDeclaredField("uploadProgress")
     field.isAccessible = true
-    return field.get(ArchiveUploadProgress) as ArchiveUploadProgressState
+    return field.get(ArchiveUploadProgress) as AtomicReference<ArchiveUploadProgressState>
+  }
+
+  private fun uploadProgress(): ArchiveUploadProgressState {
+    return uploadProgressRef().get()
   }
 
   private fun setUploadProgress(value: ArchiveUploadProgressState) {
-    val field = ArchiveUploadProgress::class.java.getDeclaredField("uploadProgress")
-    field.isAccessible = true
-    field.set(ArchiveUploadProgress, value)
+    uploadProgressRef().set(value)
     storedState = value
   }
 

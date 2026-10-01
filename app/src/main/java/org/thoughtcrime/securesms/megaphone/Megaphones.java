@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
@@ -131,7 +130,7 @@ public final class Megaphones {
       // Specifically putting backup reminders here, above PIN reminders
       put(Event.BACKUP_LOW_STORAGE_UPSELL, shouldShowBackupLowStorageUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
       put(Event.BACKUP_MEDIA_SIZE_UPSELL, shouldShowBackupMediaSizeUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60), TimeUnit.DAYS.toMillis(120)) : NEVER);
-      put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
+      put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.BACKUPS_GENERIC_UPSELL, shouldShowGenericBackupsMegaphone(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
       put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
@@ -273,7 +272,7 @@ public final class Megaphones {
 
               SignalStore.pin().onEntrySkip(includedFailure);
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getCurrentInterval())));
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getNextReminderInterval())));
             }
 
             @Override
@@ -286,7 +285,7 @@ public final class Megaphones {
               }
 
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pin().getCurrentInterval())));
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pin().getNextReminderInterval())));
             }
           });
         })
@@ -562,7 +561,7 @@ public final class Megaphones {
                          !NotificationChannels.getInstance().isMessagesChannelGroupEnabled() ||
                          !NotificationChannels.getInstance().areNotificationsEnabled();
     if (shouldShow) {
-      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
+      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale();
       if (!new TranslationDetection(context, locale)
           .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
                                      R.string.NotificationsMegaphone_never_miss_a_message,
@@ -624,7 +623,7 @@ public final class Megaphones {
       return false;
     }
 
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice()) {
       return false;
     }
 
@@ -667,8 +666,8 @@ public final class Megaphones {
     return System.currentTimeMillis() - lastSeenDonatePrompt;
   }
 
-  private static boolean shouldShowBackupMessageCountUpsell(@NonNull Context context) {
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
+  private static boolean shouldShowBackupMessageCountUpsell() {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice()) {
       return false;
     }
 
@@ -692,7 +691,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowBackupLowStorageUpsell(@NonNull Context context) {
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().isUnauthorizedReceived() || SignalStore.account().isLinkedDevice() || !Environment.Backups.supportsGooglePlayBilling()) {
       return false;
     }
 

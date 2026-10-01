@@ -7,8 +7,8 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -67,7 +67,7 @@ public final class SimpleProgressDialog {
     AtomicLong                   shownAt               = new AtomicLong();
 
     Runnable showRunnable = () -> {
-      if (!isContextValid(context)) {
+      if (!canShowDialog(context)) {
         Log.w(TAG, "Context is no longer valid. Not showing dialog.");
         return;
       }
@@ -84,28 +84,17 @@ public final class SimpleProgressDialog {
       public void dismiss() {
         ThreadUtil.cancelRunnableOnMain(showRunnable);
         ThreadUtil.runOnMain(() -> {
-          if (!isContextValid(context)) {
-            Log.w(TAG, "Context is no longer valid. Not dismissing dialog.");
+          if (dialogAtomicReference.get() == null) {
             return;
           }
 
-          AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
-          if (alertDialog != null) {
-            long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
-            long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
+          long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
+          long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
 
-            if (remainingTimeMs > 0) {
-              ThreadUtil.runOnMainDelayed(() -> {
-                if (!isContextValid(context)) {
-                  Log.w(TAG, "Context is no longer valid. Not dismissing dialog.");
-                  return;
-                }
-
-                alertDialog.dismiss();
-              }, remainingTimeMs);
-            } else {
-              alertDialog.dismiss();
-            }
+          if (remainingTimeMs > 0) {
+            ThreadUtil.runOnMainDelayed(() -> dismissIfNeeded(context, dialogAtomicReference), remainingTimeMs);
+          } else {
+            dismissIfNeeded(context, dialogAtomicReference);
           }
         });
       }
@@ -123,11 +112,38 @@ public final class SimpleProgressDialog {
     };
   }
 
-  private static boolean isContextValid(@NonNull Context context) {
-    if (context instanceof AppCompatActivity) {
-      AppCompatActivity activity = (AppCompatActivity) context;
-      return !activity.isFinishing() && !activity.isDestroyed() && activity.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED);
-    } else if (context instanceof Activity) {
+  @MainThread
+  private static void dismissIfNeeded(@NonNull Context context, @NonNull AtomicReference<AlertDialog> dialogAtomicReference) {
+    if (dialogAtomicReference.get() == null) {
+      return;
+    }
+
+    if (!canDismissDialog(context)) {
+      Log.w(TAG, "Context is no longer valid. Not dismissing dialog.");
+      return;
+    }
+
+    AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
+    if (alertDialog != null) {
+      alertDialog.dismiss();
+    }
+  }
+
+  /** A window can only be added once the activity is at least started, so showing requires that; dismissing does not. */
+  private static boolean canShowDialog(@NonNull Context context) {
+    if (context instanceof LifecycleOwner) {
+      return isActivityAlive(context) && ((LifecycleOwner) context).getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED);
+    } else {
+      return isActivityAlive(context);
+    }
+  }
+
+  private static boolean canDismissDialog(@NonNull Context context) {
+    return isActivityAlive(context);
+  }
+
+  private static boolean isActivityAlive(@NonNull Context context) {
+    if (context instanceof Activity) {
       Activity activity = (Activity) context;
       return !activity.isFinishing() && !activity.isDestroyed();
     } else {

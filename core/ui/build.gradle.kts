@@ -14,6 +14,12 @@ android {
   testFixtures {
     enable = true
   }
+
+  testOptions {
+    unitTests {
+      isIncludeAndroidResources = true
+    }
+  }
 }
 
 dependencies {
@@ -41,8 +47,13 @@ dependencies {
   api(libs.accompanist.permissions)
 
   testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.robolectric.robolectric)
+  testImplementation(libs.androidx.compose.ui.test.junit4)
+
+  // Supplies the ComponentActivity that createComposeRule() launches the content into
+  debugImplementation(libs.androidx.compose.ui.test.manifest)
 
   // JUnit is used by test fixtures
   testFixturesImplementation(testLibs.junit.junit)

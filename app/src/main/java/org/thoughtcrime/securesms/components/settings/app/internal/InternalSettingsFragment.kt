@@ -80,7 +80,6 @@ import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
 import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
@@ -180,7 +179,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
     searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
       override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+        searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
         searchView.setOnQueryTextListener(queryListener)
         return true
       }
@@ -228,6 +227,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Override remote config"),
+        summary = DSLSettingsText.from("View every remote config flag and locally override any of them."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalRemoteConfigFragment())
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Refresh remote config"),
         summary = DSLSettingsText.from("Forces a refresh of the remote config locally instead of waiting for the elapsed time."),
         onClick = {
@@ -244,6 +251,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Copy service password"),
+        summary = DSLSettingsText.from("Copy the password used to authenticate with the service."),
+        onClick = {
+          onCopyServicePasswordClicked()
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from("Unregister"),
@@ -1129,7 +1144,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         lifecycleScope.launch {
-          when (AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages()) {
+          when (AdvancedPrivacySettingsRepository().disablePushMessages()) {
             AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
               SignalStore.account.setRegistered(false)
               SignalStore.registration.clearRegistrationComplete()
@@ -1142,6 +1157,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             }
           }
         }
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
+  }
+
+  private fun onCopyServicePasswordClicked() {
+    val servicePassword = SignalStore.account.servicePassword
+    if (servicePassword == null) {
+      Toast.makeText(requireContext(), "No service password set!", Toast.LENGTH_SHORT).show()
+      return
+    }
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Copy service password?")
+      .setMessage("Your service password lets anyone who has it send messages as you on the service. Treat it like a password: don't paste it anywhere you don't fully trust. It will be cleared from the clipboard after ${Util.SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS} seconds.")
+      .setPositiveButton("Copy") { _, _ ->
+        Util.copyToClipboardSensitive(requireContext(), servicePassword)
+        Toast.makeText(requireContext(), "Copied service password", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()

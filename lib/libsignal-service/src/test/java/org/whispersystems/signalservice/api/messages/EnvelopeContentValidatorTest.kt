@@ -446,7 +446,7 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
-  fun `validate - ensure quote body range whose start plus length overflows is marked invalid`() {
+  fun `validate - ensure quote body range with a negative start is marked invalid`() {
     val content = Content(
       dataMessage = DataMessage(
         timestamp = 1234,
@@ -455,7 +455,7 @@ class EnvelopeContentValidatorTest {
           authorAci = OTHER_ACI.toString(),
           text = "hello",
           bodyRanges = listOf(
-            BodyRange(start = 1, length = Int.MAX_VALUE, mentionAci = OTHER_ACI.toString())
+            BodyRange(start = -1, length = 2, style = BodyRange.Style.BOLD)
           )
         )
       )
@@ -466,7 +466,27 @@ class EnvelopeContentValidatorTest {
   }
 
   @Test
-  fun `validate - ensure quote body range extending past the end of the text is marked invalid`() {
+  fun `validate - ensure quote body range with a negative length is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        quote = DataMessage.Quote(
+          id = 1000,
+          authorAci = OTHER_ACI.toString(),
+          text = "hello",
+          bodyRanges = listOf(
+            BodyRange(start = 1, length = -2, style = BodyRange.Style.BOLD)
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure quote body range extending past the end of the text is marked valid`() {
     val content = Content(
       dataMessage = DataMessage(
         timestamp = 1234,
@@ -482,7 +502,7 @@ class EnvelopeContentValidatorTest {
     )
 
     val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
-    assert(result is EnvelopeContentValidator.Result.Invalid)
+    assert(result is EnvelopeContentValidator.Result.Valid)
   }
 
   @Test
@@ -509,6 +529,63 @@ class EnvelopeContentValidatorTest {
         body = "hello",
         bodyRanges = listOf(
           BodyRange(start = 3, length = 10, style = BodyRange.Style.BOLD)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure an attachment with an oversized audio wave form is marked invalid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        attachments = listOf(
+          AttachmentPointer(
+            cdnKey = "abc",
+            audioWaveform = ByteArray(SignalServiceMessageLimits.MAX_AUDIO_WAVEFORM_BAR_COUNT + 1).toByteString()
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
+  }
+
+  @Test
+  fun `validate - ensure an attachment with a max size audio wave form is marked valid`() {
+    val content = Content(
+      dataMessage = DataMessage(
+        timestamp = 1234,
+        attachments = listOf(
+          AttachmentPointer(
+            cdnKey = "abc",
+            audioWaveform = ByteArray(SignalServiceMessageLimits.MAX_AUDIO_WAVEFORM_BAR_COUNT).toByteString()
+          )
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure an edit message attachment with an oversized audio wave form is marked invalid`() {
+    val content = Content(
+      editMessage = EditMessage(
+        targetSentTimestamp = 1000,
+        dataMessage = DataMessage(
+          timestamp = 1234,
+          attachments = listOf(
+            AttachmentPointer(
+              cdnKey = "abc",
+              audioWaveform = ByteArray(SignalServiceMessageLimits.MAX_AUDIO_WAVEFORM_BAR_COUNT + 1).toByteString()
+            )
+          )
         )
       )
     )
@@ -757,6 +834,36 @@ class EnvelopeContentValidatorTest {
 
     val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
     assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story body range within the bounds of the file attachment caption is marked valid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        fileAttachment = AttachmentPointer(cdnKey = "key", caption = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 0, length = 3, style = BodyRange.Style.ITALIC)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Valid)
+  }
+
+  @Test
+  fun `validate - ensure story body range extending past the end of the file attachment caption is marked invalid`() {
+    val content = Content(
+      storyMessage = StoryMessage(
+        fileAttachment = AttachmentPointer(cdnKey = "key", caption = "abc"),
+        bodyRanges = listOf(
+          BodyRange(start = 2, length = 10, style = BodyRange.Style.ITALIC)
+        )
+      )
+    )
+
+    val result = EnvelopeContentValidator.validate(Envelope(clientTimestamp = 1234), content, SELF_ACI, CiphertextMessage.WHISPER_TYPE)
+    assert(result is EnvelopeContentValidator.Result.Invalid)
   }
 
   @Test

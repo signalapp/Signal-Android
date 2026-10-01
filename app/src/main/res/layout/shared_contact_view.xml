@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/message_bubble_bottom_padding"
         android:orientation="vertical">
 
         <LinearLayout
@@ -70,7 +71,6 @@
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
             android:elevation="9dp"
             android:orientation="horizontal"
             app:footer_mode="outgoing" />

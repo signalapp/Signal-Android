@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
-class MutedNotificationsViewModel(private val recipientId: RecipientId? = null) : EventDrivenViewModel<MutedNotificationsEvent>(TAG) {
+class MutedNotificationsViewModel(private val recipientId: RecipientId? = null) : EventDrivenViewModel<MutedNotificationsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(MutedNotificationsViewModel::class)

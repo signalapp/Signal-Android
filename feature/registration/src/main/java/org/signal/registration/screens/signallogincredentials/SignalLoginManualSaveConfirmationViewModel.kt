@@ -32,7 +32,7 @@ import org.signal.registration.screens.util.navigateTo
 class SignalLoginManualSaveConfirmationViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginCredentialEntryScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginManualSaveConfirmationViewModel::class)
@@ -100,7 +100,7 @@ class SignalLoginManualSaveConfirmationViewModel(
     parentEventEmitter: (RegistrationFlowEvent) -> Unit,
     stateEmitter: (SignalLoginCredentialEntryState) -> Unit
   ) {
-    val accountId = AccountIdFormat.normalize(event.accountId).ifEmpty { state.accountId }
+    val accountId = AccountIdFormat.normalizeAndTruncate(event.accountId).ifEmpty { state.accountId }
     val filledState = state.copy(
       accountId = accountId,
       accountIdError = AccountIdFormat.validate(accountId),

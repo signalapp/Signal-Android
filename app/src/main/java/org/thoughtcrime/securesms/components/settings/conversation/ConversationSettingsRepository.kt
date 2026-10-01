@@ -22,6 +22,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.groups.GroupChangeException
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.readToList
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
 import kotlin.coroutines.resume
 
@@ -74,7 +73,7 @@ class ConversationSettingsRepository(
 ) {
 
   fun isDeprecatedOrUnregistered(): Boolean {
-    return SignalStore.misc.isClientDeprecated || TextSecurePreferences.isUnauthorizedReceived(context)
+    return SignalStore.misc.isClientDeprecated || SignalStore.account.isUnauthorizedReceived
   }
 
   fun isInternalRecipientDetailsEnabled(): Boolean {
@@ -210,7 +209,7 @@ class ConversationSettingsRepository(
 
   suspend fun getIdentity(recipientId: RecipientId): IdentityRecord? {
     return withContext(SignalDispatchers.Default) {
-      if (SignalStore.account.aci != null && SignalStore.account.pni != null) {
+      if (SignalStore.account.aci != null) {
         AppDependencies.protocolStore.aci().identities().getIdentityRecord(recipientId).orNull()
       } else {
         null

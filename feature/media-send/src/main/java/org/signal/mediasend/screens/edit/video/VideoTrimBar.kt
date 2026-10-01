@@ -7,9 +7,13 @@ package org.signal.mediasend.screens.edit.video
 
 import android.net.Uri
 import android.view.LayoutInflater
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.systemGestureExclusion
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +38,8 @@ import kotlin.time.Duration.Companion.microseconds
 
 private const val TAG = "VideoEditorToolbar"
 
+private val TRIM_BAR_HEIGHT = 48.dp
+
 /**
  * Timeline/trim toolbar for a video. Trim data and the current playback position are owned elsewhere and passed in;
  * all user-driven changes are reported back through [onEvent] — [MediaEditScreenEvents.VideoTrimChanged] for trim
@@ -53,9 +59,21 @@ fun VideoTrimBar(
   modifier: Modifier = Modifier,
   onEvent: (MediaEditScreenEvents) -> Unit = {}
 ) {
+  // Layoutlib cannot inflate the timeline view, and a preview has no video to decode thumbnails from in any case, so
+  // stand in something that holds the bar's footprint and leave the rest of the chrome to lay out around it.
+  if (LocalInspectionMode.current) {
+    Box(
+      modifier = modifier
+        .horizontalGutters()
+        .height(TRIM_BAR_HEIGHT)
+        .fillMaxWidth()
+        .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(4.dp))
+    )
+    return
+  }
+
   val currentOnEvent by rememberUpdatedState(onEvent)
   var isDragging by remember { mutableStateOf(false) }
-  val isInInspectionMode = LocalInspectionMode.current
 
   val positionDragListener = remember {
     object : VideoThumbnailsRangeSelectorView.PositionDragListener {
@@ -101,13 +119,10 @@ fun VideoTrimBar(
 
       // The view draws nothing and never learns the video duration until an input is set, so this is what actually
       // brings the timeline to life. setInput is a no-op when the URI is unchanged, so it's safe to call every update.
-      // Skipped under inspection since previews have no real video to decode.
-      if (!isInInspectionMode) {
-        try {
-          selectorView.setInput(videoUri, mediaInputFactory)
-        } catch (e: IOException) {
-          Log.w(TAG, "Unable to set video input for the trim timeline.", e)
-        }
+      try {
+        selectorView.setInput(videoUri, mediaInputFactory)
+      } catch (e: IOException) {
+        Log.w(TAG, "Unable to set video input for the trim timeline.", e)
       }
 
       if (maxSelectableDurationUs > 0) {
@@ -132,7 +147,7 @@ fun VideoTrimBar(
     },
     modifier = modifier
       .horizontalGutters()
-      .height(48.dp)
+      .height(TRIM_BAR_HEIGHT)
       .fillMaxWidth()
       // Trim handles sit at the screen edges where the system back-gesture would otherwise swallow drags.
       .systemGestureExclusion()

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -74,7 +75,7 @@ class BackupRefreshJob private constructor(
       return Result.success()
     }
 
-    return when (val result = AppDependencies.archiveService.refreshBackup()) {
+    return when (val result = SignalNetwork.archiveService.refreshBackup()) {
       is Either.Right -> {
         SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
         SignalStore.backup.lastCheckInSnoozeMillis = 0

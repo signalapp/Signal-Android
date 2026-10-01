@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.database.CollapsibleEvents;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.contactshare.SharedContactPresentation;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -44,20 +46,21 @@ public class ConversationMessage {
 
   private static final String TAG = Log.tag(ConversationMessage.class);
 
-  @NonNull  private final MessageRecord          messageRecord;
-  @NonNull  private final List<Mention>          mentions;
-  @Nullable private final SpannableString        body;
-  @NonNull  private final MultiselectCollection  multiselectCollection;
-  @NonNull  private final MessageStyler.Result   styleResult;
-  @NonNull  private final Recipient              threadRecipient;
-            private final boolean                hasBeenQuoted;
-  @Nullable private final MessageRecord          originalMessage;
-  @NonNull  private final ComputedProperties     computedProperties;
-  @Nullable private final MemberLabel            memberLabel;
-  @Nullable private final MemberLabel            quoteMemberLabel;
-  @Nullable private final Recipient              deletedByRecipient;
-            private final int                    collapsedSize;
-            private final long                   collapsedExpirationInMs;
+  @NonNull  private final MessageRecord             messageRecord;
+  @NonNull  private final List<Mention>             mentions;
+  @Nullable private final SpannableString           body;
+  @NonNull  private final MultiselectCollection     multiselectCollection;
+  @NonNull  private final MessageStyler.Result      styleResult;
+  @NonNull  private final Recipient                 threadRecipient;
+            private final boolean                   hasBeenQuoted;
+  @Nullable private final MessageRecord             originalMessage;
+  @NonNull  private final ComputedProperties        computedProperties;
+  @Nullable private final MemberLabel               memberLabel;
+  @Nullable private final MemberLabel               quoteMemberLabel;
+  @Nullable private final Recipient                 deletedByRecipient;
+  @NonNull  private final SharedContactPresentation sharedContactPresentation;
+            private final int                       collapsedSize;
+            private final long                      collapsedExpirationInMs;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord,
                               @Nullable CharSequence body,
@@ -70,21 +73,23 @@ public class ConversationMessage {
                               @Nullable MemberLabel memberLabel,
                               @Nullable MemberLabel quoteMemberLabel,
                               @Nullable Recipient deletedByRecipient,
+                              @Nullable SharedContactPresentation sharedContactPresentation,
                               int collapsedSize,
                               long collapsedExpirationInMs)
   {
-    this.messageRecord           = messageRecord;
-    this.hasBeenQuoted           = hasBeenQuoted;
-    this.mentions                = mentions != null ? mentions : Collections.emptyList();
-    this.styleResult             = styleResult != null ? styleResult : MessageStyler.Result.none();
-    this.threadRecipient         = threadRecipient;
-    this.originalMessage         = originalMessage;
-    this.computedProperties      = computedProperties;
-    this.memberLabel             = memberLabel;
-    this.quoteMemberLabel        = quoteMemberLabel;
-    this.deletedByRecipient      = deletedByRecipient;
-    this.collapsedSize           = collapsedSize;
-    this.collapsedExpirationInMs = collapsedExpirationInMs;
+    this.messageRecord             = messageRecord;
+    this.hasBeenQuoted             = hasBeenQuoted;
+    this.mentions                  = mentions != null ? mentions : Collections.emptyList();
+    this.styleResult               = styleResult != null ? styleResult : MessageStyler.Result.none();
+    this.threadRecipient           = threadRecipient;
+    this.originalMessage           = originalMessage;
+    this.computedProperties        = computedProperties;
+    this.memberLabel               = memberLabel;
+    this.quoteMemberLabel          = quoteMemberLabel;
+    this.deletedByRecipient        = deletedByRecipient;
+    this.sharedContactPresentation = sharedContactPresentation != null ? sharedContactPresentation : SharedContactPresentation.EMPTY;
+    this.collapsedSize             = collapsedSize;
+    this.collapsedExpirationInMs   = collapsedExpirationInMs;
 
     if (body != null) {
       this.body = SpannableString.valueOf(body);
@@ -123,6 +128,10 @@ public class ConversationMessage {
 
   public @NonNull ComputedProperties getComputedProperties() {
     return computedProperties;
+  }
+
+  public @NonNull SharedContactPresentation getSharedContactPresentation() {
+    return sharedContactPresentation;
   }
 
   public @Nullable MemberLabel getMemberLabel() {
@@ -257,7 +266,7 @@ public class ConversationMessage {
                                                                         boolean hasBeenQuoted,
                                                                         @NonNull Recipient threadRecipient)
     {
-      return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted, threadRecipient, null);
+      return createWithUnresolvedData(context, messageRecord, body, mentions, hasBeenQuoted, threadRecipient, null, null);
     }
 
     /**
@@ -274,7 +283,8 @@ public class ConversationMessage {
                                                                         @Nullable List<Mention> mentions,
                                                                         boolean hasBeenQuoted,
                                                                         @NonNull Recipient threadRecipient,
-                                                                        @Nullable Map<RecipientId, MemberLabel> prefetchedLabels)
+                                                                        @Nullable Map<RecipientId, MemberLabel> prefetchedLabels,
+                                                                        @Nullable SharedContactPresentation sharedContactPresentation)
     {
       SpannableString      styledAndMentionBody = null;
       MessageStyler.Result styleResult          = MessageStyler.Result.none();
@@ -315,6 +325,9 @@ public class ConversationMessage {
         }
       }
 
+      SharedContactPresentation resolvedPresentation = sharedContactPresentation != null ? sharedContactPresentation
+                                                                                          : resolveSharedContactPresentation(messageRecord);
+
       return new ConversationMessage(messageRecord,
                                      styledAndMentionBody != null ? styledAndMentionBody : mentionsUpdate != null ? mentionsUpdate.getBody() : body,
                                      mentionsUpdate != null ? mentionsUpdate.getMentions() : null,
@@ -326,8 +339,20 @@ public class ConversationMessage {
                                      memberLabel,
                                      quoteMemberLabel,
                                      deletedBy,
+                                     resolvedPresentation,
                                      collapsedSize,
                                      collapsedExpirationInMs);
+    }
+
+    @WorkerThread
+    private static @Nullable SharedContactPresentation resolveSharedContactPresentation(@NonNull MessageRecord messageRecord) {
+      if (!(messageRecord instanceof MmsMessageRecord)) {
+        return null;
+      }
+
+      List<Contact> contacts = ((MmsMessageRecord) messageRecord).getSharedContacts();
+
+      return contacts.isEmpty() ? null : SharedContactPresentation.resolve(contacts.get(0));
     }
 
     /**

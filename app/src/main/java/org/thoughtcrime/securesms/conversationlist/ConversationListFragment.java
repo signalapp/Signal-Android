@@ -168,7 +168,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
@@ -453,7 +452,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     if (SignalStore.account().isRegistered() &&
         SignalStore.registration().isRegistrationComplete() &&
-        !TextSecurePreferences.isUnauthorizedReceived(requireContext()) &&
+        !SignalStore.account().isUnauthorizedReceived() &&
         SignalStore.settings().getAutomaticVerificationEnabled() &&
         SignalStore.misc().getHasKeyTransparencyFailure() &&
         !SignalStore.misc().getHasSeenKeyTransparencyFailure()) {
@@ -1873,8 +1872,15 @@ public class ConversationListFragment extends MainFragment implements Conversati
       float absoluteDx = Math.abs(dX);
 
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+
+        if (!itemView.isAttachedToWindow()) {
+          itemView.setTranslationX(0);
+          ViewCompat.setElevation(itemView, 0);
+          return;
+        }
+
         Resources resources       = getResources();
-        View      itemView        = viewHolder.itemView;
         float     percentDx       = absoluteDx / viewHolder.itemView.getWidth();
         int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);

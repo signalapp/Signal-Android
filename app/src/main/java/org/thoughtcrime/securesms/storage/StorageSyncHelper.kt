@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.storage
 
-import android.content.Context
 import androidx.annotation.VisibleForTesting
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.payments.Entropy
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -58,7 +56,7 @@ object StorageSyncHelper {
 
   private var keyGenerator = KEY_GENERATOR
 
-  private val REFRESH_INTERVAL = TimeUnit.HOURS.toMillis(2)
+  private val REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(1)
 
   /**
    * Given a list of all the local and remote keys you know about, this will return a result telling
@@ -131,7 +129,7 @@ object StorageSyncHelper {
   }
 
   @JvmStatic
-  fun buildAccountRecord(context: Context, self: Recipient): SignalStorageRecord {
+  fun buildAccountRecord(self: Recipient): SignalStorageRecord {
     var self = self
     var selfRecord: RecipientRecord? = SignalDatabase.recipients.getRecordForSync(self.id)
     val pinned: List<RecipientRecord> = SignalDatabase.threads.getPinnedRecipientIds()
@@ -167,9 +165,9 @@ object StorageSyncHelper {
       avatarUrlPath = self.profileAvatar ?: ""
       noteToSelfArchived = selfRecord != null && selfRecord.syncExtras.isArchived
       noteToSelfMarkedUnread = selfRecord != null && selfRecord.syncExtras.isForcedUnread
-      typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context)
-      readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context)
-      sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context)
+      typingIndicators = SignalStore.settings.isTypingIndicatorsEnabled
+      readReceipts = SignalStore.settings.isReadReceiptsEnabled
+      sealedSenderIndicators = SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled
       linkPreviews = SignalStore.settings.isLinkPreviewsEnabled
       unlistedPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
       phoneNumberSharingMode = StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy.phoneNumberSharingMode)
@@ -260,18 +258,18 @@ object StorageSyncHelper {
   }
 
   @JvmStatic
-  fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, updatedRecord: SignalAccountRecord, fetchProfile: Boolean) {
-    val localRecord = buildAccountRecord(context, self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
-    applyAccountStorageSyncUpdates(context, self, StorageRecordUpdate(localRecord, updatedRecord), fetchProfile)
+  fun applyAccountStorageSyncUpdates(self: Recipient, updatedRecord: SignalAccountRecord, fetchProfile: Boolean) {
+    val localRecord = buildAccountRecord(self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
+    applyAccountStorageSyncUpdates(self, StorageRecordUpdate(localRecord, updatedRecord), fetchProfile)
   }
 
   @JvmStatic
-  fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, update: StorageRecordUpdate<SignalAccountRecord>, fetchProfile: Boolean) {
+  fun applyAccountStorageSyncUpdates(self: Recipient, update: StorageRecordUpdate<SignalAccountRecord>, fetchProfile: Boolean) {
     SignalDatabase.recipients.applyStorageSyncAccountUpdate(update)
 
-    TextSecurePreferences.setReadReceiptsEnabled(context, update.new.proto.readReceipts)
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, update.new.proto.typingIndicators)
-    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.new.proto.sealedSenderIndicators)
+    SignalStore.settings.isReadReceiptsEnabled = update.new.proto.readReceipts
+    SignalStore.settings.isTypingIndicatorsEnabled = update.new.proto.typingIndicators
+    SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = update.new.proto.sealedSenderIndicators
     SignalStore.settings.isLinkPreviewsEnabled = update.new.proto.linkPreviews
     SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (update.new.proto.unlistedPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
     SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.new.proto.phoneNumberSharingMode)

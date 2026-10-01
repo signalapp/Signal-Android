@@ -36,11 +36,8 @@ import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -82,6 +79,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.NavigationType
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavDisplay
 import org.signal.core.ui.compose.split.ListDetailPaneLayout
@@ -90,6 +88,7 @@ import org.signal.core.ui.compose.split.ListPaneChrome
 import org.signal.core.ui.compose.split.PaneAnchor
 import org.signal.core.ui.compose.split.rememberListDetailPaneLayout
 import org.signal.core.ui.compose.split.rememberListDetailPaneMetrics
+import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberIsSplitPane
@@ -200,7 +199,6 @@ class MainActivity :
     private const val KEY_STARTING_TAB = "STARTING_TAB"
     private const val KEY_DETAIL_LOCATION = "DETAIL_LOCATION"
     private const val KEY_EXIT_DETAIL = "EXIT_DETAIL"
-    const val RESULT_CONFIG_CHANGED = RESULT_FIRST_USER + 901
 
     /** Width the navigation rail occupies inside the list pane. */
     private val RAIL_WIDTH = 80.dp
@@ -249,11 +247,7 @@ class MainActivity :
     VitalsViewModel(application)
   }
 
-  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-    if (result.resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-  }
+  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { }
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
@@ -483,7 +477,7 @@ class MainActivity :
               MainSnackbar(
                 hostKey = SnackbarHostKey.Global,
                 onDismissed = mainBottomChromeCallback::onSnackbarDismissed,
-                modifier = Modifier.navigationBarsPadding()
+                modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
               )
             }
           },
@@ -635,7 +629,7 @@ class MainActivity :
             )
 
             if (!isSplitPane) {
-              Spacer(Modifier.navigationBarsPadding())
+              Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat))
             }
           }
         }
@@ -658,14 +652,14 @@ class MainActivity :
         val modifier = when {
           isSplitPane -> {
             Modifier
-              .systemBarsPadding()
+              .windowInsetsPadding(WindowInsets.systemBarsCompat)
               .displayCutoutPadding()
           }
 
           else ->
             Modifier
               .windowInsetsPadding(
-                WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal)
+                WindowInsets.navigationBarsCompat.only(WindowInsetsSides.Horizontal)
                   .add(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))
               )
         }
@@ -762,10 +756,6 @@ class MainActivity :
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
-      recreate()
-    }
-
     if (resultCode == RESULT_OK && requestCode == CreateSvrPinActivity.REQUEST_NEW_PIN) {
       mainNavigationViewModel.snackbarRegistry.emit(SnackbarState(message = getString(R.string.ConfirmKbsPinFragment__pin_created), hostKey = MainSnackbarHostKey.MainChrome))
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL))
@@ -893,7 +883,6 @@ class MainActivity :
         return
       }
 
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToList(MainListRoute.Chats))
       mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(ConversationIntents.readArgsFromBundle(extras))))
       intent.action = null
       setIntent(intent)

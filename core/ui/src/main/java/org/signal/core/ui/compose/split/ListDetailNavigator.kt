@@ -124,10 +124,16 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
   }
 
   /**
-   * Pushes [location] onto [root]'s stack, wherever its kind belongs there.
+   * Pushes [location] onto [root]'s stack, wherever its kind belongs there, and displays that stack.
+   *
+   * Displaying [root] is part of the push rather than a separate move, so a push that arrives for another
+   * root — a notification or deep link, say — reaches the window as one navigation. Asking for the root
+   * first would mean asking for its list, and the pane would reveal that list on the way to content that
+   * immediately covers it again.
    */
   private fun push(root: L, location: NavKey) {
     this[root].push(location)
+    internalCurrentRoot.update { root }
 
     if (location is DetailNavKey) {
       paneAnchorController.revealDetailPane()

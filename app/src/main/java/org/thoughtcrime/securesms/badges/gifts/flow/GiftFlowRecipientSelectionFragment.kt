@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
@@ -88,8 +87,6 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.multiselect_forward
       findNavController().safeNavigate(R.id.action_giftFlowRecipientSelectionFragment_to_giftFlowConfirmationFragment)
     }
   }
-
-  override fun getContainer(): ViewGroup = requireView() as ViewGroup
 
   override fun getDialogBackgroundColor(): Int = Color.TRANSPARENT
 }

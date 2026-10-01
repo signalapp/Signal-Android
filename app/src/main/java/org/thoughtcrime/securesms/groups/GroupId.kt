@@ -11,10 +11,10 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import okio.ByteString
-import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.Hex
 import org.signal.core.util.LRUCache
 import org.signal.core.util.Util
+import org.signal.core.util.database.DatabaseId
 import org.signal.libsignal.protocol.kdf.HKDF
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier

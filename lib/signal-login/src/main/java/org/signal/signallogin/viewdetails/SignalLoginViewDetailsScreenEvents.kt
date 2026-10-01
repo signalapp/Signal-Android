@@ -17,6 +17,9 @@ sealed class SignalLoginViewDetailsScreenEvents {
   /** The user chose to save the credentials as a PDF. */
   data object SaveAsPdfClicked : SignalLoginViewDetailsScreenEvents()
 
+  /** The user chose to start the flow that replaces their recovery key with a new one. */
+  data object ResetRecoveryKeyClicked : SignalLoginViewDetailsScreenEvents()
+
   /** The user tapped the copy button on the account ID field. */
   data class CopyAccountIdClicked(val aci: String) : SignalLoginViewDetailsScreenEvents() {
     override fun toString(): String {
