@@ -2,13 +2,16 @@ package org.thoughtcrime.securesms.contacts.sync
 
 import android.Manifest
 import android.content.Context
+import android.net.Uri
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.contacts.SystemContactsRepository.LinkedContact
 import org.signal.contacts.SystemContactsRepository.LinkedContactResult
+import org.signal.contacts.SystemContactsRepository.PhoneDetails
 import org.signal.core.models.ServiceId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
@@ -338,7 +341,7 @@ object ContactDiscovery {
       when (result) {
         is LinkedContactResult.Found -> {
           val contact = result.contact
-          val phone = link.e164?.let { e164 -> contact.numbers.filter { it.number == e164 }.minByOrNull { it.type } }
+          val phone = contact.phoneFor(link.e164)
 
           SignalDatabase.recipients.updateSystemContactLink(
             id = link.recipientId,
@@ -360,6 +363,47 @@ object ContactDiscovery {
         }
       }
     }
+  }
+
+  /**
+   * Links a recipient to a system contact the user picked, such as the URI a contact picker returns,
+   * whatever the recipient's number. Returns false if the contact could not be read.
+   */
+  @JvmStatic
+  @WorkerThread
+  fun linkSystemContact(context: Context, recipientId: RecipientId, contactUri: Uri): Boolean {
+    val lookupKey: String = SystemContactsRepository.getLookupKey(context, contactUri) ?: return false
+    val result = SystemContactsRepository.getLinkedContact(context, BuildConfig.APPLICATION_ID, lookupKey, phoneNumberFormatter())
+
+    if (result !is LinkedContactResult.Found) {
+      Log.w(TAG, "[linkSystemContact] Could not read the chosen contact: $result")
+      return false
+    }
+
+    linkSystemContact(recipientId, result.contact)
+    StorageSyncHelper.scheduleSyncForDataChange()
+    return true
+  }
+
+  @VisibleForTesting
+  fun linkSystemContact(recipientId: RecipientId, contact: LinkedContact) {
+    val phone = contact.phoneFor(SignalDatabase.recipients.getRecord(recipientId).e164)
+
+    SignalDatabase.recipients.linkSystemContact(
+      id = recipientId,
+      systemProfileName = systemProfileName(contact.givenName, contact.familyName, contact.displayName),
+      systemDisplayName = contact.displayName,
+      photoUri = contact.photoUri,
+      systemPhoneLabel = phone?.label,
+      systemPhoneType = phone?.type ?: -1,
+      systemPhoneE164 = phone?.number,
+      systemContactUri = contact.contactUri.toString()
+    )
+  }
+
+  /** The contact's entry for [e164], if it has one. */
+  private fun LinkedContact.phoneFor(e164: String?): PhoneDetails? {
+    return e164?.let { number -> numbers.filter { it.number == number }.minByOrNull { it.type } }
   }
 
   private fun systemProfileName(givenName: String?, familyName: String?, displayName: String?): ProfileName {

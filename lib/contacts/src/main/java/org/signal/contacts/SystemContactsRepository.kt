@@ -211,6 +211,25 @@ object SystemContactsRepository {
   }
 
   /**
+   * The lookup key of a contact the user picked, such as the URI a contact picker returns. Returns
+   * null if the contact cannot be read.
+   */
+  @JvmStatic
+  fun getLookupKey(context: Context, contactUri: Uri): String? {
+    return try {
+      context.contentResolver.query(contactUri, arrayOf(ContactsContract.Contacts.LOOKUP_KEY), null, null, null)?.use { cursor ->
+        if (cursor.moveToFirst()) cursor.requireString(ContactsContract.Contacts.LOOKUP_KEY) else null
+      }
+    } catch (e: IllegalArgumentException) {
+      Log.w(TAG, "Could not read the picked contact.", e)
+      null
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Could not read the picked contact.", e)
+      null
+    }
+  }
+
+  /**
    * Reads the contact a stored lookup key points to, so a link to it can be kept current.
    *
    * The provider still resolves a key that has since changed, as one does when the user joins two

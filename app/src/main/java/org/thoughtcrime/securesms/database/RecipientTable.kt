@@ -1452,6 +1452,78 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
+   * Links a recipient to the system contact the user chose, replacing any link it had, whatever its
+   * number or discoverability.
+   */
+  fun linkSystemContact(
+    id: RecipientId,
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String
+  ) {
+    val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+
+    writableDatabase.withinTransaction {
+      update(id, values)
+      rotateStorageId(id)
+    }
+
+    AppDependencies.databaseObserver.notifyRecipientChanged(id)
+  }
+
+  /** Removes a link the user no longer wants, along with everything the system contact gave the recipient. */
+  fun unlinkSystemContact(id: RecipientId) {
+    val updated = writableDatabase.withinTransaction { db ->
+      db.update(TABLE_NAME)
+        .values(
+          SYSTEM_GIVEN_NAME to null,
+          SYSTEM_FAMILY_NAME to null,
+          SYSTEM_JOINED_NAME to null,
+          SYSTEM_PHOTO_URI to null,
+          SYSTEM_PHONE_LABEL to null,
+          SYSTEM_PHONE_TYPE to -1,
+          SYSTEM_PHONE_E164 to null,
+          SYSTEM_CONTACT_URI to null,
+          SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id
+        )
+        .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.LINKED.id)
+        .run()
+        .let { it > 0 }
+        .also { updated ->
+          if (updated) {
+            rotateStorageId(id)
+          }
+        }
+    }
+
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /** Every recipient that lost its system contact and still needs a new link, by name. */
+  fun getSystemContactLinksNeeded(): List<RecipientId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.NEEDED.id)
+      .orderBy("$SYSTEM_JOINED_NAME COLLATE NOCASE, $ID")
+      .run()
+      .readToList { cursor -> RecipientId.from(cursor.requireLong(ID)) }
+  }
+
+  fun hasSystemContactLinksNeeded(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.NEEDED.id)
+      .run()
+  }
+
+  /**
    * Marks a linked recipient whose system contact no longer exists as needing a new link.
    *
    * The user still knows who this is, so everything the contact gave the recipient stays, such as
