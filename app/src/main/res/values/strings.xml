@@ -2503,6 +2503,30 @@
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
     <!-- Placeholder text in the group member label row when the user has no label set. -->
     <string name="AboutSheet__add_group_member_label">Add a member label</string>
+    <!-- Displayed in a sheet row for a person who is not in the user\'s phone contacts. Tapping it lets the user link the person to a phone contact. -->
+    <string name="AboutSheet__link_to_phone_contact">Link to phone contact</string>
+    <!-- Displayed in a sheet row for a person linked to a phone contact who has no phone number in Signal. Tapping it removes the link. -->
+    <string name="AboutSheet__unlink_phone_contact">Unlink phone contact</string>
+    <!-- Title of a dialog confirming that the user wants to unlink a person from their phone contact. The placeholder is the person\'s short name. -->
+    <string name="AboutSheet__unlink_s_from_your_phone_contact">Unlink %1$s from your phone contact?</string>
+    <!-- Body of a dialog confirming that the user wants to unlink a person from their phone contact. -->
+    <string name="AboutSheet__their_name_and_photo_from_your_phone_contact">Signal will stop showing the name and photo from your phone contact for them.</string>
+    <!-- Button in a dialog that unlinks a person from their phone contact. -->
+    <string name="AboutSheet__unlink">Unlink</string>
+
+    <!-- LinkPhoneContactActivity -->
+    <!-- Title of the screen that links a Signal contact to a phone contact. -->
+    <string name="LinkPhoneContactActivity__link_to_phone_contact">Link to phone contact</string>
+    <!-- Explains what linking does. The placeholder is the person\'s name. -->
+    <string name="LinkPhoneContactActivity__use_a_phone_contact_for_s">Signal will show %1$s with the name and photo from the phone contact you choose. Nothing about this link is added to your phone contacts.</string>
+    <!-- Option to choose an existing phone contact to link. -->
+    <string name="LinkPhoneContactActivity__choose_a_phone_contact">Choose a phone contact</string>
+    <!-- Option to create a new phone contact and link it. -->
+    <string name="LinkPhoneContactActivity__create_a_new_phone_contact">Create a new phone contact</string>
+    <!-- Shown when Signal does not have permission to read and write the user\'s contacts, which linking needs. -->
+    <string name="LinkPhoneContactActivity__signal_needs_access_to_your_contacts">Signal needs access to your contacts to link them.</string>
+    <!-- Shown when the chosen phone contact could not be linked. -->
+    <string name="LinkPhoneContactActivity__couldnt_link_that_phone_contact">Couldn\'t link that phone contact.</string>
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">

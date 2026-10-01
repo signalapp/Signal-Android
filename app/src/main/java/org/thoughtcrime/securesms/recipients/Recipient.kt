@@ -171,6 +171,15 @@ class Recipient(
     systemContactHasNumber &&
     (phoneNumberDiscoverable != PhoneNumberDiscoverableState.NOT_DISCOVERABLE || phoneNumberSharing == PhoneNumberSharingState.ENABLED)
 
+  /**
+   * Whether the next contact sync would link this recipient to its system contact again by number,
+   * because the contact holds their number and they are discoverable. Unlinking such a recipient
+   * would not stick.
+   */
+  val wouldRelinkSystemContactByNumber: Boolean = isSystemContact &&
+    systemContactHasNumber &&
+    phoneNumberDiscoverable != PhoneNumberDiscoverableState.NOT_DISCOVERABLE
+
   /** Whether or not we should show this user's e164 in the interface. */
   val shouldShowE164: Boolean = e164Value.isNotNullOrBlank() && (isSystemContactByPhoneNumber || phoneNumberSharing == PhoneNumberSharingState.ENABLED || (aciValue == null && usernameValue == null))
 

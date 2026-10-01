@@ -76,6 +76,31 @@ class RecipientTest_isSystemContactByPhoneNumber {
     assertTrue(recipient.isSystemContactByPhoneNumber)
   }
 
+  @Test
+  fun `a discoverable recipient whose contact holds the number would be linked again`() {
+    assertTrue(recipient().wouldRelinkSystemContactByNumber)
+  }
+
+  @Test
+  fun `a recipient whose contact lacks the number would not be linked again`() {
+    assertFalse(recipient(systemContactHasNumber = false).wouldRelinkSystemContactByNumber)
+  }
+
+  @Test
+  fun `an undiscoverable recipient would not be linked again, even if they share their number`() {
+    val recipient = recipient(
+      phoneNumberDiscoverable = PhoneNumberDiscoverableState.NOT_DISCOVERABLE,
+      phoneNumberSharing = PhoneNumberSharingState.ENABLED
+    )
+
+    assertFalse(recipient.wouldRelinkSystemContactByNumber)
+  }
+
+  @Test
+  fun `an unlinked recipient would not be linked again`() {
+    assertFalse(recipient(contactUri = null).wouldRelinkSystemContactByNumber)
+  }
+
   private fun recipient(
     contactUri: Uri? = Uri.parse("content://com.android.contacts/contacts/lookup/0r1-ABC/1"),
     systemContactHasNumber: Boolean = true,

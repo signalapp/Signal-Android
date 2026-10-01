@@ -83,6 +83,11 @@ class AboutSheetViewModel(
     )
   }
 
+  fun unlinkSystemContact() {
+    val recipientId = internalState.value.recipient?.id ?: return
+    repository.unlinkSystemContact(recipientId)
+  }
+
   override fun onCleared() {
     disposables.dispose()
   }
