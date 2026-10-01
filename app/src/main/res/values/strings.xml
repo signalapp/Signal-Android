@@ -2528,6 +2528,24 @@
     <!-- Shown when the chosen phone contact could not be linked. -->
     <string name="LinkPhoneContactActivity__couldnt_link_that_phone_contact">Couldn\'t link that phone contact.</string>
 
+    <!-- UnlinkedSignalContactsActivity -->
+    <!-- Title of the screen listing Signal contacts that lost their link to a phone contact, and a menu item that opens it. -->
+    <string name="UnlinkedSignalContactsActivity__unlinked_signal_contacts">Unlinked Signal contacts</string>
+    <!-- Explains the list of Signal contacts that lost their link to a phone contact. -->
+    <string name="UnlinkedSignalContactsActivity__these_contacts_were_linked">These contacts used to be linked to phone contacts. Tap one to link it again.</string>
+    <!-- Shown above the list when Signal does not have contacts permission. -->
+    <string name="UnlinkedSignalContactsActivity__allow_access_to_your_contacts">Allow Signal to access your contacts, and contacts with a phone number will be linked again automatically.</string>
+    <!-- Button that grants contacts permission. -->
+    <string name="UnlinkedSignalContactsActivity__allow_access">Allow access</string>
+    <!-- Button on a row that removes one contact from the list without linking it. -->
+    <string name="UnlinkedSignalContactsActivity__dismiss">Dismiss</string>
+    <!-- Menu item that removes every contact from the list without linking them. -->
+    <string name="UnlinkedSignalContactsActivity__dismiss_all">Dismiss all</string>
+    <!-- Accessibility label for the button that opens the screen\'s menu. -->
+    <string name="UnlinkedSignalContactsActivity__more_options">More options</string>
+    <!-- Shown when no contacts are left in the list. -->
+    <string name="UnlinkedSignalContactsActivity__all_your_signal_contacts_are_linked">No unlinked Signal contacts.</string>
+
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
         <item quantity="one">%1$s group in common</item>
