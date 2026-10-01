@@ -372,6 +372,10 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
+  override fun onViewStickerPackLink(packId: String, packKey: String) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
   override fun onShowSafetyTips(forGroup: Boolean) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }

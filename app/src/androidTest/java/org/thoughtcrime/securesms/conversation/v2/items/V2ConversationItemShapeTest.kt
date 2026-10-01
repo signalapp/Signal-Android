@@ -330,6 +330,7 @@ class V2ConversationItemShapeTest {
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
 
     override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
+    override fun onViewStickerPackLink(packId: String, packKey: String) = Unit
 
     override fun onItemClick(item: MultiselectPart?) = Unit
 

@@ -56,6 +56,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
@@ -144,6 +145,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
+import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -170,6 +172,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import kotlin.Pair;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -247,7 +250,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private                Stub<LinkPreviewView>                   linkPreviewStub;
   private                Stub<BorderlessImageView>               stickerStub;
   private                Stub<ViewOnceMessageView>               revealableStub;
-  private                Stub<MaterialButton>                    joinCallLinkStub;
+  private                Stub<MaterialButton>                    linkPreviewActionStub;
   private                Stub<Button>                            callToActionStub;
   private                Stub<GiftMessageView>                   giftViewStub;
   private                Stub<PaymentMessageView>                paymentViewStub;
@@ -361,7 +364,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.linkPreviewStub           = new Stub<>(findViewById(R.id.link_preview_stub));
     this.stickerStub               = new Stub<>(findViewById(R.id.sticker_view_stub));
     this.revealableStub            = new Stub<>(findViewById(R.id.revealable_view_stub));
-    this.joinCallLinkStub          = ViewUtil.findStubById(this, R.id.conversation_item_join_button);
+    this.linkPreviewActionStub     = ViewUtil.findStubById(this, R.id.conversation_item_link_preview_action);
     this.callToActionStub          = ViewUtil.findStubById(this, R.id.conversation_item_call_to_action_stub);
     this.quoteView                 = findViewById(R.id.quote_view);
     this.reply                     = findViewById(R.id.reply_icon_wrapper);
@@ -1356,7 +1359,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
       if (callToActionStub.resolved()) callToActionStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       revealableStub.get().setMessage((MmsMessageRecord) messageRecord, hasWallpaper);
@@ -1375,7 +1378,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       sharedContactStub.get().setContact(((MmsMessageRecord) messageRecord).getSharedContacts().get(0), conversationMessage.getSharedContactPresentation(), requestManager, locale);
@@ -1397,20 +1400,24 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
-      CallLinkRootKey callLinkRootKey = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
+      CallLinkRootKey                callLinkRootKey = CallLinks.isCallLink(linkPreview.getUrl()) ? CallLinks.parseUrl(linkPreview.getUrl()) : null;
+      Optional<Pair<String, String>> stickerPack     = StickerUrl.parseShareLink(linkPreview.getUrl());
       if (callLinkRootKey != null) {
-        joinCallLinkStub.setVisibility(View.VISIBLE);
-        joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorOnPrimary : org.signal.core.ui.R.color.signal_colorOnPrimaryContainer));
-        joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorTransparent2 : org.signal.core.ui.R.color.signal_colorOnPrimary));
-        joinCallLinkStub.get().setOnClickListener(v -> {
+        presentLinkPreviewAction(R.string.ConversationItem__join_call, v -> {
           if (eventListener != null) {
             eventListener.onJoinCallLink(callLinkRootKey);
+          }
+        });
+      } else if (stickerPack.isPresent()) {
+        presentLinkPreviewAction(R.string.ConversationItem__view_pack, v -> {
+          if (eventListener != null) {
+            eventListener.onViewStickerPackLink(stickerPack.get().getFirst(), stickerPack.get().getSecond());
           }
         });
       }
@@ -1460,7 +1467,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       audioViewStub.get().setAudio(Objects.requireNonNull(((MmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, true);
@@ -1488,7 +1495,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       //noinspection ConstantConditions
@@ -1521,7 +1528,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved()) linkPreviewStub.get().setVisibility(GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       if (hasSticker(messageRecord)) {
@@ -1553,7 +1560,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       final SlideDeck slideDeck       = ((MmsMessageRecord) messageRecord).getSlideDeck();
@@ -1617,7 +1624,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (linkPreviewStub.resolved()) linkPreviewStub.get().setVisibility(GONE);
       if (stickerStub.resolved()) stickerStub.get().setVisibility(GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
@@ -1634,7 +1641,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
 
       MmsMessageRecord mediaMmsMessageRecord = (MmsMessageRecord) messageRecord;
 
@@ -1652,7 +1659,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
 
       MmsMessageRecord mediaMmsMessageRecord = (MmsMessageRecord) messageRecord;
 
@@ -1672,7 +1679,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved()) stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved()) revealableStub.get().setVisibility(View.GONE);
       if (giftViewStub.resolved()) giftViewStub.get().setVisibility(View.GONE);
-      if (joinCallLinkStub.resolved()) joinCallLinkStub.get().setVisibility(View.GONE);
+      if (linkPreviewActionStub.resolved()) linkPreviewActionStub.get().setVisibility(View.GONE);
       paymentViewStub.setVisibility(View.GONE);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1704,6 +1711,16 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else {
       ViewUtil.setBottomMargin(revealableStub.get(), bigMargin);
     }
+  }
+
+  private void presentLinkPreviewAction(@StringRes int label, @NonNull View.OnClickListener onClickListener) {
+    MaterialButton button = linkPreviewActionStub.get();
+
+    linkPreviewActionStub.setVisibility(View.VISIBLE);
+    button.setText(label);
+    button.setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorOnPrimary : org.signal.core.ui.R.color.signal_colorOnPrimaryContainer));
+    button.setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? org.signal.core.ui.R.color.signal_light_colorTransparent2 : org.signal.core.ui.R.color.signal_colorOnPrimary));
+    button.setOnClickListener(onClickListener);
   }
 
   private void setThumbnailCorners(@NonNull MessageRecord current,

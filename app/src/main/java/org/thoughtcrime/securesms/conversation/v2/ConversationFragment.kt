@@ -4674,6 +4674,10 @@ class ConversationFragment :
       }
     }
 
+    override fun onViewStickerPackLink(packId: String, packKey: String) {
+      startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(packId), StickerPackKey(packKey)))
+    }
+
     override fun onShowSafetyTips(forGroup: Boolean) {
       SafetyTipsBottomSheetDialog.show(childFragmentManager, forGroup)
     }

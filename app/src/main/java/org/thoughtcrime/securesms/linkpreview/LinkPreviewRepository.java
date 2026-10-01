@@ -295,7 +295,10 @@ public class LinkPreviewRepository {
         SignalServiceMessageReceiver receiver = AppDependencies.getSignalServiceMessageReceiver();
         SignalServiceStickerManifest manifest = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 
-        String                title        = OptionalUtil.or(manifest.getTitle(), manifest.getAuthor()).orElse("");
+        Optional<String>      packTitle    = manifest.getTitle().flatMap(OptionalUtil::absentIfEmpty);
+        Optional<String>      packAuthor   = manifest.getAuthor().flatMap(OptionalUtil::absentIfEmpty);
+        String                title        = getStickerPackTitle(context, packTitle, packAuthor);
+        String                description  = getStickerPackDescription(context, packTitle, packAuthor);
         Optional<StickerInfo> firstSticker = Optional.ofNullable(manifest.getStickers().size() > 0 ? manifest.getStickers().get(0) : null);
         Optional<StickerInfo> cover        = OptionalUtil.or(manifest.getCover(), firstSticker);
 
@@ -310,7 +313,7 @@ public class LinkPreviewRepository {
 
           Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.WEBP, MediaUtil.IMAGE_WEBP);
 
-          callback.onSuccess(new LinkPreview(packUrl, title, "", 0, thumbnail));
+          callback.onSuccess(new LinkPreview(packUrl, title, description, 0, thumbnail));
         } else {
           callback.onError(Error.PREVIEW_NOT_AVAILABLE);
         }
@@ -435,6 +438,24 @@ public class LinkPreviewRepository {
     });
 
     return () -> Log.i(TAG, "Cancelled group link preview fetch -- no effect.");
+  }
+
+  private static @NonNull String getStickerPackTitle(@NonNull Context context, @NonNull Optional<String> packTitle, @NonNull Optional<String> packAuthor) {
+    if (packTitle.isPresent()) {
+      return packTitle.get();
+    } else if (packAuthor.isPresent()) {
+      return context.getString(R.string.LinkPreviewRepository_sticker_pack_by_s, packAuthor.get());
+    } else {
+      return context.getString(R.string.LinkPreviewRepository_sticker_pack);
+    }
+  }
+
+  private static @NonNull String getStickerPackDescription(@NonNull Context context, @NonNull Optional<String> packTitle, @NonNull Optional<String> packAuthor) {
+    if (packTitle.isPresent() && packAuthor.isPresent()) {
+      return context.getString(R.string.LinkPreviewRepository_sticker_pack_by_s, packAuthor.get());
+    } else {
+      return "";
+    }
   }
 
   private static @NonNull String getMemberCountDescription(@NonNull Context context, int memberCount) {

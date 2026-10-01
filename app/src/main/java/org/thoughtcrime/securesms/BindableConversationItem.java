@@ -136,6 +136,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onEditedIndicatorClicked(@NonNull ConversationMessage conversationMessage);
     void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks);
     void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey);
+    void onViewStickerPackLink(@NonNull String packId, @NonNull String packKey);
     void onShowSafetyTips(boolean forGroup);
     void onReportSpamLearnMoreClicked();
     void onMessageRequestAcceptOptionsClicked();

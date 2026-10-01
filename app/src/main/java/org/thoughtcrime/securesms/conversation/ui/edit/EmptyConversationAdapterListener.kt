@@ -82,6 +82,7 @@ object EmptyConversationAdapterListener : ConversationAdapter.ItemClickListener 
   override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) = Unit
   override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
   override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
+  override fun onViewStickerPackLink(packId: String, packKey: String) = Unit
   override fun onShowSafetyTips(forGroup: Boolean) = Unit
   override fun onReportSpamLearnMoreClicked() = Unit
   override fun onMessageRequestAcceptOptionsClicked() = Unit
