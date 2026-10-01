@@ -70,7 +70,7 @@ class RecipientTableTest_mergeSystemContact {
   }
 
   private fun link(id: RecipientId, contactUri: String, systemPhoneE164: String?) {
-    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts = false)
+    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
     try {
       handle.setSystemContactInfo(
         id = id,

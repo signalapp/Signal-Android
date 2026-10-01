@@ -1395,22 +1395,106 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * @param clearInfoForMissingContacts If true, this will clear any saved contact details for any recipient that hasn't been updated
-   *                                    by the time finish() is called. Basically this should be true for full syncs and false for
-   *                                    partial syncs.
+   * Starts linking recipients to the system contacts that hold their numbers, all in one transaction
+   * that [BulkOperationsHandle.finish] ends.
    */
-  fun beginBulkSystemContactUpdate(clearInfoForMissingContacts: Boolean): BulkOperationsHandle {
+  fun beginBulkSystemContactUpdate(): BulkOperationsHandle {
     writableDatabase.beginTransaction()
+    return BulkOperationsHandle(writableDatabase)
+  }
 
-    if (clearInfoForMissingContacts) {
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(SYSTEM_INFO_PENDING to 1)
-        .where("$SYSTEM_CONTACT_URI NOT NULL")
-        .run()
+  /** Every recipient currently linked to a system contact, so the links can be kept current. */
+  fun getLinkedSystemContacts(): List<LinkedSystemContact> {
+    return readableDatabase
+      .select(ID, E164, SYSTEM_CONTACT_URI)
+      .from(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.LINKED.id)
+      .run()
+      .readToList { cursor ->
+        LinkedSystemContact(
+          recipientId = RecipientId.from(cursor.requireLong(ID)),
+          e164 = cursor.requireString(E164),
+          contactUri = cursor.requireString(SYSTEM_CONTACT_URI)
+        )
+      }
+  }
+
+  /**
+   * Refreshes a linked recipient's system contact fields from the contact they are linked to. The
+   * storage service record carries the contact's name, so only a change to it marks the record for
+   * upload.
+   */
+  fun updateSystemContactLink(
+    id: RecipientId,
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String
+  ) {
+    val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+    val query = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", SqlUtil.buildArgs(id, SystemContactLinkState.LINKED.id), values)
+
+    val updated = writableDatabase.withinTransaction {
+      val nameChanged = getRecord(id).systemProfileName != systemProfileName
+      update(query, values).also { updated ->
+        if (updated && nameChanged) {
+          rotateStorageId(id)
+        }
+      }
     }
 
-    return BulkOperationsHandle(writableDatabase)
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /**
+   * Marks a linked recipient whose system contact no longer exists as needing a new link.
+   *
+   * The user still knows who this is, so everything the contact gave the recipient stays, such as
+   * its name, except the contact and photo URIs, which pointed into the contact and no longer
+   * resolve.
+   */
+  fun markSystemContactLinkNeeded(id: RecipientId) {
+    val updated = writableDatabase.withinTransaction { db ->
+      db.update(TABLE_NAME)
+        .values(
+          SYSTEM_PHOTO_URI to null,
+          SYSTEM_CONTACT_URI to null,
+          SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NEEDED.id
+        )
+        .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.LINKED.id)
+        .run()
+        .let { it > 0 }
+        .also { updated ->
+          if (updated) {
+            rotateStorageId(id)
+          }
+        }
+    }
+
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /**
+   * Stops asking the user to link a recipient that lost its system contact. The name the contact
+   * gave the recipient stays.
+   */
+  fun dismissSystemContactLinkNeeded(id: RecipientId) {
+    val updated = writableDatabase
+      .update(TABLE_NAME)
+      .values(SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id)
+      .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.NEEDED.id)
+      .run()
+
+    if (updated > 0) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
   }
 
   private fun systemContactValues(
@@ -3831,6 +3915,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val nickname: String?
   )
 
+  data class LinkedSystemContact(
+    val recipientId: RecipientId,
+    val e164: String?,
+    val contactUri: String?
+  )
+
   data class SignalOnlyContact(
     val recipientId: RecipientId,
     val nickname: String?,
@@ -5088,6 +5178,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   inner class BulkOperationsHandle internal constructor(private val database: SQLiteDatabase) {
     private val pendingRecipients: MutableSet<RecipientId> = mutableSetOf()
 
+    /**
+     * Links a recipient to the system contact that holds their number. A recipient who is already
+     * linked keeps that link, which [updateSystemContactLink] keeps current, and one whose number is
+     * not discoverable is never linked by it.
+     */
     fun setSystemContactInfo(
       id: RecipientId,
       systemProfileName: ProfileName,
@@ -5099,62 +5194,22 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       systemContactUri: String?
     ) {
       val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
-      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), values)
+      val updateQuery = SqlUtil.buildTrueUpdateQuery(
+        "$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ? AND $SYSTEM_CONTACT_LINK_STATE != ?",
+        SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id, SystemContactLinkState.LINKED.id),
+        values
+      )
+
       if (update(updateQuery, values)) {
         pendingRecipients.add(id)
       }
-
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(SYSTEM_INFO_PENDING to 0)
-        .where("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
-        .run()
     }
 
     fun finish() {
-      markAllRelevantEntriesDirty()
-      clearSystemDataForPendingInfo()
+      pendingRecipients.forEach { id -> rotateStorageId(id) }
       database.setTransactionSuccessful()
       database.endTransaction()
       pendingRecipients.forEach { id -> AppDependencies.databaseObserver.notifyRecipientChanged(id) }
-    }
-
-    private fun markAllRelevantEntriesDirty() {
-      val query = "$SYSTEM_INFO_PENDING = ? AND $STORAGE_SERVICE_ID NOT NULL"
-      val args = SqlUtil.buildArgs("1")
-
-      database.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val id = RecipientId.from(cursor.requireNonNullString(ID))
-          rotateStorageId(id)
-        }
-      }
-
-      pendingRecipients.forEach { id -> rotateStorageId(id) }
-    }
-
-    private fun clearSystemDataForPendingInfo() {
-      writableDatabase.rawQuery(
-        """
-        UPDATE $TABLE_NAME
-        SET
-          $SYSTEM_INFO_PENDING = 0,
-          $SYSTEM_GIVEN_NAME = NULL,
-          $SYSTEM_FAMILY_NAME = NULL,
-          $SYSTEM_JOINED_NAME = NULL,
-          $SYSTEM_PHOTO_URI = NULL,
-          $SYSTEM_PHONE_LABEL = NULL,
-          $SYSTEM_PHONE_E164 = NULL,
-          $SYSTEM_CONTACT_URI = NULL,
-          $SYSTEM_CONTACT_LINK_STATE = ${SystemContactLinkState.NONE.id}
-        WHERE $SYSTEM_INFO_PENDING = 1
-        RETURNING $ID
-        """,
-        null
-      ).forEach { cursor ->
-        val id = RecipientId.from(cursor.requireLong(ID))
-        AppDependencies.databaseObserver.notifyRecipientChanged(id)
-      }
     }
   }
 

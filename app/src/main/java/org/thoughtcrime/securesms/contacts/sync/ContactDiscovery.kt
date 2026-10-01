@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.contacts.sync
 import android.Manifest
 import android.content.Context
 import android.text.TextUtils
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.contacts.SystemContactsRepository.LinkedContactResult
 import org.signal.core.models.ServiceId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
@@ -144,7 +146,7 @@ object ContactDiscovery {
     syncRecipientsWithSystemContacts(
       context = context,
       rewrites = emptyMap(),
-      clearInfoForMissingContacts = true
+      refreshLinks = true
     )
   }
 
@@ -189,7 +191,7 @@ object ContactDiscovery {
             )
           }
         },
-        clearInfoForMissingContacts = useFullSync
+        refreshLinks = useFullSync
       )
       stopwatch.split("contact-sync")
 
@@ -238,14 +240,24 @@ object ContactDiscovery {
   }
 
   /**
-   * Synchronizes info from the system contacts (name, avatar, etc)
+   * Synchronizes info from the system contacts (name, avatar, etc).
+   *
+   * Phone numbers only discover new links. With [refreshLinks], every existing link is first brought
+   * up to date from the contact it points to, which is how a full sync learns about edited and
+   * deleted contacts.
    */
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
     contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter()) },
-    clearInfoForMissingContacts: Boolean
+    refreshLinks: Boolean
   ) {
+    if (refreshLinks) {
+      refreshSystemContactLinks { lookupKey ->
+        SystemContactsRepository.getLinkedContact(context, BuildConfig.APPLICATION_ID, lookupKey, phoneNumberFormatter())
+      }
+    }
+
     val localNumber: String = SignalStore.account.e164 ?: ""
 
     val contactInfos = LinkedList<ContactInfo>()
@@ -284,7 +296,7 @@ object ContactDiscovery {
     }
 
     if (contactInfos.isNotEmpty()) {
-      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
       try {
         for (contactInfo in contactInfos) {
           handle.setSystemContactInfo(
@@ -309,6 +321,44 @@ object ContactDiscovery {
         .recipients
         .getRecipientsWithNotificationChannels()
         .forEach { NotificationChannels.getInstance().updateContactChannelName(Recipient.resolved(it.id)) }
+    }
+  }
+
+  /**
+   * Brings every linked recipient up to date from the system contact they are linked to: its name,
+   * its photo, its current lookup key, and whether it still holds the recipient's number. A link is
+   * kept however the contact has changed. When the contact is gone, the recipient needs a new link.
+   */
+  @VisibleForTesting
+  fun refreshSystemContactLinks(lookup: (String) -> LinkedContactResult) {
+    for (link in SignalDatabase.recipients.getLinkedSystemContacts()) {
+      val lookupKey: String? = SystemContactsRepository.lookupKeyFromLookupUri(link.contactUri)
+      val result: LinkedContactResult = if (lookupKey != null) lookup(lookupKey) else LinkedContactResult.Missing
+
+      when (result) {
+        is LinkedContactResult.Found -> {
+          val contact = result.contact
+          val phone = link.e164?.let { e164 -> contact.numbers.filter { it.number == e164 }.minByOrNull { it.type } }
+
+          SignalDatabase.recipients.updateSystemContactLink(
+            id = link.recipientId,
+            systemProfileName = systemProfileName(contact.givenName, contact.familyName, contact.displayName),
+            systemDisplayName = contact.displayName,
+            photoUri = contact.photoUri,
+            systemPhoneLabel = phone?.label,
+            systemPhoneType = phone?.type ?: -1,
+            systemPhoneE164 = phone?.number,
+            systemContactUri = contact.contactUri.toString()
+          )
+        }
+        LinkedContactResult.Missing -> {
+          Log.i(TAG, "[refreshSystemContactLinks] The system contact for ${link.recipientId} is gone. Marking the link as needed.")
+          SignalDatabase.recipients.markSystemContactLinkNeeded(link.recipientId)
+        }
+        LinkedContactResult.Unavailable -> {
+          Log.w(TAG, "[refreshSystemContactLinks] Could not query the system contact for ${link.recipientId}. Leaving the link alone.")
+        }
+      }
     }
   }
 

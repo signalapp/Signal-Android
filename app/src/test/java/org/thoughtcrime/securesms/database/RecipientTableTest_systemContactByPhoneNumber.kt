@@ -89,7 +89,7 @@ class RecipientTableTest_systemContactByPhoneNumber {
   }
 
   private fun link(id: RecipientId, systemPhoneE164: String? = Recipient.resolved(id).requireE164()) {
-    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts = false)
+    val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
     try {
       handle.setSystemContactInfo(
         id = id,
