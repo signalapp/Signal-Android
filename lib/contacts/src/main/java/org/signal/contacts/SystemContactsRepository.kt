@@ -91,6 +91,23 @@ object SystemContactsRepository {
     ContactsContract.Contacts.NAME_RAW_CONTACT_ID
   )
 
+  /** The [ContactsContract.Data] columns a [ContactDataReader] reads. */
+  private val CONTACT_DATA_PROJECTION = arrayOf(
+    ContactsContract.Data.MIMETYPE,
+    ContactsContract.CommonDataKinds.Phone.NUMBER,
+    ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+    ContactsContract.CommonDataKinds.Phone.LABEL,
+    ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
+    ContactsContract.CommonDataKinds.Phone._ID,
+    ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
+    ContactsContract.CommonDataKinds.Phone.TYPE,
+    ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
+    ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME
+  )
+
+  /** Groups each contact's rows together, phones before names, latest first. See [CursorContactIterator]. */
+  private val CONTACT_DATA_ORDER = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
+
   /**
    * Gets and returns an iterator over data for all contacts, containing both phone number data and structured name data.
    *
@@ -99,23 +116,10 @@ object SystemContactsRepository {
    */
   @JvmStatic
   fun getAllSystemContacts(context: Context, ownAccountType: String, e164Formatter: (String) -> String?): ContactIterator {
-    val projection = arrayOf(
-      ContactsContract.Data.MIMETYPE,
-      ContactsContract.CommonDataKinds.Phone.NUMBER,
-      ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-      ContactsContract.CommonDataKinds.Phone.LABEL,
-      ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
-      ContactsContract.CommonDataKinds.Phone._ID,
-      ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
-      ContactsContract.CommonDataKinds.Phone.TYPE,
-      ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
-      ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME
-    )
     val where = "${ContactsContract.Data.MIMETYPE} IN (?, ?)"
     val args = SqlUtil.buildArgs(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
-    val orderBy = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
 
-    val cursor: Cursor = queryContactData(context, projection, where, args, orderBy) ?: return EmptyContactIterator()
+    val cursor: Cursor = queryContactData(context, CONTACT_DATA_PROJECTION, where, args, CONTACT_DATA_ORDER) ?: return EmptyContactIterator()
 
     return CursorContactIterator(cursor, ownAccountType, e164Formatter)
   }
@@ -140,26 +144,12 @@ object SystemContactsRepository {
       return EmptyContactIterator()
     }
 
-    val projection = arrayOf(
-      ContactsContract.Data.MIMETYPE,
-      ContactsContract.CommonDataKinds.Phone.NUMBER,
-      ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-      ContactsContract.CommonDataKinds.Phone.LABEL,
-      ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
-      ContactsContract.CommonDataKinds.Phone._ID,
-      ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
-      ContactsContract.CommonDataKinds.Phone.TYPE,
-      ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
-      ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME
-    )
-
     val lookupPlaceholder = lookupKeys.map { "?" }.joinToString(separator = ",")
 
     val where = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} IN ($lookupPlaceholder) AND ${ContactsContract.Data.MIMETYPE} IN (?, ?)"
     val args = lookupKeys.toTypedArray() + SqlUtil.buildArgs(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
-    val orderBy = "${ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY} ASC, ${ContactsContract.Data.MIMETYPE} DESC, ${ContactsContract.CommonDataKinds.Phone._ID} DESC"
 
-    val cursor: Cursor = queryContactData(context, projection, where, args, orderBy) ?: return EmptyContactIterator()
+    val cursor: Cursor = queryContactData(context, CONTACT_DATA_PROJECTION, where, args, CONTACT_DATA_ORDER) ?: return EmptyContactIterator()
     return CursorContactIterator(cursor, ownAccountType, e164Formatter)
   }
 
@@ -254,7 +244,7 @@ object SystemContactsRepository {
   /**
    * Pulls the lookup key out of a contact lookup URI.
    *
-   * Note this reads the segment after "lookup" rather than the last segment. [readAllPhones] builds
+   * Note this reads the segment after "lookup" rather than the last segment. [ContactDataReader] builds
    * these URIs with a Data row id in the trailing position instead of a contact id, so the trailing
    * segment cannot be trusted, while the lookup key is both correct and stable across contact edits.
    */
@@ -849,9 +839,8 @@ object SystemContactsRepository {
    * The general idea of how this is implemented:
    * - Assume you're already on the correct row at the start of [next].
    * - Store the lookup key from the first row.
-   * - Read all phone entries for that lookup key and store them.
-   * - Read the best name entry for that lookup key and store it. See [readStructuredName].
-   * - Skip all other rows for that lookup key. This will ensure that you're on the correct row for the next call to [next]
+   * - Hand every row for that lookup key to a [ContactDataReader], which picks out the contact's
+   *   phones and best name. This leaves you on the correct row for the next call to [next].
    */
   private class CursorContactIterator(
     private val cursor: Cursor,
@@ -874,86 +863,107 @@ object SystemContactsRepository {
         throw NoSuchElementException()
       }
 
-      val lookupKey: String = cursor.getLookupKey()
-      val phoneDetails: List<ContactPhoneDetails> = readAllPhones(cursor, lookupKey)
-      val structuredName: StructuredName? = readStructuredName(cursor, lookupKey)
+      val lookupKey: String = cursor.requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)
+      val reader = ContactDataReader(ownAccountType, e164Formatter, hasNameSourceColumns)
 
-      while (!cursor.isAfterLast && cursor.position >= 0 && cursor.getLookupKey() == lookupKey) {
+      while (!cursor.isAfterLast && cursor.requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY) == lookupKey) {
+        reader.add(cursor)
         cursor.moveToNext()
       }
+
+      val structuredName: StructuredName? = reader.name
 
       return ContactDetails(
         givenName = structuredName?.givenName,
         familyName = structuredName?.familyName,
-        numbers = phoneDetails
+        numbers = reader.numbers
       )
     }
 
     override fun close() {
       cursor.close()
     }
+  }
 
-    fun readAllPhones(cursor: Cursor, lookupKey: String): List<ContactPhoneDetails> {
-      val phoneDetails: MutableList<ContactPhoneDetails> = mutableListOf()
-
-      while (!cursor.isAfterLast && lookupKey == cursor.getLookupKey() && cursor.isPhoneMimeType()) {
-        val displayNumber: String? = cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER)
-        val formattedNumber: String? = displayNumber?.let { e164Formatter(it) }
-
-        if (!displayNumber.isNullOrEmpty() && !formattedNumber.isNullOrEmpty()) {
-          phoneDetails += ContactPhoneDetails(
-            contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), lookupKey),
-            displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
-            photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
-            number = formattedNumber,
-            type = cursor.requireInt(ContactsContract.CommonDataKinds.Phone.TYPE),
-            label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL)
-          )
-        } else {
-          Log.w(TAG, "Skipping phone entry with invalid number!")
-        }
-
-        cursor.moveToNext()
-      }
-
-      // You may get duplicates of the same phone number with different types.
-      // This dedupes by taking the entry with the lowest phone type.
-      return phoneDetails
-        .groupBy { it.number }
-        .mapValues { entry ->
-          entry.value.minByOrNull { it.type }!!
-        }
-        .values
-        .toList()
-    }
+  /**
+   * Loads one contact's numbers and name from its [ContactsContract.Data] rows, queried with
+   * [CONTACT_DATA_PROJECTION] in [CONTACT_DATA_ORDER]. Hand it each of the contact's rows with
+   * [add]; rows other than phones and structured names are ignored.
+   */
+  private class ContactDataReader(
+    private val ownAccountType: String,
+    private val e164Formatter: (String) -> String?,
+    private val hasNameSourceColumns: Boolean
+  ) {
+    private val phones: MutableList<ContactPhoneDetails> = mutableListOf()
+    private var preferredName: StructuredName? = null
+    private var firstName: StructuredName? = null
 
     /**
-     * Skips our own name rows since the provider re-splits them on display name updates. Returns null if only ours exist, and callers then use the display name.
+     * The contact's numbers, formatted as E164s. You may get duplicates of the same phone number with
+     * different types, so this keeps the entry with the lowest phone type.
      */
-    fun readStructuredName(cursor: Cursor, lookupKey: String): StructuredName? {
+    val numbers: List<ContactPhoneDetails>
+      get() = phones
+        .groupBy { it.number }
+        .mapValues { entry -> entry.value.minByOrNull { it.type }!! }
+        .values
+        .toList()
+
+    /**
+     * The contact's name: the one the provider marks as its name source, or else the latest. Skips
+     * our own name rows since the provider re-splits them on display name updates. Null if only ours
+     * exist, and callers then use the display name.
+     */
+    val name: StructuredName?
+      get() = preferredName ?: firstName
+
+    fun add(cursor: Cursor) {
+      when (cursor.requireString(ContactsContract.Data.MIMETYPE)) {
+        ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE -> addPhone(cursor)
+        ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE -> addName(cursor)
+      }
+    }
+
+    private fun addPhone(cursor: Cursor) {
+      val displayNumber: String? = cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER)
+      val formattedNumber: String? = displayNumber?.let { e164Formatter(it) }
+
+      if (!displayNumber.isNullOrEmpty() && !formattedNumber.isNullOrEmpty()) {
+        phones += ContactPhoneDetails(
+          contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), cursor.requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)),
+          displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
+          photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
+          number = formattedNumber,
+          type = cursor.requireInt(ContactsContract.CommonDataKinds.Phone.TYPE),
+          label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL)
+        )
+      } else {
+        Log.w(TAG, "Skipping phone entry with invalid number!")
+      }
+    }
+
+    private fun addName(cursor: Cursor) {
       if (!hasNameSourceColumns) {
-        return if (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey && cursor.isNameMimeType()) cursor.toStructuredName() else null
-      }
-
-      var firstFound: StructuredName? = null
-
-      while (!cursor.isAfterLast && cursor.getLookupKey() == lookupKey && cursor.isNameMimeType()) {
-        if (cursor.requireString(ContactsContract.RawContacts.ACCOUNT_TYPE) != ownAccountType) {
-          val name = cursor.toStructuredName()
-
-          if (cursor.requireLong(ContactsContract.Data.RAW_CONTACT_ID) == cursor.requireLong(ContactsContract.Contacts.NAME_RAW_CONTACT_ID)) {
-            return name
-          }
-
-          if (firstFound == null) {
-            firstFound = name
-          }
+        if (firstName == null) {
+          firstName = cursor.toStructuredName()
         }
-
-        cursor.moveToNext()
+        return
       }
 
-      return firstFound
+      if (cursor.requireString(ContactsContract.RawContacts.ACCOUNT_TYPE) == ownAccountType) {
+        return
+      }
+
+      val name = cursor.toStructuredName()
+
+      if (preferredName == null && cursor.requireLong(ContactsContract.Data.RAW_CONTACT_ID) == cursor.requireLong(ContactsContract.Contacts.NAME_RAW_CONTACT_ID)) {
+        preferredName = name
+      }
+
+      if (firstName == null) {
+        firstName = name
+      }
     }
 
     private fun Cursor.toStructuredName(): StructuredName {
@@ -961,22 +971,6 @@ object SystemContactsRepository {
         givenName = requireString(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME),
         familyName = requireString(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME)
       )
-    }
-
-    fun Cursor.getLookupKey(): String {
-      return requireNonNullString(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)
-    }
-
-    fun Cursor.isPhoneMimeType(): Boolean {
-      return requireString(ContactsContract.Data.MIMETYPE) == ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE
-    }
-
-    fun Cursor.isNameMimeType(): Boolean {
-      return requireString(ContactsContract.Data.MIMETYPE) == ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE
-    }
-
-    fun firstNonEmpty(s1: String?, s2: String): String {
-      return if (s1 != null && s1.isNotEmpty()) s1 else s2
     }
   }
 
