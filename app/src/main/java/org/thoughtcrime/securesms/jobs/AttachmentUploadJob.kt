@@ -5,6 +5,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import android.text.TextUtils
+import kotlinx.coroutines.runBlocking
 import okhttp3.internal.http2.StreamResetException
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.models.database.AttachmentId
@@ -18,6 +19,7 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.RetryLaterException
 import org.signal.libsignal.net.UploadTooLargeException
 import org.signal.network.api.AttachmentUploadResult
+import org.signal.network.api.CdnApi
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -46,8 +48,6 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException
-import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.IOException
@@ -201,15 +201,24 @@ class AttachmentUploadJob private constructor(
 
       getAttachmentNotificationIfNeeded(databaseAttachment).use { notification ->
         buildAttachmentStream(databaseAttachment, notification).use { localAttachment ->
-          val uploadResult: AttachmentUploadResult = SignalNetwork.attachmentApi.uploadAttachmentV4(
-            form = uploadForm,
-            key = key,
-            iv = iv,
-            checksumSha256 = checksumSha256,
-            attachmentStream = localAttachment,
-            existingSpec = existingSpec,
-            onSpecCreated = { spec -> uploadSpec = spec.toProto() }
-          ).successOrThrow()
+          val result = runBlocking {
+            SignalNetwork.cdnService.uploadAttachment(
+              form = uploadForm,
+              key = key,
+              iv = iv,
+              checksumSha256 = checksumSha256,
+              attachmentStream = localAttachment,
+              existingSpec = existingSpec,
+              onSpecCreated = { spec -> uploadSpec = spec.toProto() }
+            )
+          }
+
+          val uploadResult: AttachmentUploadResult = when (result) {
+            is RequestResult.Success -> result.result
+            is RequestResult.NonSuccess -> throw handleUploadError(result.error)
+            is RequestResult.RetryableNetworkError -> throw result.networkError
+            is RequestResult.ApplicationError -> throw result.cause
+          }
 
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
           if (SignalStore.backup.backsUpMedia) {
@@ -257,22 +266,6 @@ class AttachmentUploadJob private constructor(
       resetProgressListeners(databaseAttachment)
 
       throw e
-    } catch (e: NonSuccessfulResumableUploadResponseCodeException) {
-      if (e.code == 400) {
-        Log.w(TAG, "[$attachmentId] Failed to upload due to a 400 when getting resumable upload information. Clearing upload spec.", e)
-        uploadSpec = null
-      }
-
-      resetProgressListeners(databaseAttachment)
-
-      throw e
-    } catch (e: ResumeLocationInvalidException) {
-      Log.w(TAG, "[$attachmentId] Resume location invalid. Clearing upload spec.", e)
-      uploadSpec = null
-
-      resetProgressListeners(databaseAttachment)
-
-      throw e
     } catch (e: IOException) {
       if (e is ProtocolException || e.cause is ProtocolException) {
         Log.w(TAG, "[$attachmentId] Length may be incorrect. Recalculating.", e)
@@ -289,6 +282,28 @@ class AttachmentUploadJob private constructor(
       resetProgressListeners(databaseAttachment)
 
       throw e
+    }
+  }
+
+  private fun handleUploadError(error: CdnApi.UploadError): IOException {
+    return when (error) {
+      is CdnApi.UploadError.ResumeLocationInvalid -> {
+        Log.w(TAG, "[$attachmentId] Resume location invalid. Clearing upload spec.")
+        uploadSpec = null
+        IOException("Resume location invalid")
+      }
+      is CdnApi.UploadError.InvalidRequest -> {
+        Log.w(TAG, "[$attachmentId] Failed to upload due to a 400. Clearing upload spec.")
+        uploadSpec = null
+        IOException("Upload rejected with a 400")
+      }
+      is CdnApi.UploadError.TooLarge -> UploadTooLargeException("Upload rejected as too large")
+      is CdnApi.UploadError.ChecksumMismatch -> {
+        Log.w(TAG, "[$attachmentId] Upload failed due to a checksum mismatch. Clearing upload spec.")
+        uploadSpec = null
+        IOException("Upload rejected due to a checksum mismatch")
+      }
+      is CdnApi.UploadError.RateLimited -> RetryLaterException(error.retryAfter?.toJavaDuration() ?: defaultBackoff().milliseconds.toJavaDuration())
     }
   }
 

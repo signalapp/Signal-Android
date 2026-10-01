@@ -54,6 +54,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.keys.PreKeyRepository;
 import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.message.MessageApiKt;
+import org.whispersystems.signalservice.api.messages.AttachmentUploader;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -185,9 +186,10 @@ public class SignalServiceMessageSender {
   private final Optional<EventListener>       eventListener;
   private final @Nullable IdentityKeyPair     localPniIdentity;
 
-  private final MessageApi       messageApi;
-  private final KeysApi          keysApi;
-  private final PreKeyRepository preKeyRepository;
+  private final MessageApi         messageApi;
+  private final KeysApi            keysApi;
+  private final PreKeyRepository   preKeyRepository;
+  private final AttachmentUploader attachmentUploader;
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
@@ -204,7 +206,8 @@ public class SignalServiceMessageSender {
                                     long maxEnvelopeSize,
                                     int maxIncrementalMacsPerEnvelope,
                                     BooleanSupplier useRestFallback,
-                                    PreKeyRepository preKeyRepository)
+                                    PreKeyRepository preKeyRepository,
+                                    AttachmentUploader attachmentUploader)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
@@ -224,6 +227,7 @@ public class SignalServiceMessageSender {
     this.keysApi                       = keysApi;
     this.preKeyRepository              = preKeyRepository;
     this.useRestFallback               = useRestFallback;
+    this.attachmentUploader            = attachmentUploader;
   }
 
   private static @Nullable IdentityKeyPair localPniIdentity(SignalServiceDataStore store) {
@@ -842,7 +846,7 @@ public class SignalServiceMessageSender {
   }
 
   private SignalServiceAttachmentPointer uploadAttachmentV4(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {
-    AttachmentDigest digest = socket.uploadAttachment(attachmentData);
+    AttachmentDigest digest = attachmentUploader.uploadAttachmentBlocking(attachmentData);
     return new SignalServiceAttachmentPointer(attachmentData.getResumableUploadSpec().getCdnNumber(),
                                               new SignalServiceAttachmentRemoteId.V4(attachmentData.getResumableUploadSpec().getCdnKey()),
                                               attachment.getContentType(),

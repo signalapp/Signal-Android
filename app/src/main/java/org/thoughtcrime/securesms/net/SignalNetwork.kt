@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.net
 
 import org.signal.network.api.AccountApiV2
-import org.signal.network.api.ArchiveApi
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
@@ -20,6 +19,7 @@ import org.signal.network.api.RemoteConfigApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
 import org.signal.network.service.ArchiveService
+import org.signal.network.service.CdnService
 import org.signal.network.service.MessageService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
@@ -46,9 +46,6 @@ open class SignalNetwork {
 
   open val accountApiV2: AccountApiV2
     get() = AppDependencies.accountApiV2
-
-  open val archiveApi: ArchiveApi
-    get() = AppDependencies.archiveApi
 
   open val archiveApiV2: ArchiveApiV2
     get() = AppDependencies.archiveApiV2
@@ -104,6 +101,9 @@ open class SignalNetwork {
   open val archiveService: ArchiveService
     get() = AppDependencies.archiveService
 
+  open val cdnService: CdnService
+    get() = AppDependencies.cdnService
+
   open val donationsService: DonationsService
     get() = AppDependencies.donationsService
 
@@ -144,11 +144,6 @@ open class SignalNetwork {
     @get:JvmName("accountApiV2")
     val accountApiV2: AccountApiV2
       get() = instance.accountApiV2
-
-    @JvmStatic
-    @get:JvmName("archiveApi")
-    val archiveApi: ArchiveApi
-      get() = instance.archiveApi
 
     @JvmStatic
     @get:JvmName("archiveApiV2")
@@ -239,6 +234,11 @@ open class SignalNetwork {
     @get:JvmName("archiveService")
     val archiveService: ArchiveService
       get() = instance.archiveService
+
+    @JvmStatic
+    @get:JvmName("cdnService")
+    val cdnService: CdnService
+      get() = instance.cdnService
 
     @JvmStatic
     @get:JvmName("donationsService")

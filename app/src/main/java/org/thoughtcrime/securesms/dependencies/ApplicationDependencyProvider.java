@@ -30,10 +30,10 @@ import org.signal.libsignal.zkgroup.ServerPublicParams;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.signal.network.api.AccountApiV2;
-import org.signal.network.api.ArchiveApi;
 import org.signal.network.api.ArchiveApiV2;
 import org.signal.network.api.AttachmentApi;
 import org.signal.network.api.CallingApi;
+import org.signal.network.api.CdnApi;
 import org.signal.network.api.CdsApi;
 import org.signal.network.api.CertificateApi;
 import org.signal.network.api.KeysApiV2;
@@ -52,6 +52,7 @@ import org.signal.network.config.ProxyConfig;
 import org.signal.network.config.SignalServiceConfiguration;
 import org.signal.network.rest.SignalRestClient;
 import org.signal.network.service.ArchiveService;
+import org.signal.network.service.CdnService;
 import org.signal.network.service.MessageService;
 import org.signal.network.service.StorageServiceService;
 import org.signal.network.service.TwoFactorMethodService;
@@ -140,6 +141,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.keys.PreKeyRepository;
 import org.whispersystems.signalservice.api.message.MessageApi;
+import org.whispersystems.signalservice.api.messages.AttachmentUploader;
 import org.whispersystems.signalservice.api.profiles.ProfileApi;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
@@ -204,7 +206,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalServiceDataStore protocolStore,
                                                                                @NonNull PushServiceSocket pushServiceSocket,
                                                                                @NonNull MessageApi messageApi,
-                                                                               @NonNull KeysApi keysApi) {
+                                                                               @NonNull KeysApi keysApi,
+                                                                               @NonNull AttachmentUploader attachmentUploader) {
       return new SignalServiceMessageSender(pushServiceSocket,
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
@@ -222,7 +225,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                                                           pushServiceSocket.getCredentialsProvider().getDeviceId()),
                                                 ReentrantSessionLock.INSTANCE,
                                                 PreKeyBatcher.INSTANCE
-                                              )
+                                              ),
+                                            attachmentUploader
                                             );
   }
 
@@ -590,8 +594,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull ArchiveApi provideArchiveApi(@NonNull PushServiceSocket pushServiceSocket) {
-    return new ArchiveApi(pushServiceSocket);
+  public @NonNull CdnService provideCdnService(@NonNull CdnApi cdnApi, @NonNull AttachmentApi attachmentApi) {
+    return new CdnService(cdnApi, attachmentApi);
   }
 
   @Override
@@ -600,8 +604,13 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull AttachmentApi provideAttachmentApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
-    return new AttachmentApi(authWebSocket, pushServiceSocket);
+  public @NonNull AttachmentApi provideAttachmentApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
+    return new AttachmentApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull CdnApi provideCdnApi(@NonNull SignalRestClient signalRestClient) {
+    return new CdnApi(signalRestClient);
   }
 
   @Override

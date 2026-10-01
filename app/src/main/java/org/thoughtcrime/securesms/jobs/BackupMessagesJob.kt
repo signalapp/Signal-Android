@@ -24,8 +24,9 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.SvrBStoreResponse
-import org.signal.network.NetworkResult
+import org.signal.network.api.CdnApi
 import org.signal.network.api.SvrBApi
 import org.signal.network.service.ArchiveError
 import org.signal.protos.resumableuploads.ResumableUpload
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
-import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -436,7 +436,7 @@ class BackupMessagesJob private constructor(
     }
 
     val uploadResult = FileInputStream(tempBackupFile).use { fileStream ->
-      SignalNetwork.archiveApi.uploadBackupFile(
+      SignalNetwork.cdnService.uploadBackupFile(
         uploadForm = form,
         data = fileStream,
         dataLength = tempBackupFile.length(),
@@ -449,33 +449,39 @@ class BackupMessagesJob private constructor(
       )
     }
     when (uploadResult) {
-      is NetworkResult.Success -> Unit
-      is NetworkResult.NetworkError -> {
-        Log.i(TAG, "Network failure", uploadResult.getCause(), true)
-        if (uploadResult.exception is ResumeLocationInvalidException) {
-          Log.w(TAG, "Resume location is invalid. Clearing upload spec before retrying.")
-          resumableMessagesBackupUploadSpec = null
-        }
+      is RequestResult.Success -> Unit
+      is RequestResult.RetryableNetworkError -> {
+        Log.i(TAG, "Network failure", uploadResult.networkError, true)
         return if (isCanceled) Result.failure() else Result.retry(defaultBackoff())
       }
-      is NetworkResult.StatusCodeError -> {
-        when (uploadResult.code) {
-          400 -> {
+      is RequestResult.NonSuccess -> {
+        when (val error = uploadResult.error) {
+          is CdnApi.UploadError.ResumeLocationInvalid -> {
+            Log.w(TAG, "Resume location is invalid. Clearing upload spec before retrying.")
+            resumableMessagesBackupUploadSpec = null
+            return if (isCanceled) Result.failure() else Result.retry(defaultBackoff())
+          }
+          is CdnApi.UploadError.InvalidRequest -> {
             Log.w(TAG, "400 likely means bad resumable state. Resetting the upload spec before retrying.", true)
             resumableMessagesBackupUploadSpec = null
             return Result.retry(defaultBackoff())
           }
-          429 -> {
-            Log.w(TAG, "Rate limited when uploading backup file.", uploadResult.getCause(), true)
-            return Result.retry(uploadResult.retryAfter()?.inWholeMilliseconds ?: defaultBackoff())
+          is CdnApi.UploadError.RateLimited -> {
+            Log.w(TAG, "Rate limited when uploading backup file.", true)
+            return Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
           }
-          else -> {
-            Log.i(TAG, "Status code failure (${uploadResult.code})", uploadResult.getCause(), true)
+          is CdnApi.UploadError.ChecksumMismatch -> {
+            Log.w(TAG, "Upload failed due to a checksum mismatch. Resetting the upload spec before retrying.", true)
+            resumableMessagesBackupUploadSpec = null
+            return Result.retry(defaultBackoff())
+          }
+          is CdnApi.UploadError.TooLarge -> {
+            Log.i(TAG, "Upload rejected: $error", true)
             return Result.retry(defaultBackoff())
           }
         }
       }
-      is NetworkResult.ApplicationError -> throw uploadResult.throwable
+      is RequestResult.ApplicationError -> throw uploadResult.cause
     }
 
     Log.i(TAG, "Successfully uploaded backup file.", true)

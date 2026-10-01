@@ -12,9 +12,9 @@ import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.AccountApiV2
-import org.signal.network.api.ArchiveApi
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
+import org.signal.network.api.CdnApi
 import org.signal.network.api.CdsApi
 import org.signal.network.api.CertificateApi
 import org.signal.network.api.LinkDeviceApi
@@ -28,6 +28,7 @@ import org.signal.network.api.UsernameApi
 import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
+import org.signal.network.service.CdnService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
@@ -70,6 +71,7 @@ import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
+import org.whispersystems.signalservice.api.messages.AttachmentUploader
 import org.whispersystems.signalservice.api.profiles.ProfileApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.DonationsService
@@ -104,7 +106,8 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     protocolStore: SignalServiceDataStore,
     pushServiceSocket: PushServiceSocket,
     messageApi: MessageApi,
-    keysApi: KeysApi
+    keysApi: KeysApi,
+    attachmentUploader: AttachmentUploader
   ): SignalServiceMessageSender {
     return mockk(relaxed = true)
   }
@@ -291,7 +294,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
+  override fun provideCdnService(cdnApi: CdnApi, attachmentApi: AttachmentApi): CdnService {
     return mockk(relaxed = true)
   }
 
@@ -299,7 +302,11 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi {
+  override fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AttachmentApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideCdnApi(signalRestClient: SignalRestClient): CdnApi {
     return mockk(relaxed = true)
   }
 

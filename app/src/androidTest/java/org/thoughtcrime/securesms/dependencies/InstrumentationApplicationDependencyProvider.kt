@@ -9,7 +9,6 @@ import org.signal.core.util.billing.BillingApi
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.AccountApiV2
-import org.signal.network.api.ArchiveApi
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.service.ArchiveService
@@ -25,6 +24,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
+import org.whispersystems.signalservice.api.messages.AttachmentUploader
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
@@ -57,10 +57,6 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
 
   override fun provideRecipientCache(): LiveRecipientCache {
     return recipientCache
-  }
-
-  override fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi {
-    return mockk()
   }
 
   override fun provideArchiveApiV2(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApiV2 {
@@ -123,10 +119,11 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
     protocolStore: SignalServiceDataStore,
     pushServiceSocket: PushServiceSocket,
     messageApi: MessageApi,
-    keysApi: KeysApi
+    keysApi: KeysApi,
+    attachmentUploader: AttachmentUploader
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi, attachmentUploader))
     }
     return signalServiceMessageSender!!
   }

@@ -16,7 +16,6 @@ import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.signal.network.service.CdnService
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.TextSecureExpiredException
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -42,6 +41,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.fromThreadAndReply
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -239,7 +239,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
 
       val inputStream = PartAuthority.getAttachmentStream(context, attachment.uri!!)
       val ciphertextLength = getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
-      val uploadSpec = CdnService(AppDependencies.signalRestClient, AppDependencies.attachmentApi).getResumableUploadSpecBlocking(ciphertextLength)
+      val uploadSpec = SignalNetwork.cdnService.getResumableUploadSpecBlocking(ciphertextLength)
 
       return SignalServiceAttachment.newStreamBuilder()
         .withStream(inputStream)

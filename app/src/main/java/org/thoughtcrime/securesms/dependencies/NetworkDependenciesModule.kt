@@ -14,10 +14,10 @@ import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.network.api.AccountApiV2
-import org.signal.network.api.ArchiveApi
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
+import org.signal.network.api.CdnApi
 import org.signal.network.api.CdsApi
 import org.signal.network.api.CertificateApi
 import org.signal.network.api.KeysApiV2
@@ -34,6 +34,7 @@ import org.signal.network.config.NetworkProxyState
 import org.signal.network.config.TrustStore
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
+import org.signal.network.service.CdnService
 import org.signal.network.service.MessageService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
@@ -98,7 +99,7 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi)
+    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, messageApi, keysApi, cdnService)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
@@ -116,9 +117,10 @@ class NetworkDependenciesModule(
     provider.providePushServiceSocket(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
   }
 
-  val signalRestClient: SignalRestClient by lazy {
+  private val _signalRestClient = lazy {
     provider.provideSignalRestClient(signalServiceNetworkAccess.getConfiguration())
   }
+  val signalRestClient: SignalRestClient by _signalRestClient
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
     provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
@@ -155,10 +157,6 @@ class NetworkDependenciesModule(
     provider.provideDonationsService(donationsApi)
   }
 
-  val archiveApi: ArchiveApi by lazy {
-    provider.provideArchiveApi(pushServiceSocket)
-  }
-
   val archiveApiV2: ArchiveApiV2 by lazy { provider.provideArchiveApiV2(authWebSocket, unauthWebSocket, signalServiceNetworkAccess.getConfiguration()) }
 
   val archiveService: ArchiveService by lazy { provider.provideArchiveService(archiveApiV2) }
@@ -168,8 +166,12 @@ class NetworkDependenciesModule(
   }
 
   val attachmentApi: AttachmentApi by lazy {
-    provider.provideAttachmentApi(authWebSocket, pushServiceSocket)
+    provider.provideAttachmentApi(authWebSocket)
   }
+
+  val cdnApi: CdnApi by lazy { provider.provideCdnApi(signalRestClient) }
+
+  val cdnService: CdnService by lazy { provider.provideCdnService(cdnApi, attachmentApi) }
 
   val linkDeviceApi: LinkDeviceApi by lazy {
     provider.provideLinkDeviceApi(authWebSocket)
@@ -286,6 +288,9 @@ class NetworkDependenciesModule(
     incomingMessageObserver.terminate()
     if (_signalServiceMessageSender.isInitialized()) {
       signalServiceMessageSender.cancelInFlightRequests()
+    }
+    if (_signalRestClient.isInitialized()) {
+      signalRestClient.cancelInFlightRequests()
     }
     unauthWebSocket.disconnect()
   }

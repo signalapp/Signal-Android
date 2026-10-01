@@ -9,6 +9,7 @@ import okhttp3.Call
 import okhttp3.ConnectionPool
 import okhttp3.ConnectionSpec
 import okhttp3.Credentials
+import okhttp3.Dispatcher
 import okhttp3.Dns
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -113,6 +114,7 @@ class SignalRestClient @JvmOverloads constructor(
           .connectionSpecs(url.connectionSpecs.orElse(listOf(ConnectionSpec.RESTRICTED_TLS))!!)
           .dns(dns.orElse(Dns.SYSTEM)!!)
           .connectionPool(ConnectionPool(5, 45, TimeUnit.SECONDS))
+          .dispatcher(Dispatcher().apply { maxRequestsPerHost = 32 })
 
         if (proxy.isPresent) {
           builder.socketFactory(TlsProxySocketFactory(proxy.get().host, proxy.get().port, dns))
@@ -157,6 +159,16 @@ class SignalRestClient @JvmOverloads constructor(
     configuration.signalProxy,
     clientOverride
   )
+
+  private val inFlightCalls: MutableSet<Call> = mutableSetOf()
+
+  /**
+   * Cancels every request that is currently in flight. Cancelled requests complete with a [RequestResult.RetryableNetworkError].
+   */
+  fun cancelInFlightRequests() {
+    val calls = synchronized(inFlightCalls) { inFlightCalls.toList() }
+    calls.forEach { it.cancel() }
+  }
 
   /**
    * Make a request, returning the raw [RestResponse] on success. Non-2xx responses are mapped to
@@ -258,17 +270,19 @@ class SignalRestClient @JvmOverloads constructor(
       }
       val httpRequest = buildHttpRequest(spec, holder, effectiveBody, extraHeaders = emptyMap())
       val client = newCallClient(holder)
-      val response = client.newCall(httpRequest).executeAsync()
+      val call = client.newCall(httpRequest)
 
-      response.use { resp ->
-        val body = resp.body.bytes()
-        val headers = resp.headers.toLowercaseMap()
-        val code = resp.code
-        if (code in 200..299) {
-          val parsed = parseSuccessBody(code, headers, body, responseClass)
-          RequestResult.Success(parsed as T)
-        } else {
-          RequestResult.NonSuccess(errorMapper.map(code, headers, body))
+      trackInFlight(call) {
+        call.executeAsync().use { resp ->
+          val body = resp.body.bytes()
+          val headers = resp.headers.toLowercaseMap()
+          val code = resp.code
+          if (code in 200..299) {
+            val parsed = parseSuccessBody(code, headers, body, responseClass)
+            RequestResult.Success(parsed as T)
+          } else {
+            RequestResult.NonSuccess(errorMapper.map(code, headers, body))
+          }
         }
       }
     } catch (e: IOException) {
@@ -295,17 +309,18 @@ class SignalRestClient @JvmOverloads constructor(
       val httpRequest = buildHttpRequest(spec, holder, body = spec.body, extraHeaders = rangeHeader)
       val client = newCallClient(holder)
       val call = client.newCall(httpRequest)
-      val response = call.executeAsync()
 
-      response.use { resp ->
-        val code = resp.code
-        val headers = resp.headers.toLowercaseMap()
-        if (code in 200..299) {
-          val totalBytes = streamToDestination(resp, destination, offset, maxSize, progressListener, call)
-          RequestResult.Success(DownloadResult(code, headers, totalBytes))
-        } else {
-          val errorBody = runCatching { resp.body.bytes() }.getOrNull()
-          RequestResult.NonSuccess(errorMapper.map(code, headers, errorBody))
+      trackInFlight(call) {
+        call.executeAsync().use { resp ->
+          val code = resp.code
+          val headers = resp.headers.toLowercaseMap()
+          if (code in 200..299) {
+            val totalBytes = streamToDestination(resp, destination, offset, maxSize, progressListener, call)
+            RequestResult.Success(DownloadResult(code, headers, totalBytes))
+          } else {
+            val errorBody = runCatching { resp.body.bytes() }.getOrNull()
+            RequestResult.NonSuccess(errorMapper.map(code, headers, errorBody))
+          }
         }
       }
     } catch (e: IOException) {
@@ -357,6 +372,15 @@ class SignalRestClient @JvmOverloads constructor(
     }
 
     return totalBytes
+  }
+
+  private inline fun <R> trackInFlight(call: Call, block: () -> R): R {
+    synchronized(inFlightCalls) { inFlightCalls += call }
+    try {
+      return block()
+    } finally {
+      synchronized(inFlightCalls) { inFlightCalls -= call }
+    }
   }
 
   private fun pickHolder(host: Host): ConnectionHolder {
@@ -423,7 +447,7 @@ class SignalRestClient @JvmOverloads constructor(
       builder.addHeader("X-Signal-Agent", signalAgent)
     }
 
-    holder.hostHeader.ifPresent { builder.addHeader("Host", it) }
+    holder.hostHeader.ifPresent { builder.header("Host", it) }
 
     return builder.build()
   }

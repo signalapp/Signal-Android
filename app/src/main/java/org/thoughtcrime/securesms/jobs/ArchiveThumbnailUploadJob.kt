@@ -10,8 +10,9 @@ import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.glide.decryptableuri.DecryptableUri
-import org.signal.network.NetworkResult
+import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.AttachmentUploadResult
+import org.signal.network.api.CdnApi
 import org.signal.network.service.ArchiveError
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -249,11 +250,29 @@ class ArchiveThumbnailUploadJob private constructor(
 
     val attachmentPointer = try {
       val uploadResult: AttachmentUploadResult = buildSignalServiceAttachmentStream(thumbnailResult).use { stream ->
-        when (val result = SignalNetwork.attachmentApi.uploadAttachmentV4(form, key, iv, checksumSha256, stream)) {
-          is NetworkResult.Success -> result.result
-          is NetworkResult.ApplicationError -> throw result.throwable
-          is NetworkResult.NetworkError -> throw result.exception
-          is NetworkResult.StatusCodeError -> throw IOException("Upload failed with status ${result.code}")
+        when (val result = SignalNetwork.cdnService.uploadAttachment(form, key, iv, checksumSha256, stream)) {
+          is RequestResult.Success -> result.result
+          is RequestResult.ApplicationError -> throw result.cause
+          is RequestResult.RetryableNetworkError -> throw result.networkError
+          is RequestResult.NonSuccess -> return when (val error = result.error) {
+            is CdnApi.UploadError.RateLimited -> {
+              Log.w(TAG, "Rate limited when uploading thumbnail.")
+              Result.retry(error.retryAfter?.inWholeMilliseconds ?: defaultBackoff())
+            }
+            is CdnApi.UploadError.TooLarge -> {
+              Log.w(TAG, "Thumbnail is too large to upload to the archive. Marking as a permanent failure.")
+              ArchiveDatabaseExecutor.runBlocking {
+                SignalDatabase.attachments.setArchiveThumbnailTransferState(attachmentId, AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE)
+              }
+              Result.failure()
+            }
+            is CdnApi.UploadError.InvalidRequest,
+            is CdnApi.UploadError.ResumeLocationInvalid,
+            is CdnApi.UploadError.ChecksumMismatch -> {
+              Log.w(TAG, "Failed to upload thumbnail: $error")
+              Result.retry(defaultBackoff())
+            }
+          }
         }
       }
 

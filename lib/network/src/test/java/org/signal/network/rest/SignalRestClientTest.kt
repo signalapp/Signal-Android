@@ -6,10 +6,15 @@
 package org.signal.network.rest
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isSameInstanceAs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import okhttp3.ConnectionSpec
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -33,6 +38,8 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.Optional
 import java.util.Random
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class SignalRestClientTest {
 
@@ -143,6 +150,79 @@ class SignalRestClientTest {
     assertThat(result).isInstanceOf(RequestResult.ApplicationError::class)
   }
 
+  @Test
+  fun `cancelInFlightRequests fails a request that is waiting on the server`() = runBlockingTest {
+    val requestStarted = CountDownLatch(1)
+    val releaseResponse = CountDownLatch(1)
+    responder = { req ->
+      requestStarted.countDown()
+      releaseResponse.await(5, TimeUnit.SECONDS)
+      response(req, 200, "{}")
+    }
+    val client = client()
+
+    val result = coroutineScope {
+      val pending = async(Dispatchers.IO) { client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping")) }
+      requestStarted.await(5, TimeUnit.SECONDS)
+      client.cancelInFlightRequests()
+      releaseResponse.countDown()
+      pending.await()
+    }
+
+    assertThat(result).isInstanceOf(RequestResult.RetryableNetworkError::class)
+  }
+
+  @Test
+  fun `cancelInFlightRequests does not affect later requests`() = runBlockingTest {
+    val client = client(random = ScriptedRandom(0, 0))
+    client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping"))
+
+    client.cancelInFlightRequests()
+    val result = client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping"))
+
+    assertThat(result).isInstanceOf(RequestResult.Success::class)
+  }
+
+  @Test
+  fun `does not set a host header when the url has none configured`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(2), "/file"))
+
+    assertThat(recordedRequests.single().headers("Host")).isEmpty()
+  }
+
+  @Test
+  fun `sends the configured host header`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(4), "/file"))
+
+    val request = recordedRequests.single()
+    assertThat(request.url.toString()).isEqualTo("https://configured.test/cdn4/file")
+    assertThat(request.headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
+  @Test
+  fun `configured host header replaces a host header in the request spec`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(4), "/file", headers = mapOf("Host" to "other.test")))
+
+    assertThat(recordedRequests.single().headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
+  @Test
+  fun `absolute path is rewritten onto the configured url`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.PATCH, Host.Cdn(4), "https://upload.example/attachments/abc?token=123"))
+
+    val request = recordedRequests.single()
+    assertThat(request.url.toString()).isEqualTo("https://configured.test/cdn4/attachments/abc?token=123")
+    assertThat(request.headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
   private fun runBlockingTest(block: suspend () -> Unit) {
     runBlocking { block() }
   }
@@ -168,7 +248,8 @@ class SignalRestClientTest {
       ),
       signalCdnUrlMap = mapOf(
         2 to arrayOf(SignalCdnUrl("https://cdn2.test", DUMMY_TRUST_STORE)),
-        3 to arrayOf(SignalCdnUrl("https://cdn3.test", DUMMY_TRUST_STORE))
+        3 to arrayOf(SignalCdnUrl("https://cdn3.test", DUMMY_TRUST_STORE)),
+        4 to arrayOf(SignalCdnUrl("https://configured.test/cdn4", "cdn4.test", DUMMY_TRUST_STORE, ConnectionSpec.MODERN_TLS))
       ),
       signalStorageUrls = arrayOf(SignalStorageUrl("https://storage.test", DUMMY_TRUST_STORE)),
       signalCdsiUrls = emptyArray<SignalCdsiUrl>(),

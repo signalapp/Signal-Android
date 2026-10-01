@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Util
@@ -257,7 +259,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  private fun addDeviceWithSync(linkUri: Uri) {
+  private suspend fun addDeviceWithSync(linkUri: Uri) {
     Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
 
     val ephemeralMessageBackupKey = MessageBackupKey(Util.getSecretBytes(32))
@@ -306,12 +308,14 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     Log.d(TAG, "[addDeviceWithSync] Beginning the archive generation process...")
-    val uploadResult = LinkDeviceRepository.createAndUploadArchive(
-      ephemeralMessageBackupKey = ephemeralMessageBackupKey,
-      deviceId = waitResult.id,
-      deviceRegistrationId = waitResult.registrationId,
-      cancellationSignal = { _state.value.shouldCancelArchiveUpload }
-    )
+    val uploadResult = withContext(NonCancellable) {
+      LinkDeviceRepository.createAndUploadArchive(
+        ephemeralMessageBackupKey = ephemeralMessageBackupKey,
+        deviceId = waitResult.id,
+        deviceRegistrationId = waitResult.registrationId,
+        cancellationSignal = { _state.value.shouldCancelArchiveUpload }
+      )
+    }
 
     Log.d(TAG, "[addDeviceWithSync] Archive finished with result: $uploadResult")
     when (uploadResult) {
