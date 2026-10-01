@@ -4321,6 +4321,7 @@ class ConversationFragment :
     override fun onCallToAction(action: String) {
       when (action) {
         "gift_badge" -> checkoutLauncher.launch(InAppPaymentType.ONE_TIME_GIFT)
+        "donate" -> checkoutLauncher.launch(InAppPaymentType.ONE_TIME_DONATION)
         "username_edit" -> startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
         "calls_tab" -> startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainListRoute.Calls))
         "chat_folder" -> startActivity(AppSettingsActivity.chatFolders(requireContext()))
