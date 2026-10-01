@@ -4,6 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.ProtocolAddressExtensions;
+import org.signal.core.models.ServiceId;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
@@ -25,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDataStore {
 
@@ -74,17 +77,17 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public IdentityChange saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return identityKeyStore.saveIdentity(address, identityKey);
+    return identityKeyStore.saveIdentity(ProtocolAddressExtensions.normalized(address), identityKey);
   }
 
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    return identityKeyStore.isTrustedIdentity(address, identityKey, direction);
+    return identityKeyStore.isTrustedIdentity(ProtocolAddressExtensions.normalized(address), identityKey, direction);
   }
 
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
-    return identityKeyStore.getIdentity(address);
+    return identityKeyStore.getIdentity(ProtocolAddressExtensions.normalized(address));
   }
 
   @Override
@@ -119,48 +122,49 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public SessionRecord loadSession(SignalProtocolAddress axolotlAddress) {
-    return sessionStore.loadSession(axolotlAddress);
+    return sessionStore.loadSession(ProtocolAddressExtensions.normalized(axolotlAddress));
   }
 
   @Override
   public List<SessionRecord> loadExistingSessions(List<SignalProtocolAddress> addresses) throws NoSessionException {
-    return sessionStore.loadExistingSessions(addresses);
+    return sessionStore.loadExistingSessions(normalized(addresses));
   }
 
   @Override
   public List<Integer> getSubDeviceSessions(String number) {
-    return sessionStore.getSubDeviceSessions(number);
+    return sessionStore.getSubDeviceSessions(ServiceId.normalizeAddressName(number));
   }
 
   @Override
   public Map<SignalProtocolAddress, SessionRecord> getAllAddressesWithActiveSessions(List<String> addressNames) {
-    return sessionStore.getAllAddressesWithActiveSessions(addressNames);
+    return sessionStore.getAllAddressesWithActiveSessions(addressNames.stream().map(ServiceId::normalizeAddressName).collect(Collectors.toList()));
   }
 
   @Override
   public void storeSession(SignalProtocolAddress axolotlAddress, SessionRecord record) {
-    sessionStore.storeSession(axolotlAddress, record);
+    sessionStore.storeSession(ProtocolAddressExtensions.normalized(axolotlAddress), record);
   }
 
   @Override
   public boolean containsSession(SignalProtocolAddress axolotlAddress) {
-    return sessionStore.containsSession(axolotlAddress);
+    return sessionStore.containsSession(ProtocolAddressExtensions.normalized(axolotlAddress));
   }
 
   @Override
   public void deleteSession(SignalProtocolAddress axolotlAddress) {
-    sessionStore.deleteSession(axolotlAddress);
+    sessionStore.deleteSession(ProtocolAddressExtensions.normalized(axolotlAddress));
   }
 
   @Override
   public void deleteAllSessions(String number) {
-    sessionStore.deleteAllSessions(number);
+    sessionStore.deleteAllSessions(ServiceId.normalizeAddressName(number));
   }
 
   @Override
   public void archiveSession(SignalProtocolAddress address) {
-    sessionStore.archiveSession(address);
-    senderKeyStore.clearSenderKeySharedWith(Collections.singleton(address));
+    SignalProtocolAddress normalized = ProtocolAddressExtensions.normalized(address);
+    sessionStore.archiveSession(normalized);
+    senderKeyStore.clearSenderKeySharedWith(Collections.singleton(normalized));
   }
 
   @Override
@@ -240,12 +244,12 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public void storeSenderKey(SignalProtocolAddress sender, UUID distributionId, SenderKeyRecord record) {
-    senderKeyStore.storeSenderKey(sender, distributionId, record);
+    senderKeyStore.storeSenderKey(ProtocolAddressExtensions.normalized(sender), distributionId, record);
   }
 
   @Override
   public SenderKeyRecord loadSenderKey(SignalProtocolAddress sender, UUID distributionId) {
-    return senderKeyStore.loadSenderKey(sender, distributionId);
+    return senderKeyStore.loadSenderKey(ProtocolAddressExtensions.normalized(sender), distributionId);
   }
 
   @Override
@@ -255,12 +259,16 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public void markSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses) {
-    senderKeyStore.markSenderKeySharedWith(distributionId, addresses);
+    senderKeyStore.markSenderKeySharedWith(distributionId, normalized(addresses));
   }
 
   @Override
   public void clearSenderKeySharedWith(Collection<SignalProtocolAddress> addresses) {
-    senderKeyStore.clearSenderKeySharedWith(addresses);
+    senderKeyStore.clearSenderKeySharedWith(normalized(addresses));
+  }
+
+  private static List<SignalProtocolAddress> normalized(Collection<SignalProtocolAddress> addresses) {
+    return addresses.stream().map(ProtocolAddressExtensions::normalized).collect(Collectors.toList());
   }
 
   public @NonNull SignalIdentityKeyStore identities() {
