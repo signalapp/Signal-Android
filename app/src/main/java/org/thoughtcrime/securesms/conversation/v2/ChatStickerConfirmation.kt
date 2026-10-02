@@ -115,13 +115,8 @@ private fun StickerConfirmationPanel(
     modifier = modifier
       .clip(PanelShape)
       .background(SignalTheme.colors.colorSurface3.copy(alpha = if (Build.VERSION.SDK_INT >= 31) PANEL_ALPHA else UNBLURRED_PANEL_ALPHA))
-      .pointerInput(Unit) {
-        awaitPointerEventScope {
-          while (true) {
-            awaitPointerEvent().changes.forEach { it.consume() }
-          }
-        }
-      }
+      // Taken here so a touch on the panel never falls through to the keyboard behind it.
+      .pointerInput(Unit) {}
       .windowInsetsPadding(WindowInsets.navigationBarsCompat.only(WindowInsetsSides.Bottom))
   ) {
     Box(

@@ -1285,7 +1285,7 @@ class ConversationFragment :
 
     dismissGifProgressDialog()
 
-    stickerConfirmation.dismiss()
+    stickerConfirmation.clear()
     inputPanelCollapseAnimator?.cancel()
     inputPanelCollapseAnimator = null
 
