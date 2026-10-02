@@ -15,6 +15,7 @@ import androidx.compose.foundation.gestures.AnchoredDraggableDefaults
 import androidx.compose.foundation.gestures.AnchoredDraggableState
 import androidx.compose.foundation.gestures.DraggableAnchors
 import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.ScrollScope
 import androidx.compose.foundation.gestures.anchoredDraggable
 import androidx.compose.foundation.gestures.animateTo
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -54,11 +55,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlurEffect
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.takeOrElse
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
@@ -69,6 +74,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -130,7 +136,8 @@ private const val EXPANDED_HEIGHT_MULTIPLIER = 2f
  *
  * A keyboard declared expandable can be dragged past keyboard height to fill the window; the
  * scaffold gives it a drag handle and dims [content] behind it as it grows. [content] keeps the size
- * it had at keyboard height throughout, so nothing reflows while the sheet moves.
+ * it had at keyboard height throughout, so nothing reflows while the sheet moves. Once expanded, a
+ * downward drag the keyboard's own scrolling content has no room for brings it back to keyboard height.
  *
  * @param controller Requests which keyboard is up. Stable, so view code may hold one.
  * @param onAction Receives everything the host may need to act on.
@@ -501,6 +508,64 @@ fun KeyboardSheetScaffold(
     Modifier
   }
 
+  // Never past keyboard height, and never while entering text, whose results scroll with the system keyboard up.
+  val collapseThroughContent = remember(sheetState, controller, sheetFlingBehavior) {
+    object : NestedScrollConnection {
+      fun collapseRange(): ClosedFloatingPointRange<Float>? {
+        val expandedOffset = sheetState.anchors.positionOf(SheetAnchor.Expanded)
+        val partialOffset = sheetState.anchors.positionOf(SheetAnchor.PartiallyExpanded)
+        return if (expandedOffset.isNaN() || partialOffset.isNaN()) null else expandedOffset..partialOffset
+      }
+
+      fun dragWithin(range: ClosedFloatingPointRange<Float>, delta: Float): Float {
+        val offset = sheetState.offset
+        return sheetState.dispatchRawDelta((offset + delta).coerceIn(range) - offset)
+      }
+
+      override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+        val range = collapseRange() ?: return Offset.Zero
+        if (available.y >= 0f || source != NestedScrollSource.UserInput || sheetState.offset <= range.start) {
+          return Offset.Zero
+        }
+
+        return Offset(0f, dragWithin(range, available.y))
+      }
+
+      override fun onPostScroll(consumed: Offset, available: Offset, source: NestedScrollSource): Offset {
+        val range = collapseRange() ?: return Offset.Zero
+        val enteringText = controller.isEnteringText.value
+        if (available.y <= 0f || source != NestedScrollSource.UserInput || enteringText || sheetState.offset >= range.endInclusive) {
+          return Offset.Zero
+        }
+
+        return Offset(0f, dragWithin(range, available.y))
+      }
+
+      override suspend fun onPreFling(available: Velocity): Velocity {
+        val range = collapseRange() ?: return Velocity.Zero
+        if (sheetState.offset <= range.start || sheetState.offset >= range.endInclusive) {
+          return Velocity.Zero
+        }
+
+        var leftoverVelocity = available.y
+        sheetState.anchoredDrag {
+          val scrollScope = object : ScrollScope {
+            override fun scrollBy(pixels: Float): Float {
+              val newOffset = (sheetState.offset + pixels).coerceIn(range)
+              val consumed = newOffset - sheetState.offset
+              dragTo(newOffset)
+              return consumed
+            }
+          }
+          with(sheetFlingBehavior) {
+            leftoverVelocity = scrollScope.performFling(available.y)
+          }
+        }
+        return Velocity(0f, available.y - leftoverVelocity)
+      }
+    }
+  }
+
   val scrimShowing by remember(expandable, heightPx, sheetHeightPx, layoutHeightPx, visibleKey) {
     derivedStateOf { expansionFraction() > 0f }
   }
@@ -607,6 +672,7 @@ fun KeyboardSheetScaffold(
             modifier = Modifier
               .weight(1f)
               .fillMaxWidth()
+              .then(if (expandable) Modifier.nestedScroll(collapseThroughContent) else Modifier)
           ) {
             CompositionLocalProvider(
               LocalKeyboardSheetController provides controller,

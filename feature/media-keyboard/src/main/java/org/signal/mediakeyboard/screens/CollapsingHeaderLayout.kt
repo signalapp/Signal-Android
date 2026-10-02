@@ -25,6 +25,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.Velocity
+import org.signal.core.ui.compose.keyboard.KeyboardSheetDragRegion
 import kotlin.math.roundToInt
 
 /** Past this, in pixels per second, a release is taken as heading somewhere rather than just letting go. */
@@ -35,7 +36,8 @@ private const val SETTLE_VELOCITY_THRESHOLD = 300f
  *
  * Like an app bar in a CoordinatorLayout, the header is something the user pulls down to rather than something
  * occupying a row's worth of room. It starts collapsed, so it never shows before content arrives and then has to be
- * scrolled away, and it takes up only as much room as it has been pulled open by.
+ * scrolled away, and it takes up only as much room as it has been pulled open by. Once showing, it is as good a place
+ * to drag the keyboard's sheet from as the chrome above it.
  *
  * @param onRevealedChange Reports whether the header is fully open, for hosts that offer the same thing elsewhere
  *   while it is closed.
@@ -108,7 +110,7 @@ internal fun CollapsingHeaderLayout(
 
   Layout(
     contents = listOf(
-      { Box(modifier = Modifier.onSizeChanged { headerHeightPx = it.height }) { header() } },
+      { Box(modifier = Modifier.onSizeChanged { headerHeightPx = it.height }) { KeyboardSheetDragRegion { header() } } },
       content
     ),
     modifier = modifier
