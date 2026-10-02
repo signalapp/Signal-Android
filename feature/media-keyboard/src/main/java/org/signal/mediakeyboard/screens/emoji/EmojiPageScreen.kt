@@ -63,7 +63,6 @@ import androidx.compose.ui.window.PopupProperties
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.SignalPreviewWrapper
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
@@ -129,20 +128,18 @@ private fun EmojiCategoryRail(
   state: EmojiPageState,
   onEvent: (EmojiPageScreenEvents) -> Unit
 ) {
-  Surface(color = SignalTheme.colors.colorSurface5) {
-    LazyRow(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 8.dp, vertical = 2.dp)
-    ) {
-      items(state.pages, key = { it.category.key }) { page ->
-        CategoryButton(
-          category = page.category,
-          selected = page.category == state.selectedCategory,
-          onClick = { onEvent(EmojiPageScreenEvents.CategorySelected(page.category)) }
-        )
-      }
+  LazyRow(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 8.dp, vertical = 2.dp)
+  ) {
+    items(state.pages, key = { it.category.key }) { page ->
+      CategoryButton(
+        category = page.category,
+        selected = page.category == state.selectedCategory,
+        onClick = { onEvent(EmojiPageScreenEvents.CategorySelected(page.category)) }
+      )
     }
   }
 }

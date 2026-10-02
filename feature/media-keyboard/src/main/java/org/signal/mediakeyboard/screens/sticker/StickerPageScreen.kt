@@ -31,7 +31,6 @@ import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -56,7 +55,6 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.KeyboardSticker
@@ -124,20 +122,18 @@ private fun StickerPackRail(
   state: StickerPageState,
   onEvent: (StickerPageScreenEvents) -> Unit
 ) {
-  Surface(color = SignalTheme.colors.colorSurface5) {
-    LazyRow(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 8.dp, vertical = 2.dp)
-    ) {
-      items(state.packs, key = { it.id }) { pack ->
-        PackButton(
-          pack = pack,
-          selected = pack.id == state.selectedPackId,
-          onClick = { onEvent(StickerPageScreenEvents.PackSelected(pack.id)) }
-        )
-      }
+  LazyRow(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 8.dp, vertical = 2.dp)
+  ) {
+    items(state.packs, key = { it.id }) { pack ->
+      PackButton(
+        pack = pack,
+        selected = pack.id == state.selectedPackId,
+        onClick = { onEvent(StickerPageScreenEvents.PackSelected(pack.id)) }
+      )
     }
   }
 }

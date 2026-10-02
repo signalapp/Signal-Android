@@ -24,7 +24,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridS
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -46,7 +45,6 @@ import androidx.media3.ui.compose.PlayerSurface
 import androidx.media3.ui.compose.SURFACE_TYPE_TEXTURE_VIEW
 import androidx.media3.ui.compose.modifiers.resizeWithContentScale
 import androidx.media3.ui.compose.state.rememberPresentationState
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.mediakeyboard.R
@@ -123,21 +121,19 @@ private fun GifQuickSearchRail(
   state: GifPageState,
   onEvent: (GifPageScreenEvents) -> Unit
 ) {
-  Surface(color = SignalTheme.colors.colorSurface5) {
-    LazyRow(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(horizontal = 8.dp, vertical = 2.dp)
-    ) {
-      items(GifQuickSearchOption.entries, key = { it.name }) { option ->
-        FilterChip(
-          selected = option == state.selectedQuickSearch,
-          onClick = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) },
-          label = { Text(text = stringResource(option.label)) },
-          modifier = Modifier.padding(horizontal = 4.dp)
-        )
-      }
+  LazyRow(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 8.dp, vertical = 2.dp)
+  ) {
+    items(GifQuickSearchOption.entries, key = { it.name }) { option ->
+      FilterChip(
+        selected = option == state.selectedQuickSearch,
+        onClick = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) },
+        label = { Text(text = stringResource(option.label)) },
+        modifier = Modifier.padding(horizontal = 4.dp)
+      )
     }
   }
 }

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -34,6 +35,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.navigationBarsCompat
+import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
  * Whether the media keyboard is (or is settling to) full height. Bottom rails re-show themselves
@@ -122,9 +124,12 @@ internal fun PinnedRailLayout(
           .fillMaxWidth()
           .onSizeChanged { measuredRailHeight = it.height }
           .graphicsLayer { translationY = railHeight * railHiddenFraction }
-          .windowInsetsPadding(WindowInsets.navigationBarsCompat)
       ) {
-        rail()
+        Surface(color = SignalTheme.colors.colorSurface3) {
+          Box(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)) {
+            rail()
+          }
+        }
       }
     }
   }
