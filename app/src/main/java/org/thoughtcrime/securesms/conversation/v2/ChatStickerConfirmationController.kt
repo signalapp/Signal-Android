@@ -39,6 +39,14 @@ class ChatStickerConfirmationController(
     update(null)
   }
 
+  /**
+   * Drops any confirmation without calling [onShowingChanged], for when the host's views are
+   * already being torn down and there is no input panel left to restore.
+   */
+  fun clear() {
+    confirmation = null
+  }
+
   fun send() {
     val sticker = confirmation?.sticker ?: return
     update(null)
