@@ -25,8 +25,9 @@ class BioRecipientState(
   val combinedAboutAndEmoji: String? = recipient.combinedAboutAndEmoji
 
   override fun equals(other: Any?): Boolean {
-    if (other !is Recipient) return false
-    return recipient.hasSameContent(other)
+    if (this === other) return true
+    if (other !is BioRecipientState) return false
+    return recipient.hasSameContent(other.recipient)
   }
 
   override fun hashCode(): Int {
