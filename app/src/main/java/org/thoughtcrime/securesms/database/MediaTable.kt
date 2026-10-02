@@ -352,7 +352,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
   ) {
 
     val contentType: String?
-      get() = attachment!!.contentType
+      get() = attachment?.contentType
 
     companion object {
       @JvmStatic
