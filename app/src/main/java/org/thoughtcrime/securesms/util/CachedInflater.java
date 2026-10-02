@@ -58,7 +58,7 @@ public class CachedInflater {
   @MainThread
   @SuppressWarnings("unchecked")
   public <V extends View> V inflate(@LayoutRes int layoutRes, @Nullable ViewGroup parent, boolean attachToRoot) {
-    View cached = ViewCache.getInstance().pull(layoutRes, context.getResources().getConfiguration());
+    View cached = ViewCache.getInstance().pull(context, layoutRes, context.getResources().getConfiguration());
     if (cached != null) {
       if (parent != null && attachToRoot) {
         parent.addView(cached);
@@ -155,7 +155,7 @@ public class CachedInflater {
     }
 
     @MainThread
-    @Nullable View pull(@LayoutRes int layoutRes, @NonNull Configuration configuration) {
+    @Nullable View pull(@NonNull Context context, @LayoutRes int layoutRes, @NonNull Configuration configuration) {
       if (this.nightModeConfiguration != ConfigurationUtil.getNightModeConfiguration(configuration) ||
           this.fontScale              != ConfigurationUtil.getFontScale(configuration)              ||
           this.layoutDirection        != configuration.getLayoutDirection())
@@ -165,8 +165,17 @@ public class CachedInflater {
       }
 
       List<View> views = cache.get(layoutRes);
-      return  views != null && !views.isEmpty() ? views.remove(0)
-                                                : null;
+      if (views != null && !views.isEmpty()) {
+        View view = views.remove(0);
+        if (view.getContext() == context) {
+          return view;
+        } else {
+          // View belongs to an old/destroyed Activity context; discard to prevent Activity memory leak
+          clear();
+          return null;
+        }
+      }
+      return null;
     }
 
     @MainThread

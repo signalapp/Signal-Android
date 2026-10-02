@@ -24,12 +24,14 @@ const val SPOILER_ANNOTATION_TAG = "spoiler"
  * @param annotatedString The text with spoiler annotations
  * @param textLayoutResult The result of text layout measurement
  * @param textColor Color to tint the particles
+ * @param animationTick Optional animation tick to trigger redraw during animation
  */
 fun Modifier.drawSpoilers(
   spoilerState: SpoilerState,
   annotatedString: AnnotatedString,
   textLayoutResult: TextLayoutResult?,
-  textColor: Color
+  textColor: Color,
+  animationTick: Long = 0L
 ): Modifier = this.then(
   Modifier.drawWithCache {
     val paint = Paint()
@@ -40,6 +42,9 @@ fun Modifier.drawSpoilers(
 
     onDrawWithContent {
       drawContent()
+
+      @Suppress("UNUSED_VARIABLE")
+      val tick = animationTick
 
       val layout = textLayoutResult ?: return@onDrawWithContent
 
