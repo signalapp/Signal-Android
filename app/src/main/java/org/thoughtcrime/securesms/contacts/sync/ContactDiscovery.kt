@@ -2,11 +2,16 @@ package org.thoughtcrime.securesms.contacts.sync
 
 import android.Manifest
 import android.content.Context
+import android.net.Uri
 import android.text.TextUtils
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.contacts.SystemContactsRepository.LinkedContact
+import org.signal.contacts.SystemContactsRepository.LinkedContactResult
+import org.signal.contacts.SystemContactsRepository.PhoneDetails
 import org.signal.core.models.ServiceId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
@@ -144,7 +149,7 @@ object ContactDiscovery {
     syncRecipientsWithSystemContacts(
       context = context,
       rewrites = emptyMap(),
-      clearInfoForMissingContacts = true
+      refreshLinks = true
     )
   }
 
@@ -189,7 +194,7 @@ object ContactDiscovery {
             )
           }
         },
-        clearInfoForMissingContacts = useFullSync
+        refreshLinks = useFullSync
       )
       stopwatch.split("contact-sync")
 
@@ -238,14 +243,24 @@ object ContactDiscovery {
   }
 
   /**
-   * Synchronizes info from the system contacts (name, avatar, etc)
+   * Synchronizes info from the system contacts (name, avatar, etc).
+   *
+   * Phone numbers only discover new links. With [refreshLinks], every existing link is first brought
+   * up to date from the contact it points to, which is how a full sync learns about edited and
+   * deleted contacts.
    */
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
     contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, BuildConfig.APPLICATION_ID, phoneNumberFormatter()) },
-    clearInfoForMissingContacts: Boolean
+    refreshLinks: Boolean
   ) {
+    if (refreshLinks) {
+      refreshSystemContactLinks { lookupKey ->
+        SystemContactsRepository.getLinkedContact(context, BuildConfig.APPLICATION_ID, lookupKey, phoneNumberFormatter())
+      }
+    }
+
     val localNumber: String = SignalStore.account.e164 ?: ""
 
     val contactInfos = LinkedList<ContactInfo>()
@@ -260,13 +275,7 @@ object ContactDiscovery {
           for (phoneDetails in phoneDetailsWithoutSelf) {
             val realNumber: String = Util.getFirstNonEmpty(rewrites[phoneDetails.number], phoneDetails.number)
 
-            val profileName: ProfileName = if (!StringUtil.isEmpty(details.givenName)) {
-              ProfileName.fromParts(details.givenName, details.familyName)
-            } else if (!StringUtil.isEmpty(phoneDetails.displayName)) {
-              ProfileName.asGiven(phoneDetails.displayName)
-            } else {
-              ProfileName.EMPTY
-            }
+            val profileName: ProfileName = systemProfileName(details.givenName, details.familyName, phoneDetails.displayName)
 
             val recipient: Recipient = Recipient.externalContact(realNumber) ?: continue
 
@@ -278,6 +287,7 @@ object ContactDiscovery {
                 photoUri = phoneDetails.photoUri,
                 label = phoneDetails.label,
                 type = phoneDetails.type,
+                e164 = recipient.e164.orElse(null),
                 contactUri = phoneDetails.contactUri.toString()
               )
             )
@@ -289,7 +299,7 @@ object ContactDiscovery {
     }
 
     if (contactInfos.isNotEmpty()) {
-      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate()
       try {
         for (contactInfo in contactInfos) {
           handle.setSystemContactInfo(
@@ -299,6 +309,7 @@ object ContactDiscovery {
             photoUri = contactInfo.photoUri,
             systemPhoneLabel = contactInfo.label,
             systemPhoneType = contactInfo.type,
+            systemPhoneE164 = contactInfo.e164,
             systemContactUri = contactInfo.contactUri
           )
         }
@@ -313,6 +324,95 @@ object ContactDiscovery {
         .recipients
         .getRecipientsWithNotificationChannels()
         .forEach { NotificationChannels.getInstance().updateContactChannelName(Recipient.resolved(it.id)) }
+    }
+  }
+
+  /**
+   * Brings every linked recipient up to date from the system contact they are linked to: its name,
+   * its photo, its current lookup key, and whether it still holds the recipient's number. A link is
+   * kept however the contact has changed. When the contact is gone, the recipient needs a new link.
+   */
+  @VisibleForTesting
+  fun refreshSystemContactLinks(lookup: (String) -> LinkedContactResult) {
+    for (link in SignalDatabase.recipients.getLinkedSystemContacts()) {
+      val lookupKey: String? = SystemContactsRepository.lookupKeyFromLookupUri(link.contactUri)
+      val result: LinkedContactResult = if (lookupKey != null) lookup(lookupKey) else LinkedContactResult.Missing
+
+      when (result) {
+        is LinkedContactResult.Found -> {
+          val contact = result.contact
+          val phone = contact.phoneFor(link.e164)
+
+          SignalDatabase.recipients.updateSystemContactLink(
+            id = link.recipientId,
+            systemProfileName = systemProfileName(contact.givenName, contact.familyName, contact.displayName),
+            systemDisplayName = contact.displayName,
+            photoUri = contact.photoUri,
+            systemPhoneLabel = phone?.label,
+            systemPhoneType = phone?.type ?: -1,
+            systemPhoneE164 = phone?.number,
+            systemContactUri = contact.contactUri.toString()
+          )
+        }
+        LinkedContactResult.Missing -> {
+          Log.i(TAG, "[refreshSystemContactLinks] The system contact for ${link.recipientId} is gone. Marking the link as needed.")
+          SignalDatabase.recipients.markSystemContactLinkNeeded(link.recipientId)
+        }
+        LinkedContactResult.Unavailable -> {
+          Log.w(TAG, "[refreshSystemContactLinks] Could not query the system contact for ${link.recipientId}. Leaving the link alone.")
+        }
+      }
+    }
+  }
+
+  /**
+   * Links a recipient to a system contact the user picked, such as the URI a contact picker returns,
+   * whatever the recipient's number. Returns false if the contact could not be read.
+   */
+  @JvmStatic
+  @WorkerThread
+  fun linkSystemContact(context: Context, recipientId: RecipientId, contactUri: Uri): Boolean {
+    val lookupKey: String = SystemContactsRepository.getLookupKey(context, contactUri) ?: return false
+    val result = SystemContactsRepository.getLinkedContact(context, BuildConfig.APPLICATION_ID, lookupKey, phoneNumberFormatter())
+
+    if (result !is LinkedContactResult.Found) {
+      Log.w(TAG, "[linkSystemContact] Could not read the chosen contact: $result")
+      return false
+    }
+
+    linkSystemContact(recipientId, result.contact)
+    StorageSyncHelper.scheduleSyncForDataChange()
+    return true
+  }
+
+  @VisibleForTesting
+  fun linkSystemContact(recipientId: RecipientId, contact: LinkedContact) {
+    val phone = contact.phoneFor(SignalDatabase.recipients.getRecord(recipientId).e164)
+
+    SignalDatabase.recipients.linkSystemContact(
+      id = recipientId,
+      systemProfileName = systemProfileName(contact.givenName, contact.familyName, contact.displayName),
+      systemDisplayName = contact.displayName,
+      photoUri = contact.photoUri,
+      systemPhoneLabel = phone?.label,
+      systemPhoneType = phone?.type ?: -1,
+      systemPhoneE164 = phone?.number,
+      systemContactUri = contact.contactUri.toString()
+    )
+  }
+
+  /** The contact's entry for [e164], if it has one. */
+  private fun LinkedContact.phoneFor(e164: String?): PhoneDetails? {
+    return e164?.let { number -> numbers.filter { it.number == number }.minByOrNull { it.type } }
+  }
+
+  private fun systemProfileName(givenName: String?, familyName: String?, displayName: String?): ProfileName {
+    return if (!StringUtil.isEmpty(givenName)) {
+      ProfileName.fromParts(givenName, familyName)
+    } else if (!StringUtil.isEmpty(displayName)) {
+      ProfileName.asGiven(displayName)
+    } else {
+      ProfileName.EMPTY
     }
   }
 
@@ -350,6 +450,7 @@ object ContactDiscovery {
     val photoUri: String?,
     val label: String?,
     val type: Int,
+    val e164: String?,
     val contactUri: String
   )
 }

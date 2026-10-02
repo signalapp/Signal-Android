@@ -35,7 +35,12 @@ class AboutSheetViewModel(
     .observable(recipientId)
     .observeOn(AndroidSchedulers.mainThread())
     .subscribeBy { recipient ->
-      internalState.update { it.copy(recipient = recipient) }
+      internalState.update {
+        it.copy(
+          recipient = recipient,
+          recipientContentVersion = if (it.recipient?.hasSameContent(recipient) == true) it.recipientContentVersion else it.recipientContentVersion + 1
+        )
+      }
     }
 
   private val groupsInCommonDisposable: Disposable = repository
@@ -78,6 +83,11 @@ class AboutSheetViewModel(
     )
   }
 
+  fun unlinkSystemContact() {
+    val recipientId = internalState.value.recipient?.id ?: return
+    repository.unlinkSystemContact(recipientId)
+  }
+
   override fun onCleared() {
     disposables.dispose()
   }
@@ -85,6 +95,8 @@ class AboutSheetViewModel(
 
 data class AboutSheetUiState(
   val recipient: Recipient? = null,
+  /** Changed when recipient content changes, since Recipient.equals only compares IDs. */
+  val recipientContentVersion: Int = 0,
   val groupsInCommonCount: Int = 0,
   val verified: Boolean = false,
   val memberLabel: MemberLabel? = null,

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.net.Uri
+import android.provider.ContactsContract
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
@@ -53,6 +54,8 @@ object RecipientDatabaseTestUtils {
     systemContactPhoto: String? = null,
     systemPhoneLabel: String? = null,
     systemContactUri: String? = null,
+    systemPhoneType: Int = if (systemContactUri != null) ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE else -1,
+    systemPhoneE164: String? = if (systemContactUri != null) e164 else null,
     signalProfileName: ProfileName = ProfileName.EMPTY,
     signalProfileAvatar: String? = null,
     profileAvatarFileDetails: ProfileAvatarFileDetails = ProfileAvatarFileDetails.NO_DETAILS,
@@ -83,7 +86,9 @@ object RecipientDatabaseTestUtils {
     badges: List<Badge> = emptyList(),
     isReleaseChannel: Boolean = false,
     isActive: Boolean = true,
-    groupRecord: GroupRecord? = null
+    groupRecord: GroupRecord? = null,
+    phoneNumberSharing: RecipientTable.PhoneNumberSharingState = RecipientTable.PhoneNumberSharingState.UNKNOWN,
+    phoneNumberDiscoverable: RecipientTable.PhoneNumberDiscoverableState = RecipientTable.PhoneNumberDiscoverableState.UNKNOWN
   ): Recipient = RecipientCreator.create(
     resolved = resolved,
     groupName = groupName,
@@ -116,7 +121,10 @@ object RecipientDatabaseTestUtils {
       systemDisplayName = systemDisplayName,
       systemContactPhotoUri = systemContactPhoto,
       systemPhoneLabel = systemPhoneLabel,
+      systemPhoneType = systemPhoneType,
+      systemPhoneE164 = systemPhoneE164,
       systemContactUri = systemContactUri,
+      systemContactLinkState = if (systemContactUri != null) RecipientTable.SystemContactLinkState.LINKED else RecipientTable.SystemContactLinkState.NONE,
       signalProfileName = signalProfileName,
       signalProfileAvatar = signalProfileAvatar,
       profileAvatarFileDetails = profileAvatarFileDetails,
@@ -145,7 +153,8 @@ object RecipientDatabaseTestUtils {
       needsPniSignature = false,
       hiddenState = Recipient.HiddenState.NOT_HIDDEN,
       callLinkRoomId = null,
-      phoneNumberSharing = RecipientTable.PhoneNumberSharingState.UNKNOWN,
+      phoneNumberSharing = phoneNumberSharing,
+      phoneNumberDiscoverable = phoneNumberDiscoverable,
       nickname = ProfileName.EMPTY,
       note = null,
       sharedName = ProfileName.EMPTY

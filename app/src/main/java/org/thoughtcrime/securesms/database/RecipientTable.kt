@@ -163,7 +163,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val SYSTEM_PHOTO_URI = "system_photo_uri"
     const val SYSTEM_PHONE_LABEL = "system_phone_label"
     const val SYSTEM_PHONE_TYPE = "system_phone_type"
+    const val SYSTEM_PHONE_E164 = "system_phone_e164"
     const val SYSTEM_CONTACT_URI = "system_contact_uri"
+    const val SYSTEM_CONTACT_LINK_STATE = "system_contact_link_state"
     const val SYSTEM_INFO_PENDING = "system_info_pending"
     const val NOTIFICATION_CHANNEL = "notification_channel"
     const val MESSAGE_RINGTONE = "message_ringtone"
@@ -284,7 +286,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $BLOCKED_AT INTEGER DEFAULT 0,
         $UNREAD_REMINDER INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $SHARED_GIVEN_NAME TEXT DEFAULT NULL,
-        $SHARED_FAMILY_NAME TEXT DEFAULT NULL
+        $SHARED_FAMILY_NAME TEXT DEFAULT NULL,
+        $SYSTEM_PHONE_E164 TEXT DEFAULT NULL,
+        $SYSTEM_CONTACT_LINK_STATE INTEGER DEFAULT ${SystemContactLinkState.NONE.id}
       )
       """
 
@@ -322,7 +326,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHOTO_URI,
       SYSTEM_PHONE_LABEL,
       SYSTEM_PHONE_TYPE,
+      SYSTEM_PHONE_E164,
       SYSTEM_CONTACT_URI,
+      SYSTEM_CONTACT_LINK_STATE,
       NOTIFICATION_CHANNEL,
       MESSAGE_RINGTONE,
       MESSAGE_VIBRATE,
@@ -351,6 +357,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       NEEDS_PNI_SIGNATURE,
       REPORTING_TOKEN,
       PHONE_NUMBER_SHARING,
+      PHONE_NUMBER_DISCOVERABLE,
       NICKNAME_GIVEN_NAME,
       NICKNAME_FAMILY_NAME,
       NOTE,
@@ -1388,22 +1395,200 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * @param clearInfoForMissingContacts If true, this will clear any saved contact details for any recipient that hasn't been updated
-   *                                    by the time finish() is called. Basically this should be true for full syncs and false for
-   *                                    partial syncs.
+   * Starts linking recipients to the system contacts that hold their numbers, all in one transaction
+   * that [BulkOperationsHandle.finish] ends.
    */
-  fun beginBulkSystemContactUpdate(clearInfoForMissingContacts: Boolean): BulkOperationsHandle {
+  fun beginBulkSystemContactUpdate(): BulkOperationsHandle {
     writableDatabase.beginTransaction()
+    return BulkOperationsHandle(writableDatabase)
+  }
 
-    if (clearInfoForMissingContacts) {
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(SYSTEM_INFO_PENDING to 1)
-        .where("$SYSTEM_CONTACT_URI NOT NULL")
-        .run()
+  /** Every recipient currently linked to a system contact, so the links can be kept current. */
+  fun getLinkedSystemContacts(): List<LinkedSystemContact> {
+    return readableDatabase
+      .select(ID, E164, SYSTEM_CONTACT_URI)
+      .from(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.LINKED.id)
+      .run()
+      .readToList { cursor ->
+        LinkedSystemContact(
+          recipientId = RecipientId.from(cursor.requireLong(ID)),
+          e164 = cursor.requireString(E164),
+          contactUri = cursor.requireString(SYSTEM_CONTACT_URI)
+        )
+      }
+  }
+
+  /**
+   * Refreshes a linked recipient's system contact fields from the contact they are linked to. The
+   * storage service record carries the contact's name, so only a change to it marks the record for
+   * upload.
+   */
+  fun updateSystemContactLink(
+    id: RecipientId,
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String
+  ) {
+    val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+    val query = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", SqlUtil.buildArgs(id, SystemContactLinkState.LINKED.id), values)
+
+    val updated = writableDatabase.withinTransaction {
+      val nameChanged = getRecord(id).systemProfileName != systemProfileName
+      update(query, values).also { updated ->
+        if (updated && nameChanged) {
+          rotateStorageId(id)
+        }
+      }
     }
 
-    return BulkOperationsHandle(writableDatabase)
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /**
+   * Links a recipient to the system contact the user chose, replacing any link it had, whatever its
+   * number or discoverability.
+   */
+  fun linkSystemContact(
+    id: RecipientId,
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String
+  ) {
+    val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+
+    writableDatabase.withinTransaction {
+      update(id, values)
+      rotateStorageId(id)
+    }
+
+    AppDependencies.databaseObserver.notifyRecipientChanged(id)
+  }
+
+  /** Removes a link the user no longer wants, along with everything the system contact gave the recipient. */
+  fun unlinkSystemContact(id: RecipientId) {
+    val updated = writableDatabase.withinTransaction { db ->
+      db.update(TABLE_NAME)
+        .values(
+          SYSTEM_GIVEN_NAME to null,
+          SYSTEM_FAMILY_NAME to null,
+          SYSTEM_JOINED_NAME to null,
+          SYSTEM_PHOTO_URI to null,
+          SYSTEM_PHONE_LABEL to null,
+          SYSTEM_PHONE_TYPE to -1,
+          SYSTEM_PHONE_E164 to null,
+          SYSTEM_CONTACT_URI to null,
+          SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id
+        )
+        .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.LINKED.id)
+        .run()
+        .let { it > 0 }
+        .also { updated ->
+          if (updated) {
+            rotateStorageId(id)
+          }
+        }
+    }
+
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /** Every recipient that lost its system contact and still needs a new link, by name. */
+  fun getSystemContactLinksNeeded(): List<RecipientId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.NEEDED.id)
+      .orderBy("$SYSTEM_JOINED_NAME COLLATE NOCASE, $ID")
+      .run()
+      .readToList { cursor -> RecipientId.from(cursor.requireLong(ID)) }
+  }
+
+  fun hasSystemContactLinksNeeded(): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$SYSTEM_CONTACT_LINK_STATE = ?", SystemContactLinkState.NEEDED.id)
+      .run()
+  }
+
+  /**
+   * Marks a linked recipient whose system contact no longer exists as needing a new link.
+   *
+   * The user still knows who this is, so everything the contact gave the recipient stays, such as
+   * its name, except the contact and photo URIs, which pointed into the contact and no longer
+   * resolve.
+   */
+  fun markSystemContactLinkNeeded(id: RecipientId) {
+    val updated = writableDatabase.withinTransaction { db ->
+      db.update(TABLE_NAME)
+        .values(
+          SYSTEM_PHOTO_URI to null,
+          SYSTEM_CONTACT_URI to null,
+          SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NEEDED.id
+        )
+        .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.LINKED.id)
+        .run()
+        .let { it > 0 }
+        .also { updated ->
+          if (updated) {
+            rotateStorageId(id)
+          }
+        }
+    }
+
+    if (updated) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  /**
+   * Stops asking the user to link a recipient that lost its system contact. The name the contact
+   * gave the recipient stays.
+   */
+  fun dismissSystemContactLinkNeeded(id: RecipientId) {
+    val updated = writableDatabase
+      .update(TABLE_NAME)
+      .values(SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id)
+      .where("$ID = ? AND $SYSTEM_CONTACT_LINK_STATE = ?", id, SystemContactLinkState.NEEDED.id)
+      .run()
+
+    if (updated > 0) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+  }
+
+  private fun systemContactValues(
+    systemProfileName: ProfileName,
+    systemDisplayName: String?,
+    photoUri: String?,
+    systemPhoneLabel: String?,
+    systemPhoneType: Int,
+    systemPhoneE164: String?,
+    systemContactUri: String?
+  ): ContentValues {
+    return ContentValues().apply {
+      put(SYSTEM_GIVEN_NAME, systemProfileName.givenName)
+      put(SYSTEM_FAMILY_NAME, systemProfileName.familyName)
+      put(SYSTEM_JOINED_NAME, Util.firstNonNull(systemDisplayName, systemProfileName.toString()))
+      put(SYSTEM_PHOTO_URI, photoUri)
+      put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
+      put(SYSTEM_PHONE_TYPE, systemPhoneType)
+      put(SYSTEM_PHONE_E164, systemPhoneE164)
+      put(SYSTEM_CONTACT_URI, systemContactUri)
+      put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.LINKED.id)
+    }
   }
 
   fun onUpdatedChatColors(chatColors: ChatColors) {
@@ -2492,6 +2677,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         WALLPAPER_URI to null
       )
       .where("$WALLPAPER_URI NOT NULL")
+      .run()
+  }
+
+  /**
+   * A restored database carries the old phone's system contact links, but a lookup key from another
+   * phone can resolve to a different person here. So every link becomes one the user needs to make
+   * again, keeping what the old contact gave the recipient, such as its name. A contact sync then
+   * links again whatever it can match by number.
+   */
+  fun markSystemContactLinksNeededPostBackupRestore() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        SYSTEM_PHOTO_URI to null,
+        SYSTEM_CONTACT_URI to null,
+        SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NEEDED.id
+      )
+      .where("$SYSTEM_CONTACT_URI NOT NULL")
       .run()
   }
 
@@ -3734,7 +3937,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Every registered recipient linked to a system contact, keyed by that contact's lookup key.
    *
-   * The key comes from the uri path, not its last segment, which is a Data row id. Two numbers on
+   * The key comes from the uri path, not its last segment, which older links fill with a Data row id. Two numbers on
    * one contact share a lookup key and are separate Signal accounts, so all of them are kept.
    */
   fun getSystemContactLinksByLookupKey(): Map<String, List<SystemContactLink>> {
@@ -3800,6 +4003,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val lookupKey: String,
     val recipientId: RecipientId,
     val nickname: String?
+  )
+
+  data class LinkedSystemContact(
+    val recipientId: RecipientId,
+    val e164: String?,
+    val contactUri: String?
   )
 
   data class SignalOnlyContact(
@@ -4618,6 +4827,17 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(secondaryId))
     RemappedRecords.getInstance().addRecipient(secondaryId, primaryId)
 
+    // The system contact fields describe one link, so they all come from the same record: whichever
+    // has the stronger link, and the E164 record when they are equal.
+    val linkStrength = { record: RecipientRecord ->
+      when (record.systemContactLinkState) {
+        SystemContactLinkState.LINKED -> 2
+        SystemContactLinkState.NEEDED -> 1
+        SystemContactLinkState.NONE -> 0
+      }
+    }
+    val systemContactRecord = if (linkStrength(primaryRecord) > linkStrength(secondaryRecord)) primaryRecord else secondaryRecord
+
     val uuidValues = contentValuesOf(
       E164 to (secondaryRecord.e164 ?: primaryRecord.e164),
       ACI_COLUMN to (primaryRecord.aci ?: secondaryRecord.aci)?.toString(),
@@ -4636,12 +4856,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MESSAGE_EXPIRATION_TIME to if (primaryRecord.expireMessages > 0) primaryRecord.expireMessages else secondaryRecord.expireMessages,
       MESSAGE_EXPIRATION_TIME_VERSION to max(primaryRecord.expireTimerVersion, secondaryRecord.expireTimerVersion),
       REGISTERED to RegisteredState.REGISTERED.id,
-      SYSTEM_GIVEN_NAME to secondaryRecord.systemProfileName.givenName,
-      SYSTEM_FAMILY_NAME to secondaryRecord.systemProfileName.familyName,
-      SYSTEM_JOINED_NAME to secondaryRecord.systemProfileName.toString(),
-      SYSTEM_PHOTO_URI to secondaryRecord.systemContactPhotoUri,
-      SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
-      SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
+      SYSTEM_GIVEN_NAME to systemContactRecord.systemProfileName.givenName,
+      SYSTEM_FAMILY_NAME to systemContactRecord.systemProfileName.familyName,
+      SYSTEM_JOINED_NAME to systemContactRecord.systemProfileName.toString(),
+      SYSTEM_PHOTO_URI to systemContactRecord.systemContactPhotoUri,
+      SYSTEM_PHONE_LABEL to systemContactRecord.systemPhoneLabel,
+      SYSTEM_PHONE_TYPE to systemContactRecord.systemPhoneType,
+      SYSTEM_PHONE_E164 to systemContactRecord.systemPhoneE164,
+      SYSTEM_CONTACT_URI to systemContactRecord.systemContactUri,
+      SYSTEM_CONTACT_LINK_STATE to systemContactRecord.systemContactLinkState.id,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
       CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),
       MENTION_SETTING to if (primaryRecord.mentionSetting != NotificationSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id,
@@ -4746,6 +4969,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         put(AVATAR_COLOR, avatarColor.serialize())
       } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
+
+        // Only a link to a system contact sets these names, so this contact was linked on an
+        // earlier primary device, and its contact here is yet to be found.
+        if (!systemName.isEmpty) {
+          put(SYSTEM_CONTACT_LINK_STATE, SystemContactLinkState.NEEDED.id)
+        }
       }
     }
   }
@@ -4852,7 +5081,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SYSTEM_PHOTO_URI to null,
       SYSTEM_PHONE_LABEL to null,
       SYSTEM_PHONE_TYPE to -1,
+      SYSTEM_PHONE_E164 to null,
       SYSTEM_CONTACT_URI to null,
+      SYSTEM_CONTACT_LINK_STATE to SystemContactLinkState.NONE.id,
       SYSTEM_INFO_PENDING to 0,
       NOTIFICATION_CHANNEL to null,
       MESSAGE_RINGTONE to null,
@@ -5043,6 +5274,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   inner class BulkOperationsHandle internal constructor(private val database: SQLiteDatabase) {
     private val pendingRecipients: MutableSet<RecipientId> = mutableSetOf()
 
+    /**
+     * Links a recipient to the system contact that holds their number. A recipient who is already
+     * linked keeps that link, which [updateSystemContactLink] keeps current, and one whose number is
+     * not discoverable is never linked by it.
+     */
     fun setSystemContactInfo(
       id: RecipientId,
       systemProfileName: ProfileName,
@@ -5050,73 +5286,26 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       photoUri: String?,
       systemPhoneLabel: String?,
       systemPhoneType: Int,
+      systemPhoneE164: String?,
       systemContactUri: String?
     ) {
-      val joinedName = Util.firstNonNull(systemDisplayName, systemProfileName.toString())
-      val refreshQualifyingValues = ContentValues().apply {
-        put(SYSTEM_GIVEN_NAME, systemProfileName.givenName)
-        put(SYSTEM_FAMILY_NAME, systemProfileName.familyName)
-        put(SYSTEM_JOINED_NAME, joinedName)
-        put(SYSTEM_PHOTO_URI, photoUri)
-        put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
-        put(SYSTEM_PHONE_TYPE, systemPhoneType)
-        put(SYSTEM_CONTACT_URI, systemContactUri)
-      }
+      val values = systemContactValues(systemProfileName, systemDisplayName, photoUri, systemPhoneLabel, systemPhoneType, systemPhoneE164, systemContactUri)
+      val updateQuery = SqlUtil.buildTrueUpdateQuery(
+        "$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ? AND $SYSTEM_CONTACT_LINK_STATE != ?",
+        SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id, SystemContactLinkState.LINKED.id),
+        values
+      )
 
-      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), refreshQualifyingValues)
-      if (update(updateQuery, refreshQualifyingValues)) {
+      if (update(updateQuery, values)) {
         pendingRecipients.add(id)
       }
-
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(SYSTEM_INFO_PENDING to 0)
-        .where("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
-        .run()
     }
 
     fun finish() {
-      markAllRelevantEntriesDirty()
-      clearSystemDataForPendingInfo()
+      pendingRecipients.forEach { id -> rotateStorageId(id) }
       database.setTransactionSuccessful()
       database.endTransaction()
       pendingRecipients.forEach { id -> AppDependencies.databaseObserver.notifyRecipientChanged(id) }
-    }
-
-    private fun markAllRelevantEntriesDirty() {
-      val query = "$SYSTEM_INFO_PENDING = ? AND $STORAGE_SERVICE_ID NOT NULL"
-      val args = SqlUtil.buildArgs("1")
-
-      database.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val id = RecipientId.from(cursor.requireNonNullString(ID))
-          rotateStorageId(id)
-        }
-      }
-
-      pendingRecipients.forEach { id -> rotateStorageId(id) }
-    }
-
-    private fun clearSystemDataForPendingInfo() {
-      writableDatabase.rawQuery(
-        """
-        UPDATE $TABLE_NAME
-        SET
-          $SYSTEM_INFO_PENDING = 0,
-          $SYSTEM_GIVEN_NAME = NULL,
-          $SYSTEM_FAMILY_NAME = NULL,
-          $SYSTEM_JOINED_NAME = NULL,
-          $SYSTEM_PHOTO_URI = NULL,
-          $SYSTEM_PHONE_LABEL = NULL,
-          $SYSTEM_CONTACT_URI = NULL
-        WHERE $SYSTEM_INFO_PENDING = 1
-        RETURNING $ID
-        """,
-        null
-      ).forEach { cursor ->
-        val id = RecipientId.from(cursor.requireLong(ID))
-        AppDependencies.databaseObserver.notifyRecipientChanged(id)
-      }
     }
   }
 
@@ -5348,12 +5537,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.IS_MEMBER} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.TERMINATED_BY} = 0 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
       """
-      val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_URI NOT NULL) AND $E164 GLOB ?)"
+
+      /** SQL for [Recipient.isSystemContactByPhoneNumber]. */
+      private val SYSTEM_CONTACT_BY_PHONE_NUMBER = "($SYSTEM_CONTACT_URI NOT NULL AND $SYSTEM_PHONE_E164 = $E164 AND ($PHONE_NUMBER_DISCOVERABLE != ${PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id} OR $PHONE_NUMBER_SHARING = ${PhoneNumberSharingState.ENABLED.id}))"
+      val E164_SEARCH = "(($PHONE_NUMBER_SHARING != ${PhoneNumberSharingState.DISABLED.id} OR $SYSTEM_CONTACT_BY_PHONE_NUMBER) AND $E164 GLOB ?)"
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
       const val FILTER_HIDDEN = " AND $HIDDEN = ?"
-      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
+      val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_BY_PHONE_NUMBER AND ($E164 NOT NULL OR $EMAIL NOT NULL)"
       val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($E164_SEARCH OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
@@ -5515,6 +5707,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): PhoneNumberSharingState {
+        return entries[id]
+      }
+    }
+  }
+
+  /** Whether a recipient is tied to a system contact. See [SYSTEM_CONTACT_LINK_STATE]. */
+  enum class SystemContactLinkState(val id: Int) {
+    /** Never tied to a system contact. */
+    NONE(0),
+
+    /** Tied to a system contact, which [SYSTEM_CONTACT_URI] points to. */
+    LINKED(1),
+
+    /** Was tied to a system contact and lost it, and the user has not yet linked another. */
+    NEEDED(2);
+
+    companion object {
+      fun fromId(id: Int): SystemContactLinkState {
         return entries[id]
       }
     }

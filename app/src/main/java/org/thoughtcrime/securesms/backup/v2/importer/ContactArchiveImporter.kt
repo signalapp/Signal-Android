@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -72,6 +73,12 @@ object ContactArchiveImporter {
       RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize(),
       RecipientTable.KEY_TRANSPARENCY_DATA to contact.keyTransparencyData?.toByteArray()
     )
+
+    // Only a link to a system contact sets these names, and a backup never carries the link itself,
+    // so on a primary device the contact behind them is yet to be found.
+    if (SignalStore.account.isPrimaryDevice && (contact.systemGivenName.isNotBlank() || contact.systemFamilyName.isNotBlank())) {
+      values.put(RecipientTable.SYSTEM_CONTACT_LINK_STATE, RecipientTable.SystemContactLinkState.NEEDED.id)
+    }
 
     val notRegistered = contact.notRegistered
     if (contact.registered != null) {

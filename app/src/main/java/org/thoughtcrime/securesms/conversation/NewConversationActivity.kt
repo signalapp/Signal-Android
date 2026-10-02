@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.contacts.link.UnlinkedSignalContactsActivity
 import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessage
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
@@ -125,9 +126,15 @@ private fun NewConversationScreen(
     }
   )
 
+  val unlinkedSignalContactsLauncher: ActivityResultLauncher<Intent> = rememberLauncherForActivityResult(
+    contract = ActivityResultContracts.StartActivityForResult(),
+    onResult = { viewModel.refreshUnlinkedSignalContacts() }
+  )
+
   val coroutineScope = rememberCoroutineScope()
   val callbacks = remember {
     object : NewConversationUiCallbacks {
+      override fun onUnlinkedSignalContacts() = unlinkedSignalContactsLauncher.launch(UnlinkedSignalContactsActivity.createIntent(context))
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.createIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
@@ -206,7 +213,7 @@ private fun NewConversationScreenUi(
   RecipientPickerScaffold(
     title = stringResource(R.string.NewConversationActivity__new_message),
     onNavigateUpClick = callbacks::onBackPressed,
-    topAppBarActions = { TopAppBarActions(callbacks) },
+    topAppBarActions = { TopAppBarActions(callbacks, showUnlinkedSignalContacts = uiState.showUnlinkedSignalContacts) },
     snackbarHostState = snackbarHostState,
     primaryContent = {
       NewConversationRecipientPicker(
@@ -230,7 +237,7 @@ private fun NewConversationScreenUi(
 }
 
 @Composable
-private fun TopAppBarActions(callbacks: NewConversationUiCallbacks) {
+private fun TopAppBarActions(callbacks: NewConversationUiCallbacks, showUnlinkedSignalContacts: Boolean) {
   val menuController = remember { DropdownMenus.MenuController() }
   IconButton(
     onClick = { menuController.show() },
@@ -271,6 +278,16 @@ private fun TopAppBarActions(callbacks: NewConversationUiCallbacks) {
         menuController.hide()
       }
     )
+
+    if (showUnlinkedSignalContacts) {
+      DropdownMenus.Item(
+        text = { Text(text = stringResource(R.string.UnlinkedSignalContactsActivity__unlinked_signal_contacts)) },
+        onClick = {
+          callbacks.onUnlinkedSignalContacts()
+          menuController.hide()
+        }
+      )
+    }
   }
 }
 
@@ -287,9 +304,11 @@ private interface NewConversationUiCallbacks :
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onSetUpUsername()
   fun onSetUpUsernameBannerDismissed()
+  fun onUnlinkedSignalContacts()
   fun onBackPressed()
 
   object Empty : NewConversationUiCallbacks {
+    override fun onUnlinkedSignalContacts() = Unit
     override fun onSearchQueryChanged(query: String) = Unit
     override fun onCreateNewGroup() = Unit
     override fun onFindByUsername() = Unit

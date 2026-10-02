@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.contacts.management.ContactsManagementReposito
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessage.Info
 import org.thoughtcrime.securesms.conversation.NewConversationUiState.UserMessage.Prompt
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.PhoneNumber
@@ -44,6 +45,18 @@ class NewConversationViewModel : ViewModel() {
   val uiState: StateFlow<NewConversationUiState> = internalUiState.asStateFlow()
 
   private val contactsManagementRepo = ContactsManagementRepository(AppDependencies.application)
+
+  init {
+    refreshUnlinkedSignalContacts()
+  }
+
+  /** Checks whether any Signal contact lost its phone contact, which decides whether the menu offers to relink them. */
+  fun refreshUnlinkedSignalContacts() {
+    viewModelScope.launch {
+      val hasUnlinked = withContext(Dispatchers.IO) { SignalDatabase.recipients.hasSystemContactLinksNeeded() }
+      internalUiState.update { it.copy(showUnlinkedSignalContacts = hasUnlinked) }
+    }
+  }
 
   fun onSearchQueryChanged(query: String) {
     internalUiState.update { it.copy(searchQuery = query) }
@@ -159,6 +172,7 @@ class NewConversationViewModel : ViewModel() {
       when (result) {
         is NetworkResult.Success -> {
           internalUiState.update { it.copy(isRefreshingContacts = false) }
+          refreshUnlinkedSignalContacts()
         }
 
         is NetworkResult.NetworkError, is NetworkResult.StatusCodeError -> {
@@ -196,7 +210,8 @@ data class NewConversationUiState(
   val shouldResetContactsList: Boolean = false,
   val pendingDestination: RecipientId? = null,
   val userMessage: UserMessage? = null,
-  val showSetUpUsernameBanner: Boolean = false
+  val showSetUpUsernameBanner: Boolean = false,
+  val showUnlinkedSignalContacts: Boolean = false
 ) {
   sealed interface UserMessage {
     sealed interface Info : UserMessage {
