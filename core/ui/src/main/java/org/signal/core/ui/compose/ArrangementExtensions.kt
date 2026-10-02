@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
 
 /**
  * Spreads children across the full width like [Arrangement.SpaceBetween], but never opens a gap wider than [max].
@@ -16,7 +17,9 @@ import androidx.compose.ui.unit.LayoutDirection
  * even room for [max] the gap shrinks to fit instead of overflowing.
  */
 fun Arrangement.spaceBetweenUpTo(max: Dp): Arrangement.Horizontal = object : Arrangement.Horizontal {
-  override val spacing: Dp = max
+  // Reported as zero so Row doesn't reserve [max] between children while measuring, which squeezes the trailing
+  // children when space is tight. The actual gap is computed in arrange.
+  override val spacing: Dp = 0.dp
 
   override fun Density.arrange(
     totalSize: Int,

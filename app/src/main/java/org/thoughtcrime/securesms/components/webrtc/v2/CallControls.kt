@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -355,6 +356,13 @@ private fun OneToOnePreJoinVideoCallControlsPreview() {
 @NightPreview
 @Composable
 private fun OneToOneOngoingCallControlsPreview() {
+  CallControlsPreview(CallControlsPreviewState.ONE_TO_ONE_ONGOING)
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@Preview(name = "night mode, 360dp", uiMode = Configuration.UI_MODE_NIGHT_YES, device = "spec:width=360dp,height=780dp,dpi=420")
+@Composable
+private fun OneToOneOngoingNarrowCallControlsPreview() {
   CallControlsPreview(CallControlsPreviewState.ONE_TO_ONE_ONGOING)
 }
 
