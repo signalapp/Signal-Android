@@ -604,8 +604,9 @@ public class ApplicationContext extends Application implements AppForegroundObse
     AvatarPickerStorage.cleanOrphans(this);
   }
 
+  @VisibleForTesting
   @WorkerThread
-  private void initializeCleanup() {
+  protected void initializeCleanup() {
     int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
     Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
   }
