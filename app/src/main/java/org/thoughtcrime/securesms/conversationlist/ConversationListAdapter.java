@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversationlist;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -176,6 +179,10 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
                                             typingSet,
                                             selectedConversations,
                                             activeRecipientId);
+
+      if (holder.getItemViewType() == TYPE_THREAD) {
+        addThreadAccessibilityActions(holder.itemView, conversation);
+      }
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -195,6 +202,33 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
       casted.bind(conversation);
     }
+  }
+
+  private void addThreadAccessibilityActions(@NonNull View itemView, @NonNull Conversation conversation) {
+    ViewCompat.setAccessibilityDelegate(itemView, new AccessibilityDelegateCompat() {
+      @Override
+      public void onInitializeAccessibilityNodeInfo(@NonNull View host, @NonNull AccessibilityNodeInfoCompat info) {
+        super.onInitializeAccessibilityNodeInfo(host, info);
+        ConversationListAccessibilityHelper.addConversationActions(
+            info.unwrap(),
+            host.getContext(),
+            conversation,
+            !selectedConversations.isEmpty()
+        );
+      }
+
+      @Override
+      public boolean performAccessibilityAction(@NonNull View host, int action, @Nullable Bundle args) {
+        if (selectedConversations.isEmpty()) {
+          return ConversationListAccessibilityHelper.dispatchConversationAction(
+            action,
+            conversation,
+            (conv, actionType) -> onConversationClickListener.onConversationAccessibilityAction(conv, actionType)
+          );
+        }
+        return super.performAccessibilityAction(host, action, args);
+      }
+    });
   }
 
   @Override
@@ -326,6 +360,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   interface OnConversationClickListener {
     void onConversationClick(@NonNull Conversation conversation);
     boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
+    void onConversationAccessibilityAction(@NonNull Conversation conversation, @NonNull ThreadAccessibilityAction action);
     void onShowArchiveClick();
   }
 }
