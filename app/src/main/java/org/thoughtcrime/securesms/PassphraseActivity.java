@@ -38,6 +38,7 @@ public abstract class PassphraseActivity extends BaseActivity {
 
   private KeyCachingService keyCachingService;
   private MasterSecret masterSecret;
+  private boolean nextIntentHandled;
 
   protected void setMasterSecret(MasterSecret masterSecret) {
     this.masterSecret = masterSecret;
@@ -59,13 +60,18 @@ public abstract class PassphraseActivity extends BaseActivity {
         masterSecret = null;
         cleanup();
 
-        Intent nextIntent = getIntent().getParcelableExtra("next_intent");
+        Intent nextIntent = getIntent().getParcelableExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA);
         if (nextIntent != null) {
             try {
                 startActivity(nextIntent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             } catch (java.lang.SecurityException e) {
                 Log.w(TAG, "Access permission not passed from PassphraseActivity, retry sharing.");
+            } finally {
+                if (PassphraseRequiredActivity.hasPreservedUriPermissions(getIntent())) {
+                    PassphraseRequiredActivity.revokePreservedUriPermissions(PassphraseActivity.this, nextIntent);
+                }
+                nextIntentHandled = true;
             }
         }
         finish();
@@ -75,4 +81,14 @@ public abstract class PassphraseActivity extends BaseActivity {
         keyCachingService = null;
       }
   };
+
+  @Override
+  protected void onDestroy() {
+    if (!nextIntentHandled && isFinishing() && !isChangingConfigurations() && PassphraseRequiredActivity.hasPreservedUriPermissions(getIntent())) {
+      Intent nextIntent = getIntent().getParcelableExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA);
+      PassphraseRequiredActivity.revokePreservedUriPermissions(PassphraseActivity.this, nextIntent);
+    }
+
+    super.onDestroy();
+  }
 }
