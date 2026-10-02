@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -33,6 +35,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.signal.core.ui.compose.keyboard.KeyboardSheetAction
 import org.signal.core.ui.compose.keyboard.KeyboardSheetController
 import org.signal.core.ui.compose.keyboard.KeyboardSheetHeight
@@ -114,6 +119,11 @@ fun ChatScreen(
     )
   }
 
+  // The media keyboard's view models keep the callback, repository, and controller they were built
+  // with, all of which belong to one fragment instance. The fragment's own store outlives that
+  // instance across a configuration change, so they get a store that goes away with this screen.
+  val mediaKeyboardViewModelStoreOwner = rememberViewModelStoreOwner()
+
   Box(
     modifier = modifier
       .fillMaxSize()
@@ -153,12 +163,14 @@ fun ChatScreen(
           },
           blurRadius = { stickerBlurRadius }
         ) {
-          MediaKeyboard(
-            repository = mediaKeyboardRepository,
-            onAction = onMediaKeyboardAction,
-            tabs = mediaKeyboardTabs,
-            initialTab = mediaKeyboardInitialTab
-          )
+          CompositionLocalProvider(LocalViewModelStoreOwner provides mediaKeyboardViewModelStoreOwner) {
+            MediaKeyboard(
+              repository = mediaKeyboardRepository,
+              onAction = onMediaKeyboardAction,
+              tabs = mediaKeyboardTabs,
+              initialTab = mediaKeyboardInitialTab
+            )
+          }
         }
 
         keyboard(
@@ -190,4 +202,20 @@ fun ChatScreen(
         .windowInsetsPadding(WindowInsets.statusBarsCompat.add(WindowInsets.safeDrawingCompat.only(WindowInsetsSides.Horizontal)))
     )
   }
+}
+
+/** A [ViewModelStoreOwner] that lives exactly as long as the calling composition. */
+@Composable
+private fun rememberViewModelStoreOwner(): ViewModelStoreOwner {
+  val owner = remember {
+    object : ViewModelStoreOwner {
+      override val viewModelStore = ViewModelStore()
+    }
+  }
+
+  DisposableEffect(owner) {
+    onDispose { owner.viewModelStore.clear() }
+  }
+
+  return owner
 }
