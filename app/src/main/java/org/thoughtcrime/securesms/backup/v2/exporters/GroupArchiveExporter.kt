@@ -9,12 +9,13 @@ import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.Group
 import org.signal.core.models.ServiceId
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
-import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireString
+import org.thoughtcrime.securesms.backup.v2.ExportSkips
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedBannedMember
@@ -36,27 +37,42 @@ import java.io.Closeable
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [ArchiveRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val cursor: Cursor) : Iterator<ArchiveRecipient>, Closeable {
+class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val cursor: Cursor) : Iterator<ArchiveRecipient?>, Closeable {
+
+  companion object {
+    private val TAG = Log.tag(GroupArchiveExporter::class.java)
+  }
 
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
 
-  override fun next(): ArchiveRecipient {
+  /**
+   * Returns the next [ArchiveRecipient], or `null` if the group's master key is invalid
+   * (null or wrong length) and should be skipped.
+   */
+  override fun next(): ArchiveRecipient? {
     if (!cursor.moveToNext()) {
       throw NoSuchElementException()
     }
 
+    val id = cursor.requireLong(RecipientTable.ID)
     val extras = RecipientTableCursorUtil.getExtras(cursor)
     val showAsStoryState: GroupTable.ShowAsStoryState = GroupTable.ShowAsStoryState.deserialize(cursor.requireInt(GroupTable.SHOW_AS_STORY_STATE))
 
     val isMember: Boolean = cursor.requireBoolean(GroupTable.IS_MEMBER)
     val decryptedGroup: DecryptedGroup? = cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)?.let { DecryptedGroup.ADAPTER.decode(it) }
 
+    val masterKeyBytes: ByteArray? = cursor.requireBlob(GroupTable.V2_MASTER_KEY)
+    if (masterKeyBytes == null || masterKeyBytes.size != 32) {
+      Log.w(TAG, ExportSkips.invalidGroupMasterKey(id))
+      return null
+    }
+
     return ArchiveRecipient(
-      id = cursor.requireLong(RecipientTable.ID),
+      id = id,
       group = ArchiveGroup(
-        masterKey = cursor.requireNonNullBlob(GroupTable.V2_MASTER_KEY).toByteString(),
+        masterKey = masterKeyBytes.toByteString(),
         whitelisted = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
         blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         blockedAtTimestamp = cursor.requireLong(RecipientTable.BLOCKED_AT),
