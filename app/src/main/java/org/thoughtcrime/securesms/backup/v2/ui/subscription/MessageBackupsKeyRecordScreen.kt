@@ -283,6 +283,7 @@ fun MessageBackupsKeyRecordScreen(
                 stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key)
               },
               style = MaterialTheme.typography.headlineMedium,
+              textAlign = TextAlign.Center,
               modifier = Modifier.padding(top = 16.dp)
             )
           }
