@@ -21,7 +21,8 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.isMediaMessage
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWithinLimit
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
@@ -112,7 +113,11 @@ object EditMessageProcessor {
           )
       }
 
-      AppDependencies.messageNotifier.updateNotification(context, forConversation(insertResult.threadId))
+      val conversationId = ConversationId.forConversation(insertResult.threadId)
+      if (conversationId.isVisibleNow()) {
+        markReadNow(insertResult.messageId)
+      }
+      AppDependencies.messageNotifier.updateNotification(context, conversationId)
     }
   }
 
@@ -202,5 +207,15 @@ object EditMessageProcessor {
     )
 
     return SignalDatabase.messages.insertEditMessageInbox(textMessage, targetMessage, skipThreadUpdate = batchCache.batchThreadUpdates).orNull()
+  }
+
+  private fun ConversationId.isVisibleNow() =
+    AppDependencies.messageNotifier.visibleThread.orNull() == this
+
+  private fun markReadNow(messageId: Long) {
+    val markedRead = SignalDatabase.messages.setAllEditMessageRevisionsRead(messageId)
+    SignalDatabase.runPostSuccessfulTransaction {
+      MarkReadReceiver.process(markedRead)
+    }
   }
 }
