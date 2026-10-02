@@ -506,11 +506,11 @@
 
     <!-- ChatStickerConfirmation -->
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
-    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <string name="ChatStickerConfirmation__reply_to_s">回覆 %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
     <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
-    <string name="ChatStickerConfirmation__go_back">Go back</string>
+    <string name="ChatStickerConfirmation__go_back">返轉頭</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2682,7 +2682,7 @@
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
-    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
+    <string name="StickerPreviewBottomSheet__view_pack">睇下貼圖包</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">儲存</string>
@@ -4230,7 +4230,7 @@
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">取消置頂</string>
     <!-- Button to open the sticker pack a sticker message came from -->
-    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
+    <string name="conversation_selection__menu_view_sticker_pack">睇下貼圖包</string>
 
     <!-- conversation_expiring_on -->
 

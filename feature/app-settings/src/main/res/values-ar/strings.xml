@@ -63,7 +63,7 @@
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · أضاف %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
-    <string name="AccountSettingsFragment__unknown">Unknown</string>
+    <string name="AccountSettingsFragment__unknown">غير معروف</string>
     <!-- Content description of the button that opens a second factor\'s options -->
     <string name="AccountSettingsFragment__open_two_factor_options">فتح خيارات المصادقة الثنائية</string>
     <!-- Menu option that renames a second factor -->

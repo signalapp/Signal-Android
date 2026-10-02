@@ -511,11 +511,11 @@
 
     <!-- ChatStickerConfirmation -->
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
-    <string name="ChatStickerConfirmation__reply_to_s">Reply to %1$s</string>
+    <string name="ChatStickerConfirmation__reply_to_s">Antwoorden op %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
     <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
-    <string name="ChatStickerConfirmation__go_back">Go back</string>
+    <string name="ChatStickerConfirmation__go_back">Ga terug</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2778,7 +2778,7 @@
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
-    <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
+    <string name="StickerPreviewBottomSheet__view_pack">Pakket bekijken</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Opslaan</string>
@@ -4351,7 +4351,7 @@
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">Losmaken</string>
     <!-- Button to open the sticker pack a sticker message came from -->
-    <string name="conversation_selection__menu_view_sticker_pack">View pack</string>
+    <string name="conversation_selection__menu_view_sticker_pack">Pakket bekijken</string>
 
     <!-- conversation_expiring_on -->
 
@@ -6979,7 +6979,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Betrouwbaarheid back-ups verbeteren</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Betrouwbaarheid automatische back-ups verbeteren</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Sta ‘wekkers’ toe om de dagelijkse automatische back-ups te verbeteren.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -9053,9 +9053,9 @@
     <string name="RecoveryKeyWarningSheetContent__share_key">Sleutel delen</string>
 
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions or replies -->
-    <string name="UnreadReminderJob__unread_one_summary">Je hebt %1$s, waarvan %2$s.</string>
+    <string name="UnreadReminderJob__unread_one_summary">Je hebt %1$s, waaronder %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a summary of unread mentions, third replies -->
-    <string name="UnreadReminderJob__unread_both_summary">Je hebt %1$s, waarvan %2$s en %3$s.</string>
+    <string name="UnreadReminderJob__unread_both_summary">Je hebt %1$s, waaronder %2$s en %3$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages, second is a list of people who sent them -->
     <string name="UnreadReminderJob__calls_or_unread_author">Je hebt %1$s van %2$s.</string>
     <!-- Notification body for unread reminders. First placeholder is unread messages -->
