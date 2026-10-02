@@ -461,7 +461,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
             // The entered recovery key decrypted the backup the user chose to restore, so it always becomes the
             // account's AEP -- even if the backup was made by a different account.
-            SignalStore.account.restoreAccountEntropyPool(aep)
+            adoptAccountEntropyPool(aep)
             updateInProgressRegistrationData { this.accountEntropyPool = aep.value }
 
             // Re-enable new-style local backups pointing at the restored location, so the user keeps getting backups.
@@ -709,10 +709,26 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     if (data.accountData?.linkedDeviceData != null) {
       SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(accountEntropyPool)
     } else {
-      SignalStore.account.restoreAccountEntropyPool(accountEntropyPool)
+      adoptAccountEntropyPool(accountEntropyPool)
     }
 
     return accountEntropyPool.deriveMasterKey()
+  }
+
+  /**
+   * Makes [aep] the account's AEP. Clears any dependent data, like SVRB state.
+   */
+  private fun adoptAccountEntropyPool(aep: AccountEntropyPool) {
+    val existing = SignalStore.account.accountEntropyPoolOrNull
+    if (existing != null && existing.value != aep.value && SignalStore.account.aci != null) {
+      Log.w(TAG, "[adoptAccountEntropyPool] Committing an AEP that differs from the one this account already had. Resetting dependent backup state.")
+      SignalStore.backup.nextBackupSecretData = null
+      SignalStore.backup.backupSecretRestoreRequired = true
+      SignalStore.backup.messageBackupInitialized = false
+      SignalStore.backup.messageCredentials.clearAll()
+    }
+
+    SignalStore.account.restoreAccountEntropyPool(aep)
   }
 
   /** The E164 and PNI are deliberately not required -- an account may have no phone number. */

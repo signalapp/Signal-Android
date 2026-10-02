@@ -255,10 +255,13 @@ class BackupMessagesJob private constructor(
       if (svrbReInitRan) {
         Log.i(TAG, "[svrb-restore] First backup of re-registered account without remote restore, read remote data if available to re-init")
 
+        var noRemoteSvrbChain = false
+
         val forwardSecrecyMetadata: ByteArray? = when (val result = BackupRepository.getRemoteBackupForwardSecrecyMetadata()) {
           is Either.Right -> {
             if (result.value == null) {
               Log.w(TAG, "[svrb-restore] Read the remote backup header, but it contained no forward secrecy metadata!", true)
+              noRemoteSvrbChain = true
             }
             result.value
           }
@@ -267,6 +270,7 @@ class BackupMessagesJob private constructor(
             is ArchiveError.EntitlementError.NotEntitled,
             is ArchiveError.CredentialError.NotFound -> {
               Log.i(TAG, "[svrb-restore] No backup data found (${error::class.simpleName}), continuing.", true)
+              noRemoteSvrbChain = true
               null
             }
             is ArchiveError.CredentialError.ZkVerificationFailed -> {
@@ -320,6 +324,9 @@ class BackupMessagesJob private constructor(
               return Result.fatalFailure(RuntimeException(result.throwable))
             }
           }
+        } else if (noRemoteSvrbChain && SignalStore.backup.nextBackupSecretData != null) {
+          Log.w(TAG, "[svrb-restore] No remote backup exists for this backup key, but we have local secret data. It can't belong to this key. Discarding it so we start a new chain.", true)
+          SignalStore.backup.nextBackupSecretData = null
         } else {
           Log.w(TAG, "[svrb-restore] No remote forward secrecy metadata to restore from, skipping the SVRB restore.", true)
         }

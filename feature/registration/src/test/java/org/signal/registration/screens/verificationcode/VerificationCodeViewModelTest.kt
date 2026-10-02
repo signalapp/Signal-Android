@@ -30,8 +30,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
+import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
@@ -421,7 +424,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -451,7 +454,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -477,7 +480,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -503,7 +506,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -512,6 +515,61 @@ class VerificationCodeViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.PinEntryForSvrRestore>()
+  }
+
+  @Test
+  fun `CodeEntered re-registering the same number passes the pre-existing key material to the repository`() = runTest {
+    val preExisting = createPreExistingRegistrationData(e164 = "+15551234567")
+    parentState.value = parentState.value.copy(preExistingRegistrationData = preExisting)
+
+    val sessionMetadata = createSessionMetadata(verified = true)
+    val initialState = VerificationCodeState(
+      sessionMetadata = sessionMetadata,
+      e164 = "+15551234567"
+    )
+
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(createRegisterAccountResponse(reregistration = true), mockk<KeyMaterial>(relaxed = true), testAci))
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
+
+    coVerify {
+      mockRepository.registerAccountWithSession(
+        e164 = "+15551234567",
+        sessionId = sessionMetadata.id,
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = preExisting
+      )
+    }
+  }
+
+  @Test
+  fun `CodeEntered registering a different number than the pre-existing one does not pass the pre-existing key material`() = runTest {
+    parentState.value = parentState.value.copy(preExistingRegistrationData = createPreExistingRegistrationData(e164 = "+15557654321"))
+
+    val sessionMetadata = createSessionMetadata(verified = true)
+    val initialState = VerificationCodeState(
+      sessionMetadata = sessionMetadata,
+      e164 = "+15551234567"
+    )
+
+    coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
+      RequestResult.Success(RegisteredAccountData(createRegisterAccountResponse(reregistration = true), mockk<KeyMaterial>(relaxed = true), testAci))
+
+    viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
+
+    coVerify {
+      mockRepository.registerAccountWithSession(
+        e164 = "+15551234567",
+        sessionId = sessionMetadata.id,
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = null
+      )
+    }
   }
 
   @Test
@@ -570,7 +628,7 @@ class VerificationCodeViewModelTest {
       RequestResult.NonSuccess(
         SubmitVerificationCodeError.SessionAlreadyVerifiedOrNoCodeRequested(verifiedSession)
       )
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     viewModel.applyEvent(initialState, VerificationCodeScreenEvents.CodeEntered("123456"), stateEmitter)
@@ -678,7 +736,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.DeviceTransferPossible
       )
@@ -700,7 +758,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.RateLimited(30.seconds)
       )
@@ -725,7 +783,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.InvalidRequest("Bad request")
       )
@@ -750,7 +808,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.RegistrationRecoveryPasswordIncorrect("Wrong password")
       )
@@ -775,7 +833,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.RetryableNetworkError(java.io.IOException("Network error"))
 
     viewModel.applyEvent(
@@ -798,7 +856,7 @@ class VerificationCodeViewModelTest {
 
     coEvery { mockRepository.submitVerificationCode(any(), any()) } returns
       RequestResult.Success(sessionMetadata)
-    coEvery { mockRepository.registerAccountWithSession(any(), any(), any()) } returns
+    coEvery { mockRepository.registerAccountWithSession(any(), any(), any(), any(), any()) } returns
       RequestResult.ApplicationError(RuntimeException("Unexpected"))
 
     viewModel.applyEvent(
@@ -1279,6 +1337,18 @@ class VerificationCodeViewModelTest {
     storageCapable = storageCapable,
     entitlements = null,
     reregistration = reregistration
+  )
+
+  private fun createPreExistingRegistrationData(e164: String) = PreExistingRegistrationData(
+    e164 = e164,
+    aci = testAci,
+    pni = PNI.from(UUID.randomUUID()),
+    servicePassword = "service-password",
+    aep = AccountEntropyPool.generate(),
+    registrationLockEnabled = false,
+    unrestrictedUnidentifiedAccess = false,
+    aciIdentityKeyPair = IdentityKeyPair.generate(),
+    pniIdentityKeyPair = IdentityKeyPair.generate()
   )
 
   private fun givenIncorrectCodeSubmission(): SessionMetadata {

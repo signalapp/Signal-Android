@@ -321,8 +321,15 @@ class VerificationCodeViewModel(
 
     parentEventEmitter(RegistrationFlowEvent.VerificationCodeAccepted(code))
 
-    // Attempt to register
-    val registerResult = repository.registerAccountWithSession(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
+    // If this install was already registered with this number, its key material has to carry forward
+    val preExistingRegistrationData = parentState.value.preExistingRegistrationData?.takeIf { it.e164 == state.e164 }
+
+    val registerResult = repository.registerAccountWithSession(
+      e164 = state.e164,
+      sessionId = sessionMetadata.id,
+      skipDeviceTransfer = true,
+      preExistingRegistrationData = preExistingRegistrationData
+    )
 
     return when (registerResult) {
       is RequestResult.Success -> {

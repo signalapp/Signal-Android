@@ -371,6 +371,71 @@ class AppRegistrationStorageControllerTest {
   }
 
   @Test
+  fun `commit - aep differs from the account's existing aep - discards key-bound backup state and requires an svrb restore`() = runBlocking<Unit> {
+    SignalStore.account.setAci(aci)
+    SignalStore.account.setRegistered(true)
+    SignalStore.account.restoreAccountEntropyPool(AccountEntropyPool.generate())
+    SignalStore.backup.nextBackupSecretData = byteArrayOf(1, 2, 3)
+    SignalStore.backup.messageBackupInitialized = true
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
+    assertThat(SignalStore.backup.nextBackupSecretData).isNull()
+    assertThat(SignalStore.backup.messageBackupInitialized).isFalse()
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isTrue()
+  }
+
+  @Test
+  fun `commit - same aep as the account's existing aep - keeps the local svrb chain`() = runBlocking<Unit> {
+    val chain = byteArrayOf(1, 2, 3)
+    SignalStore.account.setAci(aci)
+    SignalStore.account.setRegistered(true)
+    SignalStore.account.restoreAccountEntropyPool(aep)
+    SignalStore.backup.nextBackupSecretData = chain
+    SignalStore.backup.messageBackupInitialized = true
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = true),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.backup.nextBackupSecretData).isNotNull().isEqualTo(chain)
+    assertThat(SignalStore.backup.messageBackupInitialized).isTrue()
+  }
+
+  @Test
+  fun `commit - aep differs but this install never had an account - leaves backup state alone`() = runBlocking<Unit> {
+    // A fresh install may lazily generate a throwaway AEP before registering. Replacing it is not a key change for any account.
+    SignalStore.account.restoreAccountEntropyPool(AccountEntropyPool.generate())
+    SignalStore.backup.messageBackupInitialized = true
+
+    seedInProgressData(
+      RegistrationData(
+        accountData = accountData(reRegistration = false),
+        accountEntropyPool = aep.value
+      )
+    )
+
+    controller.commitRegistrationData()
+
+    assertThat(SignalStore.account.accountEntropyPool.value).isEqualTo(aep.value)
+    assertThat(SignalStore.backup.messageBackupInitialized).isTrue()
+    assertThat(SignalStore.backup.backupSecretRestoreRequired).isFalse()
+  }
+
+  @Test
   fun `commit - new account - does not require svrb secret restore`() = runBlocking<Unit> {
     seedInProgressData(
       RegistrationData(

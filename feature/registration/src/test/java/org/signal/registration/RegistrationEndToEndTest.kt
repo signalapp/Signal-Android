@@ -44,6 +44,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import okio.ByteString.Companion.toByteString
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -814,6 +815,52 @@ class RegistrationEndToEndTest {
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
     assert(committed.pin == PIN) { "Expected committed pin $PIN but was ${committed.pin}" }
+    assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
+  }
+
+  @Test
+  fun `re-registering the same number through sms verification keeps the pre-existing key material`() {
+    // The device's data belongs to this very number, but the server rejects the recovery password (another device may have registered in
+    // between, or the stored one may have lapsed), so the flow falls back to SMS verification. That fallback must not mint a new AEP: the
+    // account's backup-id and SVRB chain are both bound to the one this device already has.
+    val preExisting = preExistingRegistrationData(E164)
+    storageController.preExistingRegistrationData = preExisting
+
+    networkController.onRegisterAccount = { request ->
+      if (request.recoveryPassword != null) {
+        RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect("recovery password could not be verified"))
+      } else {
+        RequestResult.Success(networkController.registerAccountResponse(request.e164, reregistration = true))
+      }
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    // Continue to phone entry, where the previous number is prefilled, and confirm it
+    waitForTag(TestTags.WELCOME_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.WELCOME_GET_STARTED_BUTTON).performClick()
+    waitForTag(TestTags.PHONE_NUMBER_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.PHONE_NUMBER_NEXT_BUTTON).performClick()
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    // The recovery password is rejected, so the number is verified over SMS instead
+    submitVerificationCode(VERIFICATION_CODE)
+
+    // The pre-existing data suppresses the restore prompt, so the user goes straight to PIN creation
+    createPin(PIN)
+
+    waitFor("registration to complete") { registrationComplete }
+
+    val finalRequest = networkController.lastRegisterAccountRequest
+    assert(finalRequest?.sessionId != null) { "Expected the final registration to go through a verified session but was $finalRequest" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountEntropyPool == preExisting.aep.value) { "Expected the committed AEP to be the pre-existing one, not a freshly generated one" }
+    assert(committed.accountData?.aciIdentityKeyPair == preExisting.aciIdentityKeyPair.serialize().toByteString()) { "Expected the committed ACI identity key to be the pre-existing one" }
+    assert(committed.accountData?.pniIdentityKeyPair == preExisting.pniIdentityKeyPair.serialize().toByteString()) { "Expected the committed PNI identity key to be the pre-existing one" }
     assert(committed.accountData?.reRegistration == true) { "Expected the committed account data to be flagged as a re-registration" }
   }
 

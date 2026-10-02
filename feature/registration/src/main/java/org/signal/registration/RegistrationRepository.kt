@@ -403,15 +403,29 @@ class RegistrationRepository(
    * @param sessionId The verified session ID from phone number verification
    * @param registrationLock The registration lock token derived from the master key (if unlocking a reglocked account)
    * @param skipDeviceTransfer Whether to skip device transfer flow
+   * @param preExistingRegistrationData The key material from this install's previous registration of the same number. When present, that AEP and
+   *   those identity keys are re-used rather than generating new ones. Note that this is a rare occurrence -- re-registers *should* be able to
+   *   register with a RRP (see [registerAccountWithRecoveryPassword]), but it's not a guaranteed thing. RRP's can theoretically fall out of sync.
    * @return The registration result containing account information or an error
    */
   suspend fun registerAccountWithSession(
     e164: String,
     sessionId: String,
     registrationLock: String? = null,
-    skipDeviceTransfer: Boolean = true
+    skipDeviceTransfer: Boolean = true,
+    preExistingRegistrationData: PreExistingRegistrationData? = null
   ): RequestResult<RegisteredAccountData, RegisterAccountError> = withContext(Dispatchers.IO) {
-    registerAccount(e164, sessionId, recoveryPassword = null, registrationLock = registrationLock, skipDeviceTransfer = skipDeviceTransfer)
+    registerAccount(
+      e164 = e164,
+      sessionId = sessionId,
+      recoveryPassword = null,
+      registrationLock = registrationLock,
+      skipDeviceTransfer = skipDeviceTransfer,
+      existingAccountEntropyPool = preExistingRegistrationData?.aep,
+      existingAciIdentityKeyPair = preExistingRegistrationData?.aciIdentityKeyPair,
+      existingPniIdentityKeyPair = preExistingRegistrationData?.pniIdentityKeyPair,
+      unrestrictedUnidentifiedAccess = preExistingRegistrationData?.unrestrictedUnidentifiedAccess ?: false
+    )
   }
 
   /**
