@@ -250,11 +250,6 @@ class MainNavigationViewModel(
   }
 
   private fun pushChatsDetailLocation(location: MainDetailRoute) {
-    val chatsBackStack = navigator[MainListRoute.Chats]
-    if (location is MainDetailRoute.Chats && chatsBackStack.activeRecipientId != location.controllerKey) {
-      chatsBackStack.exitDetail()
-    }
-
     navigator.processEvent(ListDetailEvents.Push(location, MainListRoute.Chats))
   }
 

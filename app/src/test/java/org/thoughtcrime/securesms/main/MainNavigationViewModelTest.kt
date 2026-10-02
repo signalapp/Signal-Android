@@ -119,6 +119,26 @@ class MainNavigationViewModelTest {
   }
 
   @Test
+  fun `given settings are open, when opening another recipient's settings, then they stack on the same detail`() {
+    val memberSettings = MainDetailRoute.Chats.ConversationSettings(RecipientId.from(3))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(memberSettings))
+
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings, memberSettings), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(RecipientId.from(1), viewModel.navigator[MainListRoute.Chats].activeRecipientId)
+  }
+
+  @Test
+  fun `given another recipient's settings are stacked, when popping, then the original settings are displayed`() {
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversationSettings))
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Chats.ConversationSettings(RecipientId.from(3))))
+
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.Back))
+
+    assertEquals(listOf(MainListRoute.Chats, conversationSettings), viewModel.navigator[MainListRoute.Chats])
+  }
+
+  @Test
   fun `given a stack at its root, when popping, then nothing is dropped`() {
     viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.Back))
 
