@@ -30,23 +30,25 @@ class ShareRepository(context: Context) {
 
   @NonNull
   @WorkerThread
-  @Throws(IOException::class)
   private fun resolve(multiShareExternal: UnresolvedShareData.ExternalSingleShare): ResolvedShareData {
     if (!multiShareExternal.isInternalShare && !UriUtil.isValidExternalUri(appContext, multiShareExternal.uri)) {
-      return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
 
     val uri = multiShareExternal.uri
     val size = getSize(appContext, uri)
     val name = getFileName(appContext, uri)
-    val mimeType = getMimeType(appContext, uri, multiShareExternal.mimeType, name?.substringAfterLast('.', ""))
+    val mimeType = getMimeType(appContext, uri, multiShareExternal.mimeType, name?.substringAfterLast('.', "")).mimeType
 
     val stream: InputStream = try {
       appContext.contentResolver.openInputStream(uri)
     } catch (e: SecurityException) {
-      Log.w(TAG, "Failed to read stream!", e)
-      null
-    } ?: return ResolvedShareData.Failure
+      Log.w(TAG, "Failed to read stream: $uri", e)
+      return ResolvedShareData.Failure(ShareError.ACCESS_DENIED)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to read stream: $uri", e)
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
+    } ?: return ResolvedShareData.Failure(ShareError.UNKNOWN)
 
     val blobUri: Uri = try {
       AppDependencies.blobs
@@ -56,7 +58,7 @@ class ShareRepository(context: Context) {
         .createForSingleSessionOnDisk(appContext)
     } catch (e: IOException) {
       Log.e(TAG, "Failed to get blob uri")
-      return ResolvedShareData.Failure
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
 
     return ResolvedShareData.ExternalUri(
@@ -69,87 +71,134 @@ class ShareRepository(context: Context) {
   @NonNull
   @WorkerThread
   private fun resolve(externalMultiShare: UnresolvedShareData.ExternalMultiShare): ResolvedShareData {
-    val mimeTypes: Map<Uri, String> = externalMultiShare.uris
+    val mimeTypeResolutions: List<Pair<Uri, MimeTypeResolution>> = externalMultiShare.uris
       .filter { externalMultiShare.isInternalShare || UriUtil.isValidExternalUri(appContext, it) }
-      .associateWith { uri -> getMimeType(appContext, uri, null) }
-      .filterValues {
-        MediaUtil.isImageType(it) || MediaUtil.isVideoType(it)
-      }
+      .map { uri -> uri to getMimeType(appContext, uri, null) }
 
-    if (mimeTypes.isEmpty()) {
-      return ResolvedShareData.Failure
+    // If any URI's provider denied the metadata query, the share cannot be completed: fail loudly
+    // rather than silently dropping the user's selection.
+    if (mimeTypeResolutions.any { it.second.accessDenied }) {
+      return ResolvedShareData.Failure(ShareError.ACCESS_DENIED)
     }
 
-    val media: List<Media> = mimeTypes.toList()
+    val mimeTypes: Map<Uri, String> = mimeTypeResolutions
+      .filter {
+        MediaUtil.isImageType(it.second.mimeType) || MediaUtil.isVideoType(it.second.mimeType)
+      }
       .take(RemoteConfig.maxAttachmentCount)
-      .map { (uri, mimeType) ->
-        val stream: InputStream = try {
-          appContext.contentResolver.openInputStream(uri)
-        } catch (e: IOException) {
-          Log.w(TAG, "Failed to open: $uri")
-          null
-        } ?: return@map null
+      .associate { it.first to it.second.mimeType }
 
-        val size = getSize(appContext, uri)
-        val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri)
-        val duration = 0L
-        val blobUri = try {
-          AppDependencies.blobs
-            .forData(stream, size)
-            .withMimeType(mimeType)
-            .createForSingleSessionOnDisk(appContext)
-        } catch (e: IOException) {
-          Log.w(TAG, "Failed create blob uri")
-          return@map null
-        }
+    if (mimeTypes.isEmpty()) {
+      return ResolvedShareData.Failure(ShareError.UNKNOWN)
+    }
 
-        Media(
-          uri = blobUri,
-          contentType = mimeType,
-          date = System.currentTimeMillis(),
-          width = dimens.first,
-          height = dimens.second,
-          size = size,
-          duration = duration,
-          isBorderless = false,
-          isVideoGif = false,
-          bucketId = Media.ALL_MEDIA_BUCKET_ID,
-          caption = null,
-          transformProperties = null,
-          fileName = null
-        )
-      }.filterNotNull()
+    val mediaResults: List<MediaResult> = mimeTypes.toList()
+      .map { (uri, mimeType) -> resolveMedia(uri, mimeType) }
+
+    // Same as above: if URI access was denied for any item, fail the whole share so the user
+    // learns why instead of silently sharing a subset of their selection.
+    if (mediaResults.any { it is MediaResult.AccessDenied }) {
+      return ResolvedShareData.Failure(ShareError.ACCESS_DENIED)
+    }
+
+    val media: List<Media> = mediaResults.filterIsInstance<MediaResult.Success>().map { it.media }
 
     return if (media.isNotEmpty()) {
       ResolvedShareData.Media(media, externalMultiShare.text)
     } else {
-      ResolvedShareData.Failure
+      ResolvedShareData.Failure(ShareError.UNKNOWN)
     }
+  }
+
+  @WorkerThread
+  private fun resolveMedia(uri: Uri, mimeType: String): MediaResult {
+    val stream: InputStream = try {
+      appContext.contentResolver.openInputStream(uri)
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Failed to open: $uri", e)
+      return MediaResult.AccessDenied
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to open: $uri", e)
+      return MediaResult.Unavailable
+    } ?: return MediaResult.Unavailable
+
+    val size = getSize(appContext, uri)
+    val dimens: Pair<Int, Int> = MediaUtil.getDimensions(appContext, mimeType, uri)
+    val duration = 0L
+    val blobUri = try {
+      AppDependencies.blobs
+        .forData(stream, size)
+        .withMimeType(mimeType)
+        .createForSingleSessionOnDisk(appContext)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed create blob uri")
+      return MediaResult.Unavailable
+    }
+
+    return MediaResult.Success(
+      Media(
+        uri = blobUri,
+        contentType = mimeType,
+        date = System.currentTimeMillis(),
+        width = dimens.first,
+        height = dimens.second,
+        size = size,
+        duration = duration,
+        isBorderless = false,
+        isVideoGif = false,
+        bucketId = Media.ALL_MEDIA_BUCKET_ID,
+        caption = null,
+        transformProperties = null,
+        fileName = null
+      )
+    )
   }
 
   companion object {
     private val TAG = Log.tag(ShareRepository::class.java)
 
-    private fun getMimeType(context: Context, uri: Uri, mimeType: String?, fileExtension: String? = null): String {
-      var updatedMimeType = MediaUtil.getMimeType(context, uri, fileExtension)
+    /**
+     * Result of a mime type lookup. [accessDenied] is set when the provider rejected the query
+     * with a [SecurityException], which indicates the sending app did not grant URI access.
+     */
+    private data class MimeTypeResolution(val mimeType: String, val accessDenied: Boolean)
+
+    private fun getMimeType(context: Context, uri: Uri, mimeType: String?, fileExtension: String? = null): MimeTypeResolution {
+      var updatedMimeType: String? = null
+      var accessDenied = false
+      try {
+        updatedMimeType = MediaUtil.getMimeType(context, uri, fileExtension)
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query mime type: $uri", e)
+        accessDenied = true
+      }
       if (updatedMimeType == null) {
         updatedMimeType = MediaUtil.getCorrectedMimeType(mimeType)
       }
-      return updatedMimeType ?: MediaUtil.UNKNOWN
+      return MimeTypeResolution(updatedMimeType ?: MediaUtil.UNKNOWN, accessDenied)
     }
 
-    @Throws(IOException::class)
     private fun getSize(context: Context, uri: Uri): Long {
       var size: Long = 0
 
-      context.contentResolver.query(uri, null, null, null, null).use { cursor ->
-        if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
-          size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
+      try {
+        context.contentResolver.query(uri, null, null, null, null).use { cursor ->
+          if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.SIZE) >= 0) {
+            size = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
+          }
         }
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query size: $uri", e)
+        return 0
       }
 
       if (size <= 0) {
-        size = MediaUtil.getMediaSize(context, uri)
+        try {
+          size = MediaUtil.getMediaSize(context, uri)
+        } catch (e: IOException) {
+          Log.w(TAG, "Failed to read media size: $uri", e)
+          return 0
+        }
       }
 
       return size
@@ -160,12 +209,26 @@ class ShareRepository(context: Context) {
         return uri.lastPathSegment
       }
 
-      context.contentResolver.query(uri, null, null, null, null).use { cursor ->
-        if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
-          return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+      try {
+        context.contentResolver.query(uri, null, null, null, null).use { cursor ->
+          if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
+            return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
+          }
         }
+      } catch (e: SecurityException) {
+        Log.w(TAG, "Failed to query file name: $uri", e)
       }
+
       return null
     }
+  }
+
+  /**
+   * Outcome of resolving a single URI into a shareable [Media] within a multi-share.
+   */
+  private sealed class MediaResult {
+    data class Success(val media: Media) : MediaResult()
+    object AccessDenied : MediaResult()
+    object Unavailable : MediaResult()
   }
 }

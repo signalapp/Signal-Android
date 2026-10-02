@@ -36,7 +36,7 @@ sealed class ResolvedShareData {
     }
   }
 
-  object Failure : ResolvedShareData() {
+  data class Failure(val error: ShareError) : ResolvedShareData() {
     override fun toMultiShareArgs(): MultiShareArgs = throw UnsupportedOperationException()
   }
 }
