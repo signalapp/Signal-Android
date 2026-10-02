@@ -31,7 +31,7 @@ sealed interface MediaKeyboardAction {
    */
   data class StickerSelected(val sticker: KeyboardSticker) : MediaKeyboardAction
 
-  /** @param sticker The sticker to send right away, picked from its long press menu. */
+  /** @param sticker The sticker to send right away, from a double tap or its long press menu. */
   data class StickerSendClicked(val sticker: KeyboardSticker) : MediaKeyboardAction
 
   /** @param gif The gif to send. */

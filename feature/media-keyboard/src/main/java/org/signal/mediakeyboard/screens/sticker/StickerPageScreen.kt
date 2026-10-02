@@ -408,6 +408,9 @@ private fun StickerCell(
         onClick = {
           onEvent(StickerPageScreenEvents.StickerClicked(sticker))
         },
+        onDoubleClick = {
+          onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
+        },
         onLongClick = {
           controller.show()
         }
