@@ -30,9 +30,9 @@ class ChatStickerConfirmationController(
   val isShowing: Boolean
     get() = confirmation != null
 
-  /** @param replyTo Who the sticker will reply to, or null when it is not a reply. */
-  fun show(sticker: KeyboardSticker, replyTo: String?) {
-    update(StickerConfirmation(sticker, replyTo))
+  /** @param replyHeader Header text saying who the sticker will reply to, or null when it is not a reply. */
+  fun show(sticker: KeyboardSticker, replyHeader: String?) {
+    update(StickerConfirmation(sticker, replyHeader))
   }
 
   fun dismiss() {
@@ -64,5 +64,5 @@ class ChatStickerConfirmationController(
 
 data class StickerConfirmation(
   val sticker: KeyboardSticker,
-  val replyTo: String?
+  val replyHeader: String?
 )

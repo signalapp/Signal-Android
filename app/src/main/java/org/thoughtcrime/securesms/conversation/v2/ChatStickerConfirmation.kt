@@ -141,9 +141,9 @@ private fun StickerConfirmationPanel(
         )
       }
 
-      if (confirmation.replyTo != null) {
+      if (confirmation.replyHeader != null) {
         ReplyHeader(
-          replyTo = confirmation.replyTo,
+          replyHeader = confirmation.replyHeader,
           modifier = Modifier
             .align(Alignment.Center)
             .padding(horizontal = ButtonSize + 8.dp)
@@ -179,7 +179,7 @@ private fun StickerConfirmationPanel(
 
 @Composable
 private fun ReplyHeader(
-  replyTo: String,
+  replyHeader: String,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -195,7 +195,7 @@ private fun ReplyHeader(
     )
 
     Text(
-      text = stringResource(R.string.ChatStickerConfirmation__reply_to_s, replyTo),
+      text = replyHeader,
       style = MaterialTheme.typography.titleSmall,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       maxLines = 1,
@@ -209,7 +209,7 @@ private fun ReplyHeader(
 @Composable
 private fun StickerConfirmationPanelPreview() {
   StickerConfirmationPanel(
-    confirmation = StickerConfirmation(sticker = previewSticker, replyTo = null),
+    confirmation = StickerConfirmation(sticker = previewSticker, replyHeader = null),
     sendColor = Color(0xFF315FF4),
     onBack = {},
     onSend = {},
@@ -222,7 +222,7 @@ private fun StickerConfirmationPanelPreview() {
 @Composable
 private fun StickerConfirmationPanelReplyPreview() {
   StickerConfirmationPanel(
-    confirmation = StickerConfirmation(sticker = previewSticker, replyTo = "Maya Johnson"),
+    confirmation = StickerConfirmation(sticker = previewSticker, replyHeader = "Reply to Maya Johnson"),
     sendColor = Color(0xFF315FF4),
     onBack = {},
     onSend = {},

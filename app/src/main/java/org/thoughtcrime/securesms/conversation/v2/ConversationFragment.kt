@@ -756,8 +756,8 @@ class ConversationFragment :
     }
   }
 
-  /** Who a sticker sent now would reply to, matching whether [sendSticker] will attach the quote. */
-  private suspend fun stickerReplyToName(): String? {
+  /** Header describing who a sticker sent now would reply to, matching whether [sendSticker] will attach the quote. */
+  private suspend fun stickerReplyHeader(): String? {
     if (!SignalStore.labs.stickerReplies) {
       return null
     }
@@ -780,7 +780,7 @@ class ConversationFragment :
 
       is MediaKeyboardAction.StickerSelected -> {
         viewLifecycleOwner.lifecycleScope.launch {
-          stickerConfirmation.show(action.sticker, stickerReplyToName())
+          stickerConfirmation.show(action.sticker, stickerReplyHeader())
         }
       }
 
