@@ -486,10 +486,6 @@ class ConversationFragment :
     MessageRequestRepository(requireContext())
   }
 
-  private val checkoutLauncher by lazy {
-    registerForActivityResult(CheckoutFlowActivity.Contract()) {}
-  }
-
   private val disposables = LifecycleDisposable()
   private val backgroundBinding by ViewBinderDelegate(bindingFactory = { V2ConversationBackgroundBinding.bind(conversationBackground) })
   private val binding by ViewBinderDelegate(bindingFactory = { V2ConversationFragmentBinding.bind(conversationContent) }, onBindingWillBeDestroyed = { _binding ->
@@ -4320,8 +4316,8 @@ class ConversationFragment :
 
     override fun onCallToAction(action: String) {
       when (action) {
-        "gift_badge" -> checkoutLauncher.launch(InAppPaymentType.ONE_TIME_GIFT)
-        "donate" -> checkoutLauncher.launch(InAppPaymentType.ONE_TIME_DONATION)
+        "gift_badge" -> startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_GIFT))
+        "donate" -> startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_DONATION))
         "username_edit" -> startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
         "calls_tab" -> startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainListRoute.Calls))
         "chat_folder" -> startActivity(AppSettingsActivity.chatFolders(requireContext()))
