@@ -513,7 +513,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">%1$s க்கு பதிலளிக்கவும்</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">உங்களுக்கே பதிலளிக்கவும்</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">திரும்பிச் செல்லுங்கள்</string>
 
@@ -2245,11 +2245,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">இப்போது இல்லை</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">உங்கள் திரை ஆஃப் செய்யப்படும்போது மற்றவர்களால் நீங்கள் பேசுவதைக் கேட்க முடியாமல் போகலாம், மேலும் அழைப்பு துண்டிக்கப்படலாம். இதைச் சரிசெய்ய, அமைப்புகள் என்பதைத் தட்டி, பேட்டரி அமைப்புகளில் பின்னணிச் செயல்பாட்டை செயல்படுத்தவும்.</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">மற்றவர்களால் நீங்கள் பேசுவதைக் கேட்க முடியவில்லை</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Signal பின்னணியில் இயங்கிக் கொண்டிருந்தபோது உங்கள் மைக்ரோஃபோன் ஒலியடக்கப்பட்டது. இதைச் சரிசெய்ய, அமைப்புகள் என்பதைத் தட்டி, பேட்டரி அமைப்புகளில் பின்னணிச் செயல்பாட்டை செயல்படுத்தவும்.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d கோரிக்கையை ஏற்பதா?</item>

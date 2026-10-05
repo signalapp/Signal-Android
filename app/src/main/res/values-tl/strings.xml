@@ -513,7 +513,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">Mag-reply kay %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">Mag-reply sa sarili mo</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Bumalik</string>
 
@@ -2245,11 +2245,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Hindi sa ngayon</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Maaaring hindi ka marinig ng iba at ma-disconnect ang call kapag nag-off ang screen mo. Para ayusin ito, i-tap ang Settings at i-enable ang background activity sa \"Battery\" settings.</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Hindi ka naririnig ng iba</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Naka-mute ang microphone mo habang nasa background ang Signal. Para ayusin ito, i-tap ang Settings at i-enable ang background activity sa \"Battery\" settings.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Gusto mo bang aprubahan ang %1$d request?</item>
@@ -2778,7 +2778,7 @@
     <!-- Bottom sheet describing a sticker. First placeholder is the title of the sticker pack and second is the author -->
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
-    <string name="StickerPreviewBottomSheet__view_pack">Tignan ang Pack</string>
+    <string name="StickerPreviewBottomSheet__view_pack">Tignan ang pack</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">I-save</string>
@@ -4351,7 +4351,7 @@
     <!-- Button to unpin a message -->
     <string name="conversation_selection__menu_unpin_message">I-unpin</string>
     <!-- Button to open the sticker pack a sticker message came from -->
-    <string name="conversation_selection__menu_view_sticker_pack">Tignan ang Pack</string>
+    <string name="conversation_selection__menu_view_sticker_pack">Tignan ang pack</string>
 
     <!-- conversation_expiring_on -->
 

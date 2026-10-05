@@ -513,7 +513,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">Répondre à %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">Réponse à votre propre message</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Retour</string>
 
@@ -2245,11 +2245,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Plus tard</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Si votre écran s\'éteint, vos interlocuteurs risquent de ne plus vous entendre et l\'appel risque de couper. Appuyez sur Paramètres &gt; Batterie et autorisez l\'activité en arrière-plan pour éviter ce problème.</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Vos interlocuteurs ne vous entendaient pas</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Signal s\'exécutait en arrière-plan, ce qui a désactivé votre micro. Appuyez sur Paramètres &gt; Batterie et autorisez l\'activité en arrière-plan pour éviter ce problème.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Accepter %1$d demande ?</item>
@@ -3360,7 +3360,7 @@
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
     <string name="ContactSelectionListFragment__no_thanks">Non merci</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'y a pas accès.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'en a jamais connaissance.</string>
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Message Signal</string>
@@ -9107,7 +9107,7 @@
     <!-- Title of the prompt asking for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__find_people_you_know_on_signal">Rechercher des personnes que vous connaissez sur Signal</string>
     <!-- Explanation shown when Signal does not have permission to read the user\'s phone contacts -->
-    <string name="SelectContactScreen__allow_access_to_your_contacts">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'y a pas accès.</string>
+    <string name="SelectContactScreen__allow_access_to_your_contacts">Autorisez l\'accès à vos contacts. La liste de vos contacts est chiffrée et le service Signal n\'en a jamais connaissance.</string>
     <!-- Button that asks the system for permission to read the user\'s phone contacts -->
     <string name="SelectContactScreen__allow_access">Accorder l\'accès</string>
     <!-- Button that dismisses the request for permission to read the user\'s phone contacts -->
