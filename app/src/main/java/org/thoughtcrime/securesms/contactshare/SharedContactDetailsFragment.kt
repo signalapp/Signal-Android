@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.util.R as CoreUtilsR
 
 /**
  * Shows what a sender chose to share on a received contact card.
@@ -171,7 +172,7 @@ class SharedContactDetailsFragment : ComposeFragment() {
     }
   }
 
-  private fun inviteText(): String = getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url))
+  private fun inviteText(): String = getString(CoreUtilsR.string.Invite__lets_switch_to_signal, getString(CoreUtilsR.string.install_url))
 
   private fun toast(message: Int) = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 }

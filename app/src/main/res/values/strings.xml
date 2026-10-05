@@ -9,7 +9,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Signal</string>
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
     <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string>
@@ -442,7 +441,6 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">This device does not appear to support dial actions.</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Send message</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Let\'s switch to Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Please choose a contact</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
@@ -1560,15 +1558,6 @@
     <string name="InputPanel__this_action_cant_be_undone">This action can\'t be undone.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Discard</string>
-
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">Share</string>
-
-    <string name="InviteActivity_cancel">Cancel</string>
-    <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Learn more</string>
@@ -3026,6 +3015,7 @@
     <string name="MediaPreviewFragment_media_delete_error">Error Deleting Message, Message May Still Exist</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3494,6 +3484,10 @@
     <string name="BubbleOptOutTooltip__not_now">Not now</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">Turn off</string>
+
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>

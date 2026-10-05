@@ -577,7 +577,7 @@
 
     <dialog
         android:id="@+id/chatFoldersEducationSheet"
-        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet"/>
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet" />
 
     <fragment
         android:id="@+id/createFoldersFragment"
@@ -729,7 +729,7 @@
 
     <fragment
         android:id="@+id/inviteFragment"
-        android:name="org.thoughtcrime.securesms.InviteFragment"
+        android:name="org.thoughtcrime.securesms.invites.InviteFragment"
         android:label="invite_fragment" />
 
     <!-- region Direct-To-Page actions -->

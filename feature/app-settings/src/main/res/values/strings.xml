@@ -256,6 +256,16 @@
     <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
     <string name="DeleteAccountScreen__yes_delete_my_account">Yes, delete my account</string>
 
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Share</string>
+    <!-- Title of the system share sheet shown when sharing an invite -->
+    <string name="InviteScreen__invite_to_signal">Invite to Signal</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
+    <string name="InviteScreen__no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_phone_number_description">Phone number</string>

@@ -427,6 +427,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import androidx.compose.ui.graphics.Color as ComposeColor
 import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
+import org.signal.core.util.R as CoreUtilsR
 
 /**
  * A single unified fragment for Conversations.
@@ -4063,7 +4064,7 @@ class ConversationFragment :
     /** A number gets an SMS, an email only card gets an email, since those are the only two ways to reach them. */
     override fun onInviteSharedContactClicked(contact: Contact) {
       val context = context ?: return
-      val inviteText = getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url))
+      val inviteText = getString(CoreUtilsR.string.Invite__lets_switch_to_signal, getString(CoreUtilsR.string.install_url))
       val numbers = contact.phoneNumbers.map { it.number }
       val email = contact.emails.firstOrNull()?.email
 
