@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import android.content.Context
 import org.signal.core.models.storageservice.StorageKey
+import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
@@ -140,10 +141,10 @@ import kotlin.time.Duration.Companion.milliseconds
 class StorageSyncJob private constructor(parameters: Parameters, private var localManifestOutOfDate: Boolean) : BaseJob(parameters) {
 
   companion object {
+    private val TAG = Log.tag(StorageSyncJob::class.java)
+
     const val KEY: String = "StorageSyncJobV2"
     const val QUEUE_KEY: String = "StorageSyncingJobs"
-
-    private val TAG = Log.tag(StorageSyncJob::class.java)
 
     @JvmStatic
     fun forLocalChange(): StorageSyncJob {
@@ -209,6 +210,20 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       Log.w(TAG, "Have not restored AEP from primary, skipping.")
       return
     }
+
+    if (!AppForegroundObserver.isForegrounded() && parameters.globalPriority < Parameters.PRIORITY_HIGH) {
+      val timeSinceLastBackgroundSync = System.currentTimeMillis() - SignalStore.storageService.lastBackgroundSyncTime
+
+      if (timeSinceLastBackgroundSync > 0 && timeSinceLastBackgroundSync < RemoteConfig.storageServiceBackgroundSyncInterval.inWholeMilliseconds) {
+        Log.w(TAG, "We had a background sync ${timeSinceLastBackgroundSync.milliseconds} ago. Skipping, but marking that we need a sync next time we foreground.")
+        SignalStore.storageService.needsSyncOnForeground = true
+        return
+      }
+
+      SignalStore.storageService.lastBackgroundSyncTime = System.currentTimeMillis()
+    }
+
+    SignalStore.storageService.needsSyncOnForeground = false
 
     val (storageServiceKey, usingTempKey) = SignalStore.storageService.storageKeyForInitialDataRestore?.let {
       Log.i(TAG, "Using temporary storage key.")

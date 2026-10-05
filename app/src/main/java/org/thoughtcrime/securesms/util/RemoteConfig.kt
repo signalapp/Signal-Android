@@ -1577,5 +1577,15 @@ object RemoteConfig {
     defaultValue = 10,
     hotSwappable = true
   )
+
+  /**
+   * The minimum time between syncing storage service while the app is in the background.
+   */
+  val storageServiceBackgroundSyncInterval: Duration by remoteDuration(
+    key = "android.storageServiceBackgroundSyncIntervalSeconds",
+    defaultValue = 6.hours,
+    hotSwappable = true,
+    durationUnit = DurationUnit.SECONDS
+  )
   // endregion
 }

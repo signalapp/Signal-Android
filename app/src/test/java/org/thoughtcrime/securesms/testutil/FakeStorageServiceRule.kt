@@ -113,6 +113,8 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
   fun stubDefaults(store: MockSignalStoreRule) {
     var localManifest = SignalStorageManifest.EMPTY
     var syncLoopState = StorageSyncLoopState()
+    var lastBackgroundSyncTime = 0L
+    var needsSyncOnForeground = false
     var notSyncedRotatedSelfProfileKey: ByteArray? = null
 
     every { store.storageService.manifest } answers { localManifest }
@@ -122,6 +124,11 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
 
     every { store.storageService.syncLoopState } answers { syncLoopState }
     every { store.storageService.syncLoopState = any() } answers { syncLoopState = firstArg() }
+
+    every { store.storageService.lastBackgroundSyncTime } answers { lastBackgroundSyncTime }
+    every { store.storageService.lastBackgroundSyncTime = any() } answers { lastBackgroundSyncTime = firstArg() }
+    every { store.storageService.needsSyncOnForeground } answers { needsSyncOnForeground }
+    every { store.storageService.needsSyncOnForeground = any() } answers { needsSyncOnForeground = firstArg() }
 
     every { store.svr.hasPin() } returns true
     every { store.svr.hasOptedOut() } returns false
