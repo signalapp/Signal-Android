@@ -21,6 +21,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.signal.core.ui.view.Stub
+import org.signal.core.ui.viewModel
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.getParcelableCompat
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
 
 class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_add_message_dialog_fragment) {

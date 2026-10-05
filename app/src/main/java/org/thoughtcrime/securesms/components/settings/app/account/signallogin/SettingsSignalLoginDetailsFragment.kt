@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.signal.core.util.Result
 import org.signal.core.util.Util
 import org.signal.passwordmanager.SignalCredentialManager
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.KeyLimitExceededDial
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.signallogin.R as SignalLoginR
 
 /**
@@ -117,15 +117,18 @@ class SettingsSignalLoginDetailsFragment : ComposeFragment() {
           )
         }
       }
+
       SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
         Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
       }
+
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
       SignalLoginViewDetailsAction.LaunchRecoveryKeyReset -> {
         findNavController().safeNavigate(
           SettingsSignalLoginDetailsFragmentDirections.actionSettingsSignalLoginDetailsFragmentToBackupKeyDisplayFragment().setStartWithKeyRotation(true)
         )
       }
+
       is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }
   }

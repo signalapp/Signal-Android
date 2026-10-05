@@ -74,6 +74,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.viewModel
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.glide.compose.GlideImage
@@ -95,7 +96,6 @@ import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.UserPrompt
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 import kotlin.jvm.optionals.getOrElse
 
@@ -148,10 +148,12 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
       StickerPackPreviewAction.LinkCopied -> {
         Toast.makeText(this, R.string.StickerManagement_copied, Toast.LENGTH_SHORT).show()
       }
+
       StickerPackPreviewAction.PackUnavailable -> {
         Toast.makeText(this, R.string.StickerPackPreviewActivity_failed_to_load_sticker_pack, Toast.LENGTH_SHORT).show()
         onBackPressedDispatcher.onBackPressed()
       }
+
       is StickerPackPreviewAction.SendSticker -> openStickerShareSheet(action.sticker)
     }
   }

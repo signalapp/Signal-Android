@@ -6,10 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordMode
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Fragment which displays the backup key to the user after users forget it.

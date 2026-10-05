@@ -24,8 +24,8 @@ import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.util.R as CoreUtilsR
 

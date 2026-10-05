@@ -34,6 +34,7 @@ import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.viewModel
 import org.signal.core.util.Result
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalDispatchers
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.signallogin.R as SignalLoginR
 
 /**
@@ -336,9 +336,11 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           )
         }
       }
+
       SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
         Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
       }
+
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
       is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }

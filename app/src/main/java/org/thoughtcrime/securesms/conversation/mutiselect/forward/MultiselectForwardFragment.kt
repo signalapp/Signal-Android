@@ -46,6 +46,7 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.LocalFragmentManager
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
@@ -80,7 +81,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 

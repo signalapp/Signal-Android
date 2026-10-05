@@ -18,6 +18,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.list.ReorderListEvent
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Activity implementation of [StickerManagementScreen].

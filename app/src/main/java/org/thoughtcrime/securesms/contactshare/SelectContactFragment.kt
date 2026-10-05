@@ -21,6 +21,7 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.paging.compose.collectAsLazyPagingItems
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.ContactIndexSource
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectConta
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactEvent
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactScreen
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactViewModel
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Lists the address book and Signal connections in one A-Z list.

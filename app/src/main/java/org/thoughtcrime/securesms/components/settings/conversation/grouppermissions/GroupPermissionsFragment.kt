@@ -5,7 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.chatsettings.screens.grouppermissions.GroupPermissionsScreen
 import org.signal.core.ui.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.viewModel
 
 /**
  * Fragment wrapping [GroupPermissionsScreen] to allow an admin to set which actions non-admins can take in a group.

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeFragment
-import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.viewModel
 
 /**
  * Fragment wrapping [CustomNotificationsSettingsScreen] to allow user to set custom notifications for a given recipient.

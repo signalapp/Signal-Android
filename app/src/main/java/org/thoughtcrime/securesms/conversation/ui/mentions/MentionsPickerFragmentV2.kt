@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.thoughtcrime.securesms.R
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationRecipientRepositor
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder
 
 /**

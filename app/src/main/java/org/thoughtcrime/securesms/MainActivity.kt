@@ -92,6 +92,7 @@ import org.signal.core.ui.compose.systemBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.ui.viewModel
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -178,7 +179,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
-import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import kotlin.time.Duration.Companion.minutes
 import org.signal.core.ui.R as CoreUiR

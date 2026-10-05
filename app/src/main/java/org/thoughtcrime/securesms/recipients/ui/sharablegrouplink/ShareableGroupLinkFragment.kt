@@ -5,8 +5,8 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.chatsettings.screens.sharablegrouplink.ShareableGroupLinkScreen
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Fragment wrapping [ShareableGroupLinkScreen] to let a group's members share its link and its admins manage it.

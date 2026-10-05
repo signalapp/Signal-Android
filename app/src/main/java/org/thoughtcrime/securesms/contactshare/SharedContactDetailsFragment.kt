@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireParcelableCompat
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.util.R as CoreUtilsR
 
 /**

@@ -16,8 +16,8 @@ import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryAction
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryScreen
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.appsettings.R as AppSettingsR
 
 /**
@@ -54,9 +54,11 @@ class TwoFactorNameEntryFragment : ComposeFragment() {
       TwoFactorNameEntryAction.NavigateBack -> {
         requireActivity().onBackPressedDispatcher.onBackPressed()
       }
+
       TwoFactorNameEntryAction.NavigateToAccountSettings -> {
         findNavController().popBackStack(R.id.accountSettingsFragment, false)
       }
+
       is TwoFactorNameEntryAction.ShowMethodSetUp -> {
         val stringId = when (action.kind) {
           TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.TwoFactorNameEntryScreen__authenticator_app_set_up
@@ -65,6 +67,7 @@ class TwoFactorNameEntryFragment : ComposeFragment() {
         }
         toast(stringId)
       }
+
       is TwoFactorNameEntryAction.ShowMethodRenamed -> {
         val stringId = when (action.kind) {
           TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.TwoFactorNameEntryScreen__authenticator_app_renamed
@@ -73,6 +76,7 @@ class TwoFactorNameEntryFragment : ComposeFragment() {
         }
         toast(stringId)
       }
+
       TwoFactorNameEntryAction.ShowNameNotSaved -> {
         toast(AppSettingsR.string.TwoFactorNameEntryScreen__couldnt_save_name)
       }

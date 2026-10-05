@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
+import org.signal.core.ui.viewModel
 import org.signal.core.util.dp
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
 
 /**

@@ -25,6 +25,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.passwordmanager.SignalCredentialManager
 import org.thoughtcrime.securesms.R
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.In
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * BottomSheet that encapsulates the common logic for updating someone to paid tier.

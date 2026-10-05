@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util
+package org.signal.core.ui
 
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels

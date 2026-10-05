@@ -21,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.donations.InAppPaymentType
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment), InAppPaymentCheckoutDelegate.ErrorHandlerCallback {
@@ -81,12 +81,14 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment), InAppPayment
                 FiatMoneyUtil.format(resources, inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
               )
             }
+
             InAppPaymentType.RECURRING_BACKUP -> {
               getString(
                 R.string.CreditCardFragment__pay_s_month,
                 FiatMoneyUtil.format(resources, inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
               )
             }
+
             else -> {
               getString(R.string.CreditCardFragment__donate_s, FiatMoneyUtil.format(resources, inAppPayment.data.amount!!.toFiatMoney()))
             }

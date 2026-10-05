@@ -23,6 +23,7 @@ import androidx.lifecycle.createSavedStateHandle
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.LocalChatColorProvider
+import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactScreen
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
-import org.thoughtcrime.securesms.util.viewModel
 
 /** Lets the sender pick which parts of a contact to share. */
 class ContactShareEditFragment : ComposeFragment() {

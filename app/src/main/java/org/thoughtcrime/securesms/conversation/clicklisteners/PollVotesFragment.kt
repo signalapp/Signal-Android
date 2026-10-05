@@ -50,6 +50,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.enableEdgeToEdge
+import org.signal.core.ui.viewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -59,7 +60,6 @@ import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Fragment that shows the results for a given poll.

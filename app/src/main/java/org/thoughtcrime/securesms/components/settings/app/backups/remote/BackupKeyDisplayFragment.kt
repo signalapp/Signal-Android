@@ -23,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.DownloadMediaDialog
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.KeyLimitExceededDialog
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRec
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyRecordScreen
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsKeyVerifyScreen
 import org.thoughtcrime.securesms.compose.Nav
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Fragment which only displays the backup key to the user.

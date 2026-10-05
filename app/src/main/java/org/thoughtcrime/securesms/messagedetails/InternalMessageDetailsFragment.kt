@@ -40,6 +40,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.viewModel
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.ViewState
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
-import org.thoughtcrime.securesms.util.viewModel
 
 class InternalMessageDetailsFragment : ComposeFullScreenDialogFragment() {
   companion object {

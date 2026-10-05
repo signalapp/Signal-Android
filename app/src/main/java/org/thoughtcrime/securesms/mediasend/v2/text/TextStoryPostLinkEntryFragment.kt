@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.Group
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.ui.activityViewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.visible
 

@@ -138,6 +138,7 @@ import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.view.Stub
+import org.signal.core.ui.viewModel
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.Debouncer
 import org.signal.core.util.DrawableUtil
@@ -409,7 +410,6 @@ import org.thoughtcrime.securesms.util.isValidReactionTarget
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.toMillis
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity

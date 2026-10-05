@@ -31,6 +31,7 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerManifest
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Bottom sheet for a single sticker with the option to send and view pack when applicable

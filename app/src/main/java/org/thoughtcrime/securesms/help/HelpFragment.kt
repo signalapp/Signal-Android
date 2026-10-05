@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.viewModel
 
 class HelpFragment : ComposeFragment() {
 
@@ -37,19 +37,24 @@ class HelpFragment : ComposeFragment() {
       state = state,
       onEvent = { event ->
         when (event) {
-          HelpScreenEvents.NavigationClick -> { requireActivity().onBackPressedDispatcher.onBackPressed() }
+          HelpScreenEvents.NavigationClick -> {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+          }
+
           HelpScreenEvents.FAQClick -> {
             CommunicationActions.openBrowserLink(
               requireContext(),
               getString(R.string.HelpFragment__link__faq)
             )
           }
+
           HelpScreenEvents.WhatIsDebugLogClick -> {
             CommunicationActions.openBrowserLink(
               requireContext(),
               getString(R.string.HelpFragment__link__debug_info)
             )
           }
+
           else -> viewModel.onEvent(event)
         }
       },

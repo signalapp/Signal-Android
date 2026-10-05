@@ -4,6 +4,7 @@ import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.ui.activityViewModel
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.donations.InAppPaymentType
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadin
 import org.thoughtcrime.securesms.components.settings.models.SplashImage
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.concurrent.TimeUnit
