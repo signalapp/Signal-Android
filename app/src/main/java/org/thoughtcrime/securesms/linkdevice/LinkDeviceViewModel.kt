@@ -429,7 +429,7 @@ class LinkDeviceViewModel : ViewModel() {
 
   private enum class Capability(val value: String) {
     LinkAndSync("backup5"),
-    Numberless("nopni")
+    Numberless("nopni2")
   }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {
