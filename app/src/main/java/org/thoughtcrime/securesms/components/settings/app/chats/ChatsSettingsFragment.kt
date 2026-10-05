@@ -154,6 +154,7 @@ private fun ChatsSettingsScreen(
     title = stringResource(R.string.preferences_chats__chats),
     onNavigationClick = callbacks::onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
     snackbarHost = {
       Snackbars.Host(snackbarHostState)
     }
