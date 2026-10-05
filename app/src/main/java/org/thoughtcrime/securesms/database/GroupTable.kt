@@ -539,6 +539,32 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
     return Reader(cursor)
   }
 
+  /**
+   * V2 groups that have not been terminated, ordered like the conversation list with inactive groups last.
+   */
+  @WorkerThread
+  fun getV2GroupsForRefresh(includeInactive: Boolean, limit: Int? = null): List<GroupRecord> {
+    val memberClause = if (includeInactive) "" else "AND $TABLE_NAME.$IS_MEMBER = 1"
+    val limitClause = if (limit != null) "LIMIT $limit" else ""
+
+    //language=sql
+    val query = """
+      ${joinedGroupSelect()}
+      LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+      WHERE $TABLE_NAME.$V2_MASTER_KEY IS NOT NULL AND $TABLE_NAME.$TERMINATED_BY = 0 $memberClause
+      ORDER BY
+        $TABLE_NAME.$IS_MEMBER DESC,
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.PINNED_ORDER} IS NULL,
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.PINNED_ORDER} ASC,
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
+      $limitClause
+    """
+
+    return readableDatabase
+      .rawQuery(query, null)
+      .readToList(predicate = { it.hasV2GroupProperties }) { cursor -> getGroup(cursor).get() }
+  }
+
   fun getActiveGroupCount(): Int {
     return readableDatabase
       .select("COUNT(*)")

@@ -65,7 +65,6 @@ import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil.getRecipientExtras
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -1168,7 +1167,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     if (remoteKey != localKey) {
       Log.i(TAG, "Our own profile key was changed during a storage sync.", Throwable())
-      runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+      ProfileUtil.handleSelfProfileKeyChange()
     }
 
     threads.applyStorageSyncUpdate(Recipient.self().id, update.new)
@@ -1849,7 +1848,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       if (id == Recipient.self().id) {
         Log.i(TAG, "Our own profile key was changed.", Throwable())
-        runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+        ProfileUtil.handleSelfProfileKeyChange()
       }
 
       return true

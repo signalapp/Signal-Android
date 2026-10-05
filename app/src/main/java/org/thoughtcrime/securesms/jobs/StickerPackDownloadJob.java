@@ -25,6 +25,7 @@ import org.signal.network.exceptions.PushNetworkException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class StickerPackDownloadJob extends BaseJob {
@@ -154,9 +155,14 @@ public class StickerPackDownloadJob extends BaseJob {
 
 
     if (!isReferencePack) {
-      List<Job> jobs = new ArrayList<>(stickers.size());
+      Set<Integer> downloadedStickerIds = stickerDatabase.getDownloadedStickerIds(packId);
+      List<Job>    jobs                 = new ArrayList<>(stickers.size());
 
       for (StickerInfo stickerInfo : stickers) {
+        if (downloadedStickerIds.contains(stickerInfo.getId())) {
+          continue;
+        }
+
         jobs.add(new StickerDownloadJob(new IncomingSticker(packId,
                                                             packKey,
                                                             manifest.getTitle().orElse(""),
@@ -169,7 +175,13 @@ public class StickerPackDownloadJob extends BaseJob {
                                         notify));
       }
 
-      chain.then(jobs);
+      if (jobs.size() < stickers.size()) {
+        Log.i(TAG, "Skipping " + (stickers.size() - jobs.size()) + " of " + stickers.size() + " stickers that are already downloaded.");
+      }
+
+      if (!jobs.isEmpty()) {
+        chain.then(jobs);
+      }
     }
 
     chain.enqueue();

@@ -277,6 +277,7 @@ public final class JobManagerFactories {
       put(RemoteDeleteSendJob.KEY,                     new RemoteDeleteSendJob.Factory());
       put(ReportSpamJob.KEY,                           new ReportSpamJob.Factory());
       put(ResendMessageJob.KEY,                        new ResendMessageJob.Factory());
+      put(RefreshGroupsAfterRestoreJob.KEY,            new RefreshGroupsAfterRestoreJob.Factory());
       put(RequestGroupV2InfoWorkerJob.KEY,             new RequestGroupV2InfoWorkerJob.Factory());
       put(RequestGroupV2InfoJob.KEY,                   new RequestGroupV2InfoJob.Factory());
       put(LocalBackupRestoreMediaJob.KEY,              new LocalBackupRestoreMediaJob.Factory());

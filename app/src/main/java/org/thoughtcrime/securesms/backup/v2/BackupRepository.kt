@@ -114,13 +114,10 @@ import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailBackfillJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
-import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackfillCollapsedMessageJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -129,7 +126,7 @@ import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
-import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.jobs.RefreshGroupsAfterRestoreJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
@@ -1456,21 +1453,7 @@ object BackupRepository {
 
     AppDependencies.jobManager.add(CreateReleaseChannelJob.create())
 
-    val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
-      val jobs = mutableListOf<Job>()
-      groups
-        .asSequence()
-        .filter { it.id.isV2 && it.hasV2GroupProperties }
-        .forEach { group ->
-          jobs.add(RequestGroupV2InfoJob(group.id as GroupId.V2))
-          val avatarKey = group.requireV2GroupProperties().avatarKey
-          if (avatarKey.isNotEmpty()) {
-            jobs.add(AvatarGroupsV2DownloadJob(group.id.requireV2(), avatarKey))
-          }
-        }
-      jobs
-    }
-    AppDependencies.jobManager.addAll(groupJobs)
+    AppDependencies.jobManager.addAll(RefreshGroupsAfterRestoreJob.createRestoreJobs())
     stopwatch.split("group-jobs")
 
     AppDependencies.jobManager.add(BackfillCollapsedMessageJob())

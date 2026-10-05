@@ -19,6 +19,9 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Hex
 import org.signal.core.util.deleteAll
+import org.signal.core.util.readToSingleObject
+import org.signal.core.util.requireNonNullString
+import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -26,6 +29,7 @@ import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.io.ByteArrayInputStream
+import java.io.File
 import java.util.concurrent.TimeUnit
 import org.thoughtcrime.securesms.database.model.StickerPackRecord as LocalStickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord as RemoteStickerPackRecord
@@ -286,6 +290,41 @@ class StickerTablesTest {
     }
 
     assertThat(results).isEqualTo(listOf(2))
+  }
+
+  @Test
+  fun `given stickers in multiple packs, when I get downloaded sticker ids, then I expect only non-cover stickers in the requested pack`() {
+    installPack(packId1, packKey1)
+    insertSticker(packId1, packKey1, stickerId = 1, emoji = "")
+    insertSticker(packId1, packKey1, stickerId = 2, emoji = "")
+    installPack(packId2, packKey2)
+    insertSticker(packId2, packKey2, stickerId = 3, emoji = "")
+
+    assertThat(SignalDatabase.stickers.getDownloadedStickerIds(packId1)).isEqualTo(setOf(1, 2))
+  }
+
+  @Test
+  fun `given a sticker whose file is missing, when I get downloaded sticker ids, then I expect it excluded`() {
+    installPack(packId1, packKey1)
+    insertSticker(packId1, packKey1, stickerId = 1, emoji = "")
+    insertSticker(packId1, packKey1, stickerId = 2, emoji = "")
+
+    val filePath = SignalDatabase.stickers.readableDatabase
+      .select(StickerTables.Sticker.FILE_PATH)
+      .from(StickerTables.Sticker.TABLE_NAME)
+      .where("${StickerTables.Sticker.PACK_ID} = ? AND ${StickerTables.Sticker.STICKER_ID} = ? AND ${StickerTables.Sticker.COVER} = 0", packId1, "2")
+      .run()
+      .readToSingleObject { it.requireNonNullString(StickerTables.Sticker.FILE_PATH) }!!
+    File(filePath).delete()
+
+    assertThat(SignalDatabase.stickers.getDownloadedStickerIds(packId1)).isEqualTo(setOf(1))
+  }
+
+  @Test
+  fun `given a pack with no stickers, when I get downloaded sticker ids, then I expect none`() {
+    installPack(packId1, packKey1)
+
+    assertThat(SignalDatabase.stickers.getDownloadedStickerIds(packId1)).isEmpty()
   }
 
   @Test

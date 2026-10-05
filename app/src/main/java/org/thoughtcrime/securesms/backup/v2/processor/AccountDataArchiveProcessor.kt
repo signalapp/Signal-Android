@@ -255,7 +255,7 @@ object AccountDataArchiveProcessor {
 
     SignalDatabase.recipients.clearSelfKeyTransparencyData()
 
-    SignalDatabase.runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+    ProfileUtil.handleSelfProfileKeyChange()
 
     Recipient.self().live().refresh()
   }

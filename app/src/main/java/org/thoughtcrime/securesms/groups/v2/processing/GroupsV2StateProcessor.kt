@@ -973,11 +973,8 @@ class GroupsV2StateProcessor private constructor(
       val updated = SignalDatabase.recipients.persistProfileKeySet(profileKeys)
 
       if (updated.isNotEmpty()) {
-        Log.i(TAG, "Learned ${updated.size} new profile keys, fetching profiles")
-
-        for (job in RetrieveProfileJob.forRecipients(updated)) {
-          AppDependencies.jobManager.runSynchronously(job, 5000)
-        }
+        Log.i(TAG, "Learned ${updated.size} new profile keys, enqueuing profile fetches")
+        RetrieveProfileJob.enqueue(updated, skipDebounce = false)
       }
     }
 

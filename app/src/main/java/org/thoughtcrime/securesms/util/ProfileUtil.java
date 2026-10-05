@@ -69,14 +69,21 @@ public final class ProfileUtil {
 
   private static final String TAG = Log.tag(ProfileUtil.class);
 
+  private static final String SELF_PROFILE_KEY_CHANGE_DEDUPE_KEY = "ProfileUtil.handleSelfProfileKeyChange";
+
   private ProfileUtil() {
   }
 
   /**
-   * Should be called after a change to our own profile key as been persisted to the database.
+   * Should be called after a change to our own profile key has been persisted to the database.
    */
   @WorkerThread
   public static void handleSelfProfileKeyChange() {
+    SignalDatabase.runPostSuccessfulTransaction(SELF_PROFILE_KEY_CHANGE_DEDUPE_KEY, ProfileUtil::scheduleSelfProfileKeyChangeJobs);
+  }
+
+  @WorkerThread
+  private static void scheduleSelfProfileKeyChangeJobs() {
     if (SignalStore.account().isLinkedDevice()) {
       Log.i(TAG, "Linked devices shouldn't rotate self profile key after initial link");
       return;

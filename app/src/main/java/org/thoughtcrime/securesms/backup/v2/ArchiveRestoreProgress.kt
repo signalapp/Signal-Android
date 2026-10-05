@@ -10,14 +10,21 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.bytes
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.safeUnregisterReceiver
@@ -52,16 +59,20 @@ import kotlin.time.DurationUnit
 object ArchiveRestoreProgress {
   private val TAG = Log.tag(ArchiveRestoreProgress::class.java)
 
+  private val THROTTLED_UPDATE_INTERVAL = 1.seconds
+
   private var listenersRegistered = false
   private val listenerLock = ReentrantLock()
 
+  private val throttledUpdateRequests = MutableSharedFlow<Unit>(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+
   private val attachmentObserver = DatabaseObserver.Observer {
-    update()
+    throttledUpdateRequests.tryEmit(Unit)
   }
 
   private val networkChangeReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      update()
+      throttledUpdateRequests.tryEmit(Unit)
     }
   }
 
@@ -86,6 +97,11 @@ object ArchiveRestoreProgress {
 
   init {
     SignalExecutors.BOUNDED.execute { update() }
+
+    throttledUpdateRequests
+      .throttleLatest(THROTTLED_UPDATE_INTERVAL)
+      .onEach { update() }
+      .launchIn(CoroutineScope(SupervisorJob() + SignalDispatchers.IO))
   }
 
   fun onRestorePending() {

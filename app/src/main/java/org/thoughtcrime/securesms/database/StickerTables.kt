@@ -322,6 +322,21 @@ class StickerTables(
       .run()
   }
 
+  /**
+   * Returns the IDs of the non-cover stickers in the pack whose image file is still on disk.
+   */
+  fun getDownloadedStickerIds(packId: String): Set<Int> {
+    return readableDatabase
+      .select(Sticker.STICKER_ID, Sticker.FILE_PATH)
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 0", packId)
+      .run()
+      .readToList { it.requireInt(Sticker.STICKER_ID) to it.requireNonNullString(Sticker.FILE_PATH) }
+      .filter { (_, filePath) -> File(filePath).exists() }
+      .map { (stickerId, _) -> stickerId }
+      .toSet()
+  }
+
   fun getRecentlyUsedStickers(limit: Int): Cursor {
     return readableDatabase
       .select(*RECORD_PROJECTION)

@@ -23,6 +23,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.deleteAll
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
+import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.storage.protos.groups.Member
@@ -431,6 +432,79 @@ class GroupTableTest {
       assertEquals("Group Bob", firstGroup?.title)
       assertEquals("Group Alice Bob", second?.title)
     }
+  }
+
+  @Test
+  fun givenGroupsWithThreads_whenIGetV2GroupsForRefresh_thenIExpectPinnedThenMostRecentFirst() {
+    val older = insertPushGroup()
+    val newer = insertPushGroup()
+    val pinned = insertPushGroup()
+    setThreadDate(insertThread(older), 1000)
+    setThreadDate(insertThread(newer), 2000)
+    val pinnedThreadId = insertThread(pinned)
+    setThreadDate(pinnedThreadId, 500)
+    threadTable.pinConversations(listOf(pinnedThreadId))
+
+    assertEquals(listOf(pinned, newer, older), groupTable.getV2GroupsForRefresh(includeInactive = true).map { it.id })
+  }
+
+  @Test
+  fun givenAGroupWithoutAThread_whenIGetV2GroupsForRefresh_thenIExpectItAfterGroupsWithThreads() {
+    val noThread = insertPushGroup()
+    val withThread = insertPushGroup()
+    setThreadDate(insertThread(withThread), 1000)
+
+    assertEquals(listOf(withThread, noThread), groupTable.getV2GroupsForRefresh(includeInactive = true).map { it.id })
+  }
+
+  @Test
+  fun givenALeftGroup_whenIGetV2GroupsForRefresh_thenIExpectItAfterActiveGroups() {
+    val left = insertPushGroup()
+    val active = insertPushGroup()
+    setThreadDate(insertThread(left), 2000)
+    setThreadDate(insertThread(active), 1000)
+    groupTable.setMember(left, false)
+
+    assertEquals(listOf(active, left), groupTable.getV2GroupsForRefresh(includeInactive = true).map { it.id })
+  }
+
+  @Test
+  fun givenALeftGroup_whenIGetV2GroupsForRefreshExcludingInactive_thenIExpectItExcluded() {
+    val left = insertPushGroup()
+    val active = insertPushGroup()
+    groupTable.setMember(left, false)
+
+    assertEquals(listOf(active), groupTable.getV2GroupsForRefresh(includeInactive = false).map { it.id })
+  }
+
+  @Test
+  fun givenALimit_whenIGetV2GroupsForRefresh_thenIExpectOnlyTheMostRecentGroups() {
+    val oldest = insertPushGroup()
+    val middle = insertPushGroup()
+    val newest = insertPushGroup()
+    setThreadDate(insertThread(oldest), 1000)
+    setThreadDate(insertThread(middle), 2000)
+    setThreadDate(insertThread(newest), 3000)
+
+    assertEquals(listOf(newest, middle), groupTable.getV2GroupsForRefresh(includeInactive = true, limit = 2).map { it.id })
+  }
+
+  @Test
+  fun givenTerminatedAndMmsGroups_whenIGetV2GroupsForRefresh_thenIExpectThemExcluded() {
+    val active = insertPushGroup()
+    val terminated = insertPushGroup()
+    groupTable.setTerminatedBy(terminated, alice)
+    insertMmsGroup()
+
+    assertEquals(listOf(active), groupTable.getV2GroupsForRefresh(includeInactive = true).map { it.id })
+  }
+
+  private fun setThreadDate(threadId: Long, date: Long) {
+    threadTable.writableDatabase
+      .update(ThreadTable.TABLE_NAME)
+      .values(ThreadTable.DATE to date)
+      .where("${ThreadTable.ID} = ?", threadId)
+      .run()
   }
 
   private fun insertThread(groupId: GroupId): Long {
