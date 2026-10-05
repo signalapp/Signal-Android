@@ -119,7 +119,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           continue
         }
 
-        if (isWallpaper || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
+        if (isWallpaper || attachment.stickerId != -1 || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
           restoreFullAttachmentJobs += RestoreAttachmentJob.forInitialRestore(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId,

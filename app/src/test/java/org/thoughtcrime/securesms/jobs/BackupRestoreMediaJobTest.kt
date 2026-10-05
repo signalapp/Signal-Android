@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import android.app.Application
 import assertk.assertThat
 import assertk.assertions.containsExactlyInAnyOrder
+import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import io.mockk.Runs
@@ -78,7 +79,7 @@ class BackupRestoreMediaJobTest {
     mockkObject(ArchiveRestoreProgress)
     every { ArchiveRestoreProgress.onProcessStart() } just Runs
 
-    every { AppDependencies.jobManager.add(capture(enqueuedJobs)) } returns Unit
+    every { AppDependencies.jobManager.add(capture(enqueuedJobs)) } answers { (firstArg<Job>() as? RestoreAttachmentJob)?.onAdded() }
   }
 
   @After
@@ -123,6 +124,18 @@ class BackupRestoreMediaJobTest {
     enqueue()
 
     assertThat(thumbnailRestoreTargets()).isEmpty()
+  }
+
+  /** The upload side never offloads stickers, and a full restore pulls them from an installed pack, so they must not be left offloaded with no thumbnail. */
+  @Test
+  fun givenAnOldSticker_whenIEnqueue_thenIExpectAFullRestore() {
+    val sticker = givenRestorableAttachment(contentType = "image/webp")
+    markAsSticker(sticker)
+
+    enqueue()
+
+    assertThat(enqueuedJobs.filterIsInstance<RestoreAttachmentJob>()).hasSize(1)
+    assertThat(transferStateOf(sticker)).isEqualTo(AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
   }
 
   @Test
