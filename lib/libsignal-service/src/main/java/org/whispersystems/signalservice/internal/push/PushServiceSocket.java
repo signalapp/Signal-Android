@@ -477,7 +477,7 @@ public class PushServiceSocket {
   }
 
   public void writeStorageItems(String authToken, WriteOperation writeOperation) throws IOException {
-    makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation), UNOPINIONATED_BINARY_ERROR_HANDLER);
+    makeStorageRequest(authToken, "/v1/storage?sendRemoteManifestOnConflict=false", "PUT", protobufRequestBody(writeOperation), UNOPINIONATED_BINARY_ERROR_HANDLER);
   }
 
   public void pingStorageService() throws IOException {
