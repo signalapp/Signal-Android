@@ -5,9 +5,14 @@ import android.view.View
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -15,22 +20,19 @@ import org.thoughtcrime.securesms.components.settings.TextPreference
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 import org.signal.core.ui.R as CoreUiR
 
 class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_page_fragment) {
 
-  private val viewModel: DonationReceiptListPageViewModel by viewModels(factoryProducer = {
-    DonationReceiptListPageViewModel.Factory(type, DonationReceiptListPageRepository())
-  })
+  private val viewModel: DonationReceiptListPageViewModel by viewModel {
+    DonationReceiptListPageViewModel(type)
+  }
 
-  private val sharedViewModel: DonationReceiptListViewModel by viewModels(
+  private val sharedViewModel: DonationReceiptListViewModel by viewModel(
     ownerProducer = { requireParentFragment() },
-    factoryProducer = {
-      DonationReceiptListViewModel.Factory(DonationReceiptListRepository())
-    }
+    create = { DonationReceiptListViewModel() }
   )
 
   private val type: InAppPaymentReceiptRecord.Type?
@@ -52,26 +54,27 @@ class DonationReceiptListPageFragment : Fragment(R.layout.donation_receipt_list_
 
     emptyStateGroup = view.findViewById(R.id.empty_state)
 
-    LiveDataUtil.combineLatest(
-      viewModel.state,
-      sharedViewModel.state
-    ) { state, badges ->
-      state.isLoaded to state.records.map { DonationReceiptListItem.Model(it, getBadgeForRecord(it, badges)) }
-    }.observe(viewLifecycleOwner) { (isLoaded, records) ->
-      if (records.isNotEmpty()) {
-        emptyStateGroup.visible = false
-        adapter.submitList(
-          records +
-            TextPreference(
-              title = null,
-              summary = DSLSettingsText.from(
-                R.string.DonationReceiptListFragment__if_you_have,
-                DSLSettingsText.TextAppearanceModifier(CoreUiR.style.TextAppearance_Signal_Subtitle)
-              )
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        combine(viewModel.state, sharedViewModel.state) { state, badges ->
+          state.isLoaded to state.records.map { DonationReceiptListItem.Model(it, getBadgeForRecord(it, badges)) }
+        }.collect { (isLoaded, records) ->
+          if (records.isNotEmpty()) {
+            emptyStateGroup.visible = false
+            adapter.submitList(
+              records +
+                TextPreference(
+                  title = null,
+                  summary = DSLSettingsText.from(
+                    R.string.DonationReceiptListFragment__if_you_have,
+                    DSLSettingsText.TextAppearanceModifier(CoreUiR.style.TextAppearance_Signal_Subtitle)
+                  )
+                )
             )
-        )
-      } else {
-        emptyStateGroup.visible = isLoaded
+          } else {
+            emptyStateGroup.visible = isLoaded
+          }
+        }
       }
     }
   }

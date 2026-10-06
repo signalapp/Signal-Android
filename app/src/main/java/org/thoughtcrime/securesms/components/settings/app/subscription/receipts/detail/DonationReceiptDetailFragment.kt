@@ -2,8 +2,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 
 import android.content.Intent
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -27,14 +31,10 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
 
   override val listClearsNavigationBar: Boolean = false
 
-  private val viewModel: DonationReceiptDetailViewModel by viewModels(
-    factoryProducer = {
-      DonationReceiptDetailViewModel.Factory(
-        DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id,
-        DonationReceiptDetailRepository()
-      )
-    }
-  )
+  private val viewModel: DonationReceiptDetailViewModel by viewModel {
+    val id = DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id
+    DonationReceiptDetailViewModel(id)
+  }
 
   override fun bindAdapter(adapter: MappingAdapter) {
     SplashImage.register(adapter)
@@ -44,29 +44,33 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
 
     SystemWindowInsetsSetter.attach(sharePngButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.inAppPaymentReceiptRecord != null) {
-        val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
-        adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          if (state.inAppPaymentReceiptRecord != null) {
+            val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
+            adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
 
-        sharePngButton.isEnabled = true
-        sharePngButton.setOnClickListener {
-          progressDialog = SignalProgressDialog.show(requireContext())
-          ReceiptImageRenderer.renderPng(
-            context = requireContext(),
-            lifecycleOwner = viewLifecycleOwner,
-            record = state.inAppPaymentReceiptRecord,
-            subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
-            callback = object : ReceiptImageRenderer.Callback {
-              override fun onBitmapRendered() {
-                progressDialog.dismiss()
-              }
+            sharePngButton.isEnabled = true
+            sharePngButton.setOnClickListener {
+              progressDialog = SignalProgressDialog.show(requireContext())
+              ReceiptImageRenderer.renderPng(
+                context = requireContext(),
+                lifecycleOwner = viewLifecycleOwner,
+                record = state.inAppPaymentReceiptRecord,
+                subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
+                callback = object : ReceiptImageRenderer.Callback {
+                  override fun onBitmapRendered() {
+                    progressDialog.dismiss()
+                  }
 
-              override fun onStartActivity(intent: Intent) {
-                startActivity(intent)
-              }
+                  override fun onStartActivity(intent: Intent) {
+                    startActivity(intent)
+                  }
+                }
+              )
             }
-          )
+          }
         }
       }
     }
