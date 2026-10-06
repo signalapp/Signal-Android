@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.util.LinkActions;
 import org.signal.core.util.LinkActions.OpenUrlError;
 import org.signal.core.util.Util;
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
@@ -199,28 +199,6 @@ public class CommunicationActions {
                    })
                    .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
                    .show();
-  }
-
-  public static @NonNull Intent createIntentToShareTextViaShareSheet(@NonNull String text) {
-    Intent intent = new Intent(Intent.ACTION_SEND);
-    intent.setType("text/plain");
-    intent.putExtra(Intent.EXTRA_TEXT, text);
-
-    return intent;
-  }
-
-  public static @NonNull Intent createIntentToComposeSmsThroughDefaultApp(@NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
-    if (text != null) {
-      intent.putExtra("sms_body", text);
-    }
-
-    return intent;
-  }
-
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = createIntentToComposeSmsThroughDefaultApp(recipient, text);
-    context.startActivity(intent);
   }
 
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {

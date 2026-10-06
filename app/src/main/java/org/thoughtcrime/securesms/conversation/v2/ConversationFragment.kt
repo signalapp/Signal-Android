@@ -151,6 +151,7 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.encourageNewBrowserTab
+import org.signal.core.util.invite.InviteActions
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.requireDrawable
@@ -305,7 +306,6 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
-import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage

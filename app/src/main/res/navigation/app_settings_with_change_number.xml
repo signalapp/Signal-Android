@@ -729,7 +729,7 @@
 
     <fragment
         android:id="@+id/inviteFragment"
-        android:name="org.thoughtcrime.securesms.invites.InviteFragment"
+        android:name="org.signal.appsettings.invite.InviteFragment"
         android:label="invite_fragment" />
 
     <!-- region Direct-To-Page actions -->

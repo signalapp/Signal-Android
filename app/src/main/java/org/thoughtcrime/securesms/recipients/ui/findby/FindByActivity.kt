@@ -74,10 +74,10 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.viewModel
 import org.signal.core.util.E164Util
 import org.signal.core.util.getParcelableExtraCompat
+import org.signal.core.util.invite.InviteActions
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity
-import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country

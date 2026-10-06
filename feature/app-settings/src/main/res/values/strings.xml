@@ -261,10 +261,6 @@
     <string name="InviteScreen__invite_friends">Invite friends</string>
     <!-- Share button on invite screen to open the system share sheet -->
     <string name="InviteScreen__share">Share</string>
-    <!-- Title of the system share sheet shown when sharing an invite -->
-    <string name="InviteScreen__invite_to_signal">Invite to Signal</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteScreen__no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
