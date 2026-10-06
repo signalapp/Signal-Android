@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment that shows the results for a given poll.
@@ -104,7 +105,7 @@ class PollVotesFragment : ComposeDialogFragment(), RecipientBottomSheetDialogFra
       title = stringResource(if (state.poll?.hasEnded == true) R.string.Poll__poll_results else R.string.Poll__poll_details),
       onNavigationClick = this::dismissAllowingStateLoss,
       navigationIcon = SignalIcons.X.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { paddingValues ->
       if (state.poll == null) {
         return@Settings

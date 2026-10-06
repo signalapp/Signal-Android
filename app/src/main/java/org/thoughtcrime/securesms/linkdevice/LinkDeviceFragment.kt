@@ -195,7 +195,7 @@ class LinkDeviceFragment : ComposeFragment() {
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       DeviceListScreen(
         state = state,

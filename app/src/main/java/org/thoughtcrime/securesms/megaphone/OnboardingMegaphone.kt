@@ -164,7 +164,7 @@ private fun OnboardingMegaphoneListItem(
         Icon(
           imageVector = SignalIcons.X.imageVector,
           tint = colorResource(CoreUiR.color.signal_light_colorOutline),
-          contentDescription = stringResource(R.string.Material3SearchToolbar__close)
+          contentDescription = stringResource(CoreUiR.string.CloseButton__content_description)
         )
       }
 

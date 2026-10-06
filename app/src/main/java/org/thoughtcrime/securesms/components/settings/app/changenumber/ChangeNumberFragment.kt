@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 
 class ChangeNumberFragment : ComposeFragment() {
 
@@ -79,7 +80,7 @@ fun ChangeNumberScreen(
     title = "",
     onNavigationClick = onNavigationIconClick,
     navigationIcon = ImageVector.vectorResource(id = R.drawable.ic_arrow_left_24),
-    navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
   ) {
     val scrollState = rememberScrollState()
     Column(

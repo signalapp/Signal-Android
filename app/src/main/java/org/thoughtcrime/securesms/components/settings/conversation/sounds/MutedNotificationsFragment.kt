@@ -14,6 +14,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.notifications.MutedNotificationScreen
 import org.thoughtcrime.securesms.components.settings.app.notifications.MutedNotificationsViewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment to control while muted settings for a specific chat
@@ -34,7 +35,7 @@ class MutedNotificationsFragment : ComposeFragment() {
       title = stringResource(R.string.MutedNotificationsFragment__while),
       navigationIcon = SignalIcons.ArrowStart.imageVector,
       onNavigationClick = { requireActivity().onBackPressedDispatcher.onBackPressed() },
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close),
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
       modifier = Modifier.imePadding()
     ) { paddingValues ->
       MutedNotificationScreen(

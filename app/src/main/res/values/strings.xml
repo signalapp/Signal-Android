@@ -3164,10 +3164,6 @@
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
 
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">Close</string>
-    <string name="Material3SearchToolbar__clear">Clear</string>
-
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Invalid shortcut</string>
 

@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.UUID
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Primary entry point for Notification Profiles. When user has no profiles, shows empty state, otherwise shows
@@ -98,7 +99,7 @@ fun NotificationProfilesScreen(
     title = title,
     onNavigationClick = callbacks::onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description)
   ) { paddingValues ->
     if (state.profiles.isEmpty()) {
       NoNotificationProfilesEmpty(

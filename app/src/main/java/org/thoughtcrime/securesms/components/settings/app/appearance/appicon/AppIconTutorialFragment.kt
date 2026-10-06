@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 class AppIconTutorialFragment : ComposeFragment() {
 
@@ -46,7 +47,7 @@ class AppIconTutorialFragment : ComposeFragment() {
         findNavController().popBackStack()
       },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       TutorialScreen(Modifier.padding(contentPadding))
     }

@@ -25,8 +25,8 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.viewModel
-import org.thoughtcrime.securesms.R
 import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.util.R as CoreUtilsR
 
 /**
@@ -57,7 +57,7 @@ class InviteFragment : ComposeFragment() {
       title = stringResource(id = AppSettingsR.string.InviteScreen__invite_friends),
       onNavigationClick = { viewModel.onEvent(InviteEvent.NavigateBackClicked) },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       InviteScreen(
         state = state,

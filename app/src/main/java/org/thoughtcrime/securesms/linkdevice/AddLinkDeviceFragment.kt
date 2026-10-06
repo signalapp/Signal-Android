@@ -38,6 +38,7 @@ import org.signal.core.ui.permissions.Permissions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 import org.signal.mediasend.R as MediaSendR
 
 /**
@@ -132,7 +133,7 @@ private fun MainScreen(
     title = "",
     onNavigationClick = { navController?.popBackStack() },
     navigationIcon = ImageVector.vectorResource(id = R.drawable.ic_x),
-    navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close),
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
     actions = {
       IconButton(onClick = onSwitchCamera) {
         Icon(painterResource(id = R.drawable.symbol_switch_24), contentDescription = null)

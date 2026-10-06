@@ -33,4 +33,7 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tap continue and enter your phone\'s lock to confirm. Do not enter your Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continue</string>
+
+    <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
+    <string name="CloseButton__content_description">Close</string>
 </resources>

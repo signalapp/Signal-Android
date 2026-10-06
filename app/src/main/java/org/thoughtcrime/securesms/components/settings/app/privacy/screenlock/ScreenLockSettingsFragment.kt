@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment that allows user to turn on screen lock and set a timer to lock
@@ -112,7 +113,7 @@ class ScreenLockSettingsFragment : ComposeFragment() {
       title = stringResource(id = R.string.preferences_app_protection__screen_lock),
       onNavigationClick = { navController.popBackStack() },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       ScreenLockScreen(
         state = state,
