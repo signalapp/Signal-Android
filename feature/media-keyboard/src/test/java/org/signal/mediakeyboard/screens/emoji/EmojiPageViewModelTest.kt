@@ -103,6 +103,31 @@ class EmojiPageViewModelTest {
   }
 
   @Test
+  fun `refresh recents - picks up newly used emoji`() {
+    val viewModel = createViewModel()
+    coEvery { repository.getRecentEmoji() } returns listOf(grin, KeyboardEmoji("😂"))
+
+    viewModel.onEvent(EmojiPageScreenEvents.RefreshRecents)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    val pages = viewModel.state.value.pages
+    assertThat(pages.map { it.category }).isEqualTo(listOf(EmojiKeyboardCategory.RECENTS, EmojiKeyboardCategory.PEOPLE))
+    assertThat(pages.first().emoji).isEqualTo(listOf(grin, KeyboardEmoji("😂")))
+  }
+
+  @Test
+  fun `refresh recents - adds recents page when there were none`() {
+    coEvery { repository.getRecentEmoji() } returns emptyList()
+    val viewModel = createViewModel()
+    coEvery { repository.getRecentEmoji() } returns listOf(grin)
+
+    viewModel.onEvent(EmojiPageScreenEvents.RefreshRecents)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.pages.map { it.category }).isEqualTo(listOf(EmojiKeyboardCategory.RECENTS, EmojiKeyboardCategory.PEOPLE))
+  }
+
+  @Test
   fun `emoji clicked - uses preferred variation`() {
     coEvery { repository.getPreferredVariations() } returns mapOf("👍" to "👍🏾")
 

@@ -11,6 +11,7 @@ import org.signal.mediakeyboard.data.KeyboardEmoji
 
 sealed interface EmojiPageScreenEvents {
   data object Initialize : EmojiPageScreenEvents
+  data object RefreshRecents : EmojiPageScreenEvents
   data class ParentStateChanged(val parentState: MediaKeyboardState) : EmojiPageScreenEvents
   data class CategorySelected(val category: EmojiKeyboardCategory) : EmojiPageScreenEvents
   data class VisibleCategoryChanged(val category: EmojiKeyboardCategory) : EmojiPageScreenEvents

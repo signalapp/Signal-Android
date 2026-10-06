@@ -21,6 +21,7 @@ import org.signal.mediakeyboard.MediaKeyboardTab
 import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.EmojiKeyboardRepository
+import org.signal.mediakeyboard.data.KeyboardEmoji
 import org.signal.mediakeyboard.screens.MediaKeyboardPageViewModel
 
 class EmojiPageViewModel(
@@ -62,6 +63,13 @@ class EmojiPageViewModel(
             selectedCategory = state.selectedCategory ?: pages.firstOrNull()?.category
           )
         )
+      }
+
+      is EmojiPageScreenEvents.RefreshRecents -> {
+        val pages = withRecents(state.pages, repository.getRecentEmoji())
+        if (pages != state.pages) {
+          stateEmitter(state.copy(pages = pages))
+        }
       }
 
       is EmojiPageScreenEvents.ParentStateChanged -> {
@@ -139,12 +147,16 @@ class EmojiPageViewModel(
   }
 
   private suspend fun buildPages(): List<EmojiCategoryPage> {
-    val recents = repository.getRecentEmoji()
+    return withRecents(repository.getEmojiPages(), repository.getRecentEmoji())
+  }
+
+  /** Replaces whatever recents page [pages] has with [recents], dropping it altogether if there are none. */
+  private fun withRecents(pages: List<EmojiCategoryPage>, recents: List<KeyboardEmoji>): List<EmojiCategoryPage> {
     return buildList {
       if (recents.isNotEmpty()) {
         add(EmojiCategoryPage(EmojiKeyboardCategory.RECENTS, recents))
       }
-      addAll(repository.getEmojiPages())
+      addAll(pages.filter { it.category != EmojiKeyboardCategory.RECENTS })
     }
   }
 

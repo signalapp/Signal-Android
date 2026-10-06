@@ -57,6 +57,7 @@ import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
 import org.signal.mediakeyboard.screens.LocalMediaKeyboardExpanded
 import org.signal.mediakeyboard.screens.emoji.EmojiPageScreen
+import org.signal.mediakeyboard.screens.emoji.EmojiPageScreenEvents
 import org.signal.mediakeyboard.screens.emoji.EmojiPageViewModel
 import org.signal.mediakeyboard.screens.gif.GifPageScreen
 import org.signal.mediakeyboard.screens.gif.GifPageViewModel
@@ -295,6 +296,11 @@ private fun EmojiTab(
     factory = EmojiPageViewModel.Factory(repository.emoji, parentStateFlow)
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  // The view model outlives the keyboard being hidden, so pick up whatever was used since it was last shown.
+  LaunchedEffect(viewModel) {
+    viewModel.onEvent(EmojiPageScreenEvents.RefreshRecents)
+  }
 
   CollectActions(viewModel.actions, onAction)
 
