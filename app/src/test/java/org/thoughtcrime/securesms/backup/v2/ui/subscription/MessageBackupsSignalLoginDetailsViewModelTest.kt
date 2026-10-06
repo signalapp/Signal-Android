@@ -10,6 +10,7 @@ import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
@@ -89,13 +90,14 @@ class MessageBackupsSignalLoginDetailsViewModelTest {
   }
 
   @Test
-  fun `SaveToPasswordManagerClicked launches the save to password manager flow`() = runTest(testDispatcher) {
+  fun `SaveToPasswordManagerClicked asks the user to confirm the save`() = runTest(testDispatcher) {
     val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
     val actions = collectActions(viewModel)
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isTrue()
   }
 
   @Test
@@ -106,6 +108,30 @@ class MessageBackupsSignalLoginDetailsViewModelTest {
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
 
     assertThat(actions).containsExactly(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmed hides the confirmation and launches the save`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed)
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isFalse()
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmationDismissed hides the confirmation without saving`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed)
+
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isFalse()
   }
 
   @Test

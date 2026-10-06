@@ -19,6 +19,7 @@ data class SignalLoginInfoState(
   val aci: ServiceId.ACI? = null,
   val aep: AccountEntropyPool? = null,
   val isPasswordManagerAvailable: Boolean = false,
+  val isGooglePasswordManagerDefault: Boolean = false,
   val showSpinner: Boolean = false,
   /** Whether the sheet that double-checks the login really made it into the password manager is up. */
   val showConfirmSavedSheet: Boolean = false,
@@ -35,11 +36,12 @@ data class SignalLoginInfoState(
     get() = aep?.displayValue
 
   override fun toString(): String = "SignalLoginInfoState(aci=${aci?.logString()}, aep=${aep?.value?.censor()}, " +
-    "isPasswordManagerAvailable=$isPasswordManagerAvailable, showSpinner=$showSpinner, showConfirmSavedSheet=$showConfirmSavedSheet, didRetrySave=$didRetrySave, dialogs=$dialogs)"
+    "isPasswordManagerAvailable=$isPasswordManagerAvailable, isGooglePasswordManagerDefault=$isGooglePasswordManagerDefault, showSpinner=$showSpinner, showConfirmSavedSheet=$showConfirmSavedSheet, didRetrySave=$didRetrySave, dialogs=$dialogs)"
 
   data class Dialogs(
     val saveFailed: Boolean = false,
     val saveNotConfirmed: Boolean = false,
-    val unknownError: Boolean = false
+    val unknownError: Boolean = false,
+    val saveToPasswordManagerConfirmation: Boolean = false
   )
 }

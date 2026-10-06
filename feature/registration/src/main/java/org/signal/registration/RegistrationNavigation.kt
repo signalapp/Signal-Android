@@ -755,7 +755,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
-        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
+        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context),
+        isGooglePasswordManagerDefault = SignalCredentialManager.isGooglePasswordManagerDefault(context)
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()

@@ -97,6 +97,7 @@ import org.signal.uicomponents.codeentryfield.CodeEntryFieldTestTags
 import java.time.Duration
 import java.util.UUID
 import kotlin.time.Duration.Companion.days
+import org.signal.passwordmanager.R as PasswordManagerR
 
 /**
  * End-to-end tests for the registration flow: renders the full [RegistrationNavHost] with a real
@@ -1818,7 +1819,7 @@ class RegistrationEndToEndTest {
     waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
     val login = registeredSignalLogin()
 
-    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    saveToPasswordManager()
 
     // The password manager took the login, so the user is asked to confirm it really landed there
     waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
@@ -1839,6 +1840,30 @@ class RegistrationEndToEndTest {
   }
 
   @Test
+  fun `when google password manager is the default, the user is warned about on-device encryption before saving`() {
+    enableSignalLoginRegistration()
+    val savedCredentials = stubPasswordManager()
+    every { SignalCredentialManager.isGooglePasswordManagerDefault(any()) } returns true
+
+    launchRegistrationFlow()
+
+    startSignalLoginRegistration()
+    buySignalLogin()
+
+    waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+
+    val context = ApplicationProvider.getApplicationContext<Application>()
+    waitForText(context.getString(PasswordManagerR.string.SaveToPasswordManagerDialog__continue_anyway))
+    assert(savedCredentials.isEmpty()) { "Expected nothing to be saved before the user got past the warning but was $savedCredentials" }
+
+    composeTestRule.onNodeWithText(context.getString(PasswordManagerR.string.SaveToPasswordManagerDialog__continue_anyway)).performClick()
+
+    waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
+    assert(savedCredentials.size == 1) { "Expected the login to be handed to the password manager once but was $savedCredentials" }
+  }
+
+  @Test
   fun `a login the password manager cannot hand back is not treated as saved, and can be recorded by hand instead`() {
     enableSignalLoginRegistration()
     stubPasswordManager()
@@ -1850,7 +1875,7 @@ class RegistrationEndToEndTest {
     buySignalLogin()
 
     waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
-    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    saveToPasswordManager()
     waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
     composeTestRule.onNodeWithTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON).performClick()
 
@@ -1881,7 +1906,7 @@ class RegistrationEndToEndTest {
     buySignalLogin()
 
     waitForTag(TestTags.SIGNAL_LOGIN_INFO_SCREEN)
-    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    saveToPasswordManager()
     waitForTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON)
     composeTestRule.onNodeWithTag(TestTags.CONFIRM_LOGIN_SAVED_TO_PASSWORD_MANAGER_CONFIRM_BUTTON).performClick()
 
@@ -2328,6 +2353,7 @@ class RegistrationEndToEndTest {
 
     mockkObject(SignalCredentialManager)
     every { SignalCredentialManager.isSupported(any()) } returns true
+    every { SignalCredentialManager.isGooglePasswordManagerDefault(any()) } returns false
     coEvery { SignalCredentialManager.saveCredential(any(), any(), any()) } answers {
       saved += UsernamePasswordCredential(username = secondArg(), password = thirdArg())
       CredentialManagerResult.Success
@@ -2639,6 +2665,13 @@ class RegistrationEndToEndTest {
   private fun clearSignalLoginFields() {
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_ACCOUNT_ID_FIELD).performTextClearance()
     composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_CREDENTIAL_RECOVERY_KEY_FIELD).performTextClearance()
+  }
+
+  /** From the Signal Login info screen: taps save to password manager and confirms the dialog that comes up. */
+  private fun saveToPasswordManager() {
+    composeTestRule.onNodeWithTag(TestTags.SIGNAL_LOGIN_INFO_SAVE_TO_PASSWORD_MANAGER_BUTTON).performClick()
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
   }
 
   /** From the add-username screen: declines to pick a username, confirming the warning that comes with it. */

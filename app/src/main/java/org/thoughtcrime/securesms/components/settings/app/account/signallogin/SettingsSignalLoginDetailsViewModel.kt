@@ -26,11 +26,14 @@ import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
  * @param showResetRecoveryKeyButton True if the option to reset the recovery key should be offered in the UI.
  * @param isPasswordManagerAvailable False if the device has no password manager, which leaves the save button showing
  *   but styled as disabled.
+ * @param isGooglePasswordManagerDefault True if saves are likely to land in Google Password Manager, which gets its own
+ *   confirmation.
  */
 class SettingsSignalLoginDetailsViewModel(
   private val repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
   showResetRecoveryKeyButton: Boolean = false,
-  isPasswordManagerAvailable: Boolean = true
+  isPasswordManagerAvailable: Boolean = true,
+  isGooglePasswordManagerDefault: Boolean = false
 ) : EventDrivenViewModel<SettingsSignalLoginDetailsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
@@ -42,6 +45,7 @@ class SettingsSignalLoginDetailsViewModel(
       accountKey = repository.getAci()?.toString()?.uppercase().orEmpty(),
       recoveryKey = repository.getAccountEntropyPool()?.displayValue.orEmpty(),
       isPasswordManagerAvailable = isPasswordManagerAvailable,
+      isGooglePasswordManagerDefault = isGooglePasswordManagerDefault,
       showResetRecoveryKeyButton = showResetRecoveryKeyButton,
       resetRecoveryKeyButtonLoading = showResetRecoveryKeyButton
     )
@@ -105,10 +109,17 @@ class SettingsSignalLoginDetailsViewModel(
       }
       SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
         if (_state.value.isPasswordManagerAvailable) {
-          _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+          _state.update { it.copy(showSaveToPasswordManagerConfirmation = true) }
         } else {
           _actions.send(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
         }
+      }
+      SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed -> {
+        _state.update { it.copy(showSaveToPasswordManagerConfirmation = false) }
+        _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+      }
+      SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed -> {
+        _state.update { it.copy(showSaveToPasswordManagerConfirmation = false) }
       }
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
         _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)

@@ -65,7 +65,9 @@ class RegistrationSignalLoginDetailsViewModel(
         parentEventEmitter.navigateBack()
       }
 
-      is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
+      is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked,
+      is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed,
+      is SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed -> {
         Log.w(TAG, "Saving to the password manager isn't offered during registration.")
       }
 

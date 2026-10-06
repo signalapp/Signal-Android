@@ -39,7 +39,8 @@ class SettingsSignalLoginDetailsFragment : ComposeFragment() {
   private val viewModel: SettingsSignalLoginDetailsViewModel by viewModel {
     SettingsSignalLoginDetailsViewModel(
       showResetRecoveryKeyButton = true,
-      isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext())
+      isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()),
+      isGooglePasswordManagerDefault = SignalCredentialManager.isGooglePasswordManagerDefault(requireContext())
     )
   }
 

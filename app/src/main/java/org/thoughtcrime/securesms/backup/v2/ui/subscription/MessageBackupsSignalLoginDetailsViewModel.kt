@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
@@ -25,7 +26,8 @@ import org.thoughtcrime.securesms.components.settings.app.account.signallogin.Si
  */
 class MessageBackupsSignalLoginDetailsViewModel(
   repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
-  isPasswordManagerAvailable: Boolean = true
+  isPasswordManagerAvailable: Boolean = true,
+  isGooglePasswordManagerDefault: Boolean = false
 ) : EventDrivenViewModel<SignalLoginViewDetailsScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
@@ -36,7 +38,8 @@ class MessageBackupsSignalLoginDetailsViewModel(
     SignalLoginViewDetailsState(
       accountKey = repository.getAci()?.toString()?.uppercase().orEmpty(),
       recoveryKey = repository.getAccountEntropyPool()?.displayValue.orEmpty(),
-      isPasswordManagerAvailable = isPasswordManagerAvailable
+      isPasswordManagerAvailable = isPasswordManagerAvailable,
+      isGooglePasswordManagerDefault = isGooglePasswordManagerDefault
     )
   )
   private val _actions = Channel<SignalLoginViewDetailsAction.Shared>(Channel.BUFFERED)
@@ -51,10 +54,17 @@ class MessageBackupsSignalLoginDetailsViewModel(
       }
       SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked -> {
         if (_state.value.isPasswordManagerAvailable) {
-          _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+          _state.update { it.copy(showSaveToPasswordManagerConfirmation = true) }
         } else {
           _actions.send(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
         }
+      }
+      SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed -> {
+        _state.update { it.copy(showSaveToPasswordManagerConfirmation = false) }
+        _actions.send(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+      }
+      SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed -> {
+        _state.update { it.copy(showSaveToPasswordManagerConfirmation = false) }
       }
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
         _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)

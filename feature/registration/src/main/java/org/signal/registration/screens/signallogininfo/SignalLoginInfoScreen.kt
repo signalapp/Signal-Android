@@ -40,6 +40,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.passwordmanager.compose.SaveToPasswordManagerDialog
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
@@ -75,6 +76,15 @@ fun SignalLoginInfoScreen(
 
   if (state.dialogs.saveNotConfirmed) {
     SaveNotConfirmedDialog(onEvent)
+  }
+
+  if (state.dialogs.saveToPasswordManagerConfirmation) {
+    SaveToPasswordManagerDialog(
+      trustBody = stringResource(R.string.SignalLoginInfoScreen__only_store_your_credentials),
+      isGooglePasswordManagerDefault = state.isGooglePasswordManagerDefault,
+      onContinue = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmed) },
+      onDismiss = { onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmationDismissed) }
+    )
   }
 
   val params = RegistrationScaffold.rememberLayoutParams()

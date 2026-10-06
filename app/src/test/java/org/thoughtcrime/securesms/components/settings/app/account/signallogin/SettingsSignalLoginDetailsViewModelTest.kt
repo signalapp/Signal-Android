@@ -88,14 +88,15 @@ class SettingsSignalLoginDetailsViewModelTest {
   }
 
   @Test
-  fun `SaveToPasswordManagerClicked launches the save to password manager flow`() = runTest(testDispatcher) {
+  fun `SaveToPasswordManagerClicked asks the user to confirm the save`() = runTest(testDispatcher) {
     val viewModel = SettingsSignalLoginDetailsViewModel(repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isTrue()
   }
 
   @Test
@@ -107,6 +108,32 @@ class SettingsSignalLoginDetailsViewModelTest {
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
 
     assertThat(actions).containsExactly(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmed hides the confirmation and launches the save`() = runTest(testDispatcher) {
+    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val actions = mutableListOf<SignalLoginViewDetailsAction>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed))
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveToPasswordManager)
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isFalse()
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmationDismissed hides the confirmation without saving`() = runTest(testDispatcher) {
+    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val actions = mutableListOf<SignalLoginViewDetailsAction>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed))
+
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.showSaveToPasswordManagerConfirmation).isFalse()
   }
 
   @Test

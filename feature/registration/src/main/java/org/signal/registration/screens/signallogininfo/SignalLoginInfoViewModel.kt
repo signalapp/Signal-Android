@@ -35,14 +35,20 @@ class SignalLoginInfoViewModel(
   private val repository: RegistrationRepository,
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-  isPasswordManagerAvailable: Boolean
+  isPasswordManagerAvailable: Boolean,
+  isGooglePasswordManagerDefault: Boolean
 ) : EventDrivenViewModel<SignalLoginInfoScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginInfoViewModel::class)
   }
 
-  private val _state = MutableStateFlow(SignalLoginInfoState(isPasswordManagerAvailable = isPasswordManagerAvailable))
+  private val _state = MutableStateFlow(
+    SignalLoginInfoState(
+      isPasswordManagerAvailable = isPasswordManagerAvailable,
+      isGooglePasswordManagerDefault = isGooglePasswordManagerDefault
+    )
+  )
   val state: StateFlow<SignalLoginInfoState> = _state.asStateFlow()
 
   private val _actions = Channel<SignalLoginInfoScreenActions>(Channel.BUFFERED)
@@ -79,7 +85,19 @@ class SignalLoginInfoViewModel(
       }
 
       is SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked -> {
+        if (state.isPasswordManagerAvailable) {
+          stateEmitter(state.copy(dialogs = SignalLoginInfoState.Dialogs(saveToPasswordManagerConfirmation = true)))
+        } else {
+          applySaveToPasswordManagerClicked(state, isRetry = false, stateEmitter)
+        }
+      }
+
+      is SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmed -> {
         applySaveToPasswordManagerClicked(state, isRetry = false, stateEmitter)
+      }
+
+      is SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmationDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(saveToPasswordManagerConfirmation = false)))
       }
 
       is SignalLoginInfoScreenEvents.SaveToPasswordManagerCompleted -> {

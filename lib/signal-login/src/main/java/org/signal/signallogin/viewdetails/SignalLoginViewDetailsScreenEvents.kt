@@ -14,6 +14,12 @@ sealed class SignalLoginViewDetailsScreenEvents {
   /** The user chose to store the credentials with the system password manager. */
   data object SaveToPasswordManagerClicked : SignalLoginViewDetailsScreenEvents()
 
+  /** The user confirmed they want to save to their password manager. */
+  data object SaveToPasswordManagerConfirmed : SignalLoginViewDetailsScreenEvents()
+
+  /** The user backed out of the save to password manager confirmation. */
+  data object SaveToPasswordManagerConfirmationDismissed : SignalLoginViewDetailsScreenEvents()
+
   /** The user chose to save the credentials as a PDF. */
   data object SaveAsPdfClicked : SignalLoginViewDetailsScreenEvents()
 

@@ -50,6 +50,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.rememberWindowBreakpoint
+import org.signal.passwordmanager.compose.SaveToPasswordManagerDialog
 import org.signal.signallogin.R
 import org.signal.signallogin.SignalLoginTestTags
 import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
@@ -172,6 +173,15 @@ fun SignalLoginViewDetailsScreen(
         )
       }
     }
+  }
+
+  if (state.showSaveToPasswordManagerConfirmation) {
+    SaveToPasswordManagerDialog(
+      trustBody = stringResource(R.string.SignalLoginViewDetailsScreen__only_store_your_credentials),
+      isGooglePasswordManagerDefault = state.isGooglePasswordManagerDefault,
+      onContinue = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmed) },
+      onDismiss = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed) }
+    )
   }
 }
 

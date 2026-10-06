@@ -58,7 +58,8 @@ class SignalLoginInfoViewModelTest {
       repository = mockRepository,
       parentState = MutableStateFlow(RegistrationFlowState(aci = ACI_VALUE, accountEntropyPool = aep)),
       parentEventEmitter = parentEventEmitter,
-      isPasswordManagerAvailable = true
+      isPasswordManagerAvailable = true,
+      isGooglePasswordManagerDefault = false
     )
   }
 
@@ -93,21 +94,10 @@ class SignalLoginInfoViewModelTest {
   }
 
   @Test
-  fun `SaveToPasswordManagerClicked hands the login to the password manager`() = runTest(testDispatcher) {
-    val actions = mutableListOf<SignalLoginInfoScreenActions>()
-    backgroundScope.launch { viewModel.actions.toList(actions) }
-
-    viewModel.onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked)
-
-    assertThat(actions).containsExactly(SignalLoginInfoScreenActions.SaveToPasswordManager(accountId = ACCOUNT_ID, recoveryKey = aep.displayValue))
-    assertThat(viewModel.state.value.showSpinner).isEqualTo(true)
-  }
-
-  @Test
-  fun `SaveToPasswordManagerClicked without a login in the flow state shows the unknown error dialog`() = runTest(testDispatcher) {
+  fun `SaveToPasswordManagerConfirmed without a login in the flow state shows the unknown error dialog`() = runTest(testDispatcher) {
     var emittedState: SignalLoginInfoState? = null
 
-    viewModel.applyEvent(SignalLoginInfoState(isPasswordManagerAvailable = true), SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked, {}) { emittedState = it }
+    viewModel.applyEvent(SignalLoginInfoState(isPasswordManagerAvailable = true), SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmed, {}) { emittedState = it }
 
     assertThat(emittedState?.dialogs?.unknownError).isEqualTo(true)
     assertThat(emittedState?.showSpinner).isEqualTo(false)
@@ -123,6 +113,60 @@ class SignalLoginInfoViewModelTest {
 
     assertThat(actions).containsExactly(SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable)
     assertThat(emittedState).isEqualTo(null)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerClicked asks the user to confirm the save`() = runTest(testDispatcher) {
+    val actions = mutableListOf<SignalLoginInfoScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+    var emittedState: SignalLoginInfoState? = null
+
+    viewModel.applyEvent(
+      SignalLoginInfoState(aci = ACI_VALUE, aep = aep, isPasswordManagerAvailable = true),
+      SignalLoginInfoScreenEvents.SaveToPasswordManagerClicked,
+      {}
+    ) { emittedState = it }
+
+    assertThat(actions).isEmpty()
+    assertThat(emittedState?.dialogs?.saveToPasswordManagerConfirmation).isEqualTo(true)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmed hands the login to the password manager`() = runTest(testDispatcher) {
+    val actions = mutableListOf<SignalLoginInfoScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+    var emittedState: SignalLoginInfoState? = null
+
+    viewModel.applyEvent(
+      SignalLoginInfoState(
+        aci = ACI_VALUE,
+        aep = aep,
+        isPasswordManagerAvailable = true,
+        dialogs = SignalLoginInfoState.Dialogs(saveToPasswordManagerConfirmation = true)
+      ),
+      SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmed,
+      {}
+    ) { emittedState = it }
+
+    assertThat(actions).containsExactly(SignalLoginInfoScreenActions.SaveToPasswordManager(accountId = ACCOUNT_ID, recoveryKey = aep.displayValue))
+    assertThat(emittedState?.dialogs?.saveToPasswordManagerConfirmation).isEqualTo(false)
+    assertThat(emittedState?.showSpinner).isEqualTo(true)
+  }
+
+  @Test
+  fun `SaveToPasswordManagerConfirmationDismissed hides the confirmation without saving`() = runTest(testDispatcher) {
+    val actions = mutableListOf<SignalLoginInfoScreenActions>()
+    backgroundScope.launch { viewModel.actions.toList(actions) }
+    var emittedState: SignalLoginInfoState? = null
+
+    viewModel.applyEvent(
+      SignalLoginInfoState(dialogs = SignalLoginInfoState.Dialogs(saveToPasswordManagerConfirmation = true)),
+      SignalLoginInfoScreenEvents.SaveToPasswordManagerConfirmationDismissed,
+      {}
+    ) { emittedState = it }
+
+    assertThat(actions).isEmpty()
+    assertThat(emittedState?.dialogs?.saveToPasswordManagerConfirmation).isEqualTo(false)
   }
 
   @Test

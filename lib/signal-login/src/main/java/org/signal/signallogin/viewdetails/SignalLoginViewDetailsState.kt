@@ -25,12 +25,14 @@ data class SignalLoginViewDetailsState(
   val recoveryKey: String = "",
   val showSaveToPasswordManagerButton: Boolean = true,
   val isPasswordManagerAvailable: Boolean = true,
+  val isGooglePasswordManagerDefault: Boolean = false,
   val showResetRecoveryKeyButton: Boolean = false,
-  val resetRecoveryKeyButtonLoading: Boolean = false
+  val resetRecoveryKeyButtonLoading: Boolean = false,
+  val showSaveToPasswordManagerConfirmation: Boolean = false
 ) {
   /** The recovery key broken into character groups, in display order. */
   val recoveryKeyGroups: RecoveryKeyGroups
     get() = RecoveryKeyGroups.from(recoveryKey)
 
-  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, isPasswordManagerAvailable=$isPasswordManagerAvailable, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading)"
+  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, isPasswordManagerAvailable=$isPasswordManagerAvailable, isGooglePasswordManagerDefault=$isGooglePasswordManagerDefault, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading, showSaveToPasswordManagerConfirmation=$showSaveToPasswordManagerConfirmation)"
 }

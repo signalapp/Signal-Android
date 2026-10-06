@@ -84,7 +84,10 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
   }
 
   private val signalLoginDetailsViewModel: MessageBackupsSignalLoginDetailsViewModel by viewModel {
-    MessageBackupsSignalLoginDetailsViewModel(isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()))
+    MessageBackupsSignalLoginDetailsViewModel(
+      isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()),
+      isGooglePasswordManagerDefault = SignalCredentialManager.isGooglePasswordManagerDefault(requireContext())
+    )
   }
 
   private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument(PDF_MIME_TYPE)) { uri: Uri? ->
@@ -179,11 +182,13 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_RECORD.name) {
         val context = LocalContext.current
         val passwordManagerSettingsIntent = SignalCredentialManager.getSettingsIntent(requireContext())
+        val isGooglePasswordManagerDefault = remember { SignalCredentialManager.isGooglePasswordManagerDefault(requireContext()) }
 
         MessageBackupsKeyRecordScreen(
           backupKey = state.accountEntropyPool.displayValue,
           keySaveState = state.backupKeySaveState,
           canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
+          isGooglePasswordManagerDefault = isGooglePasswordManagerDefault,
           onNavigationClick = viewModel::goToPreviousStage,
           mode = remember {
             MessageBackupsKeyRecordMode.Passkey(
@@ -205,11 +210,13 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_RECORD_MANUALLY.name) {
         val context = LocalContext.current
         val passwordManagerSettingsIntent = SignalCredentialManager.getSettingsIntent(requireContext())
+        val isGooglePasswordManagerDefault = remember { SignalCredentialManager.isGooglePasswordManagerDefault(requireContext()) }
 
         MessageBackupsKeyRecordScreen(
           backupKey = state.accountEntropyPool.displayValue,
           keySaveState = state.backupKeySaveState,
           canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
+          isGooglePasswordManagerDefault = isGooglePasswordManagerDefault,
           onNavigationClick = viewModel::goToPreviousStage,
           mode = remember { MessageBackupsKeyRecordMode.Next(viewModel::goToNextStage) },
           onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },

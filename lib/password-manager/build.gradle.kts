@@ -16,6 +16,7 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   implementation(project(":core:serialization"))
+  implementation(project(":core:ui"))
   implementation(project(":core:util"))
 
   implementation(libs.androidx.credentials)

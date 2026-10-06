@@ -19,6 +19,12 @@ sealed class SignalLoginInfoScreenEvents {
   /** The user chose to store the credentials with the system password manager. */
   data object SaveToPasswordManagerClicked : SignalLoginInfoScreenEvents()
 
+  /** The user confirmed they want to save to their password manager. */
+  data object SaveToPasswordManagerConfirmed : SignalLoginInfoScreenEvents()
+
+  /** The user backed out of the save to password manager confirmation. */
+  data object SaveToPasswordManagerConfirmationDismissed : SignalLoginInfoScreenEvents()
+
   /** The password manager finished with the save, one way or another. */
   data class SaveToPasswordManagerCompleted(val result: CredentialManagerResult) : SignalLoginInfoScreenEvents()
 
