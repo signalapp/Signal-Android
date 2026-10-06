@@ -1,0 +1,63 @@
+name: Retarget PRs from main
+
+# Pull requests should target the newest release branch (e.g. 8.31), not main. If a pull request targets
+# main, this retargets it to the newest release branch. If that fails, it comments with the correct
+# branch and fails the check.
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+permissions: {}
+
+concurrency:
+  group: retarget-main-prs-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  retarget:
+    if: ${{ github.repository != 'signalapp/Signal-Android' }}
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read # to list branches
+      pull-requests: write # to change the base branch and comment
+
+    steps:
+    - name: Retarget to newest release branch
+      env:
+        GH_TOKEN: ${{ github.token }}
+        REPO: ${{ github.repository }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        BASE_REF: ${{ github.event.pull_request.base.ref }}
+      run: |
+        set -euo pipefail
+
+        if [ "$BASE_REF" != "main" ]; then
+          echo "Pull request targets $BASE_REF."
+          exit 0
+        fi
+
+        TARGET="$(gh api --paginate "repos/$REPO/branches?per_page=100" --jq '.[].name' | { grep -E '^[0-9]+\.[0-9]+$' || true; } | sort -V | tail -n 1)"
+        if [ -z "$TARGET" ]; then
+          echo "::error::Pull requests should not target main, and no release branch was found to retarget to."
+          exit 1
+        fi
+
+        if gh api -X PATCH "repos/$REPO/pulls/$PR_NUMBER" -f base="$TARGET" > /dev/null; then
+          echo "Retargeted from main to $TARGET."
+          gh pr comment "$PR_NUMBER" --repo "$REPO" --body "This pull request targeted \`main\`, so it was retargeted to \`$TARGET\`, the newest release branch." || true
+          exit 0
+        fi
+
+        echo "::error::Pull requests should target $TARGET, not main. Change the base branch to $TARGET."
+
+        MARKER="<!-- retarget-main-prs -->"
+        EXISTING="$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" --jq ".[] | select(.body | contains(\"$MARKER\")) | .id")"
+        if [ -z "$EXISTING" ]; then
+          gh pr comment "$PR_NUMBER" --repo "$REPO" --body "$MARKER
+        This pull request targets \`main\`, but should target \`$TARGET\`, the newest release branch. Automatic retargeting failed, so please change the base branch to \`$TARGET\`."
+        fi
+
+        exit 1
