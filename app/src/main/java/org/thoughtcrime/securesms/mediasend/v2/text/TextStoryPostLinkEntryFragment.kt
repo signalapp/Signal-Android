@@ -7,6 +7,7 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.Group
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.createSavedStateHandle
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.ui.activityViewModel
 import org.thoughtcrime.securesms.R
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -29,6 +31,10 @@ class TextStoryPostLinkEntryFragment(private val shouldPreset: Boolean = false) 
   private val linkPreviewViewModel: LinkPreviewViewModel by viewModels(
     factoryProducer = { LinkPreviewViewModel.Factory(LinkPreviewRepository(), true) }
   )
+
+  private val sharedLinkPreviewViewModel: LinkPreviewViewModelV2 by activityViewModel { extras ->
+    LinkPreviewViewModelV2(extras.createSavedStateHandle(), enablePlaceholder = true)
+  }
 
   private val viewModel: TextStoryPostCreationViewModel by activityViewModel { extras ->
     TextStoryPostCreationViewModel.create(extras)
@@ -68,6 +74,9 @@ class TextStoryPostLinkEntryFragment(private val shouldPreset: Boolean = false) 
         val url = linkPreviewState.url ?: ""
 
         if (LinkUtil.isValidTextStoryPostPreview(url)) {
+          if (!linkPreviewState.isLoading) {
+            sharedLinkPreviewViewModel.onLinkPreviewResolved(linkPreviewState)
+          }
           viewModel.setLinkPreview(url)
           dismissAllowingStateLoss()
         } else {
