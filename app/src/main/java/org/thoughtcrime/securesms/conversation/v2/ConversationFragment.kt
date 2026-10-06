@@ -481,7 +481,7 @@ class ConversationFragment :
   }
 
   private val conversationRecipientRepository: ConversationRecipientRepository by viewModel {
-    ConversationRecipientRepository(args.threadId)
+    ConversationRecipientRepository(args.threadId, args.recipientId)
   }
 
   private val messageRequestRepository: MessageRequestRepository by lazy {
@@ -566,6 +566,7 @@ class ConversationFragment :
     InlineQueryResultsControllerV2(
       this,
       args.threadId,
+      args.recipientId,
       inlineQueryViewModel,
       inputPanel,
       (conversationContent as ViewGroup),

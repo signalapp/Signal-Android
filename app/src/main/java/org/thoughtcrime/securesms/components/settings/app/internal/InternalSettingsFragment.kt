@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
 import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -1443,8 +1442,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       val message: MessageRecord = messages[0]
       val startingPosition = SignalDatabase.messages.getMessagePositionInConversation(message.threadId, message.dateReceived)
+      val threadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId) ?: return@promptUserForString
       val intent = ConversationIntents
-        .createBuilderSync(requireContext(), RecipientId.UNKNOWN, message.threadId)
+        .createBuilderSync(requireContext(), threadRecipientId, message.threadId)
         .withStartingPosition(startingPosition)
         .build()
 
