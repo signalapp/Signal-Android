@@ -19,7 +19,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * CDN upload endpoints. CDN2 uses GCS resumable uploads and CDN3 uses TUS.
+ * CDN upload endpoints. CDN2 uses resumable uploads and CDN3 uses TUS.
  *
  * These requests go straight to the CDN rather than over the chat connection, so they are made with [SignalRestClient]. A 5xx or an unmapped
  * status is reported as a [RequestResult.RetryableNetworkError] carrying a [ServerSideErrorException].
@@ -83,17 +83,18 @@ class CdnApi(private val restClient: SignalRestClient) {
   }
 
   /**
-   * CDN3 only. Creates the upload and sends [body] in the same request (TUS creation-with-upload). The upload can be resumed afterwards at
+   * CDN3 only. Creates an upload of [length] bytes and sends [body], the first [chunkLength] of them, in the same request (TUS
+   * creation-with-upload). Returns the number of bytes the CDN has persisted. The upload can be resumed afterwards at
    * `{signedUploadLocation}/{key}`.
    *
    * `POST {signedUploadLocation}`
-   * - 2xx: Success
+   * - 2xx: Success, `Upload-Offset` holds the persisted bytes
    * - 400: Request is invalid
    * - 413: Upload is too large
    * - 415: The data did not match [checksumSha256]
    * - 429: Rate limited
    */
-  suspend fun createUploadWithData(uploadForm: AttachmentUploadForm, checksumSha256: String?, length: Long, body: RequestBody): RequestResult<Unit, UploadError> {
+  suspend fun createUploadWithData(uploadForm: AttachmentUploadForm, checksumSha256: String?, chunkLength: Long, length: Long, body: RequestBody): RequestResult<Long, UploadError> {
     if (uploadForm.cdn != 3) {
       return RequestResult.ApplicationError(IllegalArgumentException("Creation with upload is only supported on CDN3, not CDN${uploadForm.cdn}"))
     }
@@ -113,7 +114,7 @@ class CdnApi(private val restClient: SignalRestClient) {
       headers = headers
     )
 
-    return request(spec, parseSuccess = { }, mapError = { it.toUploadError() })
+    return uploadRequest(spec, onSuccess = { it.cdn3UploadOffset(expected = chunkLength) })
   }
 
   /**
@@ -140,43 +141,69 @@ class CdnApi(private val restClient: SignalRestClient) {
   }
 
   /**
-   * Sends [body], which holds the upload's data starting at [offset], to the upload at [resumeUrl].
+   * Sends [body], the [chunkLength] bytes of the upload starting at [offset], to the upload at [resumeUrl]. Returns the number of bytes the
+   * CDN has persisted.
    *
-   * CDN2: `PUT {resumeUrl}` with `Content-Range: bytes {offset}-{length - 1}/{length}`
+   * CDN2: `PUT {resumeUrl}` with `Content-Range: bytes {offset}-{offset + chunkLength - 1}/{length}`
+   * - 2xx: The upload is complete
+   * - 308: The chunk was accepted but the upload is incomplete, `Range` holds the persisted bytes
    *
    * CDN3: `PATCH {resumeUrl}` with `Upload-Offset: {offset}`
+   * - 2xx: Success, `Upload-Offset` holds the persisted bytes
    *
-   * - 2xx: Success
+   * Both:
    * - 400: Request is invalid
    * - 404, 410: Upload not found
    * - 413: Upload is too large
    * - 415: The data did not match the checksum provided when the upload was created
    * - 429: Rate limited
    */
-  suspend fun uploadFromOffset(cdnNumber: Int, resumeUrl: String, headers: Map<String, String>, offset: Long, length: Long, body: RequestBody): RequestResult<Unit, UploadError> {
-    val spec = when (cdnNumber) {
-      2 -> RequestSpec(
-        method = RequestSpec.Method.PUT,
-        host = RequestSpec.Host.Cdn(2),
-        path = resumeUrl,
-        body = body,
-        headers = mapOf("Content-Range" to "bytes $offset-${length - 1}/$length")
-      )
-      3 -> RequestSpec(
-        method = RequestSpec.Method.PATCH,
-        host = RequestSpec.Host.Cdn(3),
-        path = resumeUrl,
-        body = body,
-        headers = headers.withoutHost() + mapOf(
-          "Upload-Offset" to offset.toString(),
-          "Upload-Length" to length.toString(),
-          "Tus-Resumable" to TUS_VERSION
+  suspend fun uploadFromOffset(
+    cdnNumber: Int,
+    resumeUrl: String,
+    headers: Map<String, String>,
+    offset: Long,
+    chunkLength: Long,
+    length: Long,
+    body: RequestBody
+  ): RequestResult<Long, UploadError> {
+    return when (cdnNumber) {
+      2 -> {
+        val spec = RequestSpec(
+          method = RequestSpec.Method.PUT,
+          host = RequestSpec.Host.Cdn(2),
+          path = resumeUrl,
+          body = body,
+          headers = mapOf("Content-Range" to "bytes $offset-${offset + chunkLength - 1}/$length")
         )
-      )
-      else -> return RequestResult.ApplicationError(IllegalArgumentException("Unknown CDN version: $cdnNumber"))
-    }
 
-    return request(spec, parseSuccess = { }, mapError = { it.toUploadError() })
+        when (val result = restClient.request(spec)) {
+          is RequestResult.Success -> RequestResult.Success(length)
+          is RequestResult.NonSuccess -> when (result.error.statusCode) {
+            308 -> parseCdn2Range(result.error.headers["range"], length)
+            else -> result.error.toNonSuccessResult { it.toUploadError() }
+          }
+          is RequestResult.RetryableNetworkError -> result
+          is RequestResult.ApplicationError -> result
+        }
+      }
+      3 -> {
+        val spec = RequestSpec(
+          method = RequestSpec.Method.PATCH,
+          host = RequestSpec.Host.Cdn(3),
+          path = resumeUrl,
+          body = body,
+          headers = headers.withoutHost() + mapOf(
+            "Upload-Offset" to offset.toString(),
+            "Upload-Length" to length.toString(),
+            "Tus-Resumable" to TUS_VERSION
+          )
+        )
+
+        uploadRequest(spec, onSuccess = { it.cdn3UploadOffset(expected = offset + chunkLength) })
+      }
+      else -> RequestResult.ApplicationError(IllegalArgumentException("Unknown CDN version: $cdnNumber"))
+    }
   }
 
   private suspend fun getCdn2UploadOffset(resumeUrl: String, length: Long): RequestResult<Long, UploadError> {
@@ -257,15 +284,32 @@ class CdnApi(private val restClient: SignalRestClient) {
       } catch (e: Exception) {
         RequestResult.ApplicationError(e)
       }
-      is RequestResult.NonSuccess -> when {
-        result.error.statusCode in 500..599 -> RequestResult.RetryableNetworkError(ServerSideErrorException("Server error: ${result.error.statusCode}"))
-        else -> when (val error = mapError(result.error)) {
-          null -> RequestResult.RetryableNetworkError(ServerSideErrorException("Unexpected response code: ${result.error.statusCode}"))
-          else -> RequestResult.NonSuccess(error)
-        }
-      }
+      is RequestResult.NonSuccess -> result.error.toNonSuccessResult(mapError)
       is RequestResult.RetryableNetworkError -> result
       is RequestResult.ApplicationError -> result
+    }
+  }
+
+  private suspend fun uploadRequest(
+    spec: RequestSpec,
+    onSuccess: (RestResponse) -> RequestResult<Long, UploadError>
+  ): RequestResult<Long, UploadError> {
+    return when (val result = restClient.request(spec)) {
+      is RequestResult.Success -> onSuccess(result.result)
+      is RequestResult.NonSuccess -> result.error.toNonSuccessResult { it.toUploadError() }
+      is RequestResult.RetryableNetworkError -> result
+      is RequestResult.ApplicationError -> result
+    }
+  }
+
+  private fun <T, E : BadRequestError> RestStatusCodeError.toNonSuccessResult(mapError: (RestStatusCodeError) -> E?): RequestResult<T, E> {
+    if (statusCode in 500..599) {
+      return RequestResult.RetryableNetworkError(ServerSideErrorException("Server error: $statusCode"))
+    }
+
+    return when (val error = mapError(this)) {
+      null -> RequestResult.RetryableNetworkError(ServerSideErrorException("Unexpected response code: $statusCode"))
+      else -> RequestResult.NonSuccess(error)
     }
   }
 
@@ -277,6 +321,19 @@ class CdnApi(private val restClient: SignalRestClient) {
       415 -> UploadError.ChecksumMismatch
       429 -> UploadError.RateLimited(retryAfter())
       else -> null
+    }
+  }
+
+  /** A missing `Upload-Offset` is treated as the whole write having been persisted. */
+  private fun RestResponse.cdn3UploadOffset(expected: Long): RequestResult<Long, UploadError> {
+    val uploadOffset = headers["upload-offset"] ?: return RequestResult.Success(expected)
+    val offset = uploadOffset.toLongOrNull()
+
+    return if (offset == null) {
+      Log.w(TAG, "Unparseable Upload-Offset from CDN3: $uploadOffset")
+      RequestResult.NonSuccess(UploadError.ResumeLocationInvalid)
+    } else {
+      RequestResult.Success(offset)
     }
   }
 

@@ -595,7 +595,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull CdnService provideCdnService(@NonNull CdnApi cdnApi, @NonNull AttachmentApi attachmentApi) {
-    return new CdnService(cdnApi, attachmentApi);
+    return new CdnService(cdnApi, attachmentApi, () -> AppDependencies.getSignalServiceNetworkAccess().isCensored() ? RemoteConfig.censoredUploadChunkSizeBytes() : null);
   }
 
   @Override

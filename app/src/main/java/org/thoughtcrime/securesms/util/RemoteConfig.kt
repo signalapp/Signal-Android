@@ -1041,6 +1041,14 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  @JvmStatic
+  @get:JvmName("censoredUploadChunkSizeBytes")
+  val censoredUploadChunkSizeBytes: Long by remoteLong(
+    key = "global.attachments.censoredUploadChunkSizeBytes",
+    defaultValue = 20.mebiBytes.inWholeBytes,
+    hotSwappable = true
+  )
+
   /** Maximum size a video transcode should target in bytes  */
   @JvmStatic
   @get:JvmName("videoTranscodeTargetSizeBytes")

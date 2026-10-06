@@ -132,16 +132,16 @@ class CdnApiTest {
   fun `transport failures are retryable`() = runTest {
     responder = { throw IOException("connection reset") }
 
-    val result = cdnApi.createUploadWithData(cdn3Form, null, LENGTH, body())
+    val result = cdnApi.createUploadWithData(cdn3Form, null, LENGTH, LENGTH, body())
 
     assertThat(result).isInstanceOf<RequestResult.RetryableNetworkError>()
   }
 
   @Test
   fun `createUploadWithData sends the body in a TUS creation request`() = runTest {
-    val result = cdnApi.createUploadWithData(cdn3Form, "checksum", LENGTH, body())
+    val result = cdnApi.createUploadWithData(cdn3Form, "checksum", LENGTH, LENGTH, body())
 
-    assertThat(result).isEqualTo(RequestResult.Success(Unit))
+    assertThat(result).isEqualTo(RequestResult.Success(LENGTH))
     val request = requests.single()
     assertThat(request.method).isEqualTo("POST")
     assertThat(request.url).isEqualTo("https://cdn3.test/tus")
@@ -155,7 +155,7 @@ class CdnApiTest {
 
   @Test
   fun `createUploadWithData rejects non-CDN3 forms without making a request`() = runTest {
-    val result = cdnApi.createUploadWithData(cdn2Form, null, LENGTH, body())
+    val result = cdnApi.createUploadWithData(cdn2Form, null, LENGTH, LENGTH, body())
 
     assertThat(result).isInstanceOf<RequestResult.ApplicationError>()
     assertThat(requests).isEmpty()
@@ -165,7 +165,7 @@ class CdnApiTest {
   fun `createUploadWithData maps a checksum mismatch`() = runTest {
     responder = { respond(it, 415) }
 
-    val result = cdnApi.createUploadWithData(cdn3Form, "checksum", LENGTH, body())
+    val result = cdnApi.createUploadWithData(cdn3Form, "checksum", LENGTH, LENGTH, body())
 
     assertThat(result).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.ChecksumMismatch))
   }
@@ -254,9 +254,9 @@ class CdnApiTest {
   fun `CDN3 uploadFromOffset PATCHes from the offset`() = runTest {
     responder = { respond(it, 204) }
 
-    val result = cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", cdn3Form.headers, offset = 12, length = LENGTH, body = body())
+    val result = cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", cdn3Form.headers, offset = 12, chunkLength = LENGTH - 12, length = LENGTH, body = body())
 
-    assertThat(result).isEqualTo(RequestResult.Success(Unit))
+    assertThat(result).isEqualTo(RequestResult.Success(LENGTH))
     val request = requests.single()
     assertThat(request.method).isEqualTo("PATCH")
     assertThat(request.url).isEqualTo("https://cdn3.test/tus/cdn-key")
@@ -269,12 +269,64 @@ class CdnApiTest {
 
   @Test
   fun `CDN2 uploadFromOffset PUTs with a content range`() = runTest {
-    val result = cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), offset = 100, length = LENGTH, body = body())
+    val result = cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), offset = 100, chunkLength = LENGTH - 100, length = LENGTH, body = body())
 
-    assertThat(result).isEqualTo(RequestResult.Success(Unit))
+    assertThat(result).isEqualTo(RequestResult.Success(LENGTH))
     val request = requests.single()
     assertThat(request.method).isEqualTo("PUT")
     assertThat(request.header("Content-Range")).isEqualTo("bytes 100-${LENGTH - 1}/$LENGTH")
+  }
+
+  @Test
+  fun `createUploadWithData returns the offset the CDN persisted`() = runTest {
+    responder = { respond(it, 201, "Upload-Offset" to "256") }
+
+    val result = cdnApi.createUploadWithData(cdn3Form, null, chunkLength = 256, length = LENGTH, body = body())
+
+    assertThat(result).isEqualTo(RequestResult.Success(256L))
+    assertThat(requests.single().header("Upload-Length")).isEqualTo(LENGTH.toString())
+
+    responder = { respond(it, 201, "Upload-Offset" to "garbage") }
+    assertThat(cdnApi.createUploadWithData(cdn3Form, null, chunkLength = 256, length = LENGTH, body = body())).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.ResumeLocationInvalid))
+  }
+
+  @Test
+  fun `CDN3 uploadFromOffset returns the offset the CDN persisted`() = runTest {
+    responder = { respond(it, 204, "Upload-Offset" to "300") }
+    assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 100, 256, LENGTH, body())).isEqualTo(RequestResult.Success(300L))
+
+    responder = { respond(it, 204) }
+    assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 100, 256, LENGTH, body())).isEqualTo(RequestResult.Success(356L))
+
+    responder = { respond(it, 204, "Upload-Offset" to "garbage") }
+    assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 100, 256, LENGTH, body())).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.ResumeLocationInvalid))
+  }
+
+  @Test
+  fun `CDN2 uploadFromOffset sends a partial content range and reads the persisted range from a 308`() = runTest {
+    responder = { respond(it, 308, "Range" to "bytes=0-511") }
+
+    val result = cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), offset = 256, chunkLength = 256, length = LENGTH, body = body())
+
+    assertThat(result).isEqualTo(RequestResult.Success(512L))
+    assertThat(requests.single().header("Content-Range")).isEqualTo("bytes 256-511/$LENGTH")
+  }
+
+  @Test
+  fun `CDN2 uploadFromOffset maps failures`() = runTest {
+    responder = { respond(it, 308) }
+    assertThat(cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), 0, 256, LENGTH, body())).isEqualTo(RequestResult.Success(0L))
+
+    responder = { respond(it, 404) }
+    assertThat(cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), 0, 256, LENGTH, body())).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.ResumeLocationInvalid))
+
+    responder = { respond(it, 429, "Retry-After" to "2") }
+    assertThat(cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), 0, 256, LENGTH, body())).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.RateLimited(2.seconds)))
+
+    listOf(503, 409).forEach { code ->
+      responder = { respond(it, code) }
+      assertThat(cdnApi.uploadFromOffset(2, "https://upload.test/resumable?id=1", emptyMap(), 0, 256, LENGTH, body())).isInstanceOf<RequestResult.RetryableNetworkError>()
+    }
   }
 
   @Test
@@ -287,17 +339,17 @@ class CdnApiTest {
       415 to CdnApi.UploadError.ChecksumMismatch
     ).forEach { (code, error) ->
       responder = { respond(it, code) }
-      assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 0, LENGTH, body())).isEqualTo(RequestResult.NonSuccess(error))
+      assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 0, LENGTH, LENGTH, body())).isEqualTo(RequestResult.NonSuccess(error))
     }
 
     responder = { respond(it, 409) }
-    assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 0, LENGTH, body())).isInstanceOf<RequestResult.RetryableNetworkError>()
+    assertThat(cdnApi.uploadFromOffset(3, "https://upload.test/tus/cdn-key", emptyMap(), 0, LENGTH, LENGTH, body())).isInstanceOf<RequestResult.RetryableNetworkError>()
   }
 
   @Test
   fun `unknown CDN numbers are an ApplicationError without making a request`() = runTest {
     assertThat(cdnApi.getUploadOffset(7, "https://upload.test/x", emptyMap(), LENGTH)).isInstanceOf<RequestResult.ApplicationError>()
-    assertThat(cdnApi.uploadFromOffset(7, "https://upload.test/x", emptyMap(), 0, LENGTH, body())).isInstanceOf<RequestResult.ApplicationError>()
+    assertThat(cdnApi.uploadFromOffset(7, "https://upload.test/x", emptyMap(), 0, LENGTH, LENGTH, body())).isInstanceOf<RequestResult.ApplicationError>()
     assertThat(requests).isEmpty()
   }
 

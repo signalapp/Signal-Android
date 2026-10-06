@@ -6,9 +6,8 @@
 package org.signal.network.service
 
 import kotlinx.coroutines.runBlocking
+import okhttp3.RequestBody
 import okhttp3.internal.http2.StreamResetException
-import okio.blackholeSink
-import okio.buffer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UploadTooLargeException
@@ -30,7 +29,7 @@ import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushAttachmentData
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal
-import org.whispersystems.signalservice.internal.push.http.DigestingRequestBody
+import org.whispersystems.signalservice.internal.push.http.DigestingUploadStream
 import org.whispersystems.signalservice.internal.push.http.NoCipherOutputStreamFactory
 import org.whispersystems.signalservice.internal.push.http.OutputStreamFactory
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
@@ -38,6 +37,8 @@ import org.whispersystems.signalservice.internal.util.Util
 import java.io.IOException
 import java.io.InputStream
 import kotlin.jvm.optionals.getOrNull
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -46,13 +47,17 @@ import kotlin.time.Duration.Companion.days
  */
 class CdnService(
   private val cdnApi: CdnApi,
-  private val attachmentApi: AttachmentApi
+  private val attachmentApi: AttachmentApi,
+  private val uploadChunkSizeBytes: () -> Long? = { null }
 ) : AttachmentUploader {
 
   companion object {
     private val TAG = Log.tag(CdnService::class)
 
     private val RESUMABLE_UPLOAD_LIFETIME = 7.days
+
+    /** CDN2 rejects any chunk except the last that isn't a multiple of 256 KiB. */
+    private const val CHUNK_ALIGNMENT_BYTES = 256L * 1024
   }
 
   /**
@@ -143,7 +148,7 @@ class CdnService(
 
     val digestResult = if (form.cdn == 3) {
       Log.i(TAG, "Fresh upload via creation-with-upload (CDN3)")
-      onSpecCreated?.invoke(form.toResumableUploadSpec(key, iv, resumeLocation = form.signedUploadLocation + "/" + form.key))
+      onSpecCreated?.invoke(form.toResumableUploadSpec(key, iv, resumeLocation = form.cdn3ResumeUrl))
       createUploadWithData(form, checksumSha256, data)
     } else {
       Log.i(TAG, "Fresh upload via legacy flow (CDN${form.cdn})")
@@ -182,7 +187,7 @@ class CdnService(
       resumeUpload(uploadForm.cdn, existingResumeUrl, uploadForm.headers, uploadData)
     } else if (uploadForm.cdn == 3) {
       Log.i(TAG, "Fresh backup upload via creation-with-upload (CDN3)")
-      onResumeUrlCreated?.invoke(uploadForm.signedUploadLocation + "/" + uploadForm.key)
+      onResumeUrlCreated?.invoke(uploadForm.cdn3ResumeUrl)
       createUploadWithData(uploadForm, checksumSha256, uploadData)
     } else {
       Log.i(TAG, "Fresh backup upload via legacy flow (CDN${uploadForm.cdn})")
@@ -236,8 +241,15 @@ class CdnService(
   }
 
   private suspend fun createUploadWithData(form: AttachmentUploadForm, checksumSha256: String?, data: UploadData): RequestResult<AttachmentDigest, UploadError> {
-    val body = data.toRequestBody(CdnApi.CDN3_UPLOAD_CONTENT_TYPE, contentStart = 0)
-    return cdnApi.createUploadWithData(form, checksumSha256, data.length, body).toDigestResult(body)
+    val stream = data.toUploadStream(CdnApi.CDN3_UPLOAD_CONTENT_TYPE, contentStart = 0)
+
+    return sendInChunks(stream, startOffset = 0, data.length) { offset, chunkLength, body ->
+      if (offset == 0L) {
+        cdnApi.createUploadWithData(form, checksumSha256, chunkLength, data.length, body)
+      } else {
+        cdnApi.uploadFromOffset(3, form.cdn3ResumeUrl, form.headers, offset, chunkLength, data.length, body)
+      }
+    }
   }
 
   private suspend fun resumeUpload(spec: ResumableUploadSpec, data: UploadData): RequestResult<AttachmentDigest, UploadError> {
@@ -258,40 +270,76 @@ class CdnService(
     }
 
     val contentType = if (cdnNumber == 2) CdnApi.CDN2_UPLOAD_CONTENT_TYPE else CdnApi.CDN3_UPLOAD_CONTENT_TYPE
-    val body = data.toRequestBody(contentType, contentStart = offset)
+    val stream = data.toUploadStream(contentType, contentStart = offset)
 
     if (offset == data.length) {
       Log.w(TAG, "Resume start point == content length")
-      return body.digestWithoutSending()
+      return stream.toDigestResultWithoutSending()
     } else if (offset > 0) {
       Log.i(TAG, "Resuming upload at $offset of ${data.length}")
     }
 
-    return cdnApi.uploadFromOffset(cdnNumber, resumeUrl, headers, offset, data.length, body).toDigestResult(body)
+    return sendInChunks(stream, startOffset = offset, data.length) { chunkOffset, chunkLength, body ->
+      cdnApi.uploadFromOffset(cdnNumber, resumeUrl, headers, chunkOffset, chunkLength, data.length, body)
+    }
   }
 
-  private fun DigestingRequestBody.digestWithoutSending(): RequestResult<AttachmentDigest, UploadError> {
+  private suspend fun sendInChunks(
+    stream: DigestingUploadStream,
+    startOffset: Long,
+    length: Long,
+    sendChunk: suspend (offset: Long, chunkLength: Long, body: RequestBody) -> RequestResult<Long, UploadError>
+  ): RequestResult<AttachmentDigest, UploadError> {
+    val chunkSize = chunkSizeFor(length - startOffset)
+    var offset = startOffset
+
+    do {
+      val chunkLength = min(chunkSize, stream.bytesRemaining)
+
+      when (val result = sendChunk(offset, chunkLength, stream.nextChunk(chunkLength))) {
+        is RequestResult.Success -> {
+          offset += chunkLength
+          if (result.result != offset) {
+            Log.w(TAG, "CDN persisted ${result.result} of $length bytes, expected $offset")
+            return RequestResult.RetryableNetworkError(IOException("CDN did not persist the full chunk. Expected: $offset, actual: ${result.result}"))
+          }
+        }
+        is RequestResult.NonSuccess -> return RequestResult.NonSuccess(result.error)
+        is RequestResult.RetryableNetworkError -> return RequestResult.RetryableNetworkError(result.networkError)
+        is RequestResult.ApplicationError -> return RequestResult.ApplicationError(result.cause)
+      }
+    } while (stream.bytesRemaining > 0)
+
+    return stream.toDigestResult()
+  }
+
+  private fun chunkSizeFor(bytesToUpload: Long): Long {
+    val configured = uploadChunkSizeBytes() ?: return Long.MAX_VALUE
+    val chunkSize = max(configured - configured % CHUNK_ALIGNMENT_BYTES, CHUNK_ALIGNMENT_BYTES)
+
+    if (bytesToUpload > chunkSize) {
+      Log.i(TAG, "Uploading $bytesToUpload bytes in chunks of $chunkSize")
+    }
+
+    return chunkSize
+  }
+
+  private fun DigestingUploadStream.toDigestResultWithoutSending(): RequestResult<AttachmentDigest, UploadError> {
     return try {
-      blackholeSink().buffer().use { writeTo(it) }
+      digestWithoutSending()
       toDigestResult()
     } catch (e: IOException) {
       RequestResult.RetryableNetworkError(e)
     }
   }
 
-  private fun RequestResult<Unit, UploadError>.toDigestResult(body: DigestingRequestBody): RequestResult<AttachmentDigest, UploadError> {
-    return when (this) {
-      is RequestResult.Success -> body.toDigestResult()
-      is RequestResult.NonSuccess -> RequestResult.NonSuccess(error)
-      is RequestResult.RetryableNetworkError -> RequestResult.RetryableNetworkError(networkError)
-      is RequestResult.ApplicationError -> RequestResult.ApplicationError(cause)
-    }
-  }
-
-  private fun DigestingRequestBody.toDigestResult(): RequestResult<AttachmentDigest, UploadError> {
+  private fun DigestingUploadStream.toDigestResult(): RequestResult<AttachmentDigest, UploadError> {
     val digest = attachmentDigest ?: return RequestResult.ApplicationError(IllegalStateException("Upload finished without computing a digest"))
     return RequestResult.Success(digest)
   }
+
+  private val AttachmentUploadForm.cdn3ResumeUrl: String
+    get() = "$signedUploadLocation/$key"
 
   private fun AttachmentUploadForm.toResumableUploadSpec(key: ByteArray, iv: ByteArray, resumeLocation: String): ResumableUploadSpec {
     return ResumableUploadSpec(
@@ -345,8 +393,8 @@ class CdnService(
     val progressListener: SignalServiceAttachment.ProgressListener? = null,
     val cancelationSignal: CancelationSignal? = null
   ) {
-    fun toRequestBody(contentType: String, contentStart: Long): DigestingRequestBody {
-      return DigestingRequestBody(inputStream, outputStreamFactory, contentType, length, incremental, progressListener, cancelationSignal, contentStart)
+    fun toUploadStream(contentType: String, contentStart: Long): DigestingUploadStream {
+      return DigestingUploadStream(inputStream, outputStreamFactory, contentType, length, incremental, progressListener, cancelationSignal, contentStart)
     }
   }
 
