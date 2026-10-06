@@ -446,11 +446,11 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
   var forceWebsocketMode: ForceWebsocketMode
     get() {
       return if (store.containsKey(FORCE_WEBSOCKET_MODE)) {
-        ForceWebsocketMode.deserialize(getInteger(FORCE_WEBSOCKET_MODE, ForceWebsocketMode.DISABLED.serialize()))
+        ForceWebsocketMode.deserialize(getInteger(FORCE_WEBSOCKET_MODE, ForceWebsocketMode.DISABLED_AUTOMATICALLY.serialize()))
       } else if (getBoolean(FORCE_WEBSOCKET_MODE, false)) {
         ForceWebsocketMode.ENABLED_BY_USER
       } else {
-        ForceWebsocketMode.DISABLED
+        ForceWebsocketMode.DISABLED_AUTOMATICALLY
       }
     }
     set(value) {
@@ -662,12 +662,13 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
   }
 
   enum class ForceWebsocketMode(private val value: Int) {
-    DISABLED(0),
+    DISABLED_AUTOMATICALLY(0),
     ENABLED_BY_USER(1),
-    ENABLED_AUTOMATICALLY(2);
+    ENABLED_AUTOMATICALLY(2),
+    DISABLED_BY_USER(3);
 
     val isEnabled: Boolean
-      get() = this != DISABLED
+      get() = this == ENABLED_BY_USER || this == ENABLED_AUTOMATICALLY
 
     fun serialize(): Int = value
 

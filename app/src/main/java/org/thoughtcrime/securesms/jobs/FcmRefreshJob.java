@@ -114,7 +114,7 @@ public class FcmRefreshJob extends BaseJob {
 
       if (SignalStore.settings().getForceWebsocketMode() == ForceWebsocketMode.ENABLED_AUTOMATICALLY) {
         Log.i(TAG, "FCM succeeded while in auto-enabled websocket mode. Reverting to disabled.");
-        SignalStore.settings().setForceWebsocketMode(ForceWebsocketMode.DISABLED);
+        SignalStore.settings().setForceWebsocketMode(ForceWebsocketMode.DISABLED_AUTOMATICALLY);
         IncomingMessageObserver.stopForegroundService(context);
         AppDependencies.resetNetwork();
         AppDependencies.startNetwork();
@@ -143,13 +143,15 @@ public class FcmRefreshJob extends BaseJob {
         AppDependencies.startNetwork();
       }
     } else if (status == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
-               SignalStore.settings().getForceWebsocketMode() == ForceWebsocketMode.DISABLED &&
+               SignalStore.settings().getForceWebsocketMode() == ForceWebsocketMode.DISABLED_AUTOMATICALLY &&
                System.currentTimeMillis() - SignalStore.account().getFcmTokenLastSetTime() > TimeUnit.DAYS.toMillis(3))
     {
       Log.w(TAG, "FCM has been failing for over 3 days despite Play Services being available. Auto-enabling forced websocket mode so the user can still get messages.");
       SignalStore.settings().setForceWebsocketMode(ForceWebsocketMode.ENABLED_AUTOMATICALLY);
       AppDependencies.resetNetwork();
       AppDependencies.startNetwork();
+    } else if (SignalStore.settings().getForceWebsocketMode() == ForceWebsocketMode.DISABLED_BY_USER) {
+      Log.w(TAG, "FCM is failing, but the user has explicitly disabled forced websocket mode. Not auto-enabling.");
     }
   }
 

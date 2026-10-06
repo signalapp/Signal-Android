@@ -70,7 +70,7 @@ class DataAndStorageSettingsViewModel(
   }
 
   private fun applyForceWebsocketMode(enabled: Boolean) {
-    SignalStore.settings.forceWebsocketMode = if (enabled) ForceWebsocketMode.ENABLED_BY_USER else ForceWebsocketMode.DISABLED
+    SignalStore.settings.forceWebsocketMode = if (enabled) ForceWebsocketMode.ENABLED_BY_USER else ForceWebsocketMode.DISABLED_BY_USER
     if (!enabled) {
       IncomingMessageObserver.stopForegroundService(AppDependencies.application)
     }
