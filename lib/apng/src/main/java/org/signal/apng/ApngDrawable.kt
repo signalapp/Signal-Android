@@ -67,6 +67,12 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   private var playing = true
 
   override fun draw(canvas: Canvas) {
+    // Glide recycles this drawable when its resource is released, but a host (e.g. a Compose painter) may still draw
+    // it for a frame before it learns the resource is gone. Drawing recycled bitmaps would crash, so draw nothing.
+    if (activeBitmap.isRecycled) {
+      return
+    }
+
     if (!playing) {
       canvas.drawActiveFrame()
       return
