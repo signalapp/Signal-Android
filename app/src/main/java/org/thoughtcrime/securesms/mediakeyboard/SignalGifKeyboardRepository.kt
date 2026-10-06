@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl
 import org.thoughtcrime.securesms.giph.model.GiphyImage
 import org.thoughtcrime.securesms.giph.model.GiphyResponse
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
 import org.thoughtcrime.securesms.net.ContentProxySelector
 import java.io.IOException
 
@@ -33,9 +32,6 @@ import java.io.IOException
  * (e.g. the full-size mp4 url) for a selected [KeyboardGif] via [getGiphyImage].
  */
 class SignalGifKeyboardRepository : GifKeyboardRepository {
-
-  override val allowGifAnimation: Boolean
-    get() = GiphyMp4PlaybackPolicy.autoplay()
 
   companion object {
     private val BASE_GIPHY_URI: Uri = Uri.parse("https://api.giphy.com/v1/gifs/")

@@ -11,7 +11,6 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,7 +43,6 @@ class GifPageViewModelTest {
   fun setup() {
     Dispatchers.setMain(testDispatcher)
     repository = mockk()
-    every { repository.allowGifAnimation } returns true
     coEvery { repository.getGifs("", 0, any()) } returns Result.success(GifPage(gifs(20), hasMore = true))
     actions = mutableListOf()
     collectorScope = CoroutineScope(testDispatcher)

@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.concurrent.ListenableFuture;
@@ -42,6 +44,7 @@ import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.blurhash.BlurHash;
 import org.signal.core.ui.view.Stub;
+import org.signal.apng.ApngDrawable;
 import org.signal.glide.apng.ApngOptions;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.load.SignalDownsampleStrategy;
@@ -93,6 +96,9 @@ public class ThumbnailView extends FrameLayout {
   private final AppCompatImageView errorImage;
 
   private OnClickListener parentClickListener;
+
+  private boolean slideHasPlayOverlay;
+  private boolean playOverlayForced;
 
   private final int[] dimens        = new int[2];
   private final int[] bounds        = new int[4];
@@ -352,7 +358,8 @@ public class ThumbnailView extends FrameLayout {
       this.slide = slide;
 
       transferControlViewStub.setVisibility(View.GONE);
-      playOverlay.setVisibility(View.GONE);
+      slideHasPlayOverlay = false;
+      updatePlayOverlay();
       setBackgroundColor(Color.TRANSPARENT);
 
       requestManager.clear(blurHash);
@@ -400,13 +407,9 @@ public class ThumbnailView extends FrameLayout {
       transferControlViewStub.get().setVisible(true);
     }
 
-    if (slide.getUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || isPreview))
-    {
-      this.playOverlay.setVisibility(View.VISIBLE);
-    } else {
-      this.playOverlay.setVisibility(View.GONE);
-    }
+    slideHasPlayOverlay = slide.getUri() != null && slide.hasPlayOverlay() &&
+                          (slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || isPreview);
+    updatePlayOverlay();
 
     if (hasSameContents(this.slide, slide)) {
       Log.i(TAG, "Not re-loading slide " + slide.asAttachment().getDisplayUri());
@@ -487,7 +490,10 @@ public class ThumbnailView extends FrameLayout {
         thumbnailFuture.addListener(new BlurHashClearListener(requestManager, blurHash));
       }
 
-      buildThumbnailRequestBuilder(requestManager, slide).into(new GlideDrawableListeningTarget(image, result));
+      GlideDrawableListeningTarget target = slide.hasSticker() ? new StickerDrawableListeningTarget(image, result)
+                                                               : new GlideDrawableListeningTarget(image, result);
+
+      buildThumbnailRequestBuilder(requestManager, slide).into(target);
 
       resultHandled = true;
     } else {
@@ -582,6 +588,49 @@ public class ThumbnailView extends FrameLayout {
     }
   }
 
+  /**
+   * Plays the sticker being displayed if it is animated and not already playing.
+   *
+   * @return true if playback was started.
+   */
+  public boolean playStickerIfStopped() {
+    ApngDrawable drawable = getStickerDrawable();
+
+    if (drawable != null && !drawable.isRunning()) {
+      StickerAnimationPolicy.playSinglePlayback(drawable);
+      return true;
+    }
+
+    return false;
+  }
+
+  private @Nullable ApngDrawable getStickerDrawable() {
+    if (slide == null || !slide.hasSticker()) {
+      return null;
+    }
+
+    Drawable drawable = image.getDrawable();
+
+    // Glide's cross fade leaves the sticker as the top layer of a TransitionDrawable.
+    if (drawable instanceof LayerDrawable && ((LayerDrawable) drawable).getNumberOfLayers() > 0) {
+      LayerDrawable layers = (LayerDrawable) drawable;
+      drawable = layers.getDrawable(layers.getNumberOfLayers() - 1);
+    }
+
+    return drawable instanceof ApngDrawable ? (ApngDrawable) drawable : null;
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+
+    ApngDrawable drawable = getStickerDrawable();
+
+    if (drawable != null) {
+      StickerAnimationPolicy.resetPlayback(drawable);
+    }
+  }
+
   public void setThumbnailClickListener(SlideClickListener listener) {
     this.thumbnailClickListener = listener;
   }
@@ -596,6 +645,18 @@ public class ThumbnailView extends FrameLayout {
 
   public void setPlayVideoClickListener(SlideClickListener listener) {
     this.playVideoClickListener = listener;
+  }
+
+  /**
+   * Shows the play overlay even when the slide would not otherwise have one, such as a gif whose autoplay has ended.
+   */
+  public void setPlayOverlayForced(boolean forced) {
+    this.playOverlayForced = forced;
+    updatePlayOverlay();
+  }
+
+  private void updatePlayOverlay() {
+    playOverlay.setVisibility(slideHasPlayOverlay || playOverlayForced ? View.VISIBLE : View.GONE);
   }
 
   private static boolean hasSameContents(@Nullable Slide slide, @Nullable Slide other) {
@@ -626,7 +687,7 @@ public class ThumbnailView extends FrameLayout {
                                                               .transition(withCrossFade()));
 
     if (slide.hasSticker()) {
-      requestBuilder = requestBuilder.set(ApngOptions.ANIMATE, StickerAnimationPolicy.allowAnimation());
+      requestBuilder = requestBuilder.set(ApngOptions.ANIMATE, true);
     } else if (MediaUtil.isGif(slide.getContentType()) && !GiphyMp4PlaybackPolicy.autoplay()) {
       requestBuilder = requestBuilder.decode(Bitmap.class);
     }
@@ -739,6 +800,45 @@ public class ThumbnailView extends FrameLayout {
     return 0;
   }
 
+
+  /**
+   * Glide can hand back the same drawable for a sticker it already displayed, so the playback state is reset each time
+   * the sticker is shown, and when the screen stops, rather than when it is decoded.
+   */
+  private static final class StickerDrawableListeningTarget extends GlideDrawableListeningTarget {
+
+    private @Nullable ApngDrawable sticker;
+
+    StickerDrawableListeningTarget(@NonNull ImageView view, @NonNull SettableFuture<Boolean> loaded) {
+      super(view, loaded);
+    }
+
+    @Override
+    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+      sticker = resource instanceof ApngDrawable ? (ApngDrawable) resource : null;
+
+      if (sticker != null) {
+        StickerAnimationPolicy.resetPlayback(sticker);
+      }
+
+      super.onResourceReady(resource, transition);
+    }
+
+    @Override
+    public void onStop() {
+      if (sticker != null) {
+        StickerAnimationPolicy.resetPlayback(sticker);
+      }
+
+      super.onStop();
+    }
+
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
+      sticker = null;
+      super.onLoadCleared(placeholder);
+    }
+  }
 
   public interface ThumbnailRequestListener extends RequestListener<Drawable> {
     void onLoadCanceled();

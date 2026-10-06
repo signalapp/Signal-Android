@@ -87,7 +87,6 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
-import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.stickers.StickerManifest
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
@@ -695,7 +694,7 @@ fun StickerImage(
   if (!LocalInspectionMode.current) {
     GlideImage(
       model = sticker.imageModel,
-      enableApngAnimation = StickerAnimationPolicy.allowAnimation(),
+      enableApngAnimation = true,
       contentScale = ContentScale.Fit,
       modifier = if (onClick != null) {
         modifier.clickable(onClick = { onClick() })

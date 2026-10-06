@@ -46,7 +46,12 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   var debugDrawBounds = false
   var loopForever = false
 
+  val durationMs: Long
+    get() = decoder.frames.sumOf { it.delayMs }
+
   private var playCount = 0
+  private var loopLimit: Int? = null
+  private var restFrameStale = true
 
   private val frameRect = Rect(0, 0, 0, 0)
 
@@ -73,6 +78,9 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
     }
 
     if (!playing) {
+      if (restFrameStale) {
+        drawRestFrame()
+      }
       canvas.drawActiveFrame()
       return
     }
@@ -83,8 +91,8 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
       return
     }
 
-    val totalPlays = decoder.metadata.numPlays
-    if (playCount >= totalPlays && !loopForever) {
+    if (hasFinishedPlaying()) {
+      playing = false
       canvas.drawActiveFrame()
       return
     }
@@ -140,7 +148,35 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
   }
 
   override fun start() {
+    if (hasFinishedPlaying()) {
+      return
+    }
+
     playing = true
+    invalidateSelf()
+  }
+
+  /**
+   * Plays the animation from its first frame for [loops] loops, after which it stops. Once stopped, [start] will not
+   * resume it until it is played again.
+   */
+  fun play(loops: Int) {
+    loopLimit = loops
+    loopForever = false
+    rewindToStart()
+    playing = true
+    invalidateSelf()
+  }
+
+  /**
+   * Stops the animation on its first frame. It will not play again until [play] is called.
+   */
+  fun stopAtStart() {
+    loopLimit = 0
+    loopForever = false
+    rewindToStart()
+    playing = false
+    restFrameStale = true
     invalidateSelf()
   }
 
@@ -187,7 +223,26 @@ class ApngDrawable(val decoder: ApngDecoder) : Drawable(), Animatable {
     disposeOpBitmap.recycle()
   }
 
+  private fun hasFinishedPlaying(): Boolean {
+    return !loopForever && playCount >= (loopLimit ?: decoder.metadata.numPlays)
+  }
+
+  private fun rewindToStart() {
+    position = 0
+    playCount = 0
+    timeForNextFrame = 0
+  }
+
+  private fun drawRestFrame() {
+    try {
+      drawFrame(decoder.frames[0], 0)
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to decode the first frame.", e)
+    }
+  }
+
   private fun drawFrame(frame: ApngDecoder.Frame, frameIndex: Int) {
+    restFrameStale = false
     frameRect.updateBoundsFrom(frame)
 
     // If the disposeOp is PREVIOUS, then we need to save the contents of the frame before we draw into it

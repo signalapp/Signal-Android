@@ -713,6 +713,11 @@ public class ConversationAdapter
     }
 
     @Override
+    public boolean isPlaybackRequested() {
+      return getBindable().isPlaybackRequested();
+    }
+
+    @Override
     public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
       return getBindable().getGiphyMp4PlayableProjection(recyclerView);
     }

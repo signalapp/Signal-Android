@@ -1221,6 +1221,9 @@ class ConversationFragment :
 
     EventBus.getDefault().register(this)
 
+    // Reselects which gifs play, since a gif whose tapped playback was dropped on pause may now autoplay.
+    binding.conversationItemRecycler.requestLayout()
+
     groupCallViewModel.peekGroupCall()
 
     if (!args.conversationScreenType.isInBubble) {
@@ -1252,6 +1255,8 @@ class ConversationFragment :
 
   override fun onPause() {
     super.onPause()
+
+    adapter.playInlineContent(null)
 
     ConversationUtil.refreshRecipientShortcuts()
 

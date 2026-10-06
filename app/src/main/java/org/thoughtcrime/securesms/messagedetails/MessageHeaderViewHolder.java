@@ -306,6 +306,11 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
+  public boolean isPlaybackRequested() {
+    return conversationItem.isPlaybackRequested();
+  }
+
+  @Override
   public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerview) {
     return conversationItem.getGiphyMp4PlayableProjection(recyclerview);
   }

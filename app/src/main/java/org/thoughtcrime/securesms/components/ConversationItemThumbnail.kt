@@ -146,6 +146,12 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     state.thumbnailViewState.applyState(thumbnail)
   }
 
+  fun setPlayOverlayForced(forced: Boolean) {
+    if (thumbnail.resolved()) {
+      thumbnail.get().setPlayOverlayForced(forced)
+    }
+  }
+
   val corners: Corners
     get() = Corners(cornerMask.radii)
 

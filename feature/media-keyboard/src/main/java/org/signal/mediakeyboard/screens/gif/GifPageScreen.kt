@@ -171,12 +171,7 @@ private fun GifGrid(
   val maxSimultaneous = rememberMaxSimultaneousGifs()
   val playbackSet = rememberGifPlaybackSet(gridState, maxSimultaneous)
 
-  LaunchedEffect(playbackSet, state.gifs, state.allowAnimation) {
-    if (!state.allowAnimation) {
-      gifPlayers.setPlaying(emptyMap())
-      return@LaunchedEffect
-    }
-
+  LaunchedEffect(playbackSet, state.gifs) {
     gifPlayers.setPlaying(
       playbackSet
         .mapNotNull { itemIndex ->

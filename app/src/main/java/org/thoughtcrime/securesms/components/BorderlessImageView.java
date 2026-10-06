@@ -68,6 +68,13 @@ public class BorderlessImageView extends FrameLayout {
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);
   }
 
+  /**
+   * @see ThumbnailView#playStickerIfStopped()
+   */
+  public boolean playStickerIfStopped() {
+    return image.playStickerIfStopped();
+  }
+
   public void setThumbnailClickListener(@NonNull SlideClickListener listener) {
     image.setThumbnailClickListener(listener);
   }

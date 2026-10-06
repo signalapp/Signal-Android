@@ -288,6 +288,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private       MediaItem          mediaItem;
   private       boolean            canPlayContent;
+  private       boolean            allowedToPlayInline;
+  private       boolean            inlinePlaybackEnded;
   private       Projection.Corners bodyBubbleCorners;
   private       Colorizer          colorizer;
   private       boolean            hasWallpaper;
@@ -411,6 +413,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     conversationRecipient = conversationRecipient.resolve();
 
+    // Rebinding the same message keeps its ended playback.
+    if (messageRecord == null || messageRecord.getId() != conversationMessage.getMessageRecord().getId()) {
+      inlinePlaybackEnded = false;
+    }
+
     this.conversationMessage   = conversationMessage;
     this.messageRecord         = conversationMessage.getMessageRecord();
     this.nextMessageRecord     = nextMessageRecord;
@@ -423,6 +430,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.author                = messageRecord.getFromRecipient().live();
     this.canPlayContent        = false;
     this.mediaItem             = null;
+    this.allowedToPlayInline   = allowedToPlayInline;
     this.colorizer             = colorizer;
     this.displayMode           = displayMode;
     this.previousMessage       = previousMessageRecord;
@@ -1581,6 +1589,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                                     showControls,
                                                     false,
                                                     getDefaultBubbleColor(hasWallpaper));
+      mediaThumbnailStub.require().setPlayOverlayForced(inlinePlaybackEnded);
       if (!messageRecord.isOutgoing()) {
         mediaThumbnailStub.require().setConversationColor(getDefaultBubbleColor(hasWallpaper));
         mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);
@@ -2491,6 +2500,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void showProjectionArea() {
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
+      mediaThumbnailStub.require().setPlayOverlayForced(inlinePlaybackEnded);
       mediaThumbnailStub.require().showThumbnailView();
       bodyBubble.setVideoPlayerProjection(null);
     }
@@ -2499,6 +2509,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void hideProjectionArea() {
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
+      inlinePlaybackEnded = false;
+      mediaThumbnailStub.require().setPlayOverlayForced(false);
       mediaThumbnailStub.require().hideThumbnailView();
       mediaThumbnailStub.require().getDrawingRect(thumbnailMaskingRect);
       bodyBubble.setVideoPlayerProjection(Projection.relativeToViewWithCommonRoot(mediaThumbnailStub.require(), bodyBubble, null));
@@ -2512,15 +2524,23 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public @Nullable GiphyMp4PlaybackPolicyEnforcer getPlaybackPolicyEnforcer() {
-    if (GiphyMp4PlaybackPolicy.autoplay()) {
-      return null;
-    } else {
-      return new GiphyMp4PlaybackPolicyEnforcer(() -> {
-        if (eventListener != null) {
-          eventListener.onPlayInlineContent(null);
-        }
-      });
-    }
+    long    playingMessageId = messageRecord.getId();
+    boolean wasRequested     = allowedToPlayInline;
+
+    return new GiphyMp4PlaybackPolicyEnforcer(() -> {
+      if (messageRecord != null && messageRecord.getId() == playingMessageId) {
+        inlinePlaybackEnded = true;
+      }
+
+      if (wasRequested && eventListener != null) {
+        eventListener.onPlayInlineContent(null);
+      }
+    });
+  }
+
+  @Override
+  public boolean isPlaybackRequested() {
+    return allowedToPlayInline && mediaItem != null;
   }
 
   @Override
@@ -2970,7 +2990,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     public void onClick(View v, Slide slide) {
       if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
         performClick();
-      } else if (eventListener != null && hasSticker(messageRecord)) {
+      } else if (eventListener != null && hasSticker(messageRecord) && !stickerStub.get().playStickerIfStopped()) {
         //noinspection ConstantConditions
         eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide());
       }
@@ -2981,7 +3001,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     public void onClick(final View v, final Slide slide) {
       if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty() || (isSuppressedInteractionMode() && (!slide.hasDocument() || (slide.hasDocument() && !MessageRecordUtil.isScheduled(messageRecord))))) {
         performClick();
-      } else if (!canPlayContent && mediaItem != null && eventListener != null) {
+      } else if ((!canPlayContent || inlinePlaybackEnded) && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
       } else if (MediaPreviewFragment.isContentTypeSupported(slide.getContentType()) && slide.getDisplayUri() != null) {
         AttachmentDownloadJob.downloadAttachmentIfNeeded((DatabaseAttachment) slide.asAttachment());

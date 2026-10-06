@@ -542,6 +542,10 @@ class ConversationAdapterV2(
       return bindable.playbackPolicyEnforcer
     }
 
+    override fun isPlaybackRequested(): Boolean {
+      return bindable.isPlaybackRequested
+    }
+
     override fun getGiphyMp4PlayableProjection(recyclerView: ViewGroup): Projection {
       return bindable.getGiphyMp4PlayableProjection(recyclerView)
     }

@@ -37,6 +37,13 @@ public interface GiphyMp4Playable {
   }
 
   /**
+   * Whether the user asked for this content to play, which restarts playback that the policy already ended.
+   */
+  default boolean isPlaybackRequested() {
+    return false;
+  }
+
+  /**
    * @return The position this item is in it's corresponding adapter
    */
   int getAdapterPosition();

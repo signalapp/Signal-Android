@@ -14,12 +14,6 @@ import org.signal.core.util.Result
 interface GifKeyboardRepository {
 
   /**
-   * Whether gifs in the grid should play, rather than show their still image.
-   */
-  val allowGifAnimation: Boolean
-    get() = true
-
-  /**
    * Fetches a page of gifs. An empty [query] means trending.
    */
   suspend fun getGifs(query: String, offset: Int, limit: Int): Result<GifPage, GifFetchError>

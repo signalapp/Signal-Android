@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.giph.mp4;
 
 import android.util.SparseArray;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,6 +65,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
         notPlaying.put(playing.keyAt(i), playing.valueAt(i));
         playing.valueAt(i).clearMedia();
         playing.valueAt(i).setOnPlaybackReady(null);
+        playing.valueAt(i).setOnPlaybackEnded(null);
         markedForDeletion.add(playing.keyAt(i));
       }
     }
@@ -87,14 +89,16 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
 
     Projection projection = giphyMp4Playable.getGiphyMp4PlayableProjection(recyclerView);
 
-    holder.getContainer().setX(projection.getX());
-    holder.getContainer().setY(projection.getY() + recyclerView.getTranslationY());
+    FrameLayout container = holder.getContainer();
+    container.setX(projection.getX());
+    container.setY(projection.getY() + recyclerView.getTranslationY());
 
-    ViewGroup.LayoutParams params = holder.getContainer().getLayoutParams();
-    if (params.width != projection.getWidth() || params.height != projection.getHeight()) {
+    ViewGroup.LayoutParams params    = container.getLayoutParams();
+    boolean                isLaidOut = container.getWidth() == projection.getWidth() && container.getHeight() == projection.getHeight();
+    if (params.width != projection.getWidth() || params.height != projection.getHeight() || !isLaidOut) {
       params.width  = projection.getWidth();
       params.height = projection.getHeight();
-      holder.getContainer().setLayoutParams(params);
+      container.setLayoutParams(params);
     }
 
     holder.setCorners(projection.getCorners());
@@ -103,7 +107,15 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
   }
 
   private void startPlayback(@NonNull RecyclerView parent, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
-    if (!Objects.equals(holder.getMediaItem(), giphyMp4Playable.getMediaItem())) {
+    boolean isNewMedia = !Objects.equals(holder.getMediaItem(), giphyMp4Playable.getMediaItem());
+    boolean isReplay   = holder.hasPlaybackEnded() && giphyMp4Playable.isPlaybackRequested();
+
+    holder.setOnPlaybackEnded(() -> {
+      giphyMp4Playable.showProjectionArea();
+      parent.invalidate();
+    });
+
+    if (isNewMedia || isReplay) {
       holder.setOnPlaybackReady(null);
       giphyMp4Playable.showProjectionArea();
 
@@ -112,7 +124,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
         giphyMp4Playable.hideProjectionArea();
         parent.invalidate();
       });
-      holder.playContent(giphyMp4Playable.getMediaItem(), giphyMp4Playable.getPlaybackPolicyEnforcer());
+      holder.playContent(giphyMp4Playable.getMediaItem(), giphyMp4Playable.getPlaybackPolicyEnforcer(), giphyMp4Playable.isPlaybackRequested());
     } else {
       giphyMp4Playable.showProjectionArea();
 

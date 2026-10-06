@@ -90,7 +90,7 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
 
   @Override
   public boolean canPlayContent() {
-    return GiphyMp4PlaybackPolicy.autoplay();
+    return true;
   }
 
   @Override

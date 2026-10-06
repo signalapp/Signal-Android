@@ -53,7 +53,6 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.mediakeyboard.data.KeyboardSticker
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy
 
 private const val PANEL_ALPHA = 0.6f
 
@@ -169,7 +168,7 @@ private fun StickerConfirmationPanel(
 
     GlideImage(
       model = confirmation.sticker.image,
-      enableApngAnimation = StickerAnimationPolicy.allowAnimation(),
+      enableApngAnimation = true,
       modifier = Modifier
         .size(StickerSize)
         .align(Alignment.Center)

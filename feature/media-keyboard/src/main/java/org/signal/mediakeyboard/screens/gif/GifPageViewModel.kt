@@ -26,7 +26,7 @@ class GifPageViewModel(
     private const val PAGE_SIZE = 20
   }
 
-  private val _state = MutableStateFlow(GifPageState(allowAnimation = repository.allowGifAnimation))
+  private val _state = MutableStateFlow(GifPageState())
   val state: StateFlow<GifPageState> = _state.asStateFlow()
 
   init {

@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.VisibleForTesting;
+
+import org.thoughtcrime.securesms.util.AnimationPlaybackPolicy;
 
 /**
  * Enforces a video player to play back a specified number of loops given
@@ -10,31 +11,15 @@ import androidx.annotation.VisibleForTesting;
 public final class GiphyMp4PlaybackPolicyEnforcer {
 
   private final Callback callback;
-  private final long     maxDurationOfSinglePlayback;
-  private final long     maxRepeatsOfSinglePlayback;
 
   private long loopsRemaining = -1;
 
   public GiphyMp4PlaybackPolicyEnforcer(@NonNull Callback callback) {
-    this(callback,
-         GiphyMp4PlaybackPolicy.maxDurationOfSinglePlayback(),
-         GiphyMp4PlaybackPolicy.maxRepeatsOfSinglePlayback());
-  }
-
-  @VisibleForTesting
-  GiphyMp4PlaybackPolicyEnforcer(@NonNull Callback callback,
-                                 long maxDurationOfSinglePlayback,
-                                 long maxRepeatsOfSinglePlayback)
-  {
-    this.callback                    = callback;
-    this.maxDurationOfSinglePlayback = maxDurationOfSinglePlayback;
-    this.maxRepeatsOfSinglePlayback  = maxRepeatsOfSinglePlayback;
+    this.callback = callback;
   }
 
   void setMediaDuration(long duration) {
-    long maxLoopsByDuration = Math.max(1, maxDurationOfSinglePlayback / duration);
-
-    loopsRemaining = Math.min(maxLoopsByDuration, maxRepeatsOfSinglePlayback);
+    loopsRemaining = AnimationPlaybackPolicy.loopsOfSinglePlayback(duration);
   }
 
   public boolean endPlayback() {

@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy
 
 /**
  * [StickerKeyboardRepository] backed by the app's sticker database.
@@ -37,8 +36,7 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
     private const val RECENT_LIMIT = 24
   }
 
-  override val allowStickerAnimation: Boolean
-    get() = StickerAnimationPolicy.allowAnimation()
+  override val allowStickerAnimation: Boolean = true
 
   override fun observeStickerPacks(): Flow<List<KeyboardStickerPack>> {
     return callbackFlow {

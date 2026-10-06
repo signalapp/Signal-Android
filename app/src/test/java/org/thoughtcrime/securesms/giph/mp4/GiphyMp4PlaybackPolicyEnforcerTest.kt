@@ -7,47 +7,38 @@ import java.util.concurrent.TimeUnit
 class GiphyMp4PlaybackPolicyEnforcerTest {
 
   @Test
-  fun `Given a 1s video, when I have a max time of 8s and max repeats of 4, then I expect 4 loops`() {
-    val mediaDuration = TimeUnit.SECONDS.toMillis(1)
-    val maxDuration = TimeUnit.SECONDS.toMillis(8)
-    val maxRepeats = 4L
-    var ended = false
-    val testSubject = GiphyMp4PlaybackPolicyEnforcer({ ended = true }, maxDuration, maxRepeats)
-
-    testSubject.setMediaDuration(mediaDuration)
-
-    Assert.assertTrue((0..2).map { testSubject.endPlayback() }.all { !it })
-    Assert.assertFalse(ended)
-    Assert.assertTrue(testSubject.endPlayback())
-    Assert.assertTrue(ended)
+  fun `Given a 1s video, then I expect as many loops as fit in 6s`() {
+    assertLoops(mediaDuration = TimeUnit.SECONDS.toMillis(1), expectedLoops = 6)
   }
 
   @Test
-  fun `Given a 3s video, when I have a max time of 8s and max repeats of 4, then I expect 2 loops`() {
-    val mediaDuration = TimeUnit.SECONDS.toMillis(3)
-    val maxDuration = TimeUnit.SECONDS.toMillis(8)
-    val maxRepeats = 4L
-    var ended = false
-    val testSubject = GiphyMp4PlaybackPolicyEnforcer({ ended = true }, maxDuration, maxRepeats)
-
-    testSubject.setMediaDuration(mediaDuration)
-
-    Assert.assertFalse(testSubject.endPlayback())
-    Assert.assertFalse(ended)
-    Assert.assertTrue(testSubject.endPlayback())
-    Assert.assertTrue(ended)
+  fun `Given a 1_5s video, then I expect as many loops as fit in 6s`() {
+    assertLoops(mediaDuration = 1500, expectedLoops = 4)
   }
 
   @Test
-  fun `Given a 10s video, when I have a max time of 8s and max repeats of 4, then I expect 1 loop`() {
-    val mediaDuration = TimeUnit.SECONDS.toMillis(10)
-    val maxDuration = TimeUnit.SECONDS.toMillis(8)
-    val maxRepeats = 4L
+  fun `Given a 3s video, then I expect the minimum of 3 loops`() {
+    assertLoops(mediaDuration = TimeUnit.SECONDS.toMillis(3), expectedLoops = 3)
+  }
+
+  @Test
+  fun `Given a 10s video, then I expect the minimum of 3 loops`() {
+    assertLoops(mediaDuration = TimeUnit.SECONDS.toMillis(10), expectedLoops = 3)
+  }
+
+  @Test
+  fun `Given an unknown duration, then I expect the minimum of 3 loops`() {
+    assertLoops(mediaDuration = -1, expectedLoops = 3)
+  }
+
+  private fun assertLoops(mediaDuration: Long, expectedLoops: Int) {
     var ended = false
-    val testSubject = GiphyMp4PlaybackPolicyEnforcer({ ended = true }, maxDuration, maxRepeats)
+    val testSubject = GiphyMp4PlaybackPolicyEnforcer { ended = true }
 
     testSubject.setMediaDuration(mediaDuration)
 
+    Assert.assertTrue((1 until expectedLoops).map { testSubject.endPlayback() }.all { !it })
+    Assert.assertFalse(ended)
     Assert.assertTrue(testSubject.endPlayback())
     Assert.assertTrue(ended)
   }

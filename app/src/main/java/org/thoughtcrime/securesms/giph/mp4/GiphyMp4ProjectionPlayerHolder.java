@@ -41,8 +41,12 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   private final GiphyMp4VideoPlayer player;
 
   private Runnable                       onPlaybackReady;
+  private Runnable                       onPlaybackEnded;
   private MediaItem                      mediaItem;
   private GiphyMp4PlaybackPolicyEnforcer policyEnforcer;
+  private boolean                        firstFrameRendered;
+  private boolean                        playbackEnded;
+  private boolean                        playbackRequested;
 
   private GiphyMp4ProjectionPlayerHolder(@NonNull FrameLayout container, @NonNull GiphyMp4VideoPlayer player) {
     this.container = container;
@@ -53,9 +57,16 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     return container;
   }
 
-  public void playContent(@NonNull MediaItem mediaItem, @Nullable GiphyMp4PlaybackPolicyEnforcer policyEnforcer) {
-    this.mediaItem      = mediaItem;
-    this.policyEnforcer = policyEnforcer;
+  /**
+   * @param playbackRequested Whether the user asked for this playback, rather than it autoplaying. A requested playback
+   *                          is dropped when the screen pauses, as if it had never been asked for.
+   */
+  public void playContent(@NonNull MediaItem mediaItem, @Nullable GiphyMp4PlaybackPolicyEnforcer policyEnforcer, boolean playbackRequested) {
+    this.mediaItem          = mediaItem;
+    this.policyEnforcer     = policyEnforcer;
+    this.firstFrameRendered = false;
+    this.playbackEnded      = false;
+    this.playbackRequested  = playbackRequested;
 
     if (player.getExoPlayer() == null) {
       ExoPlayer fromPool = AppDependencies.getExoPlayerPool().get(TAG);
@@ -76,8 +87,11 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   }
 
   public void clearMedia() {
-    this.mediaItem      = null;
-    this.policyEnforcer = null;
+    this.mediaItem          = null;
+    this.policyEnforcer     = null;
+    this.firstFrameRendered = false;
+    this.playbackEnded      = false;
+    this.playbackRequested  = false;
 
     ExoPlayer exoPlayer = player.getExoPlayer();
     if (exoPlayer != null) {
@@ -94,9 +108,21 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
 
   public void setOnPlaybackReady(@Nullable Runnable onPlaybackReady) {
     this.onPlaybackReady = onPlaybackReady;
-    if (onPlaybackReady != null && player.getPlaybackState() == Player.STATE_READY) {
+    if (onPlaybackReady != null && firstFrameRendered && !playbackEnded) {
       onPlaybackReady.run();
     }
+  }
+
+  public void setOnPlaybackEnded(@Nullable Runnable onPlaybackEnded) {
+    this.onPlaybackEnded = onPlaybackEnded;
+  }
+
+  /**
+   * Whether the playback policy stopped the current media. The media stays assigned so that it is not restarted
+   * until it is cleared or explicitly played again.
+   */
+  public boolean hasPlaybackEnded() {
+    return playbackEnded;
   }
 
   public void hide() {
@@ -121,13 +147,16 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
 
   @Override
   public void onPlaybackStateChanged(int playbackState) {
-    if (playbackState == Player.STATE_READY) {
-      if (onPlaybackReady != null) {
-        if (policyEnforcer != null) {
-          policyEnforcer.setMediaDuration(player.getDuration());
-        }
-        onPlaybackReady.run();
-      }
+    if (playbackState == Player.STATE_READY && onPlaybackReady != null && policyEnforcer != null) {
+      policyEnforcer.setMediaDuration(player.getDuration());
+    }
+  }
+
+  @Override
+  public void onRenderedFirstFrame() {
+    firstFrameRendered = true;
+    if (onPlaybackReady != null && !playbackEnded) {
+      onPlaybackReady.run();
     }
   }
 
@@ -139,6 +168,10 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     if (policyEnforcer != null && reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
       if (policyEnforcer.endPlayback()) {
         player.stop();
+        playbackEnded = true;
+        if (onPlaybackEnded != null) {
+          onPlaybackEnded.run();
+        }
       }
     }
   }
@@ -148,6 +181,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     if (mediaItem != null) {
       ExoPlayer fromPool = AppDependencies.getExoPlayerPool().get(TAG);
       if (fromPool != null) {
+        firstFrameRendered = false;
+        playbackEnded      = false;
         ExoPlayerKt.configureForGifPlayback(fromPool);
         fromPool.addListener(this);
         player.setExoPlayer(fromPool);
@@ -159,7 +194,14 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
 
   @Override
   public void onPause(@NonNull LifecycleOwner owner) {
-    returnPlayerToPool();
+    if (mediaItem != null && playbackRequested) {
+      clearMedia();
+      if (onPlaybackEnded != null) {
+        onPlaybackEnded.run();
+      }
+    } else {
+      returnPlayerToPool();
+    }
   }
 
   @Override
@@ -168,6 +210,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   }
 
   private void returnPlayerToPool() {
+    firstFrameRendered = false;
+
     ExoPlayer exoPlayer = player.getExoPlayer();
     if (exoPlayer != null) {
       exoPlayer.stop();
