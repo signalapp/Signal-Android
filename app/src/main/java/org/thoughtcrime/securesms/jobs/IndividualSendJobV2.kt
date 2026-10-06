@@ -324,11 +324,6 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             }
           }
 
-          is MessageService.SendError.ServerRejected -> {
-            Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Server rejected the send", error)
-            Result.failure()
-          }
-
           is MessageService.SendError.ContentTooLarge -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Content too large (${error.size} > ${error.maxAllowed} bytes). Failing.", error)
             Result.failure()

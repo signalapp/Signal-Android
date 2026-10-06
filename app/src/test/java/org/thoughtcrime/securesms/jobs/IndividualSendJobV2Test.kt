@@ -659,17 +659,6 @@ class IndividualSendJobV2Test {
   }
 
   @Test
-  fun `Given ServerRejected, when run, then return failure`() {
-    coEvery {
-      messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns MessageService.SendError.ServerRejected().left()
-
-    val result = createAndRunJob()
-
-    assertThat(result.isFailure).isTrue()
-  }
-
-  @Test
   fun `Given ContentTooLarge, when run, then return failure`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
