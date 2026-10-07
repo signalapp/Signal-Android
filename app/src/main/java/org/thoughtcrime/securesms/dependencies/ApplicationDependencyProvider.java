@@ -157,6 +157,7 @@ import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnecti
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 import okhttp3.OkHttpClient;
@@ -177,19 +178,28 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull PushServiceSocket providePushServiceSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations) {
+  public @NonNull PushServiceSocket providePushServiceSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration,
+                                                             @NonNull SignalServiceConfiguration uncensoredConfiguration,
+                                                             @NonNull BooleanSupplier preferDirectRoute,
+                                                             @NonNull GroupsV2Operations groupsV2Operations) {
     return new PushServiceSocket(signalServiceConfiguration,
+                                 uncensoredConfiguration,
+                                 preferDirectRoute,
                                  new DynamicCredentialsProvider(),
                                  BuildConfig.SIGNAL_AGENT,
                                  RemoteConfig.okHttpAutomaticRetry());
   }
 
   @Override
-  public @NonNull SignalRestClient provideSignalRestClient(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+  public @NonNull SignalRestClient provideSignalRestClient(@NonNull SignalServiceConfiguration signalServiceConfiguration,
+                                                           @NonNull SignalServiceConfiguration uncensoredConfiguration,
+                                                           @NonNull BooleanSupplier preferDirectRoute) {
     return new SignalRestClient(signalServiceConfiguration,
                                 BuildConfig.SIGNAL_AGENT,
                                 new DynamicCredentialsProvider(),
-                                RemoteConfig.okHttpAutomaticRetry());
+                                RemoteConfig.okHttpAutomaticRetry(),
+                                uncensoredConfiguration,
+                                preferDirectRoute::getAsBoolean);
   }
 
   @Override

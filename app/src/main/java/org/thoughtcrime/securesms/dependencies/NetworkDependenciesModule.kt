@@ -114,13 +114,22 @@ class NetworkDependenciesModule(
   }
 
   val pushServiceSocket: PushServiceSocket by lazy {
-    provider.providePushServiceSocket(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+    provider.providePushServiceSocket(signalServiceNetworkAccess.getConfiguration(), signalServiceNetworkAccess.uncensoredConfiguration, ::preferDirectRoute, groupsV2Operations)
   }
 
   private val _signalRestClient = lazy {
-    provider.provideSignalRestClient(signalServiceNetworkAccess.getConfiguration())
+    provider.provideSignalRestClient(signalServiceNetworkAccess.getConfiguration(), signalServiceNetworkAccess.uncensoredConfiguration, ::preferDirectRoute)
   }
   val signalRestClient: SignalRestClient by _signalRestClient
+
+  /**
+   * Whether CDN and storage requests should go direct even with censorship circumvention enabled. A direct chat connection
+   * is a strong hint that the other services are reachable directly too, unless a direct request recently failed.
+   */
+  private fun preferDirectRoute(): Boolean {
+    return (authWebSocket.isConnectedDirectly || unauthWebSocket.isConnectedDirectly) &&
+      !signalServiceNetworkAccess.hasRecentDirectTransportFailure()
+  }
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
     provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)

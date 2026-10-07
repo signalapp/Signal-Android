@@ -87,6 +87,10 @@ sealed class SignalWebSocket(
   val stateSnapshot: WebSocketConnectionState
     get() = _state.value!!
 
+  /** See [WebSocketConnection.isConnectedDirectly]. */
+  val isConnectedDirectly: Boolean
+    get() = connection?.isConnectedDirectly() == true
+
   /**
    * Indicate that WebSocketConnection can now be made and attempt to connect.
    */

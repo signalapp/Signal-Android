@@ -79,14 +79,15 @@ import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.util.function.BooleanSupplier
 import java.util.function.Supplier
 
 class MockApplicationDependencyProvider : AppDependencies.Provider {
-  override fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket {
+  override fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier, groupsV2Operations: GroupsV2Operations): PushServiceSocket {
     return mockk(relaxed = true)
   }
 
-  override fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration): SignalRestClient {
+  override fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier): SignalRestClient {
     return mockk(relaxed = true)
   }
 

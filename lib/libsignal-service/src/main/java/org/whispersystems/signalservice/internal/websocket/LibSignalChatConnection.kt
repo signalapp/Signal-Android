@@ -257,7 +257,7 @@ class LibSignalChatConnection(
         WebSocketConnectionState.CONNECTING -> {
           chatConnection = connection
           chatConnection?.start()
-          Log.i(TAG, "$name Connected")
+          Log.i(TAG, "$name Connected (direct: ${connection.info().isDirect})")
           state.onNext(WebSocketConnectionState.CONNECTED)
 
           pendingCallbacks.forEach { pending ->
@@ -322,6 +322,10 @@ class LibSignalChatConnection(
       }
       pendingCallbacks.clear()
     }
+  }
+
+  override fun isConnectedDirectly(): Boolean {
+    return chatConnection?.info()?.isDirect == true
   }
 
   override fun isDead(): Boolean {

@@ -135,6 +135,7 @@ class IncomingMessageObserver(
       if (state.isAssumedOnline) {
         // Staying online through a transport swap only resets backoff; we rely on the OS to tear down sockets on the interface that went away.
         AppDependencies.libsignalNetwork.onNetworkChange()
+        AppDependencies.signalServiceNetworkAccess.onNetworkChange()
       } else {
         Log.w(TAG, "Lost network connection. Resetting the drained state.")
         decryptionDrained = false

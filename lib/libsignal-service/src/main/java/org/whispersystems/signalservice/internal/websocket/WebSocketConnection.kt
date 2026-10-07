@@ -30,6 +30,9 @@ interface WebSocketConnection {
 
   fun isDead(): Boolean
 
+  /** Whether the connection is currently established directly, rather than through a reflector or proxy. False while not connected. */
+  fun isConnectedDirectly(): Boolean = false
+
   fun disconnect()
 
   /**

@@ -58,12 +58,17 @@ import kotlin.reflect.KClass
  * It also standardizes responses to be [RequestResult]s.
  *
  * Only use this for requests that cannot be done over the websocket (generally CDN, storage service, etc).
+ *
+ * @param uncensoredConfiguration Its CDN and storage URLs are used instead of [configuration]'s whenever [preferDirectRoute] returns true.
+ * @param preferDirectRoute Consulted once per CDN or storage request.
  */
 class SignalRestClient @JvmOverloads constructor(
   private val configuration: SignalServiceConfiguration,
   private val signalAgent: String?,
   private val credentialsProvider: CredentialsProvider? = null,
   private val automaticNetworkRetry: Boolean = true,
+  uncensoredConfiguration: SignalServiceConfiguration = configuration,
+  private val preferDirectRoute: () -> Boolean = { false },
   private val socketTimeoutMillis: Long = DEFAULT_TIMEOUT_MILLIS,
   private val random: Random = SecureRandom(),
   private val clientOverride: OkHttpClient? = null
@@ -159,6 +164,25 @@ class SignalRestClient @JvmOverloads constructor(
     configuration.signalProxy,
     clientOverride
   )
+
+  /** Lazy so that censored users who never connect directly never build these. */
+  private val directCdnClientsMap: Map<Int, Array<ConnectionHolder>> by lazy {
+    if (uncensoredConfiguration !== configuration) {
+      uncensoredConfiguration.signalCdnUrlMap.mapValues { (_, urls) ->
+        createConnectionHolders(urls, uncensoredConfiguration.networkInterceptors, uncensoredConfiguration.dns, uncensoredConfiguration.signalProxy, clientOverride)
+      }
+    } else {
+      cdnClientsMap
+    }
+  }
+
+  private val directStorageClients: Array<ConnectionHolder> by lazy {
+    if (uncensoredConfiguration !== configuration) {
+      createConnectionHolders(uncensoredConfiguration.signalStorageUrls, uncensoredConfiguration.networkInterceptors, uncensoredConfiguration.dns, uncensoredConfiguration.signalProxy, clientOverride)
+    } else {
+      storageClients
+    }
+  }
 
   private val inFlightCalls: MutableSet<Call> = mutableSetOf()
 
@@ -384,10 +408,11 @@ class SignalRestClient @JvmOverloads constructor(
   }
 
   private fun pickHolder(host: Host): ConnectionHolder {
+    val direct = preferDirectRoute()
     val pool: Array<ConnectionHolder> = when (host) {
       is Host.Service -> serviceClients
-      is Host.Storage -> storageClients
-      is Host.Cdn -> cdnClientsMap[host.number]
+      is Host.Storage -> if (direct) directStorageClients else storageClients
+      is Host.Cdn -> (if (direct) directCdnClientsMap else cdnClientsMap)[host.number]
         ?: throw IllegalArgumentException("No CDN configuration for number ${host.number}")
     }
     return pool[random.nextInt(pool.size)]

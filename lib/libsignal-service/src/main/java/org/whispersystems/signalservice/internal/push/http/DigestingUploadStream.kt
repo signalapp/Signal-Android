@@ -13,6 +13,7 @@ import okio.blackholeSink
 import okio.buffer
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
+import org.signal.network.exceptions.RequestCanceledException
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
@@ -89,7 +90,7 @@ class DigestingUploadStream(
 
     while (attachmentDigest == null && (router.remaining > 0 || isFinal)) {
       if (cancelationSignal?.isCanceled == true) {
-        throw IOException("Canceled!")
+        throw RequestCanceledException()
       }
 
       val read = inputStream.read(buffer, 0, buffer.size)

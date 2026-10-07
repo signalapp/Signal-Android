@@ -97,6 +97,7 @@ import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.util.function.BooleanSupplier
 import java.util.function.Supplier
 
 /**
@@ -507,8 +508,8 @@ object AppDependencies {
   }
 
   interface Provider {
-    fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, groupsV2Operations: GroupsV2Operations): PushServiceSocket
-    fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration): SignalRestClient
+    fun providePushServiceSocket(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier, groupsV2Operations: GroupsV2Operations): PushServiceSocket
+    fun provideSignalRestClient(signalServiceConfiguration: SignalServiceConfiguration, uncensoredConfiguration: SignalServiceConfiguration, preferDirectRoute: BooleanSupplier): SignalRestClient
     fun provideGroupsV2Operations(signalServiceConfiguration: SignalServiceConfiguration): GroupsV2Operations
     fun provideSignalServiceAccountManager(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, accountApi: AccountApi, pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager
     fun provideSignalServiceMessageSender(protocolStore: SignalServiceDataStore, pushServiceSocket: PushServiceSocket, messageApi: MessageApi, keysApi: KeysApi, attachmentUploader: AttachmentUploader): SignalServiceMessageSender

@@ -120,6 +120,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BooleanSupplier;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
@@ -195,6 +196,10 @@ public class PushServiceSocket {
   private final Map<Integer, ConnectionHolder[]> cdnClientsMap;
   private final ConnectionHolder[]               storageClients;
 
+  private final Map<Integer, ConnectionHolder[]> directCdnClientsMap;
+  private final ConnectionHolder[]               directStorageClients;
+  private final BooleanSupplier                  preferDirectRoute;
+
   private final SignalServiceConfiguration       configuration;
   private final CredentialsProvider              credentialsProvider;
   private final String                           signalAgent;
@@ -206,6 +211,20 @@ public class PushServiceSocket {
                            String signalAgent,
                            boolean automaticNetworkRetry)
   {
+    this(configuration, configuration, () -> false, credentialsProvider, signalAgent, automaticNetworkRetry);
+  }
+
+  /**
+   * @param uncensoredConfiguration Its CDN and storage URLs are used instead of {@code configuration}'s whenever {@code preferDirectRoute} returns true.
+   * @param preferDirectRoute       Consulted once per CDN or storage request.
+   */
+  public PushServiceSocket(SignalServiceConfiguration configuration,
+                           SignalServiceConfiguration uncensoredConfiguration,
+                           BooleanSupplier preferDirectRoute,
+                           CredentialsProvider credentialsProvider,
+                           String signalAgent,
+                           boolean automaticNetworkRetry)
+  {
     this.configuration             = configuration;
     this.credentialsProvider       = credentialsProvider;
     this.signalAgent               = signalAgent;
@@ -213,7 +232,19 @@ public class PushServiceSocket {
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
+    // Share the existing holders when there is no separate uncensored configuration, rather than building a second set.
+    this.directCdnClientsMap       = uncensoredConfiguration != configuration ? createCdnClientsMap(uncensoredConfiguration.getSignalCdnUrlMap(), uncensoredConfiguration.getNetworkInterceptors(), uncensoredConfiguration.getDns(), uncensoredConfiguration.getSignalProxy()) : this.cdnClientsMap;
+    this.directStorageClients      = uncensoredConfiguration != configuration ? createConnectionHolders(uncensoredConfiguration.getSignalStorageUrls(), uncensoredConfiguration.getNetworkInterceptors(), uncensoredConfiguration.getDns(), uncensoredConfiguration.getSignalProxy()) : this.storageClients;
+    this.preferDirectRoute         = preferDirectRoute;
     this.random                    = new SecureRandom();
+  }
+
+  private Map<Integer, ConnectionHolder[]> getCdnClientsMap() {
+    return preferDirectRoute.getAsBoolean() ? directCdnClientsMap : cdnClientsMap;
+  }
+
+  private ConnectionHolder[] getStorageClients() {
+    return preferDirectRoute.getAsBoolean() ? directStorageClients : storageClients;
   }
 
   public SignalServiceConfiguration getConfiguration() {
@@ -519,9 +550,10 @@ public class PushServiceSocket {
 
   private void downloadFromCdn(OutputStream outputStream, long offset, int cdnNumber, Map<String, String> headers, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException, MissingConfigurationException {
-    ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
+    Map<Integer, ConnectionHolder[]> clientsByCdn     = getCdnClientsMap();
+    ConnectionHolder[]               cdnNumberClients = clientsByCdn.get(cdnNumber);
     if (cdnNumberClients == null) {
-      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
+      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + clientsByCdn.keySet());
     }
     ConnectionHolder   connectionHolder = getRandom(cdnNumberClients, random);
     OkHttpClient       okHttpClient     = connectionHolder.getClient()
@@ -593,9 +625,10 @@ public class PushServiceSocket {
   }
 
   public @Nonnull ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException, MalformedResponseException {
-    ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
+    Map<Integer, ConnectionHolder[]> clientsByCdn     = getCdnClientsMap();
+    ConnectionHolder[]               cdnNumberClients = clientsByCdn.get(cdnNumber);
     if (cdnNumberClients == null) {
-      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
+      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + clientsByCdn.keySet());
     }
     ConnectionHolder   connectionHolder = getRandom(cdnNumberClients, random);
     OkHttpClient       okHttpClient     = connectionHolder.getClient()
@@ -648,7 +681,7 @@ public class PushServiceSocket {
                                         CancelationSignal cancelationSignal)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
-    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(0), random);
+    ConnectionHolder connectionHolder = getRandom(getCdnClientsMap().get(0), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
@@ -887,7 +920,7 @@ public class PushServiceSocket {
   private Response makeStorageRequest(String authorization, String path, String method, RequestBody body, Map<String, String> headers, ResponseCodeHandler responseCodeHandler)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
-    ConnectionHolder connectionHolder = getRandom(storageClients, random);
+    ConnectionHolder connectionHolder = getRandom(getStorageClients(), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)

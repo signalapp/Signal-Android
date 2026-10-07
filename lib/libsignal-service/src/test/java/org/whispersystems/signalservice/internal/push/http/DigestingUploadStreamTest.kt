@@ -16,13 +16,13 @@ import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import okio.Buffer
 import org.junit.Test
+import org.signal.network.exceptions.RequestCanceledException
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest
 import org.whispersystems.signalservice.internal.util.Util
 import java.io.ByteArrayInputStream
-import java.io.IOException
 import java.security.MessageDigest
 
 class DigestingUploadStreamTest {
@@ -222,7 +222,7 @@ class DigestingUploadStreamTest {
     stream.nextChunk(100_000).writeTo(Buffer())
     canceled = true
 
-    assertFailure { stream.nextChunk(100_000).writeTo(Buffer()) }.isInstanceOf<IOException>()
+    assertFailure { stream.nextChunk(100_000).writeTo(Buffer()) }.isInstanceOf<RequestCanceledException>()
     assertThat(stream.attachmentDigest).isNull()
   }
 
