@@ -86,6 +86,12 @@ class EnterAepForLocalBackupViewModel(
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         stateEmitter(inputState.copy(showDifferentAccountDialog = false))
       }
+      is EnterAepEvents.TryAnotherWay,
+      is EnterAepEvents.RecoveryKeyHelp,
+      is EnterAepEvents.ConfirmVerifyWithSms,
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        error("Verify-with-SMS handling only exists for pre-registration remote backup restores.")
+      }
     }
   }
 

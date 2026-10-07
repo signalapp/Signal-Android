@@ -7,25 +7,32 @@ package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
+import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 
 class EnterAepForRemoteBackupPreRegistrationViewModel(
   private val e164: String,
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+  private val resultBus: ResultEventBus,
+  private val resultKey: String,
   isPasswordManagerAvailable: Boolean = false
 ) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
@@ -35,6 +42,9 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
 
   private val _state = MutableStateFlow(EnterAepState(isPasswordManagerAvailable = isPasswordManagerAvailable))
   val state: StateFlow<EnterAepState> = _state.asStateFlow()
+
+  private val _actions = Channel<EnterAepScreenActions>(Channel.BUFFERED)
+  val actions: Flow<EnterAepScreenActions> = _actions.receiveAsFlow()
 
   init {
     _state
@@ -61,11 +71,37 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
       is EnterAepEvents.DismissError -> {
         stateEmitter(EnterAepScreenEventHandler.applyEvent(inputState, event))
       }
+      is EnterAepEvents.TryAnotherWay -> {
+        stateEmitter(inputState.copy(registrationError = null, showVerifyWithSmsDialog = true))
+      }
+      is EnterAepEvents.RecoveryKeyHelp -> {
+        _actions.trySend(EnterAepScreenActions.OpenRecoveryKeyHelpArticle)
+      }
+      is EnterAepEvents.ConfirmVerifyWithSms -> {
+        applyConfirmVerifyWithSms(inputState, stateEmitter)
+      }
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        stateEmitter(inputState.copy(showVerifyWithSmsDialog = false))
+      }
       is EnterAepEvents.ConfirmDifferentAccountRestore,
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         error("Different-account handling only exists for local backup restores.")
       }
     }
+  }
+
+  /**
+   * The user gave up on their recovery key and wants to verify over SMS instead. Thankfully we can just post a result
+   * and navigate back, letting the phone number entry screen handle it.
+   */
+  private fun applyConfirmVerifyWithSms(inputState: EnterAepState, stateEmitter: (EnterAepState) -> Unit) {
+    Log.i(TAG, "[ConfirmVerifyWithSms] Handing control back to phone number entry to verify over SMS.")
+
+    stateEmitter(inputState.copy(showVerifyWithSmsDialog = false))
+
+    parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
+    resultBus.sendResult(resultKey, EnterAepForRemoteBackupResult.VerifyWithSms)
+    parentEventEmitter.navigateBack()
   }
 
   private suspend fun applySubmit(inputState: EnterAepState, stateEmitter: (EnterAepState) -> Unit) {
@@ -164,4 +200,10 @@ class EnterAepForRemoteBackupPreRegistrationViewModel(
       }
     }
   }
+}
+
+/** Result sent back to phone number entry from [EnterAepForRemoteBackupPreRegistrationViewModel]. */
+sealed interface EnterAepForRemoteBackupResult {
+  /** The user chose to register by verifying their number over SMS instead of with their recovery key. */
+  data object VerifyWithSms : EnterAepForRemoteBackupResult
 }

@@ -77,7 +77,9 @@ import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPostRegistrationViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPreRegistrationViewModel
+import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupResult
 import org.signal.registration.screens.aepentry.EnterAepScreen
+import org.signal.registration.screens.aepentry.EnterAepScreenActions
 import org.signal.registration.screens.allownotifications.AllowNotificationsScreen
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
@@ -404,6 +406,7 @@ private const val COUNTRY_CODE_RESULT = "country_code_result"
 private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
 private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
+private const val AEP_FOR_REMOTE_BACKUP_RESULT = "aep_for_remote_backup_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
 private const val PASSKEY_ASSERTION_RESULT = "passkey_assertion_result"
 
@@ -632,6 +635,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
     ResultEffect<LocalBackupRestoreResult>(registrationViewModel.resultBus, LOCAL_BACKUP_RESTORE_RESULT) { result ->
       viewModel.onEvent(PhoneNumberEntryScreenEvents.LocalBackupRestoreCompleted(result))
+    }
+
+    ResultEffect<EnterAepForRemoteBackupResult>(registrationViewModel.resultBus, AEP_FOR_REMOTE_BACKUP_RESULT) { result ->
+      when (result) {
+        EnterAepForRemoteBackupResult.VerifyWithSms -> viewModel.onEvent(PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms)
+      }
     }
 
     PhoneNumberScreen(
@@ -1209,10 +1218,17 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         e164 = key.e164,
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
+        resultBus = registrationViewModel.resultBus,
+        resultKey = AEP_FOR_REMOTE_BACKUP_RESULT,
         isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
     }
     val state by viewModel.state.collectAsStateWithLifecycle()
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        EnterAepScreenActions.OpenRecoveryKeyHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/9708267671322")
+      }
+    }
 
     EnterAepScreen(
       state = state,

@@ -65,6 +65,9 @@ sealed class PhoneNumberEntryScreenEvents {
     override fun toString(): String = "LocalBackupRestoreCompleted(result=***)"
   }
 
+  /** The user chose to verify their number over SMS instead of entering their recovery key for a remote backup restore. */
+  data object RemoteBackupRestoreDeferredToSms : PhoneNumberEntryScreenEvents()
+
   /** The user dismissed the network error dialog. */
   data object NetworkErrorDialogDismissed : PhoneNumberEntryScreenEvents()
 

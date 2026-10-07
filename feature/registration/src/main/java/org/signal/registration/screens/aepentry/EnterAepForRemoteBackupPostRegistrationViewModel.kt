@@ -55,6 +55,12 @@ class EnterAepForRemoteBackupPostRegistrationViewModel(
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         error("Different-account handling only exists for local backup restores.")
       }
+      is EnterAepEvents.TryAnotherWay,
+      is EnterAepEvents.RecoveryKeyHelp,
+      is EnterAepEvents.ConfirmVerifyWithSms,
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        error("Verify-with-SMS handling only exists for pre-registration remote backup restores.")
+      }
     }
   }
 

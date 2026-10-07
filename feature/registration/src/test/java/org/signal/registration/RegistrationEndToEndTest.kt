@@ -1190,6 +1190,10 @@ class RegistrationEndToEndTest {
     // The server rejects the recovery password derived from the wrong AEP, disabling submission until the key changes.
     // Wait on the error text rather than the disabled button, which is also disabled while the attempt is in flight.
     waitForText(ApplicationProvider.getApplicationContext<Application>().getString(R.string.EnterAepScreen__incorrect_recovery_key))
+
+    // The rejection is explained in a dialog, which the user dismisses to try again
+    waitForTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_POSITIVE_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_POSITIVE_BUTTON).performClick()
     assert(
       composeTestRule.onAllNodesWithTag(TestTags.ENTER_AEP_NEXT_BUTTON).fetchSemanticsNodes().firstOrNull()
         ?.config?.getOrNull(SemanticsProperties.Disabled) != null
@@ -1210,6 +1214,68 @@ class RegistrationEndToEndTest {
     val committed = storageController.committedData
     assert(committed != null) { "Expected registration data to be committed" }
     assert(committed!!.accountEntropyPool == correctAep.value) { "Expected the committed AEP to be the correct one" }
+    assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
+  }
+
+  @Test
+  fun `trying another way after an incorrect aep verifies over sms through a captcha, then offers the remote restore again`() {
+    val correctAep = AccountEntropyPool.generate()
+    val wrongAep = AccountEntropyPool.generate()
+
+    networkController.onRegisterAccount = { request ->
+      if (request.recoveryPassword != null) {
+        RequestResult.NonSuccess(RegisterAccountError.RegistrationRecoveryPasswordIncorrect("wrong recovery password"))
+      } else {
+        RequestResult.Success(networkController.registerAccountResponse(request.e164, reregistration = true))
+      }
+    }
+    networkController.onCreateSession = {
+      RequestResult.Success(networkController.session(allowedToRequestCode = false, requestedInformation = listOf("captcha")))
+    }
+    networkController.onUpdateSession = {
+      RequestResult.Success(networkController.session())
+    }
+
+    // The backup contains the user's PIN, so no PIN screens are needed after the restore
+    storageController.onRestoreRemoteBackup = {
+      flowOf(RemoteBackupRestoreProgress.Complete(restoredSvrPin = PIN, restoredProfileKey = null))
+    }
+
+    var registrationComplete = false
+    launchRegistrationFlow(onRegistrationComplete = { registrationComplete = true })
+
+    startManualRestore()
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterPhoneNumber()
+    enterAep(wrongAep)
+
+    // The recovery password is rejected. The user chooses to try another way, then asks for an SMS code.
+    waitForTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ADVANCED_ALERT_DIALOG_NEUTRAL_BUTTON).performClick()
+    waitForTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON)
+    composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_CONFIRM_BUTTON).performClick()
+
+    // The session demands a captcha before a code can be sent
+    solveCaptcha("captcha-token")
+    submitVerificationCode(VERIFICATION_CODE)
+
+    // The user is re-registering, so they're offered the restore again and can enter the right key this time
+    chooseRestoreOption(TestTags.ARCHIVE_RESTORE_SELECTION_FROM_SIGNAL_BACKUPS)
+    enterAep(correctAep)
+    startRemoteRestore()
+
+    waitFor("registration to complete") { registrationComplete }
+
+    assert(networkController.lastCreateSessionE164 == E164) { "Expected a session for $E164 but was ${networkController.lastCreateSessionE164}" }
+    assert(networkController.lastUpdateSessionRequest?.captchaToken == "captcha-token") {
+      "Expected the solved captcha to be submitted but was ${networkController.lastUpdateSessionRequest}"
+    }
+    assert(networkController.lastRegisterAccountRequest?.sessionId != null) { "Expected the final registration to use a verified session" }
+
+    val committed = storageController.committedData
+    assert(committed != null) { "Expected registration data to be committed" }
+    assert(committed!!.accountData?.e164 == E164) { "Expected committed e164 $E164 but was ${committed.accountData?.e164}" }
+    assert(committed.accountEntropyPool == correctAep.value) { "Expected the committed AEP to be the correct one" }
     assert(storageController.restoreDecision == RestoreDecision.COMPLETED) { "Expected COMPLETED restore decision but was ${storageController.restoreDecision}" }
   }
 

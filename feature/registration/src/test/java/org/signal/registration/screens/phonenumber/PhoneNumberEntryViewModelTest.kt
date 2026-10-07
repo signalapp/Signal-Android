@@ -853,6 +853,47 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
+  fun `RemoteBackupRestoreDeferredToSms creates session for the chosen number and navigates to code entry`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
+
+    coVerify(exactly = 1) { mockRepository.createSession("+15551234567") }
+    assertThat(emittedEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
+  }
+
+  @Test
+  fun `RemoteBackupRestoreDeferredToSms navigates to captcha when required`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    coVerify(exactly = 0) { mockRepository.requestVerificationCode(any(), any(), any()) }
+    assertThat(emittedEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.Captcha>()
+  }
+
+  @Test
   fun `PhoneNumberSubmitted handles rate limiting from createSession`() = runTest {
     coEvery { mockRepository.createSession(any()) } returns
       RequestResult.NonSuccess(

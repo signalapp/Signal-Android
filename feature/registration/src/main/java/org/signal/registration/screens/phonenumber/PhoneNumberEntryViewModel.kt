@@ -170,15 +170,16 @@ class PhoneNumberEntryViewModel(
           }
           is LocalBackupRestoreResult.DeferredToSms -> {
             Log.i(TAG, "[LocalRestore] Backup belongs to a different account. Verifying the number over SMS before restoring.")
-            var localState = state.copy(showSpinner = true)
-            stateEmitter(localState)
-            localState = applySessionBasedRegistration(localState, localState.sessionE164 ?: "+${localState.countryCode}${localState.nationalNumber}", parentEventEmitter)
-            stateEmitter(localState.copy(showSpinner = false))
+            applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
           }
           is LocalBackupRestoreResult.Canceled -> {
             parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(null))
           }
         }
+      }
+      is PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms -> {
+        Log.i(TAG, "[RemoteRestore] User chose to verify the number over SMS instead of entering their recovery key.")
+        applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
       }
       is PhoneNumberEntryScreenEvents.NetworkErrorDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(networkError = false)))
@@ -399,6 +400,20 @@ class PhoneNumberEntryViewModel(
     }
 
     return applySessionBasedRegistration(state, e164, parentEventEmitter)
+  }
+
+  /**
+   * Skips restore-based registration and verifies the entered number over SMS, showing a spinner while the session is created.
+   */
+  private suspend fun applyVerifyOverSms(
+    inputState: PhoneNumberEntryState,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+    stateEmitter: (PhoneNumberEntryState) -> Unit
+  ) {
+    var state = inputState.copy(showSpinner = true)
+    stateEmitter(state)
+    state = applySessionBasedRegistration(state, state.sessionE164 ?: "+${state.countryCode}${state.nationalNumber}", parentEventEmitter)
+    stateEmitter(state.copy(showSpinner = false))
   }
 
   /**
