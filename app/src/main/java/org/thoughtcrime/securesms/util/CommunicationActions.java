@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -213,13 +214,25 @@ public class CommunicationActions {
   }
 
   public static void openEmail(@NonNull Context context, @NonNull String address, @Nullable String subject, @Nullable String body) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("mailto:"));
-    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{ address });
-    intent.putExtra(Intent.EXTRA_SUBJECT, Util.emptyIfNull(subject));
-    intent.putExtra(Intent.EXTRA_TEXT, Util.emptyIfNull(body));
+    context.startActivity(Intent.createChooser(buildEmailIntent(address, subject, body), context.getString(R.string.CommunicationActions_send_email)));
+  }
 
-    context.startActivity(Intent.createChooser(intent, context.getString(R.string.CommunicationActions_send_email)));
+  @VisibleForTesting
+  static @NonNull Intent buildEmailIntent(@NonNull String address, @Nullable String subject, @Nullable String body) {
+    subject = Util.emptyIfNull(subject);
+    body    = Util.emptyIfNull(body);
+
+    // Some email clients (e.g. Proton Mail) ignore the extras and only read the mailto URI, so we populate both.
+    Uri.Builder query = new Uri.Builder();
+    if (!subject.isEmpty()) query.appendQueryParameter("subject", subject);
+    if (!body.isEmpty())    query.appendQueryParameter("body", body);
+
+    Uri mailto = Uri.parse("mailto:" + Uri.encode(address, "@+") + query.build());
+
+    return new Intent(Intent.ACTION_SENDTO, mailto)
+        .putExtra(Intent.EXTRA_EMAIL, new String[]{ address })
+        .putExtra(Intent.EXTRA_SUBJECT, subject)
+        .putExtra(Intent.EXTRA_TEXT, body);
   }
 
   /**
