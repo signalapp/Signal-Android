@@ -5,7 +5,9 @@
 
 package org.thoughtcrime.securesms.recipients.ui.about
 
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,6 +45,7 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -50,15 +53,18 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.core.util.logging.Log
 import org.signal.emoji.Emojifier
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.contacts.link.LinkPhoneContactActivity
 import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.ui.incommon.GroupsInCommonActivity
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -73,6 +79,8 @@ import org.signal.core.ui.R as CoreUiR
 class AboutSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
+    private val TAG = Log.tag(AboutSheet::class)
+
     const val RESULT_EDIT_MEMBER_LABEL = "edit_member_label"
     const val RESULT_GROUP_ID = "group_id"
 
@@ -121,6 +129,8 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         },
         profileSharing = recipient.isProfileSharing,
         systemContact = recipient.isSystemContact,
+        canLinkSystemContact = !recipient.isSelf && recipient.isIndividual && SignalStore.account.isPrimaryDevice,
+        wouldRelinkSystemContactByNumber = recipient.wouldRelinkSystemContactByNumber,
         hasUsernameOrSharedName = recipient.hasUsernameOrSharedName,
         groupsInCommon = state.groupsInCommonCount,
         note = recipient.note ?: "",
@@ -132,8 +142,34 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
       onNoteClicked = this::openNoteSheet,
       onUnverifiedProfileClicked = this::openUnverifiedProfileSheet,
       onGroupsInCommonClicked = this::openGroupsInCommon,
-      onMemberLabelClicked = this::openMemberLabelScreen
+      onMemberLabelClicked = this::openMemberLabelScreen,
+      onSystemContactClicked = { openSystemContact(recipient) },
+      onLinkSystemContactClicked = this::openLinkSystemContact,
+      onUnlinkSystemContactClicked = { confirmUnlinkSystemContact(recipient) }
     )
+  }
+
+  private fun openSystemContact(recipient: Recipient) {
+    val contactUri = recipient.contactUri ?: return
+    try {
+      startActivity(Intent(Intent.ACTION_VIEW, contactUri))
+    } catch (e: ActivityNotFoundException) {
+      Log.w(TAG, "No activity to open the phone contact.", e)
+    }
+  }
+
+  private fun openLinkSystemContact() {
+    dismiss()
+    startActivity(LinkPhoneContactActivity.createIntent(requireContext(), recipientId))
+  }
+
+  private fun confirmUnlinkSystemContact(recipient: Recipient) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(getString(R.string.AboutSheet__unlink_s_from_your_phone_contact, recipient.getShortDisplayName(requireContext())))
+      .setMessage(R.string.AboutSheet__their_name_and_photo_from_your_phone_contact)
+      .setPositiveButton(R.string.AboutSheet__unlink) { _, _ -> viewModel.unlinkSystemContact() }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   private fun openSignalConnectionsSheet() {
@@ -189,6 +225,8 @@ private data class AboutModel(
   val formattedE164: String?,
   val profileSharing: Boolean,
   val systemContact: Boolean,
+  val canLinkSystemContact: Boolean = false,
+  val wouldRelinkSystemContactByNumber: Boolean = true,
   val hasUsernameOrSharedName: Boolean = false,
   val groupsInCommon: Int,
   val note: String,
@@ -204,7 +242,10 @@ private fun Content(
   onNoteClicked: () -> Unit,
   onUnverifiedProfileClicked: () -> Unit = {},
   onGroupsInCommonClicked: () -> Unit = {},
-  onMemberLabelClicked: () -> Unit = {}
+  onMemberLabelClicked: () -> Unit = {},
+  onSystemContactClicked: () -> Unit = {},
+  onLinkSystemContactClicked: () -> Unit = {},
+  onUnlinkSystemContactClicked: () -> Unit = {}
 ) {
   Box(
     contentAlignment = Alignment.Center,
@@ -326,6 +367,27 @@ private fun Content(
       AboutRow(
         startIcon = ImageVector.vectorResource(id = CoreUiR.drawable.symbol_person_circle_24),
         text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, model.shortName),
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        onClick = onSystemContactClicked,
+        modifier = Modifier.fillMaxWidth()
+      )
+
+      // Unlinking is pointless when the next contact sync would just link them again by number.
+      if (model.canLinkSystemContact && !model.wouldRelinkSystemContactByNumber) {
+        AboutRow(
+          startIcon = ImageVector.vectorResource(id = R.drawable.symbol_link_slash_16),
+          text = stringResource(id = R.string.AboutSheet__unlink_phone_contact),
+          endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+          onClick = onUnlinkSystemContactClicked,
+          modifier = Modifier.fillMaxWidth()
+        )
+      }
+    } else if (model.canLinkSystemContact) {
+      AboutRow(
+        startIcon = ImageVector.vectorResource(id = CoreUiR.drawable.symbol_person_circle_24),
+        text = stringResource(id = R.string.AboutSheet__link_to_phone_contact),
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        onClick = onLinkSystemContactClicked,
         modifier = Modifier.fillMaxWidth()
       )
     }

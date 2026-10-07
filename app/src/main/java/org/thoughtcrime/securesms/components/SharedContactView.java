@@ -264,7 +264,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
         registered.add(recipient.get());
       }
 
-      isSystemContact |= recipient.get().isSystemContact();
+      isSystemContact |= recipient.get().isSystemContactByPhoneNumber();
     }
 
     boolean hasContactDetails = !contact.getPhoneNumbers().isEmpty() ||

@@ -12,9 +12,11 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
+import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberDiscoverableState
 import org.thoughtcrime.securesms.database.RecipientTable.PhoneNumberSharingState
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode
+import org.thoughtcrime.securesms.database.RecipientTable.SystemContactLinkState
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -52,7 +54,12 @@ data class RecipientRecord(
   val systemDisplayName: String?,
   val systemContactPhotoUri: String?,
   val systemPhoneLabel: String?,
+  /** The [android.provider.ContactsContract.CommonDataKinds.Phone.TYPE] of the linked contact's matching number, or -1 if it has none. */
+  val systemPhoneType: Int,
+  /** The recipient's number as last seen on the linked contact, or null if the contact does not hold it. */
+  val systemPhoneE164: String?,
   val systemContactUri: String?,
+  val systemContactLinkState: SystemContactLinkState,
   @get:JvmName("getProfileName")
   val signalProfileName: ProfileName,
   @get:JvmName("getProfileAvatar")
@@ -83,6 +90,7 @@ data class RecipientRecord(
   val hiddenState: Recipient.HiddenState,
   val callLinkRoomId: CallLinkRoomId?,
   val phoneNumberSharing: PhoneNumberSharingState,
+  val phoneNumberDiscoverable: PhoneNumberDiscoverableState,
   val nickname: ProfileName,
   val note: String?,
   val sharedName: ProfileName,
