@@ -32,16 +32,16 @@ import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.Callbacks;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
+import org.thoughtcrime.securesms.video.inline.InlineVideoCell;
+import org.thoughtcrime.securesms.video.inline.InlineVideoHost;
+import org.thoughtcrime.securesms.video.inline.InlineVideoLoopPolicy;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -51,7 +51,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
+final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements InlineVideoCell, Colorizable {
   private final TextView      sentDate;
   private final TextView      receivedDate;
   private final TextView      expiresIn;
@@ -286,13 +286,18 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public void showProjectionArea() {
-    conversationItem.showProjectionArea();
+  public @Nullable InlineVideoHost getSurfaceHost() {
+    return conversationItem.getSurfaceHost();
   }
 
   @Override
-  public void hideProjectionArea() {
-    conversationItem.hideProjectionArea();
+  public void showStill() {
+    conversationItem.showStill();
+  }
+
+  @Override
+  public void hideStill() {
+    conversationItem.hideStill();
   }
 
   @Override
@@ -301,8 +306,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @Nullable GiphyMp4PlaybackPolicyEnforcer getPlaybackPolicyEnforcer() {
-    return conversationItem.getPlaybackPolicyEnforcer();
+  public @Nullable InlineVideoLoopPolicy getLoopPolicy() {
+    return conversationItem.getLoopPolicy();
   }
 
   @Override
@@ -311,18 +316,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerview) {
-    return conversationItem.getGiphyMp4PlayableProjection(recyclerview);
-  }
-
-  @Override
   public boolean canPlayContent() {
     return conversationItem.canPlayContent();
-  }
-
-  @Override
-  public boolean shouldProjectContent() {
-    return conversationItem.shouldProjectContent();
   }
 
   @Override

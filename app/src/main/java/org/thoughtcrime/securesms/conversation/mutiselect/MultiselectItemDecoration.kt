@@ -18,7 +18,6 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.Region
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
@@ -194,9 +193,6 @@ class MultiselectItemDecoration(
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
       val projections = child.getColorizerProjections(parent)
-      if (child.canPlayContent()) {
-        projections.add(child.getGiphyMp4PlayableProjection(parent))
-      }
 
       path.reset()
       projections.use { list ->
@@ -404,12 +400,6 @@ class MultiselectItemDecoration(
             list.forEach {
               path.op(it.path, Path.Op.DIFFERENCE)
             }
-          }
-
-          if (child.canPlayContent() && child.shouldProjectContent()) {
-            val mp4GifProjection = child.getGiphyMp4PlayableProjection(child.rootView as ViewGroup)
-            path.op(mp4GifProjection.path, Path.Op.DIFFERENCE)
-            mp4GifProjection.release()
           }
         }
       }

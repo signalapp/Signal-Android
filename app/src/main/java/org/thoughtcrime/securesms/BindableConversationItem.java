@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -40,7 +39,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, Colorizable, Multiselectable {
+public interface BindableConversationItem extends Unbindable, Colorizable, Multiselectable {
   void bind(@NonNull LifecycleOwner lifecycleOwner,
             @NonNull ConversationMessage messageRecord,
             @NonNull Optional<MessageRecord> previousMessageRecord,

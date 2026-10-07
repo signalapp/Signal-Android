@@ -287,11 +287,6 @@ import org.thoughtcrime.securesms.databinding.V2ConversationBackgroundBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
 import org.thoughtcrime.securesms.groups.GroupId
@@ -415,6 +410,8 @@ import org.thoughtcrime.securesms.util.toMillis
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
+import org.thoughtcrime.securesms.video.inline.InlineVideoCell
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
 import java.time.Instant
@@ -590,7 +587,6 @@ class ConversationFragment :
 
   private lateinit var layoutManager: ConversationLayoutManager
   private lateinit var markReadHelper: MarkReadHelper
-  private lateinit var giphyMp4ProjectionRecycler: GiphyMp4ProjectionRecycler
   private lateinit var addToContactsLauncher: ActivityResultLauncher<Intent>
   private lateinit var conversationActivityResultContracts: ConversationActivityResultContracts
   private lateinit var scrollToPositionDelegate: ScrollToPositionDelegate
@@ -896,6 +892,8 @@ class ConversationFragment :
   }
 
   /** Turns a gif picked from the media keyboard into a blob the composer can attach. */
+  private lateinit var inlineVideoController: InlineVideoController
+
   private val giphyMp4ViewModel: GiphyMp4ViewModel by activityViewModels { GiphyMp4ViewModel.Factory(isMms()) }
 
   private var gifProgressDialog: AlertDialog? = null
@@ -1157,8 +1155,6 @@ class ConversationFragment :
     }
 
     initializeMediaKeyboard()
-
-    binding.conversationVideoContainer.setClipToOutline(true)
 
     SpoilerAnnotation.resetRevealedSpoilers()
 
@@ -2726,7 +2722,7 @@ class ConversationFragment :
     binding.conversationItemRecycler.addItemDecoration(multiselectItemDecoration)
     viewLifecycleOwner.lifecycle.addObserver(multiselectItemDecoration)
 
-    giphyMp4ProjectionRecycler = initializeGiphyMp4()
+    inlineVideoController = InlineVideoController.attachForConversation(binding.conversationItemRecycler, viewLifecycleOwner)
 
     val layoutTransitionListener = BubbleLayoutTransitionListener(binding.conversationItemRecycler)
     viewLifecycleOwner.lifecycle.addObserver(layoutTransitionListener)
@@ -2752,24 +2748,6 @@ class ConversationFragment :
 
     conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.hasWallpaper)
     binding.conversationItemRecycler.addItemDecoration(conversationItemDecorations, 0)
-  }
-
-  private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
-    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
-      requireContext(),
-      viewLifecycleOwner.lifecycle,
-      binding.conversationVideoContainer,
-      maxPlayback
-    )
-
-    val callback = GiphyMp4ProjectionRecycler(holders)
-    GiphyMp4PlaybackController.attach(binding.conversationItemRecycler, callback, maxPlayback)
-    binding.conversationItemRecycler.addItemDecoration(
-      GiphyMp4ItemDecoration(callback),
-      0
-    )
-    return callback
   }
 
   private fun initializeSearch() {
@@ -4479,12 +4457,7 @@ class ConversationFragment :
       }
 
       if (args.isVideoGif) {
-        val adapterPosition: Int = binding.conversationItemRecycler.getChildAdapterPosition(parent)
-        val holder: GiphyMp4ProjectionPlayerHolder? = giphyMp4ProjectionRecycler.getCurrentHolder(adapterPosition)
-        if (holder != null) {
-          parent.showProjectionArea()
-          holder.hide()
-        }
+        inlineVideoController.hold(parent)
       }
 
       container.hideAll(composeText)
@@ -4620,17 +4593,10 @@ class ConversationFragment :
         getVoiceNoteMediaController().pausePlayback(audioUri)
       }
 
-      val childAdapterPosition = target.getAdapterPosition(recycler)
-      var mp4Holder: GiphyMp4ProjectionPlayerHolder? = null
-      var videoBitmap: Bitmap? = null
-      if (childAdapterPosition != RecyclerView.NO_POSITION) {
-        mp4Holder = giphyMp4ProjectionRecycler.getCurrentHolder(childAdapterPosition)
-        if (mp4Holder?.isVisible == true) {
-          mp4Holder.pause()
-          videoBitmap = mp4Holder.bitmap
-          mp4Holder.hide()
-        }
-      }
+      // TextureViews don't draw into a Canvas-backed bitmap, so the current video frame is drawn in separately.
+      val videoSlot = (target.root as? InlineVideoCell)?.surfaceHost?.slot?.takeIf { it.hasRenderedFirstFrame }
+      videoSlot?.pause()
+      val videoBitmap: Bitmap? = videoSlot?.textureView?.bitmap
 
       val snapshot = ConversationItemSelection.snapshotView(target, recycler, messageRecord, videoBitmap)
 
@@ -4710,10 +4676,7 @@ class ConversationFragment :
             getVoiceNoteMediaController().resumePlayback(audioUri, messageRecord.id)
           }
 
-          if (mp4Holder != null) {
-            mp4Holder.show()
-            mp4Holder.resume()
-          }
+          (target.root as? InlineVideoCell)?.surfaceHost?.slot?.takeIf { it === videoSlot }?.play()
         }
       }
 

@@ -6,12 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Will Inject N VideoViews @ runtime -->
-    <FrameLayout
-        android:id="@+id/giphy_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/content_loading"
         style="?android:attr/progressBarStyleLarge"

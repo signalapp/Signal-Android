@@ -40,7 +40,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.doOnNextLayout
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -73,11 +72,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -88,6 +82,7 @@ import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import java.util.Locale
 
 class StarredMessagesActivity : PassphraseRequiredActivity() {
@@ -255,14 +250,6 @@ private fun StarredMessageList(
           ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val videoContainer = FrameLayout(ctx).apply {
-          layoutParams = FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-          )
-        }
-        addView(videoContainer)
-
         val recyclerView = RecyclerView(ctx).apply {
           layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -279,7 +266,7 @@ private fun StarredMessageList(
         }
         addView(recyclerView)
 
-        initializeGiphyMp4(lifecycleOwner.lifecycle, videoContainer, recyclerView)
+        InlineVideoController.attachForConversation(recyclerView, lifecycleOwner)
       }
     },
     update = {
@@ -287,16 +274,6 @@ private fun StarredMessageList(
     },
     modifier = modifier
   )
-}
-
-private fun initializeGiphyMp4(lifecycle: Lifecycle, videoContainer: ViewGroup, list: RecyclerView) {
-  val context = list.context
-  val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
-  val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(context, lifecycle, videoContainer, maxPlayback)
-  val callback = GiphyMp4ProjectionRecycler(holders)
-
-  GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-  list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
 }
 
 @Composable

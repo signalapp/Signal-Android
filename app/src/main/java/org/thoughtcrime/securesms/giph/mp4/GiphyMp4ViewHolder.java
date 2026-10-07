@@ -4,7 +4,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -23,20 +22,20 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
-import org.thoughtcrime.securesms.util.Projection;
 import org.signal.core.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.video.inline.InlineVideoCell;
+import org.thoughtcrime.securesms.video.inline.InlineVideoHost;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 /**
  * Holds a view which will either play back an MP4 gif or show its still.
  */
 @OptIn(markerClass = UnstableApi.class)
-final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements GiphyMp4Playable {
-
-  private static final Projection.Corners CORNERS = new Projection.Corners(ViewUtil.dpToPx(8));
+final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements InlineVideoCell {
 
   private final AspectRatioFrameLayout   container;
+  private final InlineVideoHost          surfaceHost;
   private final ImageView                stillImage;
   private final GiphyMp4Adapter.Callback listener;
   private final Drawable                 placeholder;
@@ -49,11 +48,13 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
   {
     super(itemView);
     this.container          = itemView.findViewById(R.id.container);
+    this.surfaceHost        = itemView.findViewById(R.id.surface_host);
     this.listener           = listener;
     this.stillImage         = itemView.findViewById(R.id.still_image);
     this.placeholder        = new ColorDrawable(Util.getRandomElement(ChatColorsPalette.Names.getAll()).getColor(itemView.getContext()));
 
     container.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
+    surfaceHost.setCornerRadius(ViewUtil.dpToPx(8));
   }
 
   @Override
@@ -62,6 +63,7 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
     mediaItem   = MediaItem.fromUri(Uri.parse(giphyImage.getMp4PreviewUrl()));
 
     container.setAspectRatio(aspectRatio);
+    stillImage.setAlpha(1f);
 
     loadPlaceholderImage(giphyImage);
 
@@ -69,13 +71,18 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
   }
 
   @Override
-  public void showProjectionArea() {
-    container.setAlpha(1f);
+  public @NonNull InlineVideoHost getSurfaceHost() {
+    return surfaceHost;
   }
 
   @Override
-  public void hideProjectionArea() {
-    container.setAlpha(0f);
+  public void showStill() {
+    stillImage.setAlpha(1f);
+  }
+
+  @Override
+  public void hideStill() {
+    stillImage.setAlpha(0f);
   }
 
   @Override
@@ -84,17 +91,7 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
   }
 
   @Override
-  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
-    return Projection.relativeToParent(recyclerView, container, CORNERS);
-  }
-
-  @Override
   public boolean canPlayContent() {
-    return true;
-  }
-
-  @Override
-  public boolean shouldProjectContent() {
     return true;
   }
 

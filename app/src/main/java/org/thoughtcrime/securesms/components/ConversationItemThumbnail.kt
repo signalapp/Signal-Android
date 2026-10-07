@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import org.thoughtcrime.securesms.mms.SlidesClickedListener
 import org.thoughtcrime.securesms.util.Projection.Corners
+import org.thoughtcrime.securesms.video.inline.InlineVideoHost
 
 class ConversationItemThumbnail @JvmOverloads constructor(
   context: Context,
@@ -37,6 +38,8 @@ class ConversationItemThumbnail @JvmOverloads constructor(
   private var shade: ImageView
   var footer: Stub<ConversationItemFooter>
     private set
+
+  val surfaceHost: InlineVideoHost
   private var cornerMask: CornerMask
   private var borderless = false
   private var normalBounds: IntArray
@@ -51,6 +54,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     album = Stub(findViewById(R.id.album_view_stub))
     shade = findViewById(R.id.conversation_thumbnail_shade)
     footer = Stub(findViewById(R.id.footer_view_stub))
+    surfaceHost = findViewById(R.id.conversation_thumbnail_surface_host)
     cornerMask = CornerMask(this)
 
     var gifWidth = 260.dp
@@ -82,6 +86,16 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     maximumThumbnailHeight = -1
 
     state = ConversationItemThumbnailState()
+  }
+
+  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+    // FrameLayout won't stretch a lone match_parent child to its final size, so the video would otherwise measure 0x0.
+    surfaceHost.measure(
+      MeasureSpec.makeMeasureSpec(measuredWidth - paddingLeft - paddingRight, MeasureSpec.EXACTLY),
+      MeasureSpec.makeMeasureSpec(measuredHeight - paddingTop - paddingBottom, MeasureSpec.EXACTLY)
+    )
   }
 
   override fun dispatchDraw(canvas: Canvas) {

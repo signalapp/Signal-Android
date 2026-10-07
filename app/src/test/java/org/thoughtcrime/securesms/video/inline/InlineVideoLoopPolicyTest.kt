@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.giph.mp4
+package org.thoughtcrime.securesms.video.inline
 
 import org.junit.Assert
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
-class GiphyMp4PlaybackPolicyEnforcerTest {
+class InlineVideoLoopPolicyTest {
 
   @Test
   fun `Given a 1s video, then I expect as many loops as fit in 6s`() {
@@ -33,13 +33,13 @@ class GiphyMp4PlaybackPolicyEnforcerTest {
 
   private fun assertLoops(mediaDuration: Long, expectedLoops: Int) {
     var ended = false
-    val testSubject = GiphyMp4PlaybackPolicyEnforcer { ended = true }
+    val testSubject = InlineVideoLoopPolicy { ended = true }
 
     testSubject.setMediaDuration(mediaDuration)
 
-    Assert.assertTrue((1 until expectedLoops).map { testSubject.endPlayback() }.all { !it })
+    Assert.assertTrue((1 until expectedLoops).map { testSubject.shouldEndPlayback() }.all { !it })
     Assert.assertFalse(ended)
-    Assert.assertTrue(testSubject.endPlayback())
+    Assert.assertTrue(testSubject.shouldEndPlayback())
     Assert.assertTrue(ended)
   }
 }

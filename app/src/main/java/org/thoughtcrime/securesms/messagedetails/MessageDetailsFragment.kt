@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
@@ -35,9 +34,6 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -53,6 +49,7 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forOutgoingMess
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 
 class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   private lateinit var requestManager: RequestManager
@@ -81,7 +78,6 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
 
     initializeList(view)
     initializeViewModel()
-    initializeVideoPlayer(view)
   }
 
   private fun initializeList(view: View) {
@@ -93,6 +89,8 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     recyclerViewColorizer = RecyclerViewColorizer(list)
 
     list.adapter = adapter
+
+    InlineVideoController.attach(list, viewLifecycleOwner, 1)
     list.itemAnimator = null
     Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbarShadow), lifecycleOwner = viewLifecycleOwner).attach(list)
   }
@@ -111,15 +109,6 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
       }
     }
     viewModel.recipient.observe(viewLifecycleOwner) { recipient: Recipient -> recyclerViewColorizer.setChatColors(recipient.chatColors) }
-  }
-
-  private fun initializeVideoPlayer(view: View) {
-    val videoContainer = view.findViewById<FrameLayout>(R.id.video_container)
-    val recyclerView = view.findViewById<RecyclerView>(R.id.message_details_list)
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), viewLifecycleOwner.lifecycle, videoContainer, 1)
-    val callback = GiphyMp4ProjectionRecycler(holders)
-
-    GiphyMp4PlaybackController.attach(recyclerView, callback, 1)
   }
 
   private fun convertToRows(details: MessageDetails): List<MessageDetailsViewState<*>> {

@@ -36,11 +36,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart.Attach
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.TextSlide
@@ -50,6 +45,7 @@ import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.requireTextSlide
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import java.io.IOException
 import java.util.Locale
 import org.signal.core.ui.R as CoreUiR
@@ -136,23 +132,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
       recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
     }
 
-    initializeGiphyMp4(view.findViewById(R.id.video_container)!!, list)
-  }
-
-  private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
-    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
-      requireContext(),
-      viewLifecycleOwner.lifecycle,
-      videoContainer,
-      maxPlayback
-    )
-    val callback = GiphyMp4ProjectionRecycler(holders)
-
-    GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-    list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
-
-    return callback
+    InlineVideoController.attachForConversation(list, viewLifecycleOwner)
   }
 
   private fun showScheduledMessageContextMenu(view: View, conversationMessage: ConversationMessage) {

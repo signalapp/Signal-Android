@@ -123,7 +123,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -161,6 +160,9 @@ import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.NullableStub;
+import org.thoughtcrime.securesms.video.inline.InlineVideoCell;
+import org.thoughtcrime.securesms.video.inline.InlineVideoHost;
+import org.thoughtcrime.securesms.video.inline.InlineVideoLoopPolicy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -186,7 +188,8 @@ import kotlin.jvm.functions.Function1;
 public final class ConversationItem extends RelativeLayout implements BindableConversationItem,
                                                                       RecipientForeverObserver,
                                                                       OpenableGift,
-                                                                      InteractiveConversationElement
+                                                                      InteractiveConversationElement,
+                                                                      InlineVideoCell
 {
   private static final String TAG = Log.tag(ConversationItem.class);
 
@@ -278,7 +281,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private final QuotedIndicatorClickListener    quotedIndicatorClickListener    = new QuotedIndicatorClickListener();
   private final ScheduledIndicatorClickListener scheduledIndicatorClickListener = new ScheduledIndicatorClickListener();
   private final UrlClickListener                urlClickListener                = new UrlClickListener();
-  private final Rect                            thumbnailMaskingRect            = new Rect();
   private final TouchDelegateChangedListener    touchDelegateChangedListener    = new TouchDelegateChangedListener();
   private final DoubleTapEditTouchListener      doubleTapEditTouchListener      = new DoubleTapEditTouchListener();
   private final GiftMessageViewCallback         giftMessageViewCallback         = new GiftMessageViewCallback();
@@ -441,6 +443,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted, allowedToPlayInline);
+
+    InlineVideoHost surfaceHost = getSurfaceHost();
+    if (surfaceHost == null || !surfaceHost.isShowing(mediaItem)) {
+      showStill();
+    }
     setBodyText(messageRecord, searchQuery, isMessageRequestAccepted, hasWallpaper);
     setBubbleState(messageRecord, messageRecord.getFromRecipient(), hasWallpaper, colorizer);
     setInteractionState(conversationMessage, pulse);
@@ -847,7 +854,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       conversationRecipient.removeForeverObserver(this);
     }
 
-    bodyBubble.setVideoPlayerProjection(null);
     bodyBubble.setQuoteViewProjection(null);
 
     requestManager = null;
@@ -1348,7 +1354,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_top_padding));
 
     bodyBubble.setQuoteViewProjection(null);
-    bodyBubble.setVideoPlayerProjection(null);
 
     if (eventListener != null && audioViewStub.resolved()) {
       Log.d(TAG, "setMediaAttributes: unregistering voice note callbacks for audio slide " + audioViewStub.get().getAudioSlideUri());
@@ -2498,22 +2503,24 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public void showProjectionArea() {
+  public @Nullable InlineVideoHost getSurfaceHost() {
+    return mediaThumbnailStub != null && mediaThumbnailStub.resolved() ? mediaThumbnailStub.require().getSurfaceHost() : null;
+  }
+
+  @Override
+  public void showStill() {
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.require().setPlayOverlayForced(inlinePlaybackEnded);
       mediaThumbnailStub.require().showThumbnailView();
-      bodyBubble.setVideoPlayerProjection(null);
     }
   }
 
   @Override
-  public void hideProjectionArea() {
+  public void hideStill() {
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
       inlinePlaybackEnded = false;
       mediaThumbnailStub.require().setPlayOverlayForced(false);
       mediaThumbnailStub.require().hideThumbnailView();
-      mediaThumbnailStub.require().getDrawingRect(thumbnailMaskingRect);
-      bodyBubble.setVideoPlayerProjection(Projection.relativeToViewWithCommonRoot(mediaThumbnailStub.require(), bodyBubble, null));
     }
   }
 
@@ -2523,13 +2530,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
-  public @Nullable GiphyMp4PlaybackPolicyEnforcer getPlaybackPolicyEnforcer() {
+  public @Nullable InlineVideoLoopPolicy getLoopPolicy() {
     long    playingMessageId = messageRecord.getId();
     boolean wasRequested     = allowedToPlayInline;
 
-    return new GiphyMp4PlaybackPolicyEnforcer(() -> {
+    return new InlineVideoLoopPolicy(() -> {
       if (messageRecord != null && messageRecord.getId() == playingMessageId) {
         inlinePlaybackEnded = true;
+        allowedToPlayInline = false;
       }
 
       if (wasRequested && eventListener != null) {
@@ -2543,38 +2551,27 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return allowedToPlayInline && mediaItem != null;
   }
 
-  @Override
-  public int getAdapterPosition() {
-    throw new UnsupportedOperationException("Do not delegate to this method");
-  }
-
-  @Override
-  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
-    if (mediaThumbnailStub != null && mediaThumbnailStub.isResolvable()) {
-      ConversationItemThumbnail thumbnail = mediaThumbnailStub.require();
-      return Projection.relativeToParent(recyclerView, thumbnail, thumbnail.getCorners())
-                       .scale(bodyBubble.getScaleX())
-                       .translateX(Util.halfOffsetFromScale(thumbnail.getWidth(), bodyBubble.getScaleX()))
-                       .translateY(Util.halfOffsetFromScale(thumbnail.getHeight(), bodyBubble.getScaleY()))
-                       .translateY(getTranslationY())
-                       .translateX(bodyBubble.getTranslationX())
-                       .translateX(getTranslationX());
-    } else {
-      return Projection.relativeToParent(recyclerView, bodyBubble, bodyBubbleCorners)
-                       .translateY(getTranslationY())
-                       .translateX(bodyBubble.getTranslationX())
-                       .translateX(getTranslationX());
+  /**
+   * Where inline video is drawn, relative to {@code recyclerView}.
+   */
+  public @Nullable Projection getInlineVideoProjection(@NonNull ViewGroup recyclerView) {
+    if (mediaThumbnailStub == null || !mediaThumbnailStub.resolved()) {
+      return null;
     }
+
+    ConversationItemThumbnail thumbnail = mediaThumbnailStub.require();
+    return Projection.relativeToParent(recyclerView, thumbnail, thumbnail.getCorners())
+                     .scale(bodyBubble.getScaleX())
+                     .translateX(Util.halfOffsetFromScale(thumbnail.getWidth(), bodyBubble.getScaleX()))
+                     .translateY(Util.halfOffsetFromScale(thumbnail.getHeight(), bodyBubble.getScaleY()))
+                     .translateY(getTranslationY())
+                     .translateX(bodyBubble.getTranslationX())
+                     .translateX(getTranslationX());
   }
 
   @Override
   public boolean canPlayContent() {
     return mediaThumbnailStub != null && mediaThumbnailStub.isResolvable() && canPlayContent;
-  }
-
-  @Override
-  public boolean shouldProjectContent() {
-    return canPlayContent() && bodyBubble.getVisibility() == VISIBLE;
   }
 
   @Override
@@ -2598,29 +2595,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         bodyBubble.getVisibility() == VISIBLE)
     {
       Projection bodyBubbleToRoot = Projection.relativeToParent(coordinateRoot, bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX());
-      Projection videoToBubble    = bodyBubble.getVideoPlayerProjection();
       Projection mediaThumb       = clipOutMedia && mediaThumbnailStub.resolved() ? Projection.relativeToParent(coordinateRoot, mediaThumbnailStub.require(), null) : null;
 
       float translationX = Util.halfOffsetFromScale(bodyBubble.getWidth(), bodyBubble.getScaleX());
       float translationY = Util.halfOffsetFromScale(bodyBubble.getHeight(), bodyBubble.getScaleY());
 
-      if (videoToBubble != null) {
-        Projection videoToRoot = Projection.translateFromDescendantToParentCoords(videoToBubble, bodyBubble, coordinateRoot);
-
-        List<Projection> projections = Projection.getCapAndTail(bodyBubbleToRoot, videoToRoot);
-        if (!projections.isEmpty()) {
-          projections.get(0)
-                     .scale(bodyBubble.getScaleX())
-                     .translateX(translationX)
-                     .translateY(translationY);
-          projections.get(1)
-                     .scale(bodyBubble.getScaleX())
-                     .translateX(translationX)
-                     .translateY(-translationY);
-        }
-
-        colorizerProjections.addAll(projections);
-      } else if (hasThumbnail(messageRecord) && mediaThumb != null) {
+      if (hasThumbnail(messageRecord) && mediaThumb != null) {
         if (hasQuote(messageRecord) && quoteView != null) {
           Projection quote        = Projection.relativeToParent(coordinateRoot, bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX());
           int        quoteViewTop = (int) quote.getY();

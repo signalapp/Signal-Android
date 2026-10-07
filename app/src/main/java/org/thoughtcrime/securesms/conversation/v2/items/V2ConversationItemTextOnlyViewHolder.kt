@@ -351,25 +351,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   override fun hasNonSelectableMedia(): Boolean = false
-  override fun showProjectionArea() = Unit
-
-  override fun hideProjectionArea() = Unit
-
-  override fun getGiphyMp4PlayableProjection(coordinateRoot: ViewGroup): Projection {
-    return Projection.relativeToParent(
-      coordinateRoot,
-      binding.bodyWrapper,
-      shapeDelegate.cornersLTR
-    )
-      .translateY(root.translationY)
-      .translateX(binding.bodyWrapper.translationX)
-      .translateX(root.translationX)
-  }
-
-  override fun canPlayContent(): Boolean = false
-
-  override fun shouldProjectContent(): Boolean = false
-
   private fun invalidateFooterDrawable(coordinateRoot: ViewGroup) {
     if (footerDrawable.isSolidColor()) {
       return

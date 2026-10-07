@@ -269,35 +269,6 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
-  public void showProjectionArea() {
-  }
-
-  @Override
-  public void hideProjectionArea() {
-    throw new UnsupportedOperationException("Call makes no sense for a conversation update item");
-  }
-
-  @Override
-  public int getAdapterPosition() {
-    throw new UnsupportedOperationException("Don't delegate to this method.");
-  }
-
-  @Override
-  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
-    throw new UnsupportedOperationException("ConversationUpdateItems cannot be projected into.");
-  }
-
-  @Override
-  public boolean canPlayContent() {
-    return false;
-  }
-
-  @Override
-  public boolean shouldProjectContent() {
-    return false;
-  }
-
-  @Override
   public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
     return EMPTY_PROJECTION_LIST;
   }

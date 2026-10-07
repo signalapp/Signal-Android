@@ -14,7 +14,6 @@ import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
-import androidx.media3.common.MediaItem
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import org.signal.core.util.concurrent.SignalExecutors
@@ -55,13 +54,11 @@ import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaIncomingBin
 import org.thoughtcrime.securesms.databinding.V2ConversationItemMediaOutgoingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyIncomingBinding
 import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoingBinding
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.CachedInflater
-import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
@@ -524,38 +521,6 @@ class ConversationAdapterV2(
       }
 
       return payloadApplied
-    }
-
-    override fun showProjectionArea() {
-      bindable.showProjectionArea()
-    }
-
-    override fun hideProjectionArea() {
-      bindable.hideProjectionArea()
-    }
-
-    override fun getMediaItem(): MediaItem? {
-      return bindable.mediaItem
-    }
-
-    override fun getPlaybackPolicyEnforcer(): GiphyMp4PlaybackPolicyEnforcer? {
-      return bindable.playbackPolicyEnforcer
-    }
-
-    override fun isPlaybackRequested(): Boolean {
-      return bindable.isPlaybackRequested
-    }
-
-    override fun getGiphyMp4PlayableProjection(recyclerView: ViewGroup): Projection {
-      return bindable.getGiphyMp4PlayableProjection(recyclerView)
-    }
-
-    override fun canPlayContent(): Boolean {
-      return bindable.canPlayContent()
-    }
-
-    override fun shouldProjectContent(): Boolean {
-      return bindable.shouldProjectContent()
     }
 
     override fun hasNonSelectableMedia(): Boolean = bindable.hasNonSelectableMedia()

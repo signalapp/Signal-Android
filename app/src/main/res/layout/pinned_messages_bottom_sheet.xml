@@ -30,15 +30,6 @@
         android:text="@string/PinnedMessage__pinned_messages"
         android:textAppearance="@style/Signal.Text.TitleMedium" />
 
-    <FrameLayout
-        android:id="@+id/video_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/pinned_list"
-        app:layout_constraintEnd_toEndOf="@id/pinned_list"
-        app:layout_constraintStart_toStartOf="@id/pinned_list"
-        app:layout_constraintTop_toTopOf="@id/pinned_list" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pinned_list"
         android:layout_width="match_parent"
