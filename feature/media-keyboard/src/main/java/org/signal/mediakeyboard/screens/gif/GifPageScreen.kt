@@ -6,6 +6,9 @@
 package org.signal.mediakeyboard.screens.gif
 
 import androidx.annotation.OptIn
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -60,6 +64,7 @@ import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
  */
 private const val GIF_COLUMN_COUNT = 2
 private val GIF_SPACING = 8.dp
+private const val GIF_FADE_IN_DURATION_MILLIS = 200
 
 /** Its own, rather than the shared grid padding, because the design insets the gifs further than the other pages. */
 private val GIF_GRID_CONTENT_PADDING = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
@@ -257,21 +262,30 @@ private fun GifCell(
       .fillMaxWidth()
       .aspectRatio(gif.aspectRatio)
       .clip(MaterialTheme.shapes.small)
+      .background(MaterialTheme.colorScheme.surfaceVariant)
       .clickable(onClick = onClick)
   ) {
     GlideImage(
       model = gif.still,
       scaleType = GlideImageScaleType.CENTER_CROP,
+      fadeIn = true,
       modifier = Modifier.fillMaxSize()
     )
 
     if (player != null) {
       val presentationState = rememberPresentationState(player)
+      val surfaceAlpha by animateFloatAsState(
+        targetValue = if (presentationState.coverSurface) 0f else 1f,
+        animationSpec = tween(GIF_FADE_IN_DURATION_MILLIS),
+        label = "gif-surface-alpha"
+      )
 
       PlayerSurface(
         player = player,
         surfaceType = SURFACE_TYPE_TEXTURE_VIEW,
-        modifier = Modifier.resizeWithContentScale(ContentScale.Crop, presentationState.videoSizeDp)
+        modifier = Modifier
+          .resizeWithContentScale(ContentScale.Crop, presentationState.videoSizeDp)
+          .alpha(surfaceAlpha)
       )
     }
   }
