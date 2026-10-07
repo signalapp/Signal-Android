@@ -17,4 +17,8 @@ sealed interface StickerPackPreviewAction {
   data class SendSticker(val sticker: StickerManifest.Sticker) : StickerPackPreviewAction
   data object LinkCopied : StickerPackPreviewAction
   data object PackUnavailable : StickerPackPreviewAction
+  data object AddedToFavorites : StickerPackPreviewAction
+  data object RemovedFromFavorites : StickerPackPreviewAction
+  data object FavoritesLimitReached : StickerPackPreviewAction
+  data object FavoriteFailed : StickerPackPreviewAction
 }

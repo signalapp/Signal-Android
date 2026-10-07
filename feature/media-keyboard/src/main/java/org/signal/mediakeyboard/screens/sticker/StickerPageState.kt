@@ -5,6 +5,7 @@
 
 package org.signal.mediakeyboard.screens.sticker
 
+import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.mediakeyboard.data.KeyboardStickerPack
 
 data class StickerPageState(
@@ -12,7 +13,9 @@ data class StickerPageState(
   val selectedPackId: String? = null,
   val scrollTargetPackId: String? = null,
   val allowAnimation: Boolean = true,
-  val confirmRemovePack: ConfirmRemovePack? = null
+  val favoritesEnabled: Boolean = true,
+  val confirmRemovePack: ConfirmRemovePack? = null,
+  val confirmRemoveFavorite: KeyboardSticker? = null
 )
 
 /**

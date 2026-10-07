@@ -272,6 +272,7 @@ import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationE
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -371,6 +372,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementRepository
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen
+import org.thoughtcrime.securesms.stickers.preview.StickerFavoriteRepository
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewActivityV2
 import org.thoughtcrime.securesms.stickers.preview.StickerPreviewBottomSheet
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -833,6 +835,44 @@ class ConversationFragment :
         viewLifecycleOwner.lifecycleScope.launch {
           StickerManagementRepository.uninstallStickerPacks(mapOf(StickerPackId(action.packId) to StickerPackKey(action.packKey)))
         }
+      }
+
+      is MediaKeyboardAction.AddStickerToFavoritesClicked -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          val result = withContext(SignalDispatchers.IO) {
+            StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = true)
+          }
+
+          when (result) {
+            StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> snackbar(R.string.StickerFavorites__added_to_favorites, duration = Snackbar.LENGTH_SHORT)
+            StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> snackbar(getString(R.string.StickerFavorites__favorites_limit_reached, StickerTables.MAX_FAVORITES), duration = Snackbar.LENGTH_SHORT)
+            StickerFavoriteRepository.SetFavoriteResult.FAILURE -> snackbar(R.string.StickerFavorites__unknown_error, duration = Snackbar.LENGTH_SHORT)
+          }
+        }
+      }
+
+      is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+          val result = withContext(SignalDispatchers.IO) {
+            StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = false)
+          }
+
+          when (result) {
+            StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> snackbar(R.string.StickerFavorites__removed_from_favorites, duration = Snackbar.LENGTH_SHORT)
+            StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> Unit
+            StickerFavoriteRepository.SetFavoriteResult.FAILURE -> snackbar(R.string.StickerFavorites__unknown_error, duration = Snackbar.LENGTH_SHORT)
+          }
+        }
+      }
+
+      is MediaKeyboardAction.MoveFavoriteToTopClicked -> {
+        viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.IO) {
+          StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = true)
+        }
+      }
+
+      MediaKeyboardAction.EmptyFavoritesClicked -> {
+        snackbar(R.string.ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites, duration = Snackbar.LENGTH_SHORT)
       }
 
       // A screen of its own rather than a window over this one, and picking a gif carries on into
@@ -3073,6 +3113,14 @@ class ConversationFragment :
 
   private fun snackbar(
     @StringRes text: Int,
+    anchor: View = binding.conversationItemRecycler,
+    @Duration duration: Int = Snackbar.LENGTH_LONG
+  ) {
+    Snackbar.make(anchor, text, duration).show()
+  }
+
+  private fun snackbar(
+    text: CharSequence,
     anchor: View = binding.conversationItemRecycler,
     @Duration duration: Int = Snackbar.LENGTH_LONG
   ) {

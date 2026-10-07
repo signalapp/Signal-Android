@@ -63,6 +63,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Edit(icon(R.drawable.symbol_edit_24)),
   Emoji(icon(R.drawable.symbol_emoji_24)),
   ErrorCircle(icon(R.drawable.symbol_error_circle_fill_24)),
+  Favorite(icon(R.drawable.symbol_favorite_24)),
+  FavoriteOff(icon(R.drawable.symbol_favorite_off_24)),
   File(icon(R.drawable.symbol_file_24)),
   FlashAuto(icon(R.drawable.symbol_flash_auto_24)),
   FlashOff(icon(R.drawable.symbol_flash_slash_24)),

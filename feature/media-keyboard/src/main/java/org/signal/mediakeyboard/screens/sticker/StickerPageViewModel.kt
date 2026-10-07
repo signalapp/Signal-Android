@@ -27,7 +27,7 @@ class StickerPageViewModel(
     private val TAG = Log.tag(StickerPageViewModel::class)
   }
 
-  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation))
+  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, favoritesEnabled = repository.favoritesEnabled))
   val state: StateFlow<StickerPageState> = _state.asStateFlow()
 
   init {
@@ -51,13 +51,18 @@ class StickerPageViewModel(
       is StickerPageScreenEvents.Initialize -> Unit
 
       is StickerPageScreenEvents.PacksUpdated -> {
-        val selected = state.selectedPackId?.takeIf { id -> event.packs.any { it.id == id } }
-          ?: event.packs.firstOrNull()?.id
+        val selectable = event.packs.filterNot { it.isEmptyFavorites }
+        val selected = state.selectedPackId?.takeIf { id -> selectable.any { it.id == id } }
+          ?: selectable.firstOrNull()?.id
         stateEmitter(state.copy(packs = event.packs, selectedPackId = selected))
       }
 
       is StickerPageScreenEvents.PackSelected -> {
-        stateEmitter(state.copy(selectedPackId = event.packId, scrollTargetPackId = event.packId))
+        if (state.packs.any { it.id == event.packId && it.isEmptyFavorites }) {
+          emitAction(MediaKeyboardAction.EmptyFavoritesClicked)
+        } else {
+          stateEmitter(state.copy(selectedPackId = event.packId, scrollTargetPackId = event.packId))
+        }
       }
 
       is StickerPageScreenEvents.VisiblePackChanged -> {
@@ -110,6 +115,31 @@ class StickerPageViewModel(
 
       is StickerPageScreenEvents.ClearRecentStickersClicked -> {
         repository.clearRecentStickers()
+      }
+
+      is StickerPageScreenEvents.AddStickerToFavoritesClicked -> {
+        emitAction(MediaKeyboardAction.AddStickerToFavoritesClicked(event.sticker))
+      }
+
+      is StickerPageScreenEvents.RemoveStickerFromFavoritesClicked -> {
+        stateEmitter(state.copy(confirmRemoveFavorite = event.sticker))
+      }
+
+      is StickerPageScreenEvents.RemoveStickerFromFavoritesConfirmed -> {
+        val sticker = state.confirmRemoveFavorite
+        stateEmitter(state.copy(confirmRemoveFavorite = null))
+
+        if (sticker != null) {
+          emitAction(MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed(sticker))
+        }
+      }
+
+      is StickerPageScreenEvents.RemoveStickerFromFavoritesCanceled -> {
+        stateEmitter(state.copy(confirmRemoveFavorite = null))
+      }
+
+      is StickerPageScreenEvents.MoveFavoriteToTopClicked -> {
+        emitAction(MediaKeyboardAction.MoveFavoriteToTopClicked(event.sticker))
       }
     }
   }

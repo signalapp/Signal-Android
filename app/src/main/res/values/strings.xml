@@ -2773,6 +2773,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user's favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user's favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Save</string>

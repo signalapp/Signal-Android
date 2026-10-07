@@ -85,9 +85,14 @@ import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_MEDIA_KEY_BATCH_SIZE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_THUMBNAIL_TRANSFER_STATE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.ARCHIVE_TRANSFER_STATE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.MESSAGE_ID
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.QUOTE_PENDING_RECONSTRUCTION
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.REMOTE_KEY
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PROGRESS_DONE
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
@@ -121,7 +126,6 @@ import java.security.DigestInputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.UUID
-import kotlin.text.appendLine
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -2750,6 +2754,26 @@ class AttachmentTable(
     return readableDatabase.exists(TABLE_NAME)
       .where("$STICKER_PACK_ID = ?", stickerPackId)
       .run()
+  }
+
+  /**
+   * Returns the most recent fully downloaded attachment for the given sticker, if one exists.
+   */
+  fun getDownloadedStickerAttachment(stickerPackId: String, stickerId: Int): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$STICKER_PACK_ID = ? AND $STICKER_ID = ? AND $QUOTE = 0 AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", stickerPackId, stickerId)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToNext()) {
+          cursor.readAttachment()
+        } else {
+          null
+        }
+      }
   }
 
   fun getUnavailableStickerPacks(): Cursor {

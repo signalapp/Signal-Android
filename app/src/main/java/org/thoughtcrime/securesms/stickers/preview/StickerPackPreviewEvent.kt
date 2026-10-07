@@ -23,4 +23,7 @@ sealed interface StickerPackPreviewEvent {
   data object ShareExternallyClicked : StickerPackPreviewEvent
   data class StickerClicked(val sticker: StickerManifest.Sticker) : StickerPackPreviewEvent
   data class StickerSent(val sticker: StickerManifest.Sticker) : StickerPackPreviewEvent
+  data class FavoriteClicked(val sticker: StickerManifest.Sticker, val isFavorite: Boolean) : StickerPackPreviewEvent
+  data class RemoveFavoriteConfirmed(val sticker: StickerManifest.Sticker) : StickerPackPreviewEvent
+  data object RemoveFavoriteCanceled : StickerPackPreviewEvent
 }

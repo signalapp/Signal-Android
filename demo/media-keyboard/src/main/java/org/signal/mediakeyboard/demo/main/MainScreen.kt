@@ -75,7 +75,11 @@ fun MainScreen(
         MediaKeyboardAction.GifSearchClicked,
         is MediaKeyboardAction.ViewStickerPackClicked,
         is MediaKeyboardAction.SendStickerPackClicked,
-        is MediaKeyboardAction.RemoveStickerPackConfirmed -> Unit
+        is MediaKeyboardAction.RemoveStickerPackConfirmed,
+        is MediaKeyboardAction.AddStickerToFavoritesClicked,
+        is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed,
+        is MediaKeyboardAction.MoveFavoriteToTopClicked,
+        MediaKeyboardAction.EmptyFavoritesClicked -> Unit
       }
     }
   }

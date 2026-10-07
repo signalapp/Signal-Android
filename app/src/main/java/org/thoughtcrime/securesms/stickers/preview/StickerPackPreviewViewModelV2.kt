@@ -15,8 +15,10 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.Util
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.model.StickerPackParams
@@ -100,13 +102,48 @@ class StickerPackPreviewViewModelV2(
         internalActions.send(StickerPackPreviewAction.ShareExternally(params))
       }
 
-      is StickerPackPreviewEvent.StickerClicked -> showPrompt(UserPrompt.PreviewSticker(event.sticker))
+      is StickerPackPreviewEvent.StickerClicked -> {
+        val isFavorite = withContext(SignalDispatchers.IO) {
+          StickerFavoriteRepository.isFavorite(event.sticker.packId, event.sticker.id)
+        }
+        showPrompt(UserPrompt.PreviewSticker(event.sticker, isFavorite))
+      }
 
       is StickerPackPreviewEvent.StickerSent -> {
         showPrompt(null)
         internalActions.send(StickerPackPreviewAction.SendSticker(event.sticker))
       }
+
+      is StickerPackPreviewEvent.FavoriteClicked -> {
+        if (event.isFavorite) {
+          showPrompt(UserPrompt.ConfirmRemoveFavorite(event.sticker))
+        } else {
+          showPrompt(null)
+          setFavorite(event.sticker, isFavorite = true)
+        }
+      }
+
+      is StickerPackPreviewEvent.RemoveFavoriteConfirmed -> {
+        showPrompt(null)
+        setFavorite(event.sticker, isFavorite = false)
+      }
+
+      StickerPackPreviewEvent.RemoveFavoriteCanceled -> showPrompt(null)
     }
+  }
+
+  private suspend fun setFavorite(sticker: StickerManifest.Sticker, isFavorite: Boolean) {
+    val result = withContext(SignalDispatchers.IO) {
+      StickerFavoriteRepository.setFavorite(sticker.packId, sticker.packKey, sticker.id, isFavorite)
+    }
+
+    val action = when (result) {
+      StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> if (isFavorite) StickerPackPreviewAction.AddedToFavorites else StickerPackPreviewAction.RemovedFromFavorites
+      StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> StickerPackPreviewAction.FavoritesLimitReached
+      StickerFavoriteRepository.SetFavoriteResult.FAILURE -> StickerPackPreviewAction.FavoriteFailed
+    }
+
+    internalActions.send(action)
   }
 
   private suspend fun loadManifest(params: StickerPackParams) {
@@ -186,6 +223,7 @@ data class StickerPackPreviewUiState(
   sealed interface UserPrompt {
     data object ConfirmRemovePack : UserPrompt
     data object ShareStickerPack : UserPrompt
-    data class PreviewSticker(val sticker: StickerManifest.Sticker) : UserPrompt
+    data class PreviewSticker(val sticker: StickerManifest.Sticker, val isFavorite: Boolean) : UserPrompt
+    data class ConfirmRemoveFavorite(val sticker: StickerManifest.Sticker) : UserPrompt
   }
 }

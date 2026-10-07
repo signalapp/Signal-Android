@@ -80,4 +80,24 @@ sealed interface MediaKeyboardAction {
    * @param packKey Its key, which identifies the pack alongside [packId].
    */
   data class RemoveStickerPackConfirmed(val packId: String, val packKey: String) : MediaKeyboardAction
+
+  /**
+   * Adds [sticker] to the user's favorites. May fail if the limit is exceeded.
+   */
+  data class AddStickerToFavoritesClicked(val sticker: KeyboardSticker) : MediaKeyboardAction
+
+  /**
+   * Remove [sticker] from the user's favorites.
+   */
+  data class RemoveStickerFromFavoritesConfirmed(val sticker: KeyboardSticker) : MediaKeyboardAction
+
+  /**
+   * Move [sticker] to the front of the user's favorites.
+   */
+  data class MoveFavoriteToTopClicked(val sticker: KeyboardSticker) : MediaKeyboardAction
+
+  /**
+   * The user clicked the favorites icon but there were no favorites so we show a snackbar instead
+   */
+  data object EmptyFavoritesClicked : MediaKeyboardAction
 }

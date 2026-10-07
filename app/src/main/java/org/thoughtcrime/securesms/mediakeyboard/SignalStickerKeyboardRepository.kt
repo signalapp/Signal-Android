@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.StickerTables.StickerRecordReader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * [StickerKeyboardRepository] backed by the app's sticker database.
@@ -37,6 +38,9 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
   }
 
   override val allowStickerAnimation: Boolean = true
+
+  override val favoritesEnabled: Boolean
+    get() = RemoteConfig.internalUser
 
   override fun observeStickerPacks(): Flow<List<KeyboardStickerPack>> {
     return callbackFlow {
@@ -86,9 +90,23 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
       )
     }
 
+    val favoritesPack = if (favoritesEnabled) {
+      val favoriteStickers = StickerRecordReader(stickerTable.getFavoriteStickers()).use { reader -> reader.asSequence().toList() }
+
+      KeyboardStickerPack(
+        id = StickerKeyboardRepository.FAVORITES_PACK_ID,
+        packKey = null,
+        title = null,
+        cover = null,
+        stickers = favoriteStickers.map { it.toKeyboardSticker() }
+      )
+    } else {
+      null
+    }
+
     val recentStickers = StickerRecordReader(stickerTable.getRecentlyUsedStickers(RECENT_LIMIT)).use { reader -> reader.asSequence().toList() }
     if (recentStickers.isEmpty()) {
-      return packs
+      return listOfNotNull(favoritesPack) + packs
     }
 
     val recentPack = KeyboardStickerPack(
@@ -99,7 +117,7 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
       stickers = recentStickers.map { it.toKeyboardSticker() }
     )
 
-    return listOf(recentPack) + packs
+    return listOfNotNull(favoritesPack, recentPack) + packs
   }
 
   private fun StickerRecord.toKeyboardSticker(): KeyboardSticker {
@@ -108,7 +126,8 @@ class SignalStickerKeyboardRepository(private val context: Context) : StickerKey
       packKey = packKey,
       stickerId = stickerId.toLong(),
       emoji = emoji.nullIfBlank(),
-      image = DecryptableUri(uri)
+      image = DecryptableUri(uri),
+      isFavorite = isFavorite
     )
   }
 }

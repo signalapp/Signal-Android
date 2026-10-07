@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.storage
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.models.database.FavoriteStickerSyncRecord
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
@@ -38,6 +39,7 @@ import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
+import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
@@ -47,6 +49,7 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
@@ -105,6 +108,10 @@ object StorageSyncModels {
 
   fun localToRemoteRecord(pack: StickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
     return localToRemoteStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteFavoriteSticker(sticker, rawStorageId).toSignalStorageRecord()
   }
 
   @JvmStatic
@@ -476,6 +483,23 @@ object StorageSyncModels {
         deletedAtTimestamp = 0
       }
     }.build().toSignalStickerPackRecord(StorageId.forStickerPack(rawStorageId))
+  }
+
+  fun localToRemoteFavoriteSticker(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalFavoriteStickerRecord {
+    return SignalFavoriteStickerRecord.newBuilder(sticker.storageServiceProto).apply {
+      packId = Hex.fromStringCondensed(sticker.packId).toByteString()
+      stickerId = sticker.stickerId
+
+      if (sticker.unfavoritedAt > 0) {
+        packKey = ByteString.EMPTY
+        favoritedAtTimestamp = 0
+        deletedAtTimestamp = sticker.unfavoritedAt
+      } else {
+        packKey = Hex.fromStringCondensed(sticker.packKey).toByteString()
+        favoritedAtTimestamp = sticker.favoritedAt
+        deletedAtTimestamp = 0
+      }
+    }.build().toSignalFavoriteStickerRecord(StorageId.forFavoriteSticker(rawStorageId))
   }
 
   private fun localToRemoteDayOfWeek(daysEnabled: Set<DayOfWeek>): List<RemoteDayOfWeek> {

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.storage.AccountRecordProcessor
 import org.thoughtcrime.securesms.storage.CallLinkRecordProcessor
 import org.thoughtcrime.securesms.storage.ChatFolderRecordProcessor
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor
+import org.thoughtcrime.securesms.storage.FavoriteStickerRecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor
 import org.thoughtcrime.securesms.storage.NotificationProfileRecordProcessor
 import org.thoughtcrime.securesms.storage.StickerPackRecordProcessor
@@ -47,6 +48,7 @@ import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
+import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
@@ -58,6 +60,7 @@ import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
@@ -322,11 +325,12 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         val updatedFolders = SignalDatabase.chatFolders.removeStorageIdsFromLocalOnlyDeletedFolders(idDifference.localOnlyIds)
         val updatedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromLocalOnlyDeletedProfiles(idDifference.localOnlyIds)
         val updatedPacks = SignalDatabase.stickers.removeStorageIdsFromLocalOnlyDeletedPacks(idDifference.localOnlyIds)
+        val updatedFavoriteStickers = SignalDatabase.stickers.removeStorageIdsFromLocalOnlyUnfavoritedStickers(idDifference.localOnlyIds)
         val updatedLists = SignalDatabase.distributionLists.removeStorageIdsFromLocalOnlyDeletedLists(idDifference.localOnlyIds)
         val updatedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromLocalOnlyDeletedCallLinks(idDifference.localOnlyIds)
 
-        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0 || updatedLists > 0 || updatedCallLinks > 0) {
-          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs, $updatedLists distribution lists, $updatedCallLinks call links that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
+        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0 || updatedPacks > 0 || updatedFavoriteStickers > 0 || updatedLists > 0 || updatedCallLinks > 0) {
+          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles, $updatedPacks sticker packs, $updatedFavoriteStickers favorite stickers, $updatedLists distribution lists, $updatedCallLinks call links that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
 
           localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
           idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
@@ -355,7 +359,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
         db.beginTransaction()
         try {
-          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}, sticker packs: ${remoteOnly.stickerPackRecords.size}")
+          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}, sticker packs: ${remoteOnly.stickerPackRecords.size}, favorite stickers: ${remoteOnly.favoriteStickerRecords.size}")
 
           processKnownRecords(context, remoteOnly, identityConflictsPendingRepair)
 
@@ -423,11 +427,12 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(expiredBefore)
       val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(expiredBefore)
       val removedDeletedPacks = SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(expiredBefore)
+      val removedUnfavoritedStickers = SignalDatabase.stickers.removeStorageIdsFromOldUnfavoritedStickers(expiredBefore)
       val removedDeletedLists = SignalDatabase.distributionLists.removeStorageIdsFromOldDeletedLists(expiredBefore)
       val removedDeletedCallLinks = SignalDatabase.callLinks.removeStorageIdsFromOldDeletedCallLinks(expiredBefore)
 
-      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0 || removedDeletedLists > 0 || removedDeletedCallLinks > 0) {
-        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs, $removedDeletedLists distribution lists, $removedDeletedCallLinks call links from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
+      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0 || removedDeletedPacks > 0 || removedUnfavoritedStickers > 0 || removedDeletedLists > 0 || removedDeletedCallLinks > 0) {
+        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles, $removedDeletedPacks sticker packs, $removedUnfavoritedStickers favorite stickers, $removedDeletedLists distribution lists, $removedDeletedCallLinks call links from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
       }
 
       self = freshSelf()
@@ -547,6 +552,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
     ChatFolderRecordProcessor().process(records.chatFolderRecords, StorageSyncHelper.KEY_GENERATOR)
     StickerPackRecordProcessor().process(records.stickerPackRecords, StorageSyncHelper.KEY_GENERATOR)
+    FavoriteStickerRecordProcessor().process(records.favoriteStickerRecords, StorageSyncHelper.KEY_GENERATOR)
   }
 
   private fun getAllLocalStorageIds(self: Recipient): List<StorageId> {
@@ -555,6 +561,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       SignalDatabase.chatFolders.getStorageSyncIds() +
       SignalDatabase.notificationProfiles.getStorageSyncIds() +
       SignalDatabase.stickers.getStorageSyncIds() +
+      SignalDatabase.stickers.getFavoriteStorageSyncIds() +
       SignalDatabase.unknownStorageIds.allUnknownIds
   }
 
@@ -648,6 +655,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           }
         }
 
+        ManifestRecord.Identifier.Type.FAVORITE_STICKER -> {
+          val query = SqlUtil.buildQuery("${StickerTables.Sticker.TABLE_NAME}.${StickerTables.Sticker.STORAGE_SERVICE_ID} = ?", Base64.encodeWithPadding(id.raw))
+          val favoriteSticker = SignalDatabase.stickers.getFavoriteForStorageSync(query)
+          if (favoriteSticker != null) {
+            records.add(StorageSyncModels.localToRemoteRecord(favoriteSticker, id.raw))
+          } else {
+            throw MissingFavoriteStickerModelError("Missing local favorite sticker model! Type: " + id.type)
+          }
+        }
+
         else -> {
           val unknown = SignalDatabase.unknownStorageIds.getById(id.raw)
           if (unknown != null) {
@@ -683,6 +700,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     val chatFolderRecords: MutableList<SignalChatFolderRecord> = mutableListOf()
     val notificationProfileRecords: MutableList<SignalNotificationProfileRecord> = mutableListOf()
     val stickerPackRecords: MutableList<SignalStickerPackRecord> = mutableListOf()
+    val favoriteStickerRecords: MutableList<SignalFavoriteStickerRecord> = mutableListOf()
 
     init {
       for (record in records) {
@@ -702,6 +720,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           notificationProfileRecords += record.proto.notificationProfile!!.toSignalNotificationProfileRecord(record.id)
         } else if (record.proto.stickerPack != null) {
           stickerPackRecords += record.proto.stickerPack!!.toSignalStickerPackRecord(record.id)
+        } else if (record.proto.favoriteSticker != null) {
+          favoriteStickerRecords += record.proto.favoriteSticker!!.toSignalFavoriteStickerRecord(record.id)
         } else if (record.id.isUnknown) {
           unknown += record
         } else {
@@ -720,6 +740,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   private class MissingNotificationProfileModelError(message: String?) : Error(message)
 
   private class MissingStickerPackModelError(message: String?) : Error(message)
+
+  private class MissingFavoriteStickerModelError(message: String?) : Error(message)
 
   private class MissingUnknownModelError(message: String?) : Error(message)
 

@@ -34,17 +34,20 @@ public class StickerPackDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(StickerPackDownloadJob.class);
 
-  private static final int MAX_STICKERS_PER_PACK = 1024;
+  private static final int NO_FAVORITE_STICKER_ID = -1;
+  private static final int MAX_STICKERS_PER_PACK  = 1024;
 
-  private static final String KEY_PACK_ID        = "pack_key";
-  private static final String KEY_PACK_KEY       = "pack_id";
-  private static final String KEY_REFERENCE_PACK = "reference_pack";
-  private static final String KEY_NOTIFY         = "notify";
+  private static final String KEY_PACK_ID             = "pack_key";
+  private static final String KEY_PACK_KEY            = "pack_id";
+  private static final String KEY_REFERENCE_PACK      = "reference_pack";
+  private static final String KEY_NOTIFY              = "notify";
+  private static final String KEY_FAVORITE_STICKER_ID = "favorite_sticker_id";
 
   private final String  packId;
   private final String  packKey;
   private final boolean isReferencePack;
   private final boolean notify;
+  private final int     favoriteStickerId;
 
   /**
    * Downloads all the stickers in a pack.
@@ -58,38 +61,53 @@ public class StickerPackDownloadJob extends BaseJob {
    * Just installs a reference to the pack -- i.e. just the cover.
    */
   public static @NonNull StickerPackDownloadJob forReference(@NonNull String packId, @NonNull String packKey) {
-    return new StickerPackDownloadJob(packId, packKey, true, true);
+    return new StickerPackDownloadJob(packId, packKey, true, true, NO_FAVORITE_STICKER_ID);
   }
 
-  private StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack, boolean notify)
+  /**
+   * Downloads the pack reference (ie cover) and the favorited sticker. Used when receiving a synced favorited sticker from an unknown pack.
+   */
+  public static @NonNull StickerPackDownloadJob forFavoriteSticker(@NonNull String packId, @NonNull String packKey, int stickerId) {
+    return new StickerPackDownloadJob(packId, packKey, true, false, stickerId);
+  }
+
+  private StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack, boolean notify) {
+    this(packId, packKey, isReferencePack, notify, NO_FAVORITE_STICKER_ID);
+  }
+
+  private StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack, boolean notify, int favoriteStickerId)
   {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
                        .addConstraint(DataRestoreConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(30))
                        .setQueue("StickerPackDownloadJob_" + packId)
+                       .setMaxAttempts(10)
                        .build(),
         packId,
         packKey,
         isReferencePack,
-        notify);
+        notify,
+        favoriteStickerId);
   }
 
   private StickerPackDownloadJob(@NonNull Parameters parameters,
                                  @NonNull String packId,
                                  @NonNull String packKey,
                                  boolean isReferencePack,
-                                 boolean notify)
+                                 boolean notify,
+                                 int favoriteStickerId)
   {
     super(parameters);
 
     Preconditions.checkNotNull(packId);
     Preconditions.checkNotNull(packKey);
 
-    this.packId          = packId;
-    this.packKey         = packKey;
-    this.isReferencePack = isReferencePack;
-    this.notify          = notify;
+    this.packId            = packId;
+    this.packKey           = packKey;
+    this.isReferencePack   = isReferencePack;
+    this.notify            = notify;
+    this.favoriteStickerId = favoriteStickerId;
   }
 
   @Override
@@ -98,6 +116,7 @@ public class StickerPackDownloadJob extends BaseJob {
                                     .putString(KEY_PACK_KEY, packKey)
                                     .putBoolean(KEY_REFERENCE_PACK, isReferencePack)
                                     .putBoolean(KEY_NOTIFY, notify)
+                                    .putInt(KEY_FAVORITE_STICKER_ID, favoriteStickerId)
                                     .serialize();
   }
 
@@ -108,20 +127,29 @@ public class StickerPackDownloadJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, InvalidMessageException {
-    if (isReferencePack && !SignalDatabase.attachments().containsStickerPackId(packId) && !BlessedPacks.contains(packId)) {
-      Log.w(TAG, "There are no attachments with the requested packId present for this reference pack. Skipping.");
-      return;
-    }
+    boolean isForFavorites = favoriteStickerId != NO_FAVORITE_STICKER_ID;
 
-    if (isReferencePack && SignalDatabase.stickers().isPackAvailableAsReference(packId)) {
-      Log.i(TAG, "Sticker pack already available for reference. Skipping.");
-      return;
+    if (isForFavorites) {
+      if (!Boolean.TRUE.equals(SignalDatabase.stickers().isFavorite(packId, favoriteStickerId))) {
+        Log.w(TAG, "Sticker is no longer favorited. Skipping.");
+        return;
+      }
+    } else {
+      if (isReferencePack && !SignalDatabase.attachments().containsStickerPackId(packId) && !BlessedPacks.contains(packId)) {
+        Log.w(TAG, "There are no attachments with the requested packId present for this reference pack. Skipping.");
+        return;
+      }
+
+      if (isReferencePack && SignalDatabase.stickers().isPackAvailableAsReference(packId)) {
+        Log.i(TAG, "Sticker pack already available for reference. Skipping.");
+        return;
+      }
     }
 
     SignalServiceMessageReceiver receiver        = AppDependencies.getSignalServiceMessageReceiver();
-    JobManager    jobManager      = AppDependencies.getJobManager();
-    StickerTables stickerDatabase = SignalDatabase.stickers();
-    byte[]        packIdBytes     = Hex.fromStringCondensed(packId);
+    JobManager                   jobManager      = AppDependencies.getJobManager();
+    StickerTables                stickerDatabase = SignalDatabase.stickers();
+    byte[]                       packIdBytes     = Hex.fromStringCondensed(packId);
     byte[]                       packKeyBytes    = Hex.fromStringCondensed(packKey);
     SignalServiceStickerManifest manifest        = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 
@@ -154,7 +182,21 @@ public class StickerPackDownloadJob extends BaseJob {
 
 
 
-    if (!isReferencePack) {
+    if (isForFavorites) {
+      StickerInfo favorite = null;
+      for (StickerInfo stickerInfo : stickers) {
+        if (stickerInfo.getId() == favoriteStickerId) {
+          favorite = stickerInfo;
+          break;
+        }
+      }
+
+      if (favorite != null) {
+        chain.then(StickerDownloadJob.forFavorite(packId, packKey, favorite.getId(), favorite.getEmoji() != null ? favorite.getEmoji() : "", favorite.getContentType()));
+      } else {
+        Log.w(TAG, "Could not find favorited sticker in pack manifest.");
+      }
+    } else if (!isReferencePack) {
       Set<Integer> downloadedStickerIds = stickerDatabase.getDownloadedStickerIds(packId);
       List<Job>    jobs                 = new ArrayList<>(stickers.size());
 
@@ -194,6 +236,11 @@ public class StickerPackDownloadJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    if (favoriteStickerId != NO_FAVORITE_STICKER_ID) {
+      Log.w(TAG, "Failed to download manifest for favorited sticker " + favoriteStickerId + ".");
+      return;
+    }
+
     Log.w(TAG, "Failed to download manifest! Uninstalling pack.");
     SignalDatabase.stickers().uninstallPack(packId);
     SignalDatabase.stickers().deleteOrphanedPacks();
@@ -208,7 +255,8 @@ public class StickerPackDownloadJob extends BaseJob {
                                         data.getString(KEY_PACK_ID),
                                         data.getString(KEY_PACK_KEY),
                                         data.getBoolean(KEY_REFERENCE_PACK),
-                                        data.getBoolean(KEY_NOTIFY));
+                                        data.getBoolean(KEY_NOTIFY),
+                                        data.getIntOrDefault(KEY_FAVORITE_STICKER_ID, NO_FAVORITE_STICKER_ID));
     }
   }
 }

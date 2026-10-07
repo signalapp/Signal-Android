@@ -66,6 +66,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.proto.stickerPack != null) {
         row += "Sticker Pack"
         row += record.proto.stickerPack.toString().prettyPrintProto()
+      } else if (record.proto.favoriteSticker != null) {
+        row += "Favorite Sticker"
+        row += record.proto.favoriteSticker.toString().prettyPrintProto()
       } else {
         row += "Unknown"
         row += ""

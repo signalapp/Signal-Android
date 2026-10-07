@@ -37,6 +37,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -61,6 +62,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bumptech.glide.load.Key
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CollectActions
@@ -72,6 +74,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.viewModel
@@ -83,6 +86,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
@@ -95,8 +99,10 @@ import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.UserPrompt
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.text.NumberFormat
 import kotlin.jvm.optionals.getOrElse
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Shows the contents of a pack and allows the user to install it (if not installed) or remove it
@@ -127,20 +133,30 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
 
     setContent {
       val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+      val snackbarHostState = remember { SnackbarHostState() }
+      val scope = rememberCoroutineScope()
 
-      CollectActions(viewModel.actions, ::handleAction)
+      CollectActions(viewModel.actions) { action ->
+        handleAction(action) { message ->
+          scope.launch {
+            snackbarHostState.currentSnackbarData?.dismiss()
+            snackbarHostState.showSnackbar(message)
+          }
+        }
+      }
 
       SignalTheme {
         StickerPackPreviewScreen(
           uiState = uiState,
           onEvent = viewModel::onEvent,
-          onNavigationClick = { onBackPressedDispatcher.onBackPressed() }
+          onNavigationClick = { onBackPressedDispatcher.onBackPressed() },
+          snackbarHostState = snackbarHostState
         )
       }
     }
   }
 
-  private fun handleAction(action: StickerPackPreviewAction) {
+  private fun handleAction(action: StickerPackPreviewAction, showSnackbar: (String) -> Unit) {
     when (action) {
       is StickerPackPreviewAction.SendPack -> openPackShareSheet(action.params)
       is StickerPackPreviewAction.ShareExternally -> openSystemShareSheet(action.params)
@@ -154,6 +170,10 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
       }
 
       is StickerPackPreviewAction.SendSticker -> openStickerShareSheet(action.sticker)
+      StickerPackPreviewAction.AddedToFavorites -> showSnackbar(getString(R.string.StickerFavorites__added_to_favorites))
+      StickerPackPreviewAction.RemovedFromFavorites -> showSnackbar(getString(R.string.StickerFavorites__removed_from_favorites))
+      StickerPackPreviewAction.FavoritesLimitReached -> showSnackbar(getString(R.string.StickerFavorites__favorites_limit_reached, StickerTables.MAX_FAVORITES))
+      StickerPackPreviewAction.FavoriteFailed -> showSnackbar(getString(R.string.StickerFavorites__unknown_error))
     }
   }
 
@@ -203,7 +223,8 @@ class StickerPackPreviewActivityV2 : PassphraseRequiredActivity() {
 private fun StickerPackPreviewScreen(
   uiState: StickerPackPreviewUiState,
   onEvent: (StickerPackPreviewEvent) -> Unit,
-  onNavigationClick: () -> Unit
+  onNavigationClick: () -> Unit,
+  snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
 ) {
   val gridState = rememberLazyGridState()
   val showToolbarDetails by remember { derivedStateOf { gridState.firstVisibleItemIndex > 0 } }
@@ -225,6 +246,7 @@ private fun StickerPackPreviewScreen(
     onNavigationClick = onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+    snackbarHost = { Snackbars.Host(snackbarHostState) },
     titleContent = { _, toolbarTitle ->
       ToolbarTitle(
         title = toolbarTitle,
@@ -297,6 +319,20 @@ private fun StickerPackPreviewScreen(
       )
     }
 
+    if (uiState.userPrompt is UserPrompt.ConfirmRemoveFavorite) {
+      val sticker = uiState.userPrompt.sticker
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(CoreUiR.string.StickerFavorites__remove_from_favorites_question),
+        body = stringResource(CoreUiR.string.StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again),
+        confirm = stringResource(CoreUiR.string.StickerFavorites__remove),
+        confirmColor = MaterialTheme.colorScheme.error,
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = { onEvent(StickerPackPreviewEvent.RemoveFavoriteConfirmed(sticker)) },
+        onDeny = { onEvent(StickerPackPreviewEvent.RemoveFavoriteCanceled) },
+        onDismissRequest = { onEvent(StickerPackPreviewEvent.RemoveFavoriteCanceled) }
+      )
+    }
+
     if (uiState.userPrompt is UserPrompt.ShareStickerPack && stickerManifest != null) {
       StickerPackShareSheet(
         params = stickerManifest.params,
@@ -309,6 +345,7 @@ private fun StickerPackPreviewScreen(
       StickerPreviewSheet(
         stickerManifest,
         uiState.userPrompt.sticker,
+        uiState.userPrompt.isFavorite,
         loadedState.isPackInstalled,
         onEvent
       )
@@ -582,6 +619,7 @@ private fun StickerPackShareSheet(
 private fun StickerPreviewSheet(
   stickerManifest: StickerManifest,
   sticker: StickerManifest.Sticker,
+  isFavorite: Boolean,
   isPackInstalled: Boolean,
   onEvent: (StickerPackPreviewEvent) -> Unit
 ) {
@@ -596,7 +634,9 @@ private fun StickerPreviewSheet(
       stickerManifest = stickerManifest,
       sticker = sticker,
       canForward = isPackInstalled,
-      onForwardClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) }
+      onForwardClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.StickerSent(sticker)) }) },
+      isFavorite = if (isPackInstalled && RemoteConfig.internalUser) isFavorite else null,
+      onFavoriteClick = { sheetState.dismissWithAnimation(scope, onComplete = { onEvent(StickerPackPreviewEvent.FavoriteClicked(sticker, isFavorite)) }) }
     )
   }
 }

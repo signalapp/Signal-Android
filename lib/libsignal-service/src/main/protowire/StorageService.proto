@@ -53,6 +53,7 @@ message ManifestRecord {
       CALL_LINK               = 7;
       CHAT_FOLDER             = 8;
       NOTIFICATION_PROFILE    = 9;
+      FAVORITE_STICKER        = 11;
     }
 
     bytes raw  = 1;
@@ -77,6 +78,7 @@ message StorageRecord {
     CallLinkRecord              callLink              = 7;
     ChatFolderRecord            chatFolder            = 8;
     NotificationProfile         notificationProfile   = 9;
+    FavoriteStickerRecord       favoriteSticker       = 11;
   }
 }
 
@@ -354,6 +356,21 @@ message StickerPackRecord {
   // `position`.
   uint64 deletedAtTimestamp = 4; // Timestamp in milliseconds. When present and
   // non-zero - `packKey` and `position` should
+  // be unset
+}
+
+message FavoriteStickerRecord { // Can come from uninstalled packs so we must store all relevant information ourselves. If limit is exceeded (500), reject newest one.
+  bytes packId = 1; // 16 bytes
+  bytes packKey = 2; // 32 bytes, used to derive the AES-256 key
+  // aesKey = HKDF(
+  //   input = packKey,
+  //   salt = 32 zero bytes,
+  //   info = "Sticker Pack"
+  // )
+  uint32 stickerId = 3;
+  uint64 favoritedAtTimestamp = 4; // Sorted by newest timestamp first. Can be mutated if sticker is reordered via 'Move to top'
+  uint64 deletedAtTimestamp = 5; // Timestamp in milliseconds. When present and
+  // non-zero - `packKey`, and `favoritedAtTimestamp` should
   // be unset
 }
 

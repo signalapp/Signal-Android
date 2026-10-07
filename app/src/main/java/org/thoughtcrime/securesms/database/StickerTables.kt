@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.models.database.FavoriteStickerSyncRecord
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
@@ -36,17 +37,20 @@ import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.glide.decryptableuri.DecryptableUri
+import org.thoughtcrime.securesms.database.StickerTables.Pack.PACK_ID
 import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.StickerDownloadJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.stickers.BlessedPacks
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.io.Closeable
@@ -76,6 +80,8 @@ class StickerTables(
 
     const val DIRECTORY: String = "stickers"
 
+    const val MAX_FAVORITES = 500
+
     private val JOINED_TABLES = "${Sticker.TABLE_NAME} INNER JOIN ${Pack.TABLE_NAME} ON ${Sticker.TABLE_NAME}.${Sticker.PACK_ID} = ${Pack.TABLE_NAME}.${Pack.PACK_ID}"
 
     private val RECORD_PROJECTION = arrayOf(
@@ -93,7 +99,8 @@ class StickerTables(
       "${Pack.TABLE_NAME}.${Pack.INSTALLED} AS ${Pack.INSTALLED}",
       "${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} AS ${Sticker.FILE_PATH}",
       "${Sticker.TABLE_NAME}.${Sticker.FILE_LENGTH} AS ${Sticker.FILE_LENGTH}",
-      "${Sticker.TABLE_NAME}.${Sticker.FILE_RANDOM} AS ${Sticker.FILE_RANDOM}"
+      "${Sticker.TABLE_NAME}.${Sticker.FILE_RANDOM} AS ${Sticker.FILE_RANDOM}",
+      "${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} AS ${Sticker.FAVORITED_AT}"
     )
   }
 
@@ -109,6 +116,10 @@ class StickerTables(
     const val FILE_PATH: String = "file_path"
     const val FILE_LENGTH: String = "file_length"
     const val FILE_RANDOM: String = "file_random"
+    const val FAVORITED_AT: String = "favorited_at"
+    const val UNFAVORITED_AT: String = "unfavorited_at"
+    const val STORAGE_SERVICE_ID: String = "storage_service_id"
+    const val STORAGE_SERVICE_PROTO: String = "storage_service_proto"
 
     const val CREATE_TABLE: String = """
       CREATE TABLE $TABLE_NAME (
@@ -122,6 +133,10 @@ class StickerTables(
         $FILE_PATH TEXT NOT NULL,
         $FILE_LENGTH INTEGER,
         $FILE_RANDOM BLOB,
+        $FAVORITED_AT INTEGER DEFAULT 0,
+        $UNFAVORITED_AT INTEGER DEFAULT 0,
+        $STORAGE_SERVICE_ID TEXT DEFAULT NULL,
+        $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
         UNIQUE($PACK_ID, $STICKER_ID, $COVER) ON CONFLICT IGNORE
       )
       """
@@ -161,12 +176,14 @@ class StickerTables(
   }
 
   @Throws(IOException::class)
-  fun insertSticker(sticker: IncomingSticker, dataStream: InputStream, notify: Boolean) {
+  fun insertSticker(sticker: IncomingSticker, dataStream: InputStream, notify: Boolean, updatePack: Boolean = true) {
     val fileInfo: FileInfo = saveStickerImage(dataStream)
     var becameInstalled = false
 
-    writableDatabase.withinTransaction { db ->
-      becameInstalled = upsertStickerPack(db, sticker)
+    val existingFile = writableDatabase.withinTransaction { db ->
+      if (updatePack) {
+        becameInstalled = upsertStickerPack(db, sticker)
+      }
 
       val values = contentValuesOf(
         Sticker.PACK_ID to sticker.packId,
@@ -179,13 +196,26 @@ class StickerTables(
         Sticker.FILE_RANDOM to fileInfo.random
       )
 
-      var updated = false
-      if (sticker.isCover) {
+      val existingFile = db
+        .select(Sticker.FILE_PATH)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = ?", sticker.packId, sticker.stickerId, sticker.isCover.toInt())
+        .run()
+        .readToSingleObject { it.requireNonNullString(Sticker.FILE_PATH) }
+
+      val updated = if (sticker.isCover) {
         // Archive restore inserts cover rows without a sticker id, try to update first on a reduced uniqueness constraint
-        updated = db
+        db
           .update(Sticker.TABLE_NAME)
           .values(values)
           .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 1", sticker.packId)
+          .run() > 0
+      } else {
+        // Favorited and unfavorited stickers can be retained across uninstalls, so update in place to keep their favorite state
+        db
+          .update(Sticker.TABLE_NAME)
+          .values(values)
+          .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0 AND ${Sticker.STORAGE_SERVICE_ID} NOT NULL", sticker.packId, sticker.stickerId)
           .run() > 0
       }
 
@@ -195,6 +225,13 @@ class StickerTables(
           .values(values)
           .run(SQLiteDatabase.CONFLICT_REPLACE)
       }
+
+      existingFile
+    }
+
+    if (existingFile.isNotNullOrBlank()) {
+      Log.i(TAG, "Deleting existing file for sticker.")
+      File(existingFile).delete()
     }
 
     notifyStickerListeners()
@@ -292,7 +329,7 @@ class StickerTables(
     return readableDatabase
       .select(*RECORD_PROJECTION)
       .from(JOINED_TABLES)
-      .where("${Sticker.TABLE_NAME}.${Sticker.EMOJI} LIKE ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0", "%$emoji%")
+      .where("${Sticker.TABLE_NAME}.${Sticker.EMOJI} LIKE ? AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0 AND (${Pack.TABLE_NAME}.${Pack.INSTALLED} = 1 OR ${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0)", "%$emoji%")
       .run()
   }
 
@@ -341,9 +378,18 @@ class StickerTables(
     return readableDatabase
       .select(*RECORD_PROJECTION)
       .from(JOINED_TABLES)
-      .where("${Sticker.TABLE_NAME}.${Sticker.LAST_USED} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0")
+      .where("${Sticker.TABLE_NAME}.${Sticker.LAST_USED} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0 AND (${Pack.TABLE_NAME}.${Pack.INSTALLED} = 1 OR ${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0)")
       .orderBy("${Sticker.TABLE_NAME}.${Sticker.LAST_USED} DESC")
       .limit(limit)
+      .run()
+  }
+
+  fun getFavoriteStickers(): Cursor {
+    return readableDatabase
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0 AND ${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} != ''")
+      .orderBy("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} DESC")
       .run()
   }
 
@@ -424,6 +470,184 @@ class StickerTables(
     notifyStickerPackListeners()
   }
 
+  fun getFavoriteCount(): Int {
+    return readableDatabase
+      .select("COUNT(*)")
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.FAVORITED_AT} > 0 AND ${Sticker.COVER} = 0")
+      .run()
+      .readToSingleInt(0)
+  }
+
+  /**
+   * Unfavorites however many stickers necessary to have at most [limit] stickers
+   */
+  fun unfavoriteNewestOverLimit(limit: Int): Int {
+    val unfavoritedCount = writableDatabase.withinTransaction { db ->
+      val overLimit = db
+        .select("COUNT(*)")
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.FAVORITED_AT} > 0 AND ${Sticker.COVER} = 0")
+        .run()
+        .readToSingleInt(0) - limit
+
+      if (overLimit <= 0) {
+        return@withinTransaction 0
+      }
+
+      val rowIds = db
+        .select(Sticker.ID)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.FAVORITED_AT} > 0 AND ${Sticker.COVER} = 0")
+        .orderBy("${Sticker.FAVORITED_AT} DESC, ${Sticker.ID} DESC")
+        .limit(overLimit)
+        .run()
+        .readToList { it.requireLong(Sticker.ID) }
+
+      rowIds.forEach { rowId ->
+        db.update(Sticker.TABLE_NAME)
+          .values(
+            Sticker.FAVORITED_AT to 0,
+            Sticker.UNFAVORITED_AT to System.currentTimeMillis(),
+            Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+          )
+          .where("${Sticker.ID} = ?", rowId)
+          .run()
+      }
+
+      rowIds.size
+    }
+
+    if (unfavoritedCount > 0) {
+      notifyStickerListeners()
+    }
+
+    return unfavoritedCount
+  }
+
+  /**
+   * Whether the sticker is favorited, or null if it doesn't exist
+   */
+  fun isFavorite(packId: String, stickerId: Int): Boolean? {
+    return readableDatabase
+      .select(Sticker.FAVORITED_AT)
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+      .run()
+      .readToSingleObject { it.requireLong(Sticker.FAVORITED_AT) > 0 }
+  }
+
+  fun hasStickerFile(packId: String, stickerId: Int): Boolean {
+    return readableDatabase
+      .exists(Sticker.TABLE_NAME)
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0 AND ${Sticker.FILE_PATH} != ''", packId, stickerId)
+      .run()
+  }
+
+  /**
+   * Sets favorite status of a sticker when you know it's there. If it's not, see [insertFavorite]
+   */
+  fun setFavorite(packId: String, stickerId: Int, isFavorite: Boolean) {
+    val now = System.currentTimeMillis()
+
+    val updated = writableDatabase
+      .update(Sticker.TABLE_NAME)
+      .values(
+        Sticker.FAVORITED_AT to if (isFavorite) now else 0,
+        Sticker.UNFAVORITED_AT to if (isFavorite) 0 else now,
+        Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+      )
+      .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+      .run()
+
+    if (updated > 0) {
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+
+    notifyStickerListeners()
+  }
+
+  /**
+   * Inserts a favorited sticker that has not been downloaded (eg from an incoming message). If the stickers already exists, use [setFavorite]
+   */
+  @Throws(IOException::class)
+  fun insertFavorite(packId: String, packKey: String, stickerId: Int, emoji: String, contentType: String?, dataStream: InputStream) {
+    val fileInfo: FileInfo = saveStickerImage(dataStream)
+    val now = System.currentTimeMillis()
+
+    val existingFilePath: String? = writableDatabase.withinTransaction { db ->
+      // Temporarily insert pack stub, download pack below.
+      db
+        .insertInto(Pack.TABLE_NAME)
+        .values(
+          Pack.PACK_ID to packId,
+          Pack.PACK_KEY to packKey,
+          Pack.PACK_TITLE to "",
+          Pack.PACK_AUTHOR to "",
+          Pack.INSTALLED to 0
+        )
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+
+      // Updates pack key in case it was cleared from an unfavorited storage service sticker
+      db
+        .update(Pack.TABLE_NAME)
+        .values(Pack.PACK_KEY to packKey)
+        .where("${Pack.PACK_ID} = ? AND ${Pack.PACK_KEY} = ''", packId)
+        .run()
+
+      // Writes new file into sticker, removes old one if exists
+      val filePath: String? = db
+        .select(Sticker.FILE_PATH)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+        .run()
+        .readToSingleObject { it.requireNonNullString(Sticker.FILE_PATH) }
+
+      val values = contentValuesOf(
+        Sticker.EMOJI to emoji,
+        Sticker.CONTENT_TYPE to contentType,
+        Sticker.FILE_PATH to fileInfo.file.absolutePath,
+        Sticker.FILE_LENGTH to fileInfo.length,
+        Sticker.FILE_RANDOM to fileInfo.random,
+        Sticker.FAVORITED_AT to now,
+        Sticker.UNFAVORITED_AT to 0,
+        Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+      )
+
+      if (filePath != null) {
+        db
+          .update(Sticker.TABLE_NAME)
+          .values(values)
+          .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+          .run()
+      } else {
+        values.put(Sticker.PACK_ID, packId)
+        values.put(Sticker.STICKER_ID, stickerId)
+        values.put(Sticker.COVER, 0)
+
+        db
+          .insertInto(Sticker.TABLE_NAME)
+          .values(values)
+          .run()
+      }
+
+      filePath
+    }
+
+    if (!isPackAvailableAsReference(packId)) {
+      AppDependencies.jobManager.add(StickerPackDownloadJob.forReference(packId, packKey))
+    }
+
+    if (existingFilePath.isNullOrEmpty()) {
+      AppDependencies.jobManager.add(StickerDownloadJob.forFavorite(packId, packKey, stickerId, emoji, contentType))
+    } else {
+      File(existingFilePath).delete()
+    }
+
+    StorageSyncHelper.scheduleSyncForDataChange()
+    notifyStickerListeners()
+  }
+
   fun markPackAsInstalled(packId: String, notify: Boolean) {
     val transitioned = updatePackInstalled(
       db = databaseHelper.signalWritableDatabase,
@@ -454,6 +678,11 @@ class StickerTables(
             SELECT DISTINCT ${AttachmentTable.STICKER_PACK_ID}
             FROM ${AttachmentTable.TABLE_NAME}
             WHERE ${AttachmentTable.STICKER_PACK_ID} NOT NULL
+          ) AND
+          ${Pack.PACK_ID} NOT IN (
+            SELECT DISTINCT ${Sticker.PACK_ID}
+            FROM ${Sticker.TABLE_NAME}
+            WHERE ${Sticker.STORAGE_SERVICE_ID} NOT NULL
           )
         """,
         null
@@ -483,7 +712,7 @@ class StickerTables(
     writableDatabase.withinTransaction { db ->
       packIds.forEach { packId ->
         transitioned = updatePackInstalled(db = db, packId = packId.value, installed = false, notify = false) || transitioned
-        deleteStickersInPackExceptCover(db, packId.value)
+        deleteStickersInPackExceptCoverAndFavorites(db, packId.value)
       }
     }
 
@@ -654,6 +883,239 @@ class StickerTables(
     return updated
   }
 
+  /**
+   * Attempts to get a favorited or unfavorited sticker for storage service, depending on [packId] and [stickerId]
+   */
+  fun getFavoriteForStorageSync(packId: StickerPackId, stickerId: Int): FavoriteStickerSyncRecord? {
+    return getFavoriteForStorageSync(SqlUtil.buildQuery("${Sticker.TABLE_NAME}.${Sticker.PACK_ID} = ? AND ${Sticker.TABLE_NAME}.${Sticker.STICKER_ID} = ?", packId.value, stickerId))
+  }
+
+  /**
+   * Attempts to get a favorited or unfavorited sticker for storage service depending on [id]
+   */
+  fun getFavoriteForStorageSync(id: Long): FavoriteStickerSyncRecord? {
+    return getFavoriteForStorageSync(SqlUtil.buildQuery("${Sticker.TABLE_NAME}.${Sticker.ID} = ?", id))
+  }
+
+  /**
+   * Attempts to get a favorited or unfavorited sticker for storage service, filtered on [query]
+   */
+  fun getFavoriteForStorageSync(query: SqlUtil.Query): FavoriteStickerSyncRecord? {
+    return readableDatabase
+      .select(
+        "${Sticker.TABLE_NAME}.${Sticker.ID}",
+        "${Sticker.TABLE_NAME}.${Sticker.PACK_ID}",
+        "${Pack.TABLE_NAME}.${Pack.PACK_KEY}",
+        "${Sticker.TABLE_NAME}.${Sticker.STICKER_ID}",
+        "${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT}",
+        "${Sticker.TABLE_NAME}.${Sticker.UNFAVORITED_AT}",
+        "${Sticker.TABLE_NAME}.${Sticker.STORAGE_SERVICE_ID}",
+        "${Sticker.TABLE_NAME}.${Sticker.STORAGE_SERVICE_PROTO}"
+      )
+      .from(JOINED_TABLES)
+      .where("${query.where} AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0", query.whereArgs)
+      .run()
+      .readToSingleObject { cursor ->
+        FavoriteStickerSyncRecord(
+          rowId = cursor.requireLong(Sticker.ID),
+          packId = cursor.requireNonNullString(Sticker.PACK_ID),
+          packKey = cursor.requireNonNullString(Pack.PACK_KEY),
+          stickerId = cursor.requireInt(Sticker.STICKER_ID),
+          favoritedAt = cursor.requireLong(Sticker.FAVORITED_AT),
+          unfavoritedAt = cursor.requireLong(Sticker.UNFAVORITED_AT),
+          storageServiceId = Base64.decodeOrNull(cursor.requireString(Sticker.STORAGE_SERVICE_ID)),
+          storageServiceProto = Base64.decodeOrNull(cursor.requireString(Sticker.STORAGE_SERVICE_PROTO))
+        )
+      }
+  }
+
+  /**
+   * Gets all stickers with storage service ids
+   */
+  fun getFavoriteStorageSyncIds(): List<StorageId> {
+    return readableDatabase
+      .select(Sticker.STORAGE_SERVICE_ID)
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.STORAGE_SERVICE_ID} NOT NULL")
+      .run()
+      .readToList { cursor ->
+        StorageId.forFavoriteSticker(Base64.decodeOrThrow(cursor.requireNonNullString(Sticker.STORAGE_SERVICE_ID)))
+      }
+  }
+
+  /**
+   * Maps all stickers with storage service ids to their row id
+   */
+  fun getFavoriteStorageSyncIdsMap(): Map<Long, StorageId> {
+    return readableDatabase
+      .select(Sticker.ID, Sticker.STORAGE_SERVICE_ID)
+      .from(Sticker.TABLE_NAME)
+      .where("${Sticker.STORAGE_SERVICE_ID} NOT NULL")
+      .run()
+      .readToMap { cursor ->
+        val key = Base64.decodeOrThrow(cursor.requireNonNullString(Sticker.STORAGE_SERVICE_ID))
+        cursor.requireLong(Sticker.ID) to StorageId.forFavoriteSticker(key)
+      }
+  }
+
+  /**
+   * Saves the new storage id for a favorited sticker
+   */
+  fun applyFavoriteStorageIdUpdate(rowId: Long, storageId: StorageId) {
+    applyFavoriteStorageIdUpdates(mapOf(rowId to storageId))
+  }
+
+  /**
+   * Saves the new storage ids for all the favorited stickers in the map
+   */
+  fun applyFavoriteStorageIdUpdates(storageIds: Map<Long, StorageId>) {
+    writableDatabase.withinTransaction { db ->
+      storageIds.forEach { (rowId, storageId) ->
+        db.update(Sticker.TABLE_NAME)
+          .values(Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(storageId.raw))
+          .where("${Sticker.ID} = ?", rowId)
+          .run()
+      }
+    }
+  }
+
+  /**
+   * Adds a new favorited sticker from storage service, will download if necessary
+   */
+  fun insertFavoriteFromStorageSync(record: SignalFavoriteStickerRecord) {
+    applyFavoriteFromStorageSync(record)
+  }
+
+  /**
+   * Updates an existing favorited sticker from storage service
+   */
+  fun updateFavoriteFromStorageSync(record: SignalFavoriteStickerRecord) {
+    applyFavoriteFromStorageSync(record)
+  }
+
+  private fun applyFavoriteFromStorageSync(record: SignalFavoriteStickerRecord) {
+    val packId = Hex.toStringCondensed(record.proto.packId.toByteArray())
+    val packKey = Hex.toStringCondensed(record.proto.packKey.toByteArray())
+    val stickerId = record.proto.stickerId
+    val deleted = record.proto.deletedAtTimestamp > 0
+    val storageServiceProto = if (record.proto.hasUnknownFields()) Base64.encodeWithPadding(record.serializedUnknowns!!) else null
+
+    writableDatabase.withinTransaction { db ->
+      // Favorites can come from uninstalled packs so attempt to put a placeholder pack if needed
+      db
+        .insertInto(Pack.TABLE_NAME)
+        .values(
+          Pack.PACK_ID to packId,
+          Pack.PACK_KEY to packKey,
+          Pack.PACK_TITLE to "",
+          Pack.PACK_AUTHOR to "",
+          Pack.INSTALLED to 0
+        )
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+
+      if (packKey.isNotEmpty()) {
+        db
+          .update(Pack.TABLE_NAME)
+          .values(Pack.PACK_KEY to packKey)
+          .where("${Pack.PACK_ID} = ?", packId)
+          .run()
+      }
+
+      val existingFilePath: String? = db
+        .select(Sticker.FILE_PATH)
+        .from(Sticker.TABLE_NAME)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+        .run()
+        .readToSingleObject { it.requireNonNullString(Sticker.FILE_PATH) }
+
+      val values = contentValuesOf(
+        Sticker.FAVORITED_AT to if (deleted) 0 else record.proto.favoritedAtTimestamp,
+        Sticker.UNFAVORITED_AT to record.proto.deletedAtTimestamp,
+        Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(record.id.raw),
+        Sticker.STORAGE_SERVICE_PROTO to storageServiceProto
+      )
+
+      if (existingFilePath != null) {
+        db
+          .update(Sticker.TABLE_NAME)
+          .values(values)
+          .where("${Sticker.PACK_ID} = ? AND ${Sticker.STICKER_ID} = ? AND ${Sticker.COVER} = 0", packId, stickerId)
+          .run()
+      } else {
+        // Placeholder until the sticker is downloaded, see StickerPackDownloadJob.forFavoriteSticker
+        values.put(Sticker.PACK_ID, packId)
+        values.put(Sticker.STICKER_ID, stickerId)
+        values.put(Sticker.EMOJI, "")
+        values.put(Sticker.COVER, 0)
+        values.put(Sticker.FILE_PATH, "")
+
+        db
+          .insertInto(Sticker.TABLE_NAME)
+          .values(values)
+          .run()
+      }
+
+      val needsDownload = !deleted && (existingFilePath.isNullOrEmpty() || !isPackAvailableAsReference(packId))
+
+      if (needsDownload) {
+        Log.i(TAG, "Enqueuing sticker download job for new favorited sticker from storage service.")
+        db.runPostSuccessfulTransaction {
+          AppDependencies.jobManager.add(StickerPackDownloadJob.forFavoriteSticker(packId, packKey, stickerId))
+        }
+      }
+    }
+
+    notifyStickerPackListeners()
+    notifyStickerListeners()
+  }
+
+  /**
+   * Removes storage ids from stickers that were unfavorited before [unfavoritedBefore]. For uninstalled stickers, we also delete it.
+   */
+  fun removeStorageIdsFromOldUnfavoritedStickers(unfavoritedBefore: Long): Int {
+    return writableDatabase.withinTransaction { db ->
+      var deleted = 0
+
+      db
+        .select("${Sticker.TABLE_NAME}.${Sticker.ID}", "${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} AS ${Sticker.FILE_PATH}")
+        .from(JOINED_TABLES)
+        .where("${Sticker.TABLE_NAME}.${Sticker.STORAGE_SERVICE_ID} NOT NULL AND ${Sticker.UNFAVORITED_AT} > 0 AND ${Sticker.UNFAVORITED_AT} < ? AND ${Pack.INSTALLED} = 0", unfavoritedBefore)
+        .run()
+        .forEach { cursor ->
+          deleteSticker(db, cursor.requireLong(Sticker.ID), cursor.requireString(Sticker.FILE_PATH))
+          deleted++
+        }
+
+      Log.i(TAG, "Deleting $deleted unfavorited stickers from uninstalled packs")
+
+      val cleared = db
+        .update(Sticker.TABLE_NAME)
+        .values(Sticker.STORAGE_SERVICE_ID to null)
+        .where("${Sticker.STORAGE_SERVICE_ID} NOT NULL AND ${Sticker.UNFAVORITED_AT} > 0 AND ${Sticker.UNFAVORITED_AT} < ?", unfavoritedBefore)
+        .run()
+
+      deleted + cleared
+    }
+  }
+
+  /**
+   * Removes storageIds of stickers that are only unfavorited locally
+   */
+  fun removeStorageIdsFromLocalOnlyUnfavoritedStickers(storageIds: Collection<StorageId>): Int {
+    var updated = 0
+
+    SqlUtil.buildCollectionQuery(Sticker.STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "${Sticker.UNFAVORITED_AT} > 0 AND")
+      .forEach { query ->
+        updated += writableDatabase
+          .update(Sticker.TABLE_NAME)
+          .values(Sticker.STORAGE_SERVICE_ID to null)
+          .where(query.where, *query.whereArgs)
+          .run()
+      }
+
+    return updated
+  }
+
   private fun applyStickerPackFromStorageSync(record: SignalStickerPackRecord) {
     val packId = Hex.toStringCondensed(record.proto.packId.toByteArray())
     val packKey = Hex.toStringCondensed(record.proto.packKey.toByteArray())
@@ -696,7 +1158,7 @@ class StickerTables(
       }
 
       if (deleted) {
-        deleteStickersInPackExceptCover(db, packId)
+        deleteStickersInPackExceptCoverAndFavorites(db, packId)
       }
     }
 
@@ -732,9 +1194,12 @@ class StickerTables(
       Pack.PACK_ID to sticker.packId,
       Pack.PACK_KEY to sticker.packKey,
       Pack.PACK_TITLE to sticker.packTitle,
-      Pack.PACK_AUTHOR to sticker.packAuthor,
-      Pack.INSTALLED to if (sticker.isInstalled) 1 else 0
+      Pack.PACK_AUTHOR to sticker.packAuthor
     )
+
+    if (existing == null || becomingInstalled) {
+      values.put(Pack.INSTALLED, if (sticker.isInstalled) 1 else 0)
+    }
 
     if (becomingInstalled) {
       values.put(Pack.POSITION, getNextPosition(db))
@@ -821,18 +1286,18 @@ class StickerTables(
   }
 
   private fun deletePack(db: SQLiteDatabase, packId: String) {
-    deleteStickersInPack(db, packId)
+    deleteStickersInPackExceptFavorites(db, packId)
 
     db.delete(Pack.TABLE_NAME)
       .where("${Pack.PACK_ID} = ?", packId)
       .run()
   }
 
-  private fun deleteStickersInPack(database: SQLiteDatabase, packId: String) {
+  private fun deleteStickersInPackExceptFavorites(database: SQLiteDatabase, packId: String) {
     database.withinTransaction { db ->
       db.select(Sticker.ID, Sticker.FILE_PATH)
         .from(Sticker.TABLE_NAME)
-        .where("${Sticker.PACK_ID} = ?", packId)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.FAVORITED_AT} = 0 AND ${Sticker.STORAGE_SERVICE_ID} IS NULL", packId)
         .run()
         .forEach { cursor ->
           val rowId = cursor.requireLong(Sticker.ID)
@@ -840,18 +1305,14 @@ class StickerTables(
 
           deleteSticker(db, rowId, filePath)
         }
-
-      db.delete(Sticker.TABLE_NAME)
-        .where("${Sticker.PACK_ID} = ?", packId)
-        .run()
     }
   }
 
-  private fun deleteStickersInPackExceptCover(database: SQLiteDatabase, packId: String) {
+  private fun deleteStickersInPackExceptCoverAndFavorites(database: SQLiteDatabase, packId: String) {
     database.withinTransaction { db ->
       db.select(Sticker.ID, Sticker.FILE_PATH)
         .from(Sticker.TABLE_NAME)
-        .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 0", packId)
+        .where("${Sticker.PACK_ID} = ? AND ${Sticker.COVER} = 0 AND ${Sticker.FAVORITED_AT} = 0 AND ${Sticker.STORAGE_SERVICE_ID} IS NULL", packId)
         .run()
         .forEach { cursor ->
           val rowId = cursor.requireLong(Sticker.ID)
@@ -903,7 +1364,8 @@ class StickerTables(
         emoji = cursor.requireNonNullString(Sticker.EMOJI),
         contentType = cursor.requireString(Sticker.CONTENT_TYPE) ?: MediaUtil.IMAGE_WEBP,
         size = cursor.requireLong(Sticker.FILE_LENGTH),
-        isCover = cursor.requireBoolean(Sticker.COVER)
+        isCover = cursor.requireBoolean(Sticker.COVER),
+        isFavorite = cursor.requireLong(Sticker.FAVORITED_AT) > 0
       )
     }
 

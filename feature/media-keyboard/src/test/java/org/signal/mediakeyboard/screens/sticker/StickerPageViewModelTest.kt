@@ -35,6 +35,7 @@ class StickerPageViewModelTest {
   private val testDispatcher = StandardTestDispatcher()
 
   private val sticker = KeyboardSticker(packId = "pack-1", packKey = "pack-1-key", stickerId = 1, emoji = "😀", image = "image-1")
+  private val emptyFavorites = KeyboardStickerPack(id = StickerKeyboardRepository.FAVORITES_PACK_ID, packKey = null, title = null, cover = null, stickers = emptyList())
   private val packs = listOf(
     KeyboardStickerPack(id = "pack-1", packKey = "pack-1-key", title = "Pack One", cover = null, stickers = listOf(sticker)),
     KeyboardStickerPack(id = "pack-2", packKey = "pack-2-key", title = "Pack Two", cover = null, stickers = emptyList())
@@ -100,6 +101,27 @@ class StickerPageViewModelTest {
   }
 
   @Test
+  fun `packs updated - selects favorites once it has stickers`() {
+    val favorites = emptyFavorites.copy(stickers = listOf(sticker.copy(isFavorite = true)))
+    packsFlow.value = listOf(favorites) + packs
+    val viewModel = createViewModel()
+
+    assertThat(viewModel.state.value.selectedPackId).isEqualTo(StickerKeyboardRepository.FAVORITES_PACK_ID)
+  }
+
+  @Test
+  fun `pack selected - an empty favorites pack asks the host for the hint instead of selecting`() {
+    packsFlow.value = listOf(emptyFavorites) + packs
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.PackSelected(StickerKeyboardRepository.FAVORITES_PACK_ID))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.EmptyFavoritesClicked))
+    assertThat(viewModel.state.value.selectedPackId).isEqualTo("pack-1")
+    assertThat(viewModel.state.value.scrollTargetPackId).isNull()
+  }
+
+  @Test
   fun `sticker clicked - reports the selection without recording a use`() {
     val viewModel = createViewModel()
     viewModel.onEvent(StickerPageScreenEvents.StickerClicked(sticker))
@@ -157,6 +179,56 @@ class StickerPageViewModelTest {
     testDispatcher.scheduler.advanceUntilIdle()
 
     assertThat(viewModel.state.value.confirmRemovePack).isNull()
+    assertThat(actions).isEmpty()
+  }
+
+  @Test
+  fun `add to favorites clicked - hands the sticker to the host`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.AddStickerToFavoritesClicked(sticker))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.AddStickerToFavoritesClicked(sticker)))
+  }
+
+  @Test
+  fun `remove from favorites clicked - prompts instead of removing`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemoveFavorite).isEqualTo(sticker)
+    assertThat(actions).isEmpty()
+  }
+
+  @Test
+  fun `remove from favorites confirmed - dismisses the prompt and hands the sticker to the host`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesConfirmed)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemoveFavorite).isNull()
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed(sticker)))
+  }
+
+  @Test
+  fun `move favorite to top clicked - hands the sticker to the host`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.MoveFavoriteToTopClicked(sticker))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.MoveFavoriteToTopClicked(sticker)))
+  }
+
+  @Test
+  fun `remove from favorites canceled - dismisses the prompt without removing`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
+    viewModel.onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesCanceled)
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.confirmRemoveFavorite).isNull()
     assertThat(actions).isEmpty()
   }
 

@@ -134,6 +134,15 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newStickerPackInserts)
     allNewStorageIds.addAll(newStickerPackStorageIds.values)
 
+    val oldFavoriteStickerStorageIds = SignalDatabase.stickers.getFavoriteStorageSyncIdsMap()
+    val newFavoriteStickerStorageIds = generateFavoriteStickerStorageIds(oldFavoriteStickerStorageIds)
+    val newFavoriteStickerInserts: List<SignalStorageRecord> = oldFavoriteStickerStorageIds.keys
+      .mapNotNull { SignalDatabase.stickers.getFavoriteForStorageSync(it) }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newFavoriteStickerStorageIds[record.rowId]!!.raw) }
+
+    inserts.addAll(newFavoriteStickerInserts)
+    allNewStorageIds.addAll(newFavoriteStickerStorageIds.values)
+
     Log.i(TAG, "Generating and including a new recordIkm.")
     val recordIkm: RecordIkm = RecordIkm.generate()
 
@@ -173,6 +182,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
     SignalDatabase.notificationProfiles.applyStorageIdUpdates(newNotificationProfileStorageIds)
     SignalDatabase.stickers.applyStorageIdUpdates(newStickerPackStorageIds)
+    SignalDatabase.stickers.applyFavoriteStorageIdUpdates(newFavoriteStickerStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }
 
@@ -209,6 +219,12 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
   }
 
   private fun generateStickerPackStorageIds(oldKeys: Map<StickerPackId, StorageId>): Map<StickerPackId, StorageId> {
+    return oldKeys.mapValues { (_, value) ->
+      value.withNewBytes(StorageSyncHelper.generateKey())
+    }
+  }
+
+  private fun generateFavoriteStickerStorageIds(oldKeys: Map<Long, StorageId>): Map<Long, StorageId> {
     return oldKeys.mapValues { (_, value) ->
       value.withNewBytes(StorageSyncHelper.generateKey())
     }

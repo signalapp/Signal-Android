@@ -65,6 +65,7 @@ import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
 import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
 import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
+import org.signal.core.ui.R as CoreUiR
 
 private const val STICKER_COLUMN_COUNT = 5
 private val STICKER_CELL_SPACING = 12.dp
@@ -94,6 +95,24 @@ fun StickerPageScreen(
   if (state.confirmRemovePack != null) {
     ConfirmRemovePackDialog(onEvent = onEvent)
   }
+
+  if (state.confirmRemoveFavorite != null) {
+    ConfirmRemoveFavoriteDialog(onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun ConfirmRemoveFavoriteDialog(onEvent: (StickerPageScreenEvents) -> Unit) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(CoreUiR.string.StickerFavorites__remove_from_favorites_question),
+    body = stringResource(CoreUiR.string.StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again),
+    confirm = stringResource(CoreUiR.string.StickerFavorites__remove),
+    dismiss = stringResource(android.R.string.cancel),
+    confirmColor = MaterialTheme.colorScheme.error,
+    onConfirm = { onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesConfirmed) },
+    onDeny = { onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesCanceled) },
+    onDismissRequest = { onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesCanceled) }
+  )
 }
 
 @Composable
@@ -155,18 +174,28 @@ private fun PackButton(
       contentAlignment = Alignment.Center,
       modifier = backgroundModifier.size(36.dp)
     ) {
-      if (pack.id == StickerKeyboardRepository.RECENT_PACK_ID) {
-        Icon(
-          imageVector = Icons.Outlined.Schedule,
-          contentDescription = stringResource(R.string.MediaKeyboard__recently_used),
-          tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-        )
-      } else {
-        GlideImage(
-          model = pack.cover,
-          imageSize = DpSize(28.dp, 28.dp),
-          modifier = Modifier.size(28.dp)
-        )
+      when (pack.id) {
+        StickerKeyboardRepository.FAVORITES_PACK_ID -> {
+          Icon(
+            imageVector = SignalIcons.Favorite.imageVector,
+            contentDescription = stringResource(R.string.MediaKeyboard__favorites),
+            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+        StickerKeyboardRepository.RECENT_PACK_ID -> {
+          Icon(
+            imageVector = Icons.Outlined.Schedule,
+            contentDescription = stringResource(R.string.MediaKeyboard__recently_used),
+            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+        else -> {
+          GlideImage(
+            model = pack.cover,
+            imageSize = DpSize(28.dp, 28.dp),
+            modifier = Modifier.size(28.dp)
+          )
+        }
       }
     }
   }
@@ -181,10 +210,12 @@ private fun StickerGrid(
 ) {
   val gridState = rememberLazyGridState()
 
-  val headerIndices = remember(state.packs) {
+  val gridPacks = remember(state.packs) { state.packs.filterNot { it.isEmptyFavorites } }
+
+  val headerIndices = remember(gridPacks) {
     var index = 0
     buildMap {
-      state.packs.forEach { pack ->
+      gridPacks.forEach { pack ->
         put(pack.id, index)
         index += 1 + pack.stickers.size
       }
@@ -197,10 +228,10 @@ private fun StickerGrid(
     onEvent(StickerPageScreenEvents.ScrollTargetConsumed)
   }
 
-  val visiblePackId by remember(state.packs, headerIndices) {
+  val visiblePackId by remember(gridPacks, headerIndices) {
     derivedStateOf {
       val firstVisible = gridState.firstVisibleItemIndex
-      state.packs
+      gridPacks
         .lastOrNull { pack -> (headerIndices[pack.id] ?: Int.MAX_VALUE) <= firstVisible }
         ?.id
     }
@@ -238,7 +269,7 @@ private fun StickerGrid(
         verticalArrangement = Arrangement.spacedBy(STICKER_CELL_SPACING),
         modifier = Modifier.fillMaxWidth()
       ) {
-        state.packs.forEach { pack ->
+        gridPacks.forEach { pack ->
           item(key = "header:${pack.id}", span = { GridItemSpan(maxLineSpan) }) {
             StickerPackHeader(pack = pack, onEvent = onEvent)
           }
@@ -247,6 +278,8 @@ private fun StickerGrid(
             item(key = "${pack.id}:${sticker.stickerId}:$index") {
               StickerCell(
                 sticker = sticker,
+                isInFavorites = pack.id == StickerKeyboardRepository.FAVORITES_PACK_ID,
+                favoritesEnabled = state.favoritesEnabled,
                 allowAnimation = state.allowAnimation,
                 cellSize = cellSize,
                 onEvent = onEvent
@@ -266,6 +299,7 @@ private fun StickerPackHeader(
   modifier: Modifier = Modifier
 ) {
   val isRecents = pack.id == StickerKeyboardRepository.RECENT_PACK_ID
+  val isFavorites = pack.id == StickerKeyboardRepository.FAVORITES_PACK_ID
   val menuController = remember { DropdownMenus.MenuController() }
 
   Row(
@@ -275,7 +309,11 @@ private fun StickerPackHeader(
       .padding(start = 8.dp, end = 4.dp, top = 12.dp, bottom = 4.dp)
   ) {
     Text(
-      text = if (isRecents) stringResource(R.string.MediaKeyboard__recently_used) else pack.title.orEmpty(),
+      text = when {
+        isFavorites -> stringResource(R.string.MediaKeyboard__favorites)
+        isRecents -> stringResource(R.string.MediaKeyboard__recently_used)
+        else -> pack.title.orEmpty()
+      },
       style = MaterialTheme.typography.labelLarge,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
       maxLines = 1,
@@ -283,24 +321,26 @@ private fun StickerPackHeader(
       modifier = Modifier.weight(1f)
     )
 
-    Box {
-      IconButton(
-        onClick = { menuController.show() },
-        modifier = Modifier.size(32.dp)
-      ) {
-        Icon(
-          imageVector = SignalIcons.MoreVertical.imageVector,
-          contentDescription = stringResource(R.string.MediaKeyboard__more_options),
-          tint = MaterialTheme.colorScheme.onSurfaceVariant
+    if (!isFavorites) {
+      Box {
+        IconButton(
+          onClick = { menuController.show() },
+          modifier = Modifier.size(32.dp)
+        ) {
+          Icon(
+            imageVector = SignalIcons.MoreVertical.imageVector,
+            contentDescription = stringResource(R.string.MediaKeyboard__more_options),
+            tint = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
+
+        StickerPackHeaderMenu(
+          pack = pack,
+          isRecents = isRecents,
+          menuController = menuController,
+          onEvent = onEvent
         )
       }
-
-      StickerPackHeaderMenu(
-        pack = pack,
-        isRecents = isRecents,
-        menuController = menuController,
-        onEvent = onEvent
-      )
     }
   }
 }
@@ -368,6 +408,17 @@ private fun StickerPackHeaderPreview() {
   Column {
     StickerPackHeader(
       pack = KeyboardStickerPack(
+        id = StickerKeyboardRepository.FAVORITES_PACK_ID,
+        packKey = null,
+        title = null,
+        cover = null,
+        stickers = emptyList()
+      ),
+      onEvent = {}
+    )
+
+    StickerPackHeader(
+      pack = KeyboardStickerPack(
         id = StickerKeyboardRepository.RECENT_PACK_ID,
         packKey = null,
         title = null,
@@ -393,6 +444,8 @@ private fun StickerPackHeaderPreview() {
 @Composable
 private fun StickerCell(
   sticker: KeyboardSticker,
+  isInFavorites: Boolean,
+  favoritesEnabled: Boolean,
   allowAnimation: Boolean,
   cellSize: Dp,
   onEvent: (StickerPageScreenEvents) -> Unit
@@ -445,6 +498,37 @@ private fun StickerCell(
           onEvent(StickerPageScreenEvents.ViewStickerPackClicked(sticker.packId, sticker.packKey))
         }
       )
+
+      if (isInFavorites) {
+        DropdownMenus.ItemWithIcon(
+          menuController = controller,
+          imageVector = SignalIcons.Transfer.imageVector,
+          stringResId = R.string.MediaKeyboard__move_to_top,
+          onClick = {
+            onEvent(StickerPageScreenEvents.MoveFavoriteToTopClicked(sticker))
+          }
+        )
+      }
+
+      if (favoritesEnabled && sticker.isFavorite) {
+        DropdownMenus.ItemWithIcon(
+          menuController = controller,
+          imageVector = SignalIcons.FavoriteOff.imageVector,
+          stringResId = CoreUiR.string.StickerFavorites__remove_from_favorites,
+          onClick = {
+            onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
+          }
+        )
+      } else if (favoritesEnabled) {
+        DropdownMenus.ItemWithIcon(
+          menuController = controller,
+          imageVector = SignalIcons.Favorite.imageVector,
+          stringResId = CoreUiR.string.StickerFavorites__add_to_favorites,
+          onClick = {
+            onEvent(StickerPageScreenEvents.AddStickerToFavoritesClicked(sticker))
+          }
+        )
+      }
     }
   }
 }

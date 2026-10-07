@@ -23,4 +23,9 @@ sealed interface StickerPageScreenEvents {
   data object RemoveStickerPackConfirmed : StickerPageScreenEvents
   data object RemoveStickerPackCanceled : StickerPageScreenEvents
   data object ClearRecentStickersClicked : StickerPageScreenEvents
+  data class AddStickerToFavoritesClicked(val sticker: KeyboardSticker) : StickerPageScreenEvents
+  data class RemoveStickerFromFavoritesClicked(val sticker: KeyboardSticker) : StickerPageScreenEvents
+  data object RemoveStickerFromFavoritesConfirmed : StickerPageScreenEvents
+  data object RemoveStickerFromFavoritesCanceled : StickerPageScreenEvents
+  data class MoveFavoriteToTopClicked(val sticker: KeyboardSticker) : StickerPageScreenEvents
 }
