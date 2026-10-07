@@ -1,19 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
-import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.components.settings.app.storage.StorageUsageRepository
 
-class DataAndStorageSettingsRepository {
-
-  private val context: Context = AppDependencies.application
+class DataAndStorageSettingsRepository(
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository()
+) {
 
   fun getTotalStorageUse(consumer: (Long) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      val breakdown = SignalDatabase.media.getStorageBreakdown()
-
-      consumer(listOf(breakdown.audioSize, breakdown.documentSize, breakdown.photoSize, breakdown.videoSize).sum())
+      consumer(storageUsageRepository.getStorageUsage().total)
     }
   }
 }

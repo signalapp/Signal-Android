@@ -136,7 +136,7 @@ private fun DataAndStorageSettingsScreen(
       item {
         Rows.TextRow(
           text = stringResource(R.string.preferences_data_and_storage__manage_storage),
-          label = state.totalStorageUse.bytes.toUnitString(),
+          label = state.totalStorageUse?.bytes?.toUnitString() ?: stringResource(R.string.DataAndStorageSettingsFragment__calculating),
           onClick = callbacks::onManageStorageClick
         )
       }

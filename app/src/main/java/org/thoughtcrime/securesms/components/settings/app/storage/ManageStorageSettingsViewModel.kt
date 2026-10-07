@@ -19,9 +19,7 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.BackupUpgradeAvailabilityChecker
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -29,7 +27,9 @@ import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
-class ManageStorageSettingsViewModel : ViewModel() {
+class ManageStorageSettingsViewModel(
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository()
+) : ViewModel() {
 
   private val store = MutableStateFlow(
     ManageStorageState(
@@ -59,9 +59,9 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun refresh() {
-    viewModelScope.launch {
-      val breakdown: MediaTable.StorageBreakdown = media.getStorageBreakdown()
-      store.update { it.copy(breakdown = breakdown) }
+    viewModelScope.launch(Dispatchers.IO) {
+      val usage = storageUsageRepository.getStorageUsage()
+      store.update { it.copy(storageUsage = usage) }
     }
   }
 
@@ -183,7 +183,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
     val keepMessagesDuration: KeepMessagesDuration,
     val lengthLimit: Int,
     val syncTrimDeletes: Boolean,
-    val breakdown: MediaTable.StorageBreakdown? = null,
+    val storageUsage: StorageUsage? = null,
     val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState = OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE,
     val storageOptimizationStateChanged: Boolean = false,
     val isPaidTierPending: Boolean = false,

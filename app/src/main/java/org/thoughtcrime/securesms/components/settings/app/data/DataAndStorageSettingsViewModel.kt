@@ -84,7 +84,7 @@ class DataAndStorageSettingsViewModel(
   }
 
   private fun getState() = DataAndStorageSettingsState(
-    totalStorageUse = 0,
+    totalStorageUse = null,
     mobileAutoDownloadValues = SignalStore.settings.mobileMediaDownloadAllowed,
     wifiAutoDownloadValues = SignalStore.settings.wifiMediaDownloadAllowed,
     roamingAutoDownloadValues = SignalStore.settings.roamingMediaDownloadAllowed,

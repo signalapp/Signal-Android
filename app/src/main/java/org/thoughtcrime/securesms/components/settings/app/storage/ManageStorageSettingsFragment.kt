@@ -6,12 +6,9 @@
 package org.thoughtcrime.securesms.components.settings.app.storage
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -39,9 +36,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.DialogProperties
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -64,15 +59,12 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.viewModel
-import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
-import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
-import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
 import java.text.NumberFormat
 
 /**
@@ -295,7 +287,10 @@ private fun ManageStorageSettingsScreen(
     ) {
       Texts.SectionHeader(text = stringResource(id = R.string.preferences_storage__storage_usage))
 
-      StorageOverview(state.breakdown, onReviewStorage)
+      StorageUsageOverview(
+        usage = state.storageUsage,
+        onReviewStorage = onReviewStorage
+      )
 
       if (state.onDeviceStorageOptimizationState > ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE) {
         Dividers.Default()
@@ -349,37 +344,6 @@ private fun ManageStorageSettingsScreen(
         text = stringResource(id = R.string.ManageStorageSettingsFragment_delete_message_history),
         onClick = onDeleteChatHistory
       )
-    }
-  }
-}
-
-@Composable
-private fun StorageOverview(
-  breakdown: MediaTable.StorageBreakdown?,
-  onReviewStorage: () -> Unit
-) {
-  AndroidView(
-    factory = {
-      LayoutInflater.from(it).inflate(R.layout.preference_storage_category, null)
-    },
-    modifier = Modifier.fillMaxWidth()
-  ) {
-    if (breakdown != null) {
-      val breakdownEntries = StorageGraphView.StorageBreakdown(
-        listOf(
-          StorageGraphView.Entry(ContextCompat.getColor(it.context, R.color.storage_color_photos), breakdown.photoSize),
-          StorageGraphView.Entry(ContextCompat.getColor(it.context, R.color.storage_color_videos), breakdown.videoSize),
-          StorageGraphView.Entry(ContextCompat.getColor(it.context, R.color.storage_color_files), breakdown.documentSize),
-          StorageGraphView.Entry(ContextCompat.getColor(it.context, R.color.storage_color_audio), breakdown.audioSize)
-        )
-      )
-
-      it.findViewById<StorageGraphView>(R.id.storageGraphView).setStorageBreakdown(breakdownEntries)
-      it.findViewById<TextView>(R.id.total_size).text = breakdownEntries.totalSize.bytes.toUnitString()
-    }
-
-    it.findViewById<View>(R.id.free_up_space).setOnClickListener {
-      onReviewStorage()
     }
   }
 }

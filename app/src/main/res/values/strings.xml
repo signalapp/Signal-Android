@@ -3973,6 +3973,14 @@
     <string name="preferences_storage__videos">Videos</string>
     <string name="preferences_storage__files">Files</string>
     <string name="preferences_storage__audio">Audio</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">Review storage</string>
     <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -5533,6 +5541,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>

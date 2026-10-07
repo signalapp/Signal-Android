@@ -4,7 +4,7 @@ import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 data class DataAndStorageSettingsState(
-  val totalStorageUse: Long,
+  val totalStorageUse: Long?,
   val mobileAutoDownloadValues: Set<String>,
   val wifiAutoDownloadValues: Set<String>,
   val roamingAutoDownloadValues: Set<String>,

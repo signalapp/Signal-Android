@@ -142,8 +142,6 @@
     <dimen name="conversation_reaction_scrub_vertical_translation">25dp</dimen>
     <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
 
-    <dimen name="storage_legend_circle_size">8dp</dimen>
-
     <dimen name="debug_log_text_size">12sp</dimen>
 
     <dimen name="picture_in_picture_gesture_helper_frame_padding">16dp</dimen>
