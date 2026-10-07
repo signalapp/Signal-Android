@@ -33,12 +33,7 @@ import kotlin.math.abs
 
 class DataAndStorageSettingsFragment : ComposeFragment() {
 
-  private val viewModel: DataAndStorageSettingsViewModel by viewModels(
-    factoryProducer = {
-      val repository = DataAndStorageSettingsRepository()
-      DataAndStorageSettingsViewModel.Factory(repository)
-    }
-  )
+  private val viewModel: DataAndStorageSettingsViewModel by viewModels()
 
   override fun onResume() {
     super.onResume()

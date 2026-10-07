@@ -11,6 +11,14 @@ import android.system.Os
 import android.system.OsConstants
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables
@@ -24,14 +32,38 @@ import java.io.File
  * and stickers is the sticker directory. Everything else that lives in the app's data directories (other databases,
  * thumbnails, caches, logs, transient files) lands in other.
  */
-class StorageUsageRepository(private val context: Context = AppDependencies.application) {
+class StorageUsageRepository(
+  private val context: Context = AppDependencies.application,
+  private val scope: CoroutineScope = CoroutineScope(SignalDispatchers.IO + SupervisorJob())
+) {
 
   companion object {
     private val TAG = Log.tag(StorageUsageRepository::class)
+
+    val instance: StorageUsageRepository by lazy { StorageUsageRepository() }
+  }
+
+  private val store = MutableStateFlow<StorageUsage?>(null)
+  private var inFlight: Job? = null
+
+  /** The most recently computed usage, or null if nothing has been computed yet. */
+  val usage: StateFlow<StorageUsage?> = store.asStateFlow()
+
+  /** Computes fresh usage in the background and publishes it to [usage]. */
+  fun refresh() {
+    synchronized(this) {
+      if (inFlight?.isActive == true) {
+        return
+      }
+
+      inFlight = scope.launch {
+        store.value = computeStorageUsage()
+      }
+    }
   }
 
   @WorkerThread
-  fun getStorageUsage(): StorageUsage {
+  private fun computeStorageUsage(): StorageUsage {
     val media = SignalDatabase.media.getStorageBreakdown()
 
     val messages = context.getDatabasePath(SignalDatabase.DATABASE_NAME).parentFile?.listFiles()

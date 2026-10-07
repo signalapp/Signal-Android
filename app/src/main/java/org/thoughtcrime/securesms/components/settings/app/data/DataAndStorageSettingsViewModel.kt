@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.signal.core.util.PlayServicesUtil
 import org.signal.mediasend.SentMediaQuality
+import org.thoughtcrime.securesms.components.settings.app.storage.StorageUsageRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.ForceWebsocketMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -14,17 +17,24 @@ import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 class DataAndStorageSettingsViewModel(
-  private val repository: DataAndStorageSettingsRepository
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository.instance
 ) : ViewModel() {
 
   private val store = MutableStateFlow(getState())
 
   val state: StateFlow<DataAndStorageSettingsState> = store
 
-  fun refresh() {
-    repository.getTotalStorageUse { totalStorageUse ->
-      store.update { getState().copy(totalStorageUse = totalStorageUse, showStayConnectedDialog = it.showStayConnectedDialog) }
+  init {
+    viewModelScope.launch {
+      storageUsageRepository.usage.map { it?.total }.collect { totalStorageUse ->
+        store.update { it.copy(totalStorageUse = totalStorageUse) }
+      }
     }
+  }
+
+  fun refresh() {
+    getStateAndCopyStorageUsage()
+    storageUsageRepository.refresh()
   }
 
   fun setMobileAutoDownloadValues(resultSet: Set<String>) {
@@ -95,12 +105,4 @@ class DataAndStorageSettingsViewModel(
     playServicesAvailable = PlayServicesUtil.getPlayServicesStatus(AppDependencies.application) == PlayServicesUtil.PlayServicesStatus.SUCCESS,
     showStayConnectedDialog = false
   )
-
-  class Factory(
-    private val repository: DataAndStorageSettingsRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(DataAndStorageSettingsViewModel(repository)))
-    }
-  }
 }

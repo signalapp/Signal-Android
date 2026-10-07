@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class ManageStorageSettingsViewModel(
-  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository()
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository.instance
 ) : ViewModel() {
 
   private val store = MutableStateFlow(
@@ -56,13 +56,16 @@ class ManageStorageSettingsViewModel(
         it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
       }
     }
+
+    viewModelScope.launch {
+      storageUsageRepository.usage.collect { usage ->
+        store.update { it.copy(storageUsage = usage) }
+      }
+    }
   }
 
   fun refresh() {
-    viewModelScope.launch(Dispatchers.IO) {
-      val usage = storageUsageRepository.getStorageUsage()
-      store.update { it.copy(storageUsage = usage) }
-    }
+    storageUsageRepository.refresh()
   }
 
   fun deleteChatHistory() {
