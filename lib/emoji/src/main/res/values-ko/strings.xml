@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Emoji category headers, shown in the emoji keyboard and the react-with-any-emoji sheet -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">웃는 얼굴 &amp; 사람</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">얼굴 표정 &amp; 사람</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">자연</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">음식</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">활동</string>

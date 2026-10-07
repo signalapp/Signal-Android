@@ -513,7 +513,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">Antwoorden op %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">Antwoorden op jezelf</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Ga terug</string>
 
@@ -2245,11 +2245,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Niet nu</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Het kan zijn dat anderen je niet kunnen horen en dat de verbinding wordt verbroken wanneer je scherm wordt uitgeschakeld. Om dit te verhelpen, tik op ‘Instellingen’ en schakel in de batterij-instellingen achtergrondactiviteit in.</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Anderen konden je niet horen</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Je microfoon was gedempt terwijl Signal actief was op de achtergrond. Om dit te verhelpen, tik op ‘Instellingen’ en schakel in de batterij-instellingen achtergrondactiviteit in.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">%1$d verzoek goedkeuren?</item>
@@ -3953,7 +3953,7 @@
     <string name="preferences__disable_pin">Pincode uitschakelen</string>
     <string name="preferences__enable_pin">Pincode inschakelen</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je handmatig een back-up maakt en herstelt. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profiel, instellingen en contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de pincode niet nodig om de app te openen.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hiermee je profiel, instellingen en contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de pincode niet nodig om de app te openen.</string>
     <string name="preferences__system_default">Systeemstandaard</string>
     <string name="preferences__language">Taal</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
@@ -4514,7 +4514,7 @@
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profiel, instellingen en contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de pincode niet nodig om de app te openen.</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hiermee je profiel, instellingen en contacten herstellen wanneer je Signal opnieuw installeert. Je hebt de pincode niet nodig om de app te openen.</string>
     <string name="KbsSplashFragment__learn_more">Meer informatie</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
@@ -7188,7 +7188,7 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Groepsverhalen</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Ontdek groepsverhalen</string>
     <!-- Line item on the sheet explaining group stories -->
     <string name="GroupStoryEducationSheet__share_story_updates_to">Deel verhalen in een groepschat waar je al in zit.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->

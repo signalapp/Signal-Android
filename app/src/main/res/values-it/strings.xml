@@ -513,7 +513,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">Rispondi a %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">Rispondi al tuo messaggio</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Torna indietro</string>
 
@@ -886,7 +886,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prova la frase segreta del tuo backup e verifica che corrisponda</string>
     <string name="BackupsPreferenceFragment__turn_on">Attiva i backup</string>
     <string name="BackupsPreferenceFragment__turn_off">Disattiva</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Per ripristinare un backup, installa una nuova copia di Signal. Apri l\'app e tocca \"Ripristina backup\", quindi individua un file di backup. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Per ripristinare un backup, installa una nuova copia di Signal. Apri l'app e tocca \"Ripristina backup\", quindi individua un file di backup. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Scopri di più</string>
     <string name="BackupsPreferenceFragment__in_progress">In corso…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1430,7 +1430,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Eliminare nome utente?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Quest\'azione porterà alla rimozione del tuo nome utente e disattiverà il tuo codice QR e link. \"%1$s\" sarà disponibile come nome utente per altre persone. Vuoi procedere comunque?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Quest'azione porterà alla rimozione del tuo nome utente e disattiverà il tuo codice QR e link. \"%1$s\" sarà disponibile come nome utente per altre persone. Vuoi procedere comunque?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2245,11 +2245,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Non ora</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Le persone potrebbero non sentirti e la chiamata potrebbe interrompersi quando il tuo schermo si spegne. Per risolvere questo problema, tocca su Impostazioni e autorizza l\'attività in background di Signal nelle Impostazioni della batteria.</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Non tutti riuscivano a sentirti</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Il tuo microfono era silenziato mentre Signal operava in background. Per risolvere questo problema, tocca su Impostazioni e autorizza l\'attività in background di Signal nelle Impostazioni della batteria.</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Approvi %1$d richiesta?</item>
@@ -6966,7 +6966,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Chi può vedere questa Storia</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Chi fa parte del gruppo \"%1$s\" può vedere e rispondere a questa Storia. Puoi aggiornare l\'iscrizione a questa chat nel gruppo."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Chi fa parte del gruppo \"%1$s\" può vedere e rispondere a questa Storia. Puoi aggiornare l'iscrizione a questa chat nel gruppo."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Rimuovi Storia di gruppo</string>
 
@@ -7656,7 +7656,7 @@
     <string name="InactivePrimary__got_it">Capito</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Per ripristinare un backup, installa una nuova copia di Signal. Apri l\'app e tocca su \"Ripristina backup\", quindi trova un file di backup."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Per ripristinare un backup, installa una nuova copia di Signal. Apri l'app e tocca su \"Ripristina backup\", quindi trova un file di backup."</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">L\'opzione \"Ottimizza lo spazio di archiviazione di Signal\" è attiva. Per includere tutti i contenuti multimediali presenti sul backup su dispositivo, disattiva questa opzione.</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->

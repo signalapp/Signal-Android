@@ -9115,7 +9115,7 @@
     <!-- Button that opens the phone\'s own contact picker, used when Signal cannot ask for contacts permission -->
     <string name="SelectContactScreen__open_phone_contacts">Abrir contactos del teléfono</string>
     <!-- Note at the bottom of the contact picker when contacts permission was denied on the device. Placeholder is the "Learn more" link text. -->
-    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Para ver aquí tus contactos de teléfono, permite el acceso desde los ajustes de tu dispositivo. %1$s</string>
+    <string name="SelectContactScreen__to_see_your_phone_contacts_here">Para ver aquí los contactos guardados en tu teléfono, permite el acceso desde los ajustes de tu dispositivo. %1$s</string>
     <!-- Link that opens instructions for granting contacts permission from the device settings -->
     <string name="SelectContactScreen__learn_more">Más información</string>
     <!-- Title of the sheet explaining how to grant contacts permission from the device settings -->

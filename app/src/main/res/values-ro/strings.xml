@@ -518,7 +518,7 @@
     <!-- Header shown above a sticker the user is about to send as a reply. %1$s is the name of the person whose message is being replied to. -->
     <string name="ChatStickerConfirmation__reply_to_s">Răspunde către %1$s</string>
     <!-- Header shown above a sticker the user is about to send as a reply to one of their own messages -->
-    <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
+    <string name="ChatStickerConfirmation__reply_to_yourself">Răspunde-ți</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Înapoi</string>
 
@@ -2314,11 +2314,11 @@
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">Nu acum</string>
     <!-- Message for dialog shown at the start of a call when the system battery setting for Signal is "Restricted" -->
-    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Others may not be able to hear you and the call may disconnect when your screen turns off. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__others_may_not_be_able_to_hear_you_when_your_screen_turns_off">Este posibil ca alte persoane să nu te poată auzi, iar apelul se poate deconecta atunci când ecranul se închide. Ca să repari asta, atinge Setări și activează activitatea în fundal din setările \"Baterie\".</string>
     <!-- Title for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__others_couldnt_hear_you">Others couldn\'t hear you</string>
+    <string name="WebRtcCallActivity__others_couldnt_hear_you">Alții nu te-au putut auzi</string>
     <!-- Message for dialog shown when returning to a call after the system muted the microphone because Signal\'s battery setting is "Restricted" -->
-    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Your microphone was muted while Signal was in the background. To fix this, tap Settings and enable background activity in \"Battery\" settings.</string>
+    <string name="WebRtcCallActivity__your_microphone_was_muted_while_signal_was_in_the_background">Microfonul tău a avut sunetul dezactivat cât timp Signal era în fundal. Ca să repari asta, atinge Setări și activează activitatea în fundal din setările \"Baterie\".</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
         <item quantity="one">Aprobi solicitarea lui %1$d ?</item>

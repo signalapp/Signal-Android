@@ -45,7 +45,7 @@
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
-    <string name="RegistrationActivity_account_id">ID de la cuenta</string>
+    <string name="RegistrationActivity_account_id">ID de cuenta</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">No es un número de teléfono válido</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -691,15 +691,15 @@
 
     <!-- Errors shown beneath an account ID text field, wherever one is offered -->
     <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
-    <string name="AccountIdField__invalid_account_id">ID de la cuenta no válida</string>
+    <string name="AccountIdField__invalid_account_id">ID de cuenta no válido</string>
 
     <!-- Signal Login credential entry screen -->
     <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
     <string name="SignalLoginCredentialEntryScreen__signal_login">Signal Login</string>
     <!-- Description telling the user what to enter to log in. -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Introduce la ID de tu cuenta seguida de tu clave de recuperación para restaurar tu cuenta.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Introduce el ID de tu cuenta seguido de tu clave de recuperación para restaurar tu cuenta.</string>
     <!-- Label of the text field the account ID is typed into. -->
-    <string name="SignalLoginCredentialEntryScreen__account_id">ID de la cuenta</string>
+    <string name="SignalLoginCredentialEntryScreen__account_id">ID de cuenta</string>
     <!-- Label of the text field the recovery key is typed into. -->
     <string name="SignalLoginCredentialEntryScreen__recovery_key">Clave de recuperación</string>
     <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
@@ -711,7 +711,7 @@
     <!-- Action button that submits the entered Signal Login. -->
     <string name="SignalLoginCredentialEntryScreen__next">Siguiente</string>
     <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
-    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">ID de la cuenta o clave de recuperación incorrecta</string>
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">ID de cuenta o clave de recuperación incorrectos</string>
     <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
     <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Introduce tu Signal Login para confirmar que se ha registrado correctamente.</string>
     <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->

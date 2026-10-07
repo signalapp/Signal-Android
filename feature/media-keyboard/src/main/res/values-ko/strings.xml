@@ -34,7 +34,7 @@
   <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
   <string name="MediaKeyboard__recently_used">최근 사용</string>
   <!-- Header for the emoji category holding faces and people. -->
-  <string name="MediaKeyboard__smileys_and_people">웃는 얼굴 &amp; 사람</string>
+  <string name="MediaKeyboard__smileys_and_people">얼굴 표정 &amp; 사람</string>
   <!-- Header for the emoji category holding animals and plants. -->
   <string name="MediaKeyboard__nature">자연</string>
   <!-- Header for the emoji category holding food and drink. -->
