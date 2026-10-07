@@ -6,7 +6,11 @@
 package org.thoughtcrime.securesms.components.settings.app.storage
 
 import android.app.Application
+import android.app.usage.StorageStats
+import android.app.usage.StorageStatsManager
 import android.content.Context
+import android.os.Process
+import android.os.storage.StorageManager
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.isEqualTo
@@ -19,7 +23,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.robolectric.util.ReflectionHelpers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTables
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
@@ -72,6 +78,28 @@ class StorageUsageRepositoryTest {
     assertThat(usage.stickers).isEqualTo(45)
     assertThat(usage.other).isEqualTo(dataDirectorySize - 120 - 45)
     assertThat(usage.total).isEqualTo(dataDirectorySize)
+  }
+
+  @Test
+  fun `uses system storage stats for the total when available`() = runTest {
+    val databaseDirectory = context.getDatabasePath(SignalDatabase.DATABASE_NAME).parentFile!!.apply { mkdirs() }
+    writeFile(File(databaseDirectory, SignalDatabase.DATABASE_NAME), 100)
+    writeFile(File(context.getDir(StickerTables.DIRECTORY, Context.MODE_PRIVATE), "sticker-1"), 40)
+
+    val stats = ReflectionHelpers.callConstructor(StorageStats::class.java)
+    ReflectionHelpers.setField(stats, "dataBytes", 5_000L)
+    shadowOf(context.getSystemService(StorageStatsManager::class.java)).addStorageStats(StorageManager.UUID_DEFAULT, context.packageName, Process.myUserHandle(), stats)
+
+    val repository = StorageUsageRepository(context, this)
+    repository.refresh()
+    advanceUntilIdle()
+
+    val usage = requireNotNull(repository.usage.value)
+
+    assertThat(usage.messages).isEqualTo(100)
+    assertThat(usage.stickers).isEqualTo(40)
+    assertThat(usage.other).isEqualTo(5_000L - 100 - 40)
+    assertThat(usage.total).isEqualTo(5_000L)
   }
 
   @Test

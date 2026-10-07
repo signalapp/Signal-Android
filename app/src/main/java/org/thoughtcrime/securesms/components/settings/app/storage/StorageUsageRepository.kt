@@ -5,7 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.app.storage
 
+import android.app.usage.StorageStatsManager
 import android.content.Context
+import android.os.Build
+import android.os.Process
+import android.os.storage.StorageManager
 import android.system.ErrnoException
 import android.system.Os
 import android.system.OsConstants
@@ -18,6 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -64,21 +69,27 @@ class StorageUsageRepository(
 
   @WorkerThread
   private fun computeStorageUsage(): StorageUsage {
+    val stopwatch = Stopwatch("storage-usage")
+
     val media = SignalDatabase.media.getStorageBreakdown()
+    stopwatch.split("media")
 
     val messages = context.getDatabasePath(SignalDatabase.DATABASE_NAME).parentFile?.listFiles()
       ?.filter { it.name == SignalDatabase.DATABASE_NAME || it.name.startsWith("${SignalDatabase.DATABASE_NAME}-") }
       ?.sumOf { it.sizeOnDisk() }
       ?: 0
+    stopwatch.split("messages")
 
     val stickers = context.getDir(StickerTables.DIRECTORY, Context.MODE_PRIVATE).sizeOnDisk()
+    stopwatch.split("stickers")
 
-    val total = listOfNotNull(ContextCompat.getDataDir(context), context.externalCacheDir, context.getExternalFilesDir(null))
-      .distinct()
-      .sumOf { it.sizeOnDisk() }
+    val total = getTotalSizeFromStorageStats() ?: getTotalSizeFromDirectoryWalk()
+    stopwatch.split("total")
 
     val mediaTotal = media.photoSize + media.videoSize + media.audioSize + media.documentSize
     val other = (total - mediaTotal - messages - stickers).coerceAtLeast(0)
+
+    stopwatch.stop(TAG)
 
     return StorageUsage(
       photos = media.photoSize,
@@ -89,6 +100,29 @@ class StorageUsageRepository(
       stickers = stickers,
       other = other
     )
+  }
+
+  /**
+   * Retrieves the total disk usage from the system if available, otherwise null.
+   */
+  private fun getTotalSizeFromStorageStats(): Long? {
+    if (Build.VERSION.SDK_INT < 26) {
+      return null
+    }
+
+    return try {
+      val storageStatsManager = ContextCompat.getSystemService(context, StorageStatsManager::class.java) ?: return null
+      storageStatsManager.queryStatsForPackage(StorageManager.UUID_DEFAULT, context.packageName, Process.myUserHandle()).dataBytes
+    } catch (e: Exception) {
+      Log.w(TAG, "Unable to query storage stats, falling back to walking the data directory.", e)
+      null
+    }
+  }
+
+  private fun getTotalSizeFromDirectoryWalk(): Long {
+    return listOfNotNull(ContextCompat.getDataDir(context), context.externalCacheDir, context.getExternalFilesDir(null))
+      .distinct()
+      .sumOf { it.sizeOnDisk() }
   }
 
   private fun File.sizeOnDisk(): Long {

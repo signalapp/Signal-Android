@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import androidx.compose.runtime.Immutable
 import org.signal.core.util.logging.Log
-import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -85,16 +84,22 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         $THREAD_RECIPIENT_ID > 0
       """
 
-    private const val UNIQUE_MEDIA_QUERY = """
+    private const val UNIQUE_MEDIA_SIZE_BY_CONTENT_TYPE_QUERY = """
         SELECT
-          MAX(${AttachmentTable.DATA_SIZE}) as ${AttachmentTable.DATA_SIZE},
+          SUM(${AttachmentTable.DATA_SIZE}) AS ${AttachmentTable.DATA_SIZE},
           ${AttachmentTable.CONTENT_TYPE}
-        FROM
-          ${AttachmentTable.TABLE_NAME}
-        WHERE
-          ${AttachmentTable.STICKER_PACK_ID} IS NULL AND
-          ${AttachmentTable.DATA_FILE} IS NOT NULL
-        GROUP BY ${AttachmentTable.DATA_FILE}
+        FROM (
+          SELECT
+            MAX(${AttachmentTable.DATA_SIZE}) AS ${AttachmentTable.DATA_SIZE},
+            ${AttachmentTable.CONTENT_TYPE}
+          FROM
+            ${AttachmentTable.TABLE_NAME}
+          WHERE
+            ${AttachmentTable.STICKER_PACK_ID} IS NULL AND
+            ${AttachmentTable.DATA_FILE} IS NOT NULL
+          GROUP BY ${AttachmentTable.DATA_FILE}
+        )
+        GROUP BY ${AttachmentTable.CONTENT_TYPE}
       """
 
     private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS = String.format(
@@ -302,29 +307,29 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     var audioSize: Long = 0
     var documentSize: Long = 0
 
-    readableDatabase.rawQuery(UNIQUE_MEDIA_QUERY, null).use { cursor ->
+    readableDatabase.rawQuery(UNIQUE_MEDIA_SIZE_BY_CONTENT_TYPE_QUERY, null).use { cursor ->
       while (cursor.moveToNext()) {
-        val size: Int = cursor.requireInt(AttachmentTable.DATA_SIZE)
+        val size: Long = cursor.requireLong(AttachmentTable.DATA_SIZE)
         val type: String? = cursor.requireString(AttachmentTable.CONTENT_TYPE)
 
         when (MediaUtil.getSlideTypeFromContentType(type)) {
           SlideType.GIF,
           SlideType.IMAGE,
           SlideType.MMS -> {
-            photoSize += size.toLong()
+            photoSize += size
           }
 
           SlideType.VIDEO -> {
-            videoSize += size.toLong()
+            videoSize += size
           }
 
           SlideType.AUDIO -> {
-            audioSize += size.toLong()
+            audioSize += size
           }
 
           SlideType.LONG_TEXT,
           SlideType.DOCUMENT -> {
-            documentSize += size.toLong()
+            documentSize += size
           }
 
           SlideType.VIEW_ONCE -> Unit
