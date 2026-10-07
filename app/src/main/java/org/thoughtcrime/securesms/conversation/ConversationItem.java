@@ -616,7 +616,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         bodyText.getLastLineWidth() > 0)
     {
       View dateView           = footer.getDateView();
-      int  footerWidth        = footer.getMeasuredWidth();
+      int  footerWidth        = footer.getReservedWidth();
       int  availableWidth     = getAvailableMessageBubbleWidth(bodyText);
       int  collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
@@ -691,7 +691,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         boolean lineWidthChangedSlightly = Math.abs(currentLineWidth - lastFooterDecisionLineWidth) <= FOOTER_POSITION_THRESHOLD;
 
         if (lineWidthChangedSlightly && lastFooterWasCollapsed) {
-          int currentRequiredSpace = currentLineWidth + TEXT_FOOTER_SPACING + footer.getMeasuredWidth();
+          int currentRequiredSpace = currentLineWidth + TEXT_FOOTER_SPACING + footer.getReservedWidth();
           if (currentRequiredSpace - FOOTER_POSITION_THRESHOLD <= bodyText.getMeasuredWidth()) {
             shouldRevert = false;
           }
