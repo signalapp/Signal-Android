@@ -488,7 +488,8 @@ private fun DataMessage.isUrgent(): Boolean {
     this.pollTerminate != null ||
     this.pinMessage != null ||
     this.delete != null ||
-    this.payment?.notification != null
+    this.payment?.notification != null ||
+    this.payment?.activation != null
 }
 
 private fun SyncMessage.isUrgent(): Boolean {

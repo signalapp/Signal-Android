@@ -135,6 +135,73 @@ public class GroupV2UpdateMessageUtilTest {
     assertFalse(isJoinRequestCancel);
   }
 
+  @Test
+  public void isJustATimerChange_whenOnlyTimerChanges_shouldReturnTrue() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .timer(3600)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertTrue(isJustATimerChange);
+  }
+
+  @Test
+  public void isJustATimerChange_whenTimerAndOtherChanges_shouldReturnFalse() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .timer(3600)
+                                               .title("New title")
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertFalse(isJustATimerChange);
+  }
+
+  @Test
+  public void isJustATimerChange_whenNoTimerChange_shouldReturnFalse() {
+    // GIVEN
+    ACI  alice = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .title("New title")
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJustATimerChange = GroupV2UpdateMessageUtil.isJustATimerChange(messageGroupContext);
+
+    // THEN
+    assertFalse(isJustATimerChange);
+  }
+
   private @NonNull byte[] randomBytes() {
     byte[] bytes = new byte[32];
     new Random().nextBytes(bytes);
