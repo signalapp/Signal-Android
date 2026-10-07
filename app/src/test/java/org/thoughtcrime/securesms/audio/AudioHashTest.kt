@@ -54,6 +54,14 @@ class AudioHashTest {
   }
 
   @Test
+  fun `fromSenderProvided - whole microsecond durations round trip exactly`() {
+    listOf(0.640098f, 0.906475f, 7.622794f, 55.518272f, 1970.0125f, 3135.8018f).forEach { duration ->
+      val hash = AudioHash.parseOrNull(AudioHash.fromSenderProvided(MediaUtil.AUDIO_AAC, byteArrayOf(1), duration)!!.hash)!!
+      assertThat(hash.durationSeconds).isEqualTo(duration)
+    }
+  }
+
+  @Test
   fun `fromSenderProvided - non-positive durations are dropped`() {
     assertThat(AudioHash.fromSenderProvided(MediaUtil.AUDIO_AAC, byteArrayOf(1), null)!!.durationSeconds).isNull()
     assertThat(AudioHash.fromSenderProvided(MediaUtil.AUDIO_AAC, byteArrayOf(1), 0f)!!.durationSeconds).isNull()

@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormDat
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 import java.io.IOException
+import kotlin.math.roundToLong
 import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
@@ -58,7 +59,8 @@ class AudioHash private constructor(
           .coerceAtMost(SignalServiceMessageLimits.MAX_AUDIO_DURATION_SECONDS)
           .toDouble()
           .seconds
-          .inWholeMicroseconds
+          .toDouble(DurationUnit.MICROSECONDS)
+          .roundToLong()
       } else {
         0
       }
