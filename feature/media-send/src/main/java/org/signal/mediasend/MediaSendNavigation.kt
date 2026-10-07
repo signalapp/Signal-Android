@@ -157,7 +157,7 @@ internal fun MediaSendNavigation(
             state = state,
             onEvent = editViewModel::onEvent,
             imageControllers = viewModel.imageControllers,
-            mediaInputFactory = MediaSendDependencies.mediaInputFactory
+            videoPlayerCommands = editViewModel.videoPlayerCommands
           )
         }
 

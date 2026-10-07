@@ -26,7 +26,7 @@ import org.signal.uicomponents.codeentryfield.CodeEntryFieldState.Companion.CODE
  */
 class CodeEntryFieldPresenter(
   coroutineScope: CoroutineScope
-) : EventDrivenPresenter<CodeEntryFieldEvents>(TAG, coroutineScope) {
+) : EventDrivenPresenter<CodeEntryFieldEvents>(TAG, coroutineScope, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(CodeEntryFieldPresenter::class)

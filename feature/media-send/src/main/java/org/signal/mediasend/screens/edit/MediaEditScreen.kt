@@ -29,7 +29,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
@@ -48,9 +47,11 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
@@ -70,7 +71,6 @@ import org.signal.glide.decryptableuri.DecryptableUri
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.document.DocumentPage
 import org.signal.mediasend.screens.edit.image.BlurFacesBar
@@ -85,11 +85,13 @@ import org.signal.mediasend.screens.edit.image.ImageEditorUndoRedoButtons
 import org.signal.mediasend.screens.edit.image.RotationDial
 import org.signal.mediasend.screens.edit.video.VideoEditorFragment
 import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoPlayerCommand
 import org.signal.mediasend.screens.edit.video.VideoSizeHint
-import org.signal.mediasend.screens.edit.video.VideoTrimBar
 import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBar
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarState
 import org.thoughtcrime.securesms.video.TranscodingConfig
-import org.thoughtcrime.securesms.video.interfaces.MediaInputFactory
 import kotlin.time.Duration.Companion.milliseconds
 
 /** After this, a kind's projection is fixed. */
@@ -100,7 +102,7 @@ internal fun MediaEditScreen(
   state: MediaEditState,
   onEvent: (MediaEditScreenEvents) -> Unit,
   imageControllers: ImageController.Container,
-  mediaInputFactory: MediaInputFactory
+  videoPlayerCommands: Flow<VideoPlayerCommand> = emptyFlow()
 ) {
   val scope = rememberCoroutineScope()
 
@@ -159,6 +161,10 @@ internal fun MediaEditScreen(
     val isSmallWindowBreakpoint = rememberWindowBreakpoint() is WindowBreakpoint.Small
     val videoEditorViewModel = rememberVideoEditorViewModel()
 
+    LaunchedEffect(videoEditorViewModel, videoPlayerCommands) {
+      videoPlayerCommands.collect { videoEditorViewModel.sendCommand(it.uri, it.command) }
+    }
+
     val focusedUri = state.focusedMedia?.uri
     val focusedEditorState = focusedUri?.let { state.editorStateMap[it] }
     val imageController = if (focusedUri != null && focusedEditorState is EditorState.Image) {
@@ -173,7 +179,7 @@ internal fun MediaEditScreen(
       scope.launch { imageController?.onBackPressed() }
     }
 
-    var isVideoInteracting by remember(focusedUri) { mutableStateOf(false) }
+    val isVideoInteracting = state.videoTrimBar.isDragging
     var isAdjustingBrushWidth by remember(focusedUri) { mutableStateOf(false) }
     val isImageEditing = imageController?.isUserInEdit == true
     val isZooming = imageController?.mode == ImageController.Mode.ZOOM
@@ -364,10 +370,9 @@ internal fun MediaEditScreen(
           VideoTrimTimeline(
             videoUri = focusedUri,
             editorState = focusedEditorState,
+            trimBarState = state.videoTrimBar,
             transcodingTiers = state.videoTranscodingTiers,
-            mediaInputFactory = mediaInputFactory,
             videoEditorViewModel = videoEditorViewModel,
-            onInteractingChange = { isVideoInteracting = it },
             onEvent = onEvent
           )
         }
@@ -600,24 +605,24 @@ private fun MediaToolbar(
 }
 
 /**
- * Trim/scrub timeline for the focused video, with the resulting duration and estimated upload size beneath it. Drag
- * state is reported through [onInteractingChange] so the rest of the stack can get out of the way, and seeks are
- * translated into player commands rather than screen events.
+ * Trim/scrub timeline for the focused video, with the resulting duration and estimated upload size beneath it. The bar
+ * is driven by the screen's trim bar presenter, which this feeds with the player's position.
  */
 @Composable
 private fun VideoTrimTimeline(
   videoUri: Uri,
   editorState: EditorState.VideoTrim,
+  trimBarState: VideoTrimBarState,
   transcodingTiers: List<TranscodingConfig.QualityTier>,
-  mediaInputFactory: MediaInputFactory,
   videoEditorViewModel: VideoEditorViewModel,
-  onInteractingChange: (Boolean) -> Unit,
   onEvent: (MediaEditScreenEvents) -> Unit
 ) {
-  val playbackPositionUs by produceState(editorState.videoTrimData.startTimeUs, videoUri) {
+  val currentOnEvent by rememberUpdatedState(onEvent)
+
+  LaunchedEffect(videoEditorViewModel, videoUri) {
     videoEditorViewModel.events(videoUri).collect { event ->
       if (event is VideoEditorViewModel.Event.ActualPositionChanged) {
-        value = event.positionUs
+        currentOnEvent(MediaEditScreenEvents.TrimBarEvent(VideoTrimBarEvents.PlaybackPositionChanged(videoUri, event.positionUs)))
       }
     }
   }
@@ -629,33 +634,9 @@ private fun VideoTrimTimeline(
       .fillMaxWidth()
   ) {
     VideoTrimBar(
-      videoUri = videoUri,
-      mediaInputFactory = mediaInputFactory,
-      videoTrimData = editorState.videoTrimData,
-      maxSelectableDurationUs = editorState.maxDurationUs,
-      playbackPositionUs = playbackPositionUs,
-      onEvent = { event ->
-        when (event) {
-          is MediaEditScreenEvents.VideoTrimChanged -> {
-            onInteractingChange(!event.editingComplete)
-            onEvent(event)
-          }
-
-          is MediaEditScreenEvents.VideoSeek -> {
-            onInteractingChange(!event.editingComplete)
-            videoEditorViewModel.sendCommand(
-              videoUri,
-              if (event.editingComplete) {
-                VideoEditorViewModel.Command.EndPositionDrag(event.positionUs)
-              } else {
-                VideoEditorViewModel.Command.PositionDrag(event.positionUs)
-              }
-            )
-          }
-
-          else -> onEvent(event)
-        }
-      }
+      state = trimBarState,
+      onEvent = { onEvent(MediaEditScreenEvents.TrimBarEvent(it)) },
+      modifier = Modifier.horizontalGutters()
     )
 
     // Gutters to match the bar's, so the hint's end lines up with the end of the timeline.
@@ -702,8 +683,7 @@ private fun MediaEditScreenPreview() {
         editorStateMap = mapOf(selectedMedia.first().uri to EditorState.Image(EditorModel.create(0)))
       ),
       onEvent = {},
-      imageControllers = remember { ImageController.Container() },
-      mediaInputFactory = PreviewMediaInputFactory
+      imageControllers = remember { ImageController.Container() }
     )
   }
 }
@@ -721,8 +701,7 @@ private fun MediaEditScreenVideoPreview() {
         editorStateMap = mapOf(selectedMedia.first().uri to EditorState.VideoTrim(VideoTrimData()))
       ),
       onEvent = {},
-      imageControllers = remember { ImageController.Container() },
-      mediaInputFactory = PreviewMediaInputFactory
+      imageControllers = remember { ImageController.Container() }
     )
   }
 }

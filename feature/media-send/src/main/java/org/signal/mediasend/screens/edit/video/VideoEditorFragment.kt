@@ -254,7 +254,7 @@ class VideoEditorFragment : Fragment() {
         player.removeClip(false)
       }
       if (!wasPlayingBeforeEdit) {
-        player.playbackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
+        player.truePlaybackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
       }
       if (editingComplete) {
         if (data.isDurationEdited) {
@@ -298,7 +298,7 @@ class VideoEditorFragment : Fragment() {
     videoScanThrottle.publish {
       player.pause()
       val milliseconds = position.microseconds.inWholeMilliseconds
-      player.playbackPosition = milliseconds
+      player.truePlaybackPosition = milliseconds
     }
   }
 

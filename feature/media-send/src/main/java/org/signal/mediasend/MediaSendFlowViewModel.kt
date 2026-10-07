@@ -259,7 +259,8 @@ class MediaSendFlowViewModel(
         totalDurationUs = event.videoTrimData.totalInputDurationUs,
         startTimeUs = event.videoTrimData.startTimeUs,
         endTimeUs = event.videoTrimData.endTimeUs,
-        touchEnabled = event.editingComplete
+        touchEnabled = event.editingComplete,
+        uri = event.uri
       )
       MediaSendFlowEvent.ToggleViewOnce -> toggleViewOnce()
       MediaSendFlowEvent.ToggleVideoMuted -> toggleVideoMuted()

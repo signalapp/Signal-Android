@@ -13,7 +13,6 @@ import org.signal.core.ui.compose.ScreenshotPreviews
 import org.signal.core.util.ContentTypeUtil
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.PreviewMediaInputFactory
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.video.VideoTrimData
 
@@ -32,8 +31,7 @@ class MediaEditScreenScreenshotTests {
           editorStateMap = mapOf(selectedMedia.first().uri to EditorState.Image(EditorModel.create(0)))
         ),
         onEvent = {},
-        imageControllers = remember { ImageController.Container() },
-        mediaInputFactory = PreviewMediaInputFactory
+        imageControllers = remember { ImageController.Container() }
       )
     }
   }
@@ -54,8 +52,7 @@ class MediaEditScreenScreenshotTests {
           isViewOnceAvailable = true
         ),
         onEvent = {},
-        imageControllers = remember { ImageController.Container() },
-        mediaInputFactory = PreviewMediaInputFactory
+        imageControllers = remember { ImageController.Container() }
       )
     }
   }
@@ -76,8 +73,7 @@ class MediaEditScreenScreenshotTests {
           isMuteVideoAudioEnabled = true
         ),
         onEvent = {},
-        imageControllers = remember { ImageController.Container() },
-        mediaInputFactory = PreviewMediaInputFactory
+        imageControllers = remember { ImageController.Container() }
       )
     }
   }

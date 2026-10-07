@@ -14,6 +14,7 @@ import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -23,6 +24,8 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -47,7 +50,12 @@ import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.SnackbarEvent
 import org.signal.mediasend.screens.edit.image.BrushTool
+import org.signal.mediasend.screens.edit.video.VideoEditorViewModel
+import org.signal.mediasend.screens.edit.video.VideoPlayerCommand
 import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.trim.TrimDragTarget
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarAction
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
 import org.thoughtcrime.securesms.video.TranscodingConfig
 
 /**
@@ -181,8 +189,6 @@ class MediaEditViewModelTest {
    */
   @Test
   fun `Given work only the flow can do, when it is asked for, then it is handed over unchanged`() = runTest {
-    val trimData = VideoTrimData(totalInputDurationUs = 1_000, startTimeUs = 100, endTimeUs = 900)
-
     val handOffs: List<Pair<MediaEditScreenEvents, MediaSendFlowEvent>> = listOf(
       MediaEditScreenEvents.FocusedMediaChanged(MEDIA) to MediaSendFlowEvent.SetFocusedMedia(MEDIA),
       MediaEditScreenEvents.ReorderSelectedMedia(fromIndex = 2, toIndex = 0) to MediaSendFlowEvent.ReorderSelectedMedia(2, 0),
@@ -190,7 +196,6 @@ class MediaEditViewModelTest {
       MediaEditScreenEvents.SetMediaQuality(SentMediaQuality.HIGH) to MediaSendFlowEvent.SetMediaQuality(SentMediaQuality.HIGH),
       MediaEditScreenEvents.BrushWidthChanged(BrushTool.MARKER, 0.5f) to MediaSendFlowEvent.SetBrushWidth(BrushTool.MARKER, 0.5f),
       MediaEditScreenEvents.ToggleBlurFaces(enabled = true) to MediaSendFlowEvent.SetBlurFacesEnabled(true),
-      MediaEditScreenEvents.VideoTrimChanged(trimData, editingComplete = true) to MediaSendFlowEvent.VideoTrimChanged(trimData, editingComplete = true),
       MediaEditScreenEvents.ToggleViewOnce to MediaSendFlowEvent.ToggleViewOnce,
       MediaEditScreenEvents.ToggleVideoMuted to MediaSendFlowEvent.ToggleVideoMuted,
       MediaEditScreenEvents.AddMessageClick(startWithEmojiKeyboard = true) to MediaSendFlowEvent.AddMessageRequested(startWithEmojiKeyboard = true),
@@ -209,6 +214,84 @@ class MediaEditViewModelTest {
 
       assertThat(parentEvents, name = screenEvent.toString()).containsExactly(expected)
     }
+  }
+
+  //endregion
+
+  //region Video trim bar
+
+  @Test
+  fun `Given a focused video, when the flow reports it, then the trim bar shows its trim`() = runTest {
+    val trimData = VideoTrimData(isDurationEdited = true, totalInputDurationUs = 10_000_000, startTimeUs = 1_000_000, endTimeUs = 4_000_000)
+    val viewModel = createViewModel(MutableStateFlow(videoState(trimData, maxDurationUs = 5_000_000)))
+    advanceUntilIdle()
+
+    val trimBar = viewModel.state.value.videoTrimBar
+    assertThat(trimBar.durationUs).isEqualTo(10_000_000L)
+    assertThat(trimBar.startUs).isEqualTo(1_000_000L)
+    assertThat(trimBar.endUs).isEqualTo(4_000_000L)
+    assertThat(trimBar.maxRangeUs).isEqualTo(5_000_000L)
+  }
+
+  @Test
+  fun `Given a focused video with no length limit, when the flow reports it, then the trim bar has no limit`() = runTest {
+    val trimData = VideoTrimData(totalInputDurationUs = 10_000_000, startTimeUs = 0, endTimeUs = 10_000_000)
+    val viewModel = createViewModel(MutableStateFlow(videoState(trimData, maxDurationUs = 0)))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.videoTrimBar.maxRangeUs).isNull()
+  }
+
+  @Test
+  fun `Given the flow corrects the trim mid-drag, when the drag ends, then the bar shows the correction`() = runTest {
+    val original = VideoTrimData(totalInputDurationUs = 10_000_000, startTimeUs = 0, endTimeUs = 10_000_000)
+    val corrected = original.copy(isDurationEdited = true, startTimeUs = 2_000_000, endTimeUs = 7_000_000)
+    val parentState = MutableStateFlow(videoState(original, maxDurationUs = 0))
+    val viewModel = createViewModel(parentState)
+    advanceUntilIdle()
+
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarEvent(VideoTrimBarEvents.DragStarted(TrimDragTarget.END)))
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarEvent(VideoTrimBarEvents.HandleDragged(TrimDragTarget.END, 8_000_000)))
+    advanceUntilIdle()
+
+    parentState.value = videoState(corrected, maxDurationUs = 0).copy(isTouchEnabled = false)
+    advanceUntilIdle()
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarEvent(VideoTrimBarEvents.DragEnded))
+    advanceUntilIdle()
+    parentState.value = videoState(corrected, maxDurationUs = 0).copy(isTouchEnabled = true)
+    advanceUntilIdle()
+
+    val trimBar = viewModel.state.value.videoTrimBar
+    assertThat(trimBar.startUs).isEqualTo(2_000_000L)
+    assertThat(trimBar.endUs).isEqualTo(7_000_000L)
+  }
+
+  @Test
+  fun `when the trim bar changes the trim, then the flow is told which video it is for`() = runTest {
+    val trimData = VideoTrimData(totalInputDurationUs = 1_000, startTimeUs = 100, endTimeUs = 900)
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarAction(VideoTrimBarAction.TrimChanged(VIDEO.uri, trimData, editingComplete = true)))
+    advanceUntilIdle()
+
+    assertThat(parentEvents).containsExactly(MediaSendFlowEvent.VideoTrimChanged(VIDEO.uri, trimData, editingComplete = true))
+  }
+
+  @Test
+  fun `when the trim bar scrubs, then the player of that video is asked to seek`() = runTest {
+    val viewModel = createViewModel()
+    val commands = mutableListOf<VideoPlayerCommand>()
+    backgroundScope.launch { viewModel.videoPlayerCommands.toList(commands) }
+
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarAction(VideoTrimBarAction.Seek(VIDEO.uri, 500, editingComplete = false)))
+    viewModel.onEvent(MediaEditScreenEvents.TrimBarAction(VideoTrimBarAction.Seek(VIDEO.uri, 600, editingComplete = true)))
+    advanceUntilIdle()
+
+    assertThat(commands).containsExactly(
+      VideoPlayerCommand(VIDEO.uri, VideoEditorViewModel.Command.PositionDrag(500)),
+      VideoPlayerCommand(VIDEO.uri, VideoEditorViewModel.Command.EndPositionDrag(600))
+    )
+    assertThat(parentEvents).isEmpty()
   }
 
   //endregion
@@ -323,6 +406,12 @@ class MediaEditViewModelTest {
     editorStateMap = mapOf(MEDIA.uri to EditorState.Image(mockk(relaxed = true)))
   )
 
+  private fun videoState(trimData: VideoTrimData, maxDurationUs: Long) = MediaSendFlowState(
+    selectedMedia = listOf(VIDEO),
+    focusedMedia = VIDEO,
+    editorStateMap = mapOf(VIDEO.uri to EditorState.VideoTrim(trimData, maxDurationUs))
+  )
+
   private fun createViewModel(parentState: MutableStateFlow<MediaSendFlowState> = MutableStateFlow(MediaSendFlowState())): MediaEditViewModel {
     return MediaEditViewModel(
       parentState = parentState,
@@ -347,5 +436,7 @@ class MediaEditViewModelTest {
       transformProperties = null,
       fileName = null
     )
+
+    private val VIDEO = MEDIA.copy(uri = "content://media/2".toUri(), contentType = "video/mp4")
   }
 }
