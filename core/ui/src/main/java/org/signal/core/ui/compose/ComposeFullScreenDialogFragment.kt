@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,9 +38,9 @@ abstract class ComposeFullScreenDialogFragment : DialogFragment() {
     setStyle(STYLE_NO_FRAME, fullScreenDialogStyle)
   }
 
-  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-    return super.onCreateDialog(savedInstanceState).apply {
-      window?.enableEdgeToEdge()
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return super.onGetLayoutInflater(savedInstanceState).also {
+      dialog?.window?.enableEdgeToEdge()
     }
   }
 

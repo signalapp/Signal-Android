@@ -32,6 +32,9 @@ fun Window.initializeScreenshotSecurity() {
  * windows are not covered by the activity-level call in BaseActivity, so every non-floating dialog must opt
  * in itself.
  *
+ * In a DialogFragment, call this from onGetLayoutInflater after super, not from onCreateDialog. It creates the
+ * decor view, and doing that before DialogFragment requests FEATURE_NO_TITLE crashes on API 23.
+ *
  * Bar icon appearance (`windowLightStatusBar` / `windowLightNavigationBar`) is left to the window's theme,
  * which stays honored under edge-to-edge.
  *
