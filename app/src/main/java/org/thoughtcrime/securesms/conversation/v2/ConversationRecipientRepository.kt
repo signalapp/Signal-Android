@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Optional
 
-class ConversationRecipientRepository(threadId: Long, recipientId: RecipientId) : ViewModel() {
+class ConversationRecipientRepository(threadId: Long, val recipientId: RecipientId) : ViewModel() {
 
   private val disposables = CompositeDisposable()
 

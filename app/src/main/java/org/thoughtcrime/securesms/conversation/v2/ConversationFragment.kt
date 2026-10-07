@@ -2970,14 +2970,6 @@ class ConversationFragment :
     isViewOnce: Boolean = false,
     afterSendComplete: () -> Unit = {}
   ) {
-    val threadRecipient = viewModel.recipientSnapshot
-
-    if (threadRecipient == null) {
-      Log.w(TAG, "Unable to send due to invalid thread recipient")
-      toast(R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation, Toast.LENGTH_LONG)
-      return
-    }
-
     if (scheduledDate != -1L && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), childFragmentManager, null, scheduledDate)) {
       return
     }
@@ -3016,7 +3008,6 @@ class ConversationFragment :
 
     val send: Completable = viewModel.sendMessage(
       metricId = metricId,
-      threadRecipient = threadRecipient,
       body = body,
       slideDeck = slideDeck,
       scheduledDate = scheduledDate,

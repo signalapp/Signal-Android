@@ -162,6 +162,8 @@ class ConversationViewModel(
   private val chatColors: RxStore<ChatColorsDrawable.ChatColorsData> = RxStore(ChatColorsDrawable.ChatColorsData(null, null))
   val chatColorsSnapshot: ChatColorsDrawable.ChatColorsData get() = chatColors.state
 
+  val recipientId = recipientRepository.recipientId
+
   @Volatile
   var recipientSnapshot: Recipient? = null
     private set
@@ -634,7 +636,6 @@ class ConversationViewModel(
 
   fun sendMessage(
     metricId: String?,
-    threadRecipient: Recipient,
     body: String,
     slideDeck: SlideDeck?,
     scheduledDate: Long,
@@ -649,7 +650,7 @@ class ConversationViewModel(
   ): Completable {
     return repository.sendMessage(
       threadId = threadId,
-      threadRecipient = threadRecipient,
+      threadRecipient = recipientSnapshot ?: Recipient.resolved(recipientId),
       metricId = metricId,
       body = body,
       slideDeck = slideDeck,
