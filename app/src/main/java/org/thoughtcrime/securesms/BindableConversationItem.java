@@ -91,6 +91,7 @@ public interface BindableConversationItem extends Unbindable, Colorizable, Multi
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull Contact contact, @NonNull List<Recipient> choices);
     void onInviteSharedContactClicked(@NonNull Contact contact);
+    void onAddSharedContactToGroupClicked(@NonNull Contact contact);
     void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms);
     void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);

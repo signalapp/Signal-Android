@@ -598,6 +598,10 @@ class Recipient(
     return BidiUtil.isolateBidi(name)
   }
 
+  /** The first name we have for this person, ranking our own nickname for them below their real names. */
+  val sharedContactName: ProfileName?
+    get() = listOf(systemProfileName, profileName, sharedName, nickname).firstOrNull { !it.isEmpty }
+
   val hasUsernameOrSharedName: Boolean
     get() = username.isPresent || !sharedName.isEmpty
 

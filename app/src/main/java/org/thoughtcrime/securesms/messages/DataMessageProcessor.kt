@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper
+import org.thoughtcrime.securesms.contactshare.quoteText
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -1550,6 +1551,8 @@ object DataMessageProcessor {
 
       if (quotedMessage.isViewOnce) {
         thumbnailAttachment = TombstoneAttachment.forQuote()
+      } else if (quotedMessage.sharedContacts.isNotEmpty()) {
+        thumbnailAttachment = null
       } else if (thumbnailAttachment == null) {
         thumbnailAttachment = quotedMessage
           .linkPreviews
@@ -1562,7 +1565,12 @@ object DataMessageProcessor {
         quotedMessage = SignalDatabase.payments.updateMessageWithPayment(quotedMessage) as MmsMessageRecord
       }
 
-      val body = if (quotedMessage.isPaymentNotification) quotedMessage.getDisplayBody(context).toString() else quotedMessage.body
+      val sharedContact = quotedMessage.sharedContacts.firstOrNull()
+      val body = when {
+        quotedMessage.isPaymentNotification -> quotedMessage.getDisplayBody(context).toString()
+        sharedContact != null -> sharedContact.quoteText(context)
+        else -> quotedMessage.body
+      }
 
       return QuoteModel(
         id = quote.id!!,

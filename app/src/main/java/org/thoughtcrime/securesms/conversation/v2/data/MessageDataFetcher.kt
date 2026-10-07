@@ -29,10 +29,12 @@ import org.thoughtcrime.securesms.payments.Payment
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import java.util.UUID
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Future
+import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
 
@@ -129,10 +131,17 @@ object MessageDataFetcher {
     }
 
     val sharedContactsFuture = executor.submitTimed {
-      messageRecords
+      val contacts = messageRecords
         .filterIsInstance<MmsMessageRecord>()
         .mapNotNull { record -> record.sharedContacts.firstOrNull()?.let { record.id to it } }
-        .associate { (id, contact) -> id to SharedContactPresentation.resolve(contact) }
+
+      val groupRecord = if (contacts.isNotEmpty() && threadRecipient != null && threadRecipient.isPushV2Group && RecipientUtil.isMessageRequestAccepted(Recipient.resolved(threadRecipient.id))) {
+        SignalDatabase.groups.getGroup(threadRecipient.requireGroupId()).getOrNull()
+      } else {
+        null
+      }
+
+      contacts.associate { (id, contact) -> id to SharedContactPresentation.resolve(contact, groupRecord) }
     }
 
     val mentionsResult = mentionsFuture.get()

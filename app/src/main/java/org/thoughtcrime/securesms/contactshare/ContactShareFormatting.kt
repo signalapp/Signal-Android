@@ -9,12 +9,12 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.nullIfBlank
+import org.signal.emoji.EmojiStrings
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 
 /** Detail ids are positional, so a selection can be resolved back against the contact it came from. */
@@ -42,13 +42,7 @@ internal const val PHOTO_ID_NONE = "none"
 
 /** The card's claim about who it describes, absent for a card that predates ACI sharing. */
 internal val Contact.signalAci: ACI?
-  get() {
-    if (!RemoteConfig.contactSharingV2) {
-      return null
-    }
-
-    return this.aci?.let { ACI.parseOrNull(it) }?.takeIf { it.isValid }
-  }
+  get() = this.aci?.let { ACI.parseOrNull(it) }?.takeIf { it.isValid }
 
 /**
  * Whether the subject of the card is reachable on Signal. An ACI is proof on its own, so this is
@@ -125,3 +119,7 @@ internal fun Contact.PostalAddress.labelText(context: Context): String {
 }
 
 internal fun Contact.PostalAddress.displayLines(): List<String> = this.toString().lines().filter { it.isNotBlank() }
+
+internal fun Contact.quoteText(context: Context): String {
+  return context.getString(R.string.ConversationActivity_quoted_contact_message, EmojiStrings.BUST_IN_SILHOUETTE, ContactUtil.getDisplayName(this))
+}

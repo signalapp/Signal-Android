@@ -204,6 +204,10 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
+  override fun onAddSharedContactToGroupClicked(contact: Contact) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
   override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }

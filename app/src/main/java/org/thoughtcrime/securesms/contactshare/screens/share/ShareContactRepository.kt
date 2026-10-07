@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import java.io.IOException
 import java.util.Locale
 
@@ -65,21 +66,14 @@ class ShareContactRepository(
   /**
    * Builds a shareable card for a Signal connection that has no address book entry.
    *
-   * Everything comes from the profile, so there are no emails, addresses, or organization to offer.
+   * Everything comes from the recipient, so there are no emails, addresses, or organization to offer.
    * A card with no name cannot be rendered by the receiver, so a recipient without one has nothing
    * worth sharing and yields null.
    */
   private fun Recipient.toSharedContact(): Contact? {
-    val name = Contact.Name(
-      profileName.givenName.nullIfBlank(),
-      profileName.familyName.nullIfBlank(),
-      null,
-      null,
-      null,
-      null
-    )
+    val name = toSharedContactName()
 
-    if (name.givenName.isNullOrBlank() && name.familyName.isNullOrBlank()) {
+    if (name == null) {
       Log.w(TAG, "Recipient has no name to share.")
       return null
     }
@@ -91,6 +85,17 @@ class ShareContactRepository(
     val avatar = profilePhotoBlobUri(id)?.let { Contact.Avatar(it.toUri(), true) }
 
     return Contact(name, null, phoneNumbers, emptyList(), emptyList(), avatar).withSignalIdentity(this)
+  }
+
+  private fun Recipient.toSharedContactName(): Contact.Name? {
+    sharedContactName?.let { return Contact.Name(it.givenName.nullIfBlank(), it.familyName.nullIfBlank(), null, null, null, null) }
+
+    val fallback = username.orElse(null).nullIfBlank()
+      ?: e164.orElse(null)?.nullIfBlank()?.let { SignalE164Util.prettyPrint(it) }
+      ?: email.orElse(null).nullIfBlank()
+      ?: return null
+
+    return Contact.Name(fallback, null, null, null, null, null)
   }
 
   /**

@@ -2619,7 +2619,12 @@
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactView_invite_to_signal">Invite to Signal</string>
-    <string name="SharedContactView_message">Signal Message</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person's name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->

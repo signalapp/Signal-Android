@@ -51,6 +51,8 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
   private TextView               nameView;
   private AppCompatImageView     disclosureView;
   private TextView               actionButtonView;
+  private TextView               addToGroupButtonView;
+  private LinearLayout           actionButtonsView;
   private ConversationItemFooter footer;
 
   private Contact                    contact;
@@ -88,11 +90,13 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
   private void initialize(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.shared_contact_view, this);
 
-    avatarView       = findViewById(R.id.contact_avatar);
-    nameView         = findViewById(R.id.contact_name);
-    disclosureView   = findViewById(R.id.contact_disclosure);
-    actionButtonView = findViewById(R.id.contact_action_button);
-    footer           = findViewById(R.id.contact_footer);
+    avatarView           = findViewById(R.id.contact_avatar);
+    nameView             = findViewById(R.id.contact_name);
+    disclosureView       = findViewById(R.id.contact_disclosure);
+    actionButtonView     = findViewById(R.id.contact_action_button);
+    addToGroupButtonView = findViewById(R.id.contact_add_to_group_button);
+    actionButtonsView    = findViewById(R.id.contact_action_buttons);
+    footer               = findViewById(R.id.contact_footer);
 
     cornerMask        = new CornerMask(this);
     bigCornerRadius   = getResources().getDimensionPixelOffset(R.dimen.message_corner_radius);
@@ -115,9 +119,39 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
       footer.setAlpha(footerAlpha);
 
       ImageViewCompat.setImageTintList(disclosureView, ColorStateList.valueOf(chevronColor));
-      actionButtonView.setTextColor(actionTextColor);
-      actionButtonView.getBackground().mutate().setColorFilter(actionBgColor, PorterDuff.Mode.SRC_IN);
+      for (TextView button : new TextView[] { actionButtonView, addToGroupButtonView }) {
+        button.setTextColor(actionTextColor);
+        button.getBackground().mutate().setColorFilter(actionBgColor, PorterDuff.Mode.SRC_IN);
+      }
     }
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    setActionButtonsStacked(false);
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    if (addToGroupButtonView.getVisibility() == VISIBLE &&
+        (desiredTextWidth(actionButtonView) > actionButtonView.getMeasuredWidth() || desiredTextWidth(addToGroupButtonView) > addToGroupButtonView.getMeasuredWidth()))
+    {
+      setActionButtonsStacked(true);
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+  }
+
+  private void setActionButtonsStacked(boolean stacked) {
+    actionButtonsView.setOrientation(stacked ? VERTICAL : HORIZONTAL);
+
+    for (TextView button : new TextView[] { actionButtonView, addToGroupButtonView }) {
+      LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) button.getLayoutParams();
+      params.width  = stacked ? LayoutParams.MATCH_PARENT : 0;
+      params.weight = stacked ? 0 : 1;
+    }
+
+    LinearLayout.LayoutParams addToGroupParams = (LinearLayout.LayoutParams) addToGroupButtonView.getLayoutParams();
+    addToGroupParams.setMarginStart(stacked ? 0 : getResources().getDimensionPixelSize(R.dimen.shared_contact_action_button_spacing));
+    addToGroupParams.topMargin = stacked ? getResources().getDimensionPixelSize(R.dimen.shared_contact_action_button_stacked_spacing) : 0;
+    addToGroupParams.resolveLayoutDirection(getLayoutDirection());
   }
 
   @Override
@@ -185,6 +219,10 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
                        disclosureView.getLayoutParams().width;
 
     int actionWidth = actionButtonView.getVisibility() == VISIBLE ? desiredTextWidth(actionButtonView) : 0;
+
+    if (addToGroupButtonView.getVisibility() == VISIBLE) {
+      actionWidth = 2 * Math.max(actionWidth, desiredTextWidth(addToGroupButtonView)) + getResources().getDimensionPixelSize(R.dimen.shared_contact_action_button_spacing);
+    }
 
     return horizontalPadding + Math.max(nameRowWidth, actionWidth);
   }
@@ -271,15 +309,27 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
                                 !contact.getEmails().isEmpty() ||
                                 !contact.getPostalAddresses().isEmpty();
 
+    actionButtonsView.setVisibility(VISIBLE);
     actionButtonView.setVisibility(VISIBLE);
+    addToGroupButtonView.setVisibility(GONE);
+    addToGroupButtonView.setOnClickListener(null);
 
     if (presentation.isOnSignal()) {
-      actionButtonView.setText(R.string.SharedContactView_message);
+      actionButtonView.setText(R.string.SharedContactView_message_button);
       actionButtonView.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onMessageClicked(contact, registered);
         }
       });
+
+      if (presentation.getCanAddToGroup()) {
+        addToGroupButtonView.setVisibility(VISIBLE);
+        addToGroupButtonView.setOnClickListener(v -> {
+          if (eventListener != null) {
+            eventListener.onAddToGroupClicked(contact);
+          }
+        });
+      }
     } else if (isSystemContact) {
       actionButtonView.setText(R.string.SharedContactView_invite_to_signal);
       actionButtonView.setOnClickListener(v -> {
@@ -298,6 +348,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
       actionButtonView.setText("");
       actionButtonView.setOnClickListener(null);
       actionButtonView.setVisibility(GONE);
+      actionButtonsView.setVisibility(GONE);
     }
   }
 
@@ -305,5 +356,6 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     void onAddToContactsClicked(@NonNull Contact contact);
     void onInviteClicked(@NonNull Contact contact);
     void onMessageClicked(@NonNull Contact contact, @NonNull List<Recipient> choices);
+    void onAddToGroupClicked(@NonNull Contact contact);
   }
 }

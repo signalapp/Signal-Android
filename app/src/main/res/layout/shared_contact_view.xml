@@ -46,22 +46,49 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/contact_action_button"
+        <LinearLayout
+            android:id="@+id/contact_action_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
-            android:background="@drawable/shared_contact_action_button_background"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
-            style="@style/Signal.Text.LabelMedium"
-            android:maxLines="1"
-            android:ellipsize="end"
-            tools:text="Invite to Signal" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/contact_action_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shared_contact_action_button_background"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                style="@style/Signal.Text.LabelMedium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Message" />
+
+            <TextView
+                android:id="@+id/contact_add_to_group_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/shared_contact_action_button_spacing"
+                android:background="@drawable/shared_contact_action_button_background"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                style="@style/Signal.Text.LabelMedium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/SharedContactView_add_to_group"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/contact_footer"

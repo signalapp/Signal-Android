@@ -301,6 +301,7 @@ import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkI
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.jobs.AttachmentBackfill
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
@@ -3079,6 +3080,28 @@ class ConversationFragment :
       .show(childFragmentManager)
   }
 
+  private fun addSharedContactToGroup(contact: Contact, groupRecipient: Recipient) {
+    val progressDialog = SimpleProgressDialog.showDelayed(requireContext())
+
+    disposables += viewModel
+      .addSharedContactToGroup(contact, groupRecipient)
+      .doFinally { progressDialog.dismiss() }
+      .subscribeBy { result ->
+        when (result) {
+          is GroupAddMembersResult.Success -> {
+            if (result.newMembersInvited.isNotEmpty()) {
+              MaterialAlertDialogBuilder(requireContext())
+                .setMessage(getString(R.string.GroupManagement_invite_single_user, ContactUtil.getDisplayName(contact)))
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+            }
+          }
+
+          is GroupAddMembersResult.Failure -> toast(GroupErrors.getUserDisplayMessage(result.reason))
+        }
+      }
+  }
+
   private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
     ThreadUtil.runOnMain {
       if (context != null) {
@@ -4091,6 +4114,17 @@ class ConversationFragment :
         val recipientId = withContext(SignalDispatchers.IO) { contact.resolveOrCreateSignalRecipient() } ?: return@launch
         CommunicationActions.startConversation(context, Recipient.resolved(recipientId), null)
       }
+    }
+
+    override fun onAddSharedContactToGroupClicked(contact: Contact) {
+      val context = context ?: return
+      val groupRecipient = viewModel.recipientSnapshot ?: return
+
+      MaterialAlertDialogBuilder(context)
+        .setMessage(getString(R.string.SharedContactView_add_s_to_s, ContactUtil.getDisplayName(contact), groupRecipient.getDisplayName(context)))
+        .setPositiveButton(R.string.SharedContactView_add_to_group) { _, _ -> addSharedContactToGroup(contact, groupRecipient) }
+        .setNegativeButton(android.R.string.cancel, null)
+        .show()
     }
 
     /** A number gets an SMS, an email only card gets an email, since those are the only two ways to reach them. */

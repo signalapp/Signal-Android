@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.jobs.PollVoteJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
@@ -310,6 +311,24 @@ class ConversationViewModel(
         pagingController.onDataInvalidated()
       })
 
+    disposables += conversationThreadState.flatMapObservable { threadState ->
+      threadState.sharedContactMessages.hasAny.switchMap { hasAny ->
+        if (hasAny) {
+          Observable.combineLatest(
+            recipientRepository.groupRecord.filter { it.isPresent && it.get().hasV2GroupProperties }.map { it.get().requireV2GroupProperties().groupRevision },
+            recipientRepository.conversationRecipient.map { it.isProfileSharing }
+          ) { revision, isProfileSharing -> revision to isProfileSharing }
+            .distinctUntilChanged()
+            .skip(1)
+            .map { threadState }
+        } else {
+          Observable.empty()
+        }
+      }
+    }.subscribeBy(onNext = { threadState ->
+      threadState.sharedContactMessages.messageIds.forEach { threadState.items.controller.onDataItemChanged(ConversationElementKey.forMessage(it)) }
+    })
+
     _inputReadyState = Observable.combineLatest(
       recipientRepository.conversationRecipient,
       recipientRepository.groupRecord
@@ -374,6 +393,12 @@ class ConversationViewModel(
         ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(AppDependencies.application, it, threadRecipient!!)
       }
     }
+  }
+
+  fun addSharedContactToGroup(contact: Contact, groupRecipient: Recipient): Single<GroupAddMembersResult> {
+    return repository
+      .addSharedContactToGroup(contact, groupRecipient)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   fun pinMessage(messageRecord: MessageRecord, duration: Duration, threadRecipient: Recipient): Completable {

@@ -167,8 +167,8 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   }
 
   /**
-   * Always the new editor, whichever picker fed it. Only contact selection is behind
-   * [RemoteConfig.contactSharingV2].
+   * Always the new editor, whichever picker fed it. While [RemoteConfig.contactSharingV2] is off it
+   * leaves the Signal identity off new cards, so the old picker cannot share an ACI.
    */
   private object ContactShareEditor : ActivityResultContract<Pair<SharedContactSource, RecipientId>, List<Contact>>() {
     override fun createIntent(context: Context, input: Pair<SharedContactSource, RecipientId>): Intent {

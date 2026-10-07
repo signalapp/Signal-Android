@@ -66,6 +66,8 @@ class ConversationDataSource(
     check(threadId > 0)
   }
 
+  val sharedContactMessages = SharedContactMessages()
+
   private val threadRecipient: Recipient by lazy {
     SignalDatabase.threads.getRecipientForThreadId(threadId)!!
   }
@@ -123,6 +125,7 @@ class ConversationDataSource(
     stopwatch.split("messages")
 
     val extraData = MessageDataFetcher.fetch(records, threadRecipient)
+    sharedContactMessages.add(extraData.sharedContacts.keys)
     stopwatch.split("extra-data")
 
     records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
@@ -199,6 +202,7 @@ class ConversationDataSource(
         return null
       } else {
         extraData = MessageDataFetcher.fetch(record, threadRecipient)
+        sharedContactMessages.add(extraData.sharedContacts.keys)
         stopwatch.split("extra-data")
 
         record = MessageDataFetcher.updateModelWithData(record, extraData)

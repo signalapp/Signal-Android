@@ -255,6 +255,8 @@ class V2ConversationItemShapeTest {
 
     override fun onInviteSharedContactClicked(contact: Contact) = Unit
 
+    override fun onAddSharedContactToGroupClicked(contact: Contact) = Unit
+
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
 
     override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit

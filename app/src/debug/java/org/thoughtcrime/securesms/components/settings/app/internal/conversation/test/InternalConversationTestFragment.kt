@@ -145,6 +145,10 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onAddSharedContactToGroupClicked(contact: Contact) {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
+
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }

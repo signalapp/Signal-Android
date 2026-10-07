@@ -2800,6 +2800,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         passthroughClickListener.onClick(sharedContactStub.get());
       }
     }
+
+    @Override
+    public void onAddToGroupClicked(@NonNull Contact contact) {
+      if (eventListener != null && batchSelected.isEmpty()) {
+        eventListener.onAddSharedContactToGroupClicked(contact);
+      } else {
+        passthroughClickListener.onClick(sharedContactStub.get());
+      }
+    }
   }
 
   private class SharedContactClickListener implements View.OnClickListener {

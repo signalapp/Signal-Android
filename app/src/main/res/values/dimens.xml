@@ -35,6 +35,8 @@
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
+    <dimen name="shared_contact_action_button_spacing">12dp</dimen>
+    <dimen name="shared_contact_action_button_stacked_spacing">8dp</dimen>
     <dimen name="message_bubble_top_padding">7dp</dimen>
     <dimen name="message_bubble_top_image_margin">4dp</dimen>
     <dimen name="message_bubble_text_only_top_margin">4dp</dimen>

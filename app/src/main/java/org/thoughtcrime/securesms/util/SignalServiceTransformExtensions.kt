@@ -356,7 +356,7 @@ private fun LinkPreview.toProto(): Either<DataMessageError, Preview> = either {
 }
 
 private fun Contact.toProto(): Either<DataMessageError, DataMessage.Contact> = either {
-  val contact = DataMessage.Contact(
+  DataMessage.Contact(
     name = DataMessage.Contact.Name(
       givenName = name.givenName,
       familyName = name.familyName,
@@ -390,14 +390,7 @@ private fun Contact.toProto(): Either<DataMessageError, DataMessage.Contact> = e
         ?.map { DataMessage.Contact.Avatar(avatar = it, isProfile = avatar.isProfile) }
         ?.bind()
     },
-    organization = organization
-  )
-
-  if (!RemoteConfig.contactSharingV2) {
-    return@either contact
-  }
-
-  contact.copy(
+    organization = organization,
     aciBinary = ACI.parseOrNull(aci)?.takeIf { it.isValid }?.toByteString(),
     nickname = nickname?.takeUnless { it.isEmpty }?.let {
       DataMessage.Contact.SignalNickname(given = it.given, family = it.family)

@@ -33,7 +33,6 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
 import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
-import org.signal.emoji.EmojiStrings
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.R
@@ -41,7 +40,8 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.contactshare.ContactUtil
+import org.thoughtcrime.securesms.contactshare.quoteText
+import org.thoughtcrime.securesms.contactshare.resolveOrCreateSignalRecipient
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.GroupReviewState
@@ -71,6 +71,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.AppDependencies.databaseObserver
 import org.thoughtcrime.securesms.dependencies.AppDependencies.expiringMessageManager
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.jobs.GroupSendJobHelper
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
 import org.thoughtcrime.securesms.jobs.UnpinMessageJob
@@ -161,7 +164,8 @@ class ConversationRepository(
 
       ConversationThreadState(
         items = PagedData.createForObservable(dataSource, config),
-        meta = metadata
+        meta = metadata,
+        sharedContactMessages = dataSource.sharedContactMessages
       )
     }.subscribeOn(Schedulers.io())
   }
@@ -544,6 +548,20 @@ class ConversationRepository(
     oldConversationRepository.markGiftBadgeRevealed(messageId)
   }
 
+  /** Without a profile key for the subject this invites rather than adds, see [GroupAddMembersResult.Success.newMembersInvited]. */
+  fun addSharedContactToGroup(contact: Contact, groupRecipient: Recipient): Single<GroupAddMembersResult> {
+    return Single.create { emitter ->
+      val recipientId = contact.resolveOrCreateSignalRecipient()
+
+      if (recipientId == null) {
+        Log.w(TAG, "Shared contact does not resolve to a Signal account.")
+        emitter.onSuccess(GroupAddMembersResult.Failure(GroupChangeFailureReason.OTHER))
+      } else {
+        GroupManagementRepository().addMembers(groupRecipient, listOf(recipientId)) { emitter.onSuccess(it) }
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
   fun getQuotedMessagePosition(threadId: Long, quoteId: Long, authorId: RecipientId): Single<Int> {
     return Single.fromCallable {
       SignalDatabase.messages.getQuotedMessagePosition(threadId, quoteId, authorId)
@@ -782,15 +800,8 @@ class ConversationRepository(
 
     return if (messageRecord.isMms && messageRecord.hasSharedContact()) {
       val contact: Contact = (messageRecord as MmsMessageRecord).sharedContacts.first()
-      val displayName: String = ContactUtil.getDisplayName(contact)
-      val body: String = context.getString(R.string.ConversationActivity_quoted_contact_message, EmojiStrings.BUST_IN_SILHOUETTE, displayName)
-      val slideDeck = SlideDeck()
 
-      if (contact.avatarAttachment != null) {
-        slideDeck.addSlide(MediaUtil.getSlideForAttachment(contact.avatarAttachment))
-      }
-
-      slideDeck to body
+      SlideDeck() to contact.quoteText(context)
     } else if (messageRecord.isMms && messageRecord.hasLinkPreview()) {
       val linkPreview = (messageRecord as MmsMessageRecord).linkPreviews.first()
       val slideDeck = SlideDeck()

@@ -49,6 +49,7 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
         recipients.forEach { Recipient.live(it.id).refresh() }
       } catch (e: IOException) {
         consumer.accept(GroupAddMembersResult.Failure(GroupChangeFailureReason.NETWORK))
+        return@execute
       }
 
       consumer.accept(

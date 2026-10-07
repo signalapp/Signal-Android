@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Locale
 import java.util.Optional
 
@@ -64,9 +63,6 @@ class SharedContactDetailsRepositoryTest {
     // A relaxed AccountValues hands back "" rather than null, which the number formatter cannot parse.
     every { signalStore.account.e164 } returns "+15105550000"
 
-    mockkObject(RemoteConfig)
-    every { RemoteConfig.contactSharingV2 } returns true
-
     mockkObject(SignalDatabase)
     every { SignalDatabase.recipients } returns mockk {
       every { getByE164(any()) } returns Optional.empty()
@@ -79,7 +75,6 @@ class SharedContactDetailsRepositoryTest {
 
   @After
   fun tearDown() {
-    unmockkObject(RemoteConfig)
     unmockkObject(SignalDatabase)
     unmockkObject(Recipient.Companion)
   }

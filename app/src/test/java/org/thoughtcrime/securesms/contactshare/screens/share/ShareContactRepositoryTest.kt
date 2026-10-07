@@ -31,8 +31,13 @@ import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.AccountValues
+import org.thoughtcrime.securesms.keyvalue.SettingsValues
+import org.thoughtcrime.securesms.profiles.ProfileName
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import java.util.Locale
 import java.util.Optional
 
@@ -44,7 +49,7 @@ import java.util.Optional
 class ShareContactRepositoryTest {
 
   @get:Rule
-  val signalStore = MockSignalStoreRule(relaxed = setOf(AccountValues::class))
+  val signalStore = MockSignalStoreRule(relaxed = setOf(AccountValues::class, SettingsValues::class))
 
   private val repository = ShareContactRepository(context = ApplicationProvider.getApplicationContext())
 
@@ -256,6 +261,91 @@ class ShareContactRepositoryTest {
 
     assertThat(card.nickname?.given).isEqualTo("Paige")
     assertThat(card.note).isEqualTo("Met in 2017")
+  }
+
+  @Test
+  fun `a signal connection is shared under their system contact name first`() = runTest {
+    val contact = loadSignalContact(
+      Recipient(
+        id = RecipientId.from(5),
+        isResolving = false,
+        systemProfileName = ProfileName.fromParts("Paige", "Hall"),
+        profileName = ProfileName.fromParts("P", "H"),
+        nickname = ProfileName.fromParts("Pidge", null)
+      )
+    )
+
+    assertThat(contact?.name?.givenName).isEqualTo("Paige")
+    assertThat(contact?.name?.familyName).isEqualTo("Hall")
+  }
+
+  @Test
+  fun `a signal connection without a system contact name is shared under their profile name`() = runTest {
+    val contact = loadSignalContact(
+      Recipient(
+        id = RecipientId.from(5),
+        isResolving = false,
+        profileName = ProfileName.fromParts("Paige", "Hall"),
+        nickname = ProfileName.fromParts("Pidge", null)
+      )
+    )
+
+    assertThat(contact?.name?.givenName).isEqualTo("Paige")
+    assertThat(contact?.name?.familyName).isEqualTo("Hall")
+  }
+
+  @Test
+  fun `a signal connection known only by nickname is shared under that nickname`() = runTest {
+    val contact = loadSignalContact(Recipient(id = RecipientId.from(5), isResolving = false, nickname = ProfileName.fromParts("Pidge", null)))
+
+    assertThat(contact?.name?.givenName).isEqualTo("Pidge")
+  }
+
+  @Test
+  fun `a signal connection known only by username is shared under that username`() = runTest {
+    val contact = loadSignalContact(Recipient(id = RecipientId.from(5), isResolving = false, usernameValue = "paige.01"))
+
+    assertThat(contact?.name?.givenName).isEqualTo("paige.01")
+    assertThat(contact?.name?.familyName).isNull()
+  }
+
+  @Test
+  fun `a signal connection known only by phone number is shared by name and number without an aci`() = runTest {
+    val contact = loadSignalContact(
+      Recipient(
+        id = RecipientId.from(5),
+        isResolving = false,
+        e164Value = "+15105550001",
+        systemProfileName = ProfileName.fromParts("Paige", "Hall")
+      )
+    )
+
+    assertThat(contact?.name?.givenName).isEqualTo("Paige")
+    assertThat(contact?.phoneNumbers?.map { it.number }).isEqualTo(listOf("+15105550001"))
+    assertThat(contact?.aci).isNull()
+  }
+
+  @Test
+  fun `a signal connection with no name at all is shared under their formatted number`() = runTest {
+    val contact = loadSignalContact(Recipient(id = RecipientId.from(5), isResolving = false, e164Value = "+15105550001"))
+
+    assertThat(contact?.name?.givenName).isEqualTo(SignalE164Util.prettyPrint("+15105550001"))
+    assertThat(contact?.name?.familyName).isNull()
+  }
+
+  @Test
+  fun `a signal connection with nothing to call them by cannot be shared`() = runTest {
+    assertThat(loadSignalContact(Recipient(id = RecipientId.from(5), isResolving = false))).isNull()
+  }
+
+  private suspend fun loadSignalContact(recipient: Recipient): Contact? {
+    mockkObject(Recipient.Companion)
+    try {
+      every { Recipient.resolved(recipient.id) } returns recipient
+      return repository.load(source = SharedContactSource.SignalContact(recipient.id), recipientId = null)?.contact
+    } finally {
+      unmockkObject(Recipient.Companion)
+    }
   }
 
   /** Drives the real load path with a stubbed reader, so the defaults come from buildDetails. */
