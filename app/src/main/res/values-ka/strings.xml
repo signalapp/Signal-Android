@@ -7,7 +7,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
@@ -412,6 +411,8 @@
     <string name="ConversationItem_edited_absolute_timestamp_footer">რედაქტირებულია %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">ზარზე შესვლა</string>
+    <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
+    <string name="ConversationItem__view_pack">View pack</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">მიმაგრება</string>
@@ -438,7 +439,6 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ამ მოწყობილობას არ გააჩნია ნომრის აკრეფის მხარდაჭერა.</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">შეტყობინების გაგზავნა</string>
-    <string name="ConversationActivity_lets_switch_to_signal">მოდი, გადავერთოთ Signal-ზე %1$s</string>
     <string name="ConversationActivity_specify_recipient">გთხოვთ აირჩიო კონტაქტი</string>
     <string name="ConversationActivity_unable_to_record_audio">აუდიოს ჩაწერა შეუძლებელია!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">შენ არ შეგიძლია შეტყობინებების გაგზავნა ამ ჯგუფში, რადგან აღარ ხარ მისი წევრი.</string>
@@ -1009,10 +1009,6 @@
     <string name="LinkDeviceFragment__unlock_to_link">მოწყობილობის მისაბმელად განბლოკე</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">მოწყობილობის დაკავშირებამდე დაადასტურე, რომ ეს შენ ხარ</string>
-    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">დასადასტურებლად დააჭირე გაგრძელებას და შენი მობილურის პაროლი შეიყვანე. შენი Signal-ის პინ-კოდი არ შეიყვანო.</string>
-    <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">გაგრძელება</string>
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
@@ -1267,6 +1263,10 @@
         <item quantity="one">%1$d წევრი</item>
         <item quantity="other">%1$d წევრი</item>
     </plurals>
+    <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <!-- Title for sticker pack link previews when the pack has no title or author -->
+    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">შევამჩნიეთ, რომ შეტყობინებები აგვიანებს. ატვირთოთ გამართვის ჟურნალი?</string>
@@ -1556,15 +1556,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ამ მოქმედებას ვეღარ გააუქმებ.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">გაუქმება</string>
-
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">გაზიარება</string>
-
-    <string name="InviteActivity_cancel">გაუქმება</string>
-    <string name="InviteActivity_invite_to_signal">მოიწვიე Signal-ში</string>
-    <string name="InviteActivity_lets_switch_to_signal">მოდი, Signal-ზე გადავიდეთ: %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">როგორც ჩანს, არ გაქვს ისეთი აპი, იქ რომ გადააზიარო.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">გაიგე მეტი</string>
@@ -2625,7 +2616,12 @@
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">კონტაქტებში დამატება</string>
     <string name="SharedContactView_invite_to_signal">მოიწვიე Signal-ში</string>
-    <string name="SharedContactView_message">Signal-ის შეტყობინება</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2779,6 +2775,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">ნაკრების ნახვა</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">შენახვა</string>
@@ -3021,6 +3027,7 @@
     <string name="MediaPreviewFragment_media_delete_error">წერილის წაშლა ვერ მოხერხდა, ის შესაძლოა ისევ არსებობდეს</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">წაიკითე მეტი</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3168,10 +3175,6 @@
     <string name="SearchToolbar_search">ძიება</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">წაუკითხავი ჩატების მოძებნა</string>
-
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">Close</string>
-    <string name="Material3SearchToolbar__clear">გასუფთავება</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">არასწორი მალსახმობი</string>
@@ -3489,6 +3492,10 @@
     <string name="BubbleOptOutTooltip__not_now">ახლა არა</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">გამორთვა</string>
+
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">უსაფრთხოების ნომრის ცვლილება</string>
@@ -3856,14 +3863,6 @@
         <item quantity="other">%1$dსთ</item>
     </plurals>
 
-    <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოებისთვის უპირატესობის მინიჭება</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">მიანიჭე უპირატესობა საკონტაქტო ფოტოებს შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
-    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">შეინახე დადუმებული ჩატები არქივში</string>
-    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ახალი წერილის მიღებისას, დაარქივებული დადუმებული ჩატები არქივში დარჩება.</string>
-    <string name="preferences__generate_link_previews">ბმულსი წინასწარი ნახვის გენერირება</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვა შენს მიერ გაგზავნილი შეტყობინებებისთვის პირდაპირ ვებსაიტებიდან.</string>
     <string name="preferences__change_passphrase">პაროლ-ფრაზის შეცვლა</string>
     <string name="preferences__change_your_passphrase">შეცვალე შენი პაროლ-ფრაზა</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -3976,6 +3975,14 @@
     <string name="preferences_storage__videos">ვიდეოები</string>
     <string name="preferences_storage__files">ფაილები</string>
     <string name="preferences_storage__audio">აუდიო</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">მეხსიერების გადახედვა</string>
     <string name="preferences_storage__delete_older_messages">წავშალოთ ძველი შეტყობინებები?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -4007,13 +4014,10 @@
     </plurals>
 
     <string name="preferences_storage__custom">პერსონალიზირებული</string>
-    <string name="preferences_advanced__use_system_emoji">სისტემის emoji-ის გამოყენება</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაამისამართე ყველა ზარი Signal-ის სერვერზე, რათა აირიდო შენი IP მისამართის გამოჩენა შენს კონტაქტთან. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
     <string name="preferences_advanced__always_relay_calls">ყოველთვის გადაიტანე ზარები</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ტრანზაქციები</string>
-    <string name="preferences_chats__chats">ჩატები</string>
-    <string name="preferences_app_updates__title">აპის განახლებები</string>
     <string name="preferences_data_and_storage__manage_storage">მეხსიერების მართვა</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ზარებისთვის ნაკლები მონაცემების გამოყენება</string>
     <string name="preferences_data_and_storage__never">არასდროს</string>
@@ -5311,56 +5315,6 @@
     <string name="ChangeNumberLockActivity__leave">დატოვება</string>
     <string name="ChangeNumberLockActivity__submit_debug_log">Submit debug log</string>
 
-    <!-- ChatsSettingsFragment -->
-    <string name="ChatsSettingsFragment__keyboard">კლავიატურა</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Enter-ით გაგზავნა</string>
-    <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">ჩატის საქაღალდეები</string>
-    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">ჩატის საქაღალდის დამატება</string>
-    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">საქაღალდეების დამატება ან რედაქტირება</string>
-    <!-- Text describing the number of folders you have -->
-    <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d საქაღალდე</item>
-        <item quantity="other">%1$d საქაღალდე</item>
-    </plurals>
-
-    <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">ჩატის ისტორიის გადატანა</string>
-    <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">გადაიტანე შენი ყველა ჩატის ავტომატურად წაკითხვადი JSON ასლი. გაქრობად წერილებს ვერ გადაიტან.</string>
-    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">განბლოკე ჩატის ისტორიის გადმოსატანად</string>
-    <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">ავტორიზაცია ვერ მოხერხდა</string>
-
-    <!-- ChatExportDialogs -->
-    <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">მიმდინარეობს ექსპორტირების გაუქმება…</string>
-    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">ჩატის ისტორიის გადატანა გსურს?</string>
-    <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">ფრთხილად!</string>
-    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">ეს ფაილი არავის გაუზიარო. შენი ჩატის ისტორია შენს მოწყობილობაზე შეინახება და სხვა აპები მასზე წვდომას შენი მოწყობილობის პარამეტრების მიხედვით შეძლებენ. მედია ფაილებით ექსპორტირება ფაილის ზომას გაზრდის.</string>
-    <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">მედია ფაილებით ექსპორტირება</string>
-    <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">მედია ფაილების გარეშე ექსპორტირება</string>
-    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">აირჩიე საქაღალდე</string>
-    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">აირჩიე საქაღალდე შენი მოწყობილობის მეხსიერებაში, რომელშიც შენი ჩატის ისტორია შეინახება.</string>
-    <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">აირჩიე შენახვის ადგილი</string>
-    <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">ჩატის ექსპორტირება დასრულდა</string>
-    <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">ფრთხილად</string>
-    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">აარჩიე, სად შეინახავ შენს ექსპორტირებულ ჩატის ფაილს და არავის გაუზიარო. შენს მოწყობილობაში არსებული სხვა აპების მასზე წვდომა შენი მოწყობილობის ნებართვებზეა დამოკიდებული.</string>
-
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">შექმენი საქაღალდეები ოჯახისთვის, მეგობრებისთვის, სამსახურისთვის და სხვა</string>
@@ -5589,6 +5543,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">მედია-ფაილების ხარისხი</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">გაგზავნილი მედია-ფაილების ხარისხი</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">მაღალი ხარისხის მედია-ფაილის გაგზავნა უფრო მეტ მობილურ ინტერნეტს გამოიყენებს.</string>
@@ -6979,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">გააუმჯობესე სათადარიგო ასლების სანდოობა</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">დაუშვი \"შეხსენების\" ნებართვა, რათა სათადარიგო ასლების ყოველდღიური ავტომატური შექმნა გააუმჯობესო.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8310,22 +8266,6 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR კოდის დასკანირება</string>
 
-    <!-- BackupCreationProgressRow -->
-    <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">მიმდინარეობს სათადარიგო ასლების დამუშავება…</string>
-    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">მზადდება სათადარიგო ასლები…</string>
-    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">სრულდება…</string>
-    <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">მუშავდება წერილები…</string>
-    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">მუშავდება წერილები: %2$s-დან %1$s (%3$d%%)</string>
-    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">იტვირთება მედია ფაილები: %1$d%%</string>
-    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">მიმდინარეობს მედია ფაილების ექსპორტირება: %1$d%%</string>
-
     <!-- LocalArchiveJob -->
     <!-- Notification title shown while media attachments are being exported during a local backup -->
     <string name="LocalArchiveJob__exporting_media">მიმდინარეობს მედია ფაილების ექსპორტირება…</string>
@@ -8448,8 +8388,6 @@
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ბუფერში ჩაკოპირება</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">პაროლების მენეჯერში შენახვა</string>
-    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">გსურს პაროლების მენეჯერში დამახსოვრება?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">სათადარიგო ასლების გასაღები შეინახე პაროლების მენეჯერში, რომლის უსაფრთხოებასაც ენდობი. Signal-ი არ იძლევა რეკომენდაციას, თუ რომელი პაროლების მენეჯერია შენთვის შესაფერისი.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->

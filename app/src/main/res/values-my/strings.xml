@@ -7,7 +7,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
@@ -410,6 +409,8 @@
     <string name="ConversationItem_edited_absolute_timestamp_footer">တည်းဖြတ်ထား %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">ခေါ်ဆိုမှုတွင် ပါဝင်ရန်</string>
+    <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
+    <string name="ConversationItem__view_pack">View pack</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
@@ -434,7 +435,6 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ဖုန်းနံပါတ်နှိပ် ခေါ်ဆိုမှုကို ယခုစက်တွင်မရပါ။</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">မက်ဆေ့ချ် ပို့ရန်</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ကိုပြောင်းသုံးကြပါစို့</string>
     <string name="ConversationActivity_specify_recipient">ဆက်သွယ်လိုသည့်သူကို ရွေးချယ်ပါ</string>
     <string name="ConversationActivity_unable_to_record_audio">အသံဖမ်း၍ မရနိုင်ပါ!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">သင်သည်အဖွဲ့ဝင်မဟုတ်တော့သောကြောင့် ဤအဖွဲ့သို့စာများပို့မရပါ။</string>
@@ -982,10 +982,6 @@
     <string name="LinkDeviceFragment__unlock_to_link">စက်တစ်ခုဖြင့် ချိတ်ဆက်ရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">လင့်ခ်မချိတ်မီ သင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
-    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">ဆက်လုပ်ရန် ကိုနှိပ်ပြီး သင့်ဖုန်းလော့ခ်ကို ရိုက်ထည့်၍ အတည်ပြုပါ။ သင်၏ Signal PIN ကို မထည့်ပါနှင့်။</string>
-    <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ရန်</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
@@ -1228,6 +1224,10 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d အဖွဲ့ဝင်များ</item>
     </plurals>
+    <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <!-- Title for sticker pack link previews when the pack has no title or author -->
+    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">အသိပေးချက်များမှာ နှောင့်နှေးနေကြောင်း ကျွန်ုပ်တို့ သတိပြုမိပါသည်။ ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
@@ -1509,15 +1509,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရနိုင်ပါ။</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">ပယ်ဖျက်မည်</string>
-
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">မျှဝေရန်</string>
-
-    <string name="InviteActivity_cancel">မလုပ်တော့ပါ</string>
-    <string name="InviteActivity_invite_to_signal">Signal သုံးဖို့ဖိတ်ရန်</string>
-    <string name="InviteActivity_lets_switch_to_signal">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">ထပ်မံလေ့လာရန်</string>
@@ -2534,7 +2525,12 @@
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
     <string name="SharedContactView_invite_to_signal">Signal သုံးဖို့ ဖိတ်ရန်</string>
-    <string name="SharedContactView_message">Signal မက်ဆေ့ချ်</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2683,6 +2679,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">စတစ်ကာတွဲကို ကြည့်ရှုရန်</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">သိမ်းရန်</string>
@@ -2924,6 +2930,7 @@
     <string name="MediaPreviewFragment_media_delete_error">မက်ဆေ့ချ် ဖျက်မှု ချို့ယွင်းချက်၊ မက်ဆေ့ချ် ဆက်လက်ရှိနေနိုင်ပါသည်</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">ထပ်မံဖတ်ရှုမယ်</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3065,10 +3072,6 @@
     <string name="SearchToolbar_search">ရှာရန်</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">မဖတ်ရသေးသော ချက်(တ်)များကို ရှာရန်</string>
-
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">ပိတ်မယ်</string>
-    <string name="Material3SearchToolbar__clear">ဖယ်ရှားမည်</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">မမှန်ကန်သောဖြတ်လမ်း</string>
@@ -3380,6 +3383,10 @@
     <string name="BubbleOptOutTooltip__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">ပိတ်မည်</string>
+
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">လုံခြုံရေးနံပါတ်အပြောင်းအလဲများ</string>
@@ -3738,14 +3745,6 @@
         <item quantity="other">%1$d နာရီ</item>
     </plurals>
 
-    <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို ဦးစားပေးပါ</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် သင့်လိပ်စာစာအုပ်ရှိ အဆက်အသွယ်များ၏ ဓာတ်ပုံများကို အသုံးပြုပါ</string>
-    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">အသံပိတ်ထားသည့် ချက်(တ်)များကို ဆက်လက်စုစည်းရန်</string>
-    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းပြီးသော အသံပိတ်ထားသည့် ချက်(တ်)များသည် စုစည်းလျက်သား ဆက်ရှိနေပါမည်။</string>
-    <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
     <string name="preferences__change_passphrase">စကားဝှက်ကို ပြောင်းပါ</string>
     <string name="preferences__change_your_passphrase">သင့်ရဲ့ စကားဝှက်ကို ပြောင်းပါ</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -3858,6 +3857,14 @@
     <string name="preferences_storage__videos">ဗီဒီယိုများ</string>
     <string name="preferences_storage__files">ဖိုင်များ</string>
     <string name="preferences_storage__audio">အသံ</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">သိုလှောင်မှုကို ပြန်သုံးသပ်မယ်</string>
     <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား။</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -3887,13 +3894,10 @@
     </plurals>
 
     <string name="preferences_storage__custom">စိတ်ကြိုက်</string>
-    <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">သင်၏ လိပ်စာစာရင်းတွင် သင့် IP address ပေါ်လာခြင်းကို ရှောင်လွှဲရန်အတွက် ဖုန်းခေါ်ဆိုမှုများ အားလုံးကို Signal ဆာဗာကို လွှဲပြောင်းပါ။ ဤသို့ လွှဲပြောင်းလိုက်ပါက ဖုန်းခေါ်ဆိုမှု အရည်အသွေး ကျသွားနိုင်ပါသည်။</string>
     <string name="preferences_advanced__always_relay_calls">ဖုန်းခေါ်ဆိုမှုများကို လွှဲပြောင်းပါ</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ငွေပေးချေမှုများ</string>
-    <string name="preferences_chats__chats">ချက်(တ်)များ</string>
-    <string name="preferences_app_updates__title">အပ္ပလီကေးရှင်း အပ်ဒိတ်များ</string>
     <string name="preferences_data_and_storage__manage_storage">သိုလှောင်မှုကိုစီမံပါ</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
     <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
@@ -5170,55 +5174,6 @@
     <string name="ChangeNumberLockActivity__leave">ထွက်မည်။</string>
     <string name="ChangeNumberLockActivity__submit_debug_log">Debug log ကို တင်ပြပါ</string>
 
-    <!-- ChatsSettingsFragment -->
-    <string name="ChatsSettingsFragment__keyboard">ကီးဘုတ်</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ပါ</string>
-    <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">ချက်(တ်)ဖိုင်တွဲများ</string>
-    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">ချက်(တ်)ဖိုင်တွဲတစ်ခုထည့်ရန်</string>
-    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">ဖိုင်တွဲများ ထည့်သွင်းရန် သို့မဟုတ် တည်းဖြတ်ရန်</string>
-    <!-- Text describing the number of folders you have -->
-    <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="other">ဖိုင်တွဲ %1$d ခု</item>
-    </plurals>
-
-    <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူပါ</string>
-    <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">သင့်ချက်(တ်)အားလုံး၏ စက်ဖြင့်ဖတ်နိုင်သော JSON မိတ္တူကို ထုတ်ယူပါ။ ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ထုတ်ယူမည်မဟုတ်ပါ။</string>
-    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူရန် လော့ခ်ဖွင့်ပါ</string>
-    <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">စစ်မှန်ကြောင်းအတည်ပြုခြင်း မအောင်မြင်ပါ</string>
-
-    <!-- ChatExportDialogs -->
-    <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">ထုတ်ယူမှုကို ပယ်ဖျက်နေသည်…</string>
-    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူမလား။</string>
-    <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">သတိထားပါ။</string>
-    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">ဤဖိုင်ကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ချက်(တ်)မှတ်တမ်းကို သင့်စက်တွင် သိမ်းဆည်းမည်ဖြစ်ပြီး သင့်စက်၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ဝင်ရောက်ကြည့်ရှုနိုင်ပါသည်။ မီဒီယာဖြင့် ထုတ်ယူလျှင် ဖိုင်အရွယ်အစား ပိုကြီးသွားပါလိမ့်မည်။</string>
-    <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">မီဒီယာဖြင့် ထုတ်ယူမည်</string>
-    <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">မီဒီယာမပါဘဲ ထုတ်ယူမည်</string>
-    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
-    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">သင့်စက်၏ ထားသိုမှုထဲတွင် ချက်(တ်)မှတ်တမ်းကို သိမ်းဆည်းမည့် ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။</string>
-    <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
-    <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">ချက်(တ်) ထုတ်ယူမှု ပြီးပါပြီ</string>
-    <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">သတိထားပါ</string>
-    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">သင်ထုတ်ယူထားသော ချက်(တ်)ဖိုင် သိမ်းဆည်းထားသည့် နေရာကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ဖုန်း၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ၎င်းကိုဝင်ရောက် အသုံးပြုနိုင်ပါသည်။</string>
-
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">မိသားစု၊ သူငယ်ချင်း၊ အလုပ်နှင့် အခြားအရာများအတွက် ဖိုင်တွဲများ ဖန်တီးရန်</string>
@@ -5443,6 +5398,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">မီဒီယာ အရည်အသွေး ပို့ပြီး</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">အရည်အသွေးမြင့်သည့် မီဒီယာဖိုင်ကို ပို့လျှင် ဒေတာ ပိုသုံးပါလိမ့်မည်။</string>
@@ -6804,7 +6761,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">၂</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">ဘက်ခ်အပ်၏ ယုံကြည်စိတ်ချရမှုကို မြှင့်တင်ပါ</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">အလိုအလျောက် နေ့စဉ်ဘက်ခ်အပ်များကို ပိုမိုကောင်းမွန်စေရန် \"သတိပေးချက်များ\" ခွင့်ပြုချက်ကို ခွင့်ပြုပါ။</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8118,22 +8075,6 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR ကုဒ်ကို စကင်န်ဖတ်မည်</string>
 
-    <!-- BackupCreationProgressRow -->
-    <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">ဘက်ခ်အပ်ကို လုပ်ဆောင်နေသည်…</string>
-    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">ဘက်ခ်အပ်ကို ပြင်ဆင်နေသည်…</string>
-    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">အပြီးသတ်နေသည်…</string>
-    <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်…</string>
-    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်- %1$s / %2$s (%3$d%%)</string>
-    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">မီဒီယာ အပ်လုဒ်လုပ်နေသည်- %1$d%%</string>
-    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">မီဒီယာကို ထုတ်ယူနေသည်- %1$d</string>
-
     <!-- LocalArchiveJob -->
     <!-- Notification title shown while media attachments are being exported during a local backup -->
     <string name="LocalArchiveJob__exporting_media">မီဒီယာကို ထုတ်ယူနေသည်…</string>
@@ -8256,8 +8197,6 @@
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူမည်</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းပါ</string>
-    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းပါမည်လား။</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ပြန်လည်ရယူရေးကီးကို သင်ယုံကြည်စိတ်ချရသော စကားဝှက်စီမံရေးတွင်သာ သိမ်းဆည်းပါ။ Signal သည် သင့်အတွက် သင့်လျော်သော စကားဝှက်စီမံရေးကို အကြံပြုချက်မပေးပါ။</string>
     <!-- ID used when saving the recovery key to the device password manager. -->

@@ -5,23 +5,22 @@
   -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
-    <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
-    <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
-    <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string>
-    <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string>
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recovery_key_phishing_support_url" translatable="false">https://support.signal.org/hc/articles/9932566320410</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -42,7 +41,7 @@
     <string name="app_icon_label_waves">Tonnta</string>
 
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Tá Signal ag nuashonrú…</string>
@@ -67,16 +66,16 @@
     <string name="AdvancedPinSettingsFragment_rotate_aep_dialog_positive_button">Cruthaigh eochair</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Cúlspás</string>
 
@@ -418,6 +417,8 @@
     <string name="ConversationItem_edited_absolute_timestamp_footer">Curtha in eagar %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Téigh isteach sa ghlao</string>
+    <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
+    <string name="ConversationItem__view_pack">View pack</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
@@ -450,11 +451,10 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Tá an dealramh ar an ngléas seo nach dtacaíonn sé le gníomhartha dialála.</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Seol teachtaireacht</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Roghnaigh teagmhálaí</string>
     <string name="ConversationActivity_unable_to_record_audio">Ní féidir fuaim a thaifeadadh!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ní féidir leat teachtaireachtaí a sheoladh chuig an ngrúpa sin mar níl tú i do bhall de a thuilleadh.</string>
-    <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="DisabledInputView__incognito_mode" translatable="false">Incognito mode (Labs)</string> -->
     <string name="ConversationActivity_you_cant_send_messages_because_group_ended">Ní féidir leat teachtaireachtaí a sheoladh toisc go bhfuil deireadh curtha leis an ngrúpa.</string>
     <string name="ConversationActivity_only_s_can_send_messages"> %1$s amháin atá in ann teachtaireachtaí a sheoladh.</string>
     <string name="ConversationActivity_admins">riarthóirí</string>
@@ -1071,7 +1071,7 @@
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Déanfar teachtaireachtaí Signal a shioncronú le Signal ar do ghuthán póca tar éis nascadh leis. Ní thaispeánfar stair do theachtaireachtaí roimhe.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Ar an ngléas lenar mian leat nascadh, téigh chuig %1$s le Signal a shuiteáil</string>
-    <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Mo ghléasanna nasctha</string>
     <!-- Dialog confirmation to unlink a device -->
@@ -1090,10 +1090,6 @@
     <string name="LinkDeviceFragment__unlock_to_link">Díghlasáil le gléas a nascadh</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">Deimhnigh gur tusa atá ann roimh nascadh</string>
-    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tapáil Ar Aghaidh agus cuir isteach paschód do ghutháin chun deimhniú. Ná cuir isteach d\'UAP Signal.</string>
-    <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Ar aghaidh</string>
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">Déan teagmháil leis an bhfoireann tacaíochta</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
@@ -1108,7 +1104,7 @@
     <string name="LinkDeviceFragment__cancel">Cuir ar ceal</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Theip ar Easpórtáil Android Link&amp;Sync</string>
-    <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Theip ar shioncronú na dteachtaireachtaí</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1117,7 +1113,7 @@
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">D\'éirigh le nascadh do ghléis, ach níorbh fhéidir do theachtaireachtaí a aistriú.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Tuilleadh faisnéise</string>
-    <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Bain triail eile as</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
@@ -1265,7 +1261,7 @@
     <string name="GroupManagement_access_level_all_members">Na Baill Go Léir</string>
     <string name="GroupManagement_access_level_only_admins">Riarthóirí Amháin</string>
     <string name="GroupManagement_access_level_no_one">Duine ar bith</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1384,6 +1380,10 @@
         <item quantity="many">%1$d mball</item>
         <item quantity="other">%1$d ball</item>
     </plurals>
+    <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <!-- Title for sticker pack link previews when the pack has no title or author -->
+    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Thugamar faoi deara go bhfuil moill ar fhógraí. Cuir isteach loga dífhabhtaithe?</string>
@@ -1420,7 +1420,7 @@
     <string name="PromptBatterySaverBottomSheet__continue">Ar aghaidh</string>
     <!-- Button to dismiss battery saver dialog prompt-->
     <string name="PromptBatterySaverBottomSheet__no_thanks">Níl, go raibh maith agat</string>
-    <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Iarratais agus Cuirí</string>
@@ -1698,15 +1698,6 @@
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Cuileáil</string>
 
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">Comhroinn</string>
-
-    <string name="InviteActivity_cancel">Cealaigh</string>
-    <string name="InviteActivity_invite_to_signal">Tabhair cuireadh chuig Signal</string>
-    <string name="InviteActivity_lets_switch_to_signal">Téimís i muinín Signal: %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
-
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Foghlaim tuilleadh</string>
 
@@ -1781,8 +1772,8 @@
     <string name="MediaOverviewActivity_audio">Fuaim</string>
     <string name="MediaOverviewActivity_video">Físeán</string>
     <string name="MediaOverviewActivity_image">Íomhá</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Seolta ag %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Seolta agatsa</string>
@@ -1816,13 +1807,13 @@
 
     <!-- StarredMessagesFragment -->
     <!-- Title for the starred messages screen -->
-    <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string>
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesActivity__starred_messages" translatable="false">Starred messages</string> -->
     <!-- Empty state text when there are no starred messages -->
-    <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string>
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__no_starred_messages" translatable="false">No starred messages</string> -->
     <!-- Empty state description when there are no starred messages -->
-    <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessagesFragment__tap_and_hold_on_a_message_to_star_it" translatable="false">Tap and hold on a message to star it.</string> -->
     <!-- Format for starred message source label, e.g. "Alice › Book Club" -->
-    <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="StarredMessages__s_chevron_s" translatable="false">%1$s \u203A %2$s</string> -->
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager__establishing_signal_call">Ag cruthú glao Signal</string>
@@ -2234,7 +2225,7 @@
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">An bhfuil fonn ort páirt a ghlacadh sa ghrúpa seo? Ní bheidh a fhios acu go bhfaca tú a gcuid teachtaireachtaí go dtí go nglacfaidh tú leis.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Bain an bac den ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní bhfaighidh tú aon teachtaireachtaí go dtí go mbainfidh tú an bac de.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Amharc</string>
     <string name="MessageRequestProfileView_member_of_one_group">Ball de %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Ball de %1$s agus %2$s</string>
@@ -2370,7 +2361,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Cruthaigh d\'UAP</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Níl aon deiseanna fágtha agat an UAP a thomhas, ach beidh tú fós in ann teacht ar do chuntas Signal trí UAP nua a chruthú. Mar gheall ar chúrsaí slándála agus príobháideachais, athshocrófar do chuntas gan aon fhaisnéis phearsanta ná socruithe.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Cruthaigh UAP Nua</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Rabhadh</string>
@@ -2888,17 +2879,22 @@
     <string name="SearchFragment_no_results_empty">Gan toradh</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Cuir leis na teagmhálacha</string>
     <string name="SharedContactView_invite_to_signal">Tabhair cuireadh chuig Signal</string>
-    <string name="SharedContactView_message">Teachtaireacht Signal</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -3067,6 +3063,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Féach ar an mbeart</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Sábháil</string>
@@ -3084,29 +3090,29 @@
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Nuair a chliceálann tú Cuir Isteach, postálfar do loga ar líne go ceann 30 lá ag URL uathúil neamhfhoilsithe. Is féidir leat é a shábháil go logánta ar dtús.</string>
     <!-- Debug log level names to filter by levels. -->
-    <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string>
-    <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string>
-    <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string>
-    <string name="SubmitDebugLogActivity_info" translatable="false">Info</string>
-    <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string>
-    <string name="SubmitDebugLogActivity_error" translatable="false">Error</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
     <!-- Title of dialog shown when debug log prefix generation is unusually slow -->
-    <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_title" translatable="false">Slow log generation</string> -->
     <!-- Body of dialog shown when debug log prefix generation is unusually slow. %1$d is duration in seconds. -->
-    <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_slow_log_message" translatable="false">Generating the debug log header took %1$d seconds. We should figure out what\&apos;s slowing things down.</string> -->
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Scagaire:</string>
     <string name="SupportEmailUtil_device_info">Faisnéis faoin ngléas:</string>
     <string name="SupportEmailUtil_android_version">Leagan Android:</string>
-    <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string>
-    <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Glas clárúcháin:</string>
-    <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
-    <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string>
-    <string name="SupportEmailUtil_registered" translatable="false">Registered:</string>
-    <string name="SupportEmailUtil_backups" translatable="false">Backups:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_challenge_received" translatable="false">Challenge Received:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_registered" translatable="false">Registered:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_backups" translatable="false">Backups:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Nuashonraíodh an bhaicle</string>
@@ -3259,10 +3265,10 @@
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Tuilleadh faisnéise</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MuteDialog -->
     <!-- Title for a dialog where a user chooses how long they\'d like to mute notifications for -->
@@ -3312,6 +3318,7 @@
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">Tuilleadh Eolais</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3477,10 +3484,6 @@
     <string name="SearchToolbar_search">Cuardaigh</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Cuardaigh comhráite neamhléite</string>
-
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">Dún</string>
-    <string name="Material3SearchToolbar__clear">Glan</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Aicearra neamhbhailí</string>
@@ -3817,6 +3820,10 @@
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">Múch</string>
 
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
+
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Athrú ar Uimhir Shábháilteachta</string>
     <string name="safety_number_change_dialog__accept">Glac leis</string>
@@ -3984,7 +3991,7 @@
     <string name="EditProfileFragment__edit_group">Cuir an Grúpa in Eagar</string>
     <string name="EditProfileFragment__group_name">Ainm an Ghrúpa</string>
     <string name="EditProfileFragment__group_description">Group Description</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Nuashonraigh Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
@@ -4031,7 +4038,7 @@
     <string name="verify_display_fragment__encryption_unavailable">Níl an t-uathfhíorú ar fáil</string>
     <!-- Caption text explaining more about automatic verification   -->
     <string name="verify_display_fragment__auto_verify_not_available">Níl an t-uathfhíorú ar fáil i gcás gach comhrá.</string>
-    <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__link" translatable="false">https://support.signal.org/hc/articles/10223569377562</string> -->
 
     <!-- Bottom sheet title when encryption is auto-verified -->
     <string name="EncryptionVerifiedSheet__title_success">Uathfhíoraíodh an criptiú don chomhrá seo</string>
@@ -4065,7 +4072,7 @@
     <string name="SelfVerificationFailureSheet__submit">Seol isteach é</string>
     <!-- Email subject line when submitting logs following a verification failure -->
     <string name="SelfVerificationFailureSheet__email_subject">Theip ar Uathfhíorú Eochracha</string>
-    <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string>
+  <!-- Removed by excludeNonTranslatables <string name="SelfVerificationFailureSheet__email_filter" translatable="false">AutomaticKeyVerificationFailure</string> -->
     <!-- Link to learn more about debug logs -->
     <string name="SelfVerificationFailureSheet__learn_more">Tuilleadh faisnéise</string>
 
@@ -4114,17 +4121,17 @@
     <string name="HelpFragment__whats_this">Cad é seo?</string>
     <string name="HelpFragment__how_do_you_feel">Cén chaoi a bhfuil tú? (Roghnach)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Inis dúinn cén fáth a bhfuil teagmháil a dhéanamh agat linn.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Faisnéis Thacaíochta</string>
     <string name="HelpFragment__signal_android_support_request">Iarratas ar Thacaíocht Android Signal</string>
-    <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Níorbh fhéidir na logaí a uaslódáil</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Mínigh go mion cad atá cearr le do thoil ionas gur féidir linn an fhadhb a thuiscint.</string>
     <!-- Error shown under the "tell us what\'s going on" field when the entered description is shorter than the required minimum length. The placeholder is the minimum number of characters. -->
@@ -4210,14 +4217,6 @@
         <item quantity="other">%1$du</item>
     </plurals>
 
-    <string name="preferences__pref_use_address_book_photos">Is fearr grianghraif sa leabhar seoltaí</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Is fearr grianghraif na dteagmhálaithe ó do leabhar seoltaí agus iad ar fáil</string>
-    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh comhráite balbhaithe sa chartlann</string>
-    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
-    <string name="preferences__generate_link_previews">Gin réamhamharcanna ar naisc</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Aisghabh réamhamharcanna ar naisc díreach ó láithreáin gréasáin do na teachtaireachtaí a sheolann tú.</string>
     <string name="preferences__change_passphrase">Athraigh an nath faire</string>
     <string name="preferences__change_your_passphrase">Athraigh do nath faire</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -4320,7 +4319,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Má múchtar leideoirí clóscríobh, ní bheifear in ann leideoirí clóscríobh ó daoine eile a fheiscint.</string>
     <string name="preferences__request_keyboard_to_disable">Iarr ar mhéarchlár foghlaim phearsantaithe a dhíchumasú.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Ní ráthaíocht é an socrú seo, agus seans go ndéanfaidh do mhéarchlár neamhaird air.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Nuair atá feidhm á baint as sonraí soghluaiste</string>
     <string name="preferences_chats__when_using_wifi">Nuair atá feidhm á baint as Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Nuair atá tú ag fánaíocht</string>
@@ -4330,6 +4329,14 @@
     <string name="preferences_storage__videos">Físeáin</string>
     <string name="preferences_storage__files">Comhaid</string>
     <string name="preferences_storage__audio">Fuaim</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">Athbhreithnigh stóras</string>
     <string name="preferences_storage__delete_older_messages">Scrios teachtaireachtaí níos sine?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -4367,13 +4374,10 @@
     </plurals>
 
     <string name="preferences_storage__custom">Saincheaptha</string>
-    <string name="preferences_advanced__use_system_emoji">Bain feidhm as emoji an chórais</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Seol gach glao trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
     <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Íocaíochtaí</string>
-    <string name="preferences_chats__chats">Comhráite</string>
-    <string name="preferences_app_updates__title">Cuir nuashonruithe leis</string>
     <string name="preferences_data_and_storage__manage_storage">Bainistigh stóras</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Bain feidhm as níos lú sonraí i gcomhair glaonna</string>
     <string name="preferences_data_and_storage__never">Choíche</string>
@@ -4446,9 +4450,9 @@
 
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -4492,14 +4496,14 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
     <string name="PaymentsHomeFragment__payment_failed">Payment Failed</string>
     <string name="PaymentsHomeFragment__details">Mionsonraí</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Is féidir leat Signal a úsáid chun MobileCoin a sheoladh agus a fháil. Tá gach íocaíocht faoi réir Téarmaí Úsáide MobileCoin agus MobileCoin Wallet. Seans go mbeidh roinnt fadhbanna agat agus nach mbeidh tú in ann íocaíochtaí nó iarmhéideanna, a d\'fhéadfá a chailleadh, a fháil ar ais. </string>
     <string name="PaymentsHomeFragment__activate">Cuir i ngníomh é</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Amharc ar théarmaí MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">An bhfuil fonn ort Glas Íocaíochtaí a chasadh air le haghaidh íocaíochtaí amach anseo?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -4544,7 +4548,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Cóipeáil</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Mionsonraí</string>
@@ -4565,8 +4569,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin Cleanup Fee</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin cleanup fee” is charged when the coins in your possession can not be combined to complete a transaction. Cleanup will allow you to continue sending payments.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Níl sonraí breise ar fáil faoin idirbheart seo</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Sent Payment</string>
     <string name="PaymentsDetailsFragment__received_payment">Received Payment</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Íocaíocht críochnaithe %1$s</string>
@@ -4609,7 +4613,7 @@
     <string name="CreatePaymentFragment__backspace">Cúlspás</string>
     <string name="CreatePaymentFragment__add_note">Add Note</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversions are just estimates and may not be accurate.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Nóta</string>
@@ -4690,9 +4694,9 @@
     <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Scrios</string>
     <!-- Button to star a message to save it for later; Action item -->
-    <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_star" translatable="false">Star (Labs)</string> -->
     <!-- Button to remove the star from a message; Action item -->
-    <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_selection__menu_unstar" translatable="false">Unstar (Labs)</string> -->
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Cuir ar aghaidh</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -4763,7 +4767,7 @@
     <string name="conversation__menu_view_all_media">Gach meán</string>
     <string name="conversation__menu_conversation_settings">Socruithe an comhrá</string>
     <string name="conversation__menu_add_shortcut">Cuir leis an scáileán baile é</string>
-    <string name="conversation__menu_export" translatable="false">Export (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_export" translatable="false">Export (Labs)</string> -->
     <string name="conversation__menu_create_bubble">Cruthaigh bolgán</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Formáidigh</string>
@@ -4774,11 +4778,11 @@
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Cuir lena teagmhálaithe</string>
 
     <!-- conversation export -->
-    <string name="conversation_export__exporting" translatable="false">Exporting chat…</string>
-    <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string>
-    <string name="conversation_export__export_failed" translatable="false">Export failed</string>
-    <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string>
-    <string name="conversation_export__preparing" translatable="false">Preparing export…</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__exporting" translatable="false">Exporting chat…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_complete" translatable="false">Chat exported successfully</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_failed" translatable="false">Export failed</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__export_cancelled" translatable="false">Export cancelled</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_export__preparing" translatable="false">Preparing export…</string> -->
 
     <!-- conversation scheduled messages bar -->
 
@@ -4805,7 +4809,7 @@
     <string name="text_secure_normal__menu_new_group">Baicle nua</string>
     <string name="text_secure_normal__menu_settings">Socruithe</string>
     <!-- Menu item in the main conversation list to view all starred messages -->
-    <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__starred_messages" translatable="false">Starred messages (Labs)</string> -->
     <string name="text_secure_normal__menu_clear_passphrase">Glasáil</string>
     <string name="text_secure_normal__mark_all_as_read">Rianaigh uile mar léite</string>
     <string name="text_secure_normal__invite_friends">Tabhair cuirí do chairde</string>
@@ -4850,7 +4854,7 @@
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Cruthaigh UAP alfa-uimhriúil</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Cruthaigh UAP uimhriúil</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -4888,7 +4892,7 @@
     <string name="KbsSplashFragment__introducing_pins">Seo dhuit UAPanna</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Coinnítear faisnéis a stóráiltear le Signal criptithe le UAP ionas nach mbeidh ach tusa in ann í a fheiceáil. Aischuirfear do phróifíl, socruithe agus teagmhálaithe tar éis athshuiteáil duit. Ní bheidh d\'UAP de dhíth ort chun an aip a oscailt.</string>
     <string name="KbsSplashFragment__learn_more">Tuilleadh Eolais</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Glas Clárúcháin == UAP</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Tugtar UAP ar Ghlas Clárúcháin anois, agus déanann sí níos mó. Nuashonraigh í anois.</string>
     <string name="KbsSplashFragment__update_pin">Nuashonraigh UAP</string>
@@ -4909,7 +4913,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Glasáladh do chuntas chun do phríobháideachas agus slándáil a chosaint. Tar éis %1$d lá neamhghníomhaíochta i do chuntas beidh tú in ann an uimhir ghutháin seo a athchlárú gan do UAP a bheith de dhíth ort. Scriosfar an t-ábhar ar fad atá ann.</string>
     <string name="AccountLockedFragment__next">Ar Aghaidh</string>
     <string name="AccountLockedFragment__learn_more">Tuilleadh Eolais</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Cuir isteach d\'UAP</string>
@@ -5480,9 +5484,9 @@
     <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
     <string name="payment_info_card_update_pin">Nuashonraigh UAP</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Díchumasaigh Sparán</string>
@@ -5494,7 +5498,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deactivate Without Transferring?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Fanfaidh d\'iarmhéid i do sparán atá nasctha le Signal má roghnaíonn tú íocaíochtaí a athghníomhachtú.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Tharla earráid le díghníomhachtú an sparáin.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
@@ -5533,8 +5537,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frása aisghabhála neamhbhailí</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Cinntigh go bhfuil an líon focal seo curtha isteach: %1$d agus triail arís.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Ar Aghaidh</string>
@@ -5734,59 +5738,6 @@
     <string name="ChangeNumberLockActivity__leave">Fág</string>
     <string name="ChangeNumberLockActivity__submit_debug_log">Seol an Logchomhad Dífhabhtaithe</string>
 
-    <!-- ChatsSettingsFragment -->
-    <string name="ChatsSettingsFragment__keyboard">An méarchlár</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Seol leis an eochair iontrála</string>
-    <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Fillteáin comhráite</string>
-    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Cuir fillteán comhráite leis</string>
-    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Cuir le fillteáin nó cuir in eagar iad</string>
-    <!-- Text describing the number of folders you have -->
-    <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d fhillteán</item>
-        <item quantity="two">%1$d fhillteán</item>
-        <item quantity="few">%1$d fhillteán</item>
-        <item quantity="many">%1$d bhfillteán</item>
-        <item quantity="other">%1$d fillteán</item>
-    </plurals>
-
-    <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Easpórtáil an stair comhráite</string>
-    <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Easpórtáil cóip JSON mheaisín-inléite de do chomhráite uile. Ní easpórtálfar teachtaireachtaí sealadacha.</string>
-    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Díghlasáil le stair comhráite a easpórtáil</string>
-    <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Theip ar Fhíordheimhniú</string>
-
-    <!-- ChatExportDialogs -->
-    <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Easpórtáil á cur ar ceal…</string>
-    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Easpórtáil an stair comhráite?</string>
-    <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BÍ CÚRAMACH!</string>
-    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">NÁ comhroinn an comhad seo le haon duine. Sábhálfar do stair comhráite chuig do ghléas agus beidh aipeanna eile in ann í a rochtain ag brath ar cheadanna do ghléis. Beidh méid an chomhaid níos mó mar thoradh ar easpórtáil le meáin.</string>
-    <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Easpórtáil le meáin</string>
-    <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Easpórtáil gan mheáin</string>
-    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Roghnaigh fillteán</string>
-    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Roghnaigh fillteán i stóras do ghléis, áit a stórálfar do stair comhráite.</string>
-    <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Roghnaigh fillteán</string>
-    <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Easpórtáil an chomhrá críochnaithe</string>
-    <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BÍ CÚRAMACH</string>
-    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">maidir leis an áit a stórálann tú do chomhad easpórtála comhráite; ná comhroinn le haon duine é. Is féidir le haipeanna eile ar do ghléas é a rochtain ag brath ar cheadanna do ghléis.</string>
-
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">Cruthaigh fillteáin don teaghlach, do chairde, don obair agus go leor eile</string>
@@ -5985,7 +5936,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show Status Icon</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Taispeáin deilbhín i sonraí na teachtaireachta nuair a seachadadh iad le seoltóir séalaithe.</string>
 
@@ -6027,6 +5978,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media Quality</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent Media Quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
@@ -6141,8 +6094,8 @@
     <string name="ConversationSettingsFragment__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Fuaimeanna &amp; Fógraí</string>
     <!-- Label for the starred messages option in conversation settings -->
-    <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__starred_messages" translatable="false">Starred messages</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Faisnéis teagmhála gutháin</string>
     <string name="ConversationSettingsFragment__view_safety_number">Amharc ar an Uimhir Sábháilteachta</string>
     <string name="ConversationSettingsFragment__block">Cuir bac</string>
@@ -6897,39 +6850,39 @@
 
     <!-- StoryArchive -->
     <!-- Title for the story archive screen -->
-    <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__story_archive" translatable="false">Story archive (Labs)</string> -->
     <!-- Section header in story settings -->
-    <string name="StoryArchive__archive" translatable="false">Archive</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__archive" translatable="false">Archive</string> -->
     <!-- Label for switch to enable story archiving -->
-    <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_in_archive" translatable="false">Keep stories in archive</string> -->
     <!-- Description for the archive toggle -->
-    <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__save_stories_after_they_expire" translatable="false">Save your sent stories after they leave the active feed.</string> -->
     <!-- Label for archive duration preference -->
-    <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__keep_stories_for" translatable="false">Keep stories for</string> -->
     <!-- Archive duration option: forever -->
-    <string name="StoryArchive__forever" translatable="false">Forever</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__forever" translatable="false">Forever</string> -->
     <!-- Archive duration option: 1 year -->
-    <string name="StoryArchive__1_year" translatable="false">1 year</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__1_year" translatable="false">1 year</string> -->
     <!-- Archive duration option: 6 months -->
-    <string name="StoryArchive__6_months" translatable="false">6 months</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__6_months" translatable="false">6 months</string> -->
     <!-- Archive duration option: 30 days -->
-    <string name="StoryArchive__30_days" translatable="false">30 days</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__30_days" translatable="false">30 days</string> -->
     <!-- Empty state title when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories" translatable="false">No archived stories</string> -->
     <!-- Empty state message when no archived stories exist -->
-    <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__no_archived_stories_message" translatable="false">Turn on \"Save Stories to Archive\" in story settings to auto-archive your stories.</string> -->
     <!-- Empty state button to navigate to story settings -->
-    <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__go_to_settings" translatable="false">Go to settings</string> -->
     <!-- Label for sort order menu -->
-    <string name="StoryArchive__sort_by" translatable="false">Sort by</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__sort_by" translatable="false">Sort by</string> -->
     <!-- Sort order option: newest first -->
-    <string name="StoryArchive__newest" translatable="false">Newest</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__newest" translatable="false">Newest</string> -->
     <!-- Sort order option: oldest first -->
-    <string name="StoryArchive__oldest" translatable="false">Oldest</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__oldest" translatable="false">Oldest</string> -->
     <!-- Delete action in story archive multi-select bottom bar -->
-    <string name="StoryArchive__delete" translatable="false">Delete</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__delete" translatable="false">Delete</string> -->
     <!-- Content description for selecting a story in multi-select mode -->
-    <string name="StoryArchive__select_story" translatable="false">Select story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoryArchive__select_story" translatable="false">Select story</string> -->
     <!-- Confirmation dialog body when deleting stories from archive -->
     <plurals name="StoryArchive__delete_n_stories">
         <item quantity="one">Scrios %1$d scéal? Ní féidir é seo a chealú.</item>
@@ -7504,7 +7457,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Feabhsaigh iontaofacht na gcúltacaí</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Tabhair an cead \"aláraim\" le cúltacaí laethúla uathoibríocha a fheabhsú.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8886,22 +8839,6 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">Scan cód QR</string>
 
-    <!-- BackupCreationProgressRow -->
-    <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Cúltaca á phróiseáil…</string>
-    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Cúltaca á ullmhú…</string>
-    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Á thabhairt chun críche…</string>
-    <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Teachtaireachtaí á bpróiseáil…</string>
-    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Teachtaireachtaí á bpróiseáil: %1$s as %2$s (%3$d%%)</string>
-    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Meáin á n-uaslódáil: %1$d%%</string>
-    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Meáin á n-easpórtáil: %1$d%%</string>
-
     <!-- LocalArchiveJob -->
     <!-- Notification title shown while media attachments are being exported during a local backup -->
     <string name="LocalArchiveJob__exporting_media">Meáin á n-easpórtáil…</string>
@@ -9024,8 +8961,6 @@
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Macasamhlaigh chuig an ghearrthaisce</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Sábháil chuig an mbainisteoir pasfhocal</string>
-    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Sábháil chuig an mbainisteoir pasfhocal?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Ná stóráil d\'eochair athshlánaithe ach i mbainisteoir pasfhocal a bhfuil muinín agat as a shláine. Ní thugann Signal moladh ar bhainisteoir pasfhocal atá ceart duit.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
@@ -9192,7 +9127,7 @@
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Earráid líonra le heaspórtáil Chúltaca Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Cuir isteach loga dífhabhtaithe?</string>
@@ -9265,26 +9200,26 @@
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Seachfhreastalaí</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
-    <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string>
+  <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 
     <!-- SearchFilterBottomSheet: Title -->
-    <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__filter_search" translatable="false">Filter search</string> -->
     <!-- SearchFilterBottomSheet: Start date label -->
-    <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__start_date" translatable="false">Start date</string> -->
     <!-- SearchFilterBottomSheet: End date label -->
-    <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__end_date" translatable="false">End date</string> -->
     <!-- SearchFilterBottomSheet: Author label -->
-    <string name="SearchFilterBottomSheet__author" translatable="false">Author</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__author" translatable="false">Author</string> -->
     <!-- SearchFilterBottomSheet: Placeholder for unset date -->
-    <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__not_set" translatable="false">Not set</string> -->
     <!-- SearchFilterBottomSheet: Placeholder for unset author -->
-    <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__anyone" translatable="false">Anyone</string> -->
     <!-- SearchFilterBottomSheet: Apply button -->
-    <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__apply" translatable="false">Apply</string> -->
     <!-- SearchFilterBottomSheet: Clear button -->
-    <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string> -->
     <!-- SearchFilterBottomSheet: Select date dialog title -->
-    <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string>
+  <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string> -->
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">Téigh suas</string>

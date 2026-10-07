@@ -2623,7 +2623,7 @@
     <string name="SharedContactView_message_button">Message</string>
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">Add to group</string>
-    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person's name, %2$s is the group name -->
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
     <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
@@ -2778,13 +2778,13 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">View pack</string>
-    <!-- Snackbar shown after a sticker was successfully added to the user's favorite stickers -->
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
     <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
     <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
-    <!-- Snackbar shown after a sticker was successfully removed from the user's favorite stickers -->
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
     <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
     <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>

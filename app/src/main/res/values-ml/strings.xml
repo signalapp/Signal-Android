@@ -7,7 +7,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
@@ -412,6 +411,8 @@
     <string name="ConversationItem_edited_absolute_timestamp_footer">%1$s-ന് എഡിറ്റ് ചെയ്തത്</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">കോളിൽ ചേരുക</string>
+    <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
+    <string name="ConversationItem__view_pack">View pack</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">അറ്റാച്ച്മെന്റ് ചേർക്കുക</string>
@@ -438,7 +439,6 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ഈ ഉപകരണം ഡയൽ പ്രവർത്തനങ്ങളെ പിന്തുണയ്ക്കുന്നതായി കാണുന്നില്ല.</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">സന്ദേശം അയയ്ക്കുക</string>
-    <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal-ലേക്ക് മാറാം %1$s</string>
     <string name="ConversationActivity_specify_recipient">ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
     <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിലവിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാനാകില്ല.</string>
@@ -1009,10 +1009,6 @@
     <string name="LinkDeviceFragment__unlock_to_link">ഒരു ഉപകരണം ലിങ്ക് ചെയ്യാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">ലിങ്ക് ചെയ്യുന്നതിനുമുമ്പ്, ഇത് നിങ്ങളാണെന്ന് സ്ഥിരീകരിക്കുക</string>
-    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">സ്ഥിരീകരിക്കാൻ തുടരുക ടാപ്പുചെയ്‌ത് നിങ്ങളുടെ ഫോണിൻ്റെ ലോക്ക് നൽകുക. നിങ്ങളുടെ Signal PIN നൽകരുത്.</string>
-    <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">തുടരുക</string>
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
@@ -1267,6 +1263,10 @@
         <item quantity="one">%1$d അംഗം</item>
         <item quantity="other">%1$d അംഗങ്ങൾ</item>
     </plurals>
+    <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <!-- Title for sticker pack link previews when the pack has no title or author -->
+    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">അറിയിപ്പുകൾ വൈകുന്നതായി ഞങ്ങളുടെ ശ്രദ്ധയിൽപ്പെട്ടു. ഡീബഗ് ലോഗ് സമർപ്പിക്കണോ?</string>
@@ -1556,15 +1556,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ഈ പ്രവർത്തനം പഴയപടിയാക്കാനാകില്ല.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">കളയുക</string>
-
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">പങ്കിടുക</string>
-
-    <string name="InviteActivity_cancel">റദ്ദാക്കുക</string>
-    <string name="InviteActivity_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
-    <string name="InviteActivity_lets_switch_to_signal">Signal ലേക്ക് മാറാം: %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">നിങ്ങൾക്ക് പങ്കിടാൻ അപ്ലിക്കേഷനുകളൊന്നുമില്ലെന്ന് തോന്നുന്നു.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
@@ -2625,7 +2616,12 @@
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">കോൺടാക്റ്റുകളിൽ ചേർക്കൂ</string>
     <string name="SharedContactView_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
-    <string name="SharedContactView_message">Signal സന്ദേശം</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2779,6 +2775,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">പായ്ക്ക് കാണുക</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">സംരക്ഷിക്കുക</string>
@@ -3021,6 +3027,7 @@
     <string name="MediaPreviewFragment_media_delete_error">സന്ദേശം ഇല്ലാതാക്കുന്നതിൽ പിശക്, എന്നിരുന്നാലും സന്ദേശം നിലനിന്നേക്കും</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">കൂടുതൽ വായിക്കുക</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3168,10 +3175,6 @@
     <string name="SearchToolbar_search">തിരയുക</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ തിരയുക</string>
-
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">അടയ്ക്കുക</string>
-    <string name="Material3SearchToolbar__clear">മായ്‌ക്കുക</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">കുറുക്കുവഴി അസാധുവാണ്</string>
@@ -3489,6 +3492,10 @@
     <string name="BubbleOptOutTooltip__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">ഓഫ് ആക്കുക</string>
+
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">സുരക്ഷാ നമ്പർ മാറ്റങ്ങൾ</string>
@@ -3856,14 +3863,6 @@
         <item quantity="other">%1$dh</item>
     </plurals>
 
-    <string name="preferences__pref_use_address_book_photos">അഡ്രസ് ബുക്കിലെ ഫോട്ടോകൾക്ക് മുൻഗണന നൽകുക</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ലഭ്യമാണെങ്കിൽ നിങ്ങളുടെ അഡ്രസ് ബുക്കിൽ നിന്നുള്ള കോൺടാക്റ്റ് ഫോട്ടോകൾക്ക് മുൻഗണന നൽകുക</string>
-    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">മ്യൂട്ട് ചെയ്ത ചാറ്റുകൾ ആർക്കൈവായി വയ്ക്കുക</string>
-    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ആർക്കൈവിലുള്ളള മ്യൂട്ട് ചെയ്ത ചാറ്റുകൾ പുതിയ സന്ദേശം വരുമ്പോൾ ആർക്കൈവായി തന്നെ തുടരും.</string>
-    <string name="preferences__generate_link_previews">ലിങ്ക് പ്രിവ്യൂകൾ സൃഷ്ടിക്കുക</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശങ്ങൾക്കായി വെബ്‌സൈറ്റുകളിൽ നിന്ന് ലിങ്ക് പ്രിവ്യൂകൾ നേരിട്ട് വീണ്ടെടുക്കുക.</string>
     <string name="preferences__change_passphrase">രഹസ്യവാചകം മാറ്റുക</string>
     <string name="preferences__change_your_passphrase">നിങ്ങളുടെ രഹസ്യവാചകം മാറ്റുക</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -3976,6 +3975,14 @@
     <string name="preferences_storage__videos">വീഡിയോ</string>
     <string name="preferences_storage__files">ഫയലുകൾ</string>
     <string name="preferences_storage__audio">ഓഡിയോ</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">സ്റ്റോറജ് അവലോകനം ചെയ്യുക</string>
     <string name="preferences_storage__delete_older_messages">പഴയ സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -4007,13 +4014,10 @@
     </plurals>
 
     <string name="preferences_storage__custom">ഇഷ്‌ടാനുസൃതം</string>
-    <string name="preferences_advanced__use_system_emoji">സിസ്റ്റം ഇമോജി ഉപയോഗിക്കുക</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">നിങ്ങളുടെ കോൺ‌ടാക്റ്റിലേക്ക് നിങ്ങളുടെ ഐ‌പി വിലാസം വെളിപ്പെടുത്തുന്നത് ഒഴിവാക്കാൻ സിഗ്നൽ സെർവർ വഴി എല്ലാ കോളുകളും റിലേ ചെയ്യുക. പ്രവർത്തനക്ഷമമാക്കുന്നത് കോൾ നിലവാരം കുറയ്ക്കും.</string>
     <string name="preferences_advanced__always_relay_calls">എല്ലായ്പ്പോഴും കോളുകൾ റിലേ ചെയ്യുക</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">പേയ്മെന്റുകൾ</string>
-    <string name="preferences_chats__chats">ചാറ്റുകൾ</string>
-    <string name="preferences_app_updates__title">അപ്ലിക്കേഷൻ അപ്‌ഡേറ്റുകൾ</string>
     <string name="preferences_data_and_storage__manage_storage">സ്റ്റോറേജ് ക്രമീകരിക്കുക</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
     <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
@@ -5311,56 +5315,6 @@
     <string name="ChangeNumberLockActivity__leave">വിട്ട് പോകുക</string>
     <string name="ChangeNumberLockActivity__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
 
-    <!-- ChatsSettingsFragment -->
-    <string name="ChatsSettingsFragment__keyboard">കീബോർഡ്</string>
-    <string name="ChatsSettingsFragment__send_with_enter">എൻ്റർ ചെയ്ത് അയയ്ക്കുക</string>
-    <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">ചാറ്റ് ഫോൾഡറുകൾ</string>
-    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">ഒരു ചാറ്റ് ഫോൾഡർ ചേർക്കുക</string>
-    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">ഫോൾഡറുകൾ ചേർക്കുക അല്ലെങ്കിൽ എഡിറ്റ് ചെയ്യുക</string>
-    <!-- Text describing the number of folders you have -->
-    <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d ഫോൾഡർ</item>
-        <item quantity="other">%1$d ഫോൾഡറുകൾ</item>
-    </plurals>
-
-    <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">ചാറ്റ് ചരിത്രം എക്സ്പോർട്ട് ചെയ്യുക</string>
-    <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">നിങ്ങളുടെ എല്ലാ ചാറ്റുകളുടെയും ഒരു മെഷീൻ-റീഡബിൾ JSON പകർപ്പ് എക്സ്പോർട്ട് ചെയ്യുക. അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യില്ല.</string>
-    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ചാറ്റ് ചരിത്രം എക്‌സ്‌പോർട്ട് ചെയ്യാൻ അൺലോക്ക് ചെയ്യുക</string>
-    <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">ഓതന്റിക്കേഷൻ പരാജയപ്പെട്ടു</string>
-
-    <!-- ChatExportDialogs -->
-    <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">എക്‌സ്‌പോർട്ട് റദ്ദാക്കുന്നു…</string>
-    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">ചാറ്റ് ചരിത്രം എക്സ്പോർട്ട് ചെയ്യണോ?</string>
-    <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">ശ്രദ്ധാലുവായിരിക്കുക!</string>
-    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">ഈ ഫയൽ ആരുമായും പങ്കിടരുത്. നിങ്ങളുടെ ചാറ്റ് ചരിത്രം ഉപകരണത്തിൽ സംരക്ഷിക്കപ്പെടും, നിങ്ങളുടെ ഉപകരണത്തിലെ അനുമതികൾ അനുസരിച്ച് മറ്റ് ആപ്പുകൾക്കും ഇത് ലഭ്യമായേക്കാം. മീഡിയ സഹിതം എക്‌സ്‌പോർട്ട് ചെയ്യുന്നത് ഫയൽ വലുപ്പം കൂടാൻ കാരണമാകും.</string>
-    <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">മീഡിയ സഹിതം എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">മീഡിയ ഇല്ലാതെ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
-    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">നിങ്ങളുടെ ഉപകരണത്തിന്റെ സംഭരണത്തിൽ നിന്ന് നിങ്ങളുടെ ചാറ്റ് ചരിത്രം സംഭരിക്കുന്ന ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക.</string>
-    <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
-    <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">ചാറ്റ് എക്‌സ്‌പോർട്ട് പൂർത്തിയായി</string>
-    <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">ശ്രദ്ധാലുവായിരിക്കുക</string>
-    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">നിങ്ങളുടെ ചാറ്റ് എക്‌സ്‌പോർട്ട് ഫയൽ എവിടെയാണ് സൂക്ഷിക്കുന്നതെന്ന് ശ്രദ്ധിക്കുക, അത് മറ്റാരുമായും പങ്കിടരുത്. നിങ്ങളുടെ ഉപകരണത്തിലെ അനുമതികൾ അനുസരിച്ച് മറ്റ് ആപ്പുകൾക്കും ഇത് ലഭ്യമായേക്കാം.</string>
-
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">കുടുംബത്തിനും സുഹൃത്തുക്കൾക്കും ജോലിക്കും മറ്റും ഫോൾഡറുകൾ സൃഷ്‌ടിക്കുക</string>
@@ -5589,6 +5543,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">മീഡിയ നിലവാരം</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">അയയ്ക്കുന്ന മീഡിയയുടെ നിലവാരം</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ഉയർന്ന നിലവാരമുള്ള മീഡിയ അയയ്ക്കുന്നത് കൂടുതൽ ഡാറ്റ ഉപയോഗിക്കും.</string>
@@ -6979,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">ബാക്കപ്പിന്റെ വിശ്വാസ്യത മെച്ചപ്പെടുത്തുക</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">പ്രതിദിന ഓട്ടോമാറ്റിക് ബാക്കപ്പുകൾ മെച്ചപ്പെടുത്തുന്നതിന് \"അലാറം\" അനുമതി അനുവദിക്കുക.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8310,22 +8266,6 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
 
-    <!-- BackupCreationProgressRow -->
-    <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">ബാക്കപ്പ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
-    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">ബാക്കപ്പ് തയ്യാറാക്കുന്നു…</string>
-    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">അന്തിമമാക്കുന്നു…</string>
-    <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">സന്ദേശങ്ങൾ പ്രോസസ്സ് ചെയ്യുന്നു…</string>
-    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">സന്ദേശങ്ങൾ പ്രോസസ്സ് ചെയ്യുന്നു: %1$s / %2$s (%3$d%%)</string>
-    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">മീഡിയ അപ്‌ലോഡ് ചെയ്യുന്നു: %1$d</string>
-    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">മീഡിയ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു: %1$d</string>
-
     <!-- LocalArchiveJob -->
     <!-- Notification title shown while media attachments are being exported during a local backup -->
     <string name="LocalArchiveJob__exporting_media">മീഡിയ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</string>
@@ -8448,8 +8388,6 @@
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കുക</string>
-    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കണോ?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">സുരക്ഷിതമാണെന്ന് നിങ്ങൾ വിശ്വസിക്കുന്ന ഒരു പാസ്‌വേഡ് മാനേജറിൽ മാത്രം നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ സൂക്ഷിക്കുക. ഏത് പാസ്‌വേഡ് മാനേജറാണ് നിങ്ങൾക്ക് അനുയോജ്യമെന്ന് Signal ശുപാർശ ചെയ്യുന്നില്ല.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->

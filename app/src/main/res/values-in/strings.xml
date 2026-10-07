@@ -7,7 +7,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="remote_backup_support_url" translatable="false">https://support.signal.org/hc/articles/9708267671322</string> -->
@@ -410,6 +409,8 @@
     <string name="ConversationItem_edited_absolute_timestamp_footer">Diedit %1$s</string>
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Gabung ke panggilan</string>
+    <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
+    <string name="ConversationItem__view_pack">View pack</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
@@ -434,7 +435,6 @@
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Perangkat ini sepertinya tidak mendukung Anda untuk melakukan panggilan.</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Kirim pesan</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
     <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Anda tidak dapat mengirim pesan ke grup ini karena Anda bukan anggota.</string>
@@ -982,10 +982,6 @@
     <string name="LinkDeviceFragment__unlock_to_link">Buka kunci untuk menautkan perangkat</string>
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">Sebelum menghubungkan, konfirmasi diri Anda</string>
-    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Ketuk lanjutkan dan masukkan kunci ponsel Anda untuk mengonfirmasi. Jangan masukkan PIN Signal Anda.</string>
-    <!-- Button that dismisses the bottom sheet -->
-    <string name="LinkDeviceFragment__continue">Lanjutkan</string>
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">Hubungi Tim Dukungan</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
@@ -1228,6 +1224,10 @@
     <plurals name="LinkPreviewRepository_d_members">
         <item quantity="other">%1$d anggota</item>
     </plurals>
+    <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <!-- Title for sticker pack link previews when the pack has no title or author -->
+    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Kami melihat notifikasi tertunda. Kirim catatan debug?</string>
@@ -1509,15 +1509,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Tindakan ini tidak dapat diurungkan.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Hapus</string>
-
-    <!-- InviteActivity -->
-    <string name="InviteActivity_share">Berbagi</string>
-
-    <string name="InviteActivity_cancel">Batal</string>
-    <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
-    <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal: %1$s</string>
-    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Selengkapnya</string>
@@ -2534,7 +2525,12 @@
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Tambahkan ke Kontak</string>
     <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
-    <string name="SharedContactView_message">Pesan Signal</string>
+    <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
+    <string name="SharedContactView_message_button">Message</string>
+    <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
+    <string name="SharedContactView_add_to_group">Add to group</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
+    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2683,6 +2679,16 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s . %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Lihat paket</string>
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
+    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
+    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <!-- Snackbar shown when we are unable to add or remove a sticker. -->
+    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
+    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Simpan</string>
@@ -2924,6 +2930,7 @@
     <string name="MediaPreviewFragment_media_delete_error">Eror Saat Menghapus Pesan, Pesan Mungkin Masih Ada</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">Baca Lebih Lanjut</string>
+    <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3065,10 +3072,6 @@
     <string name="SearchToolbar_search">Cari</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Cari obrolan yang belum dibaca</string>
-
-    <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">Tutup</string>
-    <string name="Material3SearchToolbar__clear">Bersihkan</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Pintasan tidak valid</string>
@@ -3380,6 +3383,10 @@
     <string name="BubbleOptOutTooltip__not_now">Nanti saja</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
     <string name="BubbleOptOutTooltip__turn_off">Matikan</string>
+
+    <!-- DefaultBanner -->
+    <!-- Accessibility content description for X button on banners -->
+    <string name="DefaultBanner__cancel">Cancel</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Nomor Keamanan Berubah</string>
@@ -3738,14 +3745,6 @@
         <item quantity="other">%1$djam</item>
     </plurals>
 
-    <string name="preferences__pref_use_address_book_photos">Utamakan foto dari daftar kontak</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Gunakan foto dari daftar kontak jika tersedia.</string>
-    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Biarkan obrolan yang dibisukan tetap dalam arsip</string>
-    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Obrolan dibisukan yang diarsipkan akan tetap diarsipkan saat ada pesan baru yang masuk.</string>
-    <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang Anda kirimkan.</string>
     <string name="preferences__change_passphrase">Ganti frasa sandi</string>
     <string name="preferences__change_your_passphrase">Ubah frasa sandi Anda</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -3858,6 +3857,14 @@
     <string name="preferences_storage__videos">Video</string>
     <string name="preferences_storage__files">Berkas</string>
     <string name="preferences_storage__audio">Audio</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
     <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
     <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -3887,13 +3894,10 @@
     </plurals>
 
     <string name="preferences_storage__custom">Spesifik</string>
-    <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
     <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pembayaran</string>
-    <string name="preferences_chats__chats">Obrolan</string>
-    <string name="preferences_app_updates__title">Pembaruan aplikasi</string>
     <string name="preferences_data_and_storage__manage_storage">Kelola penyimpanan</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data untuk panggilan</string>
     <string name="preferences_data_and_storage__never">Tidak pernah</string>
@@ -5170,55 +5174,6 @@
     <string name="ChangeNumberLockActivity__leave">Tinggalkan</string>
     <string name="ChangeNumberLockActivity__submit_debug_log">Kirim catatan awakutu</string>
 
-    <!-- ChatsSettingsFragment -->
-    <string name="ChatsSettingsFragment__keyboard">Papan ketik</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Kirim dengan enter</string>
-    <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Folder obrolan</string>
-    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Tambahkan folder obrolan</string>
-    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Tambahkan atau edit folder</string>
-    <!-- Text describing the number of folders you have -->
-    <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="other">%1$d folder</item>
-    </plurals>
-
-    <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Ekspor riwayat chat</string>
-    <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Ekspor salinan semua chat Anda berupa file JSON yang dapat dibaca mesin. Pesan terhapus otomatis tidak akan diekspor.</string>
-    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Buka kunci untuk mengekspor riwayat chat</string>
-    <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Autentikasi gagal</string>
-
-    <!-- ChatExportDialogs -->
-    <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Membatalkan ekspor…</string>
-    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Ekspor riwayat chat?</string>
-    <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">HATI-HATI!</string>
-    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">JANGAN membagikan file ini kepada siapa pun. Riwayat chat akan disimpan di perangkat Anda, dan aplikasi lain bisa mengaksesnya tergantung pada izin di perangkat. Mengekspor dengan media akan menghasilkan ukuran file yang lebih besar.</string>
-    <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Ekspor dengan media</string>
-    <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Ekspor tanpa media</string>
-    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Pilih folder</string>
-    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Pilih folder di penyimpanan perangkat Anda tempat riwayat chat akan disimpan.</string>
-    <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Pilih folder</string>
-    <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Ekspor chat selesai</string>
-    <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">HATI-HATI</string>
-    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">dengan tempat Anda menyimpan file ekspor chat dan jangan membagikannya kepada siapa pun. Aplikasi lain di perangkat Anda bisa mengaksesnya tergantung pada pengaturan izin di perangkat.</string>
-
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
     <string name="ChatFoldersEducationSheet__create_folders_for_family">Buat folder untuk keluarga, teman, pekerjaan, dan lainnya</string>
@@ -5443,6 +5398,8 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kualitas media</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Kualitas media terkirim</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Mengirimkan media dengan kualitas tinggi akan menggunakan lebih banyak data.</string>
@@ -6804,7 +6761,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Tingkatkan keandalan cadangan</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Aktifkan izin \"alarm\" untuk meningkatkan keandalan cadangan harian otomatis.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8118,22 +8075,6 @@
     <!-- Button label to open QR scanner to scan a device and transfer a backup -->
     <string name="RemoteBackupsSettingsFragment__scan_qr_code">Pindai kode QR</string>
 
-    <!-- BackupCreationProgressRow -->
-    <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Memproses pencadangan …</string>
-    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Menyiapkan pencadangan …</string>
-    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Menyelesaikan …</string>
-    <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Memproses pesan …</string>
-    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Memproses pesan: %1$s dari %2$s (%3$d%%)</string>
-    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Mengunggah media: %1$d%%</string>
-    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Mengekspor media: %1$d%%</string>
-
     <!-- LocalArchiveJob -->
     <!-- Notification title shown while media attachments are being exported during a local backup -->
     <string name="LocalArchiveJob__exporting_media">Mengekspor media …</string>
@@ -8256,8 +8197,6 @@
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Salin ke papan klip</string>
     <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Simpan di pengelola kata sandi</string>
-    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Simpan di pengelola kata sandi?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Simpan kunci pemulihan di aplikasi pengelola kata sandi yang Anda yakini aman. Signal tidak memberikan rekomendasi aplikasi pengelola kata sandi yang tepat bagi Anda.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->

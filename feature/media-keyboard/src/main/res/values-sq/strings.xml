@@ -63,6 +63,10 @@
   <string name="MediaKeyboard__more_options">Opsione të tjera</string>
   <!-- Menu option in a sticker pack header\'s menu that uninstalls the pack. Verb, imperative. -->
   <string name="MediaKeyboard__remove_pack">Hiqe</string>
+  <!-- Header in keyboard to show favorite options. -->
+  <string name="MediaKeyboard__favorites">Favorites</string>
+  <!-- Menu option to move favorited sticker to front of the list. -->
+  <string name="MediaKeyboard__move_to_top">Move to top</string>
   <!-- Title of the confirmation dialog shown before uninstalling a sticker pack. -->
   <string name="MediaKeyboard__remove_sticker_pack_question">Të hiqet paketa e ngjitëseve?</string>
   <!-- Body of the confirmation dialog shown before uninstalling a sticker pack. -->
