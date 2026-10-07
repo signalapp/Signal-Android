@@ -87,6 +87,18 @@ class ApngDrawableTest {
     assertEquals(1, drawable.position)
   }
 
+  @Test
+  fun `drawing after recycle is a no-op`() {
+    drawable.play(1)
+    drawFrames(1)
+
+    drawable.recycle()
+    drawable.start()
+    drawFrames(1)
+
+    assertEquals(1, drawable.position)
+  }
+
   /**
    * Draws [count] times, advancing the clock past any frame delay so each draw advances one frame.
    */
