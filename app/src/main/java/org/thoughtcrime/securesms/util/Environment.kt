@@ -26,7 +26,7 @@ object Environment {
   val IS_LINK_AND_SYNC_AVAILABLE: Boolean = true
 
   @JvmField
-  val PHONENUMBERLESS_REGISTRATION: Boolean = false
+  val PHONENUMBERLESS_REGISTRATION: Boolean = true
 
   /** Whether this build is distributed through the Play Store, and so can use Google Play billing at all. */
   @JvmStatic
