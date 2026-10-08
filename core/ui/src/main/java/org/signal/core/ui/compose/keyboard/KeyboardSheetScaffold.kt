@@ -635,8 +635,9 @@ fun KeyboardSheetScaffold(
       Box(
         modifier = Modifier.layout { measurable, constraints ->
           // Only the part of the sheet the window shows is worth laying content out in, and
-          // never less than a keyboard: below that the sheet is on its way out, not resizing.
-          val visible = visibleSheetHeightPx().coerceIn(heightPx, constraints.maxHeight)
+          // never less than a keyboard: below that the sheet is on its way out, not resizing. A
+          // window shorter than a keyboard caps it, though, since the sheet cannot outgrow it.
+          val visible = visibleSheetHeightPx().coerceAtLeast(heightPx).coerceAtMost(constraints.maxHeight)
           val placeable = measurable.measure(constraints.copy(minHeight = visible, maxHeight = visible))
           layout(constraints.maxWidth, constraints.maxHeight) {
             placeable.place(0, 0)
