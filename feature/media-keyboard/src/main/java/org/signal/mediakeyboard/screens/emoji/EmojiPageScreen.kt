@@ -27,17 +27,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.EmojiEmotions
-import androidx.compose.material.icons.outlined.EmojiEvents
-import androidx.compose.material.icons.outlined.EmojiFlags
-import androidx.compose.material.icons.outlined.EmojiFoodBeverage
-import androidx.compose.material.icons.outlined.EmojiNature
-import androidx.compose.material.icons.outlined.EmojiObjects
-import androidx.compose.material.icons.outlined.EmojiSymbols
-import androidx.compose.material.icons.outlined.EmojiTransportation
-import androidx.compose.material.icons.outlined.Schedule
-import androidx.compose.material.icons.outlined.SentimentSatisfied
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -63,6 +52,7 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.mediakeyboard.R
 import org.signal.mediakeyboard.data.EmojiCategoryPage
@@ -428,18 +418,19 @@ private fun String.isEmoticon(): Boolean {
   return firstClusterEnd != BreakIterator.DONE && firstClusterEnd < length
 }
 
+@Composable
 private fun EmojiKeyboardCategory.icon(): ImageVector {
   return when (this) {
-    EmojiKeyboardCategory.RECENTS -> Icons.Outlined.Schedule
-    EmojiKeyboardCategory.PEOPLE -> Icons.Outlined.EmojiEmotions
-    EmojiKeyboardCategory.NATURE -> Icons.Outlined.EmojiNature
-    EmojiKeyboardCategory.FOODS -> Icons.Outlined.EmojiFoodBeverage
-    EmojiKeyboardCategory.ACTIVITY -> Icons.Outlined.EmojiEvents
-    EmojiKeyboardCategory.PLACES -> Icons.Outlined.EmojiTransportation
-    EmojiKeyboardCategory.OBJECTS -> Icons.Outlined.EmojiObjects
-    EmojiKeyboardCategory.SYMBOLS -> Icons.Outlined.EmojiSymbols
-    EmojiKeyboardCategory.FLAGS -> Icons.Outlined.EmojiFlags
-    EmojiKeyboardCategory.EMOTICONS -> Icons.Outlined.SentimentSatisfied
+    EmojiKeyboardCategory.RECENTS -> SignalIcons.Recent.imageVector
+    EmojiKeyboardCategory.PEOPLE -> SignalIcons.EmojiPeople.imageVector
+    EmojiKeyboardCategory.NATURE -> SignalIcons.EmojiAnimal.imageVector
+    EmojiKeyboardCategory.FOODS -> SignalIcons.EmojiFood.imageVector
+    EmojiKeyboardCategory.ACTIVITY -> SignalIcons.EmojiActivity.imageVector
+    EmojiKeyboardCategory.PLACES -> SignalIcons.EmojiTravel.imageVector
+    EmojiKeyboardCategory.OBJECTS -> SignalIcons.EmojiObject.imageVector
+    EmojiKeyboardCategory.SYMBOLS -> SignalIcons.EmojiSymbol.imageVector
+    EmojiKeyboardCategory.FLAGS -> SignalIcons.EmojiFlag.imageVector
+    EmojiKeyboardCategory.EMOTICONS -> SignalIcons.EmojiEmoticon.imageVector
   }
 }
 

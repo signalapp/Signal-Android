@@ -25,7 +25,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -34,14 +34,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
@@ -49,6 +51,10 @@ import androidx.media3.ui.compose.PlayerSurface
 import androidx.media3.ui.compose.SURFACE_TYPE_TEXTURE_VIEW
 import androidx.media3.ui.compose.modifiers.resizeWithContentScale
 import androidx.media3.ui.compose.state.rememberPresentationState
+import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.mediakeyboard.R
@@ -133,13 +139,36 @@ private fun GifQuickSearchRail(
       .padding(horizontal = 8.dp, vertical = 2.dp)
   ) {
     items(GifQuickSearchOption.entries, key = { it.name }) { option ->
-      FilterChip(
-        selected = option == state.selectedQuickSearch,
-        onClick = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) },
-        label = { Text(text = stringResource(option.label)) },
-        modifier = Modifier.padding(horizontal = 4.dp)
-      )
+      IconButtons.IconToggleButton(
+        checked = option == state.selectedQuickSearch,
+        onCheckedChange = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) },
+        colors = IconButtons.iconToggleButtonColors(
+          containerColor = Color.Transparent,
+          contentColor = MaterialTheme.colorScheme.onSurface,
+          checkedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+          checkedContainerColor = MaterialTheme.colorScheme.primaryContainer
+        )
+      ) {
+        Icon(
+          imageVector = option.icon(),
+          contentDescription = stringResource(option.label)
+        )
+      }
     }
+  }
+}
+
+@Composable
+private fun GifQuickSearchOption.icon(): ImageVector {
+  return when (this) {
+    GifQuickSearchOption.TRENDING -> SignalIcons.Trending.imageVector
+    GifQuickSearchOption.CELEBRATE -> SignalIcons.Tada.imageVector
+    GifQuickSearchOption.LOVE -> SignalIcons.Heart.imageVector
+    GifQuickSearchOption.THUMBS_UP -> SignalIcons.ThumbsUp.imageVector
+    GifQuickSearchOption.SURPRISED -> SignalIcons.Eyes.imageVector
+    GifQuickSearchOption.EXCITED -> SignalIcons.FaceExcited.imageVector
+    GifQuickSearchOption.SAD -> SignalIcons.FaceSad.imageVector
+    GifQuickSearchOption.ANGRY -> SignalIcons.FaceAngry.imageVector
   }
 }
 
@@ -289,4 +318,14 @@ private fun GifCell(
       )
     }
   }
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun GifQuickSearchRailPreview() {
+  GifQuickSearchRail(
+    state = GifPageState(selectedQuickSearch = GifQuickSearchOption.LOVE),
+    onEvent = {}
+  )
 }
