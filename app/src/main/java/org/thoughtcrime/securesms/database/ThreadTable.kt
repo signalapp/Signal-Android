@@ -366,7 +366,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             syncThreadTrimDeletes = syncThreadTrimDeletes,
             length = length,
             trimBeforeDate = trimBeforeDate
-          )?.also {
+          ).syncInfo?.also {
             threadTrimsToSync += it
           }
         }
@@ -401,19 +401,25 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    var threadTrimToSync: ThreadDeleteSyncInfo? = null
-    writableDatabase.withinTransaction {
-      threadTrimToSync = trimThreadInternal(threadId, syncThreadTrimDeletes, length, trimBeforeDate, inclusive)
-      messages.deleteAbandonedMessages(threadId)
-      attachments.trimAllAbandonedAttachments()
-      groupReceipts.deleteAbandonedRows()
-      mentions.deleteAbandonedMentions()
+    val trimResult = writableDatabase.withinTransaction {
+      val result = trimThreadInternal(threadId, syncThreadTrimDeletes, length, trimBeforeDate, inclusive)
+      if (result.deletedCount > 0 && messages.deleteAbandonedMessages(threadId) > 0) {
+        attachments.trimAllAbandonedAttachments()
+        groupReceipts.deleteAbandonedRows()
+        mentions.deleteAbandonedMentions()
+      }
+      result
+    }
+
+    if (trimResult.deletedCount == 0) {
+      return
     }
 
     DeleteAbandonedAttachmentsJob.enqueue()
 
+    val threadTrimToSync = trimResult.syncInfo
     if (syncThreadTrimDeletes && threadTrimToSync != null) {
-      MultiDeviceDeleteSyncJob.enqueueThreadDeletes(listOf(threadTrimToSync!!), isFullDelete = false)
+      MultiDeviceDeleteSyncJob.enqueueThreadDeletes(listOf(threadTrimToSync), isFullDelete = false)
     }
 
     AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
@@ -427,9 +433,9 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     length: Int,
     trimBeforeDate: Long,
     inclusive: Boolean = false
-  ): ThreadDeleteSyncInfo? {
+  ): TrimResult {
     if (length == NO_TRIM_MESSAGE_COUNT_SET && trimBeforeDate == NO_TRIM_BEFORE_DATE_SET) {
-      return null
+      return TrimResult.NONE
     }
 
     val finalTrimBeforeDate = if (length != NO_TRIM_MESSAGE_COUNT_SET && length > 0) {
@@ -470,17 +476,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         notifyConversationListeners(threadId)
         SignalDatabase.calls.updateCallEventDeletionTimestamps()
 
-        return if (syncThreadTrimDeletes && (threadDeleted || addressableMessages.isNotEmpty())) {
+        val syncInfo = if (syncThreadTrimDeletes && (threadDeleted || addressableMessages.isNotEmpty())) {
           ThreadDeleteSyncInfo(threadId, addressableMessages, nonExpiringAddressableMessages)
         } else {
           null
         }
+
+        return TrimResult(deletes, syncInfo)
       } else {
         Log.i(TAG, "Trimming deleted no messages thread: $threadId")
       }
     }
 
-    return null
+    return TrimResult.NONE
   }
 
   fun setAllThreadsRead(): List<MarkedMessageInfo> {
@@ -2662,6 +2670,12 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   )
 
   data class ThreadDeleteSyncInfo(val threadId: Long, val addressableMessages: Set<MessageRecord>, val nonExpiringAddressableMessages: Set<MessageRecord>)
+
+  private data class TrimResult(val deletedCount: Int, val syncInfo: ThreadDeleteSyncInfo?) {
+    companion object {
+      val NONE = TrimResult(0, null)
+    }
+  }
 
   data class RecipientIdAndRead(
     val recipientId: RecipientId,
