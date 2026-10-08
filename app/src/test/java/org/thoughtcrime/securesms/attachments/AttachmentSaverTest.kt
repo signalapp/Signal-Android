@@ -16,7 +16,6 @@ import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.unmockkObject
 import io.mockk.unmockkStatic
-import io.mockk.verify
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -25,16 +24,22 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.database.AttachmentId
 import org.signal.core.ui.util.StorageUtil
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.Host
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.RequestPermissionResult
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.SaveToStorageWarningResult
+import org.thoughtcrime.securesms.database.FakeMessageRecords
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.DocumentSlide
+import org.thoughtcrime.securesms.mms.ImageSlide
+import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder
@@ -44,6 +49,10 @@ import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class AttachmentSaverTest {
+  companion object {
+    private const val TEST_DATE = 1742234803832L
+  }
+
   private val testDispatcher = StandardTestDispatcher()
 
   @get:Rule
@@ -213,7 +222,7 @@ class AttachmentSaverTest {
       testEnv.host.showSaveProgress(any())
       testEnv.host.dismissSaveProgress()
     }
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
   }
 
   @Test
@@ -301,7 +310,7 @@ class AttachmentSaverTest {
 
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2)) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2)) }
   }
 
   @Test
@@ -314,7 +323,7 @@ class AttachmentSaverTest {
 
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.PartialSuccess(successesCount = 1, failuresCount = 1)) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.PartialSuccess(successesCount = 1, failuresCount = 1)) }
   }
 
   @Test
@@ -327,7 +336,91 @@ class AttachmentSaverTest {
 
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.Failure(failuresCount = 2)) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.Failure(failuresCount = 2)) }
+  }
+
+  @Test
+  fun `saveAttachments shows no longer available result and does not perform save when there are no attachments`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(emptySet<SaveAttachmentUtil.SaveAttachment>())
+
+    coVerify(exactly = 0) { testEnv.host.showSaveToStorageWarning(attachmentCount = any()) }
+    coVerify(exactly = 0) { SaveAttachmentUtil.saveAttachments(any()) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.NoLongerAvailable) }
+  }
+
+  @Test
+  fun `saveAttachments shows no longer available result and does not perform save when no slide in the message record has local data`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true
+    )
+
+    val record = messageRecord(imageSlide(id = 111L, hasData = false), imageSlide(id = 222L, hasData = false))
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(record)
+
+    coVerify(exactly = 0) { testEnv.host.showSaveToStorageWarning(attachmentCount = any()) }
+    coVerify(exactly = 0) { SaveAttachmentUtil.saveAttachments(any()) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.NoLongerAvailable) }
+  }
+
+  @Test
+  fun `saveAttachments shows no longer available result and does not perform save when no media record has local data`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(listOf(mediaRecord(attachment = null)))
+
+    coVerify(exactly = 0) { testEnv.host.showSaveToStorageWarning(attachmentCount = any()) }
+    coVerify(exactly = 0) { SaveAttachmentUtil.saveAttachments(any()) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.NoLongerAvailable) }
+  }
+
+  @Test
+  fun `saveAttachments saves only slides with local data when some slides in the message record have no local data`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 3)
+    )
+
+    val record = messageRecord(
+      imageSlide(id = 111L, hasData = true),
+      imageSlide(id = 222L, hasData = false),
+      imageSlide(id = 333L, hasData = true),
+      imageSlide(id = 444L, hasData = false),
+      imageSlide(id = 555L, hasData = true)
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(record)
+
+    coVerify { testEnv.host.showSaveToStorageWarning(attachmentCount = 3) }
+    coVerify { SaveAttachmentUtil.saveAttachments(match { it.size == 3 }) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 3)) }
+  }
+
+  @Test
+  fun `saveAttachments saves only media with local data when some media records have no local data`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 1)
+    )
+
+    val downloaded = FakeMessageRecords.buildDatabaseAttachment(attachmentId = AttachmentId(111L), hasData = true, contentType = "image/jpeg", fileName = "image.jpg")
+    val notDownloaded = FakeMessageRecords.buildDatabaseAttachment(attachmentId = AttachmentId(222L), hasData = false, contentType = "image/jpeg")
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(listOf(mediaRecord(attachment = downloaded), mediaRecord(attachment = notDownloaded)))
+
+    coVerify { SaveAttachmentUtil.saveAttachments(setOf(SaveAttachmentUtil.SaveAttachment(uri = downloaded.uri!!, contentType = "image/jpeg", date = TEST_DATE, fileName = "image.jpg"))) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 1)) }
   }
 
   @Test
@@ -340,7 +433,7 @@ class AttachmentSaverTest {
 
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.ErrorNoWriteAccess) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.ErrorNoWriteAccess) }
   }
 
   @Test
@@ -353,7 +446,7 @@ class AttachmentSaverTest {
 
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
+    coVerify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
   }
 
   @Test
@@ -371,7 +464,7 @@ class AttachmentSaverTest {
 
     val record = mockk<MmsMessageRecord> {
       every { slideDeck } returns deck
-      every { dateSent } returns 1742234803832L
+      every { dateSent } returns TEST_DATE
     }
 
     AttachmentSaver(host = testEnv.host).saveAttachments(record)
@@ -379,7 +472,7 @@ class AttachmentSaverTest {
     coVerify {
       SaveAttachmentUtil.saveAttachments(
         setOf(
-          SaveAttachmentUtil.SaveAttachment(uri = voiceNoteUri, contentType = "audio/aac", date = 1742234803832L, fileName = "voice-note.aac")
+          SaveAttachmentUtil.SaveAttachment(uri = voiceNoteUri, contentType = "audio/aac", date = TEST_DATE, fileName = "voice-note.aac")
         )
       )
     }
@@ -401,7 +494,7 @@ class AttachmentSaverTest {
 
     val record = mockk<MmsMessageRecord> {
       every { slideDeck } returns deck
-      every { dateSent } returns 1742234803832L
+      every { dateSent } returns TEST_DATE
     }
 
     AttachmentSaver(host = testEnv.host).saveAttachments(record)
@@ -409,11 +502,34 @@ class AttachmentSaverTest {
     coVerify {
       SaveAttachmentUtil.saveAttachments(
         setOf(
-          SaveAttachmentUtil.SaveAttachment(uri = audioUri, contentType = "audio/aac", date = 1742234803832L, fileName = "audio.aac"),
-          SaveAttachmentUtil.SaveAttachment(uri = documentUri, contentType = "application/pdf", date = 1742234803832L, fileName = "test.pdf")
+          SaveAttachmentUtil.SaveAttachment(uri = audioUri, contentType = "audio/aac", date = TEST_DATE, fileName = "audio.aac"),
+          SaveAttachmentUtil.SaveAttachment(uri = documentUri, contentType = "application/pdf", date = TEST_DATE, fileName = "test.pdf")
         )
       )
     }
+  }
+
+  private fun imageSlide(id: Long, hasData: Boolean): Slide {
+    return ImageSlide(FakeMessageRecords.buildDatabaseAttachment(attachmentId = AttachmentId(id), hasData = hasData, contentType = "image/jpeg"))
+  }
+
+  private fun messageRecord(vararg slides: Slide): MmsMessageRecord {
+    return mockk<MmsMessageRecord> {
+      every { slideDeck } returns SlideDeck().apply { slides.forEach { addSlide(it) } }
+      every { dateSent } returns TEST_DATE
+    }
+  }
+
+  private fun mediaRecord(attachment: DatabaseAttachment?): MediaTable.MediaRecord {
+    return MediaTable.MediaRecord(
+      attachment = attachment,
+      recipientId = RecipientId.from(1),
+      threadRecipientId = RecipientId.from(1),
+      threadId = 1,
+      messageId = 1,
+      date = TEST_DATE,
+      isOutgoing = false
+    )
   }
 }
 

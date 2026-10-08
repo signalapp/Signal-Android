@@ -3162,6 +3162,8 @@
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <!-- Toast shown when media can't be saved to the device storage because its data is no longer on the device and can't be downloaded again. -->
+    <string name="AttachmentSaver__media_no_longer_available">This media is no longer available</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Can\'t save media</string>

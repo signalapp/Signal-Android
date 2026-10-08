@@ -48,7 +48,7 @@ class AttachmentSaver(private val host: Host) {
   }
 
   suspend fun saveAttachments(record: MmsMessageRecord) {
-    val saveableSlides = record.slideDeck.slides.filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
+    val saveableSlides = record.slideDeck.slides.filter { it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument() }
 
     // If a message contains a voice note, that's the only attachment we render, so it's the only one we should save.
     val voiceNote = saveableSlides.firstOrNull { it.asAttachment().voiceNote }
@@ -59,6 +59,7 @@ class AttachmentSaver(private val host: Host) {
     }
 
     val attachments = slidesToSave
+      .filter { it.uri != null }
       .map { SaveAttachment(it.uri!!, it.contentType, record.dateSent, it.fileName.orNull()) }
       .toSet()
     saveAttachments(attachments)
@@ -80,7 +81,14 @@ class AttachmentSaver(private val host: Host) {
   }
 
   fun saveAttachmentsRx(records: Collection<MediaTable.MediaRecord>): Completable = rxCompletable { saveAttachments(records) }
+
   suspend fun saveAttachments(attachments: Set<SaveAttachment>) {
+    if (attachments.isEmpty()) {
+      Log.w(TAG, "No saveable attachments (media has no local data). Skipping save.")
+      host.showSaveResult(SaveAttachmentsResult.NoLongerAvailable)
+      return
+    }
+
     if (checkIsSaveWarningAccepted(attachmentCount = attachments.size) == SaveToStorageWarningResult.ACCEPTED) {
       if (checkCanWriteToMediaStore() == RequestPermissionResult.GRANTED) {
         Log.d(TAG, "Saving ${attachments.size} attachments to device storage.")
@@ -112,29 +120,27 @@ class AttachmentSaver(private val host: Host) {
     host.showSaveProgress(attachmentCount = attachments.size)
     return try {
       val result = SaveAttachmentUtil.saveAttachments(attachments)
-      withContext(SignalDispatchers.Main) {
-        host.showSaveResult(result)
-      }
+      host.showSaveResult(result)
       result
     } finally {
-      withContext(SignalDispatchers.Main) {
-        host.dismissSaveProgress()
-      }
+      host.dismissSaveProgress()
     }
   }
 
   interface Host {
     suspend fun showSaveToStorageWarning(attachmentCount: Int): SaveToStorageWarningResult
     suspend fun requestWriteExternalStoragePermission(): RequestPermissionResult
-    fun showSaveProgress(attachmentCount: Int)
-    fun showSaveResult(result: SaveAttachmentsResult)
-    fun dismissSaveProgress()
+    suspend fun showSaveProgress(attachmentCount: Int)
+    suspend fun showSaveResult(result: SaveAttachmentsResult)
+    suspend fun dismissSaveProgress()
   }
 
   data class FragmentHost(private val fragment: Fragment) : Host {
 
-    override fun showSaveResult(result: SaveAttachmentsResult) {
-      Toast.makeText(fragment.requireContext(), result.getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()
+    override suspend fun showSaveResult(result: SaveAttachmentsResult) {
+      withContext(SignalDispatchers.Main) {
+        Toast.makeText(fragment.requireContext(), result.getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()
+      }
     }
 
     override suspend fun showSaveToStorageWarning(attachmentCount: Int): SaveToStorageWarningResult = withContext(SignalDispatchers.Main) {
@@ -178,19 +184,23 @@ class AttachmentSaver(private val host: Host) {
       }
     }
 
-    override fun showSaveProgress(attachmentCount: Int) {
-      val progressMessage = fragment.resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachmentCount, attachmentCount)
+    override suspend fun showSaveProgress(attachmentCount: Int) {
+      withContext(SignalDispatchers.Main) {
+        val progressMessage = fragment.resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachmentCount, attachmentCount)
 
-      val dialog = ProgressCardDialogFragment.create().apply {
-        arguments = ProgressCardDialogFragmentArgs.Builder(progressMessage).build().toBundle()
+        val dialog = ProgressCardDialogFragment.create().apply {
+          arguments = ProgressCardDialogFragmentArgs.Builder(progressMessage).build().toBundle()
+        }
+
+        dialog.show(fragment.parentFragmentManager, PROGRESS_DIALOG_TAG)
       }
-
-      dialog.show(fragment.parentFragmentManager, PROGRESS_DIALOG_TAG)
     }
 
-    override fun dismissSaveProgress() {
-      val dialog = fragment.parentFragmentManager.findFragmentByTag(PROGRESS_DIALOG_TAG)
-      (dialog as ProgressCardDialogFragment).dismissAllowingStateLoss()
+    override suspend fun dismissSaveProgress() {
+      withContext(SignalDispatchers.Main) {
+        val dialog = fragment.parentFragmentManager.findFragmentByTag(PROGRESS_DIALOG_TAG) as? ProgressCardDialogFragment
+        dialog?.dismissAllowingStateLoss()
+      }
     }
   }
 
