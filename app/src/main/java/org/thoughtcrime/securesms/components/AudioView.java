@@ -72,6 +72,7 @@ public final class AudioView extends FrameLayout {
             private final boolean             autoRewind;
 
   @Nullable private final TextView duration;
+  @Nullable private final TextView fileName;
 
   @ColorInt private final int waveFormPlayedBarsColor;
   @ColorInt private final int waveFormUnplayedBarsColor;
@@ -133,6 +134,7 @@ public final class AudioView extends FrameLayout {
       this.circleProgress    = findViewById(R.id.circle_progress);
       this.seekBar           = findViewById(R.id.seek);
       this.duration          = findViewById(R.id.duration);
+      this.fileName          = findViewById(R.id.file_name);
 
       lottieDirection = REVERSE;
       this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
@@ -196,6 +198,16 @@ public final class AudioView extends FrameLayout {
 
     if (duration != null) {
       duration.setVisibility(View.VISIBLE);
+    }
+
+    if (fileName != null) {
+      String name = audio.asAttachment().voiceNote ? null : audio.getFileName().orElse(null);
+      if (name != null && !name.isBlank()) {
+        fileName.setText(name);
+        fileName.setVisibility(View.VISIBLE);
+      } else {
+        fileName.setVisibility(View.GONE);
+      }
     }
 
     if (seekBar instanceof WaveFormSeekBarView) {
@@ -429,6 +441,10 @@ public final class AudioView extends FrameLayout {
 
     if (this.duration != null) {
       this.duration.setTextColor(foregroundTint);
+    }
+
+    if (this.fileName != null) {
+      this.fileName.setTextColor(foregroundTint);
     }
 
     if (this.seekBar.getProgressDrawable() != null) {

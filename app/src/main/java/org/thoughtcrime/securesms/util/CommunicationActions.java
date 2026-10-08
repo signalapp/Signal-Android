@@ -222,7 +222,6 @@ public class CommunicationActions {
     subject = Util.emptyIfNull(subject);
     body    = Util.emptyIfNull(body);
 
-    // Some email clients (e.g. Proton Mail) ignore the extras and only read the mailto URI, so we populate both.
     Uri.Builder query = new Uri.Builder();
     if (!subject.isEmpty()) query.appendQueryParameter("subject", subject);
     if (!body.isEmpty())    query.appendQueryParameter("body", body);
