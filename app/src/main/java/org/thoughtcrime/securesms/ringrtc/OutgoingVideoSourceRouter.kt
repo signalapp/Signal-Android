@@ -36,7 +36,15 @@ class OutgoingVideoSourceRouter(
   var isScreenSharing: Boolean = false
     private set
 
+  /**
+   * Always true so RingRTC creates a 1:1 video track on camera-less devices, otherwise the remote rejects the
+   * offer/answer for having empty video codec fields. Use [hasCamera] to check for a camera.
+   */
   override fun hasCapturer(): Boolean {
+    return true
+  }
+
+  fun hasCamera(): Boolean {
     return camera.hasCapturer()
   }
 

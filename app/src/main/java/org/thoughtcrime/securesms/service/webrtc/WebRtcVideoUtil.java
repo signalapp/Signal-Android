@@ -108,7 +108,7 @@ public final class WebRtcVideoUtil {
     OutgoingVideoSourceRouter router = currentState.getVideoState().requireRouter();
     VideoSink                 sink   = currentState.getVideoState().requireLocalSink();
 
-    if (router.hasCapturer()) {
+    if (router.hasCamera()) {
       router.initCapturer(new CapturerObserver() {
         @Override
         public void onFrameCaptured(VideoFrame videoFrame) {
