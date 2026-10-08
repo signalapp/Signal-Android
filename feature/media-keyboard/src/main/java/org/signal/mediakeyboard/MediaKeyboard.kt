@@ -10,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
@@ -45,9 +47,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -223,7 +223,10 @@ private fun MediaKeyboardTopBar(
       modifier = Modifier.weight(1f)
     ) {
       if (state.availableTabs.size > 1) {
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(
+          horizontalArrangement = Arrangement.spacedBy(8.dp),
+          modifier = Modifier.horizontalScroll(rememberScrollState())
+        ) {
           state.availableTabs.forEach { tab ->
             TabPill(
               tab = tab,
@@ -272,14 +275,11 @@ private fun TabPill(
 ) {
   val background = if (selected) MaterialTheme.colorScheme.secondaryContainer else Color.Transparent
   val textColor = if (selected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
-  val (fontSize, lineHeight) = with(LocalDensity.current) { 14.dp.toSp() to 20.dp.toSp() }
 
   Text(
     text = stringResource(tab.label()),
-    style = MaterialTheme.typography.labelLarge.copy(fontSize = fontSize, lineHeight = lineHeight),
+    style = MaterialTheme.typography.labelLarge,
     color = textColor,
-    maxLines = 1,
-    overflow = TextOverflow.Ellipsis,
     modifier = Modifier
       .clip(CircleShape)
       .background(background)
