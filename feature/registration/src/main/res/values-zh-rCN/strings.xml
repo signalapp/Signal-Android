@@ -241,15 +241,15 @@
     <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
     <string name="EnterAepScreen__no_backup_found_body">您的恢复密钥正确，但此账户没有 Signal 备份。请返回以选择另一种恢复方式，或在不恢复的情况下继续操作。</string>
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">Incorrect recovery key</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">恢复密钥不正确</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
-    <string name="EnterAepScreen__try_again">Try again</string>
+    <string name="EnterAepScreen__try_again">重试</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
     <string name="EnterAepScreen__try_another_way">Try another way</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
-    <string name="EnterAepScreen__recovery_key_help">Recovery key help</string>
+    <string name="EnterAepScreen__recovery_key_help">恢复密钥帮助</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
     <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->

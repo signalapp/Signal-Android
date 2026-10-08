@@ -418,7 +418,7 @@
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Téigh isteach sa ghlao</string>
     <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
-    <string name="ConversationItem__view_pack">View pack</string>
+    <string name="ConversationItem__view_pack">Féach ar an mbeart</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Cuir ceangaltán leis</string>
@@ -1381,9 +1381,9 @@
         <item quantity="other">%1$d ball</item>
     </plurals>
     <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
-    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Beart Greamán le %1$s</string>
     <!-- Title for sticker pack link previews when the pack has no title or author -->
-    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
+    <string name="LinkPreviewRepository_sticker_pack">Beart greamán</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Thugamar faoi deara go bhfuil moill ar fhógraí. Cuir isteach loga dífhabhtaithe?</string>
@@ -2890,9 +2890,9 @@
     <string name="SharedContactView_add_to_contacts">Cuir leis na teagmhálacha</string>
     <string name="SharedContactView_invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
-    <string name="SharedContactView_message_button">Message</string>
+    <string name="SharedContactView_message_button">Teachtaireacht</string>
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
-    <string name="SharedContactView_add_to_group">Add to group</string>
+    <string name="SharedContactView_add_to_group">Cuir leis an nGrúpa é/í</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
     <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
@@ -3318,7 +3318,7 @@
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">Tuilleadh Eolais</string>
-    <string name="MediaPreviewFragment_share">Share</string>
+    <string name="MediaPreviewFragment_share">Comhroinn</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3822,7 +3822,7 @@
 
     <!-- DefaultBanner -->
     <!-- Accessibility content description for X button on banners -->
-    <string name="DefaultBanner__cancel">Cancel</string>
+    <string name="DefaultBanner__cancel">Cuir ar ceal</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Athrú ar Uimhir Shábháilteachta</string>
@@ -4330,13 +4330,13 @@
     <string name="preferences_storage__files">Comhaid</string>
     <string name="preferences_storage__audio">Fuaim</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">Teachtaireachtaí</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">Greamáin</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">Eile</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
+    <string name="preferences_storage__calculating">Á ríomh…</string>
     <string name="preferences_storage__review_storage">Athbhreithnigh stóras</string>
     <string name="preferences_storage__delete_older_messages">Scrios teachtaireachtaí níos sine?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -5979,7 +5979,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Media Quality</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">Á ríomh…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent Media Quality</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>

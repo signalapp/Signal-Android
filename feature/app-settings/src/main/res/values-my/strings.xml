@@ -184,11 +184,11 @@
 
     <!-- TwoFactorNameEntryScreen -->
     <!-- Title of the screen where the user names a second factor -->
-    <string name="TwoFactorNameEntryScreen__choose_a_name">Choose a name</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_name">အမည်တစ်ခုကို ရွေးပါ</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">ဤအတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်အတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ဤအတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို နောက်ပိုင်းတွင် ခွဲခြားသိရှိနိုင်ရန် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
@@ -198,13 +198,13 @@
     <!-- Instructions shown above the name field when naming a newly created passkey -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
     <!-- Label of the name field -->
-    <string name="TwoFactorNameEntryScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">အမည်</string>
     <!-- Button that submits the entered name -->
-    <string name="TwoFactorNameEntryScreen__next">Next</string>
+    <string name="TwoFactorNameEntryScreen__next">ဆက်သွားမည်</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို သတ်မှတ်ရန်</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို အမည်ပြောင်းပြီးပါပြီ</string>
     <!-- Toast shown after a passkey has been successfully set up -->
     <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
     <!-- Toast shown after a passkey has been renamed -->
@@ -214,7 +214,7 @@
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
     <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">အမည်ကို သိမ်းဆည်း၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -258,9 +258,9 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <string name="InviteScreen__invite_friends">သူငယ်ချင်းဖိတ်ပါ</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Share</string>
+    <string name="InviteScreen__share">ဝေမျှမည်</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>
@@ -269,82 +269,82 @@
     <!-- ChatsSettingsFragment -->
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="other">%1$d folders</item>
+        <item quantity="other">ဖိုင်တွဲ %1$d ခု</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">ချက်(တ်)ဖိုင်တွဲတစ်ခုထည့်ရန်</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">ဖိုင်တွဲများ ထည့်သွင်းရန် သို့မဟုတ် တည်းဖြတ်ရန်</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">စစ်မှန်ကြောင်းအတည်ပြုခြင်း မအောင်မြင်ပါ</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">ချက်(တ်)ဖိုင်တွဲများ</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <string name="ChatsSettingsFragment__export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူပါ</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
-    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">သင့်ချက်(တ်)အားလုံး၏ စက်ဖြင့်ဖတ်နိုင်သော JSON မိတ္တူကို ထုတ်ယူပါ။ ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ထုတ်ယူမည်မဟုတ်ပါ။</string>
+    <string name="ChatsSettingsFragment__keyboard">ကီးဘုတ်</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ပါ</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
     <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
     <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
-    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူရန် လော့ခ်ဖွင့်ပါ</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် သင့်လိပ်စာစာအုပ်ရှိ အဆက်အသွယ်များ၏ ဓာတ်ပုံများကို အသုံးပြုပါ</string>
+    <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းပြီးသော အသံပိတ်ထားသည့် ချက်(တ်)များသည် စုစည်းလျက်သား ဆက်ရှိနေပါမည်။</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences__pref_keep_muted_chats_archived">အသံပိတ်ထားသည့် ချက်(တ်)များကို ဆက်လက်စုစည်းရန်</string>
+    <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို ဦးစားပေးပါ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
+    <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
+    <string name="preferences_chats__chats">ချက်(တ်)များ</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">သတိထားပါ</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">သတိထားပါ။</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">ထုတ်ယူမှုကို ပယ်ဖျက်နေသည်…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">သင့်စက်၏ ထားသိုမှုထဲတွင် ချက်(တ်)မှတ်တမ်းကို သိမ်းဆည်းမည့် ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <string name="ChatExportDialogs__choose_folder_button">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">သင်ထုတ်ယူထားသော ချက်(တ်)ဖိုင် သိမ်းဆည်းထားသည့် နေရာကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ဖုန်း၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ၎င်းကိုဝင်ရောက် အသုံးပြုနိုင်ပါသည်။</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">ချက်(တ်) ထုတ်ယူမှု ပြီးပါပြီ</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူမလား။</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">ဤဖိုင်ကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ချက်(တ်)မှတ်တမ်းကို သင့်စက်တွင် သိမ်းဆည်းမည်ဖြစ်ပြီး သင့်စက်၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ဝင်ရောက်ကြည့်ရှုနိုင်ပါသည်။ မီဒီယာဖြင့် ထုတ်ယူလျှင် ဖိုင်အရွယ်အစား ပိုကြီးသွားပါလိမ့်မည်။</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">မီဒီယာဖြင့် ထုတ်ယူမည်</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">မီဒီယာမပါဘဲ ထုတ်ယူမည်</string>
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">မီဒီယာကို ထုတ်ယူနေသည်- %1$d</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">အပြီးသတ်နေသည်…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">ဘက်ခ်အပ်ကို ပြင်ဆင်နေသည်…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">ဘက်ခ်အပ်ကို လုပ်ဆောင်နေသည်…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <string name="BackupCreationProgressRow__processing_messages">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်- %1$s / %2$s (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">မီဒီယာ အပ်လုဒ်လုပ်နေသည်- %1$d%%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">အပ္ပလီကေးရှင်း အပ်ဒိတ်များ</string>
 </resources>

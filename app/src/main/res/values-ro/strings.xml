@@ -414,7 +414,7 @@
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">Alătură-te apelului</string>
     <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
-    <string name="ConversationItem__view_pack">View pack</string>
+    <string name="ConversationItem__view_pack">Vezi pachetul</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Adaugă atașament</string>
@@ -1303,9 +1303,9 @@
         <item quantity="other">%1$d de membri</item>
     </plurals>
     <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
-    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <string name="LinkPreviewRepository_sticker_pack_by_s">Pachet de abțibilduri de %1$s</string>
     <!-- Title for sticker pack link previews when the pack has no title or author -->
-    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
+    <string name="LinkPreviewRepository_sticker_pack">Pachet autocolante</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">Am observat că notificările sunt întârziate. Trimiți jurnalul de depanare?</string>
@@ -2708,10 +2708,10 @@
     <string name="SharedContactView_add_to_contacts">Adaugă la Contacte</string>
     <string name="SharedContactView_invite_to_signal">Invită la Signal</string>
     <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
-    <string name="SharedContactView_message_button">Message</string>
+    <string name="SharedContactView_message_button">Mesaj</string>
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
-    <string name="SharedContactView_add_to_group">Add to group</string>
-    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person's name, %2$s is the group name -->
+    <string name="SharedContactView_add_to_group">Adăugă la grup</string>
+    <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
     <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
@@ -2871,13 +2871,13 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Vezi pachetul</string>
-    <!-- Snackbar shown after a sticker was successfully added to the user's favorite stickers -->
+    <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
     <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
     <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
-    <!-- Snackbar shown after a sticker was successfully removed from the user's favorite stickers -->
+    <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
     <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
     <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
@@ -3124,7 +3124,7 @@
     <string name="MediaPreviewFragment_media_delete_error">Eroare la Ștergerea Mesajului, Mesajul Încă Poate Să Existe</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">Citește mai mult</string>
-    <string name="MediaPreviewFragment_share">Share</string>
+    <string name="MediaPreviewFragment_share">Distribuie</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3604,7 +3604,7 @@
 
     <!-- DefaultBanner -->
     <!-- Accessibility content description for X button on banners -->
-    <string name="DefaultBanner__cancel">Cancel</string>
+    <string name="DefaultBanner__cancel">Anulează</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Modificări ale Numărului de Siguranță</string>
@@ -4094,13 +4094,13 @@
     <string name="preferences_storage__files">Fișiere</string>
     <string name="preferences_storage__audio">Audio</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">Mesaje</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">Autocolante</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">Altul</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
+    <string name="preferences_storage__calculating">Se calculează…</string>
     <string name="preferences_storage__review_storage">Examinează stocarea</string>
     <string name="preferences_storage__delete_older_messages">Șterge mesajele vechi?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -5689,7 +5689,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calitate Media</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">Se calculează…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Calitatea fișierelor media trimise</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Trimiterea fișierelor media la calitate înaltă va duce la un consum mai mare de date.</string>

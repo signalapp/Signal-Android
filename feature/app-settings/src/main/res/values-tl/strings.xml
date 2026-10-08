@@ -184,11 +184,11 @@
 
     <!-- TwoFactorNameEntryScreen -->
     <!-- Title of the screen where the user names a second factor -->
-    <string name="TwoFactorNameEntryScreen__choose_a_name">Choose a name</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Pumil ng pangalan</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Pumili ng unique na pangalan para sa authenticator app na ito.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Pumili ng unique na pangalan para sa authenticator app na ito para madali itong matukoy sa susunod.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
@@ -198,13 +198,13 @@
     <!-- Instructions shown above the name field when naming a newly created passkey -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
     <!-- Label of the name field -->
-    <string name="TwoFactorNameEntryScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">Pangalan</string>
     <!-- Button that submits the entered name -->
-    <string name="TwoFactorNameEntryScreen__next">Next</string>
+    <string name="TwoFactorNameEntryScreen__next">Susunod</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Na-set up ang authenticator app</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Ni-rename ang authenticator app</string>
     <!-- Toast shown after a passkey has been successfully set up -->
     <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
     <!-- Toast shown after a passkey has been renamed -->
@@ -214,7 +214,7 @@
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
     <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Hindi ma-save ang pangalan. I-check ang connection mo at subukan ulit.</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -260,7 +260,7 @@
     <!-- Title of the screen where the user invites friends to join Signal -->
     <string name="InviteScreen__invite_friends">Invite friends</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Share</string>
+    <string name="InviteScreen__share">Ibahagi</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">Piliin ang iyong bansa</string>
@@ -273,79 +273,79 @@
         <item quantity="other">%1$d folders</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Magdagdag ng chat folder</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Magdagdag o mag-edit ng folders</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Failed ang authentication</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <string name="ChatsSettingsFragment__export_chat_history">I-export ang chat history</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">I-export ang machine-readable JSON copy ng lahat ng chats mo. Hindi i-e-export ang disappearing messages.</string>
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Mag-send gamit ang enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
     <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
     <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
-    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">I-unlock para ma-export ang chat history</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Piliin ang contact photo mula sa address book mo kung available ito</string>
+    <string name="preferences__generate_link_previews">Mag-generate ng link previews</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mananatili sa archive ang muted chats kahit may bagong message na dumating.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Panatilihing Naka-archive ang Muted Chats</string>
+    <string name="preferences__pref_use_address_book_photos">Piliin ang address book photos</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">I-retrieve ang link previews directly from websites for messages you send.</string>
+    <string name="preferences_advanced__use_system_emoji">Gamitin ang emoji ng sistema</string>
     <string name="preferences_chats__chats">Chats</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">MAG-INGAT!</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">MAG-INGAT!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">I-cancel ang pag-export…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Pumili ng folder sa storage ng device mo kung saan ilalagay ang chat history mo.</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">Pumili ng folder</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <string name="ChatExportDialogs__choose_folder_button">Pumili ng folder</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">kung saan mo inilalagay ang iyong chat export file at huwag itong ibahagi kahit kanino. Ang ibang apps sa device mo ay maaaring magkaroon ng access dito depende sa permissions ng device mo.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Tapos na ang pag-export ng chat</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">I-export ang chat history?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">HUWAG i-share ang file na ito sa kahit na sino. Ise-save ang chat history mo sa device mo at maaari itong ma-access ng ibang apps depende sa permissions ng device mo. Ang pag-export ng kasama ang media ay magreresulta sa mas malaking file size.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">I-export kasama ang media</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">I-export nang hindi kasama ang media</string>
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">Ine-export ang media: %1$d%%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
     <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">Hinahanda ang backup…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Pinoproseso ang backup…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <string name="BackupCreationProgressRow__processing_messages">Pinoproseso ang messages…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Pinoproseso ang messages: %1$s ng %2$s (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">Inu-upload ang media: %1$d%%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">Mga update sa app</string>
 </resources>

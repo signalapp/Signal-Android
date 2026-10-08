@@ -63,7 +63,7 @@
     <!-- Description of the passkey menu option -->
     <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
     <!-- Default name given to a passkey before the user chooses one -->
-    <string name="AccountSettingsRepository__passkey">Passkey</string>
+    <string name="AccountSettingsRepository__passkey">கடவுக்குறியீடு</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
     <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
@@ -184,11 +184,11 @@
 
     <!-- TwoFactorNameEntryScreen -->
     <!-- Title of the screen where the user names a second factor -->
-    <string name="TwoFactorNameEntryScreen__choose_a_name">Choose a name</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_name">பெயரைத் தேர்வுசெய்யவும்</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">இந்த அங்கீகரிப்புச் செயலிக்குத் தனித்துவமான பெயரைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">இந்த அங்கீகரிப்புச் செயலியைப் பின்னர் எளிதாக அடையாளம் காண, இதற்குத் தனித்துவமான ஒரு பெயரைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
@@ -198,13 +198,13 @@
     <!-- Instructions shown above the name field when naming a newly created passkey -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
     <!-- Label of the name field -->
-    <string name="TwoFactorNameEntryScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">பெயர்</string>
     <!-- Button that submits the entered name -->
-    <string name="TwoFactorNameEntryScreen__next">Next</string>
+    <string name="TwoFactorNameEntryScreen__next">அடுத்தது</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">அங்கீகரிப்புச் செயலி அமைவு</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">அங்கீகரிப்புச் செயலிக்கு மறுபெயரிடப்பட்டது</string>
     <!-- Toast shown after a passkey has been successfully set up -->
     <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
     <!-- Toast shown after a passkey has been renamed -->
@@ -214,7 +214,7 @@
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
     <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">பெயரைச் சேமிக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -258,9 +258,9 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <string name="InviteScreen__invite_friends">நண்பர்களை அழை</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Share</string>
+    <string name="InviteScreen__share">பகிர்</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
@@ -269,83 +269,83 @@
     <!-- ChatsSettingsFragment -->
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d கோப்புறை</item>
+        <item quantity="other">%1$d கோப்புறைகள்</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">சாட் கோப்புறையைச் சேர்</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">கோப்புறைகளைச் சேர்க்கவும் அல்லது திருத்தவும்</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">அங்கீகரிப்புத் தோல்வியடைந்தது</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">சாட் கோப்புறைகள்</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <string name="ChatsSettingsFragment__export_chat_history">சாட் வரலாற்றை ஏற்றுமதி செய்க</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
-    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">உங்கள் அனைத்து சாட்களையும் கணினி படிக்கக்கூடிய \'JSON\' நகலாக ஏற்றுமதி செய்க. மறைந்து போகும் மெசேஜ்கள் ஏற்றுமதி செய்யப்படாது.</string>
+    <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
+    <string name="ChatsSettingsFragment__send_with_enter">உள்ளிடுக மூலம் அனுப்புக</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
     <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
     <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
-    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">அரட்டை வரலாற்றை ஏற்றுமதி செய்யத் தடைநீக்கவும்</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">முகவரிப் புத்தகத்தில் தொடர்புகளின் படங்கள் இருந்தால், அவற்றுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__generate_link_previews">இணைப்பு மாதிரிக்காட்சிகளை உருவாக்கவும்</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">புதிய மெசேஜ் வரும்போது ஒலியடக்கிய காப்பகப்படுத்தப்பட்ட சாட்கள் காப்பகப்படுத்தப்பட்டதாகவே இருக்கும்.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences__pref_keep_muted_chats_archived">ஒலியடக்கிய சாட்களைக் காப்பகப்படுத்துக</string>
+    <string name="preferences__pref_use_address_book_photos">முகவரிப் புத்தகப் படங்களுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">நீங்கள் அனுப்பும் செய்திகளுக்கு வலைத்தளங்களிலிருந்து இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கவும்.</string>
+    <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
+    <string name="preferences_chats__chats">சாட்ஸ்</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">கவனமாக இருங்கள்</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">கவனமாக இருங்கள்!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">ஏற்றுமதியை ரத்துசெய்கிறது…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">உங்கள் அரட்டை வரலாறு சேமிக்கப்பட வேண்டிய கோப்புறையை உங்கள் சாதனத்தின் சேமிப்பகத்தில் தேர்ந்தெடுக்கவும்.</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">கோப்புறையைத் தேர்வு செய்க</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <string name="ChatExportDialogs__choose_folder_button">கோப்புறையைத் தேர்வுசெய்க</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">உங்கள் அரட்டை ஏற்றுமதி கோப்பை எங்கு சேமிக்கிறீர்கள் என்பதிலும், அதை யாருடனும் பகிர வேண்டாம் என்பதிலும் இவ்வாறு இருங்கள். உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து, உங்கள் சாதனத்தில் உள்ள பிற செயலிகள் அதை அணுகக்கூடும்.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">அரட்டை ஏற்றுமதி முடிந்தது</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">சாட் வரலாற்றை ஏற்றுமதி செய்யவா?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">இந்தக் கோப்பினை யாருடனும் பகிர வேண்டாம். உங்கள் அரட்டை வரலாறு உங்கள் சாதனத்தில் சேமிக்கப்படும், மேலும் உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து பிற செயலிகள் அதை அணுகக்கூடும். ஊடகத்துடன் ஏற்றுமதி செய்வது கோப்பின் அளவை அதிகரிக்கும்.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">ஊடகத்துடன் ஏற்றுமதி செய்க</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">ஊடகம் இல்லாமல் ஏற்றுமதி செய்க</string>
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">ஊடகம் ஏற்றுமதி செய்யப்படுகிறது: %1$d%%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">இறுதி செய்யப்படுகிறது…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">காப்புப்பிரதிக்குத் தயாராகிறது…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">காப்புப்பிரதியைச் செயலாக்குகிறது…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <string name="BackupCreationProgressRow__processing_messages">மெசேஜ்கள் செயலாக்கப்படுகின்றன…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">மெசேஜ்கள் செயலாக்கப்படுகின்றன: %2$s-இல் %1$s (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">ஊடகம் பதிவேற்றப்படுகிறது: %1$d%%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">பயன்பாடு புதுப்பிப்புகள்</string>
 </resources>

@@ -410,7 +410,7 @@
     <!-- Displayed if the link preview in the conversation item is for a call link call -->
     <string name="ConversationItem__join_call">ចូលរួមការហៅ</string>
     <!-- Displayed if the link preview in the conversation item is for a sticker pack -->
-    <string name="ConversationItem__view_pack">View pack</string>
+    <string name="ConversationItem__view_pack">មើលកញ្ចប់</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
@@ -1225,9 +1225,9 @@
         <item quantity="other">%1$d សមាជិក</item>
     </plurals>
     <!-- Title or description for sticker pack link previews. %1$s is the sticker pack author -->
-    <string name="LinkPreviewRepository_sticker_pack_by_s">Sticker pack by %1$s</string>
+    <string name="LinkPreviewRepository_sticker_pack_by_s">កញ្ចប់ស្ទីកគ័រដោយ %1$s</string>
     <!-- Title for sticker pack link previews when the pack has no title or author -->
-    <string name="LinkPreviewRepository_sticker_pack">Sticker pack</string>
+    <string name="LinkPreviewRepository_sticker_pack">កញ្ចប់ស្ទីកគ័រ</string>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptLogsSlowNotificationsDialog__title">យើងបានកត់សម្គាល់ថាការជូនដំណឹងត្រូវបានពន្យារពេល។ ដាក់បញ្ជូនកំណត់ហេតុបញ្ហា?</string>
@@ -2526,9 +2526,9 @@
     <string name="SharedContactView_add_to_contacts">បន្ថែមចូល បញ្ជីទំនាក់ទំនង</string>
     <string name="SharedContactView_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
     <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
-    <string name="SharedContactView_message_button">Message</string>
+    <string name="SharedContactView_message_button">សារ</string>
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
-    <string name="SharedContactView_add_to_group">Add to group</string>
+    <string name="SharedContactView_add_to_group">បន្ថែមចូលក្រុម</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
     <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
 
@@ -2930,7 +2930,7 @@
     <string name="MediaPreviewFragment_media_delete_error">មានបញ្ហាក្នុងការលុបសារ ហើយសារអាចនៅតែមាន</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
     <string name="MediaPreviewFragment_read_more_overflow_text">អានបន្ថែមទៀត</string>
-    <string name="MediaPreviewFragment_share">Share</string>
+    <string name="MediaPreviewFragment_share">ចែករំលែក</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3386,7 +3386,7 @@
 
     <!-- DefaultBanner -->
     <!-- Accessibility content description for X button on banners -->
-    <string name="DefaultBanner__cancel">Cancel</string>
+    <string name="DefaultBanner__cancel">បោះបង់</string>
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">ការផ្លាស់ប្តូរលេខសុវត្ថិភាព</string>
@@ -3858,13 +3858,13 @@
     <string name="preferences_storage__files">ឯកសារ</string>
     <string name="preferences_storage__audio">សំឡេង</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">សារ</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">ស្ទីកគ័រ</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">ផ្សេងៗ</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
+    <string name="preferences_storage__calculating">កំពុងគណនា…</string>
     <string name="preferences_storage__review_storage">បង្ហាញឧបករណ៍ផ្ទុក</string>
     <string name="preferences_storage__delete_older_messages">លុបសារចាស់ៗ?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
@@ -5399,7 +5399,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">គុណភាពមេឌៀ</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">កំពុងគណនា…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">មេឌៀគុណភាពល្អត្រូវបានផ្ញើចេញ</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ការផ្ញើឯកសារមេឌៀដែលមានគុណភាពខ្ពស់នឹងអស់ទិន្នន័យអុីនធឺណិតច្រើន</string>

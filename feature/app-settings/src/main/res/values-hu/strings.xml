@@ -63,7 +63,7 @@
     <!-- Description of the passkey menu option -->
     <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
     <!-- Default name given to a passkey before the user chooses one -->
-    <string name="AccountSettingsRepository__passkey">Passkey</string>
+    <string name="AccountSettingsRepository__passkey">Hozzáférési kulcs</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
     <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
@@ -184,11 +184,11 @@
 
     <!-- TwoFactorNameEntryScreen -->
     <!-- Title of the screen where the user names a second factor -->
-    <string name="TwoFactorNameEntryScreen__choose_a_name">Choose a name</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Válassz egy nevet</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Válassz egy egyedi nevet ennek a hitelesítő alkalmazásnak.</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Válassz egy egyedi nevet ennek a hitelesítő alkalmazásnak, hogy később könnyebben azonosíthasd.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
@@ -198,13 +198,13 @@
     <!-- Instructions shown above the name field when naming a newly created passkey -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
     <!-- Label of the name field -->
-    <string name="TwoFactorNameEntryScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">Név</string>
     <!-- Button that submits the entered name -->
-    <string name="TwoFactorNameEntryScreen__next">Next</string>
+    <string name="TwoFactorNameEntryScreen__next">Tovább</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Hitelesítő alkalmazás beállítása</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Hitelesítő alkalmazás átnevezve</string>
     <!-- Toast shown after a passkey has been successfully set up -->
     <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
     <!-- Toast shown after a passkey has been renamed -->
@@ -214,7 +214,7 @@
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
     <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Nem sikerült elmenteni a nevet. Ellenőrizd az internetkapcsolatodat, és próbáld újra!</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -258,9 +258,9 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <string name="InviteScreen__invite_friends">Meghívás</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Share</string>
+    <string name="InviteScreen__share">Megosztás</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása</string>
@@ -269,83 +269,83 @@
     <!-- ChatsSettingsFragment -->
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d mappa</item>
+        <item quantity="other">%1$d mappa</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Adj hozzá egy csevegési mappát</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Mappák hozzáadása vagy szerkesztése</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">A hitelesítés sikertelen</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">Csevegési mappák</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <string name="ChatsSettingsFragment__export_chat_history">Csevegési előzmények exportálása</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
-    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">Exportáld az összes csevegésed géppel olvasható JSON másolatát. Az eltűnő üzenetek nem lesznek exportálva.</string>
+    <string name="ChatsSettingsFragment__keyboard">Billentyűzet</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Küldés Enterrel</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
     <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
     <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
-    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Oldd fel a csevegési előzmények exportálásához</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">A telefon névjegyzékében tárolt fotók előnyben részesítése (amennyiben elérhető)</string>
+    <string name="preferences__generate_link_previews">Hivatkozások előnézeti képének generálása</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Az archivált némított csevegések új üzenet érkezésekor továbbra is archiválva maradnak.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences__pref_keep_muted_chats_archived">A némított csevegések maradjanak archiválva</string>
+    <string name="preferences__pref_use_address_book_photos">A névjegyzékben tárolt fotók előnyben részesítése</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Előnézeti képek lekérése közvetlenül a weboldalról az elküldendő üzenetekhez.</string>
+    <string name="preferences_advanced__use_system_emoji">Rendszer emojik használata</string>
+    <string name="preferences_chats__chats">Csevegések</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">LÉGY ÓVATOS,</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">LÉGY ÓVATOS!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">Exportálás megszakítása…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Válassz ki egy mappát az eszköz tárhelyén, amelyben a csevegési előzményeket tárolni szeretnéd.</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">Válassz egy mappát</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <string name="ChatExportDialogs__choose_folder_button">Mappa kiválasztása</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">hogy hol tárolod az exportált csevegési fájlodat, és ne oszd meg senkivel! Az eszközödön található más alkalmazások az eszköz engedélyeitől függően férhetnek hozzá.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">Csevegés exportálása kész</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">Csevegési előzmények exportálása?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">Ezt a fájlt NE oszd meg senkivel! A csevegési előzményeid elmentésre kerülnek az eszközödre, és más alkalmazások is hozzáférhetnek azokhoz az eszközöd engedélyeitől függően. A médiafájllal történő exportálás nagyobb fájlméretet eredményez.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">Exportálás médiafájllal</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">Exportálás médiafájl nélkül</string>
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">Médiafájl exportálás: %1$d %%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">Véglegesítés…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">Biztonsági mentés előkészítése…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Biztonsági mentés feldolgozása…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <string name="BackupCreationProgressRow__processing_messages">Üzenetek feldolgozása…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Üzenetek feldolgozása: %2$s/%1$s (%3$d %%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">Médiafájl feltöltése: %1$d %%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">App frissítések</string>
 </resources>

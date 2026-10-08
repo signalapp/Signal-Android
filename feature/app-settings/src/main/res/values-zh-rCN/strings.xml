@@ -63,7 +63,7 @@
     <!-- Description of the passkey menu option -->
     <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
     <!-- Default name given to a passkey before the user chooses one -->
-    <string name="AccountSettingsRepository__passkey">Passkey</string>
+    <string name="AccountSettingsRepository__passkey">通行密钥</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
     <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
@@ -184,11 +184,11 @@
 
     <!-- TwoFactorNameEntryScreen -->
     <!-- Title of the screen where the user names a second factor -->
-    <string name="TwoFactorNameEntryScreen__choose_a_name">Choose a name</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_name">选择一个名称</string>
     <!-- Instructions shown above the name field when renaming an authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Choose a unique name for this authenticator app.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">请为此身份验证器应用选择一个唯一的名称。</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Choose a unique name for this authenticator app to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">请为此身份验证器应用选择一个唯一的名称，方便您日后识别。</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
@@ -198,13 +198,13 @@
     <!-- Instructions shown above the name field when naming a newly created passkey -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
     <!-- Label of the name field -->
-    <string name="TwoFactorNameEntryScreen__name">Name</string>
+    <string name="TwoFactorNameEntryScreen__name">名称</string>
     <!-- Button that submits the entered name -->
-    <string name="TwoFactorNameEntryScreen__next">Next</string>
+    <string name="TwoFactorNameEntryScreen__next">下一步</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Authenticator app set up</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">身份验证器应用已设置</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Authenticator app renamed</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">身份验证器应用已重命名</string>
     <!-- Toast shown after a passkey has been successfully set up -->
     <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
     <!-- Toast shown after a passkey has been renamed -->
@@ -214,7 +214,7 @@
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
     <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Couldn\'t save name. Check your connection and try again.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">无法保存名称。请检查您的网络连接并重试。</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -258,9 +258,9 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <string name="InviteScreen__invite_friends">邀请好友</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Share</string>
+    <string name="InviteScreen__share">分享</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">选择国家</string>
@@ -269,82 +269,82 @@
     <!-- ChatsSettingsFragment -->
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="other">%1$d folders</item>
+        <item quantity="other">%1$d 个文件夹</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">添加聊天文件夹</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">添加或编辑文件夹</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Authentication failed</string>
+    <string name="ChatsSettingsFragment__authentication_failed">认证失败</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">聊天文件夹</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
-    <string name="ChatsSettingsFragment__export_chat_history">Export chat history</string>
+    <string name="ChatsSettingsFragment__export_chat_history">导出聊天记录</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">Export a machine-readable JSON copy of all your chats. Disappearing messages will not be exported.</string>
-    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">导出您所有聊天的机器可读 JSON 副本。限时消息将不会导出。</string>
+    <string name="ChatsSettingsFragment__keyboard">键盘</string>
+    <string name="ChatsSettingsFragment__send_with_enter">按输入键发送</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
     <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
     <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Unlock to export chat history</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer contact photos from your address book if available</string>
-    <string name="preferences__generate_link_previews">Generate link previews</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">解锁以导出聊天记录</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">优先使用通讯录中的联系人头像（若可用）</string>
+    <string name="preferences__generate_link_previews">生成链接预览</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天将会保持存档状态。</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep muted chats archived</string>
-    <string name="preferences__pref_use_address_book_photos">Prefer address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
-    <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天</string>
+    <string name="preferences__pref_use_address_book_photos">优先使用通讯录头像</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接从您发送的链接网站中生成预览。</string>
+    <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
+    <string name="preferences_chats__chats">聊天</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">BE CAREFUL</string>
+    <string name="ChatExportDialogs__be_careful">请务必谨慎</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">BE CAREFUL!</string>
+    <string name="ChatExportDialogs__be_careful_warning">请务必小心！</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">Canceling export…</string>
+    <string name="ChatExportDialogs__canceling_export">正在取消导出…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Choose a folder in your device\'s storage where your chat history will be stored.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">在您设备的存储空间中选择一个文件夹，来保存您的聊天记录。</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Choose a folder</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">选择文件夹</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Choose folder</string>
+    <string name="ChatExportDialogs__choose_folder_button">选择文件夹</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">where you store your chat export file and do not share it with anyone. Other apps on your device can access it depending on your device\'s permissions.</string>
+    <string name="ChatExportDialogs__complete_body">选择聊天导出文件的存放位置，切勿与任何人分享。根据您设备的权限设置，设备上的其他应用或许能访问此文件。</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Chat export complete</string>
+    <string name="ChatExportDialogs__complete_title">聊天导出完成</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Export chat history?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">要导出聊天记录？</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Do NOT share this file with anyone. Your chat history will be saved to your device and other apps can access it depending on your device\'s permissions. Exporting with media will result in a larger file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">请勿与任何人分享此文件。您的聊天记录将会保存到您的设备中。根据您设备的权限设置，其他应用或许能访问该文件。连同媒体导出会导致导出文件更大。</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
-    <string name="ChatExportDialogs__export_with_media">Export with media</string>
+    <string name="ChatExportDialogs__export_with_media">连同媒体导出</string>
     <!-- Button in the export confirmation dialog to export messages only -->
-    <string name="ChatExportDialogs__export_without_media">Export without media</string>
+    <string name="ChatExportDialogs__export_without_media">不连媒体导出</string>
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">Exporting media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">正在导出媒体：%1$d%%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">即将完成…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
-    <string name="BackupCreationProgressRow__preparing_backup">Preparing backup…</string>
+    <string name="BackupCreationProgressRow__preparing_backup">正在准备备份…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Processing backup…</string>
+    <string name="BackupCreationProgressRow__processing_backup">正在处理备份…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
-    <string name="BackupCreationProgressRow__processing_messages">Processing messages…</string>
+    <string name="BackupCreationProgressRow__processing_messages">正在处理消息…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Processing messages: %1$s of %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">正在处理消息：%1$s 条/%2$s 条（%3$d%%）</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Uploading media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">正在上传媒体：%1$d%%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">App updates</string>
+    <string name="preferences_app_updates__title">应用更新</string>
 </resources>

@@ -9,10 +9,10 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
     
     <!-- Title of the system share sheet shown when sharing an invite -->
-    <string name="Invite__invite_to_signal">Invite to Signal</string>
+    <string name="Invite__invite_to_signal">Signal માટે આમંત્રણ આપો</string>
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
-    <string name="Invite__lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
+    <string name="Invite__lets_switch_to_signal">ચાલો Signal પર સ્વિચ કરીએ: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="Invite__no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="Invite__no_app_to_share_to">એવું લાગે છે કે તમારી પાસે શેર કરવા માટે કોઈ એપ્લિકેશન નથી.</string>
 
 </resources>

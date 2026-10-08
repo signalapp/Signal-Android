@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- Title of the dialog shown before saving to the password manager -->
-    <string name="SaveToPasswordManagerDialog__save_to_password_manager">Save to password manager?</string>
+    <string name="SaveToPasswordManagerDialog__save_to_password_manager">هل ترغبُ بالحفظ في مدير كلمات المرور؟</string>
     <!-- Body of the dialog shown before saving to the password manager when Google Password Manager is the device default. Followed by a "Learn more" link. -->
     <string name="SaveToPasswordManagerDialog__google_body">You have Google set as your default password manager. Before continuing, enable on-device encryption in Google Password Manager\'s settings.</string>
     <!-- Link at the end of the Google Password Manager dialog body that opens a support article -->
-    <string name="SaveToPasswordManagerDialog__learn_more">Learn more</string>
+    <string name="SaveToPasswordManagerDialog__learn_more">اعرف المزيد</string>
     <!-- Dialog button that opens Google Password Manager so the user can enable on-device encryption -->
     <string name="SaveToPasswordManagerDialog__open_google_password_manager">Open Google Password Manager</string>
     <!-- Dialog button that saves to Google Password Manager without first checking its encryption settings -->
-    <string name="SaveToPasswordManagerDialog__continue_anyway">Continue anyway</string>
+    <string name="SaveToPasswordManagerDialog__continue_anyway">متابعة على أي حال</string>
     <!-- Dialog button that continues saving to the password manager -->
-    <string name="SaveToPasswordManagerDialog__continue">Continue</string>
+    <string name="SaveToPasswordManagerDialog__continue">متابعة</string>
 </resources>
