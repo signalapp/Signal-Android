@@ -132,6 +132,8 @@ class FakeNetworkController(
     private set
   var lastSetRestoreMethodRequest: SetRestoreMethodRequest? = null
     private set
+  var lastRegisterAsLinkedDeviceAttributes: DeviceAttributes? = null
+    private set
   var accountAttributesSyncJobEnqueued = false
     private set
   var lastReservedNickname: String? = null
@@ -193,6 +195,10 @@ class FakeNetworkController(
       "Attempted to register with a session before it was verified!"
     }
     RequestResult.Success(registerAccountResponse(request.e164))
+  }
+
+  var onRegisterAsLinkedDevice: suspend (DeviceAttributes) -> RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> = {
+    notExpected()
   }
 
   var onSetPinAndMasterKeyOnSvr: suspend (SetPinRequest) -> RequestResult<SvrCredentials?, BackupMasterKeyError> = {
@@ -504,7 +510,10 @@ class FakeNetworkController(
     aciPreKeys: PreKeyCollection,
     pniPreKeys: PreKeyCollection?,
     fcmToken: String?
-  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> = notExpected()
+  ): RequestResult<LinkDeviceResponse, RegisterAsLinkedDeviceError> {
+    lastRegisterAsLinkedDeviceAttributes = deviceAttributes
+    return onRegisterAsLinkedDevice(deviceAttributes)
+  }
 
   override suspend fun onLinkedDeviceRegistered() = notExpected()
 

@@ -27,6 +27,7 @@ import org.signal.core.util.billing.OneTimePurchaseApi
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.registration.NetworkController.GetBackupInfoError
 import org.signal.registration.NetworkController.GetBackupInfoResponse
@@ -300,6 +301,31 @@ class RegistrationRepositoryTest {
     assertThat(networkController.lastRegisterAccountRequest?.pniRegistrationId).isNull()
   }
 
+  // ==================== registerAsLinkedDevice ====================
+
+  @Test
+  fun `registerAsLinkedDevice advertises the optional phone number capability when the primary has no phone number`() = runTest {
+    networkController.onRegisterAsLinkedDevice = { RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MissingCapability) }
+
+    numberlessRepository.registerAsLinkedDevice(linkProvisioningMessage(phoneNumberData = null), "Device")
+
+    assertThat(networkController.lastRegisterAsLinkedDeviceAttributes?.capabilities?.optionalPhoneNumber).isEqualTo(true)
+  }
+
+  @Test
+  fun `registerAsLinkedDevice does not advertise the optional phone number capability when the primary has a phone number`() = runTest {
+    networkController.onRegisterAsLinkedDevice = { RequestResult.NonSuccess(RegisterAsLinkedDeviceError.MissingCapability) }
+
+    val phoneNumberData = NetworkController.LinkDeviceProvisioningMessage.PhoneNumberData(
+      e164 = "+15551234567",
+      pni = PNI.from(UUID.randomUUID()).toString(),
+      pniIdentityKeyPair = IdentityKeyPair.generate()
+    )
+    numberlessRepository.registerAsLinkedDevice(linkProvisioningMessage(phoneNumberData = phoneNumberData), "Device")
+
+    assertThat(networkController.lastRegisterAsLinkedDeviceAttributes?.capabilities?.optionalPhoneNumber).isEqualTo(false)
+  }
+
   // ==================== registerAccountWithSession ====================
 
   @Test
@@ -336,6 +362,20 @@ class RegistrationRepositoryTest {
     assertThat(committed).isNotNull()
     assertThat(committed!!.accountEntropyPool.isNotEmpty()).isTrue()
     assertThat(committed.accountEntropyPool).isNotEqualTo(aep.value)
+  }
+
+  private fun linkProvisioningMessage(phoneNumberData: NetworkController.LinkDeviceProvisioningMessage.PhoneNumberData?): NetworkController.LinkDeviceProvisioningMessage {
+    return NetworkController.LinkDeviceProvisioningMessage(
+      provisioningCode = "code",
+      aci = ACI.from(UUID.randomUUID()).toString(),
+      aciIdentityKeyPair = IdentityKeyPair.generate(),
+      phoneNumberData = phoneNumberData,
+      profileKey = ByteArray(32),
+      ephemeralBackupKey = null,
+      accountEntropyPool = aep.value,
+      mediaRootBackupKey = null,
+      readReceipts = null
+    )
   }
 
   private fun preExistingRegistrationData(e164: String): PreExistingRegistrationData {

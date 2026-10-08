@@ -949,7 +949,7 @@ class RegistrationRepository(
       registrationId = keyMaterial.aciRegistrationId,
       pniRegistrationId = keyMaterial.pni?.registrationId,
       name = Base64.encodeWithPadding(encryptedDeviceName),
-      capabilities = getAccountCapabilities()
+      capabilities = getAccountCapabilities().copy(optionalPhoneNumber = phoneNumberData == null)
     )
 
     val aciPreKeys = PreKeyCollection(
