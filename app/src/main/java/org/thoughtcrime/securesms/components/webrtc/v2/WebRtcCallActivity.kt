@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
+import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager
 import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -113,6 +114,11 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       WebRtcViewModel.State.CALL_CONNECTED
     )
 
+    private val PHONE_STATE_PERMISSION_STATES = setOf(
+      WebRtcViewModel.State.CALL_OUTGOING,
+      WebRtcViewModel.State.CALL_CONNECTED
+    )
+
     /**
      * The system rejects picture-in-picture aspect ratios outside of [1/2.39, 2.39] with an
      * IllegalArgumentException. We stay a hair inside those bounds so that rounding when converting
@@ -130,6 +136,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private var hasWarnedAboutBluetooth: Boolean = false
   private var hasWarnedAboutBackgroundRestriction: Boolean = false
   private var hasWarnedAboutMicrophoneSilenced: Boolean = false
+  private var hasRequestedPhoneStatePermission: Boolean = false
   private lateinit var windowLayoutInfoConsumer: WindowLayoutInfoConsumer
   private lateinit var windowInfoTrackerCallbackAdapter: WindowInfoTrackerCallbackAdapter
   private lateinit var requestNewSizesThrottle: ThrottledDebouncer
@@ -525,6 +532,24 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     maybeWarnAboutBackgroundRestriction(event)
+    maybeRequestPhoneStatePermission(event)
+  }
+
+  private fun maybeRequestPhoneStatePermission(event: WebRtcViewModel) {
+    if (Build.VERSION.SDK_INT < 31 || hasRequestedPhoneStatePermission || isFinishing || isInPipMode()) {
+      return
+    }
+
+    if (event.state !in PHONE_STATE_PERMISSION_STATES || !hasAudioPermission() || callPermissionsDialogController.isAskingForPermission) {
+      return
+    }
+
+    hasRequestedPhoneStatePermission = true
+    if (!Permissions.hasAll(this, Manifest.permission.READ_PHONE_STATE)) {
+      callPermissionsDialogController.requestPhoneStatePermission(this) {
+        ActiveCallManager.onPhoneStatePermissionGranted()
+      }
+    }
   }
 
   private fun maybeWarnAboutBackgroundRestriction(event: WebRtcViewModel) {

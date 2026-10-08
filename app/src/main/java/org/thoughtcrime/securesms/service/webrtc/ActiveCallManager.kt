@@ -18,6 +18,7 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
+import androidx.annotation.MainThread
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.IntentCompat
@@ -31,6 +32,7 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.DeviceProperties
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.SafeForegroundService
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.UnableToStartException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -127,6 +129,13 @@ class ActiveCallManager(
     }
 
     @JvmStatic
+    fun onPhoneStatePermissionGranted() {
+      activeCallManagerLock.withLock {
+        activeCallManager?.retryPstnCallAnsweredListener()
+      }
+    }
+
+    @JvmStatic
     fun changePowerButtonReceiver(context: Context, register: Boolean) {
       activeCallManagerLock.withLock {
         if (activeCallManager == null) {
@@ -145,6 +154,10 @@ class ActiveCallManager(
   private var signalAudioManager: SignalAudioManager? = null
   private var previousNotificationId = -1
   private var previousNotificationDisposable = Disposable.disposed()
+
+  @Suppress("DEPRECATION")
+  private var pstnCallAnsweredListener: PhoneStateListener? = null
+  private var shouldListenForPstnCallAnswered = false
 
   init {
     Log.i(TAG, "init(bkgRestricted: ${DeviceProperties.isBackgroundRestricted()})")
@@ -169,6 +182,7 @@ class ActiveCallManager(
 
     unregisterNetworkReceiver()
     unregisterPowerButtonReceiver()
+    unregisterPstnCallAnsweredListener()
 
     AppDependencies.authWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
     AppDependencies.unauthWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
@@ -207,7 +221,17 @@ class ActiveCallManager(
       }
     } else {
       ActiveCallForegroundService.update(application, type, recipientId, isVideoCall)
+      ThreadUtil.runOnMain {
+        if (!shouldListenForPstnCallAnswered) {
+          shouldListenForPstnCallAnswered = true
+          registerPstnCallAnsweredListener()
+        }
+      }
     }
+  }
+
+  private fun retryPstnCallAnsweredListener() {
+    ThreadUtil.runOnMain { registerPstnCallAnsweredListener() }
   }
 
   fun sendAudioCommand(audioCommand: AudioManagerCommand) {
@@ -268,6 +292,33 @@ class ActiveCallManager(
     }
   }
 
+  @MainThread
+  private fun registerPstnCallAnsweredListener() {
+    if (pstnCallAnsweredListener != null || !shouldListenForPstnCallAnswered || AndroidTelecomUtil.telecomSupported) {
+      return
+    }
+
+    val listener = HangUpRtcOnPstnCallAnsweredListener()
+    try {
+      @Suppress("DEPRECATION")
+      TelephonyUtil.getManager(application).listen(listener, PhoneStateListener.LISTEN_CALL_STATE)
+      pstnCallAnsweredListener = listener
+    } catch (e: SecurityException) {
+      Log.w(TAG, "Failed to listen to PSTN call answers!", e)
+    }
+  }
+
+  private fun unregisterPstnCallAnsweredListener() {
+    ThreadUtil.runOnMain {
+      shouldListenForPstnCallAnswered = false
+      pstnCallAnsweredListener?.let {
+        @Suppress("DEPRECATION")
+        TelephonyUtil.getManager(application).listen(it, PhoneStateListener.LISTEN_NONE)
+      }
+      pstnCallAnsweredListener = null
+    }
+  }
+
   override fun onAudioDeviceChanged(activeDevice: SignalAudioManager.AudioDevice, devices: Set<SignalAudioManager.AudioDevice>) {
     callManager.onAudioDeviceChanged(activeDevice, devices)
   }
@@ -286,6 +337,18 @@ class ActiveCallManager(
 
   override fun onMicrophoneSilencedChanged(silenced: Boolean) {
     callManager.onMicrophoneSilencedChanged(silenced)
+  }
+
+  @Suppress("deprecation")
+  private class HangUpRtcOnPstnCallAnsweredListener : PhoneStateListener() {
+    @Deprecated("Deprecated in Java")
+    override fun onCallStateChanged(state: Int, phoneNumber: String) {
+      super.onCallStateChanged(state, phoneNumber)
+      if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+        Log.i(TAG, "Device phone call ended Signal call.")
+        AppDependencies.signalCallManager.localHangup()
+      }
+    }
   }
 
   /** Foreground service started only after a call is established */
@@ -328,8 +391,6 @@ class ActiveCallManager(
     override val notificationId: Int
       get() = CallNotificationBuilder.WEBRTC_NOTIFICATION
 
-    @Suppress("DEPRECATION")
-    private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
 
     @Volatile
@@ -341,20 +402,6 @@ class ActiveCallManager(
     @Volatile
     private var lastAsyncServiceNotificationType: Int = -1
 
-    override fun onCreate() {
-      super.onCreate()
-      hangUpRtcOnDeviceCallAnswered = HangUpRtcOnPstnCallAnsweredListener()
-
-      if (!AndroidTelecomUtil.telecomSupported) {
-        try {
-          @Suppress("DEPRECATION")
-          TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE)
-        } catch (e: SecurityException) {
-          Log.w(TAG, "Failed to listen to PSTN call answers!", e)
-        }
-      }
-    }
-
     override fun onServiceStopCommandReceived(intent: Intent) {
       notificationDisposable.dispose()
     }
@@ -365,15 +412,6 @@ class ActiveCallManager(
       activeCallManagerLock.withLock {
         activeCallManager?.shutdown(fromTimeout = true)
         activeCallManager = null
-      }
-    }
-
-    override fun onDestroy() {
-      super.onDestroy()
-
-      if (!AndroidTelecomUtil.telecomSupported) {
-        @Suppress("DEPRECATION")
-        TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE)
       }
     }
 
@@ -455,22 +493,6 @@ class ActiveCallManager(
         isVideoCall,
         skipAvatarLoad
       )
-    }
-
-    @Suppress("deprecation")
-    private class HangUpRtcOnPstnCallAnsweredListener : PhoneStateListener() {
-      @Deprecated("Deprecated in Java")
-      override fun onCallStateChanged(state: Int, phoneNumber: String) {
-        super.onCallStateChanged(state, phoneNumber)
-        if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
-          hangup()
-          Log.i(TAG, "Device phone call ended Signal call.")
-        }
-      }
-
-      private fun hangup() {
-        AppDependencies.signalCallManager.localHangup()
-      }
     }
   }
 

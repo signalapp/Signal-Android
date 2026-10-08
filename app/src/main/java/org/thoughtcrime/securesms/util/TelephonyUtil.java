@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
@@ -48,7 +49,7 @@ public class TelephonyUtil {
 
   public static boolean isAnyPstnLineBusy(@NonNull Context context) {
     try {
-      if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+      if (Build.VERSION.SDK_INT < 31 || ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
         return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
       } else {
         return false;
