@@ -185,7 +185,8 @@ class ShareContactRepository(
           displayName = displayName,
           isSelected = true,
           isEditable = true,
-          isToggleable = false
+          isToggleable = false,
+          isOrgOnly = contact.isOrgOnly
         ),
         details = contact.buildDetails(displayName)
       )

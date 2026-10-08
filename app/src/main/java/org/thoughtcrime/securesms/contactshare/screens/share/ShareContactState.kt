@@ -33,7 +33,8 @@ data class ShareContactState(
     val isSelected: Boolean,
     val isEditable: Boolean,
     /** When false the user cannot deselect the name. */
-    val isToggleable: Boolean = true
+    val isToggleable: Boolean = true,
+    val isOrgOnly: Boolean = false
   )
 
   data class DetailSelection(

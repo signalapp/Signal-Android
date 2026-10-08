@@ -282,6 +282,17 @@ class ShareContactViewModelTest {
   }
 
   @Test
+  fun `editing the name down to only a company marks it as an organization`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(ShareContactEvent.NameEdited(ContactNameParts(organization = "Signal Messenger")))
+    assertThat(viewModel.state.value.name?.isOrgOnly).isEqualTo(true)
+
+    viewModel.onEvent(ShareContactEvent.NameEdited(ContactNameParts(givenName = "Paige", organization = "Signal Messenger")))
+    assertThat(viewModel.state.value.name?.isOrgOnly).isEqualTo(false)
+  }
+
+  @Test
   fun `backing out asks the host to exit`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val events = viewModel.collectActions(this)

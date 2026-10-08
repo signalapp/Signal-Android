@@ -91,6 +91,7 @@ class ContactIndexSourceTest {
       lookupKey = LOOKUP_KEY,
       contactId = CONTACT_ID,
       hasPersonalName = true,
+      isOrgOnly = false,
       hasPhoto = false
     )
   }

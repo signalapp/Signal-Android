@@ -385,15 +385,15 @@ private fun ContactAvatar(contact: ContactIndexRecord) {
 }
 
 /**
- * A company name or bare phone number has no initials worth showing, so it falls back to the person
- * glyph rather than to the first letters of whatever the provider used as a name.
+ * A company name or bare phone number has no initials worth showing, so it falls back to a building
+ * or person glyph rather than to the first letters of whatever the provider used as a name.
  */
 private fun ContactIndexRecord.fallbackAvatar(): FallbackAvatar {
   // No recipient to derive a color from, so address book entries all share the first avatar color.
-  return if (!hasPersonalName) {
-    FallbackAvatar.Resource.Person(AvatarColor.A100)
-  } else {
-    FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
+  return when {
+    isOrgOnly -> FallbackAvatar.Resource.Organization(AvatarColor.A100)
+    !hasPersonalName -> FallbackAvatar.Resource.Person(AvatarColor.A100)
+    else -> FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
   }
 }
 
@@ -627,7 +627,8 @@ private fun previewContact(
   position: Long,
   name: String,
   type: ContactIndexType = ContactIndexType.SYSTEM_ONLY,
-  hasPersonalName: Boolean = true
+  hasPersonalName: Boolean = true,
+  isOrgOnly: Boolean = false
 ): ContactIndexRecord {
   return ContactIndexRecord(
     position = position,
@@ -638,6 +639,7 @@ private fun previewContact(
     lookupKey = if (type != ContactIndexType.SIGNAL_ONLY) "lookup-$position" else null,
     contactId = null,
     hasPersonalName = hasPersonalName,
+    isOrgOnly = isOrgOnly,
     hasPhoto = false
   )
 }
@@ -650,7 +652,7 @@ private val PREVIEW_ROWS = listOf(
   SelectContactRow.Header("C"),
   SelectContactRow.Contact(previewContact(4, "Casey Fields", ContactIndexType.BOTH)),
   SelectContactRow.Header("#"),
-  SelectContactRow.Contact(previewContact(5, "Pacific Plumbing", hasPersonalName = false)),
+  SelectContactRow.Contact(previewContact(5, "Pacific Plumbing", hasPersonalName = false, isOrgOnly = true)),
   SelectContactRow.Contact(previewContact(6, "+1 555-123-4567", hasPersonalName = false))
 )
 

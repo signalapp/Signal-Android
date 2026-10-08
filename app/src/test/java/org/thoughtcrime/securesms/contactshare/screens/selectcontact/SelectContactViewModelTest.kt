@@ -348,6 +348,7 @@ class SelectContactViewModelTest {
       lookupKey = "lookup-$position",
       contactId = position,
       hasPersonalName = true,
+      isOrgOnly = false,
       hasPhoto = false
     )
   }

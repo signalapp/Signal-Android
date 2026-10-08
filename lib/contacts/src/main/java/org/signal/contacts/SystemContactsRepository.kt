@@ -251,6 +251,11 @@ object SystemContactsRepository {
     }
   }
 
+  @JvmStatic
+  fun isOrganizationDisplayName(displayNameSource: Int): Boolean {
+    return displayNameSource == ContactsContract.DisplayNameSources.ORGANIZATION
+  }
+
   /**
    * Pulls the lookup key out of a contact lookup URI.
    *

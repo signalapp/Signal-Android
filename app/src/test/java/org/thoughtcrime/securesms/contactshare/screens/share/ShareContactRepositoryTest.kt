@@ -89,6 +89,12 @@ class ShareContactRepositoryTest {
   }
 
   @Test
+  fun `a company only card is marked as an organization`() = runTest {
+    assertThat(load(contact(organization = "Pacific Plumbing")).state.name?.isOrgOnly).isEqualTo(true)
+    assertThat(load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null), organization = "Signal Messenger")).state.name?.isOrgOnly).isEqualTo(false)
+  }
+
+  @Test
   fun `a card with no photo offers nothing to choose`() = runTest {
     val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null)))
 

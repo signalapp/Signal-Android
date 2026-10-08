@@ -13,8 +13,8 @@ data class SharedContactDetailsState(
   /** Null when there is none, or when it is already the title. */
   val organization: String? = null,
   val photoUri: String? = null,
-  /** False when the only name is a company, which has no initials worth drawing. */
-  val hasPersonalName: Boolean = true,
+  /** True when the only name is a company, which has no initials worth drawing. */
+  val isOrgOnly: Boolean = false,
   val signalRecipientId: RecipientId? = null,
   val actions: List<ContactAction> = emptyList(),
   val details: List<DetailRow> = emptyList(),

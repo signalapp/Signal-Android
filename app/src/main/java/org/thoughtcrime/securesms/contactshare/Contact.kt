@@ -88,6 +88,10 @@ class Contact @JsonCreator constructor(
   val avatarAttachment: Attachment?
     get() = avatar?.attachment
 
+  @get:JsonIgnore
+  val isOrgOnly: Boolean
+    get() = name.isEmpty && !organization.isNullOrBlank()
+
   @Throws(IOException::class)
   fun serialize(): String = JsonUtils.toJson(this)
 

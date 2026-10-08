@@ -126,6 +126,7 @@ class ShareContactPiiLoggingTest {
       lookupKey = SECRET_TEXT,
       contactId = 1L,
       hasPersonalName = true,
+      isOrgOnly = false,
       hasPhoto = false
     )
   }

@@ -97,8 +97,8 @@ class SharedContactDetailsRepositoryTest {
 
   @Test
   fun `a company only card has no initials worth drawing`() = runTest {
-    assertThat(repository.loadState(contact(organization = "Pacific Plumbing")).hasPersonalName).isFalse()
-    assertThat(repository.loadState(contact(name = name("Paige", "Hall"))).hasPersonalName).isTrue()
+    assertThat(repository.loadState(contact(organization = "Pacific Plumbing")).isOrgOnly).isTrue()
+    assertThat(repository.loadState(contact(name = name("Paige", "Hall"))).isOrgOnly).isFalse()
   }
 
   @Test

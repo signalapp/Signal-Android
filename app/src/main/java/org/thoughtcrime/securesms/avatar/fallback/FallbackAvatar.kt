@@ -72,6 +72,13 @@ sealed interface FallbackAvatar {
     }
 
     /**
+     * Contact whose only name is a company
+     */
+    data class Organization(override val color: AvatarColor) : Resource {
+      override fun getIconBySize(size: Size): Int = R.drawable.symbol_building_24
+    }
+
+    /**
      * A group
      */
     data class Group(override val color: AvatarColor) : Resource {

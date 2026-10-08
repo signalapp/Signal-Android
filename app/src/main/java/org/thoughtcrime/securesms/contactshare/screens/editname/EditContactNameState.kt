@@ -26,6 +26,9 @@ data class ContactNameParts(
   val hasPersonalName: Boolean
     get() = prefix.isNotBlank() || givenName.isNotBlank() || middleName.isNotBlank() || familyName.isNotBlank() || suffix.isNotBlank()
 
+  val isOrgOnly: Boolean
+    get() = !hasPersonalName && organization.isNotBlank()
+
   override fun toString(): String = "ContactNameParts(hasPrefix=${prefix.isNotBlank()}, hasGiven=${givenName.isNotBlank()}, hasMiddle=${middleName.isNotBlank()}, hasFamily=${familyName.isNotBlank()}, hasSuffix=${suffix.isNotBlank()}, hasOrg=${organization.isNotBlank()})"
 }
 

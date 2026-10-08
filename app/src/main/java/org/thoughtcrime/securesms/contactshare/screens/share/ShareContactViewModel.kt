@@ -127,7 +127,7 @@ class ShareContactViewModel(
       is ShareContactEvent.NameEdited -> {
         nameParts = event.parts
         _state.update { current ->
-          current.copy(name = current.name?.copy(displayName = event.parts.toDisplayName()))
+          current.copy(name = current.name?.copy(displayName = event.parts.toDisplayName(), isOrgOnly = event.parts.isOrgOnly))
         }
       }
 
@@ -213,7 +213,8 @@ class ShareContactViewModel(
       ),
       name = name?.copy(
         isSelected = savedState.get<Boolean>(KEY_NAME_SELECTED) ?: name.isSelected,
-        displayName = nameParts.toDisplayName().ifBlank { name.displayName }
+        displayName = nameParts.toDisplayName().ifBlank { name.displayName },
+        isOrgOnly = nameParts.isOrgOnly
       ),
       details = details.map { it.copy(isSelected = it.id in detailIds) }
     )

@@ -148,7 +148,7 @@ private fun Header(
       .padding(horizontal = HORIZONTAL_PADDING)
       .padding(bottom = 24.dp)
   ) {
-    Avatar(photoUri = state.photoUri, displayName = state.displayName, hasPersonalName = state.hasPersonalName)
+    Avatar(photoUri = state.photoUri, displayName = state.displayName, isOrgOnly = state.isOrgOnly)
 
     Spacer(modifier = Modifier.height(16.dp))
 
@@ -198,14 +198,14 @@ private fun Header(
 }
 
 @Composable
-private fun Avatar(photoUri: String?, displayName: String, hasPersonalName: Boolean) {
+private fun Avatar(photoUri: String?, displayName: String, isOrgOnly: Boolean) {
   val modifier = Modifier.size(AVATAR_SIZE).clip(CircleShape)
 
   if (photoUri == null) {
-    val fallback = if (hasPersonalName) {
-      FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
+    val fallback = if (isOrgOnly) {
+      FallbackAvatar.Resource.Organization(AvatarColor.A100)
     } else {
-      FallbackAvatar.Resource.Person(AvatarColor.A100)
+      FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
     }
 
     FallbackAvatarImage(fallbackAvatar = fallback, modifier = Modifier.size(AVATAR_SIZE))

@@ -50,7 +50,7 @@ class SharedContactDetailsRepository(
       displayName = displayName,
       organization = contact.organization.nullIfBlank()?.takeIf { it != displayName },
       photoUri = contact.avatar?.attachment?.uri?.toString(),
-      hasPersonalName = !contact.name.isEmpty || contact.organization.isNullOrBlank(),
+      isOrgOnly = contact.isOrgOnly,
       signalRecipientId = signalRecipient,
       actions = SharedContactDetailsViewModel.contactActionsFor(
         isOnSignal = isOnSignal,

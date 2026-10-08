@@ -111,6 +111,7 @@ fun ShareContactScreen(
               AvatarRow(
                 avatar = state.avatar,
                 displayName = state.name?.displayName.orEmpty(),
+                isOrgOnly = state.name?.isOrgOnly == true,
                 onToggle = { onEvent(ShareContactEvent.AvatarToggled) },
                 onEditClick = { onEvent(ShareContactEvent.EditPhotoClicked) }
               )
@@ -150,6 +151,7 @@ fun ShareContactScreen(
     PhotoPickerSheet(
       picker = state.photoPicker,
       displayName = state.name?.displayName.orEmpty(),
+      isOrgOnly = state.name?.isOrgOnly == true,
       onPhotoSelected = { onEvent(ShareContactEvent.PhotoSelected(it)) },
       onConfirm = { onEvent(ShareContactEvent.PhotoPickerConfirmed) },
       onDismiss = { onEvent(ShareContactEvent.PhotoPickerDismissed) }
@@ -161,6 +163,7 @@ fun ShareContactScreen(
 private fun AvatarRow(
   avatar: ShareContactState.AvatarSelection,
   displayName: String,
+  isOrgOnly: Boolean,
   onToggle: () -> Unit,
   onEditClick: () -> Unit
 ) {
@@ -178,6 +181,7 @@ private fun AvatarRow(
       ContactPhotoImage(
         photo = avatar.photo,
         displayName = displayName,
+        isOrgOnly = isOrgOnly,
         modifier = Modifier.size(AVATAR_SIZE)
       )
 
@@ -380,6 +384,7 @@ private fun Footer(
 private fun PhotoPickerSheet(
   picker: ShareContactState.PhotoPicker,
   displayName: String,
+  isOrgOnly: Boolean,
   onPhotoSelected: (String) -> Unit,
   onConfirm: () -> Unit,
   onDismiss: () -> Unit
@@ -415,6 +420,7 @@ private fun PhotoPickerSheet(
             ContactPhotoImage(
               photo = option.photo,
               displayName = displayName,
+              isOrgOnly = isOrgOnly,
               modifier = Modifier.size(photoSize)
             )
 
@@ -455,10 +461,14 @@ private fun pickerPhotoSize(available: Dp, count: Int): Dp {
 
 /** A null [photo] is the "no photo" choice, drawn the way the receiver will draw it. */
 @Composable
-private fun ContactPhotoImage(photo: ContactPhoto?, displayName: String, modifier: Modifier = Modifier) {
+private fun ContactPhotoImage(photo: ContactPhoto?, displayName: String, isOrgOnly: Boolean, modifier: Modifier = Modifier) {
   if (photo == null) {
     FallbackAvatarImage(
-      fallbackAvatar = FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100),
+      fallbackAvatar = if (isOrgOnly) {
+        FallbackAvatar.Resource.Organization(AvatarColor.A100)
+      } else {
+        FallbackAvatar.forTextOrDefault(displayName, AvatarColor.A100)
+      },
       modifier = modifier
     )
   } else if (LocalInspectionMode.current) {

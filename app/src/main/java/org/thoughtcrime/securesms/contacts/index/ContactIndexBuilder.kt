@@ -192,7 +192,8 @@ class ContactIndexBuilder(private val context: Context) {
     // shown as a blank row.
     val displayName = ContactDisplayName.forSystemContact(providerName, link?.nickname) ?: return null
 
-    val hasPersonalName = SystemContactsRepository.isPersonalDisplayName(requireInt(ContactsContract.Contacts.DISPLAY_NAME_SOURCE))
+    val displayNameSource = requireInt(ContactsContract.Contacts.DISPLAY_NAME_SOURCE)
+    val hasPersonalName = SystemContactsRepository.isPersonalDisplayName(displayNameSource)
 
     return ContactIndexEntry(
       sortKey = sortKeys.of(displayName),
@@ -204,6 +205,7 @@ class ContactIndexBuilder(private val context: Context) {
       lookupKey = lookupKey,
       contactId = requireLong(ContactsContract.Contacts._ID),
       hasPersonalName = hasPersonalName,
+      isOrgOnly = SystemContactsRepository.isOrganizationDisplayName(displayNameSource) && link?.nickname == null,
       hasPhoto = requireString(ContactsContract.Contacts.PHOTO_URI) != null
     )
   }
