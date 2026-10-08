@@ -218,13 +218,13 @@ class CaptureButtonTest {
     assertThat(gestures).isEqualTo(listOf(LONG_PRESS_START, LONG_PRESS_END))
   }
 
-  /** A drag that has carried past the slop toward the lock is headed there rather than zooming. */
+  /** A drag that has carried past the slop toward the lock, and more toward it than across, is headed there rather than zooming. */
   @Test
   fun `Given a hold dragged toward the lock, when it moves, then the zoom is left alone`() {
     setContent()
 
     press()
-    dragBy(Offset(x = LOCK_OFFSET.x / 2f, y = -400f))
+    dragBy(Offset(x = LOCK_OFFSET.x / 2f, y = -60f))
     lift()
 
     assertThat(zoomChanges).isEmpty()
@@ -248,6 +248,18 @@ class CaptureButtonTest {
 
     press()
     dragBy(Offset(x = -1f, y = -400f))
+    lift()
+
+    assertThat(zoomChanges.any { it > 0f }).isTrue()
+  }
+
+  /** A thumb arcs on its way up, which carries it well past the slop toward the lock while still going mostly up. */
+  @Test
+  fun `Given a hold dragged up in an arc toward the lock, when it moves, then the zoom follows it`() {
+    setContent()
+
+    press()
+    dragBy(Offset(x = LOCK_OFFSET.x / 2f, y = -400f))
     lift()
 
     assertThat(zoomChanges.any { it > 0f }).isTrue()
