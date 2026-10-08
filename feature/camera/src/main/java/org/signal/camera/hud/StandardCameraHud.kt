@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -64,6 +66,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.camera.CameraDisplay
@@ -75,6 +78,7 @@ import org.signal.camera.test.TestTags
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Chrome
+import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.rememberWindowBreakpoint
 import java.util.Locale
@@ -107,6 +111,7 @@ data class StringResources(
   @param:StringRes val flashOff: Int = 0,
   @param:StringRes val flashOn: Int = 0,
   @param:StringRes val flashAuto: Int = 0,
+  @param:StringRes val multiCapture: Int = 0,
   @param:StringRes val send: Int = 0,
   @param:StringRes val recordingPaused: Int = 0
 )
@@ -144,6 +149,7 @@ data class StringResources(
  * @param state The current camera screen state
  * @param maxRecordingDurationMs Maximum video recording duration in milliseconds, after which recording stops itself
  * @param captureButtonMode Which kind of capture the button offers while it is not recording
+ * @param multiCaptureMode Whether the multi-capture toggle is offered, and its current setting
  * @param mediaSelectionCount Number of media items currently selected (shows count indicator when > 0)
  * @param emitter Callback for HUD events (photo captured, video captured, gallery click)
  */
@@ -154,6 +160,7 @@ fun BoxScope.StandardCameraHud(
   modifier: Modifier = Modifier,
   maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
   captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO,
+  multiCaptureMode: MultiCaptureMode = MultiCaptureMode.NONE,
   hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources(0, 0)
 ) {
@@ -251,8 +258,8 @@ fun BoxScope.StandardCameraHud(
       state = state,
       emitter = emitter,
       modifier = modifier,
-      maxRecordingDurationMs = maxRecordingDurationMs,
       captureButtonMode = captureButtonMode,
+      multiCaptureMode = multiCaptureMode,
       hasAudioPermission = hasAudioPermission,
       stringResources = stringResources
     )
@@ -264,8 +271,8 @@ private fun BoxScope.StandardCameraHudContent(
   state: CameraScreenState,
   emitter: (StandardCameraHudEvents) -> Unit,
   modifier: Modifier = Modifier,
-  maxRecordingDurationMs: Long = DEFAULT_MAX_RECORDING_DURATION_MS,
   captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO,
+  multiCaptureMode: MultiCaptureMode = MultiCaptureMode.NONE,
   hasAudioPermission: () -> Boolean = { true },
   stringResources: StringResources = StringResources()
 ) {
@@ -310,19 +317,32 @@ private fun BoxScope.StandardCameraHudContent(
   }
 
   if (isPortraitPhone) {
-    // The flash belongs to a photo the camera has yet to take, so the button goes for as long as a recording runs.
+    // Multi-capture and the flash belong to captures the camera has yet to take, so they go for as long as a recording runs.
     Chrome.Control(
       visible = !state.isRecording,
       modifier = Modifier
         .align(Alignment.TopEnd)
         .padding(TOP_CONTROL_MARGIN)
     ) {
-      FlashToggleButton(
-        flashMode = state.flashMode,
-        onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
-        stringResources = stringResources,
-        modifier = Modifier.rotate(iconRotation)
-      )
+      Row(
+        modifier = Modifier
+          .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
+      ) {
+        MultiCaptureModeToggleButton(
+          multiCaptureMode = multiCaptureMode,
+          onToggle = { emitter(StandardCameraHudEvents.ToggleMultiCapture) },
+          stringResources = stringResources,
+          size = TOP_CONTROL_SIZE,
+          iconRotation = iconRotation
+        )
+
+        FlashToggleButton(
+          flashMode = state.flashMode,
+          onToggle = { emitter(StandardCameraHudEvents.ToggleFlash) },
+          stringResources = stringResources,
+          modifier = Modifier.rotate(iconRotation)
+        )
+      }
     }
   }
 
@@ -365,6 +385,7 @@ private fun BoxScope.StandardCameraHudContent(
     breakpoint = breakpoint,
     iconRotation = iconRotation,
     flashMode = state.flashMode,
+    multiCaptureMode = multiCaptureMode,
     captureButtonState = captureButtonState,
     isRecordingPaused = state.isRecordingPaused,
     emitter = emitter,
@@ -471,6 +492,7 @@ private fun CameraControls(
   captureButtonState: CaptureButtonState,
   isRecordingPaused: Boolean,
   flashMode: FlashMode,
+  multiCaptureMode: MultiCaptureMode,
   emitter: (StandardCameraHudEvents) -> Unit,
   hasAudioPermission: () -> Boolean,
   stringResources: StringResources,
@@ -592,6 +614,7 @@ private fun CameraControls(
     else -> {
       VerticalControlBar(
         flashMode = flashMode,
+        multiCaptureMode = multiCaptureMode,
         gallerySlot = gallery,
         captureSlot = captureButton,
         captureButtonState = captureButtonState,
@@ -669,6 +692,7 @@ private fun BoxScope.CameraSwitchCorner(
 @Composable
 private fun VerticalControlBar(
   flashMode: FlashMode,
+  multiCaptureMode: MultiCaptureMode,
   gallerySlot: @Composable (CaptureButtonState) -> Unit,
   captureSlot: @Composable (CaptureButtonState) -> Unit,
   captureButtonState: CaptureButtonState,
@@ -689,10 +713,11 @@ private fun VerticalControlBar(
         .weight(1f)
         .padding(bottom = 40.dp)
     ) {
-      // Neither the flash nor the camera switch has anything to offer a running recording, so the pill goes whole.
+      // Nothing in the pill has anything to offer a running recording, so the pill goes whole.
       Chrome.Control(visible = !captureButtonState.isRecording) {
-        FlashAndCameraTogglePill(
+        CameraControlTogglePill(
           flashMode = flashMode,
+          multiCaptureMode = multiCaptureMode,
           emitter = emitter,
           stringResources = stringResources
         )
@@ -713,8 +738,9 @@ private fun VerticalControlBar(
 }
 
 @Composable
-private fun FlashAndCameraTogglePill(
+private fun CameraControlTogglePill(
   flashMode: FlashMode,
+  multiCaptureMode: MultiCaptureMode,
   stringResources: StringResources,
   emitter: (StandardCameraHudEvents) -> Unit,
   modifier: Modifier = Modifier
@@ -725,6 +751,12 @@ private fun FlashAndCameraTogglePill(
       shape = RoundedCornerShape(50)
     )
   ) {
+    MultiCaptureModeToggleButton(
+      multiCaptureMode = multiCaptureMode,
+      onToggle = { emitter(StandardCameraHudEvents.ToggleMultiCapture) },
+      stringResources = stringResources
+    )
+
     IconButton(
       onClick = { emitter(StandardCameraHudEvents.ToggleFlash) },
       modifier = Modifier.testTag(TestTags.CAMERA_HUD_FLASH_BUTTON)
@@ -847,6 +879,41 @@ private fun CameraSwitchButton(
 }
 
 @Composable
+private fun MultiCaptureModeToggleButton(
+  multiCaptureMode: MultiCaptureMode,
+  onToggle: () -> Unit,
+  stringResources: StringResources,
+  size: Dp = 40.dp,
+  iconRotation: Float = 0f
+) {
+  if (multiCaptureMode != MultiCaptureMode.NONE) {
+    IconButtons.IconToggleButton(
+      checked = multiCaptureMode == MultiCaptureMode.ON,
+      onCheckedChange = { onToggle() },
+      size = size,
+      modifier = Modifier.testTag(TestTags.CAMERA_HUD_MULTI_CAPTURE_BUTTON)
+    ) {
+      // Crossfade holds on to its content until the target changes, so rotation must live outside it.
+      Crossfade(
+        targetState = multiCaptureMode == MultiCaptureMode.ON,
+        modifier = Modifier.rotate(iconRotation)
+      ) { targetState ->
+        Icon(
+          imageVector = if (targetState) {
+            SignalIcons.AlbumPlusFill.imageVector
+          } else {
+            SignalIcons.AlbumPlus.imageVector
+          },
+          contentDescription = if (stringResources.multiCapture != 0) stringResource(stringResources.multiCapture) else null,
+          tint = colorResource(R.color.CameraHud_control_foreground),
+          modifier = Modifier.size(24.dp)
+        )
+      }
+    }
+  }
+}
+
+@Composable
 private fun FlashToggleButton(
   flashMode: FlashMode,
   onToggle: () -> Unit,
@@ -857,7 +924,6 @@ private fun FlashToggleButton(
     onClick = onToggle,
     modifier = modifier
       .size(TOP_CONTROL_SIZE)
-      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
       .testTag(TestTags.CAMERA_HUD_FLASH_BUTTON)
   ) {
     FlashToggleButtonIcon(
@@ -909,6 +975,18 @@ private fun StandardCameraHudPreview() {
   }
 }
 
+@AllNightPreviews
+@Composable
+private fun StandardCameraHudMultiCapturePreview() {
+  Box(modifier = Modifier.fillMaxSize()) {
+    StandardCameraHudContent(
+      state = CameraScreenState(),
+      multiCaptureMode = MultiCaptureMode.ON,
+      emitter = {}
+    )
+  }
+}
+
 /**
  * The zoom bar above the capture button. The canvas is taller than 16:9 on purpose — that is the one window the bar has
  * no room on, so a 640dp-tall preview would show nothing.
@@ -934,7 +1012,6 @@ private fun StandardCameraHudRecordingPreview() {
         recordingDuration = 18_000L,
         flashMode = FlashMode.On
       ),
-      maxRecordingDurationMs = 30_000L,
       emitter = {}
     )
   }
@@ -954,7 +1031,6 @@ private fun StandardCameraHudHeldRecordingPreview() {
         recordingDuration = 4_000L,
         zoomRange = 0.5f..10f
       ),
-      maxRecordingDurationMs = 30_000L,
       emitter = {}
     )
   }
@@ -970,7 +1046,6 @@ private fun StandardCameraHudLockedRecordingPreview() {
         isRecordingLocked = true,
         recordingDuration = 18_000L
       ),
-      maxRecordingDurationMs = 30_000L,
       captureButtonMode = CaptureButtonMode.VIDEO,
       emitter = {}
     )

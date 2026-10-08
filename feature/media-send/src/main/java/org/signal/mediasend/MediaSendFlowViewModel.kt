@@ -249,6 +249,7 @@ class MediaSendFlowViewModel(
       is MediaSendFlowEvent.ShowSnackbar -> internalSnackbarEvents.trySend(event.snackbar)
       MediaSendFlowEvent.SelectionRejectionShown -> updateState { copy(isSelectionRejected = false) }
       is MediaSendFlowEvent.MediaCaptured -> onMediaCaptured(event.media, event.recordingDuration)
+      MediaSendFlowEvent.ToggleMultiCapture -> updateState { copy(isMultiCaptureEnabled = !isMultiCaptureEnabled) }
       is MediaSendFlowEvent.QrCodeScanned -> qrCheckRequest.trySend(event.data)
       MediaSendFlowEvent.CloseRequested -> onCloseRequested()
 
@@ -374,7 +375,7 @@ class MediaSendFlowViewModel(
   }
 
   /**
-   * Takes on media the camera captured and moves the user along to edit it.
+   * Takes on media the camera captured and, unless multi-capture is on, moves the user along to edit it.
    *
    * @param recordingDuration How long the capture ran, for the captures that were recorded.
    */
@@ -387,7 +388,9 @@ class MediaSendFlowViewModel(
       addMedia(setOf(media), focusNewlyAdded = true)
     }
 
-    backStack.goToEdit()
+    if (!internalState.value.isMultiCaptureEnabled) {
+      backStack.goToEdit()
+    }
   }
 
   private fun sendHudCommand(hudCommand: MediaSendFlowHudCommand) {

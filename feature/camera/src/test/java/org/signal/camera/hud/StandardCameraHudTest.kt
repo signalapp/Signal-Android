@@ -100,6 +100,14 @@ class StandardCameraHudTest {
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_CLOSE_BUTTON).assertIsEnabled()
   }
 
+  /** Only a host that decides what follows a capture can offer it, so the HUD leaves it out unless asked. */
+  @Test
+  fun `Given the host does not offer multi-capture, when displayed, then there is no toggle`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_MULTI_CAPTURE_BUTTON).assertDoesNotExist()
+  }
+
   /** The flash is for a photo the camera is not going to take, however the recording was started. */
   @Test
   fun `Given a recording, when displayed, then the flash is gone`() {
@@ -227,6 +235,15 @@ class StandardCameraHudTest {
     composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_CLOSE_BUTTON).performClick()
 
     assertThat(events).containsExactly(StandardCameraHudEvents.CloseClick)
+  }
+
+  @Test
+  fun `Given multi-capture is offered, when its toggle is clicked, then the toggle is asked for`() {
+    setContent(multiCaptureMode = MultiCaptureMode.OFF)
+
+    composeTestRule.onNodeWithTag(TestTags.CAMERA_HUD_MULTI_CAPTURE_BUTTON).performClick()
+
+    assertThat(events).containsExactly(StandardCameraHudEvents.ToggleMultiCapture)
   }
 
   @Test
@@ -417,6 +434,7 @@ class StandardCameraHudTest {
   private fun setContent(
     state: CameraScreenState = CameraScreenState(zoomRange = ZOOM_RANGE),
     captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO,
+    multiCaptureMode: MultiCaptureMode = MultiCaptureMode.NONE,
     maxRecordingDurationMs: Long = 0L,
     stringResources: StringResources = StringResources()
   ) {
@@ -428,6 +446,7 @@ class StandardCameraHudTest {
           state = state,
           emitter = { events += it },
           captureButtonMode = captureButtonMode,
+          multiCaptureMode = multiCaptureMode,
           maxRecordingDurationMs = maxRecordingDurationMs,
           stringResources = stringResources
         )

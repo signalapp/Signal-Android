@@ -34,6 +34,9 @@ internal sealed interface MediaSendFlowEvent {
    */
   data class MediaCaptured(val media: Media, val recordingDuration: Duration? = null) : MediaSendFlowEvent
 
+  /** Flips [MediaSendFlowState.isMultiCaptureEnabled]. */
+  data object ToggleMultiCapture : MediaSendFlowEvent
+
   /** Data read from a QR code. Every outcome of acting on it leaves the flow, so none of it is a screen's to handle. */
   data class QrCodeScanned(val data: String) : MediaSendFlowEvent
 

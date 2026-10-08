@@ -33,6 +33,7 @@ import org.signal.core.ui.R
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   AddToStory(icon(R.drawable.add_to_story_24)),
   AlbumPlus(icon(R.drawable.symbol_album_plus_24)),
+  AlbumPlusFill(icon(R.drawable.symbol_album_plus_fill_24)),
   ArrowDropDown(icon(R.drawable.symbol_arrow_drop_down_24)),
   ArrowStart(icon(R.drawable.symbol_arrow_start_24)),
   ArrowEnd(icon(R.drawable.symbol_arrow_end_24)),

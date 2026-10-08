@@ -66,6 +66,10 @@ data class MediaSendFlowState(
    */
   val cameraFirstCapture: Media? = null,
   /**
+   * Whether the user stays on the camera after each capture, rather than being taken on to edit it.
+   */
+  val isMultiCaptureEnabled: Boolean = false,
+  /**
    * Whether touch interactions are enabled (disabled during animations/transitions).
    */
   val isTouchEnabled: Boolean = true,

@@ -77,6 +77,7 @@ import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
 import org.signal.camera.hud.CaptureButtonMode
 import org.signal.camera.hud.GalleryThumbnailButton
+import org.signal.camera.hud.MultiCaptureMode
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
 import org.signal.camera.hud.StringResources
@@ -343,6 +344,7 @@ private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenE
     CameraXScreenEvents.VideoCaptureError -> onVideoCaptureError()
     CameraXScreenEvents.GalleryClicked -> onGalleryClicked()
     CameraXScreenEvents.CameraCloseClicked -> onCameraCloseClicked()
+    CameraXScreenEvents.MultiCaptureToggled -> error("Multi-capture is not offered to legacy hosts.")
   }
 }
 
@@ -368,7 +370,8 @@ data class CameraXScreenState(
   val controlsVisible: Boolean = true,
   val selectedMediaCount: Int = 0,
   /** Which kind of capture the capture button offers, which is the mode the flow's bottom bar has selected. */
-  val captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO
+  val captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO,
+  val multiCaptureMode: MultiCaptureMode = MultiCaptureMode.NONE
 )
 
 /** A descriptor to record into, paired with the duration cap that the descriptor actually supports. */
@@ -618,6 +621,7 @@ fun CameraXScreen(
             modifier = Modifier.padding(bottom = if (isPortraitPhone) hudBottomPaddingInsideViewport else 0.dp),
             maxRecordingDurationMs = activeRecordingMaxDurationMs,
             captureButtonMode = state.captureButtonMode,
+            multiCaptureMode = state.multiCaptureMode,
             hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
             emitter = { event ->
               handleHudEvent(
@@ -639,6 +643,7 @@ fun CameraXScreen(
             stringResources = StringResources(
               photoCaptureFailed = R.string.CameraXFragment_photo_capture_failed,
               photoProcessingFailed = R.string.CameraXFragment_photo_processing_failed,
+              multiCapture = R.string.CameraXFragment_multi_capture,
               recordingPaused = R.string.CameraXFragment_paused
             )
           )
@@ -811,14 +816,19 @@ private fun handleHudEvent(
     is StandardCameraHudEvents.AudioPermissionRequired -> {
       onRequestMicPermission()
     }
+
+    is StandardCameraHudEvents.ToggleMultiCapture -> {
+      onEvent(CameraXScreenEvents.MultiCaptureToggled)
+    }
   }
 }
 
-private fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvents) -> Unit) {
-  // Convert bitmap to JPEG byte array
-  val outputStream = ByteArrayOutputStream()
-  bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
-  val data = outputStream.toByteArray()
+private suspend fun handlePhotoCaptured(bitmap: Bitmap, onEvent: (CameraXScreenEvents) -> Unit) {
+  val data = withContext(Dispatchers.Default) {
+    val outputStream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream)
+    outputStream.toByteArray()
+  }
 
   onEvent(CameraXScreenEvents.ImageCaptured(data, bitmap.width, bitmap.height))
 }

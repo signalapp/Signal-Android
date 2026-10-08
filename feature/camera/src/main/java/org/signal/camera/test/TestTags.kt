@@ -17,6 +17,7 @@ object TestTags {
 
   // Camera HUD. The close button is the one tag the HUD applies itself, having no component of its own to hang it on.
   const val CAMERA_HUD_CLOSE_BUTTON = "camera_hud_close_button"
+  const val CAMERA_HUD_MULTI_CAPTURE_BUTTON = "camera_hud_multi_capture_button"
   const val CAMERA_HUD_FLASH_BUTTON = "camera_hud_flash_button"
   const val CAMERA_HUD_SWITCH_BUTTON = "camera_hud_switch_button"
   const val CAMERA_HUD_CAPTURE_BUTTON = "camera_hud_capture_button"
