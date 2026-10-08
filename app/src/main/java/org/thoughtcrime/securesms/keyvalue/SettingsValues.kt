@@ -90,6 +90,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     private const val MEDIA_DOWNLOAD_WIFI = "settings.media.download.wifi"
     private const val MEDIA_DOWNLOAD_ROAMING = "settings.media.download.roaming"
     private const val AUTOPLAY_STICKERS_AND_GIFS = "settings.chats.autoplayStickersAndGifs"
+    private const val ASSISTANT_SCREEN_SECURITY_DECLINED_AT = "settings.assistant.screen.security.declined.at"
 
     const val SCREEN_SECURITY_ENABLED = "settings.screen.security.enabled"
     const val INCOGNITO_KEYBOARD_ENABLED = "settings.incognito.keyboard.enabled"
@@ -423,6 +424,9 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
   var screenLockTimeout: Long by longValue(SCREEN_LOCK_TIMEOUT, 0)
 
   var isScreenSecurityEnabled: Boolean by booleanValue(SCREEN_SECURITY_ENABLED, false)
+
+  /** When the user last turned screen security back off after it was automatically enabled due to an assistant app, or 0 if never. */
+  var assistantScreenSecurityDeclinedAt: Long by longValue(ASSISTANT_SCREEN_SECURITY_DECLINED_AT, 0)
 
   var isIncognitoKeyboardEnabled: Boolean by booleanValue(INCOGNITO_KEYBOARD_ENABLED, false)
 

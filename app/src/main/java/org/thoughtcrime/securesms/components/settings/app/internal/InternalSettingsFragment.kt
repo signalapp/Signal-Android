@@ -367,6 +367,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Reset assistant screen security prompt"),
+        summary = DSLSettingsText.from("Clears the 90-day cooldown after choosing to re-enable screenshots. Screen security must also be off for the prompt to show."),
+        onClick = {
+          SignalStore.settings.assistantScreenSecurityDeclinedAt = 0
+          Toast.makeText(requireContext(), "Prompt reset", Toast.LENGTH_SHORT).show()
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))

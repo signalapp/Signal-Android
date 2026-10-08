@@ -3872,6 +3872,10 @@
     <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
+    <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
+    <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string>
+    <!-- Bottom sheet button that turns screen security back off, allowing screenshots again -->
+    <string name="AssistantScreenSecurityBottomSheet__re_enable_screenshots" translatable="false">Re-enable screenshots</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
