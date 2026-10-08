@@ -45,7 +45,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -270,11 +272,14 @@ private fun TabPill(
 ) {
   val background = if (selected) MaterialTheme.colorScheme.secondaryContainer else Color.Transparent
   val textColor = if (selected) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
+  val (fontSize, lineHeight) = with(LocalDensity.current) { 14.dp.toSp() to 20.dp.toSp() }
 
   Text(
     text = stringResource(tab.label()),
-    style = MaterialTheme.typography.labelLarge,
+    style = MaterialTheme.typography.labelLarge.copy(fontSize = fontSize, lineHeight = lineHeight),
     color = textColor,
+    maxLines = 1,
+    overflow = TextOverflow.Ellipsis,
     modifier = Modifier
       .clip(CircleShape)
       .background(background)

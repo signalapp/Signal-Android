@@ -5,11 +5,11 @@
   -->
 <resources>
   <!-- Tab labels -->
-  <!-- Label of the tab that shows the emoji page of the media keyboard. Noun. -->
+  <!-- Label of the tab that shows the emoji page of the media keyboard. Noun. Maximum 12 characters. -->
   <string name="MediaKeyboard__emoji">Emoji</string>
-  <!-- Label of the tab that shows the sticker page of the media keyboard. Plural noun. -->
+  <!-- Label of the tab that shows the sticker page of the media keyboard. Plural noun. Maximum 12 characters. -->
   <string name="MediaKeyboard__stickers">Stickers</string>
-  <!-- Label of the tab that shows the GIF page of the media keyboard. Plural noun. -->
+  <!-- Label of the tab that shows the GIF page of the media keyboard. Plural noun. Maximum 12 characters. -->
   <string name="MediaKeyboard__gifs">GIFs</string>
 
   <!-- Search -->

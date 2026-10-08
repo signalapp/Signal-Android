@@ -80,8 +80,8 @@ import java.text.BreakIterator
  * room left over in each cell around its emoji rather than gaps between the cells, so the whole cell takes the tap
  * while the emoji still sit the designed distance apart.
  */
-private val EMOJI_SIZE = 30.dp
-private val EMOJI_CELL_MIN_SIZE = 46.dp
+private val EMOJI_SIZE = 36.dp
+private val EMOJI_CELL_MIN_SIZE = 48.dp
 
 /**
  * @param onSearchClicked Opens search in place, which the host owns since it needs the system keyboard.
