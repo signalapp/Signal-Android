@@ -54,6 +54,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.ui.fonts.SignalSymbols.signalSymbolText
+import org.signal.core.util.ByteSize
 import org.signal.core.util.ByteUnit
 import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.bytes
@@ -442,7 +443,7 @@ private fun getFeatures(messageBackupsType: MessageBackupsType): List<MessageBac
     is MessageBackupsType.Paid -> {
       val photoCount = messageBackupsType.storageAllowanceBytes / ByteUnit.MEGABYTES.toBytes(2)
       val photoCountThousands = photoCount / 1000
-      val sizeUnitString = messageBackupsType.storageAllowanceBytes.bytes.toUnitString(spaced = false)
+      val sizeUnitString = messageBackupsType.storageAllowanceBytes.bytes.toUnitString(spaced = false, unitSystem = ByteSize.UnitSystem.IEC)
 
       persistentListOf(
         MessageBackupsTypeFeature(

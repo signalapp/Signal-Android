@@ -23,6 +23,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
+import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.R
@@ -183,7 +184,7 @@ private fun DataAndStorageSettingsScreen(
             Text(
               text = stringResource(
                 R.string.DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded,
-                AttachmentUtil.SMALL_ATTACHMENT_SIZE.toUnitString()
+                AttachmentUtil.SMALL_ATTACHMENT_SIZE.toUnitString(unitSystem = ByteSize.UnitSystem.IEC)
               ),
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurfaceVariant

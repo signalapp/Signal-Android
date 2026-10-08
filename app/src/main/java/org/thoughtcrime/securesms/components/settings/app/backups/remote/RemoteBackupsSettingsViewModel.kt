@@ -23,6 +23,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
+import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
@@ -369,7 +370,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
         _state.update {
           it.copy(
-            totalAllowedStorageSpace = estimatedSize.toUnitString()
+            totalAllowedStorageSpace = remoteStorageAllowance.toUnitString(unitSystem = ByteSize.UnitSystem.IEC)
           )
         }
       } else {

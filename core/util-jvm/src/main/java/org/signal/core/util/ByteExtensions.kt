@@ -5,8 +5,12 @@
 
 package org.signal.core.util
 
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.NumberFormat
+import kotlin.math.abs
 import kotlin.math.min
+import kotlin.math.pow
 
 inline val Long.bytes: ByteSize
   get() = ByteSize(this)
@@ -66,30 +70,30 @@ class ByteSize(val bytes: Long) {
   val inTebiBytes: Float
     get() = inGibiBytes / 1024f
 
-  fun getLargestNonZeroSize(): Size {
-    return when {
-      inWholeTebiBytes > 0L -> Size.TEBIBYTE
-      inWholeGibiBytes > 0L -> Size.GIBIBYTE
-      inWholeMebiBytes > 0L -> Size.MEBIBYTE
-      inWholeKibiBytes > 0L -> Size.KIBIBYTE
-      else -> Size.BYTE
-    }
+  /** The largest unit in which this size is at least 1 under [unitSystem]. */
+  fun getLargestNonZeroSize(unitSystem: UnitSystem = UnitSystem.default): Size {
+    val magnitude = abs(bytes)
+    return Size.entries.lastOrNull { magnitude >= unitSystem.multiplier(it) } ?: Size.BYTE
   }
 
-  /** The value of this size expressed in [size] (e.g. [Size.MEBIBYTE] -> a count of mebibytes). */
-  fun inUnit(size: Size): Float {
-    return when (size) {
-      Size.BYTE -> inWholeBytes.toFloat()
-      Size.KIBIBYTE -> inKibiBytes
-      Size.MEBIBYTE -> inMebiBytes
-      Size.GIBIBYTE -> inGibiBytes
-      Size.TEBIBYTE -> inTebiBytes
-    }
+  /** The value of this size expressed in [size] under [unitSystem] (e.g. [Size.MEGABYTE] -> a count of megabytes). */
+  fun inUnit(size: Size, unitSystem: UnitSystem = UnitSystem.default): Double {
+    return bytes.toDouble() / unitSystem.multiplier(size)
   }
 
+  /**
+   * Format using the largest unit that keeps the value at or above 1, matching the unit system the platform uses
+   * for file sizes. See [UnitSystem].
+   *
+   * @param maxPlaces Max number of digits to the right of the decimal
+   */
   @JvmOverloads
-  fun toUnitString(maxPlaces: Int = 2, spaced: Boolean = true): String {
-    return toUnitString(getLargestNonZeroSize(), maxPlaces, spaced)
+  fun toUnitString(maxPlaces: Int = 2, spaced: Boolean = true, unitSystem: UnitSystem = UnitSystem.default): String {
+    var unit = getLargestNonZeroSize(unitSystem)
+    if (unit != Size.entries.last() && roundedValue(unit, placesFor(unit, maxPlaces), unitSystem) >= unitSystem.base.toBigDecimal()) {
+      unit = Size.entries[unit.ordinal + 1]
+    }
+    return toUnitString(unit, maxPlaces, spaced, unitSystem = unitSystem)
   }
 
   /**
@@ -101,26 +105,33 @@ class ByteSize(val bytes: Long) {
    * @param withUnit If true include the unit label in the text
    */
   @JvmOverloads
-  fun toUnitString(unit: Size, maxPlaces: Int = 2, spaced: Boolean = true, padDecimals: Boolean = false, withUnit: Boolean = true): String {
-    val size: Float = inUnit(unit)
-
-    val places = when (unit) {
-      Size.BYTE,
-      Size.KIBIBYTE -> 0
-
-      Size.MEBIBYTE -> min(1, maxPlaces)
-
-      Size.GIBIBYTE,
-      Size.TEBIBYTE -> min(2, maxPlaces)
-    }
+  fun toUnitString(unit: Size, maxPlaces: Int = 2, spaced: Boolean = true, padDecimals: Boolean = false, withUnit: Boolean = true, unitSystem: UnitSystem = UnitSystem.default): String {
+    val places = placesFor(unit, maxPlaces)
 
     val formatter = NumberFormat.getInstance().apply {
       minimumFractionDigits = if (padDecimals) places else 0
       maximumFractionDigits = places
+      roundingMode = RoundingMode.HALF_UP
     }
 
-    val suffix = if (withUnit) "${if (spaced) " " else ""}${unit.label}" else ""
-    return BidiUtil.forceLtr("${formatter.format(size)}$suffix")
+    val suffix = if (withUnit) "${if (spaced) " " else ""}${unitSystem.label(unit)}" else ""
+    return BidiUtil.forceLtr("${formatter.format(inUnit(unit, unitSystem))}$suffix")
+  }
+
+  private fun placesFor(unit: Size, maxPlaces: Int): Int {
+    return when (unit) {
+      Size.BYTE,
+      Size.KILOBYTE -> 0
+
+      Size.MEGABYTE -> min(1, maxPlaces)
+
+      Size.GIGABYTE,
+      Size.TERABYTE -> min(2, maxPlaces)
+    }
+  }
+
+  private fun roundedValue(unit: Size, places: Int, unitSystem: UnitSystem): BigDecimal {
+    return inUnit(unit, unitSystem).toBigDecimal().setScale(places, RoundingMode.HALF_UP).abs()
   }
 
   operator fun compareTo(other: ByteSize): Int {
@@ -160,11 +171,30 @@ class ByteSize(val bytes: Long) {
     return bytes.hashCode()
   }
 
-  enum class Size(val label: String) {
-    BYTE("B"),
-    KIBIBYTE("KB"),
-    MEBIBYTE("MB"),
-    GIBIBYTE("GB"),
-    TEBIBYTE("TB")
+  enum class Size(val power: Int) {
+    BYTE(0),
+    KILOBYTE(1),
+    MEGABYTE(2),
+    GIGABYTE(3),
+    TERABYTE(4)
+  }
+
+  /**
+   * The multiplier and labels used when formatting. [SI] matches what Android 8 (API 26) and later use for file
+   * sizes, where 1 kB is 1000 bytes. [IEC] matches earlier versions, where 1 KB is 1024 bytes.
+   */
+  enum class UnitSystem(val base: Long, private val labels: List<String>) {
+    SI(1000L, listOf("B", "kB", "MB", "GB", "TB")),
+    IEC(1024L, listOf("B", "KB", "MB", "GB", "TB"));
+
+    fun multiplier(size: Size): Long = base.toDouble().pow(size.power).toLong()
+
+    fun label(size: Size): String = labels[size.power]
+
+    companion object {
+      /** The unit system used when none is specified. Set at startup to match the platform. */
+      @JvmStatic
+      var default: UnitSystem = SI
+    }
   }
 }
