@@ -231,12 +231,27 @@ object ArchiveRestoreProgress {
     update()
   }
 
+  /**
+   * Dismisses the "restore complete" status. Also clears any lingering persisted restorable size, which would otherwise bring the status back on next launch.
+   */
   fun clearFinishedStatus() {
+    val currentState = state
+
+    if (currentState.restoreStatus != ArchiveRestoreProgressState.RestoreStatus.FINISHED) {
+      return
+    }
+
+    if (currentState.remainingRestoreSize == 0.bytes && SignalStore.backup.restoreState == RestoreState.NONE && SignalStore.backup.totalRestorableAttachmentSize > 0) {
+      Log.i(TAG, "Clearing lingering restorable attachment size after the finished status was dismissed.")
+      SignalStore.backup.totalRestorableAttachmentSize = 0
+    }
+
     store.update { state ->
       if (state.restoreStatus == ArchiveRestoreProgressState.RestoreStatus.FINISHED) {
         state.copy(
           restoreStatus = ArchiveRestoreProgressState.RestoreStatus.NONE,
           hasActivelyRestoredThisRun = false,
+          totalRestoreSize = 0.bytes,
           totalToRestoreThisRun = 0.bytes
         )
       } else {
