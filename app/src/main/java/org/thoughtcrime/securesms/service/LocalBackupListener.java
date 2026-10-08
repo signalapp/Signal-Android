@@ -5,9 +5,9 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.JavaTimeExtensionsKt;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
 
 import java.time.LocalDateTime;
 import java.util.Random;

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import org.signal.core.util.toLocalDateTime
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.SectionHeaderPreference
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.components.settings.TextPreferenceViewHolder
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.signal.core.ui.R as CoreUiR
 
 class DonationReceiptListAdapter(onModelClick: (DonationReceiptListItem.Model) -> Unit) : MappingAdapter(), StickyHeaderDecoration.StickyHeaderAdapter<SectionHeaderPreferenceViewHolder> {

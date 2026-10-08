@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.scribbles.stickers
+package org.signal.imageeditor.core.stickers
 
 import android.content.Context
 import android.graphics.Canvas
@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable
 import android.os.SystemClock
 import android.text.TextPaint
 import android.text.format.DateFormat
-import org.thoughtcrime.securesms.util.toLocalDateTime
+import org.signal.core.util.toLocalDateTime
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.scribbles.stickers
+package org.signal.imageeditor.core.stickers
 
 import android.graphics.Rect
 import android.graphics.RectF
@@ -9,18 +9,18 @@ import org.signal.imageeditor.core.RendererContext
 import org.signal.imageeditor.core.SelectableRenderer
 import org.signal.imageeditor.core.TappableRenderer
 import org.signal.imageeditor.core.renderers.InvalidateableRenderer
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 /**
  * Analog clock sticker renderer for the image editor.
  */
-class AnalogClockStickerRenderer
+class DigitalClockStickerRenderer
 @JvmOverloads constructor(
   val time: Long,
-  val style: AnalogClockStickerDrawable.Style = AnalogClockStickerDrawable.Style.STANDARD
+  val style: DigitalClockStickerDrawable.Style = DigitalClockStickerDrawable.Style.LIGHT_NO_BG
 ) : InvalidateableRenderer(), SelectableRenderer, TappableRenderer {
 
-  private val clockStickerDrawable = AnalogClockStickerDrawable(AppDependencies.application)
+  private var currentStyle = style
+  private var clockStickerDrawable: DigitalClockStickerDrawable? = null
   private val insetBounds = Rect(
     Bounds.FULL_BOUNDS.left.toInt(),
     Bounds.FULL_BOUNDS.top.toInt(),
@@ -28,14 +28,9 @@ class AnalogClockStickerRenderer
     Bounds.FULL_BOUNDS.bottom.toInt()
   ).apply { inset(261, 261) }
 
-  init {
-    clockStickerDrawable.bounds = insetBounds
-    clockStickerDrawable.setTime(time)
-    clockStickerDrawable.setStyle(style)
-  }
-
   override fun onTapped() {
-    clockStickerDrawable.nextFace()
+    currentStyle = currentStyle.next()
+    clockStickerDrawable?.setStyle(currentStyle)
     invalidate()
   }
 
@@ -52,23 +47,32 @@ class AnalogClockStickerRenderer
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     dest.writeLong(time)
-    dest.writeInt(clockStickerDrawable.getStyle().type)
+    dest.writeInt(currentStyle.type)
   }
 
   override fun render(rendererContext: RendererContext) {
-    clockStickerDrawable.draw(rendererContext.canvas)
+    val drawable = clockStickerDrawable ?: DigitalClockStickerDrawable(rendererContext.context.applicationContext).apply {
+      bounds = insetBounds
+      setTime(time)
+      setStyle(currentStyle)
+    }.also { clockStickerDrawable = it }
+
+    drawable.draw(rendererContext.canvas)
   }
 
   override fun hitTest(x: Float, y: Float): Boolean {
     return Bounds.FULL_BOUNDS.contains(x, y)
   }
 
-  companion object CREATOR : Parcelable.Creator<AnalogClockStickerRenderer> {
-    override fun createFromParcel(parcel: Parcel): AnalogClockStickerRenderer {
-      return AnalogClockStickerRenderer(parcel.readLong(), AnalogClockStickerDrawable.Style.fromType(parcel.readInt()))
+  companion object CREATOR : Parcelable.Creator<DigitalClockStickerRenderer> {
+    override fun createFromParcel(parcel: Parcel): DigitalClockStickerRenderer {
+      return DigitalClockStickerRenderer(
+        parcel.readLong(),
+        DigitalClockStickerDrawable.Style.fromType(parcel.readInt())
+      )
     }
 
-    override fun newArray(size: Int): Array<AnalogClockStickerRenderer?> {
+    override fun newArray(size: Int): Array<DigitalClockStickerRenderer?> {
       return arrayOfNulls(size)
     }
   }

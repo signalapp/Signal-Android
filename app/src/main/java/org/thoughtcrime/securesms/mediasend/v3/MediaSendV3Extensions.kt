@@ -7,13 +7,13 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.renderers.UriGlideRenderer
+import org.signal.imageeditor.core.stickers.AnalogClockStickerRenderer
+import org.signal.imageeditor.core.stickers.DigitalClockStickerRenderer
+import org.signal.imageeditor.core.stickers.FeatureSticker
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.scribbles.StickerSelectResult
-import org.thoughtcrime.securesms.scribbles.stickers.AnalogClockStickerRenderer
-import org.thoughtcrime.securesms.scribbles.stickers.DigitalClockStickerRenderer
-import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker
 import org.thoughtcrime.securesms.stories.Stories
 
 /**

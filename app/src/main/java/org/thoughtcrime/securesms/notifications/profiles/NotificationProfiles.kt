@@ -3,6 +3,10 @@ package org.thoughtcrime.securesms.notifications.profiles
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toLocalDateTime
+import org.signal.core.util.toLocalTime
+import org.signal.core.util.toMillis
+import org.signal.core.util.toOffset
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
@@ -10,10 +14,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.formatHours
-import org.thoughtcrime.securesms.util.toLocalDateTime
-import org.thoughtcrime.securesms.util.toLocalTime
-import org.thoughtcrime.securesms.util.toMillis
-import org.thoughtcrime.securesms.util.toOffset
 import java.time.LocalDateTime
 import java.time.ZoneId
 

@@ -68,6 +68,7 @@ import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.stream.NonClosingOutputStream
+import org.signal.core.util.toMillis
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.net.DeleteBackupMediaItem
@@ -149,7 +150,6 @@ import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener

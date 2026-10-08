@@ -10,9 +10,9 @@ import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.util.toMillis
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.toMillis
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneId

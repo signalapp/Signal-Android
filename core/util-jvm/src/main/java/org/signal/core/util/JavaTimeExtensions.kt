@@ -1,7 +1,5 @@
-package org.thoughtcrime.securesms.util
+package org.signal.core.util
 
-import android.content.Context
-import android.text.format.DateFormat
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
@@ -11,7 +9,6 @@ import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -86,16 +83,6 @@ fun Instant.toLocalDateTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalDateT
  */
 fun Long.toLocalTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalTime {
   return LocalDateTime.ofInstant(Instant.ofEpochMilli(this), zoneId).toLocalTime()
-}
-
-/**
- * Formats [LocalTime] as localized time. For example, "1:45 PM" or "13:45"
- */
-fun LocalTime.formatHours(context: Context): String {
-  // We have to create our own pattern here, since the formatter instance returned by DateTimeFormatter.ofLocalizedTime() is looked up lazily, is immutable,
-  // and is not updated when the system's 24-hour time setting changes.
-  val pattern = if (DateFormat.is24HourFormat(context)) "HH:mm" else "h:mm a"
-  return DateTimeFormatter.ofPattern(pattern, LocaleUtil.getFirstLocale()).format(this)
 }
 
 /**

@@ -11,7 +11,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContract
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker
+import org.signal.imageeditor.core.stickers.FeatureSticker
 
 /**
  * Launches [ImageEditorStickerSelectActivity] and describes what was picked.

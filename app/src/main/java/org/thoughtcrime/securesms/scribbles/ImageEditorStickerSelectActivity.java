@@ -16,13 +16,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.imageeditor.core.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment;
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
-import org.thoughtcrime.securesms.scribbles.stickers.FeatureSticker;
 import org.thoughtcrime.securesms.scribbles.stickers.ScribbleStickersFragment;
 import org.thoughtcrime.securesms.stickers.StickerEventListener;
 import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen;

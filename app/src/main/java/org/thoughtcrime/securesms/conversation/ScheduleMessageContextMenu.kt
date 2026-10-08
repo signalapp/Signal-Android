@@ -4,12 +4,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import org.signal.core.util.dp
+import org.signal.core.util.toLocalDateTime
+import org.signal.core.util.toMillis
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.toLocalDateTime
-import org.thoughtcrime.securesms.util.toMillis
 import java.time.DayOfWeek
 import java.time.temporal.TemporalAdjusters
 

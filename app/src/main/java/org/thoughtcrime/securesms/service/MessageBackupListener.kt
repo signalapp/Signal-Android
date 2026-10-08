@@ -7,10 +7,10 @@ package org.thoughtcrime.securesms.service
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import org.signal.core.util.toMillis
+import org.signal.core.util.toOffset
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.toMillis
-import org.thoughtcrime.securesms.util.toOffset
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.Random

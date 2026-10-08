@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import org.signal.core.util.Throttler
+import org.signal.imageeditor.core.stickers.AnalogClockStickerDrawable
+import org.signal.imageeditor.core.stickers.DigitalClockStickerDrawable
+import org.signal.imageeditor.core.stickers.FeatureSticker
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyboard.sticker.KeyboardStickerListAdapter
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment

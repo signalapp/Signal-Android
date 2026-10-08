@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.preferences.widgets.UpgradeLocalBackupCard;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.Environment;
-import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
+import org.thoughtcrime.securesms.util.LocalTimeExtensionsKt;
 
 import java.text.NumberFormat;
 import java.time.LocalTime;
@@ -325,7 +325,7 @@ public class BackupsPreferenceFragment extends Fragment {
     final int backupHour   = SignalStore.settings().getBackupHour();
     final int backupMinute = SignalStore.settings().getBackupMinute();
     LocalTime time         = LocalTime.of(backupHour, backupMinute);
-    timeLabel.setText(JavaTimeExtensionsKt.formatHours(time, requireContext()));
+    timeLabel.setText(LocalTimeExtensionsKt.formatHours(time, requireContext()));
   }
 
   private void updateToggle() {

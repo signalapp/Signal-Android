@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.util.toLocalDate
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.database.MessageTypes
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.drawAsTopItemDecoration
 import org.thoughtcrime.securesms.util.layoutIn
-import org.thoughtcrime.securesms.util.toLocalDate
 import java.util.Locale
 import kotlin.math.max
 import org.signal.core.ui.R as CoreUiR
