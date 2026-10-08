@@ -26,6 +26,7 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.EmojiEmotions
 import androidx.compose.material.icons.outlined.EmojiEvents
@@ -72,6 +73,7 @@ import org.signal.mediakeyboard.screens.GRID_CONTENT_PADDING
 import org.signal.mediakeyboard.screens.MediaKeyboardSearchField
 import org.signal.mediakeyboard.screens.PinnedRailLayout
 import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
+import java.text.BreakIterator
 
 /**
  * Emoji are drawn at the size the design calls for, in cells big enough to tap. The gutters the design shows are the
@@ -399,18 +401,32 @@ private fun EmojiImage(
       modifier = modifier.size(EMOJI_SIZE)
     )
   } else {
+    val isEmoticon = remember(emoji) { emoji.isEmoticon() }
+
     Text(
       text = emoji,
-      fontSize = if (emoji.isAsciiEmoticon()) 13.sp else 22.sp,
       color = MaterialTheme.colorScheme.onSurface,
       maxLines = 1,
       softWrap = false,
-      modifier = modifier
+      autoSize = TextAutoSize.StepBased(
+        minFontSize = 6.sp,
+        maxFontSize = if (isEmoticon) 13.sp else 22.sp
+      ),
+      modifier = modifier.padding(horizontal = 2.dp)
     )
   }
 }
 
-private fun String.isAsciiEmoticon(): Boolean = all { it.code < 128 }
+/**
+ * A single emoji is one character cluster, while emoticons like `¯\_(ツ)_/¯` are made up of several, regardless of
+ * whether they're plain ASCII.
+ */
+private fun String.isEmoticon(): Boolean {
+  val characters = BreakIterator.getCharacterInstance().apply { setText(this@isEmoticon) }
+  characters.first()
+  val firstClusterEnd = characters.next()
+  return firstClusterEnd != BreakIterator.DONE && firstClusterEnd < length
+}
 
 private fun EmojiKeyboardCategory.icon(): ImageVector {
   return when (this) {
