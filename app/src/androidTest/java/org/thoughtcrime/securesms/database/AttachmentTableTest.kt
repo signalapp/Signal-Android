@@ -224,7 +224,7 @@ class AttachmentTableTest {
 
     val audioHash = SignalDatabase.attachments.getAttachment(attachmentId)!!.audioHash
     assertThat(audioHash).isNotNull()
-    assertThat(audioHash!!.waveFormBytes.toList()).isEqualTo(listOf<Byte>(1, 2, 3))
+    assertThat(audioHash!!.waveFormBytes!!.toList()).isEqualTo(listOf<Byte>(1, 2, 3))
   }
 
   @Test

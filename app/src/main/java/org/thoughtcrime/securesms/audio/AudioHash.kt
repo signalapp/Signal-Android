@@ -77,8 +77,9 @@ class AudioHash private constructor(
 
   constructor(audioWaveForm: AudioWaveFormData) : this(Base64.encodeWithPadding(audioWaveForm.encode()), audioWaveForm)
 
-  val waveFormBytes: ByteArray
-    get() = audioWaveForm.waveForm.toByteArray()
+  /** The wave form bytes, or null if absent (e.g. a placeholder left behind by a failed local wave form generation). */
+  val waveFormBytes: ByteArray?
+    get() = audioWaveForm.waveForm.takeIf { it.size > 0 }?.toByteArray()
 
   val durationSeconds: Float?
     get() = if (audioWaveForm.durationUs > 0) audioWaveForm.durationUs.microseconds.toDouble(DurationUnit.SECONDS).toFloat() else null

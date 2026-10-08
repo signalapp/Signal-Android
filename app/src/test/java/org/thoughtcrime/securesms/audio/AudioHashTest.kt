@@ -7,6 +7,7 @@ import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import org.junit.Test
+import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 
@@ -48,7 +49,7 @@ class AudioHashTest {
 
     val hash = AudioHash.fromSenderProvided(MediaUtil.AUDIO_AAC, waveForm, 2.5f)!!
 
-    assertThat(hash.waveFormBytes.toList()).isEqualTo(waveForm.toList())
+    assertThat(hash.waveFormBytes!!.toList()).isEqualTo(waveForm.toList())
     assertThat(hash.durationSeconds!!).isCloseTo(2.5f, 0.001f)
     assertThat(hash.audioWaveForm.senderProvided).isTrue()
   }
@@ -87,7 +88,15 @@ class AudioHashTest {
     val parsed = AudioHash.parseOrNull(original.hash)!!
 
     assertThat(parsed).isEqualTo(original)
-    assertThat(parsed.waveFormBytes.toList()).isEqualTo(listOf<Byte>(1, 2, 3))
+    assertThat(parsed.waveFormBytes!!.toList()).isEqualTo(listOf<Byte>(1, 2, 3))
+  }
+
+  @Test
+  fun `waveFormBytes - empty placeholder from failed generation is null`() {
+    val hash = AudioHash(AudioWaveFormData())
+
+    assertThat(hash.waveFormBytes).isNull()
+    assertThat(hash.durationSeconds).isNull()
   }
 
   @Test
