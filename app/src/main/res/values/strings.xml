@@ -3876,8 +3876,18 @@
     <string name="preferences__screen_security">Screen security</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
     <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string>
-    <!-- Bottom sheet button that turns screen security back off, allowing screenshots again -->
-    <string name="AssistantScreenSecurityBottomSheet__re_enable_screenshots" translatable="false">Re-enable screenshots</string>
+    <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
+    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <!-- Bottom sheet button that turns screen security back off -->
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <!-- Title of the dialog confirming that the user wants to turn off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <!-- Body of the dialog confirming that the user wants to turn off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string>
+    <!-- Dialog button that confirms turning off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Turn off</string>
+    <!-- Snackbar shown after the user turns off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>

@@ -5,18 +5,22 @@
 
 package org.thoughtcrime.securesms.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,10 +31,7 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.initializeScreenshotSecurity
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Tells the user that screen security was turned on because an assistant app read the screen, with the option to turn it back off.
@@ -38,7 +39,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class AssistantScreenSecurityBottomSheet : ComposeBottomSheetDialogFragment() {
 
   companion object {
-    private val TAG = Log.tag(AssistantScreenSecurityBottomSheet::class)
     private const val FRAGMENT_TAG = "AssistantScreenSecurityBottomSheet"
 
     fun show(fragmentManager: FragmentManager) {
@@ -54,11 +54,8 @@ class AssistantScreenSecurityBottomSheet : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     AssistantScreenSecuritySheetContent(
       onOkClick = { dismissAllowingStateLoss() },
-      onReEnableScreenshotsClick = {
-        Log.i(TAG, "User re-enabled screenshots.")
-        SignalStore.settings.isScreenSecurityEnabled = false
-        SignalStore.settings.assistantScreenSecurityDeclinedAt = System.currentTimeMillis()
-        requireActivity().window.initializeScreenshotSecurity()
+      onTurnOffClick = {
+        AssistantScreenSecurityTurnOffDialog.show(parentFragmentManager)
         dismissAllowingStateLoss()
       }
     )
@@ -68,7 +65,7 @@ class AssistantScreenSecurityBottomSheet : ComposeBottomSheetDialogFragment() {
 @Composable
 private fun AssistantScreenSecuritySheetContent(
   onOkClick: () -> Unit = {},
-  onReEnableScreenshotsClick: () -> Unit = {}
+  onTurnOffClick: () -> Unit = {}
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -79,28 +76,51 @@ private fun AssistantScreenSecuritySheetContent(
   ) {
     BottomSheets.Handle()
 
+    Image(
+      painter = painterResource(R.drawable.image_assistant_screen_security),
+      contentDescription = null,
+      modifier = Modifier
+        .padding(top = 14.dp)
+        .size(96.dp)
+    )
+
+    Text(
+      text = stringResource(R.string.AssistantScreenSecurityBottomSheet__title),
+      style = MaterialTheme.typography.titleLarge,
+      textAlign = TextAlign.Center,
+      color = MaterialTheme.colorScheme.onSurface,
+      modifier = Modifier.padding(top = 12.dp)
+    )
+
     Text(
       text = stringResource(R.string.AssistantScreenSecurityBottomSheet__body),
       style = MaterialTheme.typography.bodyLarge,
       textAlign = TextAlign.Center,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier.padding(top = 24.dp)
+      modifier = Modifier.padding(top = 12.dp)
     )
 
-    Buttons.LargeTonal(
+    Buttons.MediumTonal(
       onClick = onOkClick,
+      colors = ButtonDefaults.filledTonalButtonColors(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+      ),
       modifier = Modifier
-        .padding(top = 40.dp)
+        .padding(top = 48.dp)
         .defaultMinSize(minWidth = 220.dp)
     ) {
       Text(text = stringResource(android.R.string.ok))
     }
 
     TextButton(
-      onClick = onReEnableScreenshotsClick,
-      modifier = Modifier.padding(top = 8.dp)
+      onClick = onTurnOffClick,
+      modifier = Modifier.padding(top = 12.dp)
     ) {
-      Text(text = stringResource(R.string.AssistantScreenSecurityBottomSheet__re_enable_screenshots))
+      Text(
+        text = stringResource(R.string.AssistantScreenSecurityBottomSheet__turn_off_screen_security),
+        color = MaterialTheme.colorScheme.error
+      )
     }
   }
 }
