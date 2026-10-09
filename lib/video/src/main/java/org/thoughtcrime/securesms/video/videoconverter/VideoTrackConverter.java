@@ -365,6 +365,24 @@ final class VideoTrackConverter {
         }
     }
 
+    /**
+     * Forces the release of the codecs, which can help if they ever get wedged.
+     */
+    void forceRelease() {
+        Log.w(TAG, "Forcibly releasing video codecs");
+        try {
+            mVideoEncoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoEncoder", e);
+        }
+        try {
+            mVideoDecoder.release();
+        } catch (Exception e) {
+            Log.w(TAG, "error while force releasing mVideoDecoder", e);
+        }
+        Log.w(TAG, "Force release complete");
+    }
+
     void release() throws Exception {
         Exception exception = null;
         try {

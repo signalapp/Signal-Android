@@ -191,6 +191,7 @@ public final class StreamingTranscoder {
     converter.setAudioBitrate(targetQuality.getTargetAudioBitRate());
     converter.setAllowAudioRemux(allowAudioRemux);
     converter.setSkipAudio(muteAudio);
+    converter.setCancelationSignal(cancelationSignal);
 
     if (options != null) {
       if (options.endTimeUs > 0) {
