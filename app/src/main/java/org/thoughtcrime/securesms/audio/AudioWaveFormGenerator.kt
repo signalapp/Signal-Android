@@ -7,13 +7,14 @@ package org.thoughtcrime.securesms.audio
 
 import android.content.Context
 import android.media.MediaCodec
+import android.media.MediaExtractor
 import android.media.MediaFormat
 import android.net.Uri
 import androidx.annotation.RequiresApi
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput
+import org.thoughtcrime.securesms.video.videoconverter.utils.MediaCodecCompat
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -29,14 +30,16 @@ import kotlin.math.roundToInt
 @RequiresApi(23)
 object AudioWaveFormGenerator {
 
-  private val TAG = Log.tag(AudioWaveFormGenerator::class)
-
   const val BAR_COUNT = 100
 
   private const val NOISE_BED_DB = -60.0
   private const val SHORT_FULL_SCALE_SQUARED = 32768.0 * 32768.0
   private const val MICROS_PER_SECOND = 1_000_000L
   private const val TIMEOUT_US = 5000L
+  private const val MAX_IDLE_ITERATIONS = 50
+  private const val MAX_FRAMES_PER_INPUT = 32
+  private const val BATCHED_INPUT_SIZE = 64 * 1024
+  private const val SCRATCH_SAMPLE_SIZE = 16 * 1024
 
   /**
    * Generate a waveform for the provide URI.
@@ -68,7 +71,23 @@ object AudioWaveFormGenerator {
         throw IOException("Zero duration")
       }
 
-      val codec = MediaCodec.createDecoderByType(mime)
+      val packer = AdtsPacker.fromFormat(format)
+      val softwareDecoder = packer?.let { MediaCodecCompat.findSoftwareDecoder(mime) }
+
+      // Feeding many ADTS frames per input buffer cuts the per-buffer round trips that dominate decode time, but hardware
+      // decoders generally only accept one frame per buffer, so we only batch when we can pin a software decoder.
+      val codec: MediaCodec
+      val batchedReader: BatchedInputReader?
+      if (packer != null && softwareDecoder != null) {
+        format.setInteger(MediaFormat.KEY_IS_ADTS, 1)
+        format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, BATCHED_INPUT_SIZE)
+        codec = MediaCodec.createByCodecName(softwareDecoder)
+        batchedReader = BatchedInputReader(packer)
+      } else {
+        codec = MediaCodec.createDecoderByType(mime)
+        batchedReader = null
+      }
+
       codec.configure(format, null, null, 0)
       codec.start()
 
@@ -79,40 +98,46 @@ object AudioWaveFormGenerator {
       var extractorDone = false
       var inputEOSQueued = false
       var sawOutputEOS = false
-      var noOutputCounter = 0
+      var idleCounter = 0
 
-      while (!sawOutputEOS && noOutputCounter < 50) {
-        noOutputCounter++
+      while (!sawOutputEOS && idleCounter < MAX_IDLE_ITERATIONS) {
+        var fedInput = false
 
-        if (!inputEOSQueued) {
-          val inputBufferIndex = codec.dequeueInputBuffer(TIMEOUT_US)
-          if (inputBufferIndex >= 0) {
-            if (extractorDone) {
+        while (!inputEOSQueued) {
+          val inputBufferIndex = codec.dequeueInputBuffer(0)
+          if (inputBufferIndex < 0) {
+            break
+          }
+
+          fedInput = true
+
+          if (extractorDone) {
+            codec.queueInputBuffer(inputBufferIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
+            inputEOSQueued = true
+          } else {
+            val destinationBuffer = codec.getInputBuffer(inputBufferIndex)!!
+            val input = batchedReader?.read(extractor, destinationBuffer) ?: readSingleInput(extractor, destinationBuffer)
+
+            if (input.frames == 0) {
               codec.queueInputBuffer(inputBufferIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
               inputEOSQueued = true
             } else {
-              val destinationBuffer = codec.getInputBuffer(inputBufferIndex)
-              val sampleSize = extractor.readSampleData(destinationBuffer!!, 0)
-
-              if (sampleSize < 0) {
-                codec.queueInputBuffer(inputBufferIndex, 0, 0, 0, MediaCodec.BUFFER_FLAG_END_OF_STREAM)
-                inputEOSQueued = true
-              } else {
-                codec.queueInputBuffer(inputBufferIndex, 0, sampleSize, extractor.sampleTime, 0)
-                extractorDone = !extractor.advance()
-              }
+              codec.queueInputBuffer(inputBufferIndex, 0, input.size, input.presentationTimeUs, 0)
             }
+            extractorDone = input.extractorDone
           }
         }
 
+        var gotOutput = false
         var outputBufferIndex: Int
         do {
-          outputBufferIndex = codec.dequeueOutputBuffer(info, TIMEOUT_US)
+          // Only block when the decoder has nothing new to chew on, otherwise poll so input keeps flowing
+          outputBufferIndex = codec.dequeueOutputBuffer(info, if (gotOutput || fedInput) 0 else TIMEOUT_US)
 
           if (outputBufferIndex >= 0) {
-            if (info.size > 0) {
-              noOutputCounter = 0
+            gotOutput = true
 
+            if (info.size > 0) {
               val buffer = codec.getOutputBuffer(outputBufferIndex)
               if (buffer != null) {
                 accumulator.accumulate(buffer, info)
@@ -125,10 +150,11 @@ object AudioWaveFormGenerator {
               sawOutputEOS = true
             }
           } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-            Log.d(TAG, "Output format has changed to ${codec.outputFormat}")
             accumulator.pcmFormat = readPcmFormat(codec.outputFormat, format)
           }
-        } while (outputBufferIndex >= 0)
+        } while (outputBufferIndex >= 0 && !sawOutputEOS)
+
+        idleCounter = if (fedInput || gotOutput) 0 else idleCounter + 1
       }
 
       codec.stop()
@@ -138,6 +164,61 @@ object AudioWaveFormGenerator {
       return AudioFileInfo(totalDurationUs, accumulator.toWaveForm())
     }
   }
+
+  private fun readSingleInput(extractor: MediaExtractor, destination: ByteBuffer): InputChunk {
+    val sampleSize = extractor.readSampleData(destination, 0)
+    if (sampleSize < 0) {
+      return InputChunk(frames = 0, size = 0, presentationTimeUs = 0, extractorDone = true)
+    }
+
+    val presentationTimeUs = extractor.sampleTime
+    val extractorDone = !extractor.advance()
+
+    return InputChunk(frames = 1, size = sampleSize, presentationTimeUs = presentationTimeUs, extractorDone = extractorDone)
+  }
+
+  /**
+   * Packs as many ADTS-wrapped frames as fit into [destination]. A frame that does not fit is left in the extractor for the next call.
+   */
+  private class BatchedInputReader(private val packer: AdtsPacker) {
+
+    private val scratch: ByteBuffer = ByteBuffer.allocateDirect(SCRATCH_SAMPLE_SIZE)
+
+    fun read(extractor: MediaExtractor, destination: ByteBuffer): InputChunk {
+      destination.clear()
+
+      var frames = 0
+      var presentationTimeUs = 0L
+      var extractorDone = false
+
+      while (frames < MAX_FRAMES_PER_INPUT && !extractorDone) {
+        scratch.clear()
+        val sampleSize = extractor.readSampleData(scratch, 0)
+        if (sampleSize < 0) {
+          extractorDone = true
+          break
+        }
+
+        if (!packer.pack(scratch, destination)) {
+          if (frames == 0) {
+            throw IOException("Sample of $sampleSize bytes does not fit in input buffer of ${destination.capacity()} bytes")
+          }
+          break
+        }
+
+        if (frames == 0) {
+          presentationTimeUs = extractor.sampleTime
+        }
+
+        frames++
+        extractorDone = !extractor.advance()
+      }
+
+      return InputChunk(frames = frames, size = destination.position(), presentationTimeUs = presentationTimeUs, extractorDone = extractorDone)
+    }
+  }
+
+  private class InputChunk(val frames: Int, val size: Int, val presentationTimeUs: Long, val extractorDone: Boolean)
 
   /**
    * Converts the mean square of a bar's samples, where each sample is normalized to [-1, 1], into a bar height in the [0, 255] range.

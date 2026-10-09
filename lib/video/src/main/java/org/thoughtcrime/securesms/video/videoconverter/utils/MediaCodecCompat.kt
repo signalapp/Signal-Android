@@ -74,6 +74,25 @@ object MediaCodecCompat {
     return candidates
   }
 
+  /**
+   * Whether the codec is one of Android's bundled software codecs (OMX on older releases, Codec2 on newer ones).
+   */
+  @JvmStatic
+  fun isSoftwareCodec(codecName: String): Boolean {
+    val lower = codecName.lowercase()
+    return lower.startsWith("omx.google.") || lower.startsWith("c2.android.")
+  }
+
+  /**
+   * @return the name of a bundled software decoder for [mimeType], or null if there is none.
+   */
+  @JvmStatic
+  fun findSoftwareDecoder(mimeType: String): String? {
+    return MediaCodecList(MediaCodecList.REGULAR_CODECS).codecInfos
+      .firstOrNull { !it.isEncoder && isSoftwareCodec(it.name) && it.supportedTypes.any { type -> type.equals(mimeType, ignoreCase = true) } }
+      ?.name
+  }
+
   @JvmStatic
   fun findDecoder(inputFormat: MediaFormat): Pair<MediaCodec, MediaFormat> {
     val codecs = MediaCodecList(MediaCodecList.REGULAR_CODECS)

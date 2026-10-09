@@ -675,8 +675,7 @@ final class VideoTrackConverter {
      */
     private static boolean isToneMapEffective(final @NonNull MediaCodec decoder, final @NonNull String codecName) {
         // Software codecs never perform HDR→SDR tone-mapping.
-        String lower = codecName.toLowerCase(java.util.Locale.ROOT);
-        if (lower.startsWith("omx.google.") || lower.startsWith("c2.android.")) {
+        if (MediaCodecCompat.isSoftwareCodec(codecName)) {
             Log.w(TAG, "Video decoder: software codec " + codecName + " cannot perform HDR tone-mapping");
             return false;
         }
