@@ -1496,12 +1496,18 @@ object BackupRepository {
 
   fun enablePaidBackupTier() {
     Log.i(TAG, "Setting backup tier to PAID", true)
+    val previousTier = SignalStore.backup.backupTier
     resetInitializedStateAndAuthCredentials()
     SignalStore.backup.backupTier = MessageBackupTier.PAID
     SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     SignalStore.backup.lastCheckInSnoozeMillis = 0
     SignalStore.backup.clearDownloadNotifierState()
-    scheduleSyncForAccountChange()
+
+    if (previousTier != MessageBackupTier.PAID) {
+      scheduleSyncForAccountChange()
+    } else {
+      Log.i(TAG, "Backup tier was already PAID, skipping account record sync.", true)
+    }
   }
 
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): Either<ArchiveError.BackupFileError, Unit> {
