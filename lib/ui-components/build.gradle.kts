@@ -23,6 +23,7 @@ dependencies {
   api(project(":core:ui"))
 
   implementation(project(":core:util"))
+  implementation(project(":lib:emoji"))
   implementation(project(":lib:glide"))
 
   implementation(platform(libs.androidx.compose.bom))
@@ -31,6 +32,7 @@ dependencies {
   // Testing
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)
+  testImplementation(testLibs.mockk)
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(libs.androidx.compose.ui.test.junit4)
