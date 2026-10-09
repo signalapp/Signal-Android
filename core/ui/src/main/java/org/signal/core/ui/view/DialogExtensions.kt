@@ -5,7 +5,12 @@
 
 package org.signal.core.ui.view
 
+import android.app.Dialog
+import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -43,6 +48,31 @@ suspend fun AlertDialog.awaitResult(
   continuation.invokeOnCancellation { dismiss() }
 
   show()
+}
+
+fun Dialog.dismissOnDestroy(lifecycle: Lifecycle) {
+  if (lifecycle.currentState == Lifecycle.State.DESTROYED) {
+    dismiss()
+    return
+  }
+
+  val observer = object : DefaultLifecycleObserver {
+    override fun onDestroy(owner: LifecycleOwner) {
+      dismiss()
+    }
+  }
+
+  lifecycle.addObserver(observer)
+
+  // Detach instead of setOnDismissListener so a caller's own dismiss listener is not overwritten
+  window?.decorView?.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+    override fun onViewAttachedToWindow(view: View) = Unit
+
+    override fun onViewDetachedFromWindow(view: View) {
+      view.removeOnAttachStateChangeListener(this)
+      lifecycle.removeObserver(observer)
+    }
+  })
 }
 
 enum class AlertDialogResult {
