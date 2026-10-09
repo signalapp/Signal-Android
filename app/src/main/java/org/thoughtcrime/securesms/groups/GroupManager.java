@@ -130,7 +130,9 @@ public final class GroupManager {
       return;
     }
 
-    leaveGroup(context, groupId.requireV2(), true);
+    boolean sendToMembers = Recipient.externalGroupExact(groupId).resolve().isProfileSharing();
+
+    leaveGroup(context, groupId.requireV2(), sendToMembers);
   }
 
   @WorkerThread
