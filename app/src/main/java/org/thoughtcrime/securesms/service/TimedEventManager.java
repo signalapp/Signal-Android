@@ -94,6 +94,11 @@ public abstract class TimedEventManager<E> {
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
 
+    if (pendingIntent == null) {
+      Log.w(TAG, "Unable to create pending intent for " + alarmClass.getSimpleName());
+      return;
+    }
+
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
   }
@@ -102,6 +107,11 @@ public abstract class TimedEventManager<E> {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
+
+    if (pendingIntent == null) {
+      Log.w(TAG, "Unable to create pending intent for " + alarmClass.getSimpleName());
+      return;
+    }
 
     alarmManager.cancel(pendingIntent);
 
@@ -128,6 +138,11 @@ public abstract class TimedEventManager<E> {
   protected static void cancelAlarm(@NonNull Context context, @NonNull Class<? extends BroadcastReceiver> alarmClass) {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
+
+    if (pendingIntent == null) {
+      Log.w(TAG, "Unable to create pending intent for " + alarmClass.getSimpleName());
+      return;
+    }
 
     try {
       pendingIntent.cancel();

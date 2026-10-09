@@ -10,6 +10,7 @@ import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.messages.BatchCache
@@ -27,6 +28,7 @@ import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.util.Util
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.seconds
 import org.whispersystems.signalservice.api.crypto.protos.EnvelopeMetadata as EnvelopeMetadataProto
 
 class PushProcessMessageJob private constructor(
@@ -71,6 +73,14 @@ class PushProcessMessageJob private constructor(
       e is GroupChangeBusyException
   }
 
+  override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: Exception): Long {
+    return if (exception is GroupChangeBusyException) {
+      BackoffUtil.exponentialBackoff(pastAttemptCount, GROUP_BUSY_MAX_BACKOFF.inWholeMilliseconds)
+    } else {
+      super.getNextRunAttemptBackoff(pastAttemptCount, exception)
+    }
+  }
+
   override fun onFailure() = Unit
 
   class Factory : Job.Factory<PushProcessMessageJob?> {
@@ -103,6 +113,8 @@ class PushProcessMessageJob private constructor(
     const val QUEUE_PREFIX = "__PUSH_PROCESS_JOB__"
 
     private val TAG = Log.tag(PushProcessMessageJob::class.java)
+
+    private val GROUP_BUSY_MAX_BACKOFF = 10.seconds
 
     /**
      * Cache to keep track of empty 1:1 processing queues. Once a 1:1 queue is empty
