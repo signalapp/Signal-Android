@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
-       tools:context="org.thoughtcrime.securesms.components.ZoomingImageView">
+       tools:context="org.signal.uicomponents.zooming.ZoomingImageView">
 
     <com.github.chrisbanes.photoview.PhotoView android:id="@+id/image_view"
                                                android:layout_width="match_parent"

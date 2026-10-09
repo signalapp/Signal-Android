@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.subsampling;
+package org.signal.uicomponents.zooming;
 
 
 import android.content.Context;
@@ -15,7 +15,8 @@ import com.davemorrissey.labs.subscaleview.decoder.ImageRegionDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageRegionDecoder;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.signal.glide.SignalGlideDependencies;
+import org.signal.glide.common.io.InputStreamFactory;
 
 import java.io.InputStream;
 
@@ -36,12 +37,12 @@ public class AttachmentRegionDecoder implements ImageRegionDecoder {
   @Override
   public Point init(Context context, Uri uri) throws Exception {
     Log.d(TAG, "Init!");
-    if (!PartAuthority.isLocalUri(uri)) {
+    if (!SignalGlideDependencies.isLocalUri(uri)) {
       passthrough = new SkiaImageRegionDecoder();
       return passthrough.init(context, uri);
     }
 
-    InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
+    InputStream inputStream = InputStreamFactory.build(uri).create();
 
     this.bitmapRegionDecoder = BitmapRegionDecoder.newInstance(inputStream, false);
     inputStream.close();

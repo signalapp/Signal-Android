@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.subsampling;
+package org.signal.uicomponents.zooming;
 
 
 import android.content.Context;
@@ -11,7 +11,8 @@ import androidx.annotation.Nullable;
 import com.davemorrissey.labs.subscaleview.decoder.ImageDecoder;
 import com.davemorrissey.labs.subscaleview.decoder.SkiaImageDecoder;
 
-import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.signal.glide.SignalGlideDependencies;
+import org.signal.glide.common.io.InputStreamFactory;
 
 import java.io.InputStream;
 
@@ -25,11 +26,11 @@ public class AttachmentBitmapDecoder implements ImageDecoder{
 
   @Override
   public Bitmap decode(Context context, Uri uri) throws Exception {
-    if (!PartAuthority.isLocalUri(uri)) {
+    if (!SignalGlideDependencies.isLocalUri(uri)) {
       return new SkiaImageDecoder().decode(context, uri);
     }
 
-    InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
+    InputStream inputStream = InputStreamFactory.build(uri).create();
 
     try {
       BitmapFactory.Options options = new BitmapFactory.Options();

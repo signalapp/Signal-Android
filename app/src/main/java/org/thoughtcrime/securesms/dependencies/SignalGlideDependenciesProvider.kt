@@ -9,9 +9,14 @@ import android.net.Uri
 import org.signal.glide.SignalGlideDependencies
 import org.signal.glide.common.io.InputStreamFactory
 import org.thoughtcrime.securesms.glide.DecryptableStreamFactory
+import org.thoughtcrime.securesms.mms.PartAuthority
 
 object SignalGlideDependenciesProvider : SignalGlideDependencies.Provider {
   override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long): InputStreamFactory {
     return DecryptableStreamFactory(uri, thumbnailTimeUs)
+  }
+
+  override fun isLocalUri(uri: Uri): Boolean {
+    return PartAuthority.isLocalUri(uri)
   }
 }

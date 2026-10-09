@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -47,6 +48,8 @@ private const val FADE_IN_DURATION_MILLIS = 200
  * @param skipMemoryCache Set this when the same model is loaded at several sizes, so that a stateful resource such as
  *   an APNG frame decoder is not shared across differently-sized targets.
  * @param fadeIn Fades the image in when it was not already in the memory cache.
+ * @param onLoadCompleted Invoked once the load finishes, whether it succeeded or failed. Until it
+ *   fires, this composable has drawn nothing.
  */
 @Composable
 fun <T> GlideImage(
@@ -61,7 +64,8 @@ fun <T> GlideImage(
   contentScale: ContentScale = ContentScale.Crop,
   enableApngAnimation: Boolean = false,
   skipMemoryCache: Boolean = false,
-  fadeIn: Boolean = false
+  fadeIn: Boolean = false,
+  onLoadCompleted: (() -> Unit)? = null
 ) {
   var drawable by remember {
     mutableStateOf<Drawable?>(null)
@@ -71,10 +75,16 @@ fun <T> GlideImage(
     mutableStateOf<Animatable<Float, AnimationVector1D>?>(null)
   }
 
+  val currentOnLoadCompleted by rememberUpdatedState(onLoadCompleted)
   val target = remember {
     object : CustomTarget<Drawable>() {
       override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
         drawable = resource
+        currentOnLoadCompleted?.invoke()
+      }
+
+      override fun onLoadFailed(errorDrawable: Drawable?) {
+        currentOnLoadCompleted?.invoke()
       }
 
       override fun onLoadCleared(placeholder: Drawable?) {

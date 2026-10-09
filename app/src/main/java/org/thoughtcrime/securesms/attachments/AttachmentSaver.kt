@@ -6,9 +6,12 @@
 package org.thoughtcrime.securesms.attachments
 
 import android.Manifest
+import android.content.Context
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.Completable
 import kotlinx.coroutines.rx3.rxCompletable
@@ -135,20 +138,23 @@ class AttachmentSaver(private val host: Host) {
     suspend fun dismissSaveProgress()
   }
 
-  data class FragmentHost(private val fragment: Fragment) : Host {
+  abstract class DialogHost : Host {
+    protected abstract val context: Context
+    protected abstract val fragmentManager: FragmentManager
+    protected abstract fun permissionsBuilder(): Permissions.PermissionsBuilder
 
     override suspend fun showSaveResult(result: SaveAttachmentsResult) {
       withContext(SignalDispatchers.Main) {
-        Toast.makeText(fragment.requireContext(), result.getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()
+        Toast.makeText(context, result.getMessage(context), Toast.LENGTH_LONG).show()
       }
     }
 
     override suspend fun showSaveToStorageWarning(attachmentCount: Int): SaveToStorageWarningResult = withContext(SignalDispatchers.Main) {
-      val dialog = MaterialAlertDialogBuilder(fragment.requireContext())
+      val dialog = MaterialAlertDialogBuilder(context)
         .setView(R.layout.dialog_save_attachment)
         .setTitle(R.string.AttachmentSaver__save_to_phone)
         .setCancelable(true)
-        .setMessage(fragment.resources.getQuantityString(R.plurals.AttachmentSaver__this_media_will_be_saved, attachmentCount, attachmentCount))
+        .setMessage(context.resources.getQuantityString(R.plurals.AttachmentSaver__this_media_will_be_saved, attachmentCount, attachmentCount))
         .create()
 
       val result = dialog.awaitResult(
@@ -168,10 +174,10 @@ class AttachmentSaver(private val host: Host) {
 
     override suspend fun requestWriteExternalStoragePermission(): RequestPermissionResult = withContext(SignalDispatchers.Main) {
       suspendCoroutine { continuation ->
-        Permissions.with(fragment)
+        permissionsBuilder()
           .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
           .ifNecessary()
-          .withPermanentDenialDialog(fragment.getString(R.string.AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+          .withPermanentDenialDialog(context.getString(R.string.AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
           .onAnyDenied {
             Log.d(TAG, "WRITE_EXTERNAL_STORAGE permission request denied.")
             continuation.resume(RequestPermissionResult.DENIED)
@@ -186,22 +192,34 @@ class AttachmentSaver(private val host: Host) {
 
     override suspend fun showSaveProgress(attachmentCount: Int) {
       withContext(SignalDispatchers.Main) {
-        val progressMessage = fragment.resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachmentCount, attachmentCount)
+        val progressMessage = context.resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachmentCount, attachmentCount)
 
         val dialog = ProgressCardDialogFragment.create().apply {
           arguments = ProgressCardDialogFragmentArgs.Builder(progressMessage).build().toBundle()
         }
 
-        dialog.show(fragment.parentFragmentManager, PROGRESS_DIALOG_TAG)
+        dialog.show(fragmentManager, PROGRESS_DIALOG_TAG)
       }
     }
 
     override suspend fun dismissSaveProgress() {
       withContext(SignalDispatchers.Main) {
-        val dialog = fragment.parentFragmentManager.findFragmentByTag(PROGRESS_DIALOG_TAG) as? ProgressCardDialogFragment
+        val dialog = fragmentManager.findFragmentByTag(PROGRESS_DIALOG_TAG) as? ProgressCardDialogFragment
         dialog?.dismissAllowingStateLoss()
       }
     }
+  }
+
+  data class FragmentHost(private val fragment: Fragment) : DialogHost() {
+    override val context: Context get() = fragment.requireContext()
+    override val fragmentManager: FragmentManager get() = fragment.parentFragmentManager
+    override fun permissionsBuilder(): Permissions.PermissionsBuilder = Permissions.with(fragment)
+  }
+
+  data class ActivityHost(private val activity: FragmentActivity) : DialogHost() {
+    override val context: Context get() = activity
+    override val fragmentManager: FragmentManager get() = activity.supportFragmentManager
+    override fun permissionsBuilder(): Permissions.PermissionsBuilder = Permissions.with(activity)
   }
 
   enum class SaveToStorageWarningResult {

@@ -1,6 +1,8 @@
 package org.signal.uicomponents.spoiler
 
-import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -135,13 +137,19 @@ fun SpoilerText(
         textColor = originalTextColor
       )
       .pointerInput(text, spoilerState) {
-        detectTapGestures { offset ->
-          val layout = textLayoutResult ?: return@detectTapGestures
-          val position = layout.getOffsetForPosition(offset)
-          val spoiler = text.findSpoilerAt(position)
-          if (spoiler != null && !spoilerState.isRevealed(spoiler.item)) {
-            spoilerState.reveal(spoiler.item)
+        // Only taps on a hidden spoiler are consumed, so other taps still reach parent click handlers.
+        awaitEachGesture {
+          val down = awaitFirstDown()
+          val layout = textLayoutResult ?: return@awaitEachGesture
+          val spoiler = text.findSpoilerAt(layout.getOffsetForPosition(down.position))
+          if (spoiler == null || spoilerState.isRevealed(spoiler.item)) {
+            return@awaitEachGesture
           }
+
+          down.consume()
+          val up = waitForUpOrCancellation() ?: return@awaitEachGesture
+          up.consume()
+          spoilerState.reveal(spoiler.item)
         }
       },
     color = color,

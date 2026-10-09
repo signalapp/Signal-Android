@@ -194,7 +194,7 @@ class MediaPreviewActivity : PassphraseRequiredActivity(), VoiceNoteMediaControl
    * Applies the desired window color mode. This activity is the sole writer of [android.view.Window.setColorMode].
    *
    * The API 35 floor is [android.view.Window.setDesiredHdrHeadroom], and matches the one
-   * [org.thoughtcrime.securesms.components.subsampling.UltraHdrSupport.isEligible] applies at decode time.
+   * [org.signal.uicomponents.zooming.UltraHdrSupport.isEligible] applies at decode time.
    */
   private fun applyWindowColorMode(wantHdr: Boolean) {
     if (Build.VERSION.SDK_INT < 35) {

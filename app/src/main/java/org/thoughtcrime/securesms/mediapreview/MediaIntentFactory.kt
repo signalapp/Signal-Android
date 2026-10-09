@@ -13,7 +13,9 @@ import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
+import org.thoughtcrime.securesms.mediaviewer.MediaViewerActivity
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"
@@ -64,7 +66,12 @@ object MediaIntentFactory {
 
   @JvmStatic
   fun create(context: Context, args: MediaPreviewArgs): Intent {
-    return Intent(context, MediaPreviewActivity::class.java).putExtra(ARGS_KEY, args)
+    val activityClass = if (RemoteConfig.useNewMediaViewer) {
+      MediaViewerActivity::class.java
+    } else {
+      MediaPreviewActivity::class.java
+    }
+    return Intent(context, activityClass).putExtra(ARGS_KEY, args)
   }
 
   fun intentFromMediaRecord(

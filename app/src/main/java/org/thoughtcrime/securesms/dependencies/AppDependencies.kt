@@ -21,6 +21,7 @@ import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediasend.MediaSendDependencies
+import org.signal.mediaviewer.MediaViewerDependencies
 import org.signal.network.api.AccountApiV2
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.api.AttachmentApi
@@ -136,6 +137,7 @@ object AppDependencies {
     CameraDependencies.init(application, CameraDependenciesProvider)
     MediaSendDependencies.init(application, MediaSendDependenciesProvider)
     MediaKeyboardDependencies.init(application, MediaKeyboardDependenciesProvider)
+    MediaViewerDependencies.init(MediaViewerDependenciesProvider)
     EmojiDependencies.init(application, EmojiDependenciesProvider)
   }
 

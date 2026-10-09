@@ -817,6 +817,7 @@ dependencies {
 
   implementation(project(":lib:billing"))
   implementation(project(":feature:media-send"))
+  implementation(project(":feature:media-viewer"))
 
   "spinnerImplementation"(project(":lib:spinner"))
 

@@ -199,6 +199,13 @@ public class VideoPlayer extends FrameLayout {
       }
 
       @Override
+      public void onRenderedFirstFrame() {
+        if (playerCallback != null) {
+          playerCallback.onFirstFrameRendered();
+        }
+      }
+
+      @Override
       public void onPlayerError(@NonNull PlaybackException error) {
         Log.w(TAG, "A player error occurred", error);
         if (playerCallback != null) {
@@ -277,6 +284,18 @@ public class VideoPlayer extends FrameLayout {
 
   public void setResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
     exoView.setResizeMode(resizeMode);
+  }
+
+  /**
+   * Pre-sizes the content frame before the player reports its video size. Without this, the first
+   * frames render into a full-bleed surface until onVideoSizeChanged lands, flashing a stretched
+   * image. The player's reported size still wins once it arrives.
+   */
+  public void setInitialAspectRatio(float aspectRatio) {
+    AspectRatioFrameLayout contentFrame = exoView.findViewById(androidx.media3.ui.R.id.exo_content_frame);
+    if (contentFrame != null && aspectRatio > 0) {
+      contentFrame.setAspectRatio(aspectRatio);
+    }
   }
 
   public boolean isPlaying() {
@@ -522,6 +541,8 @@ public class VideoPlayer extends FrameLayout {
   public interface PlayerCallback {
 
     default void onReady() {}
+
+    default void onFirstFrameRendered() {}
 
     void onPlaying();
 

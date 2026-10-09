@@ -25,9 +25,12 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":lib:emoji"))
   implementation(project(":lib:glide"))
+  implementation(project(":lib:photoview"))
 
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.compose.material3)
+  implementation(libs.androidx.exifinterface)
+  implementation(libs.subsampling.scale.image.view)
 
   // Testing
   testImplementation(testLibs.junit.junit)

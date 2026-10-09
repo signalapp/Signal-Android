@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.subsampling;
+package org.signal.uicomponents.zooming;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,8 +12,8 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.signal.core.util.ContentTypeUtil;
+import org.signal.glide.SignalGlideDependencies;
 
 /**
  * Helpers for detecting UltraHDR (gain map bearing) images in the full-screen media preview.
@@ -30,7 +30,7 @@ public final class UltraHdrSupport {
   public static boolean isEligible(@NonNull Uri uri, @Nullable String contentType) {
     return Build.VERSION.SDK_INT >= 35 &&
            isGainmapCapableContentType(contentType) &&
-           PartAuthority.isLocalUri(uri);
+           SignalGlideDependencies.isLocalUri(uri);
   }
 
   /**
@@ -46,8 +46,8 @@ public final class UltraHdrSupport {
    * parse: a bitmap without a gain map simply never reports one.
    */
   private static boolean isGainmapCapableContentType(@Nullable String contentType) {
-    return MediaUtil.isJpegType(contentType) ||
-           MediaUtil.isHeicType(contentType) ||
-           MediaUtil.isHeifType(contentType);
+    return ContentTypeUtil.isJpegType(contentType) ||
+           ContentTypeUtil.isHeicType(contentType) ||
+           ContentTypeUtil.isHeifType(contentType);
   }
 }

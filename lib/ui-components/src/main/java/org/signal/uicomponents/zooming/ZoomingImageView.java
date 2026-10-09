@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.signal.uicomponents.zooming;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,18 +21,14 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.davemorrissey.labs.subscaleview.decoder.DecoderFactory;
 import com.github.chrisbanes.photoview.PhotoView;
 
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.subsampling.AttachmentBitmapDecoder;
-import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder;
-import org.thoughtcrime.securesms.components.subsampling.GainmapReporter;
-import org.thoughtcrime.securesms.components.subsampling.UltraHdrSupport;
-import org.signal.glide.decryptableuri.DecryptableUri;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.ActionRequestListener;
+import org.signal.core.util.ContentTypeUtil;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.core.util.bitmaps.BitmapUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.signal.glide.ActionRequestListener;
+import org.signal.glide.common.io.InputStreamFactory;
+import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.uicomponents.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -103,13 +99,12 @@ public class ZoomingImageView extends FrameLayout {
 
   @SuppressLint("StaticFieldLeak")
   public void setImageUri(@NonNull RequestManager requestManager, @NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
-    if (MediaUtil.isGif(contentType)) {
+    if (ContentTypeUtil.isGif(contentType)) {
       Log.i(TAG, "Loading in gif image view...");
       setImageViewUri(requestManager, uri, onMediaReady);
     } else {
       Log.i(TAG, "Loading in subsampling image view...");
-      setSubsamplingImageViewUri(uri, contentType);
-      onMediaReady.run();
+      setSubsamplingImageViewUri(uri, contentType, onMediaReady);
     }
   }
 
@@ -125,7 +120,7 @@ public class ZoomingImageView extends FrameLayout {
                  .into(gifView);
   }
 
-  private void setSubsamplingImageViewUri(@NonNull Uri uri, @NonNull String contentType) {
+  private void setSubsamplingImageViewUri(@NonNull Uri uri, @NonNull String contentType, @NonNull Runnable onMediaReady) {
     final GainmapReporter reporter;
     if (UltraHdrSupport.isEligible(uri, contentType)) {
       Log.i(TAG, "Checking for an Ultra HDR gain map on this image.");
@@ -144,7 +139,7 @@ public class ZoomingImageView extends FrameLayout {
     // SubsamplingScaleImageView.ORIENTATION_USE_EXIF is unreliable:
     // https://github.com/signalapp/Signal-Android/issues/11732#issuecomment-963203545
     try {
-      final InputStream inputStream = PartAuthority.getAttachmentStream(getContext(), uri);
+      final InputStream inputStream = InputStreamFactory.build(uri).create();
       final int orientation = BitmapUtil.getExifOrientation(new ExifInterface(inputStream));
       inputStream.close();
       if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
@@ -159,6 +154,21 @@ public class ZoomingImageView extends FrameLayout {
     } catch (IOException e) {
       Log.w(TAG, e);
     }
+
+    // Readiness must mean "pixels are about to be on screen": callers use it to remove covering
+    // placeholders, so firing before the base layer is decoded would reveal a blank background.
+    subsamplingImageView.setOnImageEventListener(new SubsamplingScaleImageView.DefaultOnImageEventListener() {
+      @Override
+      public void onReady() {
+        onMediaReady.run();
+      }
+
+      @Override
+      public void onImageLoadError(Exception e) {
+        Log.w(TAG, "Failed to load image.", e);
+        onMediaReady.run();
+      }
+    });
 
     subsamplingImageView.setImage(ImageSource.uri(uri));
   }
