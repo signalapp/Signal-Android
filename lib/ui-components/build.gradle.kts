@@ -22,6 +22,7 @@ dependencies {
 
   api(project(":core:ui"))
 
+  implementation(project(":core:util"))
   implementation(project(":lib:glide"))
 
   implementation(platform(libs.androidx.compose.bom))

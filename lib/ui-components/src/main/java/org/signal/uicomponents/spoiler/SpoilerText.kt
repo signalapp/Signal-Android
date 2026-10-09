@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.spoiler.compose
+package org.signal.uicomponents.spoiler
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.text.InlineTextContent
@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
-import org.thoughtcrime.securesms.components.spoiler.SpoilerPaint
 
 /**
  * A Text composable that supports spoiler annotations with particle effects.

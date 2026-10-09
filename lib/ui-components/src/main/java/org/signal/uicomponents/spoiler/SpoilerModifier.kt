@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.spoiler.compose
+package org.signal.uicomponents.spoiler
 
 import android.graphics.Paint
 import android.graphics.PorterDuff
@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
-import org.thoughtcrime.securesms.components.spoiler.SpoilerPaint
 
 /**
  * Annotation tag used to mark spoiler text ranges in an AnnotatedString.

@@ -8,6 +8,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
+import org.signal.uicomponents.spoiler.SpoilerPaint
 
 /**
  * Drawable that animates a sparkle effect for spoilers.

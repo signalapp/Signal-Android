@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.spoiler.compose
+package org.signal.uicomponents.spoiler
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable

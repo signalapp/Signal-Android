@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.spoiler
+package org.signal.uicomponents.spoiler
 
 import android.graphics.Bitmap
 import android.graphics.BitmapShader
@@ -8,11 +8,11 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Shader
 import androidx.annotation.MainThread
+import org.signal.core.util.CoreUtilDependencies
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.Util
 import org.signal.core.util.dp
-import org.thoughtcrime.securesms.components.spoiler.SpoilerPaint.update
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.signal.uicomponents.spoiler.SpoilerPaint.update
 import kotlin.random.Random
 
 /**
@@ -34,9 +34,9 @@ object SpoilerPaint {
 
   private fun isLowMemory(): Boolean {
     return try {
-      Util.isLowMemory(AppDependencies.application)
+      Util.isLowMemory(CoreUtilDependencies.application)
     } catch (e: Throwable) {
-      // In preview mode or when AppDependencies is not initialized, default to low memory mode
+      // In preview mode or when CoreUtilDependencies is not initialized, default to low memory mode
       true
     }
   }
