@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -113,7 +114,8 @@ abstract class DSLSettingsFragment(
    * list must scroll clear of the navigation bar. Skipped only for fragments embedded directly in
    * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
    * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
-   * fragments so the toolbar scroll tint can reach behind the status bar.
+   * fragments so the toolbar scroll tint can reach behind the status bar. Fragments shown inside a dialog have
+   * their own window, which the [MainActivity] scaffolding never insets, so they always apply insets themselves.
    */
   private fun applyEdgeToEdgeInsets() {
     if (isInsetByMainActivityHost()) {
@@ -145,7 +147,7 @@ abstract class DSLSettingsFragment(
     if (activity !is MainActivity) {
       return false
     }
-    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment }
+    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment || (it is DialogFragment && it.showsDialog) }
   }
 
   open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {
