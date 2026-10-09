@@ -607,7 +607,10 @@ object DataMessageProcessor {
 
       null
     } else {
-      warn(envelope.clientTimestamp!!, "[handleRemoteDelete] Invalid remote delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}")
+      warn(
+        envelope.clientTimestamp!!,
+        "[handleRemoteDelete] Invalid remote delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: $senderRecipientId, targetAuthor: ${targetMessage.fromRecipient.id}"
+      )
       null
     }
   }
@@ -924,7 +927,8 @@ object DataMessageProcessor {
       val mentions: List<Mention> = getMentions(message.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT))
       val sticker: Attachment? = getStickerAttachment(envelope.clientTimestamp!!, message)
       val attachments: List<Attachment> = message.attachments.toPointersWithinLimit()
-      val messageRanges: BodyRangeList? = if (message.bodyRanges.isNotEmpty()) message.bodyRanges.asSequence().take(BODY_RANGE_PROCESSING_LIMIT).filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList() else null
+      val messageRanges: BodyRangeList? =
+        if (message.bodyRanges.isNotEmpty()) message.bodyRanges.asSequence().take(BODY_RANGE_PROCESSING_LIMIT).filter { Util.allAreNull(it.mentionAci, it.mentionAciBinary) }.toList().toBodyRangeList() else null
 
       handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
@@ -1159,7 +1163,15 @@ object DataMessageProcessor {
 
     handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
-    val messageId = handlePollValidation(envelope = envelope, targetSentTimestamp = targetSentTimestamp, senderRecipient = senderRecipient, earlyMessageCacheEntry = earlyMessageCacheEntry, targetAuthor = senderRecipient, threadRecipient = threadRecipient, batchCache = batchCache)
+    val messageId = handlePollValidation(
+      envelope = envelope,
+      targetSentTimestamp = targetSentTimestamp,
+      senderRecipient = senderRecipient,
+      earlyMessageCacheEntry = earlyMessageCacheEntry,
+      targetAuthor = senderRecipient,
+      threadRecipient = threadRecipient,
+      batchCache = batchCache
+    )
     if (messageId == null) {
       return null
     }
@@ -1475,7 +1487,12 @@ object DataMessageProcessor {
       AppDependencies.messageNotifier.updateNotification(context, ConversationId.fromMessageRecord(targetMessage))
       MessageId(targetMessage.id)
     } else {
-      warn(envelope.clientTimestamp!!, "[handleAdminRemoteDelete] Invalid admin delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: ${senderRecipient.id}, targetAuthor: ${targetMessage.fromRecipient.id}, isAdmin: ${groupRecord.isAdmin(senderRecipient)}")
+      warn(
+        envelope.clientTimestamp!!,
+        "[handleAdminRemoteDelete] Invalid admin delete! deleteTime: ${envelope.serverTimestamp!!}, targetTime: ${targetMessage.serverTimestamp}, deleteAuthor: ${senderRecipient.id}, targetAuthor: ${targetMessage.fromRecipient.id}, isAdmin: ${
+          groupRecord.isAdmin(senderRecipient)
+        }"
+      )
       null
     }
   }
@@ -1536,9 +1553,9 @@ object DataMessageProcessor {
       val targetMessageAttachments = SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id)
       val mentions: List<Mention> = SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id)
 
-      // We want our thumbnail attachment to be the first "thumbnailable" item from the target message.
-      // That means we want to pick the earliest image/video that has data.
+      // The quote's thumbnail is the earliest image/video with data from the target message, but not from the target's own quote attachments to prevent propagating thumbnails.
       thumbnailAttachment = targetMessageAttachments
+        .filterNot { it.quote }
         .sortedBy { it.displayOrder }
         .sortedBy {
           if (MediaUtil.isImageType(it.contentType) || MediaUtil.isVideoType(it.contentType)) {

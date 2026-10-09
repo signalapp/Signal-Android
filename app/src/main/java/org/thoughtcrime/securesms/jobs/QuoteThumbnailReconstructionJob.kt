@@ -81,7 +81,7 @@ class QuoteThumbnailReconstructionJob private constructor(params: Parameters) : 
       return Result.success()
     }
 
-    val targetAttachment = SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id).firstOrNull { MediaUtil.isImageOrVideoType(it.contentType) && it.uri != null }
+    val targetAttachment = SignalDatabase.attachments.getAttachmentsForMessage(targetMessage.id).firstOrNull { !it.quote && MediaUtil.isImageOrVideoType(it.contentType) && it.uri != null }
     if (targetAttachment == null) {
       Log.w(TAG, "No applicable attachments found for the target message. Marking as migrated and continuing.")
       SignalDatabase.attachments.clearQuotePendingReconstruction(quoteAttachment.attachmentId)
