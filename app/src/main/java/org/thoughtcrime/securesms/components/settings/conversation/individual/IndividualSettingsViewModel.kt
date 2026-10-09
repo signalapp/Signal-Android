@@ -181,7 +181,7 @@ class IndividualSettingsViewModel(
         _actions.send(ConversationSettingsAction.OpenStarredMessages(state.threadId))
       }
       IndividualSettingsEvent.ContactDetailsClicked -> {
-        _actions.send(ConversationSettingsAction.ViewContact(state.recipient))
+        _actions.send(ConversationSettingsAction.ViewContact(repository.getSystemContactUri(state.recipient)))
       }
       IndividualSettingsEvent.AddAsContactClicked -> {
         _actions.send(ConversationSettingsAction.AddContact(state.recipient))

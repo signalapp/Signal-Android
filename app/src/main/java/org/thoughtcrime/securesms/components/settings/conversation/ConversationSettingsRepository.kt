@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
 import android.content.Context
+import android.net.Uri
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
 import org.thoughtcrime.securesms.components.settings.conversation.shared.GroupMember
 import org.thoughtcrime.securesms.components.settings.conversation.shared.LegacyGroupState
+import org.thoughtcrime.securesms.contacts.SystemContactUris
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.conversation.colors.ColorizerV2
 import org.thoughtcrime.securesms.database.CallTable
@@ -215,6 +217,10 @@ class ConversationSettingsRepository(
         null
       }
     }
+  }
+
+  suspend fun getSystemContactUri(recipient: Recipient): Uri? {
+    return SystemContactUris.resolve(context, recipient)
   }
 
   suspend fun getGroupMembership(recipientId: RecipientId): List<RecipientId> {

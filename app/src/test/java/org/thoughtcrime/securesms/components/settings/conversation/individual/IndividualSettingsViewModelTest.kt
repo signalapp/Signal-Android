@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.individual
 
+import android.net.Uri
 import androidx.compose.ui.unit.IntRect
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -344,14 +345,17 @@ class IndividualSettingsViewModelTest {
   }
 
   @Test
-  fun `contact rows carry the recipient`() = runTest(testDispatcher) {
+  fun `contact rows carry the resolved contact uri and the recipient`() = runTest(testDispatcher) {
+    val contactUri = mockk<Uri>()
+    coEvery { repository.getSystemContactUri(any()) } returns contactUri
+
     val viewModel = createViewModel()
     val actions = collectActions(viewModel)
 
     viewModel.onEvent(IndividualSettingsEvent.ContactDetailsClicked)
     viewModel.onEvent(IndividualSettingsEvent.AddAsContactClicked)
 
-    assertEquals(ConversationSettingsAction.ViewContact::class, actions[0]::class)
+    assertEquals(ConversationSettingsAction.ViewContact(contactUri), actions[0])
     assertEquals(ConversationSettingsAction.AddContact::class, actions[1]::class)
   }
 

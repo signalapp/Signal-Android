@@ -106,6 +106,7 @@ object SystemContactsRepository {
       ContactsContract.CommonDataKinds.Phone.LABEL,
       ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
       ContactsContract.CommonDataKinds.Phone._ID,
+      ContactsContract.Data.CONTACT_ID,
       ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
       ContactsContract.CommonDataKinds.Phone.TYPE,
       ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
@@ -147,6 +148,7 @@ object SystemContactsRepository {
       ContactsContract.CommonDataKinds.Phone.LABEL,
       ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
       ContactsContract.CommonDataKinds.Phone._ID,
+      ContactsContract.Data.CONTACT_ID,
       ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY,
       ContactsContract.CommonDataKinds.Phone.TYPE,
       ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME,
@@ -211,7 +213,11 @@ object SystemContactsRepository {
    */
   @JvmStatic
   fun currentContactUri(context: Context, lookupKey: String, contactId: Long): Uri? {
-    val lookupUri = ContactsContract.Contacts.getLookupUri(contactId, lookupKey)
+    return currentContactUri(context, ContactsContract.Contacts.getLookupUri(contactId, lookupKey))
+  }
+
+  @JvmStatic
+  fun currentContactUri(context: Context, lookupUri: Uri): Uri? {
     return ContactsContract.Contacts.lookupContact(context.contentResolver, lookupUri)
   }
 
@@ -259,9 +265,9 @@ object SystemContactsRepository {
   /**
    * Pulls the lookup key out of a contact lookup URI.
    *
-   * Note this reads the segment after "lookup" rather than the last segment. [readAllPhones] builds
-   * these URIs with a Data row id in the trailing position instead of a contact id, so the trailing
-   * segment cannot be trusted, while the lookup key is both correct and stable across contact edits.
+   * Note this reads the segment after "lookup" rather than the last segment. Older stored URIs carry a
+   * Data row id in the trailing position instead of a contact id, and even a contact id goes stale when
+   * the provider re-aggregates, while the lookup key is stable across contact edits.
    */
   @JvmStatic
   fun lookupKeyFromLookupUri(uri: String?): String? {
@@ -907,7 +913,7 @@ object SystemContactsRepository {
 
         if (!displayNumber.isNullOrEmpty() && !formattedNumber.isNullOrEmpty()) {
           phoneDetails += ContactPhoneDetails(
-            contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), lookupKey),
+            contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.Data.CONTACT_ID), lookupKey),
             displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
             photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
             number = formattedNumber,

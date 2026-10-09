@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import android.net.Uri
 import androidx.compose.ui.unit.IntRect
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.MediaTable
@@ -92,8 +93,8 @@ sealed interface ConversationSettingsAction {
   data class OpenStarredMessages(val threadId: Long) : ConversationSettingsAction
 
   /** Open the recipient's entry in the system contacts. */
-  data class ViewContact(val recipient: Recipient) : ConversationSettingsAction {
-    override fun toString(): String = "ViewContact(${recipient.id})"
+  data class ViewContact(val contactUri: Uri?) : ConversationSettingsAction {
+    override fun toString(): String = "ViewContact"
   }
 
   /** Open the system flow for adding the recipient to the contacts. */

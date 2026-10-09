@@ -3733,8 +3733,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   /**
    * Every registered recipient linked to a system contact, keyed by that contact's lookup key.
    *
-   * The key comes from the uri path, not its last segment, which is a Data row id. Two numbers on
-   * one contact share a lookup key and are separate Signal accounts, so all of them are kept.
+   * The key comes from the uri path, not its last segment, which may be a legacy Data row id or a stale
+   * contact id. Two numbers on one contact share a lookup key and are separate Signal accounts, so all of
+   * them are kept.
    */
   fun getSystemContactLinksByLookupKey(): Map<String, List<SystemContactLink>> {
     return readableDatabase
@@ -5040,7 +5041,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   )
 
   inner class BulkOperationsHandle internal constructor(private val database: SQLiteDatabase) {
-    private val pendingRecipients: MutableSet<RecipientId> = mutableSetOf()
+    private val changedRecipients: MutableSet<RecipientId> = mutableSetOf()
+    private val storageChangedRecipients: MutableSet<RecipientId> = mutableSetOf()
 
     fun setSystemContactInfo(
       id: RecipientId,
@@ -5051,26 +5053,42 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       systemPhoneType: Int,
       systemContactUri: String?
     ) {
-      val joinedName = Util.firstNonNull(systemDisplayName, systemProfileName.toString())
+      val selection = "$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?"
+      val selectionArgs = SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
+
       val refreshQualifyingValues = ContentValues().apply {
         put(SYSTEM_GIVEN_NAME, systemProfileName.givenName)
         put(SYSTEM_FAMILY_NAME, systemProfileName.familyName)
-        put(SYSTEM_JOINED_NAME, joinedName)
+        put(SYSTEM_JOINED_NAME, Util.firstNonNull(systemDisplayName, systemProfileName.toString()))
         put(SYSTEM_PHOTO_URI, photoUri)
         put(SYSTEM_PHONE_LABEL, systemPhoneLabel)
         put(SYSTEM_PHONE_TYPE, systemPhoneType)
+      }
+      val systemInfoChanged = update(SqlUtil.buildTrueUpdateQuery(selection, selectionArgs, refreshQualifyingValues), refreshQualifyingValues)
+
+      val systemContactPresenceChanged = writableDatabase
+        .update(TABLE_NAME)
+        .values(SYSTEM_CONTACT_URI to systemContactUri)
+        .where("$selection AND $SYSTEM_CONTACT_URI ${if (systemContactUri == null) "NOT NULL" else "IS NULL"}", selectionArgs)
+        .run() > 0
+
+      val contactUriValues = ContentValues().apply {
         put(SYSTEM_CONTACT_URI, systemContactUri)
       }
+      val contactUriChanged = update(SqlUtil.buildTrueUpdateQuery(selection, selectionArgs, contactUriValues), contactUriValues)
 
-      val updateQuery = SqlUtil.buildTrueUpdateQuery("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", SqlUtil.buildArgs(id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id), refreshQualifyingValues)
-      if (update(updateQuery, refreshQualifyingValues)) {
-        pendingRecipients.add(id)
+      if (systemInfoChanged || systemContactPresenceChanged) {
+        storageChangedRecipients.add(id)
+      }
+
+      if (systemInfoChanged || systemContactPresenceChanged || contactUriChanged) {
+        changedRecipients.add(id)
       }
 
       writableDatabase
         .update(TABLE_NAME)
         .values(SYSTEM_INFO_PENDING to 0)
-        .where("$ID = ? AND $PHONE_NUMBER_DISCOVERABLE != ?", id, PhoneNumberDiscoverableState.NOT_DISCOVERABLE.id)
+        .where(selection, selectionArgs)
         .run()
     }
 
@@ -5079,7 +5097,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       clearSystemDataForPendingInfo()
       database.setTransactionSuccessful()
       database.endTransaction()
-      pendingRecipients.forEach { id -> AppDependencies.databaseObserver.notifyRecipientChanged(id) }
+      changedRecipients.forEach { id -> AppDependencies.databaseObserver.notifyRecipientChanged(id) }
     }
 
     private fun markAllRelevantEntriesDirty() {
@@ -5093,7 +5111,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         }
       }
 
-      pendingRecipients.forEach { id -> rotateStorageId(id) }
+      storageChangedRecipients.forEach { id -> rotateStorageId(id) }
     }
 
     private fun clearSystemDataForPendingInfo() {

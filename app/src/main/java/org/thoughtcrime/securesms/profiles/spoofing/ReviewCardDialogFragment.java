@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.spoofing;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -16,10 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
+import org.thoughtcrime.securesms.contacts.SystemContactUris;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment;
@@ -182,9 +186,15 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
     public void onActionClicked(@NonNull ReviewCard card, @NonNull ReviewCard.Action action) {
       switch (action) {
         case UPDATE_CONTACT:
-          Intent contactEditIntent = new Intent(Intent.ACTION_EDIT);
-          contactEditIntent.setDataAndType(card.getReviewRecipient().getContactUri(), ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-          startActivity(contactEditIntent);
+          Context   appContext = requireContext().getApplicationContext();
+          Recipient recipient  = card.getReviewRecipient();
+          SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
+                         () -> SystemContactUris.resolveSync(appContext, recipient),
+                         contactUri -> {
+                           Intent contactEditIntent = new Intent(Intent.ACTION_EDIT);
+                           contactEditIntent.setDataAndType(contactUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+                           startActivity(contactEditIntent);
+                         });
           break;
         case REMOVE_FROM_GROUP:
           new MaterialAlertDialogBuilder(requireContext())

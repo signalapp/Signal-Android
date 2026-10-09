@@ -208,6 +208,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfo
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfoProvider
+import org.thoughtcrime.securesms.contacts.SystemContactUris
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearchKey
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
@@ -2306,7 +2307,9 @@ class ConversationFragment :
 
     if (recipient.isSystemContact) {
       titleView.setOnLongClickListener {
-        startActivity(Intent(Intent.ACTION_VIEW, recipient.contactUri))
+        viewLifecycleOwner.lifecycleScope.launch {
+          startActivity(Intent(Intent.ACTION_VIEW, SystemContactUris.resolve(requireContext(), recipient)))
+        }
         return@setOnLongClickListener true
       }
     }
@@ -4363,11 +4366,13 @@ class ConversationFragment :
 
     override fun onChangeProfileNameUpdateContact(recipient: Recipient) {
       if (recipient.isSystemContact) {
-        startActivity(
-          Intent(Intent.ACTION_EDIT).apply {
-            setDataAndType(recipient.contactUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
-          }
-        )
+        viewLifecycleOwner.lifecycleScope.launch {
+          startActivity(
+            Intent(Intent.ACTION_EDIT).apply {
+              setDataAndType(SystemContactUris.resolve(requireContext(), recipient), ContactsContract.Contacts.CONTENT_ITEM_TYPE)
+            }
+          )
+        }
       } else {
         nicknameEditActivityLauncher.launch(NicknameActivity.Args(recipientId = recipient.id, focusNoteFirst = false))
       }

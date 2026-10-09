@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
+import org.thoughtcrime.securesms.contacts.SystemContactUris
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelEducationSheet
@@ -299,7 +300,9 @@ class RecipientBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
       if (recipient.isSystemContact && !recipient.isGroup && !recipient.isSelf) {
         contactDetailsButton.visible = true
         contactDetailsButton.setOnClickListener {
-          openSystemContactSheet(Intent(Intent.ACTION_VIEW, recipient.contactUri))
+          viewLifecycleOwner.lifecycleScope.launch {
+            openSystemContactSheet(Intent(Intent.ACTION_VIEW, SystemContactUris.resolve(requireContext(), recipient)))
+          }
         }
       } else {
         contactDetailsButton.visible = false

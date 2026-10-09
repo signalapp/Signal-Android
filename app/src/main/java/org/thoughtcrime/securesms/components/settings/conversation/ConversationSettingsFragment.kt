@@ -408,7 +408,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(StarredMessagesActivity.createIntent(requireContext(), action.threadId))
       }
       is ConversationSettingsAction.ViewContact -> {
-        startActivityForResult(Intent(Intent.ACTION_VIEW, action.recipient.contactUri), REQUEST_CODE_VIEW_CONTACT)
+        startActivityForResult(Intent(Intent.ACTION_VIEW, action.contactUri), REQUEST_CODE_VIEW_CONTACT)
       }
       is ConversationSettingsAction.AddContact -> {
         try {
