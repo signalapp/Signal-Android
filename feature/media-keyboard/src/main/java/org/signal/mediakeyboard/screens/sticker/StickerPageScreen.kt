@@ -459,9 +459,6 @@ private fun StickerCell(
       .clip(MaterialTheme.shapes.medium)
       .combinedClickable(
         onClick = {
-          onEvent(StickerPageScreenEvents.StickerClicked(sticker))
-        },
-        onDoubleClick = {
           onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
         },
         onLongClick = {
