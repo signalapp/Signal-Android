@@ -11,7 +11,6 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 
@@ -82,32 +81,32 @@ class SqlCipherErrorHandler(private val application: Application, private val da
 
     val differentConnectionResult: AtomicReference<DiagnosticResults> = AtomicReference()
     val databaseFile = context.getDatabasePath(databaseName)
-    val latch = CountDownLatch(1)
+    val cipherHook = SqlCipherDatabaseHook()
 
     try {
-      SQLiteDatabase.openOrCreateDatabase(
+      SQLiteDatabase.openDatabase(
         databaseFile.absolutePath,
         DatabaseSecretProvider.getOrCreateDatabaseSecret(context).asString(),
         null,
-        null,
+        SQLiteDatabase.OPEN_READONLY,
         object : SQLiteDatabaseHook {
-          override fun preKey(connection: SQLiteConnection) {}
+          override fun preKey(connection: SQLiteConnection) {
+            cipherHook.preKey(connection)
+          }
+
           override fun postKey(connection: SQLiteConnection) {
-            if (latch.count > 0) {
-              val result: DiagnosticResults = runDiagnosticsMethod("different-connection") { query -> connection.executeForString(query, null, null) }
-              differentConnectionResult.set(result)
-              latch.countDown()
+            cipherHook.postKey(connection)
+            if (differentConnectionResult.get() == null) {
+              differentConnectionResult.set(runDiagnosticsMethod("different-connection") { query -> connection.executeForString(query, null, null) })
             }
           }
         }
-      )
+      ).close()
     } catch (t: Throwable) {
-      return DiagnosticResults.Failure(ExceptionUtil.convertThrowableToString(t))
+      return differentConnectionResult.get() ?: DiagnosticResults.Failure(ExceptionUtil.convertThrowableToString(t))
     }
 
-    latch.await()
-
-    return differentConnectionResult.get()!!
+    return differentConnectionResult.get() ?: DiagnosticResults.Failure("Different-connection diagnostics never ran.")
   }
 
   /**
