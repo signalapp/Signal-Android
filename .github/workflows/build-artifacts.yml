@@ -1,0 +1,127 @@
+name: Build artifacts
+
+# Builds unsigned APKs / bundles of various types inside the reproducible-builds
+# Docker image and uploads them as a workflow artifact. No credentials are
+# available here; the only secrets are the two nightly update-check URLs, and
+# they are only handed to nightly builds. It only ever runs when dispatched;
+# never on push or pull_request.
+#
+# Whoever dispatches it can pass an opaque `correlation` id and find the run by
+# this name, since the dispatch API doesn't return a run id.
+run-name: "Build ${{ inputs.kind }} ${{ inputs.type }} @ ${{ inputs.ref }} [${{ inputs.correlation }}]"
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: Which repo to build from
+        type: choice
+        options: [private, public]
+        default: private
+      ref:
+        description: Commit sha or tag to build
+        type: string
+        required: true
+      kind:
+        description: What to build
+        type: choice
+        options: [release, instrumentation, benchmark, reproducible]
+        default: release
+      type:
+        description: "Release type (release kind only): play | website | nightly | nightlyStaging | github"
+        type: string
+        default: ""
+      indexes:
+        description: "JSON list; one independent build per entry (reproducible uses [0,1,2])"
+        type: string
+        default: "[0]"
+      correlation:
+        description: Opaque id echoed in the run name so the run can be found afterwards
+        type: string
+        default: ""
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  build:
+    name: "Build #${{ matrix.index }}"
+    runs-on: ubuntu-latest-8-cores
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      matrix:
+        index: ${{ fromJSON(inputs.indexes) }}
+
+    steps:
+      - name: Free up disk space
+        run: |
+          # The build runs entirely inside the Docker container, which ships its
+          # own JDK, Android SDK, and NDK. None of the host toolchains are needed.
+          sudo rm -rf /usr/lib/jvm
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/share/swift
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /usr/local/julia*
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/local/share/chromium
+          sudo rm -rf /opt/microsoft /opt/google
+          sudo rm -rf /opt/az
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /opt/hostedtoolcache
+          docker system prune -af || true
+          docker builder prune -af || true
+
+      # Two checkouts: the ref the workflow was dispatched on (main) for this
+      # workflow and .github/scripts/build.sh, and the commit to build under src/.
+      # Keeping them apart means any tag can be built, including ones that
+      # predate this workflow.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        # gh api repos/actions/checkout/commits/v6 --jq '.sha'
+      - name: Check out the source to build
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ inputs.repo == 'public' && 'signalapp/Signal-Android' || github.repository }}
+          ref: ${{ inputs.ref }}
+          path: src
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4.2.0
+
+      # Same image a verifier would build from reproducible-builds/ at this
+      # commit. Layers are cached in the Actions cache, so unless the Dockerfile
+      # or its context changed this is a cache hit.
+      - name: Build the reproducible-builds image
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: src/reproducible-builds
+          tags: signal-android
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build
+        env:
+          BUILD_KIND: ${{ inputs.kind }}
+          TYPE: ${{ inputs.type }}
+          INDEX: ${{ matrix.index }}
+          # The URL the app polls for nightly updates, baked into nightly-url.txt.
+          # Repository secrets NIGHTLY_URL_PROD / NIGHTLY_URL_STAGING; empty for every other type.
+          NIGHTLY_URL: ${{ (inputs.type == 'nightly' && secrets.NIGHTLY_URL_PROD) || (inputs.type == 'nightlyStaging' && secrets.NIGHTLY_URL_STAGING) || '' }}
+        run: |
+          mkdir -p out
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "$PWD/src:/project" -w /project \
+            -v "$PWD/out:/out" \
+            -v "$PWD/.github/scripts:/scripts:ro" \
+            -e BUILD_KIND -e TYPE -e INDEX -e NIGHTLY_URL -e OUT=/out \
+            signal-android /scripts/build.sh
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        # gh api repos/actions/upload-artifact/commits/v7 --jq '.sha'
+        with:
+          name: out-${{ matrix.index }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 7
