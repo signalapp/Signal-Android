@@ -2615,6 +2615,12 @@
     <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
     <string name="ShakeToReport_success" translatable="false">Success!</string>
     <string name="ShakeToReport_share" translatable="false">Share</string>
+    <string name="ShakeToReport_submitting" translatable="false">Submitting debug log</string>
+    <string name="ShakeToReport_submitting_body" translatable="false">Collecting and uploading logs. This can take a minute.</string>
+    <string name="ShakeToReport_retry" translatable="false">Retry</string>
+    <string name="ShakeToReport_close" translatable="false">Close</string>
+    <string name="ShakeToReport_copy" translatable="false">Copy</string>
+    <string name="ShakeToReport_copied" translatable="false">Copied to clipboard</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
