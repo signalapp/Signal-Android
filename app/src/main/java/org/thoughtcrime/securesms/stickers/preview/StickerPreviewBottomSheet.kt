@@ -80,6 +80,8 @@ class StickerPreviewBottomSheet : ComposeBottomSheetDialogFragment() {
     }
   }
 
+  override val peekHeightPercentage: Float = 1f
+
   private val sticker: StickerManifest.Sticker by lazy {
     val locator = requireArguments().getParcelableCompat(ARG_STICKER_LOCATOR, StickerLocator::class.java)!!
     StickerManifest.Sticker(locator.packId, locator.packKey, locator.stickerId, locator.emoji, requireArguments().getString(ARG_CONTENT_TYPE), requireArguments().getParcelableCompat(ARG_STICKER_URI, Uri::class.java))
