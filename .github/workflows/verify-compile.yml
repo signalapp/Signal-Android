@@ -1,0 +1,64 @@
+name: Verify Compilation
+
+on:
+  push:
+    branches:
+      - 'sync/**'
+      - 'verify/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify-compile:
+    name: Verify Compilation (Syntax & Imports)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Free Disk Space and Set Up Swap
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo docker image prune --all --force 2>/dev/null || true
+          sudo swapoff -a 2>/dev/null || true
+          sudo rm -f /swapfile
+          sudo fallocate -l 10G /swapfile || sudo dd if=/dev/zero of=/swapfile bs=1M count=10240
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+          df -h
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: true
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Verify Compile (Sources, Syntax & Imports)
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs='-Xmx6g -Xms512m -XX:MaxMetaspaceSize=1g -XX:+UseG1GC -Dcom.android.tools.r8.deterministicdebugging=false' -Dkotlin.daemon.jvmargs='-Xmx2g -XX:MaxMetaspaceSize=512m'"
+        run: |
+          ./gradlew \
+            --write-verification-metadata sha256 \
+            compileWebsiteProdDebugSources \
+            -Dorg.gradle.jvmargs="-Xmx6g -Xms512m -XX:MaxMetaspaceSize=1g -XX:+UseG1GC -Dcom.android.tools.r8.deterministicdebugging=false" \
+            -Dkotlin.daemon.jvmargs="-Xmx2g -XX:MaxMetaspaceSize=512m" \
+            --parallel \
+            -x test \
+            -x lint \
+            -x ktlintCheck \
+            -x validateScreenshots \
+            --no-configuration-cache
