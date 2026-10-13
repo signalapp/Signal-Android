@@ -53,6 +53,7 @@ message ManifestRecord {
       CALL_LINK               = 7;
       CHAT_FOLDER             = 8;
       NOTIFICATION_PROFILE    = 9;
+      HIDDEN_STICKER_PACK     = 10;
       FAVORITE_STICKER        = 11;
     }
 
@@ -74,10 +75,11 @@ message StorageRecord {
     GroupV2Record               groupV2               = 3;
     AccountRecord               account               = 4;
     StoryDistributionListRecord storyDistributionList = 5;
-    StickerPackRecord           stickerPack           = 6;
+    InstalledStickerPackRecord  installedStickerPack  = 6;
     CallLinkRecord              callLink              = 7;
     ChatFolderRecord            chatFolder            = 8;
     NotificationProfile         notificationProfile   = 9;
+    HiddenStickerPackRecord     hiddenStickerPack     = 10;
     FavoriteStickerRecord       favoriteSticker       = 11;
   }
 }
@@ -338,7 +340,7 @@ message StoryDistributionListRecord {
   repeated bytes  recipientServiceIdsBinary = 7; // service ID binary (i.e. 16 byte UUID for ACI, 1 byte prefix + 16 byte UUID for PNI)
 }
 
-message StickerPackRecord {
+message InstalledStickerPackRecord {
   bytes packId = 1; // 16 bytes
   bytes packKey = 2; // 32 bytes, used to derive the AES-256 key
   // aesKey = HKDF(
@@ -357,6 +359,18 @@ message StickerPackRecord {
   uint64 deletedAtTimestamp = 4; // Timestamp in milliseconds. When present and
   // non-zero - `packKey` and `position` should
   // be unset
+}
+
+message HiddenStickerPackRecord { // Only applies to available/uninstalled sticker packs. Meant to filter out suggested sticker packs to install.
+  bytes packId = 1; // 16 bytes
+  bytes packKey = 2; // 32 bytes, used to derive the AES-256 key
+  // aesKey = HKDF(
+  //   input = packKey,
+  //   salt = 32 zero bytes,
+  //   info = "Sticker Pack"
+  // )
+  uint64 unhiddenAtTimestamp = 3; // Timestamp in milliseconds. Should be set when a pack is unhidden (eg later installed or deleted).
+  // When present and non-zero - `packKey` should be unset.
 }
 
 message FavoriteStickerRecord { // Can come from uninstalled packs so we must store all relevant information ourselves. If limit is exceeded (500), reject newest one.

@@ -42,9 +42,10 @@ sealed interface BackupCreationProgress {
     RECIPIENT,
     THREAD,
     CALL,
-    STICKER,
+    INSTALLED_STICKER_PACK,
     NOTIFICATION_PROFILE,
     CHAT_FOLDER,
+    HIDDEN_STICKER_PACK,
     MESSAGE,
     FINALIZING
   }

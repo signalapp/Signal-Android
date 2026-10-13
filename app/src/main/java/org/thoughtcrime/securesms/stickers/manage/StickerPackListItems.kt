@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIn
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
@@ -82,6 +83,7 @@ fun StickerPackRow(
   onForwardClick: (StickerPack) -> Unit = {},
   onInstallClick: (StickerPack) -> Unit = {},
   onCopyClick: (StickerPack) -> Unit = {},
+  onHideClick: (StickerPack) -> Unit = {},
   onRemoveClick: (StickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
@@ -162,6 +164,17 @@ fun StickerPackRow(
           text = stringResource(R.string.StickerManagement_menu_install_pack),
           onClick = {
             onInstallClick(pack)
+            menuController.hide()
+          }
+        )
+      }
+
+      if (!pack.isBlessed && pack.downloadStatus != DownloadStatus.InProgress && RemoteConfig.internalUser) {
+        MenuItem(
+          icon = ImageVector.vectorResource(CoreUiR.drawable.symbol_visible_slash_24),
+          text = stringResource(R.string.StickerManagement_menu_hide_pack),
+          onClick = {
+            onHideClick(pack)
             menuController.hide()
           }
         )

@@ -60,11 +60,15 @@ class StickerManagementActivity : PassphraseRequiredActivity() {
           onSetSearchModeEnabled = viewModel::setSearchModeEnabled,
           onSearchQueryChange = viewModel::onSearchQueryChanged,
           onSnackbarDismiss = viewModel::onSnackbarDismiss,
+          onUndoHideClick = viewModel::unhideStickerPack,
           callbacks = remember {
             object : StickerManagementContentCallbacks {
               override fun onForwardClick(pack: StickerPack) = openShareSheet(pack.id, pack.key)
               override fun onInstallClick(pack: StickerPack) = viewModel.installStickerPack(pack)
               override fun onCopyClick(pack: StickerPack) = viewModel.onCopyPack(pack.id, pack.key)
+              override fun onHideClick(pack: StickerPack) = viewModel.onHideStickerPackRequested(pack)
+              override fun onHideStickerPackConfirmed(pack: StickerPack) = viewModel.onHideStickerPackConfirmed(pack)
+              override fun onHideStickerPackCanceled() = viewModel.onHideStickerPackCanceled()
               override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
               override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
               override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()

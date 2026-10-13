@@ -267,9 +267,10 @@ class ArchiveUploadProgressTest {
       ({ ArchiveBackupProgressListener.onRecipient() }) to BackupPhase.Recipient,
       ({ ArchiveBackupProgressListener.onThread() }) to BackupPhase.Thread,
       ({ ArchiveBackupProgressListener.onCall() }) to BackupPhase.Call,
-      ({ ArchiveBackupProgressListener.onSticker() }) to BackupPhase.Sticker,
+      ({ ArchiveBackupProgressListener.onInstalledStickerPack() }) to BackupPhase.InstalledStickerPack,
       ({ ArchiveBackupProgressListener.onNotificationProfile() }) to BackupPhase.NotificationProfile,
-      ({ ArchiveBackupProgressListener.onChatFolder() }) to BackupPhase.ChatFolder
+      ({ ArchiveBackupProgressListener.onChatFolder() }) to BackupPhase.ChatFolder,
+      ({ ArchiveBackupProgressListener.onHiddenStickerPack() }) to BackupPhase.HiddenStickerPack
     )
 
     cases.forEach { (action, expectedPhase) ->

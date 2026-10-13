@@ -17,12 +17,12 @@ import org.thoughtcrime.securesms.database.StickerTables.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import java.io.IOException
 
-private val TAG = Log.tag(StickerArchiveProcessor::class)
+private val TAG = Log.tag(InstalledStickerPackArchiveProcessor::class)
 
 /**
- * Handles importing/exporting [StickerPack] frames for an archive.
+ * Handles importing/exporting installed [StickerPack] frames for an archive. For hidden packs, see [HiddenStickerPackArchiveProcessor].
  */
-object StickerArchiveProcessor {
+object InstalledStickerPackArchiveProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
     StickerPackRecordReader(db.stickerTables.getAllStickerPacks()).use { reader ->
       var record: StickerPackRecord? = null
@@ -62,5 +62,5 @@ private fun StickerPackRecord.toBackupFrame(): Frame? {
     packId = packIdBytes.toByteString(),
     packKey = packKeyBytes.toByteString()
   )
-  return Frame(stickerPack = pack)
+  return Frame(installedStickerPack = pack)
 }

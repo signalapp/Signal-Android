@@ -69,7 +69,7 @@ object StickerManagementRepository {
         when {
           BlessedPacks.contains(record.packId) -> blessedPacks.add(record)
           record.isInstalled -> installedPacks.add(record)
-          else -> availablePacks.add(record)
+          !record.isHidden -> availablePacks.add(record)
         }
         sortOrderById[StickerPackId(record.packId)] = index
       }
@@ -131,6 +131,18 @@ object StickerManagementRepository {
         AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
       }
     }
+  }
+
+  suspend fun hideStickerPack(packId: StickerPackId, packKey: StickerPackKey) = withContext(Dispatchers.Default) {
+    val uninstalled = stickersDbTable.hidePack(packId)
+
+    if (uninstalled && SignalStore.account.isMultiDevice) {
+      AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
+    }
+  }
+
+  suspend fun unhideStickerPack(packId: StickerPackId) = withContext(Dispatchers.Default) {
+    stickersDbTable.unhidePack(packId)
   }
 
   suspend fun setStickerPacksOrder(packsInOrder: List<StickerPackRecord>) = withContext(Dispatchers.Default) {

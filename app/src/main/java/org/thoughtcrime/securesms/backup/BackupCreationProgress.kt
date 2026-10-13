@@ -40,9 +40,10 @@ private fun LocalBackupCreationProgress.ExportPhase.toExportPhase(): BackupCreat
     LocalBackupCreationProgress.ExportPhase.RECIPIENT -> BackupCreationProgress.ExportPhase.RECIPIENT
     LocalBackupCreationProgress.ExportPhase.THREAD -> BackupCreationProgress.ExportPhase.THREAD
     LocalBackupCreationProgress.ExportPhase.CALL -> BackupCreationProgress.ExportPhase.CALL
-    LocalBackupCreationProgress.ExportPhase.STICKER -> BackupCreationProgress.ExportPhase.STICKER
+    LocalBackupCreationProgress.ExportPhase.INSTALLED_STICKER_PACK -> BackupCreationProgress.ExportPhase.INSTALLED_STICKER_PACK
     LocalBackupCreationProgress.ExportPhase.NOTIFICATION_PROFILE -> BackupCreationProgress.ExportPhase.NOTIFICATION_PROFILE
     LocalBackupCreationProgress.ExportPhase.CHAT_FOLDER -> BackupCreationProgress.ExportPhase.CHAT_FOLDER
+    LocalBackupCreationProgress.ExportPhase.HIDDEN_STICKER_PACK -> BackupCreationProgress.ExportPhase.HIDDEN_STICKER_PACK
     LocalBackupCreationProgress.ExportPhase.MESSAGE -> BackupCreationProgress.ExportPhase.MESSAGE
     LocalBackupCreationProgress.ExportPhase.FINALIZING -> BackupCreationProgress.ExportPhase.FINALIZING
   }

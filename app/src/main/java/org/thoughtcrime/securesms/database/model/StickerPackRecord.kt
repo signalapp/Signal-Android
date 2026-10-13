@@ -16,7 +16,8 @@ data class StickerPackRecord(
   @JvmField val title: String,
   @JvmField val author: String,
   @JvmField val cover: StickerRecord,
-  @JvmField val isInstalled: Boolean
+  @JvmField val isInstalled: Boolean,
+  @JvmField val isHidden: Boolean = false
 ) {
   @JvmField
   val titleOptional: Optional<String> = if (title.isBlank()) Optional.empty() else Optional.of(title)
@@ -29,12 +30,25 @@ data class StickerPackRecord(
  * The subset of sticker pack data that is synced via storage service. Unlike [StickerPackRecord],
  * this can represent packs that have no downloaded stickers, like tombstones for uninstalled packs.
  */
-data class StickerPackSyncRecord(
+data class InstalledStickerPackSyncRecord(
   val packId: StickerPackId,
   val packKey: StickerPackKey,
   val position: Int,
   val installed: Boolean,
   val deletedTimestampMs: Long,
+  val storageServiceId: StorageId?,
+  val storageServiceProto: ByteArray?
+)
+
+/**
+ * Subset of sticker packs that have been hidden. Separate from [InstalledStickerPackSyncRecord] which represents installed packs.
+ * Could also be a tombstone for a formerly hidden pack, indicated by [unhiddenTimestampMs].
+ */
+data class HiddenStickerPackSyncRecord(
+  val packId: StickerPackId,
+  val packKey: StickerPackKey,
+  val hidden: Boolean,
+  val unhiddenTimestampMs: Long,
   val storageServiceId: StorageId?,
   val storageServiceProto: ByteArray?
 )

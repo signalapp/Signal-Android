@@ -23,9 +23,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.callLinks
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distributionLists
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.inAppPaymentSubscribers
+import org.thoughtcrime.securesms.database.model.HiddenStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.InstalledStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
@@ -41,8 +42,9 @@ import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.SignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
-import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -51,8 +53,9 @@ import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalFavoriteStickerRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.toSignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
-import org.whispersystems.signalservice.api.storage.toSignalStickerPackRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -106,8 +109,12 @@ object StorageSyncModels {
     return localToRemoteNotificationProfile(profile, rawStorageId).toSignalStorageRecord()
   }
 
-  fun localToRemoteRecord(pack: StickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
-    return localToRemoteStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  fun localToRemoteRecord(pack: InstalledStickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteInstalledStickerPack(pack, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(pack: HiddenStickerPackSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteHiddenStickerPack(pack, rawStorageId).toSignalStorageRecord()
   }
 
   fun localToRemoteRecord(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalStorageRecord {
@@ -469,8 +476,8 @@ object StorageSyncModels {
     }.build().toSignalNotificationProfileRecord(StorageId.forNotificationProfile(rawStorageId))
   }
 
-  fun localToRemoteStickerPack(pack: StickerPackSyncRecord, rawStorageId: ByteArray?): SignalStickerPackRecord {
-    return SignalStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
+  fun localToRemoteInstalledStickerPack(pack: InstalledStickerPackSyncRecord, rawStorageId: ByteArray?): SignalInstalledStickerPackRecord {
+    return SignalInstalledStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
       packId = Hex.fromStringCondensed(pack.packId.value).toByteString()
 
       if (pack.deletedTimestampMs > 0) {
@@ -482,7 +489,21 @@ object StorageSyncModels {
         position = pack.position
         deletedAtTimestamp = 0
       }
-    }.build().toSignalStickerPackRecord(StorageId.forStickerPack(rawStorageId))
+    }.build().toSignalInstalledStickerPackRecord(StorageId.forStickerPack(rawStorageId))
+  }
+
+  fun localToRemoteHiddenStickerPack(pack: HiddenStickerPackSyncRecord, rawStorageId: ByteArray): SignalHiddenStickerPackRecord {
+    return SignalHiddenStickerPackRecord.newBuilder(pack.storageServiceProto).apply {
+      packId = Hex.fromStringCondensed(pack.packId.value).toByteString()
+
+      if (pack.unhiddenTimestampMs > 0) {
+        packKey = ByteString.EMPTY
+        unhiddenAtTimestamp = pack.unhiddenTimestampMs
+      } else {
+        packKey = Hex.fromStringCondensed(pack.packKey.value).toByteString()
+        unhiddenAtTimestamp = 0
+      }
+    }.build().toSignalHiddenStickerPackRecord(StorageId.forHiddenStickerPack(rawStorageId))
   }
 
   fun localToRemoteFavoriteSticker(sticker: FavoriteStickerSyncRecord, rawStorageId: ByteArray): SignalFavoriteStickerRecord {

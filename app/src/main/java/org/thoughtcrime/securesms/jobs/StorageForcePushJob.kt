@@ -125,14 +125,23 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newNotificationProfileInserts)
     allNewStorageIds.addAll(newNotificationProfileStorageIds.values)
 
-    val oldStickerPackStorageIds = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val oldStickerPackStorageIds = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
     val newStickerPackStorageIds = generateStickerPackStorageIds(oldStickerPackStorageIds)
     val newStickerPackInserts: List<SignalStorageRecord> = oldStickerPackStorageIds.keys
-      .mapNotNull { SignalDatabase.stickers.getPackForStorageSync(it) }
+      .mapNotNull { SignalDatabase.stickers.getInstalledPackForStorageSync(it) }
       .map { record -> StorageSyncModels.localToRemoteRecord(record, newStickerPackStorageIds[record.packId]!!.raw) }
 
     inserts.addAll(newStickerPackInserts)
     allNewStorageIds.addAll(newStickerPackStorageIds.values)
+
+    val oldHiddenStickerPackStorageIds = SignalDatabase.stickers.getHiddenPacksStorageSyncIdsMap()
+    val newHiddenStickerPackStorageIds = generateStickerPackStorageIds(oldHiddenStickerPackStorageIds)
+    val newHiddenStickerPackInserts: List<SignalStorageRecord> = oldHiddenStickerPackStorageIds.keys
+      .mapNotNull { SignalDatabase.stickers.getHiddenPackForStorageSync(it) }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newHiddenStickerPackStorageIds[record.packId]!!.raw) }
+
+    inserts.addAll(newHiddenStickerPackInserts)
+    allNewStorageIds.addAll(newHiddenStickerPackStorageIds.values)
 
     val oldFavoriteStickerStorageIds = SignalDatabase.stickers.getFavoriteStorageSyncIdsMap()
     val newFavoriteStickerStorageIds = generateFavoriteStickerStorageIds(oldFavoriteStickerStorageIds)
@@ -182,6 +191,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
     SignalDatabase.notificationProfiles.applyStorageIdUpdates(newNotificationProfileStorageIds)
     SignalDatabase.stickers.applyStorageIdUpdates(newStickerPackStorageIds)
+    SignalDatabase.stickers.applyHiddenPackStorageIdUpdates(newHiddenStickerPackStorageIds)
     SignalDatabase.stickers.applyFavoriteStorageIdUpdates(newFavoriteStickerStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }

@@ -256,6 +256,16 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("recipient_self_") }
   }
 
+//  @Test
+  fun installedStickerPack() {
+    runTests { it.startsWith("installed_sticker_pack_") }
+  }
+
+//  @Test
+  fun hiddenStickerPack() {
+    runTests { it.startsWith("hidden_sticker_pack_") }
+  }
+
   private fun runTests(predicate: (String) -> Boolean = { true }) {
     val testFiles = InstrumentationRegistry.getInstrumentation().context.resources.assets.list(TESTS_FOLDER)!!.filter(predicate)
     val results: MutableList<TestResult> = mutableListOf()

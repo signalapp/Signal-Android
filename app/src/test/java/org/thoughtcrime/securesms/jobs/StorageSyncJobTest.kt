@@ -61,7 +61,7 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
-import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.InstalledStickerPackRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import java.util.UUID
 import kotlin.time.Duration.Companion.hours
@@ -351,7 +351,7 @@ class StorageSyncJobTest {
     assertTrue(result.isSuccess)
     assertTrue(SignalDatabase.unknownStorageIds.allUnknownIds.isEmpty())
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(Hex.toStringCondensed(packId)))
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(Hex.toStringCondensed(packId)))
     assertNotNull(pack)
     assertArrayEquals(record.id.raw, pack!!.storageServiceId!!.raw)
   }
@@ -800,7 +800,7 @@ class StorageSyncJobTest {
     return SignalStorageRecord(
       id = StorageId.forStickerPack(Util.getSecretBytes(16)),
       proto = StorageRecord(
-        stickerPack = StickerPackRecord(
+        installedStickerPack = InstalledStickerPackRecord(
           packId = packId.toByteString(),
           packKey = Util.getSecretBytes(32).toByteString(),
           position = 1

@@ -318,8 +318,8 @@ object ArchiveUploadProgress {
       updatePhase(ArchiveUploadProgressState.BackupPhase.Call)
     }
 
-    override fun onSticker() {
-      updatePhase(ArchiveUploadProgressState.BackupPhase.Sticker)
+    override fun onInstalledStickerPack() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.InstalledStickerPack)
     }
 
     override fun onNotificationProfile() {
@@ -328,6 +328,10 @@ object ArchiveUploadProgress {
 
     override fun onChatFolder() {
       updatePhase(ArchiveUploadProgressState.BackupPhase.ChatFolder)
+    }
+
+    override fun onHiddenStickerPack() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.HiddenStickerPack)
     }
 
     override fun onMessage(currentProgress: Long, approximateCount: Long) {

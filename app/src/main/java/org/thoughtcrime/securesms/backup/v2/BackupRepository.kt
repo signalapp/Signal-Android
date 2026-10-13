@@ -94,9 +94,10 @@ import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.HiddenStickerPackArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.InstalledStickerPackArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
-import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -979,11 +980,11 @@ object BackupRepository {
             return@export
           }
 
-          progressEmitter?.onSticker()
-          StickerArchiveProcessor.export(dbSnapshot) { frame ->
+          progressEmitter?.onInstalledStickerPack()
+          InstalledStickerPackArchiveProcessor.export(dbSnapshot) { frame ->
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
-            eventTimer.emit("sticker-pack")
+            eventTimer.emit("installed-sticker-pack")
             frameCount++
           }
           if (cancellationSignal()) {
@@ -1008,6 +1009,18 @@ object BackupRepository {
             writer.write(frame)
             extraFrameOperation?.invoke(frame)
             eventTimer.emit("chat-folder")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
+          progressEmitter?.onHiddenStickerPack()
+          HiddenStickerPackArchiveProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            extraFrameOperation?.invoke(frame)
+            eventTimer.emit("hidden-sticker-pack")
             frameCount++
           }
           if (cancellationSignal()) {
@@ -1285,10 +1298,11 @@ object BackupRepository {
         val frameRecipient = frame.recipient
         val frameChat = frame.chat
         val frameAdHocCall = frame.adHocCall
-        val frameStickerPack = frame.stickerPack
+        val frameInstalledStickerPack = frame.installedStickerPack
         val frameNotificationProfile = frame.notificationProfile
         val frameChatFolder = frame.chatFolder
         val frameChatItem = frame.chatItem
+        val frameHiddenStickerPack = frame.hiddenStickerPack
         when {
           frameAccount != null -> {
             AccountDataArchiveProcessor.import(frameAccount, selfId, importState)
@@ -1314,9 +1328,9 @@ object BackupRepository {
             frameCount++
           }
 
-          frameStickerPack != null -> {
-            StickerArchiveProcessor.import(frameStickerPack)
-            eventTimer.emit("sticker-pack")
+          frameInstalledStickerPack != null -> {
+            InstalledStickerPackArchiveProcessor.import(frameInstalledStickerPack)
+            eventTimer.emit("installed-sticker-pack")
             frameCount++
           }
 
@@ -1329,6 +1343,12 @@ object BackupRepository {
           frameChatFolder != null -> {
             ChatFolderArchiveProcessor.import(frameChatFolder, importState)
             eventTimer.emit("chat-folder")
+            frameCount++
+          }
+
+          frameHiddenStickerPack != null -> {
+            HiddenStickerPackArchiveProcessor.import(frameHiddenStickerPack)
+            eventTimer.emit("hidden-sticker-pack")
             frameCount++
           }
 
@@ -2111,9 +2131,10 @@ object BackupRepository {
     fun onRecipient()
     fun onThread()
     fun onCall()
-    fun onSticker()
+    fun onInstalledStickerPack()
     fun onNotificationProfile()
     fun onChatFolder()
+    fun onHiddenStickerPack()
     fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
   }

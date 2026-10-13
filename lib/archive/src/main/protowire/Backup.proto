@@ -37,10 +37,11 @@ message Frame {
     Recipient recipient = 2;
     Chat chat = 3;
     ChatItem chatItem = 4;
-    StickerPack stickerPack = 5;
+    StickerPack installedStickerPack = 5;
     AdHocCall adHocCall = 6;
     NotificationProfile notificationProfile = 7;
     ChatFolder chatFolder = 8;
+    StickerPack hiddenStickerPack = 9;
   }
 }
 

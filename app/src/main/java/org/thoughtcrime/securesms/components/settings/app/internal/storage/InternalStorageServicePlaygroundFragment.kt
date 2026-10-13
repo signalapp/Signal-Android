@@ -324,9 +324,15 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
-      record.proto.stickerPack != null -> {
+      record.proto.installedStickerPack != null -> {
         Column {
-          Text("Sticker Pack", fontWeight = FontWeight.Bold)
+          Text("Installed Sticker Pack", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.hiddenStickerPack != null -> {
+        Column {
+          Text("Hidden Sticker Pack", fontWeight = FontWeight.Bold)
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }

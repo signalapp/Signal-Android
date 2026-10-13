@@ -38,11 +38,12 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.glide.decryptableuri.DecryptableUri
 import org.thoughtcrime.securesms.database.StickerTables.Pack.PACK_ID
+import org.thoughtcrime.securesms.database.model.HiddenStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.IncomingSticker
+import org.thoughtcrime.securesms.database.model.InstalledStickerPackSyncRecord
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.database.model.StickerPackSyncRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StickerDownloadJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
@@ -51,7 +52,8 @@ import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
-import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import java.io.Closeable
 import java.io.File
@@ -97,6 +99,7 @@ class StickerTables(
       "${Sticker.TABLE_NAME}.${Sticker.CONTENT_TYPE} AS ${Sticker.CONTENT_TYPE}",
       "${Sticker.TABLE_NAME}.${Sticker.LAST_USED} AS ${Sticker.LAST_USED}",
       "${Pack.TABLE_NAME}.${Pack.INSTALLED} AS ${Pack.INSTALLED}",
+      "${Pack.TABLE_NAME}.${Pack.HIDDEN} AS ${Pack.HIDDEN}",
       "${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} AS ${Sticker.FILE_PATH}",
       "${Sticker.TABLE_NAME}.${Sticker.FILE_LENGTH} AS ${Sticker.FILE_LENGTH}",
       "${Sticker.TABLE_NAME}.${Sticker.FILE_RANDOM} AS ${Sticker.FILE_RANDOM}",
@@ -158,6 +161,10 @@ class StickerTables(
     const val STORAGE_SERVICE_ID: String = "storage_service_id"
     const val STORAGE_SERVICE_PROTO: String = "storage_service_proto"
     const val DELETED_TIMESTAMP_MS: String = "deleted_timestamp_ms"
+    const val HIDDEN: String = "hidden"
+    const val UNHIDDEN_TIMESTAMP_MS: String = "unhidden_timestamp_ms"
+    const val HIDDEN_STORAGE_SERVICE_ID: String = "hidden_storage_service_id"
+    const val HIDDEN_STORAGE_SERVICE_PROTO: String = "hidden_storage_service_proto"
 
     val CREATE_TABLE: String = """
       CREATE TABLE $TABLE_NAME (
@@ -170,7 +177,11 @@ class StickerTables(
         $POSITION INTEGER DEFAULT 0,
         $STORAGE_SERVICE_ID TEXT DEFAULT NULL,
         $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL,
-        $DELETED_TIMESTAMP_MS INTEGER DEFAULT 0
+        $DELETED_TIMESTAMP_MS INTEGER DEFAULT 0,
+        $HIDDEN INTEGER DEFAULT 0,
+        $UNHIDDEN_TIMESTAMP_MS INTEGER DEFAULT 0,
+        $HIDDEN_STORAGE_SERVICE_ID TEXT DEFAULT NULL,
+        $HIDDEN_STORAGE_SERVICE_PROTO TEXT DEFAULT NULL
       )
       """
   }
@@ -290,6 +301,27 @@ class StickerTables(
     }
   }
 
+  /**
+   * Adds a hidden pack, used when restoring from an archive. Hidden packs do not
+   * need a cover, if a pack is ever unhidden, a cover can be downloaded then.
+   */
+  fun insertHiddenPack(packId: String, packKey: String) {
+    writableDatabase.withinTransaction { db ->
+      db
+        .insertInto(Pack.TABLE_NAME)
+        .values(
+          Pack.PACK_ID to packId,
+          Pack.PACK_KEY to packKey,
+          Pack.PACK_TITLE to "",
+          Pack.PACK_AUTHOR to "",
+          Pack.INSTALLED to 0,
+          Pack.HIDDEN to 1,
+          Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+        )
+        .run(SQLiteDatabase.CONFLICT_IGNORE)
+    }
+  }
+
   fun getSticker(packId: String, stickerId: Int, isCover: Boolean): StickerRecord? {
     return readableDatabase
       .select(*RECORD_PROJECTION)
@@ -348,6 +380,15 @@ class StickerTables(
       "${Pack.TABLE_NAME}.${Pack.POSITION} ASC, ${Pack.TABLE_NAME}.${Pack.PACK_ID} ASC",
       limit
     )
+  }
+
+  fun getAllHiddenStickerPacks(): Cursor {
+    return readableDatabase
+      .select(Pack.PACK_ID, Pack.PACK_KEY)
+      .from(Pack.TABLE_NAME)
+      .where("${Pack.HIDDEN} = 1 AND ${Pack.INSTALLED} = 0")
+      .orderBy("${Pack.PACK_ID} ASC")
+      .run()
   }
 
   fun getStickersForPack(packId: String): Cursor {
@@ -663,6 +704,49 @@ class StickerTables(
     notifyStickerPackListeners()
   }
 
+  /**
+   * Hides the pack, uninstalling if it was previously installed. Returns true if the pack was uninstalled.
+   */
+  fun hidePack(packId: StickerPackId): Boolean {
+    val (uninstalled, hidden) = writableDatabase.withinTransaction { db ->
+      val uninstalled = updatePackInstalled(db, packId.value, installed = false, notify = false)
+      if (uninstalled) {
+        deleteStickersInPackExceptCoverAndFavorites(db, packId.value)
+      }
+
+      val hidden = db.update(Pack.TABLE_NAME)
+        .values(
+          Pack.HIDDEN to 1,
+          Pack.UNHIDDEN_TIMESTAMP_MS to 0,
+          Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+        )
+        .where("${Pack.PACK_ID} = ? AND ${Pack.HIDDEN} = 0", packId.value)
+        .run() > 0
+
+      Pair(uninstalled, hidden)
+    }
+
+    if (uninstalled || hidden) {
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+
+    if (uninstalled) {
+      notifyStickerListeners()
+    }
+
+    notifyStickerPackListeners()
+    return uninstalled
+  }
+
+  fun unhidePack(packId: StickerPackId) {
+    val unhidden = markPackUnhidden(writableDatabase, packId.value)
+
+    if (unhidden) {
+      StorageSyncHelper.scheduleSyncForDataChange()
+      notifyStickerPackListeners()
+    }
+  }
+
   fun deleteOrphanedPacks() {
     var performedDelete = false
 
@@ -674,6 +758,7 @@ class StickerTables(
         WHERE
           ${Pack.INSTALLED} = 0 AND
           ${Pack.STORAGE_SERVICE_ID} IS NULL AND
+          ${Pack.HIDDEN_STORAGE_SERVICE_ID} IS NULL AND
           ${Pack.PACK_ID} NOT IN (
             SELECT DISTINCT ${AttachmentTable.STICKER_PACK_ID}
             FROM ${AttachmentTable.TABLE_NAME}
@@ -748,21 +833,21 @@ class StickerTables(
   /**
    * Returns the sync-relevant fields for the pack with the given id, if a row for the pack exists.
    */
-  fun getPackForStorageSync(packId: StickerPackId): StickerPackSyncRecord? {
-    return getPackForStorageSync(SqlUtil.buildQuery("${Pack.PACK_ID} = ?", packId.value))
+  fun getInstalledPackForStorageSync(packId: StickerPackId): InstalledStickerPackSyncRecord? {
+    return getInstalledPackForStorageSync(SqlUtil.buildQuery("${Pack.PACK_ID} = ?", packId.value))
   }
 
   /**
    * Returns the sync-relevant fields for a single pack matching the query, if one exists.
    */
-  fun getPackForStorageSync(query: SqlUtil.Query): StickerPackSyncRecord? {
+  fun getInstalledPackForStorageSync(query: SqlUtil.Query): InstalledStickerPackSyncRecord? {
     return readableDatabase
       .select()
       .from(Pack.TABLE_NAME)
       .where(query.where, query.whereArgs)
       .run()
       .readToSingleObject { cursor ->
-        StickerPackSyncRecord(
+        InstalledStickerPackSyncRecord(
           packId = StickerPackId(cursor.requireNonNullString(Pack.PACK_ID)),
           packKey = StickerPackKey(cursor.requireNonNullString(Pack.PACK_KEY)),
           position = cursor.requireInt(Pack.POSITION),
@@ -775,9 +860,9 @@ class StickerTables(
   }
 
   /**
-   * Returns the storage ids of all packs that participate in storage sync (installed packs and tombstones).
+   * Returns the storage ids of all packs that participate in storage sync (installed packs and tombstones). For hidden packs, see [getHiddenPacksStorageSyncIds]
    */
-  fun getStorageSyncIds(): List<StorageId> {
+  fun getInstalledStorageSyncIds(): List<StorageId> {
     return readableDatabase
       .select(Pack.STORAGE_SERVICE_ID)
       .from(Pack.TABLE_NAME)
@@ -789,9 +874,9 @@ class StickerTables(
   }
 
   /**
-   * Maps pack ids to storage ids for all packs that participate in storage sync.
+   * Maps pack ids to storage ids for all installed packs that participate in storage sync. For hidden packs, see [getHiddenPacksStorageSyncIdsMap]
    */
-  fun getStorageSyncIdsMap(): Map<StickerPackId, StorageId> {
+  fun getInstalledStorageSyncIdsMap(): Map<StickerPackId, StorageId> {
     return readableDatabase
       .select(Pack.PACK_ID, Pack.STORAGE_SERVICE_ID)
       .from(Pack.TABLE_NAME)
@@ -805,14 +890,14 @@ class StickerTables(
   }
 
   /**
-   * Saves the new storage id for a sticker pack.
+   * Saves the new storage id for an installed/formerly installed sticker pack. For hidden packs, see [applyHiddenPackStorageIdUpdate]
    */
   fun applyStorageIdUpdate(packId: StickerPackId, storageId: StorageId) {
     applyStorageIdUpdates(mapOf(packId to storageId))
   }
 
   /**
-   * Saves the new storage ids for all the sticker packs in the map.
+   * Saves the new storage ids for all the installed/formerly installed sticker packs in the map. For hidden packs, see [applyHiddenPackStorageIdUpdates]
    */
   fun applyStorageIdUpdates(storageIds: Map<StickerPackId, StorageId>) {
     writableDatabase.withinTransaction { db ->
@@ -843,15 +928,15 @@ class StickerTables(
    * Applies a remote sticker pack record to the local store, inserting a row if one doesn't exist yet.
    * Installs the pack's stickers if the remote record is not deleted.
    */
-  fun insertStickerPackFromStorageSync(record: SignalStickerPackRecord) {
-    applyStickerPackFromStorageSync(record)
+  fun insertInstalledStickerPackFromStorageSync(record: SignalInstalledStickerPackRecord) {
+    applyInstalledStickerPackFromStorageSync(record)
   }
 
   /**
    * Updates an existing local pack with the details of the remote sticker pack record.
    */
-  fun updateStickerPackFromStorageSync(record: SignalStickerPackRecord) {
-    applyStickerPackFromStorageSync(record)
+  fun updateInstalledStickerPackFromStorageSync(record: SignalInstalledStickerPackRecord) {
+    applyInstalledStickerPackFromStorageSync(record)
   }
 
   /**
@@ -881,6 +966,161 @@ class StickerTables(
       }
 
     return updated
+  }
+
+  fun getHiddenPackForStorageSync(packId: StickerPackId): HiddenStickerPackSyncRecord? {
+    return getHiddenPackForStorageSync(SqlUtil.buildQuery("${Pack.PACK_ID} = ?", packId.value))
+  }
+
+  fun getHiddenPackForStorageSync(storageId: StorageId): HiddenStickerPackSyncRecord? {
+    return getHiddenPackForStorageSync(SqlUtil.buildQuery("${Pack.HIDDEN_STORAGE_SERVICE_ID} = ?", Base64.encodeWithPadding(storageId.raw)))
+  }
+
+  private fun getHiddenPackForStorageSync(query: SqlUtil.Query): HiddenStickerPackSyncRecord? {
+    return readableDatabase
+      .select()
+      .from(Pack.TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToSingleObject { cursor ->
+        HiddenStickerPackSyncRecord(
+          packId = StickerPackId(cursor.requireNonNullString(Pack.PACK_ID)),
+          packKey = StickerPackKey(cursor.requireNonNullString(Pack.PACK_KEY)),
+          hidden = cursor.requireBoolean(Pack.HIDDEN),
+          unhiddenTimestampMs = cursor.requireLong(Pack.UNHIDDEN_TIMESTAMP_MS),
+          storageServiceId = cursor.requireString(Pack.HIDDEN_STORAGE_SERVICE_ID)?.let { StorageId.forHiddenStickerPack(Base64.decodeOrThrow(it)) },
+          storageServiceProto = Base64.decodeOrNull(cursor.requireString(Pack.HIDDEN_STORAGE_SERVICE_PROTO))
+        )
+      }
+  }
+
+  fun getHiddenPacksStorageSyncIds(): List<StorageId> {
+    return readableDatabase
+      .select(Pack.HIDDEN_STORAGE_SERVICE_ID)
+      .from(Pack.TABLE_NAME)
+      .where("${Pack.HIDDEN_STORAGE_SERVICE_ID} NOT NULL")
+      .run()
+      .readToList { cursor ->
+        StorageId.forHiddenStickerPack(Base64.decodeOrThrow(cursor.requireNonNullString(Pack.HIDDEN_STORAGE_SERVICE_ID)))
+      }
+  }
+
+  fun getHiddenPacksStorageSyncIdsMap(): Map<StickerPackId, StorageId> {
+    return readableDatabase
+      .select(Pack.PACK_ID, Pack.HIDDEN_STORAGE_SERVICE_ID)
+      .from(Pack.TABLE_NAME)
+      .where("${Pack.HIDDEN_STORAGE_SERVICE_ID} NOT NULL")
+      .run()
+      .readToMap { cursor ->
+        val packId = StickerPackId(cursor.requireNonNullString(Pack.PACK_ID))
+        val key = Base64.decodeOrThrow(cursor.requireNonNullString(Pack.HIDDEN_STORAGE_SERVICE_ID))
+        packId to StorageId.forHiddenStickerPack(key)
+      }
+  }
+
+  fun applyHiddenPackStorageIdUpdate(packId: StickerPackId, storageId: StorageId) {
+    applyHiddenPackStorageIdUpdates(mapOf(packId to storageId))
+  }
+
+  fun applyHiddenPackStorageIdUpdates(storageIds: Map<StickerPackId, StorageId>) {
+    writableDatabase.withinTransaction { db ->
+      storageIds.forEach { (packId, storageId) ->
+        db.update(Pack.TABLE_NAME)
+          .values(Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(storageId.raw))
+          .where("${Pack.PACK_ID} = ?", packId.value)
+          .run()
+      }
+    }
+  }
+
+  /**
+   * Adds a remote hidden pack into the stickers table. Will uninstall if currently installed.
+   */
+  fun insertHiddenPackFromStorageSync(record: SignalHiddenStickerPackRecord) {
+    applyHiddenPackFromStorageSync(record)
+  }
+
+  /**
+   * Updates an existing hidden pack. Will uninstall if currently installed.
+   */
+  fun updateHiddenPackFromStorageSync(record: SignalHiddenStickerPackRecord) {
+    applyHiddenPackFromStorageSync(record)
+  }
+
+  fun removeStorageIdsFromOldUnhiddenPacks(unhiddenBefore: Long): Int {
+    return writableDatabase
+      .update(Pack.TABLE_NAME)
+      .values(Pack.HIDDEN_STORAGE_SERVICE_ID to null)
+      .where("${Pack.HIDDEN_STORAGE_SERVICE_ID} NOT NULL AND ${Pack.UNHIDDEN_TIMESTAMP_MS} > 0 AND ${Pack.UNHIDDEN_TIMESTAMP_MS} < ?", unhiddenBefore)
+      .run()
+  }
+
+  fun removeStorageIdsFromLocalOnlyUnhiddenPacks(storageIds: Collection<StorageId>): Int {
+    var updated = 0
+
+    SqlUtil.buildCollectionQuery(Pack.HIDDEN_STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "${Pack.UNHIDDEN_TIMESTAMP_MS} > 0 AND")
+      .forEach { query ->
+        updated += writableDatabase
+          .update(Pack.TABLE_NAME)
+          .values(Pack.HIDDEN_STORAGE_SERVICE_ID to null)
+          .where(query.where, *query.whereArgs)
+          .run()
+      }
+
+    return updated
+  }
+
+  private fun applyHiddenPackFromStorageSync(record: SignalHiddenStickerPackRecord) {
+    val packId = Hex.toStringCondensed(record.proto.packId.toByteArray())
+    val packKey = Hex.toStringCondensed(record.proto.packKey.toByteArray())
+    val hidden = record.proto.unhiddenAtTimestamp == 0L
+    val storageServiceProto = if (record.proto.hasUnknownFields()) Base64.encodeWithPadding(record.serializedUnknowns!!) else null
+
+    var uninstalled = false
+    writableDatabase.withinTransaction { db ->
+      if (hidden) {
+        uninstalled = updatePackInstalled(db, packId, installed = false, notify = false)
+        if (uninstalled) {
+          deleteStickersInPackExceptCoverAndFavorites(db, packId)
+        }
+      }
+
+      val values = contentValuesOf(
+        Pack.HIDDEN to hidden.toInt(),
+        Pack.UNHIDDEN_TIMESTAMP_MS to record.proto.unhiddenAtTimestamp,
+        Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(record.id.raw),
+        Pack.HIDDEN_STORAGE_SERVICE_PROTO to storageServiceProto
+      )
+
+      if (packKey.isNotEmpty()) {
+        values.put(Pack.PACK_KEY, packKey)
+      }
+
+      val updated = db
+        .update(Pack.TABLE_NAME)
+        .values(values)
+        .where("${Pack.PACK_ID} = ?", packId)
+        .run() > 0
+
+      if (!updated) {
+        values.put(Pack.PACK_ID, packId)
+        values.put(Pack.PACK_KEY, packKey)
+        values.put(Pack.PACK_TITLE, "")
+        values.put(Pack.PACK_AUTHOR, "")
+        values.put(Pack.INSTALLED, 0)
+
+        db
+          .insertInto(Pack.TABLE_NAME)
+          .values(values)
+          .run(SQLiteDatabase.CONFLICT_IGNORE)
+      }
+    }
+
+    if (uninstalled) {
+      notifyStickerListeners()
+    }
+
+    notifyStickerPackListeners()
   }
 
   /**
@@ -1116,7 +1356,7 @@ class StickerTables(
     return updated
   }
 
-  private fun applyStickerPackFromStorageSync(record: SignalStickerPackRecord) {
+  private fun applyInstalledStickerPackFromStorageSync(record: SignalInstalledStickerPackRecord) {
     val packId = Hex.toStringCondensed(record.proto.packId.toByteArray())
     val packKey = Hex.toStringCondensed(record.proto.packKey.toByteArray())
     val deleted = record.proto.deletedAtTimestamp > 0
@@ -1125,7 +1365,7 @@ class StickerTables(
     var wasInstalled = false
 
     writableDatabase.withinTransaction { db ->
-      wasInstalled = getPackForStorageSync(StickerPackId(packId))?.installed ?: false
+      wasInstalled = getInstalledPackForStorageSync(StickerPackId(packId))?.installed ?: false
 
       val values = contentValuesOf(
         Pack.INSTALLED to (!deleted).toInt(),
@@ -1159,6 +1399,8 @@ class StickerTables(
 
       if (deleted) {
         deleteStickersInPackExceptCoverAndFavorites(db, packId)
+      } else {
+        markPackUnhidden(db, packId)
       }
     }
 
@@ -1187,7 +1429,7 @@ class StickerTables(
    * @return True if the pack transitioned into the installed state, otherwise false.
    */
   private fun upsertStickerPack(db: SQLiteDatabase, sticker: IncomingSticker): Boolean {
-    val existing = getPackForStorageSync(StickerPackId(sticker.packId))
+    val existing = getInstalledPackForStorageSync(StickerPackId(sticker.packId))
     val becomingInstalled = sticker.isInstalled && (existing == null || !existing.installed)
 
     val values = contentValuesOf(
@@ -1220,6 +1462,10 @@ class StickerTables(
         .run(SQLiteDatabase.CONFLICT_IGNORE)
     }
 
+    if (becomingInstalled) {
+      markPackUnhidden(db, sticker.packId)
+    }
+
     return becomingInstalled
   }
 
@@ -1227,7 +1473,7 @@ class StickerTables(
    * @return True if the installed state actually changed, otherwise false.
    */
   private fun updatePackInstalled(db: SQLiteDatabase, packId: String, installed: Boolean, notify: Boolean): Boolean {
-    val existing = getPackForStorageSync(StickerPackId(packId))
+    val existing = getInstalledPackForStorageSync(StickerPackId(packId))
 
     if (existing != null && existing.installed == installed) {
       return false
@@ -1258,11 +1504,29 @@ class StickerTables(
       return false
     }
 
+    if (installed) {
+      markPackUnhidden(db, packId)
+    }
+
     if (installed && notify) {
       broadcastInstallEvent(packId)
     }
 
     return true
+  }
+
+  /**
+   * Unhides a sticker pack, returns true only if it was previously hidden and is now unhidden
+   */
+  private fun markPackUnhidden(db: SQLiteDatabase, packId: String): Boolean {
+    return db.update(Pack.TABLE_NAME)
+      .values(
+        Pack.HIDDEN to 0,
+        Pack.UNHIDDEN_TIMESTAMP_MS to System.currentTimeMillis(),
+        Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+      )
+      .where("${Pack.PACK_ID} = ? AND ${Pack.HIDDEN} = 1", packId)
+      .run() > 0
   }
 
   @Throws(IOException::class)
@@ -1415,7 +1679,8 @@ class StickerTables(
         title = cursor.requireNonNullString(Pack.PACK_TITLE),
         author = cursor.requireNonNullString(Pack.PACK_AUTHOR),
         cover = cover,
-        isInstalled = cursor.requireBoolean(Pack.INSTALLED)
+        isInstalled = cursor.requireBoolean(Pack.INSTALLED),
+        isHidden = cursor.requireBoolean(Pack.HIDDEN)
       )
     }
 

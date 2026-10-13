@@ -8,14 +8,14 @@ import org.junit.BeforeClass
 import org.junit.Test
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testutil.EmptyLogger
-import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.InstalledStickerPackRecord
 
 /**
- * Tests for [StickerPackRecordProcessor]
+ * Tests for [InstalledStickerPackRecordProcessor]
  */
-class StickerPackRecordProcessorTest {
+class InstalledStickerPackRecordProcessorTest {
   companion object {
     val STORAGE_ID: StorageId = StorageId.forStickerPack(byteArrayOf(1, 2, 3, 4))
 
@@ -29,17 +29,17 @@ class StickerPackRecordProcessorTest {
     }
   }
 
-  private val testSubject = StickerPackRecordProcessor()
+  private val testSubject = InstalledStickerPackRecordProcessor()
 
   @Test
   fun `Given a valid installed proto, assert valid`() {
     // GIVEN
-    val proto = StickerPackRecord.Builder().apply {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       packId = PACK_ID.toByteString()
       packKey = PACK_KEY.toByteString()
       position = 1
     }.build()
-    val record = SignalStickerPackRecord(STORAGE_ID, proto)
+    val record = SignalInstalledStickerPackRecord(STORAGE_ID, proto)
 
     // WHEN
     val result = testSubject.isInvalid(record)
@@ -51,11 +51,11 @@ class StickerPackRecordProcessorTest {
   @Test
   fun `Given a valid deleted proto with no pack key, assert valid`() {
     // GIVEN
-    val proto = StickerPackRecord.Builder().apply {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       packId = PACK_ID.toByteString()
       deletedAtTimestamp = 1000L
     }.build()
-    val record = SignalStickerPackRecord(STORAGE_ID, proto)
+    val record = SignalInstalledStickerPackRecord(STORAGE_ID, proto)
 
     // WHEN
     val result = testSubject.isInvalid(record)
@@ -67,11 +67,11 @@ class StickerPackRecordProcessorTest {
   @Test
   fun `Given an invalid proto with a bad pack id length, assert invalid`() {
     // GIVEN
-    val proto = StickerPackRecord.Builder().apply {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       packId = ByteArray(15).toByteString()
       packKey = PACK_KEY.toByteString()
     }.build()
-    val record = SignalStickerPackRecord(STORAGE_ID, proto)
+    val record = SignalInstalledStickerPackRecord(STORAGE_ID, proto)
 
     // WHEN
     val result = testSubject.isInvalid(record)
@@ -83,11 +83,11 @@ class StickerPackRecordProcessorTest {
   @Test
   fun `Given an invalid installed proto with a bad pack key length, assert invalid`() {
     // GIVEN
-    val proto = StickerPackRecord.Builder().apply {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       packId = PACK_ID.toByteString()
       packKey = ByteArray(31).toByteString()
     }.build()
-    val record = SignalStickerPackRecord(STORAGE_ID, proto)
+    val record = SignalInstalledStickerPackRecord(STORAGE_ID, proto)
 
     // WHEN
     val result = testSubject.isInvalid(record)
@@ -99,11 +99,11 @@ class StickerPackRecordProcessorTest {
   @Test
   fun `Given an invalid installed proto with no pack key, assert invalid`() {
     // GIVEN
-    val proto = StickerPackRecord.Builder().apply {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       packId = PACK_ID.toByteString()
       position = 2
     }.build()
-    val record = SignalStickerPackRecord(STORAGE_ID, proto)
+    val record = SignalInstalledStickerPackRecord(STORAGE_ID, proto)
 
     // WHEN
     val result = testSubject.isInvalid(record)
@@ -176,8 +176,8 @@ class StickerPackRecordProcessorTest {
     assertTrue(testSubject.compare(first, other) != 0)
   }
 
-  private fun buildRecord(packId: ByteArray = PACK_ID, position: Int = 0, deletedAtTimestamp: Long = 0L): SignalStickerPackRecord {
-    val proto = StickerPackRecord.Builder().apply {
+  private fun buildRecord(packId: ByteArray = PACK_ID, position: Int = 0, deletedAtTimestamp: Long = 0L): SignalInstalledStickerPackRecord {
+    val proto = InstalledStickerPackRecord.Builder().apply {
       this.packId = packId.toByteString()
 
       if (deletedAtTimestamp > 0) {
@@ -188,6 +188,6 @@ class StickerPackRecordProcessorTest {
       }
     }.build()
 
-    return SignalStickerPackRecord(STORAGE_ID, proto)
+    return SignalInstalledStickerPackRecord(STORAGE_ID, proto)
   }
 }

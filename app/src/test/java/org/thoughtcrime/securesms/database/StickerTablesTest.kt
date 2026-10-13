@@ -34,14 +34,16 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.whispersystems.signalservice.api.storage.SignalFavoriteStickerRecord
-import org.whispersystems.signalservice.api.storage.SignalStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalHiddenStickerPackRecord
+import org.whispersystems.signalservice.api.storage.SignalInstalledStickerPackRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.FavoriteStickerRecord
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.util.concurrent.TimeUnit
 import org.thoughtcrime.securesms.database.model.StickerPackRecord as LocalStickerPackRecord
-import org.whispersystems.signalservice.internal.storage.protos.StickerPackRecord as RemoteStickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.HiddenStickerPackRecord as RemoteHiddenStickerPackRecord
+import org.whispersystems.signalservice.internal.storage.protos.InstalledStickerPackRecord as RemoteInstalledStickerPackRecord
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -67,7 +69,7 @@ class StickerTablesTest {
   fun `given an installed pack, when I get it for storage sync, then I expect a storage id and no tombstone`() {
     installPack(packId1, packKey1)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
 
     assertThat(pack.installed).isTrue()
     assertThat(pack.deletedTimestampMs).isEqualTo(0)
@@ -79,8 +81,8 @@ class StickerTablesTest {
     installPack(packId1, packKey1)
     installPack(packId2, packKey2)
 
-    val pack1 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
-    val pack2 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId2))!!
+    val pack1 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
+    val pack2 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId2))!!
 
     assertThat(pack2.position).isEqualTo(pack1.position + 1)
   }
@@ -88,11 +90,11 @@ class StickerTablesTest {
   @Test
   fun `given an installed pack, when I uninstall it, then I expect a tombstone with a rotated storage id`() {
     installPack(packId1, packKey1)
-    val originalId = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!.storageServiceId!!
+    val originalId = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.storageServiceId!!
 
     SignalDatabase.stickers.uninstallPack(packId1)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
     assertThat(pack.installed).isFalse()
     assertThat(pack.deletedTimestampMs).isNotEqualTo(0)
     assertThat(pack.position).isEqualTo(0)
@@ -108,8 +110,8 @@ class StickerTablesTest {
 
     SignalDatabase.stickers.markPackAsInstalled(packId1, notify = false)
 
-    val pack1 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
-    val pack2 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId2))!!
+    val pack1 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
+    val pack2 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId2))!!
     assertThat(pack1.installed).isTrue()
     assertThat(pack1.deletedTimestampMs).isEqualTo(0)
     assertThat(pack1.position).isEqualTo(pack2.position + 1)
@@ -117,18 +119,18 @@ class StickerTablesTest {
 
   @Test
   fun `given a remote record, when I insert it locally, then I expect an installed pack with the remote storage id`() {
-    val remoteRecord = SignalStickerPackRecord(
+    val remoteRecord = SignalInstalledStickerPackRecord(
       StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
-      RemoteStickerPackRecord(
+      RemoteInstalledStickerPackRecord(
         packId = Hex.fromStringCondensed(packId1).toByteString(),
         packKey = Hex.fromStringCondensed(packKey1).toByteString(),
         position = 7
       )
     )
 
-    SignalDatabase.stickers.insertStickerPackFromStorageSync(remoteRecord)
+    SignalDatabase.stickers.insertInstalledStickerPackFromStorageSync(remoteRecord)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
     assertThat(pack.installed).isTrue()
     assertThat(pack.position).isEqualTo(7)
     assertThat(pack.packKey.value).isEqualTo(packKey1)
@@ -137,17 +139,17 @@ class StickerTablesTest {
 
   @Test
   fun `given a deleted remote record, when I insert it locally, then I expect a tombstone`() {
-    val remoteRecord = SignalStickerPackRecord(
+    val remoteRecord = SignalInstalledStickerPackRecord(
       StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
-      RemoteStickerPackRecord(
+      RemoteInstalledStickerPackRecord(
         packId = Hex.fromStringCondensed(packId1).toByteString(),
         deletedAtTimestamp = 1000L
       )
     )
 
-    SignalDatabase.stickers.insertStickerPackFromStorageSync(remoteRecord)
+    SignalDatabase.stickers.insertInstalledStickerPackFromStorageSync(remoteRecord)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
     assertThat(pack.installed).isFalse()
     assertThat(pack.deletedTimestampMs).isEqualTo(1000L)
     assertThat(pack.storageServiceId).isEqualTo(remoteRecord.id)
@@ -157,17 +159,17 @@ class StickerTablesTest {
   fun `given an installed pack, when I apply a deleted remote record, then I expect it to be uninstalled`() {
     installPack(packId1, packKey1)
 
-    val remoteRecord = SignalStickerPackRecord(
+    val remoteRecord = SignalInstalledStickerPackRecord(
       StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
-      RemoteStickerPackRecord(
+      RemoteInstalledStickerPackRecord(
         packId = Hex.fromStringCondensed(packId1).toByteString(),
         deletedAtTimestamp = 1000L
       )
     )
 
-    SignalDatabase.stickers.updateStickerPackFromStorageSync(remoteRecord)
+    SignalDatabase.stickers.updateInstalledStickerPackFromStorageSync(remoteRecord)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
     assertThat(pack.installed).isFalse()
     assertThat(pack.deletedTimestampMs).isEqualTo(1000L)
     assertThat(pack.packKey.value).isEqualTo(packKey1)
@@ -179,18 +181,18 @@ class StickerTablesTest {
     installPack(packId1, packKey1)
     SignalDatabase.stickers.uninstallPack(packId1)
 
-    val remoteRecord = SignalStickerPackRecord(
+    val remoteRecord = SignalInstalledStickerPackRecord(
       StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
-      RemoteStickerPackRecord(
+      RemoteInstalledStickerPackRecord(
         packId = Hex.fromStringCondensed(packId1).toByteString(),
         packKey = Hex.fromStringCondensed(packKey1).toByteString(),
         position = 5
       )
     )
 
-    SignalDatabase.stickers.updateStickerPackFromStorageSync(remoteRecord)
+    SignalDatabase.stickers.updateInstalledStickerPackFromStorageSync(remoteRecord)
 
-    val pack = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
+    val pack = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
     assertThat(pack.installed).isTrue()
     assertThat(pack.deletedTimestampMs).isEqualTo(0)
     assertThat(pack.position).isEqualTo(5)
@@ -202,11 +204,11 @@ class StickerTablesTest {
     installPack(packId1, packKey1)
     installPack(packId2, packKey2)
 
-    val existingMap = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val existingMap = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
     existingMap.forEach { (id, _) ->
       SignalDatabase.stickers.applyStorageIdUpdate(id, StorageId.forStickerPack(StorageSyncHelper.generateKey()))
     }
-    val updatedMap = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val updatedMap = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
 
     existingMap.forEach { (id, storageId) ->
       assertThat(updatedMap[id]).isNotEqualTo(storageId)
@@ -220,8 +222,8 @@ class StickerTablesTest {
 
     SignalDatabase.stickers.removeStorageIdsFromOldDeletedPacks(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1))
 
-    assertThat(SignalDatabase.stickers.getStorageSyncIds()).isEmpty()
-    assertThat(SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!.storageServiceId).isNull()
+    assertThat(SignalDatabase.stickers.getInstalledStorageSyncIds()).isEmpty()
+    assertThat(SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.storageServiceId).isNull()
   }
 
   @Test
@@ -229,7 +231,7 @@ class StickerTablesTest {
     installPack(packId1, packKey1)
     installPack(packId2, packKey2)
     installPack(packId3, packKey3)
-    val originalIds = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val originalIds = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
 
     SignalDatabase.stickers.updatePackPositions(
       listOf(
@@ -239,15 +241,15 @@ class StickerTablesTest {
       )
     )
 
-    val pack1 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!
-    val pack2 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId2))!!
-    val pack3 = SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId3))!!
+    val pack1 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
+    val pack2 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId2))!!
+    val pack3 = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId3))!!
 
     assertThat(pack3.position).isEqualTo(0)
     assertThat(pack1.position).isEqualTo(1)
     assertThat(pack2.position).isEqualTo(2)
 
-    val updatedIds = SignalDatabase.stickers.getStorageSyncIdsMap()
+    val updatedIds = SignalDatabase.stickers.getInstalledStorageSyncIdsMap()
     originalIds.forEach { (id, storageId) ->
       assertThat(updatedIds[id]).isNotEqualTo(storageId)
     }
@@ -469,7 +471,7 @@ class StickerTablesTest {
     val favorite = SignalDatabase.stickers.getFavoriteForStorageSync(StickerPackId(packId1), 1)!!
     assertThat(favorite.favoritedAt).isNotEqualTo(0L)
     assertThat(favorite.storageId).isNotNull()
-    assertThat(SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!.installed).isFalse()
+    assertThat(SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.installed).isFalse()
     assertThat(installedPackIds()).isEmpty()
   }
 
@@ -550,7 +552,7 @@ class StickerTablesTest {
     assertThat(favorite.packKey).isEqualTo(packKey1)
     assertThat(favorite.storageId).isEqualTo(remoteRecord.id)
     assertThat(SignalDatabase.stickers.isFavorite(packId1, 4)).isEqualTo(true)
-    assertThat(SignalDatabase.stickers.getPackForStorageSync(StickerPackId(packId1))!!.installed).isFalse()
+    assertThat(SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.installed).isFalse()
     assertThat(favoriteStickerIds()).isEmpty()
   }
 
@@ -767,6 +769,333 @@ class StickerTablesTest {
     )
   }
 
+  @Test
+  fun `given an uninstalled pack, when I hide it, then I expect it hidden`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    assertThat(SignalDatabase.stickers.getStickerPack(packId1)!!.isHidden).isTrue()
+  }
+
+  @Test
+  fun `given an installed pack, when I hide it, then I expect it uninstalled and hidden`() {
+    installPack(packId1, packKey1)
+
+    val uninstalled = SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    val pack = SignalDatabase.stickers.getStickerPack(packId1)!!
+    assertThat(uninstalled).isTrue()
+    assertThat(pack.isInstalled).isFalse()
+    assertThat(pack.isHidden).isTrue()
+  }
+
+  @Test
+  fun `given a hidden pack, when I unhide it, then I expect it not hidden`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    SignalDatabase.stickers.unhidePack(StickerPackId(packId1))
+
+    assertThat(SignalDatabase.stickers.getStickerPack(packId1)!!.isHidden).isFalse()
+  }
+
+  @Test
+  fun `given a hidden pack, when I install it, then I expect it not hidden`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    SignalDatabase.stickers.markPackAsInstalled(packId1, notify = false)
+
+    assertThat(SignalDatabase.stickers.getStickerPack(packId1)!!.isHidden).isFalse()
+  }
+
+  @Test
+  fun `given a hidden pack, when I install it, then I expect an unhidden tombstone and an unchanged installed storage id`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    val originalHiddenId = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!.storageServiceId!!
+
+    SignalDatabase.stickers.markPackAsInstalled(packId1, notify = false)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    val installed = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isFalse()
+    assertThat(hidden.unhiddenTimestampMs).isNotEqualTo(0)
+    assertThat(hidden.storageServiceId).isNotEqualTo(originalHiddenId)
+    assertThat(installed.installed).isTrue()
+    assertThat(installed.storageServiceId).isNotEqualTo(hidden.storageServiceId)
+  }
+
+  @Test
+  fun `given a pack that was never hidden, when I install it, then I expect no hidden storage id`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+
+    SignalDatabase.stickers.markPackAsInstalled(packId1, notify = false)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.unhiddenTimestampMs).isEqualTo(0)
+    assertThat(hidden.storageServiceId).isNull()
+  }
+
+  @Test
+  fun `given an unknown pack, when I insert a remote hidden record, then I expect a hidden placeholder that is not listed or downloaded`() {
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString()
+      )
+    )
+
+    SignalDatabase.stickers.insertHiddenPackFromStorageSync(remoteRecord)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isTrue()
+    assertThat(hidden.packKey.value).isEqualTo(packKey1)
+    assertThat(hidden.storageServiceId).isEqualTo(remoteRecord.id)
+    assertThat(SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.installed).isFalse()
+    assertThat(SignalDatabase.stickers.getStickerPack(packId1)).isNull()
+  }
+
+  @Test
+  fun `given an installed pack, when I insert a remote hidden record, then I expect it uninstalled and hidden with a rotated installed storage id`() {
+    installPack(packId1, packKey1)
+    val originalInstalledId = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.storageServiceId
+
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString()
+      )
+    )
+
+    SignalDatabase.stickers.insertHiddenPackFromStorageSync(remoteRecord)
+
+    val installed = SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(installed.installed).isFalse()
+    assertThat(installed.deletedTimestampMs).isNotEqualTo(0L)
+    assertThat(installed.storageServiceId).isNotEqualTo(originalInstalledId)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isTrue()
+    assertThat(hidden.storageServiceId).isEqualTo(remoteRecord.id)
+  }
+
+  @Test
+  fun `given an uninstalled pack, when I insert a remote hidden record, then I expect it hidden with the remote storage id`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString()
+      )
+    )
+
+    SignalDatabase.stickers.insertHiddenPackFromStorageSync(remoteRecord)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isTrue()
+    assertThat(hidden.storageServiceId).isEqualTo(remoteRecord.id)
+  }
+
+  @Test
+  fun `given an installed pack, when I apply an unhidden remote record, then I expect it to stay installed`() {
+    installPack(packId1, packKey1)
+
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        unhiddenAtTimestamp = 1000L
+      )
+    )
+
+    SignalDatabase.stickers.updateHiddenPackFromStorageSync(remoteRecord)
+
+    assertThat(SignalDatabase.stickers.getInstalledPackForStorageSync(StickerPackId(packId1))!!.installed).isTrue()
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!.hidden).isFalse()
+  }
+
+  @Test
+  fun `given a hidden placeholder, when the pack is later received, then I expect it to stay hidden`() {
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString()
+      )
+    )
+    SignalDatabase.stickers.insertHiddenPackFromStorageSync(remoteRecord)
+
+    insertSticker(packId1, packKey1, stickerId = 0, emoji = "", isCover = true, isInstalled = false)
+
+    val pack = SignalDatabase.stickers.getStickerPack(packId1)!!
+    assertThat(pack.isHidden).isTrue()
+    assertThat(pack.isInstalled).isFalse()
+    assertThat(pack.title).isEqualTo("Title")
+  }
+
+  @Test
+  fun `given a hidden pack, when I apply an unhidden remote record, then I expect it unhidden with the remote storage id`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.uninstallPack(packId1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        unhiddenAtTimestamp = 1000L
+      )
+    )
+
+    SignalDatabase.stickers.updateHiddenPackFromStorageSync(remoteRecord)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isFalse()
+    assertThat(hidden.unhiddenTimestampMs).isEqualTo(1000L)
+    assertThat(hidden.packKey.value).isEqualTo(packKey1)
+    assertThat(hidden.storageServiceId).isEqualTo(remoteRecord.id)
+  }
+
+  @Test
+  fun `given a hidden pack, when I apply a deleted remote installed record, then I expect it to stay hidden`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    val remoteRecord = SignalInstalledStickerPackRecord(
+      StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteInstalledStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        deletedAtTimestamp = 1000L
+      )
+    )
+
+    SignalDatabase.stickers.updateInstalledStickerPackFromStorageSync(remoteRecord)
+
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!.hidden).isTrue()
+  }
+
+  @Test
+  fun `given a hidden pack, when I apply an active remote installed record, then I expect an unhidden tombstone`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+
+    val remoteRecord = SignalInstalledStickerPackRecord(
+      StorageId.forStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteInstalledStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString(),
+        position = 1
+      )
+    )
+
+    SignalDatabase.stickers.updateInstalledStickerPackFromStorageSync(remoteRecord)
+
+    val hidden = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+    assertThat(hidden.hidden).isFalse()
+    assertThat(hidden.unhiddenTimestampMs).isNotEqualTo(0)
+  }
+
+  @Test
+  fun `given hidden packs, when I update their hidden storage sync ids, then I expect an updated map`() {
+    installPack(packId1, packKey1)
+    installPack(packId2, packKey2)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    SignalDatabase.stickers.hidePack(StickerPackId(packId2))
+
+    val existingMap = SignalDatabase.stickers.getHiddenPacksStorageSyncIdsMap()
+    existingMap.forEach { (id, _) ->
+      SignalDatabase.stickers.applyHiddenPackStorageIdUpdate(id, StorageId.forHiddenStickerPack(StorageSyncHelper.generateKey()))
+    }
+    val updatedMap = SignalDatabase.stickers.getHiddenPacksStorageSyncIdsMap()
+
+    assertThat(existingMap.keys).isEqualTo(setOf(StickerPackId(packId1), StickerPackId(packId2)))
+    existingMap.forEach { (id, storageId) ->
+      assertThat(updatedMap[id]).isNotEqualTo(storageId)
+    }
+  }
+
+  @Test
+  fun `given an unhidden pack, when I clean up old tombstones, then I expect only it to not have a hidden storage id`() {
+    installPack(packId1, packKey1)
+    installPack(packId2, packKey2)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    SignalDatabase.stickers.hidePack(StickerPackId(packId2))
+    SignalDatabase.stickers.unhidePack(StickerPackId(packId2))
+
+    val removed = SignalDatabase.stickers.removeStorageIdsFromOldUnhiddenPacks(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1))
+
+    assertThat(removed).isEqualTo(1)
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!.storageServiceId).isNotNull()
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId2))!!.storageServiceId).isNull()
+  }
+
+  @Test
+  fun `given an unhidden pack missing from the remote manifest, when I remove local only tombstones, then I expect only it cleared`() {
+    installPack(packId1, packKey1)
+    installPack(packId2, packKey2)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    SignalDatabase.stickers.hidePack(StickerPackId(packId2))
+    SignalDatabase.stickers.unhidePack(StickerPackId(packId2))
+
+    val removed = SignalDatabase.stickers.removeStorageIdsFromLocalOnlyUnhiddenPacks(SignalDatabase.stickers.getHiddenPacksStorageSyncIds())
+
+    assertThat(removed).isEqualTo(1)
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!.storageServiceId).isNotNull()
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId2))!!.storageServiceId).isNull()
+  }
+
+  @Test
+  fun `given a hidden pack with no references, when I delete orphaned packs, then I expect it kept`() {
+    val remoteRecord = SignalHiddenStickerPackRecord(
+      StorageId.forHiddenStickerPack(byteArrayOf(1, 2, 3)),
+      RemoteHiddenStickerPackRecord(
+        packId = Hex.fromStringCondensed(packId1).toByteString(),
+        packKey = Hex.fromStringCondensed(packKey1).toByteString()
+      )
+    )
+    SignalDatabase.stickers.insertHiddenPackFromStorageSync(remoteRecord)
+
+    SignalDatabase.stickers.deleteOrphanedPacks()
+
+    assertThat(SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))).isNotNull()
+  }
+
+  @Test
+  fun `given a hidden pack, when I convert it to a remote record, then I expect the pack key and no unhidden timestamp`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    val local = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+
+    val remote = StorageSyncModels.localToRemoteHiddenStickerPack(local, local.storageServiceId!!.raw)
+
+    assertThat(remote.proto.packId).isEqualTo(Hex.fromStringCondensed(packId1).toByteString())
+    assertThat(remote.proto.packKey).isEqualTo(Hex.fromStringCondensed(packKey1).toByteString())
+    assertThat(remote.proto.unhiddenAtTimestamp).isEqualTo(0)
+  }
+
+  @Test
+  fun `given an unhidden pack, when I convert it to a remote record, then I expect no pack key and an unhidden timestamp`() {
+    installPack(packId1, packKey1)
+    SignalDatabase.stickers.hidePack(StickerPackId(packId1))
+    SignalDatabase.stickers.unhidePack(StickerPackId(packId1))
+    val local = SignalDatabase.stickers.getHiddenPackForStorageSync(StickerPackId(packId1))!!
+
+    val remote = StorageSyncModels.localToRemoteHiddenStickerPack(local, local.storageServiceId!!.raw)
+
+    assertThat(remote.proto.packKey).isEqualTo(ByteString.EMPTY)
+    assertThat(remote.proto.unhiddenAtTimestamp).isEqualTo(local.unhiddenTimestampMs)
+  }
+
   private fun installedPackIds(): List<String> {
     return StickerTables.StickerPackRecordReader(SignalDatabase.stickers.getInstalledStickerPacks()).use { reader ->
       reader.asSequence().map { it.packId }.toList()
@@ -777,7 +1106,7 @@ class StickerTablesTest {
     insertSticker(packId, packKey, stickerId = 0, emoji = "", isCover = true)
   }
 
-  private fun insertSticker(packId: String, packKey: String, stickerId: Int, emoji: String?, isCover: Boolean = false) {
+  private fun insertSticker(packId: String, packKey: String, stickerId: Int, emoji: String?, isCover: Boolean = false, isInstalled: Boolean = true) {
     SignalDatabase.stickers.insertSticker(
       sticker = IncomingSticker(
         packId = packId,
@@ -788,7 +1117,7 @@ class StickerTablesTest {
         emoji = emoji,
         contentType = "image/webp",
         isCover = isCover,
-        isInstalled = true
+        isInstalled = isInstalled
       ),
       dataStream = ByteArrayInputStream(byteArrayOf(1, 2, 3, 4)),
       notify = false

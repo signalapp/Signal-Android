@@ -154,6 +154,9 @@ interface StickerManagementContentCallbacks {
   fun onInstallClick(pack: StickerPack)
   fun onShowPreviewClick(pack: StickerPack)
   fun onCopyClick(pack: StickerPack)
+  fun onHideClick(pack: StickerPack)
+  fun onHideStickerPackConfirmed(pack: StickerPack)
+  fun onHideStickerPackCanceled()
   fun onRemoveClick(packIds: Set<StickerPackId>)
   fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>)
   fun onRemoveStickerPacksCanceled()
@@ -166,6 +169,9 @@ interface StickerManagementContentCallbacks {
     override fun onInstallClick(pack: StickerPack) = Unit
     override fun onShowPreviewClick(pack: StickerPack) = Unit
     override fun onCopyClick(pack: StickerPack) = Unit
+    override fun onHideClick(pack: StickerPack) = Unit
+    override fun onHideStickerPackConfirmed(pack: StickerPack) = Unit
+    override fun onHideStickerPackCanceled() = Unit
     override fun onRemoveClick(packIds: Set<StickerPackId>) = Unit
     override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = Unit
     override fun onRemoveStickerPacksCanceled() = Unit
@@ -192,6 +198,7 @@ fun StickerManagementScreen(
   onSetSearchModeEnabled: (Boolean) -> Unit = {},
   onSearchQueryChange: (String) -> Unit = {},
   onSnackbarDismiss: () -> Unit = {},
+  onUndoHideClick: (StickerPackId) -> Unit = {},
   callbacks: StickerManagementContentCallbacks = StickerManagementContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
@@ -262,22 +269,45 @@ fun StickerManagementScreen(
     snackbarHost = {
       SnackbarHost(
         actionConfirmation = uiState.actionConfirmation,
-        onSnackbarDismiss = onSnackbarDismiss
+        onSnackbarDismiss = onSnackbarDismiss,
+        onUndoHideClick = onUndoHideClick
       )
     }
   ) { padding ->
-    if (uiState.userPrompt != null) {
-      val packCount = uiState.userPrompt.packIds.size
+    when (val prompt = uiState.userPrompt) {
+      is StickerManagementPrompt.ConfirmRemovePacks -> {
+        val packCount = prompt.packIds.size
 
-      Dialogs.SimpleAlertDialog(
-        title = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation, packCount, NumberFormat.getInstance().format(packCount)),
-        body = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation_body, packCount, NumberFormat.getInstance().format(packCount)),
-        confirm = stringResource(R.string.StickerManagement_menu_remove_pack),
-        dismiss = stringResource(android.R.string.cancel),
-        onConfirm = { callbacks.onRemoveStickerPacksConfirmed(uiState.userPrompt.packIds) },
-        onDeny = { callbacks.onRemoveStickerPacksCanceled() },
-        onDismissRequest = { callbacks.onRemoveStickerPacksCanceled() }
-      )
+        Dialogs.SimpleAlertDialog(
+          title = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation, packCount, NumberFormat.getInstance().format(packCount)),
+          body = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation_body, packCount, NumberFormat.getInstance().format(packCount)),
+          confirm = stringResource(R.string.StickerManagement_menu_remove_pack),
+          dismiss = stringResource(android.R.string.cancel),
+          confirmColor = MaterialTheme.colorScheme.error,
+          onConfirm = { callbacks.onRemoveStickerPacksConfirmed(prompt.packIds) },
+          onDeny = { callbacks.onRemoveStickerPacksCanceled() },
+          onDismissRequest = { callbacks.onRemoveStickerPacksCanceled() }
+        )
+      }
+
+      is StickerManagementPrompt.ConfirmHidePack -> {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.StickerManagement_hide_pack_confirmation),
+          body = if (prompt.pack.isInstalled) {
+            stringResource(R.string.StickerManagement_hide_installed_pack_confirmation_body)
+          } else {
+            stringResource(R.string.StickerManagement_hide_pack_confirmation_body)
+          },
+          confirm = stringResource(R.string.StickerManagement_menu_hide_pack),
+          dismiss = stringResource(android.R.string.cancel),
+          confirmColor = MaterialTheme.colorScheme.error,
+          onConfirm = { callbacks.onHideStickerPackConfirmed(prompt.pack) },
+          onDeny = { callbacks.onHideStickerPackCanceled() },
+          onDismissRequest = { callbacks.onHideStickerPackCanceled() }
+        )
+      }
+
+      null -> Unit
     }
 
     Column(
@@ -588,6 +618,7 @@ private fun AllStickersContent(
             onForwardClick = callbacks::onForwardClick,
             onInstallClick = callbacks::onInstallClick,
             onCopyClick = callbacks::onCopyClick,
+            onHideClick = callbacks::onHideClick,
             onRemoveClick = { callbacks.onRemoveClick(setOf(it.id)) },
             modifier = Modifier
               .animateItem()
@@ -742,6 +773,7 @@ private fun InstalledStickersContent(
 private fun SnackbarHost(
   actionConfirmation: StickerManagementConfirmation?,
   onSnackbarDismiss: () -> Unit = {},
+  onUndoHideClick: (StickerPackId) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   val hostState = remember { SnackbarHostState() }
@@ -757,20 +789,26 @@ private fun SnackbarHost(
       NumberFormat.getInstance().format(actionConfirmation.numPacksUninstalled)
     )
 
+    is StickerManagementConfirmation.HiddenPack -> stringResource(R.string.StickerManagement_hidden_pack)
     is StickerManagementConfirmation.CopiedPack -> stringResource(R.string.StickerManagement_copied)
     null -> null
   }
 
+  val undoLabel = stringResource(R.string.StickerManagement_undo)
+
   LaunchedEffect(actionConfirmation) {
     if (snackbarMessage != null) {
+      val isHiddenPack = actionConfirmation is StickerManagementConfirmation.HiddenPack
       val result = hostState.showSnackbar(
         message = snackbarMessage,
-        duration = Snackbars.Duration.SHORT,
+        actionLabel = if (isHiddenPack) undoLabel else null,
+        duration = Snackbars.Duration.LONG,
         withDismissAction = false
       )
 
-      if (result == SnackbarResult.Dismissed) {
-        onSnackbarDismiss()
+      when (result) {
+        SnackbarResult.ActionPerformed -> if (isHiddenPack) onUndoHideClick(actionConfirmation.packId)
+        SnackbarResult.Dismissed -> onSnackbarDismiss()
       }
     }
   }

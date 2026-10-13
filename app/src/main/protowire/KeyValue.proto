@@ -35,10 +35,11 @@ message ArchiveUploadProgressState {
         Recipient = 2;
         Thread = 3;
         Call = 4;
-        Sticker = 5;
+        InstalledStickerPack = 5;
         Message = 6;
         NotificationProfile = 7;
         ChatFolder = 8;
+        HiddenStickerPack = 9;
     }
 
     State state = 1;
@@ -76,11 +77,12 @@ message LocalBackupCreationProgress {
         RECIPIENT = 3;
         THREAD = 4;
         CALL = 5;
-        STICKER = 6;
+        INSTALLED_STICKER_PACK = 6;
         NOTIFICATION_PROFILE = 7;
         CHAT_FOLDER = 8;
         MESSAGE = 9;
         FINALIZING = 10;
+        HIDDEN_STICKER_PACK = 11;
     }
 
     oneof state {
