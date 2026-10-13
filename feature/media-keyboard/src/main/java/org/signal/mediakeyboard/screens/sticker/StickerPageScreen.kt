@@ -484,6 +484,7 @@ private fun StickerCell(
       model = sticker.image,
       enableApngAnimation = allowAnimation,
       skipMemoryCache = true,
+      fadeIn = true,
       imageSize = DpSize(cellSize, cellSize),
       contentScale = ContentScale.Fit,
       modifier = Modifier.fillMaxSize()
