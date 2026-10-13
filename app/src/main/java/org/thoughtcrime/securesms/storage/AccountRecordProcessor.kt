@@ -133,6 +133,7 @@ class AccountRecordProcessor(
       username = remote.proto.username
       usernameLink = remote.proto.usernameLink
       notificationProfileManualOverride = remote.proto.notificationProfileManualOverride
+      notificationProfileSyncDisabled = remote.proto.notificationProfileSyncDisabled
       backupTier = if (SignalStore.account.isPrimaryDevice) local.proto.backupTier ?: remote.proto.backupTier else remote.proto.backupTier
       avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
       automaticKeyVerificationDisabled = remote.proto.automaticKeyVerificationDisabled

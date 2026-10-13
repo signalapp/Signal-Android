@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.ReleaseChannelValues
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.mms.IncomingMessage
@@ -45,7 +46,7 @@ import kotlin.random.Random
  */
 class RecipientTestRule : TestRule {
 
-  val signalStore = MockSignalStoreRule(relaxed = setOf(SettingsValues::class, ReleaseChannelValues::class))
+  val signalStore = MockSignalStoreRule(relaxed = setOf(SettingsValues::class, ReleaseChannelValues::class, NotificationProfileValues::class))
   val signalDatabase = SignalDatabaseRule()
   val appDependencies = MockAppDependenciesRule()
 

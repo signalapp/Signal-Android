@@ -202,6 +202,7 @@ object StorageSyncHelper {
       }
 
       notificationProfileManualOverride = getNotificationProfileManualOverride()
+      notificationProfileSyncDisabled = SignalStore.notificationProfile.syncDisabled
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
         safeSetSubscriber(it.subscriberId.bytes.toByteString(), it.currency?.currencyCode ?: "")
@@ -378,6 +379,7 @@ object StorageSyncHelper {
       Recipient.live(releaseChannelId).refresh()
     }
 
+    SignalStore.notificationProfile.syncDisabled = update.new.proto.notificationProfileSyncDisabled
     if (update.new.proto.notificationProfileManualOverride != null) {
       if (update.new.proto.notificationProfileManualOverride!!.enabled != null) {
         Log.i(TAG, "Found a remote enabled notification override")

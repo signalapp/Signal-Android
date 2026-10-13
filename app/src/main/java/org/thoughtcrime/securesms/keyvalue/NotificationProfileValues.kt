@@ -13,6 +13,7 @@ class NotificationProfileValues(store: KeyValueStore) : SignalStoreValues(store)
     private const val KEY_MANUALLY_ENABLED_PROFILE = "np.manually_enabled_profile"
     private const val KEY_MANUALLY_ENABLED_UNTIL = "np.manually_enabled_until"
     private const val KEY_MANUALLY_DISABLED_AT = "np.manually_disabled_at"
+    private const val KEY_SYNC_DISABLED = "np.sync_disabled"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -24,6 +25,7 @@ class NotificationProfileValues(store: KeyValueStore) : SignalStoreValues(store)
   var manuallyEnabledProfile: Long by longValue(KEY_MANUALLY_ENABLED_PROFILE, 0L)
   var manuallyEnabledUntil: Long by longValue(KEY_MANUALLY_ENABLED_UNTIL, 0L)
   var manuallyDisabledAt: Long by longValue(KEY_MANUALLY_DISABLED_AT, 0L)
+  var syncDisabled: Boolean by booleanValue(KEY_SYNC_DISABLED, false)
 
   var lastProfilePopup: Long by longValue(KEY_LAST_PROFILE_POPUP, 0L)
   var lastProfilePopupTime: Long by longValue(KEY_LAST_PROFILE_POPUP_TIME, 0L)
