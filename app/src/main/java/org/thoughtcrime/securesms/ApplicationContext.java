@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.clockskew.ClockSkewDetector;
 import org.thoughtcrime.securesms.components.AssistantScreenSecurityObserver;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.preferences.EditProxyActivity;
@@ -237,6 +238,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addNonBlocking(this::ensureProfileUploaded)
               .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
               .addNonBlocking(BackupRepository::maybeFixAnyDanglingUploadProgress)
+              .addNonBlocking(InAppPaymentsRepository::recoverAbandonedPayments)
               .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())
               .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
               .addPostRender(this::initializeExpiringMessageManager)

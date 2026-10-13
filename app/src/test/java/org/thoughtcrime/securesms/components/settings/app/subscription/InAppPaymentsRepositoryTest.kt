@@ -9,8 +9,10 @@ import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isGreaterThan
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.verify
@@ -37,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.InAppPaymentAuthCheckJob
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
@@ -56,6 +59,8 @@ class InAppPaymentsRepositoryTest {
 
   companion object {
     private const val IAP_TOKEN = "test_token"
+    private const val STRIPE_INTENT_ID = "pi_test"
+    private const val STRIPE_CLIENT_SECRET = "pi_test_secret"
   }
 
   @get:Rule
@@ -336,6 +341,120 @@ class InAppPaymentsRepositoryTest {
 
     testObserver.awaitCount(2)
     assertThat(testObserver.values().last()).isEqualTo(DonationRedemptionJobStatus.FailedSubscription)
+  }
+
+  // region recoverAbandonedPayments
+
+  @Test
+  fun `recoverAbandonedPayments moves a one-time Stripe payment to WAITING_FOR_AUTHORIZATION and enqueues an auth check`() {
+    val id = insertRequiresAction(type = InAppPaymentType.ONE_TIME_DONATION, data = stripeRequiresActionData())
+
+    InAppPaymentsRepository.recoverAbandonedPayments()
+
+    val payment = SignalDatabase.inAppPayments.getById(id)!!
+    assertThat(payment.state).isEqualTo(InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION)
+    assertThat(payment.subscriberId).isNull()
+    assertThat(payment.data.waitForAuth?.stripeIntentId).isEqualTo(STRIPE_INTENT_ID)
+    assertThat(payment.data.waitForAuth?.stripeClientSecret).isEqualTo(STRIPE_CLIENT_SECRET)
+    assertThat(payment.data.waitForAuth!!.enteredAt).isGreaterThan(payment.insertedAt.inWholeMilliseconds - 1)
+    verify { AppDependencies.jobManager.add(ofType<InAppPaymentAuthCheckJob>()) }
+  }
+
+  @Test
+  fun `recoverAbandonedPayments assigns the donation subscriber to a recurring Stripe payment`() {
+    val subscriberId = SubscriberId.generate()
+    SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
+      InAppPaymentSubscriberRecord(
+        subscriberId = subscriberId,
+        currency = Currency.getInstance("USD"),
+        type = InAppPaymentSubscriberRecord.Type.DONATION,
+        requiresCancel = false,
+        paymentMethodType = InAppPaymentData.PaymentMethodType.IDEAL,
+        iapSubscriptionId = null
+      )
+    )
+    val id = insertRequiresAction(type = InAppPaymentType.RECURRING_DONATION, data = stripeRequiresActionData())
+
+    InAppPaymentsRepository.recoverAbandonedPayments()
+
+    val payment = SignalDatabase.inAppPayments.getById(id)!!
+    assertThat(payment.state).isEqualTo(InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION)
+    assertThat(payment.subscriberId).isEqualTo(subscriberId)
+  }
+
+  @Test
+  fun `recoverAbandonedPayments cancels a recurring Stripe payment with no subscriber`() {
+    every { signalStore.inAppPayments.getSubscriber(any()) } returns null
+    val id = insertRequiresAction(type = InAppPaymentType.RECURRING_DONATION, data = stripeRequiresActionData())
+
+    InAppPaymentsRepository.recoverAbandonedPayments()
+
+    val payment = SignalDatabase.inAppPayments.getById(id)!!
+    assertThat(payment.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(payment.data.error?.type).isEqualTo(InAppPaymentData.Error.Type.SETUP_CANCELLED)
+    verify(exactly = 0) { AppDependencies.jobManager.add(any()) }
+  }
+
+  @Test
+  fun `recoverAbandonedPayments cancels a PayPal payment without enqueueing an auth check`() {
+    val id = insertRequiresAction(
+      type = InAppPaymentType.ONE_TIME_DONATION,
+      data = InAppPaymentData(
+        amount = testAmount,
+        paymentMethodType = InAppPaymentData.PaymentMethodType.PAYPAL,
+        payPalRequiresAction = InAppPaymentData.PayPalRequiresActionState(approvalUrl = "https://example.com", token = "token")
+      )
+    )
+
+    InAppPaymentsRepository.recoverAbandonedPayments()
+
+    val payment = SignalDatabase.inAppPayments.getById(id)!!
+    assertThat(payment.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(payment.notified).isTrue()
+    assertThat(payment.data.error?.type).isEqualTo(InAppPaymentData.Error.Type.SETUP_CANCELLED)
+    verify(exactly = 0) { AppDependencies.jobManager.add(any()) }
+  }
+
+  @Test
+  fun `recoverAbandonedPayments leaves payments in other states untouched`() {
+    val id = SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.ONE_TIME_DONATION,
+      state = InAppPaymentTable.State.PENDING,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = stripeRequiresActionData()
+    )
+
+    InAppPaymentsRepository.recoverAbandonedPayments()
+
+    assertThat(SignalDatabase.inAppPayments.getById(id)!!.state).isEqualTo(InAppPaymentTable.State.PENDING)
+    verify(exactly = 0) { AppDependencies.jobManager.add(any()) }
+  }
+
+  // endregion
+
+  private fun insertRequiresAction(type: InAppPaymentType, data: InAppPaymentData): InAppPaymentTable.InAppPaymentId {
+    return SignalDatabase.inAppPayments.insert(
+      type = type,
+      state = InAppPaymentTable.State.REQUIRES_ACTION,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = data
+    )
+  }
+
+  private fun stripeRequiresActionData(): InAppPaymentData {
+    return InAppPaymentData(
+      amount = euroAmount,
+      paymentMethodType = InAppPaymentData.PaymentMethodType.IDEAL,
+      stripeRequiresAction = InAppPaymentData.StripeRequiresActionState(
+        uri = "https://example.com",
+        returnUri = "sgnlpay://3DS",
+        paymentMethodId = "pm_test",
+        stripeIntentId = STRIPE_INTENT_ID,
+        stripeClientSecret = STRIPE_CLIENT_SECRET
+      )
+    )
   }
 
   private fun insertPendingRecurringDonation(paymentMethodType: InAppPaymentData.PaymentMethodType) {

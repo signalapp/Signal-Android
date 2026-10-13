@@ -232,6 +232,14 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .readToList { InAppPayment.deserialize(it) }
   }
 
+  fun getAllRequiresAction(): List<InAppPayment> {
+    return readableDatabase.select()
+      .from(TABLE_NAME)
+      .where("$STATE = ?", State.serialize(State.REQUIRES_ACTION))
+      .run()
+      .readToList { InAppPayment.deserialize(it) }
+  }
+
   /**
    * Retrieves all InAppPayment objects for donations that have been marked NOTIFIED = 0, and then marks them
    * all as notified.

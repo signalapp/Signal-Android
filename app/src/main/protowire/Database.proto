@@ -366,6 +366,7 @@ message InAppPaymentData {
         string stripeIntentId      = 1;
         string stripeClientSecret  = 2;
         bool   checkedVerification = 3;
+        uint64 enteredAt           = 4;
     }
 
     message RedemptionState {
