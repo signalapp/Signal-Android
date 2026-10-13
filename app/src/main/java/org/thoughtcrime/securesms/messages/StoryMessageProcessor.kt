@@ -99,8 +99,10 @@ object StoryMessageProcessor {
     }
 
     if (insertResult != null) {
-      Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, RemoteConfig.storiesAutoDownloadMaximum)
-      AppDependencies.expireStoriesManager.scheduleIfNecessary()
+      SignalDatabase.runPostSuccessfulTransaction("story-download-${threadRecipient.id}") {
+        Stories.enqueueNextStoriesForDownload(threadRecipient.id, false, RemoteConfig.storiesAutoDownloadMaximum)
+        AppDependencies.expireStoriesManager.scheduleIfNecessary()
+      }
     }
   }
 
