@@ -6,13 +6,13 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
+import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicConversationSettingsTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
-open class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettingsFragment.TransitionCallback {
+open class ConversationSettingsActivity : NavGraphHostActivity(), ConversationSettingsFragment.TransitionCallback {
 
   override val dynamicTheme: DynamicTheme = DynamicConversationSettingsTheme()
 

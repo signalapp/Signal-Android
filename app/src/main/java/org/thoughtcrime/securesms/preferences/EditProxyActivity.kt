@@ -27,7 +27,7 @@ class EditProxyActivity : BaseActivity() {
     dynamicTheme.onCreate(this)
 
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.dsl_settings_activity)
+    setContentView(R.layout.nav_graph_host_activity)
 
     if (savedInstanceState == null) {
       val fragment = NavHostFragment.create(R.navigation.edit_proxy)

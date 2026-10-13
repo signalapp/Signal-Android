@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.settings
+package org.thoughtcrime.securesms.components
 
 import android.content.res.Configuration
 import android.os.Build
@@ -17,10 +17,9 @@ import org.thoughtcrime.securesms.util.DynamicTheme
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * The DSL API can be completely replaced by compose.
- * See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API"
+ * Hosts a [NavHostFragment] for the nav graph and start bundle passed via [ARG_NAV_GRAPH] and [ARG_START_BUNDLE].
  */
-open class DSLSettingsActivity : PassphraseRequiredActivity() {
+open class NavGraphHostActivity : PassphraseRequiredActivity() {
 
   protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
 
@@ -30,7 +29,7 @@ open class DSLSettingsActivity : PassphraseRequiredActivity() {
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     enableSettingsEdgeToEdge()
 
-    setContentView(R.layout.dsl_settings_activity)
+    setContentView(R.layout.nav_graph_host_activity)
 
     if (savedInstanceState == null) {
       val navGraphId = resolveNavGraphId()

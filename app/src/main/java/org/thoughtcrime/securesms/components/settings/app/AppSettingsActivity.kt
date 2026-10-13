@@ -13,7 +13,7 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
+import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
@@ -30,7 +30,7 @@ private const val START_ROUTE = "app.settings.args.START_ROUTE"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
 private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
+class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
 
   private val TAG = Log.tag(AppSettingsActivity::class)
 
