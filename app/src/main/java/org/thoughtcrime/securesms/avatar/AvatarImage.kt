@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.avatar
 
+import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
@@ -68,6 +69,7 @@ fun AvatarImage(
     AndroidView(
       factory = {
         AvatarImageView(context).apply {
+          layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
           initialize(context, null)
           this.contentDescription = contentDescription
         }
