@@ -24,9 +24,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.split.LocalDeferredEnter
+import org.signal.core.ui.compose.split.deferredEnterMetadata
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.thoughtcrime.securesms.MainNavigator
@@ -44,14 +45,11 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment
 /**
  * Registers the routes available in the chats tab of the main screen.
  */
-fun EntryProviderScope<NavKey>.registerChatsTabDetailRoutes(
-  transitionState: ConversationTransitionState
-) {
+fun EntryProviderScope<NavKey>.registerChatsTabDetailRoutes() {
   detailEntry<MainDetailRoute.Conversation>(
-    // Since we can't do delayed entry transitions yet, we disable this one and fake our own with the transition state.
-    metadata = TransitionSpecs.suppressEnterMetadata
+    metadata = deferredEnterMetadata()
   ) { route ->
-    ConversationEntry(route, transitionState)
+    ConversationEntry(route)
   }
 
   detailEntry<MainDetailRoute.Chats.MessageDetails> { route ->
@@ -90,40 +88,36 @@ fun ArchiveListPane(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ConversationEntry(
-  route: MainDetailRoute.Conversation,
-  transitionState: ConversationTransitionState
-) {
+private fun ConversationEntry(route: MainDetailRoute.Conversation) {
   val context = LocalContext.current
   val navigatorProvider = context as? MainNavigator.NavigatorProvider
+  val deferredEnter = LocalDeferredEnter.current
   val fragmentState = key(route) { rememberFragmentState() }
   val arguments = requireNotNull(ConversationIntents.createBuilderSync(context, route.conversationArgs).build().extras) {
     "Handed null Conversation intent arguments."
   }
 
-  val fragmentContentReady = remember { MutableStateFlow(false) }
   val backPressedState = remember { FragmentBackPressedState() }
   FragmentBackHandler(backPressedState)
 
-  ConversationLoadingMask(
-    transitionState = transitionState,
-    contentReady = fragmentContentReady,
-    onFirstRender = { navigatorProvider?.onFirstRender() }
-  ) { modifier ->
-    AndroidFragment(
-      clazz = ConversationFragment::class.java,
-      fragmentState = fragmentState,
-      arguments = arguments,
-      modifier = modifier
-        .background(MaterialTheme.colorScheme.background)
-        .fillMaxSize()
-    ) { fragment ->
-      backPressedState.attach(fragment)
+  LaunchedEffect(Unit) {
+    navigatorProvider?.onFirstRender()
+  }
 
-      fragment.viewLifecycleOwner.lifecycleScope.launch {
-        fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {
-          fragment.didFirstFrameRender.collectLatest { fragmentContentReady.value = it }
-        }
+  AndroidFragment(
+    clazz = ConversationFragment::class.java,
+    fragmentState = fragmentState,
+    arguments = arguments,
+    modifier = Modifier
+      .background(MaterialTheme.colorScheme.background)
+      .fillMaxSize()
+  ) { fragment ->
+    backPressedState.attach(fragment)
+
+    fragment.viewLifecycleOwner.lifecycleScope.launch {
+      fragment.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        fragment.didFirstFrameRender.first { it }
+        deferredEnter.start()
       }
     }
   }

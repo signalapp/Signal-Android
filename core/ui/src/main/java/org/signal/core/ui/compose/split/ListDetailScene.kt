@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose.split
 
+import androidx.compose.animation.EnterExitState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -43,6 +44,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
+import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import org.signal.core.ui.R
 import kotlin.math.max
 
@@ -201,10 +203,15 @@ private fun Modifier.minContentWidth(minWidth: Dp): Modifier {
  * Renders [content] wrapped in the list pane chrome, if any has been provided.
  */
 @Composable
-private fun ListPaneContent(content: @Composable () -> Unit) {
+internal fun ListPaneContent(content: @Composable () -> Unit) {
   val chrome = LocalListPaneChrome.current
 
-  if (chrome != null) {
+  // A scene being left for a deferred enter has already handed its list to that scene, and lets go of the chrome
+  // as well so that it moves across with the list rather than being composed afresh.
+  val isHandingOff = LocalPendingDeferredEnter.current != null &&
+    LocalNavAnimatedContentScope.current.transition.targetState == EnterExitState.PostExit
+
+  if (chrome != null && !isHandingOff) {
     chrome(content)
   } else {
     content()
@@ -272,6 +279,15 @@ internal class ListDetailSceneStrategy(private val isSplitPane: Boolean) : Scene
 
     if (!isSplitPane) {
       val isList = top.isListPane
+
+      if (!isList && top.isDeferredEnter && entries.size > 1) {
+        return DeferredEnterScene(
+          key = top.contentKey,
+          previousEntries = entries.dropLast(1),
+          beneathEntry = entries[entries.size - 2],
+          entry = top
+        )
+      }
 
       return SinglePaneScene(
         key = if (isList) LIST_SCENE_KEY else top.contentKey,

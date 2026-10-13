@@ -44,7 +44,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -110,7 +109,6 @@ import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.calls.quality.CallQuality
 import org.thoughtcrime.securesms.calls.quality.CallQualityBottomSheetFragment
-import org.thoughtcrime.securesms.chats.ConversationTransitionState
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
 import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSheet
@@ -440,17 +438,10 @@ class MainActivity :
           }
         }
 
-        val convoTransitionState = ConversationTransitionState.remember(isSplitPane)
-
-        DisposableEffect(convoTransitionState) {
-          mainNavigationViewModel.setChatListSnapshotCaptureProvider { convoTransitionState.writeGraphicsLayerToBitmap() }
-          onDispose { mainNavigationViewModel.setChatListSnapshotCaptureProvider(null) }
-        }
-
         val paneAnchor by mainNavigationViewModel.paneAnchor.collectAsStateWithLifecycle()
         val hasDetailContent by mainNavigationViewModel.hasDetailContent.collectAsStateWithLifecycle()
 
-        val tabEntries = rememberDecoratedDetailEntries(mainNavigationViewModel, convoTransitionState, isSplitPane)
+        val tabEntries = rememberDecoratedDetailEntries(mainNavigationViewModel, isSplitPane)
 
         val paneLayout = rememberMainPaneLayout(
           contentLayoutData = contentLayoutData,
@@ -480,8 +471,7 @@ class MainActivity :
                 modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
               )
             }
-          },
-          modifier = convoTransitionState.writeContentToGraphicsLayer()
+          }
         ) { paddingValues ->
           ListDetailNavDisplay(
             entries = tabEntries,

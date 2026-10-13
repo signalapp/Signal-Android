@@ -72,8 +72,6 @@ class MainNavigationViewModel(
 
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
-  private var captureChatListSnapshot: (suspend () -> Unit)? = null
-
   /**
    * The stacks behind the main window, one per tab. The archive gets no stack of its own: it is a list
    * pushed onto the chats stack, so that opening it keeps whatever chat was open beside it.
@@ -173,11 +171,6 @@ class MainNavigationViewModel(
     }
   }
 
-  /** Set from the MainActivity composition, and cleared when it is disposed. */
-  fun setChatListSnapshotCaptureProvider(capture: (suspend () -> Unit)?) {
-    captureChatListSnapshot = capture
-  }
-
   /**
    * Clicking the tab already displayed reveals its list and tells that tab's screen about the click —
    * scrolling to the top, and the like — rather than navigating anywhere.
@@ -238,15 +231,7 @@ class MainNavigationViewModel(
   }
 
   private suspend fun goToConversation(location: MainDetailRoute.Conversation) {
-    val captureSnapshot = captureChatListSnapshot
-
-    if (captureSnapshot == null) {
-      // share intent or process restore - there's no chat-list snapshot to capture and no need to preload a wallpaper
-      pushChatsDetailLocation(location)
-    } else {
-      captureSnapshot()
-      pushChatsDetailLocation(location.withPreloadedWallpaper())
-    }
+    pushChatsDetailLocation(location.withPreloadedWallpaper())
   }
 
   private fun pushChatsDetailLocation(location: MainDetailRoute) {
