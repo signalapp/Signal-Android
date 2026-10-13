@@ -91,7 +91,7 @@ class StoryViewerPageViewModel(
           state.copy(
             isReady = true,
             posts = posts,
-            replyState = resolveSwipeToReplyState(state, startIndex),
+            replyState = resolveSwipeToReplyState(state.copy(posts = posts), startIndex),
             selectedPostIndex = startIndex,
             isDisplayingInitialState = isDisplayingInitialState
           )

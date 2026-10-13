@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.net.ConnectivityState
 import org.thoughtcrime.securesms.net.InternetConnectivityMonitor
 import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.Environment
@@ -98,8 +99,6 @@ class IncomingMessageObserver(
       get() = if (censored) 10.seconds.inWholeMilliseconds else 2.minutes.inWholeMilliseconds
 
     private val INSTANCE_COUNT = AtomicInteger(0)
-
-    const val FOREGROUND_ID = 313399
 
     private val censored: Boolean
       get() = AppDependencies.signalServiceNetworkAccess.isCensored()
@@ -751,7 +750,7 @@ class IncomingMessageObserver(
    */
   class ForegroundService : SafeForegroundService() {
     override val tag: String = TAG
-    override val notificationId: Int = FOREGROUND_ID
+    override val notificationId: Int = NotificationIds.INCOMING_MESSAGE_OBSERVER
 
     override fun getForegroundNotification(intent: Intent): Notification {
       return NotificationCompat.Builder(applicationContext, NotificationChannels.getInstance().BACKGROUND)

@@ -330,7 +330,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 }
 
 private fun StatusBarNotification.isMessageNotification(): Boolean {
-  return NotificationIds.isMessageNotificationId(id)
+  return NotificationCancellationHelper.isSingleThreadNotification(this)
 }
 
 private fun NotificationManager.getDisplayedNotificationIds(): Result<Set<Int>> {

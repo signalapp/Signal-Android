@@ -184,11 +184,24 @@ class StoryViewerPageViewModelTest {
     testSubscriber.assertValueAt(0) { it.selectedPostIndex == -1 }
   }
 
-  private fun createTestSubject(isJumpForwardToUnviewed: Boolean = false): StoryViewerPageViewModel {
+  @Test
+  fun `Given an initial story, when I initialize, then I expect replyState to be resolved for that story`() {
+    val storyPosts = createStoryPosts(3)
+    every { repository.getStoryPostsFor(any(), any(), any(), any()) } returns Observable.just(storyPosts)
+
+    val testSubject = createTestSubject(initialStoryId = 1L)
+    testScheduler.triggerActions()
+
+    val testSubscriber = testSubject.state.test()
+
+    testSubscriber.assertValueAt(0) { it.isDisplayingInitialState && it.selectedPostIndex == 0 && it.replyState == StoryViewerPageState.ReplyState.PRIVATE }
+  }
+
+  private fun createTestSubject(isJumpForwardToUnviewed: Boolean = false, initialStoryId: Long = -1L): StoryViewerPageViewModel {
     return StoryViewerPageViewModel(
       StoryViewerPageArgs(
         recipientId = RecipientId.from(1),
-        initialStoryId = -1L,
+        initialStoryId = initialStoryId,
         isOutgoingOnly = false,
         isJumpForwardToUnviewed = isJumpForwardToUnviewed,
         source = StoryViewerPageArgs.Source.UNKNOWN,

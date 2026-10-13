@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
 import org.thoughtcrime.securesms.service.webrtc.AndroidTelecomUtil;
@@ -32,8 +33,8 @@ import org.signal.core.util.DeviceProperties;
 
 public class CallNotificationBuilder {
 
-  public static final int WEBRTC_NOTIFICATION         = 313388;
-  public static final int WEBRTC_NOTIFICATION_RINGING = 313389;
+  public static final int WEBRTC_NOTIFICATION         = NotificationIds.WEBRTC_CALL;
+  public static final int WEBRTC_NOTIFICATION_RINGING = NotificationIds.WEBRTC_CALL_RINGING;
 
   public static final int TYPE_INCOMING_RINGING    = 1;
   public static final int TYPE_OUTGOING_RINGING    = 2;

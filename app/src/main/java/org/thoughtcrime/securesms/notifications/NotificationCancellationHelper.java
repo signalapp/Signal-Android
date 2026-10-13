@@ -104,7 +104,7 @@ public final class NotificationCancellationHelper {
   /**
    * @return whether this is a non-summary notification that is a member of the NOTIFICATION_GROUP group.
    */
-  private static boolean isSingleThreadNotification(@NonNull StatusBarNotification statusBarNotification) {
+  public static boolean isSingleThreadNotification(@NonNull StatusBarNotification statusBarNotification) {
     return statusBarNotification.getId() != NotificationIds.MESSAGE_SUMMARY &&
            Objects.equals(statusBarNotification.getNotification().getGroup(), DefaultMessageNotifier.NOTIFICATION_GROUP);
   }

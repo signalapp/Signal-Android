@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.ServiceUtil;
 
@@ -63,8 +64,6 @@ import java.util.concurrent.TimeUnit;
 public class KeyCachingService extends Service {
 
   private static final String TAG = Log.tag(KeyCachingService.class);
-
-  public static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = BuildConfig.APPLICATION_ID + ".ACCESS_SECRETS";
   public  static final String NEW_KEY_EVENT            = BuildConfig.APPLICATION_ID + ".service.action.NEW_KEY_EVENT";
@@ -279,7 +278,7 @@ public class KeyCachingService extends Service {
     stopForeground(true);
 
     try {
-      startForeground(SERVICE_RUNNING_ID, builder.build());
+      startForeground(NotificationIds.KEY_CACHING_SERVICE, builder.build());
     } catch (Exception e) {
       if (Build.VERSION.SDK_INT >= 31 && e instanceof ForegroundServiceStartNotAllowedException) {
         Log.w(TAG, "Not allowed to start foreground service.", e);
