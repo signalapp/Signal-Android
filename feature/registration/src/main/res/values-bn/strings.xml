@@ -243,19 +243,19 @@
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">ভুল পুনরুদ্ধার \'কি\'</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">নিশ্চিত করুন যে আপনি সেই একই ফোন নম্বর এবং 64-ক্যারেক্টারের পুনরুদ্ধার \'কি\' ব্যবহার করে নিবন্ধন করছেন, যা Signal ব্যাকআপ চালু করার সময় আপনি সংরক্ষণ করেছিলেন। এই \'কি\' ছাড়া ব্যাকআপ পুনর্বহাল করা যাবে না।</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
     <string name="EnterAepScreen__try_again">আবারো চেষ্টা করুন</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
-    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <string name="EnterAepScreen__try_another_way">অন্য কোনো উপায় ব্যবহার করুন</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
     <string name="EnterAepScreen__recovery_key_help">পুনরুদ্ধার \'কি\' সংক্রান্ত সাহায্য</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <string name="EnterAepScreen__verify_with_sms_code">SMS কোড দিয়ে যাচাই করবেন?</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <string name="EnterAepScreen__verify_with_sms_code_body">Signal-এর পাঠানো SMS কোড দিয়ে যাচাই করে আপনি আপনার অ্যাকাউন্টটি রেজিস্টার করতে পারেন। কোডটি দেওয়ার পর, আপনি আপনার পুনরুদ্ধার \'কি\' ব্যবহার করে ব্যাকআপটি পুনরায় পুনরুদ্ধার করার চেষ্টা করতে পারেন।</string>
     <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
-    <string name="EnterAepScreen__send_code">Send code</string>
+    <string name="EnterAepScreen__send_code">কোড পাঠান</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">পুনর্বহালের প্রস্তুতি চলছে…</string>
     <!-- Title shown while restore is in progress -->
@@ -667,7 +667,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginInfoScreen__no_password_manager_available">আপনার কোনো পাসওয়ার্ড ম্যানেজার সেট আপ করা নেই।</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">আপনার লগইন তথ্য কেবল এমন কোনো পাসওয়ার্ড ম্যানেজারে সংরক্ষণ করুন যেটি আপনার কাছে সুরক্ষিত বলে মনে হয়। কোন পাসওয়ার্ড ম্যানেজার আপনার জন্য সঠিক সে বিষয়ে Signal পরামর্শ দেয় না।</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">ম্যানুয়ালি সেভ করুন</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
@@ -819,5 +819,5 @@
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">বাতিল করুন</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">আপনার পাস-কি সংক্রান্ত কোনো সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন অথবা অন্য কোনো পদ্ধতি বেছে নিন।</string>
 </resources>

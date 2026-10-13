@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Nie masz skonfigurowanego menedżera haseł.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Przechowuj dane logowania tylko w menedżerze haseł, który uważasz za bezpieczny i godny zaufania. Signal nie rekomenduje konkretnych rozwiązań w tym zakresie – decyzja należy do Ciebie.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Nie udało się zapisać pliku PDF. Spróbuj ponownie.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

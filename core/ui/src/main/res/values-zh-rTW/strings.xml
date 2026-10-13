@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">關閉</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">新增至「最愛」</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">從「最愛」中移除</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">要從「最愛」中移除嗎？</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">若無連結或貼圖訊息，你將無法再次傳送或將其新增至「最愛」。</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">移除</string>
 </resources>

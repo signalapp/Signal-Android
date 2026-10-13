@@ -2528,9 +2528,9 @@
     <!-- Button on a shared contact card that opens a chat with that contact. It can share a row with other buttons, so a short label is preferred -->
     <string name="SharedContactView_message_button">សារ</string>
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
-    <string name="SharedContactView_add_to_group">បន្ថែមចូលក្រុម</string>
+    <string name="SharedContactView_add_to_group">បញ្ចូលក្នុងក្រុម</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">បញ្ចូល %1$s ទៅក្នុង “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2680,15 +2680,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">មើលកញ្ចប់</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">ស្ទីកគ័រត្រូវបានបញ្ចូលទៅក្នុងបញ្ជីសំណព្វ</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">អ្នកអាចបញ្ចូលបានតែ %1$d ស្ទីកគ័រប៉ុណ្ណោះទៅក្នុងបញ្ជីសំណព្វ</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">បញ្ហាមិនស្គាល់។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">ស្ទីកគ័រត្រូវបានដកចេញពីបញ្ជីសំណព្វ</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">ចុចឱ្យជាប់លើស្ទីកគ័រដើម្បីបញ្ចូលទៅក្នុងបញ្ជីសំណព្វ</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">រក្សាទុក</string>
@@ -5460,13 +5460,13 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">ក្លាយជា Sustainer​ ម្នាក់</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">រូបតំណាងអារម្មណ៍</string>
+    <string name="KeyboardPagerFragment_emoji">Emoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">បើកការស្វែងរករូបតំណាងអារម្មណ៍</string>
     <string name="KeyboardPagerFragment_open_sticker_search">បើកការស្វែងរកស្ទីកក័រ</string>
     <string name="KeyboardPagerFragment_open_gif_search">បើកការស្វែងរករូបមានចលនា</string>
     <string name="KeyboardPagerFragment_stickers">ស្ទីកគ័រ</string>
     <string name="KeyboardPagerFragment_backspace">ផ្នែកខាងក្រោយ</string>
-    <string name="KeyboardPagerFragment_gifs">Gifs</string>
+    <string name="KeyboardPagerFragment_gifs">រូបមានចលនា</string>
     <string name="KeyboardPagerFragment_search_emoji">ស្វែងរករូបតំណាងអារម្មណ៍</string>
     <string name="KeyboardPagerfragment_back_to_emoji">ត្រឡប់ទៅកាន់រូបតំណាងអារម្មណ៍</string>
     <string name="KeyboardPagerfragment_clear_search_entry">សម្អាតការស្វែងរក</string>
@@ -6761,7 +6761,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">កែលម្អការកំណត់ពេលបម្រុងទុក</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">ផ្តល់ការអនុញ្ញាត \"សំឡេងរោទ៍\" ដើម្បីកែលម្អការបម្រុងទុកប្រចាំថ្ងៃដោយស្វ័យប្រវត្តិ។</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->

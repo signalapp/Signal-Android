@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Khóa đăng nhập</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Sử dụng vân tay, khuôn mặt hoặc khóa màn hình</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Khóa đăng nhập</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Phương thức xác thực hai yếu tố</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Đã thêm %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Bạn sẽ không thể sử dụng ứng dụng này để lấy mã xác minh dùng một lần khi đăng nhập.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Xóa khóa truy cập?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Bạn sẽ không thể sử dụng khóa truy cập này để đăng nhập.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Xóa phương thức xác thực hai yếu tố?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Bạn sẽ không thể sử dụng phương thức này để đăng nhập.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Đã xóa phương thức xác thực hai yếu tố</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Không thể xóa phương thức xác thực hai yếu tố. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Đã xóa khóa truy cập</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Không thể xóa khóa truy cập. Kiểm tra kết nối của bạn và thử lại.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Thiết lập một công cụ quản lý mật khẩu hỗ trợ khóa truy cập trên thiết bị này, sau đó thử lại.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Không thể tạo khóa truy cập. Thử lại.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Mở khóa để xóa phương thức xác thực hai yếu tố</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,29 +190,29 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Hãy chọn tên riêng biệt cho ứng dụng xác thực này để giúp bạn nhận biết sau này.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Chọn một tên riêng cho phương thức xác thực hai yếu tố này.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Chọn một tên riêng cho phương thức xác thực hai yếu tố này để dễ nhận biết sau này.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Chọn một tên riêng cho khóa truy cập này.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Chọn một tên riêng cho khóa truy cập này để dễ nhận biết sau này.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Tên</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">Tiếp</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Thiết lập ứng dụng xác thực</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Đã thiết lập ứng dụng xác thực</string>
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Đã đổi tên ứng dụng xác thực</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Đã thiết lập khóa truy cập</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Đã đổi tên khóa truy cập</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Đã thiết lập phương thức xác thực hai yếu tố</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Đã đổi tên phương thức xác thực hai yếu tố</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Không thể lưu tên. Kiểm tra kết nối của bạn và thử lại.</string>
 
@@ -286,9 +286,9 @@
     <string name="ChatsSettingsFragment__keyboard">Bàn phím</string>
     <string name="ChatsSettingsFragment__send_with_enter">Gửi với nút enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Tự động phát nhãn dán và ảnh GIF</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Khi bật, nhãn dán và ảnh GIF sẽ tự động phát</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Mở khóa để xuất lịch sử trò chuyện</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Ưu tiên sử dụng ảnh liên hệ từ danh bạ của bạn nếu có</string>

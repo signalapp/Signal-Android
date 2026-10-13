@@ -886,7 +886,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Toets jou wagwoordfrase en verifieer dat dit ooreenkom</string>
     <string name="BackupsPreferenceFragment__turn_on">Skakel rugsteun aan</string>
     <string name="BackupsPreferenceFragment__turn_off">Skakel af</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan \'n rugsteunlêer op. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan 'n rugsteunlêer op. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Vind meer uit</string>
     <string name="BackupsPreferenceFragment__in_progress">Aan die gang…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -2621,7 +2621,7 @@
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">Voeg toe by groep</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">Voeg “%1$s” by \"%2$s\" by?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2776,15 +2776,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Besigtig pakket</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">Plakker by Gunstelinge gevoeg</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">Jy kan slegs %1$d plakkers by Gunstelinge byvoeg</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">Onbekende fout. Probeer later weer.</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">Plakker uit Gunstelinge verwyder</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Druk op en hou \'n plakker om dit by Gunstelinge by te voeg</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Stoor</string>
@@ -3340,7 +3340,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benodig Kontaktoestemming om jou kontakte te wys, maar dit is permanent geweier. Gaan asseblief na die toepassinginstelling-kieslys, kies \"Toestemmings\" en aktiveer \"Kontakte\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout met herwinning van kontakte, gaan jou netwerkverbinding na</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam nie gevind nie</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie \'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie 'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jy hoef nie jouself by die groep te voeg nie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum groepgrootte bereik.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-groepe kan \'n maksimum van %1$s lede hê.</string>
@@ -6935,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Verbeter skedulering van rugsteun</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Laat die \"alarms\"-toestemming toe ten einde outomatiese daaglikse rugsteun te verbeter.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -7612,7 +7612,7 @@
     <string name="InactivePrimary__got_it">Ek verstaan</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">Jou \"Optimaliseer Signal-stoorruimte\" is aangeskakel. As jy alle media in jou rugsteun op die toestel wil insluit, skakel hierdie instelling af.</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->

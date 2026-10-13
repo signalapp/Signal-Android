@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Nincs beállítva jelszókezelő.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Csak olyan jelszókezelőben tárold a hitelesítő adataid, amelynek biztonságában megbízol. A Signal nem tesz javaslatot arra, hogy melyik jelszókezelő a megfelelő számodra.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">A PDF mentése sikertelen. Kérjük, próbáld újra!</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

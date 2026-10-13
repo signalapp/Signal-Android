@@ -243,19 +243,19 @@
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">Λανθασμένο κλειδί ανάκτησης</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Βεβαιώσου ότι εγγράφεσαι με τον ίδιο αριθμό τηλεφώνου και κλειδί ανάκτησης 64 χαρακτήρων που αποθήκευσες κατά την ενεργοποίηση των αντιγράφων ασφαλείας Signal. Τα Αντίγραφα ασφαλείας δεν μπορούν να ανακτηθούν χωρίς αυτό το κλειδί.</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
     <string name="EnterAepScreen__try_again">Ξαναπροσπάθησε</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
-    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <string name="EnterAepScreen__try_another_way">Δοκίμασε άλλον τρόπο</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
     <string name="EnterAepScreen__recovery_key_help">Βοήθεια σχετικά με το κλειδί ανάκτησης</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <string name="EnterAepScreen__verify_with_sms_code">Επιβεβαίωση με κωδικό SMS;</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <string name="EnterAepScreen__verify_with_sms_code_body">Μπορείς να ενεργοποιήσεις τον λογαριασμό σου επαληθεύοντας τον μέσω ενός κωδικού SMS που θα σου στείλει η εφαρμογή Signal. Αφού εισαγάγεις τον κωδικό, μπορείς να δοκιμάσεις ξανά να επαναφέρεις το αντίγραφο ασφαλείας σου χρησιμοποιώντας το κλειδί ανάκτησης.</string>
     <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
-    <string name="EnterAepScreen__send_code">Send code</string>
+    <string name="EnterAepScreen__send_code">Αποστολή κωδικού</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Προετοιμασία για επαναφορά…</string>
     <!-- Title shown while restore is in progress -->
@@ -667,7 +667,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginInfoScreen__no_password_manager_available">Δεν έχεις ρυθμίσει κάποιο πρόγραμμα διαχείρισης κωδικών πρόσβασης.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">Αποθήκευσε τα διαπιστευτήριά σου μόνο σε κάποιο διαχειριστή κωδικών πρόσβασης που εμπιστεύεσαι ότι είναι ασφαλής. Το Signal δεν κάνει συστάσεις σχετικά με το ποιος διαχειριστής κωδικών πρόσβασης είναι κατάλληλος για σένα.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Χειροκίνητη αποθήκευση</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
@@ -819,5 +819,5 @@
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">Ακύρωση</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Κάτι πήγε στραβά με το κλειδί πρόσβασής σου. Δοκίμασε ξανά ή επίλεξε διαφορετική μέθοδο.</string>
 </resources>

@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Cod de acces</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Folosește amprenta digitală, recunoașterea facială sau blocarea ecranului</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Cod de acces</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Metodă de autentificare cu doi factori</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Adăugare %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Nu vei putea să folosești această aplicație pentru coduri de verificare unice când te conectezi.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Elimini codul de acces?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Nu vei putea să folosești acest cod de acces când te conectezi.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Elimini metoda de autentificare cu doi factori?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Nu vei putea să folosești această metodă când te conectezi.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Metodă cu doi factori eliminată</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Nu s-a putut elimina metoda de autentificare cu doi factori. Verifică-ți conexiunea și încearcă din nou.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Cod de acces eliminat</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Nu s-a putut elimina codul de acces. Verifică-ți conexiunea și încearcă din nou.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Configurează un manager de parole care acceptă cheile de acces pe acest dispozitiv, apoi încearcă din nou.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Nu s-a putut crea un cod de acces. Încearcă din nou.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Deblochează pentru a înlătura metoda cu doi factori</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Alege un nume unic pentru această aplicație de autentificare care să te ajute să o identifici mai târziu.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Alege un nume unic pentru această metodă de autentificare cu doi factori.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Alege un nume unic pentru această metodă de autentificare în doi pași, pentru a o putea identifica mai târziu.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Alege un nume unic pentru acest cod de acces.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Alege un nume unic pentru această parolă, care să te ajute să o identifici ulterior.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Nume</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Aplicația de autentificare a fost redenumită</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Cod de acces stabilit</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Cod de acces redenumit</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Metodă de autentificare cu doi factori stabilită</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Metodă de autentificare cu doi factori redenumită</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Nu s-a putut salva numele. Verifică-ți conexiunea și încearcă din nou.</string>
 
@@ -288,9 +288,9 @@
     <string name="ChatsSettingsFragment__keyboard">Tastatură</string>
     <string name="ChatsSettingsFragment__send_with_enter">Trimite cu enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Abțibilduri de redare automată și GIF-uri</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Când sunt activate, abțibildurile și GIF-urile vor rula automat</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Deblochează pentru a exporta istoricul conversațiilor</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prefer fotografiile contactelor din agendă dacă sunt disponibile</string>

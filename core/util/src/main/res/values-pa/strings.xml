@@ -13,6 +13,6 @@
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
     <string name="Invite__lets_switch_to_signal">ਆਓ Signal ਨੂੰ ਅਪਣਾਈਏ: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="Invite__no_app_to_share_to">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸਾਂਝੀਆਂ ਕਰਨ ਲਈ ਕੋਈ ਐਪਸ ਨਹੀਂ ਹਨ|</string>
+    <string name="Invite__no_app_to_share_to">ਇੰਝ ਜਾਪਦਾ ਹੈ ਕਿ ਸਾਂਝਾ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਐਪ ਨਹੀਂ ਹੈ।</string>
 
 </resources>

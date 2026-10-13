@@ -243,19 +243,19 @@
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">恢复密钥不正确</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">请确保您在注册时使用的是相同的手机号码以及您保存的用于启用 Signal 备份的 64 位恢复密钥。如果没有此密钥，备份将无法恢复。</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
     <string name="EnterAepScreen__try_again">重试</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
-    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <string name="EnterAepScreen__try_another_way">使用其他方式</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
     <string name="EnterAepScreen__recovery_key_help">恢复密钥帮助</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <string name="EnterAepScreen__verify_with_sms_code">要通过短信验证码进行验证吗？</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <string name="EnterAepScreen__verify_with_sms_code_body">您可以通过 Signal 发送的短信验证码注册账户。输入验证码后，您可以再次尝试使用恢复密钥还原备份。</string>
     <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
-    <string name="EnterAepScreen__send_code">Send code</string>
+    <string name="EnterAepScreen__send_code">发送验证码</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">正在准备恢复…</string>
     <!-- Title shown while restore is in progress -->
@@ -665,7 +665,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginInfoScreen__no_password_manager_available">您尚未设置密码管理器。</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">请仅将您的凭证储存到您信任的安全密码管理器中。Signal 不会推荐哪款密码管理器适合您。</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">手动保存</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
@@ -817,5 +817,5 @@
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">取消</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">您的通行密钥出错了。请重试或选择其他方式。</string>
 </resources>

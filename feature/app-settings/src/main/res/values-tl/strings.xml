@@ -61,7 +61,7 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Passkey</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Gamitin ang fingerprint mo, mukha, o screen lock</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Passkey</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Hindi mo na magagamit ang app na ito para sa one-time verification codes kapag nag-sign in ka.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Alisin ang passkey?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Hindi mo na magagamit ang passkey na ito kapag nag-sign in ka.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Alisin ang two-factor method?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Hindi mo na magagamit ang method na ito kapag nag-sign in ka.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Inalis ang two-factor method</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Hindi maalis ang two-factor method. I-check ang connection mo at subukan ulit.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Inalis ang passkey</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Hindi maalis ang passkey. I-check ang connection mo at subukan ulit.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Mag-set up ng password manager na sinusuportahan ang passkeys sa device na ito, at subukan ulit.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Hindi magawa ang passkey. Subukan ulit.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">I-unlock para alisin ang two-factor method</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Pumili ng unique na pangalan para sa authenticator app na ito para madali itong matukoy sa susunod.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Pumili ng unique na pangalan para sa two-factor method na ito.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Pumili ng unique na pangalan para sa two-factor method na ito upang matulungan kang matukoy ito sa susunod.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Pumili ng unique na pangalan para sa passkey na ito.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Pumili ng unique na pangalan para sa passkey na ito upang matulungan kang matukoy ito sa susunod.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Pangalan</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Ni-rename ang authenticator app</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Na-set up ang passkey</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Ni-rename ang passkey</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Na-set up ang two-factor method</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Ni-rename ang two-factor method</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Hindi ma-save ang pangalan. I-check ang connection mo at subukan ulit.</string>
 
@@ -258,9 +258,9 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invite friends</string>
+    <string name="InviteScreen__invite_friends">I-invite ang friends</string>
     <!-- Share button on invite screen to open the system share sheet -->
-    <string name="InviteScreen__share">Ibahagi</string>
+    <string name="InviteScreen__share">I-share</string>
 
     <!-- Shared with the registration screens -->
     <string name="RegistrationActivity_select_your_country">Piliin ang iyong bansa</string>
@@ -273,9 +273,9 @@
         <item quantity="other">%1$d folders</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Magdagdag ng chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Mag-add ng chat folder</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Magdagdag o mag-edit ng folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Mag-add o mag-edit ng folders</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
     <string name="ChatsSettingsFragment__authentication_failed">Failed ang authentication</string>
     <!-- Heading within chats settings for chat folders -->
@@ -287,9 +287,9 @@
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
     <string name="ChatsSettingsFragment__send_with_enter">Mag-send gamit ang enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">I-autoplay ang stickers at GIFs</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Kapag naka-on ito, automatic na magpe-play ang stickers at GIFs</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">I-unlock para ma-export ang chat history</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Piliin ang contact photo mula sa address book mo kung available ito</string>
@@ -297,21 +297,21 @@
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mananatili sa archive ang muted chats kahit may bagong message na dumating.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Panatilihing Naka-archive ang Muted Chats</string>
-    <string name="preferences__pref_use_address_book_photos">Piliin ang address book photos</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">I-retrieve ang link previews directly from websites for messages you send.</string>
-    <string name="preferences_advanced__use_system_emoji">Gamitin ang emoji ng sistema</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Panatilihing naka-archive ang Muted Chats</string>
+    <string name="preferences__pref_use_address_book_photos">Gamitin ang address book photos</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Direktang kuhanin sa websites ang link previews para sa pinadala mong messages.</string>
+    <string name="preferences_advanced__use_system_emoji">Gamitin ang sytstem emoji</string>
     <string name="preferences_chats__chats">Chats</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">MAG-INGAT!</string>
+    <string name="ChatExportDialogs__be_careful">MAG-INGAT</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
     <string name="ChatExportDialogs__be_careful_warning">MAG-INGAT!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
-    <string name="ChatExportDialogs__canceling_export">I-cancel ang pag-export…</string>
+    <string name="ChatExportDialogs__canceling_export">Kina-cancel ang pag-export…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_body">Pumili ng folder sa storage ng device mo kung saan ilalagay ang chat history mo.</string>
+    <string name="ChatExportDialogs__choose_a_folder_body">Pumili ng folder sa device storage mo kung saan ilalagay ang chat history mo.</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Pumili ng folder</string>
     <!-- Button that opens the system folder picker -->
@@ -323,7 +323,7 @@
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">I-export ang chat history?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">HUWAG i-share ang file na ito sa kahit na sino. Ise-save ang chat history mo sa device mo at maaari itong ma-access ng ibang apps depende sa permissions ng device mo. Ang pag-export ng kasama ang media ay magreresulta sa mas malaking file size.</string>
+    <string name="ChatExportDialogs__export_confirm_body">HUWAG i-share ang file na ito kahit kanino. Ise-save ang chat history mo sa device mo at maaari itong ma-access ng ibang apps depende sa permissions ng device mo. Magreresulta sa mas malaking file size ang pag-export ng kasama ang media.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">I-export kasama ang media</string>
     <!-- Button in the export confirmation dialog to export messages only -->
@@ -333,7 +333,7 @@
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
     <string name="BackupCreationProgressRow__exporting_media_d">Ine-export ang media: %1$d%%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
-    <string name="BackupCreationProgressRow__finalizing">Finalizing…</string>
+    <string name="BackupCreationProgressRow__finalizing">Fina-finalize…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
     <string name="BackupCreationProgressRow__preparing_backup">Hinahanda ang backup…</string>
     <!-- Progress text shown while the backup database is being processed -->
@@ -343,9 +343,9 @@
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
     <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Pinoproseso ang messages: %1$s ng %2$s (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__uploading_media_d">Inu-upload ang media: %1$d%%</string>
+    <string name="BackupCreationProgressRow__uploading_media_d">Ina-upload ang media: %1$d%%</string>
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">Mga update sa app</string>
+    <string name="preferences_app_updates__title">App updates</string>
 </resources>

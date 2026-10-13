@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">你沒有設定密碼管理。</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">只將憑證儲存在你信任的安全密碼管理器中。Signal 不會推薦最適合你的密碼管理器。</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">無法儲存 PDF。請重試。</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

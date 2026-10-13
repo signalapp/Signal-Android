@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Paseochair</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Úsáid do mhéarlorg, aghaidh nó glas scáileáin</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Paseochair</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Modh dhá fhachtóir</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Curtha leis %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Ní bheidh tú in ann an aip seo a úsáid le haghaidh cóid fíoraithe aonuaire nuair a shíníonn tú isteach.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Bain an phaseochair?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Ní bheidh tú in ann an phaseochair seo a úsáid nuair a shíníonn tú isteach.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Bain an modh dhá fhachtóir?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Ní bheidh tú in ann an modh seo a úsáid nuair a shíníonn tú isteach.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Modh dhá fhachtóir bainte</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Níorbh fhéidir an modh dhá fhachtóir a bhaint. Seiceáil do nasc agus triail arís.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Paseochair bainte</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Níorbh fhéidir an phaseochair a bhaint. Seiceáil do nasc agus triail arís.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Socraigh bainisteoir pasfhocal a thacaíonn le paseochracha ar an ngléas seo, ansin triail arís.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Níorbh fhéidir paseochair a chruthú. Triail arís.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Díghlasáil leis an bhfíordheimhniú dhá mhodh a bhaint</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Roghnaigh ainm uathúil don aip fíordheimhnitheora seo chun cabhrú leat í a aithint níos moille.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Roghnaigh ainm uathúil don mhodh dhá fhachtóir seo.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Roghnaigh ainm uathúil don mhodh dhá fhachtóir seo le cabhrú leat é a aithint níos moille.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Roghnaigh ainm uathúil don phaseochair seo.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Roghnaigh ainm uathúil don phaseochair seo le cabhrú leat í a aithint níos moille.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Ainm</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Aip fíordheimhnitheora athainmnithe</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Paseochair socraithe</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Paseochair athainmnithe</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Modh dhá fhachtóir socraithe</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Modh dhá fhachtóir athainmnithe</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Níorbh fhéidir an t-ainm a shábháil. Seiceáil do nasc agus triail arís.</string>
 
@@ -280,7 +280,7 @@
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
     <string name="ChatsSettingsFragment__add_edit_chat_folder">Cuir le fillteáin nó cuir in eagar iad</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">Theip ar Fhíordheimhniú</string>
+    <string name="ChatsSettingsFragment__authentication_failed">Theip ar fhíordheimhniú</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">Fillteáin comhráite</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
@@ -288,22 +288,22 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Easpórtáil cóip JSON mheaisín-inléite de do chomhráite uile. Ní easpórtálfar teachtaireachtaí sealadacha.</string>
     <string name="ChatsSettingsFragment__keyboard">An méarchlár</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Seol leis an eochair iontrála</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Seol leis an eochair Enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Uathsheinn greamáin agus GIFanna</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Agus é casta air, seinnfear greamáin agus GIFanna go huathoibríoch</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
-    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Díghlasáil le stair comhráite a easpórtáil</string>
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Díghlasáil leis an stair comhráite a easpórtáil</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Is fearr grianghraif na dteagmhálaithe ó do leabhar seoltaí agus iad ar fáil</string>
-    <string name="preferences__generate_link_previews">Gin réamhamharcanna ar naisc</string>
+    <string name="preferences__generate_link_previews">Gin réamhamhairc ar naisc</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Coinnigh comhráite balbhaithe sa chartlann</string>
     <string name="preferences__pref_use_address_book_photos">Is fearr grianghraif sa leabhar seoltaí</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Aisghabh réamhamharcanna ar naisc díreach ó láithreáin gréasáin do na teachtaireachtaí a sheolann tú.</string>
-    <string name="preferences_advanced__use_system_emoji">Bain feidhm as emoji an chórais</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Aisghabh réamhamhairc ar naisc díreach ó láithreáin gréasáin do na teachtaireachtaí a sheolann tú.</string>
+    <string name="preferences_advanced__use_system_emoji">Úsáid emoji an chórais</string>
     <string name="preferences_chats__chats">Comhráite</string>
 
     <!-- ChatExportDialogs -->
@@ -320,13 +320,13 @@
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Roghnaigh fillteán</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">maidir leis an áit a stórálann tú do chomhad easpórtála comhráite; ná comhroinn le haon duine é. Is féidir le haipeanna eile ar do ghléas é a rochtain ag brath ar cheadanna do ghléis.</string>
+    <string name="ChatExportDialogs__complete_body">maidir leis an áit a stórálann tú do chomhad easpórtála comhráite agus ná comhroinn le haon duine é. Is féidir le haipeanna eile ar do ghléas é a rochtain ag brath ar cheadanna do ghléis.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
     <string name="ChatExportDialogs__complete_title">Easpórtáil an chomhrá críochnaithe</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Easpórtáil an stair comhráite?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">NÁ comhroinn an comhad seo le haon duine. Sábhálfar do stair comhráite chuig do ghléas agus beidh aipeanna eile in ann í a rochtain ag brath ar cheadanna do ghléis. Beidh méid an chomhaid níos mó mar thoradh ar easpórtáil le meáin.</string>
+    <string name="ChatExportDialogs__export_confirm_body">NÁ comhroinn an comhad seo le haon duine. Sábhálfar do stair comhráite chuig do ghléas agus beidh aipeanna eile in ann rochtain a dhéanamh uirthi ag brath ar cheadanna do ghléis. Beidh méid an chomhaid níos mó mar thoradh ar easpórtáil le meáin.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">Easpórtáil le meáin</string>
     <!-- Button in the export confirmation dialog to export messages only -->
@@ -350,5 +350,5 @@
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">Cuir nuashonruithe leis</string>
+    <string name="preferences_app_updates__title">Nuashonruithe aipe</string>
 </resources>

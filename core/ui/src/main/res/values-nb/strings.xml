@@ -30,7 +30,7 @@
 
     <!-- DevicePinAuthEducationSheet -->
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Trykk på «Fortsett» og skriv inn koden til telefonen for å koble til. Ikke angi din Signal-PIN.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Trykk på «Fortsett», og skriv inn koden til telefonen for å bekrefte. Ikke angi din Signal-PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Fortsett</string>
 
@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">Lukk</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">Legg til som favoritt</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">Fjern som favoritt</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">Vil du fjerne det som favoritt?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Du kan verken legge det til eller sende det igjen uten en lenke eller en melding med klistremerket.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Fjern</string>
 </resources>

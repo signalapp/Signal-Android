@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Passkey</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Tumia alama ya kidole, uso au kipengele cha kufunga skrini</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Passkey</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Njia ya uthibitishaji wa hatua mbili</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Ameweka %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Hutaweza kutumia programu hii kwa codes za uthibitishaji wa mara moja utakapoingia katika akaunti.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Ondoa ufunguo wa siri?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Hutaweza kutumia ufunguo huu ukiingia katika akaunti.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Ondoa njia ya uthibitishaji wa hatua mbili?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Hutaweza kutumia njia hii ukiwa unaingia katika akaunti.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Umeondoa njia ya uthibitishaji wa hatua mbili</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Imeshindwa kuondoa njia ya uthibitishaji wa hatua mbili. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Umeondoa ufunguo wa siri</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Imeshindwa kuondoa ufunguo wa siri. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Weka kidhibiti cha manenosiri kinachotumia funguo za siri kwenye kifaa hiki, kisha jaribu again.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Imeshindwa kubuni ufunguo wa siri. Jaribu tena.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Fungua ili uondoe mbinu ya hatua mbili</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Chagua jina la kipekee kwa programu hii ya uthibitishaji ikusaidie kuitambua baadae.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Chagua jina la kipekee la njia hii ya uthibitishaji wa hatua mbili.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Chagua jina la kipekee la njia hii ya uthibitishaji wa hatua mbili ili likusaidie kuitambua baadae.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Chagua jina la kipekee la ufunguo huu wa siri.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Chagua jina la kipekee la ufunguo huu wa siri likusaidie kuitambua baadae.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Jina</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Umebadili jina la programu ya uthibitishaji</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Umeweka ufunguo wa siri</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Umebadili jina la ufunguo wa siri</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Umeweka njia ya uthibitishaji wa hatua mbili</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Umebadili jina la njia ya uthibitishaji wa hatua mbili</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Imeshindwa kuhifadhi jina. Angalia muunganisho wako wa mtandao kisha ujaribu tena.</string>
 
@@ -287,9 +287,9 @@
     <string name="ChatsSettingsFragment__keyboard">Kibodi</string>
     <string name="ChatsSettingsFragment__send_with_enter">Tuma kwa kubofya enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Vibandiko na GIFs zinazocheza kiotomatiki</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Vikiwashwa, vibandiko na GIFs vitacheza kiotomatiki</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Fungua ili uhamishe historia ya gumzo</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Unapendelea picha za wawasiliani kutoka kwenye kitabu chako cha anwani kama kinapatikana</string>

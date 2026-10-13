@@ -243,19 +243,19 @@
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">తప్పు రికవరీ కీ</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Signal బ్యాకప్‌లను ప్రారంభించేటప్పుడు మీరు సేవ్ చేసిన అదే ఫోన్ నెంబర్ మరియు 64-అక్షరాల రికవరీ కీతో మీరు నమోదు చేసుకుంటున్నారని నిర్ధారించుకోండి. ఈ కీ లేకుండా బ్యాకప్‌లను తిరిగి పొందడం సాధ్యం కాదు.</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
     <string name="EnterAepScreen__try_again">మళ్ళీ ప్రయత్నించండి</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
-    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <string name="EnterAepScreen__try_another_way">మరో పద్ధతిని ప్రయత్నించండి</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
     <string name="EnterAepScreen__recovery_key_help">రికవరీ కీ సహాయం</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <string name="EnterAepScreen__verify_with_sms_code">SMS కోడ్ తో ధృవీకరించాలా?</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <string name="EnterAepScreen__verify_with_sms_code_body">Signal పంపించే SMS కోడ్ ద్వారా ధృవీకరించుకొని మీ ఖాతా ను నమోదు చేసుకోవచ్చు. కోడ్ ను నమోదు చేసిన తర్వాత మీ రికవరీ కీతో మీ బ్యాకప్ ను మళ్ళీ పునరుద్ధరించుకోవడానికి ప్రయత్నించవచ్చు.</string>
     <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
-    <string name="EnterAepScreen__send_code">Send code</string>
+    <string name="EnterAepScreen__send_code">కోడ్ ను పంపండి</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">పునరుద్ధరణను సిద్ధం చేస్తోంది…</string>
     <!-- Title shown while restore is in progress -->
@@ -667,7 +667,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginInfoScreen__no_password_manager_available">మీరు ఒక పాస్‌వర్డ్ మేనేజర్‌ను సెటప్ చేయలేదు.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">సురక్షితమని మీరు నమ్మే పాస్‌వర్డ్ మేనేజర్‌లో మాత్రమే మీ లాగిన్ వివరాలను భద్రపరచండి. మీకు ఏ పాస్‌వర్డ్ మేనేజర్ సరైనదో Signal సిఫార్సు చేయదు.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">మాన్యువల్‌గా సేవ్ చేయండి</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
@@ -819,5 +819,5 @@
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">రద్దు చేయండి</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">మీ పాస్ కీ తో ఏదో సమస్య ఏర్పడింది. దయచేసి మళ్ళీ ప్రయత్నించండి లేదా మరొక పద్ధతిని ఉపయోగించండి.</string>
 </resources>

@@ -2621,7 +2621,7 @@
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">Ongeza kwenye kikundi</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">Weka %1$s kwa “%2$s”?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2776,15 +2776,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Tazama Kifurushi</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">Umeweka kibandiko kwenye Favorites</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">Unaweza kuweka vibandiko %1$d kwenye Favorites</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">Hitilafu isiyojulikana. Jaribu tena baadaye.</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">Umeondoa kibandiko kwenye Favorites</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Bonyeza na ushikilie kibandiko ili ukiweke kwenye Favorites</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Hifadhi</string>
@@ -5613,7 +5613,7 @@
     <string name="KeyboardPagerFragment_open_gif_search">Fungua utafutaji wa gif</string>
     <string name="KeyboardPagerFragment_stickers">Vibandiko</string>
     <string name="KeyboardPagerFragment_backspace">Nafasi ya kurudi nyuma</string>
-    <string name="KeyboardPagerFragment_gifs">Gif</string>
+    <string name="KeyboardPagerFragment_gifs">Gifs</string>
     <string name="KeyboardPagerFragment_search_emoji">Tafuta emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Rudi kwenye emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Futa maudhui uliyotafuta</string>
@@ -6935,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Boresha uwekaji ratiba wa nakala</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Ruhusu ruhusa za \"kengele\" ili uboreshe uwekaji nakala wa kiotomatiki.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->

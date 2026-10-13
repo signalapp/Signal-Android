@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">पासकी</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">अपने फ़िंगरप्रिंट, चेहरे या स्क्रीन लॉक का इस्तेमाल करें</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">पासकी</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">टू-फ़ैक्टर तरीका</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s को जोड़ा गया</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">साइन इन करते समय, आपको इस ऐप के ज़रिए एक बार के लिए इस्तेमाल होने वाले वेरिफ़िकेशन कोड नहीं मिल पाएंगे।</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">पासकी हटाना है?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">साइन इन करते समय, इस पासकी का इस्तेमाल मुमकिन नहीं है।</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">टू-फ़ैक्टर तरीका हटाना है?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">साइन इन करते समय, इस तरीके का इस्तेमाल मुमकिन नहीं है।</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">टू-फ़ैक्टर वाला तरीका हटाया गया</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">टू-फ़ैक्टर वाला तरीका हटाया नहीं जा सका। अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">पासकी हटाई गई</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">पासकी हटाई नहीं जा सकी। अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">इस डिवाइस पर ऐसा पासवर्ड मैनेजर सेटअप करें जो पासकी को सपोर्ट करता हो। इसके बाद, दोबारा कोशिश करें।</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">पासकी नहीं बन पाई। फिर से कोशिश करें।</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">टू-फ़ैक्टर तरीका हटाने के लिए अनलॉक करें</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,29 +190,29 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">इस ऑथेंटिकेटर ऐप के लिए एक यूनीक नाम चुनें, ताकि आप बाद में इसे पहचान सकें।</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">इस टू-फ़ैक्टर तरीके के लिए एक यूनीक नाम चुनें।</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">इस टू-फ़ैक्टर तरीके के लिए एक यूनीक नाम चुनें, ताकि आप बाद में इसे पहचान सकें।</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">इस पासकी के लिए एक यूनीक नाम चुनें।</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">इस पासकी के लिए एक यूनीक नाम चुनें, ताकि आप बाद में इसे पहचान सकें।</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">नाम</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">अगला</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">ऑथेंटिकेटर ऐप सेटअप करें</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">ऑथेंटिकेटर ऐप सेटअप किया गया</string>
     <!-- Toast shown after an authenticator app has been renamed -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">ऑथेंटिकेटर ऐप का नाम बदला गया</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">ऑथेंटिकेटर ऐप का नाम बदल गया है</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">पासकी सेटअप की गई</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">पासकी का नाम बदला गया</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">टू-फ़ैक्टर तरीका सेटअप किया गया</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">टू-फ़ैक्टर तरीके का नाम बदला गया</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">नाम सेव नहीं हो पाया। अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
 
@@ -283,13 +283,13 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">पुरानी चैट एक्सपोर्ट करें</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">अपनी सभी चैट्स की मशीन-रीडेबल JSON कॉपी एक्सपोर्ट करें। गायब होने वाले मैसेज एक्सपोर्ट नहीं किए जाएंगे।</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">अपनी सभी चैट की मशीन-रीडेबल JSON कॉपी एक्सपोर्ट करें। गायब होने वाले मैसेज एक्सपोर्ट नहीं किए जाएंगे।</string>
     <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
-    <string name="ChatsSettingsFragment__send_with_enter">एंटर दबाएं और भेजें</string>
+    <string name="ChatsSettingsFragment__send_with_enter">एंटर बटन दबाएं और भेजें</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">स्टिकर और GIF को ऑटो-प्ले करें</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">इसे चालू करने पर, स्टिकर और GIF ऑटोमैटिक ही चलने लगेंगे</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">पुरानी चैट एक्सपोर्ट करने के लिए अनलॉक करें</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध होने पर अपनी ऐड्रेस बुक वाली कॉन्टैक्ट फ़ोटो ही इस्तेमाल करें</string>
@@ -305,7 +305,7 @@
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">सावधानी बरतें</string>
+    <string name="ChatExportDialogs__be_careful">ध्यान रखें</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
     <string name="ChatExportDialogs__be_careful_warning">सावधानी बरतें!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
@@ -317,7 +317,7 @@
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">फ़ोल्डर चुनें</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">ध्यान रखें कि अपनी चैट एक्सपोर्ट फ़ाइल संभालकर रखें और इसे किसी के साथ शेयर न करें। आपके डिवाइस पर मिली अनुमतियों के आधार पर, आपके डिवाइस पर मौजूद दूसरे ऐप आपकी पुरानी चैट देख सकते हैं।</string>
+    <string name="ChatExportDialogs__complete_body">कि आपने अपनी एक्सपोर्ट की गई चैट फ़ाइल संभालकर कहां रखा है और इसे किसी के साथ शेयर न करें। आपके डिवाइस पर मिली अनुमतियों के आधार पर, आपके डिवाइस पर मौजूद दूसरे ऐप आपकी पुरानी चैट देख सकते हैं।</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
     <string name="ChatExportDialogs__complete_title">चैट एक्सपोर्ट पूरा हुआ</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->

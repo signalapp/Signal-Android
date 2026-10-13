@@ -30,7 +30,7 @@
 
     <!-- DevicePinAuthEducationSheet -->
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">ចុចបន្ត ហើយបញ្ចូលសោទូរសព្ទរបស់អ្នកដើម្បីបញ្ជាក់។ សូមកុំបញ្ចូលលេខកូដសម្ងាត់ Signal របស់អ្នក។</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">ចុច “បន្ត” ហើយបញ្ចូលសោទូរសព្ទរបស់អ្នកដើម្បីបញ្ជាក់។ សូមកុំបញ្ចូលលេខកូដសម្ងាត់ Signal របស់អ្នក។</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">បន្ត</string>
 
@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">បិទ</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">បញ្ចូលទៅក្នុងបញ្ជីសំណព្វ</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">ដកចេញពីបញ្ជីសំណព្វ</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">ដកចេញពីបញ្ជីសំណព្វ?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">អ្នកមិនអាចផ្ញើ ឬបញ្ចូលវាទៅក្នុងបញ្ជីសំណព្វបានម្តងទៀតទេ ប្រសិនបើគ្មានតំណ ឬសារដែលមានស្ទីកគ័រ។</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">លុបចេញ</string>
 </resources>

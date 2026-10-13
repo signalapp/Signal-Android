@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">พาสคีย์ (Passkey)</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">ใช้ลายนิ้วมือ ใบหน้า หรือรหัสล็อกหน้าจอของคุณ</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">พาสคีย์ (Passkey)</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">วิธียืนยันแบบสองขั้นตอน</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · เพิ่มเมื่อ %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">คุณจะไม่สามารถใช้แอปนี้ในการรับรหัสยืนยันแบบใช้ครั้งเดียวเมื่อลงชื่อเข้าใช้</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">ลบพาสคีย์ใช่หรือไม่</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">คุณจะไม่สามารถใช้พาสคีย์นี้เมื่อลงชื่อเข้าใช้</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">ลบวิธียืนยันแบบสองขั้นตอนใช่หรือไม่</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">คุณจะไม่สามารถใช้วิธีนี้เมื่อลงชื่อเข้าใช้</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">ลบวิธียืนยันแบบสองขั้นตอนแล้ว</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">ไม่สามารถลบวิธียืนยันแบบสองขั้นตอนได้ โปรดตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">ลบพาสคีย์แล้ว</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">ไม่สามารถลบพาสคีย์ได้ โปรดตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">โปรดตั้งค่าตัวจัดการรหัสผ่านที่รองรับพาสคีย์บนอุปกรณ์เครื่องนี้แล้วลองอีกครั้ง</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">ไม่สามารถสร้างพาสคีย์ได้ โปรดลองอีกครั้ง</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ปลดล็อกเพื่อลบวิธียืนยันแบบสองขั้นตอน</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ตั้งชื่อเฉพาะให้แอปยืนยันตัวตนแอปนี้ที่จะช่วยให้คุณจำได้ในภายหลัง</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">ตั้งชื่อเฉพาะให้วิธียืนยันแบบสองขั้นตอนนี้</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">ตั้งชื่อเฉพาะให้วิธียืนยันแบบสองขั้นตอนนี้ที่จะช่วยให้คุณจำได้ในภายหลัง</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">ตั้งชื่อเฉพาะให้พาสคีย์นี้</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">ตั้งชื่อเฉพาะให้พาสคีย์นี้ที่จะช่วยให้คุณจำได้ในภายหลัง</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">ชื่อ</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">เปลี่ยนชื่อแอปยืนยันตัวตนแล้ว</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">ตั้งค่าพาสคีย์แล้ว</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">เปลี่ยนชื่อพาสคีย์แล้ว</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">ตั้งค่าวิธียืนยันแบบสองขั้นตอนแล้ว</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">เปลี่ยนชื่อวิธียืนยันแบบสองขั้นตอนแล้ว</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">ไม่สามารถบันทึกชื่อได้ โปรดตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
 
@@ -276,7 +276,7 @@
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
     <string name="ChatsSettingsFragment__add_edit_chat_folder">เพิ่มหรือแก้ไขโฟลเดอร์</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
-    <string name="ChatsSettingsFragment__authentication_failed">การรับรองความถูกต้องไม่สำเร็จ</string>
+    <string name="ChatsSettingsFragment__authentication_failed">รับรองความถูกต้องไม่สำเร็จ</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">โฟลเดอร์แชท</string>
     <!-- Row title for the option to export chat history as a plaintext archive -->
@@ -286,9 +286,9 @@
     <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
     <string name="ChatsSettingsFragment__send_with_enter">กด Enter เพื่อส่ง</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">เล่นสติกเกอร์และไฟล์ GIF อัตโนมัติ</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">หากเปิดใช้งาน สติกเกอร์และไฟล์ GIF จะเล่นเองโดยอัตโนมัติ</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ปลดล็อกเพื่อส่งออกประวัติการแชท</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">แสดงรูปภาพผู้ติดต่อจากสมุดรายชื่อของคุณ (หากมี)</string>
@@ -346,5 +346,5 @@
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">การปรับรุ่นแอป</string>
+    <string name="preferences_app_updates__title">รุ่นอัปเดตของแอป</string>
 </resources>

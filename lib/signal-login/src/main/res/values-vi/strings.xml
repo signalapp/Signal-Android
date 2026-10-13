@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Bạn chưa thiết lập công cụ quản lý mật khẩu.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Chỉ lưu thông tin đăng nhập của bạn trong công cụ quản lý mật khẩu mà bạn tin là an toàn. Signal không đưa ra khuyến nghị về công cụ quản lý mật khẩu phù hợp với bạn.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Không thể lưu tập tin PDF. Vui lòng thử lại.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

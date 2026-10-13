@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Přístupový klíč</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Použijte otisk prstu, tvář nebo zámek obrazovky</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Přístupový klíč</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Dvoufázová metoda</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s· Přidáno %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Tuto aplikaci nebudete moci při přihlašování používat pro jednorázové ověřovací kódy.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Odebrat přístupový klíč?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Tento přístupový klíč nebudete moci použít při přihlašování.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Odebrat dvoufázovou metodu?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Tuto metodu nebudete moci použít při přihlašování.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Dvoufázová metoda odstraněna</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Nelze odebrat dvoufázovou metodu. Zkontrolujte připojení a zkuste to znovu.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Přístupový klíč odstraněn</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Nelze odebrat přístupový klíč. Zkontrolujte připojení a zkuste to znovu.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Nastavte si v tomto zařízení správce hesel, který podporuje přístupové klíče, a zkuste to znovu.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Přístupový klíč se nepodařilo vytvořit. Zkuste to znovu.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odemknout a odebrat metodu dvoufázového ověření</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Zvolte jedinečný název pro tuto ověřovací aplikaci, abyste ji později snadno rozpoznali.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Zvolte jedinečný název pro tuto dvoufázovou metodu.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Zvolte jedinečný název pro tuto dvoufázovou metodu, abyste ji později snadno rozpoznali.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Zvolte jedinečný název pro tento přístupový klíč.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Zvolte jedinečný název pro tento přístupový klíč, abyste jej později snadno rozpoznali.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Název</string>
     <!-- Button that submits the entered name -->
@@ -206,15 +206,15 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Ověřovací aplikace přejmenována</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Přístupový klíč nastaven</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Přístupový klíč přejmenován</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Dvoufázová metoda nastavena</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Dvoufázová metoda přejmenována</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Jméno se nepodařilo uložit. Zkontrolujte připojení a zkuste to znovu.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Název se nepodařilo uložit. Zkontrolujte připojení a zkuste to znovu.</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -287,22 +287,22 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">Exportovat strojově čitelnou kopii všech chatů ve formátu JSON. Mizející zprávy nebudou exportovány.</string>
     <string name="ChatsSettingsFragment__keyboard">Klávesnice</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Odeslat tlačítkem Enter</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Odesílat klávesou Enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Automaticky přehrávat nálepky a GIFy</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Po zapnutí se nálepky a GIFy budou přehrávat automaticky</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Odemknout pro export historie chatů</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Pokud jsou k dispozici, upřednostňovat fotky kontaktů z adresáře</string>
-    <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
+    <string name="preferences__generate_link_previews">Generovat náhledy odkazů</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené chaty, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Ponechat ztlumené chaty archivované</string>
     <string name="preferences__pref_use_address_book_photos">Upřednostňovat fotky z adresáře</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.</string>
-    <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
+    <string name="preferences_advanced__use_system_emoji">Použít systémové emoji</string>
     <string name="preferences_chats__chats">Chaty</string>
 
     <!-- ChatExportDialogs -->
@@ -325,7 +325,7 @@
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">Exportovat historii chatů?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">Tento soubor s nikým NESDÍLEJTE. Historie chatů se uloží do vašeho zařízení a ostatní aplikace k ní mohou mít přístup podle vašich oprávnění. Při exportu včetně médií bude výsledný soubor mnohem větší.</string>
+    <string name="ChatExportDialogs__export_confirm_body">Tento soubor s nikým NESDÍLEJTE. Historie chatů se uloží do vašeho zařízení a ostatní aplikace k ní mohou mít přístup podle vašich oprávnění. Export včetně médií výrazně zvětší velikost souboru.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">Exportovat včetně médií</string>
     <!-- Button in the export confirmation dialog to export messages only -->

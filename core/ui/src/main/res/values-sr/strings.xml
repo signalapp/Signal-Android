@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">Затвори</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">Додај у колекцију „Омиљено“</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">Уклони из колекције „Омиљено“</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">Желите ли да уклоните из колекције „Омиљено“?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Нећете моћи поново да га шаљете или додате у колекцију „Омиљено“ без линка или поруке с налепницом.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Уклони</string>
 </resources>

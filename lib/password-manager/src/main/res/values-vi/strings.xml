@@ -3,11 +3,11 @@
     <!-- Title of the dialog shown before saving to the password manager -->
     <string name="SaveToPasswordManagerDialog__save_to_password_manager">Lưu vào công cụ quản lý mật khẩu?</string>
     <!-- Body of the dialog shown before saving to the password manager when Google Password Manager is the device default. Followed by a "Learn more" link. -->
-    <string name="SaveToPasswordManagerDialog__google_body">You have Google set as your default password manager. Before continuing, enable on-device encryption in Google Password Manager\'s settings.</string>
+    <string name="SaveToPasswordManagerDialog__google_body">Bạn đã đặt Google làm công cụ quản lý mật khẩu mặc định. Trước khi tiếp tục, hãy bật tính năng mã hóa trên thiết bị trong phần cài đặt của Trình quản lý mật khẩu của Google.</string>
     <!-- Link at the end of the Google Password Manager dialog body that opens a support article -->
     <string name="SaveToPasswordManagerDialog__learn_more">Tìm hiểu thêm</string>
     <!-- Dialog button that opens Google Password Manager so the user can enable on-device encryption -->
-    <string name="SaveToPasswordManagerDialog__open_google_password_manager">Open Google Password Manager</string>
+    <string name="SaveToPasswordManagerDialog__open_google_password_manager">Mở Trình quản lý mật khẩu của Google</string>
     <!-- Dialog button that saves to Google Password Manager without first checking its encryption settings -->
     <string name="SaveToPasswordManagerDialog__continue_anyway">Tiếp tục</string>
     <!-- Dialog button that continues saving to the password manager -->

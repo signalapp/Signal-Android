@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">წვდომის გასაღები</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">აირჩიე თითის ანაბეჭდი, სახე ან ეკრანის დაბლოკვა</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">წვდომის გასაღები</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">ორეტაპიანი მეთოდი</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · დაემატა %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">შესვლისას ერთჯერადი ვერიფიკაციის კოდებისთვის ამ აპის გამოყენებას ვერ შეძლებ.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">გსურს წვდომის გასაღების წაშლა?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">შესვლისას წვდომის ამ გასაღების გამოყენებას ვერ შეძლებ.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">გსურს ორეტაპიანი მეთოდის წაშლა?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">შესვლისას ამ მეთოდის გამოყენებას ვერ შეძლებ.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">ორეტაპიანი მეთოდი წაიშალა</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">ორეტაპიანი მეთოდის წაშლა ვერ მოხერხდა. შეამოწმე შენი ინტერნეტკავშირი და ცადე ხელახლა.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">წვდომის გასაღები წაიშალა</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">წვდომის გასაღების წაშლა ვერ მოხერხდა. შეამოწმე შენი ინტერნეტკავშირი და ცადე ხელახლა.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">შექმენი პაროლების მენეჯერი, რომელსაც წვდომის გასაღების მხარდაჭერა აქვს ამ მოწყობილობაზე, შემდეგ კი ცადე ხელახლა.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">წვდომის გასაღების შექმნა ვერ მოხერხდა. ცადე ხელახლა.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">განბლოკე, რომ ორეტაპიანი მეთოდი გააუქმო</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,31 +190,31 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">აირჩიე ამ ავტორიზაციის აპისთვის უნიკალური სახელი, რომ მოგვიანებით მარტივად ამოიცნო.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">ამ ორეტაპიანი მეთოდისთვის აირჩიე უნიკალური სახელი.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">აირჩიე უნიკალური სახელი ამ ორეტაპიანი მეთოდისთვის, რომ ის მოგვიანებით მარტივად ამოიცნო.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">აირჩიე უნიკალური სახელი წვდომის ამ გასაღებისთვის.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">აირჩიე უნიკალური სახელი წვდომის ამ გასაღებისთვის, რომ ის მოგვიანებით მარტივად ამოიცნო.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">სახელი</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">შემდეგი</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">ავტორიზაციის აპის დაყენება</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">ავტორიზაციის აპი დაყენებულია</string>
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">ავტორიზაციის აპი წაიშალა</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">წვდომის გასაღები შეიქმნა</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">წვდომის გასაღებს სახელი გადაერქვა</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">ორეტაპიანი მეთოდი შეიქმნა</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">ორეტაპიანი მეთოდის სახელი შეიცვალა</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
-    <string name="TwoFactorNameEntryScreen__couldnt_save_name">სახელი ვერ შეინახა. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე.</string>
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">სახელის შენახვა ვერ მოხერხდა. შეამოწმე შენი ინტერნეტკავშირი და ცადე ხელახლა.</string>
 
     <!-- DeleteAccountScreen -->
     <!-- DeleteAccountFragment -->
@@ -283,13 +283,13 @@
     <!-- Row title for the option to export chat history as a plaintext archive -->
     <string name="ChatsSettingsFragment__export_chat_history">ჩატის ისტორიის გადატანა</string>
     <!-- Row description for the plaintext chat export option -->
-    <string name="ChatsSettingsFragment__export_chat_history_label">გადაიტანე შენი ყველა ჩატის ავტომატურად წაკითხვადი JSON ასლი. გაქრობად წერილებს ვერ გადაიტან.</string>
+    <string name="ChatsSettingsFragment__export_chat_history_label">გადაიტანე შენი ყველა ჩატის ავტომატურად წაკითხვადი JSON ასლი. გაქრობად შეტყობინებებს ვერ გადაიტან.</string>
     <string name="ChatsSettingsFragment__keyboard">კლავიატურა</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enter-ით გაგზავნა</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">სტიკერებისა და GIF-ების ავტომატურად დაკვრა</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">როცა ეს ფუნქცია ჩართულია, სტიკერები და GIF-ები ავტომატურად დაიკვრება</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">განბლოკე ჩატის ისტორიის გადმოსატანად</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">მიანიჭე უპირატესობა საკონტაქტო ფოტოებს შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
@@ -315,7 +315,7 @@
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">აირჩიე საქაღალდე</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">აირჩიე შენახვის ადგილი</string>
+    <string name="ChatExportDialogs__choose_folder_button">აირჩიე საქაღალდე</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
     <string name="ChatExportDialogs__complete_body">აარჩიე, სად შეინახავ შენს ექსპორტირებულ ჩატის ფაილს და არავის გაუზიარო. შენს მოწყობილობაში არსებული სხვა აპების მასზე წვდომა შენი მოწყობილობის ნებართვებზეა დამოკიდებული.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
@@ -323,7 +323,7 @@
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
     <string name="ChatExportDialogs__export_chat_history_title">ჩატის ისტორიის გადატანა გსურს?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">ეს ფაილი არავის გაუზიარო. შენი ჩატის ისტორია შენს მოწყობილობაზე შეინახება და სხვა აპები მასზე წვდომას შენი მოწყობილობის პარამეტრების მიხედვით შეძლებენ. მედია ფაილებით ექსპორტირება ფაილის ზომას გაზრდის.</string>
+    <string name="ChatExportDialogs__export_confirm_body">ეს ფაილი არავის გაუზიარო. შენი ჩატის ისტორია შენს მოწყობილობაზე შეინახება და სხვა აპები მასზე წვდომას შენი მოწყობილობის პარამეტრების მიხედვით შეძლებს. მედიაფაილებით ექსპორტირება ფაილის ზომას გაზრდის.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">მედია ფაილებით ექსპორტირება</string>
     <!-- Button in the export confirmation dialog to export messages only -->

@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Varnostni ključ</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Uporabite prstni odtis, prepoznavo obraza ali zaklepanje zaslona</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Varnostni ključ</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Metoda dvostopenjskega preverjanja</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Dodana na %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Ko se prijavite, te aplikacije ne boste mogli uporabljati za enkratne potrditvene kode.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Želite odstraniti varnostni ključ?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Tega varnostnega ključa ne boste mogli več uporabljati za prijavo.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Želite odstraniti metodo dvostopenjskega preverjanja?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Te metode ne boste več mogli uporabljati za prijavo.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Dvostopenjsko preverjanje je bilo odstranjeno</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Dvostopenjskega preverjanja nismo mogli odstraniti. Preverite povezavo in poskusite znova.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Varnostni ključ je bil odstranjen</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Varnostnega ključa nismo mogli odstraniti. Preverite povezavo in poskusite znova.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">V tej napravi nastavite upravitelja gesel, ki podpira varnostne ključe, nato poskusite znova.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Varnostnega ključa ni bilo mogoče ustvariti. Poskusite znova.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odklenite, da odstranite metodo dvostopenjskega preverjanja</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Izberite edinstveno ime za to aplikacijo za preverjanje pristnosti, da jo boste pozneje lažje prepoznali.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Izberite edinstveno ime za to metodo dvostopenjskega preverjanja.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Izberite edinstveno ime za to metodo dvostopenjskega preverjanja, da jo boste pozneje lažje prepoznali.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Izberite edinstveno ime za ta varnostni ključ.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Izberite edinstveno ime za ta varnostni ključ, da ga boste pozneje lažje prepoznali.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Ime</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Aplikacija za preverjanje pristnosti je preimenovana</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Vzpostavitev varnostnega ključa</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Varnostni ključ je preimenovan</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Vzpostavljeno je dvostopenjsko preverjanje</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Metoda dvostopenjskega preverjanja je bila preimenovana</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Ni bilo mogoče shraniti imena. Preverite povezavo in poskusite znova.</string>
 
@@ -258,7 +258,7 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Vabi prijatelje</string>
+    <string name="InviteScreen__invite_friends">Povabi prijatelje</string>
     <!-- Share button on invite screen to open the system share sheet -->
     <string name="InviteScreen__share">Deli</string>
 
@@ -289,9 +289,9 @@
     <string name="ChatsSettingsFragment__keyboard">Tipkovnica</string>
     <string name="ChatsSettingsFragment__send_with_enter">Pošlji z enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Samodejno predvajaj nalepke in GIF-e</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Ko je ta možnost vklopljena, se nalepke in GIF-i samodejno predvajajo</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Odklenite pred izvozom zgodovine klepeta</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Če so na voljo, imajo prednost fotografije stikov iz vašega imenika</string>
@@ -317,9 +317,9 @@
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_title">Izberi mapo</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Izberite mapo</string>
+    <string name="ChatExportDialogs__choose_folder_button">Izberite mapo,</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">pri tem, kje hranite izvozno datoteko klepeta, in je ne delite z nikomer. Do nje lahko dostopajo druge aplikacije, odvisno od dovoljenj vaše naprave.</string>
+    <string name="ChatExportDialogs__complete_body">kjer hranite izvozno datoteko klepeta, in je ne delite z nikomer. Do nje lahko dostopajo druge aplikacije, odvisno od dovoljenj vaše naprave.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
     <string name="ChatExportDialogs__complete_title">Izvoz klepeta je zaključen</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->

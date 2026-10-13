@@ -11,7 +11,7 @@
     <!-- Title of the system share sheet shown when sharing an invite -->
     <string name="Invite__invite_to_signal">Pozvat do Signal</string>
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
-    <string name="Invite__lets_switch_to_signal">Přejít na Signal: %1$s</string>
+    <string name="Invite__lets_switch_to_signal">Pojďme přejít na Signal: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="Invite__no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
 

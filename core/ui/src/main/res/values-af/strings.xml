@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">Maak toe</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">Voeg by Gunstelinge</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">Verwyder uit Gunstelinge</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">Verwyder uit Gunstelinge?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Jy kan dit nie weer sonder \'n skakel of \'n plakkerboodskap stuur of by Gunstelinge byvoeg nie.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Verwyder</string>
 </resources>

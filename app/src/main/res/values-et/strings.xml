@@ -2621,7 +2621,7 @@
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">Lisa gruppi</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">Kas lisada %1$s gruppi %2$s?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2776,15 +2776,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Vaata komplekti</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">Kleebis on lisatud lemmikute hulka</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">Lemmikute hulka saab lisada vaid %1$d kleebist</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">Tundmatu viga. Proovi hiljem uuesti.</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">Kleebis on lemmikute hulgast eemaldatud</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Puuduta ja hoia kleebist all, et seda lemmikute hulka lisada</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Salvesta</string>
@@ -5607,7 +5607,7 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Hakka toetajaks</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">Emoji</string>
+    <string name="KeyboardPagerFragment_emoji">Emojid</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
     <string name="KeyboardPagerFragment_open_sticker_search">Ava kleebiste otsing</string>
     <string name="KeyboardPagerFragment_open_gif_search">Ava GIFide otsing</string>
@@ -6935,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Paranda varukoopiate ajastamist</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Igapäevaseks varukoopiate tegemiseks anna luba „alarmid“.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->

@@ -243,19 +243,19 @@
     <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
     <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">தவறான மீட்புக் குறியீடு</string>
     <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
-    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Signal காப்புப்பிரதிகளைச் செயல்படுததும்போது நீங்கள் சேமித்த அதே தொலைபேசி எண் மற்றும் 64-எழுத்து மீட்புக் குறியீட்டைக் கொண்டு பதிவுசெய்கிறீர்கள் என்பதை உறுதிப்படுத்திக்கொள்ளுங்கள். இந்தக் குறியீடு இல்லாமல் காப்புப்பிரதிகளை மீட்டெடுக்க முடியாது.</string>
     <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
     <string name="EnterAepScreen__try_again">மீண்டும் முயற்சிக்கவும்</string>
     <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
-    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <string name="EnterAepScreen__try_another_way">வேறொரு வழியில் முயலவும்</string>
     <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
     <string name="EnterAepScreen__recovery_key_help">மீட்புக் குறியீடு உதவி</string>
     <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <string name="EnterAepScreen__verify_with_sms_code">SMS குறியீடு மூலம் சரிபார்க்கவா?</string>
     <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
-    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <string name="EnterAepScreen__verify_with_sms_code_body">Signal உங்களுக்கு அனுப்பும் SMS குறியீடு மூலம் சரிபார்த்து உங்கள் கணக்கைப் பதிவுசெய்யலாம். குறியீட்டை உள்ளிட்ட பிறகு, உங்கள் மீட்புக் குறியீட்டைக் கொண்டு காப்புப்பிரதியை மீண்டும் மீட்டமைக்க முயலலாம்.</string>
     <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
-    <string name="EnterAepScreen__send_code">Send code</string>
+    <string name="EnterAepScreen__send_code">குறியீட்டை அனுப்பு</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">மீட்டமைக்கத் தயாராகிறது…</string>
     <!-- Title shown while restore is in progress -->
@@ -667,7 +667,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginInfoScreen__no_password_manager_available">நீங்கள் கடவுச்சொல் மேலாளரை அமைக்கவில்லை.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">பாதுகாப்பானது என நீங்கள் நம்பும் கடவுச்சொல் மேலாளரில் மட்டுமே உங்களின் உள்நுழைவுச் சான்றுகளைச் சேமித்து வைக்கவும். உங்களுக்கு எந்தக் கடவுச்சொல் மேலாளர் சரியானது என்பது குறித்து Signal எந்தப் பரிந்துரையும் செய்வதில்லை.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">கைமுறையாகச் சேமி</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
@@ -819,5 +819,5 @@
     <!-- Button text to cancel two-factor authentication -->
     <string name="TwoFactorSelectionScreen__cancel">ரத்துசெய்</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">உங்கள் கடவுக்குறியீட்டில் ஏதோ தவறு ஏற்பட்டுள்ளது. மீண்டும் முயலவும் அல்லது வேறொரு முறையைத் தேர்வுசெய்யவும்.</string>
 </resources>

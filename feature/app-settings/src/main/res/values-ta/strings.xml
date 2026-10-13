@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">கடவுக்குறியீடு</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">உங்கள் கைரேகை, முகம் அல்லது திரைப் பூட்டைப் பயன்படுத்தவும்</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">கடவுக்குறியீடு</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">இரு-படி அங்கீகாரம்</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · சேர்க்கப்பட்டது %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">நீங்கள் உள்நுழையும்போது ஒருமுறை சரிபார்ப்புக் குறியீடுகளுக்காக இந்தச் செயலியைப் பயன்படுத்த முடியாது.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">கடவுக்குறியீட்டை அகற்றவா?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">நீங்கள் உள்நுழையும்போது இந்தக் கடவுக்குறியீட்டைப் பயன்படுத்த முடியாது.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்றவா?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">நீங்கள் உள்நுழையும்போது இந்த முறையைப் பயன்படுத்த முடியாது.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">இரு-படி அங்கீகார முறை அகற்றப்பட்டது</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">கடவுக்குறியீடு அகற்றப்பட்டது</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">கடவுக்குறியீட்டை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">இந்தச் சாதனத்தில் கடவுக்குறியீடுகளை ஆதரிக்கும் கடவுச்சொல் மேலாளரை அமைத்துவிட்டு, மீண்டும் முயலவும்.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">கடவுக்குறியீட்டை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற, தடைநீக்கவும்</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,29 +190,29 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">இந்த அங்கீகரிப்புச் செயலியைப் பின்னர் எளிதாக அடையாளம் காண, இதற்குத் தனித்துவமான ஒரு பெயரைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">இந்த இரு-படி அங்கீகார முறைக்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">இந்த இரு-படி அங்கீகார முறையைப் பிறகு அடையாளம் காண உதவும் வகையில் இதற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">இந்தக் கடவுக்குறியீட்டிற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">இந்தக் கடவுக்குறியீட்டைப் பிறகு அடையாளம் காண உதவும் வகையில் இதற்குத் தனித்துவமான பெயர் ஒன்றைத் தேர்வுசெய்யவும்.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">பெயர்</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">அடுத்தது</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">அங்கீகரிப்புச் செயலி அமைவு</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">அங்கீகரிப்புச் செயலி அமைக்கப்பட்டது</string>
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">அங்கீகரிப்புச் செயலிக்கு மறுபெயரிடப்பட்டது</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">கடவுக்குறியீடு அமைக்கப்பட்டது</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">கடவுக்குறியீடு மறுபெயரிடப்பட்டது</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">இரு-படி அங்கீகார முறை அமைக்கப்பட்டது</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">இரு-படி அங்கீகார முறைக்கு மறுபெயரிடப்பட்டது</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">பெயரைச் சேமிக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
 
@@ -287,9 +287,9 @@
     <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
     <string name="ChatsSettingsFragment__send_with_enter">உள்ளிடுக மூலம் அனுப்புக</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">ஸ்டிக்கர்கள் மற்றும் GIFகளைத் தானாக இயக்கு</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">ஆன் செய்யப்பட்டிருக்கும்போது, ஸ்டிக்கர்களும் GIFகளும் தானாக இயங்கும்</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">அரட்டை வரலாற்றை ஏற்றுமதி செய்யத் தடைநீக்கவும்</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">முகவரிப் புத்தகத்தில் தொடர்புகளின் படங்கள் இருந்தால், அவற்றுக்கு முன்னுரிமை கொடுக்கவும்</string>

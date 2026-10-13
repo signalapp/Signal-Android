@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">آپ نے کوئی پاسورڈ مینیجر ترتیب نہیں دیا ہوا۔</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">اپنی اسناد صرف اسی پاسورڈ مینیجر میں اسٹور کریں جسے آپ محفوظ سمجھتے ہیں۔ Signal ایسی کوئی تجویز نہیں دیتا کہ آپ کے لیے کون سا پاسورڈ مینیجر صحیح ہے۔</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">PDF محفوظ نہیں کی جا سکی۔ براہ کرم دوبارہ کوشش کریں۔</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

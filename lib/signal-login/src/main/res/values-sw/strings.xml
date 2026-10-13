@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Hujaweka mipangilio ya kidhibiti cha nenosiri.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Hifadhi tu taarifa zako katika kidhibiti cha manenosiri ambacho unaamini ni salama. Signal haitoi mapendekezo kuhusu kidhibiti gani cha manenosiri ni sahihi kwako.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Imeshindwa kuhifadhi PDF. Tafadhali jaribu tena.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

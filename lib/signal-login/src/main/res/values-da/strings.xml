@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">Ingen adgangskodeadministrator er opsat.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Gem kun dine loginoplysninger i en adgangskodeadministrator, som du har tillid til er sikker. Signal giver ikke en anbefaling til, hvilken adgangskodeadministrator der er den rigtige for dig.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">Kunne ikke gemme PDF-filen. Prøv igen.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

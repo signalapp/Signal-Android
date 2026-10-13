@@ -30,7 +30,7 @@
 
     <!-- DevicePinAuthEducationSheet -->
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Каб пацвердзіць, націсніце \"Працягнуць\" і ўвядзіце код блакіроўкі тэлефона. Свой PIN-код Signal не трэба ўводзіць.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Каб пацвердзіць, націсніце «Працягнуць» і ўвядзіце код блакіроўкі тэлефона. Свой PIN-код Signal не трэба ўводзіць.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Працягнуць</string>
 
@@ -38,13 +38,13 @@
     <string name="CloseButton__content_description">Закрыць</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Add to Favorites</string>
+    <string name="StickerFavorites__add_to_favorites">Дадаць у абраныя</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Remove from Favorites</string>
+    <string name="StickerFavorites__remove_from_favorites">Выдаліць з абраных</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Remove from Favorites?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">Выдаліць з абраных?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Вы не зможаце даслаць яго або зноў дадаць у абраныя без спасылкі або паведамлення са стыкерам.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Выдаліць</string>
 </resources>

@@ -544,7 +544,7 @@
     <string name="ConversationFragment_delete_for_everyone_title">모두에게서 삭제할까요?</string>
     <!-- Body of dialog explaining what happens during deletion -->
     <plurals name="ConversationFragment_delete_for_everyone_body">
-        <item quantity="other">Signal 최신 버전을 사용 중인 그룹 멤버에게 내가 해당 메시지를 삭제했다는 메시지가 표시됩니다.</item>
+        <item quantity="other">Signal 최신 버전을 사용 중인 그룹 멤버에게는 내가 해당 메시지를 삭제했다는 메시지가 표시됩니다.</item>
     </plurals>
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">삭제</string>
@@ -562,7 +562,7 @@
         <item quantity="other">그룹 멤버 %1$d명의 이름이 같습니다.</item>
     </plurals>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
-    <string name="ConversationFragment__review_banner_body">이 사람의 이름이 연락처의 다른 사람과 이름이 같습니다.</string>
+    <string name="ConversationFragment__review_banner_body">기존 연락처 중 동일한 이름을 가진 사람이 있습니다.</string>
     <string name="ConversationFragment_contact_us">문의하기</string>
     <string name="ConversationFragment_verify">확인</string>
     <string name="ConversationFragment_not_now">나중에 하기</string>
@@ -663,7 +663,7 @@
     <string name="SafetyTips_next_tip">다음 팁</string>
 
     <!-- Summary tip 0 title: Don\'t respond to chats from Signal -->
-    <string name="SafetyTips_summary_tip0_title">Signal에서 보낸 채팅에 답하지 마세요</string>
+    <string name="SafetyTips_summary_tip0_title">Signal이 보낸 채팅에 답하지 마세요</string>
     <!-- Summary tip 0 message -->
     <string name="SafetyTips_summary_tip0_message">Signal은 절대 사용자의 등록 코드나 PIN, 복구 키를 요청하는 메시지를 보내지 않습니다. Signal을 사칭하는 채팅에 절대 답장하지 마세요.</string>
     <!-- Summary tip 1 title: Review names and photos -->
@@ -676,7 +676,7 @@
     <string name="SafetyTips_summary_tip2_message">답장을 유도하려는 모호한 메시지에는 응답하지 마시고, 금전 관련 제안이나 의심스러운 웹 링크에 유의하세요.</string>
 
     <!-- Detail tip 0 title -->
-    <string name="SafetyTips_detail_tip0_title">Signal에서 보낸 채팅에 답하지 마세요</string>
+    <string name="SafetyTips_detail_tip0_title">Signal이 보낸 채팅에 답하지 마세요</string>
     <!-- Detail tip 0 message -->
     <string name="SafetyTips_detail_tip0_message">Signal은 절대 사용자의 등록 코드나 PIN, 복구 키를 요청하는 메시지를 보내지 않습니다. Signal 또는 Signal 지원팀을 사칭하는 채팅에 답장하지 마세요. 악의적인 사용자가 허위 채팅을 통해 계정 해킹을 시도할 수 있습니다.</string>
     <!-- Detail tip 1 title -->
@@ -690,7 +690,7 @@
     <!-- Detail tip 3 title -->
     <string name="SafetyTips_detail_tip3_title">웹사이트 링크가 포함된 메시지</string>
     <!-- Detail tip 3 message -->
-    <string name="SafetyTips_detail_tip3_message">모르는 사람이 보낸 웹사이트 링크가 포함된 메시지에 주의하세요. 신뢰할 수 없는 출처의 링크는 절대 방문하지 마세요.</string>
+    <string name="SafetyTips_detail_tip3_message">잘 모르는 사람이 보낸 웹사이트 링크는 주의하세요. 신뢰할 수 없는 상대가 보낸 링크는 절대 열어보지 마세요.</string>
     <!-- Detail tip 4 title -->
     <string name="SafetyTips_detail_tip4_title">암호화폐 또는 금융 사기</string>
     <!-- Detail tip 4 message -->
@@ -703,17 +703,17 @@
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal의 %1$s은 해당 계정 보유자가 선택합니다.</string>
     <!-- Bottom sheet text explaining that Signal can\'t verify names and photos -->
-    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal은 프로필 이름과 사진을 별도로 인증할 수 없습니다.</string>
+    <string name="ProfileNameBottomSheet__signal_cant_verify">Signal은 프로필 이름과 사진을 별도로 검증할 수 없습니다.</string>
     <!-- Bottom sheet text explaining that Signal will never contact you for registration code, PIN, or recovery key -->
     <string name="ProfileNameBottomSheet__signal_will_never_contact">Signal은 사용자에게 먼저 연락하여 등록 코드나 PIN, 복구 키를 요구하지 않습니다.</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">사칭 계정에 유의하세요</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">모르는 사람과 개인 정보를 공유하지 마세요</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">모르는 사람과 개인 정보를 공유하지 마세요.</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s은 해당 그룹의 멤버가 선택합니다.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">다른 조직이나 비즈니스를 사칭하는 그룹에 유의하세요</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">다른 조직이나 비즈니스를 사칭하는 그룹에 유의하세요.</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">필터 지우기</string>
@@ -891,7 +891,7 @@
     <string name="DateUtils_today">오늘</string>
     <string name="DateUtils_yesterday">어제</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%2$s %1$s</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
     <string name="DateUtils_tomorrow">내일</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
@@ -913,7 +913,7 @@
     <!-- Title for dialog explaining to users how the scheduled messages work -->
     <string name="ScheduleMessageFTUXBottomSheet__title">예약 메시지</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">예약 메시지를 보낼 때 메시지 발송 시간에 기기의 전원이 켜져 있고 인터넷에 연결되어 있는지 확인하세요. 그러지 않으면 기기가 다시 연결될 때 메시지가 발송됩니다.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">예약 메시지를 전송하려면 전송 시간에 기기가 켜져 있고 인터넷에 연결되어 있어야 합니다. 그렇지 않으면 기기가 다시 연결될 때 전송됩니다.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">확인</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
@@ -929,7 +929,7 @@
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
     <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">모든 시간대 %2$s(%1$s)(으)로 설정</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">과거 시간을 선택했습니다. 메시지를 지금 바로 보냅니다.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">선택한 시간이 이미 지났습니다. 계속 진행하면 메시지가 즉시 전송됩니다.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
     <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">지금 바로 보내기</string>
 
@@ -987,7 +987,7 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">디버그 로그를 제출할까요?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">디버그 로그를 보내 문제 해결에 도움을 주실 수 있습니다. 로그 보내기는 선택 사항입니다.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">디버그 로그를 보내주시면 오류를 더 신속하게 파악할 수 있습니다. 로그 전송은 선택 사항입니다.</string>
     <!-- Button option to submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_with_debug">디버그 로그와 함께 보내기</string>
     <!-- Button option to not submit debug log when contacting support -->
@@ -1031,15 +1031,15 @@
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">장치 이름 수정</string>
+    <string name="EditDeviceNameFragment__edit">기기 이름 수정</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">장치 이름</string>
+    <string name="EditDeviceNameFragment__device_name">기기 이름</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">저장</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">장치 이름을 업데이트했습니다</string>
+    <string name="EditDeviceNameFragment__device_name_updated">기기 이름을 업데이트했습니다</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">장치 이름을 바꾸지 못했습니다. 나중에 다시 시도하세요.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">기기 이름을 바꾸지 못했습니다. 나중에 다시 시도해 주세요.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1051,7 +1051,7 @@
     <!-- Confirmation button to dismiss bottom sheet dialog -->
     <string name="AddLinkDeviceFragment__okay">확인</string>
     <!-- Dialog text describing the consequences of linking a device -->
-    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">이 기기에서 내 그룹과 연락처를 보고, 대화에 접근하고, 내 이름으로 메시지를 보낼 수 있습니다.</string>
+    <string name="AddLinkDeviceFragment__this_device_will_see_your_groups_contacts">이 기기에서 그룹 및 연락처를 확인하고, 대화에 접근하며, 내 이름으로 메시지를 보낼 수 있습니다.</string>
     <!-- Bottom sheet title telling users to complete the linking process on the other device  -->
     <string name="AddLinkDeviceFragment__finish_linking_on_other_device">다른 기기에서 연동 완료하기</string>
     <!-- Bottom sheet description telling users to complete the linking process -->
@@ -1242,7 +1242,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">배터리 최적화로 인해 알림이 지연될 수 있습니다.</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">Signal 배터리 최적화를 비활성화하여 메시지 알림이 지연되지 않도록 할 수 있습니다.</string>
+    <string name="PromptBatterySaverBottomSheet__message">메시지 알림이 지연되지 않도록 Signal 앱의 배터리 최적화를 비활성화할 수 있습니다.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">배터리 최적화로 인해 알림이 지연될 수 있습니다.</string>
@@ -2530,7 +2530,7 @@
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">그룹에 추가하기</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">%1$s님을 \"%2$s\"에 추가할까요?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2680,15 +2680,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">팩 보기</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">즐겨찾기에 스티커를 추가했습니다</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">즐겨찾기에 추가할 수 있는 스티커는 최대 %1$d개입니다.</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">알 수 없는 오류입니다. 나중에 다시 시도해 주세요.</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">즐겨찾기에서 스티커를 삭제했습니다.</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">스티커를 길게 눌러 즐겨찾기에 추가하세요</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">저장</string>
@@ -3629,7 +3629,7 @@
     <string name="message_details_recipient_header__delivered_to">전송 대상</string>
     <string name="message_details_recipient_header__read_by">읽음:</string>
     <string name="message_details_recipient_header__not_sent">보내지지 않음</string>
-    <string name="message_details_recipient_header__viewed">조회자</string>
+    <string name="message_details_recipient_header__viewed">조회한 사람</string>
     <string name="message_details_recipient_header__skipped">건너뜀</string>
 
     <!-- message_Details_recipient -->
@@ -4335,7 +4335,7 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드 번호와 대조</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_service_outage_text">현재 Signal에 기술적인 문제가 발생했습니다. 최대한 신속하게 서비스를 복구하겠습니다.</string>
+    <string name="reminder_header_service_outage_text">현재 Signal 서비스에 일시적인 장애가 발생했습니다. 빠르게 복구 작업을 진행하고 있으니 잠시만 기다려 주세요.</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Signal의 연락처 검색 기능이 일시적으로 휴대폰 연락처를 처리할 수 없습니다.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
@@ -6295,7 +6295,7 @@
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">나</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
-    <string name="StoryViewerPageFragment__s_to_s">%1$s -&gt; %2$s</string>
+    <string name="StoryViewerPageFragment__s_to_s">%1$s 님이 %2$s에 보냈어요</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">답장</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
@@ -6761,7 +6761,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">자동 백업 예약 개선하기</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">매일 안정적으로 백업이 자동 실행되도록 \'알람\' 권한을 허용해 주세요.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -6783,7 +6783,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">계속</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">후원을 통해 Signal의 개인정보 보호 메시지 서비스를 지지하고, 독립적인 운영과 광고 없는 환경을 유지할 수 있도록 힘을 보태주세요.</string>
+    <string name="DonateToSignalFragment__private_messaging">Signal을 후원해 주시면 개인정보가 보호되는 메시지 서비스와 광고 없는 환경, 독립적인 운영을 지켜나갈 수 있습니다.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">아직 완료되지 않은 후원이 있어요</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->

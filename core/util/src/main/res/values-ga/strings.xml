@@ -11,8 +11,8 @@
     <!-- Title of the system share sheet shown when sharing an invite -->
     <string name="Invite__invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
-    <string name="Invite__lets_switch_to_signal">Téimís i muinín Signal: %1$s</string>
+    <string name="Invite__lets_switch_to_signal">Téimis i muinín Signal: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="Invite__no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
+    <string name="Invite__no_app_to_share_to">Tá an chuma air nach bhfuil aon aipeanna agat le comhroinnt leo.</string>
 
 </resources>

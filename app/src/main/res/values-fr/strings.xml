@@ -2621,7 +2621,7 @@
     <!-- Button on a contact card shared in a group chat that adds the person on the card to that group -->
     <string name="SharedContactView_add_to_group">Ajouter au groupe</string>
     <!-- Confirmation dialog body when adding the person on a shared contact card to the current group. %1$s is the person\'s name, %2$s is the group name -->
-    <string name="SharedContactView_add_s_to_s">Add %1$s to “%2$s”?</string>
+    <string name="SharedContactView_add_s_to_s">Ajouter %1$s à \"%2$s\" ?</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
@@ -2686,7 +2686,7 @@
     <string name="StickerManagement_action_delete_selected">Supprimer</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Supprimer %1$s pack de stickers ?</item>
+        <item quantity="one">Supprimer le pack de stickers ?</item>
         <item quantity="other">Supprimer %1$s packs de stickers ?</item>
     </plurals>
     <!-- Body of the confirmation dialog shown before uninstalling sticker packs. -->
@@ -2776,15 +2776,15 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Afficher le pack</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
-    <string name="StickerFavorites__added_to_favorites">Sticker added to Favorites</string>
+    <string name="StickerFavorites__added_to_favorites">Sticker ajouté aux favoris</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
-    <string name="StickerFavorites__favorites_limit_reached">You can only add %1$d stickers to Favorites</string>
+    <string name="StickerFavorites__favorites_limit_reached">Vous ne pouvez ajouter que %1$d stickers aux favoris</string>
     <!-- Snackbar shown when we are unable to add or remove a sticker. -->
-    <string name="StickerFavorites__unknown_error">Unknown error. Try again later.</string>
+    <string name="StickerFavorites__unknown_error">Erreur inconnue. Veuillez réessayer plus tard.</string>
     <!-- Snackbar shown after a sticker was successfully removed from the user\'s favorite stickers -->
-    <string name="StickerFavorites__removed_from_favorites">Sticker removed from Favorites</string>
+    <string name="StickerFavorites__removed_from_favorites">Sticker retiré des favoris</string>
     <!-- Snackbar shown when the user opens their favorite stickers but has not favorited any yet -->
-    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Press and hold a sticker to add to Favorites</string>
+    <string name="ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites">Appuyez longuement sur un sticker pour l\'ajouter aux favoris</string>
 
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">Enregistrer</string>
@@ -3980,7 +3980,7 @@
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
     <string name="preferences_storage__stickers">Stickers</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Autre</string>
+    <string name="preferences_storage__other">Autres</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
     <string name="preferences_storage__calculating">Calcul en cours…</string>
     <string name="preferences_storage__review_storage">Afficher le stockage</string>
@@ -5490,7 +5490,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Délai avant disparition</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez le délai après lequel les messages éphémères disparaissent des nouvelles conversations que vous avez initiées.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Exiger le verrouillage d\'écran Android ou l\'empreinte digitale pour effectuer des paiements.</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Exiger le schéma de déverrouillage Android ou l\'empreinte digitale pour effectuer des paiements.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Impossible d’activer le verrouillage des paiements</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
@@ -5607,7 +5607,7 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir donateur mensuel</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">Émoji</string>
+    <string name="KeyboardPagerFragment_emoji">Émojis</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la zone de recherche d\'émojis</string>
     <string name="KeyboardPagerFragment_open_sticker_search">Rechercher des stickers</string>
     <string name="KeyboardPagerFragment_open_gif_search">Ouvrir l\'écran \"Rechercher un GIF\"</string>
@@ -6935,7 +6935,7 @@
     <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
-    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Improve backup scheduling</string>
+    <string name="BackupSchedulePermissionMegaphone__improve_backup_reliability">Optimiser la programmation des sauvegardes</string>
     <!-- The body text of an alert window that asks the user to grant the alarms permission so that automatic backups run more reliably -->
     <string name="BackupSchedulePermissionMegaphone__allow_the_alarms_permission_to_improve_automatic_daily_backups">Accordez l\'autorisation \"Alarmes\" pour améliorer les sauvegardes automatiques quotidiennes.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to grant the alarms permission -->
@@ -8399,7 +8399,7 @@
     <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Vous n\'avez pas configuré de gestionnaire de mots de passe ou celui que vous utilisez n\'est pas compatible avec Signal.</string>
     <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Vous aviez choisi de ne pas enregistrer vos mots de passe Signal dans le gestionnaire de mots de passe Google. Dans les paramètres de votre gestionnaire de mots de passe Google, retirez Signal de la liste des \"sites et applis refusés\", puis réessayez.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Vous aviez choisi de ne pas enregistrer vos mots de passe Signal dans le Gestionnaire de mots de passe de Google. Dans les paramètres du Gestionnaire de mots de passe de Google, retirez Signal de la liste des \"sites ou applications refusés\", puis réessayez.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">Accéder aux paramètres</string>
     <!-- Action button label -->

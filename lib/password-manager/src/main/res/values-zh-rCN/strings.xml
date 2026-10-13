@@ -3,11 +3,11 @@
     <!-- Title of the dialog shown before saving to the password manager -->
     <string name="SaveToPasswordManagerDialog__save_to_password_manager">要保存到密码管理器吗？</string>
     <!-- Body of the dialog shown before saving to the password manager when Google Password Manager is the device default. Followed by a "Learn more" link. -->
-    <string name="SaveToPasswordManagerDialog__google_body">You have Google set as your default password manager. Before continuing, enable on-device encryption in Google Password Manager\'s settings.</string>
+    <string name="SaveToPasswordManagerDialog__google_body">您已将 Google 设置为您的默认密码管理器。在继续操作之前，请在 Google 密码管理器的设置中启用设备端加密。</string>
     <!-- Link at the end of the Google Password Manager dialog body that opens a support article -->
     <string name="SaveToPasswordManagerDialog__learn_more">了解详情</string>
     <!-- Dialog button that opens Google Password Manager so the user can enable on-device encryption -->
-    <string name="SaveToPasswordManagerDialog__open_google_password_manager">Open Google Password Manager</string>
+    <string name="SaveToPasswordManagerDialog__open_google_password_manager">打开 Google 密码管理器</string>
     <!-- Dialog button that saves to Google Password Manager without first checking its encryption settings -->
     <string name="SaveToPasswordManagerDialog__continue_anyway">仍然继续</string>
     <!-- Dialog button that continues saving to the password manager -->

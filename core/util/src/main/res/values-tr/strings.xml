@@ -11,8 +11,8 @@
     <!-- Title of the system share sheet shown when sharing an invite -->
     <string name="Invite__invite_to_signal">Signal\'a davet et</string>
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
-    <string name="Invite__lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
+    <string name="Invite__lets_switch_to_signal">Hadi Signal\'a geçelim: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="Invite__no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
+    <string name="Invite__no_app_to_share_to">Paylaşım yapabileceğin bir uygulama yok gibi görünüyor.</string>
 
 </resources>

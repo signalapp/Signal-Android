@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Clave de acceso</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Emprega a túa impresión dixital, o recoñecemento facial ou o bloqueo de pantalla</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Clave de acceso</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Método de autenticación en dous pasos</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Engadida o %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Non poderás usar esta aplicación para os códigos de verificación dun só uso cando inicies sesión.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Eliminar clave de acceso?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Non poderás usar esta clave de acceso cando inicies sesión.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Eliminar método de autenticación en dous pasos?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Non poderás usar este método cando inicies sesión.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Método de autenticación en dous pasos eliminado</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Non foi posible eliminar o método de autenticación en dous pasos. Comproba a túa conexión e inténtao de novo.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Clave de acceso eliminada</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Non foi posible eliminar a clave de acceso. Comproba a túa conexión e inténtao de novo.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Configura neste dispositivo un xestor de contrasinais compatible coas claves de acceso e téntao de novo.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Non foi posible crear unha clave de acceso. Téntao de novo.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Desbloquea o dispositivo para eliminar o método de autenticación en dous pasos</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,29 +190,29 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Escolle un nome único para esta aplicación de autenticación que che axude a identificala máis adiante.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Escolle un nome único para este método de autenticación en dous pasos.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Escolle un nome único para este método de autenticación en dous pasos que che axude a identificalo máis adiante.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Escolle un nome único para esta clave de acceso.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Escolle un nome único para esta clave de acceso que che axude a identificala máis adiante.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Nome</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">Seguinte</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Configuración da aplicación de autenticación</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Aplicación de autenticación configurada</string>
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Cambiouse o nome da aplicación de autenticación</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Clave de acceso configurada</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Clave de acceso renomeada</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Método de autenticación en dous pasos configurado</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Método de autenticación en dous pasos renomeado</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Non se puido gardar o nome. Comproba a túa conexión e inténtao de novo.</string>
 
@@ -273,7 +273,7 @@
         <item quantity="other">%1$d cartafois</item>
     </plurals>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Engadir un novo cartafol</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Engadir un novo cartafol de conversas</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
     <string name="ChatsSettingsFragment__add_edit_chat_folder">Engadir ou editar cartafois</string>
     <!-- Snackbar shown when biometric authentication fails before a chat export -->
@@ -287,9 +287,9 @@
     <string name="ChatsSettingsFragment__keyboard">Teclado</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enviar coa tecla de retorno</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Reproducir os stickers e os GIF automaticamente</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Ao activarse, os stickers e os GIF reprodúcense automaticamente</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Desbloquea o dispositivo para exportar o historal do chat</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Usa, se están dispoñibles, as fotos dos teus contactos</string>
@@ -300,30 +300,30 @@
     <string name="preferences__pref_keep_muted_chats_archived">Manter as conversas silenciadas arquivadas</string>
     <string name="preferences__pref_use_address_book_photos">Darlles prioridade ás fotos dos contactos</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obter vistas previas das ligazóns directamente desde os sitios web para as mensaxes que envías.</string>
-    <string name="preferences_advanced__use_system_emoji">Utilizar sistema emoji</string>
+    <string name="preferences_advanced__use_system_emoji">Utilizar emoticona do sistema</string>
     <string name="preferences_chats__chats">Conversas</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
-    <string name="ChatExportDialogs__be_careful">COIDADO</string>
+    <string name="ChatExportDialogs__be_careful">TEN COIDADO</string>
     <!-- Bold warning prefix in the export confirmation dialog body -->
-    <string name="ChatExportDialogs__be_careful_warning">COIDADO!</string>
+    <string name="ChatExportDialogs__be_careful_warning">TEN COIDADO!</string>
     <!-- Progress dialog message shown while canceling an in-progress chat export -->
     <string name="ChatExportDialogs__canceling_export">Cancelando exportación…</string>
     <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
     <string name="ChatExportDialogs__choose_a_folder_body">Escolle un cartafol no almacenamento do teu dispositivo para gardar o historal do chat.</string>
     <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
-    <string name="ChatExportDialogs__choose_a_folder_title">Elixe un cartafol</string>
+    <string name="ChatExportDialogs__choose_a_folder_title">Escoller un cartafol</string>
     <!-- Button that opens the system folder picker -->
-    <string name="ChatExportDialogs__choose_folder_button">Elixe un cartafol</string>
+    <string name="ChatExportDialogs__choose_folder_button">Escoller cartafol</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">co lugar onde gardas o arquivo de exportación do chat e non o compartas con ninguén. Outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo.</string>
+    <string name="ChatExportDialogs__complete_body">co lugar onde gardas o arquivo de exportación da conversa e non o compartas con ninguén. Outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
-    <string name="ChatExportDialogs__complete_title">Exportación do chat completada</string>
+    <string name="ChatExportDialogs__complete_title">Exportación da conversa completada</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
-    <string name="ChatExportDialogs__export_chat_history_title">Exportar historal do chat?</string>
+    <string name="ChatExportDialogs__export_chat_history_title">Exportar historal da conversa?</string>
     <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
-    <string name="ChatExportDialogs__export_confirm_body">NON compartas este arquivo con ninguén. O teu historal do chat gardarase no teu ordenador e outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo. Se inclúes o contido multimedia, isto xerará un arquivo máis grande.</string>
+    <string name="ChatExportDialogs__export_confirm_body">NON compartas este arquivo con ninguén. O teu historial do chat gardarase no teu ordenador e outras aplicacións poden ter acceso dependendo dos permisos do teu dispositivo. Se inclúes o contido multimedia, isto xerará un arquivo máis grande.</string>
     <!-- Button in the export confirmation dialog to export messages and media -->
     <string name="ChatExportDialogs__export_with_media">Exportar co contido multimedia</string>
     <!-- Button in the export confirmation dialog to export messages only -->
@@ -347,5 +347,5 @@
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">Actualizacións da app</string>
+    <string name="preferences_app_updates__title">Actualizacións da aplicación</string>
 </resources>

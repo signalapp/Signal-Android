@@ -13,6 +13,6 @@
     <!-- Default invite message shown in invite flows, to send in email or SMS. -->
     <string name="Invite__lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="Invite__no_app_to_share_to">ดูเหมือนคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
+    <string name="Invite__no_app_to_share_to">ดูเหมือนคุณไม่มีแอปอะไรที่จะแชร์ได้</string>
 
 </resources>

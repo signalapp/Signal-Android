@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Passkey</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">သင့်လက်ဗွေ၊ မျက်နှာ သို့မဟုတ် မျက်နှာပြင်လော့ခ်ကို အသုံးပြုပါ</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Passkey</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">နှစ်ဆင့်အတည်ပြုနည်း</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s တွင် ထည့်သွင်းခဲ့သည်</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">သင်ဝင်ရောက်သည့်အခါ တစ်ကြိမ်သုံးအတည်ပြုကုဒ်များအတွက် ဤအက်ပ်ကို အသုံးပြုနိုင်တော့မည်မဟုတ်ပါ။</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Passkey ကို ဖယ်ရှားမလား။</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">လော့ဂ်အင်ဝင်သည့်အခါ ဤ Passkey ကို အသုံးပြုနိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းကို ဖယ်ရှားမလား။</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">လော့ဂ်အင်ဝင်သည့်အခါ ဤနည်းလမ်းကို အသုံးပြုနိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">နှစ်ဆင့်အတည်ပြုနည်းကို ဖယ်ရှားပြီးပါပြီ</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းကို ဖယ်ရှား၍ မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Passkey ကို ဖယ်ရှားပြီးပါပြီ</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Passkey ကို ဖယ်ရှား၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">ဤစက်တွင် Passkey ကို ပံ့ပိုးပေးသော စကားဝှက်စီမံရေးကို စတင်သတ်မှတ်ပြီးနောက် ထပ်မံကြိုးစားပါ။</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Passkey ဖန်တီး၍ မရပါ။ ထပ်မံကြိုးစားပါ။</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းလမ်းကို ဖယ်ရှားရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ဤအတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို နောက်ပိုင်းတွင် ခွဲခြားသိရှိနိုင်ရန် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">ဤနှစ်ဆင့်အတည်ပြုနည်းအတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးချယ်ပါ။</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">နောက်ပိုင်းတွင် ခွဲခြားသိရှိနိုင်ရန် ဤနှစ်ဆင့်အတည်ပြုနည်းအတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးချယ်ပါ။</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">ဤ Passkey အတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးချယ်ပါ။</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">နောက်ပိုင်းတွင် ခွဲခြားသိရှိနိုင်ရန် ဤ Passkey အတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">အမည်</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို အမည်ပြောင်းပြီးပါပြီ</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey စတင်သတ်မှတ်ရန်</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey အမည်ကို ပြောင်းလဲပြီးပါပြီ</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">နှစ်ဆင့်အတည်ပြုနည်းကို စတင်သတ်မှတ်ပြီးပါပြီ</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">နှစ်ဆင့်အတည်ပြုနည်း၏ အမည်ကို ပြောင်းလဲပြီးပါပြီ</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">အမည်ကို သိမ်းဆည်း၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
 
@@ -258,7 +258,7 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">သူငယ်ချင်းဖိတ်ပါ</string>
+    <string name="InviteScreen__invite_friends">သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ</string>
     <!-- Share button on invite screen to open the system share sheet -->
     <string name="InviteScreen__share">ဝေမျှမည်</string>
 
@@ -284,11 +284,11 @@
     <!-- Row description for the plaintext chat export option -->
     <string name="ChatsSettingsFragment__export_chat_history_label">သင့်ချက်(တ်)အားလုံး၏ စက်ဖြင့်ဖတ်နိုင်သော JSON မိတ္တူကို ထုတ်ယူပါ။ ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ထုတ်ယူမည်မဟုတ်ပါ။</string>
     <string name="ChatsSettingsFragment__keyboard">ကီးဘုတ်</string>
-    <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ပါ</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ရန်</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">စတစ်ကာများနှင့် GIF များကို အလိုအလျောက်ဖွင့်ရန်</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">ဖွင့်ထားပါက စတစ်ကာများနှင့် GIF များသည် အလိုအလျောက် လှုပ်ရှားပြသပါမည်</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူရန် လော့ခ်ဖွင့်ပါ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် သင့်လိပ်စာစာအုပ်ရှိ အဆက်အသွယ်များ၏ ဓာတ်ပုံများကို အသုံးပြုပါ</string>
@@ -298,8 +298,8 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">အသံပိတ်ထားသည့် ချက်(တ်)များကို ဆက်လက်စုစည်းရန်</string>
     <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို ဦးစားပေးပါ</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
-    <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝက်ဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
+    <string name="preferences_advanced__use_system_emoji">စနစ်၏ အီမိုဂျိကို သုံးပါ</string>
     <string name="preferences_chats__chats">ချက်(တ်)များ</string>
 
     <!-- ChatExportDialogs -->
@@ -330,7 +330,7 @@
 
     <!-- BackupCreationProgressRow -->
     <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__exporting_media_d">မီဒီယာကို ထုတ်ယူနေသည်- %1$d</string>
+    <string name="BackupCreationProgressRow__exporting_media_d">မီဒီယာကို ထုတ်ယူနေသည်- %1$d%%</string>
     <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
     <string name="BackupCreationProgressRow__finalizing">အပြီးသတ်နေသည်…</string>
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
@@ -346,5 +346,5 @@
 
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
-    <string name="preferences_app_updates__title">အပ္ပလီကေးရှင်း အပ်ဒိတ်များ</string>
+    <string name="preferences_app_updates__title">အက်ပ် အပ်ဒိတ်များ</string>
 </resources>

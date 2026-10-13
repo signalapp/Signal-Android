@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">សោសម្ងាត់</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">ប្រើស្នាមម្រាមដៃ មុខ ឬការចាក់សោអេក្រង់របស់អ្នក</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">សោសម្ងាត់</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">វិធីផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · បានបញ្ចូលនៅថ្ងៃទី %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">អ្នកនឹងមិនអាចប្រើកម្មវិធីនេះសម្រាប់លេខកូដផ្ទៀងផ្ទាត់ដែលប្រើតែម្តងបានទេ នៅពេលអ្នកចូលគណនី។</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">លុបសោសម្ងាត់?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">អ្នកនឹងមិនអាចប្រើសោសម្ងាត់នេះបានទេ នៅពេលអ្នកចូលប្រើគណនី។</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">លុបវិធីផ្ទៀងផ្ទាត់ពីរជំហាន?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">អ្នកនឹងមិនអាចប្រើវិធីនេះបានទេ នៅពេលអ្នកចូលប្រើគណនី។</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">វិធីផ្ទៀងផ្ទាត់ពីរជំហានត្រូវបានលុប</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">មិនអាចលុបវិធីផ្ទៀងផ្ទាត់ពីរជំហានបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">សោសម្ងាត់ត្រូវបានលុប</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">មិនអាចលុបសោសម្ងាត់បានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">រៀបចំកម្មវិធីគ្រប់គ្រងពាក្យសម្ងាត់ដែលប្រើបានជាមួយសោសម្ងាត់នៅលើឧបករណ៍នេះ រួចព្យាយាមម្តងទៀត។</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">មិនអាចបង្កើតសោសម្ងាត់បានទេ។ ព្យាយាមម្តងទៀត។</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ដោះសោដើម្បីលុបវិធីផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -188,31 +188,31 @@
     <!-- Instructions shown above the name field when renaming an authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេសម្រាប់កម្មវិធីផ្ទៀងផ្ទាត់នេះ។</string>
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេឱ្យកម្មវិធីផ្ទៀងផ្ទាត់នេះ ដើម្បីជួយឱ្យអ្នកស្រួលរកវានៅពេលក្រោយ។</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេឱ្យកម្មវិធីផ្ទៀងផ្ទាត់នេះ ដើម្បីជួយឱ្យអ្នកស្រួលចំណាំវានៅពេលក្រោយ។</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេសម្រាប់វិធីផ្ទៀងផ្ទាត់ពីរជំហាននេះ។</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេសម្រាប់វិធីផ្ទៀងផ្ទាត់ពីរជំហាននេះ ដើម្បីជួយឱ្យអ្នកស្រួលចំណាំវានៅពេលក្រោយ។</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេសម្រាប់សោសម្ងាត់នេះ។</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">ជ្រើសរើសឈ្មោះខុសប្លែកពីគេសម្រាប់សោសម្ងាត់នេះ ដើម្បីជួយឱ្យអ្នកស្រួលចំណាំវានៅពេលក្រោយ។</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">ឈ្មោះ</string>
     <!-- Button that submits the entered name -->
     <string name="TwoFactorNameEntryScreen__next">បន្ទាប់</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">បានរៀបចំកម្មវិធីផ្ទៀងផ្ទាត់</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">កម្មវិធីផ្ទៀងផ្ទាត់ត្រូវបានរៀបចំ</string>
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">បានប្តូរឈ្មោះកម្មវិធីផ្ទៀងផ្ទាត់</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">សោសម្ងាត់ត្រូវបានរៀបចំ</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">សោសម្ងាត់ត្រូវបានប្តូរឈ្មោះ</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">វិធីពីរជំហានត្រូវបានរៀបចំ</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">វិធីពីរជំហានត្រូវបានប្តូរឈ្មោះ</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">មិនអាចរក្សាទុកឈ្មោះបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
 
@@ -286,20 +286,20 @@
     <string name="ChatsSettingsFragment__keyboard">ក្ដារចុច</string>
     <string name="ChatsSettingsFragment__send_with_enter">ផ្ញើដោយចុច Enter</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">ចាក់ស្ទីកគ័រ និងរូបមានចលនាដោយស្វ័យប្រវត្តិ</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">នៅពេលបើក ស្ទីកគ័រ និងរូបមានចលនានឹងចាក់ដោយស្វ័យប្រវត្តិ</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ដោះសោដើម្បីនាំចេញប្រវត្តិជជែក</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ចង់ប្រើប្រាស់រូបថតរបស់ទំនាក់ទំនងចេញពីសៀវភៅអាសយដ្ឋានរបស់អ្នក ប្រសិនបើមាន</string>
-    <string name="preferences__generate_link_previews">បង្កើតការមើលមុនតំណភ្ជាប់</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ចង់ប្រើប្រាស់រូបថតរបស់ទំនាក់ទំនងពីសៀវភៅអាសយដ្ឋានរបស់អ្នក ប្រសិនបើមាន</string>
+    <string name="preferences__generate_link_previews">បង្កើតការមើលតំណភ្ជាប់ជាមុន</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ការជជែកដែលបានបិទសំឡេងដែលត្រូវបានទុកក្នុងបណ្ណសារនឹងនៅតែរក្សាទុកក្នុងបណ្ណសារដដែល នៅពេលសារថ្មីមកដល់។</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">បន្តទុកក្នុងបណ្ណសារនូវការជជែកដែលបិទសំឡេង</string>
     <string name="preferences__pref_use_address_book_photos">ចង់ប្រើប្រាស់រូបថតសៀវភៅអាសយដ្ឋាន</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">ទាញយកតំណភ្ជាប់មើលមុន ដោយផ្ទាល់ពីគេហទំព័រ សម្រាប់សារដែលអ្នកផ្ញើ។</string>
-    <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">ទាញយកការមើលតំណភ្ជាប់ជាមុន ដោយផ្ទាល់ពីគេហទំព័រ សម្រាប់សារដែលអ្នកផ្ញើ។</string>
+    <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍នៅក្នុងប្រព័ន្ធ</string>
     <string name="preferences_chats__chats">ការជជែក</string>
 
     <!-- ChatExportDialogs -->
@@ -340,7 +340,7 @@
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">កំពុងដំណើរការសារ…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
-    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">កំពុងដំណើរការសារ៖ %1$s ក្នុងចំណោម %2$s (%3$d%%)</string>
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">កំពុងដំណើរការសារ៖ %1$s នៃ %2$s (%3$d%%)</string>
     <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
     <string name="BackupCreationProgressRow__uploading_media_d">កំពុងបង្ហោះមេឌៀ៖ %1$d%%</string>
 

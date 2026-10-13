@@ -38,7 +38,7 @@
     <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
     <string name="SignalLoginViewDetailsScreen__no_password_manager_available">설정된 비밀번호 관리자가 없습니다.</string>
     <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
-    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">로그인 정보는 안전성을 신뢰할 수 있는 비밀번호 관리자에만 저장하세요. Signal은 특정 비밀번호 관리자를 별도로 추천하지 않습니다.</string>
     <!-- Toast shown when saving the Signal Login PDF fails. -->
     <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">PDF를 저장할 수 없습니다. 다시 시도해 주세요.</string>
     <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->

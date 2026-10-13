@@ -61,11 +61,11 @@
     <!-- Name of a passkey in the list of second factors on the account -->
     <string name="AccountSettingsFragment__passkey">Passkey</string>
     <!-- Description of the passkey menu option -->
-    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Usa la tua impronta, il tuo volto o il blocco schermo</string>
     <!-- Default name given to a passkey before the user chooses one -->
     <string name="AccountSettingsRepository__passkey">Passkey</string>
     <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
-    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <string name="AccountSettingsFragment__two_factor_method">Metodo a due fattori</string>
     <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
     <string name="AccountSettingsFragment__s_added_s">%1$s · Aggiunto il %2$s</string>
     <!-- Name shown for a second factor whose details couldn\'t be read -->
@@ -81,25 +81,25 @@
     <!-- Body of the dialog confirming removal of an authenticator app -->
     <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Non potrai utilizzare quest\'app per ricevere i codici di verifica monouso quando accedi.</string>
     <!-- Title of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <string name="AccountSettingsFragment__remove_passkey">Rimuovere la Passkey?</string>
     <!-- Body of the dialog confirming removal of a passkey -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">Non potrai più usare questa Passkey quando accedi.</string>
     <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <string name="AccountSettingsFragment__remove_two_factor_method">Rimuovere il metodo a due fattori?</string>
     <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
-    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">Non potrai più usare questo metodo quando accedi.</string>
     <!-- Toast shown after a second factor has been removed from the account -->
-    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <string name="AccountSettingsFragment__two_factor_method_removed">Metodo a due fattori rimosso</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
-    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Impossibile rimuovere il metodo a due fattori. Controlla la tua connessione e riprova.</string>
     <!-- Toast shown after a passkey has been removed from the account -->
-    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <string name="AccountSettingsFragment__passkey_removed">Passkey rimossa</string>
     <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
-    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Impossibile rimuovere la Passkey. Controlla la tua connessione e riprova.</string>
     <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
-    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <string name="AccountSettingsFragment__no_passkey_provider">Imposta un Password manager che supporta le Passkey su questo dispositivo, poi riprova.</string>
     <!-- Toast shown when creating a passkey didn\'t work -->
-    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Impossibile creare una Passkey. Riprova.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Sblocca per rimuovere il metodo a due fattori</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -190,13 +190,13 @@
     <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
     <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Scegli un nome mai usato prima per quest\'app di autenticazione, così potrai identificarla facilmente in seguito.</string>
     <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Scegli un nome mai usato prima per questo metodo a due fattori.</string>
     <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Scegli un nome mai usato prima per questo metodo a due fattori, così potrai identificarlo facilmente in seguito.</string>
     <!-- Instructions shown above the name field when renaming a passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Scegli un nome mai usato prima per questa Passkey.</string>
     <!-- Instructions shown above the name field when naming a newly created passkey -->
-    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Scegli un nome mai usato prima per questa Passkey, così potrai identificarla facilmente in seguito.</string>
     <!-- Label of the name field -->
     <string name="TwoFactorNameEntryScreen__name">Nome</string>
     <!-- Button that submits the entered name -->
@@ -206,13 +206,13 @@
     <!-- Toast shown after an authenticator app has been renamed -->
     <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">App per l\'autenticazione rinominata</string>
     <!-- Toast shown after a passkey has been successfully set up -->
-    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey configurata</string>
     <!-- Toast shown after a passkey has been renamed -->
-    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey rinominata</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Metodo a due fattori configurato</string>
     <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
-    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Metodo a due fattori rinominato</string>
     <!-- Toast shown when we couldn\'t reach the service to save the name -->
     <string name="TwoFactorNameEntryScreen__couldnt_save_name">Impossibile salvare il nome. Controlla la tua connessione e riprova.</string>
 
@@ -258,7 +258,7 @@
 
     <!-- InviteScreen -->
     <!-- Title of the screen where the user invites friends to join Signal -->
-    <string name="InviteScreen__invite_friends">Invita amici</string>
+    <string name="InviteScreen__invite_friends">Invita chi vuoi</string>
     <!-- Share button on invite screen to open the system share sheet -->
     <string name="InviteScreen__share">Condividi</string>
 
@@ -287,9 +287,9 @@
     <string name="ChatsSettingsFragment__keyboard">Tastiera</string>
     <string name="ChatsSettingsFragment__send_with_enter">Invia premendo invio</string>
     <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
-    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Riproduci in automatico sticker e GIF</string>
     <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
-    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">Se attivi questa opzione, la riproduzione di sticker e GIF sarà automatica</string>
     <!-- Biometrics prompt title shown before allowing the user to export chat history -->
     <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Sblocca per esportare la cronologia chat</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostra le foto dei contatti della tua rubrica se disponibili</string>
@@ -301,7 +301,7 @@
     <string name="preferences__pref_use_address_book_photos">Usa le foto della rubrica</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
     <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
-    <string name="preferences_chats__chats">Conversazioni</string>
+    <string name="preferences_chats__chats">Chat</string>
 
     <!-- ChatExportDialogs -->
     <!-- Bold warning prefix in the export complete dialog body -->
@@ -317,7 +317,7 @@
     <!-- Button that opens the system folder picker -->
     <string name="ChatExportDialogs__choose_folder_button">Scegli la cartella</string>
     <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
-    <string name="ChatExportDialogs__complete_body">a dove archivi il file della chat esportato e non condividerlo mai con altre persone. Altre app sul tuo dispositivo potrebbero accedervi, a seconda delle autorizzazioni fornite sul tuo dispositivo.</string>
+    <string name="ChatExportDialogs__complete_body">dove archivi il file della chat esportato e non condividerla mai con altre persone. Altre app sul tuo dispositivo potrebbero accedervi, a seconda delle autorizzazioni fornite sul tuo dispositivo.</string>
     <!-- Title of the dialog shown when a chat export finishes successfully -->
     <string name="ChatExportDialogs__complete_title">Esportazione chat completata</string>
     <!-- Title of the dialog asking the user to confirm they want to export chat history -->
@@ -337,7 +337,7 @@
     <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
     <string name="BackupCreationProgressRow__preparing_backup">Preparazione del backup…</string>
     <!-- Progress text shown while the backup database is being processed -->
-    <string name="BackupCreationProgressRow__processing_backup">Elaborazione backup in corso…</string>
+    <string name="BackupCreationProgressRow__processing_backup">Elaborazione backup…</string>
     <!-- Progress text shown while messages are being processed, with no count available yet -->
     <string name="BackupCreationProgressRow__processing_messages">Elaborazione dei messaggi…</string>
     <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
