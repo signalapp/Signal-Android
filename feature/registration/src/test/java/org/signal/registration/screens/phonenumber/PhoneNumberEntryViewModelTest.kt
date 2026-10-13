@@ -32,6 +32,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId.ACI
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -46,17 +47,22 @@ import org.signal.network.api.RegistrationApiV2.ThirdPartyServiceErrorResponse
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.registration.KeyMaterial
 import org.signal.registration.PreExistingRegistrationData
+import org.signal.registration.RegisteredAccountData
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationFlowState
 import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.VerificationCodeRequest
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
+import org.signal.registration.screens.shared.AccountIdError
 import java.io.IOException
+import java.util.UUID
 import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class PhoneNumberEntryViewModelTest {
+
+  private val testAci = ACI.from(UUID.fromString("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"))
 
   private lateinit var viewModel: PhoneNumberEntryViewModel
   private lateinit var mockRepository: RegistrationRepository
@@ -444,6 +450,38 @@ class PhoneNumberEntryViewModelTest {
   }
 
   @Test
+  fun `RegisterWithoutNumber navigates to the Signal Login payment screen`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.SignalLoginPayment>()
+  }
+
+  @Test
+  fun `RegisterWithoutNumber skips payment and goes straight to credential entry when the user has an existing account`() = runTest {
+    viewModel.applyEvent(
+      PhoneNumberEntryState(sawArchiveRestoreSelectionScreen = true),
+      PhoneNumberEntryScreenEvents.RegisterWithoutNumber,
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.first())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.SignalLoginCredentialEntry())
+  }
+
+  @Test
   fun `initial state reflects repository link and sync availability`() = runTest {
     every { mockRepository.isLinkAndSyncAvailable } returns true
 
@@ -600,6 +638,27 @@ class PhoneNumberEntryViewModelTest {
 
     assertThat(emittedStates).hasSize(1)
     assertThat(emittedStates.last()).isEqualTo(initialState)
+  }
+
+  @Test
+  fun `FullPhoneNumberEntered leaves account ID mode even when the number is unparseable`() = runTest {
+    val initialState = PhoneNumberEntryState(
+      countryCode = "1",
+      regionCode = "US",
+      accountId = "a6b284822e3283d07f2391360a4c2b91",
+      accountIdError = AccountIdError.Invalid,
+      isPhoneNumberlessRegistrationAvailable = true
+    )
+
+    viewModel.applyEvent(
+      initialState,
+      PhoneNumberEntryScreenEvents.FullPhoneNumberEntered("not-a-number"),
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedStates.last().enteredAccountId).isNull()
+    assertThat(emittedStates.last().accountIdError).isNull()
   }
 
   @Test
@@ -788,6 +847,47 @@ class PhoneNumberEntryViewModelTest {
     assertThat(emittedEvents[0]).isInstanceOf<RegistrationFlowEvent.SessionUpdated>()
     assertThat(emittedEvents[1]).isInstanceOf<RegistrationFlowEvent.E164Chosen>()
     assertThat(emittedEvents[2])
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.Captcha>()
+  }
+
+  @Test
+  fun `RemoteBackupRestoreDeferredToSms creates session for the chosen number and navigates to code entry`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = emptyList())
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+    coEvery { mockRepository.requestVerificationCode(any(), any(), any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedStates.first().showSpinner).isTrue()
+    assertThat(emittedStates.last().showSpinner).isFalse()
+
+    coVerify(exactly = 1) { mockRepository.createSession("+15551234567") }
+    assertThat(emittedEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
+  }
+
+  @Test
+  fun `RemoteBackupRestoreDeferredToSms navigates to captcha when required`() = runTest {
+    val sessionMetadata = createSessionMetadata(requestedInformation = listOf("captcha"))
+
+    coEvery { mockRepository.createSession(any()) } returns
+      RequestResult.Success(sessionMetadata)
+
+    val initialState = PhoneNumberEntryState(sessionE164 = "+15551234567")
+
+    viewModel.applyEvent(initialState, PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms, parentEventEmitter, stateEmitter)
+
+    coVerify(exactly = 0) { mockRepository.requestVerificationCode(any(), any(), any()) }
+    assertThat(emittedEvents.last())
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.Captcha>()
@@ -1569,7 +1669,7 @@ class PhoneNumberEntryViewModelTest {
     val registerResponse = createRegisterAccountResponse(storageCapable = true)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1596,7 +1696,7 @@ class PhoneNumberEntryViewModelTest {
     val registerResponse = createRegisterAccountResponse(storageCapable = false)
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), any(), any(), any()) } returns
-      RequestResult.Success(registerResponse to keyMaterial)
+      RequestResult.Success(RegisteredAccountData(registerResponse, keyMaterial, testAci))
 
     val initialState = PhoneNumberEntryState(
       countryCode = "1",
@@ -1702,7 +1802,7 @@ class PhoneNumberEntryViewModelTest {
     )
 
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = any<String>(), any(), any(), any()) } returns
-      RequestResult.Success(response to keyMaterial)
+      RequestResult.Success(RegisteredAccountData(response, keyMaterial, testAci))
     coEvery { mockRepository.registerAccountWithRecoveryPassword(any(), any(), registrationLock = null, any(), any(), any()) } returns
       RequestResult.NonSuccess(
         RegisterAccountError.RegistrationLock(registrationLockData)
@@ -2115,6 +2215,142 @@ class PhoneNumberEntryViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isInstanceOf<RegistrationRoute.VerificationCodeEntry>()
+  }
+
+  @Test
+  fun `NationalNumberChanged with an account ID switches the entry over to account ID mode`() = runTest {
+    val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
+
+    viewModel.applyEvent(
+      initialState,
+      PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "A6B28482-2E32-83D0-7F23-91360A4C2B91"),
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().nationalNumber).isEmpty()
+    assertThat(emittedStates.last().formattedNumber).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().isNextEnabled).isTrue()
+  }
+
+  @Test
+  fun `NationalNumberChanged with an account ID is ignored when numberless registration is unavailable`() = runTest {
+    val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = false)
+
+    viewModel.applyEvent(
+      initialState,
+      PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "A6B28482-2E32-83D0-7F23-91360A4C2B91"),
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedStates.last().nationalNumber).isEqualTo("628482232830723913604291")
+  }
+
+  @Test
+  fun `NationalNumberChanged with a partial account ID stays in account ID mode but cannot be submitted`() = runTest {
+    val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
+
+    viewModel.applyEvent(
+      initialState,
+      PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "a6b28482"),
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b28482")
+    assertThat(emittedStates.last().isNextEnabled).isFalse()
+  }
+
+  @Test
+  fun `NationalNumberChanged back to digits leaves account ID mode`() = runTest {
+    var state = PhoneNumberEntryState(countryCode = "1", isPhoneNumberlessRegistrationAvailable = true)
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "a6b28482"), parentEventEmitter, stateEmitter)
+    state = emittedStates.last()
+    assertThat(state.enteredAccountId).isEqualTo("a6b28482")
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "a6b28482", newValue = "5551234567"), parentEventEmitter, stateEmitter)
+    state = emittedStates.last()
+    assertThat(state.enteredAccountId).isNull()
+    assertThat(state.nationalNumber).isEqualTo("5551234567")
+  }
+
+  @Test
+  fun `NationalNumberChanged clearing an account ID leaves account ID mode`() = runTest {
+    var state = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "a6b28482"), parentEventEmitter, stateEmitter)
+    state = emittedStates.last()
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "a6b28482", newValue = ""), parentEventEmitter, stateEmitter)
+    state = emittedStates.last()
+    assertThat(state.enteredAccountId).isNull()
+    assertThat(state.formattedNumber).isEmpty()
+  }
+
+  @Test
+  fun `NationalNumberChanged with an over-long account ID keeps only a complete ID`() = runTest {
+    val initialState = PhoneNumberEntryState(isPhoneNumberlessRegistrationAvailable = true)
+
+    viewModel.applyEvent(
+      initialState,
+      PhoneNumberEntryScreenEvents.NationalNumberChanged(oldValue = "", newValue = "a6b284822e3283d07f2391360a4c2b91ff"),
+      parentEventEmitter,
+      stateEmitter
+    )
+
+    assertThat(emittedStates.last().enteredAccountId).isEqualTo("a6b284822e3283d07f2391360a4c2b91")
+    assertThat(emittedStates.last().accountIdError).isNull()
+    assertThat(emittedStates.last().isNextEnabled).isTrue()
+  }
+
+  @Test
+  fun `an account ID in state is ignored entirely when numberless registration is unavailable`() {
+    val state = PhoneNumberEntryState(
+      accountId = "a6b284822e3283d07f2391360a4c2b91",
+      accountIdError = AccountIdError.Invalid,
+      formattedNumber = "a6b284822e3283d07f2391360a4c2b91",
+      isNumberPossible = true,
+      isPhoneNumberlessRegistrationAvailable = false
+    )
+
+    assertThat(state.enteredAccountId).isNull()
+    assertThat(state.isNextEnabled).isTrue()
+  }
+
+  @Test
+  fun `NextClicked does not go to the credential entry screen when numberless registration is unavailable`() = runTest {
+    val state = PhoneNumberEntryState(
+      countryCode = "1",
+      regionCode = "US",
+      nationalNumber = "5551234567",
+      accountId = "a6b284822e3283d07f2391360a4c2b91",
+      isPhoneNumberlessRegistrationAvailable = false
+    )
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedEvents).isEmpty()
+    assertThat(emittedStates.last().dialogs.confirmNumber).isTrue()
+  }
+
+  @Test
+  fun `NextClicked in account ID mode navigates to the credential entry screen with the ID prefilled`() = runTest {
+    val state = PhoneNumberEntryState(
+      accountId = "a6b284822e3283d07f2391360a4c2b91",
+      formattedNumber = "a6b284822e3283d07f2391360a4c2b91",
+      isPhoneNumberlessRegistrationAvailable = true
+    )
+
+    viewModel.applyEvent(state, PhoneNumberEntryScreenEvents.NextClicked, parentEventEmitter, stateEmitter)
+
+    assertThat(emittedEvents).hasSize(1)
+    assertThat(emittedEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(RegistrationRoute.SignalLoginCredentialEntry("a6b284822e3283d07f2391360a4c2b91"))
   }
 
   // ==================== Helper Functions ====================

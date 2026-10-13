@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +14,7 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
 
   @Override
   protected long getNextScheduledExecutionTime(Context context) {
-    return TextSecurePreferences.getDirectoryRefreshTime(context);
+    return SignalStore.misc().getDirectoryRefreshTime();
   }
 
   @Override
@@ -31,10 +30,10 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
                          SignalStore.misc().getCdsBlockedUtil());
     } else {
       newTime = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(RemoteConfig.cdsRefreshIntervalSeconds());
-      TextSecurePreferences.setDirectoryRefreshTime(context, newTime);
+      SignalStore.misc().setDirectoryRefreshTime(newTime);
     }
 
-    TextSecurePreferences.setDirectoryRefreshTime(context, newTime);
+    SignalStore.misc().setDirectoryRefreshTime(newTime);
 
     return newTime;
   }

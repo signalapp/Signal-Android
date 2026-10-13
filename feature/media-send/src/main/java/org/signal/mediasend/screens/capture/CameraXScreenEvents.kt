@@ -16,6 +16,9 @@ sealed interface CameraXScreenEvents {
    */
   class VideoCaptured(val fd: SeekableFileDescriptor, val durationMs: Long) : CameraXScreenEvents
   class QrCodeFound(val data: String) : CameraXScreenEvents
+
+  data class RecordingStateChanged(val isRecording: Boolean) : CameraXScreenEvents
+
   data object VideoCaptureError : CameraXScreenEvents
   data object GalleryClicked : CameraXScreenEvents
   data object CameraCloseClicked : CameraXScreenEvents

@@ -16,47 +16,52 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
+import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.compose.FragmentBackHandler
 import org.thoughtcrime.securesms.compose.FragmentBackPressedState
-import org.thoughtcrime.securesms.main.EmptyDetailScreen
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainDetailRoute
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveScreen
+import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.stories.my.MyStoriesFragment
 import org.thoughtcrime.securesms.stories.settings.StorySettingsNavHostFragment
 
-fun EntryProviderScope<NavKey>.storiesNavEntries() {
-  entry<MainNavigationDetailLocation.Empty> {
-    NoStorySelectedEntry()
-  }
-
-  entry<MainNavigationDetailLocation.Stories.Archive>(
+fun EntryProviderScope<NavKey>.registerStoriesTabDetailRoutes() {
+  detailEntry<MainDetailRoute.Stories.Archive>(
     metadata = TransitionSpecs.None.metadata
   ) {
     StoryArchiveEntry()
   }
 
-  entry<MainNavigationDetailLocation.Stories.MyStories>(
+  detailEntry<MainDetailRoute.Stories.MyStories>(
     metadata = TransitionSpecs.None.metadata
   ) {
     MyStoriesEntry()
   }
 
-  entry<MainNavigationDetailLocation.Stories.PrivacySettings>(
+  detailEntry<MainDetailRoute.Stories.PrivacySettings>(
     metadata = TransitionSpecs.None.metadata
   ) {
     StoryPrivacySettingsEntry()
   }
 }
 
+/**
+ * List pane content for the stories tab.
+ */
 @Composable
-private fun NoStorySelectedEntry() {
-  EmptyDetailScreen()
+fun StoriesListPane(modifier: Modifier = Modifier) {
+  AndroidFragment(
+    clazz = StoriesLandingFragment::class.java,
+    fragmentState = rememberFragmentState(),
+    modifier = modifier
+  )
 }
 
 @Composable
@@ -71,28 +76,26 @@ private fun StoryArchiveEntry() {
 
 @Composable
 private fun MyStoriesEntry() {
-  val fragmentState = key(MainNavigationDetailLocation.Stories.MyStories) { rememberFragmentState() }
-  val backPressedState = remember { FragmentBackPressedState() }
-  FragmentBackHandler(backPressedState)
+  val fragmentState = key(MainDetailRoute.Stories.MyStories) { rememberFragmentState() }
 
   informNavigatorWeAreReady()
 
+  // No FragmentBackHandler: the fragment has no back state of its own, so back belongs to the display
+  // that put this entry on the stack.
   AndroidFragment(
     clazz = MyStoriesFragment::class.java,
     fragmentState = fragmentState,
-    modifier = androidx.compose.ui.Modifier
+    modifier = Modifier
       .fillMaxSize()
       .background(MaterialTheme.colorScheme.background)
       .statusBarsPadding()
       .navigationBarsPadding()
-  ) { fragment ->
-    backPressedState.attach(fragment)
-  }
+  )
 }
 
 @Composable
 private fun StoryPrivacySettingsEntry() {
-  val fragmentState = key(MainNavigationDetailLocation.Stories.PrivacySettings) { rememberFragmentState() }
+  val fragmentState = key(MainDetailRoute.Stories.PrivacySettings) { rememberFragmentState() }
   val backPressedState = remember { FragmentBackPressedState() }
   FragmentBackHandler(backPressedState)
 
@@ -101,7 +104,7 @@ private fun StoryPrivacySettingsEntry() {
   AndroidFragment(
     clazz = StorySettingsNavHostFragment::class.java,
     fragmentState = fragmentState,
-    modifier = androidx.compose.ui.Modifier
+    modifier = Modifier
       .fillMaxSize()
       .background(MaterialTheme.colorScheme.background)
       .statusBarsPadding()

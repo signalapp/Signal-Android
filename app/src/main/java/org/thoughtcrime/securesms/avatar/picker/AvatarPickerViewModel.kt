@@ -1,126 +1,170 @@
 package org.thoughtcrime.securesms.avatar.picker
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import androidx.lifecycle.viewModelScope
+import arrow.core.Either
+import arrow.core.raise.either
+import arrow.core.right
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.util.livedata.Store
 
-sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepository) : ViewModel() {
+private val TAG = Log.tag(AvatarPickerViewModel::class.java)
 
-  private val disposables = CompositeDisposable()
-  private val store = Store(AvatarPickerState())
+sealed class AvatarPickerViewModel : EventDrivenViewModel<AvatarPickerEvents>(TAG, shouldLogEvents = false) {
 
-  val state: LiveData<AvatarPickerState> = store.stateLiveData
+  private val internalState = MutableStateFlow(AvatarPickerState())
+  val state: StateFlow<AvatarPickerState> = internalState
 
-  protected abstract fun getAvatar(): Single<Avatar>
-  protected abstract fun getDefaultAvatarFromRepository(): Avatar
-  protected abstract fun getPersistedAvatars(): Single<List<Avatar>>
-  protected abstract fun getDefaultAvatars(): Single<List<Avatar>>
-  protected abstract fun persistAvatar(avatar: Avatar, onPersisted: (Avatar) -> Unit)
-  protected abstract fun persistAndCreateMedia(avatar: Avatar, onSaved: (Media) -> Unit)
+  private val internalActions = Channel<AvatarPickerActions>(Channel.BUFFERED)
+  val actions: Flow<AvatarPickerActions> = internalActions.receiveAsFlow()
 
-  fun delete(avatar: Avatar) {
-    repository.delete(avatar) {
+  protected abstract suspend fun getAvatar(): Avatar
+  protected abstract suspend fun getDefaultAvatarFromRepository(): Avatar
+  protected abstract suspend fun getPersistedAvatars(): List<Avatar>
+  protected abstract suspend fun getDefaultAvatars(): List<Avatar>
+  protected abstract suspend fun persistAvatar(avatar: Avatar): Either<Throwable, Avatar>
+  protected abstract suspend fun persistAndCreateMedia(avatar: Avatar): Either<Throwable, Media>
+
+  override suspend fun processEvent(event: AvatarPickerEvents) {
+    when (event) {
+      AvatarPickerEvents.ClearAvatar -> clearAvatar()
+      is AvatarPickerEvents.DeleteAvatar -> delete(event.avatar)
+      is AvatarPickerEvents.AvatarEdited -> onAvatarEditCompleted(event.avatar)
+      AvatarPickerEvents.Save -> save()
+      is AvatarPickerEvents.AvatarSelected -> onAvatarSelectedFromGrid(event.avatar)
+      is AvatarPickerEvents.PhotoSelected -> onAvatarPhotoSelectionCompleted(event.media)
+      is AvatarPickerEvents.EditAvatar -> internalActions.send(AvatarPickerActions.LaunchAvatarEditor(event.avatar))
+      AvatarPickerEvents.Close -> internalActions.send(AvatarPickerActions.Close)
+      AvatarPickerEvents.CapturePhoto -> internalActions.send(AvatarPickerActions.LaunchCameraCapture)
+      AvatarPickerEvents.SelectPhoto -> internalActions.send(AvatarPickerActions.LaunchPhotoSelection)
+      AvatarPickerEvents.SelectText -> internalActions.send(AvatarPickerActions.LaunchTextAvatarCreation)
+    }
+  }
+
+  private fun delete(avatar: Avatar) {
+    viewModelScope.launch {
+      AvatarPickerRepository.delete(avatar)
       refreshAvatar()
       refreshSelectableAvatars()
     }
   }
 
-  fun clearAvatar() {
-    store.update {
-      val avatar = getDefaultAvatarFromRepository()
-      it.copy(currentAvatar = avatar, canSave = true, canClear = false, isCleared = true)
+  private suspend fun clearAvatar() {
+    val avatar = getDefaultAvatarFromRepository()
+
+    internalState.update { it.copy(currentAvatar = avatar, canSave = true, canClear = false, isCleared = true) }
+  }
+
+  /** Saving closes the picker, so [AvatarPickerState.canSave] guards against doing it twice. */
+  private suspend fun save() {
+    if (!internalState.value.canSave) {
+      return
     }
-  }
 
-  fun save(onSaved: (Media) -> Unit, onCleared: () -> Unit) {
-    if (store.state.isCleared) {
-      onCleared()
-    } else {
-      val avatar = store.state.currentAvatar ?: throw AssertionError()
-      persistAndCreateMedia(avatar, onSaved)
+    internalState.update { it.copy(canSave = false) }
+
+    if (internalState.value.isCleared) {
+      internalActions.send(AvatarPickerActions.FinishWithClearedAvatar)
+      return
     }
-  }
 
-  fun onAvatarSelectedFromGrid(avatar: Avatar) {
-    store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
-  }
+    val avatar = internalState.value.currentAvatar ?: throw AssertionError()
 
-  fun onAvatarEditCompleted(avatar: Avatar) {
-    persistAvatar(avatar) { saved ->
-      store.update { it.copy(currentAvatar = saved, canSave = isSaveable(saved), canClear = true, isCleared = false) }
-      refreshSelectableAvatars()
-    }
-  }
-
-  fun onAvatarPhotoSelectionCompleted(media: Media) {
-    repository.writeMediaToMultiSessionStorage(media) { multiSessionUri ->
-      persistAvatar(Avatar.Photo(multiSessionUri, media.size, Avatar.DatabaseId.NotSet)) { avatar ->
-        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
-        refreshSelectableAvatars()
+    persistAndCreateMedia(avatar)
+      .onRight { internalActions.send(AvatarPickerActions.FinishWithAvatar(it)) }
+      .onLeft {
+        Log.w(TAG, "Failed to save avatar.", it)
+        internalState.update { state -> state.copy(canSave = true) }
+        internalActions.send(AvatarPickerActions.ShowSaveFailed)
       }
+  }
+
+  private fun onAvatarSelectedFromGrid(avatar: Avatar) {
+    internalState.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
+  }
+
+  private fun onAvatarEditCompleted(avatar: Avatar) {
+    viewModelScope.launch {
+      persistAvatar(avatar)
+        .onRight { saved ->
+          internalState.update { it.copy(currentAvatar = saved, canSave = isSaveable(saved), canClear = true, isCleared = false) }
+          refreshSelectableAvatars()
+        }
+        .onLeft { Log.w(TAG, "Failed to persist edited avatar.", it) }
+    }
+  }
+
+  private fun onAvatarPhotoSelectionCompleted(media: Media) {
+    viewModelScope.launch {
+      either {
+        val multiSessionUri = AvatarPickerRepository.writeMediaToMultiSessionStorage(media).bind()
+        persistAvatar(Avatar.Photo(multiSessionUri, media.size, Avatar.DatabaseId.NotSet)).bind()
+      }
+        .onRight { avatar ->
+          internalState.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
+          refreshSelectableAvatars()
+        }
+        .onLeft { Log.w(TAG, "Failed to persist selected photo.", it) }
     }
   }
 
   protected fun refreshAvatar() {
-    disposables.add(
-      getAvatar().subscribeOn(Schedulers.io()).subscribe { avatar ->
-        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = avatar is Avatar.Photo && !isSaveable(avatar), isCleared = false) }
-      }
-    )
+    viewModelScope.launch {
+      val avatar = getAvatar()
+      internalState.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = avatar is Avatar.Photo && !isSaveable(avatar), isCleared = false) }
+    }
   }
 
   protected fun refreshSelectableAvatars() {
-    disposables.add(
-      Single.zip(getPersistedAvatars(), getDefaultAvatars()) { custom, def ->
-        val customKeys = custom.filterIsInstance(Avatar.Vector::class.java).map { it.key }
-        custom + def.filterNot {
-          it is Avatar.Vector && customKeys.contains(it.key)
-        }
-      }.subscribeOn(Schedulers.io()).subscribe { avatars ->
-        store.update { it.copy(selectableAvatars = avatars) }
-      }
-    )
+    viewModelScope.launch {
+      val custom = getPersistedAvatars()
+      val default = getDefaultAvatars()
+      val customKeys = custom.filterIsInstance<Avatar.Vector>().map { it.key }
+
+      val avatars = custom + default.filterNot { it is Avatar.Vector && customKeys.contains(it.key) }
+
+      internalState.update { it.copy(selectableAvatars = avatars) }
+    }
   }
 
   private fun isSaveable(avatar: Avatar) = avatar.databaseId != Avatar.DatabaseId.DoNotPersist
 
-  override fun onCleared() {
-    disposables.dispose()
-  }
-
-  private class SelfAvatarPickerViewModel(private val repository: AvatarPickerRepository) : AvatarPickerViewModel(repository) {
+  private class SelfAvatarPickerViewModel : AvatarPickerViewModel() {
 
     init {
       refreshAvatar()
       refreshSelectableAvatars()
     }
 
-    override fun getAvatar(): Single<Avatar> = repository.getAvatarForSelf()
-    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForSelf()
-    override fun getPersistedAvatars(): Single<List<Avatar>> = repository.getPersistedAvatarsForSelf()
-    override fun getDefaultAvatars(): Single<List<Avatar>> = repository.getDefaultAvatarsForSelf()
+    override suspend fun getAvatar(): Avatar = AvatarPickerRepository.getAvatarForSelf()
+    override suspend fun getDefaultAvatarFromRepository(): Avatar = AvatarPickerRepository.getDefaultAvatarForSelf()
+    override suspend fun getPersistedAvatars(): List<Avatar> = AvatarPickerRepository.getPersistedAvatarsForSelf()
+    override suspend fun getDefaultAvatars(): List<Avatar> = AvatarPickerRepository.getDefaultAvatarsForSelf()
 
-    override fun persistAvatar(avatar: Avatar, onPersisted: (Avatar) -> Unit) {
-      repository.persistAvatarForSelf(avatar, onPersisted)
+    override suspend fun persistAvatar(avatar: Avatar): Either<Throwable, Avatar> {
+      return AvatarPickerRepository.persistAvatarForSelf(avatar)
     }
 
-    override fun persistAndCreateMedia(avatar: Avatar, onSaved: (Media) -> Unit) {
-      repository.persistAndCreateMediaForSelf(avatar, onSaved)
+    override suspend fun persistAndCreateMedia(avatar: Avatar): Either<Throwable, Media> {
+      return AvatarPickerRepository.persistAndCreateMediaForSelf(avatar)
     }
   }
 
   private class GroupAvatarPickerViewModel(
     private val groupId: GroupId,
-    private val repository: AvatarPickerRepository,
     groupAvatarMedia: Media?
-  ) : AvatarPickerViewModel(repository) {
+  ) : AvatarPickerViewModel() {
 
     private val initialAvatar: Avatar? = groupAvatarMedia?.let { Avatar.Photo(it.uri, it.size, Avatar.DatabaseId.DoNotPersist) }
 
@@ -129,31 +173,26 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
       refreshSelectableAvatars()
     }
 
-    override fun getAvatar(): Single<Avatar> {
-      return if (initialAvatar != null) {
-        Single.just(initialAvatar)
-      } else {
-        repository.getAvatarForGroup(groupId)
-      }
+    override suspend fun getAvatar(): Avatar {
+      return initialAvatar ?: AvatarPickerRepository.getAvatarForGroup(groupId)
     }
 
-    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup(groupId)
-    override fun getPersistedAvatars(): Single<List<Avatar>> = repository.getPersistedAvatarsForGroup(groupId)
-    override fun getDefaultAvatars(): Single<List<Avatar>> = repository.getDefaultAvatarsForGroup()
+    override suspend fun getDefaultAvatarFromRepository(): Avatar = AvatarPickerRepository.getDefaultAvatarForGroup(groupId)
+    override suspend fun getPersistedAvatars(): List<Avatar> = AvatarPickerRepository.getPersistedAvatarsForGroup(groupId)
+    override suspend fun getDefaultAvatars(): List<Avatar> = AvatarPickerRepository.getDefaultAvatarsForGroup()
 
-    override fun persistAvatar(avatar: Avatar, onPersisted: (Avatar) -> Unit) {
-      repository.persistAvatarForGroup(avatar, groupId, onPersisted)
+    override suspend fun persistAvatar(avatar: Avatar): Either<Throwable, Avatar> {
+      return AvatarPickerRepository.persistAvatarForGroup(avatar, groupId)
     }
 
-    override fun persistAndCreateMedia(avatar: Avatar, onSaved: (Media) -> Unit) {
-      repository.persistAndCreateMediaForGroup(avatar, groupId, onSaved)
+    override suspend fun persistAndCreateMedia(avatar: Avatar): Either<Throwable, Media> {
+      return AvatarPickerRepository.persistAndCreateMediaForGroup(avatar, groupId)
     }
   }
 
   private class NewGroupAvatarPickerViewModel(
-    private val repository: AvatarPickerRepository,
     initialMedia: Media?
-  ) : AvatarPickerViewModel(repository) {
+  ) : AvatarPickerViewModel() {
 
     private val initialAvatar: Avatar? = initialMedia?.let { Avatar.Photo(it.uri, it.size, Avatar.DatabaseId.DoNotPersist) }
 
@@ -162,34 +201,29 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
       refreshSelectableAvatars()
     }
 
-    override fun getAvatar(): Single<Avatar> {
-      return if (initialAvatar != null) {
-        Single.just(initialAvatar)
-      } else {
-        Single.fromCallable { getDefaultAvatarFromRepository() }
-      }
+    override suspend fun getAvatar(): Avatar {
+      return initialAvatar ?: getDefaultAvatarFromRepository()
     }
 
-    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup(null)
-    override fun getPersistedAvatars(): Single<List<Avatar>> = Single.just(listOf())
-    override fun getDefaultAvatars(): Single<List<Avatar>> = repository.getDefaultAvatarsForGroup()
-    override fun persistAvatar(avatar: Avatar, onPersisted: (Avatar) -> Unit) = onPersisted(avatar)
-    override fun persistAndCreateMedia(avatar: Avatar, onSaved: (Media) -> Unit) = repository.createMediaForNewGroup(avatar, onSaved)
+    override suspend fun getDefaultAvatarFromRepository(): Avatar = AvatarPickerRepository.getDefaultAvatarForGroup(null)
+    override suspend fun getPersistedAvatars(): List<Avatar> = emptyList()
+    override suspend fun getDefaultAvatars(): List<Avatar> = AvatarPickerRepository.getDefaultAvatarsForGroup()
+    override suspend fun persistAvatar(avatar: Avatar): Either<Throwable, Avatar> = avatar.right()
+    override suspend fun persistAndCreateMedia(avatar: Avatar): Either<Throwable, Media> = AvatarPickerRepository.createMediaForNewGroup(avatar)
   }
 
   class Factory(
-    private val repository: AvatarPickerRepository,
     private val groupId: GroupId?,
     private val isNewGroup: Boolean,
     private val groupAvatarMedia: Media?
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       val viewModel = if (groupId == null && !isNewGroup) {
-        SelfAvatarPickerViewModel(repository)
+        SelfAvatarPickerViewModel()
       } else if (groupId == null) {
-        NewGroupAvatarPickerViewModel(repository, groupAvatarMedia)
+        NewGroupAvatarPickerViewModel(groupAvatarMedia)
       } else {
-        GroupAvatarPickerViewModel(groupId, repository, groupAvatarMedia)
+        GroupAvatarPickerViewModel(groupId, groupAvatarMedia)
       }
 
       return requireNotNull(modelClass.cast(viewModel))

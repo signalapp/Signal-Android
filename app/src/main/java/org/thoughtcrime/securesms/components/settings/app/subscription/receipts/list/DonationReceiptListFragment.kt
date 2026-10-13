@@ -3,13 +3,16 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.BoldSelectionTabItem
 import org.thoughtcrime.securesms.components.ControllableTabLayout
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 
 class DonationReceiptListFragment : Fragment(R.layout.donation_receipt_list_fragment) {
 
@@ -21,6 +24,8 @@ class DonationReceiptListFragment : Fragment(R.layout.donation_receipt_list_frag
     toolbar.setNavigationOnClickListener {
       findNavController().popBackStack()
     }
+
+    SystemWindowInsetsSetter.attach(view.findViewById<AppBarLayout>(R.id.app_bar), viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
 
     pager.adapter = DonationReceiptListPageAdapter(this)
 

@@ -5,8 +5,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/shared_contact_view"
-    android:layout_width="@dimen/media_bubble_default_dimens"
+    android:layout_width="@dimen/shared_contact_bubble_min_width"
     android:layout_height="wrap_content"
-    app:contact_titleColor="@color/conversation_item_sent_text_primary_color"
+    android:paddingTop="12dp"
+    android:paddingBottom="2dp"
+    app:contact_titleColor="@color/signal_colorOnCustom"
     app:contact_captionColor="@color/conversation_item_sent_text_secondary_color"
-    app:contact_footerIconColor="@color/conversation_item_sent_text_secondary_color"/>
+    app:contact_chevronColor="@color/signal_colorTransparent3"
+    app:contact_footerIconColor="@color/conversation_item_sent_text_secondary_color"
+    app:contact_actionTextColor="@color/signal_colorOnCustom"
+    app:contact_actionBackgroundColor="@color/signal_colorTransparent2"
+    tools:background="@color/signal_colorPrimary"/>

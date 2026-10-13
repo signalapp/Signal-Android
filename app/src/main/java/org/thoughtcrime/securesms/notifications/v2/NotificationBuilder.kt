@@ -32,12 +32,9 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.Optional
 import androidx.core.app.Person as PersonCompat
 import org.signal.core.ui.R as CoreUiR
-
-private const val BIG_PICTURE_DIMEN = 500
 
 /**
  * Wraps the compat and OS versions of the Notification builders so we can more easily access native
@@ -66,6 +63,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setDeleteIntent(deleteIntent: PendingIntent?)
   abstract fun setSortKey(sortKey: String)
   abstract fun setOnlyAlertOnce(onlyAlertOnce: Boolean)
+  abstract fun setSilent(silent: Boolean)
   abstract fun setGroupSummary(isGroupSummary: Boolean)
   abstract fun setSubText(subText: String)
   abstract fun setPriority(priority: Int)
@@ -178,7 +176,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     if (ledColor != "none") {
       var blinkPattern = SignalStore.settings.messageLedBlinkPattern
       if (blinkPattern == "custom") {
-        blinkPattern = TextSecurePreferences.getNotificationLedPatternCustom(context)
+        blinkPattern = SignalStore.settings.messageLedBlinkPatternCustom
       }
       val (onTime: Int, offTime: Int) = blinkPattern.parseBlinkPattern()
       setLights(Color.parseColor(ledColor), onTime, offTime)
@@ -199,12 +197,23 @@ sealed class NotificationBuilder(protected val context: Context) {
    * Notification builder using solely androidx/compat libraries.
    */
   private class NotificationBuilderCompat(context: Context) : NotificationBuilder(context) {
+    companion object {
+      private const val BIG_PICTURE_DIMEN = 500
+
+      /** Cap on messages rendered into a single notification. */
+      private const val MAX_DISPLAYED_MESSAGES = 25
+    }
+
     val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getInstance().messagesChannel)
 
     override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
       val extender: NotificationCompat.WearableExtender = NotificationCompat.WearableExtender()
 
-      addMarkAsReadActionActual(conversation)
+      val markAsReadAction: NotificationCompat.Action? = buildMarkAsReadAction(conversation)
+      if (markAsReadAction != null) {
+        builder.addAction(markAsReadAction)
+        extender.addAction(markAsReadAction)
+      }
 
       if (conversation.mostRecentNotification.canReply(context)) {
         val quickReply: PendingIntent? = conversation.getQuickReplyIntent(context)
@@ -239,17 +248,19 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
 
     override fun addMarkAsReadActionActual(conversation: NotificationConversation) {
-      val markAsRead: PendingIntent? = conversation.getMarkAsReadIntent(context)
-      if (markAsRead != null) {
-        val markAsReadAction: NotificationCompat.Action =
-          NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
-            .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
-            .setShowsUserInterface(false)
-            .build()
+      val markAsReadAction: NotificationCompat.Action = buildMarkAsReadAction(conversation) ?: return
 
-        builder.addAction(markAsReadAction)
-        builder.extend(NotificationCompat.WearableExtender().addAction(markAsReadAction))
-      }
+      builder.addAction(markAsReadAction)
+      builder.extend(NotificationCompat.WearableExtender().addAction(markAsReadAction))
+    }
+
+    private fun buildMarkAsReadAction(conversation: NotificationConversation): NotificationCompat.Action? {
+      val markAsRead: PendingIntent = conversation.getMarkAsReadIntent(context) ?: return null
+
+      return NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_check_24, context.getString(R.string.MessageNotifier_mark_read), markAsRead)
+        .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_MARK_AS_READ)
+        .setShowsUserInterface(false)
+        .build()
     }
 
     override fun addMarkAsReadActionActual(state: NotificationState) {
@@ -299,7 +310,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       messagingStyle.conversationTitle = conversation.getConversationTitle(context)
       messagingStyle.isGroupConversation = conversation.isGroup
 
-      conversation.notificationItems.forEach { notificationItem ->
+      conversation.notificationItems.takeLast(MAX_DISPLAYED_MESSAGES).forEach { notificationItem ->
         var person: PersonCompat? = null
         val isNoteToSelf = notificationItem.isPersonSelf && conversation.recipient.isSelf
 
@@ -332,7 +343,7 @@ sealed class NotificationBuilder(protected val context: Context) {
 
       val style: NotificationCompat.InboxStyle = NotificationCompat.InboxStyle()
 
-      for (notificationItem: NotificationItem in state.notificationItems) {
+      for (notificationItem: NotificationItem in state.notificationItems.takeLast(MAX_DISPLAYED_MESSAGES)) {
         val line: CharSequence? = notificationItem.getInboxLine(context)
         if (line != null) {
           style.addLine(line)
@@ -473,6 +484,10 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setOnlyAlertOnce(onlyAlertOnce: Boolean) {
       builder.setOnlyAlertOnce(onlyAlertOnce)
+    }
+
+    override fun setSilent(silent: Boolean) {
+      builder.setSilent(silent)
     }
 
     override fun setPriority(priority: Int) {

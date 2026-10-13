@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
+import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.time.Duration
 
@@ -15,14 +16,14 @@ object VersionTracker {
   private val TAG = Log.tag(VersionTracker::class.java)
 
   @JvmStatic
-  fun getLastSeenVersion(context: Context): Int {
-    return TextSecurePreferences.getLastVersionCode(context)
+  fun getLastSeenVersion(): Int {
+    return PlainTextKeyValueStore.lastVersionCode
   }
 
   @JvmStatic
-  fun updateLastSeenVersion(context: Context) {
+  fun updateLastSeenVersion() {
     val currentVersionCode = BuildConfig.VERSION_CODE
-    val lastVersionCode = TextSecurePreferences.getLastVersionCode(context)
+    val lastVersionCode = PlainTextKeyValueStore.lastVersionCode
 
     if (currentVersionCode != lastVersionCode) {
       Log.i(TAG, "Upgraded from $lastVersionCode to $currentVersionCode. Clearing client deprecation.", true)
@@ -34,7 +35,7 @@ object VersionTracker {
       LocalMetrics.getInstance().clear()
     }
 
-    TextSecurePreferences.setLastVersionCode(context, currentVersionCode)
+    PlainTextKeyValueStore.lastVersionCode = currentVersionCode
   }
 
   @JvmStatic

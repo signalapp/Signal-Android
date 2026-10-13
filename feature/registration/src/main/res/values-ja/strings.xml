@@ -44,6 +44,8 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">国を選択</string>
     <string name="RegistrationActivity_phone_number_description">電話番号</string>
+    <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
+    <string name="RegistrationActivity_account_id">アカウントID</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">有効な電話番号ではありません</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -53,6 +55,8 @@
     <string name="RegistrationActivity_next">次へ</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">電話番号無しで登録</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">アカウントIDを使用</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">下記の電話番号でよろしいですか？</string>
     <!-- Dialog body to confirm phone number -->
@@ -159,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">転送せずに続ける</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">メッセージとメディアは移行されません</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">バックアップフォルダから復元する</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">バックアップファイルから復元する</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">保存したバックアップフォルダを選択してください</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">以前利用していた端末から復元する</string>
     <!-- Subtitle for the device transfer option card -->
@@ -209,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">バックアップ用パスフレーズを入力してください</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">バックアップ用パスフレーズは、アカウントとデータを復元するために必要な30桁のコードです。</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">回復キー</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">パスフレーズ</string>
     <!-- Error text when passphrase is too long -->
@@ -228,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">回復キー</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">回復キーをお持ちでない場合</string>
-    <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">長すぎます (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">無効な回復キーです</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -242,14 +236,32 @@
     <string name="EnterAepScreen__restore_to_new_account_body">復元しようとしているバックアップは、別のSignalアカウントで作成されたものです。新しいアカウントに復元することはできますが、復元後はすべてのグループから外れます。</string>
     <!-- Confirm button label for the restore to new account dialog -->
     <string name="EnterAepScreen__restore">復元する</string>
+    <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found">バックアップが見つかりません</string>
+    <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found_body">回復キーは正しいですが、このアカウントにはSignalバックアップがありません。戻って別の回復方法を選択するか、回復せずに続行してください。</string>
+    <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">回復キーが正しくありません</string>
+    <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
+    <string name="EnterAepScreen__try_again">もう一度試す</string>
+    <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
+    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
+    <string name="EnterAepScreen__recovery_key_help">リカバリーキーのヘルプ</string>
+    <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
+    <string name="EnterAepScreen__send_code">Send code</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">復元の準備中…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">バックアップを復元しています</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">メッセージとデータを復元する間、しばらくお待ちください。</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">続行</string>
     <!-- Title shown when restore fails -->
@@ -560,41 +572,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">アカウントがこの端末へ移行されました。</string>
     <string name="DeviceTransferComplete__continue_registration">続行</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">プロフィールの設定</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">あなたのプロフィールとその更新情報は、メッセージの相手、連絡先、グループに表示されます。</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">名 (必須)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">姓 (任意)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">次へ</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">アバターを設定</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">私を電話番号から検索できる人は？</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">あなたの電話番号を知っている人は誰でも、あなたがSignal利用者であることがわかり、チャットを始めることができます。</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">あなたからメッセージを送るか、以前からチャットをやりとりしていない限り、あなたがSignalを利用していることは誰にもわかりません。</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">全員</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">なし</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">本当に復元しますか？</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">「私を電話番号から検索できる人」を「なし」に設定すると、Signal上で他のユーザーはあなたを見つけにくくなります。</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">キャンセル</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">保存</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">戻る</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">キャプチャの読み込みに失敗しました</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -606,9 +583,9 @@
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signalログインキー</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal Loginキー</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signalログインキーを使って、電話番号無しで登録します。一回限りの購入で、利用開始に必要となるアカウントキーを受け取れます。</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Signal Loginを使って、電話番号無しで登録します。一回限りの購入で、利用開始に必要となるアカウントIDを受け取れます。</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">詳しく見る</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -620,9 +597,9 @@
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
     <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signalは非営利団体であり、皆様のご購入は私たちの活動をサポートしていただくことに繋がります</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Signalログインキーを持っている場合</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Signal Loginキーを持っている場合</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">既存のアカウントキーを使用してください</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">既存のログイン情報を使用</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">ログインしてアカウントを復元してください</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -635,26 +612,128 @@
     <string name="SignalLoginPaymentScreen__continue">続行</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">購入処理は完了できませんでした。課金はされていません。</string>
+    <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
+    <string name="SignalLoginPaymentScreen__unavailable">処理できませんでした</string>
+    <!-- Label for the button that retries loading the purchase price after it failed to load. -->
+    <string name="SignalLoginPaymentScreen__retry">再試行</string>
+    <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
+    <string name="SignalLoginPaymentScreen__already_paid">お支払い済みです</string>
+    <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">現在、この端末ではSignal Loginキーを購入できません。あとでもう一度お試しください。</string>
+    <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">まだお手続き中の決済があります。処理が完了したら、戻って「続行」をタップしてください。重ねての料金は発生しません。</string>
+    <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
+    <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Google Play開発者サービスをアップデートしてください</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Signal Loginを購入するには、この端末でGoogle Playサービスをアップデートしてください。</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">アップデートする</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play開発者サービスが見つかりません</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Signal Loginを購入するには、Google Play開発者サービスがインストールされている必要があります。</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">Play開発者サービスをインストールする</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Google Play開発者サービスがアップデート中です</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Signal Loginを購入するには、Google Play開発者サービスの更新が完了するまでお待ちください。</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Google Playが必要です</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Signal Loginを購入するには、この端末でGoogle Play開発者サービスを有効にし、Google Playストアにサインインします。</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">ご利用の端末はGoogle Play開発者サービスをサポートしていないため、Signal Loginを購入できません。サポートについては、スマートフォンの製造元にお問い合わせください。</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Signal Loginを購入するには、Google Playストアにログインしてください。</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">このバージョンのSignalでは、Signal Loginを購入できません。購入するには、Google Playストアから「Signal」をインストールしてください。</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">Google Playストアを開く</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Signalログインキー</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">Signal Loginキー</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">ご購入ありがとうございます。Signalログインキーを使って登録し、アカウントを復元してください。キーを忘れた場合、アカウントの復元はできません。</string>
-    <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">アカウント</string>
-    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">復元</string>
-    <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">詳細を表示</string>
-    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">アカウント：%1$s\n\n復元：%2$s</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">ご購入ありがとうございます。Signal Loginキーを使って登録し、アカウントを復元してください。キーを忘れた場合、アカウントの復元はできません。</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">パスワードマネージャーに保存する</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginInfoScreen__no_password_manager_available">パスワードマネージャーが設定されていません。</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">手動で保存</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signalログインキーを保存できませんでした。代わりに手動で保存してください。</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Signal Loginキーを保存できませんでした。代わりに手動で保存してください。</string>
+    <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">ログイン情報の確認中にエラーが発生しました</string>
+    <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Signal Loginキーを確認できませんでした。キーがパスワードマネージャーに保存されていることを確認するか、または手動で保存してください。</string>
+
+    <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
+    <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">ログイン情報が保存されていることを確認してください</string>
+    <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Signal Loginキーが正しく保存されていることを確認してください。次のステップで、保存されているキーの入力が求められます。</string>
+    <!-- Action button that starts checking the password manager for the Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">ログイン情報を確認</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">ログイン情報をもう一度見る</string>
+
+    <!-- Save Signal Login screen -->
+    <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Signal Loginキーを保存</string>
+    <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Signal Loginキーを安全な場所に保管してください。誰とも共有しないでください。</string>
+    <!-- Action button that saves the Signal Login to a PDF file. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">PDFとして保存</string>
+    <!-- Action button for users who are done recording their Signal Login. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__continue">続行</string>
+
+    <!-- Sheet that double-checks the user really saved their Signal Login -->
+    <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">ログイン情報が保存されていることを確認してください</string>
+    <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">次にSignal Loginキーによるサインインが求められます。必ずこれらの詳細を保存またはコピーしておいてください。Signalはアカウントの復元をサポートしません。</string>
+    <!-- Action button confirming the Signal Login is saved. -->
+    <string name="ConfirmLoginSavedBottomSheet__continue">続行</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">ログイン情報をもう一度表示</string>
+
+    <!-- Errors shown beneath an account ID text field, wherever one is offered -->
+    <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
+    <string name="AccountIdField__invalid_account_id">アカウントIDが無効です</string>
+
+    <!-- Signal Login credential entry screen -->
+    <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
+    <string name="SignalLoginCredentialEntryScreen__signal_login">Signal Loginキー</string>
+    <!-- Description telling the user what to enter to log in. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">アカウントを回復するには、アカウントIDの後に回復キーを入力してください。</string>
+    <!-- Label of the text field the account ID is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__account_id">アカウントID</string>
+    <!-- Label of the text field the recovery key is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__recovery_key">回復キー</string>
+    <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
+    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">回復キーを表示</string>
+    <!-- Description of the button that masks the typed recovery key. -->
+    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">回復キーを非表示</string>
+    <!-- Button that opens a support article for users who can\'t find their Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__need_help">お困りですか？</string>
+    <!-- Action button that submits the entered Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__next">次へ</string>
+    <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">アカウントIDまたは回復キーが正しくありません</string>
+    <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Signal Loginキーを入力して、正しく記録されていることを確認してください。</string>
+    <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">ログイン情報をもう一度表示</string>
+    <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">あなたに表示されたSignal Loginキーと一致しません</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -683,6 +762,26 @@
     <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">ユーザーネームの先頭に数字は使用できません</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
     <string name="AddUsernameScreen__this_username_is_not_available">このユーザーネームは使用できません。別のユーザーネームをお試しください。</string>
+    <!-- Error shown when the user\'s temporary hold on a username expired before they submitted it. -->
+    <string name="AddUsernameScreen__your_username_reservation_expired">ユーザーネームの予約期限が切れました。もう一度お試しください。</string>
+    <!-- Error shown when the username formed by the entered name and the user\'s chosen number is already taken. -->
+    <string name="AddUsernameScreen__this_username_is_not_available_try_another_number">このユーザーネームは使用できません。別の数字をお試し下さい。</string>
+    <!-- Validation error shown when the number the user entered after their username has too few digits. -->
+    <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">ユーザーネームが無効です。数字は%1$d以上入力してください。</string>
+    <!-- Validation error shown when the number the user entered after their username has too many digits. -->
+    <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">ユーザーネームが無効です。入力できる数字は、最大で%1$d桁までです。</string>
+    <!-- Validation error shown when the number the user entered after their username is 00. -->
+    <string name="AddUsernameScreen__this_number_cant_be_00">この数字を00にすることはできません。1–9の数字を入力してください</string>
+    <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
+    <string name="AddUsernameScreen__this_number_cant_start_with_0">2桁以上の数字が0から始まることはありません</string>
+    <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__are_you_sure">本当に復元しますか？</string>
+    <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">ユーザーネームがなければ、Signalであなたを確認できなくなります。</string>
+    <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
+    <string name="AddUsernameScreen__cancel">キャンセル</string>
+    <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
+    <string name="AddUsernameScreen__continue">続行</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
@@ -693,4 +792,30 @@
     <string name="ContactSupportDialog__submit_with_debug_log">デバッグログを添付して送信</string>
     <!-- Button that contacts support without attaching a debug log -->
     <string name="ContactSupportDialog__submit_without_debug_log">デバッグログなしで送信</string>
+
+    <!-- TotpEntryScreen -->
+    <!-- Title of the two-factor authentication code entry screen -->
+    <string name="TotpEntryScreen__two_factor_authentication">2要素認証</string>
+    <!-- Subtitle explaining where to find the code -->
+    <string name="TotpEntryScreen__to_continue_enter_the_code">続けるには、認証アプリに表示された6桁のコードを入力してください。</string>
+    <!-- Button text to cancel entering a code -->
+    <string name="TotpEntryScreen__cancel">キャンセル</string>
+
+    <!-- TwoFactorSelectionScreen -->
+    <!-- Title of the two-factor authentication method selection screen -->
+    <string name="TwoFactorSelectionScreen__two_factor_authentication">2要素認証</string>
+    <!-- Subtitle telling the user to pick one of the methods listed below -->
+    <string name="TwoFactorSelectionScreen__choose_a_method_below">アカウントの確認方法を下から選択してください。</string>
+    <!-- Title of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__passkey">パスキー</string>
+    <!-- Description of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">タップしてご利用の端末の生体認証もしくはFIDO2セキュリティキーを使用できます</string>
+    <!-- Title of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__authenticator_app">認証アプリ</string>
+    <!-- Description of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">認証アプリに生成されたワンタイムコードを入力してください。</string>
+    <!-- Button text to cancel two-factor authentication -->
+    <string name="TwoFactorSelectionScreen__cancel">キャンセル</string>
+    <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
 </resources>

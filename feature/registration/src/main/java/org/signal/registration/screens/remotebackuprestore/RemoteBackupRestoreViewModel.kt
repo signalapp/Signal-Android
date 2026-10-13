@@ -6,8 +6,6 @@
 package org.signal.registration.screens.remotebackuprestore
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,11 +34,12 @@ import kotlin.time.Duration.Companion.seconds
 
 class RemoteBackupRestoreViewModel(
   private val aep: AccountEntropyPool,
+  private val canNavigateBackwards: Boolean,
   private val repository: RegistrationRepository,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val ioDispatcher: CoroutineContext = Dispatchers.IO
-) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG) {
+) : EventDrivenViewModel<RemoteBackupRestoreScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(RemoteBackupRestoreViewModel::class)
@@ -48,6 +47,9 @@ class RemoteBackupRestoreViewModel(
 
   private val _state = MutableStateFlow(RemoteBackupRestoreState(aep))
   val state: StateFlow<RemoteBackupRestoreState> = _state.asStateFlow()
+
+  /** Logging only. Each attempt costs an SVRB guess, so it's useful to know how many were spent. */
+  private var restoreAttempts = 0
 
   init {
     _state
@@ -76,8 +78,21 @@ class RemoteBackupRestoreViewModel(
         stateEmitter(state)
       }
       is RemoteBackupRestoreScreenEvents.Cancel -> {
-        parentEventEmitter.navigateBack()
-        stateEmitter(state)
+        if (state.isSkipping) {
+          Log.i(TAG, "[Cancel] Already moving on without a remote restore. Ignoring.")
+          return
+        }
+
+        if (canNavigateBackwards) {
+          Log.i(TAG, "[Cancel] Going back to previous screen.")
+          parentEventEmitter.navigateBack()
+          return
+        }
+
+        Log.i(TAG, "[Cancel] Moving on without a remote restore.")
+        stateEmitter(state.copy(isSkipping = true))
+        repository.setRestoreDecision(RestoreDecision.SKIPPED)
+        continuePastRestore()
       }
       is RemoteBackupRestoreScreenEvents.DismissError -> {
         stateEmitter(state.copy(restoreState = RemoteBackupRestoreState.RestoreState.None, restoreProgress = null))
@@ -91,8 +106,32 @@ class RemoteBackupRestoreViewModel(
     }
   }
 
+  private suspend fun continuePastRestore() {
+    when {
+      parentState.value.isPhoneNumberlessAccount -> {
+        Log.i(TAG, "[continuePastRestore] Account has no phone number, and therefore no PIN. Completing registration.")
+        repository.restoreAccountRecord()
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+      }
+      repository.hasKnownPin() -> {
+        repository.restoreAccountRecord()
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+      }
+      parentState.value.storageCapable -> {
+        Log.i(TAG, "[continuePastRestore] No PIN is known and the account is storage capable. Navigating to PIN entry to restore the existing PIN.")
+        parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+      }
+      else -> {
+        Log.i(TAG, "[continuePastRestore] No PIN is known and the account is not storage capable. Navigating to PIN creation.")
+        parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+      }
+    }
+  }
+
   private fun restoreBackup() {
     viewModelScope.launch {
+      restoreAttempts++
+      Log.i(TAG, "[restoreBackup] Starting restore attempt #$restoreAttempts.")
       repository.restoreRemoteBackup(_state.value.aep).collect { progress ->
         when (progress) {
           is RemoteBackupRestoreProgress.Downloading -> {
@@ -136,21 +175,7 @@ class RemoteBackupRestoreViewModel(
             )
             repository.persistRestoredBackupState(progress.restoredSvrPin, progress.restoredProfileKey)
             repository.setRestoreDecision(RestoreDecision.COMPLETED)
-
-            when {
-              repository.hasKnownPin() -> {
-                repository.restoreAccountRecord()
-                parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
-              }
-              parentState.value.storageCapable -> {
-                Log.i(TAG, "[restoreBackup] No PIN is known and the account is storage capable. Navigating to PIN entry to restore the existing PIN.")
-                parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
-              }
-              else -> {
-                Log.i(TAG, "[restoreBackup] No PIN is known and the account is not storage capable. Navigating to PIN creation.")
-                parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
-              }
-            }
+            continuePastRestore()
           }
           is RemoteBackupRestoreProgress.NetworkError -> {
             Log.w(TAG, "[restoreBackup] Remote restore failed with network error.", progress.cause)
@@ -167,7 +192,7 @@ class RemoteBackupRestoreViewModel(
             )
           }
           is RemoteBackupRestoreProgress.PermanentSvrBFailure -> {
-            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure.")
+            Log.w(TAG, "[restoreBackup] Remote restore failed: permanent SVRB failure. (attempt #$restoreAttempts)")
             _state.value = _state.value.copy(
               restoreState = RemoteBackupRestoreState.RestoreState.PermanentSvrBFailure,
               restoreProgress = null
@@ -262,17 +287,6 @@ class RemoteBackupRestoreViewModel(
           _state.value = _state.value.copy(loadState = RemoteBackupRestoreState.LoadState.Failure)
         }
       }
-    }
-  }
-
-  class Factory(
-    private val aep: AccountEntropyPool,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return RemoteBackupRestoreViewModel(aep, repository, parentState, parentEventEmitter) as T
     }
   }
 }

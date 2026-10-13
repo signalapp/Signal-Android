@@ -1,5 +1,6 @@
 package org.signal.camera
 
+import android.os.Build
 import androidx.camera.compose.CameraXViewfinder
 import androidx.camera.core.SurfaceRequest
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -43,6 +44,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllNightPreviews
+import org.signal.core.ui.compose.KeepScreenOnEffect
 import org.signal.core.ui.compose.Previews
 import kotlin.time.Duration.Companion.milliseconds
 import androidx.camera.core.Preview as CameraPreview
@@ -90,7 +92,12 @@ fun CameraScreen(
   val lifecycleOwner = LocalLifecycleOwner.current
   val isInPreview = LocalInspectionMode.current
 
+  // Older android versions need to use embedded
+  val resolvedImplementationMode = if (Build.VERSION.SDK_INT <= 24) ImplementationMode.EMBEDDED else implementationMode
+
   var surfaceRequest by remember { mutableStateOf<SurfaceRequest?>(null) }
+
+  KeepScreenOnEffect(enabled = state.isRecording)
 
   // Bind once; a screen rotation rebuilds just the preview (below), not the whole camera.
   LaunchedEffect(lifecycleOwner, state.lensFacing) {
@@ -149,7 +156,7 @@ fun CameraScreen(
         val currentSurfaceRequest = surfaceRequest!!
 
         CameraXViewfinder(
-          implementationMode = implementationMode,
+          implementationMode = resolvedImplementationMode,
           surfaceRequest = currentSurfaceRequest,
           coordinateTransformer = coordinateTransformer,
           contentScale = if (fillViewport) ContentScale.Crop else ContentScale.Fit,

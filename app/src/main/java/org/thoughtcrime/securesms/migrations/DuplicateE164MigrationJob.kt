@@ -99,7 +99,7 @@ internal class DuplicateE164MigrationJob(
       }
 
       Log.w(TAG, "Was not able to resolve all conflicts. We must merge the contacts together.")
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         val first = resolved.first()
         for (entry in resolved.drop(1)) {
           Log.w(TAG, "Merging ${first.id} with ${entry.id}")

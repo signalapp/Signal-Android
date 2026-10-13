@@ -6,8 +6,6 @@
 package org.signal.registration.screens.pinentry
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -42,7 +40,7 @@ class PinEntryForRegistrationLockViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val timeRemaining: Long,
   private val svrCredentials: SvrCredentials
-) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForRegistrationLockViewModel::class)
@@ -103,7 +101,7 @@ class PinEntryForRegistrationLockViewModel(
   private suspend fun applyPinEntered(state: PinEntryState, event: PinEntryScreenEvents.PinEntered, parentEventEmitter: (RegistrationFlowEvent) -> Unit): PinEntryState {
     Log.d(TAG, "[PinEntered] Attempting to restore master key from SVR...")
 
-    val restoreResult = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, forRegistrationLock = true)
+    val restoreResult = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, forRegistrationLock = true, isRegistered = false)
 
     val masterKey: MasterKey = when (restoreResult) {
       is RequestResult.Success -> {
@@ -152,13 +150,17 @@ class PinEntryForRegistrationLockViewModel(
       return state
     }
 
+    // If this install was already registered with this number, its key material has to carry forward
+    val preExistingRegistrationData = parentState.value.preExistingRegistrationData?.takeIf { it.e164 == e164 }
+
     val registerResult = if (sessionId != null) {
       Log.d(TAG, "[PinEntered] Attempting to register with the session and registration lock token...")
       repository.registerAccountWithSession(
         e164 = e164,
         sessionId = sessionId,
         registrationLock = registrationLockToken,
-        skipDeviceTransfer = true
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = preExistingRegistrationData
       )
     } else {
       Log.d(TAG, "[PinEntered] No session present. Attempting to register with the RRP from the restored master key and the registration lock token...")
@@ -166,25 +168,31 @@ class PinEntryForRegistrationLockViewModel(
         e164 = e164,
         recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(),
         registrationLock = registrationLockToken,
-        skipDeviceTransfer = true
+        skipDeviceTransfer = true,
+        preExistingRegistrationData = preExistingRegistrationData
       )
     }
 
     return when (registerResult) {
       is RequestResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully registered!")
-        val (response, keyMaterial) = registerResult.result
-        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
+        val (response, keyMaterial, aci) = registerResult.result
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
         repository.enqueueSvrResetGuessCountJob()
-        repository.restoreAccountRecord()
         val pendingRestore = pendingRestoreNavigation()
         when {
           pendingRestore != null -> {
             Log.i(TAG, "[PinEntered] A restore was pending behind the registration lock. Resuming it now.")
+            repository.restoreAccountRecord()
             parentEventEmitter.navigateTo(pendingRestore)
           }
-          response.reregistration && parentState.value.pendingRestoreOption == null && parentState.value.preExistingRegistrationData == null -> parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegisterWithPinKnown())
-          else -> parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+          response.reregistration && parentState.value.pendingRestoreOption == null && parentState.value.preExistingRegistrationData == null -> {
+            parentEventEmitter.navigateTo(RegistrationRoute.ArchiveRestoreSelection.forPostRegisterWithPinKnown())
+          }
+          else -> {
+            repository.restoreAccountRecord()
+            parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+          }
         }
         state
       }
@@ -218,6 +226,12 @@ class PinEntryForRegistrationLockViewModel(
             parentEventEmitter.navigateBack()
             state
           }
+          is RegisterAccountError.InvalidReceiptCredentialPresentation,
+          is RegisterAccountError.TwoFactorRequired,
+          RegisterAccountError.PostQuantumRatchetRequired -> {
+            Log.w(TAG, "[PinEntered] Unexpected error when registering: $error")
+            state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))
+          }
         }
       }
       is RequestResult.RetryableNetworkError -> {
@@ -242,24 +256,6 @@ class PinEntryForRegistrationLockViewModel(
       PendingRestoreOption.LocalBackup -> RegistrationRoute.LocalBackupRestore(isPreRegistration = false, aep = aep)
       PendingRestoreOption.RemoteBackup -> RegistrationRoute.RemoteRestore(aep)
       null -> null
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val timeRemaining: Long,
-    private val svrCredentials: SvrCredentials
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PinEntryForRegistrationLockViewModel(
-        repository,
-        parentState,
-        parentEventEmitter,
-        timeRemaining,
-        svrCredentials
-      ) as T
     }
   }
 }

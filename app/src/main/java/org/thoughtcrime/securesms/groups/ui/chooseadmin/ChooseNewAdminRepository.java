@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.groups.GroupChangeException;
+import org.signal.core.util.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;

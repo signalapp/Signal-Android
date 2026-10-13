@@ -11,15 +11,13 @@ import android.Manifest
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 import org.signal.registration.screens.util.MockPermissionsState
 
 class AllowNotificationsScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun AllowNotificationsScreenPreview() {
     Previews.Preview {

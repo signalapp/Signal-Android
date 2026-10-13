@@ -62,10 +62,12 @@ class MainNavigationLaunchTest {
   private val recipient: RecipientId get() = harness.others.first()
 
   /**
-   * Share-target cold-launch regression test. Pre-fix, wrapNavigator() re-routed the
-   * early-staged Conversation through goTo(), whose async wallpaper-prefetch path emitted
-   * a SECOND internalDetailLocation with a fresh ConversationArgs — recreating the
-   * fragment and dropping share data.
+   * Share-target cold-launch regression test. Originally, replaying a deferred navigation request
+   * once the navigator went live re-routed the early-staged Conversation through goTo(), whose async
+   * wallpaper-prefetch path pushed a SECOND entry with a fresh ConversationArgs — recreating the
+   * fragment and dropping share data. The deferral is gone now that the back stacks are owned by the
+   * view-model and can be pushed to whether or not a composition is alive, but the double-create this
+   * guards against is worth keeping a test on.
    */
   @Test
   fun coldLaunch_shareIntent_createsFragmentExactlyOnceWithShareData() {
@@ -93,9 +95,9 @@ class MainNavigationLaunchTest {
             appendLine("--- diagnostic dump ---")
             appendLine("fragments observed: ${recorder.allCreated}")
             appendLine("activity fragments: ${launched.activity.supportFragmentManager.fragments.map { it::class.simpleName }}")
-            appendLine("vm.currentListLocation: ${vm.mainNavigationState.value.currentListLocation}")
+            appendLine("vm.currentListLocation: ${vm.mainNavigationBarState.value.currentListLocation}")
             appendLine("vm.detailLocation: ${vm.detailLocation.value}")
-            appendLine("vm.chatsBackStackEntries: ${vm.chatsBackStackEntries.toList()}")
+            appendLine("vm.navigator[MainListRoute.Chats]: ${vm.navigator[MainListRoute.Chats].toList()}")
           }
         }
         throw IllegalStateException("${e.message}\n$state", e)
@@ -225,22 +227,22 @@ class MainNavigationLaunchTest {
         "Expected shareDataTimestamp=-1 for notification path, got ${args.shareDataTimestamp}"
       }
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CHATS) {
-        "Expected currentListLocation=CHATS, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Chats) {
+        "Expected currentListLocation=CHATS, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
     }
   }
 
   @Test
   fun coldLaunch_tabIntent_setsListLocation() {
-    val intent = tabIntent(MainNavigationListLocation.CALLS)
+    val intent = tabIntent(MainListRoute.Calls)
     launchSync(intent).use { launched ->
       val recorder = launched.recorder
-      awaitListFragment(launched, MainNavigationListLocation.CALLS)
+      awaitListFragment(launched, MainListRoute.Calls)
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CALLS) {
-        "Expected VM CALLS, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Calls) {
+        "Expected VM CALLS, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
       Thread.sleep(750)
       check(recorder.createdArgs.isEmpty()) {
@@ -256,7 +258,7 @@ class MainNavigationLaunchTest {
    */
   @Test
   fun coldLaunch_detailLocationIntent_isNoOpToday() {
-    val intent = detailLocationIntent(MainNavigationDetailLocation.Chats.ConversationSettings(recipient))
+    val intent = detailLocationIntent(MainDetailRoute.Chats.ConversationSettings(recipient))
     launchSync(intent).use { launched ->
       val recorder = launched.recorder
       Thread.sleep(1500)
@@ -265,7 +267,7 @@ class MainNavigationLaunchTest {
           "starts handling it on cold launch, update or delete this test. Got: ${recorder.allCreated}"
       }
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      val staged = runOnMainSync { vm.chatsBackStackEntries.filterNot { it is MainNavigationDetailLocation.Empty } }
+      val staged = runOnMainSync { vm.navigator[MainListRoute.Chats].filterIsInstance<MainDetailRoute>() }
       check(staged.isEmpty()) {
         "Expected no detail to be staged on the chats back stack, got $staged"
       }
@@ -277,11 +279,11 @@ class MainNavigationLaunchTest {
     val intent = deepLinkIntent(Uri.parse("https://signal.org/test-not-a-real-deeplink"))
     launchSync(intent).use { launched ->
       val recorder = launched.recorder
-      awaitListFragment(launched, MainNavigationListLocation.CHATS)
+      awaitListFragment(launched, MainListRoute.Chats)
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CHATS) {
-        "Expected CHATS for deep-link launch, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Chats) {
+        "Expected CHATS for deep-link launch, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
       check(recorder.createdArgs.isEmpty()) {
         "Expected no ConversationFragment for deep-link launch, got ${recorder.createdArgs.size}"
@@ -294,16 +296,16 @@ class MainNavigationLaunchTest {
     val intent = Intent(context, MainActivity::class.java)
     launchSync(intent).use { launched ->
       val recorder = launched.recorder
-      awaitListFragment(launched, MainNavigationListLocation.CHATS)
+      awaitListFragment(launched, MainListRoute.Chats)
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CHATS) {
-        "Expected default CHATS, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Chats) {
+        "Expected default CHATS, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
       Thread.sleep(750)
       val detailLocation = runOnMainSync { vm.detailLocation.value }
-      check(detailLocation == MainNavigationDetailLocation.Empty) {
-        "Expected Empty detail location, got $detailLocation"
+      check(detailLocation == null) {
+        "Expected no detail location, got $detailLocation"
       }
       check(recorder.createdArgs.isEmpty()) {
         "Expected no ConversationFragment for bare launch, got ${recorder.createdArgs.size}"
@@ -353,23 +355,23 @@ class MainNavigationLaunchTest {
       }
       val baseline = recorder.createdArgs.size
 
-      val warmIntent = detailLocationIntent(MainNavigationDetailLocation.Empty)
+      val warmIntent = MainActivity.clearTopAndExitDetail(context)
       runOnMainSync {
         InstrumentationRegistry.getInstrumentation().callActivityOnNewIntent(launched.activity, warmIntent)
       }
 
-      await(description = "no new ConversationFragment after Empty detail intent") {
+      await(description = "no new ConversationFragment after exit-detail intent") {
         recorder.createdArgs.size == baseline
       }
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
 
-      await(description = "conversation cleared from chats back stack after Empty detail intent") {
-        vm.chatsBackStackEntries.none { it is MainNavigationDetailLocation.Conversation }
+      await(description = "conversation cleared from chats back stack after exit-detail intent") {
+        vm.navigator[MainListRoute.Chats].none { it is MainDetailRoute.Conversation }
       }
 
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CHATS) {
-        "Expected CHATS, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Chats) {
+        "Expected CHATS, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
     }
   }
@@ -377,18 +379,18 @@ class MainNavigationLaunchTest {
   @Test
   fun warmStart_onNewIntent_tabIntent_switchesList() {
     launchSync(Intent(context, MainActivity::class.java)).use { launched ->
-      awaitListFragment(launched, MainNavigationListLocation.CHATS)
+      awaitListFragment(launched, MainListRoute.Chats)
 
-      val warmIntent = tabIntent(MainNavigationListLocation.CALLS)
+      val warmIntent = tabIntent(MainListRoute.Calls)
       runOnMainSync {
         InstrumentationRegistry.getInstrumentation().callActivityOnNewIntent(launched.activity, warmIntent)
       }
 
-      awaitListFragment(launched, MainNavigationListLocation.CALLS)
+      awaitListFragment(launched, MainListRoute.Calls)
 
       val vm = runOnMainSync { launched.activity.mainNavigationViewModel() }
-      check(vm.mainNavigationState.value.currentListLocation == MainNavigationListLocation.CALLS) {
-        "Expected VM CALLS, got ${vm.mainNavigationState.value.currentListLocation}"
+      check(vm.mainNavigationBarState.value.currentListLocation == MainListRoute.Calls) {
+        "Expected VM CALLS, got ${vm.mainNavigationBarState.value.currentListLocation}"
       }
       check(launched.recorder.createdArgs.isEmpty()) {
         "Expected no ConversationFragment for tab switch, got ${launched.recorder.createdArgs.size}"
@@ -427,22 +429,22 @@ class MainNavigationLaunchTest {
 
   @Test
   fun recreate_midTab_restoresTab() {
-    launchSync(tabIntent(MainNavigationListLocation.CALLS)).use { launched ->
-      awaitListFragment(launched, MainNavigationListLocation.CALLS)
+    launchSync(tabIntent(MainListRoute.Calls)).use { launched ->
+      awaitListFragment(launched, MainListRoute.Calls)
 
       runOnMainSync { launched.activity.recreate() }
 
       // Verify the user-visible tab content rebinds after recreate, not just the VM. The
       // recorder removes destroyed fragments, so this only passes once the post-recreate
       // CallLogFragment instance is attached.
-      awaitListFragment(launched, MainNavigationListLocation.CALLS)
+      awaitListFragment(launched, MainListRoute.Calls)
 
       // launched.activity returns the *latest* MainActivity (the holder updates in
       // onActivityCreated), so this reads the post-recreate VM instance.
       val location = runOnMainSync {
-        launched.activity.mainNavigationViewModel().mainNavigationState.value.currentListLocation
+        launched.activity.mainNavigationViewModel().mainNavigationBarState.value.currentListLocation
       }
-      check(location == MainNavigationListLocation.CALLS) {
+      check(location == MainListRoute.Calls) {
         "Expected VM CALLS post-recreate, got $location"
       }
       check(launched.recorder.createdArgs.isEmpty()) {
@@ -573,12 +575,12 @@ class MainNavigationLaunchTest {
     }
   }
 
-  private fun tabIntent(tab: MainNavigationListLocation): Intent {
+  private fun tabIntent(tab: MainListRoute): Intent {
     return Intent(context, MainActivity::class.java)
       .putExtra("STARTING_TAB", tab)
   }
 
-  private fun detailLocationIntent(location: MainNavigationDetailLocation): Intent {
+  private fun detailLocationIntent(location: MainDetailRoute): Intent {
     return Intent(context, MainActivity::class.java)
       .putExtra("DETAIL_LOCATION", location)
   }
@@ -742,11 +744,11 @@ class MainNavigationLaunchTest {
    * attached, so a tab assertion that reads the FragmentManager is a real user-visible
    * signal — strictly stronger than reading the VM's `currentListLocation`.
    */
-  private fun listFragmentClass(location: MainNavigationListLocation): Class<out Fragment> = when (location) {
-    MainNavigationListLocation.CHATS -> ConversationListFragment::class.java
-    MainNavigationListLocation.ARCHIVE -> ConversationListArchiveFragment::class.java
-    MainNavigationListLocation.CALLS -> CallLogFragment::class.java
-    MainNavigationListLocation.STORIES -> StoriesLandingFragment::class.java
+  private fun listFragmentClass(location: MainListRoute): Class<out Fragment> = when (location) {
+    MainListRoute.Chats -> ConversationListFragment::class.java
+    MainListRoute.Archive -> ConversationListArchiveFragment::class.java
+    MainListRoute.Calls -> CallLogFragment::class.java
+    MainListRoute.Stories -> StoriesLandingFragment::class.java
   }
 
   /**
@@ -775,7 +777,7 @@ class MainNavigationLaunchTest {
     return roots
   }
 
-  private fun awaitListFragment(launched: LaunchedActivity, location: MainNavigationListLocation) {
+  private fun awaitListFragment(launched: LaunchedActivity, location: MainListRoute) {
     val expected = listFragmentClass(location)
     try {
       await(timeoutMs = 10_000, description = "${expected.simpleName} attached for $location") {

@@ -3,24 +3,24 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">开启注册锁定？</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">关闭注册锁定？</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN，将在 7 天内无法使用你的帐户。</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN 码，将在 7 天内无法使用你的账户。</string>
     <string name="RegistrationLockV2Dialog_turn_on">开启</string>
     <string name="RegistrationLockV2Dialog_turn_off">关闭</string>
-    <string name="preferences__advanced_pin_settings">高级 PIN 设置</string>
+    <string name="preferences__advanced_pin_settings">高级 PIN 码设置</string>
     <string name="preferences__delete_account">删除账户</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">切换键盘</string>
-    <string name="preferences_chats__transfer_account">转移帐户</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">转移帐户至新的 Android 设备</string>
+    <string name="preferences_chats__transfer_account">转移账户</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">转移账户至新的 Android 设备</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN 码</string>
     <string name="preferences_app_protection__create_a_pin">创建 PIN 码</string>
     <string name="preferences_app_protection__change_your_pin">更改 PIN 码</string>
     <string name="preferences_app_protection__pin_reminders">PIN 码提醒</string>
     <string name="preferences_app_protection__turn_off">关闭</string>
-    <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
+    <string name="preferences_app_protection__confirm_pin">确认 PIN 码</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">请确认您的 Signal PIN 码</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">请确保你能牢记或安全保存好你的 PIN 码，因为它不能被找回。如果你忘记了 PIN 码，你可能会在重新注册 Signal 账号时丢失一些数据。</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">密码不正确。请重试。</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">请确保你能牢记或安全保存好你的 PIN 码，因为它不能被找回。如果你忘记了 PIN 码，你可能会在重新注册 Signal 账户时丢失一些数据。</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">PIN 码不正确。请重试。</string>
     <string name="preferences_app_protection__registration_lock">注册锁定</string>
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">重新注册账户</string>
@@ -38,80 +38,313 @@
     <string name="preferences_account_delete_all_data_confirmation_cancel">取消</string>
 
     <!-- AccountSettingsFragment -->
-    <string name="AccountSettingsFragment__account">帐户</string>
+    <string name="AccountSettingsFragment__account">账户</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">提醒次数将逐渐减少</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">再次用您的手机号码注册 Signal，要求输入 Signal 密码</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">再次用您的手机号码注册 Signal，要求输入 Signal PIN 码</string>
     <string name="AccountSettingsFragment__change_phone_number">更改手机号码</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">您的账户数据</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal 免号登录</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">账户与恢复</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">您的 Signal Login 用于找回并恢复您的账户。请将这些密钥安全存储在您信赖的密码管理器中。</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">已启用</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">双重身份验证</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">设置</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">身份验证器应用</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">一次性验证码</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">通行密钥</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">通行密钥</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s 添加</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">未知</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">打开双重身份验证选项</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">重命名</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">移除</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">要移除身份验证器应用吗？</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">当您登录时，您将无法使用此应用获取一次性验证码。</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">解锁以移除双重身份验证方式</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">如要移除此方式，请确认您的身份</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">解锁以查看 Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">如要查看您的 Signal Login，请确认您的身份</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">请解锁以确认您的身份</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">如要删除账户，请确认您的身份</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">需要验证</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">无法添加身份验证器应用</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">您最多只能添加 %1$d 个身份验证器应用。请先移除其他应用。</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">您最多只能添加 %1$d 个双重身份验证方式。请先移除其他方式。</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">无法加载您的双重身份验证方式。请检查您的网络连接并重试。</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">身份验证器应用已移除</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">无法移除身份验证器应用。请检查您的网络连接并重试。</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">为保护您的账户，在新设备上使用 Signal Login 时，请额外使用另一种身份验证方式进行验证。</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">了解详情</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">设置您的身份验证器应用</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">请按以下步骤设置您的身份验证器应用。</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">了解详情</string>
+    <string name="TotpSetupScreen__learn_more">了解详情</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">第 1 步</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">在您的设备上安装一个您信赖的身份验证器应用。</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">第 2 步</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">点击以下按钮打开您的身份验证器应用，添加您的 Signal 账户。</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <string name="TotpSetupScreen__open">打开</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">或者您可以复制此密钥进行手动设置。</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">复制</string>
+    <string name="TotpSetupScreen__copy">复制</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">已复制到剪贴板</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">已复制到剪贴板</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">未找到身份验证器应用</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">您最多只能添加 %1$d 个身份验证器应用。请先移除其他应用。</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">无法连接 Signal。请检查您的网络连接并重试。</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">第 3 步</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">复制生成的验证码，然后返回此处继续操作。</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">继续</string>
+    <string name="TotpSetupScreen__continue">继续</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">输入您的验证码</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">二维码</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">请输入您的身份验证器应用生成的 6 位数验证码。</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">完成</string>
+    <string name="TotpCodeEntryScreen__next">下一步</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">验证码不正确。请输入您的身份验证器应用当前显示的验证码。</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">无法连接 Signal。请检查您的网络连接并重试。</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">身份验证器</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">选择一个名称</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">请为此身份验证器应用选择一个唯一的名称。</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">请为此身份验证器应用选择一个唯一的名称，方便您日后识别。</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">名称</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">下一步</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">身份验证器应用已设置</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">身份验证器应用已重命名</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">无法保存名称。请检查您的网络连接并重试。</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">删除账户将会：</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">输入您的手机号码</string>
+    <string name="DeleteAccountFragment__delete_account">删除账户</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">删除您的账户信息和个人资料照片</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">删除您的全部消息</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">删除您付款账户中的 %1$s</string>
+    <string name="DeleteAccountFragment__no_country_code">未指定国家代码</string>
+    <string name="DeleteAccountFragment__no_number">未指定号码</string>
+    <string name="DeleteAccountFragment__the_phone_number">您输入的手机号码和您的账户不符。</string>
+    <string name="DeleteAccountFragment__are_you_sure">您确定要删除您的账户吗？</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">此操作将会删除您的 Signal 账户并重置 Signal 应用。应用将会在这个过程完成后关闭。</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">删除本地数据失败。您可以手动在系统的应用设置中进行清除。</string>
+    <string name="DeleteAccountFragment__launch_app_settings">打开应用设置</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">正在离开群组…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">正在删除账户…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的定期捐款……</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">根据您所加入的群组数量，这可能需要数分钟</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在删除用户数据和重置应用</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">账户未能删除</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">完成删除步骤时出现问题。请检查您的网络连接并重试。</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">删除用户名为“%1$s”的账户会：</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">删除您的账户信息及头像，包括您的用户名“%1$s”</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">此操作无法撤销</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">这会删除您用户名为“%1$s”的 Signal 账户，并重置 Signal 应用。应用将会在删除完成后关闭。</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">是的，删除我的账户</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">邀请好友</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">分享</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">选择国家</string>
+    <string name="RegistrationActivity_phone_number_description">手机号码</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">%1$d 个文件夹</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">添加聊天文件夹</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">添加或编辑文件夹</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">认证失败</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">聊天文件夹</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">导出聊天记录</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">导出您所有聊天的机器可读 JSON 副本。限时消息将不会导出。</string>
+    <string name="ChatsSettingsFragment__keyboard">键盘</string>
+    <string name="ChatsSettingsFragment__send_with_enter">按输入键发送</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">解锁以导出聊天记录</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">优先使用通讯录中的联系人头像（若可用）</string>
+    <string name="preferences__generate_link_previews">生成链接预览</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">当收到新消息时，已存档的静音聊天将会保持存档状态。</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">继续存档静音聊天</string>
+    <string name="preferences__pref_use_address_book_photos">优先使用通讯录头像</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接从您发送的链接网站中生成预览。</string>
+    <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
+    <string name="preferences_chats__chats">聊天</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">请务必谨慎</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">请务必小心！</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">正在取消导出…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">在您设备的存储空间中选择一个文件夹，来保存您的聊天记录。</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">选择文件夹</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">选择文件夹</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">选择聊天导出文件的存放位置，切勿与任何人分享。根据您设备的权限设置，设备上的其他应用或许能访问此文件。</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">聊天导出完成</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">要导出聊天记录？</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">请勿与任何人分享此文件。您的聊天记录将会保存到您的设备中。根据您设备的权限设置，其他应用或许能访问该文件。连同媒体导出会导致导出文件更大。</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">连同媒体导出</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">不连媒体导出</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">正在导出媒体：%1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">即将完成…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">正在准备备份…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">正在处理备份…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">正在处理消息…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">正在处理消息：%1$s 条/%2$s 条（%3$d%%）</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">正在上传媒体：%1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">应用更新</string>
 </resources>

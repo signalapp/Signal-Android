@@ -120,8 +120,8 @@ data class NotificationConversation(
   }
 
   fun getPendingIntent(context: Context): PendingIntent? {
-    val intent: Intent = if (thread.groupStoryId != null) {
-      StoryViewerActivity.createIntent(
+    if (thread.groupStoryId != null) {
+      val storyIntent = StoryViewerActivity.createIntent(
         context,
         StoryViewerArgs(
           recipientId = recipient.id,
@@ -130,13 +130,25 @@ data class NotificationConversation(
           isFromNotification = true,
           groupReplyStartPosition = mostRecentNotification.getStartingPosition(context)
         )
-      )
-    } else {
-      ConversationIntents.createBuilderSync(context, recipient.id, thread.threadId)
-        .withStartingPosition(mostRecentNotification.getStartingPosition(context))
-        .build()
-    }.makeUniqueToPreventMerging()
+      ).makeUniqueToPreventMerging()
 
+      return getStoryPendingIntent(context, storyIntent)
+    }
+
+    val intent = ConversationIntents.createBuilderSync(context, recipient.id, thread.threadId)
+      .withStartingPosition(mostRecentNotification.getStartingPosition(context))
+      .build()
+      .makeUniqueToPreventMerging()
+
+    return NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.updateCurrent())
+  }
+
+  /**
+   * The story viewer sits above the main screen rather than being it, so its back stack has to be
+   * synthesized. [TaskStackBuilder] adds `FLAG_ACTIVITY_CLEAR_TASK` for that, which is why the
+   * conversation intent — already aimed at the task root — does not go through it.
+   */
+  private fun getStoryPendingIntent(context: Context, intent: Intent): PendingIntent? {
     return try {
       TaskStackBuilder.create(context)
         .addNextIntentWithParentStack(intent)
@@ -152,17 +164,9 @@ data class NotificationConversation(
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
-    val ids = LongArray(notificationItems.size)
-    val mms = BooleanArray(ids.size)
-    notificationItems.forEachIndexed { index, notificationItem ->
-      ids[index] = notificationItem.id
-      mms[index] = notificationItem.isMms
-    }
-
     val intent = Intent(context, DeleteNotificationReceiver::class.java)
       .setAction(DeleteNotificationReceiver.DELETE_NOTIFICATION_ACTION)
-      .putExtra(DeleteNotificationReceiver.EXTRA_IDS, ids)
-      .putExtra(DeleteNotificationReceiver.EXTRA_MMS, mms)
+      .putExtra(DeleteNotificationReceiver.EXTRA_MAX_MESSAGE_ID, notificationItems.maxOfOrNull { it.id } ?: 0L)
       .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, arrayListOf(thread))
       .makeUniqueToPreventMerging()
 

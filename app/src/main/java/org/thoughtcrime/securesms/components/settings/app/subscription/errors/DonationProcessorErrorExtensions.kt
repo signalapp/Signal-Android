@@ -18,14 +18,15 @@ fun InAppPaymentProcessorError.toDonationError(
   return when (processor) {
     ActiveSubscription.Processor.STRIPE -> {
       check(method is PaymentSourceType.Stripe)
-      val declineCode = StripeDeclineCode.getFromCode(chargeFailure.code)
-      val failureCode = StripeFailureCode.getFromCode(chargeFailure.code)
+      val chargeFailureCode = chargeFailure.code
+      val declineCode = StripeDeclineCode.getFromCode(chargeFailureCode)
+      val failureCode = StripeFailureCode.getFromCode(chargeFailureCode)
       if (declineCode.isKnown()) {
         DonationError.PaymentSetupError.StripeDeclinedError(source, this, declineCode, method)
       } else if (failureCode.isKnown) {
         DonationError.PaymentSetupError.StripeFailureCodeError(source, this, failureCode, method)
-      } else if (chargeFailure.code != null) {
-        DonationError.PaymentSetupError.StripeCodedError(source, this, chargeFailure.code)
+      } else if (chargeFailureCode != null) {
+        DonationError.PaymentSetupError.StripeCodedError(source, this, chargeFailureCode)
       } else {
         DonationError.PaymentSetupError.GenericError(source, this)
       }

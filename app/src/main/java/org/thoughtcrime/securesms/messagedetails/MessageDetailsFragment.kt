@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
@@ -35,24 +34,22 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory.MediaPreviewArgs
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsFragment.Companion.create
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.MessageDetailsViewState
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet.forOutgoingMessageRecord
-import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 
 class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   private lateinit var requestManager: RequestManager
@@ -81,7 +78,6 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
 
     initializeList(view)
     initializeViewModel()
-    initializeVideoPlayer(view)
   }
 
   private fun initializeList(view: View) {
@@ -93,6 +89,8 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     recyclerViewColorizer = RecyclerViewColorizer(list)
 
     list.adapter = adapter
+
+    InlineVideoController.attach(list, viewLifecycleOwner, 1)
     list.itemAnimator = null
     Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbarShadow), lifecycleOwner = viewLifecycleOwner).attach(list)
   }
@@ -111,15 +109,6 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
       }
     }
     viewModel.recipient.observe(viewLifecycleOwner) { recipient: Recipient -> recyclerViewColorizer.setChatColors(recipient.chatColors) }
-  }
-
-  private fun initializeVideoPlayer(view: View) {
-    val videoContainer = view.findViewById<FrameLayout>(R.id.video_container)
-    val recyclerView = view.findViewById<RecyclerView>(R.id.message_details_list)
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(), viewLifecycleOwner.lifecycle, videoContainer, 1)
-    val callback = GiphyMp4ProjectionRecycler(holders)
-
-    GiphyMp4PlaybackController.attach(recyclerView, callback, 1)
   }
 
   private fun convertToRows(details: MessageDetails): List<MessageDetailsViewState<*>> {
@@ -191,7 +180,7 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onStickerClicked(stickerLocator: StickerLocator) {
+  override fun onStickerClicked(stickerSlide: StickerSlide) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
@@ -207,11 +196,15 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onMessageSharedContactClicked(choices: MutableList<Recipient>) {
+  override fun onMessageSharedContactClicked(contact: Contact, choices: MutableList<Recipient>) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onInviteSharedContactClicked(choices: MutableList<Recipient>) {
+  override fun onInviteSharedContactClicked(contact: Contact) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onAddSharedContactToGroupClicked(contact: Contact) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
@@ -369,6 +362,10 @@ class MessageDetailsFragment : Fragment(), MessageDetailsAdapter.Callbacks {
   }
 
   override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onViewStickerPackLink(packId: String, packKey: String) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 

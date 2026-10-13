@@ -143,7 +143,8 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.main.MainNavigationListLocation;
+import org.thoughtcrime.securesms.main.MainListRoute;
+import org.thoughtcrime.securesms.main.MainNavigationEvents;
 import org.thoughtcrime.securesms.main.MainNavigationViewModel;
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
@@ -167,7 +168,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.verify.SelfVerificationFailureSheet;
@@ -452,7 +452,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     if (SignalStore.account().isRegistered() &&
         SignalStore.registration().isRegistrationComplete() &&
-        !TextSecurePreferences.isUnauthorizedReceived(requireContext()) &&
+        !SignalStore.account().isUnauthorizedReceived() &&
         SignalStore.settings().getAutomaticVerificationEnabled() &&
         SignalStore.misc().getHasKeyTransparencyFailure() &&
         !SignalStore.misc().getHasSeenKeyTransparencyFailure()) {
@@ -465,7 +465,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), chatListBackHandler);
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
-    lifecycleDisposable.add(mainNavigationViewModel.getTabClickEventsObservable().filter(tab -> tab == MainNavigationListLocation.CHATS)
+    lifecycleDisposable.add(mainNavigationViewModel.getTabClickEventsObservable().filter(tab -> tab == MainListRoute.Chats)
                                                    .subscribe(unused -> {
                                                      Log.d(TAG, "Scroll to top please");
                                                      LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
@@ -702,7 +702,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   @Override
   public void onShowArchiveClick() {
     if (viewModel.currentSelectedConversations().isEmpty()) {
-      mainNavigationViewModel.goTo(MainNavigationListLocation.ARCHIVE);
+      mainNavigationViewModel.onEvent(new MainNavigationEvents.GoToList(MainListRoute.Archive));
     }
   }
 
@@ -765,7 +765,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           } else if (event instanceof MainToolbarViewModel.Event.Chats.ClearFilter) {
             onClearFilterClick();
           } else if (event instanceof MainToolbarViewModel.Event.Chats.CloseArchive) {
-            mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS);
+            mainNavigationViewModel.onEvent(new MainNavigationEvents.GoToList(MainListRoute.Chats));
           }
         })
     );
@@ -1872,8 +1872,15 @@ public class ConversationListFragment extends MainFragment implements Conversati
       float absoluteDx = Math.abs(dX);
 
       if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+        View itemView = viewHolder.itemView;
+
+        if (!itemView.isAttachedToWindow()) {
+          itemView.setTranslationX(0);
+          ViewCompat.setElevation(itemView, 0);
+          return;
+        }
+
         Resources resources       = getResources();
-        View      itemView        = viewHolder.itemView;
         float     percentDx       = absoluteDx / viewHolder.itemView.getWidth();
         int       color           = ArgbEvaluatorCompat.getInstance().evaluate(Math.min(1f, percentDx * (1 / 0.25f)), archiveColorStart, archiveColorEnd);
         float     scaleStartPoint = DimensionUnit.DP.toPixels(48f);

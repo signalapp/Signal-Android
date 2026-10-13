@@ -12,12 +12,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import org.signal.core.util.UsernameUtil
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
-import org.thoughtcrime.securesms.util.UsernameUtil
 
 class FindByViewModel(
   mode: FindByMode

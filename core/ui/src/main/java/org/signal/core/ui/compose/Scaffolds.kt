@@ -93,6 +93,7 @@ object Scaffolds {
     },
     snackbarHost: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
   ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -110,6 +111,7 @@ object Scaffolds {
           scrollBehavior = scrollBehavior
         )
       },
+      bottomBar = bottomBar,
       modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
       content = content
     )

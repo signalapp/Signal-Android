@@ -26,7 +26,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
-import org.signal.core.ui.compose.LocalFragmentManager
 import org.signal.core.ui.compose.theme.SignalTheme
 
 /**
@@ -37,6 +36,8 @@ import org.signal.core.ui.compose.theme.SignalTheme
 abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   protected open val forceDarkTheme = false
+
+  protected open val applyImePadding = true
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     return ComposeView(requireContext()).apply {
@@ -54,7 +55,7 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
             // edge-to-edge, so padding again would double up. The keyboard inset excludes the
             // navigation bar for the same reason.
             Surface(
-              modifier = Modifier.windowInsetsPadding(WindowInsets.ime.exclude(WindowInsets.navigationBars)),
+              modifier = if (applyImePadding) Modifier.windowInsetsPadding(WindowInsets.ime.exclude(WindowInsets.navigationBars)) else Modifier,
               shape = RoundedCornerShape(cornerRadius.dp, cornerRadius.dp),
               color = SignalTheme.colors.colorSurface1,
               contentColor = MaterialTheme.colorScheme.onSurface

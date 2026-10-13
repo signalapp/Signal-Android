@@ -47,72 +47,305 @@
     <!-- Section header for the Signal Login section of account settings -->
     <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d key</item>
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">கணக்கு &amp; மீட்பு</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">உங்களின் கணக்கை மீட்டெடுக்கவும் மீட்டமைக்கவும் Signal Login பயன்படுத்தப்படுகிறது. நீங்கள் நம்பும் கடவுச்சொல் மேலாளரில் இந்தக் குறியீடுகளைப் பாதுகாப்பாகச் சேமித்து வைக்கவும்.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">இயக்கப்பட்டது</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">இரு படிநிலை அங்கீகரிப்பு</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">அமைக்கவும்</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">அங்கீகரிப்புச் செயலி</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">ஒருமுறை பயன்படுத்தும் சரிபார்ப்புக் குறியீடுகள்</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">கடவுக்குறியீடு</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">கடவுக்குறியீடு</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · சேர்க்கப்பட்டது %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">முன் தெரிந்திராத</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">இரு-படி அங்கீகார விருப்பங்களைத் திற</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">மறுபெயரிடுக</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">அகற்று</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">அங்கீகரிப்புச் செயலியை அகற்றவா?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">நீங்கள் உள்நுழையும்போது ஒருமுறை சரிபார்ப்புக் குறியீடுகளுக்காக இந்தச் செயலியைப் பயன்படுத்த முடியாது.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற, தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">இந்த முறையை அகற்ற, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Signal Loginஐப் பார்க்க, தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">உங்களின் Signal Loginஐக் காண, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">உங்களின் அடையாளத்தை உறுதிப்படுத்த தடைநீக்கவும்</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">உங்கள் கணக்கை நீக்க, உங்களின் அடையாளத்தை உறுதிப்படுத்துங்கள்</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">அனுமதி தேவை</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">அங்கீகரிப்புச் செயலியைச் சேர்க்க முடியவில்லை</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">%1$d அங்கீகரிப்புச் செயலிகளுக்கு மேல் உங்களால் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">உங்களின் இரு-படி அங்கீகார முறைகளை ஏற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">அங்கீகரிப்புச் செயலி அகற்றப்பட்டது</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">அங்கீகரிப்புச் செயலியை அகற்ற முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">புதிய சாதனத்தில் உங்கள் Signal Login-ஐப் பயன்படுத்தும்போது, உங்கள் கணக்கைப் பாதுகாக்க இரண்டாவது அங்கீகார முறையைப் பயன்படுத்தவும்.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">மேலும் அறிக</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">உங்கள் அங்கீகரிப்புச் செயலியை அமைக்கவும்</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">உங்களது அங்கீகரிப்புச் செயலியை அமைக்க, இந்தப் படிகளைப் பின்பற்றவும்.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">மேலும் அறிக</string>
+    <string name="TotpSetupScreen__learn_more">மேலும் அறிக</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">படி 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">உங்கள் சாதனத்தில் நம்பகமான அங்கீகரிப்புச் செயலியை நிறுவவும்.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">படி 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">உங்கள் சிக்னல் கணக்கைச் சேர்க்க, கீழுள்ள பட்டனைத் தட்டி உங்களது அங்கீகரிப்புச் செயலியைத் திறக்கவும்.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <string name="TotpSetupScreen__open">திற</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">அல்லது, நீங்களே கைமுறையாக அமைப்பதற்கு இந்தக் குறியீட்டை நகலெடுக்கலாம்.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">நகல்</string>
+    <string name="TotpSetupScreen__copy">நகல்</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">அங்கீகரிப்புச் செயலி எதுவும் கிடைக்கவில்லை</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">%1$d அங்கீகரிப்புச் செயலிகளுக்கு மேல் உங்களால் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">படி 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">உருவாக்கப்படும் குறியீட்டை நகலெடுத்துவிட்டு, தொடர இங்கே திரும்பவும்.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">தொடர்</string>
+    <string name="TotpSetupScreen__continue">தொடர்</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">உங்கள் குறியீட்டை உள்ளிடவும்</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">குறியீடு</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">உங்கள் அங்கீகரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">முடிந்தது</string>
+    <string name="TotpCodeEntryScreen__next">அடுத்தது</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">தவறான குறியீடு. உங்கள் அங்கீகரிப்புச் செயலியில் இப்போது காட்டப்படும் குறியீட்டை உள்ளிடவும்.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">அங்கீகரிப்பு</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">பெயரைத் தேர்வுசெய்யவும்</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">இந்த அங்கீகரிப்புச் செயலிக்குத் தனித்துவமான பெயரைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">இந்த அங்கீகரிப்புச் செயலியைப் பின்னர் எளிதாக அடையாளம் காண, இதற்குத் தனித்துவமான ஒரு பெயரைத் தேர்வுசெய்யவும்.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">பெயர்</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">அடுத்தது</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">அங்கீகரிப்புச் செயலி அமைவு</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">அங்கீகரிப்புச் செயலிக்கு மறுபெயரிடப்பட்டது</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">பெயரைச் சேமிக்க முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்துவிட்டு மீண்டும் முயலவும்.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் கணக்கை நீக்குவதால்:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
+    <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்கு</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் கணக்குத் தகவல் மற்றும் புரொஃபைல் ஃபோட்டோவை நீக்கவும்</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் அனைத்து மெசேஜ்களையும் நீக்குக</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">உங்கள் பேமெண்ட் கணக்கில் %1$sஐ நீக்கு</string>
+    <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>
+    <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
+    <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
+    <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கை நிச்சயமாக நீக்க வேண்டுமா?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும்.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளே சேமிக்கப்பட்டிருக்கும் தரவை நீக்க முடியவில்லை. சிஸ்டம் அப்ளிகேஷன் செட்டிங்ஸில் அதை நீங்கள் நேரடியாக அழிக்கலாம்.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டு அமைப்புகளை தொடங்கு</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">குழுக்களை விட்டு வெளியேறுகிறது…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">கணக்கை நீக்குகிறது…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">உங்கள் சந்தாவை ரத்துசெய்கிறது…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">நீங்கள் இருக்கும் குழுக்களின் எண்ணிக்கையைப் பொறுத்து, இது சில நிமிடங்கள் எடுக்கலாம்</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">பயனர் தரவை நீக்குகிறது மற்றும் ஆப்பை மீட்டமைக்கிறது</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">கணக்கு நீக்கப்படவில்லை</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">நீக்குதல் செயல்முறையை முடிப்பதில் சிக்கல் ஏற்பட்டது. உங்கள் நெட்வர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">\"%1$s\" என்ற பயனர்பெயர் கொண்ட உங்கள் கணக்கை நீக்குவது:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">உங்களின் \"%1$s\" பயனர்பெயர் உட்பட, உங்களின் கணக்குத் தகவல் மற்றும் புரொஃபைல் படத்தை நீக்கவும்</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">இந்தச் செயலைச் செயல்தவிர்க்க முடியாது</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">இது \"%1$s\" என்ற பயனர்பெயர் கொண்ட உங்களது Signal கணக்கை நீக்கி செயலியை மீட்டமைக்கும். செயல்பாடு நிறைவடைந்ததும் செயலி மூடப்படும். இந்தச் செயல்முறை முடிந்ததும் செயலி மூடப்படும்.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">ஆம், எனது கணக்கை நீக்கு</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">நண்பர்களை அழை</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">பகிர்</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
+    <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d கோப்புறை</item>
+        <item quantity="other">%1$d கோப்புறைகள்</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">சாட் கோப்புறையைச் சேர்</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">கோப்புறைகளைச் சேர்க்கவும் அல்லது திருத்தவும்</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">அங்கீகரிப்புத் தோல்வியடைந்தது</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">சாட் கோப்புறைகள்</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">சாட் வரலாற்றை ஏற்றுமதி செய்க</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">உங்கள் அனைத்து சாட்களையும் கணினி படிக்கக்கூடிய \'JSON\' நகலாக ஏற்றுமதி செய்க. மறைந்து போகும் மெசேஜ்கள் ஏற்றுமதி செய்யப்படாது.</string>
+    <string name="ChatsSettingsFragment__keyboard">விசைப்பலகை</string>
+    <string name="ChatsSettingsFragment__send_with_enter">உள்ளிடுக மூலம் அனுப்புக</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">அரட்டை வரலாற்றை ஏற்றுமதி செய்யத் தடைநீக்கவும்</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">முகவரிப் புத்தகத்தில் தொடர்புகளின் படங்கள் இருந்தால், அவற்றுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__generate_link_previews">இணைப்பு மாதிரிக்காட்சிகளை உருவாக்கவும்</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">புதிய மெசேஜ் வரும்போது ஒலியடக்கிய காப்பகப்படுத்தப்பட்ட சாட்கள் காப்பகப்படுத்தப்பட்டதாகவே இருக்கும்.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">ஒலியடக்கிய சாட்களைக் காப்பகப்படுத்துக</string>
+    <string name="preferences__pref_use_address_book_photos">முகவரிப் புத்தகப் படங்களுக்கு முன்னுரிமை கொடுக்கவும்</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">நீங்கள் அனுப்பும் செய்திகளுக்கு வலைத்தளங்களிலிருந்து இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கவும்.</string>
+    <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
+    <string name="preferences_chats__chats">சாட்ஸ்</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">கவனமாக இருங்கள்</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">கவனமாக இருங்கள்!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">ஏற்றுமதியை ரத்துசெய்கிறது…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">உங்கள் அரட்டை வரலாறு சேமிக்கப்பட வேண்டிய கோப்புறையை உங்கள் சாதனத்தின் சேமிப்பகத்தில் தேர்ந்தெடுக்கவும்.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">கோப்புறையைத் தேர்வு செய்க</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">கோப்புறையைத் தேர்வுசெய்க</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">உங்கள் அரட்டை ஏற்றுமதி கோப்பை எங்கு சேமிக்கிறீர்கள் என்பதிலும், அதை யாருடனும் பகிர வேண்டாம் என்பதிலும் இவ்வாறு இருங்கள். உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து, உங்கள் சாதனத்தில் உள்ள பிற செயலிகள் அதை அணுகக்கூடும்.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">அரட்டை ஏற்றுமதி முடிந்தது</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">சாட் வரலாற்றை ஏற்றுமதி செய்யவா?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">இந்தக் கோப்பினை யாருடனும் பகிர வேண்டாம். உங்கள் அரட்டை வரலாறு உங்கள் சாதனத்தில் சேமிக்கப்படும், மேலும் உங்கள் சாதனத்தின் அனுமதிகளைப் பொறுத்து பிற செயலிகள் அதை அணுகக்கூடும். ஊடகத்துடன் ஏற்றுமதி செய்வது கோப்பின் அளவை அதிகரிக்கும்.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">ஊடகத்துடன் ஏற்றுமதி செய்க</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">ஊடகம் இல்லாமல் ஏற்றுமதி செய்க</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">ஊடகம் ஏற்றுமதி செய்யப்படுகிறது: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">இறுதி செய்யப்படுகிறது…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">காப்புப்பிரதிக்குத் தயாராகிறது…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">காப்புப்பிரதியைச் செயலாக்குகிறது…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">மெசேஜ்கள் செயலாக்கப்படுகின்றன…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">மெசேஜ்கள் செயலாக்கப்படுகின்றன: %2$s-இல் %1$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">ஊடகம் பதிவேற்றப்படுகிறது: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">பயன்பாடு புதுப்பிப்புகள்</string>
 </resources>

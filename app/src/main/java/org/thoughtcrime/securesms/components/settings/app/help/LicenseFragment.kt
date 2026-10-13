@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import java.io.InputStream
+import org.signal.core.ui.R as CoreUiR
 
 class LicenseFragment : ComposeFragment() {
   private val TAG = Log.tag(LicenseFragment::class.java)
@@ -48,7 +49,7 @@ class LicenseFragment : ComposeFragment() {
       title = stringResource(id = R.string.HelpSettingsFragment__licenses),
       onNavigationClick = findNavController()::popBackStack,
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) {
       LicenseScreen(licenseTextLines = textState.value, modifier = Modifier.padding(it))
     }

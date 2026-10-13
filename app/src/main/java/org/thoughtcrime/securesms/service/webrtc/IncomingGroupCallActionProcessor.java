@@ -325,6 +325,13 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     currentState = WebRtcVideoUtil.deinitializeVideo(currentState);
     EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());
 
+    currentState = currentState.builder()
+                               .changeCallInfoState()
+                               .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
+                               .build();
+
+    webRtcInteractor.postStateUpdate(currentState);
+
     return currentState.builder()
                        .actionProcessor(new IdleActionProcessor(webRtcInteractor))
                        .terminate(RemotePeer.GROUP_CALL_ID)

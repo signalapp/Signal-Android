@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.recipients;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.AnyThread;
@@ -42,7 +41,6 @@ public final class LiveRecipientCache {
   private static final int THREAD_CACHE_WARM_MAX  = 500;
   private static final int CONTACT_CACHE_WARM_MAX = 50;
 
-  private final Context                         context;
   private final RecipientTable                  recipientTable;
   private final Map<RecipientId, LiveRecipient> recipients;
   private final LiveRecipient                   unknown;
@@ -51,18 +49,17 @@ public final class LiveRecipientCache {
   private final AtomicReference<RecipientId> localRecipientId;
   private final AtomicBoolean                warmedUp;
 
-  public LiveRecipientCache(@NonNull Context context) {
-    this(context, new FilteredExecutor(SignalExecutors.newCachedBoundedExecutor("signal-recipients", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD, 1, 4, 15), () -> !SignalDatabase.inTransaction()));
+  public LiveRecipientCache() {
+    this(new FilteredExecutor(SignalExecutors.newCachedBoundedExecutor("signal-recipients", ThreadUtil.PRIORITY_UI_BLOCKING_THREAD, 1, 4, 15), () -> !SignalDatabase.inTransaction()));
   }
 
   @VisibleForTesting
-  public LiveRecipientCache(@NonNull Context context, @NonNull Executor executor) {
-    this.context        = context.getApplicationContext();
+  public LiveRecipientCache(@NonNull Executor executor) {
     this.recipientTable = SignalDatabase.recipients();
     this.recipients     = new LRUCache<>(CACHE_MAX);
     this.warmedUp          = new AtomicBoolean(false);
     this.localRecipientId  = new AtomicReference<>(null);
-    this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
+    this.unknown           = new LiveRecipient(Recipient.UNKNOWN);
     this.resolveExecutor   = executor;
   }
 
@@ -77,7 +74,7 @@ public final class LiveRecipientCache {
       live = recipients.get(id);
 
       if (live == null) {
-        live = new LiveRecipient(context, RecipientCreator.forId(id));
+        live = new LiveRecipient(RecipientCreator.forId(id));
         recipients.put(id, live);
         needsResolve = true;
       } else {
@@ -121,7 +118,7 @@ public final class LiveRecipientCache {
           .getExistingRecords(cachedIds)
           .values()
           .stream()
-          .map(record -> RecipientCreator.forRecord(context, record))
+          .map(RecipientCreator::forRecord)
           .collect(Collectors.toSet());
 
       addToCache(recipients);
@@ -145,7 +142,7 @@ public final class LiveRecipientCache {
         live = recipients.get(recipient.getId());
 
         if (live == null) {
-          live = new LiveRecipient(context, recipient);
+          live = new LiveRecipient(recipient);
           recipients.put(recipient.getId(), live);
           needsResolve = recipient.isResolving();
         } else if (live.get().isResolving() || !recipient.isResolving()) {

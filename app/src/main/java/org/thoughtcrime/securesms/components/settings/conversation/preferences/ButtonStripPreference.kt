@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Renders a configurable strip of buttons
@@ -69,17 +70,17 @@ object ButtonStripPreference {
 
       if (model.state.isAudioSecure) {
         audioLabel.setText(R.string.ConversationSettingsFragment__audio)
-        audioCall.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_phone_right_24))
+        audioCall.setImageDrawable(AppCompatResources.getDrawable(context, CoreUiR.drawable.symbol_phone_24))
       } else {
         audioLabel.setText(R.string.ConversationSettingsFragment__call)
         audioCall.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_phone_right_unlock_primary_accent_24))
       }
 
       if (model.state.isMuted) {
-        mute.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_bell_disabled_24))
+        mute.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.symbol_bell_slash_24))
         muteLabel.setText(R.string.ConversationSettingsFragment__muted)
       } else {
-        mute.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_bell_24))
+        mute.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.symbol_bell_24))
         muteLabel.setText(R.string.ConversationSettingsFragment__mute)
       }
 

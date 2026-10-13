@@ -13,19 +13,17 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
-import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
-import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.PassphraseChangeActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TimeDurationPickerDialog
@@ -43,7 +41,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -76,8 +73,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         viewModel.togglePaymentLock(false)
       }
     }
-    val promptInfo = PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    val promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
       .setConfirmationRequired(false)
       .build()
@@ -101,9 +97,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   override fun bindAdapter(adapter: MappingAdapter) {
     adapter.registerFactory(ValueClickPreference::class.java, LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
 
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
-    val factory = PrivacySettingsViewModel.Factory(sharedPreferences, repository)
+    val factory = PrivacySettingsViewModel.Factory(repository)
     viewModel = ViewModelProvider(this, factory)[PrivacySettingsViewModel::class.java]
     val args: PrivacySettingsFragmentArgs by navArgs()
     var showPaymentLock = true
@@ -119,16 +114,18 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
   private fun getConfiguration(state: PrivacySettingsState): DSLConfiguration {
     return configure {
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
-        summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
-        onClick = {
-          Navigation.findNavController(requireView())
-            .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
-        }
-      )
+      if (state.hasPhoneNumber) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
+          summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
+          onClick = {
+            Navigation.findNavController(requireView())
+              .safeNavigate(R.id.action_privacySettingsFragment_to_phoneNumberPrivacySettingsFragment)
+          }
+        )
 
-      dividerPref()
+        dividerPref()
+      }
 
       clickPref(
         title = DSLSettingsText.from(R.string.PrivacySettingsFragment__blocked),
@@ -277,7 +274,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         onClick = {
           viewModel.setScreenSecurityEnabled(!state.screenSecurity)
 
-          if (TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
+          if (SignalStore.settings.isScreenSecurityEnabled) {
             requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
           } else {
             requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)

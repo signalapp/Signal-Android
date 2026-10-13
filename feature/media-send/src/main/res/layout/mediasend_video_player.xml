@@ -29,6 +29,6 @@
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:indeterminate="true"
-        android:indeterminateTint="@color/signal_colorOnSurfaceVariant" />
+        android:indeterminateTint="@color/signal_dark_colorOnSurfaceVariant" />
 
 </FrameLayout>

@@ -280,7 +280,9 @@ public class SearchRepository {
         BodyRangeList bodyRanges = record.getMessageRanges();
         List<Mention> mentions   = mentionQueryResults.get(record.getId());
 
-        if (Util.hasItems(mentions)) {
+        Recipient conversationRecipient = threadTable.getRecipientForThreadId(record.getThreadId());
+
+        if (Util.hasItems(mentions) && conversationRecipient != null) {
           SpannableString body = new SpannableString(record.getBody());
 
           if (bodyRanges != null) {
@@ -290,7 +292,7 @@ public class SearchRepository {
           CharSequence updatedBody    = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
           CharSequence updatedSnippet = makeSnippet(cleanQueries, Objects.requireNonNull(updatedBody));
 
-          results.add(new MessageResult(record.getFromRecipient(), record.getToRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
+          results.add(new MessageResult(conversationRecipient, record.getFromRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
         }
       }
     }

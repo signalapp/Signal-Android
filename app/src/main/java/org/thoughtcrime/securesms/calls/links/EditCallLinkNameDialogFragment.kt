@@ -51,6 +51,7 @@ import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsViewModel
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.signal.core.ui.R as CoreUiR
 
 class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
@@ -142,7 +143,7 @@ private fun EditCallLinkNameScreen(
     } else {
       null
     },
-    navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
   ) { paddingValues ->
     val focusRequester = remember { FocusRequester() }
     val breakIterator = remember { BreakIteratorCompat.getInstance() }

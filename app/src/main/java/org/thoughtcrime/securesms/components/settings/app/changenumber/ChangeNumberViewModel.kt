@@ -210,9 +210,9 @@ class ChangeNumberViewModel : ViewModel() {
           return@launch
         }
 
-        if (reattempt) {
-          Log.i(TAG, "Reattempting local change.\n  Local state  (e164=${SignalStore.account.e164}, pni=${SignalStore.account.pni})\n  Remote state (e164=${whoAmI.number}, pni=$remotePni)")
-          repository.changeLocalNumber(whoAmI.number, remotePni)
+        if (reattempt && remoteE164 != null) {
+          Log.i(TAG, "Reattempting local change.\n  Local state  (e164=${SignalStore.account.e164}, pni=${SignalStore.account.pni})\n  Remote state (e164=$remoteE164, pni=$remotePni)")
+          repository.changeLocalNumber(remoteE164, remotePni)
         }
 
         SignalStore.misc.unlockChangeNumber()

@@ -28,6 +28,9 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase, exportState: ExportState
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MENTION_SETTING}, 
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.CALL_NOTIFICATION_SETTING},
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.REPLY_NOTIFICATION_SETTING},
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.UNREAD_REMINDER},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.CHAT_COLORS},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.CUSTOM_CHAT_COLORS_ID},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.WALLPAPER}

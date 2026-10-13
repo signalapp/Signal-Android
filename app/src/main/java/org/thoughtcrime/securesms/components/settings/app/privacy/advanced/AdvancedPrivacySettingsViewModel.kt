@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -22,11 +21,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 
 class AdvancedPrivacySettingsViewModel(
-  private val sharedPreferences: SharedPreferences,
   private val repository: AdvancedPrivacySettingsRepository
 ) : ViewModel() {
 
@@ -46,18 +43,18 @@ class AdvancedPrivacySettingsViewModel(
   }
 
   fun setAlwaysRelayCalls(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.ALWAYS_RELAY_CALLS_PREF, enabled).apply()
+    SignalStore.settings.isTurnOnly = enabled
     refresh()
   }
 
   fun setShowStatusIconForSealedSender(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, enabled).apply()
+    SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = enabled
     repository.syncShowSealedSenderIconState()
     refresh()
   }
 
   fun setAllowSealedSenderFromAnyone(enabled: Boolean) {
-    sharedPreferences.edit().putBoolean(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS, enabled).apply()
+    SignalStore.settings.isUniversalUnidentifiedAccess = enabled
     AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
   }
@@ -97,15 +94,11 @@ class AdvancedPrivacySettingsViewModel(
 
     return AdvancedPrivacySettingsState(
       isPushEnabled = SignalStore.account.isRegistered,
-      alwaysRelayCalls = TextSecurePreferences.isTurnOnly(AppDependencies.application),
+      alwaysRelayCalls = SignalStore.settings.isTurnOnly,
       censorshipCircumventionState = censorshipCircumventionState,
       censorshipCircumventionEnabled = getCensorshipCircumventionEnabled(censorshipCircumventionState),
-      showSealedSenderStatusIcon = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(
-        AppDependencies.application
-      ),
-      allowSealedSenderFromAnyone = TextSecurePreferences.isUniversalUnidentifiedAccess(
-        AppDependencies.application
-      ),
+      showSealedSenderStatusIcon = SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
+      allowSealedSenderFromAnyone = SignalStore.settings.isUniversalUnidentifiedAccess,
       showProgressSpinner = false,
       allowAutomaticKeyVerification = SignalStore.settings.automaticVerificationEnabled,
       isPrimaryDevice = SignalStore.account.isPrimaryDevice

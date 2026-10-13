@@ -9,6 +9,7 @@ import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import okio.ByteString.Companion.toByteString
+import org.signal.contacts.SystemContactsRepository
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil.getRecipientExtras
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -89,6 +89,7 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -96,6 +97,8 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.toBool
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.toOptionalBool
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
@@ -112,6 +115,7 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.signalAci
 import org.whispersystems.signalservice.api.storage.signalPni
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import org.whispersystems.signalservice.internal.storage.protos.OptionalBool
 import java.io.Closeable
 import java.io.IOException
 import java.util.Collections
@@ -195,12 +199,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val NICKNAME_FAMILY_NAME = "nickname_family_name"
     const val NICKNAME_JOINED_NAME = "nickname_joined_name"
     const val NOTE = "note"
+    const val SHARED_GIVEN_NAME = "shared_given_name"
+    const val SHARED_FAMILY_NAME = "shared_family_name"
 
     const val SEARCH_PROFILE_NAME = "search_signal_profile"
     const val SORT_NAME = "sort_name"
     const val IDENTITY_STATUS = "identity_status"
     const val IDENTITY_KEY = "identity_key"
     const val KEY_TRANSPARENCY_DATA = "key_transparency_data"
+    const val UNREAD_REMINDER = "unread_reminder"
 
     @JvmField
     val CREATE_TABLE =
@@ -273,7 +280,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $KEY_TRANSPARENCY_DATA BLOB DEFAULT NULL,
         $CALL_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
         $REPLY_NOTIFICATION_SETTING INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
-        $BLOCKED_AT INTEGER DEFAULT 0
+        $BLOCKED_AT INTEGER DEFAULT 0,
+        $UNREAD_REMINDER INTEGER DEFAULT ${NotificationSetting.SYSTEM_DEFAULT.id},
+        $SHARED_GIVEN_NAME TEXT DEFAULT NULL,
+        $SHARED_FAMILY_NAME TEXT DEFAULT NULL
       )
       """
 
@@ -325,6 +335,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MENTION_SETTING,
       CALL_NOTIFICATION_SETTING,
       REPLY_NOTIFICATION_SETTING,
+      UNREAD_REMINDER,
       CAPABILITIES,
       WALLPAPER,
       WALLPAPER_URI,
@@ -342,6 +353,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       NICKNAME_GIVEN_NAME,
       NICKNAME_FAMILY_NAME,
       NOTE,
+      SHARED_GIVEN_NAME,
+      SHARED_FAMILY_NAME,
       KEY_TRANSPARENCY_DATA
     )
 
@@ -369,6 +382,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           NULLIF($SYSTEM_GIVEN_NAME, ''),
           NULLIF($PROFILE_JOINED_NAME, ''),
           NULLIF($PROFILE_GIVEN_NAME, ''),
+          NULLIF($SHARED_GIVEN_NAME, ''),
+          NULLIF($SHARED_FAMILY_NAME, ''),
           NULLIF($USERNAME, '')
         )
       ) AS $SORT_NAME
@@ -425,9 +440,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     @JvmStatic
     fun maskCapabilitiesToLong(capabilities: SignalServiceProfile.Capabilities): Long {
       var value: Long = 0
-      value = Bitmask.update(value, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStorageServiceEncryptionV2).serialize().toLong())
-      value = Bitmask.update(value, Capabilities.USERNAME_SYNC_MESSAGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isUsernameSyncMessages).serialize().toLong())
-      value = Bitmask.update(value, Capabilities.OPTIONAL_PHONE_NUMBER, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isOptionalPhoneNumber).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.storageServiceEncryptionV2).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.USERNAME_SYNC_MESSAGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.usernameSyncMessages).serialize().toLong())
+      value = Bitmask.update(value, Capabilities.OPTIONAL_PHONE_NUMBER, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.optionalPhoneNumber).serialize().toLong())
       return value
     }
   }
@@ -884,6 +899,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  fun markAllGV2NeedsSync() {
+    writableDatabase.withinTransaction { db ->
+      db
+        .select(ID)
+        .from(TABLE_NAME)
+        .where("$TYPE = ? AND $STORAGE_SERVICE_ID NOT NULL", RecipientType.GV2.id)
+        .run()
+        .use { cursor ->
+          while (cursor.moveToNext()) {
+            rotateStorageId(RecipientId.from(cursor.requireLong(ID)))
+          }
+        }
+    }
+  }
+
   fun applyStorageIdUpdates(storageIds: Map<RecipientId, StorageId>) {
     val db = writableDatabase
     db.beginTransaction()
@@ -986,9 +1016,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
-      if (update.new.proto.identityKey.isNotEmpty() && update.new.proto.signalAci != null) {
+      if (update.new.proto.identityKey.isNotEmpty() && (update.new.proto.signalAci != null || update.new.proto.signalPni != null)) {
+        val serviceId: ServiceId = update.new.proto.signalAci ?: update.new.proto.signalPni!!
         val identityKey = IdentityKey(update.new.proto.identityKey.toByteArray(), 0)
-        identities.updateIdentityAfterSync(update.new.proto.signalAci!!.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.proto.identityState))
+        identities.updateIdentityAfterSync(serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.proto.identityState))
       }
 
       val newIdentityRecord = identityStore.getIdentityRecord(recipientId)
@@ -1136,7 +1167,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     if (remoteKey != localKey) {
       Log.i(TAG, "Our own profile key was changed during a storage sync.", Throwable())
-      runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+      ProfileUtil.handleSelfProfileKeyChange()
     }
 
     threads.applyStorageSyncUpdate(Recipient.self().id, update.new)
@@ -1496,6 +1527,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     if (update(id, values)) {
       rotateStorageId(id)
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      AppDependencies.databaseObserver.notifyBlockedUsersObservers()
     }
   }
 
@@ -1696,8 +1728,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(CALL_NOTIFICATION_SETTING, setting.id)
     }
     if (update(id, values)) {
-      // TODO rotate storageId once this is actually synced in storage service
-//      rotateStorageId(id)
+      rotateStorageId(id)
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
@@ -1708,11 +1739,84 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(REPLY_NOTIFICATION_SETTING, setting.id)
     }
     if (update(id, values)) {
-      // TODO rotate storageId once this is actually synced in storage service
-//      rotateStorageId(id)
+      rotateStorageId(id)
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
+  }
+
+  fun setUnreadReminder(id: RecipientId, setting: NotificationSetting) {
+    val values = ContentValues().apply {
+      put(UNREAD_REMINDER, setting.id)
+    }
+    if (update(id, values)) {
+      rotateStorageId(id)
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
+  /**
+   * Resets sound and while muted settings for all chats.
+   */
+  fun resetAllChatNotificationSettings() {
+    val (idsWithStorageServiceChange, notificationChangeData) = writableDatabase.withinTransaction { db ->
+      val idsWithStorageServiceChange = db
+        .select(ID)
+        .from(TABLE_NAME)
+        .where(
+          "$MENTION_SETTING != ? OR $CALL_NOTIFICATION_SETTING != ? OR $REPLY_NOTIFICATION_SETTING != ? OR $UNREAD_REMINDER != ?",
+          NotificationSetting.SYSTEM_DEFAULT.id,
+          NotificationSetting.SYSTEM_DEFAULT.id,
+          NotificationSetting.SYSTEM_DEFAULT.id,
+          NotificationSetting.SYSTEM_DEFAULT.id
+        )
+        .run()
+        .readToList { RecipientId.from(it.requireLong(ID)) }
+
+      // The channel id has to be read before it's wiped below, otherwise there's nothing left to tell us which system channel to delete.
+      val notificationChangeData = db
+        .select(ID, NOTIFICATION_CHANNEL)
+        .from(TABLE_NAME)
+        .where(
+          "$NOTIFICATION_CHANNEL IS NOT NULL OR $MESSAGE_RINGTONE IS NOT NULL OR $MESSAGE_VIBRATE != ? OR $CALL_RINGTONE IS NOT NULL OR $CALL_VIBRATE != ?",
+          VibrateState.DEFAULT.id,
+          VibrateState.DEFAULT.id
+        )
+        .run()
+        .readToList { RecipientId.from(it.requireLong(ID)) to it.requireString(NOTIFICATION_CHANNEL) }
+
+      db
+        .updateAll(TABLE_NAME)
+        .values(
+          NOTIFICATION_CHANNEL to null,
+          MESSAGE_RINGTONE to null,
+          MESSAGE_VIBRATE to VibrateState.DEFAULT.id,
+          CALL_RINGTONE to null,
+          CALL_VIBRATE to VibrateState.DEFAULT.id,
+          MENTION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+          CALL_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+          REPLY_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+          UNREAD_REMINDER to NotificationSetting.SYSTEM_DEFAULT.id
+        )
+        .run()
+
+      idsWithStorageServiceChange to notificationChangeData
+    }
+
+    idsWithStorageServiceChange.forEach { id ->
+      rotateStorageId(id)
+    }
+
+    notificationChangeData.forEach { (_, channel) ->
+      NotificationChannels.getInstance().deleteChannel(channel)
+    }
+
+    (idsWithStorageServiceChange + notificationChangeData.map { it.first }).distinct().forEach { id ->
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
+
+    Log.i(TAG, "Resetting. ${idsWithStorageServiceChange.size} recipients updated their storage service. ${notificationChangeData.size} notification channels cleared.")
   }
 
   /**
@@ -1744,7 +1848,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       if (id == Recipient.self().id) {
         Log.i(TAG, "Our own profile key was changed.", Throwable())
-        runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+        ProfileUtil.handleSelfProfileKeyChange()
       }
 
       return true
@@ -1960,6 +2064,40 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
+  /** Records a name supplied by a third party through a shared contact card. */
+  fun setSharedName(id: RecipientId, sharedName: ProfileName) {
+    if (sharedName.isEmpty) {
+      return
+    }
+
+    val updated = writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        SHARED_GIVEN_NAME to sharedName.givenName.nullIfBlank(),
+        SHARED_FAMILY_NAME to sharedName.familyName.nullIfBlank()
+      )
+      .where(
+        """
+        $ID = ? AND COALESCE(
+          NULLIF($NICKNAME_JOINED_NAME, ''),
+          NULLIF($NICKNAME_GIVEN_NAME, ''),
+          NULLIF($SYSTEM_JOINED_NAME, ''),
+          NULLIF($SYSTEM_GIVEN_NAME, ''),
+          NULLIF($PROFILE_JOINED_NAME, ''),
+          NULLIF($PROFILE_GIVEN_NAME, '')
+        ) IS NULL
+        """,
+        id
+      )
+      .run()
+
+    if (updated > 0) {
+      rotateStorageId(id)
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
   fun setNicknameAndNote(id: RecipientId, nickname: ProfileName, note: String) {
     val contentValues = contentValuesOf(
       NICKNAME_GIVEN_NAME to nickname.givenName.nullIfBlank(),
@@ -1978,11 +2116,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Applies multiple profile fields in a single UPDATE statement. Calls [rotateStorageId] and
    * [notifyRecipientChanged] at most once. Designed for bulk profile fetches.
    *
-   * Of these fields, only the profile name and username live on the storage service contact record, so
-   * the storage id is only rotated when one of those actually changes.
+   * Of these fields, only the profile name, username, and shared name live on the storage service
+   * contact record, so the storage id is only rotated when one of those actually changes.
    */
   fun applyProfileUpdate(id: RecipientId, update: ProfileUpdate) {
     val clearsUsername = update.clearUsername && hasUsername(id)
+    val clearsSharedName = update.clearSharedName && hasSharedName(id)
 
     val contentValues = ContentValues().apply {
       update.profileName?.let {
@@ -2017,6 +2156,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       if (clearsUsername) {
         putNull(USERNAME)
       }
+      if (clearsSharedName) {
+        putNull(SHARED_GIVEN_NAME)
+        putNull(SHARED_FAMILY_NAME)
+      }
     }
 
     if (contentValues.size() == 0) {
@@ -2024,7 +2167,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     if (update(id, contentValues)) {
-      val needsStorageRotation = update.profileName != null || clearsUsername
+      val needsStorageRotation = update.profileName != null || clearsUsername || clearsSharedName
       if (needsStorageRotation) {
         rotateStorageId(id)
       }
@@ -2036,6 +2179,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase
       .exists(TABLE_NAME)
       .where("$ID = ? AND $USERNAME NOT NULL", id.serialize())
+      .run()
+  }
+
+  private fun hasSharedName(id: RecipientId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND ($SHARED_GIVEN_NAME NOT NULL OR $SHARED_FAMILY_NAME NOT NULL)", id.serialize())
       .run()
   }
 
@@ -2127,6 +2277,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       AppDependencies.databaseObserver.notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
+  }
+
+  fun hasAnyProfileSharingOrSystemContact(ids: Collection<RecipientId>): Boolean {
+    return SqlUtil.buildCollectionQuery(ID, ids, "$ID != ${Recipient.self().id.toLong()} AND ($PROFILE_SHARING = 1 OR $SYSTEM_CONTACT_URI NOT NULL) AND")
+      .any { query ->
+        readableDatabase
+          .exists(TABLE_NAME)
+          .where(query.where, query.whereArgs)
+          .run()
+      }
   }
 
   fun isProfileSharing(groupId: GroupId): Boolean {
@@ -2584,7 +2744,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       REGISTERED to RegisteredState.NOT_REGISTERED.id,
       UNREGISTERED_TIMESTAMP to System.currentTimeMillis(),
       E164 to null,
-      PNI_COLUMN to null
+      PNI_COLUMN to null,
+      PNI_SIGNATURE_VERIFIED to 0
     )
 
     if (update(id, contentValues)) {
@@ -2644,7 +2805,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .update(TABLE_NAME)
       .values(
         PNI_COLUMN to null,
-        E164 to null
+        E164 to null,
+        PNI_SIGNATURE_VERIFIED to 0
       )
       .where("$ID = ?", record.id)
       .run()
@@ -3568,6 +3730,87 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return getSignalContacts(includeSelfMode).count
   }
 
+  /**
+   * Every registered recipient linked to a system contact, keyed by that contact's lookup key.
+   *
+   * The key comes from the uri path, not its last segment, which is a Data row id. Two numbers on
+   * one contact share a lookup key and are separate Signal accounts, so all of them are kept.
+   */
+  fun getSystemContactLinksByLookupKey(): Map<String, List<SystemContactLink>> {
+    return readableDatabase
+      .select(ID, SYSTEM_CONTACT_URI, NICKNAME_JOINED_NAME, NICKNAME_GIVEN_NAME)
+      .from(TABLE_NAME)
+      .where(
+        "$REGISTERED = ? AND $SYSTEM_CONTACT_URI NOT NULL AND $BLOCKED = 0 AND $HIDDEN = 0 AND $ID != ?",
+        RegisteredState.REGISTERED.id,
+        Recipient.self().id.serialize()
+      )
+      .orderBy(ID)
+      .run()
+      .readToList { cursor ->
+        val lookupKey = SystemContactsRepository.lookupKeyFromLookupUri(cursor.requireString(SYSTEM_CONTACT_URI))
+
+        if (lookupKey == null) {
+          null
+        } else {
+          SystemContactLink(
+            lookupKey = lookupKey,
+            recipientId = RecipientId.from(cursor.requireLong(ID)),
+            nickname = Util.getFirstNonEmpty(cursor.requireString(NICKNAME_JOINED_NAME), cursor.requireString(NICKNAME_GIVEN_NAME)).nullIfBlank()
+          )
+        }
+      }
+      .filterNotNull()
+      .groupBy { it.lookupKey }
+  }
+
+  /**
+   * Registered recipients for the contact index.
+   *
+   * [excludeSystemContacts] must be false when the address book is not being read, since those
+   * recipients would otherwise be in neither half of the index.
+   */
+  fun getSignalOnlyContactsForIndex(excludeSystemContacts: Boolean): List<SignalOnlyContact> {
+    val systemContactFilter = if (excludeSystemContacts) "$SYSTEM_CONTACT_URI IS NULL AND " else ""
+
+    return readableDatabase
+      .select(ID, NICKNAME_JOINED_NAME, NICKNAME_GIVEN_NAME, SYSTEM_JOINED_NAME, SYSTEM_GIVEN_NAME, PROFILE_JOINED_NAME, PROFILE_GIVEN_NAME, USERNAME, E164, EMAIL)
+      .from(TABLE_NAME)
+      .where(
+        "$REGISTERED = ? AND $PROFILE_SHARING = 1 AND $systemContactFilter$GROUP_ID IS NULL AND $BLOCKED = 0 AND $HIDDEN = 0 AND $ID != ?",
+        RegisteredState.REGISTERED.id,
+        Recipient.self().id.serialize()
+      )
+      .run()
+      .readToList { cursor ->
+        SignalOnlyContact(
+          recipientId = RecipientId.from(cursor.requireLong(ID)),
+          nickname = Util.getFirstNonEmpty(cursor.requireString(NICKNAME_JOINED_NAME), cursor.requireString(NICKNAME_GIVEN_NAME)).nullIfBlank(),
+          systemName = Util.getFirstNonEmpty(cursor.requireString(SYSTEM_JOINED_NAME), cursor.requireString(SYSTEM_GIVEN_NAME)).nullIfBlank(),
+          profileName = Util.getFirstNonEmpty(cursor.requireString(PROFILE_JOINED_NAME), cursor.requireString(PROFILE_GIVEN_NAME)).nullIfBlank(),
+          username = cursor.requireString(USERNAME).nullIfBlank(),
+          e164 = cursor.requireString(E164).nullIfBlank(),
+          email = cursor.requireString(EMAIL).nullIfBlank()
+        )
+      }
+  }
+
+  data class SystemContactLink(
+    val lookupKey: String,
+    val recipientId: RecipientId,
+    val nickname: String?
+  )
+
+  data class SignalOnlyContact(
+    val recipientId: RecipientId,
+    val nickname: String?,
+    val systemName: String?,
+    val profileName: String?,
+    val username: String?,
+    val e164: String?,
+    val email: String?
+  )
+
   private fun searchProjection(includeSelfMode: IncludeSelfMode): Array<String> {
     return when (includeSelfMode) {
       is IncludeSelfMode.IncludeWithRemap -> {
@@ -3595,6 +3838,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
                 NULLIF($SYSTEM_GIVEN_NAME, ''),
                 NULLIF($PROFILE_JOINED_NAME, ''),
                 NULLIF($PROFILE_GIVEN_NAME, ''),
+                NULLIF($SHARED_GIVEN_NAME, ''),
+                NULLIF($SHARED_FAMILY_NAME, ''),
                 NULLIF($USERNAME, '')
               )
             ) END AS $SORT_NAME
@@ -3972,6 +4217,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
     }
 
+    AppDependencies.databaseObserver.notifyBlockedUsersObservers()
     AppDependencies.recipientCache.clear()
   }
 
@@ -4254,10 +4500,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun clearSelfKeyTransparencyData() {
+    val aci = SignalStore.account.aci
+    if (aci == null) {
+      Log.i(TAG, "Missing ACI, skipping clearing key transparency data.")
+      return
+    }
     val updated = writableDatabase
       .update(TABLE_NAME)
       .values(KEY_TRANSPARENCY_DATA to null)
-      .where("$ACI_COLUMN = ? AND $KEY_TRANSPARENCY_DATA IS NOT NULL", Recipient.self().requireAci().toString())
+      .where("$ACI_COLUMN = ? AND $KEY_TRANSPARENCY_DATA IS NOT NULL", aci.toString())
       .run() > 0
     Log.i(TAG, "Clearing self key transparency data $updated")
   }
@@ -4444,6 +4695,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val systemName = ProfileName.fromParts(contact.proto.systemGivenName.nullIfBlank(), contact.proto.systemFamilyName.nullIfBlank())
       val username = contact.proto.username.nullIfBlank()
       val nickname = ProfileName.fromParts(contact.proto.nickname?.given, contact.proto.nickname?.family)
+      val sharedName = ProfileName.fromParts(contact.proto.sharedName?.given, contact.proto.sharedName?.family)
 
       put(ACI_COLUMN, contact.proto.signalAci?.toString())
       put(PNI_COLUMN, contact.proto.signalPni?.toString())
@@ -4463,11 +4715,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(MUTE_UNTIL, contact.proto.mutedUntilTimestamp)
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(contact.id.raw))
       put(HIDDEN, contact.proto.hidden)
-      put(PNI_SIGNATURE_VERIFIED, contact.proto.pniSignatureVerified.toInt())
+      put(PNI_SIGNATURE_VERIFIED, (contact.proto.pniSignatureVerified && contact.proto.signalPni?.isValid == true).toInt())
       put(NICKNAME_GIVEN_NAME, nickname.givenName.nullIfBlank())
       put(NICKNAME_FAMILY_NAME, nickname.familyName.nullIfBlank())
       put(NICKNAME_JOINED_NAME, nickname.toString().nullIfBlank())
       put(NOTE, contact.proto.note.nullIfBlank())
+      put(SHARED_GIVEN_NAME, sharedName.givenName.nullIfBlank())
+      put(SHARED_FAMILY_NAME, sharedName.familyName.nullIfBlank())
+      put(CALL_NOTIFICATION_SETTING, NotificationSetting.fromOptionalBool(contact.proto.notifyForCallsIfMuted).id)
+      put(UNREAD_REMINDER, NotificationSetting.fromOptionalBool(contact.proto.showUnreadReminders).id)
 
       if (contact.proto.hasUnknownFields()) {
         put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(contact.serializedUnknowns!!))
@@ -4504,7 +4760,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(BLOCKED_AT, groupV2.proto.blockedAtTimestamp)
       put(MUTE_UNTIL, groupV2.proto.mutedUntilTimestamp)
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(groupV2.id.raw))
-      put(MENTION_SETTING, if (groupV2.proto.dontNotifyForMentionsIfMuted) NotificationSetting.DO_NOT_NOTIFY.id else NotificationSetting.ALWAYS_NOTIFY.id)
+      put(MENTION_SETTING, if (groupV2.proto.dontNotifyForMentionsIfMuted) NotificationSetting.DO_NOT_NOTIFY.id else NotificationSetting.fromOptionalBool(groupV2.proto.notifyForMentionsIfMuted).id)
+      put(CALL_NOTIFICATION_SETTING, NotificationSetting.fromOptionalBool(groupV2.proto.notifyForCallsIfMuted).id)
+      put(REPLY_NOTIFICATION_SETTING, NotificationSetting.fromOptionalBool(groupV2.proto.notifyForRepliesIfMuted).id)
+      put(UNREAD_REMINDER, NotificationSetting.fromOptionalBool(groupV2.proto.showUnreadReminders).id)
 
       if (groupV2.proto.hasUnknownFields()) {
         put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(groupV2.serializedUnknowns!!))
@@ -4525,6 +4784,19 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Blanks out every column for a group's recipient row except [ID], [GROUP_ID], [TYPE], [BLOCKED], [BLOCKED_AT], and [STORAGE_SERVICE_ID].
    */
   fun clearGroupRecipient(recipientId: RecipientId, keepIdentifier: Boolean): Boolean {
+    readableDatabase
+      .select(NOTIFICATION_CHANNEL)
+      .from(TABLE_NAME)
+      .where("$ID = ? AND $NOTIFICATION_CHANNEL IS NOT NULL", recipientId)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          NotificationChannels.getInstance().deleteChannel(cursor.requireString(NOTIFICATION_CHANNEL))
+        } else {
+          null
+        }
+      }
+
     val cleared = if (keepIdentifier) {
       writableDatabase
         .update(TABLE_NAME)
@@ -4594,6 +4866,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       MENTION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
       CALL_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
       REPLY_NOTIFICATION_SETTING to NotificationSetting.SYSTEM_DEFAULT.id,
+      UNREAD_REMINDER to NotificationSetting.SYSTEM_DEFAULT.id,
       CAPABILITIES to 0,
       LAST_SESSION_RESET to null,
       WALLPAPER to null,
@@ -4614,6 +4887,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       NICKNAME_GIVEN_NAME to null,
       NICKNAME_FAMILY_NAME to null,
       NICKNAME_JOINED_NAME to null,
+      SHARED_GIVEN_NAME to null,
+      SHARED_FAMILY_NAME to null,
       NOTE to null,
       KEY_TRANSPARENCY_DATA to null
     )
@@ -5202,6 +5477,30 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           setting
         }
       }
+
+      fun toBoolean(setting: NotificationSetting): Boolean? {
+        return when (setting) {
+          SYSTEM_DEFAULT -> null
+          DO_NOT_NOTIFY -> false
+          ALWAYS_NOTIFY -> true
+        }
+      }
+
+      fun fromBoolean(value: Boolean?): NotificationSetting {
+        return when (value) {
+          null -> SYSTEM_DEFAULT
+          false -> DO_NOT_NOTIFY
+          true -> ALWAYS_NOTIFY
+        }
+      }
+
+      fun toOptionalBool(setting: NotificationSetting): OptionalBool {
+        return toBoolean(setting).toOptionalBool()
+      }
+
+      fun fromOptionalBool(optionalBool: OptionalBool): NotificationSetting {
+        return fromBoolean(optionalBool.toBool())
+      }
     }
   }
 
@@ -5266,7 +5565,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val sealedSenderAccessMode: SealedSenderAccessMode? = null,
     val phoneNumberSharing: PhoneNumberSharingState? = null,
     val expiringProfileKeyCredential: Pair<ProfileKey, ExpiringProfileKeyCredential>? = null,
-    val clearUsername: Boolean = false
+    val clearUsername: Boolean = false,
+    val clearSharedName: Boolean = false
   )
 
   data class RecipientNotificationData(val id: RecipientId, val channel: String)

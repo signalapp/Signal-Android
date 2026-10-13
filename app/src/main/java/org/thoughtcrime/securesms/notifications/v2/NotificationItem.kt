@@ -236,7 +236,8 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord, val
   override val timestamp: Long = record.timestamp
   override val authorRecipient: Recipient = record.fromRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L && !record.isEditMessage
-  val hasSelfMention = record.hasSelfMention() || (record is MmsMessageRecord && record.quote?.author == Recipient.self().id)
+  val isReplyToSelf = record is MmsMessageRecord && threadRecipient.isGroup && record.quote?.author == Recipient.self().id
+  val hasSelfMention = record.hasSelfMention()
 
   private var thumbnailInfo: ThumbnailInfo = NotificationThumbnails.getWithoutModifying(this)
 
@@ -264,6 +265,8 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord, val
       ThreadBodyUtil.getFormattedBodyForPollNotification(context, record as MmsMessageRecord)
     } else if (record.hasPollTerminate()) {
       ThreadBodyUtil.getFormattedBodyForPollEndNotification(context, record as MmsMessageRecord)
+    } else if (isReplyToSelf) {
+      ThreadBodyUtil.getFormattedBodyForReply(context, getBodyWithMentionsAndStyles(context, record))
     } else {
       getBodyWithMentionsAndStyles(context, record)
     }

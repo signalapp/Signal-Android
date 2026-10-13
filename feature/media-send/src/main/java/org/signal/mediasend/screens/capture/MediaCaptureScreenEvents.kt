@@ -8,7 +8,7 @@ package org.signal.mediasend.screens.capture
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.MediaSendRoute
 
-sealed interface MediaCaptureScreenEvents {
+internal sealed interface MediaCaptureScreenEvents {
 
   /** The parent flow's state changed and needs to be merged into this screen's state. */
   data class ParentStateChanged(val parentState: MediaSendFlowState) : MediaCaptureScreenEvents {
@@ -20,8 +20,9 @@ sealed interface MediaCaptureScreenEvents {
   /** Navigation moved between the camera and the text story editor. */
   data class SelectedCaptureScreenChanged(val selectedCaptureScreen: MediaSendRoute.Capture) : MediaCaptureScreenEvents
 
-  data object ShowCamera : MediaCaptureScreenEvents
-  data object ShowTextStory : MediaCaptureScreenEvents
+  /** A capture mode was picked from the bottom bar. */
+  data class CaptureModeSelected(val mode: MediaCaptureMode) : MediaCaptureScreenEvents
+
   data object NextClicked : MediaCaptureScreenEvents
 
   /** Something the camera reported. What becomes of it is the flow's to decide rather than this screen's. */

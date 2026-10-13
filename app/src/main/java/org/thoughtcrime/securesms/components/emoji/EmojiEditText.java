@@ -19,7 +19,6 @@ import org.signal.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.signal.core.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 
 import java.util.HashSet;
@@ -58,7 +57,7 @@ public class EmojiEditText extends AppCompatEditText {
     });
 
     if (!isInEditMode()) {
-      EditTextExtensionsKt.setIncognitoKeyboardEnabled(this, TextSecurePreferences.isIncognitoKeyboardEnabled(context));
+      EditTextExtensionsKt.setIncognitoKeyboardEnabled(this, SignalStore.settings().isIncognitoKeyboardEnabled());
     }
   }
 

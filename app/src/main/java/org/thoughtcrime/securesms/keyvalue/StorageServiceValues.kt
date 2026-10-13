@@ -13,6 +13,8 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
     private const val NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore"
     private const val MANIFEST = "storage.manifest"
     private const val SYNC_LOOP_STATE = "storage.sync_loop_state"
+    private const val LAST_BACKGROUND_SYNC = "storage.last_background_sync"
+    private const val NEEDS_SYNC_ON_FOREGROUND = "storage.needs_sync_on_foreground"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -25,6 +27,12 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
     }
 
   var lastSyncTime: Long by longValue(LAST_SYNC_TIME, 0)
+
+  /** The last time we enqueued a storage sync while the app was in the background. */
+  var lastBackgroundSyncTime: Long by longValue(LAST_BACKGROUND_SYNC, 0)
+
+  /** Whether or not we should enqueue a storage sync upon foregrounding the application. */
+  var needsSyncOnForeground: Boolean by booleanValue(NEEDS_SYNC_ON_FOREGROUND, false)
 
   var needsAccountRestore: Boolean by booleanValue(NEEDS_ACCOUNT_RESTORE, false)
 

@@ -50,7 +50,7 @@ public final class CropAreaRenderer implements Renderer {
     final int thickness = resources.getDimensionPixelSize(R.dimen.crop_area_renderer_edge_thickness);
     final int size      = (int) Math.min(resources.getDimensionPixelSize(R.dimen.crop_area_renderer_edge_size), Math.min(dst.width(), dst.height()) / 3f - 10);
 
-    paint.setColor(ResourcesCompat.getColor(resources, R.color.crop_area_renderer_edge_color, null));
+    paint.setColor(rendererContext.resolveDecorationColor(ResourcesCompat.getColor(resources, R.color.crop_area_renderer_edge_color, null)));
 
     rendererContext.canvasMatrix.setToIdentity();
     screenClipPath.reset();

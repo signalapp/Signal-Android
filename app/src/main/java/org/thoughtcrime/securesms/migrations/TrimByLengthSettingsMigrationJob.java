@@ -37,7 +37,7 @@ public class TrimByLengthSettingsMigrationJob extends MigrationJob {
   void performMigration() throws Exception {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(AppDependencies.getApplication());
     if (preferences.contains(THREAD_TRIM_ENABLED)) {
-      SignalStore.settings().setThreadTrimByLengthEnabled(preferences.getBoolean(THREAD_TRIM_ENABLED, false));
+      SignalStore.settings().setTrimByLengthEnabled(preferences.getBoolean(THREAD_TRIM_ENABLED, false));
       //noinspection ConstantConditions
       SignalStore.settings().setThreadTrimLength(Integer.parseInt(preferences.getString(THREAD_TRIM_LENGTH, "500")));
 

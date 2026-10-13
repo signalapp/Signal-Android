@@ -7,12 +7,15 @@ package org.signal.core.ui.compose
 
 import android.text.Spanned
 import android.text.style.URLSpan
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.AnnotatedString
@@ -26,21 +29,32 @@ import org.signal.core.ui.R
 object Texts {
   /**
    * Header row for settings pages.
+   *
+   * @param trailingContent Optional content shown beside the header text, such as a status tag.
    */
   @Composable
   fun SectionHeader(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    trailingContent: @Composable () -> Unit = {}
   ) {
-    Text(
-      text = text,
-      style = MaterialTheme.typography.titleSmall,
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      horizontalArrangement = Arrangement.spacedBy(8.dp),
       modifier = modifier
         .padding(
           horizontal = dimensionResource(id = R.dimen.gutter)
         )
         .padding(top = 16.dp, bottom = 12.dp)
-    )
+    ) {
+      Text(
+        text = text,
+        style = MaterialTheme.typography.titleSmall,
+        modifier = Modifier.weight(1f, fill = false)
+      )
+
+      trailingContent()
+    }
   }
 
   @Composable

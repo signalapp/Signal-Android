@@ -18,6 +18,7 @@ import android.view.ActionMode;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewStructure;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 import java.util.Objects;
@@ -314,12 +314,28 @@ public class ComposeText extends EmojiEditText {
     return MessageStyler.getStyling(getTextTrimmed());
   }
 
+  /**
+   * Autofill services can request views that are marked unimportant for autofill, so the importance hint alone doesn't
+   * stop password managers from offering to fill the compose box.
+   */
+  @Override
+  public int getAutofillType() {
+    return AUTOFILL_TYPE_NONE;
+  }
+
+  /**
+   * Intentionally does not call super, so the message being composed is never handed to an autofill service.
+   */
+  @Override
+  public void onProvideAutofillStructure(ViewStructure structure, int flags) {
+  }
+
   private void initialize() {
     if (Build.VERSION.SDK_INT >= 26) {
-      setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+      setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
     }
 
-    if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
+    if (SignalStore.settings().isIncognitoKeyboardEnabled()) {
       setImeOptions(getImeOptions() | 16777216);
     }
 

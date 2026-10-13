@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,6 +40,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareSender.MultiShareSendResultC
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import java.util.concurrent.TimeUnit
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
@@ -179,8 +179,6 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
-
-  override fun getContainer(): ViewGroup = findViewById(R.id.fragment_container_wrapper)
 
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
@@ -343,7 +341,10 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   private fun sendWithoutInterstitial(shareEvent: ShareEvent.SendWithoutInterstitial) {
     Log.d(TAG, "Sending without an interstitial...")
 
+    val progressDialog = SimpleProgressDialog.showDelayed(this)
+
     MultiShareSender.send(shareEvent.getMultiShareArgs()) { results: MultiShareSendResultCollection? ->
+      progressDialog.dismissNow()
       MultiShareDialogs.displayResultDialog(this, results!!) {
         finish()
       }

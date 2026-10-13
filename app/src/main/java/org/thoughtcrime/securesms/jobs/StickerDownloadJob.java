@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.models.database.StickerRecord;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTables;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
@@ -19,6 +20,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.signal.network.exceptions.PushNetworkException;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
@@ -38,24 +40,39 @@ public class StickerDownloadJob extends BaseJob {
   private static final String KEY_COVER        = "cover";
   private static final String KEY_INSTALLED    = "installed";
   private static final String KEY_NOTIFY       = "notify";
+  private static final String KEY_FAVORITE     = "favorite";
 
   private final IncomingSticker sticker;
   private final boolean         notify;
+  private final boolean         isFavorite;
 
   StickerDownloadJob(@NonNull IncomingSticker sticker, boolean notify) {
+    this(sticker, notify, false);
+  }
+
+  private StickerDownloadJob(@NonNull IncomingSticker sticker, boolean notify, boolean isFavorite) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .addConstraint(DataRestoreConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(30))
                            .build(),
         sticker,
-        notify);
+        notify,
+        isFavorite);
   }
 
-  private StickerDownloadJob(@NonNull Job.Parameters parameters, @NonNull IncomingSticker sticker, boolean notify) {
+  private StickerDownloadJob(@NonNull Job.Parameters parameters, @NonNull IncomingSticker sticker, boolean notify, boolean isFavorite) {
     super(parameters);
-    this.sticker = sticker;
-    this.notify  = notify;
+    this.sticker    = sticker;
+    this.notify     = notify;
+    this.isFavorite = isFavorite;
+  }
+
+  /**
+   * Downloads a sticker that was favorited whose pack is uninstalled. As such, does not update the pack itself and requires [StickerPackDownloadJob > forReference] to be called too.
+   */
+  public static @NonNull StickerDownloadJob forFavorite(@NonNull String packId, @NonNull String packKey, int stickerId, @NonNull String emoji, @Nullable String contentType) {
+    return new StickerDownloadJob(new IncomingSticker(packId, packKey, "", "", stickerId, emoji, contentType, false, false), false, true);
   }
 
   @Override
@@ -70,6 +87,7 @@ public class StickerDownloadJob extends BaseJob {
                                     .putBoolean(KEY_COVER, sticker.isCover())
                                     .putBoolean(KEY_INSTALLED, sticker.isInstalled())
                                     .putBoolean(KEY_NOTIFY, notify)
+                                    .putBoolean(KEY_FAVORITE, isFavorite)
                                     .serialize();
   }
 
@@ -81,6 +99,16 @@ public class StickerDownloadJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     StickerTables db = SignalDatabase.stickers();
+
+    if (isFavorite) {
+      if (!Boolean.TRUE.equals(db.isFavorite(sticker.getPackId(), sticker.getStickerId()))) {
+        Log.w(TAG, "Sticker is no longer favorited.");
+        return;
+      }
+
+      db.insertSticker(sticker, retrieveSticker(), notify, false);
+      return;
+    }
 
     StickerRecord stickerRecord = db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover());
     if (stickerRecord != null) {
@@ -99,12 +127,15 @@ public class StickerDownloadJob extends BaseJob {
       return;
     }
 
-    SignalServiceMessageReceiver receiver     = AppDependencies.getSignalServiceMessageReceiver();
-    byte[]                       packIdBytes  = Hex.fromStringCondensed(sticker.getPackId ());
-    byte[]                       packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
-    InputStream                  stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());
+    db.insertSticker(sticker, retrieveSticker(), notify, true);
+  }
 
-    db.insertSticker(sticker, stream, notify);
+  private @NonNull InputStream retrieveSticker() throws IOException, InvalidMessageException {
+    SignalServiceMessageReceiver receiver     = AppDependencies.getSignalServiceMessageReceiver();
+    byte[]                       packIdBytes  = Hex.fromStringCondensed(sticker.getPackId());
+    byte[]                       packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
+
+    return receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());
   }
 
   @Override
@@ -132,7 +163,7 @@ public class StickerDownloadJob extends BaseJob {
                                                     data.getBoolean(KEY_COVER),
                                                     data.getBoolean(KEY_INSTALLED));
 
-      return new StickerDownloadJob(parameters, sticker, data.getBoolean(KEY_NOTIFY));
+      return new StickerDownloadJob(parameters, sticker, data.getBoolean(KEY_NOTIFY), data.getBooleanOrDefault(KEY_FAVORITE, false));
     }
   }
 }

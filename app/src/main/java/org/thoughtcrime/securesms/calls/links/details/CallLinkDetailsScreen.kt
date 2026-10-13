@@ -46,8 +46,9 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.YouAreAlrea
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.SignalCallRow
 import org.thoughtcrime.securesms.database.CallLinkTable
-import org.thoughtcrime.securesms.main.MainNavigationCallDetailRouter
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainDetailRoute
+import org.thoughtcrime.securesms.main.MainNavigationEventSink
+import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
@@ -63,7 +64,7 @@ fun CallLinkDetailsScreen(
   viewModel: CallLinkDetailsViewModel = viewModel {
     CallLinkDetailsViewModel(roomId)
   },
-  router: MainNavigationCallDetailRouter = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalActivity.current as ComponentActivity) {
+  eventSink: MainNavigationEventSink = viewModel<MainNavigationViewModel>(viewModelStoreOwner = LocalActivity.current as ComponentActivity) {
     error("Should already be created.")
   }
 ) {
@@ -72,7 +73,7 @@ fun CallLinkDetailsScreen(
     DefaultCallLinkDetailsCallback(
       activity = activity,
       viewModel = viewModel,
-      router = router
+      eventSink = eventSink
     )
   }
 
@@ -90,7 +91,7 @@ fun CallLinkDetailsScreen(
 class DefaultCallLinkDetailsCallback(
   private val activity: FragmentActivity,
   private val viewModel: CallLinkDetailsViewModel,
-  private val router: MainNavigationCallDetailRouter
+  private val eventSink: MainNavigationEventSink
 ) : CallLinkDetailsCallback {
 
   private val lifecycleDisposable = LifecycleDisposable()
@@ -113,10 +114,12 @@ class DefaultCallLinkDetailsCallback(
   }
 
   override fun onEditNameClicked() {
-    router.goToCallDetail(
-      MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName(
-        callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId(),
-        currentName = viewModel.nameSnapshot
+    eventSink.onEvent(
+      MainNavigationEvents.GoToDetail(
+        MainDetailRoute.Calls.CallLinks.EditCallLinkName(
+          callLinkRoomId = viewModel.recipientSnapshot!!.requireCallLinkRoomId(),
+          currentName = viewModel.nameSnapshot
+        )
       )
     )
   }
@@ -157,7 +160,7 @@ class DefaultCallLinkDetailsCallback(
     viewModel.setDisplayRevocationDialog(false)
     activity.lifecycleScope.launch {
       if (viewModel.delete()) {
-        router.exitDetailLocation()
+        eventSink.onEvent(MainNavigationEvents.ExitDetail)
       }
     }
   }

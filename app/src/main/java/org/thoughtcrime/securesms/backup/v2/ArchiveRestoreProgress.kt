@@ -10,14 +10,22 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import androidx.annotation.VisibleForTesting
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.bytes
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.safeUnregisterReceiver
@@ -52,29 +60,24 @@ import kotlin.time.DurationUnit
 object ArchiveRestoreProgress {
   private val TAG = Log.tag(ArchiveRestoreProgress::class.java)
 
+  private val THROTTLED_UPDATE_INTERVAL = 1.seconds
+
   private var listenersRegistered = false
   private val listenerLock = ReentrantLock()
 
+  private val throttledUpdateRequests = MutableSharedFlow<Unit>(extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+
   private val attachmentObserver = DatabaseObserver.Observer {
-    update()
+    throttledUpdateRequests.tryEmit(Unit)
   }
 
   private val networkChangeReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-      update()
+      throttledUpdateRequests.tryEmit(Unit)
     }
   }
 
-  private val store = MutableStateFlow(
-    ArchiveRestoreProgressState(
-      restoreState = SignalStore.backup.restoreState,
-      remainingRestoreSize = SignalStore.backup.totalRestorableAttachmentSize.bytes,
-      totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize.bytes,
-      hasActivelyRestoredThisRun = SignalStore.backup.totalRestorableAttachmentSize > 0,
-      totalToRestoreThisRun = SignalStore.backup.totalRestorableAttachmentSize.bytes,
-      restoreStatus = ArchiveRestoreProgressState.RestoreStatus.NONE
-    )
-  )
+  private val store = MutableStateFlow(createInitialState())
 
   val state: ArchiveRestoreProgressState
     get() = store.value
@@ -86,6 +89,45 @@ object ArchiveRestoreProgress {
 
   init {
     SignalExecutors.BOUNDED.execute { update() }
+
+    throttledUpdateRequests
+      .throttleLatest(THROTTLED_UPDATE_INTERVAL)
+      .onEach { update() }
+      .launchIn(CoroutineScope(SupervisorJob() + SignalDispatchers.IO))
+  }
+
+  /**
+   * Rebuilds the in-memory state from disk, as if the process had just started.
+   */
+  @VisibleForTesting
+  internal fun resetForTesting() {
+    store.value = createInitialState()
+  }
+
+  private fun createInitialState(): ArchiveRestoreProgressState {
+    return ArchiveRestoreProgressState(
+      restoreState = getAndRepairRestoreState(),
+      remainingRestoreSize = SignalStore.backup.totalRestorableAttachmentSize.bytes,
+      totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize.bytes,
+      hasActivelyRestoredThisRun = SignalStore.backup.totalRestorableAttachmentSize > 0,
+      totalToRestoreThisRun = SignalStore.backup.totalRestorableAttachmentSize.bytes,
+      restoreStatus = ArchiveRestoreProgressState.RestoreStatus.NONE
+    )
+  }
+
+  /**
+   * Retrieves the persisted restore state, resetting it if necessary.
+   */
+  private fun getAndRepairRestoreState(): RestoreState {
+    val persisted = SignalStore.backup.restoreState
+
+    if (persisted.isStateOnlyInMemory) {
+      Log.w(TAG, "Found a stale $persisted restore state left over from a previous app session. Clearing it.")
+      SignalStore.backup.restoreState = RestoreState.NONE
+      return RestoreState.NONE
+    }
+
+    return persisted
   }
 
   fun onRestorePending() {
@@ -98,6 +140,14 @@ object ArchiveRestoreProgress {
     Log.i(TAG, "onRestoreFailed")
     SignalStore.backup.restoreState = RestoreState.NONE
     update()
+  }
+
+  fun onRestoreCanceled() {
+    if (SignalStore.backup.restoreState.isStateOnlyInMemory) {
+      Log.i(TAG, "onRestoreCanceled")
+      SignalStore.backup.restoreState = RestoreState.NONE
+      update()
+    }
   }
 
   fun onStartMediaRestore() {

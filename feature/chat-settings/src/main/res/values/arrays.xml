@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="GroupPermissionsScreen__editor_labels">
+    <item>@string/GroupPermissionsScreen__only_admins</item>
+    <item>@string/GroupPermissionsScreen__all_members</item>
+  </string-array>
+</resources>

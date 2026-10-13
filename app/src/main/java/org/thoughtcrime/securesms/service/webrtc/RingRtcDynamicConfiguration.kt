@@ -82,6 +82,11 @@ object RingRtcDynamicConfiguration {
     return if (secs != 0) secs else null
   }
 
+  @JvmStatic
+  fun getMinimumCaptureFps(): Int {
+    return SignalStore.internal.callingMinimumCaptureFps.coerceAtLeast(0)
+  }
+
   private fun getSoCInfo(): Pair<String, String> {
     // 1. Native API Method (Android 12 / API 31+)
     if (Build.VERSION.SDK_INT >= 31) {

@@ -7,13 +7,13 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.network.exceptions.PushNetworkException;
-import org.signal.network.service.CdnService;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
@@ -91,8 +91,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
     SignalServiceMessageSender    messageSender    = AppDependencies.getSignalServiceMessageSender();
     long                          dataLength       = baos.toByteArray().length;
     long                          ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(dataLength));
-    CdnService                    cdnService       = new CdnService(AppDependencies.getSignalRestClient(), AppDependencies.getAttachmentApi());
-    ResumableUploadSpec           uploadSpec       = cdnService.getResumableUploadSpecBlocking(ciphertextLength);
+    ResumableUploadSpec           uploadSpec       = SignalNetwork.cdnService().getResumableUploadSpecBlocking(ciphertextLength);
     SignalServiceAttachmentStream attachmentStream = SignalServiceAttachment.newStreamBuilder()
                                                                             .withStream(new ByteArrayInputStream(baos.toByteArray()))
                                                                             .withContentType("application/octet-stream")

@@ -17,8 +17,8 @@ import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.network.service.StorageServiceService
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 
@@ -47,7 +47,7 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
   fun onViewTabSelected() {
     viewModelScope.launch {
       withContext(Dispatchers.IO) {
-        val repository = StorageServiceService(AppDependencies.storageServiceApi)
+        val repository = SignalNetwork.storageService
         val storageKey = SignalStore.storageService.storageKeyForInitialDataRestore ?: SignalStore.storageService.storageKey
 
         val manifest = when (val result = repository.getStorageManifest(storageKey)) {

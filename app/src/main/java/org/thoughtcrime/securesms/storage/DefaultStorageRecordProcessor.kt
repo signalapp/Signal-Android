@@ -74,12 +74,17 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord<*>> : StorageRecor
     return base.serializedUnknowns.contentEquals(test.serializedUnknowns) && base.proto == test.proto
   }
 
+  /**
+   * Optional extra identifying detail about a record, included in every log line for it.
+   */
+  open fun describeRecord(record: E): String = ""
+
   private fun info(i: Int, record: E, message: String) {
-    Log.i(TAG, "[$i][${record.javaClass.getSimpleName()}] $message")
+    Log.i(TAG, "[$i][${record.javaClass.simpleName}]${describeRecord(record)} $message")
   }
 
   private fun warn(i: Int, record: E, message: String) {
-    Log.w(TAG, "[$i][${record.javaClass.getSimpleName()}] $message")
+    Log.w(TAG, "[$i][${record.javaClass.simpleName}]${describeRecord(record)} $message")
   }
 
   /**

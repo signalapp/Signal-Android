@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyboard.emoji.RecentsMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.reactions.ReactionsRepository;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 
 import java.util.List;
@@ -133,7 +132,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   }
 
   private static @NonNull String getStartingKey() {
-    if (RecentEmojiPageModel.hasRecents(AppDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY)) {
+    if (RecentEmojiPageModel.hasRecents(AppDependencies.getApplication(), RecentEmojiPageModel.RECENT_STORAGE_KEY)) {
       return RecentEmojiPageModel.KEY;
     } else {
       return EmojiCategory.PEOPLE.getKey();

@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.ui.isSplitPane
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainDetailRoute
 
 /**
  * When the user searches for a conversation and then enters a message, we should clear
@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
  * On other screen types, since we are in a multi-pane mode, we can subscribe immediately.
  */
 fun Fragment.listenToEventBusWhileResumed(
-  detailLocation: Flow<MainNavigationDetailLocation>
+  detailLocation: Flow<MainDetailRoute?>
 ) {
   lifecycleScope.launch {
     detailLocation
@@ -37,8 +37,8 @@ fun Fragment.listenToEventBusWhileResumed(
       .collectLatest {
         if (!resources.isSplitPane()) {
           when (it) {
-            is MainNavigationDetailLocation.Conversation -> unsubscribe()
-            MainNavigationDetailLocation.Empty -> subscribe()
+            is MainDetailRoute.Conversation -> unsubscribe()
+            null -> subscribe()
             else -> Unit
           }
         } else {

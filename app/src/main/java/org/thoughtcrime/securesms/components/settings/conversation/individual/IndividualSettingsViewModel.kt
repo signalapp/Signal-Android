@@ -43,7 +43,7 @@ class IndividualSettingsViewModel(
   private val kind: ConversationSettingsKind,
   private val callMessageIds: LongArray,
   private val repository: ConversationSettingsRepository
-) : EventDrivenViewModel<IndividualSettingsEvent>(TAG) {
+) : EventDrivenViewModel<IndividualSettingsEvent>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(IndividualSettingsViewModel::class)

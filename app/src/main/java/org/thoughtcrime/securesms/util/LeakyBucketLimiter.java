@@ -8,6 +8,8 @@ import androidx.core.os.HandlerCompat;
 
 import org.signal.core.util.logging.Log;
 
+import java.util.function.LongSupplier;
+
 /**
  * Imagine a bucket. Now imagine your tasks as little droplets. As your tasks are thrown into the
  * bucket, the tasks are executed, and the bucket fills up. If the bucket is full, the tasks
@@ -21,6 +23,9 @@ import org.signal.core.util.logging.Log;
  * rapid succession, but afterwards you'd only be able to execute at most 1 task per second. If you
  * waited 10 seconds, the bucket would be fully drained, and you'd be able to execute 10 tasks in
  * rapid succession again.
+ *
+ * The drip interval is read each time a drip is scheduled, so a caller can vary the rate at runtime.
+ * A change applies to the next drip scheduled, not to one already posted.
  *
  * This class also does something a little extra -- it keeps track of the most-recently-overflowed
  * task, and will run it the next time it 'drips' instead of leaking. This lets you have a sort of
@@ -37,16 +42,16 @@ public final class LeakyBucketLimiter {
 
   private static final String TAG = Log.tag(LeakyBucketLimiter.class);
 
-  private final int     bucketCapacity;
-  private final long    dripInterval;
-  private final Handler handler;
+  private final int          bucketCapacity;
+  private final LongSupplier dripInterval;
+  private final Handler      handler;
 
   private int      bucketLevel;
   private Runnable lastOverflowedRunnable;
 
   private final Object RUNNABLE_TOKEN = new Object();
 
-  public LeakyBucketLimiter(int bucketCapacity, long dripInterval, @NonNull Handler handler) {
+  public LeakyBucketLimiter(int bucketCapacity, @NonNull LongSupplier dripInterval, @NonNull Handler handler) {
     this.bucketCapacity = bucketCapacity;
     this.dripInterval   = dripInterval;
     this.handler        = handler;
@@ -76,8 +81,13 @@ public final class LeakyBucketLimiter {
     }
 
     if (scheduleDrip) {
-      handler.postDelayed(this::drip, dripInterval);
+      handler.postDelayed(this::drip, dripInterval.getAsLong());
     }
+  }
+
+  @AnyThread
+  public void runWithoutLimit(@NonNull Runnable runnable) {
+    handler.post(runnable);
   }
 
   private void drip() {
@@ -101,7 +111,7 @@ public final class LeakyBucketLimiter {
     }
 
     if (needsDrip) {
-      handler.postDelayed(this::drip, dripInterval);
+      handler.postDelayed(this::drip, dripInterval.getAsLong());
     }
   }
 }

@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.mediasend.R as MediaSendR
 
@@ -73,7 +72,6 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
       recipientId,
       remoteIdentity,
       IdentityKeyParcelable(SignalStore.account.aciIdentityKey.publicKey),
-      Recipient.self().requireE164(),
       isVerified
     )
   }

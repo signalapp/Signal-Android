@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.milliseconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment to create a poll
@@ -110,7 +111,7 @@ class CreatePollFragment : ComposeDialogFragment() {
         dismissAllowingStateLoss()
       },
       navigationIcon = SignalIcons.X.imageVector,
-      navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description)
     ) { paddingValues ->
       CreatePollScreen(
         paddingValues = paddingValues,

@@ -26,30 +26,6 @@ sealed interface SoundsAndNotificationsEvent {
   data object Unmute : SoundsAndNotificationsEvent
 
   /**
-   * Updates the mention notification setting for this recipient.
-   * Only relevant for group conversations that support @mentions.
-   *
-   * @param setting The new [NotificationSetting] to apply for @mention notifications.
-   */
-  data class SetMentionSetting(val setting: NotificationSetting) : SoundsAndNotificationsEvent
-
-  /**
-   * Updates the call notification setting for this recipient.
-   * Controls whether incoming calls still produce notifications while the conversation is muted.
-   *
-   * @param setting The new [NotificationSetting] to apply for call notifications.
-   */
-  data class SetCallNotificationSetting(val setting: NotificationSetting) : SoundsAndNotificationsEvent
-
-  /**
-   * Updates the reply notification setting for this recipient.
-   * Controls whether replies directed at the current user still produce notifications while muted.
-   *
-   * @param setting The new [NotificationSetting] to apply for reply notifications.
-   */
-  data class SetReplyNotificationSetting(val setting: NotificationSetting) : SoundsAndNotificationsEvent
-
-  /**
    * Signals that the user tapped the "Custom Notifications" row and wishes to navigate to the
    * [custom notifications settings screen][org.thoughtcrime.securesms.components.settings.conversation.sounds.custom.CustomNotificationsSettingsFragment].
    */
@@ -59,4 +35,9 @@ sealed interface SoundsAndNotificationsEvent {
    * User tapped "When Muted" and navigates to [MutedNotificationsFragment]
    */
   data object NavigateToMutedNotifications : SoundsAndNotificationsEvent
+
+  /**
+   * User toggled "Unread reminders"
+   */
+  data class SetUnreadReminder(val setting: NotificationSetting) : SoundsAndNotificationsEvent
 }

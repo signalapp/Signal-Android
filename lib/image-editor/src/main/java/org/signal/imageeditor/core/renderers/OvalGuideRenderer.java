@@ -38,7 +38,7 @@ public final class OvalGuideRenderer implements Renderer {
     float   halfStroke = stroke / 2f;
 
     this.paint.setStrokeWidth(stroke);
-    paint.setColor(ContextCompat.getColor(context, ovalGuideColor));
+    paint.setColor(rendererContext.resolveDecorationColor(ContextCompat.getColor(context, ovalGuideColor)));
 
     rendererContext.mapRect(dst, Bounds.FULL_BOUNDS);
     dst.set(dst.left + halfStroke, dst.top + halfStroke, dst.right - halfStroke, dst.bottom - halfStroke);

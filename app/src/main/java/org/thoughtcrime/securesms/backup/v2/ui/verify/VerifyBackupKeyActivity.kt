@@ -21,13 +21,13 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.EnterKeyScreen
-import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import kotlin.random.Random

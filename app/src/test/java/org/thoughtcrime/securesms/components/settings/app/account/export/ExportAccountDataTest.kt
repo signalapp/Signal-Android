@@ -72,7 +72,7 @@ class ExportAccountDataTest {
   fun `Export json without text field`() {
     val scheduler = TestScheduler()
 
-    every { SignalNetwork.account.accountDataReport() } returns NetworkResult.Success(mockJson)
+    every { SignalNetwork.accountApi.accountDataReport() } returns NetworkResult.Success(mockJson)
 
     val viewModel = ExportAccountDataViewModel(ExportAccountDataRepository())
 

@@ -47,6 +47,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -242,11 +243,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     learnMoreText           = findViewById(R.id.learn_more_text);
     biometricManager        = BiometricManager.from(this);
     biometricPrompt         = new BiometricPrompt(this, new BiometricAuthenticationListener());
-    BiometricPrompt.PromptInfo biometricPromptInfo = new BiometricPrompt.PromptInfo
-                                                                        .Builder()
-                                                                        .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-                                                                        .setTitle(getString(R.string.PassphrasePromptActivity_unlock_signal))
-                                                                        .build();
+    BiometricPrompt.PromptInfo biometricPromptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
+                                                                                  .setTitle(getString(R.string.PassphrasePromptActivity_unlock_signal))
+                                                                                  .build();
     biometricAuth = new BiometricDeviceAuthentication(biometricManager, biometricPrompt, biometricPromptInfo);
     setSupportActionBar(toolbar);
     getSupportActionBar().setTitle("");

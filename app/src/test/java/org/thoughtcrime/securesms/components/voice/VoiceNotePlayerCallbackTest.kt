@@ -60,7 +60,7 @@ class VoiceNotePlayerCallbackTest {
 
     // THEN
     verify { player.playWhenReady = false }
-    verify { player.setAudioAttributes(expected, true) }
+    verify { player.setAudioAttributes(expected, false) }
     verify(exactly = 0) { player.playWhenReady = true }
   }
 

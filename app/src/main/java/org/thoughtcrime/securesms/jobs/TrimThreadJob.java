@@ -78,7 +78,7 @@ public class TrimThreadJob extends BaseJob {
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
                                                                                : ThreadTable.NO_TRIM_BEFORE_DATE_SET;
 
-    SignalDatabase.threads().trimThread(threadId, SignalStore.settings().shouldSyncThreadTrimDeletes(), trimLength, trimBeforeDate, false);
+    SignalDatabase.threads().trimThread(threadId, SignalStore.settings().getSyncThreadTrimDeletes(), trimLength, trimBeforeDate, false);
   }
 
   @Override

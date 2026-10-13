@@ -217,15 +217,19 @@ public class CreateProfileFragment extends LoggingFragment {
       binding.profileDescriptionText.setLinkColor(ContextCompat.getColor(requireContext(), org.signal.core.ui.R.color.signal_colorPrimary));
       binding.profileDescriptionText.setOnLinkClickListener(v -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.EditProfileFragment__support_link)));
 
-      getParentFragmentManager().setFragmentResultListener(WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
-        if (WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
-          presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
-        }
-      });
+      if (SignalStore.account().isPhoneNumberless()) {
+        binding.whoCanFindMeContainer.setVisibility(View.GONE);
+      } else {
+        getParentFragmentManager().setFragmentResultListener(WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
+          if (WhoCanFindMeByPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
+            presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
+          }
+        });
 
-      binding.whoCanFindMeContainer.setVisibility(View.VISIBLE);
-      binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), CreateProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
-      presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
+        binding.whoCanFindMeContainer.setVisibility(View.VISIBLE);
+        binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), CreateProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
+        presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode());
+      }
     }
 
     binding.finishButton.setOnClickListener(v -> {

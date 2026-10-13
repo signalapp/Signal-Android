@@ -45,73 +45,306 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Data akaun anda</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Log Masuk Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">Akaun &amp; pemulihan</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Signal Login anda digunakan untuk memulihkan dan mendapatkan semula akaun anda. Simpan kunci ini dengan selamat dalam pengurus kata laluan yang anda percayai.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">Didayakan</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">Pengesahan dua faktor</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Tetapkan</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">Aplikasi pengesah</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Kod pengesahan satu kali</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Kunci laluan</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Kunci laluan</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Menambah %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Tidak diketahui</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Buka pilihan pengesahan dua faktor</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Namakan semula</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Alih keluar</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Alih keluar aplikasi pengesah?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Anda tidak akan dapat menggunakan aplikasi ini untuk mendapatkan kod pengesahan sekali guna apabila anda log masuk.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Buka kunci untuk mengalih keluar kaedah dua faktor</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Untuk mengalih keluar kaedah ini, sahkan itu adalah anda</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Buka kunci untuk melihat Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Untuk melihat Signal Login anda, sahkan itu adalah anda</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Buka kunci untuk mengesahkan ia adalah anda</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Untuk memadamkan akaun anda, sahkan ia adalah anda</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Pengesahan diperlukan</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Tidak dapat menambah aplikasi pengesah</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Anda tidak boleh menambah lebih daripada %1$d aplikasi pengesah. Cuba alih keluar satu dahulu.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Anda tidak boleh menambah lebih daripada %1$d kaedah pengesahan dua faktor. Cuba alih keluar satu dahulu.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Tidak dapat memuatkan kaedah pengesahan dua faktor anda. Periksa sambungan anda dan cuba lagi.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Aplikasi pengesah dialih keluar</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Tidak dapat mengalih keluar aplikasi pengesah. Periksa sambungan anda dan cuba lagi.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Gunakan kaedah pengesahan kedua untuk melindungi akaun anda apabila menggunakan Signal Login pada peranti baharu.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Ketahui lebih lanjut</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Sediakan aplikasi pengesah anda</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Ikut langkah ini untuk menyediakan aplikasi pengesah anda.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Ketahui lebih lanjut</string>
+    <string name="TotpSetupScreen__learn_more">Ketahui lebih lanjut</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">Langkah 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Pasang aplikasi pengesah yang dipercayai pada peranti anda.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">Langkah 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Buka aplikasi pengesah anda dengan mengetik butang di bawah untuk menambahkan akaun Signal anda.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <string name="TotpSetupScreen__open">Buka</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Atau anda boleh menyalin kunci ini untuk menyediakan secara manual.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Salin</string>
+    <string name="TotpSetupScreen__copy">Salin</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Disalin ke papan klip</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Tiada aplikasi pengesah ditemukan</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Anda tidak boleh menambah lebih daripada %1$d aplikasi pengesah. Cuba alih keluar satu dahulu.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Tidak dapat menghubungi Signal. Periksa sambungan anda dan cuba lagi.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">Langkah 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Salin kod yang dijana dan kembali ke sini untuk meneruskan.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Teruskan</string>
+    <string name="TotpSetupScreen__continue">Teruskan</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Masukkan kod anda</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Kod</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Masukkan kod 6 digit daripada aplikasi pengesah anda.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Selesai</string>
+    <string name="TotpCodeEntryScreen__next">Seterusnya</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Kod salah. Masukkan kod yang dipaparkan dalam aplikasi pengesah anda sekarang.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Tidak dapat menghubungi Signal. Periksa sambungan anda dan cuba lagi.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Pengesah</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Pilih nama</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Pilih nama unik untuk aplikasi pengesah ini.</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Pilih nama unik untuk aplikasi pengesah ini untuk membantu anda mengenal pastinya nanti.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">Nama</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">Seterusnya</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Persediaan aplikasi pengesah</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Aplikasi pengesah dinamakan semula</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Tidak dapat menyimpan nama. Periksa sambungan anda dan cuba lagi.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Memadamkan akaun anda akan:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Masukkan nombor telefon anda</string>
+    <string name="DeleteAccountFragment__delete_account">Padam akaun</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Padam maklumat akaun dan foto profil anda</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Padam semua mesej anda</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Padam %1$s dalam akaun pembayaran anda</string>
+    <string name="DeleteAccountFragment__no_country_code">Kod negara tidak ditentukan</string>
+    <string name="DeleteAccountFragment__no_number">Nombor tidak ditentukan</string>
+    <string name="DeleteAccountFragment__the_phone_number">Nombor telefon yang anda masukkan tidak sepadan dengan akaun anda.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Adakah anda pasti mahu memadam akaun anda?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tindakan ini akan memadamkan akaun Signal anda dan menetapkan semula aplikasi. Aplikasi akan ditutup setelah proses selesai.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal memadamkan data tempatan. Anda boleh mengosongkannya secara manual dalam tetapan aplikasi sistem.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Lancarkan Tetapan Aplikasi</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Meninggalkan kumpulan…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Memadamkan akaun…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Membatalkan langganan anda…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Bergantung pada bilangan kumpulan yang anda sertai, ini mungkin mengambil masa beberapa minit</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Memadamkan data pengguna dan mengeset semula aplikasi</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Akaun Tidak Dipadam</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Terdapat masalah menyelesaikan proses pemadaman. Semak sambungan rangkaian anda dan cuba lagi.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Memadamkan akaun anda dengan nama pengguna \"%1$s\" akan:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Padam maklumat akaun dan foto profil anda termasuk nama pengguna anda \"%1$s\"</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Tindakan ini tidak boleh dibuat asal</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Ini akan memadamkan akaun Signal anda dengan nama pengguna \"%1$s\" dan tetapkan semula aplikasi. Aplikasi akan ditutup selepas proses ini selesai.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Ya, padamkan akaun saya</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Jemput rakan</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Kongsi</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Pilih negara anda</string>
+    <string name="RegistrationActivity_phone_number_description">Nombor telefon</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">%1$d folder</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Tambahkan folder sembang</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Tambah atau edit folder</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Pengesahan Gagal</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Folder sembang</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Eksport sejarah sembang</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Eksport salinan JSON yang boleh dibaca mesin bagi semua sembang anda. Mesej menghilang tidak akan dieksport.</string>
+    <string name="ChatsSettingsFragment__keyboard">Papan Kekunci</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Hantar dengan masukkan</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Buka kunci untuk mengeksport sejarah sembang</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Utamakan foto kenalan daripada buku alamat anda jika tersedia</string>
+    <string name="preferences__generate_link_previews">Hasilkan pratonton pautan</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Sembang yang diredam yang telah diarkibkan akan kekal diarkibkan apabila mesej baru masuk.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Kekalkan sembang yang diredam dalam arkib</string>
+    <string name="preferences__pref_use_address_book_photos">Utamakan foto buku alamat</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Dapatkan pratonton pautan terus daripada laman web untuk mesej yang anda hantar.</string>
+    <string name="preferences_advanced__use_system_emoji">Mengguna emoji sistem</string>
+    <string name="preferences_chats__chats">Sembang</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">BERHATI-HATI</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">BERHATI-HATI!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Membatalkan eksport…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Pilih folder dalam storan peranti anda untuk menyimpan sejarah sembang anda.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Pilih folder</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Memilih folder</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">Simpan fail eksport sembang anda dengan selamat dan jangan kongsi dengan sesiapa. Aplikasi lain pada peranti anda boleh mengaksesnya bergantung pada kebenaran peranti anda.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Eksport sembang selesai</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Eksport sejarah sembang?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">JANGAN kongsi fail ini dengan sesiapa sahaja. Sejarah sembang anda akan disimpan pada peranti anda dan boleh diakses oleh aplikasi lain bergantung pada kebenaran peranti anda. Mengeksport bersama media akan menghasilkan saiz fail yang lebih besar.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Eksport dengan media</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Eksport tanpa media</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Mengeksport media: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Memuktamadkan…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Sedang menyediakan sandaran…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Memproses sandaran…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Memproses mesej…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Memproses mesej: %1$s daripada %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Memuat naik media: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Kemas kini aplikasi</string>
 </resources>

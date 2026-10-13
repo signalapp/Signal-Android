@@ -119,7 +119,7 @@ private fun Banner(contentPadding: PaddingValues, suggestionsSize: Int, onViewCl
     ) {
       Icon(
         imageVector = SignalIcons.X.imageVector,
-        contentDescription = stringResource(id = R.string.InviteActivity_cancel),
+        contentDescription = stringResource(id = R.string.DefaultBanner__cancel),
         tint = MaterialTheme.colorScheme.onSurfaceVariant
       )
     }

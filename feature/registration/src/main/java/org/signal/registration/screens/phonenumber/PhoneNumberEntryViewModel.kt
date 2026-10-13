@@ -6,8 +6,6 @@
 package org.signal.registration.screens.phonenumber
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.NumberParseException
@@ -39,6 +37,7 @@ import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryUtils
 import org.signal.registration.screens.localbackuprestore.LocalBackupRestoreResult
+import org.signal.registration.screens.shared.AccountIdFormat
 import org.signal.registration.screens.util.navigateTo
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -48,7 +47,7 @@ class PhoneNumberEntryViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PhoneNumberEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PhoneNumberEntryViewModel::class)
@@ -122,8 +121,13 @@ class PhoneNumberEntryViewModel(
         stateEmitter(applyPhoneNumberChanged(state, event.oldValue, event.newValue))
       }
       is PhoneNumberEntryScreenEvents.NextClicked -> {
-        val normalized = state.withNormalizedNationalNumber()
-        stateEmitter(normalized.copy(dialogs = normalized.dialogs.copy(confirmNumber = true)))
+        val accountId = state.enteredAccountId
+        if (accountId != null) {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginCredentialEntry(accountId))
+        } else {
+          val normalized = state.withNormalizedNationalNumber()
+          stateEmitter(normalized.copy(dialogs = normalized.dialogs.copy(confirmNumber = true)))
+        }
       }
       is PhoneNumberEntryScreenEvents.PhoneNumberCancelled -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(confirmNumber = false)))
@@ -147,7 +151,11 @@ class PhoneNumberEntryViewModel(
         parentEventEmitter.navigateTo(RegistrationRoute.LinkAccount())
       }
       is PhoneNumberEntryScreenEvents.RegisterWithoutNumber -> {
-        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        if (state.sawArchiveRestoreSelectionScreen) {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginCredentialEntry())
+        } else {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginPayment)
+        }
       }
       is PhoneNumberEntryScreenEvents.CaptchaCompleted -> {
         stateEmitter(applyCaptchaCompleted(state, event.token, parentEventEmitter))
@@ -162,15 +170,16 @@ class PhoneNumberEntryViewModel(
           }
           is LocalBackupRestoreResult.DeferredToSms -> {
             Log.i(TAG, "[LocalRestore] Backup belongs to a different account. Verifying the number over SMS before restoring.")
-            var localState = state.copy(showSpinner = true)
-            stateEmitter(localState)
-            localState = applySessionBasedRegistration(localState, localState.sessionE164 ?: "+${localState.countryCode}${localState.nationalNumber}", parentEventEmitter)
-            stateEmitter(localState.copy(showSpinner = false))
+            applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
           }
           is LocalBackupRestoreResult.Canceled -> {
             parentEventEmitter(RegistrationFlowEvent.PendingRestoreOptionSelected(null))
           }
         }
+      }
+      is PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms -> {
+        Log.i(TAG, "[RemoteRestore] User chose to verify the number over SMS instead of entering their recovery key.")
+        applyVerifyOverSms(state, parentEventEmitter, stateEmitter)
       }
       is PhoneNumberEntryScreenEvents.NetworkErrorDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(networkError = false)))
@@ -212,7 +221,8 @@ class PhoneNumberEntryViewModel(
       smsVerificationCodeRequest = parentState.lastSmsVerificationCodeRequest,
       preExistingRegistrationData = parentState.preExistingRegistrationData,
       restoredSvrCredentials = state.restoredSvrCredentials.takeUnless { parentState.doNotAttemptRecoveryPassword } ?: emptyList(),
-      pendingRestoreOption = parentState.pendingRestoreOption
+      pendingRestoreOption = parentState.pendingRestoreOption,
+      sawArchiveRestoreSelectionScreen = parentState.sawArchiveRestoreSelectionScreen
     )
   }
 
@@ -234,7 +244,8 @@ class PhoneNumberEntryViewModel(
 
   @VisibleForTesting
   fun applyFullPhoneNumberEntered(state: PhoneNumberEntryState, e164: String): PhoneNumberEntryState {
-    return redistributeFullPhoneNumber(state, e164) ?: state
+    val numberState = state.withoutAccountId()
+    return redistributeFullPhoneNumber(numberState, e164) ?: numberState
   }
 
   private fun applyCountryCodeChanged(state: PhoneNumberEntryState, countryCode: String): PhoneNumberEntryState {
@@ -259,22 +270,37 @@ class PhoneNumberEntryViewModel(
   }
 
   private fun applyPhoneNumberChanged(state: PhoneNumberEntryState, oldValue: String, newValue: String): PhoneNumberEntryState {
+    if (state.isPhoneNumberlessRegistrationAvailable) {
+      AccountIdFormat.asAccountIdOrNull(newValue)?.let { accountId ->
+        return state.copy(
+          accountId = accountId,
+          accountIdError = AccountIdFormat.validate(accountId),
+          nationalNumber = "",
+          formattedNumber = accountId,
+          isNumberPossible = false,
+          isNumberInvalid = false
+        )
+      }
+    }
+
     // Extract only digits from the input
     val digitsOnly = newValue.filter { it.isDigit() }
-    if (digitsOnly == state.nationalNumber) return state
+    if (state.enteredAccountId == null && digitsOnly == state.nationalNumber) return state
+
+    val numberState = state.withoutAccountId()
 
     // Only attempt to split out a country code / trunk prefix on a bulk entry (paste or autofill)
     if (insertedCharCount(oldValue, newValue) > 1) {
       if (newValue.trimStart().startsWith("+")) {
-        redistributeFullPhoneNumber(state, "+$digitsOnly")?.let { return it }
+        redistributeFullPhoneNumber(numberState, "+$digitsOnly")?.let { return it }
       } else {
-        reinterpretNationalNumber(state, digitsOnly)?.let { return it }
+        reinterpretNationalNumber(numberState, digitsOnly)?.let { return it }
       }
     }
 
     val formattedNumber = formatNumber(digitsOnly)
 
-    return state.copy(
+    return numberState.copy(
       nationalNumber = digitsOnly,
       formattedNumber = formattedNumber
     ).withNumberValidity()
@@ -310,9 +336,9 @@ class PhoneNumberEntryViewModel(
       when (val registerResult = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, skipDeviceTransfer = true, state.preExistingRegistrationData)) {
         is RequestResult.Success -> {
           Log.i(TAG, "[Register] Successfully re-registered using RRP from pre-existing data.")
-          val (response, keyMaterial) = registerResult.result
+          val (response, keyMaterial, aci) = registerResult.result
 
-          parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
+          parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
 
           if (response.storageCapable) {
             parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
@@ -354,6 +380,12 @@ class PhoneNumberEntryViewModel(
               parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
               state = state.copy(preExistingRegistrationData = null)
             }
+            is RegisterAccountError.InvalidReceiptCredentialPresentation,
+            is RegisterAccountError.TwoFactorRequired,
+            RegisterAccountError.PostQuantumRatchetRequired -> {
+              Log.w(TAG, "[Register] Unexpected registration error: $error")
+              return state.copy(dialogs = state.dialogs.copy(unknownError = true))
+            }
           }
         }
         is RequestResult.RetryableNetworkError -> {
@@ -368,6 +400,20 @@ class PhoneNumberEntryViewModel(
     }
 
     return applySessionBasedRegistration(state, e164, parentEventEmitter)
+  }
+
+  /**
+   * Skips restore-based registration and verifies the entered number over SMS, showing a spinner while the session is created.
+   */
+  private suspend fun applyVerifyOverSms(
+    inputState: PhoneNumberEntryState,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+    stateEmitter: (PhoneNumberEntryState) -> Unit
+  ) {
+    var state = inputState.copy(showSpinner = true)
+    stateEmitter(state)
+    state = applySessionBasedRegistration(state, state.sessionE164 ?: "+${state.countryCode}${state.nationalNumber}", parentEventEmitter)
+    stateEmitter(state.copy(showSpinner = false))
   }
 
   /**
@@ -409,9 +455,9 @@ class PhoneNumberEntryViewModel(
     return when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, existingAccountEntropyPool = aep)) {
       is RequestResult.Success -> {
         Log.i(TAG, "[LocalRestore] Successfully registered using RRP from restored AEP.")
-        val (response, keyMaterial) = result.result
+        val (response, keyMaterial, aci) = result.result
 
-        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
 
         if (response.storageCapable) {
           parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
@@ -458,6 +504,12 @@ class PhoneNumberEntryViewModel(
           is RegisterAccountError.DeviceTransferPossible -> {
             Log.w(TAG, "[LocalRestore] Device transfer possible. Falling back to session-based registration.")
             applySessionBasedRegistration(state, e164, parentEventEmitter)
+          }
+          is RegisterAccountError.InvalidReceiptCredentialPresentation,
+          is RegisterAccountError.TwoFactorRequired,
+          RegisterAccountError.PostQuantumRatchetRequired -> {
+            Log.w(TAG, "[LocalRestore] Unexpected registration error: $error")
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
           }
         }
       }
@@ -929,6 +981,10 @@ class PhoneNumberEntryViewModel(
     ).withNumberValidity()
   }
 
+  private fun PhoneNumberEntryState.withoutAccountId(): PhoneNumberEntryState {
+    return copy(accountId = null, accountIdError = null)
+  }
+
   /**
    * Recomputes [PhoneNumberEntryState.isNumberPossible] and [PhoneNumberEntryState.isNumberInvalid] from the current
    * country code and national number. Should be applied to any state that changes either of those fields.
@@ -956,16 +1012,6 @@ class PhoneNumberEntryViewModel(
       copy(isNumberPossible = isNumberPossible, isNumberInvalid = isNumberInvalid)
     } else {
       this
-    }
-  }
-
-  class Factory(
-    val repository: RegistrationRepository,
-    val parentState: StateFlow<RegistrationFlowState>,
-    val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PhoneNumberEntryViewModel(repository, parentState, parentEventEmitter) as T
     }
   }
 }

@@ -9,7 +9,7 @@
   <!-- Dialog title shown when the user tries to close media send while media is selected. -->
   <string name="MediaSendDialogs__discard_media">Media verwijderen?</string>
   <!-- Dialog body explaining that leaving media send will discard the selected media along with any edits. -->
-  <string name="MediaSendDialogs__you_will_lose_any_media">Je raakt alle media die je hebt opgenomen kwijt, net als alle aangebrachte wijzigingen.</string>
+  <string name="MediaSendDialogs__you_will_lose_any_media">Alle opgenomen media en wijzigingen die je hebt aangebracht, zullen verloren gaan.</string>
   <!-- Dialog title asking to save the media being edited to the phone\'s storage -->
   <string name="MediaSendDialogs__save_to_phone">Opslaan op telefoon?</string>
   <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other apps. -->
@@ -63,7 +63,7 @@
   <!-- Accessibility description for the button that advances from media selection to the next step in the send flow. -->
   <string name="MediaSelectScreen__next">Volgende</string>
   <!-- Accessibility description for the button that leaves media selection and opens the camera. -->
-  <string name="MediaSelectScreen__go_to_camera">Naar de camera</string>
+  <string name="MediaSelectScreen__go_to_camera">Open de camera</string>
   <!-- Message shown in place of the gallery when the user has not granted permission to read their photos and videos. -->
   <string name="MediaSelectScreen__signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toestemming nodig om je afbeeldingen en video\'s te kunnen weergeven</string>
   <!-- Label for the button that asks the system for permission to read the user\'s photos and videos. -->
@@ -85,15 +85,12 @@
   <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
   <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Signal heeft toegang nodig om je foto\'s en video\'s te kunnen weergeven.</string>
 
-  <!-- Label for the button that switches the capture screen to the camera. -->
-  <string name="MediaCaptureScreen__camera">Camera</string>
+  <!-- Label for the button that switches the capture screen to taking a photo. -->
+  <string name="MediaCaptureScreen__photo">Foto</string>
+  <!-- Label for the button that switches the capture screen to recording a video. -->
+  <string name="MediaCaptureScreen__video">Video</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
   <string name="MediaCaptureScreen__text">Tekst</string>
-    <!-- Label for the pill that displays the media count -->
-    <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d item</item>
-        <item quantity="other">%1$d items</item>
-    </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
   <string name="TextStoryBar__add_link">Link toevoegen</string>
@@ -136,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Video-opname wordt niet ondersteund op je apparaat</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tik voor foto, houd vast voor video</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Opnemen</string>
-  <string name="CameraXFragment_change_camera_description">Camera wisselen</string>
-  <string name="CameraXFragment_open_gallery_description">Galerij openen</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Toegang geven</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -176,16 +167,8 @@
   <string name="CameraXFragment_photo_capture_failed">Foto maken mislukt. Probeer het opnieuw.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Foto verwerken mislukt. Probeer het opnieuw.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Camera wisselen</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Flits uit</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Flits aan</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Flits automatisch</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Verzenden</string>
+  <!-- Label shown below the elapsed time while a video recording is paused -->
+  <string name="CameraXFragment_paused">Gepauzeerd</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal heeft toegang tot de microfoon en de camera nodig om video te kunnen opnemen, maar je hebt dit geweigerd. Ga naar de app-instellingen in je telefooninstellingen, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
 
@@ -248,10 +231,15 @@
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Doorgaan</string>
 
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">Kan account niet overzetten</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">Het apparaat waarnaar je gegevens overzet, is verouderd. Werk Signal op dat apparaat bij en probeer het opnieuw.</string>
+
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="one">%1$d gif</item>
-        <item quantity="other">%1$d gifs</item>
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="other">%1$d GIF\'s</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Signal Login beta labeling -->
+    <!-- Tag shown beside the title of Signal Login screens, marking the feature as unfinished. Keep it short. -->
+    <string name="SignalLoginBeta__beta">BETA</string>
+    <!-- Disclaimer shown on Signal Login screens, warning that the feature is still changing. -->
+    <string name="SignalLoginBeta__this_is_a_beta_feature_that_will_be_updated">ဤသည်မှာ ဆက်လက်၍ အမြဲတမ်း အပ်ဒိတ်လုပ်သွားမည့် Beta လုပ်ဆောင်ချက်တစ်ခု ဖြစ်ပါသည်။</string>
+
+    <!-- Signal Login credential card -->
+    <!-- Label for the account portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginCard__account">အကောင့်</string>
+    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
+    <string name="SignalLoginCard__recovery">ပြန်လည်ရယူခြင်း</string>
+    <!-- Button on the credential card that reveals the full Signal Login. -->
+    <string name="SignalLoginCard__view_details">အသေးစိတ်ကြည့်ရန်</string>
+
+    <!-- Signal Login view details screen -->
+    <!-- Title of the screen that shows the user the full keys that make up their Signal Login. -->
+    <string name="SignalLoginViewDetailsScreen__signal_login">Signal Login</string>
+    <!-- Content description for the back arrow in the top app bar. -->
+    <string name="SignalLoginViewDetailsScreen__navigate_back">အနောက်သို့ ပြန်သွားရန်</string>
+    <!-- Section header above the account key. -->
+    <string name="SignalLoginKeyDetails__account_id">အကောင့် ID</string>
+    <!-- Section header above the recovery key. -->
+    <string name="SignalLoginKeyDetails__recovery_key">ပြန်လည်ရယူရေးကီး</string>
+    <!-- Content description for the button that copies the account key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_account_id">အကောင့် ID ကို ကူးယူပါ</string>
+    <!-- Content description for the button that copies the recovery key to the clipboard. -->
+    <string name="SignalLoginKeyDetails__copy_recovery_key">ပြန်လည်ရယူရေးကီးကို ကူးယူပါ</string>
+    <!-- Action button that stores the Signal Login in the device password manager. -->
+    <string name="SignalLoginViewDetailsScreen__save_to_password_manager">စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းပါ</string>
+    <!-- Action button that saves the Signal Login as a PDF. -->
+    <string name="SignalLoginViewDetailsScreen__save_as_pdf">PDF အဖြစ် သိမ်းဆည်းရန်</string>
+    <!-- Action button that starts the flow to replace the recovery key with a newly-generated one. -->
+    <string name="SignalLoginViewDetailsScreen__reset_recovery_key">ပြန်လည်ရယူရေးကီးကို ပြန်လည်သတ်မှတ်ရန်</string>
+    <!-- Suggested file name prefilled in the system save dialog when saving the Signal Login as a PDF. Keep the .pdf extension. -->
+    <string name="SignalLoginViewDetailsScreen__signal_login_pdf">Signal Login.pdf</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginViewDetailsScreen__no_password_manager_available">စကားဝှက်စီမံရေးကို သတ်မှတ်ထားခြင်း မရှိသေးပါ။</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginViewDetailsScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Toast shown when saving the Signal Login PDF fails. -->
+    <string name="SignalLoginViewDetailsScreen__unable_to_save_pdf">PDF ကို သိမ်းဆည်း၍မရပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Toast shown when the location the user picked for the Signal Login PDF refuses the write. -->
+    <string name="SignalLoginViewDetailsScreen__cant_save_pdf_to_the_selected_location">ရွေးချယ်ထားသောနေရာတွင် PDF ကို သိမ်းဆည်း၍မရပါ။</string>
+
+    <!-- Signal Login PDF -->
+    <!-- Title at the top of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__your_signal_login">သင့် Signal Login</string>
+    <!-- Explainer below the title of the PDF that holds the user\'s Signal Login. -->
+    <string name="SignalLoginPdf__store_this_in_a_safe_place">ဤအချက်အလက်ကို လုံခြုံသောနေရာတွင် သိမ်းဆည်းထားပါ။ သင့်အကောင့်နှင့် ဒေတာများကို ပြန်လည်ရယူရန် သင့်လော့ဂ်အင်အချက်အလက် လိုအပ်ပါသည်။ မည်သူနှင့်မျှ မျှဝေခြင်းမပြုပါနှင့်။</string>
+    <!-- Section header above the account key in the PDF. -->
+    <string name="SignalLoginPdf__account_id">အကောင့် ID</string>
+    <!-- Section header above the recovery key in the PDF. -->
+    <string name="SignalLoginPdf__recovery_key">ပြန်လည်ရယူရေးကီး</string>
+</resources>

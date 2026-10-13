@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -43,31 +44,45 @@ import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
-import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun StickerPackSectionHeader(
   text: String,
+  description: String? = null,
   modifier: Modifier = Modifier
 ) {
-  Text(
-    text = text,
-    style = MaterialTheme.typography.titleSmall,
-    color = MaterialTheme.colorScheme.onSurface,
+  Column(
     modifier = modifier
       .fillMaxWidth()
       .background(MaterialTheme.colorScheme.surface)
       .padding(horizontal = 24.dp, vertical = 12.dp)
-  )
+  ) {
+    Text(
+      text = text,
+      style = MaterialTheme.typography.titleSmall,
+      color = MaterialTheme.colorScheme.onSurface
+    )
+
+    if (description != null) {
+      Text(
+        text = description,
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
+  }
 }
 
 @Composable
-fun AvailableStickerPackRow(
-  pack: AvailableStickerPack,
+fun StickerPackRow(
+  pack: StickerPack,
   menuController: DropdownMenus.MenuController,
-  onForwardClick: (AvailableStickerPack) -> Unit = {},
-  onInstallClick: (AvailableStickerPack) -> Unit = {},
+  onForwardClick: (StickerPack) -> Unit = {},
+  onInstallClick: (StickerPack) -> Unit = {},
+  onCopyClick: (StickerPack) -> Unit = {},
+  onRemoveClick: (StickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -88,8 +103,9 @@ fun AvailableStickerPackRow(
       modifier = Modifier.weight(1f)
     )
 
-    val readyIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24)
+    val readyIcon = ImageVector.vectorResource(R.drawable.symbol_plus_circle_24)
     val downloadedIcon = ImageVector.vectorResource(CoreUiR.drawable.symbol_check_24)
+    val downloadedTint = MaterialTheme.colorScheme.onSurfaceVariant
 
     val startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download)
     val startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title)
@@ -108,7 +124,8 @@ fun AvailableStickerPackRow(
 
         is DownloadStatus.Downloaded -> TransferProgressState.Complete(
           icon = downloadedIcon,
-          iconContentDesc = downloadedContentDesc
+          iconContentDesc = downloadedContentDesc,
+          tint = downloadedTint
         )
       }
     }
@@ -122,35 +139,59 @@ fun AvailableStickerPackRow(
       modifier = modifier.background(SignalTheme.colors.colorSurface2)
     ) {
       MenuItem(
-        icon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24),
-        text = stringResource(R.string.StickerManagement_menu_install_pack),
-        onClick = {
-          onInstallClick(pack)
-          menuController.hide()
-        }
-      )
-
-      MenuItem(
         icon = SignalIcons.Forward.imageVector,
-        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        text = stringResource(R.string.StickerManagement_menu_send_pack),
         onClick = {
           onForwardClick(pack)
           menuController.hide()
         }
       )
+
+      MenuItem(
+        icon = SignalIcons.Link.imageVector,
+        text = stringResource(R.string.StickerManagement_menu_copy_pack),
+        onClick = {
+          onCopyClick(pack)
+          menuController.hide()
+        }
+      )
+
+      if (pack.downloadStatus == DownloadStatus.NotDownloaded) {
+        MenuItem(
+          icon = ImageVector.vectorResource(R.drawable.symbol_plus_circle_24),
+          text = stringResource(R.string.StickerManagement_menu_install_pack),
+          onClick = {
+            onInstallClick(pack)
+            menuController.hide()
+          }
+        )
+      }
+
+      if (pack.isInstalled) {
+        MenuItem(
+          icon = SignalIcons.Trash.imageVector,
+          text = stringResource(R.string.StickerManagement_menu_remove_pack),
+          onClick = {
+            onRemoveClick(pack)
+            menuController.hide()
+          }
+        )
+      }
     }
   }
 }
 
 @Composable
 fun InstalledStickerPackRow(
-  pack: InstalledStickerPack,
+  pack: StickerPack,
   multiSelectEnabled: Boolean = false,
   selected: Boolean = false,
+  showDragHandle: Boolean = true,
   menuController: DropdownMenus.MenuController,
-  onForwardClick: (InstalledStickerPack) -> Unit = {},
-  onRemoveClick: (InstalledStickerPack) -> Unit = {},
-  onSelectionToggle: (InstalledStickerPack) -> Unit = {},
+  onForwardClick: (StickerPack) -> Unit = {},
+  onCopyClick: (StickerPack) -> Unit = {},
+  onRemoveClick: (StickerPack) -> Unit = {},
+  onSelectionToggle: (StickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -183,14 +224,16 @@ fun InstalledStickerPackRow(
       modifier = Modifier.weight(1f)
     )
 
-    Icon(
-      imageVector = ImageVector.vectorResource(id = R.drawable.ic_drag_handle),
-      contentDescription = stringResource(R.string.StickerManagement_accessibility_drag_handle),
-      tint = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = Modifier
-        .padding(horizontal = 12.dp)
-        .size(24.dp)
-    )
+    if (showDragHandle) {
+      Icon(
+        imageVector = ImageVector.vectorResource(id = R.drawable.ic_drag_handle),
+        contentDescription = stringResource(R.string.StickerManagement_accessibility_drag_handle),
+        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier
+          .padding(horizontal = 12.dp)
+          .size(24.dp)
+      )
+    }
 
     DropdownMenus.Menu(
       controller = menuController,
@@ -200,9 +243,18 @@ fun InstalledStickerPackRow(
     ) {
       MenuItem(
         icon = SignalIcons.Forward.imageVector,
-        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        text = stringResource(R.string.StickerManagement_menu_send_pack),
         onClick = {
           onForwardClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = SignalIcons.Link.imageVector,
+        text = stringResource(R.string.StickerManagement_menu_copy_pack),
+        onClick = {
+          onCopyClick(pack)
           menuController.hide()
         }
       )
@@ -242,6 +294,7 @@ private fun StickerPackInfo(
     GlideImage(
       model = coverImageUri,
       enableApngAnimation = true,
+      contentScale = ContentScale.Fit,
       modifier = Modifier
         .padding(end = 16.dp)
         .size(56.dp)
@@ -288,9 +341,9 @@ private fun StickerPackSectionHeaderPreview() = Previews.Preview {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewBlessed() = Previews.Preview {
-  AvailableStickerPackRow(
-    pack = StickerPreviewDataFactory.availablePack(
+private fun StickerPackRowPreviewBlessed() = Previews.Preview {
+  StickerPackRow(
+    pack = StickerPreviewDataFactory.stickerPack(
       title = "Swoon / Faces",
       author = "Swoon",
       isBlessed = true
@@ -301,9 +354,9 @@ private fun AvailableStickerPackRowPreviewBlessed() = Previews.Preview {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewNotBlessed() = Previews.Preview {
-  AvailableStickerPackRow(
-    pack = StickerPreviewDataFactory.availablePack(
+private fun StickerPackRowPreviewNotBlessed() = Previews.Preview {
+  StickerPackRow(
+    pack = StickerPreviewDataFactory.stickerPack(
       title = "Day by Day",
       author = "Miguel Ángel Camprubí",
       isBlessed = false,
@@ -315,9 +368,9 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = Previews.Preview {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloading() = Previews.Preview {
-  AvailableStickerPackRow(
-    pack = StickerPreviewDataFactory.availablePack(
+private fun StickerPackRowPreviewDownloading() = Previews.Preview {
+  StickerPackRow(
+    pack = StickerPreviewDataFactory.stickerPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = false,
@@ -329,9 +382,9 @@ private fun AvailableStickerPackRowPreviewDownloading() = Previews.Preview {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickerPackRowPreviewDownloaded() = Previews.Preview {
-  AvailableStickerPackRow(
-    pack = StickerPreviewDataFactory.availablePack(
+private fun StickerPackRowPreviewDownloaded() = Previews.Preview {
+  StickerPackRow(
+    pack = StickerPreviewDataFactory.stickerPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = false,

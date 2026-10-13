@@ -44,6 +44,8 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Изберете држава</string>
     <string name="RegistrationActivity_phone_number_description">Телефонски број</string>
+    <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
+    <string name="RegistrationActivity_account_id">Идентификација на корисничка сметка</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">Не е важечки телефонски број</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -53,6 +55,8 @@
     <string name="RegistrationActivity_next">Следно</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">Регистрирајте се без број</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">Употребете идентификација на корисничка сметка</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">Дали телефонскиот број подолу е точен?</string>
     <!-- Dialog body to confirm phone number -->
@@ -159,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">Продолжете без пренос</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">Пораките и медиумските датотеки нема да бидат пренесени</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">Од папка за резервни копии</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">Од резервна копија</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">Изберете резервна копија што сте ја зачувале</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">Од вашиот стар телефон</string>
     <!-- Subtitle for the device transfer option card -->
@@ -209,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">Внесете лозинка за резервна копија</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">Вашата локална лозинка за резервната копија е код од 30 цифри којшто е потребен за да си ги вратите корисничката сметка и податоците.</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">Клуч за враќање резервни копии</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">Лозинка</string>
     <!-- Error text when passphrase is too long -->
@@ -228,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">Клуч за враќање резервни копии</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">Немате клуч за враќање резервни копии?</string>
-    <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">Предолго (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">Неважечки клуч за враќање резервни копии</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -242,14 +236,32 @@
     <string name="EnterAepScreen__restore_to_new_account_body">Резервната копија што ја враќате беше создадена со друга корисничка сметка. Можете да ја вратите оваа резервна копија на нова корисничка сметка, но повеќе нема да бидете член на која било од групите што се вратени.</string>
     <!-- Confirm button label for the restore to new account dialog -->
     <string name="EnterAepScreen__restore">Врати</string>
+    <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found">Не е пронајдена резервна копија</string>
+    <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found_body">Вашиот клуч за враќање резервни копии е точен, но нема Signal резервна копија за оваа корисничка сметка. Вратете се за да одберете друг начин за враќање, или продолжете без враќање на корисничката сметка.</string>
+    <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">Неточен клуч за враќање резервни копии</string>
+    <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
+    <string name="EnterAepScreen__try_again">Обиди сѐ повторно</string>
+    <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
+    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
+    <string name="EnterAepScreen__recovery_key_help">Помош за клуч за враќање резервни копии</string>
+    <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
+    <string name="EnterAepScreen__send_code">Send code</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">Се подготвува враќањето…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">Се враќа резервната копија</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">Ве молиме почекајте додека се враќаат вашите пораки и податоци.</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">Продолжи</string>
     <!-- Title shown when restore fails -->
@@ -562,41 +574,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">Вашата корисничка сметка сега е на овој уред.</string>
     <string name="DeviceTransferComplete__continue_registration">Продолжи</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">Поставете го Вашиот профил</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">Вашиот профил и промените на профилот ќе бидат видливи за луѓето со кои се допишувате, вашите контакти и групи.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">Име (задолжително)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">Презиме (опционално)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">Следно</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">Постави аватар</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Кој може да ме пронајде со мојот телефонски број?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Сите кои го имаат зачувано вашиот телефонски број ќе можат да ве видат на Signal и да започнат разговори со вас.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Никој нема да може да види дека сте на Signal освен ако не им испратите порака или имате постоечки разговор со нив.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">Сите</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">Никој</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Дали сте сигурни?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Ќе биде потешко да ве пронајдат на Signal доколку ја поставите опцијата „Кој може да ме пронајде со мојот телефонски број“ на „Никој“.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Откажи</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">Зачувај</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">Назад</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Вчитувањето на captcha е неуспешно</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -608,9 +585,9 @@
 
     <!-- Signal Login purchase screen -->
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
-    <string name="SignalLoginPaymentScreen__signal_login">Signal-најава</string>
+    <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Регистрирајте се без телефонски број со Signal-најава. Со еднократно купување, ќе добиете клуч за корисничка сметка за да започнете.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">Регистрирајте се без телефонски број со Signal Login. Со еднократно купување, ќе добиете идентификација за корисничка сметка за да започнете.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">Дознајте повеќе</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -622,9 +599,9 @@
     <!-- Selling point of the purchase option: the purchase supports Signal. -->
     <string name="SignalLoginPaymentScreen__signal_is_a_non_profit">Signal е непрофитна организација — вашето купување ни помага да ја исполниме нашата мисија</string>
     <!-- Title of the option for users who already bought a Signal Login. -->
-    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Имам Signal-најава</string>
+    <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Имам Signal Login</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Користете го вашиот постоечки клуч за корисничка сметка</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">Употребете ги вашите постоечки информации за најава</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">Најавете се и вратете ја вашата корисничка сметка</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -637,26 +614,128 @@
     <string name="SignalLoginPaymentScreen__continue">Продолжи</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">Вашето купување не можеше да се заврши. Не ви е наплатено.</string>
+    <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
+    <string name="SignalLoginPaymentScreen__unavailable">Недостапно</string>
+    <!-- Label for the button that retries loading the purchase price after it failed to load. -->
+    <string name="SignalLoginPaymentScreen__retry">Обидете се повторно</string>
+    <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
+    <string name="SignalLoginPaymentScreen__already_paid">Веќе платено</string>
+    <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">Не може да се купи Signal Login на овој уред моментално. Обидете се повторно подоцна.</string>
+    <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Вашето плаќање сѐ уште се обработува. Вратете се и допрете на „продолжи“ кога ќе помине трансакцијата и нема да ви се наплати пак.</string>
+    <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
+    <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">Ажурирајте ги услугите на Google Play</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">За да купите Signal Login, ажурирајте го услугите на Google Play на овој уред.</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">Aжурирај</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Недостасуваат услугите на Google Play</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">За да купите Signal Login, треба да се инсталирани услуги на Google Play.</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">Инсталирајте услуги на Play</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Се ажурираат услугите на Google Play</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">За да купите Signal Login, прво почекајте да се ажурираат услугите на Google Play.</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">Потребен е Google Play</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">За да купите Signal Login, овозможете ги услугите на Google Play на овој уред и најавете се на продавницата на Google Play.</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">Не можете да купите Signal Login бидејќи овој уред не поддржува услуги на Google Play. Контактирајте го производителот на телефонот за помош.</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">За да купите Signal Login, ве молиме најавете се во продавницата на Google Play.</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Не можете да купите Signal Login во оваа верзија на Signal. Инсталирајте Signal од продавницата на Google Play за да купите.</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">Отворете Play Store</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
-    <string name="SignalLoginInfoScreen__your_signal_login">Вашата Signal-најава</string>
+    <string name="SignalLoginInfoScreen__your_signal_login">Вашиот Signal Login</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
-    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Ви благодариме за вашето купување. Со вашата Signal-најава регистрирајте се и вратете ја вашата корисничка сметка. Ако го заборавите вашиот клуч, нема да можете ја вратите вашата корисничка сметка.</string>
-    <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">Сметка</string>
-    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">Враќање</string>
-    <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">Видете ги деталите</string>
-    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">Корисничка сметка: %1$s\n\nВраќање: %2$s</string>
+    <string name="SignalLoginInfoScreen__thanks_for_your_purchase">Ви благодариме за вашето купување. Со вашиот Signal Login регистрирајте се и вратете ја вашата корисничка сметка. Ако го заборавите вашиот клуч, нема да можете ја вратите вашата корисничка сметка.</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">Зачувајте во управувачот со лозинки</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginInfoScreen__no_password_manager_available">Немате поставено управувач со лозинки.</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">Зачувајте рачно</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
-    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Вашата Signal-најава не можеше да се зачува. Ве молиме зачувајте ја рачно.</string>
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">Вашиот Signal Login не можеше да се зачува. Ве молиме зачувајте го рачно.</string>
+    <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">Грешка при потврдувањето на информациите за најава</string>
+    <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">Вашиот Signal Login не можеше да се потврди. Проверете дали го имате зачувано во вашиот управувач со лозинки или зачувајте го рачно.</string>
+
+    <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
+    <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">Потврдете дека вашите информации за најава се зачувани</string>
+    <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">Потврдете дека вашиот Signal Login е точно зачуван. Во наредниот чекор ќе треба да ја внесете вашата зачувана лозинка.</string>
+    <!-- Action button that starts checking the password manager for the Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">Потврдете ги информациите за најава</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">Повторно видете ги информациите за најава</string>
+
+    <!-- Save Signal Login screen -->
+    <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">Зачувајте го вашиот Signal Login</string>
+    <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">Чувајте го вашиот Signal Login на безбедно место. Никогаш не ги споделувајте вашите информации со најава со никој.</string>
+    <!-- Action button that saves the Signal Login to a PDF file. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">Зачувајте како PDF</string>
+    <!-- Action button for users who are done recording their Signal Login. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__continue">Продолжи</string>
+
+    <!-- Sheet that double-checks the user really saved their Signal Login -->
+    <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">Потврдете дека вашите информации за најава се зачувани</string>
+    <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">Ќе ви биде побарано следно да се најавите со вашиот Signal Login. Осигурајте се дека ги имате зачувано или ископирано овие детали. Signal нема да е во можност да ви помогне да ја вратите вашата корисничка сметка.</string>
+    <!-- Action button confirming the Signal Login is saved. -->
+    <string name="ConfirmLoginSavedBottomSheet__continue">Продолжи</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">Прикажи ми ги информациите за најава повторно</string>
+
+    <!-- Errors shown beneath an account ID text field, wherever one is offered -->
+    <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
+    <string name="AccountIdField__invalid_account_id">Невалидна идентификација на корисничка сметка</string>
+
+    <!-- Signal Login credential entry screen -->
+    <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
+    <string name="SignalLoginCredentialEntryScreen__signal_login">Signal Login</string>
+    <!-- Description telling the user what to enter to log in. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">Внесете ја вашата идентификација на корисничка сметка и потоа вашиот клуч за враќање резервни копии за да ја вратите вашата корисничка сметка.</string>
+    <!-- Label of the text field the account ID is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__account_id">Идентификација на корисничка сметка</string>
+    <!-- Label of the text field the recovery key is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__recovery_key">Клуч за враќање резервни копии</string>
+    <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
+    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">Прикажи го клучот за враќање резервни копии</string>
+    <!-- Description of the button that masks the typed recovery key. -->
+    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">Скриј го клучот за враќање резервни копии</string>
+    <!-- Button that opens a support article for users who can\'t find their Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__need_help">Потребна Ви е помош?</string>
+    <!-- Action button that submits the entered Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__next">Следно</string>
+    <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">Погрешна идентификација на корисничка сметка или клуч за враќање резервни копии</string>
+    <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">Внесете го вашиот Signal Login за да потврдите дека е точно зачуван.</string>
+    <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Прикажи ми ги информациите за најава повторно</string>
+    <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">Ова не се совпаѓа со Signal Login-от што ви се прикажа</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -685,6 +764,26 @@
     <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
     <string name="AddUsernameScreen__this_username_is_not_available">Ова корисничко име не е достапно. Ве молиме обидете се со друго.</string>
+    <!-- Error shown when the user\'s temporary hold on a username expired before they submitted it. -->
+    <string name="AddUsernameScreen__your_username_reservation_expired">Истече вашата резервација за корисничко име. Ве молиме обидете се повторно.</string>
+    <!-- Error shown when the username formed by the entered name and the user\'s chosen number is already taken. -->
+    <string name="AddUsernameScreen__this_username_is_not_available_try_another_number">Ова корисничко име не е достапно, обидете се со друг број.</string>
+    <!-- Validation error shown when the number the user entered after their username has too few digits. -->
+    <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">Неважечко корисничко име, внесете најмалку %1$d знаци.</string>
+    <!-- Validation error shown when the number the user entered after their username has too many digits. -->
+    <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">Неважечко корисничко име, внесете најмногу %1$d знаци.</string>
+    <!-- Validation error shown when the number the user entered after their username is 00. -->
+    <string name="AddUsernameScreen__this_number_cant_be_00">Овој број не може да биде 00. Внесете цифра од 1 до 9</string>
+    <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
+    <string name="AddUsernameScreen__this_number_cant_start_with_0">Броевите со повеќе од 2 цифри не може да почнуваат со 0</string>
+    <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__are_you_sure">Дали сте сигурни?</string>
+    <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">Без корисничко име луѓето нема да можат да ве најдат на Signal.</string>
+    <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
+    <string name="AddUsernameScreen__cancel">Откажи</string>
+    <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
+    <string name="AddUsernameScreen__continue">Продолжи</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
@@ -695,4 +794,30 @@
     <string name="ContactSupportDialog__submit_with_debug_log">Испратете со запис за дебагирање</string>
     <!-- Button that contacts support without attaching a debug log -->
     <string name="ContactSupportDialog__submit_without_debug_log">Испратете без запис за дебагирање</string>
+
+    <!-- TotpEntryScreen -->
+    <!-- Title of the two-factor authentication code entry screen -->
+    <string name="TotpEntryScreen__two_factor_authentication">Двофакторска автентикација</string>
+    <!-- Subtitle explaining where to find the code -->
+    <string name="TotpEntryScreen__to_continue_enter_the_code">За да продолжите, внесете го кодот од 6 цифри од вашата апликација за автентикација.</string>
+    <!-- Button text to cancel entering a code -->
+    <string name="TotpEntryScreen__cancel">Откажи</string>
+
+    <!-- TwoFactorSelectionScreen -->
+    <!-- Title of the two-factor authentication method selection screen -->
+    <string name="TwoFactorSelectionScreen__two_factor_authentication">Двофакторска автентикација</string>
+    <!-- Subtitle telling the user to pick one of the methods listed below -->
+    <string name="TwoFactorSelectionScreen__choose_a_method_below">Изберете еден од начините подолу за да ја верифицирате вашата корисничка сметка.</string>
+    <!-- Title of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__passkey">Клуч за пристап</string>
+    <!-- Description of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Допрете за да ги користите биометриските податоци на вашиот уред или клуч по FIDO2 стандард</string>
+    <!-- Title of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__authenticator_app">Апликација за автентикација</string>
+    <!-- Description of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">Внесете го еднократниот код генериран од вашата апликација за автентикација.</string>
+    <!-- Button text to cancel two-factor authentication -->
+    <string name="TwoFactorSelectionScreen__cancel">Откажи</string>
+    <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
 </resources>

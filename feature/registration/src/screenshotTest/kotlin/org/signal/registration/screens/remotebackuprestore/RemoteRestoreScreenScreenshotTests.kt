@@ -8,15 +8,13 @@ package org.signal.registration.screens.remotebackuprestore
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
 import org.signal.core.models.AccountEntropyPool
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 import java.util.TimeZone
 
 class RemoteRestoreScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun RemoteRestoreScreenPreview() {
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"))

@@ -17,7 +17,7 @@
         android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_signal_logo_type_light" />
+        app:srcCompat="@drawable/image_signal_logo_wordmark_light" />
 
     <TextView
         android:id="@+id/date"

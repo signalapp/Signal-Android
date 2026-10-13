@@ -45,76 +45,309 @@
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Облікові дані</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Логін Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d key</item>
-        <item quantity="few">%1$d keys</item>
-        <item quantity="many">%1$d keys</item>
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">Акаунт і відновлення</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">За допомогою Signal Login ви можете відновити свій акаунт і його дані. Зберігайте ці ключі в надійному менеджері паролів.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">Увімкнено</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">Двофакторна автентифікація</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Налаштувати</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">Автентифікатор</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Одноразові коди підтвердження</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Ключ доступу</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Ключ доступу</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · Додано %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Невідомий користувач</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Відкрити параметри двофакторної автентифікації</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Перейменувати</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Вилучити</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Вилучити автентифікатор?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Ви більше не зможете використовувати цей застосунок, щоб отримувати одноразові коди підтвердження для входу.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Розблокуйте, щоб вилучити двофакторне підтвердження</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Щоб вилучити, нам потрібно переконатися, що це ви</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Розблокуйте, щоб побачити Signal Login</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Щоб переглянути Signal Login, підтвердьте, що це дійсно ви</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Розблокуйте, щоб підтвердити особу</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Щоб видалити акаунт, підтвердьте, що це дійсно ви</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Необхідна автентифікація</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Неможливо додати автентифікатор</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Можна додати максимум %1$d автентифікатори. Видаліть якийсь із наявних.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Можна додати максимум %1$d автентифікатори. Видаліть якийсь із наявних.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Не вдалося завантажити ваші двофакторні способи автентифікації. Перевірте з\'єднання і спробуйте ще раз.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Автентифікатор вилучено</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Не вдалося вилучити автентифікатор. Перевірте з\'єднання і спробуйте ще раз.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Ми радимо встановити другий спосіб автентифікації, щоб захистити акаунт під час використання Signal Login на новому пристрої.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">Докладніше</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Налаштуйте автентифікатор</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Виконайте ці дії, щоб налаштувати автентифікатор.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">Докладніше</string>
+    <string name="TotpSetupScreen__learn_more">Докладніше</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">Крок 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Установіть надійний автентифікатор на свій пристрій.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">Крок 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Відкрийте автентифікатор, натиснувши кнопку нижче, щоб додати свій акаунт Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">відкрито</string>
+    <string name="TotpSetupScreen__open">Відкрити</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Або ж скопіюйте цей ключ і налаштуйте вручну.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Копіювати</string>
+    <string name="TotpSetupScreen__copy">Копіювати</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Скопійовано в буфер обміну</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Скопійовано в буфер обміну</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Не знайдено автентифікатора серед застосунків</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Можна додати максимум %1$d автентифікатори. Видаліть якийсь із наявних.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Не вдалося зв\'язатись із Signal. Перевірте з\'єднання і спробуйте ще раз.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">Крок 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Скопіюйте згенерований код і поверніться сюди.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Продовжити</string>
+    <string name="TotpSetupScreen__continue">Продовжити</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Введіть код</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Код</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Введіть 6-значний код з автентифікатора.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">Готово</string>
+    <string name="TotpCodeEntryScreen__next">Далі</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Неправильний код. Введіть код, який зараз показано у вашому автентифікаторі.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Не вдалося зв\'язатись із Signal. Перевірте з\'єднання і спробуйте ще раз.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Автентифікатор</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Придумайте назву</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Оберіть унікальну назву для автентифікатора.</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Оберіть унікальну назву для автентифікатора, щоб пізніше його було легше визначити.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">Назва</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">Далі</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Налаштування автентифікатора</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Автентифікатор перейменовано</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Не вдалося зберегти назву. Перевірте з\'єднання й спробуйте ще раз.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">Видалення акаунту передбачає:</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Введіть свій номер телефону</string>
+    <string name="DeleteAccountFragment__delete_account">Видалити акаунт</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Видалення ваших облікових даних і фото профілю</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">Видалення всіх ваших повідомлень</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видалення %1$s з вашого платіжного профілю</string>
+    <string name="DeleteAccountFragment__no_country_code">Не зазначено код країни</string>
+    <string name="DeleteAccountFragment__no_number">Не зазначено номер</string>
+    <string name="DeleteAccountFragment__the_phone_number">Ви ввели номер телефону, не пов\'язаний з вашим акаунтом.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Ви точно хочете видалити свій акаунт?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ваш акаунт Signal буде видалено, а налаштування застосунку скинуто. Після завершення цього процесу застосунок закриється.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях застосунку.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Відкрити налаштування застосунку</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Триває вихід з груп…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Видаляємо акаунт…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Скасовуємо вашу підписку…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Він може зайняти кілька хвилин — час залежить від кількості ваших груп</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Триває видалення даних користувача й скидання застосунку</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Акаунт не видалено</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Під час видалення сталася помилка. Перевірте з\'єднання з мережею і повторіть видалення.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">Видалення акаунту з іменем користувача «%1$s» призведе до:</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Видалення ваших облікових даних і фото профілю, зокрема імені користувача «%1$s»</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Незворотного видалення акаунту</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Ваш акаунт Signal з іменем користувача «%1$s» буде видалено, а налаштування застосунку скинуто. Після цього застосунок закриється.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Так, видалити акаунт</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Запросити друзів</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Поділитися</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Оберіть країну</string>
+    <string name="RegistrationActivity_phone_number_description">Номер телефону</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d папка</item>
+        <item quantity="few">%1$d папки</item>
+        <item quantity="many">%1$d папок</item>
+        <item quantity="other">%1$d папки</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Додати папку для чатів</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Створити або змінити папки</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Не вдалося здійснити автентифікацію</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Папки для чатів</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Експорт історії чатів</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Експортуйте машиночитний JSON-файл з усіма вашими чатами. Тимчасові повідомлення не буде експортовано.</string>
+    <string name="ChatsSettingsFragment__keyboard">Клавіатура</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Надсилати кнопкою Enter</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Розблокуйте, щоб експортувати історію чатів</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">За наявності надавати перевагу фото контактів з вашої адресної книги</string>
+    <string name="preferences__generate_link_previews">Генерувати попередній вигляд вебсторінок</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Заархівовані чати з вимкненими сповіщеннями залишаються в архіві, якщо надходять нові повідомлення.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Залишати чати з вимкненими сповіщеннями в архіві</string>
+    <string name="preferences__pref_use_address_book_photos">Використовувати фото з адресної книги</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Показувати попередній вигляд вебсторінок за посиланнями, які ви надсилаєте в повідомленнях.</string>
+    <string name="preferences_advanced__use_system_emoji">Використовувати системні емоджі</string>
+    <string name="preferences_chats__chats">Чати</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">БУДЬТЕ ОБАЧНІ,</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">УВАГА!</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Скасування експорту…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Оберіть папку в сховищі пристрою, де зберігатиметься історія чатів.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Оберіть папку</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Обрати папку</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">обираючи місце для зберігання файлу з експортованими чатами. Нікому не надсилайте цей файл. Інші застосунки можуть мати до нього доступ залежно від обраних дозволів на пристрої.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Чат експортовано</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Експортувати історію чатів?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">НЕ НАДСИЛАЙТЕ цей файл нікому. Історію чатів буде збережено на вашому пристрої, а інші застосунки можуть мати до неї доступ залежно від обраних дозволів на пристрої. Експорт з медіафайлами займає більше місця.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Експорт з медіафайлами</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Експорт без медіафайлів</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Експортування медіафайлів: %1$d%%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Завершення…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Підготовка резервної копії…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Опрацювання резервної копії…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Опрацювання повідомлень…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Опрацювання повідомлень: %1$s з %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Вивантаження медіафайлів: %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Оновлення застосунку</string>
 </resources>

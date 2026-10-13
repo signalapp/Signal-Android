@@ -65,6 +65,9 @@ object RegistrationPreferences {
   private const val KEY_EPHEMERAL_BACKUP_KEY = "ephemeral_backup_key"
   private const val KEY_LINK_AND_SYNC_FRAME_COUNT = "link_and_sync_frame_count"
   private const val KEY_LINK_AND_SYNC_DOWNLOADED_BYTES = "link_and_sync_downloaded_bytes"
+  private const val KEY_USERNAME = "username"
+  private const val KEY_USERNAME_LINK_ENTROPY = "username_link_entropy"
+  private const val KEY_USERNAME_LINK_SERVER_ID = "username_link_server_id"
 
   fun init(context: Application) {
     this.context = context
@@ -169,6 +172,18 @@ object RegistrationPreferences {
     set(value) = prefs.edit {
       if (value == null) remove(KEY_PROFILE_DISCOVERABLE) else putBoolean(KEY_PROFILE_DISCOVERABLE, value)
     }
+
+  var username: String?
+    get() = prefs.getString(KEY_USERNAME, null)
+    set(value) = prefs.edit { putString(KEY_USERNAME, value) }
+
+  var usernameLinkEntropy: ByteArray?
+    get() = prefs.getString(KEY_USERNAME_LINK_ENTROPY, null)?.let { Base64.decode(it) }
+    set(value) = prefs.edit { putString(KEY_USERNAME_LINK_ENTROPY, value?.let { Base64.encodeWithPadding(it) }) }
+
+  var usernameLinkServerId: String?
+    get() = prefs.getString(KEY_USERNAME_LINK_SERVER_ID, null)
+    set(value) = prefs.edit { putString(KEY_USERNAME_LINK_SERVER_ID, value) }
 
   var linkedDeviceId: Int
     get() = prefs.getInt(KEY_LINKED_DEVICE_ID, -1)

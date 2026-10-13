@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupNotAMemberException;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
-import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -35,13 +35,24 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
   private static final String KEY_GROUP_ID    = "group_id";
   private static final String KEY_TO_REVISION = "to_revision";
 
+  private static final int BULK_REFRESH_LANES = 2;
+
   private final GroupId.V2 groupId;
   private final int        toRevision;
 
   @WorkerThread
   RequestGroupV2InfoWorkerJob(@NonNull GroupId.V2 groupId, int toRevision) {
+    this(groupId, toRevision, null);
+  }
+
+  static @NonNull RequestGroupV2InfoWorkerJob forBulkRefresh(@NonNull GroupId.V2 groupId, int index) {
+    return new RequestGroupV2InfoWorkerJob(groupId, GroupsV2StateProcessor.LATEST, "RequestGroupV2InfoWorkerJob_Bulk_" + (index % BULK_REFRESH_LANES));
+  }
+
+  @WorkerThread
+  private RequestGroupV2InfoWorkerJob(@NonNull GroupId.V2 groupId, int toRevision, @Nullable String queue) {
     this(new Parameters.Builder()
-                       .setQueue(PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).getId()))
+                       .setQueue(queue != null ? queue : PushProcessMessageJob.getQueueName(Recipient.externalGroupExact(groupId).getId()))
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)

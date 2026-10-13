@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 
 class ExportAccountDataFragment : ComposeFragment() {
 
@@ -96,7 +97,7 @@ class ExportAccountDataFragment : ComposeFragment() {
       title = stringResource(id = AppSettingsR.string.AccountSettingsFragment__request_account_data),
       onNavigationClick = onNavigationClick,
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding ->
       Surface(
         modifier = Modifier

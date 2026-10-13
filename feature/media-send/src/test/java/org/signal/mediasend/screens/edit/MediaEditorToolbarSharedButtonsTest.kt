@@ -28,9 +28,8 @@ import org.signal.mediasend.MediaSendDependenciesRule
 import org.signal.mediasend.test.TestTags
 
 /**
- * Covers which of the shared toolbar actions each kind of media gets, which is the parity contract with the v2 review
- * screen: send quality is meaningless for stories and documents, saving is for stills only, and adding media is off the
- * table for documents and view-once sends.
+ * Covers which of the shared toolbar actions each kind of media gets: send quality is meaningless for stories,
+ * documents and gifs, saving is for stills only, and adding media is off the table for documents and view-once sends.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -55,10 +54,10 @@ class MediaEditorToolbarSharedButtonsTest {
   }
 
   @Test
-  fun `Given a gif, when rendering the toolbar, then quality, save and add media are offered`() {
+  fun `Given a gif, when rendering the toolbar, then quality is not offered`() {
     setContent(state(media = GIF), EditorState.Gif)
 
-    assertQuality(visible = true)
+    assertQuality(visible = false)
     assertSave(visible = true)
     assertAddMedia(visible = true)
   }
@@ -73,10 +72,10 @@ class MediaEditorToolbarSharedButtonsTest {
   }
 
   @Test
-  fun `Given a video gif, when rendering the toolbar, then saving is not offered`() {
+  fun `Given a video gif, when rendering the toolbar, then quality and saving are not offered`() {
     setContent(state(media = VIDEO_GIF), EditorState.VideoGif)
 
-    assertQuality(visible = true)
+    assertQuality(visible = false)
     assertSave(visible = false)
     assertAddMedia(visible = true)
   }

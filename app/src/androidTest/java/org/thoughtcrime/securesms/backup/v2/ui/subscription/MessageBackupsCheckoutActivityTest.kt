@@ -136,7 +136,7 @@ class MessageBackupsCheckoutActivityTest {
 
     // Backup education screen
     composeTestRule.onNodeWithText(context.getString(R.string.RemoteBackupsSettingsFragment__signal_backups)).assertIsDisplayed()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsEducationScreen__enable_backups)).performClick()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsEducationScreen__continue)).performClick()
 
     // Key education screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyEducationScreen__your_backup_key)).assertIsDisplayed()

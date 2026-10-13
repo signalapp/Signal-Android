@@ -1,10 +1,7 @@
 package org.thoughtcrime.securesms.push
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.ProxyInfo
-import android.net.Uri
-import androidx.core.content.ContextCompat
+import android.os.SystemClock
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
 import okhttp3.ConnectionSpec
@@ -13,7 +10,6 @@ import okhttp3.Interceptor
 import okhttp3.TlsVersion
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
-import org.signal.network.config.HttpProxy
 import org.signal.network.config.SignalCdnUrl
 import org.signal.network.config.SignalCdsiUrl
 import org.signal.network.config.SignalServiceConfiguration
@@ -21,6 +17,7 @@ import org.signal.network.config.SignalServiceUrl
 import org.signal.network.config.SignalStorageUrl
 import org.signal.network.config.SignalSvr2Url
 import org.signal.network.config.TrustStore
+import org.signal.network.exceptions.RequestCanceledException
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -34,6 +31,7 @@ import org.thoughtcrime.securesms.net.StaticDns
 import org.thoughtcrime.securesms.net.StorageServiceSizeLoggingInterceptor
 import java.io.IOException
 import java.util.Optional
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -140,32 +138,8 @@ class SignalServiceNetworkAccess(context: Context) {
 
     private val APP_CONNECTION_SPEC = ConnectionSpec.MODERN_TLS
 
-    @Suppress("DEPRECATION")
-    private fun getSystemHttpProxy(context: Context): HttpProxy? {
-      val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
-
-      val proxyInfo = connectivityManager
-        .activeNetwork
-        ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
-
-      return proxyInfo.toApplicableSystemHttpProxy()
-    }
-
-    fun ProxyInfo?.toApplicableSystemHttpProxy(): HttpProxy? {
-      return this
-        ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
-        // NB: Edit carefully, dear reader, as the line below is written from hard won experience.
-        // It turns out, that despite being documented *nowhere*, if a PAC file is set
-        //   as the system proxy, proxyInfo.host will return "localhost" and proxyInfo.port
-        //   will return -1.
-        // I learnt this by reading the AOSP source code for ProxyInfo:
-        //   https://android.googlesource.com/platform/frameworks/base/+/4696ee4/core/java/android/net/ProxyInfo.java#107
-        // So, if we do not explicitly check that a PAC file is not set, the proxy
-        //   we pass to libsignal may be syntactically invalid, and the user may be
-        //   rendered unable to connect.
-        ?.takeIf { it.pacFileUrl == Uri.EMPTY }
-        ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
-    }
+    /** How long a direct transport failure keeps CDN and storage requests on circumvention routes. */
+    private val MAYBE_CENSORED_DIRECT_FAILURE_COOLDOWN = 5.minutes
   }
 
   private val serviceTrustStore: TrustStore = SignalServiceTrustStore(context)
@@ -179,6 +153,23 @@ class SignalServiceNetworkAccess(context: Context) {
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance()
   )
+
+  /** [SystemClock.elapsedRealtime] until which [hasRecentDirectTransportFailure] stays true, or 0 for no active cooldown. */
+  @Volatile
+  private var directTransportFailureCooldownUntil: Long = 0
+
+  /** Records transport failures (not HTTP error statuses or cancellations) on the uncensored configuration's clients. */
+  private val directFetchFailureInterceptor = Interceptor { chain ->
+    try {
+      chain.proceed(chain.request())
+    } catch (e: IOException) {
+      if (e !is RequestCanceledException && !chain.call().isCanceled() && isCensored()) {
+        Log.w(TAG, "Network failure on direct request to ${chain.request().url.host}, falling back.", e)
+        directTransportFailureCooldownUntil = SystemClock.elapsedRealtime() + MAYBE_CENSORED_DIRECT_FAILURE_COOLDOWN.inWholeMilliseconds
+      }
+      throw e
+    }
+  }
 
   private val zkGroupServerPublicParams: ByteArray = try {
     Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS)
@@ -221,7 +212,6 @@ class SignalServiceNetworkAccess(context: Context) {
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
     signalProxy = Optional.empty(),
-    systemHttpProxy = Optional.empty(),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
     backupServerPublicParams = backupServerPublicParams,
@@ -278,15 +268,26 @@ class SignalServiceNetworkAccess(context: Context) {
     signalStorageUrls = arrayOf(SignalStorageUrl(BuildConfig.STORAGE_URL, serviceTrustStore)),
     signalCdsiUrls = arrayOf(SignalCdsiUrl(BuildConfig.SIGNAL_CDSI_URL, serviceTrustStore)),
     signalSvr2Urls = arrayOf(SignalSvr2Url(BuildConfig.SIGNAL_SVR2_URL, serviceTrustStore)),
-    networkInterceptors = interceptors,
+    networkInterceptors = interceptors + directFetchFailureInterceptor,
     dns = Optional.of(DNS),
     signalProxy = if (SignalStore.proxy.isProxyEnabled) Optional.ofNullable(SignalStore.proxy.proxy) else Optional.empty(),
-    systemHttpProxy = Optional.ofNullable(getSystemHttpProxy(context)),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
     backupServerPublicParams = backupServerPublicParams,
     censored = false
   )
+
+  /**
+   * True if a direct request failed at the transport level within [MAYBE_CENSORED_DIRECT_FAILURE_COOLDOWN] and the network
+   * has not changed since. Chat and CDN hosts can be blocked independently, so a direct chat connection alone is not proof.
+   */
+  fun hasRecentDirectTransportFailure(): Boolean {
+    return SystemClock.elapsedRealtime() < directTransportFailureCooldownUntil
+  }
+
+  fun onNetworkChange() {
+    directTransportFailureCooldownUntil = 0
+  }
 
   fun getConfiguration(): SignalServiceConfiguration {
     return getConfiguration(SignalStore.account.e164)
@@ -354,7 +355,6 @@ class SignalServiceNetworkAccess(context: Context) {
       networkInterceptors = interceptors,
       dns = Optional.of(DNS),
       signalProxy = Optional.empty(),
-      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = zkGroupServerPublicParams,
       genericServerPublicParams = genericServerPublicParams,
       backupServerPublicParams = backupServerPublicParams,

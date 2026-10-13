@@ -275,6 +275,10 @@ object ImportSkips {
     return log(0, " No aci, pni, or e164 available for recipient")
   }
 
+  fun contactMatchesSelf(): String {
+    return log(0, "Contact frame matches the self recipient. Skipping so we don't overwrite our own data.")
+  }
+
   fun fromRecipientNotFound(sentTimestamp: Long): String {
     return log(sentTimestamp, "Failed to find the fromRecipient for the message.")
   }
@@ -305,6 +309,10 @@ object ImportSkips {
 
   fun missingChatRecipient(chatId: Long): String {
     return log(0, "Missing recipient for chat $chatId")
+  }
+
+  fun messageExpired(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Message has already expired.")
   }
 
   fun missingAdminDeleteRecipient(sentTimestamp: Long, chatId: Long): String {

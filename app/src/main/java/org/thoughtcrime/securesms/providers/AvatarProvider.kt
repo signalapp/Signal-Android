@@ -117,7 +117,7 @@ class AvatarProvider : BaseContentProvider() {
     if (uriMatcher.match(uri) == AVATAR) {
       if (VERBOSE) Log.i(TAG, "Loading avatar.")
       try {
-        val recipient = getRecipientId(uri)?.let { RecipientCreator.forRecord(application, SignalDatabase.recipients.getRecord(it)) } ?: return null
+        val recipient = getRecipientId(uri)?.let { RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(it)) } ?: return null
         return getParcelFileDescriptorForAvatar(recipient)
       } catch (ioe: IOException) {
         Log.w(TAG, ioe)

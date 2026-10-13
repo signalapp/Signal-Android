@@ -42,19 +42,20 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication
-import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Fragment that allows user to turn on screen lock and set a timer to lock
@@ -81,14 +82,12 @@ class ScreenLockSettingsFragment : ComposeFragment() {
       }
     }
 
-    enableLockPromptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    enableLockPromptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(requireContext().getString(R.string.ScreenLockSettingsFragment__use_signal_screen_lock))
       .setConfirmationRequired(true)
       .build()
 
-    disableLockPromptInfo = BiometricPrompt.PromptInfo.Builder()
-      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+    disableLockPromptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
       .setTitle(requireContext().getString(R.string.ScreenLockSettingsFragment__turn_off_signal_lock))
       .setConfirmationRequired(true)
       .build()
@@ -114,7 +113,7 @@ class ScreenLockSettingsFragment : ComposeFragment() {
       title = stringResource(id = R.string.preferences_app_protection__screen_lock),
       onNavigationClick = { navController.popBackStack() },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       ScreenLockScreen(
         state = state,

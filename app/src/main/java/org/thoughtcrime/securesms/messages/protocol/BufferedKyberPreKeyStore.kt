@@ -79,7 +79,10 @@ class BufferedKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalSer
         store.remove(kyberPreKeyId)
         removedIfNotLastResort += Triple(kyberPreKeyId, signedPreKeyId, publicKey)
       } else {
-        if (!lastResortKeyTuples.add(Triple(kyberPreKeyId, signedPreKeyId, publicKey))) {
+        // We don't have all the tuples in memory, so finding conflicts requires going to disk.
+        if (!lastResortKeyTuples.add(Triple(kyberPreKeyId, signedPreKeyId, publicKey)) ||
+          SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(selfServiceId, kyberPreKeyId, signedPreKeyId, publicKey)
+        ) {
           throw ReusedBaseKeyException()
         }
 

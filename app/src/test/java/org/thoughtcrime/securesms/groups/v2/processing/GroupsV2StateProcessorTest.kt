@@ -27,6 +27,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Hex.fromStringCondensed
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider
 import org.signal.libsignal.zkgroup.VerificationFailedException
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.database.setNewDescription
 import org.thoughtcrime.securesms.database.setNewTitle
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor.ProfileAndMessageHelper

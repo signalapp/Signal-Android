@@ -161,8 +161,15 @@ internal fun MediaEditorToolbarSharedButtons(
   }
 }
 
+/**
+ * Gifs are exempt along with documents: an image/gif is never re-encoded on send, and the mp4s we treat as gifs are
+ * already sized by whoever handed them to us, so a quality choice there is a control that does nothing.
+ */
 private fun isQualityVisible(state: MediaEditState, editorState: EditorState): Boolean {
-  return !state.isStory && editorState !is EditorState.Document
+  return !state.isStory &&
+    editorState !is EditorState.Document &&
+    editorState !is EditorState.Gif &&
+    editorState !is EditorState.VideoGif
 }
 
 private fun isSaveVisible(editorState: EditorState): Boolean {

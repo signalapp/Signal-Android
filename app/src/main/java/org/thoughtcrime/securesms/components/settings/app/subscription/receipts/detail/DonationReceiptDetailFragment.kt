@@ -1,8 +1,13 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
 import android.content.Intent
-import androidx.fragment.app.viewModels
+import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -15,6 +20,7 @@ import org.thoughtcrime.securesms.components.settings.models.SplashImage
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import java.util.Locale
 import org.signal.core.ui.R as CoreUiR
@@ -23,14 +29,12 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
 
   private lateinit var progressDialog: SignalProgressDialog
 
-  private val viewModel: DonationReceiptDetailViewModel by viewModels(
-    factoryProducer = {
-      DonationReceiptDetailViewModel.Factory(
-        DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id,
-        DonationReceiptDetailRepository()
-      )
-    }
-  )
+  override val listClearsNavigationBar: Boolean = false
+
+  private val viewModel: DonationReceiptDetailViewModel by viewModel {
+    val id = DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id
+    DonationReceiptDetailViewModel(id)
+  }
 
   override fun bindAdapter(adapter: MappingAdapter) {
     SplashImage.register(adapter)
@@ -38,29 +42,35 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     val sharePngButton: MaterialButton = requireView().findViewById(R.id.share_png)
     sharePngButton.isEnabled = false
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.inAppPaymentReceiptRecord != null) {
-        val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
-        adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
+    SystemWindowInsetsSetter.attach(sharePngButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
-        sharePngButton.isEnabled = true
-        sharePngButton.setOnClickListener {
-          progressDialog = SignalProgressDialog.show(requireContext())
-          ReceiptImageRenderer.renderPng(
-            context = requireContext(),
-            lifecycleOwner = viewLifecycleOwner,
-            record = state.inAppPaymentReceiptRecord,
-            subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
-            callback = object : ReceiptImageRenderer.Callback {
-              override fun onBitmapRendered() {
-                progressDialog.dismiss()
-              }
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          if (state.inAppPaymentReceiptRecord != null) {
+            val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
+            adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
 
-              override fun onStartActivity(intent: Intent) {
-                startActivity(intent)
-              }
+            sharePngButton.isEnabled = true
+            sharePngButton.setOnClickListener {
+              progressDialog = SignalProgressDialog.show(requireContext())
+              ReceiptImageRenderer.renderPng(
+                context = requireContext(),
+                lifecycleOwner = viewLifecycleOwner,
+                record = state.inAppPaymentReceiptRecord,
+                subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
+                callback = object : ReceiptImageRenderer.Callback {
+                  override fun onBitmapRendered() {
+                    progressDialog.dismiss()
+                  }
+
+                  override fun onStartActivity(intent: Intent) {
+                    startActivity(intent)
+                  }
+                }
+              )
             }
-          )
+          }
         }
       }
     }
@@ -70,7 +80,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     return configure {
       customPref(
         SplashImage.Model(
-          splashImageResId = R.drawable.ic_signal_logo_type
+          splashImageResId = CoreUiR.drawable.image_signal_logo_wordmark
         )
       )
 

@@ -248,6 +248,8 @@ object Stories {
           getVideoDuration(media.uri)
         } else if (transforms?.videoTrim ?: false) {
           TimeUnit.MICROSECONDS.toMillis(transforms.videoTrimEndTimeUs - transforms.videoTrimStartTimeUs)
+        } else if (media.duration == 0L) {
+          getVideoDuration(media.uri)
         } else {
           media.duration
         }

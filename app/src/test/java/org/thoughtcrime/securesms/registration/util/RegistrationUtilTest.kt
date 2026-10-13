@@ -103,6 +103,7 @@ class RegistrationUtilTest {
     every { signalStore.svr.hasPin() } returns false
     every { signalStore.svr.hasOptedOut() } returns false
     every { signalStore.account.isLinkedDevice } returns false
+    every { signalStore.account.isPhoneNumberless } returns false
 
     RegistrationUtil.maybeMarkRegistrationComplete()
 

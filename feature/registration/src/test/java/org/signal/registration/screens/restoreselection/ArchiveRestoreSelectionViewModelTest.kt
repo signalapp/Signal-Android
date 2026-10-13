@@ -225,13 +225,14 @@ class ArchiveRestoreSelectionViewModelTest {
   }
 
   @Test
-  fun `ConfirmSkip post-registration when PIN is known records skip and completes registration`() = runTest {
+  fun `ConfirmSkip post-registration when PIN is known records skip, restores the account record, and completes registration`() = runTest {
     val viewModel = createViewModel(registeredState = RegisteredState.RegisteredAndPinKnown)
     val initialState = ArchiveRestoreSelectionState(showSkipWarningDialog = true)
 
     viewModel.applyEvent(initialState, ArchiveRestoreSelectionScreenEvents.ConfirmSkip, stateEmitter)
 
     coVerify { mockRepository.setRestoreDecision(RestoreDecision.SKIPPED) }
+    coVerify { mockRepository.restoreAccountRecord() }
     assertThat(emittedParentEvents).hasSize(1)
     assertThat(emittedParentEvents.first()).isEqualTo(RegistrationFlowEvent.RegistrationComplete)
     assertThat(emittedStates.last().showSkipWarningDialog).isFalse()

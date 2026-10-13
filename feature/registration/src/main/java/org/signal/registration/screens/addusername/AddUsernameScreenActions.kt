@@ -6,6 +6,6 @@
 package org.signal.registration.screens.addusername
 
 sealed interface AddUsernameScreenActions {
-  /** Open the article explaining Signal usernames. */
+  /** Open the article explaining phone number privacy and usernames. */
   data object OpenLearnMoreArticle : AddUsernameScreenActions
 }

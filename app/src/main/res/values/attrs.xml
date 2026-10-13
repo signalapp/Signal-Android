@@ -27,9 +27,6 @@
         <attr name="segmentSelectedStrokeColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="CustomDefaultPreference">
-        <attr name="custom_pref_toggle" format="string"/>
-    </declare-styleable>
 
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
@@ -168,8 +165,11 @@
     <declare-styleable name="SharedContactView">
         <attr name="contact_titleColor" format="color" />
         <attr name="contact_captionColor" format="color" />
+        <attr name="contact_chevronColor" format="color" />
         <attr name="contact_footerIconColor" format="color" />
         <attr name="contact_footerAlpha" format="float" />
+        <attr name="contact_actionTextColor" format="color" />
+        <attr name="contact_actionBackgroundColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="LinkPreviewView">

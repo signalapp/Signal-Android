@@ -215,6 +215,14 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     try {
       webRtcInteractor.rejectIncomingCall(activePeer.getId());
       webRtcInteractor.getCallManager().hangup();
+
+      currentState = currentState.builder()
+                                 .changeCallInfoState()
+                                 .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
+                                 .build();
+
+      webRtcInteractor.postStateUpdate(currentState);
+
       return terminate(currentState, activePeer);
     } catch (CallException e) {
       return callFailure(currentState, "hangup() failed: ", e);

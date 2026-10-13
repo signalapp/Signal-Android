@@ -28,12 +28,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.camera.R
+import org.signal.camera.test.TestTags
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.glide.compose.GlideImage
@@ -44,11 +46,13 @@ import org.signal.glide.compose.GlideImageScaleType
  * Shows a circular thumbnail with a white border that opens the gallery when clicked.
  *
  * @param modifier Modifier to apply to the button
+ * @param enabled Whether the button can be used, which it cannot while a recording runs
  * @param onClick Callback when the button is clicked
  */
 @Composable
 fun GalleryThumbnailButton(
   modifier: Modifier = Modifier,
+  enabled: Boolean = true,
   onClick: () -> Unit
 ) {
   val context = LocalContext.current
@@ -64,7 +68,8 @@ fun GalleryThumbnailButton(
       .size(52.dp)
       .clip(CircleShape)
       .background(colorResource(R.color.CameraHud_control_background), CircleShape)
-      .clickable(onClick = onClick),
+      .clickable(enabled = enabled, onClick = onClick)
+      .testTag(TestTags.CAMERA_HUD_GALLERY_BUTTON),
     contentAlignment = Alignment.Center
   ) {
     if (thumbnailUri != null) {

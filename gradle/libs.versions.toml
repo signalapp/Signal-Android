@@ -10,9 +10,9 @@ minSdk = "23"
 ndk = "28.0.13004108"
 javaVersion = "21"
 kotlinJvmTarget = "21"
-gradle = "9.2.1"
+gradle = "9.4.0"
 kotlin = "2.2.20"
-android-gradle-plugin = "9.2.1"
+android-gradle-plugin = "9.4.0"
 
 # Other versions
 androidx-appcompat = "1.7.1"
@@ -23,11 +23,12 @@ androidx-lifecycle = "2.10.0"
 androidx-lifecycle-navigation3 = "2.10.0"
 androidx-media3 = "1.9.1"
 androidx-navigation = "2.9.8"
+androidx-paging = "3.4.0"
 androidx-navigation3-core = "1.1.4"
 androidx-core-telecom = "1.1.0-alpha06"
 androidx-window = "1.3.0"
 glide = "5.0.9"
-libsignal-client = "0.100.0"
+libsignal-client = "0.105.0"
 mp4parser = "1.9.39"
 accompanist = "0.28.0"
 nanohttpd = "2.3.1"
@@ -53,12 +54,11 @@ android-application = { module = "com.android.application:com.android.applicatio
 androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.4.1"
 
 # Compose
-androidx-compose-bom = "androidx.compose:compose-bom:2026.06.01"
+androidx-compose-bom = "androidx.compose:compose-bom:2026.09.00"
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
-androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
-androidx-compose-material3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation"}
 androidx-compose-material-icons-extended = "androidx.compose.material:material-icons-extended:1.7.8"
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
@@ -106,6 +106,7 @@ androidx-media = "androidx.media:media:1.7.0"
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
 androidx-media3-session = { module = "androidx.media3:media3-session", version.ref = "androidx-media3" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "androidx-media3" }
+androidx-media3-ui-compose = { module = "androidx.media3:media3-ui-compose", version.ref = "androidx-media3" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
@@ -117,6 +118,8 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-lifecycle-livedata-core = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidx-lifecycle" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-common-java8 = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-reactivestreams-ktx = { module = "androidx.lifecycle:lifecycle-reactivestreams-ktx", version.ref = "androidx-lifecycle" }
@@ -163,7 +166,7 @@ google-guava-android = "com.google.guava:guava:33.6.0-android"
 google-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
 google-cloud-storage = "com.google.cloud:google-cloud-storage:2.45.0"
 google-auth-library-oauth2-http = "com.google.auth:google-auth-library-oauth2-http:1.24.0"
-com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.2"
+com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.3.6"
 
 # Firebase
 firebase-messaging = "com.google.firebase:firebase-messaging:25.0.1"
@@ -173,7 +176,7 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.71.0"
+signal-ringrtc = "org.signal:ringrtc-android:2.72.1"
 
 # Third Party
 signal-android-database-sqlcipher = "net.zetetic:sqlcipher-android:4.17.0"

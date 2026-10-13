@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
@@ -120,7 +119,6 @@ class CreateGroupViewModel : ViewModel() {
 }
 
 data class CreateGroupUiState(
-  val forceSplitPane: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val selectionLimits: SelectionLimits = RemoteConfig.groupLimits.excludingSelf(),
   val newSelections: List<SelectedContact> = emptyList(),

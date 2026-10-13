@@ -6,10 +6,15 @@
 package org.signal.network.rest
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isSameInstanceAs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
+import okhttp3.ConnectionSpec
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -33,6 +38,8 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.Optional
 import java.util.Random
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class SignalRestClientTest {
 
@@ -81,6 +88,74 @@ class SignalRestClientTest {
     client.request(RequestSpec(Method.GET, Host.Storage, "/v1/storage"))
 
     assertThat(recordedRequests.single().url.host).isEqualTo("storage.test")
+  }
+
+  @Test
+  fun `routes cdn and storage to the uncensored pools when preferring direct`() = runBlockingTest {
+    val client = client(
+      random = ScriptedRandom(0, 0),
+      uncensoredConfiguration = testConfiguration(hostPrefix = "direct-"),
+      preferDirectRoute = { true }
+    )
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(2), "/file"))
+    client.request(RequestSpec(Method.GET, Host.Storage, "/v1/storage"))
+
+    assertThat(recordedRequests.map { it.url.host }).isEqualTo(listOf("direct-cdn2.test", "direct-storage.test"))
+  }
+
+  @Test
+  fun `routes cdn and storage to the configured pools when not preferring direct`() = runBlockingTest {
+    val client = client(
+      random = ScriptedRandom(0, 0),
+      uncensoredConfiguration = testConfiguration(hostPrefix = "direct-"),
+      preferDirectRoute = { false }
+    )
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(2), "/file"))
+    client.request(RequestSpec(Method.GET, Host.Storage, "/v1/storage"))
+
+    assertThat(recordedRequests.map { it.url.host }).isEqualTo(listOf("cdn2.test", "storage.test"))
+  }
+
+  @Test
+  fun `consults preferDirectRoute on every request`() = runBlockingTest {
+    var direct = false
+    val client = client(
+      random = ScriptedRandom(0, 0, 0),
+      uncensoredConfiguration = testConfiguration(hostPrefix = "direct-"),
+      preferDirectRoute = { direct }
+    )
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(3), "/file"))
+    direct = true
+    client.request(RequestSpec(Method.GET, Host.Cdn(3), "/file"))
+    direct = false
+    client.request(RequestSpec(Method.GET, Host.Cdn(3), "/file"))
+
+    assertThat(recordedRequests.map { it.url.host }).isEqualTo(listOf("cdn3.test", "direct-cdn3.test", "cdn3.test"))
+  }
+
+  @Test
+  fun `service requests ignore preferDirectRoute`() = runBlockingTest {
+    val client = client(
+      uncensoredConfiguration = testConfiguration(hostPrefix = "direct-"),
+      preferDirectRoute = { true }
+    )
+
+    client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping"))
+
+    assertThat(recordedRequests.single().url.host).isEqualTo("service-a.test")
+  }
+
+  @Test
+  fun `uses the configured pools when preferring direct with the same configuration`() = runBlockingTest {
+    val client = client(random = ScriptedRandom(0, 0), preferDirectRoute = { true })
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(2), "/file"))
+    client.request(RequestSpec(Method.GET, Host.Storage, "/v1/storage"))
+
+    assertThat(recordedRequests.map { it.url.host }).isEqualTo(listOf("cdn2.test", "storage.test"))
   }
 
   @Test
@@ -143,40 +218,121 @@ class SignalRestClientTest {
     assertThat(result).isInstanceOf(RequestResult.ApplicationError::class)
   }
 
+  @Test
+  fun `cancelInFlightRequests fails a request that is waiting on the server`() = runBlockingTest {
+    val requestStarted = CountDownLatch(1)
+    val releaseResponse = CountDownLatch(1)
+    responder = { req ->
+      requestStarted.countDown()
+      releaseResponse.await(5, TimeUnit.SECONDS)
+      response(req, 200, "{}")
+    }
+    val client = client()
+
+    val result = coroutineScope {
+      val pending = async(Dispatchers.IO) { client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping")) }
+      requestStarted.await(5, TimeUnit.SECONDS)
+      client.cancelInFlightRequests()
+      releaseResponse.countDown()
+      pending.await()
+    }
+
+    assertThat(result).isInstanceOf(RequestResult.RetryableNetworkError::class)
+  }
+
+  @Test
+  fun `cancelInFlightRequests does not affect later requests`() = runBlockingTest {
+    val client = client(random = ScriptedRandom(0, 0))
+    client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping"))
+
+    client.cancelInFlightRequests()
+    val result = client.request(RequestSpec(Method.GET, Host.Service, "/v1/ping"))
+
+    assertThat(result).isInstanceOf(RequestResult.Success::class)
+  }
+
+  @Test
+  fun `does not set a host header when the url has none configured`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(2), "/file"))
+
+    assertThat(recordedRequests.single().headers("Host")).isEmpty()
+  }
+
+  @Test
+  fun `sends the configured host header`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(4), "/file"))
+
+    val request = recordedRequests.single()
+    assertThat(request.url.toString()).isEqualTo("https://configured.test/cdn4/file")
+    assertThat(request.headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
+  @Test
+  fun `configured host header replaces a host header in the request spec`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.GET, Host.Cdn(4), "/file", headers = mapOf("Host" to "other.test")))
+
+    assertThat(recordedRequests.single().headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
+  @Test
+  fun `absolute path is rewritten onto the configured url`() = runBlockingTest {
+    val client = client()
+
+    client.request(RequestSpec(Method.PATCH, Host.Cdn(4), "https://upload.example/attachments/abc?token=123"))
+
+    val request = recordedRequests.single()
+    assertThat(request.url.toString()).isEqualTo("https://configured.test/cdn4/attachments/abc?token=123")
+    assertThat(request.headers("Host")).isEqualTo(listOf("cdn4.test"))
+  }
+
   private fun runBlockingTest(block: suspend () -> Unit) {
     runBlocking { block() }
   }
 
-  private fun client(random: Random = ScriptedRandom(0)): SignalRestClient {
+  private fun client(
+    random: Random = ScriptedRandom(0),
+    uncensoredConfiguration: SignalServiceConfiguration? = null,
+    preferDirectRoute: () -> Boolean = { false }
+  ): SignalRestClient {
+    val configuration = testConfiguration()
     return SignalRestClient(
-      configuration = testConfiguration(),
+      configuration = configuration,
       signalAgent = "test-agent",
       credentialsProvider = null,
       automaticNetworkRetry = false,
+      uncensoredConfiguration = uncensoredConfiguration ?: configuration,
+      preferDirectRoute = preferDirectRoute,
       socketTimeoutMillis = 1_000,
       random = random,
       clientOverride = recordingClient
     )
   }
 
-  private fun testConfiguration(): SignalServiceConfiguration {
+  /** [hostPrefix] distinguishes the hosts of an alternate configuration (e.g. a direct one) from the default. */
+  private fun testConfiguration(hostPrefix: String = ""): SignalServiceConfiguration {
     return SignalServiceConfiguration(
       signalServiceUrls = arrayOf(
-        SignalServiceUrl("https://service-a.test", DUMMY_TRUST_STORE),
-        SignalServiceUrl("https://service-b.test", DUMMY_TRUST_STORE),
-        SignalServiceUrl("https://service-c.test", DUMMY_TRUST_STORE)
+        SignalServiceUrl("https://${hostPrefix}service-a.test", DUMMY_TRUST_STORE),
+        SignalServiceUrl("https://${hostPrefix}service-b.test", DUMMY_TRUST_STORE),
+        SignalServiceUrl("https://${hostPrefix}service-c.test", DUMMY_TRUST_STORE)
       ),
       signalCdnUrlMap = mapOf(
-        2 to arrayOf(SignalCdnUrl("https://cdn2.test", DUMMY_TRUST_STORE)),
-        3 to arrayOf(SignalCdnUrl("https://cdn3.test", DUMMY_TRUST_STORE))
+        2 to arrayOf(SignalCdnUrl("https://${hostPrefix}cdn2.test", DUMMY_TRUST_STORE)),
+        3 to arrayOf(SignalCdnUrl("https://${hostPrefix}cdn3.test", DUMMY_TRUST_STORE)),
+        4 to arrayOf(SignalCdnUrl("https://${hostPrefix}configured.test/cdn4", "${hostPrefix}cdn4.test", DUMMY_TRUST_STORE, ConnectionSpec.MODERN_TLS))
       ),
-      signalStorageUrls = arrayOf(SignalStorageUrl("https://storage.test", DUMMY_TRUST_STORE)),
+      signalStorageUrls = arrayOf(SignalStorageUrl("https://${hostPrefix}storage.test", DUMMY_TRUST_STORE)),
       signalCdsiUrls = emptyArray<SignalCdsiUrl>(),
       signalSvr2Urls = emptyArray<SignalSvr2Url>(),
       networkInterceptors = emptyList(),
       dns = Optional.empty(),
       signalProxy = Optional.empty(),
-      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = ByteArray(0),
       genericServerPublicParams = ByteArray(0),
       backupServerPublicParams = ByteArray(0),

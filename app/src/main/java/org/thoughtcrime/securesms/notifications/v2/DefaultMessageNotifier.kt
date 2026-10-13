@@ -49,6 +49,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 
   @Volatile private var visibleBubbleThread: ConversationId? = null
 
+  private val activeBubbleThreads: MutableSet<ConversationId> = ConcurrentHashMap.newKeySet()
+
   @Volatile private var lastAudibleNotification: Long = -1
 
   @Volatile private var lastScheduledReminder: Long = 0
@@ -60,15 +62,15 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
   @Volatile private var previousState: NotificationState = NotificationState.EMPTY
 
   private val threadReminders: MutableMap<ConversationId, Reminder> = ConcurrentHashMap()
-  private val stickyThreads: MutableMap<ConversationId, StickyThread> = mutableMapOf()
+  private val stickyThreads: MutableMap<ConversationId, StickyThread> = ConcurrentHashMap()
   private val lastThreadNotification: MutableMap<ConversationId, Long> = ConcurrentHashMap()
 
   private val executor = CancelableExecutor()
 
   override fun setVisibleThread(conversationId: ConversationId?) {
     visibleThread.set(conversationId)
-    stickyThreads.remove(conversationId)
     if (conversationId != null) {
+      stickyThreads.remove(conversationId)
       lastThreadNotification.remove(conversationId)
     }
   }
@@ -91,6 +93,18 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 
   override fun clearVisibleBubbleThread() {
     setVisibleBubbleThread(null)
+  }
+
+  override fun addActiveBubbleThread(conversationId: ConversationId) {
+    activeBubbleThreads += conversationId
+  }
+
+  override fun removeActiveBubbleThread(conversationId: ConversationId) {
+    activeBubbleThreads -= conversationId
+  }
+
+  override fun getActiveBubbleThreads(): Set<ConversationId> {
+    return activeBubbleThreads.toSet()
   }
 
   override fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, conversationId: ConversationId) {
@@ -155,37 +169,26 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     val notificationProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles.getProfiles())
 
     Log.internal().i(TAG, "sticky thread: $stickyThreads active profile: ${notificationProfile?.id ?: "none" }")
-    var state: NotificationState = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
-    Log.internal().i(TAG, "state: $state")
+    val state: NotificationState = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
 
     if (state.muteFilteredMessages.isNotEmpty()) {
       Log.i(TAG, "Marking ${state.muteFilteredMessages.size} muted messages as notified to skip notification")
-      state.muteFilteredMessages.forEach { item ->
-        SignalDatabase.messages.markAsNotified(item.id)
-      }
+      SignalDatabase.messages.markAsNotified(state.muteFilteredMessages.map { it.id })
     }
 
     if (state.profileFilteredMessages.isNotEmpty()) {
       Log.i(TAG, "Marking ${state.profileFilteredMessages.size} profile filtered messages as notified to skip notification")
-      state.profileFilteredMessages.forEach { item ->
-        SignalDatabase.messages.markAsNotified(item.id)
-      }
+      SignalDatabase.messages.markAsNotified(state.profileFilteredMessages.map { it.id })
     }
 
     if (state.reactionsDisabledFilteredMessages.isNotEmpty()) {
       Log.i(TAG, "Marking ${state.reactionsDisabledFilteredMessages.size} reactions as notified to skip notification")
-      state.reactionsDisabledFilteredMessages.forEach { item ->
-        SignalDatabase.messages.markAsNotified(item.id)
-      }
+      SignalDatabase.messages.markAsNotified(state.reactionsDisabledFilteredMessages.map { it.id })
     }
 
     if (!SignalStore.settings.isMessageNotificationsEnabled) {
       Log.i(TAG, "Marking ${state.conversations.size} conversations as notified to skip notification")
-      state.conversations.forEach { conversation ->
-        conversation.notificationItems.forEach { item ->
-          SignalDatabase.messages.markAsNotified(item.id)
-        }
-      }
+      SignalDatabase.messages.markConversationsAsNotified(state.conversations.map { it.thread }, state.notificationItems.maxOfOrNull { it.id } ?: 0L)
       return
     }
 

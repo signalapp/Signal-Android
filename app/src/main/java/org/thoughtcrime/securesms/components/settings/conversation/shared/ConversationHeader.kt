@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSize
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -160,7 +161,7 @@ private fun AvatarHeader(
 
       if (badges.isNotEmpty()) {
         AndroidView(
-          factory = { context -> BadgeImageView(context, null) },
+          factory = { context -> BadgeImageView(context, BadgeImageSize.LARGE) },
           modifier = Modifier
             .offset(x = BADGE_OFFSET_X, y = BADGE_OFFSET_Y)
             .size(BADGE_SIZE)

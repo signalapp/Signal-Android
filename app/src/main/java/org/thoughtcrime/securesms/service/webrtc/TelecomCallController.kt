@@ -91,8 +91,15 @@ class TelecomCallController(
 
   suspend fun start() {
     val recipient = Recipient.resolved(recipientId)
-    val displayName = if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact) recipient.getDisplayName(context) else context.getString(R.string.Recipient_signal_call)
-    val address = Uri.fromParts("sip", recipientId.serialize(), null)
+    val displayContact = SignalStore.settings.messageNotificationsPrivacy.isDisplayContact
+    val displayName = if (displayContact) recipient.getDisplayName(context) else context.getString(R.string.Recipient_signal_call)
+
+    // Handsfree devices reduce the handle to dialable characters, so only an E164 survives to be displayed or phonebook matched.
+    val (address, handleMode) = if (displayContact && recipient.shouldShowE164) {
+      Uri.fromParts("tel", recipient.requireE164(), null) to HandleMode.TEL
+    } else {
+      Uri.fromParts("sip", "signalcall", null) to HandleMode.SIP_OPAQUE
+    }
 
     val direction = if (isOutgoing) CallAttributesCompat.DIRECTION_OUTGOING else CallAttributesCompat.DIRECTION_INCOMING
     val callType = if (isVideoCall) CallAttributesCompat.CALL_TYPE_VIDEO_CALL else CallAttributesCompat.CALL_TYPE_AUDIO_CALL
@@ -104,7 +111,7 @@ class TelecomCallController(
       callType = callType
     )
 
-    Log.i(TAG, "start() recipientId=$recipientId callId=$callId isOutgoing=$isOutgoing isVideo=$isVideoCall")
+    Log.i(TAG, "start() recipientId=$recipientId callId=$callId isOutgoing=$isOutgoing isVideo=$isVideoCall handleMode=${handleMode.logValue}")
 
     callsManager.addCall(
       callAttributes = attributes,
@@ -276,4 +283,9 @@ private fun Int.toAudioDevice(): SignalAudioManager.AudioDevice {
     CallEndpointCompat.TYPE_STREAMING -> SignalAudioManager.AudioDevice.SPEAKER_PHONE
     else -> SignalAudioManager.AudioDevice.EARPIECE
   }
+}
+
+private enum class HandleMode(val logValue: String) {
+  SIP_OPAQUE("sip-opaque"),
+  TEL("tel")
 }

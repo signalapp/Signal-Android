@@ -1,9 +1,8 @@
 package org.thoughtcrime.securesms.mms
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.mediasend.SentMediaQuality
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import kotlin.time.Duration
@@ -14,8 +13,7 @@ import kotlin.time.Duration
 object TranscodingConfigProvider {
   @JvmStatic
   fun getAllConfigs(): TranscodingConfig.TranscodeConfig {
-    val countryCode = PhoneNumberUtil.getInstance().parse(SignalStore.account.e164, "").countryCode
-    return TranscodingConfig.getTranscodeConfig(RemoteConfig.transcodeConfig, countryCode)
+    return TranscodingConfig.getTranscodeConfig(RemoteConfig.transcodeConfig, SignalE164Util.getRemoteConfigCountryCode())
   }
 
   /**

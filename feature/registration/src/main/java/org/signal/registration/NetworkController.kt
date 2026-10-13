@@ -18,8 +18,12 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -27,13 +31,14 @@ import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialErro
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
-import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -43,6 +48,9 @@ import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.network.service.UsernameService.ConfirmUsernameError
+import org.signal.network.service.UsernameService.ConfirmedUsername
+import org.signal.network.service.UsernameService.ReserveUsernameError
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import java.util.Locale
 import kotlin.time.Duration
@@ -93,33 +101,56 @@ interface NetworkController {
 
   /**
    * Officially register an account.
-   * Must provide one of ([sessionId], [recoveryPassword]), but not both.
+   * Must provide exactly one of [sessionId], [recoveryPassword], or [receiptCredentialPresentation].
+   *
+   * Providing a [receiptCredentialPresentation] (built by [createReceiptCredentialPresentation] from the credential
+   * issued by [createLoginPurchaseReceiptCredential]) registers a new account that has no phone number, and providing
+   * an [aci] alongside a [recoveryPassword] logs back in to an existing one. For both, [e164] must be null and
+   * [attributes] must have a null `discoverableByPhoneNumber`. Creating a new account also requires a null
+   * [pniPreKeys] and a null `attributes.pniRegistrationId`, while logging back in requires both to be present -- the
+   * service demands PNI key material of any recovery-by-identifier, then ignores it for an account with no phone
+   * number, so throwaway material is fine.
    *
    * `POST /v1/registration`
    *
-   * @param e164 The phone number in E.164 format (used as username for basic auth)
+   * @param e164 The phone number in E.164 format (used as username for basic auth). Null when registering without a
+   *   phone number, in which case the implementation generates a placeholder username the service ignores.
    * @param password The password for basic auth
+   * @param aci The ACI of the existing numberless account to log back in to, used as the username for basic auth.
+   * @param totp A TOTP one-time password, required when recovering an account that has TOTP keys.
    */
   suspend fun registerAccount(
-    e164: String,
+    e164: String?,
     password: String,
     sessionId: String?,
     recoveryPassword: String?,
+    receiptCredentialPresentation: ReceiptCredentialPresentation?,
     attributes: AccountAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?,
-    skipDeviceTransfer: Boolean
+    skipDeviceTransfer: Boolean,
+    aci: ACI?,
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError>
 
   /**
+   * Fetches the service's configuration for one-time Signal Login purchases: which product to sell, and the receipt
+   * level a purchase of it is worth.
+   *
+   * `GET /v1/subscription/configuration`
+   */
+  suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError>
+
+  /**
    * Redeems a completed one-time Signal Login purchase for a receipt credential, which can then be presented to
-   * [registerAccountWithoutPhoneNumber] to create an account that has no phone number.
+   * [registerAccount] to create an account that has no phone number.
    *
    * Retries for the same [purchaseIdentifier] must reuse the same [receiptCredentialRequest].
    *
-   * Implementations must apply the same validations to the returned credential as are applied to one-time donation
-   * receipts, and the expected receipt expiration is `purchaseDate + 5 * 366` days, plus padding for clock skew.
+   * The expected receipt expiration is `purchaseDate + 5 * 366` days. [RegistrationRepository] validates the level
+   * and expiration of the credential this issues.
    *
    * `POST /v1/login-purchase/receipt_credentials`
    */
@@ -130,26 +161,23 @@ interface NetworkController {
   ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError>
 
   /**
-   * Officially register an account that has no phone number, redeeming the [receiptCredentialPresentation] built from
-   * the credential issued by [createLoginPurchaseReceiptCredential].
-   *
-   * This is the numberless counterpart to [registerAccount]: there is no verification session, no recovery password,
-   * and no PNI key material, so [attributes] must have a null `pniRegistrationId` and a null
-   * `discoverableByPhoneNumber`.
-   *
-   * `POST /v1/registration`
-   *
-   * @param password The password for basic auth. The username is generated by the implementation, since the service
-   *   ignores it for a fresh numberless registration.
+   * Generates the request context whose [ReceiptCredentialRequestContext.getRequest] is sent to
+   * [createLoginPurchaseReceiptCredential], and which is needed again by [receiveReceiptCredential] to unblind the
+   * response. Retries for the same purchase must reuse the context they started with, so callers are expected to
+   * persist it.
    */
-  suspend fun registerAccountWithoutPhoneNumber(
-    password: String,
-    receiptCredentialPresentation: ReceiptCredentialPresentation,
-    attributes: AccountAttributes,
-    aciPreKeys: PreKeyCollection,
-    fcmToken: String?,
-    skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError>
+  fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext
+
+  /**
+   * Unblinds the response from [createLoginPurchaseReceiptCredential] into the credential it issued.
+   */
+  fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential>
+
+  /**
+   * Builds the presentation for [receiptCredential] that a numberless [registerAccount] redeems. Lives here
+   * because it requires the zkgroup server public params for the environment this controller talks to.
+   */
+  fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation>
 
   /**
    * Retrieves an FCM token, if possible. Null means that this device does not support FCM.
@@ -412,6 +440,24 @@ interface NetworkController {
   suspend fun restoreAccountRecord(timeout: Duration): RequestResult<Unit, RestoreAccountRecordError>
 
   /**
+   * Reserves a username composed of [nickname] plus a numeric discriminator. If [discriminator] is provided, only that
+   * exact username is attempted, otherwise the service assigns one. The service holds the reservation for a short time
+   * (~5 minutes), during which it can be finalized via [confirmUsername]. Reserving again replaces any previous
+   * reservation.
+   *
+   * `PUT /v1/accounts/username_hash/reserve`
+   */
+  suspend fun reserveUsername(nickname: String, discriminator: String? = null): RequestResult<Username, ReserveUsernameError>
+
+  /**
+   * Confirms a reservation previously made via [reserveUsername], assigning the username to the account and creating
+   * a new username link for it. Nothing is persisted locally -- see [StorageController.saveUsername].
+   *
+   * `PUT /v1/accounts/username_hash/confirm`
+   */
+  suspend fun confirmUsername(username: Username): RequestResult<ConfirmedUsername, ConfirmUsernameError>
+
+  /**
    * Persists the user's chosen profile name (and optional avatar) for the freshly-registered account
    * and arranges for it to be synced to the service. Implementations may save the data locally and
    * enqueue a durable job to perform the actual upload, since profile sync is allowed to happen in
@@ -524,10 +570,11 @@ interface NetworkController {
    */
   data class ProvisioningMessage(
     val accountEntropyPool: String,
-    val e164: String,
+    val aci: ACI,
+    val e164: String?,
     val pin: String?,
     val aciIdentityKeyPair: IdentityKeyPair,
-    val pniIdentityKeyPair: IdentityKeyPair,
+    val pniIdentityKeyPair: IdentityKeyPair?,
     val platform: Platform,
     val tier: Tier?,
     val backupTimestampMs: Long?,

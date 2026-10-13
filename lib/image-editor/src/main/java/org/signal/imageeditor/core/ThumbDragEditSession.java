@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.signal.imageeditor.core;
 
 import android.graphics.Matrix;
@@ -14,6 +19,10 @@ class ThumbDragEditSession extends ElementEditSession {
   private final float[] oppositeControlPointOnControlParent = new float[2];
   private final float[] oppositeControlPointOnElement       = new float[2];
 
+  private final RotationSnapListener rotationSnapListener;
+  private final float                initialRotationRadians;
+  private       boolean              wasRotationSnapped = true; // skip triggering listener on start of session
+
   @NonNull
   private final          ThumbRenderer.ControlPoint controlPoint;
   @NonNull private final Matrix                     thumbContainerRelativeMatrix;
@@ -21,22 +30,27 @@ class ThumbDragEditSession extends ElementEditSession {
   private ThumbDragEditSession(@NonNull EditorElement selected,
                                @NonNull ThumbRenderer.ControlPoint controlPoint,
                                @NonNull Matrix inverseMatrix,
-                               @NonNull Matrix thumbContainerRelativeMatrix)
+                               @NonNull Matrix thumbContainerRelativeMatrix,
+                               @NonNull RotationSnapListener rotationSnapListener,
+                               float initialRotationRadians)
   {
     super(selected, inverseMatrix);
     this.controlPoint                 = controlPoint;
     this.thumbContainerRelativeMatrix = thumbContainerRelativeMatrix;
+    this.rotationSnapListener         = rotationSnapListener;
+    this.initialRotationRadians       = initialRotationRadians;
   }
 
   static EditSession startDrag(@NonNull EditorElement selected,
                                @NonNull Matrix inverseViewModelMatrix,
                                @NonNull Matrix thumbContainerRelativeMatrix,
                                @NonNull ThumbRenderer.ControlPoint controlPoint,
-                               @NonNull PointF point)
+                               @NonNull PointF point,
+                               @NonNull RotationSnapListener rotationSnapListener)
   {
     if (!selected.getFlags().isEditable()) return null;
 
-    ElementEditSession elementDragEditSession = new ThumbDragEditSession(selected, controlPoint, inverseViewModelMatrix, thumbContainerRelativeMatrix);
+    ElementEditSession elementDragEditSession = new ThumbDragEditSession(selected, controlPoint, inverseViewModelMatrix, thumbContainerRelativeMatrix, rotationSnapListener, selected.getLocalRotationAngle());
     elementDragEditSession.setScreenStartPoint(0, point);
     elementDragEditSession.setScreenEndPoint(0, point);
     return elementDragEditSession;
@@ -72,7 +86,15 @@ class ThumbDragEditSession extends ElementEditSession {
       editorMatrix.postTranslate(-oppositeControlPoint.x, -oppositeControlPoint.y);
       editorMatrix.postScale(scale, scale);
       double angle = angle(endPointElement[0], oppositeControlPoint) - angle(startPointElement[0], oppositeControlPoint);
+
+      RotationSnapResult rotationSnapResult = RotationSnap.snapToAngle(initialRotationRadians, angle);
+      angle = rotationSnapResult.getAngleRadians();
       rotate(editorMatrix, angle);
+      if (rotationSnapResult.getSnapped() && !wasRotationSnapped) {
+        rotationSnapListener.onRotationSnap();
+      }
+      wasRotationSnapped = rotationSnapResult.getSnapped();
+
       editorMatrix.postTranslate(oppositeControlPoint.x, oppositeControlPoint.y);
     } else {
       // 8 point controls, where edges scale in just one dimension and corners scale in both, optionally fixed aspect ratio

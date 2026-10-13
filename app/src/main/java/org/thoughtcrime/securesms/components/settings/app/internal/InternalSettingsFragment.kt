@@ -69,16 +69,16 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
+import org.thoughtcrime.securesms.jobs.UnreadReminderJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.QuickstartCredentialExporter
+import org.thoughtcrime.securesms.ringrtc.CameraFpsRanges
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
@@ -98,6 +98,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private lateinit var viewModel: InternalSettingsViewModel
   private var searchMenuItem: MenuItem? = null
+
+  private val cameraFpsRangeDescription: String? by lazy { CameraFpsRanges.captureCameraRangesDescription(requireContext()) }
 
   private var scrollToPosition: Int = 0
   private val layoutManager: LinearLayoutManager?
@@ -176,7 +178,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
     searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
       override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-        searchView.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
+        searchView.setIncognitoKeyboardEnabled(SignalStore.settings.isIncognitoKeyboardEnabled)
         searchView.setOnQueryTextListener(queryListener)
         return true
       }
@@ -224,6 +226,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Override remote config"),
+        summary = DSLSettingsText.from("View every remote config flag and locally override any of them."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalRemoteConfigFragment())
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Refresh remote config"),
         summary = DSLSettingsText.from("Forces a refresh of the remote config locally instead of waiting for the elapsed time."),
         onClick = {
@@ -240,6 +250,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Copy service password"),
+        summary = DSLSettingsText.from("Copy the password used to authenticate with the service."),
+        onClick = {
+          onCopyServicePasswordClicked()
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from("Unregister"),
@@ -321,23 +339,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("App UI"))
-
-      switchPref(
-        title = DSLSettingsText.from("Force split pane UI on phones."),
-        isEnabled = !state.forceSinglePane,
-        isChecked = state.forceSplitPane,
-        onClick = {
-          viewModel.setForceSplitPane(!state.forceSplitPane)
-        }
-      )
-
-      switchPref(
-        title = DSLSettingsText.from("Force single-pane on newer devices."),
-        isChecked = state.forceSinglePane,
-        onClick = {
-          viewModel.setForceSinglePane(!state.forceSinglePane)
-        }
-      )
 
       clickPref(
         title = DSLSettingsText.from("Display enable permission sheet"),
@@ -448,6 +449,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from("Automatically enqueues a job to run KT against yourself without waiting for the elapsed time."),
         onClick = {
           CheckKeyTransparencyJob.enqueueIfNecessary(addDelay = false, force = true)
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Run unread reminder job"),
+        summary = DSLSettingsText.from("Generates an unread reminder notification based on unreads and muted preferences. Skips the three day cooldown."),
+        onClick = {
+          SignalDatabase.threads.getMutedThreadIds(0).forEach { threadId -> UnreadReminderJob.enqueue(threadId, 0) }
         }
       )
 
@@ -844,6 +853,25 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Minimum Capture FPS"),
+        summary = DSLSettingsText.from(
+          buildString {
+            append(if (state.callingMinimumCaptureFps > 0) "${state.callingMinimumCaptureFps} fps" else "Default")
+            cameraFpsRangeDescription?.let { append("\n$it") }
+          }
+        ),
+        onClick = {
+          promptUserForInt(
+            title = "Minimum Capture FPS",
+            message = "Floor for the camera's capture framerate range. 0 for default logic. Applies on next call start.",
+            initialValue = state.callingMinimumCaptureFps.takeIf { it > 0 }
+          ) { minimumFps ->
+            viewModel.setInternalCallingMinimumCaptureFps(minimumFps ?: 0)
+          }
+        }
+      )
+
       dividerPref()
 
       // TODO [alex] -- db access on main thread!
@@ -1115,7 +1143,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         lifecycleScope.launch {
-          when (AdvancedPrivacySettingsRepository(requireContext()).disablePushMessages()) {
+          when (AdvancedPrivacySettingsRepository().disablePushMessages()) {
             AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
               SignalStore.account.setRegistered(false)
               SignalStore.registration.clearRegistrationComplete()
@@ -1128,6 +1156,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             }
           }
         }
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
+  }
+
+  private fun onCopyServicePasswordClicked() {
+    val servicePassword = SignalStore.account.servicePassword
+    if (servicePassword == null) {
+      Toast.makeText(requireContext(), "No service password set!", Toast.LENGTH_SHORT).show()
+      return
+    }
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle("Copy service password?")
+      .setMessage("Your service password lets anyone who has it send messages as you on the service. Treat it like a password: don't paste it anywhere you don't fully trust. It will be cleared from the clipboard after ${Util.SENSITIVE_CLIPBOARD_TIMEOUT_SECONDS} seconds.")
+      .setPositiveButton("Copy") { _, _ ->
+        Util.copyToClipboardSensitive(requireContext(), servicePassword)
+        Toast.makeText(requireContext(), "Copied service password", Toast.LENGTH_SHORT).show()
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()
@@ -1396,8 +1442,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       val message: MessageRecord = messages[0]
       val startingPosition = SignalDatabase.messages.getMessagePositionInConversation(message.threadId, message.dateReceived)
+      val threadRecipientId = SignalDatabase.threads.getRecipientIdForThreadId(message.threadId) ?: return@promptUserForString
       val intent = ConversationIntents
-        .createBuilderSync(requireContext(), RecipientId.UNKNOWN, message.threadId)
+        .createBuilderSync(requireContext(), threadRecipientId, message.threadId)
         .withStartingPosition(startingPosition)
         .build()
 

@@ -39,6 +39,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import okio.ByteString;
 
@@ -63,16 +64,26 @@ public class GroupsV2Api {
 
   /**
    * Create an auth token from a credential response.
+   *
+   * @param authCredentialSalt required when the account has no PNI, provided by the server at registration/link time
    */
   public GroupsV2AuthorizationString getGroupsV2AuthorizationString(ACI aci,
-                                                                    PNI pni,
+                                                                    @Nullable PNI pni,
+                                                                    @Nullable byte[] authCredentialSalt,
                                                                     long redemptionTimeSeconds,
                                                                     GroupSecretParams groupSecretParams,
                                                                     AuthCredentialWithPniResponse authCredentialWithPniResponse)
       throws VerificationFailedException
   {
-    ClientZkAuthOperations     authOperations             = groupsOperations.getAuthOperations();
-    AuthCredentialWithPni      authCredentialWithPni      = authOperations.receiveAuthCredentialWithPniAsServiceId(aci.getLibSignalAci(), pni.getLibSignalPni(), redemptionTimeSeconds, authCredentialWithPniResponse);
+    ClientZkAuthOperations authOperations = groupsOperations.getAuthOperations();
+
+    AuthCredentialWithPni authCredentialWithPni;
+    if (pni != null) {
+      authCredentialWithPni = authOperations.receiveAuthCredentialWithPniAsServiceId(aci.getLibSignalAci(), pni.getLibSignalPni(), redemptionTimeSeconds, authCredentialWithPniResponse);
+    } else {
+      authCredentialWithPni = authOperations.receiveAuthCredentialWithoutPni(aci.getLibSignalAci(), Objects.requireNonNull(authCredentialSalt, "Missing auth credential salt for account without a PNI"), redemptionTimeSeconds, authCredentialWithPniResponse);
+    }
+
     AuthCredentialPresentation authCredentialPresentation = authOperations.createAuthCredentialPresentation(new SecureRandom(), groupSecretParams, authCredentialWithPni);
 
     return new GroupsV2AuthorizationString(groupSecretParams, authCredentialPresentation);

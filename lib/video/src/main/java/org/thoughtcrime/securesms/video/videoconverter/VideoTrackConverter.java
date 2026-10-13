@@ -249,6 +249,59 @@ final class VideoTrackConverter {
             break;
         }
 
+        // Poll frames from the video encoder and send them to the muxer.
+        while (!mVideoEncoderDone && (mEncoderOutputVideoFormat == null || mMuxer != null)) {
+            final int encoderOutputBufferIndex = mVideoEncoder.dequeueOutputBuffer(mVideoEncoderOutputBufferInfo, TIMEOUT_USEC);
+            if (encoderOutputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
+                if (VERBOSE) Log.d(TAG, "no video encoder output buffer");
+                if (mVideoDecoderDone) {
+                    // on some devices and encoder stops after signalEndOfInputStream
+                    Log.w(TAG, "mVideoDecoderDone, but didn't get BUFFER_FLAG_END_OF_STREAM");
+                    mVideoEncodedFrameCount = mVideoDecodedFrameCount;
+                    mVideoEncoderDone = true;
+                }
+                break;
+            }
+            if (encoderOutputBufferIndex == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
+                if (VERBOSE) Log.d(TAG, "video encoder: output buffers changed");
+                mVideoEncoderOutputBuffers = mVideoEncoder.getOutputBuffers();
+                break;
+            }
+            if (encoderOutputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+                if (VERBOSE) Log.d(TAG, "video encoder: output format changed");
+                Preconditions.checkState("video encoder changed its output format again?", mOutputVideoTrack < 0);
+                mEncoderOutputVideoFormat = mVideoEncoder.getOutputFormat();
+                break;
+            }
+            Preconditions.checkState("should have added track before processing output", mMuxer != null);
+            if (VERBOSE) {
+                Log.d(TAG, "video encoder: returned output buffer: " + encoderOutputBufferIndex);
+                Log.d(TAG, "video encoder: returned buffer of size " + mVideoEncoderOutputBufferInfo.size);
+            }
+            final ByteBuffer encoderOutputBuffer = mVideoEncoderOutputBuffers[encoderOutputBufferIndex];
+            if ((mVideoEncoderOutputBufferInfo.flags & MediaCodec.BUFFER_FLAG_CODEC_CONFIG) != 0) {
+                if (VERBOSE) Log.d(TAG, "video encoder: codec config buffer");
+                // Simply ignore codec config buffers.
+                mVideoEncoder.releaseOutputBuffer(encoderOutputBufferIndex, false);
+                break;
+            }
+            if (VERBOSE) {
+                Log.d(TAG, "video encoder: returned buffer for time " + mVideoEncoderOutputBufferInfo.presentationTimeUs);
+            }
+            if (mVideoEncoderOutputBufferInfo.size != 0) {
+                mMuxer.writeSampleData(mOutputVideoTrack, encoderOutputBuffer, mVideoEncoderOutputBufferInfo);
+                mMuxingVideoPresentationTime = Math.max(mMuxingVideoPresentationTime, mVideoEncoderOutputBufferInfo.presentationTimeUs);
+            }
+            if ((mVideoEncoderOutputBufferInfo.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
+                if (VERBOSE) Log.d(TAG, "video encoder: EOS");
+                mVideoEncoderDone = true;
+            }
+            mVideoEncoder.releaseOutputBuffer(encoderOutputBufferIndex, false);
+            mVideoEncodedFrameCount++;
+            // We enqueued an encoded frame, let's try something else next.
+            break;
+        }
+
         // Poll output frames from the video decoder and feed the encoder.
         while (!mVideoDecoderDone && (mEncoderOutputVideoFormat == null || mMuxer != null)) {
             final int decoderOutputBufferIndex =
@@ -308,59 +361,6 @@ final class VideoTrackConverter {
             }
             mVideoDecodedFrameCount++;
             // We extracted a pending frame, let's try something else next.
-            break;
-        }
-
-        // Poll frames from the video encoder and send them to the muxer.
-        while (!mVideoEncoderDone && (mEncoderOutputVideoFormat == null || mMuxer != null)) {
-            final int encoderOutputBufferIndex = mVideoEncoder.dequeueOutputBuffer(mVideoEncoderOutputBufferInfo, TIMEOUT_USEC);
-            if (encoderOutputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
-                if (VERBOSE) Log.d(TAG, "no video encoder output buffer");
-                if (mVideoDecoderDone) {
-                    // on some devices and encoder stops after signalEndOfInputStream
-                    Log.w(TAG, "mVideoDecoderDone, but didn't get BUFFER_FLAG_END_OF_STREAM");
-                    mVideoEncodedFrameCount = mVideoDecodedFrameCount;
-                    mVideoEncoderDone = true;
-                }
-                break;
-            }
-            if (encoderOutputBufferIndex == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
-                if (VERBOSE) Log.d(TAG, "video encoder: output buffers changed");
-                mVideoEncoderOutputBuffers = mVideoEncoder.getOutputBuffers();
-                break;
-            }
-            if (encoderOutputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-                if (VERBOSE) Log.d(TAG, "video encoder: output format changed");
-                Preconditions.checkState("video encoder changed its output format again?", mOutputVideoTrack < 0);
-                mEncoderOutputVideoFormat = mVideoEncoder.getOutputFormat();
-                break;
-            }
-            Preconditions.checkState("should have added track before processing output", mMuxer != null);
-            if (VERBOSE) {
-                Log.d(TAG, "video encoder: returned output buffer: " + encoderOutputBufferIndex);
-                Log.d(TAG, "video encoder: returned buffer of size " + mVideoEncoderOutputBufferInfo.size);
-            }
-            final ByteBuffer encoderOutputBuffer = mVideoEncoderOutputBuffers[encoderOutputBufferIndex];
-            if ((mVideoEncoderOutputBufferInfo.flags & MediaCodec.BUFFER_FLAG_CODEC_CONFIG) != 0) {
-                if (VERBOSE) Log.d(TAG, "video encoder: codec config buffer");
-                // Simply ignore codec config buffers.
-                mVideoEncoder.releaseOutputBuffer(encoderOutputBufferIndex, false);
-                break;
-            }
-            if (VERBOSE) {
-                Log.d(TAG, "video encoder: returned buffer for time " + mVideoEncoderOutputBufferInfo.presentationTimeUs);
-            }
-            if (mVideoEncoderOutputBufferInfo.size != 0) {
-                mMuxer.writeSampleData(mOutputVideoTrack, encoderOutputBuffer, mVideoEncoderOutputBufferInfo);
-                mMuxingVideoPresentationTime = Math.max(mMuxingVideoPresentationTime, mVideoEncoderOutputBufferInfo.presentationTimeUs);
-            }
-            if ((mVideoEncoderOutputBufferInfo.flags & MediaCodec.BUFFER_FLAG_END_OF_STREAM) != 0) {
-                if (VERBOSE) Log.d(TAG, "video encoder: EOS");
-                mVideoEncoderDone = true;
-            }
-            mVideoEncoder.releaseOutputBuffer(encoderOutputBufferIndex, false);
-            mVideoEncodedFrameCount++;
-            // We enqueued an encoded frame, let's try something else next.
             break;
         }
     }

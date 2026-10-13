@@ -5,6 +5,7 @@ import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
+import org.thoughtcrime.securesms.keyvalue.protos.RemoteConfigOverrides
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -33,34 +34,24 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
     const val CALLING_ENABLE_SVC: String = "internal.calling_enable_svc"
     const val CALLING_STATS_INTERVAL_SECS: String = "internal.calling_stats_interval_secs"
+    const val CALLING_MINIMUM_CAPTURE_FPS: String = "internal.calling_minimum_capture_fps"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val LAST_SCROLL_POSITION: String = "internal.last_scroll_position"
     const val CONVERSATION_ITEM_V2_MEDIA: String = "internal.conversation_item_v2_media"
     const val WEB_SOCKET_SHADOWING_STATS: String = "internal.web_socket_shadowing_stats"
-    const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
-    const val FORCE_SINGLE_PANE_ON_ALL_DEVICES: String = "internal.force_single_pane_on_all_devices"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
     const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
     const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
     const val ANR_DETECTION_CRASH: String = "internal.anr_detection_crash"
     const val ISSUE_NOTIFICATION_PRIORITY: String = "internal.issue_notification_priority"
     const val ISSUE_NOTIFY_TIMES: String = "internal.issue_notify_times"
+    const val REMOTE_CONFIG_OVERRIDES: String = "internal.remote_config_overrides"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
 
   public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
-
-  /**
-   * Force split-pane mode on compact landscape
-   */
-  var forceSplitPane by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
-
-  /**
-   * Force single-pane on all devices
-   */
-  var forceSinglePane by booleanValue(FORCE_SINGLE_PANE_ON_ALL_DEVICES, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.
@@ -208,6 +199,11 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    */
   var callingStatsIntervalSecs: Int by integerValue(CALLING_STATS_INTERVAL_SECS, 0).defaultForExternalUsers()
 
+  /**
+   * Minimum fps for the camera's capture framerate range. Zero means use default logic
+   */
+  var callingMinimumCaptureFps: Int by integerValue(CALLING_MINIMUM_CAPTURE_FPS, 0).defaultForExternalUsers()
+
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
@@ -235,6 +231,18 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   /** Enable ANR detector forcing a crash. */
   var anrDetectionCrashes by booleanValue(ANR_DETECTION_CRASH, true).falseForExternalUsers()
+
+  private var remoteConfigOverridesProto: RemoteConfigOverrides by protoValue(REMOTE_CONFIG_OVERRIDES, RemoteConfigOverrides(), RemoteConfigOverrides.ADAPTER)
+
+  /**
+   * Locally-overridden [RemoteConfig] values, keyed by config key. This isn't gated on the
+   * internal user flag, because it's read while remote config is initializing.
+   */
+  var remoteConfigOverrides: Map<String, String>
+    get() = remoteConfigOverridesProto.valueByKey
+    set(value) {
+      remoteConfigOverridesProto = RemoteConfigOverrides(valueByKey = value)
+    }
 
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {
     return this.withPrecondition { RemoteConfig.internalUser }

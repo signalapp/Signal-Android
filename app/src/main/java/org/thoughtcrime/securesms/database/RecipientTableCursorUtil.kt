@@ -154,6 +154,7 @@ object RecipientTableCursorUtil {
       mentionSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.MENTION_SETTING)),
       callNotificationSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.CALL_NOTIFICATION_SETTING)),
       replyNotificationSetting = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.REPLY_NOTIFICATION_SETTING)),
+      unreadReminder = RecipientTable.NotificationSetting.fromId(cursor.requireInt(RecipientTable.UNREAD_REMINDER)),
       wallpaper = chatWallpaper,
       chatColors = chatColors,
       avatarColor = avatarColor,
@@ -169,6 +170,7 @@ object RecipientTableCursorUtil {
       phoneNumberSharing = cursor.requireInt(RecipientTable.PHONE_NUMBER_SHARING).let { RecipientTable.PhoneNumberSharingState.fromId(it) },
       nickname = ProfileName.fromParts(cursor.requireString(RecipientTable.NICKNAME_GIVEN_NAME), cursor.requireString(RecipientTable.NICKNAME_FAMILY_NAME)),
       note = cursor.requireString(RecipientTable.NOTE),
+      sharedName = ProfileName.fromParts(cursor.requireString(RecipientTable.SHARED_GIVEN_NAME), cursor.requireString(RecipientTable.SHARED_FAMILY_NAME)),
       keyTransparencyData = cursor.requireBlob(RecipientTable.KEY_TRANSPARENCY_DATA)
     )
   }

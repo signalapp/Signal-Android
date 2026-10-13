@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class BenchmarkSetupActivity : BaseActivity() {
 
@@ -269,7 +268,7 @@ class BenchmarkSetupActivity : BaseActivity() {
     }
 
     if (enableReadReceipts) {
-      TextSecurePreferences.setReadReceiptsEnabled(this, true)
+      SignalStore.settings.isReadReceiptsEnabled = true
     }
   }
 }

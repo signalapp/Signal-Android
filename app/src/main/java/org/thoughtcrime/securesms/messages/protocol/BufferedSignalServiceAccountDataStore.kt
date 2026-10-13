@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages.protocol
 
 import org.signal.core.models.ServiceId
+import org.signal.core.models.normalized
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -46,15 +47,15 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
   }
 
   override fun saveIdentity(address: SignalProtocolAddress, identityKey: IdentityKey): IdentityChange {
-    return identityStore.saveIdentity(address, identityKey)
+    return identityStore.saveIdentity(address.normalized(), identityKey)
   }
 
   override fun isTrustedIdentity(address: SignalProtocolAddress, identityKey: IdentityKey, direction: IdentityKeyStore.Direction): Boolean {
-    return identityStore.isTrustedIdentity(address, identityKey, direction)
+    return identityStore.isTrustedIdentity(address.normalized(), identityKey, direction)
   }
 
   override fun getIdentity(address: SignalProtocolAddress): IdentityKey? {
-    return identityStore.getIdentity(address)
+    return identityStore.getIdentity(address.normalized())
   }
 
   override fun loadPreKey(preKeyId: Int): PreKeyRecord {
@@ -74,31 +75,31 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
   }
 
   override fun loadSession(address: SignalProtocolAddress): SessionRecord {
-    return sessionStore.loadSession(address)
+    return sessionStore.loadSession(address.normalized())
   }
 
   override fun loadExistingSessions(addresses: MutableList<SignalProtocolAddress>): List<SessionRecord> {
-    return sessionStore.loadExistingSessions(addresses)
+    return sessionStore.loadExistingSessions(addresses.map { it.normalized() }.toMutableList())
   }
 
   override fun getSubDeviceSessions(name: String): MutableList<Int> {
-    return sessionStore.getSubDeviceSessions(name)
+    return sessionStore.getSubDeviceSessions(ServiceId.normalizeAddressName(name))
   }
 
   override fun storeSession(address: SignalProtocolAddress, record: SessionRecord) {
-    sessionStore.storeSession(address, record)
+    sessionStore.storeSession(address.normalized(), record)
   }
 
   override fun containsSession(address: SignalProtocolAddress): Boolean {
-    return sessionStore.containsSession(address)
+    return sessionStore.containsSession(address.normalized())
   }
 
   override fun deleteSession(address: SignalProtocolAddress) {
-    return sessionStore.deleteSession(address)
+    return sessionStore.deleteSession(address.normalized())
   }
 
   override fun deleteAllSessions(name: String) {
-    sessionStore.deleteAllSessions(name)
+    sessionStore.deleteAllSessions(ServiceId.normalizeAddressName(name))
   }
 
   override fun loadSignedPreKey(signedPreKeyId: Int): SignedPreKeyRecord {
@@ -170,19 +171,19 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
   }
 
   override fun storeSenderKey(sender: SignalProtocolAddress, distributionId: UUID, record: SenderKeyRecord) {
-    senderKeyStore.storeSenderKey(sender, distributionId, record)
+    senderKeyStore.storeSenderKey(sender.normalized(), distributionId, record)
   }
 
   override fun loadSenderKey(sender: SignalProtocolAddress, distributionId: UUID): SenderKeyRecord? {
-    return senderKeyStore.loadSenderKey(sender, distributionId)
+    return senderKeyStore.loadSenderKey(sender.normalized(), distributionId)
   }
 
   override fun archiveSession(address: SignalProtocolAddress?) {
-    sessionStore.archiveSession(address)
+    sessionStore.archiveSession(address?.normalized())
   }
 
   override fun getAllAddressesWithActiveSessions(addressNames: MutableList<String>): Map<SignalProtocolAddress, SessionRecord> {
-    return sessionStore.getAllAddressesWithActiveSessions(addressNames)
+    return sessionStore.getAllAddressesWithActiveSessions(addressNames.map { ServiceId.normalizeAddressName(it) }.toMutableList())
   }
 
   override fun getSenderKeySharedWith(distributionId: DistributionId?): MutableSet<SignalProtocolAddress> {
@@ -190,11 +191,11 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
   }
 
   override fun markSenderKeySharedWith(distributionId: DistributionId, addresses: MutableCollection<SignalProtocolAddress>) {
-    senderKeyStore.markSenderKeySharedWith(distributionId, addresses)
+    senderKeyStore.markSenderKeySharedWith(distributionId, addresses.map { it.normalized() }.toMutableList())
   }
 
   override fun clearSenderKeySharedWith(addresses: MutableCollection<SignalProtocolAddress>) {
-    senderKeyStore.clearSenderKeySharedWith(addresses)
+    senderKeyStore.clearSenderKeySharedWith(addresses.map { it.normalized() }.toMutableList())
   }
 
   override fun isMultiDevice(): Boolean {

@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.messages.shared;
 
 
 
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 
 import java.util.LinkedList;
@@ -16,13 +17,19 @@ public class SharedContact {
   private final Optional<List<Email>>         email;
   private final Optional<List<PostalAddress>> address;
   private final Optional<String>              organization;
+  private final Optional<ACI>                 aci;
+  private final Optional<Nickname>            nickname;
+  private final Optional<String>              note;
 
   public SharedContact(Name name,
                        Optional<Avatar> avatar,
                        Optional<List<Phone>> phone,
                        Optional<List<Email>> email,
                        Optional<List<PostalAddress>> address,
-                       Optional<String> organization)
+                       Optional<String> organization,
+                       Optional<ACI> aci,
+                       Optional<Nickname> nickname,
+                       Optional<String> note)
   {
     this.name         = name;
     this.avatar       = avatar;
@@ -30,6 +37,9 @@ public class SharedContact {
     this.email        = email;
     this.address      = address;
     this.organization = organization;
+    this.aci          = aci;
+    this.nickname     = nickname;
+    this.note         = note;
   }
 
   public static Builder newBuilder() {
@@ -58,6 +68,21 @@ public class SharedContact {
 
   public Optional<String> getOrganization() {
     return organization;
+  }
+
+  /** The ACI of the person on the card, present when the sharer knew they were on Signal. */
+  public Optional<ACI> getAci() {
+    return aci;
+  }
+
+  /** The sharer's own Signal nickname for the contact, not the vcard nickname on {@link Name}. */
+  public Optional<Nickname> getNickname() {
+    return nickname;
+  }
+
+  /** The sharer's own Signal note about the contact. */
+  public Optional<String> getNote() {
+    return note;
   }
 
   public static class Avatar {
@@ -449,10 +474,59 @@ public class SharedContact {
     }
   }
 
+  public static class Nickname {
+
+    private final Optional<String> given;
+    private final Optional<String> family;
+
+    public Nickname(Optional<String> given, Optional<String> family) {
+      this.given  = given;
+      this.family = family;
+    }
+
+    public static Builder newBuilder() {
+      return new Builder();
+    }
+
+    public Optional<String> getGiven() {
+      return given;
+    }
+
+    public Optional<String> getFamily() {
+      return family;
+    }
+
+    public boolean isEmpty() {
+      return given.isEmpty() && family.isEmpty();
+    }
+
+    public static class Builder {
+      private String given;
+      private String family;
+
+      public Builder setGiven(String given) {
+        this.given = given;
+        return this;
+      }
+
+      public Builder setFamily(String family) {
+        this.family = family;
+        return this;
+      }
+
+      public Nickname build() {
+        return new Nickname(Optional.ofNullable(given), Optional.ofNullable(family));
+      }
+    }
+  }
+
   public static class Builder {
-    private Name   name;
-    private Avatar avatar;
-    private String organization;
+    private Name     name;
+    private Avatar   avatar;
+    private String   organization;
+    private ACI      aci;
+    private Nickname nickname;
+    private String   note;
 
     private List<Phone>         phone   = new LinkedList<>();
     private List<Email>         email   = new LinkedList<>();
@@ -503,12 +577,30 @@ public class SharedContact {
       return this;
     }
 
+    public Builder withAci(ACI aci) {
+      this.aci = aci;
+      return this;
+    }
+
+    public Builder withNickname(Nickname nickname) {
+      this.nickname = nickname;
+      return this;
+    }
+
+    public Builder withNote(String note) {
+      this.note = note;
+      return this;
+    }
+
     public SharedContact build() {
       return new SharedContact(name, Optional.ofNullable(avatar),
                                phone.isEmpty()   ? Optional.empty() : Optional.of(phone),
                                email.isEmpty()   ? Optional.empty() : Optional.of(email),
                                address.isEmpty() ? Optional.empty() : Optional.of(address),
-                               Optional.ofNullable(organization));
+                               Optional.ofNullable(organization),
+                               Optional.ofNullable(aci),
+                               Optional.ofNullable(nickname),
+                               Optional.ofNullable(note));
     }
   }
 }

@@ -217,8 +217,35 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
+            android:id="@+id/action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
             android:id="@+id/action_accountSettingsFragment_to_authenticatorSetupFragment"
             app:destination="@id/authenticatorSetupFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_twoFactorNameFragment"
+            app:destination="@id/twoFactorNameFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsSignalLoginDetailsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.signallogin.SettingsSignalLoginDetailsFragment"
+        android:label="settings_signal_login_details_fragment">
+        <action
+            android:id="@+id/action_settingsSignalLoginDetailsFragment_to_backupKeyDisplayFragment"
+            app:destination="@id/backupKeyDisplayFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -227,7 +254,7 @@
 
     <fragment
         android:id="@+id/authenticatorSetupFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorSetupFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpSetupFragment"
         android:label="authenticator_setup_fragment">
         <action
             android:id="@+id/action_authenticatorSetupFragment_to_authenticatorCodeEntryFragment"
@@ -240,8 +267,48 @@
 
     <fragment
         android:id="@+id/authenticatorCodeEntryFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.AuthenticatorCodeEntryFragment"
-        android:label="authenticator_code_entry_fragment" />
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryFragment"
+        android:label="authenticator_code_entry_fragment">
+        <action
+            android:id="@+id/action_authenticatorCodeEntryFragment_to_twoFactorNameFragment"
+            app:destination="@id/twoFactorNameFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/twoFactorNameFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryFragment"
+        android:label="two_factor_name_fragment">
+
+        <argument
+            android:name="method_id"
+            android:defaultValue="-1L"
+            app:argType="long" />
+
+        <argument
+            android:name="renaming"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="method_kind"
+            android:defaultValue="AUTHENTICATOR_APP"
+            app:argType="string" />
+
+        <argument
+            android:name="method_name"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+        <argument
+            android:name="method_created_at"
+            android:defaultValue="-1L"
+            app:argType="long" />
+    </fragment>
 
     <fragment
         android:id="@+id/linkedDeviceAccountSettingsFragment"
@@ -267,8 +334,7 @@
     <fragment
         android:id="@+id/deleteAccountFragment"
         android:name="org.thoughtcrime.securesms.delete.DeleteAccountFragment"
-        android:label="delete_account_fragment"
-        tools:layout="@layout/delete_account_fragment">
+        android:label="delete_account_fragment">
 
         <action
             android:id="@+id/action_deleteAccountFragment_to_deleteAccountCountryFragment"
@@ -473,6 +539,14 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
 
+        <action
+            android:id="@+id/action_localBackupsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
         <argument
             android:name="trigger_update_flow"
             app:argType="boolean"
@@ -503,7 +577,7 @@
 
     <dialog
         android:id="@+id/chatFoldersEducationSheet"
-        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet"/>
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet" />
 
     <fragment
         android:id="@+id/createFoldersFragment"
@@ -655,7 +729,7 @@
 
     <fragment
         android:id="@+id/inviteFragment"
-        android:name="org.thoughtcrime.securesms.InviteFragment"
+        android:name="org.signal.appsettings.invite.InviteFragment"
         android:label="invite_fragment" />
 
     <!-- region Direct-To-Page actions -->
@@ -962,6 +1036,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalIssuesFragment"
             app:destination="@id/internalIssuesFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalRemoteConfigFragment"
+            app:destination="@id/internalRemoteConfigFragment" />
     </fragment>
 
     <fragment
@@ -1033,6 +1110,11 @@
         android:id="@+id/internalIssuesFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.issues.InternalIssuesFragment"
         android:label="internal_issues_fragment" />
+
+    <fragment
+        android:id="@+id/internalRemoteConfigFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.remoteconfig.InternalRemoteConfigFragment"
+        android:label="internal_remote_config_fragment" />
 
     <!-- endregion -->
 
@@ -1333,6 +1415,14 @@
         <action
             android:id="@+id/action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment"
             app:destination="@id/backupKeyDisplayFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment"
+            app:destination="@id/settingsSignalLoginDetailsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"

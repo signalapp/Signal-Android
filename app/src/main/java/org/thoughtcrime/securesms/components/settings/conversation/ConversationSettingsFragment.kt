@@ -64,8 +64,8 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescription
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupInviteSentDialog
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
-import org.thoughtcrime.securesms.main.MainNavigationChatDetailRouter
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainNavigationEventSink
+import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache
@@ -118,7 +118,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   )
 
   private var transitionCallback: TransitionCallback? = null
-  private var chatRouter: MainNavigationChatDetailRouter? = null
+  private var mainNavigationEventSink: MainNavigationEventSink? = null
 
   /** The avatar view owns the shared element transition out of this screen. */
   private var avatarView: View? = null
@@ -131,7 +131,7 @@ class ConversationSettingsFragment : ComposeFragment() {
   override fun onAttach(context: Context) {
     super.onAttach(context)
     transitionCallback = context as? TransitionCallback
-    chatRouter = context as? MainNavigationChatDetailRouter
+    mainNavigationEventSink = context as? MainNavigationEventSink
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -359,7 +359,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         val builder = ConversationIntents.createBuilderSync(requireContext(), action.recipientId, action.threadId)
         startActivity(builder.withSearchOpen(action.withSearchOpen).build())
 
-        if (action.withSearchOpen && requireActivity() !is MainNavigationChatDetailRouter) {
+        if (action.withSearchOpen && requireActivity() !is MainNavigationEventSink) {
           requireActivity().finish()
         }
       }
@@ -454,7 +454,7 @@ class ConversationSettingsFragment : ComposeFragment() {
       }
       is ConversationSettingsAction.OpenGroupConversation -> {
         CommunicationActions.startConversation(requireActivity(), action.recipient, null)
-        if (requireActivity() !is MainNavigationChatDetailRouter) {
+        if (requireActivity() !is MainNavigationEventSink) {
           requireActivity().finish()
         }
       }
@@ -485,7 +485,7 @@ class ConversationSettingsFragment : ComposeFragment() {
         startActivity(ManagePendingAndRequestingMembersActivity.newIntent(requireContext(), action.groupId))
       }
       is ConversationSettingsAction.NavigateToPermissions -> {
-        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(action.groupId))
+        navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToGroupPermissionsFragment(action.groupId))
       }
       is ConversationSettingsAction.ShowLeaveGroupDialog -> {
         LeaveGroupDialog.handleLeavePushGroup(requireActivity(), action.groupId.requirePush(), null)
@@ -559,10 +559,11 @@ class ConversationSettingsFragment : ComposeFragment() {
   }
 
   private fun goToConversationList() {
-    if (chatRouter != null) {
-      chatRouter?.exitDetailLocation()
+    val eventSink = mainNavigationEventSink
+    if (eventSink != null) {
+      eventSink.onEvent(MainNavigationEvents.ExitDetail)
     } else {
-      startActivity(MainActivity.clearTopAndOpenDetail(requireContext(), MainNavigationDetailLocation.Empty))
+      startActivity(MainActivity.clearTopAndExitDetail(requireContext()))
     }
   }
 

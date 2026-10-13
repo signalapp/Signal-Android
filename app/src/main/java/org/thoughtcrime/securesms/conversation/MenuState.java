@@ -33,23 +33,25 @@ public final class MenuState {
   private final boolean unpinMessage;
   private final boolean starMessage;
   private final boolean unstarMessage;
+  private final boolean viewStickerPack;
 
   private MenuState(@NonNull Builder builder) {
-    forward        = builder.forward;
-    reply          = builder.reply;
-    details        = builder.details;
-    saveAttachment = builder.saveAttachment;
-    resend         = builder.resend;
-    copy           = builder.copy;
-    delete         = builder.delete;
-    reactions      = builder.reactions;
-    paymentDetails = builder.paymentDetails;
-    edit           = builder.edit;
-    pollTerminate  = builder.pollTerminate;
-    pinMessage     = builder.pinMessage;
-    unpinMessage   = builder.unpinMessage;
-    starMessage    = builder.starMessage;
-    unstarMessage  = builder.unstarMessage;
+    forward         = builder.forward;
+    reply           = builder.reply;
+    details         = builder.details;
+    saveAttachment  = builder.saveAttachment;
+    resend          = builder.resend;
+    copy            = builder.copy;
+    delete          = builder.delete;
+    reactions       = builder.reactions;
+    paymentDetails  = builder.paymentDetails;
+    edit            = builder.edit;
+    pollTerminate   = builder.pollTerminate;
+    pinMessage      = builder.pinMessage;
+    unpinMessage    = builder.unpinMessage;
+    starMessage     = builder.starMessage;
+    unstarMessage   = builder.unstarMessage;
+    viewStickerPack = builder.viewStickerPack;
   }
 
   public boolean shouldShowForwardAction() {
@@ -110,6 +112,10 @@ public final class MenuState {
 
   public boolean shouldShowUnstarMessage() {
     return unstarMessage;
+  }
+
+  public boolean shouldShowViewStickerPackAction() {
+    return viewStickerPack;
   }
 
   public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
@@ -229,7 +235,8 @@ public final class MenuState {
              .shouldShowPinMessage(false)
              .shouldShowUnpinMessage(false)
              .shouldShowStarMessage(false)
-             .shouldShowUnstarMessage(false);
+             .shouldShowUnstarMessage(false)
+             .shouldShowViewStickerPack(false);
     } else {
       MultiselectPart multiSelectRecord = selectedParts.iterator().next();
 
@@ -247,7 +254,8 @@ public final class MenuState {
                                              ((MmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
              .shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowDetailsAction(!actionMessage && !conversationRecipient.isReleaseNotes())
-             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));
+             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup))
+             .shouldShowViewStickerPack(!remoteDelete && MessageRecordUtil.hasSticker(messageRecord));
 
       builder.shouldShowEdit(!actionMessage &&
                              hasText &&
@@ -316,6 +324,7 @@ public final class MenuState {
     private boolean unpinMessage;
     private boolean starMessage;
     private boolean unstarMessage;
+    private boolean viewStickerPack;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -389,6 +398,11 @@ public final class MenuState {
 
     @NonNull Builder shouldShowUnstarMessage(boolean unstarMessage) {
       this.unstarMessage = unstarMessage;
+      return this;
+    }
+
+    @NonNull Builder shouldShowViewStickerPack(boolean viewStickerPack) {
+      this.viewStickerPack = viewStickerPack;
       return this;
     }
 

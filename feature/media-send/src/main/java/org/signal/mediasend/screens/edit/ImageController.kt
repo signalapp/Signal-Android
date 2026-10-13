@@ -475,6 +475,7 @@ internal class ImageController(
   }
 
   fun enterCropMode() {
+    clearSelection()
     editorModel.startCrop()
     initialDialScale = editorModel.mainImage?.localScaleX ?: 1f
     transitionTo(Mode.CROP)
@@ -559,7 +560,9 @@ internal class ImageController(
   }
 
   fun onEntityDown(element: EditorElement?) {
-    if (mode == Mode.ZOOM) {
+    // Crop makes the main image selectable so it can be panned inside the frame, but selecting it would draw the
+    // selection guide around the whole image, well outside the crop frame.
+    if (mode == Mode.ZOOM || mode == Mode.CROP) {
       return
     }
 

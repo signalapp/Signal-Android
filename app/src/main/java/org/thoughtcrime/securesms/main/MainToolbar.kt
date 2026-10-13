@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -67,6 +66,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
@@ -76,6 +76,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.circularReveal
+import org.signal.core.ui.compose.statusBarsCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
@@ -152,13 +153,19 @@ enum class MainToolbarMode(val crossFadeKey: CrossFadeKey) {
     FULL,
     BASIC
   }
+
+  /**
+   * The search bar is inset from the start edge of the list pane, so the pane it sits in has to be too.
+   */
+  val listPaddingStart: Dp
+    get() = if (this == SEARCH) 24.dp else 0.dp
 }
 
 data class MainToolbarState(
   val toolbarColor: Color? = null,
   val self: Recipient = Recipient.UNKNOWN,
   val mode: MainToolbarMode = MainToolbarMode.FULL,
-  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
+  val destination: MainListRoute = MainListRoute.Chats,
   val chatFilter: ConversationFilter = ConversationFilter.OFF,
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
@@ -223,7 +230,7 @@ fun MainToolbar(
               state = state,
               callback = callback,
               modifier = Modifier
-                .windowInsetsPadding(WindowInsets.statusBars)
+                .windowInsetsPadding(WindowInsets.statusBarsCompat)
                 .circularReveal(visibility, revealOffset)
             )
           }
@@ -435,7 +442,7 @@ private fun PrimaryToolbar(
       NotificationProfileAction(state, callback)
       ProxyAction(state, callback)
 
-      if (state.destination == MainNavigationListLocation.STORIES && SignalStore.labs.storyArchive) {
+      if (state.destination == MainListRoute.Stories && SignalStore.labs.storyArchive) {
         IconButtons.IconButton(
           onClick = callback::onStoryArchiveClick
         ) {
@@ -471,10 +478,10 @@ private fun PrimaryToolbar(
         controller = controller
       ) {
         when (state.destination) {
-          MainNavigationListLocation.ARCHIVE -> Unit
-          MainNavigationListLocation.CHATS -> ChatDropdownItems(state, callback, dismiss)
-          MainNavigationListLocation.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
-          MainNavigationListLocation.STORIES -> StoryDropDownItems(callback, dismiss)
+          MainListRoute.Archive -> Unit
+          MainListRoute.Chats -> ChatDropdownItems(state, callback, dismiss)
+          MainListRoute.Calls -> CallDropdownItems(state.callFilter, callback, dismiss)
+          MainListRoute.Stories -> StoryDropDownItems(callback, dismiss)
         }
       }
     }
@@ -790,7 +797,7 @@ private fun FullMainToolbarPreview() {
       state = MainToolbarState(
         self = Recipient(isResolving = false),
         mode = mode,
-        destination = MainNavigationListLocation.CHATS,
+        destination = MainListRoute.Chats,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
         hasFailedBackups = true,

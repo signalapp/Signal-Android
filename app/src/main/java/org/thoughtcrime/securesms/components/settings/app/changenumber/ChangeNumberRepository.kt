@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNum
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -140,7 +141,7 @@ class ChangeNumberRepository(
     Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
 
     retryChangeLocalNumberNetworkOperation {
-      SignalNetwork.keys.setPreKeysSync(
+      SignalNetwork.keysApi.setPreKeysSync(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
           signedPreKey = signedPreKey,
@@ -227,8 +228,8 @@ class ChangeNumberRepository(
 
     for (certificateType in certificateTypes) {
       val certificate: ByteArray? = when (certificateType) {
-        CertificateType.ACI_AND_E164 -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificate.getSenderCertificate() }.successOrThrow()
-        CertificateType.ACI_ONLY -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificate.getSenderCertificateForPhoneNumberPrivacy() }.successOrThrow()
+        CertificateType.ACI_AND_E164 -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificateApi.getSenderCertificate() }.successOrThrow()
+        CertificateType.ACI_ONLY -> retryChangeLocalNumberNetworkOperation { SignalNetwork.certificateApi.getSenderCertificateForPhoneNumberPrivacy() }.successOrThrow()
         else -> throw AssertionError()
       }
 
@@ -236,6 +237,8 @@ class ChangeNumberRepository(
 
       SignalStore.certificate.setUnidentifiedAccessCertificate(certificateType, certificate)
     }
+
+    RotateCertificateJob.markRotated()
   }
 
   private fun <T> retryChangeLocalNumberNetworkOperation(operation: () -> NetworkResult<T>): NetworkResult<T> {
@@ -308,7 +311,7 @@ class ChangeNumberRepository(
       SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       SignalStore.misc.lockChangeNumber()
       withContext(Dispatchers.IO) {
-        result = SignalNetwork.account.changeNumber(request)
+        result = SignalNetwork.accountApi.changeNumber(request)
       }
 
       if (result is NetworkResult.StatusCodeError && result.code == 409) {
@@ -334,9 +337,9 @@ class ChangeNumberRepository(
     return ChangeNumberResult.from(
       result.map { accountRegistrationResponse: VerifyAccountResponse ->
         NumberChangeResult(
-          uuid = accountRegistrationResponse.uuid,
-          pni = accountRegistrationResponse.pni,
-          number = accountRegistrationResponse.number
+          uuid = accountRegistrationResponse.uuid!!,
+          pni = accountRegistrationResponse.pni!!,
+          number = accountRegistrationResponse.number!!
         )
       }
     )
@@ -353,11 +356,11 @@ class ChangeNumberRepository(
       if (whoAmI.number == newE164 && whoAmI.pni != null) {
         Log.w(TAG, "Change number request did not succeed, but whoami reports the new number is already active. Treating the change as successful.")
         NetworkResult.Success(
-          VerifyAccountResponse().apply {
-            uuid = whoAmI.aci
-            pni = whoAmI.pni
+          VerifyAccountResponse(
+            uuid = whoAmI.aci,
+            pni = whoAmI.pni,
             number = whoAmI.number
-          }
+          )
         )
       } else {
         Log.i(TAG, "Change number request did not succeed and whoami does not report the new number; treating as a genuine failure.")

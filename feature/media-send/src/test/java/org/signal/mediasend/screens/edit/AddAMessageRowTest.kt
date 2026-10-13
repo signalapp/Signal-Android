@@ -6,12 +6,15 @@
 package org.signal.mediasend.screens.edit
 
 import android.app.Application
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.unit.dp
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -73,6 +76,21 @@ class AddAMessageRowTest {
 
     composeTestRule.onNodeWithTag(TestTags.SCHEDULE_SEND_PICK_TIME_OPTION).assertDoesNotExist()
     assertEquals(emptyList<MediaEditScreenEvents>(), events)
+  }
+
+  /**
+   * The button draws smaller than a finger, so the 48dp of touch target reserved around the circle it draws is the part
+   * worth pinning down: a tap just off the circle still counts as one.
+   */
+  @Test
+  fun `when a tap lands off the send button but inside its touch target, then the flow still advances`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON).performTouchInput {
+      click(Offset(width / 2f, height + 3.dp.toPx()))
+    }
+
+    assertEquals(1, nextClicks)
   }
 
   @Test

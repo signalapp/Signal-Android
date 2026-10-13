@@ -69,6 +69,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import org.signal.core.ui.biometrics.BiometricsAuthentication
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
@@ -83,6 +85,7 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.viewModel
 import org.signal.core.util.bytes
 import org.signal.core.util.gibiBytes
 import org.signal.core.util.mebiBytes
@@ -101,8 +104,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
-import org.thoughtcrime.securesms.components.compose.BiometricsAuthentication
-import org.thoughtcrime.securesms.components.compose.rememberBiometricsAuthentication
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
@@ -114,7 +115,6 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
@@ -283,7 +283,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   }
 
   private fun displayBackupKey() {
-    findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    if (SignalStore.account.isPhoneNumberless) {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_settingsSignalLoginDetailsFragment)
+    } else {
+      findNavController().safeNavigate(R.id.action_remoteBackupsSettingsFragment_to_backupKeyDisplayFragment)
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -473,7 +477,11 @@ private fun RemoteBackupsSettingsContent(
       }
 
       if (state.isLinkedDevice) {
-        appendReducedBackupDetailsItems(state)
+        appendReducedBackupDetailsItems(
+          state = state,
+          backupRestoreState = backupRestoreState,
+          contentCallbacks = contentCallbacks
+        )
       } else if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
         appendBackupDeletionItems(
           backupDeleteState = backupDeleteState,
@@ -969,7 +977,9 @@ private fun LazyListScope.appendBackupDetailsItems(
 }
 
 private fun LazyListScope.appendReducedBackupDetailsItems(
-  state: RemoteBackupsSettingsState
+  state: RemoteBackupsSettingsState,
+  backupRestoreState: BackupRestoreState,
+  contentCallbacks: ContentCallbacks
 ) {
   item {
     Dividers.Default()
@@ -977,6 +987,14 @@ private fun LazyListScope.appendReducedBackupDetailsItems(
 
   item {
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+  }
+
+  if (backupRestoreState is BackupRestoreState.Restoring) {
+    appendRestoreFromBackupStatusData(
+      backupRestoreState = backupRestoreState,
+      canRestoreUsingCellular = state.canRestoreUsingCellular,
+      contentCallbacks = contentCallbacks
+    )
   }
 
   item {
@@ -1377,6 +1395,7 @@ private fun SubscriptionNotFoundCard(
       ) {
         Buttons.MediumTonal(
           onClick = onRenewClick,
+          enabled = isRenewEnabled,
           colors = ButtonDefaults.filledTonalButtonColors().copy(
             containerColor = SignalTheme.colors.colorTransparent5,
             contentColor = colorResource(CoreUiR.color.signal_light_colorOnSurface)
@@ -1392,7 +1411,6 @@ private fun SubscriptionNotFoundCard(
 
         Buttons.MediumTonal(
           onClick = onLearnMoreClick,
-          enabled = isRenewEnabled,
           colors = ButtonDefaults.filledTonalButtonColors().copy(
             containerColor = SignalTheme.colors.colorTransparent5,
             contentColor = colorResource(CoreUiR.color.signal_light_colorOnSurface)
@@ -1420,8 +1438,14 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 ) {
   val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
 
+  val title = if (state.isBilledThroughOtherStore || days <= 0) {
+    stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found)
+  } else {
+    pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days)
+  }
+
   SubscriptionNotFoundCard(
-    title = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+    title = title,
     isRenewEnabled = isRenewEnabled,
     isLinkedDevice = isLinkedDevice,
     onRenewClick = onRenewClick,
@@ -2025,6 +2049,25 @@ private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
           mediaTtl = 30.days
         ),
         renewalTime = System.currentTimeMillis().milliseconds + 30.days
+      ),
+      isRenewEnabled = true
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun SubscriptionMismatchBilledThroughOtherStoreCardPreview() {
+  Previews.Preview {
+    SubscriptionMismatchMissingGooglePlayCard(
+      state = BackupState.SubscriptionMismatchMissingGooglePlay(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 100_000_000,
+          mediaTtl = 30.days
+        ),
+        renewalTime = System.currentTimeMillis().milliseconds + 30.days,
+        isBilledThroughOtherStore = true
       ),
       isRenewEnabled = true
     )

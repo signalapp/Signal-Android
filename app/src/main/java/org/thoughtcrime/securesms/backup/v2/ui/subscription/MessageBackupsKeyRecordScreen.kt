@@ -76,6 +76,10 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.Util
+import org.signal.passwordmanager.CredentialManagerError
+import org.signal.passwordmanager.CredentialManagerResult
+import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.passwordmanager.compose.SaveToPasswordManagerDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.warning.ClipStage
 import org.thoughtcrime.securesms.backup.v2.ui.warning.RecoveryKeyWarningSheetContent
@@ -86,12 +90,7 @@ import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupK
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
-import org.thoughtcrime.securesms.util.storage.CredentialManagerError
-import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
 import org.signal.core.ui.R as CoreUiR
-
-private const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
 @Stable
 sealed interface MessageBackupsKeyRecordMode {
@@ -100,7 +99,8 @@ sealed interface MessageBackupsKeyRecordMode {
     val onCreateNewKeyClick: () -> Unit,
     val onTurnOffAndDownloadClick: () -> Unit,
     val isOptimizedStorageEnabled: Boolean,
-    val canRotateKey: Boolean
+    val canRotateKey: Boolean,
+    val areBackupsEnabled: Boolean
   ) : MessageBackupsKeyRecordMode
   data class Passkey(
     val onSaveToPasswordManager: () -> Unit,
@@ -123,7 +123,10 @@ fun MessageBackupsKeyRecordScreen(
 ) {
   val context = LocalContext.current
   val passwordManagerSettingsIntent = remember {
-    AndroidCredentialRepository.getCredentialManagerSettingsIntent(context)
+    SignalCredentialManager.getSettingsIntent(context)
+  }
+  val isGooglePasswordManagerDefault = remember {
+    SignalCredentialManager.isGooglePasswordManagerDefault(context)
   }
 
   val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
@@ -132,8 +135,9 @@ fun MessageBackupsKeyRecordScreen(
     backupKey = backupKey,
     keySaveState = keySaveState,
     canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
+    isGooglePasswordManagerDefault = isGooglePasswordManagerDefault,
     onNavigationClick = { onBackPressedDispatcher?.onBackPressed() },
-    onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
+    onCopyToClipboardClick = { Util.copyToClipboardSensitive(context, it) },
     onRequestSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveRequested,
     onConfirmSaveToPasswordManager = backupKeyCredentialManagerHandler::onBackupKeySaveConfirmed,
     onSaveToPasswordManagerComplete = backupKeyCredentialManagerHandler::onBackupKeySaveCompleted,
@@ -153,6 +157,7 @@ fun MessageBackupsKeyRecordScreen(
   backupKey: String,
   keySaveState: BackupKeySaveState?,
   canOpenPasswordManagerSettings: Boolean,
+  isGooglePasswordManagerDefault: Boolean,
   onNavigationClick: () -> Unit = {},
   onCopyToClipboardClick: (String) -> Unit = {},
   onRequestSaveToPasswordManager: () -> Unit = {},
@@ -221,7 +226,6 @@ fun MessageBackupsKeyRecordScreen(
   var displayConfirmKey by remember { mutableStateOf(false) }
   if (displayConfirmKey) {
     val context = LocalContext.current
-    val credentialId = stringResource(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
     val successMessage = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_confirmed)
     ModalBottomSheet(
       sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
@@ -231,7 +235,7 @@ fun MessageBackupsKeyRecordScreen(
       ConfirmRecoveryKeySheet(
         onConfirm = {
           coroutineScope.launch {
-            val retrieved = getKeyFromCredentialManager(context, credentialId)
+            val retrieved = getKeyFromCredentialManager(context)
             if (retrieved == backupKey) {
               Toast.makeText(context, successMessage, Toast.LENGTH_SHORT).show()
               (mode as? MessageBackupsKeyRecordMode.Passkey)?.onSaveSuccessful()
@@ -285,6 +289,7 @@ fun MessageBackupsKeyRecordScreen(
                 stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key)
               },
               style = MaterialTheme.typography.headlineMedium,
+              textAlign = TextAlign.Center,
               modifier = Modifier.padding(top = 16.dp)
             )
           }
@@ -414,7 +419,7 @@ fun MessageBackupsKeyRecordScreen(
             }
           }
 
-          if (!showAsPasskey && AndroidCredentialRepository.isCredentialManagerSupported(context)) {
+          if (!showAsPasskey && SignalCredentialManager.isSupported(context)) {
             item {
               Buttons.Small(
                 onClick = { onRequestSaveToPasswordManager() }
@@ -444,13 +449,11 @@ fun MessageBackupsKeyRecordScreen(
 
       when (keySaveState) {
         is BackupKeySaveState.RequestingConfirmation -> {
-          Dialogs.SimpleAlertDialog(
-            title = stringResource(R.string.MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title),
-            body = stringResource(R.string.MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body),
-            dismiss = stringResource(android.R.string.cancel),
-            onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) },
-            confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__continue),
-            onConfirm = onConfirmSaveToPasswordManager
+          SaveToPasswordManagerDialog(
+            trustBody = stringResource(R.string.MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body),
+            isGooglePasswordManagerDefault = isGooglePasswordManagerDefault,
+            onContinue = onConfirmSaveToPasswordManager,
+            onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
           )
         }
 
@@ -551,6 +554,7 @@ private fun CreateNewKeyButton(
 
   if (displayKeyLimitDialog) {
     KeyLimitExceededDialog(
+      areBackupsEnabled = mode.areBackupsEnabled,
       onClick = { displayKeyLimitDialog = false }
     )
   }
@@ -713,34 +717,6 @@ private fun ColumnScope.CreateNewBackupKeySheetContent(
 }
 
 @Composable
-private fun DownloadMediaDialog(
-  onTurnOffAndDownloadClick: () -> Unit = {},
-  onCancelClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__download_media),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__to_create_a_new_backup_key),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__turn_off_and_download),
-    dismiss = stringResource(android.R.string.cancel),
-    onConfirm = onTurnOffAndDownloadClick,
-    onDeny = onCancelClick
-  )
-}
-
-@Composable
-private fun KeyLimitExceededDialog(
-  onClick: () -> Unit = {}
-) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_title),
-    body = stringResource(R.string.MessageBackupsKeyRecordScreen__limit_exceeded_body),
-    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__ok),
-    onConfirm = {},
-    onDismiss = onClick
-  )
-}
-
-@Composable
 private fun ConfirmationFailureDialog(mode: MessageBackupsKeyRecordMode, onDismiss: () -> Unit) {
   Dialogs.AdvancedAlertDialog(
     title = stringResource(R.string.MessageBackupsKeyRecordScreen__recover_key_error),
@@ -764,18 +740,29 @@ private suspend fun saveKeyToCredentialManager(
   @UiContext activityContext: Context,
   backupKey: String
 ): CredentialManagerResult {
-  return AndroidCredentialRepository.saveCredential(
+  return SignalCredentialManager.saveCredential(
     activityContext = activityContext,
-    username = activityContext.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id),
+    username = credentialId(activityContext),
     password = backupKey
   )
 }
 
 private suspend fun getKeyFromCredentialManager(
-  @UiContext activityContext: Context,
-  id: String
+  @UiContext activityContext: Context
 ): String? {
-  return AndroidCredentialRepository.getCredential(activityContext, id)
+  return SignalCredentialManager.getCredential(activityContext, credentialId(activityContext))?.password
+}
+
+/**
+ * Numberless accounts file their credential under the ACI, since that is the identifier they log in with.
+ * Everyone else uses a generic Signal-branded id.
+ */
+private fun credentialId(context: Context): String {
+  return if (SignalStore.account.isPhoneNumberless) {
+    SignalStore.account.requireAci().toString().uppercase()
+  } else {
+    context.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id)
+  }
 }
 
 @DayNightPreviews
@@ -786,11 +773,13 @@ private fun MessageBackupsKeyRecordScreenPreview() {
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = null,
       canOpenPasswordManagerSettings = true,
+      isGooglePasswordManagerDefault = false,
       mode = MessageBackupsKeyRecordMode.CreateNewKey(
         onCreateNewKeyClick = {},
         onTurnOffAndDownloadClick = {},
         isOptimizedStorageEnabled = true,
-        canRotateKey = true
+        canRotateKey = true,
+        areBackupsEnabled = true
       )
     )
   }
@@ -804,6 +793,7 @@ private fun MessageBackupsKeyRecordScreenSameAsOnDeviceKeyPreview() {
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = null,
       canOpenPasswordManagerSettings = true,
+      isGooglePasswordManagerDefault = false,
       mode = MessageBackupsKeyRecordMode.Next(onNextClick = {}),
       notifyKeyIsSameAsOnDeviceBackupKey = true
     )
@@ -818,6 +808,7 @@ private fun MessageBackupsKeySaveScreenPreview() {
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = null,
       canOpenPasswordManagerSettings = true,
+      isGooglePasswordManagerDefault = false,
       mode = MessageBackupsKeyRecordMode.Passkey(
         onSaveToPasswordManager = {},
         onSaveManually = {},
@@ -835,6 +826,7 @@ private fun SaveKeyConfirmationDialogPreview() {
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = BackupKeySaveState.RequestingConfirmation,
       canOpenPasswordManagerSettings = true,
+      isGooglePasswordManagerDefault = false,
       mode = MessageBackupsKeyRecordMode.Next(onNextClick = {})
     )
   }
@@ -848,21 +840,5 @@ private fun CreateNewBackupKeySheetContentPreview() {
     Column {
       CreateNewBackupKeySheetContent()
     }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun DownloadMediaDialogPreview() {
-  Previews.Preview {
-    DownloadMediaDialog()
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun KeyLimitExceededDialogPreview() {
-  Previews.Preview {
-    KeyLimitExceededDialog()
   }
 }

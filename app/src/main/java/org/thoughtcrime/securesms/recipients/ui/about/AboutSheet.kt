@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.recipients.ui.about
 
+import android.content.DialogInterface
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -47,6 +48,7 @@ import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.emoji.Emojifier
@@ -63,7 +65,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.SignalE164Util
-import org.thoughtcrime.securesms.util.viewModel
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -120,6 +121,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         },
         profileSharing = recipient.isProfileSharing,
         systemContact = recipient.isSystemContact,
+        hasUsernameOrSharedName = recipient.hasUsernameOrSharedName,
         groupsInCommon = state.groupsInCommonCount,
         note = recipient.note ?: "",
         memberLabel = state.memberLabel,
@@ -164,6 +166,15 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
       dismiss()
     }
   }
+
+  override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
+    (parentFragment as? Callback)?.onAboutSheetDismissed()
+  }
+
+  interface Callback {
+    fun onAboutSheetDismissed()
+  }
 }
 
 private data class AboutModel(
@@ -178,6 +189,7 @@ private data class AboutModel(
   val formattedE164: String?,
   val profileSharing: Boolean,
   val systemContact: Boolean,
+  val hasUsernameOrSharedName: Boolean = false,
   val groupsInCommon: Int,
   val note: String,
   val memberLabel: MemberLabel? = null,
@@ -295,7 +307,7 @@ private fun Content(
           modifier = Modifier.align(alignment = Alignment.Start),
           onClick = onClickSignalConnections
         )
-      } else if (model.groupsInCommon == 0) {
+      } else if (model.groupsInCommon == 0 && !model.hasUsernameOrSharedName) {
         AboutRow(
           startIcon = ImageVector.vectorResource(id = R.drawable.symbol_chat_badge_24),
           text = stringResource(id = R.string.AboutSheet__pending_message_request),
@@ -503,6 +515,37 @@ private fun ContentPreviewDefault() {
           systemContact = true,
           groupsInCommon = 0,
           note = "GET ME SPIDERMAN BEFORE I BLOW A DANG GASKET"
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
+@Preview(name = "Light Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", group = "content", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ContentPreviewUsernameOrSharedName() {
+  Previews.Preview {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          profileName = "Peter Parker",
+          about = null,
+          verified = false,
+          hasAvatar = false,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = false,
+          systemContact = false,
+          hasUsernameOrSharedName = true,
+          groupsInCommon = 0,
+          note = ""
         ),
         onClickSignalConnections = {},
         onAvatarClicked = {},

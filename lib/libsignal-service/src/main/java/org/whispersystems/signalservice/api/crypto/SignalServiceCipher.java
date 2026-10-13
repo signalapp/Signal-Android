@@ -219,6 +219,10 @@ public class SignalServiceCipher {
         Optional<byte[]>          groupId             = result.getGroupId();
         boolean                   needsReceipt        = true;
 
+        if (resultAddress.getServiceId().equals(localAddress.getServiceId()) && result.getDeviceId() == localDeviceId) {
+          throw new SelfSendException();
+        }
+
         if (sourceServiceId != null) {
           Log.w(TAG, "[" + envelope.clientTimestamp + "] Received a UD-encrypted message sent over an identified channel. Marking as needsReceipt=false");
           needsReceipt = false;
@@ -227,7 +231,7 @@ public class SignalServiceCipher {
         ciphertextMessageType = result.getCiphertextMessageType();
 
         if (ciphertextMessageType == CiphertextMessage.PREKEY_TYPE) {
-          signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(new SignalProtocolAddress(result.getSenderUuid(), result.getDeviceId())));
+          signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(resultAddress.getServiceId().toProtocolAddress(result.getDeviceId())));
         }
 
         paddedMessage = result.getPaddedMessage();

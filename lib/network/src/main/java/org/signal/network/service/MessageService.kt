@@ -25,8 +25,6 @@ import org.signal.libsignal.net.SingleOutboundSealedSenderMessage
 import org.signal.libsignal.net.SingleOutboundUnsealedMessage
 import org.signal.libsignal.net.SyncSendFailure
 import org.signal.libsignal.net.UnsealedSendFailure
-import org.signal.libsignal.net.UserBasedAuthorization
-import org.signal.libsignal.net.UserBasedSendAuthorization
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.InvalidSessionException
@@ -91,6 +89,12 @@ open class MessageService(
 
   /**
    * Sends [envelopeContent] to [serviceId]. Handles things like establishing sessions with newly-discovered linked devices.
+   *
+   * Sends sealed when given a [sealedSenderAccess], falling back to unsealed if the server rejects it.
+   *
+   * Story sends are not fully supported yet. A story whose access is only [SealedSenderAccess.isUnrestrictedForStory] fails with
+   * [SendError.Unauthorized] when it needs a new session, because the server usually rejects that access for prekey fetches. The legacy
+   * sender fetches those prekeys authenticated instead. A story with no [sealedSenderAccess] is also encrypted unsealed.
    */
   suspend fun sendMessage(
     serviceId: ServiceId,
@@ -105,57 +109,111 @@ open class MessageService(
     either {
       val contentSize = envelopeContent.size().toLong()
       if (maxContentSizeBytes > 0 && contentSize > maxContentSizeBytes) {
-        Log.w(TAG, "Content size $contentSize exceeds limit of $maxContentSizeBytes bytes; aborting send.")
+        Log.w(TAG, "[$timestamp] Content size $contentSize exceeds limit of $maxContentSizeBytes bytes; aborting send.")
         raise(SendError.ContentTooLarge(size = contentSize, maxAllowed = maxContentSizeBytes))
       }
 
       var encryptedReported = false
-      var activeSealedSenderAccess = sealedSenderAccess
-      var sealedSender = sealedSenderAccess != null || story
-
-      // Certain errors self-resolve by mutating external state, like creating new sessions.
-      // Trying several times in a loop lets us re-read that external state and use it in the next attempt.
-      for (attempt in 0 until MAX_DEVICE_RECOVERY_ATTEMPTS) {
-        Log.d(TAG, "Starting message send attempt ${attempt + 1} to $serviceId")
-        val encryptedMessages = encryptForAllDevices(serviceId, envelopeContent, activeSealedSenderAccess)
+      val reportEncrypted = {
         if (!encryptedReported) {
-          onEncrypted?.invoke()
           encryptedReported = true
+          onEncrypted?.invoke()
         }
-
-        if (sealedSender) {
-          val result = sendSealed(serviceId, encryptedMessages, timestamp, isOnline, urgent, activeSealedSenderAccess, story)
-          when (result) {
-            SealedSendResult.Success -> {}
-            SealedSendResult.MismatchedDevices -> { continue }
-            SealedSendResult.InvalidAccessKey -> {
-              Log.w(TAG, "Sealed sender access was rejected for $serviceId. Falling back to an unsealed send.")
-              activeSealedSenderAccess = null
-              sealedSender = story
-              continue
-            }
-          }
-        } else {
-          val result = sendUnsealed(serviceId, timestamp, encryptedMessages, isOnline, urgent)
-          when (result) {
-            UnsealedSendResult.Success -> {}
-            UnsealedSendResult.MismatchedDevices -> { continue }
-          }
-        }
-
-        val devices = encryptedMessages.map { it.destinationDeviceId }
-
-        Log.d(TAG, "Successfully sent ${if (sealedSender) "a sealed" else "an unsealed"} message to $serviceId, devices: $devices")
-        return@either SendSuccess(
-          envelopeContent = envelopeContent,
-          sentSealedSender = sealedSender,
-          devices = devices
-        )
       }
 
-      Log.w(TAG, "Exhausted device-recovery attempts for $serviceId")
-      raise(SendError.SessionAttemptsExhausted())
+      if (story) {
+        return@either when (val outcome = sendSealedWithDeviceRecovery(serviceId, envelopeContent, sealedSenderAccess, story = true, timestamp, isOnline, urgent, reportEncrypted)) {
+          is SealedSendOutcome.Sent -> outcome.success
+          SealedSendOutcome.SealedSenderAccessRejected -> {
+            // TODO [stories] Retry rejected story prekey fetches authenticated and keep the story sealed, like the legacy sender, before routing story sends here.
+            Log.w(TAG, "[$timestamp] Story send was rejected as unauthorized for $serviceId. unrestrictedForStory: ${SealedSenderAccess.isUnrestrictedForStory(sealedSenderAccess)}")
+            raise(SendError.Unauthorized())
+          }
+        }
+      }
+
+      if (sealedSenderAccess != null) {
+        when (val outcome = sendSealedWithDeviceRecovery(serviceId, envelopeContent, sealedSenderAccess, story = false, timestamp, isOnline, urgent, reportEncrypted)) {
+          is SealedSendOutcome.Sent -> return@either outcome.success
+          SealedSendOutcome.SealedSenderAccessRejected -> Log.w(TAG, "[$timestamp] Sealed sender access was rejected for $serviceId. Falling back to an unsealed send.")
+        }
+      }
+
+      sendUnsealedWithDeviceRecovery(serviceId, envelopeContent, timestamp, isOnline, urgent, reportEncrypted)
     }
+  }
+
+  /** Encrypts and sends sealed, rebuilding sessions and retrying when the server reports mismatched devices. */
+  private suspend fun Raise<SendError>.sendSealedWithDeviceRecovery(
+    serviceId: ServiceId,
+    envelopeContent: EnvelopeContent,
+    sealedSenderAccess: SealedSenderAccess?,
+    story: Boolean,
+    timestamp: Long,
+    isOnline: Boolean,
+    urgent: Boolean,
+    reportEncrypted: () -> Unit
+  ): SealedSendOutcome {
+    // Certain errors self-resolve by mutating external state, like creating new sessions.
+    // Trying several times in a loop lets us re-read that external state and use it in the next attempt.
+    for (attempt in 0 until MAX_DEVICE_RECOVERY_ATTEMPTS) {
+      Log.d(TAG, "[$timestamp] Starting sealed send attempt ${attempt + 1} to $serviceId")
+      val encryptedMessages = when (val encrypted = encryptSealedForAllDevices(serviceId, envelopeContent, sealedSenderAccess, timestamp)) {
+        is EncryptResult.Success -> encrypted.messages
+        EncryptResult.InvalidAccessKeyForPreKeyFetch -> return SealedSendOutcome.SealedSenderAccessRejected
+      }
+      reportEncrypted()
+
+      val contents = encryptedMessages.toSealedSenderContents()
+      val response = if (story) {
+        messageApi.sendStoryMessage(serviceId, timestamp, contents, isOnline, urgent)
+      } else {
+        val access = sealedSenderAccess ?: raise(SendError.ApplicationError(IllegalArgumentException("Non-story sealed sends need a sealed sender access")))
+        messageApi.sendSealedSenderMessage(serviceId, timestamp, contents, access, isOnline, urgent)
+      }
+
+      when (handleSealedSendResult(response, sealedSenderAccess, timestamp)) {
+        SealedSendResult.Success -> {
+          val devices = encryptedMessages.map { it.destinationDeviceId }
+          Log.d(TAG, "[$timestamp] Successfully sent a sealed message to $serviceId, devices: $devices")
+          return SealedSendOutcome.Sent(SendSuccess(envelopeContent = envelopeContent, sentSealedSender = true, devices = devices))
+        }
+        SealedSendResult.MismatchedDevices -> continue
+        SealedSendResult.InvalidAccessKeyForMessageSend,
+        SealedSendResult.InvalidAccessKeyForPreKeyFetch -> return SealedSendOutcome.SealedSenderAccessRejected
+      }
+    }
+
+    Log.w(TAG, "[$timestamp] Exhausted device-recovery attempts for $serviceId")
+    raise(SendError.SessionAttemptsExhausted())
+  }
+
+  /** Encrypts and sends unsealed, rebuilding sessions and retrying when the server reports mismatched devices. */
+  private suspend fun Raise<SendError>.sendUnsealedWithDeviceRecovery(
+    serviceId: ServiceId,
+    envelopeContent: EnvelopeContent,
+    timestamp: Long,
+    isOnline: Boolean,
+    urgent: Boolean,
+    reportEncrypted: () -> Unit
+  ): SendSuccess {
+    for (attempt in 0 until MAX_DEVICE_RECOVERY_ATTEMPTS) {
+      Log.d(TAG, "[$timestamp] Starting unsealed send attempt ${attempt + 1} to $serviceId")
+      val encryptedMessages = encryptUnsealedForAllDevices(serviceId, envelopeContent, timestamp)
+      reportEncrypted()
+
+      when (sendUnsealed(serviceId, timestamp, encryptedMessages, isOnline, urgent)) {
+        UnsealedSendResult.Success -> {
+          val devices = encryptedMessages.map { it.destinationDeviceId }
+          Log.d(TAG, "[$timestamp] Successfully sent an unsealed message to $serviceId, devices: $devices")
+          return SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = devices)
+        }
+        UnsealedSendResult.MismatchedDevices -> continue
+      }
+    }
+
+    Log.w(TAG, "[$timestamp] Exhausted device-recovery attempts for $serviceId")
+    raise(SendError.SessionAttemptsExhausted())
   }
 
   /**
@@ -170,12 +228,12 @@ open class MessageService(
     either {
       val contentSize = envelopeContent.size().toLong()
       if (maxContentSizeBytes > 0 && contentSize > maxContentSizeBytes) {
-        Log.w(TAG, "Content size $contentSize exceeds limit of $maxContentSizeBytes bytes; aborting send.")
+        Log.w(TAG, "[$timestamp] Content size $contentSize exceeds limit of $maxContentSizeBytes bytes; aborting send.")
         raise(SendError.ContentTooLarge(size = contentSize, maxAllowed = maxContentSizeBytes))
       }
 
       if (!protocolStore.isMultiDevice) {
-        Log.d(TAG, "We do not have any linked devices. Skipping sync message send.")
+        Log.d(TAG, "[$timestamp] We do not have any linked devices. Skipping sync message send.")
         return@either SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = emptyList())
       }
 
@@ -184,8 +242,8 @@ open class MessageService(
       // Certain errors self-resolve by mutating external state, like creating new sessions.
       // Trying several times in a loop lets us re-read that external state and use it in the next attempt.
       for (attempt in 0 until MAX_DEVICE_RECOVERY_ATTEMPTS) {
-        Log.d(TAG, "Starting sync message send attempt ${attempt + 1}")
-        val encryptedMessages = encryptForAllDevices(localAddress.serviceId, envelopeContent, sealedSenderAccess = null)
+        Log.d(TAG, "[$timestamp] Starting sync message send attempt ${attempt + 1}")
+        val encryptedMessages = encryptUnsealedForAllDevices(localAddress.serviceId, envelopeContent, timestamp)
         if (!encryptedReported) {
           onEncrypted?.invoke()
           encryptedReported = true
@@ -201,7 +259,7 @@ open class MessageService(
           is RequestResult.Success -> {
             val devices = encryptedMessages.map { it.destinationDeviceId }
 
-            Log.d(TAG, "Successfully sent sync message to devices: $devices")
+            Log.d(TAG, "[$timestamp] Successfully sent sync message to devices: $devices")
             return@either SendSuccess(
               envelopeContent = envelopeContent,
               sentSealedSender = false,
@@ -209,7 +267,7 @@ open class MessageService(
             )
           }
           is RequestResult.RetryableNetworkError -> {
-            raise(SendError.NetworkError(result.networkError))
+            raise(result.toSendError())
           }
           is RequestResult.ApplicationError -> {
             raise(SendError.ApplicationError(result.cause))
@@ -217,10 +275,10 @@ open class MessageService(
           is RequestResult.NonSuccess<SyncSendFailure> -> {
             when (val error = result.error) {
               is MismatchedDeviceException -> {
-                handleMismatched(error, sealedSenderAccess = null)
+                handleMismatched(error, sealedSenderAccess = null, timestamp)
                 val sentOnlyToSelf = encryptedMessages.map { it.destinationDeviceId } == listOf(localDeviceId)
                 if (sentOnlyToSelf && error.entries.all { it.missingDevices.isEmpty() }) {
-                  Log.w(TAG, "Sent only to our own device and the server reports no other devices. Marking as no longer multi-device and skipping send.")
+                  Log.w(TAG, "[$timestamp] Sent only to our own device and the server reports no other devices. Marking as no longer multi-device and skipping send.")
                   protocolStore.setMultiDevice(false)
                   return@either SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = emptyList())
                 }
@@ -233,53 +291,18 @@ open class MessageService(
         }
       }
 
-      Log.w(TAG, "Exhausted device-recovery attempts for sync message")
+      Log.w(TAG, "[$timestamp] Exhausted device-recovery attempts for sync message")
       raise(SendError.SessionAttemptsExhausted())
     }
   }
 
-  private suspend fun Raise<SendError>.sendSealed(
-    serviceId: ServiceId,
-    encryptedMessages: List<OutgoingPushMessage>,
-    timestamp: Long,
-    online: Boolean,
-    urgent: Boolean,
-    sealedSenderAccess: SealedSenderAccess?,
-    story: Boolean
-  ): SealedSendResult {
-    val auth = if (story) {
-      UserBasedSendAuthorization.Story
-    } else if (sealedSenderAccess is SealedSenderAccess.IndividualUnidentifiedAccessFirst) {
-      if (sealedSenderAccess.unidentifiedAccess.unidentifiedAccessKey.all { it == 0.toByte() }) {
-        UserBasedAuthorization.UnrestrictedUnauthenticatedAccess
-      } else {
-        UserBasedAuthorization.AccessKey(sealedSenderAccess.unidentifiedAccess.unidentifiedAccessKey)
-      }
-    } else {
-      raise(SendError.ApplicationError(IllegalArgumentException("Bad sealed sender access!")))
-    }
-
-    val result = messageApi.sendSealedSenderMessage(
-      serviceId = serviceId,
-      timestamp = timestamp,
-      contents = encryptedMessages.map {
-        SingleOutboundSealedSenderMessage(
-          deviceId = it.destinationDeviceId,
-          registrationId = it.destinationRegistrationId,
-          message = it.content.decodeBase64OrThrow()
-        )
-      },
-      auth = auth,
-      onlineOnly = online,
-      urgent = urgent
-    )
-
+  private suspend fun Raise<SendError>.handleSealedSendResult(result: RequestResult<Unit, SealedSendFailure>, sealedSenderAccess: SealedSenderAccess?, timestamp: Long): SealedSendResult {
     return when (result) {
       is RequestResult.Success -> {
         SealedSendResult.Success
       }
       is RequestResult.RetryableNetworkError -> {
-        raise(SendError.NetworkError(result.networkError))
+        raise(result.toSendError())
       }
       is RequestResult.ApplicationError -> {
         raise(SendError.ApplicationError(result.cause))
@@ -287,11 +310,13 @@ open class MessageService(
       is RequestResult.NonSuccess<SealedSendFailure> -> {
         when (val error = result.error) {
           is MismatchedDeviceException -> {
-            handleMismatched(error, sealedSenderAccess)
-            SealedSendResult.MismatchedDevices
+            when (handleMismatched(error, sealedSenderAccess, timestamp)) {
+              SessionInitResult.Initialized -> SealedSendResult.MismatchedDevices
+              SessionInitResult.InvalidAccessKeyForPreKeyFetch -> SealedSendResult.InvalidAccessKeyForPreKeyFetch
+            }
           }
           is RequestUnauthorizedException -> {
-            SealedSendResult.InvalidAccessKey
+            SealedSendResult.InvalidAccessKeyForMessageSend
           }
           is ServiceIdNotFoundException -> {
             raise(SendError.NotRegistered())
@@ -321,7 +346,7 @@ open class MessageService(
         UnsealedSendResult.Success
       }
       is RequestResult.RetryableNetworkError -> {
-        raise(SendError.NetworkError(result.networkError))
+        raise(result.toSendError())
       }
       is RequestResult.ApplicationError -> {
         raise(SendError.ApplicationError(result.cause))
@@ -329,7 +354,7 @@ open class MessageService(
       is RequestResult.NonSuccess<UnsealedSendFailure> -> {
         when (val error = result.error) {
           is MismatchedDeviceException -> {
-            handleMismatched(error, sealedSenderAccess = null)
+            handleMismatched(error, sealedSenderAccess = null, timestamp)
             UnsealedSendResult.MismatchedDevices
           }
           is ServiceIdNotFoundException -> {
@@ -343,36 +368,56 @@ open class MessageService(
     }
   }
 
-  suspend fun Raise<SendError>.handleMismatched(error: MismatchedDeviceException, sealedSenderAccess: SealedSenderAccess?) {
-    Log.w(TAG, "Handling mismatched devices: ${error.entries.contentToString()}")
+  private suspend fun Raise<SendError>.handleMismatched(error: MismatchedDeviceException, sealedSenderAccess: SealedSenderAccess?, timestamp: Long): SessionInitResult {
+    Log.w(TAG, "[$timestamp] Handling mismatched devices: ${error.entries.contentToString()}")
 
     for (entry in error.entries) {
       for (staleDeviceId in entry.staleDevices) {
-        Log.w(TAG, "Archiving stale session: (${entry.account}, $staleDeviceId)")
+        Log.w(TAG, "[$timestamp] Archiving stale session: (${entry.account}, $staleDeviceId)")
         protocolStore.archiveSession(SignalProtocolAddress(entry.account, staleDeviceId))
       }
 
       for (extraDeviceId in entry.extraDevices) {
-        Log.w(TAG, "Archiving extra session: (${entry.account}, $extraDeviceId)")
+        Log.w(TAG, "[$timestamp] Archiving extra session: (${entry.account}, $extraDeviceId)")
         protocolStore.archiveSession(SignalProtocolAddress(entry.account, extraDeviceId))
       }
 
       for (missingDeviceId in entry.missingDevices) {
-        Log.w(TAG, "Initializing session for missing device: (${entry.account}, $missingDeviceId)")
+        Log.w(TAG, "[$timestamp] Initializing session for missing device: (${entry.account}, $missingDeviceId)")
         val address = SignalProtocolAddress(entry.account, missingDeviceId)
-        initializeSession(ServiceId.fromLibSignal(entry.account), address, sealedSenderAccess)
+        if (initializeSession(ServiceId.fromLibSignal(entry.account), address, sealedSenderAccess) == SessionInitResult.InvalidAccessKeyForPreKeyFetch) {
+          return SessionInitResult.InvalidAccessKeyForPreKeyFetch
+        }
       }
     }
+
+    return SessionInitResult.Initialized
   }
 
-  private suspend fun Raise<SendError>.encryptForAllDevices(
+  private suspend fun Raise<SendError>.encryptSealedForAllDevices(
     serviceId: ServiceId,
     envelopeContent: EnvelopeContent,
-    sealedSenderAccess: SealedSenderAccess?
-  ): List<OutgoingPushMessage> {
+    sealedSenderAccess: SealedSenderAccess?,
+    timestamp: Long
+  ): EncryptResult {
+    val messages = targetDeviceIds(serviceId).map { deviceId ->
+      val address = SignalProtocolAddress(serviceId.libSignalServiceId, deviceId)
+      if (!protocolStore.containsSession(address) && initializeSession(serviceId, address, sealedSenderAccess) == SessionInitResult.InvalidAccessKeyForPreKeyFetch) {
+        return EncryptResult.InvalidAccessKeyForPreKeyFetch
+      }
+      encryptContent(serviceId, address, envelopeContent, sealedSenderAccess, timestamp)
+    }
+
+    return EncryptResult.Success(messages)
+  }
+
+  private suspend fun Raise<SendError>.encryptUnsealedForAllDevices(serviceId: ServiceId, envelopeContent: EnvelopeContent, timestamp: Long): List<OutgoingPushMessage> {
     return targetDeviceIds(serviceId).map { deviceId ->
       val address = SignalProtocolAddress(serviceId.libSignalServiceId, deviceId)
-      encryptContent(serviceId, address, envelopeContent, sealedSenderAccess)
+      if (!protocolStore.containsSession(address)) {
+        initializeSession(serviceId, address, sealedSenderAccess = null)
+      }
+      encryptContent(serviceId, address, envelopeContent, sealedSenderAccess = null, timestamp)
     }
   }
 
@@ -380,24 +425,32 @@ open class MessageService(
     serviceId: ServiceId,
     address: SignalProtocolAddress,
     envelopeContent: EnvelopeContent,
-    sealedSenderAccess: SealedSenderAccess?
+    sealedSenderAccess: SealedSenderAccess?,
+    timestamp: Long
   ): OutgoingPushMessage = try {
-    if (!protocolStore.containsSession(address)) {
-      initializeSession(serviceId, address, sealedSenderAccess)
-    }
     cipher.encrypt(address, sealedSenderAccess, envelopeContent)
   } catch (e: UntrustedIdentityException) {
     raise(SendError.IdentityMismatch(serviceId, e))
   } catch (e: InvalidKeyException) {
     raise(SendError.ApplicationError(e))
   } catch (e: NoSessionException) {
-    Log.w(TAG, "Missing or corrupt session for $address. Archiving so the next attempt rebuilds it.", e)
+    Log.w(TAG, "[$timestamp] Missing or corrupt session for $address. Archiving so the next attempt rebuilds it.", e)
     protocolStore.archiveSession(address)
     raise(SendError.ApplicationError(e))
   } catch (e: InvalidSessionException) {
-    Log.w(TAG, "Invalid session for $address. Archiving so the next attempt rebuilds it.", e)
+    Log.w(TAG, "[$timestamp] Invalid session for $address. Archiving so the next attempt rebuilds it.", e)
     protocolStore.archiveSession(address)
     raise(SendError.ApplicationError(e))
+  }
+
+  private fun List<OutgoingPushMessage>.toSealedSenderContents(): List<SingleOutboundSealedSenderMessage> {
+    return map {
+      SingleOutboundSealedSenderMessage(
+        deviceId = it.destinationDeviceId,
+        registrationId = it.destinationRegistrationId,
+        message = it.content.decodeBase64OrThrow()
+      )
+    }
   }
 
   private fun OutgoingPushMessage.toUnsealedMessage(): SingleOutboundUnsealedMessage {
@@ -441,20 +494,37 @@ open class MessageService(
     serviceId: ServiceId,
     address: SignalProtocolAddress,
     sealedSenderAccess: SealedSenderAccess?
-  ) {
+  ): SessionInitResult {
     val response = when (val result = keysApi.getPreKey(address.serviceId.toServiceIdString(), address.deviceId, sealedSenderAccess)) {
       is RequestResult.Success -> result.result
       is RequestResult.NonSuccess -> {
         when (val e = result.error) {
-          KeysApiV2.GetPreKeysError.Unauthorized -> raise(SendError.Unauthorized())
-          KeysApiV2.GetPreKeysError.NotFound -> raise(SendError.PreKeyUnavailable("No prekeys found for $address"))
+          KeysApiV2.GetPreKeysError.Unauthorized -> {
+            if (sealedSenderAccess != null) {
+              return SessionInitResult.InvalidAccessKeyForPreKeyFetch
+            }
+            raise(SendError.Unauthorized())
+          }
+          KeysApiV2.GetPreKeysError.NotFound -> {
+            if (sealedSenderAccess == null && address.deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID) {
+              raise(SendError.NotRegistered())
+            }
+            raise(SendError.PreKeyUnavailable("No prekeys found for $address"))
+          }
           is KeysApiV2.GetPreKeysError.RateLimited -> raise(SendError.RateLimited(e.retryAfter))
         }
       }
-      is RequestResult.RetryableNetworkError -> raise(SendError.NetworkError(result.networkError))
+      is RequestResult.RetryableNetworkError -> raise(result.toSendError())
       is RequestResult.ApplicationError -> raise(SendError.ApplicationError(result.cause))
     }
 
+    createSessionFromPreKeys(serviceId, address, response)
+    return SessionInitResult.Initialized
+  }
+
+  /** Builds a session with [address] from a fetched prekey [response]. */
+  @VisibleForTesting
+  internal open fun Raise<SendError>.createSessionFromPreKeys(serviceId: ServiceId, address: SignalProtocolAddress, response: KeysApiV2.PreKeyResponse) {
     val item = response.devices.firstOrNull { it.deviceId == address.deviceId }
       ?: raise(SendError.PreKeyUnavailable("No prekey for $address"))
 
@@ -496,6 +566,15 @@ open class MessageService(
     }
   }
 
+  private fun RequestResult.RetryableNetworkError.toSendError(): SendError {
+    val retryAfter = retryAfter
+    return if (retryAfter != null) {
+      SendError.RateLimited(retryAfter.toKotlinDuration())
+    } else {
+      SendError.NetworkError(networkError)
+    }
+  }
+
   /**
    * Send completed successfully.
    *
@@ -509,12 +588,47 @@ open class MessageService(
     val devices: List<Int>
   )
 
-  private enum class SealedSendResult {
-    Success, InvalidAccessKey, MismatchedDevices
+  /** Result of [sendSealedWithDeviceRecovery]. */
+  private sealed interface SealedSendOutcome {
+    data class Sent(val success: SendSuccess) : SealedSendOutcome
+
+    /** Every sealed sender access was rejected, for the send or for a prekey fetch. */
+    data object SealedSenderAccessRejected : SealedSendOutcome
   }
 
+  /** Result of a single sealed send request. */
+  private enum class SealedSendResult {
+    Success,
+    MismatchedDevices,
+
+    /** Every sealed sender access was rejected for the send. See [MessageApiV2.sendSealedSenderMessage]. */
+    InvalidAccessKeyForMessageSend,
+
+    /** A prekey fetch during mismatched-device recovery was rejected. See [SessionInitResult.InvalidAccessKeyForPreKeyFetch]. */
+    InvalidAccessKeyForPreKeyFetch
+  }
+
+  /** Result of a single unsealed send request. */
   private enum class UnsealedSendResult {
-    Success, MismatchedDevices
+    Success,
+    MismatchedDevices
+  }
+
+  /** Result of [initializeSession]. Failures other than a rejected sealed sender access are raised. */
+  @VisibleForTesting
+  internal enum class SessionInitResult {
+    Initialized,
+
+    /** The prekey fetch rejected every sealed sender access ([KeysApiV2.getPreKey] already tries the fallbacks). Stop using sealed sender. */
+    InvalidAccessKeyForPreKeyFetch
+  }
+
+  /** Result of [encryptSealedForAllDevices]. */
+  private sealed interface EncryptResult {
+    data class Success(val messages: List<OutgoingPushMessage>) : EncryptResult
+
+    /** A prekey fetch for a missing session was rejected. See [SessionInitResult.InvalidAccessKeyForPreKeyFetch]. */
+    data object InvalidAccessKeyForPreKeyFetch : EncryptResult
   }
 
   sealed class SendError : Exception() {
@@ -533,9 +647,6 @@ open class MessageService(
      * (e.g. "captcha", "pushChallenge"). [retryAfter] is the Retry-After hint, if provided.
      */
     data class ChallengeRequired(val token: String, val options: Set<ChallengeOption>, val retryAfter: Duration?) : SendError()
-
-    /** The server has fully rejected your request. This usually only happens during times of turmoil. Fail and require user action to resend. */
-    class ServerRejected : SendError()
 
     /**
      * The encoded content exceeded the configured size cap. Permanent failure for this message —

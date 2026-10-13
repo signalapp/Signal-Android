@@ -730,7 +730,7 @@ data class CallQualitySheetState(
   val isUserSatisfiedWithCall: Boolean = false,
   val selectedQualityIssues: Set<CallQualityIssue> = emptySet(),
   val somethingElseDescription: String = "",
-  val isShareDebugLogSelected: Boolean = false,
+  val isShareDebugLogSelected: Boolean = true,
   val failedDueToNetworkAvailability: Boolean = false
 ) {
   fun canContinueAfterIssueSelection(): Boolean {

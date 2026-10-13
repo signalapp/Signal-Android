@@ -296,3 +296,8 @@ message MultiDeviceAttachmentBackfillRequestJobData {
 message BackupTierDowngradeCheckJobData {
   optional uint64 remoteBackupTier = 1;
 }
+
+message UnreadReminderJobData {
+  uint64 threadId = 1;
+  uint64 lastReminderTime = 2;
+}

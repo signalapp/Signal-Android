@@ -12,13 +12,14 @@ import org.signal.core.util.ExceptionUtil;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.LeakyBucketLimiter;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Uses a leaky-bucket strategy to limiting notification updates.
@@ -30,10 +31,12 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   private static final String DEDUPE_KEY_GENERAL        = "MESSAGE_NOTIFIER_DEFAULT";
   private static final String DEDUPE_KEY_CHAT           = "MESSAGE_NOTIFIER_CHAT_";
+  private static final long   DRIP_INTERVAL_DRAINED_MS  = 1_000;
+  private static final long   DRIP_INTERVAL_DRAINING_MS = 10_000;
 
   @MainThread
   public OptimizedMessageNotifier(@NonNull Application context) {
-    this.limiter                = new LeakyBucketLimiter(3, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD).getLooper()));
+    this.limiter                = new LeakyBucketLimiter(3, OptimizedMessageNotifier::dripInterval, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD).getLooper()));
     this.defaultMessageNotifier = new DefaultMessageNotifier(context);
   }
 
@@ -65,6 +68,21 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @Override
   public void clearVisibleBubbleThread() {
     getNotifier().clearVisibleBubbleThread();
+  }
+
+  @Override
+  public void addActiveBubbleThread(@NonNull ConversationId conversationId) {
+    getNotifier().addActiveBubbleThread(conversationId);
+  }
+
+  @Override
+  public void removeActiveBubbleThread(@NonNull ConversationId conversationId) {
+    getNotifier().removeActiveBubbleThread(conversationId);
+  }
+
+  @Override
+  public @NonNull Set<ConversationId> getActiveBubbleThreads() {
+    return getNotifier().getActiveBubbleThreads();
   }
 
   @Override
@@ -110,7 +128,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   @Override
   public void forceBubbleNotification(@NonNull Context context, @NonNull ConversationId conversationId) {
     SignalDatabase.runPostSuccessfulTransaction(() -> {
-      runOnLimiter(() -> getNotifier().forceBubbleNotification(context, conversationId));
+      runWithoutLimit(() -> getNotifier().forceBubbleNotification(context, conversationId));
     });
   }
 
@@ -129,14 +147,26 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   private void runOnLimiter(@NonNull Runnable runnable) {
+    limiter.run(withCallerStackTrace(runnable));
+  }
+
+  private void runWithoutLimit(@NonNull Runnable runnable) {
+    limiter.runWithoutLimit(withCallerStackTrace(runnable));
+  }
+
+  private static Runnable withCallerStackTrace(@NonNull Runnable runnable) {
     Throwable prettyException = new Throwable();
-    limiter.run(() -> {
+    return () -> {
       try {
         runnable.run();
       } catch (RuntimeException e) {
         throw ExceptionUtil.joinStackTrace(e, prettyException);
       }
-    });
+    };
+  }
+
+  private static long dripInterval() {
+    return AppDependencies.getIncomingMessageObserver().getDecryptionDrained() ? DRIP_INTERVAL_DRAINED_MS : DRIP_INTERVAL_DRAINING_MS;
   }
 
   private MessageNotifier getNotifier() {

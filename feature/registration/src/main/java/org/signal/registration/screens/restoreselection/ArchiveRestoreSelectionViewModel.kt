@@ -6,8 +6,6 @@
 package org.signal.registration.screens.restoreselection
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -40,7 +38,7 @@ class ArchiveRestoreSelectionViewModel(
   parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val knownAep: AccountEntropyPool? = null
-) : EventDrivenViewModel<ArchiveRestoreSelectionScreenEvents>(TAG) {
+) : EventDrivenViewModel<ArchiveRestoreSelectionScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(ArchiveRestoreSelectionViewModel::class)
@@ -68,7 +66,7 @@ class ArchiveRestoreSelectionViewModel(
   }
 
   private fun applyParentState(state: ArchiveRestoreSelectionState, parentState: RegistrationFlowState): ArchiveRestoreSelectionState {
-    return state.copy(restoreMethodToken = parentState.restoreMethodToken, storageCapable = parentState.storageCapable)
+    return state.copy(restoreMethodToken = parentState.restoreMethodToken, storageCapable = parentState.storageCapable, isPhoneNumberlessAccount = parentState.isPhoneNumberlessAccount)
   }
 
   @VisibleForTesting
@@ -87,7 +85,7 @@ class ArchiveRestoreSelectionViewModel(
                 parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry)
               }
               knownAep != null -> {
-                parentEventEmitter.navigateTo(RegistrationRoute.RemoteRestore(knownAep))
+                parentEventEmitter.navigateTo(RegistrationRoute.RemoteRestore(knownAep, backwardNavigationAllowed = true))
               }
               else -> {
                 parentEventEmitter.navigateTo(RegistrationRoute.EnterAepForRemoteBackupPostRegistration)
@@ -125,22 +123,38 @@ class ArchiveRestoreSelectionViewModel(
             state.copy(showSkipWarningDialog = false)
           }
           RegisteredState.RegisteredAndPinUnknown -> {
-            notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
-            repository.setRestoreDecision(RestoreDecision.SKIPPED)
-            if (state.storageCapable) {
-              Log.i(TAG, "[ConfirmSkip] Account is storage capable. Navigating to PIN entry to restore the existing PIN.")
-              parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+            if (state.isPhoneNumberlessAccount) {
+              Log.i(TAG, "[ConfirmSkip] Account has no phone number, and therefore no PIN. Completing registration.")
+              val skipping = state.copy(showSkipWarningDialog = false, isSkipping = true)
+              stateEmitter(skipping)
+
+              notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
+              repository.setRestoreDecision(RestoreDecision.SKIPPED)
+              repository.restoreAccountRecord()
+              parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+              skipping
             } else {
-              Log.i(TAG, "[ConfirmSkip] Account is not storage capable. Navigating to PIN creation.")
-              parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+              notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
+              repository.setRestoreDecision(RestoreDecision.SKIPPED)
+              if (state.storageCapable) {
+                Log.i(TAG, "[ConfirmSkip] Account is storage capable. Navigating to PIN entry to restore the existing PIN.")
+                parentEventEmitter.navigateTo(RegistrationRoute.PinEntryForSvrRestore)
+              } else {
+                Log.i(TAG, "[ConfirmSkip] Account is not storage capable. Navigating to PIN creation.")
+                parentEventEmitter.navigateTo(RegistrationRoute.PinCreate)
+              }
+              state.copy(showSkipWarningDialog = false)
             }
-            state.copy(showSkipWarningDialog = false)
           }
           RegisteredState.RegisteredAndPinKnown -> {
+            val skipping = state.copy(showSkipWarningDialog = false, isSkipping = true)
+            stateEmitter(skipping)
+
             notifyOldDevice(state.restoreMethodToken, RestoreMethod.DECLINE)
             repository.setRestoreDecision(RestoreDecision.SKIPPED)
+            repository.restoreAccountRecord()
             parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
-            state.copy(showSkipWarningDialog = false)
+            skipping
           }
         }
       }
@@ -165,19 +179,6 @@ class ArchiveRestoreSelectionViewModel(
       } else {
         Log.w(TAG, "[notifyOldDevice] Failed to notify old device: $result")
       }
-    }
-  }
-
-  class Factory(
-    private val restoreOptions: List<ArchiveRestoreOption>,
-    private val registeredState: RegisteredState,
-    private val knownAep: AccountEntropyPool?,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return ArchiveRestoreSelectionViewModel(restoreOptions, registeredState, repository, parentState, parentEventEmitter, knownAep) as T
     }
   }
 }

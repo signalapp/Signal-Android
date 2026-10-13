@@ -53,11 +53,17 @@ internal class FixChangeNumberErrorMigrationJob(
       return
     }
 
-    when (val result = SignalNetwork.account.whoAmI()) {
+    when (val result = SignalNetwork.accountApi.whoAmI()) {
       is NetworkResult.Success<WhoAmIResponse> -> {
         val serverPni = result.result.pni?.let { ServiceId.PNI.parseOrNull(it) } ?: return
+        val serverE164 = result.result.number
 
-        if (result.result.number == SignalStore.account.e164 && serverPni == SignalStore.account.pni) {
+        if (serverE164 == null) {
+          Log.i(TAG, "Server reports no e164 for this account, skipping.")
+          return
+        }
+
+        if (serverE164 == SignalStore.account.e164 && serverPni == SignalStore.account.pni) {
           Log.i(TAG, "No number or PNI mismatch detected.")
           return
         }
@@ -66,7 +72,7 @@ internal class FixChangeNumberErrorMigrationJob(
 
         if (pendingPniIdentityMatchesServer(pendingChangeNumberMetadata, serverPni)) {
           Log.w(TAG, "PNI identity key matches server. Fixing local number/PNI...")
-          ChangeNumberRepository().changeLocalNumber(result.result.number, serverPni)
+          ChangeNumberRepository().changeLocalNumber(serverE164, serverPni)
           Log.w(TAG, "Done!")
         } else {
           Log.w(TAG, "Server PNI identity does not match pending metadata (or could not be verified); cannot safely reconcile. Enqueuing AccountConsistencyWorkerJob.")
@@ -88,7 +94,7 @@ internal class FixChangeNumberErrorMigrationJob(
       return false
     }
 
-    val serverIdentityKey: IdentityKey = when (val profileResult = runBlocking { SignalNetwork.profile.getUnversionedProfile(pni, null) }) {
+    val serverIdentityKey: IdentityKey = when (val profileResult = runBlocking { SignalNetwork.profileApi.getUnversionedProfile(pni, null) }) {
       is NetworkResult.Success -> {
         val identityKey = profileResult.result.identityKey
         if (identityKey == null) {

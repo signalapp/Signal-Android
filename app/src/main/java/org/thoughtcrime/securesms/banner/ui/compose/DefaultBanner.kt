@@ -146,7 +146,7 @@ fun DefaultBanner(
               ) {
                 Icon(
                   imageVector = SignalIcons.X.imageVector,
-                  contentDescription = stringResource(id = R.string.InviteActivity_cancel),
+                  contentDescription = stringResource(id = R.string.DefaultBanner__cancel),
                   tint = when (importance) {
                     Importance.NORMAL -> MaterialTheme.colorScheme.onSurfaceVariant
                     Importance.ERROR -> colorResource(id = CoreUiR.color.signal_colorOnSurface)

@@ -9,14 +9,17 @@ import org.signal.imageeditor.core.model.EditorElement;
 
 final class ElementDragEditSession extends ElementEditSession {
 
-  private ElementDragEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix) {
+  private final RotationSnapListener rotationSnapListener;
+
+  private ElementDragEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, @NonNull RotationSnapListener rotationSnapListener) {
     super(selected, inverseMatrix);
+    this.rotationSnapListener = rotationSnapListener;
   }
 
-  static ElementDragEditSession startDrag(@NonNull EditorElement selected, @NonNull Matrix inverseViewModelMatrix, @NonNull PointF point) {
+  static ElementDragEditSession startDrag(@NonNull EditorElement selected, @NonNull Matrix inverseViewModelMatrix, @NonNull PointF point, @NonNull RotationSnapListener rotationSnapListener) {
     if (!selected.getFlags().isEditable()) return null;
 
-    ElementDragEditSession elementDragEditSession = new ElementDragEditSession(selected, inverseViewModelMatrix);
+    ElementDragEditSession elementDragEditSession = new ElementDragEditSession(selected, inverseViewModelMatrix, rotationSnapListener);
     elementDragEditSession.setScreenStartPoint(0, point);
     elementDragEditSession.setScreenEndPoint(0, point);
 
@@ -33,7 +36,7 @@ final class ElementDragEditSession extends ElementEditSession {
 
   @Override
   public EditSession newPoint(@NonNull Matrix newInverse, @NonNull PointF point, int p) {
-    return ElementScaleEditSession.startScale(this, newInverse, point, p);
+    return ElementScaleEditSession.startScale(this, newInverse, point, p, rotationSnapListener);
   }
 
   @Override

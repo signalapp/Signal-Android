@@ -70,8 +70,9 @@ public class ConversationIntents {
       return Single.just(createBuilderSync(context, recipientId, threadId));
     } else {
       return Single.fromCallable(() -> {
-        long newThreadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
-        return createBuilderSync(context, recipientId, newThreadId);
+        Recipient recipient   = Recipient.resolved(recipientId);
+        long      newThreadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+        return createBuilderSync(context, recipient.getId(), newThreadId);
       }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
   }

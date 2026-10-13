@@ -10,10 +10,20 @@ import kotlinx.coroutines.flow.flowOf
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.util.Util
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.zkgroup.ServerSecretParams
+import org.signal.libsignal.zkgroup.VerificationFailedException
+import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
+import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
+import org.signal.libsignal.zkgroup.receipts.ServerZkReceiptOperations
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -21,13 +31,14 @@ import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialErro
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
-import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -37,6 +48,9 @@ import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.network.service.UsernameService.ConfirmUsernameError
+import org.signal.network.service.UsernameService.ConfirmedUsername
+import org.signal.network.service.UsernameService.ReserveUsernameError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.BackupMasterKeyError
@@ -53,9 +67,15 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SetAccountAttributesError
 import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
+import org.signal.registration.ReceiptCredentialResult
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents
+import java.security.SecureRandom
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Locale
 import java.util.UUID
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
 
 /**
  * An in-memory [NetworkController] whose responses can be customized per-test.
@@ -79,10 +99,17 @@ class FakeNetworkController(
   companion object {
     const val DEFAULT_VERIFICATION_CODE = "123456"
     const val SESSION_ID = "fake-session-id"
+
+    /** The receipt level a Signal Login purchase is worth. */
+    const val LOGIN_RECEIPT_LEVEL = 300L
+
+    /** How long after the purchase the service sets a Signal Login receipt to expire. */
+    val LOGIN_RECEIPT_LIFESPAN = (5 * 366).days
+    const val LOGIN_PLAY_PRODUCT_ID = "signup"
   }
 
   data class UpdateSessionRequest(val sessionId: String?, val pushChallengeToken: String?, val captchaToken: String?)
-  data class RegisterAccountRequest(val e164: String, val sessionId: String?, val recoveryPassword: String?, val registrationLock: String?)
+  data class RegisterAccountRequest(val e164: String?, val sessionId: String?, val recoveryPassword: String?, val registrationLock: String?, val aci: ACI? = null, val pniPreKeys: PreKeyCollection? = null, val pniRegistrationId: Int? = null, val receiptCredentialPresentation: ReceiptCredentialPresentation? = null, val totp: Int? = null, val webAuthnResponse: String? = null)
   data class SetPinRequest(val pin: String, val masterKey: MasterKey)
   data class RestoreMasterKeyRequest(val svrCredentials: SvrCredentials, val pin: String)
   data class SetRestoreMethodRequest(val token: String, val method: RestoreMethod)
@@ -107,6 +134,15 @@ class FakeNetworkController(
     private set
   var accountAttributesSyncJobEnqueued = false
     private set
+  var lastReservedNickname: String? = null
+    private set
+  var lastReservedDiscriminator: String? = null
+    private set
+  var lastConfirmedUsername: Username? = null
+    private set
+  var lastLoginPurchaseIdentifier: String? = null
+    private set
+  val loginReceiptCredentialRequests = mutableListOf<ReceiptCredentialRequest>()
 
   /** How many times the flow re-committed the backup-id. */
   var reserveBackupIdCount = 0
@@ -123,6 +159,9 @@ class FakeNetworkController(
 
   /** Returned by [awaitPushChallengeToken]. Null means no push challenge ever arrives. */
   var pushChallengeToken: String? = null
+
+  /** Stands in for the service's zkgroup receipt params. */
+  val receiptServerSecretParams: ServerSecretParams by lazy { ServerSecretParams.generate() }
 
   // -- Response handlers. Override these in tests to change how the fake server responds.
 
@@ -150,7 +189,9 @@ class FakeNetworkController(
   }
 
   var onRegisterAccount: suspend (RegisterAccountRequest) -> RequestResult<RegisterAccountResponse, RegisterAccountError> = { request ->
-    check(sessionVerified || request.recoveryPassword != null) { "Attempted to register with a session before it was verified!" }
+    check(sessionVerified || request.recoveryPassword != null || request.receiptCredentialPresentation != null) {
+      "Attempted to register with a session before it was verified!"
+    }
     RequestResult.Success(registerAccountResponse(request.e164))
   }
 
@@ -202,6 +243,22 @@ class FakeNetworkController(
     RequestResult.Success(Unit)
   }
 
+  var onReserveUsername: suspend (nickname: String, discriminator: String?) -> RequestResult<Username, ReserveUsernameError> = { nickname, discriminator ->
+    RequestResult.Success(Username("$nickname.${discriminator ?: "42"}"))
+  }
+
+  var onConfirmUsername: suspend (Username) -> RequestResult<ConfirmedUsername, ConfirmUsernameError> = { username ->
+    RequestResult.Success(ConfirmedUsername(username, UsernameLinkComponents(ByteArray(32), UUID.randomUUID())))
+  }
+
+  var onGetLoginConfiguration: suspend () -> RequestResult<LoginConfiguration, GetLoginConfigurationError> = {
+    RequestResult.Success(LoginConfiguration(level = LOGIN_RECEIPT_LEVEL, playProductId = LOGIN_PLAY_PRODUCT_ID))
+  }
+
+  var onCreateLoginPurchaseReceiptCredential: (ReceiptCredentialRequest) -> RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> = { request ->
+    RequestResult.Success(issueLoginReceiptCredential(request))
+  }
+
   // -- Response factories with happy-path defaults, for handlers that only want to tweak a field or two.
 
   fun session(
@@ -229,17 +286,23 @@ class FakeNetworkController(
    */
   fun provisioningMessage(
     aep: AccountEntropyPool,
-    e164: String,
+    e164: String?,
     tier: ProvisioningMessage.Tier? = ProvisioningMessage.Tier.PAID,
     pin: String? = null,
-    restoreMethodToken: String = "restore-method-token"
+    restoreMethodToken: String = "restore-method-token",
+    aci: ACI = ACI.from(UUID.randomUUID())
   ): ProvisioningMessage {
     return ProvisioningMessage(
       accountEntropyPool = aep.value,
+      aci = aci,
       e164 = e164,
       pin = pin,
       aciIdentityKeyPair = IdentityKeyPair.generate(),
-      pniIdentityKeyPair = IdentityKeyPair.generate(),
+      pniIdentityKeyPair = if (e164 != null) {
+        IdentityKeyPair.generate()
+      } else {
+        null
+      },
       platform = ProvisioningMessage.Platform.ANDROID,
       tier = tier,
       backupTimestampMs = 1_700_000_000_000,
@@ -250,13 +313,15 @@ class FakeNetworkController(
   }
 
   fun registerAccountResponse(
-    e164: String,
+    e164: String?,
     storageCapable: Boolean = false,
-    reregistration: Boolean = false
+    reregistration: Boolean = false,
+    aci: String = UUID.randomUUID().toString()
   ): RegisterAccountResponse {
     return RegisterAccountResponse(
-      aci = UUID.randomUUID().toString(),
-      pni = UUID.randomUUID().toString(),
+      aci = aci,
+      // An account with no phone number has no PNI, exactly as the service reports it.
+      pni = if (e164 != null) UUID.randomUUID().toString() else null,
       e164 = e164,
       usernameHash = null,
       usernameLinkHandle = null,
@@ -299,35 +364,76 @@ class FakeNetworkController(
   }
 
   override suspend fun registerAccount(
-    e164: String,
+    e164: String?,
     password: String,
     sessionId: String?,
     recoveryPassword: String?,
+    receiptCredentialPresentation: ReceiptCredentialPresentation?,
     attributes: AccountAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?,
-    skipDeviceTransfer: Boolean
+    skipDeviceTransfer: Boolean,
+    aci: ACI?,
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
-    val request = RegisterAccountRequest(e164, sessionId, recoveryPassword, attributes.registrationLock)
+    val request = RegisterAccountRequest(e164, sessionId, recoveryPassword, attributes.registrationLock, aci, pniPreKeys, attributes.pniRegistrationId, receiptCredentialPresentation, totp, webAuthnResponse)
     lastRegisterAccountRequest = request
     return onRegisterAccount(request)
   }
+
+  override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> = onGetLoginConfiguration()
 
   override suspend fun createLoginPurchaseReceiptCredential(
     purchaseIdentifier: String,
     receiptCredentialRequest: ReceiptCredentialRequest,
     paymentProvider: LoginPurchasePaymentProvider
-  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> = notExpected()
+  ): RequestResult<CreateLoginReceiptCredentialResult, CreateLoginReceiptCredentialError> {
+    lastLoginPurchaseIdentifier = purchaseIdentifier
+    loginReceiptCredentialRequests += receiptCredentialRequest
+    return onCreateLoginPurchaseReceiptCredential(receiptCredentialRequest)
+  }
 
-  override suspend fun registerAccountWithoutPhoneNumber(
-    password: String,
-    receiptCredentialPresentation: ReceiptCredentialPresentation,
-    attributes: AccountAttributes,
-    aciPreKeys: PreKeyCollection,
-    fcmToken: String?,
-    skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> = notExpected()
+  override fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext {
+    val serial = ReceiptSerial(Util.getSecretBytes(ReceiptSerial.SIZE))
+    return ClientZkReceiptOperations(receiptServerSecretParams.publicParams).createReceiptCredentialRequestContext(SecureRandom(), serial)
+  }
+
+  override fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(receiptServerSecretParams.publicParams).receiveReceiptCredential(requestContext, response))
+    } catch (e: VerificationFailedException) {
+      ReceiptCredentialResult.VerificationFailed
+    }
+  }
+
+  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
+    return try {
+      ReceiptCredentialResult.Success(ClientZkReceiptOperations(receiptServerSecretParams.publicParams).createReceiptCredentialPresentation(receiptCredential))
+    } catch (e: VerificationFailedException) {
+      ReceiptCredentialResult.VerificationFailed
+    }
+  }
+
+  /**
+   * Issues a receipt credential the way the service would, with a caller-chosen level and expiration.
+   */
+  fun issueLoginReceiptCredential(
+    request: ReceiptCredentialRequest,
+    level: Long = LOGIN_RECEIPT_LEVEL,
+    expirationSeconds: Long = defaultReceiptExpirationSeconds()
+  ): CreateLoginReceiptCredentialResult {
+    val response = ServerZkReceiptOperations(receiptServerSecretParams).issueReceiptCredential(request, expirationSeconds, level)
+    return CreateLoginReceiptCredentialResult.Issued(response)
+  }
+
+  fun defaultReceiptExpirationSeconds(purchaseTimeMs: Long = System.currentTimeMillis()): Long {
+    return Instant.ofEpochMilli(purchaseTimeMs)
+      .truncatedTo(ChronoUnit.DAYS)
+      .plusSeconds(LOGIN_RECEIPT_LIFESPAN.inWholeSeconds)
+      .epochSecond
+  }
 
   override suspend fun getFcmToken(): String? = fcmToken
 
@@ -420,6 +526,17 @@ class FakeNetworkController(
 
   override suspend fun setProfile(givenName: String, familyName: String, avatar: ByteArray?, discoverableByPhoneNumber: Boolean): RequestResult<Unit, SetProfileError> {
     return RequestResult.Success(Unit)
+  }
+
+  override suspend fun reserveUsername(nickname: String, discriminator: String?): RequestResult<Username, ReserveUsernameError> {
+    lastReservedNickname = nickname
+    lastReservedDiscriminator = discriminator
+    return onReserveUsername(nickname, discriminator)
+  }
+
+  override suspend fun confirmUsername(username: Username): RequestResult<ConfirmedUsername, ConfirmUsernameError> {
+    lastConfirmedUsername = username
+    return onConfirmUsername(username)
   }
 
   private fun notExpected(): Nothing {

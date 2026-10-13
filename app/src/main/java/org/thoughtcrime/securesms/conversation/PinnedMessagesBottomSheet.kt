@@ -25,11 +25,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -41,6 +36,7 @@ import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import java.util.Locale
 
 /**
@@ -114,7 +110,7 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
       messageAdapter.notifyItemRangeChanged(0, messageAdapter.itemCount, ConversationAdapterBridge.PAYLOAD_NAME_COLORS)
     }
 
-    initializeGiphyMp4(view.findViewById(R.id.video_container)!!, list)
+    InlineVideoController.attachForConversation(list, viewLifecycleOwner)
 
     val unpinAll = view.findViewById<TextView>(R.id.unpin_all)
     unpinAll.setOnClickListener {
@@ -141,22 +137,6 @@ class PinnedMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() 
       .setMessage(getString(R.string.PinnedMessage__check_connection))
       .setPositiveButton(android.R.string.ok, null)
       .show()
-  }
-
-  private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
-    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
-    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
-      requireContext(),
-      viewLifecycleOwner.lifecycle,
-      videoContainer,
-      maxPlayback
-    )
-    val callback = GiphyMp4ProjectionRecycler(holders)
-
-    GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
-    list.addItemDecoration(GiphyMp4ItemDecoration(callback), 0)
-
-    return callback
   }
 
   private fun getCallback(): ConversationBottomSheetCallback {

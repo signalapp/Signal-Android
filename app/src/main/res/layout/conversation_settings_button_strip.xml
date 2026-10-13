@@ -83,7 +83,7 @@
                 android:id="@+id/start_video"
                 style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__start_video_call"
-                app:srcCompat="@drawable/ic_video_call_24" />
+                app:srcCompat="@drawable/symbol_video_24" />
 
             <TextView
                 android:id="@+id/start_video_label"
@@ -109,7 +109,7 @@
                 android:id="@+id/start_audio"
                 style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__start_audio_call"
-                app:srcCompat="@drawable/ic_phone_right_24" />
+                app:srcCompat="@drawable/symbol_phone_24" />
 
             <TextView
                 android:id="@+id/start_audio_label"
@@ -135,7 +135,7 @@
                 android:id="@+id/mute"
                 style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__mute"
-                app:srcCompat="@drawable/ic_bell_24" />
+                app:srcCompat="@drawable/symbol_bell_24" />
 
             <TextView
                 android:id="@+id/mute_label"
@@ -161,7 +161,7 @@
                 android:id="@+id/search"
                 style="@style/Signal.Widget.ImageView.ActionButton"
                 android:contentDescription="@string/ConversationSettingsFragment__search"
-                app:srcCompat="@drawable/ic_search_24" />
+                app:srcCompat="@drawable/symbol_search_24" />
 
             <TextView
                 android:id="@+id/search_label"

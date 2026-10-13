@@ -18,7 +18,7 @@ class StorageServicePlugin : Plugin {
     val columns = listOf("Type", "Id", "Data")
     val rows = mutableListOf<List<String>>()
 
-    val repository = StorageServiceService(SignalNetwork.storageService)
+    val repository = SignalNetwork.storageService
     val storageServiceKey = SignalStore.storageService.storageKey
 
     val manifest = when (val result = repository.getStorageManifest(storageServiceKey)) {
@@ -66,6 +66,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.proto.stickerPack != null) {
         row += "Sticker Pack"
         row += record.proto.stickerPack.toString().prettyPrintProto()
+      } else if (record.proto.favoriteSticker != null) {
+        row += "Favorite Sticker"
+        row += record.proto.favoriteSticker.toString().prettyPrintProto()
       } else {
         row += "Unknown"
         row += ""

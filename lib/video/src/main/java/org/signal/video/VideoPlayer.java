@@ -387,6 +387,14 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
+  /**
+   * Seeks to a position in the full video, the counterpart of {@link #getTruePlaybackPosition}: while clipped, the
+   * underlying {@link Player} measures from the clip's start, so the clip offset is taken off first.
+   */
+  public void setTruePlaybackPosition(long positionMs) {
+    setPlaybackPosition(Math.max(0, positionMs - Math.round(clippedStartUs / 1000.0)));
+  }
+
   public void clip(long fromUs, long toUs, boolean playWhenReady) {
     if (this.exoPlayer != null && mediaItem != null) {
       MediaSource         mediaItemSource = mediaSourceFactory.createMediaSource(mediaItem);

@@ -85,17 +85,12 @@
   <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
   <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">„Signal“ reikia prieigos, kad galėtų rodyti jūsų nuotraukas ir vaizdo įrašus.</string>
 
-  <!-- Label for the button that switches the capture screen to the camera. -->
-  <string name="MediaCaptureScreen__camera">Kamera</string>
+  <!-- Label for the button that switches the capture screen to taking a photo. -->
+  <string name="MediaCaptureScreen__photo">Nuotrauka</string>
+  <!-- Label for the button that switches the capture screen to recording a video. -->
+  <string name="MediaCaptureScreen__video">Vaizdo įrašai</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
   <string name="MediaCaptureScreen__text">Tekstas</string>
-    <!-- Label for the pill that displays the media count -->
-    <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d elementas</item>
-        <item quantity="few">%1$d elementai</item>
-        <item quantity="many">%1$d elementų</item>
-        <item quantity="other">%1$d elementas</item>
-    </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
   <string name="TextStoryBar__add_link">Pridėti nuorodą</string>
@@ -138,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Tavo įrenginyje vaizdo įrašymas nepalaikomas</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Bakstelėkite norėdami fotografuoti, laikykite norėdami filmuoti</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Fotografuoti</string>
-  <string name="CameraXFragment_change_camera_description">Keisti kamerą</string>
-  <string name="CameraXFragment_open_gallery_description">Atverti galeriją</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Leisti prieigą</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -178,16 +167,8 @@
   <string name="CameraXFragment_photo_capture_failed">Nepavyko nufotografuoti. Bandykite dar kartą.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Nepavyko apdoroti nuotraukos. Bandykite dar kartą.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Perjungti kamerą</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Blykstė išjungta</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Blykstė įjungta</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Automatinė blykstė</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Siųsti</string>
+  <!-- Label shown below the elapsed time while a video recording is paused -->
+  <string name="CameraXFragment_paused">Pristabdyta</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikia mikrofono leidimo, tačiau jis buvo uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
 
@@ -253,6 +234,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Atrodo, kad bandote susieti „Signal“ įrenginį. Bakstelėkite „Tęsti“, tada bakstelėkite „Susieti naują įrenginį“ ir nuskaitykite QR kodą dar kartą.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Tęsti</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">Paskyros perkelti neįmanoma</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">Įrenginys, į kurį bandote perkelti, yra pasenęs. Atnaujinkite „Signal“ tame įrenginyje ir bandykite vėl.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

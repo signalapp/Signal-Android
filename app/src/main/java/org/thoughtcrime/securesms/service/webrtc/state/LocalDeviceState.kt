@@ -19,6 +19,7 @@ data class LocalDeviceState(
   var activeDevice: SignalAudioManager.AudioDevice = SignalAudioManager.AudioDevice.NONE,
   var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet(),
   var bluetoothPermissionDenied: Boolean = false,
+  var microphoneSilencedTimestamp: Long = 0,
   var isAudioDeviceChangePending: Boolean = false,
   var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN,
   var handRaisedTimestamp: Long = CallParticipant.HAND_LOWERED,

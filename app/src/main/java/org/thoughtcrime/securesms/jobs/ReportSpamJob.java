@@ -107,7 +107,7 @@ public class ReportSpamJob extends BaseJob {
           reportingTokenEncoded = Base64.encodeWithPadding(reportingTokenBytes);
         }
 
-        NetworkResultUtil.toBasicLegacy(SignalNetwork.message().reportSpam(serviceId, data.getServerGuid(), reportingTokenEncoded));
+        NetworkResultUtil.toBasicLegacy(SignalNetwork.messageApi().reportSpam(serviceId, data.getServerGuid(), reportingTokenEncoded));
         count++;
       } else {
         Log.w(TAG, "Unable to report spam without an ACI for " + recipientId);

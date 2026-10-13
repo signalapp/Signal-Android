@@ -31,8 +31,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.BiometricDeviceAuthentication;
-import org.thoughtcrime.securesms.BiometricDeviceLockContract;
+import org.signal.core.ui.biometrics.BiometricDeviceAuthentication;
+import org.signal.core.ui.biometrics.BiometricDeviceLockContract;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -140,12 +140,10 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
       }
     });
 
-    BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo
-                                                               .Builder()
-                                                               .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-                                                               .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
-                                                               .setConfirmationRequired(false)
-                                                               .build();
+    BiometricPrompt.PromptInfo promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
+                                                                         .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
+                                                                         .setConfirmationRequired(false)
+                                                                         .build();
     biometricAuth = new BiometricDeviceAuthentication(BiometricManager.from(requireActivity()),
                                                       new BiometricPrompt(requireActivity(), new BiometricAuthenticationListener()),
                                                       promptInfo);

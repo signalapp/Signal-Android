@@ -162,7 +162,6 @@ private fun CreateGroupScreenUi(
 
   RecipientPickerScaffold(
     title = title,
-    forceSplitPane = uiState.forceSplitPane,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},
     snackbarHostState = remember { SnackbarHostState() },
@@ -285,7 +284,6 @@ private fun CreateGroupScreenPreview() {
   Previews.Preview {
     CreateGroupScreenUi(
       uiState = CreateGroupUiState(
-        forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
       callbacks = CreateGroupUiCallbacks.Empty

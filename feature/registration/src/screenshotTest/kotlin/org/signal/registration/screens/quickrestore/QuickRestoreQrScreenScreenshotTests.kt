@@ -7,15 +7,13 @@ package org.signal.registration.screens.quickrestore
 
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCodeData
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 
 class QuickRestoreQrScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun QuickRestoreQrScreenPreview() {
     Previews.Preview {

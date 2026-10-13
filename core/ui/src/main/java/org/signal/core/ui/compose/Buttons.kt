@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -37,8 +38,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -178,6 +181,29 @@ object Buttons {
   @Composable
   fun ActionButton(
     onClick: () -> Unit,
+    imageVector: ImageVector,
+    label: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+  ) {
+    ActionButton(
+      enabled = enabled,
+      onClick = onClick,
+      label = label,
+      modifier = modifier
+    ) {
+      Icon(
+        imageVector = imageVector,
+        contentDescription = null,
+        modifier = Modifier.padding(16.dp),
+        tint = MaterialTheme.colorScheme.onSecondaryContainer
+      )
+    }
+  }
+
+  @Composable
+  fun ActionButton(
+    onClick: () -> Unit,
     @DrawableRes iconResId: Int,
     @StringRes labelResId: Int,
     modifier: Modifier = Modifier,
@@ -219,7 +245,10 @@ object Buttons {
       )
       Text(
         text = label,
-        modifier = Modifier.padding(top = 12.dp),
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+          .padding(top = 12.dp)
+          .widthIn(max = 88.dp),
         style = MaterialTheme.typography.bodyMedium
       )
     }

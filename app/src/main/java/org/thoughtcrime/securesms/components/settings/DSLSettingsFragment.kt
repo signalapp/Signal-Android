@@ -55,6 +55,12 @@ abstract class DSLSettingsFragment(
    */
   protected open val listAvoidsKeyboard: Boolean = false
 
+  /**
+   * Cleared by layouts that anchor another view below the list, like a bottom action button. That view carries
+   * the navigation bar inset instead, so the list must not pad for it as well.
+   */
+  protected open val listClearsNavigationBar: Boolean = true
+
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     toolbar = view.findViewById(R.id.toolbar)
@@ -120,7 +126,7 @@ abstract class DSLSettingsFragment(
     }
 
     recyclerView?.let { recycler ->
-      val insetTypes = WindowInsetsCompat.Type.navigationBars() or
+      val insetTypes = (if (listClearsNavigationBar) WindowInsetsCompat.Type.navigationBars() else 0) or
         (if (listScrollsBehindToolbar) WindowInsetsCompat.Type.statusBars() else 0) or
         (if (listAvoidsKeyboard) WindowInsetsCompat.Type.ime() else 0)
 
@@ -128,8 +134,10 @@ abstract class DSLSettingsFragment(
         recycler.updatePadding(top = recycler.paddingTop + resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height))
       }
 
-      recycler.clipToPadding = false
-      SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
+      if (insetTypes != 0) {
+        recycler.clipToPadding = false
+        SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
+      }
     }
   }
 

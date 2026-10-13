@@ -236,7 +236,7 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
     val body = ReceiptCredentialRequestJson(receiptCredentialRequest)
     val request = WebSocketRequestMessage.post("/v1/subscription/${subscriberId.serialize()}/receipt_credentials", body)
     return NetworkResult.fromWebSocketRequest(unauthWebSocket, request, webSocketResponseConverter = NetworkResult.LongPollingWebSocketConverter(ReceiptCredentialResponseJson::class))
-      .map { it.receiptCredentialResponse }
+      .map { it.credentialResponse }
       .then {
         if (it != null) {
           NetworkResult.Success(it)
@@ -260,7 +260,7 @@ class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
     val body = BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest, processor)
     val request = WebSocketRequestMessage.post("/v1/subscription/boost/receipt_credentials", body)
     return NetworkResult.fromWebSocketRequest(unauthWebSocket, request, webSocketResponseConverter = NetworkResult.LongPollingWebSocketConverter(ReceiptCredentialResponseJson::class))
-      .map { it.receiptCredentialResponse }
+      .map { it.credentialResponse }
       .then {
         if (it != null) {
           NetworkResult.Success(it)

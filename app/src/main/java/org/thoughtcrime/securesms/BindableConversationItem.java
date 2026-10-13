@@ -24,23 +24,22 @@ import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
+import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.polls.PollOption;
 import org.thoughtcrime.securesms.polls.PollRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
-public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, Colorizable, Multiselectable {
+public interface BindableConversationItem extends Unbindable, Colorizable, Multiselectable {
   void bind(@NonNull LifecycleOwner lifecycleOwner,
             @NonNull ConversationMessage messageRecord,
             @NonNull Optional<MessageRecord> previousMessageRecord,
@@ -86,12 +85,13 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
     void onQuotedIndicatorClicked(@NonNull MessageRecord messageRecord);
     void onMoreTextClicked(@NonNull RecipientId conversationRecipientId, long messageId, boolean isMms);
-    void onStickerClicked(@NonNull StickerLocator stickerLocator);
+    void onStickerClicked(@NonNull StickerSlide stickerSlide);
     void onViewOnceMessageClicked(@NonNull MmsMessageRecord messageRecord);
     void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView);
     void onAddToContactsClicked(@NonNull Contact contact);
-    void onMessageSharedContactClicked(@NonNull List<Recipient> choices);
-    void onInviteSharedContactClicked(@NonNull List<Recipient> choices);
+    void onMessageSharedContactClicked(@NonNull Contact contact, @NonNull List<Recipient> choices);
+    void onInviteSharedContactClicked(@NonNull Contact contact);
+    void onAddSharedContactToGroupClicked(@NonNull Contact contact);
     void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms);
     void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
@@ -136,6 +136,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onEditedIndicatorClicked(@NonNull ConversationMessage conversationMessage);
     void onShowGroupDescriptionClicked(@NonNull String groupName, @NonNull String description, boolean shouldLinkifyWebLinks);
     void onJoinCallLink(@NonNull CallLinkRootKey callLinkRootKey);
+    void onViewStickerPackLink(@NonNull String packId, @NonNull String packKey);
     void onShowSafetyTips(boolean forGroup);
     void onReportSpamLearnMoreClicked();
     void onMessageRequestAcceptOptionsClicked();

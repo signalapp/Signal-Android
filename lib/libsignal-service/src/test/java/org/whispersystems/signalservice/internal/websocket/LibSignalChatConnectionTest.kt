@@ -10,6 +10,7 @@ import io.mockk.verify
 import io.reactivex.rxjava3.observers.TestObserver
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
@@ -41,6 +42,7 @@ class LibSignalChatConnectionTest {
   private val network = mockk<Network>()
   private val connection = LibSignalChatConnection("test", network, null, false, healthMonitor)
   private val chatConnection = mockk<UnauthenticatedChatConnection>()
+  private val connectionInfo = mockk<ChatConnection.ConnectionInfo>()
   private var chatListener: ChatConnectionListener? = null
 
   // Used by default-success mocks for ChatConnection behavior.
@@ -97,6 +99,8 @@ class LibSignalChatConnectionTest {
     }
 
     every { chatConnection.start() } returns Unit
+    every { chatConnection.info() } returns connectionInfo
+    every { connectionInfo.isDirect() } returns true
   }
 
   // Test that the LibSignalChatConnection transitions through DISCONNECTED -> CONNECTING -> CONNECTED
@@ -335,6 +339,27 @@ class LibSignalChatConnectionTest {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
     }
+  }
+
+  // Test that isConnectedDirectly() reflects libsignal's ConnectionInfo while connected, and is false otherwise.
+  @Test
+  fun isConnectedDirectlyReflectsConnectionInfo() {
+    assertFalse(connection.isConnectedDirectly())
+
+    setupConnectedConnection()
+    assertTrue(connection.isConnectedDirectly())
+
+    chatListener!!.onConnectionInterrupted(chatConnection, ChatServiceException("simulated interrupt"))
+    assertFalse(connection.isConnectedDirectly())
+  }
+
+  // Test that isConnectedDirectly() is false when libsignal reports a non-direct (proxied) route.
+  @Test
+  fun isConnectedDirectlyFalseForProxiedRoute() {
+    every { connectionInfo.isDirect() } returns false
+
+    setupConnectedConnection()
+    assertFalse(connection.isConnectedDirectly())
   }
 
   @Test

@@ -16,13 +16,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.TaskStackBuilder;
+import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.util.LinkActions;
 import org.signal.core.util.LinkActions.OpenUrlError;
 import org.signal.core.util.Util;
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.joining.GroupJoinUpdateRequiredBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
-import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameLinkConversionResult;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
@@ -157,15 +157,13 @@ public class CommunicationActions {
     });
   }
 
+  /**
+   * The conversation opens in MainActivity, which is the task root. Its intent already carries
+   * CLEAR_TOP | NEW_TASK | SINGLE_TOP, so it reaches a running instance through onNewIntent and finishes
+   * whatever sits above it. Synthesizing a back stack under it instead would mean FLAG_ACTIVITY_CLEAR_TASK
+   * and a torn-down task, losing everything the window was holding.
+   */
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    startConversation(context, recipient, text, null);
-  }
-
-  public static void startConversation(@NonNull  Context          context,
-                                       @NonNull  Recipient        recipient,
-                                       @Nullable String           text,
-                                       @Nullable TaskStackBuilder backStack)
-  {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
@@ -179,13 +177,7 @@ public class CommunicationActions {
           builder.withDraftText(text);
         }
 
-        Intent intent = builder.build();
-        if (backStack != null) {
-          backStack.addNextIntent(intent);
-          backStack.startActivities();
-        } else {
-          context.startActivity(intent);
-        }
+        context.startActivity(builder.build());
       }
     }.execute();
   }
@@ -210,28 +202,6 @@ public class CommunicationActions {
                    .show();
   }
 
-  public static @NonNull Intent createIntentToShareTextViaShareSheet(@NonNull String text) {
-    Intent intent = new Intent(Intent.ACTION_SEND);
-    intent.setType("text/plain");
-    intent.putExtra(Intent.EXTRA_TEXT, text);
-
-    return intent;
-  }
-
-  public static @NonNull Intent createIntentToComposeSmsThroughDefaultApp(@NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
-    if (text != null) {
-      intent.putExtra("sms_body", text);
-    }
-
-    return intent;
-  }
-
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    Intent intent = createIntentToComposeSmsThroughDefaultApp(recipient, text);
-    context.startActivity(intent);
-  }
-
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
     LinkActions.openUrl(context, link, error -> {
       if (error instanceof OpenUrlError.NoBrowserFound) {
@@ -244,13 +214,25 @@ public class CommunicationActions {
   }
 
   public static void openEmail(@NonNull Context context, @NonNull String address, @Nullable String subject, @Nullable String body) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("mailto:"));
-    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{ address });
-    intent.putExtra(Intent.EXTRA_SUBJECT, Util.emptyIfNull(subject));
-    intent.putExtra(Intent.EXTRA_TEXT, Util.emptyIfNull(body));
+    context.startActivity(Intent.createChooser(buildEmailIntent(address, subject, body), context.getString(R.string.CommunicationActions_send_email)));
+  }
 
-    context.startActivity(Intent.createChooser(intent, context.getString(R.string.CommunicationActions_send_email)));
+  @VisibleForTesting
+  static @NonNull Intent buildEmailIntent(@NonNull String address, @Nullable String subject, @Nullable String body) {
+    subject = Util.emptyIfNull(subject);
+    body    = Util.emptyIfNull(body);
+
+    // Some email clients (e.g. Proton Mail) ignore the extras and only read the mailto URI, so we populate both.
+    Uri.Builder query = new Uri.Builder();
+    if (!subject.isEmpty()) query.appendQueryParameter("subject", subject);
+    if (!body.isEmpty())    query.appendQueryParameter("body", body);
+
+    Uri mailto = Uri.parse("mailto:" + Uri.encode(address, "@+") + query.build());
+
+    return new Intent(Intent.ACTION_SENDTO, mailto)
+        .putExtra(Intent.EXTRA_EMAIL, new String[]{ address })
+        .putExtra(Intent.EXTRA_SUBJECT, subject)
+        .putExtra(Intent.EXTRA_TEXT, body);
   }
 
   /**

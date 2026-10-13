@@ -12,6 +12,11 @@
         android:layout_height="0dp"
         android:layout_margin="3dp">
 
+        <org.thoughtcrime.securesms.video.inline.InlineVideoHost
+            android:id="@+id/surface_host"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/still_image"
             android:layout_width="match_parent"

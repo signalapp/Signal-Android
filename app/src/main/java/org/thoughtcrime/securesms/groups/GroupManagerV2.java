@@ -11,7 +11,13 @@ import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.ServiceId.PNI;
 import org.signal.core.util.StreamUtil;
-import org.signal.core.util.UuidUtil;
+import org.signal.core.util.groups.GroupAlreadyExistsException;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupJoinAlreadyAMemberException;
+import org.signal.core.util.groups.GroupNotAMemberException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -107,6 +113,7 @@ final class GroupManagerV2 {
   private final GroupsV2Authorization  authorization;
   private final ServiceIds             serviceIds;
   private final ACI                    selfAci;
+  @Nullable
   private final PNI                    selfPni;
   private final GroupCandidateHelper   groupCandidateHelper;
   private final SendGroupUpdateHelper  sendGroupUpdateHelper;
@@ -138,7 +145,7 @@ final class GroupManagerV2 {
     this.authorization          = authorization;
     this.serviceIds             = serviceIds;
     this.selfAci                = serviceIds.getAci();
-    this.selfPni                = serviceIds.requirePni();
+    this.selfPni                = serviceIds.getPni();
     this.groupCandidateHelper   = groupCandidateHelper;
     this.sendGroupUpdateHelper  = sendGroupUpdateHelper;
   }
@@ -477,7 +484,7 @@ final class GroupManagerV2 {
       DecryptedGroup decryptedGroup = v2GroupProperties.getDecryptedGroup();
       Optional<DecryptedMember>        selfMember        = DecryptedGroupUtil.findMemberByAci(decryptedGroup.members, selfAci);
       Optional<DecryptedPendingMember> aciPendingMember  = DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.pendingMembers, selfAci);
-      Optional<DecryptedPendingMember> pniPendingMember  = DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.pendingMembers, selfPni);
+      Optional<DecryptedPendingMember> pniPendingMember  = selfPni != null ? DecryptedGroupUtil.findPendingByServiceId(decryptedGroup.pendingMembers, selfPni) : Optional.empty();
       Optional<DecryptedPendingMember> selfPendingMember = Optional.empty();
       ServiceId                        serviceId         = selfAci;
 
@@ -574,7 +581,7 @@ final class GroupManagerV2 {
       }
 
       Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfAci);
-      Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfPni);
+      Optional<DecryptedPendingMember> pniInPending = selfPni != null ? DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfPni) : Optional.empty();
 
       GroupCandidate selfGroupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
@@ -670,7 +677,6 @@ final class GroupManagerV2 {
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
       boolean refetchedAddMemberCredentials = false;
-      change.sourceUserId(UuidUtil.toByteString(authServiceId.getRawUuid()));
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
@@ -1026,8 +1032,8 @@ final class GroupManagerV2 {
         decryptedChange = decryptChange(Objects.requireNonNull(signedGroupChange));
       } catch (GroupJoinAlreadyAMemberException e) {
         Log.i(TAG, "Server reports that we are already a member of " + groupId);
-        alreadyAFullMember       = e.isFullMember();
-        isAlreadyPendingApproval = e.isPending();
+        alreadyAFullMember       = e.isFullMember;
+        isAlreadyPendingApproval = e.isPending;
       }
 
       DecryptedGroup decryptedGroup = createPlaceholderGroup(joinInfo, requestToJoin);
@@ -1213,8 +1219,6 @@ final class GroupManagerV2 {
 
       GroupChange.Actions.Builder change = requestToJoin ? groupOperations.createGroupJoinRequest(expiringProfileKeyCredential)
                                                          : groupOperations.createGroupJoinDirect(expiringProfileKeyCredential);
-
-      change.sourceUserId(selfAci.toByteString());
 
       return commitJoinChangeWithConflictResolution(currentRevision, change);
     }

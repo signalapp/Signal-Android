@@ -18,6 +18,12 @@ enum class RestoreState(private val id: Int, val inProgress: Boolean) {
   val isMediaRestoreOperation: Boolean
     get() = this == CALCULATING_MEDIA || this == RESTORING_MEDIA || this == CANCELING_MEDIA
 
+  /**
+   * True if the state is only relevant while the process is active (i.e. it cannot be resumed after being killed).
+   */
+  val isStateOnlyInMemory: Boolean
+    get() = this == PENDING || this == RESTORING_DB
+
   companion object {
     val serializer: LongSerializer<RestoreState> = Serializer()
   }

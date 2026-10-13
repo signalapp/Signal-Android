@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.mediasend.screens.capture.MediaCaptureScreen
 import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
@@ -75,13 +76,13 @@ internal fun MediaSendNavigation(
     ) { key ->
       when (key) {
         is MediaSendRoute.Capture -> NavEntry(MediaSendRoute.Capture.Chrome) {
-          val captureViewModel: MediaCaptureViewModel = viewModel(
-            factory = MediaCaptureViewModel.Factory(
+          val captureViewModel: MediaCaptureViewModel = viewModel {
+            MediaCaptureViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               selectedCaptureScreen = key
             )
-          )
+          }
           val state by captureViewModel.state.collectAsStateWithLifecycle()
 
           // Toggling between the camera and the text story editor is navigation, so it arrives as a new key on an
@@ -90,22 +91,25 @@ internal fun MediaSendNavigation(
             captureViewModel.onEvent(MediaCaptureScreenEvents.SelectedCaptureScreenChanged(key))
           }
 
-          MediaCaptureScreen(
-            state = state,
-            onEvent = captureViewModel::onEvent,
-            textStoryEditorSlot = textStoryEditorSlot
-          )
+          // Capture sits on a viewfinder or a story gradient, so it keeps the dark palette even in a light theme.
+          SignalTheme(isDarkMode = true) {
+            MediaCaptureScreen(
+              state = state,
+              onEvent = captureViewModel::onEvent,
+              textStoryEditorSlot = textStoryEditorSlot
+            )
+          }
         }
 
         MediaSendRoute.Select.Folders -> NavEntry(key) {
-          val selectViewModel: MediaSelectViewModel = viewModel(
-            factory = MediaSelectViewModel.Factory(
+          val selectViewModel: MediaSelectViewModel = viewModel {
+            MediaSelectViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               mediaFolder = null,
               selectionAdditions = viewModel.selectionAdditions
             )
-          )
+          }
           val state by selectViewModel.state.collectAsStateWithLifecycle()
 
           selectViewModel.readMediaPermission.Content()
@@ -118,14 +122,14 @@ internal fun MediaSendNavigation(
         }
 
         is MediaSendRoute.Select.Files -> NavEntry(key) {
-          val selectViewModel: MediaSelectViewModel = viewModel(
-            factory = MediaSelectViewModel.Factory(
+          val selectViewModel: MediaSelectViewModel = viewModel {
+            MediaSelectViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent,
               mediaFolder = key.folder,
               selectionAdditions = viewModel.selectionAdditions
             )
-          )
+          }
           val state by selectViewModel.state.collectAsStateWithLifecycle()
 
           selectViewModel.readMediaPermission.Content()
@@ -138,12 +142,12 @@ internal fun MediaSendNavigation(
         }
 
         is MediaSendRoute.Edit -> NavEntry(MediaSendRoute.Edit) {
-          val editViewModel: MediaEditViewModel = viewModel(
-            factory = MediaEditViewModel.Factory(
+          val editViewModel: MediaEditViewModel = viewModel {
+            MediaEditViewModel(
               parentState = viewModel.state,
               parentEventEmitter = viewModel::onEvent
             )
-          )
+          }
           val state by editViewModel.state.collectAsStateWithLifecycle()
 
           SaveToStorageDialog(editViewModel)
@@ -153,7 +157,7 @@ internal fun MediaSendNavigation(
             state = state,
             onEvent = editViewModel::onEvent,
             imageControllers = viewModel.imageControllers,
-            mediaInputFactory = MediaSendDependencies.mediaInputFactory
+            videoPlayerCommands = editViewModel.videoPlayerCommands
           )
         }
 

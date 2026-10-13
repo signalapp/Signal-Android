@@ -39,13 +39,13 @@ import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImage112
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Bottom Sheet displayed when the app notices that a long-running donation has

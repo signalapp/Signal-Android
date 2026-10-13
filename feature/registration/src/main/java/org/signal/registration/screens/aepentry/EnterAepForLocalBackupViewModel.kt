@@ -7,8 +7,6 @@ package org.signal.registration.screens.aepentry
 
 import androidx.annotation.VisibleForTesting
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -48,7 +46,7 @@ class EnterAepForLocalBackupViewModel(
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   isPasswordManagerAvailable: Boolean = false
-) : EventDrivenViewModel<EnterAepEvents>(TAG) {
+) : EventDrivenViewModel<EnterAepEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(EnterAepForLocalBackupViewModel::class)
@@ -88,19 +86,25 @@ class EnterAepForLocalBackupViewModel(
       is EnterAepEvents.DismissDifferentAccountDialog -> {
         stateEmitter(inputState.copy(showDifferentAccountDialog = false))
       }
+      is EnterAepEvents.TryAnotherWay,
+      is EnterAepEvents.RecoveryKeyHelp,
+      is EnterAepEvents.ConfirmVerifyWithSms,
+      is EnterAepEvents.DismissVerifyWithSmsDialog -> {
+        error("Verify-with-SMS handling only exists for pre-registration remote backup restores.")
+      }
     }
   }
 
   private suspend fun applySubmit(inputState: EnterAepState, stateEmitter: (EnterAepState) -> Unit) {
-    check(inputState.isBackupKeyValid) { "AEP is not valid, should not have gotten here." }
+    check(inputState.recoveryKey.isValid) { "AEP is not valid, should not have gotten here." }
 
     if (!isPreRegistration) {
-      resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RestoreReady(inputState.backupKey))
+      resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RestoreReady(inputState.recoveryKey.normalized))
       parentEventEmitter.navigateBack()
       return
     }
 
-    val aep = AccountEntropyPool(inputState.backupKey)
+    val aep = AccountEntropyPool(inputState.recoveryKey.normalized)
 
     stateEmitter(inputState.copy(isRegistering = true))
 
@@ -108,7 +112,7 @@ class EnterAepForLocalBackupViewModel(
     // only mean the backup belongs to a different account rather than a mistyped key.
     if (!repository.verifyLocalBackupKey(checkNotNull(backupUri).toUri(), aep)) {
       Log.w(TAG, "[Submit] Entered key cannot decrypt the selected backup.")
-      stateEmitter(inputState.copy(isRegistering = false, aepValidationError = AepValidationError.Incorrect))
+      stateEmitter(inputState.copy(isRegistering = false, recoveryKey = inputState.recoveryKey.copy(error = AepValidationError.Incorrect)))
       return
     }
 
@@ -128,11 +132,11 @@ class EnterAepForLocalBackupViewModel(
     when (val result = repository.registerAccountWithRecoveryPassword(e164, recoveryPassword, registrationLock, existingAccountEntropyPool = aep)) {
       is RequestResult.Success -> {
         Log.i(TAG, "[Submit] Successfully registered using RRP from user-supplied AEP. Proceeding with the restore.")
-        val (response, keyMaterial) = result.result
+        val (response, keyMaterial, aci) = result.result
 
         stateEmitter(inputState.copy(isRegistering = false))
-        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
-        resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RestoreReady(inputState.backupKey))
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
+        resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RestoreReady(inputState.recoveryKey.normalized))
         parentEventEmitter.navigateBack()
       }
       is RequestResult.NonSuccess -> {
@@ -175,6 +179,17 @@ class EnterAepForLocalBackupViewModel(
           is RegisterAccountError.DeviceTransferPossible -> {
             error("[Submit] Device transfer possible. This should not happen with RRP-based registration.")
           }
+          is RegisterAccountError.InvalidReceiptCredentialPresentation,
+          is RegisterAccountError.TwoFactorRequired,
+          RegisterAccountError.PostQuantumRatchetRequired -> {
+            Log.w(TAG, "[Submit] Unexpected registration error: $error")
+            stateEmitter(
+              inputState.copy(
+                isRegistering = false,
+                registrationError = RegistrationError.UnknownError
+              )
+            )
+          }
         }
       }
       is RequestResult.RetryableNetworkError -> {
@@ -202,21 +217,6 @@ class EnterAepForLocalBackupViewModel(
     parentEventEmitter(RegistrationFlowEvent.RecoveryPasswordInvalid)
     resultBus.sendResult(resultKey, EnterAepForLocalBackupResult.RegistrationDeferredToSms)
     parentEventEmitter.navigateBack()
-  }
-
-  class Factory(
-    private val isPreRegistration: Boolean,
-    private val backupUri: String?,
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String,
-    private val isPasswordManagerAvailable: Boolean = false
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return EnterAepForLocalBackupViewModel(isPreRegistration, backupUri, repository, parentState, parentEventEmitter, resultBus, resultKey, isPasswordManagerAvailable) as T
-    }
   }
 }
 

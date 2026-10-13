@@ -26,7 +26,6 @@ import org.signal.libsignal.net.MediaBackupInfo
 import org.signal.libsignal.net.MessageBackupInfo
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.RequestUnauthorizedException
-import org.signal.libsignal.net.ServerSideErrorException
 import org.signal.libsignal.net.UnauthBackupsService
 import org.signal.libsignal.net.UnauthenticatedChatConnection
 import org.signal.libsignal.net.UploadForm
@@ -39,7 +38,6 @@ import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequestContext
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialResponse
 import org.signal.network.toRequestResult
 import org.signal.network.websocket.WebSocketRequestMessage
-import org.signal.network.websocket.WebsocketResponse
 import org.signal.network.websocket.get
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation
@@ -327,44 +325,6 @@ class ArchiveApiV2(
       )
     } catch (e: VerificationFailedException) {
       ZkCredentialResult.Failure.VerificationFailed(e)
-    }
-  }
-
-  /**
-   * Issues a hand-rolled REST-over-websocket request, classifying the outcome the same way libsignal classifies its own.
-   *
-   * A 5xx is reported as [RequestResult.RetryableNetworkError] rather than being offered to [mapError], because a server-side failure is transient no matter
-   * which endpoint produced it, and callers uniformly want to back off rather than treat it as a decision point.
-   *
-   * A null from [mapError] on any other code means the status isn't one this endpoint documents. That's also a [RequestResult.RetryableNetworkError], not an
-   * [RequestResult.ApplicationError]: the server can start returning a code we don't model yet without us shipping, so callers should back off rather than treat
-   * it as a local bug. Several callers escalate an application error to a crash, which is the wrong response to an unexpected status code.
-   *
-   * Both of those carry a [ServerSideErrorException], which is what libsignal uses for a server-side failure on the endpoints it owns. That lets a caller that
-   * wants a longer backoff for "the server is unhappy" than for "we couldn't reach the server" tell them apart, and get the same answer either way.
-   */
-  private suspend fun <T, E : BadRequestError> SignalWebSocket.requestResult(
-    request: WebSocketRequestMessage,
-    parseSuccess: (WebsocketResponse) -> T,
-    mapError: (WebsocketResponse) -> E?
-  ): RequestResult<T, E> {
-    return try {
-      val response = requestSuspend(request)
-
-      when {
-        response.status in 200..299 -> RequestResult.Success(parseSuccess(response))
-        response.status in 500..599 -> RequestResult.RetryableNetworkError(ServerSideErrorException("Server error: ${response.status}"))
-        else -> when (val error = mapError(response)) {
-          null -> RequestResult.RetryableNetworkError(ServerSideErrorException("Unexpected response code: ${response.status}"))
-          else -> RequestResult.NonSuccess(error)
-        }
-      }
-    } catch (e: CancellationException) {
-      throw e
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Throwable) {
-      RequestResult.ApplicationError(e)
     }
   }
 

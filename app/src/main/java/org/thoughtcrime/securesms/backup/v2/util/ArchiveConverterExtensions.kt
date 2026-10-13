@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
@@ -52,6 +53,8 @@ fun FilePointer?.toLocalAttachment(
 ): Attachment? {
   if (this == null) return null
   val locatorInfo = this.locatorInfo ?: return null
+
+  val audioHash = AudioHash.fromSenderProvided(contentType, this.audioWaveform?.toByteArray(), this.audioDurationSeconds)
 
   val attachmentType = when {
     locatorInfo.plaintextHash != null -> AttachmentType.ARCHIVE
@@ -90,7 +93,8 @@ fun FilePointer?.toLocalAttachment(
         quoteTargetContentType = quoteTargetContentType,
         uuid = UuidUtil.fromByteStringOrNull(uuid),
         fileName = fileName,
-        localBackupKey = locatorInfo.localKey?.toByteArray()
+        localBackupKey = locatorInfo.localKey?.toByteArray(),
+        audioHash = audioHash
       )
     }
     AttachmentType.TRANSIT -> {
@@ -113,7 +117,9 @@ fun FilePointer?.toLocalAttachment(
         caption = Optional.ofNullable(this.caption),
         blurHash = Optional.ofNullable(this.blurHash),
         uploadTimestamp = locatorInfo.transitTierUploadTimestamp?.clampToValidBackupRange() ?: 0,
-        uuid = UuidUtil.fromByteStringOrNull(uuid)
+        uuid = UuidUtil.fromByteStringOrNull(uuid),
+        audioWaveform = this.audioWaveform?.toByteArray(),
+        audioDurationSeconds = this.audioDurationSeconds
       )
       PointerAttachment.forPointer(
         pointer = Optional.of(signalAttachmentPointer),
@@ -139,7 +145,8 @@ fun FilePointer?.toLocalAttachment(
         quote = quote,
         quoteTargetContentType = quoteTargetContentType,
         stickerLocator = stickerLocator,
-        uuid = UuidUtil.fromByteStringOrNull(uuid)
+        uuid = UuidUtil.fromByteStringOrNull(uuid),
+        audioHash = audioHash
       )
     }
   }
@@ -155,6 +162,8 @@ fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null, 
   builder.height = this.height.takeIf { it > 0 }
   builder.caption = this.caption
   builder.blurHash = this.blurHash?.hash
+  builder.audioWaveform = this.audioHash?.waveFormBytes?.toByteString()
+  builder.audioDurationSeconds = this.audioHash?.durationSeconds
   builder.locatorInfo = this.toLocatorInfo(backupMode)
 
   return builder.build()

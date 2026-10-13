@@ -140,6 +140,11 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
+    public @NonNull LocalDeviceStateBuilder setMicrophoneSilencedTimestamp(long microphoneSilencedTimestamp) {
+      toBuild.setMicrophoneSilencedTimestamp(microphoneSilencedTimestamp);
+      return this;
+    }
+
     public @NonNull LocalDeviceStateBuilder setAudioDeviceChangePending(boolean isAudioDeviceChangePending) {
       toBuild.setAudioDeviceChangePending(isAudioDeviceChangePending);
       return this;

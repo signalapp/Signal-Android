@@ -9,7 +9,9 @@ import org.signal.core.models.media.Media
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushTool
-import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarAction
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarState
 
 sealed interface MediaEditScreenEvents {
 
@@ -34,7 +36,12 @@ sealed interface MediaEditScreenEvents {
   data class BrushWidthChanged(val tool: BrushTool, val fraction: Float) : MediaEditScreenEvents
   data class ToggleBlurFaces(val enabled: Boolean) : MediaEditScreenEvents
   data object SaveMedia : MediaEditScreenEvents
-  data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaEditScreenEvents
-  data class VideoSeek(val positionUs: Long, val editingComplete: Boolean) : MediaEditScreenEvents
   data object ToggleVideoMuted : MediaEditScreenEvents
+
+  /** Something for the video trim bar, from the bar itself or from the player feeding it. */
+  data class TrimBarEvent(val event: VideoTrimBarEvents) : MediaEditScreenEvents
+
+  data class TrimBarStateChanged(val state: VideoTrimBarState) : MediaEditScreenEvents
+
+  data class TrimBarAction(val action: VideoTrimBarAction) : MediaEditScreenEvents
 }

@@ -12,8 +12,10 @@ import kotlinx.serialization.json.Json
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId.ACI
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import java.util.UUID
 
 class PersistedFlowStateTest {
 
@@ -153,6 +155,24 @@ class PersistedFlowStateTest {
   }
 
   @Test
+  fun `round-trip serialization with SignalLoginCredentialEntry`() {
+    val state = PersistedFlowState(
+      backStack = listOf(
+        RegistrationRoute.Welcome,
+        RegistrationRoute.SignalLoginCredentialEntry("a6b284822e3283d07f2391360a4c2b91")
+      ),
+      sessionMetadata = null,
+      sessionE164 = null,
+      doNotAttemptRecoveryPassword = false
+    )
+
+    val encoded = json.encodeToString(PersistedFlowState.serializer(), state)
+    val decoded = json.decodeFromString(PersistedFlowState.serializer(), encoded)
+
+    assertThat(decoded).isEqualTo(state)
+  }
+
+  @Test
   fun `deserialization ignores unknown keys for forward compatibility`() {
     val validJson = """{"backStack":[{"type":"org.signal.registration.RegistrationRoute.Welcome"}],"sessionMetadata":null,"sessionE164":null,"doNotAttemptRecoveryPassword":false,"unknownField":"value"}"""
     val decoded = json.decodeFromString(PersistedFlowState.serializer(), validJson)
@@ -179,7 +199,9 @@ class PersistedFlowStateTest {
       sessionE164 = "+15551234567",
       submittedVerificationCode = "123456",
       accountEntropyPool = AccountEntropyPool.generate(),
+      aci = ACI.from(UUID.fromString("3f8b6a90-8f9c-4a3e-9c7d-1f2e3a4b5c6d")),
       storageCapable = true,
+      isPhoneNumberlessAccount = true,
       temporaryMasterKey = MasterKey(ByteArray(32)),
       doNotAttemptRecoveryPassword = true,
       lastSmsVerificationCodeRequest = VerificationCodeRequest("+15551234567", 12_345L),
@@ -192,8 +214,10 @@ class PersistedFlowStateTest {
     assertThat(persisted.sessionMetadata).isEqualTo(session)
     assertThat(persisted.sessionE164).isEqualTo("+15551234567")
     assertThat(persisted.submittedVerificationCode).isEqualTo("123456")
+    assertThat(persisted.aci).isEqualTo("3f8b6a90-8f9c-4a3e-9c7d-1f2e3a4b5c6d")
     assertThat(persisted.doNotAttemptRecoveryPassword).isEqualTo(true)
     assertThat(persisted.storageCapable).isEqualTo(true)
+    assertThat(persisted.phoneNumberlessAccount).isEqualTo(true)
     assertThat(persisted.smsVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 12_345L))
     assertThat(persisted.callVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 23_456L))
   }
@@ -215,8 +239,10 @@ class PersistedFlowStateTest {
       sessionMetadata = session,
       sessionE164 = "+15551234567",
       submittedVerificationCode = "123456",
+      aci = "3f8b6a90-8f9c-4a3e-9c7d-1f2e3a4b5c6d",
       doNotAttemptRecoveryPassword = true,
       storageCapable = true,
+      phoneNumberlessAccount = true,
       smsVerificationCodeRequest = VerificationCodeRequest("+15551234567", 12_345L),
       callVerificationCodeRequest = VerificationCodeRequest("+15551234567", 23_456L)
     )
@@ -235,10 +261,12 @@ class PersistedFlowStateTest {
     assertThat(flowState.sessionE164).isEqualTo("+15551234567")
     assertThat(flowState.submittedVerificationCode).isEqualTo("123456")
     assertThat(flowState.accountEntropyPool).isEqualTo(aep)
+    assertThat(flowState.aci).isEqualTo(ACI.from(UUID.fromString("3f8b6a90-8f9c-4a3e-9c7d-1f2e3a4b5c6d")))
     assertThat(flowState.temporaryMasterKey).isEqualTo(masterKey)
     assertThat(flowState.preExistingRegistrationData).isNull()
     assertThat(flowState.doNotAttemptRecoveryPassword).isEqualTo(true)
     assertThat(flowState.storageCapable).isEqualTo(true)
+    assertThat(flowState.isPhoneNumberlessAccount).isEqualTo(true)
     assertThat(flowState.lastSmsVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 12_345L))
     assertThat(flowState.lastCallVerificationCodeRequest).isEqualTo(VerificationCodeRequest("+15551234567", 23_456L))
   }

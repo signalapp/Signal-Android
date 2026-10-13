@@ -9,6 +9,7 @@ import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.CallLinkRecord
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
+import org.whispersystems.signalservice.internal.storage.protos.FavoriteStickerRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile
@@ -56,6 +57,10 @@ fun StickerPackRecord.toSignalStickerPackRecord(storageId: StorageId): SignalSti
   return SignalStickerPackRecord(storageId, this)
 }
 
+fun FavoriteStickerRecord.toSignalFavoriteStickerRecord(storageId: StorageId): SignalFavoriteStickerRecord {
+  return SignalFavoriteStickerRecord(storageId, this)
+}
+
 fun SignalContactRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(contact = this.proto))
 }
@@ -90,4 +95,8 @@ fun SignalNotificationProfileRecord.toSignalStorageRecord(): SignalStorageRecord
 
 fun SignalStickerPackRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(stickerPack = this.proto))
+}
+
+fun SignalFavoriteStickerRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(favoriteSticker = this.proto))
 }

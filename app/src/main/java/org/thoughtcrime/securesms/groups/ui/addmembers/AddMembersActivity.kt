@@ -163,7 +163,6 @@ private fun AddMembersScreenUi(
 
   RecipientPickerScaffold(
     title = title,
-    forceSplitPane = uiState.forceSplitPane,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},
     snackbarHostState = remember { SnackbarHostState() },
@@ -318,7 +317,6 @@ private fun AddMembersScreenPreview() {
   Previews.Preview {
     AddMembersScreenUi(
       uiState = AddMembersUiState(
-        forceSplitPane = false,
         selectionLimits = SelectionLimits.NO_LIMITS
       ),
       callbacks = AddMembersUiCallbacks.Empty

@@ -1,47 +1,54 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.signal.core.util.PlayServicesUtil
 import org.signal.mediasend.SentMediaQuality
+import org.thoughtcrime.securesms.components.settings.app.storage.StorageUsageRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.ForceWebsocketMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 class DataAndStorageSettingsViewModel(
-  private val sharedPreferences: SharedPreferences,
-  private val repository: DataAndStorageSettingsRepository
+  private val storageUsageRepository: StorageUsageRepository = StorageUsageRepository.instance
 ) : ViewModel() {
 
   private val store = MutableStateFlow(getState())
 
   val state: StateFlow<DataAndStorageSettingsState> = store
 
-  fun refresh() {
-    repository.getTotalStorageUse { totalStorageUse ->
-      store.update { getState().copy(totalStorageUse = totalStorageUse, showStayConnectedDialog = it.showStayConnectedDialog) }
+  init {
+    viewModelScope.launch {
+      storageUsageRepository.usage.map { it?.total }.collect { totalStorageUse ->
+        store.update { it.copy(totalStorageUse = totalStorageUse) }
+      }
     }
   }
 
+  fun refresh() {
+    getStateAndCopyStorageUsage()
+    storageUsageRepository.refresh()
+  }
+
   fun setMobileAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_MOBILE_PREF, resultSet).apply()
+    SignalStore.settings.mobileMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
   fun setWifiAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_WIFI_PREF, resultSet).apply()
+    SignalStore.settings.wifiMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
   fun setRoamingAutoDownloadValues(resultSet: Set<String>) {
-    sharedPreferences.edit().putStringSet(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF, resultSet).apply()
+    SignalStore.settings.roamingMediaDownloadAllowed = resultSet
     getStateAndCopyStorageUsage()
   }
 
@@ -73,7 +80,7 @@ class DataAndStorageSettingsViewModel(
   }
 
   private fun applyForceWebsocketMode(enabled: Boolean) {
-    SignalStore.settings.forceWebsocketMode = if (enabled) ForceWebsocketMode.ENABLED_BY_USER else ForceWebsocketMode.DISABLED
+    SignalStore.settings.forceWebsocketMode = if (enabled) ForceWebsocketMode.ENABLED_BY_USER else ForceWebsocketMode.DISABLED_BY_USER
     if (!enabled) {
       IncomingMessageObserver.stopForegroundService(AppDependencies.application)
     }
@@ -87,16 +94,10 @@ class DataAndStorageSettingsViewModel(
   }
 
   private fun getState() = DataAndStorageSettingsState(
-    totalStorageUse = 0,
-    mobileAutoDownloadValues = TextSecurePreferences.getMobileMediaDownloadAllowed(
-      AppDependencies.application
-    ),
-    wifiAutoDownloadValues = TextSecurePreferences.getWifiMediaDownloadAllowed(
-      AppDependencies.application
-    ),
-    roamingAutoDownloadValues = TextSecurePreferences.getRoamingMediaDownloadAllowed(
-      AppDependencies.application
-    ),
+    totalStorageUse = null,
+    mobileAutoDownloadValues = SignalStore.settings.mobileMediaDownloadAllowed,
+    wifiAutoDownloadValues = SignalStore.settings.wifiMediaDownloadAllowed,
+    roamingAutoDownloadValues = SignalStore.settings.roamingMediaDownloadAllowed,
     callDataMode = SignalStore.settings.callDataMode,
     isProxyEnabled = SignalStore.proxy.isProxyEnabled,
     sentMediaQuality = SignalStore.settings.sentMediaQuality,
@@ -104,14 +105,4 @@ class DataAndStorageSettingsViewModel(
     playServicesAvailable = PlayServicesUtil.getPlayServicesStatus(AppDependencies.application) == PlayServicesUtil.PlayServicesStatus.SUCCESS,
     showStayConnectedDialog = false
   )
-
-  class Factory(
-    private val sharedPreferences: SharedPreferences,
-    private val repository: DataAndStorageSettingsRepository
-  ) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(DataAndStorageSettingsViewModel(sharedPreferences, repository)))
-    }
-  }
 }

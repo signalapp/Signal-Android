@@ -12,8 +12,10 @@ import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isGreaterThan
 import assertk.assertions.isLessThan
+import assertk.assertions.isTrue
 import io.mockk.mockk
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,6 +24,8 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.polls.PollOption
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 @RunWith(RobolectricTestRunner::class)
@@ -128,6 +132,53 @@ class ChatItemArchiveExporterTest {
     assertThat(exported).isEqualTo(rows.sortedBy { it.dateReceived }.map { it.id })
   }
 
+  @Test
+  fun `poll question of 200 multi-codepoint graphemes is valid for export`() {
+    assertThat(poll(question = FAMILY_EMOJI.repeat(200)).hasValidQuestionForExport()).isTrue()
+  }
+
+  @Test
+  fun `poll question exceeding 200 multi-codepoint graphemes is invalid for export`() {
+    assertThat(poll(question = FAMILY_EMOJI.repeat(201)).hasValidQuestionForExport()).isFalse()
+  }
+
+  @Test
+  fun `empty poll question is invalid for export`() {
+    assertThat(poll(question = "").hasValidQuestionForExport()).isFalse()
+  }
+
+  @Test
+  fun `poll options of 100 multi-codepoint graphemes are valid for export`() {
+    assertThat(poll(options = listOf(FLAG_EMOJI.repeat(100), "e\u0301".repeat(100))).hasValidOptionsForExport()).isTrue()
+  }
+
+  @Test
+  fun `poll option exceeding 100 multi-codepoint graphemes is invalid for export`() {
+    assertThat(poll(options = listOf(FLAG_EMOJI.repeat(101), "option2")).hasValidOptionsForExport()).isFalse()
+  }
+
+  @Test
+  fun `empty poll option is invalid for export`() {
+    assertThat(poll(options = listOf("", "option2")).hasValidOptionsForExport()).isFalse()
+  }
+
+  @Test
+  fun `poll with too many options is invalid for export`() {
+    assertThat(poll(options = List(11) { "option$it" }).hasValidOptionsForExport()).isFalse()
+  }
+
+  private fun poll(question: String = "how are you", options: List<String> = listOf("option1", "option2")): PollRecord {
+    return PollRecord(
+      id = 1,
+      question = question,
+      pollOptions = options.mapIndexed { index, text -> PollOption(id = index.toLong(), text = text, voters = emptyList()) },
+      allowMultipleVotes = false,
+      hasEnded = false,
+      authorId = 1,
+      messageId = 1
+    )
+  }
+
   private fun ChatItemArchiveExporter.drain(): List<Long> {
     return drainBatches().flatten()
   }
@@ -197,6 +248,9 @@ class ChatItemArchiveExporterTest {
 
     /** Mirrors ChatItemArchiveExporter.MIN_ROW_LIMIT, which is private. */
     private const val MIN_ROW_LIMIT = 100
+
+    private const val FAMILY_EMOJI = "\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC66"
+    private const val FLAG_EMOJI = "\uD83C\uDDFA\uD83C\uDDF8"
 
     private val COLUMNS = arrayOf(
       MessageTable.ID,

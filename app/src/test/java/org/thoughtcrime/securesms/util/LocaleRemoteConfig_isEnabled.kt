@@ -34,7 +34,10 @@ class LocaleRemoteConfig_isEnabled(private val serializedList: String, private v
         arrayOf("5,7,8", listOf("+15555555555", "+25552555555", "+35555555555"), false),
         arrayOf("5 123,5,31 1231", listOf("+112355555555", "+25552555555", "+331231555555"), false),
         arrayOf("5,7,8", listOf("+1 5 5 5 5 55 5555", "+255525 55 555", "+355 55 555555"), false),
-        arrayOf("1 125,5,33 5231", listOf("+1 1 2 3 55 555 555", "+ 255 52 5 5 5555", "+3 31 2 3 1 5 5 5-5-5 5"), false)
+        arrayOf("1 125,5,33 5231", listOf("+1 1 2 3 55 555 555", "+ 255 52 5 5 5555", "+3 31 2 3 1 5 5 5-5-5 5"), false),
+
+        arrayOf("1,99999", listOf("99999"), true),
+        arrayOf("1,33", listOf("99999"), false)
       )
     }
   }

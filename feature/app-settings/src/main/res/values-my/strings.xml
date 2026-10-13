@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးပြုမည်လား?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးမပြုမည်လား?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">အကယ်၍ သင်၏ Signal ပင်နံပါတ် ကို နောက်တစ်ကြိမ် မှတ်ပုံတင်သည့်အခါတွင် မေ့နေပါက သင်၏ အကောင့်ကို ၇ ရက် အသုံးပြုနိုင်မည်မဟုတ်ပါ။</string>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်ခြင်း လော့ခ်ကို ဖွင့်မည်လား။</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">မှတ်ပုံတင်ခြင်း လော့ခ်ကို ပိတ်မည်လား။</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">အကယ်၍ Signal ကို နောက်တစ်ကြိမ် မှတ်ပုံတင်သည့်အခါတွင် သင်၏ Signal PIN ကို မေ့နေပါက သင်၏ အကောင့်ကို 7 ရက် အသုံးပြုနိုင်မည်မဟုတ်ပါ။</string>
     <string name="RegistrationLockV2Dialog_turn_on">ဖွင့်မည်</string>
     <string name="RegistrationLockV2Dialog_turn_off">ပိတ်မည်</string>
-    <string name="preferences__advanced_pin_settings">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
+    <string name="preferences__advanced_pin_settings">အဆင့်မြင့် PIN ဆက်တင်များ</string>
     <string name="preferences__delete_account">အကောင့်ကို ဖျက်ရန်</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">ကီးဘုတ် ပြောင်းရန်</string>
-    <string name="preferences_chats__transfer_account">အကောင့်လွှဲမယ်</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">သင့် Android စက်အသစ်ပေါ်သို့ အကောင့်လွှဲပြောင်းမယ်</string>
-    <string name="preferences_app_protection__signal_pin">Signal ပင်နံပါတ်</string>
-    <string name="preferences_app_protection__create_a_pin">ပင်နံပါတ်တစ်ခုဖန်တီးမည်</string>
-    <string name="preferences_app_protection__change_your_pin">သင်၏ပင်နံပါတ်ကိုပြောင်းပါ</string>
-    <string name="preferences_app_protection__pin_reminders">ပင်နံပါတ်သတိပေးချက်များ</string>
+    <string name="preferences_chats__transfer_account">အကောင့် လွှဲပြောင်းမည်</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">သင့် Android စက်အသစ်ပေါ်သို့ အကောင့်လွှဲပြောင်းမည်</string>
+    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+    <string name="preferences_app_protection__create_a_pin">PIN တစ်ခု ဖန်တီးမည်</string>
+    <string name="preferences_app_protection__change_your_pin">သင်၏ PIN ကို ပြောင်းပါ</string>
+    <string name="preferences_app_protection__pin_reminders">PIN သတိပေးချက်များ</string>
     <string name="preferences_app_protection__turn_off">ပိတ်မည်</string>
-    <string name="preferences_app_protection__confirm_pin">ပင်နံပါတ်အား အတည်ပြုမည်</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">သင်၏ Signal ပင်နံပါတ်ကိုအတည်ပြုပါ</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">သင်၏ပင်နံပါတ်ကို ပြန်လည်သိမ်းဆည်းမရပါကြောင့် အလွတ်ကျက်ထား သို့မဟုတ် သေချာစွာသိမ်းထားပါ။ သင်၏ပင်နံပါတ်ကိုသင်မေ့သွားပါက သင်၏ Signal အကောင့်ကိုပြန်လည်မှတ်ပုံတင်သောအခါ ဒေတာဆုံးရှုံးနိုင်သည်။</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">PIN နံပါတ် မှားနေသည်။ ထပ်မံကြိုးစားပါ။</string>
-    <string name="preferences_app_protection__registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်း</string>
+    <string name="preferences_app_protection__confirm_pin">PIN အတည်ပြုမည်</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">သင်၏ Signal PIN ကို အတည်ပြုပါ</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">သင်၏ PIN ကို ပြန်လည် မရယူနိုင်သောကြောင့် မှတ်ထားပါ သို့မဟုတ် သေချာစွာသိမ်းထားပါ။ သင်၏ PIN ကို သင်မေ့သွားပါက သင်၏ Signal အကောင့်ကို ပြန်လည်မှတ်ပုံတင်သောအခါ ဒေတာဆုံးရှုံးနိုင်သည်။</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">PIN မှားနေသည်။ ထပ်မံကြိုးစားပါ။</string>
+    <string name="preferences_app_protection__registration_lock">မှတ်ပုံတင်ခြင်း လော့ခ်</string>
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">အကောင့်ကို ပြန်လည်၍မှတ်ပုံတင်ရန်</string>
+    <string name="preferences_account_reregister">အကောင့်ကို ပြန်လည်၍ မှတ်ပုံတင်ရန်</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
-    <string name="preferences_account_update_signal">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
+    <string name="preferences_account_update_signal">Signal ကို အပ်ဒိတ်လုပ်ရန်</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
     <string name="preferences_account_delete_all_data">ဒေတာအားလုံး ဖျက်ရန်</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
@@ -39,79 +39,312 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">အကောင့်</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">သင့်အား အကြိမ်ရေနည်းနည်းဖြင့် မေးမြန်းသွားပါမည်</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">အချိန်ကြာလာသည် နှင့်အမျှ သင့်ကို မေးမြန်းသည့်အကြိမ် နည်းသွားပါမည်</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">သင့်ဖုန်းနံပါတ်ကို Signal ဖြင့် ထပ်မံစာရင်းသွင်းရန် သင်၏ Signal PIN ကို လိုအပ်ပါသည်</string>
     <string name="AccountSettingsFragment__change_phone_number">ဖုန်းနံပါတ်ပြောင်းလဲရန်</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">သင့်အကောင့်ဒေတာ</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Signal လော့ဂ်အင်</string>
+    <string name="AccountSettingsFragment__signal_login">Signal Login</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">အကောင့်နှင့် ပြန်လည်ရယူခြင်း</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">သင့် Signal Login ကို သင့်အကောင့်အား ပြန်လည်ရယူပြီး ပြန်လည်အသုံးပြုနိုင်ရန် အသုံးပြုပါသည်။ ယုံကြည်စိတ်ချရသော စကားဝှက်စီမံရေးတွင် ဤကီးများကို လုံခြုံစွာ သိမ်းဆည်းထားပါ။</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">လုပ်ဆောင်သော</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">နှစ်ဆင့် အတည်ပြုခြင်း</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">သတ်မှတ်ရန်</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">တစ်ကြိမ်သုံး အတည်ပြုကုဒ်များ</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Passkey</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Passkey</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · %2$s တွင် ထည့်သွင်းခဲ့သည်</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">မသိရှိ</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">နှစ်ဆင့်အတည်ပြုခြင်း ရွေးချယ်စရာများကို ဖွင့်ပါ</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">အမည်ပြောင်းရန်</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">ဖယ်ရှားရန်</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ဖယ်ရှားမလား။</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">သင်ဝင်ရောက်သည့်အခါ တစ်ကြိမ်သုံးအတည်ပြုကုဒ်များအတွက် ဤအက်ပ်ကို အသုံးပြုနိုင်တော့မည်မဟုတ်ပါ။</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းလမ်းကို ဖယ်ရှားရန် လော့ခ်ဖွင့်ပါ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">ဤနည်းလမ်းကို ဖယ်ရှားရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">လော့ခ်ဖွင့်ပြီး Signal Login ကို ကြည့်ပါ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">သင့် Signal Login ကို ကြည့်ရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုရန် လော့ခ်ဖွင့်ပါ</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">သင့်အကောင့်ကို ဖျက်ရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">စစ်မှန်ကြောင်းအတည်ပြုချက် လိုအပ်သည်</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ထည့်၍မရပါ</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ် %1$d ခုထက်ပို၍ ထည့်၍မရပါ။ တစ်ခုကို အရင်ဆုံး ဖယ်ရှားကြည့်ပါ။</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">နှစ်ဆင့် အတည်ပြုနည်းလမ်း %1$d ခုထက်ပို၍ ထည့်သွင်း၍မရပါ။ တစ်ခုကို အရင်ဆုံး ဖယ်ရှားကြည့်ပါ။</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">သင့်နှစ်ဆင့်အတည်ပြုခြင်း နည်းလမ်းများကို ဖွင့်၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ဖယ်ရှားပြီးပါပြီ</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ဖယ်ရှား၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">စက်အသစ်တွင် သင့် Signal Login ကို အသုံးပြုသည့်အခါ သင့်အကောင့်ကို ကာကွယ်ရန် ဒုတိယအဆင့် အတည်ပြုခြင်းနည်းလမ်းကို အသုံးပြုပါ။</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">ပိုမိုလေ့လာရန်</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို သတ်မှတ်ပါ</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">သင့် အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို စတင်အသုံးပြုရန် အောက်ပါအဆင့်များအတိုင်း လုပ်ဆောင်ပါ။</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">ပိုမိုလေ့လာရန်</string>
+    <string name="TotpSetupScreen__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">အဆင့် 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">သင့်စက်တွင် ယုံကြည်စိတ်ချရသော အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ထည့်သွင်းပါ။</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">အဆင့် 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">သင့် Signal အကောင့်ကို ထည့်သွင်းရန် အောက်ပါခလုတ်ကို နှိပ်ပြီး သင့် အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို ဖွင့်ပါ။</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <string name="TotpSetupScreen__open">ဖွင့်ရန်</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">သို့မဟုတ် ဤကီးကို ကူးယူပြီး ကိုယ်တိုင် ထည့်သွင်းနိုင်ပါသည်။</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">ကူးမည်</string>
+    <string name="TotpSetupScreen__copy">ကူးယူမည်</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို မတွေ့ပါ</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ် %1$d ခုထက်ပို၍ ထည့်၍မရပါ။ တစ်ခုကို အရင်ဆုံး ဖယ်ရှားကြည့်ပါ။</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Signal သို့ ချိတ်ဆက်၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">အဆင့် 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">ထုတ်ပေးထားသော ကုဒ်ကို ကူးယူပြီး ဆက်လက်လုပ်ဆောင်ရန် ဤနေရာသို့ ပြန်လာပါ။</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">ဆက်လုပ်ရန်</string>
+    <string name="TotpSetupScreen__continue">ဆက်လုပ်ရန်</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">သင့်ကုဒ်ကို ထည့်ပါ</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">ကုဒ်</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">သင့် အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှ ရရှိသော ဂဏန်း 6 လုံးပါ ကုဒ်ကို ထည့်ပါ။</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">ပြီးပါပြီ</string>
+    <string name="TotpCodeEntryScreen__next">ဆက်သွားမည်</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">ကုဒ် မှားနေပါသည်။ ယခု သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှာ ပြသနေသော ကုဒ်ကို ထည့်ပါ။</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Signal သို့ ချိတ်ဆက်၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">အမည်တစ်ခုကို ရွေးပါ</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">ဤအတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်အတွက် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">ဤအတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို နောက်ပိုင်းတွင် ခွဲခြားသိရှိနိုင်ရန် ထူးခြားသောအမည်တစ်ခုကို ရွေးပါ။</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">အမည်</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">ဆက်သွားမည်</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို သတ်မှတ်ရန်</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်ကို အမည်ပြောင်းပြီးပါပြီ</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">အမည်ကို သိမ်းဆည်း၍မရပါ။ သင့်အင်တာနက်ချိတ်ဆက်မှုကို ပြန်စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">သင့်အကောင့်ကိုဖျက်ခြင်းဖြင့်-</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကိုထည့်ပါ</string>
+    <string name="DeleteAccountFragment__delete_account">အကောင့်ကို ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">သင့်အကောင့်အချက်အလက်နှင့် ပရိုဖိုင်ဓာတ်ပုံကို ဖျက်မည်</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">သင်၏ မက်ဆေ့ချ်များအားလုံးကို ဖျက်မည်</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s ကို သင့်ငွေပေးချေသည့် အကောင့်မှ ဖျက်ရန်</string>
+    <string name="DeleteAccountFragment__no_country_code">နိုင်ငံကုဒ်နံပါတ် သတ်မှတ်ထားခြင်း မရှိပါ</string>
+    <string name="DeleteAccountFragment__no_number">နံပါတ်သတ်မှတ်ထားခြင်း မရှိပါ</string>
+    <string name="DeleteAccountFragment__the_phone_number">သင်ရိုက်ထည့်ထားသော ဖုန်းနံပါတ်သည် သင့်အကောင့်အတွင်းရှိ နံပါတ်နှင့် မကိုက်ညီပါ။</string>
+    <string name="DeleteAccountFragment__are_you_sure">သင့်အကောင့်ကို ဖျက်သိမ်းလိုသည်မှာ သေချာပါသလား။</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ဤသည်က သင့် Signal အကောင့်ကို ဖျက်သိမ်းပြီး အက်ပလီကေးရှင်းကို ပြန်လည်သတ်မှတ်ပါမည်။ အက်ပ်သည် လုပ်ဆောင်မှုပြီးလျှင် ပိတ်သွားပါမည်။</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">စက်တွင်းရှိဒေတာဖျက်ခြင်း မအောင်မြင်ပါ။ စနစ်ထဲရှိ အက်ပလီကေးရှင်း အပြင်အဆင်များထဲ၌ သင်ကိုယ်တိုင် ရှင်းနိုင်ပါသည်။</string>
+    <string name="DeleteAccountFragment__launch_app_settings">ဖုန်းဆက်တင်ကိုဖွင့်မည်</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">အဖွဲ့မှ ထွက်နေဆဲ…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">အကောင့် ဖျက်နေဆဲ…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">သင်၏ ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်နေဆဲ…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">သင်ဝင်ထားသည့် အဖွဲ့ အရေအတွက်ပေါ်မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">သုံးစွဲသူ ဒေတာကို ဖျက်ခြင်းနှင့် အက်ပ်ကို ပြန်လည်သတ်မှတ်ခြင်း</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">အကောင့် မဖျက်ထားပါ</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">ဖျက်ပစ်သည့် စီမံလုပ်ဆောင်ချက်ကို အပြီးသတ်ရာတွင် ပြဿနာ ရှိနေပါသည်။ သင့်ကွန်ရက်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">သုံးစွဲသူအမည် \"%1$s\" ဖြင့် သင့်အကောင့်ကို ဖျက်လိုက်ပါက အောက်ပါအတိုင်း ဖြစ်ပေါ်မည်-</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">သင့်သုံးစွဲသူအမည် \"%1$s\" အပါအဝင် သင့်အကောင့်အချက်အလက်များနှင့် ပရိုဖိုင်ဓာတ်ပုံကို ဖျက်ပါ</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရနိုင်ပါ</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">ဤလုပ်ဆောင်ချက်သည် သုံးစွဲသူအမည် \"%1$s\" ဖြင့် သင့် Signal အကောင့်ကို ဖျက်ပြီး အက်ပ်ကို မူလအခြေအနေသို့ ပြန်လည်သတ်မှတ်မည်ဖြစ်သည်။ ဤလုပ်ငန်းစဉ် ပြီးသွားသောအခါ အက်ပ် ပိတ်သွားပါမည်။</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">ကျွန်ုပ်၏ အကောင့်ကို ဖျက်ပါ</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">သူငယ်ချင်းဖိတ်ပါ</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">ဝေမျှမည်</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>
+    <string name="RegistrationActivity_phone_number_description">ဖုန်းနံပါတ်</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">ဖိုင်တွဲ %1$d ခု</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">ချက်(တ်)ဖိုင်တွဲတစ်ခုထည့်ရန်</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">ဖိုင်တွဲများ ထည့်သွင်းရန် သို့မဟုတ် တည်းဖြတ်ရန်</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">စစ်မှန်ကြောင်းအတည်ပြုခြင်း မအောင်မြင်ပါ</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">ချက်(တ်)ဖိုင်တွဲများ</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူပါ</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">သင့်ချက်(တ်)အားလုံး၏ စက်ဖြင့်ဖတ်နိုင်သော JSON မိတ္တူကို ထုတ်ယူပါ။ ပျောက်သွားမည့် မက်ဆေ့ချ်များကို ထုတ်ယူမည်မဟုတ်ပါ။</string>
+    <string name="ChatsSettingsFragment__keyboard">ကီးဘုတ်</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ပါ</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူရန် လော့ခ်ဖွင့်ပါ</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် သင့်လိပ်စာစာအုပ်ရှိ အဆက်အသွယ်များ၏ ဓာတ်ပုံများကို အသုံးပြုပါ</string>
+    <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းပြီးသော အသံပိတ်ထားသည့် ချက်(တ်)များသည် စုစည်းလျက်သား ဆက်ရှိနေပါမည်။</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">အသံပိတ်ထားသည့် ချက်(တ်)များကို ဆက်လက်စုစည်းရန်</string>
+    <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို ဦးစားပေးပါ</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
+    <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
+    <string name="preferences_chats__chats">ချက်(တ်)များ</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">သတိထားပါ</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">သတိထားပါ။</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">ထုတ်ယူမှုကို ပယ်ဖျက်နေသည်…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">သင့်စက်၏ ထားသိုမှုထဲတွင် ချက်(တ်)မှတ်တမ်းကို သိမ်းဆည်းမည့် ဖိုင်တွဲတစ်ခုကို ရွေးချယ်ပါ။</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">ဖိုင်တွဲတစ်ခုရွေးချယ်ပါ</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">သင်ထုတ်ယူထားသော ချက်(တ်)ဖိုင် သိမ်းဆည်းထားသည့် နေရာကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ဖုန်း၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ၎င်းကိုဝင်ရောက် အသုံးပြုနိုင်ပါသည်။</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">ချက်(တ်) ထုတ်ယူမှု ပြီးပါပြီ</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">ချက်(တ်)မှတ်တမ်းကို ထုတ်ယူမလား။</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">ဤဖိုင်ကို မည်သူနှင့်မျှ မမျှဝေပါနှင့်။ သင့်ချက်(တ်)မှတ်တမ်းကို သင့်စက်တွင် သိမ်းဆည်းမည်ဖြစ်ပြီး သင့်စက်၏ ခွင့်ပြုချက်များပေါ်မူတည်၍ အခြားအက်ပ်များက ဝင်ရောက်ကြည့်ရှုနိုင်ပါသည်။ မီဒီယာဖြင့် ထုတ်ယူလျှင် ဖိုင်အရွယ်အစား ပိုကြီးသွားပါလိမ့်မည်။</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">မီဒီယာဖြင့် ထုတ်ယူမည်</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">မီဒီယာမပါဘဲ ထုတ်ယူမည်</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">မီဒီယာကို ထုတ်ယူနေသည်- %1$d</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">အပြီးသတ်နေသည်…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">ဘက်ခ်အပ်ကို ပြင်ဆင်နေသည်…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">ဘက်ခ်အပ်ကို လုပ်ဆောင်နေသည်…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">မက်ဆေ့ချ်များကို လုပ်ဆောင်နေသည်- %1$s / %2$s (%3$d%%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">မီဒီယာ အပ်လုဒ်လုပ်နေသည်- %1$d%%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">အပ္ပလီကေးရှင်း အပ်ဒိတ်များ</string>
 </resources>

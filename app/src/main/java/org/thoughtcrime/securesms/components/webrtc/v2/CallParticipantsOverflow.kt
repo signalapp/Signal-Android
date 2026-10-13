@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
-import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
@@ -44,13 +45,18 @@ fun CallParticipantsOverflow(
 ) {
   val callScreenMetrics = rememberCallScreenMetrics()
   val rendererSize = callScreenMetrics.overflowParticipantRendererSize
+  val edgeInset = callScreenMetrics.overflowStripEdgeInset
+  val itemSpacing = callScreenMetrics.overflowStripItemSpacing
+
+  // Leading slot for the self pip, which is not a cell: participants scroll under it.
+  val pipSlot = rendererSize + edgeInset + itemSpacing
 
   if (lineType == LayoutStrategyLineType.ROW) {
     LazyRow(
       reverseLayout = true,
       modifier = Modifier.fillMaxWidth().then(modifier),
-      contentPadding = PaddingValues(start = 16.dp, end = rendererSize + 32.dp),
-      horizontalArrangement = spacedBy(4.dp)
+      contentPadding = PaddingValues(start = edgeInset, end = pipSlot),
+      horizontalArrangement = Arrangement.Absolute.spacedBy(itemSpacing, Alignment.End)
     ) {
       appendItems(rendererSize, overflowParticipants)
     }
@@ -58,8 +64,8 @@ fun CallParticipantsOverflow(
     LazyColumn(
       reverseLayout = true,
       modifier = Modifier.fillMaxHeight().then(modifier),
-      contentPadding = PaddingValues(top = 16.dp, bottom = rendererSize + 32.dp),
-      verticalArrangement = spacedBy(4.dp)
+      contentPadding = PaddingValues(top = edgeInset, bottom = pipSlot),
+      verticalArrangement = Arrangement.spacedBy(itemSpacing, Alignment.Bottom)
     ) {
       appendItems(rendererSize, overflowParticipants)
     }

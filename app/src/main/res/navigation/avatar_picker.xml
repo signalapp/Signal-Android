@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/avatar_picker"
     app:startDestination="@id/avatarPickerFragment">
 
     <fragment
         android:id="@+id/avatarPickerFragment"
         android:name="org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment"
-        android:label="fragment_pick_avatar"
-        tools:layout="@layout/avatar_picker_fragment">
+        android:label="fragment_pick_avatar">
         <action
             android:id="@+id/action_avatarPickerFragment_to_textAvatarCreationFragment"
             app:destination="@id/textAvatarCreationFragment"

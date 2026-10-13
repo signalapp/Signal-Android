@@ -11,16 +11,14 @@ import android.Manifest
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 import org.signal.registration.screens.util.MockMultiplePermissionsState
 import org.signal.registration.screens.util.MockPermissionsState
 
 class PermissionsScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun PermissionsScreenPreview() {
     Previews.Preview {

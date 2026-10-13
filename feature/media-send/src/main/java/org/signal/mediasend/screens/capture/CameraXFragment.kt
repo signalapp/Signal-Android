@@ -75,6 +75,7 @@ import org.signal.camera.CameraScreenViewModel
 import org.signal.camera.CameraXUtil
 import org.signal.camera.VideoCaptureResult
 import org.signal.camera.VideoOutput
+import org.signal.camera.hud.CaptureButtonMode
 import org.signal.camera.hud.GalleryThumbnailButton
 import org.signal.camera.hud.StandardCameraHud
 import org.signal.camera.hud.StandardCameraHudEvents
@@ -166,7 +167,6 @@ class CameraXFragment : ComposeFragment(), CameraFragment {
       state = state,
       onEvent = { event -> controller?.onCameraXScreenEvent(event) },
       videoRecordingConfig = rememberVideoRecordingConfig(
-        mediaConstraints = controller?.mediaConstraints,
         maxDurationSecondsOverride = controller?.maxVideoDuration ?: 0
       ),
       onCheckPermissions = { checkPermissions(state.isVideoEnabled) },
@@ -300,16 +300,10 @@ data class VideoRecordingConfig(
  * @param maxDurationSecondsOverride A positive value replaces the derived cap, leaving the backing choice intact.
  */
 @Composable
-internal fun rememberVideoRecordingConfig(mediaConstraints: MediaConstraints?, maxDurationSecondsOverride: Int = 0): VideoRecordingConfig {
-  if (mediaConstraints == null) {
-    return VideoRecordingConfig(maxDurationSeconds = maxDurationSecondsOverride)
-  }
-
+internal fun rememberVideoRecordingConfig(maxDurationSecondsOverride: Int = 0): VideoRecordingConfig {
   val context = LocalContext.current
 
-  // Keyed on the derived duration rather than the MediaConstraints instance, because implementations hand
-  // back a fresh object on every call and would otherwise restart resolution on every recomposition.
-  val memoryBackedDurationSeconds = VideoUtil.getMemoryBackedMaxRecordDurationSeconds(mediaConstraints)
+  val memoryBackedDurationSeconds = VideoUtil.getMemoryBackedMaxRecordDurationSeconds(context)
   val memoryBackedCap = maxDurationSecondsOverride.takeIf { it > 0 } ?: memoryBackedDurationSeconds
   val memoryBacked = VideoRecordingConfig(
     useEncryptedDisk = false,
@@ -344,6 +338,8 @@ private fun CameraFragment.Controller.onCameraXScreenEvent(event: CameraXScreenE
     is CameraXScreenEvents.ImageCaptured -> onImageCaptured(event.data, event.width, event.height)
     is CameraXScreenEvents.VideoCaptured -> onVideoCaptured(event.fd, event.durationMs)
     is CameraXScreenEvents.QrCodeFound -> onQrCodeFound(event.data)
+    // The chrome the legacy hosts put up does not move for a recording, so there is nothing to tell them.
+    is CameraXScreenEvents.RecordingStateChanged -> Unit
     CameraXScreenEvents.VideoCaptureError -> onVideoCaptureError()
     CameraXScreenEvents.GalleryClicked -> onGalleryClicked()
     CameraXScreenEvents.CameraCloseClicked -> onCameraCloseClicked()
@@ -370,7 +366,9 @@ data class CameraXScreenState(
   val isVideoEnabled: Boolean = true,
   val isQrScanEnabled: Boolean = false,
   val controlsVisible: Boolean = true,
-  val selectedMediaCount: Int = 0
+  val selectedMediaCount: Int = 0,
+  /** Which kind of capture the capture button offers, which is the mode the flow's bottom bar has selected. */
+  val captureButtonMode: CaptureButtonMode = CaptureButtonMode.PHOTO
 )
 
 /** A descriptor to record into, paired with the duration cap that the descriptor actually supports. */
@@ -404,12 +402,26 @@ class VideoFileDescriptor(val context: Context) {
       Log.w(TAG, "Failed to create encrypted disk file descriptor, falling back to memory")
     }
 
+    val recording = createMemoryBacked(config.memoryBackedMaxDurationSeconds)
+    if (recording != null || config.memoryBackedMaxDurationSeconds <= VideoUtil.MAX_IN_MEMORY_RECORD_DURATION_SECONDS_LOW_MEMORY) {
+      return recording
+    }
+
+    Log.w(TAG, "Not enough memory to reserve ${config.memoryBackedMaxDurationSeconds}s. Retrying at the low-memory cap.")
+    return createMemoryBacked(VideoUtil.MAX_IN_MEMORY_RECORD_DURATION_SECONDS_LOW_MEMORY)
+  }
+
+  /**
+   * Reserves the RAM a recording of [maxDurationSeconds] needs and hands back the descriptor to record into,
+   * or null when the device cannot spare that much.
+   */
+  private fun createMemoryBacked(maxDurationSeconds: Int): ActiveRecording? {
     return try {
-      val memory = CameraXUtil.createMemoryVideoFileDescriptor(context)
+      val memory = CameraXUtil.createMemoryVideoFileDescriptor(context, VideoUtil.getMemoryBackedRecordSizeBytes(maxDurationSeconds))
       videoFileDescriptor = memory
-      ActiveRecording(memory.parcelFd, config.memoryBackedMaxDurationSeconds)
+      ActiveRecording(memory.parcelFd, maxDurationSeconds)
     } catch (e: IOException) {
-      Log.w(TAG, "Failed to create video file descriptor", e)
+      Log.w(TAG, "Failed to create a ${maxDurationSeconds}s video file descriptor", e)
       null
     }
   }
@@ -516,6 +528,11 @@ fun CameraXScreen(
     }
   }
 
+  LaunchedEffect(cameraViewModel) {
+    snapshotFlow { cameraState.isRecording }
+      .collect { isRecording -> onEvent(CameraXScreenEvents.RecordingStateChanged(isRecording)) }
+  }
+
   LaunchedEffect(cameraViewModel, state.isQrScanEnabled) {
     if (state.isQrScanEnabled) {
       cameraViewModel.qrCodeDetected.collect { qrCode ->
@@ -600,6 +617,7 @@ fun CameraXScreen(
             state = cameraState,
             modifier = Modifier.padding(bottom = if (isPortraitPhone) hudBottomPaddingInsideViewport else 0.dp),
             maxRecordingDurationMs = activeRecordingMaxDurationMs,
+            captureButtonMode = state.captureButtonMode,
             hasAudioPermission = { context.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED },
             emitter = { event ->
               handleHudEvent(
@@ -620,7 +638,8 @@ fun CameraXScreen(
             },
             stringResources = StringResources(
               photoCaptureFailed = R.string.CameraXFragment_photo_capture_failed,
-              photoProcessingFailed = R.string.CameraXFragment_photo_processing_failed
+              photoProcessingFailed = R.string.CameraXFragment_photo_processing_failed,
+              recordingPaused = R.string.CameraXFragment_paused
             )
           )
         }
@@ -727,12 +746,18 @@ private fun handleHudEvent(
     }
 
     is StandardCameraHudEvents.VideoCaptureStarted -> {
+      if (cameraViewModel.hasActiveRecording) {
+        Log.d(TAG, "Ignoring a recording asked for while one is already running")
+        return
+      }
+
       val recording = if (Build.VERSION.SDK_INT >= 26 && isVideoEnabled) createVideoFileDescriptor() else null
 
       if (recording != null) {
         cameraViewModel.startRecording(
           context = context,
           output = VideoOutput.FileDescriptorOutput(recording.parcelFd),
+          isRecordingLocked = event.isLocked,
           onVideoCaptured = { result ->
             handleVideoCaptured(result, releaseVideoFileDescriptor, onVideoCaptureFailed, onEvent)
           }
@@ -745,6 +770,14 @@ private fun handleHudEvent(
 
     is StandardCameraHudEvents.VideoCaptureStopped -> {
       cameraViewModel.stopRecording()
+    }
+
+    is StandardCameraHudEvents.VideoCaptureLocked -> {
+      cameraViewModel.onEvent(CameraScreenEvents.LockRecording)
+    }
+
+    is StandardCameraHudEvents.RecordingPauseToggled -> {
+      cameraViewModel.onEvent(CameraScreenEvents.ToggleRecordingPaused)
     }
 
     is StandardCameraHudEvents.GalleryClick -> {
@@ -769,6 +802,10 @@ private fun handleHudEvent(
 
     is StandardCameraHudEvents.SetZoomLevel -> {
       cameraViewModel.onEvent(CameraScreenEvents.LinearZoom(event.zoomLevel))
+    }
+
+    is StandardCameraHudEvents.SetZoomRatio -> {
+      cameraViewModel.onEvent(CameraScreenEvents.SetZoomRatio(event.zoomRatio))
     }
 
     is StandardCameraHudEvents.AudioPermissionRequired -> {

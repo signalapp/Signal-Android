@@ -16,7 +16,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
@@ -35,14 +35,14 @@ class InternalPendingOneTimeDonationConfigurationViewModel : ViewModel() {
 
   val disposable: Disposable = Single
     .fromCallable {
-      AppDependencies.donationsService
+      SignalNetwork.donationsService
         .getDonationsConfiguration(Locale.getDefault())
     }
     .flatMap { it.flattenResult() }
     .subscribeOn(Schedulers.io())
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe { config ->
-      val badge = Badges.fromServiceBadge(config.levels.values.first().badge)
+      val badge = Badges.fromServiceBadge(config.levels.values.first().badge!!)
       state.value = state.value.copy(badge = Badges.toDatabaseBadge(badge))
     }
 

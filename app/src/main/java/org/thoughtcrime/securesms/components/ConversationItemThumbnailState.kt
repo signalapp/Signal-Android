@@ -28,7 +28,7 @@ data class ConversationItemThumbnailState(
 
   @Parcelize
   data class ThumbnailViewState(
-    private val alpha: Float = 0f,
+    private val alpha: Float = 1f,
     private val focusable: Boolean = true,
     private val clickable: Boolean = true,
     @IgnoredOnParcel

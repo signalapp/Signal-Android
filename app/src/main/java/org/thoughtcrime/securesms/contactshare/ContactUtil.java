@@ -36,7 +36,9 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class ContactUtil {
 
@@ -60,17 +62,22 @@ public final class ContactUtil {
     return SpanUtil.italic(context.getString(R.string.MessageNotifier_unknown_contact_message));
   }
 
+  /**
+   * The name to render for a shared contact, everywhere.
+   */
   public static @NonNull String getDisplayName(@Nullable Contact contact) {
     if (contact == null) {
       return "";
     }
 
-    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
-      return contact.getName().getNickname();
+    String structuredName = buildStructuredName(contact.getName());
+
+    if (!TextUtils.isEmpty(structuredName)) {
+      return structuredName;
     }
 
-    if (!TextUtils.isEmpty(contact.getName().getGivenName()) || !TextUtils.isEmpty(contact.getName().getFamilyName())) {
-      return ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
+    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
+      return contact.getName().getNickname();
     }
 
     if (!TextUtils.isEmpty(contact.getOrganization())) {
@@ -80,29 +87,23 @@ public final class ContactUtil {
     return "";
   }
 
-  public static @NonNull String getDisplayNumber(@NonNull Contact contact, @NonNull Locale locale) {
-    Phone displayNumber = getPrimaryNumber(contact);
+  /** ProfileName puts the family name first for CJKV, which a bare join would lose. */
+  private static @NonNull String buildStructuredName(@NonNull Contact.Name name) {
+    boolean hasExtraParts = !TextUtils.isEmpty(name.getPrefix()) ||
+                            !TextUtils.isEmpty(name.getMiddleName()) ||
+                            !TextUtils.isEmpty(name.getSuffix());
 
-    if (displayNumber != null) {
-      return ContactUtil.getPrettyPhoneNumber(displayNumber, locale);
-    } else if (contact.getEmails().size() > 0) {
-      return contact.getEmails().get(0).getEmail();
-    } else {
-      return "";
-    }
-  }
-
-  private static @Nullable Phone getPrimaryNumber(@NonNull Contact contact) {
-    if (contact.getPhoneNumbers().size() == 0) {
-      return null;
+    if (!hasExtraParts) {
+      return ProfileName.fromParts(name.getGivenName(), name.getFamilyName()).toString();
     }
 
-    List<Phone> mobileNumbers = contact.getPhoneNumbers().stream().filter(number -> number.getType() == Phone.Type.MOBILE).collect(Collectors.toList());
-    if (mobileNumbers.size() > 0) {
-      return mobileNumbers.get(0);
-    }
-
-    return contact.getPhoneNumbers().get(0);
+    return Stream.of(name.getPrefix(),
+                     name.getGivenName(),
+                     name.getMiddleName(),
+                     name.getFamilyName(),
+                     name.getSuffix())
+                 .filter(part -> !TextUtils.isEmpty(part))
+                 .collect(Collectors.joining(" "));
   }
 
   public static @NonNull String getPrettyPhoneNumber(@NonNull Phone phoneNumber, @NonNull Locale fallbackLocale) {
@@ -141,14 +142,38 @@ public final class ContactUtil {
     }
   }
 
-  public static List<RecipientId> getRecipients(@NonNull Contact contact) {
+  /**
+   * Recipients we already know about for the card's numbers. A lookup rather than an insert, so
+   * rendering a received card does not create rows for people the user has never contacted.
+   */
+  public static List<RecipientId> getExistingRecipients(@NonNull Contact contact) {
     return contact
         .getPhoneNumbers()
         .stream()
         .map(phone -> SignalE164Util.formatAsE164(phone.getNumber()))
-        .filter(number -> number != null)
-        .map(phone -> SignalDatabase.recipients().getOrInsertFromE164(phone))
+        .filter(Objects::nonNull)
+        .map(e164 -> SignalDatabase.recipients().getByE164(e164).orElse(null))
+        .filter(Objects::nonNull)
         .collect(Collectors.toList());
+  }
+
+  /**
+   * Picker over the card's own numbers, for when there is no recipient to pick between.
+   */
+  public static void selectNumberThroughDialog(@NonNull Context context, @NonNull List<String> numbers, @NonNull Locale locale, @NonNull NumberSelectedCallback callback) {
+    if (numbers.size() > 1) {
+      CharSequence[] values = new CharSequence[numbers.size()];
+
+      for (int i = 0; i < values.length; i++) {
+        values[i] = getPrettyPhoneNumber(numbers.get(i), locale);
+      }
+
+      new MaterialAlertDialogBuilder(context).setItems(values, ((dialog, which) -> callback.onSelected(numbers.get(which))))
+                                             .create()
+                                             .show();
+    } else {
+      callback.onSelected(numbers.get(0));
+    }
   }
 
   @WorkerThread
@@ -156,10 +181,9 @@ public final class ContactUtil {
     Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
-    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
-      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getNickname());
-    } else if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
-      String displayName = ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
+    String displayName = getDisplayName(contact);
+
+    if (!TextUtils.isEmpty(displayName)) {
       intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
     }
 
@@ -256,6 +280,10 @@ public final class ContactUtil {
       case WORK: return ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK;
       default:   return ContactsContract.CommonDataKinds.StructuredPostal.TYPE_CUSTOM;
     }
+  }
+
+  public interface NumberSelectedCallback {
+    void onSelected(@NonNull String number);
   }
 
   public interface RecipientSelectedCallback {

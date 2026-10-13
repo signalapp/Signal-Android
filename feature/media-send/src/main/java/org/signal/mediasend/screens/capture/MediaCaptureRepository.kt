@@ -12,7 +12,9 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.util.ContentTypeUtil
 import org.signal.core.util.SeekableFileDescriptor
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.contentproviders.BlobProvider
+import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaSendDependencies
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import java.io.FileInputStream
@@ -37,11 +39,15 @@ internal class MediaCaptureRepository(
 
       buildCapturedMedia(uri, ContentTypeUtil.IMAGE_JPEG, width, height, data.size.toLong())
     } catch (e: IOException) {
+      Log.w(TAG, "Failed to write out a captured image", e)
       null
     }
   }
 
   /**
+   * Copies the recording into a blob of its own. The recorder writes into an ephemerally-keyed scratch file that is
+   * deleted when its descriptor closes, so the bytes have to be re-encrypted under the attachment secret to outlive it.
+   *
    * @param fd The recording, which is closed here whether or not it could be written out.
    * @return The captured recording, or null if it could not be written out.
    */
@@ -49,16 +55,25 @@ internal class MediaCaptureRepository(
     try {
       fd.use { descriptor ->
         FileInputStream(descriptor.fileDescriptor).use { stream ->
+          val stopwatch = Stopwatch("captured-video-copy")
+
           val length = stream.channel.size()
+          stopwatch.split("length")
+
           val uri = blobs
             .forData(stream, length)
             .withMimeType(VideoConstants.RECORDED_VIDEO_CONTENT_TYPE)
             .createForSingleSessionOnDisk(context)
+          stopwatch.split("blob")
+
+          Log.d(TAG, "Copied a recording into a blob. bytes: $length")
+          stopwatch.stop(TAG)
 
           buildCapturedMedia(uri, VideoConstants.RECORDED_VIDEO_CONTENT_TYPE, 0, 0, length)
         }
       }
     } catch (e: IOException) {
+      Log.w(TAG, "Failed to write out a captured recording", e)
       null
     }
   }
@@ -79,5 +94,9 @@ internal class MediaCaptureRepository(
       transformProperties = null,
       fileName = null
     )
+  }
+
+  companion object {
+    private val TAG = Log.tag(MediaCaptureRepository::class)
   }
 }

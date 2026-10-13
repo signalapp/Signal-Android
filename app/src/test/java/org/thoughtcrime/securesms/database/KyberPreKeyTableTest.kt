@@ -7,8 +7,10 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -198,6 +200,40 @@ class KyberPreKeyTableTest {
       signedPreKeyId = 1,
       baseKey = publicKey
     )
+  }
+
+  @Test
+  fun hasUsedLastResortKeySet_trueOnlyForKeySetsWeveAlreadySeen() {
+    insertTestRecord(aci, id = 1, staleTime = 10, lastResort = true)
+    val publicKey = generateECPublicKey()
+
+    assertFalse(SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(aci, kyberPreKeyId = 1, signedPreKeyId = 1, baseKey = publicKey))
+
+    SignalDatabase.kyberPreKeys.handleMarkKyberPreKeyUsed(
+      serviceId = aci,
+      kyberPreKeyId = 1,
+      signedPreKeyId = 1,
+      baseKey = publicKey
+    )
+
+    assertTrue(SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(aci, kyberPreKeyId = 1, signedPreKeyId = 1, baseKey = publicKey))
+    assertFalse(SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(aci, kyberPreKeyId = 1, signedPreKeyId = 2, baseKey = publicKey))
+    assertFalse(SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(aci, kyberPreKeyId = 1, signedPreKeyId = 1, baseKey = generateECPublicKey()))
+  }
+
+  @Test
+  fun hasUsedLastResortKeySet_falseForNonLastResortKeys() {
+    insertTestRecord(aci, id = 1, staleTime = 10, lastResort = false)
+    val publicKey = generateECPublicKey()
+
+    SignalDatabase.kyberPreKeys.handleMarkKyberPreKeyUsed(
+      serviceId = aci,
+      kyberPreKeyId = 1,
+      signedPreKeyId = 1,
+      baseKey = publicKey
+    )
+
+    assertFalse(SignalDatabase.kyberPreKeys.hasUsedLastResortKeySet(aci, kyberPreKeyId = 1, signedPreKeyId = 1, baseKey = publicKey))
   }
 
   private fun insertTestRecord(account: ServiceId, id: Int, staleTime: Long = 0, lastResort: Boolean = false) {

@@ -55,14 +55,14 @@ class EnterAepForRemoteBackupPostRegistrationViewModelTest {
     viewModel.applyEvent(EnterAepState(), EnterAepEvents.BackupKeyChanged(VALID_AEP), stateEmitter)
 
     assertThat(emittedStates).hasSize(1)
-    assertThat(emittedStates.last().backupKey).isEqualTo(VALID_AEP)
+    assertThat(emittedStates.last().recoveryKey.normalized).isEqualTo(VALID_AEP)
   }
 
   // ==================== Submit Tests ====================
 
   @Test
   fun `Submit with verified key emits UserSuppliedAepSubmitted then NavigateToScreen with RemoteRestore`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns RequestResult.Success(Unit)
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -81,7 +81,7 @@ class EnterAepForRemoteBackupPostRegistrationViewModelTest {
 
   @Test
   fun `Submit sets isRegistering true before verification then false`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns RequestResult.Success(Unit)
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
@@ -92,32 +92,33 @@ class EnterAepForRemoteBackupPostRegistrationViewModelTest {
   }
 
   @Test
-  fun `Submit with incorrect key sets aepValidationError and does not navigate`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+  fun `Submit with incorrect key flags the recovery key and does not navigate`() = runTest {
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns
       RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.IncorrectKey)
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
 
     assertThat(emittedParentEvents).isEmpty()
-    assertThat(emittedStates.last().aepValidationError).isEqualTo(AepValidationError.Incorrect)
+    assertThat(emittedStates.last().recoveryKey.error).isEqualTo(AepValidationError.Incorrect)
   }
 
   @Test
-  fun `Submit with no backup is treated as an incorrect key and does not navigate`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+  fun `Submit with no backup sets NoRemoteBackup rather than marking the key incorrect`() = runTest {
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns
       RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.NoBackup)
 
     viewModel.applyEvent(initialState, EnterAepEvents.Submit, stateEmitter)
 
     assertThat(emittedParentEvents).isEmpty()
-    assertThat(emittedStates.last().aepValidationError).isEqualTo(AepValidationError.Incorrect)
+    assertThat(emittedStates.last().registrationError).isEqualTo(RegistrationError.NoRemoteBackup)
+    assertThat(emittedStates.last().recoveryKey.error).isNull()
   }
 
   @Test
   fun `Submit with rate limited sets registrationError and does not navigate`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns
       RequestResult.NonSuccess(NetworkController.VerifyBackupKeyError.RateLimited(30.seconds))
 
@@ -129,7 +130,7 @@ class EnterAepForRemoteBackupPostRegistrationViewModelTest {
 
   @Test
   fun `Submit with network error sets registrationError and does not navigate`() = runTest {
-    val initialState = EnterAepState(backupKey = VALID_AEP, isBackupKeyValid = true)
+    val initialState = EnterAepState(recoveryKey = AepInput.from(VALID_AEP))
     coEvery { mockRepository.verifyBackupKeyAssociatedWithAccount(any()) } returns
       RequestResult.RetryableNetworkError(IOException("network"))
 

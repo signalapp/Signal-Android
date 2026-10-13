@@ -36,6 +36,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.emoji.EmojiText
 import org.thoughtcrime.securesms.R
@@ -236,7 +237,7 @@ private fun LazyListScope.membershipSection(
     item {
       LargeIconRow(
         text = stringResource(R.string.ConversationSettingsFragment__add_members),
-        icon = R.drawable.ic_plus_24,
+        icon = CoreUiR.drawable.symbol_plus_24,
         onClick = { onEvent(GroupSettingsEvent.AddMembersClicked) }
       )
     }
@@ -263,7 +264,7 @@ private fun LazyListScope.membershipSection(
     item {
       LargeIconRow(
         text = stringResource(R.string.ConversationSettingsFragment__see_all),
-        icon = R.drawable.ic_chevron_down_icon_20,
+        icon = R.drawable.symbol_chevron_down_24,
         onClick = { onEvent(GroupSettingsEvent.RevealAllMembersClicked) }
       )
     }
@@ -282,7 +283,7 @@ private fun LazyListScope.managementSection(
       Rows.TextRow(
         text = stringResource(R.string.ConversationSettingsFragment__group_link),
         label = stringResource(if (state.groupLinkEnabled) R.string.preferences_on else R.string.preferences_off),
-        icon = painterResource(R.drawable.ic_link_24),
+        icon = SignalIcons.Link.painter,
         enabled = state.isActive && !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(GroupSettingsEvent.GroupLinkClicked) }
       )
@@ -301,8 +302,7 @@ private fun LazyListScope.managementSection(
     item {
       Rows.TextRow(
         text = stringResource(R.string.ConversationSettingsFragment__requests_and_invites),
-        icon = painterResource(R.drawable.ic_update_group_add_16),
-        iconModifier = Modifier.size(24.dp),
+        icon = SignalIcons.Group.painter,
         enabled = state.isActive && !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(GroupSettingsEvent.RequestsAndInvitesClicked) }
       )
@@ -312,7 +312,7 @@ private fun LazyListScope.managementSection(
       item {
         Rows.TextRow(
           text = stringResource(R.string.ConversationSettingsFragment__permissions),
-          icon = painterResource(R.drawable.ic_lock_24),
+          icon = SignalIcons.Lock.painter,
           enabled = state.isActive && !state.isDeprecatedOrUnregistered,
           onClick = { onEvent(GroupSettingsEvent.PermissionsClicked) }
         )

@@ -14,7 +14,7 @@ class ExportAccountDataRepository {
 
   fun downloadAccountDataReport(exportAsJson: Boolean): Single<ExportedReport> {
     return Single.create {
-      when (val result = SignalNetwork.account.accountDataReport()) {
+      when (val result = SignalNetwork.accountApi.accountDataReport()) {
         is NetworkResult.Success -> {
           it.onSuccess(generateAccountDataReport(result.result, exportAsJson))
         }

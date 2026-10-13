@@ -63,7 +63,7 @@ public class FromTextView extends SimpleEmojiTextView {
       builder.append(suffix);
     }
 
-    if (asThread && recipient.getShowVerified()) {
+    if (asThread && recipient.getShowVerified() && !showSelfAsYou) {
       Drawable official = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_20);
       official.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20));
 

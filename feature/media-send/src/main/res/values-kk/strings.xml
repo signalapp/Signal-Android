@@ -85,15 +85,12 @@
   <!-- Snackbar shown when the user denies the permission to read their photos and videos. -->
   <string name="MediaSelectScreen__signal_needs_access_to_show_your_photos_and_videos">Фотосуреттеріңіз бен бейнелеріңізді көрсету үшін Signal қолданбасына рұқсат керек.</string>
 
-  <!-- Label for the button that switches the capture screen to the camera. -->
-  <string name="MediaCaptureScreen__camera">Фотоаппарат</string>
+  <!-- Label for the button that switches the capture screen to taking a photo. -->
+  <string name="MediaCaptureScreen__photo">Фотосурет</string>
+  <!-- Label for the button that switches the capture screen to recording a video. -->
+  <string name="MediaCaptureScreen__video">Бейнефайл</string>
   <!-- Label for the button that switches the capture screen to the text story editor. -->
   <string name="MediaCaptureScreen__text">Мәтін</string>
-    <!-- Label for the pill that displays the media count -->
-    <plurals name="MediaCaptureScreen_n_items">
-        <item quantity="one">%1$d элемент</item>
-        <item quantity="other">%1$d элемент</item>
-    </plurals>
 
   <!-- Content description for the button that attaches a link to the text story being created -->
   <string name="TextStoryBar__add_link">Сілтеме қосу</string>
@@ -136,12 +133,6 @@
   <!-- Toasted when user device does not support video recording -->
   <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Құрылғыңызда видео жазу мүмкін емес</string>
 
-  <!-- CameraXFragment -->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Фотосуретке түсіру үшін түртіңіз, ал видео түсіргіңіз келсе басып тұрыңыз</string>
-  <!-- Accessibility content description to describe the capture button when taking an image/video -->
-  <string name="CameraXFragment_capture_description">Түсіру</string>
-  <string name="CameraXFragment_change_camera_description">Камераны ауыстыру</string>
-  <string name="CameraXFragment_open_gallery_description">Галереяны ашу</string>
   <!-- Button text asking for access to camera permissions -->
   <string name="CameraXFragment_allow_access">Пайдалануға рұқсат беру</string>
   <!-- Dialog title asking users for camera and microphone permission -->
@@ -176,16 +167,8 @@
   <string name="CameraXFragment_photo_capture_failed">Фотосурет түсірілмеді. Қайталап көріңіз.</string>
   <!-- Error message shown when we try to take a photo, but fail when trying to process it (convert it into something the user can see). -->
   <string name="CameraXFragment_photo_processing_failed">Фотосурет өңделмеді. Қайталап көріңіз.</string>
-  <!-- Accessibility label for the switch camera button -->
-  <string name="CameraXFragment_switch_camera">Камераны ауыстыру</string>
-  <!-- Accessibility label for flash button when flash is off -->
-  <string name="CameraXFragment_flash_off">Жарқылды өшіру</string>
-  <!-- Accessibility label for flash button when flash is on -->
-  <string name="CameraXFragment_flash_on">Жарқылды қосу</string>
-  <!-- Accessibility label for flash button when flash is set to auto -->
-  <string name="CameraXFragment_flash_auto">Автоматты жарқыл</string>
-  <!-- Accessibility label for the send button in media selection -->
-  <string name="CameraXFragment_send">Жіберу</string>
+  <!-- Label shown below the elapsed time while a video recording is paused -->
+  <string name="CameraXFragment_paused">Кідіртілді</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Видео түсіру үшін Signal қолданбасына микрофон ашық болу керек, бірақ параметрлерде оны пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Микрофон\" және \"Камера\" параметрлерін қосыңыз.</string>
 
@@ -247,6 +230,11 @@
   <string name="LinkedDeviceScannedDialog__it_looks_like_youre_trying">Signal құрылғысын байланыстырайын деп жатқан сияқтысыз. \"Жалғастыру\" түймесін, содан кейін \"Жаңа құрылғыны байланыстыру\" түймесін түртіп, QR кодын қайта сканерлеңіз.</string>
   <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
   <string name="LinkedDeviceScannedDialog__device_link_dialog_continue">Жалғастыру</string>
+
+  <!-- The title of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__transfer_failed_title">Аккаунтты тасымалдау мүмкін емес</string>
+  <!-- The body of a dialog shown when the user scanned a transfer QR code from a device that is too old to accept their account. -->
+  <string name="ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date">Аккаунт тасымалданатын құрылғыңыз ескірген. Сол құрылғыдағы Signal-ды жаңартып, қайталап көріңіз.</string>
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">

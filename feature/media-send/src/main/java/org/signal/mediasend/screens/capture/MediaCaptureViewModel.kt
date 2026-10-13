@@ -6,8 +6,6 @@
 package org.signal.mediasend.screens.capture
 
 import androidx.annotation.StringRes
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,6 +18,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaSendFlowEvent
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.MediaSendRoute
@@ -42,7 +41,7 @@ internal class MediaCaptureViewModel(
   private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
   selectedCaptureScreen: MediaSendRoute.Capture,
   private val repository: MediaCaptureRepository = MediaCaptureRepository()
-) : EventDrivenViewModel<MediaCaptureScreenEvents>(TAG) {
+) : EventDrivenViewModel<MediaCaptureScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(MediaCaptureViewModel::class)
@@ -57,8 +56,9 @@ internal class MediaCaptureViewModel(
         isStory = isStory,
         storiesEnabled = storiesEnabled,
         mode = mode,
-        mediaConstraints = mediaConstraints,
-        storyMaxVideoDuration = storyMaxVideoDuration
+        recipientId = recipientId,
+        storyMaxVideoDuration = storyMaxVideoDuration,
+        isVideoCaptureSupported = MediaConstraints.isVideoTranscodeAvailable()
       )
     }
   )
@@ -76,10 +76,23 @@ internal class MediaCaptureViewModel(
     when (event) {
       is MediaCaptureScreenEvents.ParentStateChanged -> _state.update { it.copy(selectedMedia = event.parentState.selectedMedia) }
       is MediaCaptureScreenEvents.SelectedCaptureScreenChanged -> _state.update { it.copy(selectedCaptureScreen = event.selectedCaptureScreen) }
-      MediaCaptureScreenEvents.ShowCamera -> parentEventEmitter(MediaSendFlowEvent.NavigateToCamera)
-      MediaCaptureScreenEvents.ShowTextStory -> parentEventEmitter(MediaSendFlowEvent.NavigateToTextStory)
+      is MediaCaptureScreenEvents.CaptureModeSelected -> selectCaptureMode(event.mode)
       MediaCaptureScreenEvents.NextClicked -> parentEventEmitter(MediaSendFlowEvent.NavigateToEdit)
       is MediaCaptureScreenEvents.Camera -> processCameraEvent(event.event)
+    }
+  }
+
+  /**
+   * Moving to the screen a mode needs is navigation's job, so that leaves as a request. The camera's own two modes share
+   * a screen and are recorded here instead.
+   */
+  private fun selectCaptureMode(mode: MediaCaptureMode) {
+    when (mode.captureScreen) {
+      MediaSendRoute.Capture.TextStory -> parentEventEmitter(MediaSendFlowEvent.NavigateToTextStory)
+      else -> {
+        _state.update { it.copy(selectedCameraMode = mode) }
+        parentEventEmitter(MediaSendFlowEvent.NavigateToCamera)
+      }
     }
   }
 
@@ -93,6 +106,7 @@ internal class MediaCaptureViewModel(
         repository.writeCapturedVideo(event.fd)
       }
 
+      is CameraXScreenEvents.RecordingStateChanged -> _state.update { it.copy(isRecording = event.isRecording) }
       CameraXScreenEvents.VideoCaptureError -> showSnackbar(R.string.MediaSendViewModel__error_recording_video)
       is CameraXScreenEvents.QrCodeFound -> parentEventEmitter(MediaSendFlowEvent.QrCodeScanned(event.data))
       CameraXScreenEvents.GalleryClicked -> parentEventEmitter(MediaSendFlowEvent.NavigateToFolders)
@@ -115,16 +129,5 @@ internal class MediaCaptureViewModel(
 
   private fun showSnackbar(@StringRes message: Int) {
     parentEventEmitter(MediaSendFlowEvent.ShowSnackbar(SnackbarEvent(message = message)))
-  }
-
-  class Factory(
-    private val parentState: StateFlow<MediaSendFlowState>,
-    private val parentEventEmitter: (MediaSendFlowEvent) -> Unit,
-    private val selectedCaptureScreen: MediaSendRoute.Capture
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return MediaCaptureViewModel(parentState, parentEventEmitter, selectedCaptureScreen) as T
-    }
   }
 }

@@ -14,18 +14,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withTimeoutOrNull
-import org.thoughtcrime.securesms.window.AppScaffoldAnimationDefaults
-import org.thoughtcrime.securesms.window.AppScaffoldAnimationState
+import org.signal.core.ui.navigation.TransitionSpecs
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -74,7 +78,7 @@ fun ConversationLoadingMask(
   }
 
   val chatModifier = Modifier.graphicsLayer {
-    with(chatAnimationState) { applyChildValues() }
+    with(chatAnimationState) { applyTo() }
   }
 
   Box(modifier = Modifier.fillMaxSize()) {
@@ -86,7 +90,7 @@ fun ConversationLoadingMask(
         contentDescription = null,
         modifier = Modifier
           .graphicsLayer {
-            with(fakeChatListAnimationState) { applyChildValues() }
+            with(fakeChatListAnimationState) { applyTo() }
           }
           .fillMaxSize()
       )
@@ -95,11 +99,12 @@ fun ConversationLoadingMask(
 }
 
 @Composable
-private fun Transition<Boolean>.fakeChatListAnimationState(): AppScaffoldAnimationState {
-  val alpha = animateFloat(transitionSpec = { AppScaffoldAnimationDefaults.tween() }) { if (it) 0f else 1f }
-  val offset = animateDp(transitionSpec = { AppScaffoldAnimationDefaults.tween() }) { if (it) (-48).dp else 0.dp }
+private fun Transition<Boolean>.fakeChatListAnimationState(): MaskAnimationState {
+  val shift = paneShiftOffset
+  val alpha = animateFloat(transitionSpec = { TransitionSpecs.paneShiftSpec() }) { if (it) 0f else 1f }
+  val offset = animateDp(transitionSpec = { TransitionSpecs.paneShiftSpec() }) { if (it) -shift else 0.dp }
   return remember {
-    AppScaffoldAnimationState(
+    MaskAnimationState(
       offset = offset,
       alpha = alpha
     )
@@ -107,22 +112,40 @@ private fun Transition<Boolean>.fakeChatListAnimationState(): AppScaffoldAnimati
 }
 
 @Composable
-private fun Transition<Boolean>.chatAnimationState(hasFake: Boolean): AppScaffoldAnimationState {
-  val alpha = animateFloat(transitionSpec = { AppScaffoldAnimationDefaults.tween() }) { if (it) 1f else 0f }
+private fun Transition<Boolean>.chatAnimationState(hasFake: Boolean): MaskAnimationState {
+  val shift = paneShiftOffset
+  val alpha = animateFloat(transitionSpec = { TransitionSpecs.paneShiftSpec() }) { if (it) 1f else 0f }
   return if (!hasFake) {
     remember {
-      AppScaffoldAnimationState(
+      MaskAnimationState(
         offset = mutableStateOf(0.dp),
         alpha = alpha
       )
     }
   } else {
-    val offset = animateDp(transitionSpec = { AppScaffoldAnimationDefaults.tween() }) { if (it) 0.dp else 48.dp }
+    val offset = animateDp(transitionSpec = { TransitionSpecs.paneShiftSpec() }) { if (it) 0.dp else shift }
     remember {
-      AppScaffoldAnimationState(
+      MaskAnimationState(
         offset = offset,
         alpha = alpha
       )
     }
+  }
+}
+
+private val paneShiftOffset: Dp
+  @Composable get() = if (LocalLayoutDirection.current == LayoutDirection.Rtl) -TransitionSpecs.PANE_SHIFT_OFFSET else TransitionSpecs.PANE_SHIFT_OFFSET
+
+/**
+ * The alpha and horizontal offset a layer is drawn with.
+ */
+private class MaskAnimationState(
+  private val offset: State<Dp>,
+  private val alpha: State<Float>
+) {
+  fun GraphicsLayerScope.applyTo() {
+    this.alpha = this@MaskAnimationState.alpha.value
+    this.translationX = offset.value.toPx()
+    this.clip = true
   }
 }

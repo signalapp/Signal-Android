@@ -119,7 +119,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           continue
         }
 
-        if (isWallpaper || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
+        if (isWallpaper || attachment.stickerId != -1 || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
           restoreFullAttachmentJobs += RestoreAttachmentJob.forInitialRestore(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId,
@@ -139,7 +139,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
         }
       }
 
-      SignalDatabase.rawDatabase.withinTransaction {
+      SignalDatabase.writableDatabase.withinTransaction {
         // Mark not restorable thumbnails and attachments as failed
         SignalDatabase.attachments.setThumbnailRestoreState(notRestorable, AttachmentTable.ThumbnailRestoreState.PERMANENT_FAILURE)
         SignalDatabase.attachments.setRestoreTransferState(notRestorable, AttachmentTable.TRANSFER_PROGRESS_FAILED)

@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.badges.gifts.flow
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.activityViewModel
 import org.signal.core.util.getParcelableArrayListCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -88,8 +87,6 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.multiselect_forward
       findNavController().safeNavigate(R.id.action_giftFlowRecipientSelectionFragment_to_giftFlowConfirmationFragment)
     }
   }
-
-  override fun getContainer(): ViewGroup = requireView() as ViewGroup
 
   override fun getDialogBackgroundColor(): Int = Color.TRANSPARENT
 }

@@ -27,7 +27,6 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
   private ClipProjectionDrawable clipProjectionDrawable;
   private Projection             quoteViewProjection;
-  private Projection             videoPlayerProjection;
 
   private final BodyBubbleLayoutTransition bodyBubbleLayoutTransition = new BodyBubbleLayoutTransition();
 
@@ -83,21 +82,8 @@ public class ConversationItemBodyBubble extends LinearLayout {
     clipProjectionDrawable.setProjections(getProjections());
   }
 
-  public void setVideoPlayerProjection(@Nullable Projection videoPlayerProjection) {
-    if (this.videoPlayerProjection != null) {
-      this.videoPlayerProjection.release();
-    }
-
-    this.videoPlayerProjection = videoPlayerProjection;
-    clipProjectionDrawable.setProjections(getProjections());
-  }
-
-  public @Nullable Projection getVideoPlayerProjection() {
-    return videoPlayerProjection;
-  }
-
   public @NonNull Set<Projection> getProjections() {
-    return Stream.of(quoteViewProjection, videoPlayerProjection)
+    return Stream.of(quoteViewProjection)
                  .filter(Objects::nonNull)
                  .collect(Collectors.toSet());
   }

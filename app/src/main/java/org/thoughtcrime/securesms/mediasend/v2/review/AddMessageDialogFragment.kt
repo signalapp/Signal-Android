@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
@@ -23,6 +21,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.signal.core.ui.view.Stub
+import org.signal.core.ui.viewModel
 import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.EditTextUtil
 import org.signal.core.util.getParcelableCompat
@@ -51,7 +50,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.util.visible
 
 class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_add_message_dialog_fragment) {
@@ -82,13 +80,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   private var recipient: Recipient? = null
 
   private val disposables = CompositeDisposable()
-
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    val themeWrapper = ContextThemeWrapper(inflater.context, R.style.TextSecure_DarkTheme)
-    val themedInflater = LayoutInflater.from(themeWrapper)
-
-    return super.onCreateView(themedInflater, container, savedInstanceState)
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     if (viewModel.isViewOnce) {
@@ -126,7 +117,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     binding.hud.setOnClickListener { dismissAllowingStateLoss() }
 
     binding.content.viewOnceToggle.setOnClickListener {
-      viewModel.message = null
       viewModel.isViewOnce = true
 
       dismissAllowingStateLoss()

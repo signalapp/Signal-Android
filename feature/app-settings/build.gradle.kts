@@ -21,20 +21,25 @@ dependencies {
   lintChecks(project(":lintchecks"))
 
   // Project dependencies
+  api(project(":lib:password-manager"))
+  api(project(":lib:ui-components"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
+  implementation(project(":lib:signal-login"))
 
   // Compose BOM
   implementation(platform(libs.androidx.compose.bom))
 
   // Compose dependencies
   implementation(libs.androidx.compose.material3)
+  implementation(libs.androidx.lifecycle.runtime.compose)
   implementation(libs.androidx.compose.ui.tooling.preview)
   debugImplementation(libs.androidx.compose.ui.tooling.core)
 
   // Testing
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)
+  testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(libs.androidx.compose.ui.test.junit4)
 

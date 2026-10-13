@@ -89,9 +89,8 @@
 
         <ViewStub
             android:id="@+id/shared_contact_view_stub"
-            android:layout_width="@dimen/media_bubble_default_dimens"
+            android:layout_width="@dimen/shared_contact_bubble_min_width"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/message_bubble_top_padding"
             android:layout="@layout/conversation_item_sent_shared_contact"
             android:visibility="gone" />
 
@@ -181,13 +180,13 @@
             android:layout="@layout/conversation_item_poll" />
 
         <ViewStub
-            android:id="@+id/conversation_item_join_button"
+            android:id="@+id/conversation_item_link_preview_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:layout_marginBottom="20dp"
-            android:layout="@layout/conversation_item_join_button" />
+            android:layout="@layout/conversation_item_link_preview_action" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"

@@ -8,15 +8,26 @@ package org.thoughtcrime.securesms.stickers.manage
 import android.content.res.Resources
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,17 +35,22 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -45,11 +61,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -61,6 +82,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.window.core.layout.WindowSizeClass
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
@@ -69,6 +91,8 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.TextFields
+import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.list.ReorderListEvent
 import org.signal.core.ui.compose.list.ReorderableItem
 import org.signal.core.ui.compose.list.rememberReorderableListState
@@ -80,11 +104,15 @@ import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
-import org.thoughtcrime.securesms.stickers.manage.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.stickers.manage.StickerManagementScreen.MAX_PREVIEW_STICKERS
+import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
 import java.text.NumberFormat
 import org.signal.core.ui.R as CoreUiR
 
 object StickerManagementScreen {
+
+  const val MAX_PREVIEW_STICKERS = 5
+
   /**
    * Shows the screen as a bottom sheet on large devices (tablets/foldables), activity on phones.
    */
@@ -121,42 +149,34 @@ private data class Page(
   val getContent: @Composable () -> Unit
 )
 
-interface AvailableStickersContentCallbacks {
-  fun onForwardClick(pack: AvailableStickerPack)
-  fun onInstallClick(pack: AvailableStickerPack)
-  fun onShowPreviewClick(pack: AvailableStickerPack)
-
-  object Empty : AvailableStickersContentCallbacks {
-    override fun onForwardClick(pack: AvailableStickerPack) = Unit
-    override fun onInstallClick(pack: AvailableStickerPack) = Unit
-    override fun onShowPreviewClick(pack: AvailableStickerPack) = Unit
-  }
-}
-
-interface InstalledStickersContentCallbacks {
-  fun onForwardClick(pack: InstalledStickerPack)
+interface StickerManagementContentCallbacks {
+  fun onForwardClick(pack: StickerPack)
+  fun onInstallClick(pack: StickerPack)
+  fun onShowPreviewClick(pack: StickerPack)
+  fun onCopyClick(pack: StickerPack)
   fun onRemoveClick(packIds: Set<StickerPackId>)
   fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>)
   fun onRemoveStickerPacksCanceled()
-  fun onSelectionToggle(pack: InstalledStickerPack)
+  fun onSelectionToggle(pack: StickerPack)
   fun onSelectAllToggle()
   fun onReorderableEvent(event: ReorderListEvent)
-  fun onShowPreviewClick(pack: InstalledStickerPack)
 
-  object Empty : InstalledStickersContentCallbacks {
-    override fun onForwardClick(pack: InstalledStickerPack) = Unit
+  object Empty : StickerManagementContentCallbacks {
+    override fun onForwardClick(pack: StickerPack) = Unit
+    override fun onInstallClick(pack: StickerPack) = Unit
+    override fun onShowPreviewClick(pack: StickerPack) = Unit
+    override fun onCopyClick(pack: StickerPack) = Unit
     override fun onRemoveClick(packIds: Set<StickerPackId>) = Unit
     override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = Unit
     override fun onRemoveStickerPacksCanceled() = Unit
-    override fun onSelectionToggle(pack: InstalledStickerPack) = Unit
+    override fun onSelectionToggle(pack: StickerPack) = Unit
     override fun onSelectAllToggle() = Unit
     override fun onReorderableEvent(event: ReorderListEvent) = Unit
-    override fun onShowPreviewClick(pack: InstalledStickerPack) = Unit
   }
 }
 
 /**
- * Displays all the available and installed sticker packs, enabling installation, uninstallation, and sorting.
+ * Displays all the sticker packs we know about, along with the installed ones, enabling installation, uninstallation, and sorting.
  *
  * @see StickerManagementActivity
  * @see StickerManagementBottomSheet
@@ -166,58 +186,75 @@ interface InstalledStickersContentCallbacks {
 fun StickerManagementScreen(
   uiState: StickerManagementUiState,
   showNavigateBack: Boolean = true,
+  applyWindowInsets: Boolean = true,
   onNavigateBack: () -> Unit = {},
   onSetMultiSelectModeEnabled: (Boolean) -> Unit = {},
+  onSetSearchModeEnabled: (Boolean) -> Unit = {},
+  onSearchQueryChange: (String) -> Unit = {},
   onSnackbarDismiss: () -> Unit = {},
-  availableTabCallbacks: AvailableStickersContentCallbacks = AvailableStickersContentCallbacks.Empty,
-  installedTabCallbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
+  callbacks: StickerManagementContentCallbacks = StickerManagementContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
+  val pagerState = rememberPagerState(pageCount = { 2 })
+  val coroutineScope = rememberCoroutineScope()
+
   val pages = listOf(
     Page(
-      title = stringResource(R.string.StickerManagement_available_tab_label),
+      title = stringResource(R.string.StickerManagement_all_tab_label),
       getContent = {
-        AvailableStickersContent(
-          blessedPacks = uiState.availableBlessedPacks,
-          notBlessedPacks = uiState.availableNotBlessedPacks,
-          callbacks = availableTabCallbacks
+        AllStickersContent(
+          blessedPacks = uiState.filteredBlessedPacks,
+          notBlessedPacks = uiState.filteredNotBlessedPacks,
+          searchQuery = if (uiState.searchActive) uiState.searchQuery else null,
+          callbacks = callbacks
         )
       }
     ),
     Page(
-      title = stringResource(R.string.StickerManagement_installed_tab_label),
+      title = stringResource(R.string.StickerManagement_my_stickers_tab_label),
       getContent = {
         InstalledStickersContent(
-          packs = uiState.installedPacks,
+          packs = uiState.filteredInstalledPacks,
           multiSelectEnabled = uiState.multiSelectEnabled,
           selectedPackIds = uiState.selectedPackIds,
-          dialogState = uiState.userPrompt,
-          callbacks = installedTabCallbacks
+          searchQuery = if (uiState.searchActive) uiState.searchQuery else null,
+          onAddStickersClick = { coroutineScope.launch { pagerState.animateScrollToPage(0) } },
+          callbacks = callbacks
         )
       }
     )
   )
 
-  val pagerState = rememberPagerState(pageCount = { pages.size })
-  val coroutineScope = rememberCoroutineScope()
-
-  BackHandler(enabled = uiState.multiSelectEnabled) {
-    onSetMultiSelectModeEnabled(false)
+  BackHandler(enabled = uiState.multiSelectEnabled || uiState.searchMode) {
+    if (uiState.multiSelectEnabled) {
+      onSetMultiSelectModeEnabled(false)
+    } else {
+      onSetSearchModeEnabled(false)
+    }
   }
 
   Scaffold(
+    contentWindowInsets = if (applyWindowInsets) ScaffoldDefaults.contentWindowInsets else WindowInsets(0, 0, 0, 0),
+    modifier = if (applyWindowInsets) Modifier else Modifier.consumeWindowInsets(WindowInsets.systemBars),
     topBar = {
       val isInstalledTabActive = pagerState.currentPage == 1
-      if (isInstalledTabActive && uiState.multiSelectEnabled) {
-        MultiSelectTopAppBar(
+      when {
+        isInstalledTabActive && uiState.multiSelectEnabled -> MultiSelectTopAppBar(
           selectedItemCount = uiState.selectedPackIds.size,
           onExitClick = { onSetMultiSelectModeEnabled(false) }
         )
-      } else {
-        TopAppBar(
+
+        uiState.searchMode -> SearchTopAppBar(
+          query = uiState.searchQuery,
+          onQueryChange = onSearchQueryChange,
+          onCloseClick = { onSetSearchModeEnabled(false) }
+        )
+
+        else -> TopAppBar(
           showNavigateBack = showNavigateBack,
           onBackPress = onNavigateBack,
           showMenuButton = isInstalledTabActive,
+          onSearchClick = { onSetSearchModeEnabled(true) },
           onSetMultiSelectModeEnabled = onSetMultiSelectModeEnabled
         )
       }
@@ -229,6 +266,20 @@ fun StickerManagementScreen(
       )
     }
   ) { padding ->
+    if (uiState.userPrompt != null) {
+      val packCount = uiState.userPrompt.packIds.size
+
+      Dialogs.SimpleAlertDialog(
+        title = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation, packCount, NumberFormat.getInstance().format(packCount)),
+        body = pluralStringResource(R.plurals.StickerManagement_delete_n_packs_confirmation_body, packCount, NumberFormat.getInstance().format(packCount)),
+        confirm = stringResource(R.string.StickerManagement_menu_remove_pack),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = { callbacks.onRemoveStickerPacksConfirmed(uiState.userPrompt.packIds) },
+        onDeny = { callbacks.onRemoveStickerPacksCanceled() },
+        onDismissRequest = { callbacks.onRemoveStickerPacksCanceled() }
+      )
+    }
+
     Column(
       modifier = modifier.padding(padding)
     ) {
@@ -267,6 +318,7 @@ private fun TopAppBar(
   showNavigateBack: Boolean = true,
   showMenuButton: Boolean = false,
   onBackPress: () -> Unit,
+  onSearchClick: () -> Unit,
   onSetMultiSelectModeEnabled: (Boolean) -> Unit
 ) {
   Scaffolds.DefaultTopAppBar(
@@ -288,6 +340,16 @@ private fun TopAppBar(
       }
     },
     actions = {
+      IconButton(
+        onClick = onSearchClick,
+        modifier = Modifier.padding(horizontal = if (showMenuButton) 0.dp else 8.dp)
+      ) {
+        Icon(
+          imageVector = SignalIcons.Search.imageVector,
+          contentDescription = stringResource(R.string.StickerManagement_search)
+        )
+      }
+
       if (showMenuButton) {
         val menuController = remember { DropdownMenus.MenuController() }
         IconButton(
@@ -334,6 +396,65 @@ private fun MultiSelectTopAppBar(
 }
 
 @Composable
+private fun SearchTopAppBar(
+  query: String,
+  onQueryChange: (String) -> Unit,
+  onCloseClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  val focusRequester = remember { FocusRequester() }
+
+  Box(
+    modifier = modifier
+      .fillMaxWidth()
+      .background(MaterialTheme.colorScheme.surface)
+      .windowInsetsPadding(TopAppBarDefaults.windowInsets)
+  ) {
+    TextFields.TextField(
+      value = query,
+      onValueChange = onQueryChange,
+      leadingIcon = {
+        IconButton(onClick = onCloseClick) {
+          Icon(
+            imageVector = SignalIcons.ArrowStart.imageVector,
+            contentDescription = stringResource(R.string.StickerManagement_accessibility_close_search)
+          )
+        }
+      },
+      trailingIcon = {
+        if (query.isNotEmpty()) {
+          IconButton(onClick = { onQueryChange("") }) {
+            Icon(
+              imageVector = SignalIcons.X.imageVector,
+              contentDescription = stringResource(R.string.StickerManagement_accessibility_clear_search)
+            )
+          }
+        }
+      },
+      placeholder = { Text(text = stringResource(R.string.StickerManagement_search)) },
+      textStyle = MaterialTheme.typography.bodyLarge,
+      singleLine = true,
+      shape = RoundedCornerShape(50),
+      contentPadding = PaddingValues(0.dp),
+      colors = TextFieldDefaults.colors(
+        unfocusedIndicatorColor = Color.Transparent,
+        focusedIndicatorColor = Color.Transparent,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
+      ),
+      modifier = Modifier
+        .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
+        .padding(horizontal = 16.dp, vertical = 10.dp)
+        .fillMaxWidth()
+        .focusRequester(focusRequester)
+    )
+  }
+
+  LaunchedEffect(Unit) {
+    focusRequester.requestFocus()
+  }
+}
+
+@Composable
 private fun PagerTab(
   title: String,
   selected: Boolean,
@@ -357,14 +478,23 @@ private fun PagerTab(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AvailableStickersContent(
-  blessedPacks: List<AvailableStickerPack>,
-  notBlessedPacks: List<AvailableStickerPack>,
-  callbacks: AvailableStickersContentCallbacks = AvailableStickersContentCallbacks.Empty,
+private fun AllStickersContent(
+  blessedPacks: List<StickerPack>,
+  notBlessedPacks: List<StickerPack>,
+  searchQuery: String? = null,
+  callbacks: StickerManagementContentCallbacks = StickerManagementContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
+  var expand by remember { mutableStateOf(false) }
+
   if (blessedPacks.isEmpty() && notBlessedPacks.isEmpty()) {
-    EmptyView(text = stringResource(R.string.StickerManagement_available_tab_empty_text))
+    EmptyView(
+      text = if (searchQuery != null) {
+        stringResource(R.string.StickerManagement_search_no_results_s, searchQuery)
+      } else {
+        stringResource(R.string.StickerManagement_all_tab_empty_text)
+      }
+    )
   } else {
     val haptics = LocalHapticFeedback.current
 
@@ -382,15 +512,18 @@ private fun AvailableStickersContent(
         }
 
         items(
-          items = blessedPacks,
+          items = if (expand || notBlessedPacks.isEmpty()) blessedPacks else blessedPacks.take(MAX_PREVIEW_STICKERS),
           key = { it.id.value }
         ) { pack ->
           val menuController = remember { DropdownMenus.MenuController() }
-          AvailableStickerPackRow(
+
+          StickerPackRow(
             pack = pack,
             menuController = menuController,
             onForwardClick = callbacks::onForwardClick,
             onInstallClick = callbacks::onInstallClick,
+            onCopyClick = callbacks::onCopyClick,
+            onRemoveClick = { callbacks.onRemoveClick(setOf(it.id)) },
             modifier = Modifier
               .animateItem()
               .combinedClickable(
@@ -403,6 +536,33 @@ private fun AvailableStickersContent(
               )
           )
         }
+
+        if (!expand && notBlessedPacks.isNotEmpty() && blessedPacks.size > MAX_PREVIEW_STICKERS) {
+          item {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              modifier = Modifier
+                .clickable { expand = true }
+                .horizontalGutters()
+                .fillMaxWidth()
+            ) {
+              Image(
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                imageVector = ImageVector.vectorResource(id = R.drawable.symbol_chevron_down_24),
+                contentDescription = stringResource(R.string.StickerManagement__see_all),
+                modifier = Modifier
+                  .size(40.dp)
+                  .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = CircleShape)
+                  .padding(8.dp)
+              )
+              Text(
+                text = stringResource(R.string.StickerManagement__see_all),
+                modifier = Modifier.padding(start = 16.dp),
+                style = MaterialTheme.typography.bodyLarge
+              )
+            }
+          }
+        }
       }
 
       if (blessedPacks.isNotEmpty() && notBlessedPacks.isNotEmpty()) {
@@ -412,8 +572,9 @@ private fun AvailableStickersContent(
       if (notBlessedPacks.isNotEmpty()) {
         item(key = "not_blessed_section_header") {
           StickerPackSectionHeader(
-            text = stringResource(R.string.StickerManagement_stickers_you_received_header),
-            modifier = Modifier.animateItem()
+            text = stringResource(R.string.StickerManagement_shared_with_you_header),
+            modifier = Modifier.animateItem(),
+            description = stringResource(R.string.StickerManagement_when_you_receive)
           )
         }
         items(
@@ -421,11 +582,13 @@ private fun AvailableStickersContent(
           key = { it.id.value }
         ) { pack ->
           val menuController = remember { DropdownMenus.MenuController() }
-          AvailableStickerPackRow(
+          StickerPackRow(
             pack = pack,
             menuController = menuController,
             onForwardClick = callbacks::onForwardClick,
             onInstallClick = callbacks::onInstallClick,
+            onCopyClick = callbacks::onCopyClick,
+            onRemoveClick = { callbacks.onRemoveClick(setOf(it.id)) },
             modifier = Modifier
               .animateItem()
               .combinedClickable(
@@ -445,15 +608,28 @@ private fun AvailableStickersContent(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun InstalledStickersContent(
-  packs: List<InstalledStickerPack>,
+  packs: List<StickerPack>,
   multiSelectEnabled: Boolean,
   selectedPackIds: Set<StickerPackId>,
-  dialogState: ConfirmRemoveStickerPacksPrompt? = null,
-  callbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
+  searchQuery: String? = null,
+  callbacks: StickerManagementContentCallbacks = StickerManagementContentCallbacks.Empty,
+  onAddStickersClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  if (packs.isEmpty()) {
-    EmptyView(text = stringResource(R.string.StickerManagement_installed_tab_empty_text))
+  if (packs.isEmpty() && searchQuery != null) {
+    EmptyView(text = stringResource(R.string.StickerManagement_search_no_results_s, searchQuery))
+  } else if (packs.isEmpty()) {
+    EmptyView(
+      text = stringResource(R.string.StickerManagement_installed_tab_empty_text),
+      actionButton = {
+        Buttons.Small(onClick = onAddStickersClick) {
+          Text(
+            text = stringResource(id = R.string.StickerManagement__add_stickers),
+            color = MaterialTheme.colorScheme.onSurface
+          )
+        }
+      }
+    )
   } else {
     val listState = rememberLazyListState()
     val reorderableListState = rememberReorderableListState(lazyListState = listState, includeHeader = true, includeFooter = false, onEvent = callbacks::onReorderableEvent)
@@ -471,12 +647,16 @@ private fun InstalledStickersContent(
         ),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         state = listState,
-        modifier = modifier
-          .fillMaxHeight()
-          .reorderableList(
-            reorderableListState = reorderableListState,
-            dragHandleWidth = 56.dp
-          )
+        modifier = if (searchQuery == null) {
+          modifier
+            .fillMaxHeight()
+            .reorderableList(
+              reorderableListState = reorderableListState,
+              dragHandleWidth = 56.dp
+            )
+        } else {
+          modifier.fillMaxWidth()
+        }
       ) {
         item(key = "installed_section_header") {
           ReorderableItem(reorderableListState, 0) {
@@ -501,8 +681,10 @@ private fun InstalledStickersContent(
               pack = pack,
               multiSelectEnabled = multiSelectEnabled,
               selected = pack.id in selectedPackIds,
+              showDragHandle = searchQuery == null,
               menuController = menuController,
               onForwardClick = { callbacks.onForwardClick(pack) },
+              onCopyClick = { callbacks.onCopyClick(pack) },
               onSelectionToggle = { callbacks.onSelectionToggle(pack) },
               onRemoveClick = { callbacks.onRemoveClick(setOf(pack.id)) },
               modifier = Modifier
@@ -526,22 +708,6 @@ private fun InstalledStickersContent(
             )
           }
         }
-      }
-
-      if (dialogState != null) {
-        Dialogs.SimpleAlertDialog(
-          title = Dialogs.NoTitle,
-          body = pluralStringResource(
-            R.plurals.StickerManagement_delete_n_packs_confirmation,
-            dialogState.numItemsToDelete,
-            NumberFormat.getInstance().format(dialogState.numItemsToDelete)
-          ),
-          confirm = stringResource(R.string.StickerManagement_menu_remove_pack),
-          dismiss = stringResource(android.R.string.cancel),
-          onConfirm = { callbacks.onRemoveStickerPacksConfirmed(selectedPackIds) },
-          onDeny = callbacks::onRemoveStickerPacksCanceled,
-          onDismiss = callbacks::onRemoveStickerPacksCanceled
-        )
       }
 
       SignalBottomActionBar(
@@ -591,6 +757,7 @@ private fun SnackbarHost(
       NumberFormat.getInstance().format(actionConfirmation.numPacksUninstalled)
     )
 
+    is StickerManagementConfirmation.CopiedPack -> stringResource(R.string.StickerManagement_copied)
     null -> null
   }
 
@@ -613,16 +780,24 @@ private fun SnackbarHost(
 
 @Composable
 private fun EmptyView(
-  text: String
+  text: String,
+  actionButton: @Composable () -> Unit = {}
 ) {
-  Text(
-    text = text,
-    style = MaterialTheme.typography.bodyMedium,
-    textAlign = TextAlign.Center,
+  Column(
     modifier = Modifier
       .fillMaxSize()
       .wrapContentHeight(align = Alignment.CenterVertically)
-  )
+      .horizontalGutters(),
+    horizontalAlignment = Alignment.CenterHorizontally
+  ) {
+    Text(
+      text = text,
+      style = MaterialTheme.typography.bodyLarge,
+      textAlign = TextAlign.Center,
+      color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+    actionButton()
+  }
 }
 
 @DayNightPreviews
@@ -637,24 +812,24 @@ private fun StickerManagementScreenEmptyStatePreview() {
 
 @DayNightPreviews
 @Composable
-private fun AvailableStickersContentPreview() {
+private fun AllStickersContentPreview() {
   Previews.Preview {
-    AvailableStickersContent(
+    AllStickersContent(
       blessedPacks = listOf(
-        StickerPreviewDataFactory.availablePack(
+        StickerPreviewDataFactory.stickerPack(
           title = "Swoon / Faces",
           author = "Swoon",
           isBlessed = true
         )
       ),
       notBlessedPacks = listOf(
-        StickerPreviewDataFactory.availablePack(
+        StickerPreviewDataFactory.stickerPack(
           title = "Bandit the Cat",
           author = "Agnes Lee",
           isBlessed = false,
           downloadStatus = DownloadStatus.InProgress
         ),
-        StickerPreviewDataFactory.availablePack(
+        StickerPreviewDataFactory.stickerPack(
           title = "Day by Day",
           author = "Miguel Ángel Camprubí",
           isBlessed = false,

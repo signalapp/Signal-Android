@@ -10,10 +10,13 @@ import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
+import assertk.assertions.contains
 import assertk.assertions.containsExactly
+import assertk.assertions.doesNotContain
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -36,6 +39,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.media.Media
 import org.signal.core.util.SeekableFileDescriptor
+import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendDependenciesRule
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendFlowEvent
@@ -75,42 +79,95 @@ class MediaCaptureViewModelTest {
   //region Chrome the flow's configuration decides
 
   @Test
-  fun `Given a camera-first flow that has yet to pick a destination, when created, then the bottom bar can display`() = runTest {
+  fun `Given a camera-first flow that has yet to pick a destination, when created, then the text story is on offer`() = runTest {
     val viewModel = createViewModel(cameraFirstStoryCapableState())
 
-    assertThat(viewModel.state.value.canDisplayBottomBar).isTrue()
+    assertThat(viewModel.state.value.availableCaptureModes).contains(MediaCaptureMode.TEXT_STORY)
   }
 
   @Test
-  fun `Given a camera-first flow aimed at one recipient's story, when created, then the bottom bar can display`() = runTest {
+  fun `Given a camera-first flow aimed at one recipient's story, when created, then the text story is on offer`() = runTest {
     val viewModel = createViewModel(
       cameraFirstStoryCapableState().copy(mode = MediaSendFlowActivityContract.Mode.SingleRecipient, isStory = true)
     )
 
-    assertThat(viewModel.state.value.canDisplayBottomBar).isTrue()
+    assertThat(viewModel.state.value.availableCaptureModes).contains(MediaCaptureMode.TEXT_STORY)
   }
 
   @Test
-  fun `Given a camera-first flow headed straight to a chat, when created, then the bottom bar stays hidden`() = runTest {
+  fun `Given a camera-first flow headed straight to a chat, when created, then the text story is withheld`() = runTest {
     val viewModel = createViewModel(
       cameraFirstStoryCapableState().copy(mode = MediaSendFlowActivityContract.Mode.SingleRecipient, isStory = false)
     )
 
-    assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
+    assertThat(viewModel.state.value.availableCaptureModes).doesNotContain(MediaCaptureMode.TEXT_STORY)
   }
 
   @Test
-  fun `Given stories are unavailable, when created, then the bottom bar stays hidden`() = runTest {
+  fun `Given stories are unavailable, when created, then the text story is withheld`() = runTest {
     val viewModel = createViewModel(cameraFirstStoryCapableState().copy(storiesEnabled = false))
 
-    assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
+    assertThat(viewModel.state.value.availableCaptureModes).doesNotContain(MediaCaptureMode.TEXT_STORY)
   }
 
   @Test
-  fun `Given the camera was not what opened the flow, when created, then the bottom bar stays hidden`() = runTest {
+  fun `Given the camera was not what opened the flow, when created, then the text story is withheld`() = runTest {
     val viewModel = createViewModel(cameraFirstStoryCapableState().copy(isCameraFirst = false))
 
-    assertThat(viewModel.state.value.canDisplayBottomBar).isFalse()
+    assertThat(viewModel.state.value.availableCaptureModes).doesNotContain(MediaCaptureMode.TEXT_STORY)
+  }
+
+  /**
+   * A text story is text alone, so a flow already carrying a capture has no way to send one. The offer has to be
+   * withdrawn as the selection arrives rather than only at construction, since the capture happens on this screen.
+   */
+  @Test
+  fun `Given a camera-first flow, when a capture joins the selection, then the text story is withdrawn`() = runTest {
+    val parentState = MutableStateFlow(cameraFirstStoryCapableState())
+    val viewModel = createViewModel(parentState)
+    assertThat(viewModel.state.value.availableCaptureModes).contains(MediaCaptureMode.TEXT_STORY)
+
+    parentState.value = parentState.value.copy(selectedMedia = listOf(MEDIA))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.availableCaptureModes).doesNotContain(MediaCaptureMode.TEXT_STORY)
+  }
+
+  @Test
+  fun `Given a camera-first flow that already has a selection, when created, then the text story is withheld`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(selectedMedia = listOf(MEDIA)))
+
+    assertThat(viewModel.state.value.availableCaptureModes).doesNotContain(MediaCaptureMode.TEXT_STORY)
+  }
+
+  /** Emptying the selection puts the flow back where it started, so the text story is on offer again. */
+  @Test
+  fun `Given a selection that is cleared, when it empties, then the text story is on offer again`() = runTest {
+    val parentState = MutableStateFlow(cameraFirstStoryCapableState().copy(selectedMedia = listOf(MEDIA)))
+    val viewModel = createViewModel(parentState)
+
+    parentState.value = parentState.value.copy(selectedMedia = emptyList())
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.availableCaptureModes).contains(MediaCaptureMode.TEXT_STORY)
+  }
+
+  /** Recording needs the transcoder, so a device without it has no video mode to offer. */
+  @Test
+  fun `Given a device that can record, when created, then every mode the flow allows is on offer`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+
+    assertThat(viewModel.state.value.availableCaptureModes)
+      .containsExactly(MediaCaptureMode.VIDEO, MediaCaptureMode.PHOTO, MediaCaptureMode.TEXT_STORY)
+  }
+
+  @Test
+  @Config(sdk = [25])
+  fun `Given a device that cannot record, when created, then video is withheld`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+
+    assertThat(viewModel.state.value.availableCaptureModes)
+      .containsExactly(MediaCaptureMode.PHOTO, MediaCaptureMode.TEXT_STORY)
   }
 
   @Test
@@ -154,7 +211,7 @@ class MediaCaptureViewModelTest {
 
   /**
    * Which capture screen is showing is not the flow's to report, and a capture landing in the selection is exactly when
-   * the flow reports something while the text story editor is open.
+   * the flow does report something while the text story editor is open.
    */
   @Test
   fun `Given the text story editor is open, when the flow's selection changes, then it stays open`() = runTest {
@@ -171,6 +228,118 @@ class MediaCaptureViewModelTest {
   }
 
   @Test
+  fun `when a camera mode is picked, then it becomes the selected mode`() = runTest {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(MediaCaptureScreenEvents.CaptureModeSelected(MediaCaptureMode.VIDEO))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.selectedCaptureMode).isEqualTo(MediaCaptureMode.VIDEO)
+  }
+
+  /**
+   * The text story is a screen of its own rather than a mode of the camera, so navigation reports it as showing and the
+   * camera mode survives the trip.
+   */
+  @Test
+  fun `Given a camera mode was picked, when the text story opens and closes, then the camera mode is still selected`() = runTest {
+    val viewModel = createViewModel()
+    viewModel.onEvent(MediaCaptureScreenEvents.CaptureModeSelected(MediaCaptureMode.VIDEO))
+
+    viewModel.onEvent(MediaCaptureScreenEvents.SelectedCaptureScreenChanged(MediaSendRoute.Capture.TextStory))
+    advanceUntilIdle()
+    assertThat(viewModel.state.value.selectedCaptureMode).isEqualTo(MediaCaptureMode.TEXT_STORY)
+
+    viewModel.onEvent(MediaCaptureScreenEvents.SelectedCaptureScreenChanged(MediaSendRoute.Capture.Camera))
+    advanceUntilIdle()
+    assertThat(viewModel.state.value.selectedCaptureMode).isEqualTo(MediaCaptureMode.VIDEO)
+  }
+
+  /** A running recording has the screen to itself, so there is no point offering the mode bar. */
+  @Test
+  fun `Given a recording is running, when reported, then the mode bar is withheld`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+
+    viewModel.onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = true)))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.isRecording).isTrue()
+    assertThat(viewModel.state.value.canDisplayModeBar).isFalse()
+  }
+
+  @Test
+  fun `Given a recording that has finished, when reported, then the mode bar is back`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+    viewModel.onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = true)))
+
+    viewModel.onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = false)))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.canDisplayModeBar).isTrue()
+  }
+
+  //region The button for moving on
+
+  @Test
+  fun `Given nothing has been captured, when created, then there is nothing to move on with`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+
+    assertThat(viewModel.state.value.canDisplayNextButton).isFalse()
+  }
+
+  @Test
+  fun `Given a camera-first flow, when a capture joins the selection, then there is something to move on with`() = runTest {
+    val parentState = MutableStateFlow(cameraFirstStoryCapableState())
+    val viewModel = createViewModel(parentState)
+
+    parentState.value = parentState.value.copy(selectedMedia = listOf(MEDIA))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.canDisplayNextButton).isTrue()
+  }
+
+  @Test
+  fun `Given a selection, when a recording starts, then moving on is withheld until it finishes`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(selectedMedia = listOf(MEDIA)))
+
+    viewModel.onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = true)))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.canDisplayNextButton).isFalse()
+
+    viewModel.onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = false)))
+    advanceUntilIdle()
+
+    assertThat(viewModel.state.value.canDisplayNextButton).isTrue()
+  }
+
+  /** Only the chrome's tint reads it, but it still has to arrive for there to be anything to tint with. */
+  @Test
+  fun `Given a flow headed to one recipient, when created, then that recipient is carried through`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState().copy(recipientId = RECIPIENT_ID))
+
+    assertThat(viewModel.state.value.recipientId).isEqualTo(RECIPIENT_ID)
+  }
+
+  @Test
+  fun `Given a flow with no destination yet, when created, then there is no recipient to tint with`() = runTest {
+    val viewModel = createViewModel(cameraFirstStoryCapableState())
+
+    assertThat(viewModel.state.value.recipientId).isNull()
+  }
+
+  //endregion
+
+  /** A recording is the camera's own business, so the flow around it is not told. */
+  @Test
+  fun `Given a recording is running, when reported, then the flow is left alone`() = runTest {
+    createViewModel().onEvent(camera(CameraXScreenEvents.RecordingStateChanged(isRecording = true)))
+    advanceUntilIdle()
+
+    assertThat(parentEvents).isEmpty()
+  }
+
+  @Test
   fun `Given nothing has happened, when created, then the flow is left alone`() = runTest {
     createViewModel()
     advanceUntilIdle()
@@ -183,14 +352,15 @@ class MediaCaptureViewModelTest {
   //region Handing off to the flow
 
   /**
-   * Everything the flow, rather than this screen, is responsible for. Kept as one table so that an event added to the
-   * screen without a home in the flow's own vocabulary shows up as a gap here.
+   * Everything the flow, rather than this screen, is responsible for. Kept as one table so an event added to the screen
+   * with no counterpart in the flow's vocabulary shows up as a gap here.
    */
   @Test
   fun `Given work only the flow can do, when it is asked for, then it is handed over unchanged`() = runTest {
     val handOffs: List<Pair<MediaCaptureScreenEvents, MediaSendFlowEvent>> = listOf(
-      MediaCaptureScreenEvents.ShowCamera to MediaSendFlowEvent.NavigateToCamera,
-      MediaCaptureScreenEvents.ShowTextStory to MediaSendFlowEvent.NavigateToTextStory,
+      MediaCaptureScreenEvents.CaptureModeSelected(MediaCaptureMode.PHOTO) to MediaSendFlowEvent.NavigateToCamera,
+      MediaCaptureScreenEvents.CaptureModeSelected(MediaCaptureMode.VIDEO) to MediaSendFlowEvent.NavigateToCamera,
+      MediaCaptureScreenEvents.CaptureModeSelected(MediaCaptureMode.TEXT_STORY) to MediaSendFlowEvent.NavigateToTextStory,
       MediaCaptureScreenEvents.NextClicked to MediaSendFlowEvent.NavigateToEdit,
       camera(CameraXScreenEvents.GalleryClicked) to MediaSendFlowEvent.NavigateToFolders,
       camera(CameraXScreenEvents.CameraCloseClicked) to MediaSendFlowEvent.CloseRequested,
@@ -236,7 +406,7 @@ class MediaCaptureViewModelTest {
     assertThat(parentEvents).containsExactly(snackbar(R.string.MediaSendViewModel__error_taking_photo))
   }
 
-  /** The duration rides along because it is what the flow drops back to standard quality on. */
+  /** The duration comes along because the flow uses it to decide whether to drop to standard quality. */
   @Test
   fun `when a recording is captured, then it is handed over with how long it ran`() = runTest {
     coEvery { repository.writeCapturedVideo(any()) } returns MEDIA
@@ -289,6 +459,8 @@ class MediaCaptureViewModelTest {
   }
 
   private companion object {
+    private val RECIPIENT_ID = MediaRecipientId(id = 7L)
+
     private val MEDIA = Media(
       uri = "content://capture".toUri(),
       contentType = "image/jpeg",

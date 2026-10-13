@@ -265,6 +265,10 @@ private fun Attachment.toAttachmentPointerProto(): Either<DataMessageError, Atta
   caption?.let { builder.caption(it) }
   blurHash?.let { builder.blurHash(it.hash) }
   uuid?.let { builder.clientUuid(UuidUtil.toByteString(it)) }
+  audioHash?.let { hash ->
+    hash.waveFormBytes?.let { builder.audioWaveform(it.toByteString()) }
+    hash.durationSeconds?.let { builder.audioDurationSeconds(it) }
+  }
 
   builder.build()
 }
@@ -386,7 +390,12 @@ private fun Contact.toProto(): Either<DataMessageError, DataMessage.Contact> = e
         ?.map { DataMessage.Contact.Avatar(avatar = it, isProfile = avatar.isProfile) }
         ?.bind()
     },
-    organization = organization
+    organization = organization,
+    aciBinary = ACI.parseOrNull(aci)?.takeIf { it.isValid }?.toByteString(),
+    nickname = nickname?.takeUnless { it.isEmpty }?.let {
+      DataMessage.Contact.SignalNickname(given = it.given, family = it.family)
+    },
+    note = note
   )
 }
 
@@ -479,7 +488,8 @@ private fun DataMessage.isUrgent(): Boolean {
     this.pollTerminate != null ||
     this.pinMessage != null ||
     this.delete != null ||
-    this.payment?.notification != null
+    this.payment?.notification != null ||
+    this.payment?.activation != null
 }
 
 private fun SyncMessage.isUrgent(): Boolean {

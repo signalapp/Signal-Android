@@ -29,7 +29,7 @@ object CallLinks {
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(rootKeyBytes: ByteArray): String = "$HTTPS_LINK_PREFIX${CallLinkRootKey(rootKeyBytes)}"
+  fun url(rootKeyBytes: ByteArray): String = "$HTTPS_LINK_PREFIX${CallLinkRootKey(rootKeyBytes).toUnredactedString()}"
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->

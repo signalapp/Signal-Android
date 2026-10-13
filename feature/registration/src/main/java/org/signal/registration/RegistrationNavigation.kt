@@ -7,10 +7,16 @@
 
 package org.signal.registration
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Parcelable
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -18,11 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.EntryProviderScope
@@ -35,18 +44,29 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.gms.common.GoogleApiAvailability
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import kotlinx.serialization.Serializable
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.navigation.ResultEffect
+import org.signal.core.ui.navigation.ResultEventBus
 import org.signal.core.ui.navigation.TransitionSpecs
 import org.signal.core.util.LinkActions
 import org.signal.core.util.LinkActions.OpenUrlError
+import org.signal.core.util.Result
+import org.signal.core.util.Util
+import org.signal.core.util.billing.OneTimePurchaseResult
+import org.signal.core.util.censor
+import org.signal.core.util.logging.Log
 import org.signal.core.util.serialization.AccountEntropyPoolSerializer
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import org.signal.passwordmanager.PasskeyAssertionResult
+import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.passwordmanager.SignalPasskeyManager
 import org.signal.registration.screens.accountlocked.AccountLockedScreen
 import org.signal.registration.screens.accountlocked.AccountLockedScreenEvents
 import org.signal.registration.screens.accountlocked.AccountLockedState
@@ -57,7 +77,9 @@ import org.signal.registration.screens.aepentry.EnterAepForLocalBackupResult
 import org.signal.registration.screens.aepentry.EnterAepForLocalBackupViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPostRegistrationViewModel
 import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupPreRegistrationViewModel
+import org.signal.registration.screens.aepentry.EnterAepForRemoteBackupResult
 import org.signal.registration.screens.aepentry.EnterAepScreen
+import org.signal.registration.screens.aepentry.EnterAepScreenActions
 import org.signal.registration.screens.allownotifications.AllowNotificationsScreen
 import org.signal.registration.screens.captcha.CaptchaScreen
 import org.signal.registration.screens.captcha.CaptchaScreenEvents
@@ -66,9 +88,6 @@ import org.signal.registration.screens.countrycode.Country
 import org.signal.registration.screens.countrycode.CountryCodePickerRepository
 import org.signal.registration.screens.countrycode.CountryCodePickerScreen
 import org.signal.registration.screens.countrycode.CountryCodePickerViewModel
-import org.signal.registration.screens.createprofile.CreateProfileScreen
-import org.signal.registration.screens.createprofile.CreateProfileScreenEvents
-import org.signal.registration.screens.createprofile.CreateProfileViewModel
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteScreen
 import org.signal.registration.screens.devicetransfer.complete.DeviceTransferCompleteViewModel
 import org.signal.registration.screens.devicetransfer.instructions.DeviceTransferInstructionsScreen
@@ -77,8 +96,6 @@ import org.signal.registration.screens.devicetransfer.progress.DeviceTransferPro
 import org.signal.registration.screens.devicetransfer.progress.DeviceTransferProgressViewModel
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupScreen
 import org.signal.registration.screens.devicetransfer.setup.DeviceTransferSetupViewModel
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityScreen
-import org.signal.registration.screens.discoverability.PhoneNumberDiscoverabilityViewModel
 import org.signal.registration.screens.linkaccount.LinkAccountScreen
 import org.signal.registration.screens.linkaccount.LinkAccountScreenAction
 import org.signal.registration.screens.linkaccount.LinkAccountViewModel
@@ -109,11 +126,32 @@ import org.signal.registration.screens.restoreselection.ArchiveRestoreOption
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionScreen
 import org.signal.registration.screens.restoreselection.ArchiveRestoreSelectionViewModel
 import org.signal.registration.screens.restoreselection.RegisteredState
+import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreen
+import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenActions
+import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryScreenEvents
+import org.signal.registration.screens.signallogincredentials.SignalLoginCredentialEntryViewModel
+import org.signal.registration.screens.signallogincredentials.SignalLoginManualSaveConfirmationViewModel
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsAction
+import org.signal.registration.screens.signallogindetails.RegistrationSignalLoginDetailsViewModel
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreen
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenActions
+import org.signal.registration.screens.signallogininfo.SignalLoginInfoScreenEvents
 import org.signal.registration.screens.signallogininfo.SignalLoginInfoViewModel
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreen
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveScreenActions
+import org.signal.registration.screens.signalloginmanualsave.SignalLoginViewDetailsForManualSaveViewModel
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreen
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenActions
+import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentScreenEvents
 import org.signal.registration.screens.signalloginpayment.SignalLoginPaymentViewModel
+import org.signal.registration.screens.totpentry.TotpEntryScreen
+import org.signal.registration.screens.totpentry.TotpEntryViewModel
+import org.signal.registration.screens.twofactorselection.TwoFactorMethod
+import org.signal.registration.screens.twofactorselection.TwoFactorSelectionAction
+import org.signal.registration.screens.twofactorselection.TwoFactorSelectionScreen
+import org.signal.registration.screens.twofactorselection.TwoFactorSelectionScreenEvents
+import org.signal.registration.screens.twofactorselection.TwoFactorSelectionViewModel
+import org.signal.registration.screens.twofactorselection.WebAuthnParameters
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
 import org.signal.registration.screens.verificationcode.VerificationCodeScreen
@@ -122,9 +160,10 @@ import org.signal.registration.screens.welcome.WelcomeScreen
 import org.signal.registration.screens.welcome.WelcomeScreenActions
 import org.signal.registration.screens.welcome.WelcomeScreenViewModel
 import org.signal.registration.util.AccountEntropyPoolParceler
-import org.signal.registration.util.RegistrationCredentialManager
 import org.signal.registration.util.SessionMetadataParceler
 import org.signal.registration.util.SvrCredentialsParceler
+import org.signal.signallogin.pdf.SignalLoginPdfRenderer
+import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
 
 /**
  * Navigation routes for the registration flow.
@@ -164,6 +203,36 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   /** Presents a freshly-purchased Signal Login and asks the user to save it. */
   @Serializable
   data object SignalLoginInfo : RegistrationRoute
+
+  /** Shows the full keys that make up the user's Signal Login and offers ways to save them. */
+  @Serializable
+  data object SignalLoginViewDetails : RegistrationRoute
+
+  /** Spells out a freshly-purchased Signal Login so the user can record it themselves. */
+  @Serializable
+  data object SignalLoginViewDetailsForManualSave : RegistrationRoute
+
+  /** Typing back a freshly-purchased Signal Login to prove it was recorded correctly. */
+  @Serializable
+  data object SignalLoginManualSaveConfirmation : RegistrationRoute
+
+  /**
+   * Logging in with a Signal Login the user already owns: the account ID and the recovery key that pairs with it.
+   *
+   * [prefilledAccountId] is the raw account ID the user already typed on an earlier screen, if any.
+   */
+  @Serializable
+  data class SignalLoginCredentialEntry(val prefilledAccountId: String? = null) : RegistrationRoute {
+    override fun toString(): String = "SignalLoginCredentialEntry(prefilledAccountId=${prefilledAccountId?.censor()})"
+  }
+
+  /** Choosing which second factor to authenticate with when logging in requires two-factor authentication. */
+  @Serializable
+  data class TwoFactorSelection(val methods: List<TwoFactorMethod>) : RegistrationRoute
+
+  /** Entering the six-digit code from the user's authenticator app. */
+  @Serializable
+  data object TotpEntry : RegistrationRoute
 
   /** Optional username selection for a phone-numberless account. */
   @Serializable
@@ -249,6 +318,24 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
           registeredState = RegisteredState.RegisteredAndPinKnown
         )
       }
+
+      /**
+       * For an account reclaimed with an [aep] the user typed in, so either restore source can be read straight away
+       * without asking for a PIN.
+       */
+      fun forPostRegisterWithKnownAep(aep: AccountEntropyPool, hasRemoteBackup: Boolean): ArchiveRestoreSelection {
+        return ArchiveRestoreSelection(
+          restoreOptions = buildList {
+            if (hasRemoteBackup) {
+              add(ArchiveRestoreOption.SignalSecureBackup)
+            }
+            add(ArchiveRestoreOption.LocalBackup)
+            add(ArchiveRestoreOption.None)
+          },
+          registeredState = RegisteredState.RegisteredAndPinKnown,
+          aep = aep
+        )
+      }
     }
   }
 
@@ -282,9 +369,15 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   @Serializable
   data object EnterAepForRemoteBackupPostRegistration : RegistrationRoute
 
+  /**
+   * @param backwardNavigationAllowed Whether the user can reasonably go backwards in the nav graph.
+   */
   @Serializable
   @TypeParceler<AccountEntropyPool, AccountEntropyPoolParceler>
-  data class RemoteRestore(@Serializable(with = AccountEntropyPoolSerializer::class) val aep: AccountEntropyPool) : RegistrationRoute
+  data class RemoteRestore(
+    @Serializable(with = AccountEntropyPoolSerializer::class) val aep: AccountEntropyPool,
+    val backwardNavigationAllowed: Boolean = false
+  ) : RegistrationRoute
 
   @Serializable
   data object QuickRestoreQrScan : RegistrationRoute
@@ -305,12 +398,6 @@ sealed interface RegistrationRoute : NavKey, Parcelable {
   data object DeviceTransferComplete : RegistrationRoute
 
   @Serializable
-  data object Profile : RegistrationRoute
-
-  @Serializable
-  data class PhoneNumberDiscoverability(val initialDiscoverable: Boolean) : RegistrationRoute
-
-  @Serializable
   data object FullyComplete : RegistrationRoute
 }
 
@@ -319,27 +406,17 @@ private const val COUNTRY_CODE_RESULT = "country_code_result"
 private const val BACKUP_CREDENTIAL_RESULT = "backup_credential_result"
 private const val AEP_FOR_LOCAL_BACKUP_RESULT = "aep_for_local_backup_result"
 private const val LOCAL_BACKUP_RESTORE_RESULT = "local_backup_restore_result"
-private const val PHONE_NUMBER_DISCOVERABILITY_RESULT = "phone_number_discoverability_result"
-private const val PIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059792"
-private const val USERNAME_LEARN_MORE_URL = "https://support.signal.org/hc/articles/5389476324250"
+private const val AEP_FOR_REMOTE_BACKUP_RESULT = "aep_for_remote_backup_result"
+private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
+private const val PASSKEY_ASSERTION_RESULT = "passkey_assertion_result"
 
-// TODO [phonenumberless] Point at the real support article once it exists.
-private const val SIGNAL_LOGIN_LEARN_MORE_URL = "https://support.signal.org/"
-
-/** Opens [url] in a browser, surfacing a toast if the device has none. */
-private fun openUrl(context: Context, url: String) {
-  LinkActions.openUrl(context, url) { error ->
-    when (error) {
-      OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
-    }
-  }
-}
+private const val TAG = "RegistrationNavigation"
 
 /**
  * Sets up the navigation graph for the registration flow using Navigation 3.
  *
- * @param registrationRepository The repository for registration data.
- * @param registrationViewModel Optional ViewModel for testing. If null, creates one internally.
+ * @param registrationViewModel Optional ViewModel for testing. If null, creates one internally, along with the
+ *   [RegistrationRepository] it owns.
  * @param startFresh When true, any persisted registration data is not restored and the user starts the flow fresh from
  *   the beginning.
  * @param permissionsState Optional permissions state for testing. If null, creates one internally.
@@ -350,7 +427,6 @@ private fun openUrl(context: Context, url: String) {
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun RegistrationNavHost(
-  registrationRepository: RegistrationRepository,
   registrationViewModel: RegistrationViewModel? = null,
   startFresh: Boolean = false,
   permissionsState: MultiplePermissionsState? = null,
@@ -358,9 +434,10 @@ fun RegistrationNavHost(
   modifier: Modifier = Modifier,
   onRegistrationComplete: () -> Unit = {}
 ) {
-  val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel(
-    factory = RegistrationViewModel.Factory(registrationRepository, startDestination, startFresh)
-  )
+  val context = LocalContext.current
+  val viewModel: RegistrationViewModel = registrationViewModel ?: viewModel {
+    RegistrationViewModel(RegistrationRepository.create(context), createSavedStateHandle(), startDestination, startFresh)
+  }
 
   val registrationState by viewModel.state.collectAsStateWithLifecycle()
 
@@ -380,7 +457,7 @@ fun RegistrationNavHost(
 
   val entryProvider = entryProvider {
     navigationEntries(
-      registrationRepository = registrationRepository,
+      registrationRepository = viewModel.repository,
       registrationViewModel = viewModel,
       permissionsState = permissionsState,
       onRegistrationComplete = onRegistrationComplete
@@ -434,15 +511,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   entry<RegistrationRoute.Welcome> {
     val context = LocalContext.current
     val termsAndPrivacyUrl = stringResource(R.string.terms_and_privacy_policy_url)
-    val viewModel: WelcomeScreenViewModel = viewModel(
-      factory = WelcomeScreenViewModel.Factory(
+    val viewModel: WelcomeScreenViewModel = viewModel {
+      WelcomeScreenViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         hasPermissions = { RegistrationPermissions.hasAllRequiredPermissions(context) },
         getRequiredLinkedDevicePermission = { registrationViewModel.getRequiredLinkedDevicePermission() }
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     CollectActions(viewModel.actions) { action ->
       when (action) {
@@ -486,14 +563,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Link account Screen
   entry<RegistrationRoute.LinkAccount> { key ->
-    val viewModel: LinkAccountViewModel = viewModel(
-      factory = LinkAccountViewModel.Factory(
+    val viewModel: LinkAccountViewModel = viewModel {
+      LinkAccountViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         showCreateAccount = key.showCreateAccount
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/en-us/articles/360007320551"
@@ -511,13 +588,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // --- Message Sync Screen
   entry<RegistrationRoute.MessageSync> {
-    val viewModel: MessageSyncViewModel = viewModel(
-      factory = MessageSyncViewModel.Factory(
+    val viewModel: MessageSyncViewModel = viewModel {
+      MessageSyncViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val url = "https://support.signal.org/hc/articles/360007320391"
@@ -535,13 +612,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Phone Number Entry Screen
   entry<RegistrationRoute.PhoneNumberEntry> {
-    val viewModel: PhoneNumberEntryViewModel = viewModel(
-      factory = PhoneNumberEntryViewModel.Factory(
+    val viewModel: PhoneNumberEntryViewModel = viewModel {
+      PhoneNumberEntryViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ResultEffect<String?>(registrationViewModel.resultBus, CAPTCHA_RESULT) { captchaToken ->
@@ -560,6 +637,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       viewModel.onEvent(PhoneNumberEntryScreenEvents.LocalBackupRestoreCompleted(result))
     }
 
+    ResultEffect<EnterAepForRemoteBackupResult>(registrationViewModel.resultBus, AEP_FOR_REMOTE_BACKUP_RESULT) { result ->
+      when (result) {
+        EnterAepForRemoteBackupResult.VerifyWithSms -> viewModel.onEvent(PhoneNumberEntryScreenEvents.RemoteBackupRestoreDeferredToSms)
+      }
+    }
+
     PhoneNumberScreen(
       state = state,
       onEvent = { viewModel.onEvent(it) }
@@ -568,15 +651,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Country Code Picker
   entry<RegistrationRoute.CountryCodePicker>(metadata = TransitionSpecs.VerticalSlide.metadata) { key ->
-    val viewModel: CountryCodePickerViewModel = viewModel(
-      factory = CountryCodePickerViewModel.Factory(
+    val viewModel: CountryCodePickerViewModel = viewModel {
+      CountryCodePickerViewModel(
         repository = CountryCodePickerRepository(),
         parentEventEmitter = parentEventEmitter,
         resultBus = registrationViewModel.resultBus,
         resultKey = COUNTRY_CODE_RESULT,
         initialCountry = key.country
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     CountryCodePickerScreen(
@@ -609,14 +692,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Verification Code Entry Screen
   entry<RegistrationRoute.VerificationCodeEntry> {
     val context = LocalContext.current.applicationContext
-    val viewModel: VerificationCodeViewModel = viewModel(
-      factory = VerificationCodeViewModel.Factory(
-        context = context,
+    val viewModel: VerificationCodeViewModel = viewModel {
+      VerificationCodeViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
-        parentEventEmitter = registrationViewModel::onEvent
+        parentEventEmitter = registrationViewModel::onEvent,
+        smsCodeEvents = VerificationCodeViewModel.smsCodeFlow(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     VerificationCodeScreen(
@@ -627,17 +710,42 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Signal Login Payment Screen
   entry<RegistrationRoute.SignalLoginPayment> {
-    val viewModel: SignalLoginPaymentViewModel = viewModel(
-      factory = SignalLoginPaymentViewModel.Factory(
+    val viewModel: SignalLoginPaymentViewModel = viewModel {
+      SignalLoginPaymentViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val activity = LocalActivity.current
+    val purchaseScope = rememberCoroutineScope()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SIGNAL_LOGIN_LEARN_MORE_URL)
+        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
+
+        SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle -> openUrl(context, "https://support.signal.org/hc/articles/11228705649690")
+
+        is SignalLoginPaymentScreenActions.LaunchPurchaseFlow -> {
+          purchaseScope.launch {
+            val result = if (activity != null) {
+              action.launcher.launch(activity)
+            } else {
+              OneTimePurchaseResult.Unavailable
+            }
+            viewModel.onEvent(SignalLoginPaymentScreenEvents.PurchaseFlowCompleted(result))
+          }
+        }
+
+        SignalLoginPaymentScreenActions.MakeGooglePlayServicesAvailable -> {
+          if (activity != null) {
+            GoogleApiAvailability.getInstance()
+              .makeGooglePlayServicesAvailable(activity)
+              .addOnCompleteListener { viewModel.onEvent(SignalLoginPaymentScreenEvents.Foregrounded) }
+          }
+        }
+
+        SignalLoginPaymentScreenActions.OpenPlayStore -> openPlayStore(context)
       }
     }
 
@@ -650,14 +758,43 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Signal Login Info Screen
   entry<RegistrationRoute.SignalLoginInfo> {
     val context = LocalContext.current
-    val viewModel: SignalLoginInfoViewModel = viewModel(
-      factory = SignalLoginInfoViewModel.Factory(
+    val credentialManagerScope = rememberCoroutineScope()
+    val viewModel: SignalLoginInfoViewModel = viewModel {
+      SignalLoginInfoViewModel(
         repository = registrationRepository,
+        parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
-        isPasswordManagerAvailable = RegistrationCredentialManager.isSupported(context)
+        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context),
+        isGooglePasswordManagerDefault = SignalCredentialManager.isGooglePasswordManagerDefault(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        is SignalLoginInfoScreenActions.SaveToPasswordManager -> {
+          credentialManagerScope.launch {
+            val result = SignalCredentialManager.saveCredential(
+              activityContext = context,
+              username = action.accountId,
+              password = action.recoveryKey
+            )
+            viewModel.onEvent(SignalLoginInfoScreenEvents.SaveToPasswordManagerCompleted(result))
+          }
+        }
+
+        is SignalLoginInfoScreenActions.ReadBackFromPasswordManager -> {
+          credentialManagerScope.launch {
+            val credential = SignalCredentialManager.getCredential(activityContext = context, id = action.accountId)
+            viewModel.onEvent(SignalLoginInfoScreenEvents.SavedCredentialRetrieved(credential))
+          }
+        }
+
+        SignalLoginInfoScreenActions.ShowNoPasswordManagerAvailable -> {
+          Toast.makeText(context, R.string.SignalLoginInfoScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
+        }
+      }
+    }
 
     SignalLoginInfoScreen(
       state = state,
@@ -665,19 +802,198 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     )
   }
 
+  // -- Signal Login View Details Screen
+  entry<RegistrationRoute.SignalLoginViewDetails> {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val viewModel: RegistrationSignalLoginDetailsViewModel = viewModel {
+      RegistrationSignalLoginDetailsViewModel(
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val savePdfLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+      if (uri != null) {
+        scope.launch {
+          val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountKey, viewModel.state.value.recoveryKeyGroups)
+          if (result is Result.Failure) {
+            Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
+          }
+        }
+      }
+    }
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+
+        is RegistrationSignalLoginDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
+      }
+    }
+
+    SignalLoginViewDetailsScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Signal Login View Details For Manual Save Screen
+  entry<RegistrationRoute.SignalLoginViewDetailsForManualSave> {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val viewModel: SignalLoginViewDetailsForManualSaveViewModel = viewModel {
+      SignalLoginViewDetailsForManualSaveViewModel(
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val savePdfLauncher = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+      if (uri != null) {
+        scope.launch {
+          val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountId, viewModel.state.value.recoveryKeyGroups)
+          if (result is Result.Failure) {
+            Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
+          }
+        }
+      }
+    }
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+
+        is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
+      }
+    }
+
+    SignalLoginViewDetailsForManualSaveScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Signal Login Manual Save Confirmation Screen
+  entry<RegistrationRoute.SignalLoginManualSaveConfirmation> {
+    val viewModel: SignalLoginManualSaveConfirmationViewModel = viewModel {
+      SignalLoginManualSaveConfirmationViewModel(
+        parentState = registrationViewModel.state,
+        parentEventEmitter = registrationViewModel::onEvent
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    SignalLoginCredentialEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Signal Login Credential Entry Screen
+  entry<RegistrationRoute.SignalLoginCredentialEntry> { key ->
+    val context = LocalContext.current
+    val viewModel: SignalLoginCredentialEntryViewModel = viewModel {
+      SignalLoginCredentialEntryViewModel(
+        repository = registrationRepository,
+        parentEventEmitter = registrationViewModel::onEvent,
+        arePasskeysSupported = SignalPasskeyManager.isSupported(context),
+        prefilledAccountId = key.prefilledAccountId
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
+      }
+    }
+
+    ResultEffect<String>(registrationViewModel.resultBus, TWO_FACTOR_CODE_RESULT) { code ->
+      viewModel.onEvent(SignalLoginCredentialEntryScreenEvents.TwoFactorCodeEntered(code))
+    }
+
+    ResultEffect<String>(registrationViewModel.resultBus, PASSKEY_ASSERTION_RESULT) { responseJson ->
+      viewModel.onEvent(SignalLoginCredentialEntryScreenEvents.PasskeyAssertionReceived(responseJson))
+    }
+
+    SignalLoginCredentialEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- Two-Factor Method Selection Screen
+  entry<RegistrationRoute.TwoFactorSelection> { key ->
+    val viewModel: TwoFactorSelectionViewModel = viewModel {
+      TwoFactorSelectionViewModel(
+        methods = key.methods,
+        parentEventEmitter = parentEventEmitter
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val activity = LocalActivity.current
+    val scope = rememberCoroutineScope()
+
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        is TwoFactorSelectionAction.AuthenticateWithPasskey -> {
+          if (activity == null) {
+            Log.w(TAG, "[TwoFactorSelection] No activity to show the passkey provider's sheet on. Leaving the user on the selection screen.")
+            viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed)
+          } else {
+            scope.launch {
+              runPasskeyAssertion(
+                activityContext = activity,
+                relyingPartyId = RegistrationDependencies.get().webAuthnRelyingPartyId,
+                parameters = action.parameters,
+                resultBus = registrationViewModel.resultBus,
+                parentEventEmitter = parentEventEmitter,
+                onCeremonyFailed = { viewModel.onEvent(TwoFactorSelectionScreenEvents.PasskeyCeremonyFailed) }
+              )
+            }
+          }
+        }
+      }
+    }
+
+    TwoFactorSelectionScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
+  // -- TOTP Code Entry Screen
+  entry<RegistrationRoute.TotpEntry> {
+    val viewModel: TotpEntryViewModel = viewModel {
+      TotpEntryViewModel(
+        parentEventEmitter = parentEventEmitter,
+        resultBus = registrationViewModel.resultBus,
+        resultKey = TWO_FACTOR_CODE_RESULT
+      )
+    }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    TotpEntryScreen(
+      state = state,
+      onEvent = { viewModel.onEvent(it) }
+    )
+  }
+
   // -- Add Username Screen
   entry<RegistrationRoute.AddUsername> {
-    val viewModel: AddUsernameViewModel = viewModel(
-      factory = AddUsernameViewModel.Factory(
+    val viewModel: AddUsernameViewModel = viewModel {
+      AddUsernameViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        AddUsernameScreenActions.OpenLearnMoreArticle -> openUrl(context, USERNAME_LEARN_MORE_URL)
+        AddUsernameScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/6712070553754")
       }
     }
 
@@ -689,13 +1005,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- SVR Restore PIN Entry Screen (for users with existing backup data)
   entry<RegistrationRoute.PinEntryForSvrRestore> {
-    val viewModel: PinEntryForSvrRestoreViewModel = viewModel(
-      factory = PinEntryForSvrRestoreViewModel.Factory(
+    val viewModel: PinEntryForSvrRestoreViewModel = viewModel {
+      PinEntryForSvrRestoreViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -706,18 +1022,18 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- PIN Creation Screen (for new users creating their first PIN)
   entry<RegistrationRoute.PinCreate> {
-    val viewModel: PinCreationViewModel = viewModel(
-      factory = PinCreationViewModel.Factory(
+    val viewModel: PinCreationViewModel = viewModel {
+      PinCreationViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, PIN_LEARN_MORE_URL)
+        PinCreationScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/360007059792")
       }
     }
 
@@ -729,15 +1045,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Registration Lock PIN Entry Screen
   entry<RegistrationRoute.PinEntryForRegistrationLock> { key ->
-    val viewModel: PinEntryForRegistrationLockViewModel = viewModel(
-      factory = PinEntryForRegistrationLockViewModel.Factory(
+    val viewModel: PinEntryForRegistrationLockViewModel = viewModel {
+      PinEntryForRegistrationLockViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         timeRemaining = key.timeRemaining,
         svrCredentials = key.svrCredentials
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -748,14 +1064,14 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- SMS Bypass PIN Entry Screen
   entry<RegistrationRoute.PinEntryForSmsBypass> { key ->
-    val viewModel: PinEntryForSmsBypassViewModel = viewModel(
-      factory = PinEntryForSmsBypassViewModel.Factory(
+    val viewModel: PinEntryForSmsBypassViewModel = viewModel {
+      PinEntryForSmsBypassViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
         svrCredentials = key.svrCredentials
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     PinEntryScreen(
@@ -786,8 +1102,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Archive Restore Selection for Quick Restore Screen
   entry<RegistrationRoute.ArchiveRestoreSelection> { key ->
-    val viewModel: ArchiveRestoreSelectionViewModel = viewModel(
-      factory = ArchiveRestoreSelectionViewModel.Factory(
+    val viewModel: ArchiveRestoreSelectionViewModel = viewModel {
+      ArchiveRestoreSelectionViewModel(
         restoreOptions = key.restoreOptions,
         registeredState = key.registeredState,
         knownAep = key.aep,
@@ -795,7 +1111,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ArchiveRestoreSelectionScreen(
@@ -806,14 +1122,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Remote Restore Screen
   entry<RegistrationRoute.RemoteRestore> { key ->
-    val viewModel: RemoteBackupRestoreViewModel = viewModel(
-      factory = RemoteBackupRestoreViewModel.Factory(
+    val viewModel: RemoteBackupRestoreViewModel = viewModel {
+      RemoteBackupRestoreViewModel(
         aep = key.aep,
+        canNavigateBackwards = key.backwardNavigationAllowed,
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     RemoteRestoreScreen(
@@ -824,8 +1141,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Local Backup Restore Screen
   entry<RegistrationRoute.LocalBackupRestore> { key ->
-    val viewModel: LocalBackupRestoreViewModel = viewModel(
-      factory = LocalBackupRestoreViewModel.Factory(
+    val viewModel: LocalBackupRestoreViewModel = viewModel {
+      LocalBackupRestoreViewModel(
         repository = registrationRepository,
         parentState = registrationViewModel.state,
         parentEventEmitter = registrationViewModel::onEvent,
@@ -834,7 +1151,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         resultBus = registrationViewModel.resultBus,
         resultKey = LOCAL_BACKUP_RESTORE_RESULT
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     ResultEffect<String?>(registrationViewModel.resultBus, BACKUP_CREDENTIAL_RESULT) { passphrase ->
@@ -874,8 +1191,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Enter AEP
   entry<RegistrationRoute.EnterAepForLocalBackup> { key ->
     val context = LocalContext.current
-    val viewModel: EnterAepForLocalBackupViewModel = viewModel(
-      factory = EnterAepForLocalBackupViewModel.Factory(
+    val viewModel: EnterAepForLocalBackupViewModel = viewModel {
+      EnterAepForLocalBackupViewModel(
         isPreRegistration = key.isPreRegistration,
         backupUri = key.backupUri,
         repository = registrationRepository,
@@ -883,9 +1200,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
         parentEventEmitter = registrationViewModel::onEvent,
         resultBus = registrationViewModel.resultBus,
         resultKey = AEP_FOR_LOCAL_BACKUP_RESULT,
-        isPasswordManagerAvailable = RegistrationCredentialManager.isSupported(context)
+        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterAepScreen(
@@ -896,15 +1213,22 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   entry<RegistrationRoute.EnterAepForRemoteBackupPreRegistration> { key ->
     val context = LocalContext.current
-    val viewModel: EnterAepForRemoteBackupPreRegistrationViewModel = viewModel(
-      factory = EnterAepForRemoteBackupPreRegistrationViewModel.Factory(
+    val viewModel: EnterAepForRemoteBackupPreRegistrationViewModel = viewModel {
+      EnterAepForRemoteBackupPreRegistrationViewModel(
         e164 = key.e164,
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
-        isPasswordManagerAvailable = RegistrationCredentialManager.isSupported(context)
+        resultBus = registrationViewModel.resultBus,
+        resultKey = AEP_FOR_REMOTE_BACKUP_RESULT,
+        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
+    CollectActions(viewModel.actions) { action ->
+      when (action) {
+        EnterAepScreenActions.OpenRecoveryKeyHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/9708267671322")
+      }
+    }
 
     EnterAepScreen(
       state = state,
@@ -914,13 +1238,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   entry<RegistrationRoute.EnterAepForRemoteBackupPostRegistration> {
     val context = LocalContext.current
-    val viewModel: EnterAepForRemoteBackupPostRegistrationViewModel = viewModel(
-      factory = EnterAepForRemoteBackupPostRegistrationViewModel.Factory(
+    val viewModel: EnterAepForRemoteBackupPostRegistrationViewModel = viewModel {
+      EnterAepForRemoteBackupPostRegistrationViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent,
-        isPasswordManagerAvailable = RegistrationCredentialManager.isSupported(context)
+        isPasswordManagerAvailable = SignalCredentialManager.isSupported(context)
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterAepScreen(
@@ -930,12 +1254,12 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   }
 
   entry<RegistrationRoute.QuickRestoreQrScan> {
-    val viewModel: QuickRestoreQrViewModel = viewModel(
-      factory = QuickRestoreQrViewModel.Factory(
+    val viewModel: QuickRestoreQrViewModel = viewModel {
+      QuickRestoreQrViewModel(
         repository = registrationRepository,
         parentEventEmitter = registrationViewModel::onEvent
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     QuickRestoreQrScreen(
@@ -950,9 +1274,9 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Device Transfer: Instructions
   entry<RegistrationRoute.DeviceTransferInstructions> {
-    val viewModel: DeviceTransferInstructionsViewModel = viewModel(
-      factory = DeviceTransferInstructionsViewModel.Factory(parentEventEmitter)
-    )
+    val viewModel: DeviceTransferInstructionsViewModel = viewModel {
+      DeviceTransferInstructionsViewModel(parentEventEmitter)
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferInstructionsScreen(
       state = state,
@@ -963,15 +1287,15 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Device Transfer: Setup (permissions, wifi, verify SAS)
   entry<RegistrationRoute.DeviceTransferSetup> {
     val context = LocalContext.current.applicationContext
-    val viewModel: DeviceTransferSetupViewModel = viewModel(
-      factory = DeviceTransferSetupViewModel.Factory(
+    val viewModel: DeviceTransferSetupViewModel = viewModel {
+      DeviceTransferSetupViewModel(
         context = context,
         networkController = RegistrationDependencies.get().networkController,
         setupEvents = DeviceTransferSetupViewModel.transferStatusFlow(),
         parentState = registrationViewModel.state,
         parentEventEmitter = parentEventEmitter
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferSetupScreen(
       state = state,
@@ -982,13 +1306,13 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
   // -- Device Transfer: Progress (receiving + importing)
   entry<RegistrationRoute.DeviceTransferProgress> {
     val context = LocalContext.current.applicationContext
-    val viewModel: DeviceTransferProgressViewModel = viewModel(
-      factory = DeviceTransferProgressViewModel.Factory(
+    val viewModel: DeviceTransferProgressViewModel = viewModel {
+      DeviceTransferProgressViewModel(
         context = context,
         progressEvents = DeviceTransferProgressViewModel.restoreStatusFlow(),
         parentEventEmitter = parentEventEmitter
       )
-    )
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     val showCancelDialog by viewModel.showCancelDialog.collectAsState()
     DeviceTransferProgressScreen(
@@ -1000,47 +1324,11 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
 
   // -- Device Transfer: Complete
   entry<RegistrationRoute.DeviceTransferComplete> {
-    val viewModel: DeviceTransferCompleteViewModel = viewModel(
-      factory = DeviceTransferCompleteViewModel.Factory(registrationRepository, parentEventEmitter)
-    )
+    val viewModel: DeviceTransferCompleteViewModel = viewModel {
+      DeviceTransferCompleteViewModel(registrationRepository, parentEventEmitter)
+    }
     val state by viewModel.state.collectAsStateWithLifecycle()
     DeviceTransferCompleteScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.Profile> {
-    val viewModel: CreateProfileViewModel = viewModel(
-      factory = CreateProfileViewModel.Factory(
-        repository = registrationRepository,
-        parentEventEmitter = registrationViewModel::onEvent
-      )
-    )
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    ResultEffect<Boolean>(registrationViewModel.resultBus, PHONE_NUMBER_DISCOVERABILITY_RESULT) { discoverable ->
-      viewModel.onEvent(CreateProfileScreenEvents.DiscoverabilityChanged(discoverable))
-    }
-
-    CreateProfileScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  entry<RegistrationRoute.PhoneNumberDiscoverability> { key ->
-    val viewModel: PhoneNumberDiscoverabilityViewModel = viewModel(
-      factory = PhoneNumberDiscoverabilityViewModel.Factory(
-        initialDiscoverable = key.initialDiscoverable,
-        parentEventEmitter = registrationViewModel::onEvent,
-        resultBus = registrationViewModel.resultBus,
-        resultKey = PHONE_NUMBER_DISCOVERABILITY_RESULT
-      )
-    )
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    PhoneNumberDiscoverabilityScreen(
       state = state,
       onEvent = viewModel::onEvent
     )
@@ -1050,5 +1338,70 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     LaunchedEffect(Unit) {
       onRegistrationComplete()
     }
+  }
+}
+
+/**
+ * Runs a WebAuthn assertion and, if the user sees it through, hands the result to the login screen that bounced them
+ * here. A ceremony that produces nothing leaves them on the selection screen to pick again, and [onCeremonyFailed] is
+ * called for the outcomes they didn't choose so the screen can say something went wrong.
+ */
+private suspend fun runPasskeyAssertion(
+  activityContext: Context,
+  relyingPartyId: String,
+  parameters: WebAuthnParameters,
+  resultBus: ResultEventBus,
+  parentEventEmitter: (RegistrationFlowEvent) -> Unit,
+  onCeremonyFailed: () -> Unit
+) {
+  val result = SignalPasskeyManager.getPasskeyAssertion(
+    activityContext = activityContext,
+    rpId = relyingPartyId,
+    challenge = parameters.challenge,
+    timeoutSeconds = parameters.timeoutSeconds,
+    allowedCredentialIds = parameters.allowedCredentialIds
+  )
+
+  when (result) {
+    is PasskeyAssertionResult.Success -> {
+      resultBus.sendResult(PASSKEY_ASSERTION_RESULT, result.responseJson)
+      parentEventEmitter(RegistrationFlowEvent.NavigateBackToScreen(RegistrationRoute.SignalLoginCredentialEntry()))
+    }
+    PasskeyAssertionResult.UserCanceled -> {
+      Log.i(TAG, "[Passkey] The user backed out of the provider's sheet.")
+    }
+    PasskeyAssertionResult.NoCredentialAvailable -> {
+      Log.w(TAG, "[Passkey] This device holds none of the account's passkeys.")
+      onCeremonyFailed()
+    }
+    PasskeyAssertionResult.CeremonyFailed -> {
+      Log.w(TAG, "[Passkey] The assertion ceremony produced nothing usable.")
+      onCeremonyFailed()
+    }
+  }
+}
+
+/** Opens [url] in a browser, surfacing a toast if the device has none. */
+private fun openUrl(context: Context, url: String) {
+  LinkActions.openUrl(context, url) { error ->
+    when (error) {
+      OpenUrlError.NoBrowserFound -> Toast.makeText(context, R.string.LinkActions_error_no_browser_found, Toast.LENGTH_SHORT).show()
+    }
+  }
+}
+
+/** Opens the Play Store app so the user can sign into it, falling back to the web store when it is not installed. */
+private fun openPlayStore(context: Context) {
+  val intent = Intent(Intent.ACTION_VIEW, "market://details?id=com.android.vending".toUri()).apply {
+    setPackage("com.android.vending")
+    if (context !is Activity) {
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+  }
+
+  try {
+    context.startActivity(intent)
+  } catch (_: ActivityNotFoundException) {
+    openUrl(context, "https://play.google.com/store/apps/")
   }
 }

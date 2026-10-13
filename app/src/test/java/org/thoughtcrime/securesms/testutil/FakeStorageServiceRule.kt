@@ -36,7 +36,7 @@ import java.util.Currency
 import kotlin.time.Duration.Companion.days
 
 /**
- * An in-memory stand-in for the storage service, installed over [SignalNetwork.storageService].
+ * An in-memory stand-in for the storage service, installed over [SignalNetwork.storageApi].
  *
  * Records are stored encrypted with [storageKey], exactly as they would be remotely, so tests get a real
  * encrypt/decrypt round-trip. Seed remote state with [setRemoteState], and inspect the results of a sync
@@ -91,12 +91,15 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { api.readStorageItems(any(), any()) } answers { readStorageItems(secondArg()) }
     every { api.writeStorageItems(any(), any()) } answers { writeStorageItems(secondArg()) }
 
-    mockkObject(SignalNetwork)
-    every { SignalNetwork.storageService } returns api
+    val signalNetwork = mockk<SignalNetwork>()
+    every { signalNetwork.storageApi } returns api
+    every { signalNetwork.storageService } returns service
+
+    SignalNetwork.init(signalNetwork)
   }
 
   override fun after() {
-    unmockkObject(SignalNetwork)
+    SignalNetwork.init(SignalNetwork())
     unmockkObject(RemoteConfig)
   }
 
@@ -110,6 +113,8 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
   fun stubDefaults(store: MockSignalStoreRule) {
     var localManifest = SignalStorageManifest.EMPTY
     var syncLoopState = StorageSyncLoopState()
+    var lastBackgroundSyncTime = 0L
+    var needsSyncOnForeground = false
     var notSyncedRotatedSelfProfileKey: ByteArray? = null
 
     every { store.storageService.manifest } answers { localManifest }
@@ -119,6 +124,11 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
 
     every { store.storageService.syncLoopState } answers { syncLoopState }
     every { store.storageService.syncLoopState = any() } answers { syncLoopState = firstArg() }
+
+    every { store.storageService.lastBackgroundSyncTime } answers { lastBackgroundSyncTime }
+    every { store.storageService.lastBackgroundSyncTime = any() } answers { lastBackgroundSyncTime = firstArg() }
+    every { store.storageService.needsSyncOnForeground } answers { needsSyncOnForeground }
+    every { store.storageService.needsSyncOnForeground = any() } answers { needsSyncOnForeground = firstArg() }
 
     every { store.svr.hasPin() } returns true
     every { store.svr.hasOptedOut() } returns false
@@ -167,7 +177,7 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { store.settings.isLinkPreviewsEnabled } returns true
     every { store.settings.isPreferSystemContactPhotos } returns false
     every { store.settings.universalExpireTimer } returns 0
-    every { store.settings.shouldKeepMutedChatsArchived() } returns false
+    every { store.settings.keepMutedChatsArchived } returns false
     every { store.settings.automaticVerificationEnabled } returns true
 
     mockkObject(RemoteConfig)

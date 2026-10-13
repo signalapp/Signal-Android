@@ -13,7 +13,7 @@ data class SoundsAndNotificationsSettingsState(
   val hasCustomNotificationSettings: Boolean = false,
   val hasMentionsSupport: Boolean = false,
   val channelConsistencyCheckComplete: Boolean = false,
-  val unreadReminders: Boolean = false
+  val unreadReminders: NotificationSetting = NotificationSetting.ALWAYS_NOTIFY
 ) {
   val isMuted = muteUntil > 0
 }

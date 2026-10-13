@@ -60,6 +60,14 @@ fun MediaSendScreen(
             onDismissRequest = onDismissRequest
           )
         }
+        viewModel.reRegistrationOutdatedDeviceDialog.Content { _, onDismissRequest, _, _, _ ->
+          Dialogs.SimpleMessageDialog(
+            title = stringResource(R.string.ReRegistrationScannedDialog__transfer_failed_title),
+            message = stringResource(R.string.ReRegistrationScannedDialog__the_device_you_are_transferring_to_is_out_of_date),
+            dismiss = stringResource(android.R.string.ok),
+            onDismiss = onDismissRequest
+          )
+        }
 
         viewModel.addToGroupStoryDialog.Content { recipientId, onDismissRequest, onConfirm, _, onDeny ->
           val groupName: String by LocalDisplayNameProvider.current(recipientId.id)

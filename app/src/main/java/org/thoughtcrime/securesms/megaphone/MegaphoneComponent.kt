@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.main.EmptyMegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows us to utilize our composeView from Java code.
@@ -217,7 +218,7 @@ private fun PopupMegaphone(
       ) {
         Icon(
           imageVector = ImageVector.vectorResource(R.drawable.ic_x_20),
-          contentDescription = stringResource(R.string.Material3SearchToolbar__close)
+          contentDescription = stringResource(CoreUiR.string.CloseButton__content_description)
         )
       }
     }

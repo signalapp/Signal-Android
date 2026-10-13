@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -139,7 +138,7 @@ public class SendViewedReceiptJob extends BaseJob {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
 
-    boolean canSendNonStoryReceipts = TextSecurePreferences.isReadReceiptsEnabled(context);
+    boolean canSendNonStoryReceipts = SignalStore.settings().isReadReceiptsEnabled();
     boolean canSendStoryReceipts    = SignalStore.story().getViewedReceiptsEnabled();
 
     List<MessageId> foundMessageIds       = new LinkedList<>();
@@ -158,7 +157,7 @@ public class SendViewedReceiptJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (storyTypes.isEmpty() && !TextSecurePreferences.isReadReceiptsEnabled(context)) {
+    if (storyTypes.isEmpty() && !SignalStore.settings().isReadReceiptsEnabled()) {
       Log.w(TAG, "Read receipts not enabled!");
       return;
     }

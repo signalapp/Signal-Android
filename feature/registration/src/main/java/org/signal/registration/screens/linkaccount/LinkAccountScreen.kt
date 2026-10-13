@@ -78,6 +78,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SmallTabletLandscapeDayPreview
 import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
 import org.signal.core.ui.rememberWindowBreakpoint
@@ -240,8 +241,9 @@ private fun TwoPane(
       FirstPaneContent(
         onEvent = onEvent,
         modifier = Modifier
-          .padding(paddingValues)
           .weight(1f)
+          .verticalScroll(rememberScrollState())
+          .padding(paddingValues)
       )
     },
     secondPane = { paddingValues ->
@@ -369,10 +371,17 @@ private fun QrCodeContent(
     }
   }
 
-  Box(
+  BoxWithConstraints(
     contentAlignment = if (isInOverlay) Alignment.Center else Alignment.CenterEnd,
     modifier = modifier
   ) {
+    val outerBorderSize = getQrOuterBorderSize(isInOverlay, overlayMaxWidth)
+
+    // The breakpoint sizes are fixed, so scale them down uniformly when the window can't fit them (e.g. a landscape small tablet)
+    val scale = (minOf(maxWidth, maxHeight) / outerBorderSize).coerceAtMost(1f)
+    val innerBorderSize = getQrInnerBorderSize(isInOverlay, overlayMaxWidth) * scale
+    val qrCodeSize = getQrCodeSize(isInOverlay, overlayMaxWidth) * scale
+
     with(sharedTransitionScope) {
       Box(
         contentAlignment = Alignment.Center,
@@ -382,8 +391,8 @@ private fun QrCodeContent(
             animatedVisibilityScope = animatedVisibilityScope,
             boundsTransform = qrBoundsTransform
           )
-          .size(getQrOuterBorderSize(isInOverlay, overlayMaxWidth))
-          .background(color = colorResource(org.signal.core.ui.R.color.signal_light_colorPrimary), shape = RoundedCornerShape(if (isPhone) 48.dp else 64.dp))
+          .size(outerBorderSize * scale)
+          .background(color = colorResource(org.signal.core.ui.R.color.signal_light_colorPrimary), shape = RoundedCornerShape((if (isPhone) 48.dp else 64.dp) * scale))
       ) {
         AnimatedContent(
           targetState = state.qrCodeState,
@@ -393,8 +402,8 @@ private fun QrCodeContent(
               animatedVisibilityScope = animatedVisibilityScope,
               boundsTransform = qrBoundsTransform
             )
-            .size(getQrInnerBorderSize(isInOverlay, overlayMaxWidth))
-            .background(color = Color.White, shape = RoundedCornerShape(if (isPhone) 26.dp else 24.dp))
+            .size(innerBorderSize)
+            .background(color = Color.White, shape = RoundedCornerShape((if (isPhone) 26.dp else 24.dp) * scale))
         ) { target ->
           Box(
             contentAlignment = Alignment.Center,
@@ -402,7 +411,7 @@ private fun QrCodeContent(
           ) {
             when (target) {
               QrState.Failed -> QrCodeFailed(onEvent)
-              is QrState.Loaded -> QrCodeDisplay(target.qrCodeData, isInOverlay, overlayMaxWidth, qrBoundsTransform, sharedTransitionScope, animatedVisibilityScope)
+              is QrState.Loaded -> QrCodeDisplay(target.qrCodeData, qrCodeSize, qrBoundsTransform, sharedTransitionScope, animatedVisibilityScope)
               QrState.Loading -> QrCodeLoading()
               QrState.Scanned -> QrCodeScanned()
             }
@@ -441,8 +450,7 @@ private fun QrCodeContent(
 @Composable
 private fun QrCodeDisplay(
   qrCodeData: QrCodeData,
-  isInOverlay: Boolean,
-  overlayMaxWidth: Dp?,
+  size: Dp,
   boundsTransform: BoundsTransform,
   sharedTransitionScope: SharedTransitionScope,
   animatedVisibilityScope: AnimatedVisibilityScope
@@ -457,7 +465,7 @@ private fun QrCodeDisplay(
           animatedVisibilityScope = animatedVisibilityScope,
           boundsTransform = boundsTransform
         )
-        .size(getQrCodeSize(isInOverlay, overlayMaxWidth))
+        .size(size)
     )
   }
 }
@@ -677,6 +685,7 @@ private fun DontHaveSignal(onEvent: (LinkAccountScreenEvent) -> Unit) {
 }
 
 @AllDevicePreviews
+@SmallTabletLandscapeDayPreview
 @Composable
 private fun LinkAccountScreenPreview() {
   var displayQrOverlay by remember { mutableStateOf(false) }

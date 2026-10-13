@@ -3,46 +3,40 @@ package org.thoughtcrime.securesms.avatar.picker
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import android.widget.PopupMenu
-import androidx.activity.result.ActivityResultLauncher
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
-import org.signal.core.ui.WindowBreakpoint
-import org.signal.core.ui.getWindowBreakpoint
+import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.permissions.Permissions
-import org.signal.core.util.ThreadUtil
-import org.signal.core.util.dp
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarBundler
 import org.thoughtcrime.securesms.avatar.photo.PhotoEditorActivity
-import org.thoughtcrime.securesms.avatar.photo.PhotoEditorFragment
 import org.thoughtcrime.securesms.avatar.text.TextAvatarCreationFragment
 import org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment
-import org.thoughtcrime.securesms.components.ButtonStripItemView
-import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.thoughtcrime.securesms.util.padding
-import org.thoughtcrime.securesms.util.visible
 
 /**
  * Primary Avatar picker fragment, displays current user avatar and a list of recently used avatars and defaults.
+ * Carries out the [AvatarPickerActions] that need an Activity or the nav graph.
  */
-class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
+class AvatarPickerFragment : ComposeFragment() {
 
   companion object {
     const val REQUEST_KEY_SELECT_AVATAR = "org.thoughtcrime.securesms.avatar.picker.SELECT_AVATAR"
@@ -54,122 +48,49 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   private val viewModel: AvatarPickerViewModel by viewModels(factoryProducer = this::createFactory)
 
-  private lateinit var recycler: RecyclerView
-  private lateinit var photoEditorLauncher: ActivityResultLauncher<Avatar.Photo>
+  private val photoEditorLauncher = registerForActivityResult(PhotoEditorActivity.Contract()) { photo ->
+    if (photo != null) {
+      viewModel.onEvent(AvatarPickerEvents.AvatarEdited(photo))
+    }
+  }
 
   private fun createFactory(): AvatarPickerViewModel.Factory {
     val args = AvatarPickerFragmentArgs.fromBundle(requireArguments())
 
-    return AvatarPickerViewModel.Factory(AvatarPickerRepository(requireContext()), args.groupId, args.isNewGroup, args.groupAvatarMedia)
+    return AvatarPickerViewModel.Factory(args.groupId, args.isNewGroup, args.groupAvatarMedia)
+  }
+
+  @Composable
+  override fun FragmentContent() {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val saveFailedMessage = stringResource(R.string.AvatarPickerRepository__failed_to_save_avatar)
+
+    CollectActions(viewModel.actions) { action ->
+      handleAction(action) {
+        scope.launch { snackbarHostState.showSnackbar(saveFailedMessage) }
+      }
+    }
+
+    AvatarPickerScreen(
+      state = state,
+      onEvent = viewModel::onEvent,
+      snackbarHostState = snackbarHostState
+    )
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
-
-    val toolbar: Toolbar = view.findViewById(R.id.avatar_picker_toolbar)
-    val cameraButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_camera)
-    val photoButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_photo)
-    val textButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_text)
-    val saveButton: View = view.findViewById(R.id.avatar_picker_save)
-    val clearButton: View = view.findViewById(R.id.avatar_picker_clear)
-
-    val spanCount = when (resources.getWindowBreakpoint()) {
-      is WindowBreakpoint.Small -> 4
-      else -> 6
-    }
-
-    val recyclerPadding = when (resources.getWindowBreakpoint()) {
-      is WindowBreakpoint.Small -> 0
-      else -> 112.dp
-    }
-
-    recycler = view.findViewById(R.id.avatar_picker_recycler)
-    recycler.addItemDecoration(GridDividerDecoration(spanCount, ViewUtil.dpToPx(16)))
-    recycler.padding(
-      left = recyclerPadding,
-      right = recyclerPadding
-    )
-
-    val gridLayoutManager: GridLayoutManager = recycler.layoutManager as GridLayoutManager
-    gridLayoutManager.spanCount = spanCount
-
-    val adapter = MappingAdapter()
-    AvatarPickerItem.register(adapter, this::onAvatarClick, this::onAvatarLongClick)
-
-    recycler.adapter = adapter
-
-    val avatarViewHolder = AvatarPickerItem.ViewHolder(view)
-
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.currentAvatar != null) {
-        avatarViewHolder.bind(AvatarPickerItem.Model(state.currentAvatar, false))
-      }
-
-      clearButton.visible = state.canClear
-      saveButton.isClickable = state.canSave
-
-      val items = state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) }
-      val selectedPosition = items.indexOfFirst { it.isSelected }
-
-      adapter.submitList(items) {
-        if (selectedPosition > -1) {
-          recycler.smoothScrollToPosition(selectedPosition)
-        } else {
-          recycler.smoothScrollToPosition(0)
-        }
-      }
-    }
-
-    toolbar.setNavigationOnClickListener { Navigation.findNavController(it).popBackStack() }
-    cameraButton.setOnIconClickedListener { openCameraCapture() }
-    photoButton.setOnIconClickedListener { openGallery() }
-    textButton.setOnIconClickedListener { openTextEditor(null) }
-    saveButton.setOnClickListener { v ->
-      if (!saveButton.isEnabled) {
-        return@setOnClickListener
-      }
-
-      saveButton.isEnabled = false
-      viewModel.save(
-        {
-          setFragmentResult(
-            REQUEST_KEY_SELECT_AVATAR,
-            Bundle().apply {
-              putParcelable(SELECT_AVATAR_MEDIA, it)
-            }
-          )
-          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
-        },
-        {
-          setFragmentResult(
-            REQUEST_KEY_SELECT_AVATAR,
-            Bundle().apply {
-              putBoolean(SELECT_AVATAR_CLEAR, true)
-            }
-          )
-          ThreadUtil.runOnMain { Navigation.findNavController(v).popBackStack() }
-        }
-      )
-    }
-    clearButton.setOnClickListener { viewModel.clearAvatar() }
+    super.onViewCreated(view, savedInstanceState)
 
     setFragmentResultListener(TextAvatarCreationFragment.REQUEST_KEY_TEXT) { _, bundle ->
       val text = AvatarBundler.extractText(bundle)
-      viewModel.onAvatarEditCompleted(text)
+      viewModel.onEvent(AvatarPickerEvents.AvatarEdited(text))
     }
 
     setFragmentResultListener(VectorAvatarCreationFragment.REQUEST_KEY_VECTOR) { _, bundle ->
       val vector = AvatarBundler.extractVector(bundle)
-      viewModel.onAvatarEditCompleted(vector)
-    }
-
-    setFragmentResultListener(PhotoEditorFragment.REQUEST_KEY_EDIT) { _, _ ->
-    }
-
-    photoEditorLauncher = registerForActivityResult(PhotoEditorActivity.Contract()) { photo ->
-      if (photo != null) {
-        viewModel.onAvatarEditCompleted(photo)
-      }
+      viewModel.onEvent(AvatarPickerEvents.AvatarEdited(vector))
     }
   }
 
@@ -178,44 +99,32 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     ViewUtil.hideKeyboard(requireContext(), requireView())
   }
 
+  private fun handleAction(action: AvatarPickerActions, showSaveFailed: () -> Unit) {
+    when (action) {
+      AvatarPickerActions.Close -> findNavController().popBackStack()
+      AvatarPickerActions.ShowSaveFailed -> showSaveFailed()
+      AvatarPickerActions.LaunchCameraCapture -> openCameraCapture()
+      AvatarPickerActions.LaunchPhotoSelection -> openGallery()
+      AvatarPickerActions.LaunchTextAvatarCreation -> openTextEditor(null)
+      is AvatarPickerActions.LaunchAvatarEditor -> openEditor(action.avatar)
+      is AvatarPickerActions.FinishWithAvatar -> finishWithResult { putParcelable(SELECT_AVATAR_MEDIA, action.media) }
+      AvatarPickerActions.FinishWithClearedAvatar -> finishWithResult { putBoolean(SELECT_AVATAR_CLEAR, true) }
+    }
+  }
+
+  private fun finishWithResult(populateResult: Bundle.() -> Unit) {
+    setFragmentResult(REQUEST_KEY_SELECT_AVATAR, Bundle().apply(populateResult))
+    findNavController().popBackStack()
+  }
+
   @Deprecated("Deprecated in Java")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
       val media: Media = requireNotNull(data.getParcelableExtraCompat(AvatarSelectionActivity.EXTRA_MEDIA, Media::class.java))
-      viewModel.onAvatarPhotoSelectionCompleted(media)
+      viewModel.onEvent(AvatarPickerEvents.PhotoSelected(media))
     } else {
       super.onActivityResult(requestCode, resultCode, data)
     }
-  }
-
-  private fun onAvatarClick(avatar: Avatar, isSelected: Boolean) {
-    if (isSelected) {
-      openEditor(avatar)
-    } else {
-      viewModel.onAvatarSelectedFromGrid(avatar)
-    }
-  }
-
-  private fun onAvatarLongClick(anchorView: View, avatar: Avatar): Boolean {
-    val menuRes = when (avatar) {
-      is Avatar.Photo -> R.menu.avatar_picker_context
-      is Avatar.Text -> R.menu.avatar_picker_context
-      is Avatar.Vector -> return true
-      is Avatar.Resource -> return true
-    }
-
-    val popup = PopupMenu(context, anchorView, Gravity.TOP)
-    popup.menuInflater.inflate(menuRes, popup.menu)
-    popup.setOnMenuItemClickListener { menuItem ->
-      when (menuItem.itemId) {
-        R.id.action_delete -> viewModel.delete(avatar)
-      }
-
-      true
-    }
-    popup.show()
-
-    return true
   }
 
   private fun openEditor(avatar: Avatar) {

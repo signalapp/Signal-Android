@@ -49,6 +49,7 @@ public class DatabaseObserver {
   private static final String KEY_IN_APP_PAYMENTS   = "InAppPayments";
   private static final String KEY_CHAT_FOLDER       = "ChatFolder";
   private static final String KEY_STARRED_MESSAGES  = "StarredMessages";
+  private static final String KEY_BLOCKED_USERS     = "BlockedUsers";
 
   private final Executor    executor;
 
@@ -73,6 +74,7 @@ public class DatabaseObserver {
   private final Set<InAppPaymentObserver>          inAppPaymentObservers;
   private final Set<Observer>                      chatFolderObservers;
   private final Set<Observer>                      starredMessageObservers;
+  private final Set<Observer>                      blockedUsersObservers;
 
   public DatabaseObserver() {
     this.executor                     = new SerialExecutor(SignalExecutors.BOUNDED);
@@ -97,6 +99,7 @@ public class DatabaseObserver {
     this.inAppPaymentObservers        = new HashSet<>();
     this.chatFolderObservers          = new HashSet<>();
     this.starredMessageObservers      = new HashSet<>();
+    this.blockedUsersObservers        = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -220,6 +223,10 @@ public class DatabaseObserver {
     executor.execute(() -> starredMessageObservers.add(observer));
   }
 
+  public void registerBlockedUsersObserver(@NonNull Observer observer) {
+    executor.execute(() -> blockedUsersObservers.add(observer));
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -239,6 +246,7 @@ public class DatabaseObserver {
       unregisterMapped(callLinkObservers, listener);
       chatFolderObservers.remove(listener);
       starredMessageObservers.remove(listener);
+      blockedUsersObservers.remove(listener);
     });
   }
 
@@ -409,6 +417,10 @@ public class DatabaseObserver {
 
   public void notifyStarredMessageObservers() {
     runPostSuccessfulTransaction(KEY_STARRED_MESSAGES, () -> notifySet(starredMessageObservers));
+  }
+
+  public void notifyBlockedUsersObservers() {
+    runPostSuccessfulTransaction(KEY_BLOCKED_USERS, () -> notifySet(blockedUsersObservers));
   }
 
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {

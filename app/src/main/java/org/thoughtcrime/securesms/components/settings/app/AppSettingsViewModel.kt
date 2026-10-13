@@ -10,10 +10,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDona
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class AppSettingsViewModel : ViewModel() {
@@ -24,7 +22,7 @@ class AppSettingsViewModel : ViewModel() {
       unreadPaymentsCount = 0,
       hasExpiredGiftBadge = SignalStore.inAppPayments.getExpiredGiftBadge() != null,
       allowUserToGoToDonationManagementScreen = SignalStore.inAppPayments.isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),
-      userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
+      userUnregistered = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered,
       clientDeprecated = SignalStore.misc.isClientDeprecated
     )
   )
@@ -56,7 +54,7 @@ class AppSettingsViewModel : ViewModel() {
     store.update {
       it.copy(
         clientDeprecated = SignalStore.misc.isClientDeprecated,
-        userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered
+        userUnregistered = SignalStore.account.isUnauthorizedReceived || !SignalStore.account.isRegistered
       )
     }
   }

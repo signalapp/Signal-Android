@@ -50,6 +50,10 @@ public class StorageId {
     return new StorageId(ManifestRecord.Identifier.Type.NOTIFICATION_PROFILE.getValue(), Preconditions.checkNotNull(raw));
   }
 
+  public static StorageId forFavoriteSticker(byte[] raw) {
+    return new StorageId(ManifestRecord.Identifier.Type.FAVORITE_STICKER.getValue(), Preconditions.checkNotNull(raw));
+  }
+
   public static StorageId forType(byte[] raw, int type) {
     return new StorageId(type, raw);
   }

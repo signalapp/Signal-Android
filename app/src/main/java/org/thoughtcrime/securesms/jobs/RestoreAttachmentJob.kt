@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
@@ -382,7 +383,7 @@ class RestoreAttachmentJob private constructor(
 
       ArchiveRestoreProgress.onDownloadStart(attachmentId)
       val decryptingStream = if (useArchiveCdn) {
-        val cdnCredentials = runBlocking { AppDependencies.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, pointer.cdnNumber) }.successOrThrow().headers
+        val cdnCredentials = runBlocking { SignalNetwork.archiveService.getCdnReadCredentials(ArchiveService.CredentialType.MEDIA, pointer.cdnNumber) }.successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(

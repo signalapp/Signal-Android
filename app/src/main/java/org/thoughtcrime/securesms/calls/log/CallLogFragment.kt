@@ -49,8 +49,9 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
-import org.thoughtcrime.securesms.main.MainNavigationListLocation
+import org.thoughtcrime.securesms.main.MainDetailRoute
+import org.thoughtcrime.securesms.main.MainListRoute
+import org.thoughtcrime.securesms.main.MainNavigationEvents
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainSnackbarHostKey
 import org.thoughtcrime.securesms.main.MainToolbarMode
@@ -210,7 +211,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   private fun initializeTapToScrollToTop(scrollToPositionDelegate: ScrollToPositionDelegate) {
     disposables += mainNavigationViewModel.tabClickEventsObservable
-      .filter { it == MainNavigationListLocation.CALLS }
+      .filter { it == MainListRoute.Calls }
       .subscribeBy(onNext = {
         scrollToPositionDelegate.resetScrollPosition()
       })
@@ -335,7 +336,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      mainNavigationViewModel.goTo(MainNavigationDetailLocation.CallLinkDetails(callLogRow.record.roomId))
+      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.CallLinkDetails(callLogRow.record.roomId)))
     }
   }
 
@@ -390,7 +391,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun goToCallLinkDetails(roomId: CallLinkRoomId) {
-    mainNavigationViewModel.goTo(MainNavigationDetailLocation.CallLinkDetails(roomId))
+    mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.CallLinkDetails(roomId)))
   }
 
   override fun deleteCall(call: CallLogRow) {

@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
@@ -93,7 +92,7 @@ class CheckKeyTransparencyJob private constructor(
       } else if (!SignalStore.registration.isRegistrationComplete) {
         Log.i(TAG, "Registration is not complete. Exiting.")
         false
-      } else if (TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
+      } else if (SignalStore.account.isUnauthorizedReceived) {
         Log.i(TAG, "Account is unauthorized. Exiting.")
         false
       } else if (!SignalStore.settings.automaticVerificationEnabled) {
@@ -102,8 +101,11 @@ class CheckKeyTransparencyJob private constructor(
       } else if (SignalStore.account.usernameSyncState != AccountValues.UsernameSyncState.IN_SYNC || SignalStore.account.usernameSyncErrorCount > 0) {
         Log.i(TAG, "Username is in a bad state. Exiting.")
         false
-      } else if (!Recipient.self().hasAci || !Recipient.self().hasE164) {
-        Log.i(TAG, "Missing an ACI or E164. Exiting.")
+      } else if (!Recipient.self().hasAci) {
+        Log.i(TAG, "Missing an ACI. Exiting.")
+        false
+      } else if (!Recipient.self().hasE164 && SignalStore.account.pni != null) {
+        Log.i(TAG, "Missing an E164 for an account that should have one. Exiting.")
         false
       } else {
         true
@@ -127,18 +129,20 @@ class CheckKeyTransparencyJob private constructor(
     SignalStore.misc.nextKeyTransparencyTime = System.currentTimeMillis() + TIME_BETWEEN_CHECK.inWholeMilliseconds + getRandomDelay(maxHours = 8)
 
     val recipient = SignalDatabase.recipients.getRecord(Recipient.self().id)
+    val e164 = recipient.e164
+    val usernameHash = SignalStore.account.username?.let { Username(it).hash }.takeIf { Recipient.self().usernameSyncMessagesCapability.isSupported }
 
-    val result = SignalNetwork.keyTransparency.check(
-      checkMode = CheckMode.Self(isE164Discoverable = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE),
+    val result = SignalNetwork.keyTransparencyApi.check(
+      checkMode = CheckMode.Self(isE164Discoverable = e164 != null && SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.DISCOVERABLE),
       aci = recipient.aci!!.libSignalAci,
       aciIdentityKey = SignalStore.account.aciIdentityKey.publicKey,
-      e164 = recipient.e164!!,
-      unidentifiedAccessKey = ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { UnidentifiedAccess.deriveAccessKeyFrom(it) },
-      usernameHash = SignalStore.account.username?.let { Username(it).hash }.takeIf { Recipient.self().usernameSyncMessagesCapability.isSupported },
+      e164 = e164,
+      unidentifiedAccessKey = e164?.let { ProfileKeyUtil.profileKeyOrNull(recipient.profileKey).let { profileKey -> UnidentifiedAccess.deriveAccessKeyFrom(profileKey) } },
+      usernameHash = usernameHash,
       keyTransparencyStore = KeyTransparencyStore
     )
 
-    Log.i(TAG, "Key transparency complete, result: $result. Included username in check: ${Recipient.self().usernameSyncMessagesCapability.isSupported}, discoverability: ${SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode}, next check time: ${SignalStore.misc.nextKeyTransparencyTime}")
+    Log.i(TAG, "Key transparency complete, result: $result. Included E164 in check: ${e164 != null}, included username in check: ${usernameHash != null}, discoverability: ${SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode}, next check time: ${SignalStore.misc.nextKeyTransparencyTime}")
     return when (result) {
       is RequestResult.Success -> {
         SignalStore.misc.hasKeyTransparencyFailure = false
@@ -185,7 +189,7 @@ class CheckKeyTransparencyJob private constructor(
    * For others, it will only show once and only be cleared on the next successful verification.
    */
   private fun markFailure() {
-    if (SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)) {
+    if (SignalStore.account.isRegistered && !SignalStore.account.isUnauthorizedReceived) {
       SignalStore.misc.hasKeyTransparencyFailure = true
       if (RemoteConfig.internalUser) {
         SignalStore.misc.hasSeenKeyTransparencyFailure = false

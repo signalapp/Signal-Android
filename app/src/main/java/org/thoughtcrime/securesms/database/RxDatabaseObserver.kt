@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database
 
+import com.squareup.wire.internal.JvmStatic
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Emitter
 import io.reactivex.rxjava3.core.Flowable
@@ -18,6 +19,9 @@ object RxDatabaseObserver {
   val chatFolders: Flowable<Unit> by lazy { chatFoldersFlowable() }
   val starredMessages: Flowable<Unit> by lazy { starredMessagesFlowable() }
 
+  @JvmStatic
+  val blockedUsers: Flowable<Unit> by lazy { blockedUsersFlowable() }
+
   private fun conversationListFlowable(): Flowable<Unit> {
     return databaseFlowable { listener ->
       AppDependencies.databaseObserver.registerConversationListObserver(listener)
@@ -33,7 +37,7 @@ object RxDatabaseObserver {
   @Suppress("RedundantUnitExpression")
   private fun notificationProfilesFlowable(): Flowable<Unit> {
     return Flowable.combineLatest(
-      Flowable.interval(0, 30, TimeUnit.SECONDS),
+      Flowable.interval(0, 30, TimeUnit.SECONDS).onBackpressureLatest(),
       databaseFlowable { AppDependencies.databaseObserver.registerNotificationProfileObserver(it) }
     ) { _, _ -> Unit }
   }
@@ -47,6 +51,12 @@ object RxDatabaseObserver {
   private fun starredMessagesFlowable(): Flowable<Unit> {
     return databaseFlowable { listener ->
       AppDependencies.databaseObserver.registerStarredMessageObserver(listener)
+    }
+  }
+
+  private fun blockedUsersFlowable(): Flowable<Unit> {
+    return databaseFlowable { listener ->
+      AppDependencies.databaseObserver.registerBlockedUsersObserver(listener)
     }
   }
 

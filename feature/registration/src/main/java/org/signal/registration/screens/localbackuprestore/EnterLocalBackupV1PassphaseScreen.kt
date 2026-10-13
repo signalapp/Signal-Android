@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.localbackuprestore
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
 import org.signal.registration.R
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
@@ -233,13 +235,15 @@ private fun PassphraseTextField(
   val focusRequester = remember { FocusRequester() }
   var requestFocus by remember { mutableStateOf(true) }
   val keyboardController = LocalSoftwareKeyboardController.current
+  val interactionSource = remember { MutableInteractionSource() }
 
   TextField(
     value = passphrase,
     onValueChange = { newValue ->
       onPassphraseChange(newValue.filter { it.isDigit() })
     },
-    label = { Text(stringResource(R.string.LocalBackupRestoreScreen__passphrase)) },
+    label = { TextFields.Label(stringResource(R.string.LocalBackupRestoreScreen__passphrase), passphrase.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     textStyle = MaterialTheme.typography.bodyLarge.copy(
       fontFamily = FontFamily.Monospace,
       lineHeight = 36.sp

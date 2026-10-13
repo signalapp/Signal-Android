@@ -42,6 +42,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 
 /**

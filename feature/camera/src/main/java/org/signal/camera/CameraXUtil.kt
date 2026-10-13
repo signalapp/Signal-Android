@@ -20,11 +20,14 @@ object CameraXUtil {
   private val TAG = Log.tag(CameraXUtil::class.java)
 
   private const val VIDEO_DEBUG_LABEL = "video-capture"
-  private const val VIDEO_SIZE = 10L * 1024 * 1024
 
+  /**
+   * Creates a RAM-backed video file descriptor, reserving [sizeEstimateBytes] against the memory the device
+   * can spare.
+   */
   @Throws(MemoryFileDescriptor.MemoryFileException::class)
-  fun createMemoryVideoFileDescriptor(context: Context): MemoryFileDescriptor {
-    return MemoryFileDescriptor.newMemoryFileDescriptor(context, VIDEO_DEBUG_LABEL, VIDEO_SIZE)
+  fun createMemoryVideoFileDescriptor(context: Context, sizeEstimateBytes: Long): MemoryFileDescriptor {
+    return MemoryFileDescriptor.newMemoryFileDescriptor(context, VIDEO_DEBUG_LABEL, sizeEstimateBytes)
   }
 
   /**

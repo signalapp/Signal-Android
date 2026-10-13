@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
@@ -19,7 +18,7 @@ import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import kotlin.reflect.KClass
 
-class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragment {
+class KeyboardPagerFragment : Fragment() {
 
   private lateinit var emojiButton: View
   private lateinit var stickerButton: View
@@ -102,14 +101,19 @@ class KeyboardPagerFragment : Fragment(), InputAwareConstraintLayout.InputFragme
     transaction.commitAllowingStateLoss()
   }
 
-  override fun show() {
+  /**
+   * Called by hosts that show and hide this fragment in place rather than creating it fresh, such as
+   * [org.thoughtcrime.securesms.components.emoji.MediaKeyboard]. ChatScreen creates and destroys it
+   * instead, so it does not need these.
+   */
+  fun show() {
     findListener<MediaKeyboard.MediaKeyboardListener>()?.onShown()
     if (isAdded && view != null) {
       viewModel.page().value?.let(this::onPageSelected)
     }
   }
 
-  override fun hide() {
+  fun hide() {
     findListener<MediaKeyboard.MediaKeyboardListener>()?.onHidden()
     if (isAdded && view != null) {
       val transaction = childFragmentManager.beginTransaction()

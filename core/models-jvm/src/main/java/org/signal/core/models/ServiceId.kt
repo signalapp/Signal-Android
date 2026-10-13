@@ -117,6 +117,12 @@ sealed class ServiceId(val libSignalServiceId: org.signal.libsignal.protocol.Ser
     fun parseOrThrow(raw: String?, bytes: ByteString?): ServiceId {
       return parseOrNull(bytes) ?: parseOrThrow(raw)
     }
+
+    /** Rewrites a protocol address name in the canonical form of its parsed [ServiceId]. Names that are not ServiceIds are returned unchanged. */
+    @JvmStatic
+    fun normalizeAddressName(name: String): String {
+      return parseOrNull(name, logFailures = false)?.toString() ?: name
+    }
   }
 
   val rawUuid: UUID = libSignalServiceId.rawUUID

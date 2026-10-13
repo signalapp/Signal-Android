@@ -57,7 +57,19 @@ public class LocaleRemoteConfigTest_getCountryValue {
               put("0011", 6000);
               put("1", 1000);
               put("*", 2000);
-            }}, 2000}
+            }}, 2000},
+            {"", new HashMap<String, Integer>() {{
+              put("99999", 6000);
+              put("1", 1000);
+              put("*", 2000);
+            }}, 6000},
+            {"", new HashMap<String, Integer>() {{
+              put("1", 1000);
+              put("*", 2000);
+            }}, 2000},
+            {"", new HashMap<String, Integer>() {{
+              put("1", 1000);
+            }}, 0}
     });
   }
 

@@ -11,9 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pools;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -163,52 +160,6 @@ public final class Projection {
     root.offsetRectIntoDescendantCoords(viewWithCommonRoot, viewBounds);
 
     return acquireAndSet(viewBounds.left, viewBounds.top, toProject.getWidth(), toProject.getHeight(), corners);
-  }
-
-  public static @NonNull Projection translateFromDescendantToParentCoords(@NonNull Projection descendantProjection, @NonNull View descendant, @NonNull ViewGroup parent) {
-    Rect viewBounds = new Rect();
-
-    viewBounds.set((int) descendantProjection.x, (int) descendantProjection.y, (int) descendantProjection.x + descendantProjection.width, (int) descendantProjection.y + descendantProjection.height);
-
-    parent.offsetDescendantRectToMyCoords(descendant, viewBounds);
-
-    return acquireAndSet(viewBounds.left, viewBounds.top, descendantProjection.width, descendantProjection.height, descendantProjection.corners);
-  }
-
-  public static @NonNull List<Projection> getCapAndTail(@NonNull Projection parentProjection, @NonNull Projection childProjection) {
-    if (parentProjection.equals(childProjection)) {
-      return Collections.emptyList();
-    }
-
-    float topX      = parentProjection.x;
-    float topY      = parentProjection.y;
-    int   topWidth  = parentProjection.getWidth();
-    int   topHeight = (int) (childProjection.y - parentProjection.y);
-
-    final Corners topCorners;
-    Corners       parentCorners = parentProjection.getCorners();
-    if (parentCorners != null) {
-      topCorners = new Corners(parentCorners.topLeft, parentCorners.topRight, 0f, 0f);
-    } else {
-      topCorners = null;
-    }
-
-    float bottomX      = parentProjection.x;
-    float bottomY      = parentProjection.y + topHeight + childProjection.getHeight();
-    int   bottomWidth  = parentProjection.getWidth();
-    int   bottomHeight = (int) ((parentProjection.y + parentProjection.getHeight()) - bottomY);
-
-    final Corners bottomCorners;
-    if (parentCorners != null) {
-      bottomCorners = new Corners(0f, 0f, parentCorners.bottomRight, parentCorners.bottomLeft);
-    } else {
-      bottomCorners = null;
-    }
-
-    return Arrays.asList(
-        acquireAndSet(topX, topY, topWidth, topHeight, topCorners),
-        acquireAndSet(bottomX, bottomY, bottomWidth, bottomHeight, bottomCorners)
-    );
   }
 
   /**

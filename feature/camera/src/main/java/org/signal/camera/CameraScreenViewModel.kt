@@ -27,6 +27,7 @@ import androidx.camera.core.MirrorMode
 import androidx.camera.core.Preview
 import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.core.UseCase
+import androidx.camera.core.ZoomState
 import androidx.camera.core.resolutionselector.AspectRatioStrategy
 import androidx.camera.core.resolutionselector.ResolutionSelector
 import androidx.camera.core.resolutionselector.ResolutionStrategy
@@ -38,12 +39,15 @@ import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoCapture
 import androidx.camera.video.VideoRecordEvent
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Offset
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.zxing.BinaryBitmap
@@ -55,17 +59,21 @@ import com.google.zxing.PlanarYUVLuminanceSource
 import com.google.zxing.common.HybridBinarizer
 import com.google.zxing.qrcode.QRCodeReader
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
 import java.lang.ref.WeakReference
 import java.util.EnumMap
 import java.util.concurrent.Executors
+import kotlin.math.exp
+import kotlin.math.ln
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -86,6 +94,20 @@ class CameraScreenViewModel : ViewModel() {
 
     /** Requested resolution for the QR analysis stream. */
     private val QR_ANALYSIS_RESOLUTION = Size(1280, 720)
+
+    /** Where a lens comes up after a bind, and so where the zoom goes back to on every bind. */
+    private const val DEFAULT_ZOOM_RATIO = 1f
+
+    /** A single point, so a lens that has not reported its range yet reads as one that cannot zoom. */
+    private val DEFAULT_ZOOM_RANGE = DEFAULT_ZOOM_RATIO..DEFAULT_ZOOM_RATIO
+
+    /** How long a zoom animation to a level picked off the zoom bar runs for. */
+    private const val ZOOM_ANIMATION_DURATION_MS = 250L
+
+    /** One frame at 60Hz. */
+    private const val ZOOM_ANIMATION_FRAME_MS = 16L
+
+    private val ZOOM_ANIMATION_EASING = FastOutSlowInEasing
   }
 
   private val _state: MutableState<CameraScreenState> = mutableStateOf(CameraScreenState())
@@ -105,7 +127,20 @@ class CameraScreenViewModel : ViewModel() {
   private var brightnessWindow: WeakReference<Window>? = null
   private var deviceTargetRotation: Int = Surface.ROTATION_0
   private var surfaceProvider: Preview.SurfaceProvider? = null
-  private var recordingStartZoomRatio: Float = 1f
+  private var recordingStartZoomRatio: Float = DEFAULT_ZOOM_RATIO
+
+  /** The in-flight animation to a level picked off the zoom bar. Anything else that moves the zoom cancels it. */
+  private var zoomAnimation: Job? = null
+
+  /**
+   * A lock that arrived before the recorder reported the recording as started, applied by [startRecordingTimer] once it
+   * does. Without it the HUD would settle into its held state with no finger on the capture button, where nothing but
+   * the duration cap can stop the recording.
+   */
+  private var pendingRecordingLock: Boolean = false
+
+  /** Null for a recording that finalizes without being asked to stop, such as one that hits the recorder's own limits. */
+  private var recordingStopwatch: Stopwatch? = null
 
   private val _qrCodeDetected = MutableSharedFlow<String>(extraBufferCapacity = 1)
 
@@ -116,6 +151,26 @@ class CameraScreenViewModel : ViewModel() {
   val qrCodeDetected: Flow<String> = _qrCodeDetected
     .throttleLatest(2.seconds)
     .onEach { Log.i(TAG, "Decoded a QR code. payloadLength: ${it.length}") }
+
+  /**
+   * Whether a recording has been started and not yet finished. Unlike [CameraScreenState.isRecording] this is true from
+   * the moment [startRecording] is called rather than from when the recorder reports itself as running, so it is what a
+   * caller has to check before starting another.
+   */
+  val hasActiveRecording: Boolean
+    get() = recording != null
+
+  /** Held so that binding a different lens can stop observing the one before it. */
+  private var observedZoomState: LiveData<ZoomState>? = null
+
+  private val zoomRangeObserver = Observer<ZoomState> { zoomState ->
+    val zoomRange = zoomState.minZoomRatio..zoomState.maxZoomRatio
+
+    if (zoomRange != _state.value.zoomRange) {
+      Log.d(TAG, "Bound lens reaches $zoomRange")
+      _state.value = _state.value.copy(zoomRange = zoomRange)
+    }
+  }
 
   private val qrCodeReader = QRCodeReader()
   private val qrCodeHint = EnumMap<DecodeHintType, Any>(DecodeHintType::class.java).apply {
@@ -139,6 +194,15 @@ class CameraScreenViewModel : ViewModel() {
       }
       is CameraScreenEvents.LinearZoom -> {
         handleSetLinearZoomEvent(currentState, event.linearZoom)
+      }
+      is CameraScreenEvents.SetZoomRatio -> {
+        handleSetZoomRatioEvent(currentState, event.zoomRatio)
+      }
+      is CameraScreenEvents.LockRecording -> {
+        handleLockRecordingEvent(currentState)
+      }
+      is CameraScreenEvents.ToggleRecordingPaused -> {
+        handleToggleRecordingPausedEvent(currentState)
       }
       is CameraScreenEvents.SwitchCamera -> {
         handleSwitchCameraEvent(currentState)
@@ -164,6 +228,9 @@ class CameraScreenViewModel : ViewModel() {
       is CameraScreenEvents.TapToFocus -> Log.d(TAG, "[Event] TapToFocus(view=${event.viewX},${event.viewY}, surface=${event.surfaceX},${event.surfaceY})")
       is CameraScreenEvents.PinchZoom -> Log.d(TAG, "[Event] PinchZoom(factor=${event.zoomFactor})")
       is CameraScreenEvents.LinearZoom -> Log.d(TAG, "[Event] LinearZoom(${event.linearZoom})")
+      is CameraScreenEvents.SetZoomRatio -> Log.d(TAG, "[Event] SetZoomRatio(${event.zoomRatio})")
+      is CameraScreenEvents.LockRecording -> Log.d(TAG, "[Event] LockRecording")
+      is CameraScreenEvents.ToggleRecordingPaused -> Log.d(TAG, "[Event] ToggleRecordingPaused")
       is CameraScreenEvents.SwitchCamera -> Log.d(TAG, "[Event] SwitchCamera")
       is CameraScreenEvents.SetFlashMode -> Log.d(TAG, "[Event] SetFlashMode(${event.flashMode})")
       is CameraScreenEvents.NextFlashMode -> Log.d(TAG, "[Event] NextFlashMode")
@@ -266,12 +333,16 @@ class CameraScreenViewModel : ViewModel() {
   /**
    * Start video recording.
    * If flash is enabled, turns on the torch for the duration of the recording.
+   *
+   * @param isRecordingLocked Whether the recording runs until [stopRecording] rather than for only as long as the
+   *   caller's gesture. Cleared alongside [CameraScreenState.isRecording] so it cannot outlive the recording.
    */
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])
   @SuppressLint("MissingPermission", "RestrictedApi", "NewApi")
   fun startRecording(
     context: Context,
     output: VideoOutput,
+    isRecordingLocked: Boolean = false,
     onVideoCaptured: (VideoCaptureResult) -> Unit
   ) {
     val capture = videoCapture ?: rebindForVideoCapture() ?: return
@@ -313,16 +384,28 @@ class CameraScreenViewModel : ViewModel() {
         when (recordEvent) {
           is VideoRecordEvent.Start -> {
             Log.d(TAG, "Video recording started")
-            startRecordingTimer()
+            startRecordingTimer(isRecordingLocked)
             vibrate(context)
           }
+          is VideoRecordEvent.Pause -> {
+            Log.d(TAG, "Video recording paused")
+            _state.value = _state.value.copy(isRecordingPaused = true)
+          }
+          is VideoRecordEvent.Resume -> {
+            Log.d(TAG, "Video recording resumed")
+            _state.value = _state.value.copy(isRecordingPaused = false)
+          }
           is VideoRecordEvent.Finalize -> {
+            val stopwatch = recordingStopwatch
+            recordingStopwatch = null
+            stopwatch?.split("finalize")
+
             if (enableTorch) {
               camera?.cameraControl?.enableTorch(false)
             }
 
             val result = if (!recordEvent.hasError()) {
-              Log.d(TAG, "Video recording succeeded")
+              Log.d(TAG, "Video recording succeeded. bytes: ${recordEvent.recordingStats.numBytesRecorded}")
               val durationMs = recordEvent.recordingStats.recordedDurationNanos.nanoseconds.inWholeMilliseconds
               when (output) {
                 is VideoOutput.FileOutput -> {
@@ -344,6 +427,10 @@ class CameraScreenViewModel : ViewModel() {
 
             // Call the callback
             onVideoCaptured(result)
+
+            stopwatch?.split("handoff")
+            stopwatch?.stop(TAG)
+
             stopRecordingTimer()
 
             // Clear recording
@@ -364,7 +451,11 @@ class CameraScreenViewModel : ViewModel() {
    */
   fun stopRecording() {
     camera?.cameraControl?.enableTorch(false)
-    recording?.stop()
+
+    val activeRecording = recording ?: return
+
+    recordingStopwatch = Stopwatch("recording-stop")
+    activeRecording.stop()
     recording = null
   }
 
@@ -387,6 +478,7 @@ class CameraScreenViewModel : ViewModel() {
       cameraProvider.unbindAll()
       camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, lastAttempt.preview, lastAttempt.imageCapture, videoCapture)
       this.videoCapture = videoCapture
+      observeZoomRange()
       Log.d(TAG, "Rebound with video capture for limited device")
       videoCapture
     } catch (e: Exception) {
@@ -412,6 +504,7 @@ class CameraScreenViewModel : ViewModel() {
       cameraProvider.unbindAll()
       camera = cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, *attempt.toTypedArray())
       videoCapture = attempt.videoCapture
+      observeZoomRange()
       Log.d(TAG, "Rebound to last successful configuration after video capture")
     } catch (e: Exception) {
       Log.e(TAG, "Failed to rebind to last successful configuration after video capture", e)
@@ -421,6 +514,8 @@ class CameraScreenViewModel : ViewModel() {
   override fun onCleared() {
     super.onCleared()
     stopRecording()
+    observedZoomState?.removeObserver(zoomRangeObserver)
+    observedZoomState = null
   }
 
   private fun handleBindCameraEvent(
@@ -490,6 +585,7 @@ class CameraScreenViewModel : ViewModel() {
         imageCapture = attempt.imageCapture
         videoCapture = attempt.videoCapture
         captureMode = event.captureMode
+        observeZoomRange()
       } catch (e: Exception) {
         Log.e(TAG, "Use case binding failed (attempt ${index + 1} of ${bindingAttempts.size})", e)
         continue
@@ -683,6 +779,9 @@ class CameraScreenViewModel : ViewModel() {
   ) {
     val currentCamera = camera ?: return
 
+    // A pinch takes over any in-flight animation from wherever it has reached.
+    zoomAnimation?.cancel()
+
     // Get current zoom ratio and calculate new zoom
     val currentZoom = state.zoomRatio
     val newZoom = (currentZoom * event.zoomFactor).coerceIn(
@@ -706,6 +805,9 @@ class CameraScreenViewModel : ViewModel() {
       return
     }
 
+    // The lens being animated is about to be unbound, and the one replacing it starts from its own zoom.
+    zoomAnimation?.cancel()
+
     // Toggle between front and back camera
     val newLensFacing = if (state.lensFacing == CameraSelector.LENS_FACING_BACK) {
       CameraSelector.LENS_FACING_FRONT
@@ -725,27 +827,144 @@ class CameraScreenViewModel : ViewModel() {
     imageCapture?.flashMode = flashMode.cameraxMode
   }
 
+  /**
+   * Animates to a ratio, which is what the zoom bar asks for.
+   *
+   * The intermediate ratios are interpolated in log space, so doubling takes as long from 1x as it does from 8x;
+   * interpolated linearly the same journey would tear away at the start and crawl at the end.
+   *
+   * [recordingStartZoomRatio] moves with the animation, so a capture-button drag picked up midway carries on from where
+   * the lens has reached rather than from where the recording started.
+   */
+  private fun handleSetZoomRatioEvent(
+    state: CameraScreenState,
+    zoomRatio: Float
+  ) {
+    val currentCamera = camera ?: return
+    val zoomState = currentCamera.cameraInfo.zoomState.value
+
+    val clampedZoomRatio = zoomRatio.coerceIn(zoomState?.minZoomRatio ?: 1f, zoomState?.maxZoomRatio ?: 1f)
+    val fromZoomRatio = state.zoomRatio
+
+    zoomAnimation?.cancel()
+
+    // Nothing to interpolate: a non-positive ratio has no logarithm, and one already at the level has nowhere to go.
+    if (fromZoomRatio <= 0f || clampedZoomRatio <= 0f || fromZoomRatio == clampedZoomRatio) {
+      applyZoomRatio(currentCamera, clampedZoomRatio)
+      return
+    }
+
+    zoomAnimation = viewModelScope.launch {
+      val fromLog = ln(fromZoomRatio)
+      val toLog = ln(clampedZoomRatio)
+
+      // Counting frames rather than reading a wall clock keeps the duration stable under a test's virtual time.
+      var elapsedMs = 0L
+      while (elapsedMs < ZOOM_ANIMATION_DURATION_MS) {
+        delay(ZOOM_ANIMATION_FRAME_MS)
+        elapsedMs += ZOOM_ANIMATION_FRAME_MS
+
+        val fraction = ZOOM_ANIMATION_EASING.transform((elapsedMs.toFloat() / ZOOM_ANIMATION_DURATION_MS).coerceAtMost(1f))
+        applyZoomRatio(currentCamera, exp(fromLog + (toLog - fromLog) * fraction))
+      }
+
+      // Interpolating through a logarithm leaves the last frame beside the level rather than on it, and the bar reads
+      // the ratio to decide what is selected, so finish exactly on the level.
+      applyZoomRatio(currentCamera, clampedZoomRatio)
+    }
+  }
+
+  /** Sets the lens to [zoomRatio] and moves the drag base and state along with it. */
+  private fun applyZoomRatio(camera: Camera, zoomRatio: Float) {
+    camera.cameraControl.setZoomRatio(zoomRatio)
+    recordingStartZoomRatio = zoomRatio
+
+    _state.value = _state.value.copy(zoomRatio = zoomRatio)
+  }
+
+  /**
+   * Leaves a running recording going without the capture button being held. A lock with no recording behind it is
+   * dropped rather than held, so it cannot outlive the gesture that asked for it and apply to the next recording.
+   */
+  private fun handleLockRecordingEvent(state: CameraScreenState) {
+    when {
+      state.isRecording -> _state.value = state.copy(isRecordingLocked = true)
+      hasActiveRecording -> pendingRecordingLock = true
+      else -> Log.w(TAG, "Ignoring a lock with no recording to hold open")
+    }
+  }
+
+  /**
+   * Pauses the running recording, or resumes a paused one. The state is not written here: the recorder reports the pause
+   * taking hold and that is what the screen goes by, so a pause it will not honor never shows.
+   */
+  private fun handleToggleRecordingPausedEvent(state: CameraScreenState) {
+    val activeRecording = recording ?: return
+
+    if (state.isRecordingPaused) {
+      activeRecording.resume()
+    } else {
+      activeRecording.pause()
+    }
+  }
+
+  /**
+   * Puts the zoom back to [DEFAULT_ZOOM_RATIO] and observes what the bound lens can reach. A camera reports its range
+   * when it is ready rather than by the time it is bound, so this observes rather than taking a single reading — a lens
+   * whose range arrives late would otherwise look like one that cannot zoom.
+   */
+  private fun observeZoomRange() {
+    val zoomState = camera?.cameraInfo?.zoomState
+
+    // Every bind here follows an unbind, which drops the lens back to its default zoom. The state follows it back down,
+    // and an in-flight travel to a level picked before the unbind is left with nowhere to land.
+    zoomAnimation?.cancel()
+    recordingStartZoomRatio = DEFAULT_ZOOM_RATIO
+    _state.value = _state.value.copy(zoomRatio = DEFAULT_ZOOM_RATIO)
+
+    if (zoomState === observedZoomState) {
+      return
+    }
+
+    observedZoomState?.removeObserver(zoomRangeObserver)
+    observedZoomState = zoomState
+
+    if (zoomState != null) {
+      zoomState.observeForever(zoomRangeObserver)
+    } else {
+      _state.value = _state.value.copy(zoomRange = DEFAULT_ZOOM_RANGE)
+    }
+  }
+
   private fun handleSetLinearZoomEvent(
     state: CameraScreenState,
     linearZoom: Float
   ) {
     val currentCamera = camera ?: return
 
+    // A drag takes over any in-flight animation from wherever it has reached.
+    zoomAnimation?.cancel()
+
     // Clamp linear zoom to valid range (-1 to 1)
     val clampedLinearZoom = linearZoom.coerceIn(-1f, 1f)
 
-    // Use the zoom ratio from when recording started as the base, so that the
-    // drag gesture is relative to the user's current zoom level rather than jumping.
-    // Positive values (0 to 1) zoom in from base toward maxZoomRatio.
-    // Negative values (-1 to 0) zoom out from base toward minZoomRatio.
-    val baseZoom = recordingStartZoomRatio
-    val minZoom = currentCamera.cameraInfo.zoomState.value?.minZoomRatio ?: 1f
-    val maxZoom = currentCamera.cameraInfo.zoomState.value?.maxZoomRatio ?: 1f
-    val newZoomRatio = if (clampedLinearZoom >= 0f) {
+    val zoomState = currentCamera.cameraInfo.zoomState.value
+    val minZoom = zoomState?.minZoomRatio ?: 1f
+    val maxZoom = zoomState?.maxZoomRatio ?: 1f
+
+    // The drag runs from the ratio it started at rather than from 1x, so picking it up does not jump the lens. Positive
+    // values zoom in from that base toward maxZoom, negative values out toward minZoom. The base is clamped as well as
+    // the result: a base the lens can no longer reach would otherwise leave the whole drag pinned to one end.
+    val baseZoom = recordingStartZoomRatio.coerceIn(minZoom, maxZoom)
+    val targetZoomRatio = if (clampedLinearZoom >= 0f) {
       baseZoom + (maxZoom - baseZoom) * clampedLinearZoom
     } else {
       baseZoom + (baseZoom - minZoom) * clampedLinearZoom
     }
+
+    // The camera clamps what it is sent, so the state is clamped the same way — otherwise the zoom bar reads a level the
+    // lens is not at, and the next drag works from a base the lens never reached.
+    val newZoomRatio = targetZoomRatio.coerceIn(minZoom, maxZoom)
 
     currentCamera.cameraControl.setZoomRatio(newZoomRatio)
 
@@ -766,19 +985,35 @@ class CameraScreenViewModel : ViewModel() {
     _state.value = state.copy(captureError = null)
   }
 
-  private fun startRecordingTimer() {
-    _state.value = _state.value.copy(isRecording = true, recordingDuration = 0L)
+  private fun startRecordingTimer(isRecordingLocked: Boolean) {
+    _state.value = _state.value.copy(
+      isRecording = true,
+      isRecordingLocked = isRecordingLocked || pendingRecordingLock,
+      isRecordingPaused = false,
+      recordingDuration = 0L
+    )
+    pendingRecordingLock = false
 
     viewModelScope.launch {
       while (_state.value.isRecording) {
         delay(100L)
-        _state.value = _state.value.copy(recordingDuration = _state.value.recordingDuration + 100L)
+
+        // A paused recording is not recording anything, so its duration has nothing to add.
+        if (!_state.value.isRecordingPaused) {
+          _state.value = _state.value.copy(recordingDuration = _state.value.recordingDuration + 100L)
+        }
       }
     }
   }
 
   private fun stopRecordingTimer() {
-    _state.value = _state.value.copy(isRecording = false, recordingDuration = 0L)
+    pendingRecordingLock = false
+    _state.value = _state.value.copy(
+      isRecording = false,
+      isRecordingLocked = false,
+      isRecordingPaused = false,
+      recordingDuration = 0L
+    )
   }
 
   @androidx.annotation.OptIn(markerClass = [androidx.camera.core.ExperimentalGetImage::class])

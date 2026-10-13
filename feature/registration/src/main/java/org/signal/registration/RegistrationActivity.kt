@@ -53,16 +53,6 @@ class RegistrationActivity : ComponentActivity() {
     }
   }
 
-  private val repository: RegistrationRepository by lazy {
-    RegistrationRepository(
-      context = this.application,
-      networkController = RegistrationDependencies.get().networkController,
-      storageController = RegistrationDependencies.get().storageController,
-      isLinkAndSyncAvailable = RegistrationDependencies.get().isLinkAndSyncAvailable,
-      isPhoneNumberlessRegistrationAvailable = RegistrationDependencies.get().isPhoneNumberlessRegistrationAvailable
-    )
-  }
-
   @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
@@ -75,7 +65,6 @@ class RegistrationActivity : ComponentActivity() {
       SignalTheme(incognitoKeyboardEnabled = false) {
         Surface(modifier = Modifier.fillMaxSize()) {
           RegistrationNavHost(
-            registrationRepository = repository,
             startDestination = startDestination,
             startFresh = startFresh,
             modifier = Modifier

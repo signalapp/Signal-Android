@@ -1,15 +1,16 @@
 package org.thoughtcrime.securesms.avatar.picker
 
-import android.content.Context
 import android.net.Uri
-import android.widget.Toast
-import io.reactivex.rxjava3.core.Single
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.raise.either
+import arrow.core.right
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import org.signal.core.models.media.Media
 import org.signal.core.util.StreamUtil
-import org.signal.core.util.ThreadUtil
-import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
@@ -23,15 +24,14 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.NameUtil
 import org.whispersystems.signalservice.api.util.StreamDetails
 import java.io.IOException
+import kotlin.coroutines.resume
 
 private val TAG = Log.tag(AvatarPickerRepository::class.java)
 
-class AvatarPickerRepository(context: Context) {
+object AvatarPickerRepository {
 
-  private val applicationContext = context.applicationContext
-
-  fun getAvatarForSelf(): Single<Avatar> = Single.fromCallable {
-    val details: StreamDetails? = AvatarHelper.getSelfProfileAvatarStream(applicationContext)
+  suspend fun getAvatarForSelf(): Avatar = withContext(SignalDispatchers.IO) {
+    val details: StreamDetails? = AvatarHelper.getSelfProfileAvatarStream(AppDependencies.application)
     if (details != null) {
       try {
         val bytes = StreamUtil.readFully(details.stream)
@@ -49,15 +49,15 @@ class AvatarPickerRepository(context: Context) {
     }
   }
 
-  fun getAvatarForGroup(groupId: GroupId): Single<Avatar> = Single.fromCallable {
+  suspend fun getAvatarForGroup(groupId: GroupId): Avatar = withContext(SignalDispatchers.IO) {
     val recipient = Recipient.externalGroupExact(groupId)
 
-    if (AvatarHelper.hasAvatar(applicationContext, recipient.id)) {
+    if (AvatarHelper.hasAvatar(AppDependencies.application, recipient.id)) {
       try {
-        val bytes = AvatarHelper.getAvatarBytes(applicationContext, recipient.id)
+        val bytes = AvatarHelper.getAvatarBytes(AppDependencies.application, recipient.id)
         Avatar.Photo(
           AppDependencies.blobs.forData(bytes).createForSingleSessionInMemory(),
-          AvatarHelper.getAvatarLength(applicationContext, recipient.id),
+          AvatarHelper.getAvatarLength(AppDependencies.application, recipient.id),
           Avatar.DatabaseId.DoNotPersist
         )
       } catch (e: IOException) {
@@ -69,101 +69,97 @@ class AvatarPickerRepository(context: Context) {
     }
   }
 
-  fun getPersistedAvatarsForSelf(): Single<List<Avatar>> = Single.fromCallable {
+  suspend fun getPersistedAvatarsForSelf(): List<Avatar> = withContext(SignalDispatchers.Default) {
     SignalDatabase.avatarPicker.getAvatarsForSelf()
   }
 
-  fun getPersistedAvatarsForGroup(groupId: GroupId): Single<List<Avatar>> = Single.fromCallable {
+  suspend fun getPersistedAvatarsForGroup(groupId: GroupId): List<Avatar> = withContext(SignalDispatchers.Default) {
     SignalDatabase.avatarPicker.getAvatarsForGroup(groupId)
   }
 
-  fun getDefaultAvatarsForSelf(): Single<List<Avatar>> = Single.fromCallable {
-    Avatars.defaultAvatarsForSelf.entries.mapIndexed { index, entry ->
+  fun getDefaultAvatarsForSelf(): List<Avatar> {
+    return Avatars.defaultAvatarsForSelf.entries.mapIndexed { index, entry ->
       Avatar.Vector(entry.key, color = Avatars.colors[index % Avatars.colors.size], Avatar.DatabaseId.NotSet)
     }
   }
 
-  fun getDefaultAvatarsForGroup(): Single<List<Avatar>> = Single.fromCallable {
-    Avatars.defaultAvatarsForGroup.entries.mapIndexed { index, entry ->
+  fun getDefaultAvatarsForGroup(): List<Avatar> {
+    return Avatars.defaultAvatarsForGroup.entries.mapIndexed { index, entry ->
       Avatar.Vector(entry.key, color = Avatars.colors[index % Avatars.colors.size], Avatar.DatabaseId.NotSet)
     }
   }
 
-  fun writeMediaToMultiSessionStorage(media: Media, onMediaWrittenToMultiSessionStorage: (Uri) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
-      onMediaWrittenToMultiSessionStorage(AvatarPickerStorage.save(applicationContext, media))
+  suspend fun writeMediaToMultiSessionStorage(media: Media): Either<Throwable, Uri> = withContext(SignalDispatchers.IO) {
+    try {
+      AvatarPickerStorage.save(AppDependencies.application, media).right()
+    } catch (e: IOException) {
+      e.left()
     }
   }
 
-  fun persistAvatarForSelf(avatar: Avatar, onPersisted: (Avatar) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
+  suspend fun persistAvatarForSelf(avatar: Avatar): Either<Throwable, Avatar> = withContext(SignalDispatchers.Default) {
+    try {
       val avatarDatabase = SignalDatabase.avatarPicker
       val savedAvatar = avatarDatabase.saveAvatarForSelf(avatar)
       avatarDatabase.markUsage(savedAvatar)
-      onPersisted(savedAvatar)
+      savedAvatar.right()
+    } catch (e: Exception) {
+      e.left()
     }
   }
 
-  fun persistAvatarForGroup(avatar: Avatar, groupId: GroupId, onPersisted: (Avatar) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
+  suspend fun persistAvatarForGroup(avatar: Avatar, groupId: GroupId): Either<Throwable, Avatar> = withContext(SignalDispatchers.Default) {
+    try {
       val avatarDatabase = SignalDatabase.avatarPicker
       val savedAvatar = avatarDatabase.saveAvatarForGroup(avatar, groupId)
       avatarDatabase.markUsage(savedAvatar)
-      onPersisted(savedAvatar)
+      savedAvatar.right()
+    } catch (e: Exception) {
+      e.left()
     }
   }
 
-  fun persistAndCreateMediaForSelf(avatar: Avatar, onSaved: (Media) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
-      if (avatar.databaseId !is Avatar.DatabaseId.DoNotPersist) {
-        persistAvatarForSelf(avatar) {
-          AvatarRenderer.renderAvatar(applicationContext, avatar, onSaved, this::handleRenderFailure)
-        }
-      } else {
-        AvatarRenderer.renderAvatar(applicationContext, avatar, onSaved, this::handleRenderFailure)
-      }
+  suspend fun persistAndCreateMediaForSelf(avatar: Avatar): Either<Throwable, Media> = either {
+    if (avatar.databaseId !is Avatar.DatabaseId.DoNotPersist) {
+      persistAvatarForSelf(avatar).bind()
     }
+
+    renderAvatar(avatar).bind()
   }
 
-  fun persistAndCreateMediaForGroup(avatar: Avatar, groupId: GroupId, onSaved: (Media) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
-      if (avatar.databaseId !is Avatar.DatabaseId.DoNotPersist) {
-        persistAvatarForGroup(avatar, groupId) {
-          AvatarRenderer.renderAvatar(applicationContext, avatar, onSaved, this::handleRenderFailure)
-        }
-      } else {
-        AvatarRenderer.renderAvatar(applicationContext, avatar, onSaved, this::handleRenderFailure)
-      }
+  suspend fun persistAndCreateMediaForGroup(avatar: Avatar, groupId: GroupId): Either<Throwable, Media> = either {
+    if (avatar.databaseId !is Avatar.DatabaseId.DoNotPersist) {
+      persistAvatarForGroup(avatar, groupId).bind()
     }
+
+    renderAvatar(avatar).bind()
   }
 
-  fun createMediaForNewGroup(avatar: Avatar, onSaved: (Media) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
-      AvatarRenderer.renderAvatar(applicationContext, avatar, onSaved, this::handleRenderFailure)
-    }
+  private suspend fun renderAvatar(avatar: Avatar): Either<Throwable, Media> = suspendCancellableCoroutine { continuation ->
+    AvatarRenderer.renderAvatar(
+      context = AppDependencies.application,
+      avatar = avatar,
+      onAvatarRendered = { continuation.resume(it.right()) },
+      onRenderFailed = { continuation.resume((it ?: IOException("Failed to render avatar.")).left()) }
+    )
   }
 
-  fun handleRenderFailure(throwable: Throwable?) {
-    Log.w(TAG, "Failed to render avatar.", throwable)
-    ThreadUtil.postToMain {
-      Toast.makeText(applicationContext, R.string.AvatarPickerRepository__failed_to_save_avatar, Toast.LENGTH_SHORT).show()
-    }
-  }
+  suspend fun createMediaForNewGroup(avatar: Avatar): Either<Throwable, Media> = renderAvatar(avatar)
 
-  fun getDefaultAvatarForSelf(): Avatar {
-    val initials = NameUtil.getAbbreviation(Recipient.self().getDisplayName(applicationContext))
+  suspend fun getDefaultAvatarForSelf(): Avatar = withContext(SignalDispatchers.Default) {
+    val initials = NameUtil.getAbbreviation(Recipient.self().getDisplayName(AppDependencies.application))
 
-    return if (initials.isNullOrBlank()) {
+    if (initials.isNullOrBlank()) {
       Avatar.getDefaultForSelf()
     } else {
       Avatar.Text(initials, requireNotNull(Avatars.colorMap[Recipient.self().avatarColor.serialize()]), Avatar.DatabaseId.DoNotPersist)
     }
   }
 
-  fun getDefaultAvatarForGroup(groupId: GroupId): Avatar {
+  suspend fun getDefaultAvatarForGroup(groupId: GroupId): Avatar = withContext(SignalDispatchers.Default) {
     val recipient = Recipient.externalGroupExact(groupId)
 
-    return getDefaultAvatarForGroup(recipient.avatarColor)
+    getDefaultAvatarForGroup(recipient.avatarColor)
   }
 
   fun getDefaultAvatarForGroup(color: AvatarColor?): Avatar {
@@ -177,13 +173,12 @@ class AvatarPickerRepository(context: Context) {
     }
   }
 
-  fun delete(avatar: Avatar, onDelete: () -> Unit) {
-    SignalExecutors.BOUNDED.execute {
+  suspend fun delete(avatar: Avatar) {
+    withContext(SignalDispatchers.Default) {
       if (avatar.databaseId is Avatar.DatabaseId.Saved) {
         val avatarDatabase = SignalDatabase.avatarPicker
         avatarDatabase.deleteAvatar(avatar)
       }
-      onDelete()
     }
   }
 }

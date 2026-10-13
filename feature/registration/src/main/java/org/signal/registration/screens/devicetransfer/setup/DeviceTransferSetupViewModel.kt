@@ -12,8 +12,6 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,7 +48,7 @@ class DeviceTransferSetupViewModel(
   private val setupEvents: Flow<TransferStatus>,
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<DeviceTransferSetupScreenEvents>(TAG) {
+) : EventDrivenViewModel<DeviceTransferSetupScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(DeviceTransferSetupViewModel::class)
@@ -340,18 +338,5 @@ class DeviceTransferSetupViewModel(
     super.onCleared()
     cancelTakingTooLong()
     setupEventsJob?.cancel()
-  }
-
-  class Factory(
-    private val context: Context,
-    private val networkController: NetworkController,
-    private val setupEvents: Flow<TransferStatus>,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return DeviceTransferSetupViewModel(context, networkController, setupEvents, parentState, parentEventEmitter) as T
-    }
   }
 }

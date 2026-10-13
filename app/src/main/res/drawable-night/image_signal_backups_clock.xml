@@ -1,0 +1,61 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="81dp"
+    android:height="81dp"
+    android:viewportWidth="81"
+    android:viewportHeight="81">
+    <path
+        android:fillColor="#FFABAFF8"
+        android:fillType="evenOdd"
+        android:pathData="M40.5 70.5C34.98 70.5 29.82 68.96 25.4 66.28V61.3C25.4 58.09 22.85 55.49 19.69 55.49 18.22 55.49 16.87 56.06 15.86 57 12.79 52.26 11 46.59 11 40.5 11 23.93 24.21 10.5 40.5 10.5 56.79 10.5 70 23.93 70 40.5 70 57.07 56.79 70.5 40.5 70.5Z"/>
+    <group>
+        <clip-path
+            android:pathData="M40.5 69.5C34.98 69.5 29.82 67.99 25.4 65.35V60.45C25.4 57.3 22.85 54.74 19.69 54.74 18.22 54.74 16.87 55.3 15.86 56.22 12.79 51.57 11 45.99 11 40 11 23.71 24.21 10.5 40.5 10.5 56.79 10.5 70 23.71 70 40 70 56.29 56.79 69.5 40.5 69.5Z"/>
+        <path
+            android:fillColor="#FFDEE0FC"
+            android:pathData="M-1 18.5a24.5 24 0 1 0 49 0a24.5 24 0 1 0 -49 0Z"/>
+        <path
+            android:fillColor="#FFC1C4FA"
+            android:pathData="M6 35a28.5 28.5 0 1 0 57 0a28.5 28.5 0 1 0 -57 0Z"/>
+        <path
+            android:fillColor="#FFDEE0FC"
+            android:pathData="M-1 18.5a24.5 24 0 1 0 49 0a24.5 24 0 1 0 -49 0Z"/>
+    </group>
+    <path
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:pathData="M40.5 11C56.51 11 69.5 24.2 69.5 40.5 69.5 56.8 56.51 70 40.5 70 35.18 70 30.19 68.54 25.9 65.99V61.3C25.9 57.82 23.13 54.99 19.69 54.99 18.3 54.99 17.01 55.46 15.97 56.25 13.14 51.69 11.5 46.29 11.5 40.5 11.5 24.2 24.49 11 40.5 11Z"/>
+    <path
+        android:fillColor="#FF686FE5"
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:fillType="evenOdd"
+        android:pathData="M66.85 10.83C72.8 15.92 77.28 22.82 79.32 30.94 81.37 39.07 80.68 47.24 77.83 54.5 77.34 55.75 75.94 56.36 74.7 55.89L74.65 55.87C73.42 55.39 72.8 53.99 73.29 52.75 75.78 46.39 76.39 39.24 74.6 32.11 72.8 24.98 68.88 18.94 63.67 14.48 62.65 13.61 62.55 12.07 63.43 11.06 64.3 10.06 65.82 9.94 66.82 10.8L66.85 10.83Z"/>
+    <path
+        android:fillColor="#FF686FE5"
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:pathData="M18.55 58.73C19.63 58.73 20.5 59.62 20.5 60.73V69.91C20.5 71.02 19.63 71.91 18.55 71.91H8.72C7.64 71.91 6.77 71.02 6.77 69.91 6.77 68.8 7.64 67.91 8.72 67.91L11.67 67.88C6.96 62.91 3.43 56.63 1.68 49.41-0.37 40.97 0.32 32.49 3.17 24.95 3.66 23.67 5.07 23.03 6.33 23.53 7.58 24.03 8.21 25.48 7.72 26.77 5.22 33.37 4.62 40.8 6.41 48.2 8.2 55.6 11.38 61.76 16.6 66.39V60.73C16.6 59.62 17.47 58.73 18.55 58.73Z"/>
+    <path
+        android:fillColor="#FFC1C4FA"
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:fillType="evenOdd"
+        android:pathData="M55.96 6.37C55.49 7.61 54.1 8.23 52.86 7.74 46.53 5.24 39.4 4.63 32.3 6.43 25.19 8.23 19.18 12.16 14.73 17.4 13.87 18.42 12.33 18.52 11.33 17.64 10.34 16.77 10.22 15.24 11.07 14.23L11.1 14.2C16.17 8.23 23.04 3.73 31.13 1.68 39.23-0.37 47.37 0.32 54.6 3.18 55.84 3.67 56.46 5.07 55.98 6.32L55.96 6.37Z"/>
+    <path
+        android:fillColor="#FFC1C4FA"
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:fillType="evenOdd"
+        android:pathData="M69.98 63.36C70.97 64.24 71.1 65.76 70.24 66.77L70.21 66.8C65.14 72.77 58.27 77.27 50.18 79.32 42.08 81.37 33.94 80.68 26.71 77.82 25.47 77.33 24.85 75.93 25.33 74.68L25.35 74.63C25.82 73.39 27.21 72.77 28.45 73.26 34.78 75.76 41.91 76.37 49.01 74.57 56.12 72.77 62.13 68.84 66.58 63.6 67.44 62.58 68.98 62.48 69.98 63.36Z"/>
+    <path
+        android:fillColor="#FF686FE5"
+        android:strokeColor="#FF8C90CB"
+        android:strokeWidth="1"
+        android:strokeLineCap="square"
+        android:pathData="M36.5 41.52V25.73C36.5 24.5 37.45 23.5 38.63 23.5 39.8 23.5 40.76 24.5 40.76 25.73V41.52C40.76 42.35 41.02 43.15 41.51 43.81L49.05 53.9C49.77 54.87 49.61 56.27 48.68 57.03 47.82 57.74 46.59 57.63 45.84 56.82L45.7 56.64 38.16 46.55C37.08 45.12 36.5 43.34 36.5 41.52Z"/>
+</vector>

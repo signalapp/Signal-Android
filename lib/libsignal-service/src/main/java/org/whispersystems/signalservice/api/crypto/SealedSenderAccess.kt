@@ -30,7 +30,7 @@ sealed class SealedSenderAccess {
    * access key if available.
    */
   class IndividualGroupSendTokenFirst(
-    private val groupSendToken: GroupSendFullToken,
+    val groupSendToken: GroupSendFullToken,
     override val senderCertificate: SenderCertificate,
     val unidentifiedAccess: UnidentifiedAccess? = null
   ) : SealedSenderAccess() {

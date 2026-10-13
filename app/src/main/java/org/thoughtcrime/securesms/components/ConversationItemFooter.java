@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -228,6 +227,13 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   public View getDateView() {
     return dateView;
+  }
+
+  /**
+   * Measured width, widened to include the space the delivery status will need once the message is delivered or read.
+   */
+  public int getReservedWidth() {
+    return getMeasuredWidth() + deliveryStatusView.getReservedWidth() - deliveryStatusView.getMeasuredWidth();
   }
 
   private void notifyTouchDelegateChanged(@NonNull Rect rect, @NonNull View touchDelegate) {
@@ -443,21 +449,9 @@ public class ConversationItemFooter extends ConstraintLayout {
   private void presentAudioDuration(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isMms()) {
       MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
-      AudioSlide       audioSlide       = mmsMessageRecord.getSlideDeck().getAudioSlide();
 
-      if (audioSlide != null) {
+      if (mmsMessageRecord.getSlideDeck().getAudioSlide() != null) {
         showAudioDurationViews();
-
-        long durationUs = 0;
-        if (audioSlide.asAttachment().audioHash != null) {
-          durationUs = audioSlide.asAttachment().audioHash.getAudioWaveForm().durationUs;
-        }
-
-        if (durationUs > 0) {
-          setAudioDuration(TimeUnit.MICROSECONDS.toMillis(durationUs), 0);
-        } else {
-          setAudioDuration(0, 0);
-        }
 
         if (messageRecord.isViewed() || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getToRecipient(), Recipient.self()))) {
           revealDot.setProgress(1f);

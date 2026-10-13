@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsUiState.UserMessage
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -101,7 +100,11 @@ class AddToGroupsViewModel(
           when (result) {
             is GroupAddMembersResult.Success -> {
               internalUiState.update {
-                it.copy(userMessage = UserMessage.AddedRecipientToGroup(recipient, groupRecipient))
+                if (result.newMembersInvited.isNotEmpty()) {
+                  it.copy(userMessage = UserMessage.InvitedRecipientToGroup(recipient, groupRecipient))
+                } else {
+                  it.copy(userMessage = UserMessage.AddedRecipientToGroup(recipient, groupRecipient))
+                }
               }
             }
 
@@ -127,7 +130,6 @@ class AddToGroupsViewModel(
 }
 
 data class AddToGroupsUiState(
-  val forceSplitPane: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val existingGroupMemberships: Set<RecipientId> = emptySet(),
   val selectionLimits: SelectionLimits? = null,
@@ -140,6 +142,7 @@ data class AddToGroupsUiState(
   sealed interface UserMessage {
     data class ConfirmAddToGroup(val recipientToAdd: Recipient, val targetGroup: Recipient) : UserMessage
     data class AddedRecipientToGroup(val recipient: Recipient, val targetGroup: Recipient) : UserMessage
+    data class InvitedRecipientToGroup(val recipient: Recipient, val targetGroup: Recipient) : UserMessage
     data object CantAddRecipientToLegacyGroup : UserMessage
     data class GroupUpdateError(val failureReason: GroupChangeFailureReason) : UserMessage
   }

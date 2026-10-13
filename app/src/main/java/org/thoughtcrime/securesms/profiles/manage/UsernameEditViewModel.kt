@@ -12,6 +12,9 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.Result
+import org.signal.core.util.UsernameUtil.InvalidReason
+import org.signal.core.util.UsernameUtil.checkDiscriminator
+import org.signal.core.util.UsernameUtil.checkNickname
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.usernames.Username
@@ -20,9 +23,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameSetResult
 import org.thoughtcrime.securesms.util.NetworkUtil
-import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason
-import org.thoughtcrime.securesms.util.UsernameUtil.checkDiscriminator
-import org.thoughtcrime.securesms.util.UsernameUtil.checkNickname
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Usernames
 import java.util.concurrent.TimeUnit

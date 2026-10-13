@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -22,6 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
@@ -52,6 +55,10 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
     TextInputLayout wordWrapper2   = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word2_wrapper);
 
     PaymentsRecoveryPhraseConfirmFragmentArgs args = PaymentsRecoveryPhraseConfirmFragmentArgs.fromBundle(requireArguments());
+
+    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
+    SystemWindowInsetsSetter.attach(view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_scroll_view), getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime());
 
     validWordCheckMark = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_check_circle_24);
     invalidWordX       = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_circle_x_24);

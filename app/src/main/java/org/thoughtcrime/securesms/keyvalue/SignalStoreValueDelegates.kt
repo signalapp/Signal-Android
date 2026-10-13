@@ -52,6 +52,10 @@ internal fun SignalStoreValues.durationValue(key: String, default: Duration?): S
   return DurationValue(key, default, this.store)
 }
 
+internal fun SignalStoreValues.nullableLongValue(key: String, default: Long?): SignalStoreValueDelegate<Long?> {
+  return NullableLongValue(key, default, this.store)
+}
+
 internal fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
   return PreconditionDelegate(
     delegate = this,
@@ -162,6 +166,21 @@ private class NullableBlobValue(private val key: String, default: ByteArray?, st
 
   override fun setValue(values: KeyValueStore, value: ByteArray?) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+/** Absence of the key is what encodes null, so every [Long] stays storable. A reserved value would make that one number unrepresentable. */
+private class NullableLongValue(private val key: String, default: Long?, store: KeyValueStore) : SignalStoreValueDelegate<Long?>(store, default) {
+  override fun getValue(values: KeyValueStore): Long? {
+    return if (values.containsKey(key)) values.getLong(key, 0) else default
+  }
+
+  override fun setValue(values: KeyValueStore, value: Long?) {
+    if (value == null) {
+      values.beginWrite().remove(key).apply()
+    } else {
+      values.beginWrite().putLong(key, value).apply()
+    }
   }
 }
 

@@ -5,10 +5,10 @@ import org.signal.core.util.money.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.BOOST_LEVEL
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.GIFT_LEVEL
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.Companion.BOOST_LEVEL
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.Companion.GIFT_LEVEL
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.Companion.SUBSCRIPTION_LEVELS
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.LevelConfiguration
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.SUBSCRIPTION_LEVELS
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -79,7 +79,7 @@ fun SubscriptionsConfiguration.getBoostAmounts(paymentMethodAvailability: Paymen
 
 fun SubscriptionsConfiguration.getBadge(level: Int): Badge {
   require(level == GIFT_LEVEL || level == BOOST_LEVEL || SUBSCRIPTION_LEVELS.contains(level))
-  return Badges.fromServiceBadge(levels[level]!!.badge)
+  return Badges.fromServiceBadge(levels[level]!!.badge!!)
 }
 
 fun SubscriptionsConfiguration.getSubscriptionLevels(): Map<Int, LevelConfiguration> {

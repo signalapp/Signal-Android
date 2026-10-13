@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersUiState.UserMessage
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -134,7 +133,6 @@ class AddMembersViewModel(
 }
 
 data class AddMembersUiState(
-  val forceSplitPane: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val existingMembersMinusSelf: Set<RecipientId> = emptySet(),
   val selectionLimits: SelectionLimits,

@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -89,7 +88,6 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
-import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
@@ -108,6 +106,8 @@ import org.signal.glide.compose.GlideImage
 import org.signal.mediasend.R
 import org.signal.mediasend.screens.MediaSendMetrics
 import org.signal.mediasend.screens.edit.rememberPreviewMedia
+import org.signal.mediasend.screens.shared.NextButton
+import org.signal.mediasend.screens.shared.chatColorFor
 import org.signal.mediasend.test.TestTags
 import org.signal.mediasend.util.formatAsClock
 import kotlin.time.Duration.Companion.milliseconds
@@ -133,7 +133,7 @@ internal fun MediaSelectScreen(
 
   val gridConfiguration = rememberGridConfiguration(state is MediaSelectState.Folders && !showPlaceholders)
   val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-  val recipientChatColor: Color? = state.recipientId?.let { LocalChatColorProvider.current(it.id).value }
+  val recipientChatColor: Color? = chatColorFor(state.recipientId)
 
   val gridState = rememberLazyGridState()
   val dragToSelectState = rememberDragToSelectMediaState(state, onEvent, gridState)
@@ -268,11 +268,10 @@ internal fun MediaSelectScreen(
           )
 
           NextButton(
-            mediaSelectionCount = state.selectedMedia.size,
+            selectedMediaCount = state.selectedMedia.size,
+            onClick = { onEvent(MediaSelectScreenEvents.NavigateToEdit) },
             recipientChatColor = recipientChatColor
-          ) {
-            onEvent(MediaSelectScreenEvents.NavigateToEdit)
-          }
+          )
         }
       }
     }
@@ -544,7 +543,7 @@ private fun MediaFolderTile(
         modifier = Modifier
           .fillMaxWidth()
           .aspectRatio(1f)
-          .background(color = Previews.rememberRandomColor(), shape = RoundedCornerShape(26.dp))
+          .background(color = Previews.rememberRandomColor(seed = mediaFolder.thumbnailUri), shape = RoundedCornerShape(26.dp))
       )
     } else {
       BoxWithConstraints(
@@ -621,8 +620,8 @@ private fun MediaTile(
       if (LocalInspectionMode.current) {
         Box(
           modifier = Modifier
-            .background(color = Previews.rememberRandomColor())
-            .fillMaxWidth()
+            .size(width = width, height = height)
+            .background(color = Previews.rememberRandomColor(seed = media.uri))
         )
       } else {
         GlideImage(
@@ -681,31 +680,6 @@ private fun MediaTileVideoOverlay(
         color = SignalTheme.colors.colorOnCustom
       )
     }
-  }
-}
-
-@Composable
-private fun NextButton(mediaSelectionCount: Int, recipientChatColor: Color? = null, onClick: () -> Unit) {
-  Buttons.MediumTonal(
-    onClick = onClick,
-    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp)
-  ) {
-    Box(
-      modifier = Modifier
-        .background(color = recipientChatColor ?: MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(percent = 50))
-        .ensureWidthIsAtLeastHeight()
-    ) {
-      Text(
-        text = "$mediaSelectionCount",
-        color = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimary,
-        modifier = Modifier
-      )
-    }
-
-    Icon(
-      imageVector = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_chevron_right_24),
-      contentDescription = stringResource(R.string.MediaSelectScreen__next)
-    )
   }
 }
 
@@ -790,7 +764,7 @@ private fun MediaThumbnail(
       Box(
         modifier = Modifier
           .fillMaxSize()
-          .background(color = Previews.rememberRandomColor())
+          .background(color = Previews.rememberRandomColor(seed = media.uri))
       )
     } else {
       GlideImage(
@@ -944,31 +918,8 @@ private fun MediaTileSelectedChatColorPreview() {
   }
 }
 
-@DayNightPreviews
 @Composable
-private fun NextButtonPreview() {
-  Previews.Preview {
-    NextButton(
-      mediaSelectionCount = 3,
-      onClick = {}
-    )
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun NextButtonChatColorPreview() {
-  Previews.Preview {
-    NextButton(
-      mediaSelectionCount = 3,
-      recipientChatColor = Color(0xFF3B7845),
-      onClick = {}
-    )
-  }
-}
-
-@Composable
-private fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
+internal fun rememberPreviewMediaFolders(count: Int): List<MediaFolder> {
   return remember(count) {
     (0 until count).map { index ->
       MediaFolder(

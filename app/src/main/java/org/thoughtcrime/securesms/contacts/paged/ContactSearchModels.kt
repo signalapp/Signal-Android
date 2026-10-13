@@ -428,7 +428,7 @@ object ContactSearchModels {
 
     private fun getGroupStoryContextMenuActions(model: StoryModel, callbacks: ContactSearchAdapter.StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.symbol_minus_circle_24, context.getString(R.string.ContactSearchItems__remove_story)) {
+        ActionItem(CoreUiR.drawable.symbol_minus_circle_24, context.getString(R.string.ContactSearchItems__remove_story)) {
           callbacks.onRemoveGroupStory(model.story, model.isSelected)
         }
       )

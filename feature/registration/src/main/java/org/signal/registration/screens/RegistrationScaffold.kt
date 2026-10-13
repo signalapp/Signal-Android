@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.WindowBreakpoint
-import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.compose.BreakpointPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.getWindowSizeClass
 import org.signal.core.ui.isHeightCompact
@@ -102,8 +102,8 @@ object RegistrationScaffold {
       override val edgeInset: Dp,
       override val maxButtonWidth: Dp
     ) : Params {
-      fun panePadding(hasHeader: Boolean) = PaddingValues(
-        top = if (hasHeader) paneVerticalInset else headerSlotHeight + paneVerticalInset,
+      fun panePadding(hasHeader: Boolean, includeTopInset: Boolean = true) = PaddingValues(
+        top = (if (hasHeader) 0.dp else headerSlotHeight) + (if (includeTopInset) paneVerticalInset else 0.dp),
         bottom = paneVerticalInset,
         start = paneHorizontalInset,
         end = paneHorizontalInset
@@ -225,6 +225,7 @@ fun OnePaneRegistrationScaffold(
   params: RegistrationScaffold.Params.OnePane,
   topBar: (@Composable () -> Unit)? = null,
   footer: (@Composable () -> Unit)? = null,
+  includeTopInset: Boolean = true,
   content: @Composable (PaddingValues) -> Unit
 ) {
   RegistrationScaffold(
@@ -237,7 +238,7 @@ fun OnePaneRegistrationScaffold(
           .fillMaxSize()
           .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))
       ) {
-        content(params.panePadding(hasHeader = topBar != null))
+        content(params.panePadding(hasHeader = topBar != null, includeTopInset = includeTopInset))
       }
     }
   )
@@ -295,7 +296,7 @@ private fun PreviewPane(
   )
 }
 
-@AllDevicePreviews
+@BreakpointPreviews
 @Composable
 private fun RegistrationScaffoldPreview() = Previews.Preview {
   when (val params = RegistrationScaffold.rememberLayoutParams()) {

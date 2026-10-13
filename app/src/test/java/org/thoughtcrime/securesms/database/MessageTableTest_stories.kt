@@ -149,6 +149,105 @@ class MessageTableTest_stories {
   }
 
   @Test
+  fun givenInterleavedMediaAndTextOutgoingStories_whenIGetAllOutgoingStories_thenIExpectChronologicalOrder() {
+    // GIVEN
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 100L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 200L, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getAllOutgoingStories(false, -1).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(100L, 200L), result)
+  }
+
+  @Test
+  fun givenInterleavedMediaAndTextOutgoingStories_whenIGetAllOutgoingStoriesReversed_thenIExpectReverseChronologicalOrder() {
+    // GIVEN
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 200L, storyType = StoryType.STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 100L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getAllOutgoingStories(true, -1).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(200L, 100L), result)
+  }
+
+  @Test
+  fun givenMoreOutgoingStoriesThanTheLimit_whenIGetAllOutgoingStories_thenIExpectTheOldestBySendTime() {
+    // GIVEN
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 300L, storyType = StoryType.STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 200L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 100L, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getAllOutgoingStories(false, 2).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(100L, 200L), result)
+  }
+
+  @Test
+  fun givenMoreOutgoingStoriesThanTheLimit_whenIGetAllOutgoingStoriesReversed_thenIExpectTheNewestBySendTime() {
+    // GIVEN
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 300L, storyType = StoryType.STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 100L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = myStory, sentTimeMillis = 200L, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getAllOutgoingStories(true, 2).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(300L, 200L), result)
+  }
+
+  @Test
+  fun givenInterleavedMediaAndTextOutgoingGroupStories_whenIGetOutgoingStoriesTo_thenIExpectChronologicalOrder() {
+    // GIVEN
+    val group = recipients.createGroup(others[0])
+    val groupRecipient = Recipient.resolved(group.recipientId)
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
+
+    insertOutgoingStory(recipient = groupRecipient, sentTimeMillis = 100L, threadId = threadId, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertOutgoingStory(recipient = groupRecipient, sentTimeMillis = 200L, threadId = threadId, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getOutgoingStoriesTo(group.recipientId).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(100L, 200L), result)
+  }
+
+  @Test
+  fun givenInterleavedMediaAndTextIncomingStories_whenIGetAllStoriesFor_thenIExpectChronologicalOrder() {
+    // GIVEN
+    val sender = others[0]
+    insertIncomingStory(from = sender, sentTimeMillis = 100L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertIncomingStory(from = sender, sentTimeMillis = 200L, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getAllStoriesFor(sender, -1).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(100L, 200L), result)
+  }
+
+  @Test
+  fun givenInterleavedMediaAndTextUnreadIncomingStories_whenIGetUnreadStories_thenIExpectChronologicalOrder() {
+    // GIVEN
+    val sender = others[0]
+    insertIncomingStory(from = sender, sentTimeMillis = 100L, storyType = StoryType.TEXT_STORY_WITH_REPLIES)
+    insertIncomingStory(from = sender, sentTimeMillis = 200L, storyType = StoryType.STORY_WITH_REPLIES)
+
+    // WHEN
+    val result = mms.getUnreadStories(sender, -1).use { reader -> reader.map { it.dateSent } }
+
+    // THEN
+    assertEquals(listOf(100L, 200L), result)
+  }
+
+  @Test
   fun givenNoStories_whenICheckIsOutgoingStoryAlreadyInDatabase_thenIExpectFalse() {
     // WHEN
     val result = mms.isOutgoingStoryAlreadyInDatabase(others[0], 200)
@@ -443,13 +542,14 @@ class MessageTableTest_stories {
   private fun insertOutgoingStory(
     recipient: Recipient,
     sentTimeMillis: Long,
-    threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+    threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient),
+    storyType: StoryType = StoryType.STORY_WITH_REPLIES
   ): Long {
     val message = OutgoingMessage(
       recipient = recipient,
       body = "body",
       timestamp = sentTimeMillis,
-      storyType = StoryType.STORY_WITH_REPLIES,
+      storyType = storyType,
       isSecure = true
     )
     return recipients.insertOutgoingMessage(message, threadId)
@@ -474,7 +574,11 @@ class MessageTableTest_stories {
     return recipients.insertOutgoingMessage(message, threadId)
   }
 
-  private fun insertIncomingStory(from: RecipientId, sentTimeMillis: Long): Optional<MessageTable.InsertResult> {
+  private fun insertIncomingStory(
+    from: RecipientId,
+    sentTimeMillis: Long,
+    storyType: StoryType = StoryType.STORY_WITH_REPLIES
+  ): Optional<MessageTable.InsertResult> {
     return mms.insertMessageInbox(
       IncomingMessage(
         type = MessageType.NORMAL,
@@ -482,7 +586,7 @@ class MessageTableTest_stories {
         sentTimeMillis = sentTimeMillis,
         serverTimeMillis = sentTimeMillis,
         receivedTimeMillis = sentTimeMillis,
-        storyType = StoryType.STORY_WITH_REPLIES
+        storyType = storyType
       ),
       -1L
     )

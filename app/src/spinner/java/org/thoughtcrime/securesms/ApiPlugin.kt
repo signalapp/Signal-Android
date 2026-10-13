@@ -31,13 +31,18 @@ import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.mms.QuoteModel
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
+import kotlin.time.Duration.Companion.days
 
 class ApiPlugin : Plugin {
   companion object {
@@ -100,6 +105,7 @@ class ApiPlugin : Plugin {
       )
     ),
     "createThread" to ApiSpec(::createThread, listOf(Param("recipientId", "1"))),
+    "updateNotification" to ApiSpec(::updateNotification, listOf(Param("threadId", "", placeholder = "blank = all threads"))),
     "createMessage" to ApiSpec(
       ::createMessage,
       listOf(
@@ -109,7 +115,12 @@ class ApiPlugin : Plugin {
         Param("body", "Hello"),
         Param("outgoing", "false"),
         Param("type", "NORMAL", placeholder = "NORMAL|IDENTITY_UPDATE|IDENTITY_VERIFIED|IDENTITY_DEFAULT|CONTACT_JOINED|EXPIRATION_UPDATE"),
-        Param("timestamp", "", placeholder = "blank = now (epoch millis)")
+        Param("timestamp", "", placeholder = "blank = now (epoch millis)"),
+        Param("quoteMessageId", "", placeholder = "message row id to quote"),
+        Param("quoteAuthorId", "", placeholder = "recipient id; quotes a missing original when quoteMessageId is blank"),
+        Param("quoteBody", "", placeholder = "blank = quoted message body"),
+        Param("quoteMissing", "false"),
+        Param("quoteType", "NORMAL", placeholder = "NORMAL|GIFT_BADGE|POLL")
       )
     ),
     "createAttachment" to ApiSpec(
@@ -513,6 +524,30 @@ class ApiPlugin : Plugin {
     }
   }
 
+  /**
+   * Drives a notification pass on demand.
+   */
+  private fun updateNotification(parameters: Map<String, List<String>>): PluginResult {
+    val threadIdParam = parameters["threadId"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val threadId = if (threadIdParam != null) {
+      threadIdParam.toLongOrNull() ?: return PluginResult.ErrorResult(message = "Invalid 'threadId' parameter")
+    } else {
+      null
+    }
+
+    return try {
+      if (threadId != null) {
+        AppDependencies.messageNotifier.updateNotification(AppDependencies.application, ConversationId.forConversation(threadId))
+      } else {
+        AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+      }
+      UpdateNotificationResponse(threadId ?: -1).toJsonResult()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to update notification", e)
+      PluginResult.ErrorResult(message = "Failed: ${e.message}")
+    }
+  }
+
   private fun createMessage(parameters: Map<String, List<String>>): PluginResult {
     val threadId = parameters["threadId"]?.firstOrNull()?.toLongOrNull()
       ?: return PluginResult.ErrorResult(message = "Missing or invalid 'threadId' parameter")
@@ -532,17 +567,27 @@ class ApiPlugin : Plugin {
       MessageType.NORMAL
     }
 
+    val quote = when (val result = parseQuote(parameters)) {
+      is QuoteParseResult.Error -> return PluginResult.ErrorResult(message = result.message)
+      is QuoteParseResult.Success -> result.quote
+    }
+
+    if (quote != null && messageType != MessageType.NORMAL) {
+      return PluginResult.ErrorResult(message = "Quotes are only supported on NORMAL messages")
+    }
+
     return try {
       if (outgoing) {
         if (messageType != MessageType.NORMAL) {
           return PluginResult.ErrorResult(message = "'type' is only supported for incoming messages; outgoing messages are always NORMAL text")
         }
         val threadRecipient = Recipient.resolved(RecipientId.from(toRecipientId))
-        val outgoingMessage = OutgoingMessage.text(
-          threadRecipient = threadRecipient,
+        val outgoingMessage = OutgoingMessage(
+          recipient = threadRecipient,
           body = body,
-          expiresIn = 0,
-          sentTimeMillis = timestamp
+          timestamp = timestamp,
+          quote = quote,
+          isSecure = true
         )
         val result = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId)
         CreateMessageResponse(result.messageId).toJsonResult()
@@ -555,7 +600,8 @@ class ApiPlugin : Plugin {
             sentTimeMillis = timestamp,
             serverTimeMillis = timestamp,
             receivedTimeMillis = timestamp,
-            body = body
+            body = body,
+            quote = quote
           )
           MessageType.IDENTITY_UPDATE -> IncomingMessage.identityUpdate(from, timestamp, null)
           MessageType.IDENTITY_VERIFIED -> IncomingMessage.identityVerified(from, timestamp, null)
@@ -581,6 +627,68 @@ class ApiPlugin : Plugin {
       Log.w(TAG, "Failed to create message", e)
       PluginResult.ErrorResult(message = "Failed: ${e.message}")
     }
+  }
+
+  /**
+   * Builds a [QuoteModel] from `quoteMessageId` (quoting an existing message, including its first attachment as the thumbnail)
+   * or from `quoteAuthorId` alone (quoting an original that isn't on this device).
+   */
+  private fun parseQuote(parameters: Map<String, List<String>>): QuoteParseResult {
+    val quoteMessageId = parameters["quoteMessageId"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val quoteAuthorId = parameters["quoteAuthorId"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val quoteBody = parameters["quoteBody"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+    val quoteMissing = parameters.boolOrDefault("quoteMissing", false)
+    val quoteTypeParam = parameters["quoteType"]?.firstOrNull()?.takeIf { it.isNotBlank() }
+
+    if (quoteMessageId == null && quoteAuthorId == null) {
+      return QuoteParseResult.Success(null)
+    }
+
+    val quoteType = if (quoteTypeParam != null) {
+      QuoteModel.Type.entries.find { it.name.equals(quoteTypeParam, ignoreCase = true) }
+        ?: return QuoteParseResult.Error("Unknown quote type '$quoteTypeParam'. Supported: ${QuoteModel.Type.entries.joinToString { it.name }}")
+    } else {
+      QuoteModel.Type.NORMAL
+    }
+
+    if (quoteMessageId != null) {
+      val target = quoteMessageId.toLongOrNull()?.let { SignalDatabase.messages.getMessageRecordOrNull(it) }?.withAttachments()
+        ?: return QuoteParseResult.Error("No message with id $quoteMessageId to quote")
+      val mmsTarget = target as? MmsMessageRecord
+
+      return QuoteParseResult.Success(
+        QuoteModel(
+          id = target.dateSent,
+          author = quoteAuthorId?.toLongOrNull()?.let { RecipientId.from(it) } ?: target.fromRecipient.id,
+          text = quoteBody ?: target.body,
+          isOriginalMissing = quoteMissing,
+          attachment = mmsTarget?.slideDeck?.asAttachments()?.firstOrNull(),
+          mentions = null,
+          type = quoteType,
+          bodyRanges = if (quoteBody == null) mmsTarget?.messageRanges else null
+        )
+      )
+    }
+
+    val authorId = quoteAuthorId?.toLongOrNull() ?: return QuoteParseResult.Error("Invalid 'quoteAuthorId' parameter")
+
+    return QuoteParseResult.Success(
+      QuoteModel(
+        id = System.currentTimeMillis() - 1.days.inWholeMilliseconds,
+        author = RecipientId.from(authorId),
+        text = quoteBody ?: "",
+        isOriginalMissing = true,
+        attachment = null,
+        mentions = null,
+        type = quoteType,
+        bodyRanges = null
+      )
+    )
+  }
+
+  private sealed interface QuoteParseResult {
+    data class Success(val quote: QuoteModel?) : QuoteParseResult
+    data class Error(val message: String) : QuoteParseResult
   }
 
   /**
@@ -683,6 +791,10 @@ class ApiPlugin : Plugin {
   data class CreateGroupResponse @JsonCreator constructor(
     @field:JsonProperty val recipientId: Long,
     @field:JsonProperty val groupId: String
+  )
+
+  data class UpdateNotificationResponse @JsonCreator constructor(
+    @JsonProperty("threadId") val threadId: Long
   )
 
   data class CreateThreadResponse @JsonCreator constructor(

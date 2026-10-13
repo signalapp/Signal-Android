@@ -5,6 +5,7 @@
 
 package org.signal.registration.screens.aepentry
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -36,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -51,21 +54,23 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TextFields
+import org.signal.passwordmanager.SignalCredentialManager
+import org.signal.passwordmanager.compose.attachPasswordAutoFillHelper
+import org.signal.passwordmanager.compose.passwordAutoFillHelper
 import org.signal.registration.R
 import org.signal.registration.fonts.MonoTypeface
 import org.signal.registration.screens.OnePaneRegistrationScaffold
 import org.signal.registration.screens.RegistrationScaffold
 import org.signal.registration.screens.TwoPaneRegistrationScaffold
 import org.signal.registration.screens.attachDebugLogHelper
-import org.signal.registration.screens.localbackuprestore.attachBackupKeyAutoFillHelper
-import org.signal.registration.screens.localbackuprestore.backupKeyAutoFillHelper
 import org.signal.registration.test.TestTags
-import org.signal.registration.util.RegistrationCredentialManager
 
 @Composable
 fun EnterAepScreen(
@@ -77,6 +82,10 @@ fun EnterAepScreen(
 
   if (state.showDifferentAccountDialog) {
     DifferentAccountDialog(onEvent)
+  }
+
+  if (state.showVerifyWithSmsDialog) {
+    VerifyWithSmsDialog(onEvent)
   }
 
   when (val layoutParams = RegistrationScaffold.rememberLayoutParams()) {
@@ -102,25 +111,63 @@ private fun DifferentAccountDialog(onEvent: (EnterAepEvents) -> Unit) {
 }
 
 /**
- * Shows a dismissable dialog for generic registration errors (network/rate-limit/unknown). Incorrect-key errors are
- * surfaced inline on the text field instead, so they are intentionally not shown here.
+ * Offers to register by verifying the phone number over SMS instead of with the recovery key.
  */
 @Composable
+private fun VerifyWithSmsDialog(onEvent: (EnterAepEvents) -> Unit) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.EnterAepScreen__verify_with_sms_code),
+    body = stringResource(R.string.EnterAepScreen__verify_with_sms_code_body),
+    confirm = stringResource(R.string.EnterAepScreen__send_code),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = { onEvent(EnterAepEvents.ConfirmVerifyWithSms) },
+    onDeny = { onEvent(EnterAepEvents.DismissVerifyWithSmsDialog) },
+    onDismissRequest = { onEvent(EnterAepEvents.DismissVerifyWithSmsDialog) }
+  )
+}
+
+/**
+ * Shown when the server rejects the recovery password derived from the entered key. Not dismissable by tapping outside
+ * or pressing back, since the dialog's dismiss callback is wired to the help button.
+ */
+@Composable
+private fun IncorrectRecoveryKeyDialog(onEvent: (EnterAepEvents) -> Unit) {
+  Dialogs.AdvancedAlertDialog(
+    title = stringResource(R.string.EnterAepScreen__incorrect_recovery_key_dialog_title),
+    body = stringResource(R.string.EnterAepScreen__incorrect_recovery_key_dialog_body),
+    positive = stringResource(R.string.EnterAepScreen__try_again),
+    neutral = stringResource(R.string.EnterAepScreen__try_another_way),
+    negative = stringResource(R.string.EnterAepScreen__recovery_key_help),
+    onPositive = { onEvent(EnterAepEvents.DismissError) },
+    onNeutral = { onEvent(EnterAepEvents.TryAnotherWay) },
+    onNegative = { onEvent(EnterAepEvents.RecoveryKeyHelp) },
+    properties = DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+  )
+}
+
+@Composable
 private fun RegistrationErrorDialog(error: RegistrationError?, onEvent: (EnterAepEvents) -> Unit) {
-  val message = when (error) {
-    RegistrationError.NetworkError -> stringResource(R.string.VerificationCodeScreen__network_error)
-    RegistrationError.RateLimited -> stringResource(R.string.VerificationCodeScreen__too_many_attempts)
-    RegistrationError.UnknownError -> stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
-    RegistrationError.IncorrectRecoveryPassword, null -> null
-  } ?: return
+  val (title, message) = when (error) {
+    RegistrationError.NetworkError -> null to stringResource(R.string.VerificationCodeScreen__network_error)
+    RegistrationError.RateLimited -> null to stringResource(R.string.VerificationCodeScreen__too_many_attempts)
+    RegistrationError.UnknownError -> null to stringResource(R.string.VerificationCodeScreen__an_unexpected_error_occurred)
+    RegistrationError.NoRemoteBackup -> stringResource(R.string.EnterAepScreen__no_backup_found) to stringResource(R.string.EnterAepScreen__no_backup_found_body)
+    RegistrationError.IncorrectRecoveryPassword -> {
+      IncorrectRecoveryKeyDialog(onEvent)
+      return
+    }
+    null -> return
+  }
 
   Dialogs.SimpleMessageDialog(
+    title = title,
     message = message,
     dismiss = stringResource(android.R.string.ok),
     onDismiss = { onEvent(EnterAepEvents.DismissError) }
   )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OnePaneLayout(
   params: RegistrationScaffold.Params.OnePane,
@@ -129,6 +176,7 @@ private fun OnePaneLayout(
   modifier: Modifier = Modifier
 ) {
   val scrollState = rememberScrollState()
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   OnePaneRegistrationScaffold(
     modifier = modifier
@@ -139,6 +187,7 @@ private fun OnePaneLayout(
       Column(
         modifier = Modifier
           .fillMaxSize()
+          .nestedScroll(topBarScrollBehavior.nestedScrollConnection)
           .verticalScroll(scrollState)
           .padding(paddingValues),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -165,7 +214,7 @@ private fun OnePaneLayout(
             modifier = Modifier.weight(1f),
             contentAlignment = Alignment.CenterStart
           ) {
-            NoRecoverKeyButton(onEvent)
+            NoRecoveryKeyButton(onEvent)
           }
           Box(
             modifier = Modifier.weight(1f),
@@ -179,6 +228,7 @@ private fun OnePaneLayout(
   )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TwoPaneLayout(
   params: RegistrationScaffold.Params.TwoPane,
@@ -188,6 +238,7 @@ private fun TwoPaneLayout(
 ) {
   val firstPaneScrollState = rememberScrollState()
   val secondPaneScrollState = rememberScrollState()
+  val topBarScrollBehavior = RegistrationScaffold.rememberTopBarScrollBehavior()
 
   TwoPaneRegistrationScaffold(
     modifier = modifier
@@ -229,7 +280,7 @@ private fun TwoPaneLayout(
             .fillMaxWidth()
             .padding(16.dp)
         ) {
-          NoRecoverKeyButton(onEvent)
+          NoRecoveryKeyButton(onEvent)
           Spacer(modifier = Modifier.size(24.dp))
           NextButton(state, onEvent)
         }
@@ -264,15 +315,17 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
   val focusRequester = remember { FocusRequester() }
   var requestFocus by remember { mutableStateOf(true) }
   val keyboardController = LocalSoftwareKeyboardController.current
-  val autoFillHelper = backupKeyAutoFillHelper { onEvent(EnterAepEvents.BackupKeyChanged(it)) }
+  val autoFillHelper = passwordAutoFillHelper { onEvent(EnterAepEvents.BackupKeyChanged(it)) }
+  val interactionSource = remember { MutableInteractionSource() }
 
   TextField(
-    value = state.enteredText,
+    value = state.recoveryKey.enteredText,
     onValueChange = {
       onEvent(EnterAepEvents.BackupKeyChanged(it))
       autoFillHelper.onValueChanged(it)
     },
-    label = { Text(stringResource(R.string.EnterAepScreen__recovery_key)) },
+    label = { TextFields.Label(stringResource(R.string.EnterAepScreen__recovery_key), state.recoveryKey.enteredText.isNotEmpty(), interactionSource) },
+    interactionSource = interactionSource,
     textStyle = MaterialTheme.typography.bodyLarge.copy(
       fontFamily = MonoTypeface.fontFamily(),
       lineHeight = 36.sp
@@ -290,28 +343,27 @@ private fun RecoveryKeyTextField(state: EnterAepState, onEvent: (EnterAepEvents)
     ),
     keyboardActions = KeyboardActions(
       onNext = {
-        if (state.isBackupKeyValid) {
+        if (state.recoveryKey.isValid) {
           keyboardController?.hide()
           onEvent(EnterAepEvents.Submit)
         }
       }
     ),
     supportingText = {
-      when (val error = state.aepValidationError) {
-        is AepValidationError.TooLong -> Text(stringResource(R.string.EnterAepScreen__too_long, error.count, error.max))
+      when (state.recoveryKey.error) {
         is AepValidationError.Invalid -> Text(stringResource(R.string.EnterAepScreen__invalid_recovery_key))
         is AepValidationError.Incorrect -> Text(stringResource(R.string.EnterAepScreen__incorrect_recovery_key))
         null -> {}
       }
     },
-    isError = state.aepValidationError != null,
+    isError = state.recoveryKey.error != null,
     minLines = 4,
     visualTransformation = visualTransform,
     modifier = Modifier
       .fillMaxWidth()
       .testTag(TestTags.ENTER_AEP_INPUT)
       .focusRequester(focusRequester)
-      .attachBackupKeyAutoFillHelper(autoFillHelper)
+      .attachPasswordAutoFillHelper(autoFillHelper)
       .onGloballyPositioned {
         if (requestFocus) {
           focusRequester.requestFocus()
@@ -330,9 +382,9 @@ private fun FillFromPasswordManagerButton(onEvent: (EnterAepEvents) -> Unit, mod
     modifier = modifier,
     onClick = {
       coroutineScope.launch {
-        val password = RegistrationCredentialManager.getPasswordCredential(context)
-        if (password != null) {
-          onEvent(EnterAepEvents.BackupKeyChanged(password))
+        val credential = SignalCredentialManager.getCredential(context)
+        if (credential != null) {
+          onEvent(EnterAepEvents.BackupKeyChanged(credential.password))
         }
       }
     }
@@ -342,7 +394,7 @@ private fun FillFromPasswordManagerButton(onEvent: (EnterAepEvents) -> Unit, mod
 }
 
 @Composable
-private fun NoRecoverKeyButton(onEvent: (EnterAepEvents) -> Unit, modifier: Modifier = Modifier) {
+private fun NoRecoveryKeyButton(onEvent: (EnterAepEvents) -> Unit, modifier: Modifier = Modifier) {
   TextButton(
     modifier = modifier.testTag(TestTags.ENTER_AEP_NO_KEY_BUTTON),
     shape = RoundedCornerShape(0.dp),
@@ -356,7 +408,7 @@ private fun NoRecoverKeyButton(onEvent: (EnterAepEvents) -> Unit, modifier: Modi
 private fun NextButton(state: EnterAepState, onEvent: (EnterAepEvents) -> Unit, modifier: Modifier = Modifier) {
   Buttons.LargeTonal(
     modifier = modifier.testTag(TestTags.ENTER_AEP_NEXT_BUTTON),
-    enabled = state.isBackupKeyValid && state.aepValidationError == null && !state.isRegistering,
+    enabled = state.recoveryKey.isValid && state.recoveryKey.error == null && !state.isRegistering,
     onClick = { onEvent(EnterAepEvents.Submit) }
   ) {
     if (state.isRegistering) {
@@ -426,9 +478,7 @@ private fun EnterAepScreenFilledPreview() {
   Previews.Preview {
     EnterAepScreen(
       state = EnterAepState(
-        enteredText = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        backupKey = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        isBackupKeyValid = true,
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t"),
         isPasswordManagerAvailable = true
       ),
       onEvent = {}
@@ -442,9 +492,7 @@ private fun EnterAepScreenLoadingPreview() {
   Previews.Preview {
     EnterAepScreen(
       state = EnterAepState(
-        enteredText = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        backupKey = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        isBackupKeyValid = true,
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t"),
         isRegistering = true,
         isPasswordManagerAvailable = true
       ),
@@ -459,11 +507,41 @@ private fun EnterAepScreenErrorPreview() {
   Previews.Preview {
     EnterAepScreen(
       state = EnterAepState(
-        enteredText = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        backupKey = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
-        isBackupKeyValid = false,
-        aepValidationError = AepValidationError.Invalid,
+        recoveryKey = AepInput(
+          enteredText = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+          normalized = "uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+          isValid = false,
+          error = AepValidationError.Invalid
+        ),
         isPasswordManagerAvailable = true
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun EnterAepScreenIncorrectKeyDialogPreview() {
+  Previews.Preview {
+    EnterAepScreen(
+      state = EnterAepState(
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t").copy(error = AepValidationError.Incorrect),
+        registrationError = RegistrationError.IncorrectRecoveryPassword
+      ),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun EnterAepScreenVerifyWithSmsDialogPreview() {
+  Previews.Preview {
+    EnterAepScreen(
+      state = EnterAepState(
+        recoveryKey = AepInput.from("uy38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t").copy(error = AepValidationError.Incorrect),
+        showVerifyWithSmsDialog = true
       ),
       onEvent = {}
     )

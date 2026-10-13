@@ -16,10 +16,10 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
+import org.signal.core.ui.viewModel
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
-import org.thoughtcrime.securesms.util.viewModel
 import kotlin.time.Duration.Companion.milliseconds
 
 /**

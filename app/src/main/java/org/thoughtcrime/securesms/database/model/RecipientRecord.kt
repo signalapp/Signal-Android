@@ -67,6 +67,7 @@ data class RecipientRecord(
   val mentionSetting: NotificationSetting,
   val callNotificationSetting: NotificationSetting,
   val replyNotificationSetting: NotificationSetting,
+  val unreadReminder: NotificationSetting,
   val wallpaper: ChatWallpaper?,
   val chatColors: ChatColors?,
   val avatarColor: AvatarColor,
@@ -84,6 +85,7 @@ data class RecipientRecord(
   val phoneNumberSharing: PhoneNumberSharingState,
   val nickname: ProfileName,
   val note: String?,
+  val sharedName: ProfileName,
   val keyTransparencyData: ByteArray? = null
 ) {
 

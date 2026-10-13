@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.signal.imageeditor.core;
 
 import android.graphics.Matrix;
@@ -9,13 +14,19 @@ import org.signal.imageeditor.core.model.EditorElement;
 
 final class ElementScaleEditSession extends ElementEditSession {
 
-  private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix) {
+  private final RotationSnapListener rotationSnapListener;
+  private final float                initialRotationRadians;
+  private       boolean              wasRotationSnapped = true; // skip triggering listener on start of session
+
+  private ElementScaleEditSession(@NonNull EditorElement selected, @NonNull Matrix inverseMatrix, @NonNull RotationSnapListener rotationSnapListener, float initialRotationRadians) {
     super(selected, inverseMatrix);
+    this.rotationSnapListener   = rotationSnapListener;
+    this.initialRotationRadians = initialRotationRadians;
   }
 
-  static ElementScaleEditSession startScale(@NonNull ElementDragEditSession session, @NonNull Matrix inverseMatrix, @NonNull PointF point, int p) {
+  static ElementScaleEditSession startScale(@NonNull ElementDragEditSession session, @NonNull Matrix inverseMatrix, @NonNull PointF point, int p, @NonNull RotationSnapListener rotationSnapListener) {
     session.commit();
-    ElementScaleEditSession newSession = new ElementScaleEditSession(session.selected, inverseMatrix);
+    ElementScaleEditSession newSession = new ElementScaleEditSession(session.selected, inverseMatrix, rotationSnapListener, session.selected.getLocalRotationAngle());
     newSession.setScreenStartPoint(1 - p, session.endPointScreen[0]);
     newSession.setScreenEndPoint(1 - p, session.endPointScreen[0]);
     newSession.setScreenStartPoint(p, point);
@@ -38,9 +49,15 @@ final class ElementScaleEditSession extends ElementEditSession {
       editorMatrix.postScale(scale, scale);
 
       double angle = angle(endPointElement[0], endPointElement[1]) - angle(startPointElement[0], startPointElement[1]);
+      RotationSnapResult rotationSnapResult = RotationSnap.snapToAngle(initialRotationRadians, angle);
+      angle = rotationSnapResult.getAngleRadians();
 
       if (!selected.getFlags().isRotateLocked()) {
         editorMatrix.postRotate((float) Math.toDegrees(angle));
+        if (rotationSnapResult.getSnapped() && !wasRotationSnapped) {
+          rotationSnapListener.onRotationSnap();
+        }
+        wasRotationSnapped = rotationSnapResult.getSnapped();
       }
 
       editorMatrix.postTranslate(endPointElement[0].x, endPointElement[0].y);
@@ -71,7 +88,7 @@ final class ElementScaleEditSession extends ElementEditSession {
   }
 
   private ElementDragEditSession convertToDrag(int p, @NonNull Matrix inverse) {
-    return ElementDragEditSession.startDrag(selected, inverse, endPointScreen[1 - p]);
+    return ElementDragEditSession.startDrag(selected, inverse, endPointScreen[1 - p], rotationSnapListener);
   }
 
   /**

@@ -28,11 +28,13 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
+import java.util.Locale
 import java.util.Optional
 
 class FindByViewModelTest {
 
   private val liveRecipientCache = mockk<LiveRecipientCache>(relaxed = true)
+  private val defaultLocale = Locale.getDefault()
   private lateinit var viewModel: FindByViewModel
 
   @Before
@@ -46,7 +48,60 @@ class FindByViewModelTest {
 
   @After
   fun tearDown() {
+    Locale.setDefault(defaultLocale)
     unmockkAll()
+  }
+
+  @Test
+  fun `Given a self e164, when I start the screen, then I expect the country of that number`() {
+    every { Recipient.self() } returns mockk {
+      every { e164 } returns Optional.of("+31612345678")
+    }
+
+    viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
+    val result = viewModel.state.value.selectedCountry
+
+    assertEquals("NL", result.regionCode)
+    assertEquals(31, result.countryCode)
+  }
+
+  @Test
+  fun `Given a shared calling code, when I start the screen, then I expect the primary region`() {
+    every { Recipient.self() } returns mockk {
+      every { e164 } returns Optional.of("+442071838750")
+    }
+
+    viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
+    val result = viewModel.state.value.selectedCountry
+
+    assertEquals("GB", result.regionCode)
+  }
+
+  @Test
+  fun `Given no self e164, when I start the screen, then I expect the country of the default locale`() {
+    Locale.setDefault(Locale("nl", "NL"))
+    every { Recipient.self() } returns mockk {
+      every { e164 } returns Optional.empty()
+    }
+
+    viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
+    val result = viewModel.state.value.selectedCountry
+
+    assertEquals("NL", result.regionCode)
+    assertEquals(31, result.countryCode)
+  }
+
+  @Test
+  fun `Given no self e164 and an unknown locale, when I start the screen, then I expect US`() {
+    Locale.setDefault(Locale("xx", "ZZ"))
+    every { Recipient.self() } returns mockk {
+      every { e164 } returns Optional.empty()
+    }
+
+    viewModel = FindByViewModel(FindByMode.PHONE_NUMBER)
+    val result = viewModel.state.value.selectedCountry
+
+    assertEquals("US", result.regionCode)
   }
 
   @Test

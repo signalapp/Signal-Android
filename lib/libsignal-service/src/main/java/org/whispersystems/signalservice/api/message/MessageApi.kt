@@ -33,14 +33,14 @@ class MessageApi(
 
   companion object {
     /**
-     * Adjust the default parsing of [SendMessageResponse] to set the non-server returned [SendMessageResponse.sentUnidentfied]
+     * Adjust the default parsing of [SendMessageResponse] to set the non-server returned [SendMessageResponse.sentUnidentified]
      * flag on the model.
      */
     private val sendMessageResponseConverter = object : NetworkResult.WebSocketResponseConverter<SendMessageResponse> {
       override fun convert(response: WebsocketResponse): NetworkResult<SendMessageResponse> {
         return if (response.status == 200) {
           response.toSuccess(SendMessageResponse::class)
-            .map { it.apply { setSentUnidentfied(response.isUnidentified) } }
+            .map { it.apply { sentUnidentified = response.isUnidentified } }
         } else {
           response.toStatusCodeError()
         }

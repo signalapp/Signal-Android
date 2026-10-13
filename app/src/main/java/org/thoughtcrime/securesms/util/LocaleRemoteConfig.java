@@ -24,13 +24,16 @@ import org.signal.core.util.BucketingUtil;
  * Provide access to locale-specific values within remote config, following the locale CSV-Colon format.
  *
  * Example: countryCode:integerValue,countryCode:integerValue,*:integerValue
+ *
+ * Accounts without a phone number are represented by the country code {@link SignalE164Util#NUMBERLESS_COUNTRY_CODE}.
  */
 public final class LocaleRemoteConfig {
 
   private static final String TAG = Log.tag(LocaleRemoteConfig.class);
 
-  private static final String COUNTRY_WILDCARD = "*";
-  private static final int    NOT_FOUND        = -1;
+  private static final String COUNTRY_WILDCARD  = "*";
+  private static final int    NOT_FOUND         = -1;
+  private static final String NUMBERLESS_MARKER = String.valueOf(SignalE164Util.NUMBERLESS_COUNTRY_CODE);
 
   public static @NonNull Optional<PushMediaConstraints.MediaConfig> getMediaQualityLevel() {
     Map<String, Integer> countryValues = parseCountryValues(RemoteConfig.getMediaQualityLevels(), NOT_FOUND);
@@ -93,13 +96,7 @@ public final class LocaleRemoteConfig {
    * one of them. For example, "33,1555" will return turn for e164's that start with 33 or look like 1-555-xxx-xxx.
    */
   private static boolean isEnabledE164Start(@NonNull String serialized) {
-    Recipient self = Recipient.self();
-
-    if (self.getE164().isEmpty()) {
-      return false;
-    }
-
-    return isEnabledE164Start(serialized, self.getE164().get());
+    return isEnabledE164Start(serialized, Recipient.self().getE164().orElse(NUMBERLESS_MARKER));
   }
 
   @VisibleForTesting
@@ -114,7 +111,7 @@ public final class LocaleRemoteConfig {
     Map<String, Integer> countryCodeValues = parseCountryValues(serialized, 0);
     Recipient            self              = Recipient.self();
 
-    if (countryCodeValues.isEmpty() || !self.getE164().isPresent() || !self.getServiceId().isPresent()) {
+    if (countryCodeValues.isEmpty() || !self.getServiceId().isPresent()) {
       return 0L;
     }
 
@@ -152,14 +149,21 @@ public final class LocaleRemoteConfig {
   @VisibleForTesting
   static int getCountryValue(@NonNull Map<String, Integer> countryCodeValues, @NonNull String e164, int defaultValue) {
     Integer countEnabled = countryCodeValues.get(COUNTRY_WILDCARD);
-    try {
-      String countryCode = String.valueOf(PhoneNumberUtil.getInstance().parse(e164, "").getCountryCode());
-      if (countryCodeValues.containsKey(countryCode)) {
-        countEnabled = countryCodeValues.get(countryCode);
+    String  countryCode;
+
+    if (e164.isEmpty()) {
+      countryCode = NUMBERLESS_MARKER;
+    } else {
+      try {
+        countryCode = String.valueOf(PhoneNumberUtil.getInstance().parse(e164, "").getCountryCode());
+      } catch (NumberParseException e) {
+        Log.d(TAG, "Unable to determine country code for bucketing.");
+        return defaultValue;
       }
-    } catch (NumberParseException e) {
-      Log.d(TAG, "Unable to determine country code for bucketing.");
-      return defaultValue;
+    }
+
+    if (countryCodeValues.containsKey(countryCode)) {
+      countEnabled = countryCodeValues.get(countryCode);
     }
 
     return countEnabled != null ? countEnabled : defaultValue;

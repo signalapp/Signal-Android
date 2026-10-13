@@ -7,6 +7,7 @@
     <color name="signal_colorSecondaryContainer">@color/signal_dark_colorSecondaryContainer</color>
     <color name="signal_colorSurface">@color/signal_dark_colorSurface</color>
     <color name="signal_colorSurfaceVariant">@color/signal_dark_colorSurfaceVariant</color>
+    <color name="signal_colorSurfaceVariantFill">@color/signal_dark_colorSurfaceVariantFill</color>
     <color name="signal_colorBackground">@color/signal_dark_colorBackground</color>
     <color name="signal_colorError">@color/signal_dark_colorError</color>
     <color name="signal_colorErrorContainer">@color/signal_dark_colorErrorContainer</color>
@@ -20,6 +21,7 @@
     <color name="signal_colorOnBackground">@color/signal_dark_colorOnBackground</color>
     <color name="signal_colorOutline">@color/signal_dark_colorOutline</color>
     <color name="signal_neutralSurface">@color/signal_dark_neutralSurface</color>
+    <color name="signal_neutralFill">@color/signal_dark_neutralFill</color>
     <color name="signal_colorOnCustom">@color/signal_dark_colorOnCustom</color>
     <color name="signal_colorOnCustomVariant">@color/signal_dark_colorOnCustomVariant</color>
 

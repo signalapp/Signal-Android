@@ -57,6 +57,9 @@
     <color name="storage_color_videos">#ff9BCFBD</color>
     <color name="storage_color_audio">@color/core_ultramarine</color>
     <color name="storage_color_files">#ffA23474</color>
+    <color name="storage_color_messages">#ffE8734A</color>
+    <color name="storage_color_stickers">#ff3DAE6F</color>
+    <color name="storage_color_other">#ff8C8F97</color>
     <color name="conversation_list_archive_background_start">@color/signal_colorPrimary</color>
     <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
 

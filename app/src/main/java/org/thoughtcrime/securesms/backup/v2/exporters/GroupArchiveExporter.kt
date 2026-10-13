@@ -96,8 +96,8 @@ private fun DecryptedGroup.toRemote(isMember: Boolean, selfAci: ServiceId.ACI): 
     membersPendingAdminApproval = this.requestingMembers.map { it.toRemote() },
     inviteLinkPassword = this.inviteLinkPassword,
     description = this.description.takeUnless { it.isBlank() }?.let { Group.GroupAttributeBlob(descriptionText = it) },
-    announcements_only = this.isAnnouncementGroup == EnabledState.ENABLED,
-    members_banned = this.bannedMembers.map { it.toRemote() },
+    announcementsOnly = this.isAnnouncementGroup == EnabledState.ENABLED,
+    membersBanned = this.bannedMembers.map { it.toRemote() },
     terminated = this.terminated
   )
 }

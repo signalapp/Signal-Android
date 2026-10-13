@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -28,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.ColorProfiles
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
@@ -37,15 +37,18 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.mediasend.R
 import org.signal.mediasend.test.TestTags
 
-/** Mirrors the legacy send button's disabled tint, which has no equivalent in the core-ui color scheme. */
-private val DisabledNextButtonColor = Color(0xFF777777)
+/**
+ * The circle the arrow is drawn in. [IconButtons.IconButton] keeps the 48dp of layout that
+ * [androidx.compose.material3.minimumInteractiveComponentSize] reserves around it, so what a finger can hit stays a full
+ * touch target wide while the button reads as 40dp.
+ */
+private val NextButtonSize = 40.dp
 
 /**
- * Mirrors the legacy send button's size. Has to be stated rather than left to the [IconButtons.IconButton] default of
- * 40dp: the default draws the container inside the 48dp of layout that [androidx.compose.material3.minimumInteractiveComponentSize]
- * reserves, leaving a button that is 8dp smaller than it looks like it should be and smaller than the row it sits in.
+ * The bar itself, stated rather than left to what is inside it: the icon buttons it carries each reserve a 48dp touch
+ * target, which would otherwise make the bar 4dp taller than it is meant to be.
  */
-private val NextButtonSize = 48.dp
+private val InputBarHeight = 44.dp
 
 /**
  * Because we need to be able to support stuff like mentions, styled text, and custom emoji, we need to allow
@@ -90,26 +93,45 @@ fun AddAMessageRow(
       modifier = Modifier
         .background(color = MaterialTheme.colorScheme.surfaceVariant, shape = RoundedCornerShape(24.dp))
         .weight(1f)
-        .heightIn(min = 44.dp)
-        .clickable(enabled = enabled, onClickLabel = stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvents.AddMessageClick()) }, role = Role.Button)
+        .height(InputBarHeight)
+        .then(
+          if (viewOnce) {
+            // A view-once send cannot carry a body, so the row becomes a static label rather than an entry point.
+            Modifier
+          } else {
+            Modifier.clickable(enabled = enabled, onClickLabel = stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__add_a_message), onClick = { onEvent(MediaEditScreenEvents.AddMessageClick()) }, role = Role.Button)
+          }
+        )
     ) {
-      IconButtons.IconButton(
-        enabled = enabled,
-        onClick = { onEvent(MediaEditScreenEvents.AddMessageClick(startWithEmojiKeyboard = true)) }
-      ) {
-        Icon(
-          painter = SignalIcons.Emoji.painter,
-          contentDescription = stringResource(R.string.AddAMessageRow__open_emoji_keyboard)
+      if (viewOnce) {
+        Text(
+          text = stringResource(R.string.AddAMessageRow__view_once_media),
+          style = MaterialTheme.typography.bodyLarge,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          textAlign = TextAlign.Center,
+          modifier = Modifier
+            .weight(1f)
+            .padding(horizontal = 16.dp)
+        )
+      } else {
+        IconButtons.IconButton(
+          enabled = enabled,
+          onClick = { onEvent(MediaEditScreenEvents.AddMessageClick(startWithEmojiKeyboard = true)) }
+        ) {
+          Icon(
+            painter = SignalIcons.Emoji.painter,
+            contentDescription = stringResource(R.string.AddAMessageRow__open_emoji_keyboard)
+          )
+        }
+
+        LocalAddAMessageRowTextField.current(
+          message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
+          Modifier
+            .weight(1f)
+            .height(InputBarHeight)
+            .padding(end = if (viewOnceAvailable) 0.dp else 16.dp, top = 10.dp, bottom = 10.dp)
         )
       }
-
-      LocalAddAMessageRowTextField.current(
-        message?.takeIf { it.isNotBlank() } ?: stringResource(if (isReply) R.string.AddAMessageRow__add_a_reply else R.string.AddAMessageRow__message),
-        Modifier
-          .weight(1f)
-          .height(44.dp)
-          .padding(end = if (viewOnceAvailable) 0.dp else 16.dp, top = 10.dp, bottom = 10.dp)
-      )
 
       if (viewOnceAvailable) {
         IconButtons.IconButton(
@@ -127,6 +149,8 @@ fun AddAMessageRow(
     Box {
       val scheduleSendMenuController = remember { DropdownMenus.MenuController() }
 
+      val nextButtonColor = recipientChatColor ?: MaterialTheme.colorScheme.primaryContainer
+
       IconButtons.IconButton(
         enabled = enabled,
         onClick = onNextClick,
@@ -134,10 +158,10 @@ fun AddAMessageRow(
         onLongClick = if (canScheduleSend) scheduleSendMenuController::show else null,
         onLongClickLabel = stringResource(R.string.AddAMessageRow__schedule_send),
         colors = IconButtons.iconButtonColors(
-          containerColor = recipientChatColor ?: MaterialTheme.colorScheme.primaryContainer,
+          containerColor = nextButtonColor,
           contentColor = if (recipientChatColor != null) SignalTheme.colors.colorOnCustom else MaterialTheme.colorScheme.onPrimaryContainer,
-          disabledContainerColor = DisabledNextButtonColor,
-          disabledContentColor = MaterialTheme.colorScheme.secondaryContainer
+          disabledContainerColor = ColorProfiles.disabledContainer(nextButtonColor),
+          disabledContentColor = ColorProfiles.disabledContent()
         ),
         modifier = Modifier
           .testTag(TestTags.ADD_A_MESSAGE_NEXT_BUTTON)
@@ -230,8 +254,36 @@ private fun AddAMessageRowDisabledPreview() {
       message = null,
       onEvent = {},
       onNextClick = {},
+      enabled = false
+    )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowDisabledKnownRecipientPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
       enabled = false,
       recipientChatColor = Color(0xFF3B7845)
+    )
+  }
+}
+
+/** A chat color that starts out pale, where a plain interpolation towards the chrome would barely move. */
+@DayNightPreviews
+@Composable
+private fun AddAMessageRowDisabledPaleRecipientPreview() {
+  Previews.Preview {
+    AddAMessageRow(
+      message = null,
+      onEvent = {},
+      onNextClick = {},
+      enabled = false,
+      recipientChatColor = Color(0xFFF5E0A0)
     )
   }
 }

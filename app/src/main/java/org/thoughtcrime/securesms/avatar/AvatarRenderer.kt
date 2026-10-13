@@ -40,7 +40,7 @@ object AvatarRenderer {
     when (avatar) {
       is Avatar.Resource -> renderResource(context, avatar, onAvatarRendered, onRenderFailed)
       is Avatar.Vector -> renderVector(context, avatar, onAvatarRendered, onRenderFailed)
-      is Avatar.Photo -> renderPhoto(context, avatar, onAvatarRendered)
+      is Avatar.Photo -> renderPhoto(context, avatar, onAvatarRendered, onRenderFailed)
       is Avatar.Text -> renderText(context, avatar, onAvatarRendered, onRenderFailed)
     }
   }
@@ -78,11 +78,16 @@ object AvatarRenderer {
     }
   }
 
-  private fun renderPhoto(context: Context, avatar: Avatar.Photo, onAvatarRendered: (Media) -> Unit) {
+  private fun renderPhoto(context: Context, avatar: Avatar.Photo, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      val blob = AppDependencies.blobs
-        .forData(AvatarPickerStorage.read(context, PartAuthority.getAvatarPickerFilename(avatar.uri)), avatar.size)
-        .createForSingleSessionOnDisk(context)
+      val blob = try {
+        AppDependencies.blobs
+          .forData(AvatarPickerStorage.read(context, PartAuthority.getAvatarPickerFilename(avatar.uri)), avatar.size)
+          .createForSingleSessionOnDisk(context)
+      } catch (e: Throwable) {
+        onRenderFailed(e)
+        return@execute
+      }
 
       onAvatarRendered(createMedia(blob, avatar.size))
     }
@@ -104,30 +109,37 @@ object AvatarRenderer {
 
   private fun renderInBackground(context: Context, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit, drawAvatar: (Canvas) -> Result<Unit>) {
     SignalExecutors.BOUNDED.execute {
-      val canvasBitmap = Bitmap.createBitmap(DIMENSIONS, DIMENSIONS, Bitmap.Config.ARGB_8888)
-      val canvas = Canvas(canvasBitmap)
-
-      val drawResult = drawAvatar(canvas)
-      if (drawResult.isFailure) {
-        canvasBitmap.recycle()
-        onRenderFailed(drawResult.exceptionOrNull())
+      val media = try {
+        renderToMedia(context, drawAvatar)
+      } catch (e: Throwable) {
+        Result.failure(e)
       }
 
-      val outStream = ByteArrayOutputStream()
-      val compressed = canvasBitmap.compress(Bitmap.CompressFormat.JPEG, 80, outStream)
-      canvasBitmap.recycle()
-
-      if (!compressed) {
-        onRenderFailed(IOException("Failed to compress bitmap"))
-        return@execute
-      }
-
-      val bytes = outStream.toByteArray()
-      val inStream = ByteArrayInputStream(bytes)
-      val uri = AppDependencies.blobs.forData(inStream, bytes.size.toLong()).createForSingleSessionOnDisk(context)
-
-      onAvatarRendered(createMedia(uri, bytes.size.toLong()))
+      media.fold(onSuccess = onAvatarRendered, onFailure = onRenderFailed)
     }
+  }
+
+  private fun renderToMedia(context: Context, drawAvatar: (Canvas) -> Result<Unit>): Result<Media> {
+    val canvasBitmap = Bitmap.createBitmap(DIMENSIONS, DIMENSIONS, Bitmap.Config.ARGB_8888)
+    val outStream = ByteArrayOutputStream()
+
+    val compressed = try {
+      drawAvatar(Canvas(canvasBitmap)).getOrElse { return Result.failure(it) }
+
+      canvasBitmap.compress(Bitmap.CompressFormat.JPEG, 80, outStream)
+    } finally {
+      canvasBitmap.recycle()
+    }
+
+    if (!compressed) {
+      return Result.failure(IOException("Failed to compress bitmap"))
+    }
+
+    val bytes = outStream.toByteArray()
+    val inStream = ByteArrayInputStream(bytes)
+    val uri = AppDependencies.blobs.forData(inStream, bytes.size.toLong()).createForSingleSessionOnDisk(context)
+
+    return Result.success(createMedia(uri, bytes.size.toLong()))
   }
 
   private fun createMedia(uri: Uri, size: Long): Media {

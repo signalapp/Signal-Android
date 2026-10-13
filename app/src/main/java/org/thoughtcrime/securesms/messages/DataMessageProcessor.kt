@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper
+import org.thoughtcrime.securesms.contactshare.quoteText
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -101,7 +102,6 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -861,7 +861,7 @@ object DataMessageProcessor {
     val giftBadge: DataMessage.GiftBadge = message.giftBadge!!
     check(giftBadge.receiptCredentialPresentation != null)
 
-    notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipientId, metadata.sourceDeviceId)
+    notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipientId, metadata.sourceDeviceId)
 
     val token = ReceiptCredentialPresentation(giftBadge.receiptCredentialPresentation!!.toByteArray()).serialize()
     val dbGiftBadge = GiftBadge.Builder()
@@ -912,7 +912,7 @@ object DataMessageProcessor {
   ): InsertResult? {
     log(envelope.clientTimestamp!!, "Media message.")
 
-    notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
+    notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
     val insertResult: InsertResult?
 
@@ -1019,7 +1019,7 @@ object DataMessageProcessor {
 
     handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
-    notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
+    notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 
     val textMessage = IncomingMessage(
       type = MessageType.NORMAL,
@@ -1480,10 +1480,10 @@ object DataMessageProcessor {
     }
   }
 
-  fun notifyTypingStoppedFromIncomingMessage(context: Context, senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {
+  fun notifyTypingStoppedFromIncomingMessage(senderRecipient: Recipient, threadRecipientId: RecipientId, device: Int) {
     val threadId = SignalDatabase.threads.getThreadIdIfExistsFor(threadRecipientId)
 
-    if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
+    if (threadId > 0 && SignalStore.settings.isTypingIndicatorsEnabled) {
       debug("Typing stopped on thread $threadId due to an incoming message.")
       AppDependencies.typingStatusRepository.onTypingStopped(threadId, senderRecipient, device, true)
     }
@@ -1551,6 +1551,8 @@ object DataMessageProcessor {
 
       if (quotedMessage.isViewOnce) {
         thumbnailAttachment = TombstoneAttachment.forQuote()
+      } else if (quotedMessage.sharedContacts.isNotEmpty()) {
+        thumbnailAttachment = null
       } else if (thumbnailAttachment == null) {
         thumbnailAttachment = quotedMessage
           .linkPreviews
@@ -1563,7 +1565,12 @@ object DataMessageProcessor {
         quotedMessage = SignalDatabase.payments.updateMessageWithPayment(quotedMessage) as MmsMessageRecord
       }
 
-      val body = if (quotedMessage.isPaymentNotification) quotedMessage.getDisplayBody(context).toString() else quotedMessage.body
+      val sharedContact = quotedMessage.sharedContacts.firstOrNull()
+      val body = when {
+        quotedMessage.isPaymentNotification -> quotedMessage.getDisplayBody(context).toString()
+        sharedContact != null -> sharedContact.quoteText(context)
+        else -> quotedMessage.body
+      }
 
       return QuoteModel(
         id = quote.id!!,

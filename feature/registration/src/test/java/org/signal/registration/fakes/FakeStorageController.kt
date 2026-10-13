@@ -18,6 +18,7 @@ import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
 import org.signal.registration.screens.messagesync.LinkAndSyncProgress
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.time.LocalDateTime
 
 /**
@@ -48,6 +49,11 @@ class FakeStorageController : StorageController {
 
   /** Profile data already on disk, used to pre-seed or skip the create-profile screen. */
   var storedProfileData: StoredProfileData = StoredProfileData()
+
+  var savedUsername: String? = null
+    private set
+  var savedUsernameLink: UsernameLinkComponents? = null
+    private set
 
   // -- Response handlers. Override these in tests to change what is found on disk and how restores play out.
 
@@ -140,6 +146,11 @@ class FakeStorageController : StorageController {
   }
 
   override suspend fun getStoredProfileData(): StoredProfileData = storedProfileData
+
+  override suspend fun saveUsername(username: String, usernameLink: UsernameLinkComponents) {
+    savedUsername = username
+    savedUsernameLink = usernameLink
+  }
 
   private fun notExpected(): Nothing {
     throw NotImplementedError("This method is not expected to be called in the flow under test.")

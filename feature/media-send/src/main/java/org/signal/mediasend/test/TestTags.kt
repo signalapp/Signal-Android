@@ -26,10 +26,14 @@ object TestTags {
 
   // Media Capture Screen
   const val MEDIA_CAPTURE_SCREEN = "media_capture_screen"
-  const val MEDIA_CAPTURE_CAMERA_TOGGLE = "media_capture_camera_toggle"
+  const val MEDIA_CAPTURE_MODE_BAR = "media_capture_mode_bar"
+  const val MEDIA_CAPTURE_PHOTO_TOGGLE = "media_capture_photo_toggle"
+  const val MEDIA_CAPTURE_VIDEO_TOGGLE = "media_capture_video_toggle"
   const val MEDIA_CAPTURE_TEXT_STORY_TOGGLE = "media_capture_text_story_toggle"
-  const val MEDIA_CAPTURE_MEDIA_COUNT = "media_capture_media_count"
-  const val MEDIA_CAPTURE_NEXT_BUTTON = "media_capture_next_button"
+
+  // Shared. The next button is the same control on the capture and select screens, so it has one tag.
+  const val MEDIA_SEND_MEDIA_COUNT = "media_send_media_count"
+  const val MEDIA_SEND_NEXT_BUTTON = "media_send_next_button"
 
   // Media Select Screen
   const val MEDIA_SELECT_GRID = "media_select_grid"

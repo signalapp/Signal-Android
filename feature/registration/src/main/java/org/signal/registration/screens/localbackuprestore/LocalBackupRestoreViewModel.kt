@@ -7,12 +7,10 @@ package org.signal.registration.screens.localbackuprestore
 
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -35,13 +33,13 @@ import kotlin.time.Duration.Companion.seconds
 
 class LocalBackupRestoreViewModel(
   private val repository: RegistrationRepository,
-  parentState: Flow<RegistrationFlowState>,
+  private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val isPreRegistration: Boolean,
   private val resultBus: ResultEventBus,
   private val resultKey: String,
   private val knownAep: AccountEntropyPool? = null
-) : EventDrivenViewModel<LocalBackupRestoreEvents>(TAG) {
+) : EventDrivenViewModel<LocalBackupRestoreEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(LocalBackupRestoreViewModel::class)
@@ -166,7 +164,11 @@ class LocalBackupRestoreViewModel(
 
       repository.setRestoreDecision(RestoreDecision.COMPLETED)
 
-      if (progress.restoredSvrPin != null) {
+      if (parentState.value.isPhoneNumberlessAccount) {
+        Log.i(TAG, "[onRestoreComplete] Account has no phone number, and therefore no PIN. Completing registration.")
+        repository.restoreAccountRecord()
+        parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
+      } else if (progress.restoredSvrPin != null) {
         repository.restoreAccountRecord()
         parentEventEmitter(RegistrationFlowEvent.RegistrationComplete)
       } else if (state.storageCapable) {
@@ -261,20 +263,6 @@ class LocalBackupRestoreViewModel(
           }
         }
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: Flow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val isPreRegistration: Boolean,
-    private val knownAep: AccountEntropyPool?,
-    private val resultBus: ResultEventBus,
-    private val resultKey: String
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return LocalBackupRestoreViewModel(repository, parentState, parentEventEmitter, isPreRegistration, resultBus, resultKey, knownAep) as T
     }
   }
 }

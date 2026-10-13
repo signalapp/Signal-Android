@@ -16,9 +16,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.network.exceptions.PushNetworkException;
-import org.signal.network.service.CdnService;
 import org.signal.network.exceptions.PushNetworkException;
-import org.signal.network.service.CdnService;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -29,10 +27,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -196,18 +194,18 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       throws IOException, UntrustedIdentityException, NetworkException, NoSessionException
   {
     boolean isAppVisible      = AppForegroundObserver.isForegrounded();
-    long    timeSinceLastSync = System.currentTimeMillis() - TextSecurePreferences.getLastFullContactSyncTime(context);
+    long    timeSinceLastSync = System.currentTimeMillis() - SignalStore.misc().getLastFullContactSyncTime();
 
     Log.d(TAG, "Requesting a full contact sync. forced = " + forceSync + ", appVisible = " + isAppVisible + ", timeSinceLastSync = " + timeSinceLastSync + " ms");
 
     if (!forceSync && !isAppVisible && timeSinceLastSync < FULL_SYNC_TIME) {
       Log.i(TAG, "App is backgrounded and the last contact sync was too soon (" + timeSinceLastSync + " ms ago). Marking that we need a sync. Skipping multi-device contact update...");
-      TextSecurePreferences.setNeedsFullContactSync(context, true);
+      SignalStore.misc().setNeedsFullContactSync(true);
       return;
     }
 
-    TextSecurePreferences.setLastFullContactSyncTime(context, System.currentTimeMillis());
-    TextSecurePreferences.setNeedsFullContactSync(context, false);
+    SignalStore.misc().setLastFullContactSyncTime(System.currentTimeMillis());
+    SignalStore.misc().setNeedsFullContactSync(false);
 
     WriteDetails writeDetails = createTempFile();
 
@@ -243,9 +241,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Recipient self       = Recipient.self();
       byte[]    profileKey = self.getProfileKey();
 
-      if (profileKey != null) {
-        out.write(new DeviceContact(Optional.of(SignalStore.account().getAci()),
-                                    Optional.of(SignalStore.account().getE164()),
+      if (profileKey != null && (self.getHasAci() || self.getHasE164())) {
+        out.write(new DeviceContact(self.getAci(),
+                                    self.getE164(),
                                     Optional.empty(),
                                     Optional.empty(),
                                     self.getExpiresInSeconds() > 0 ? Optional.of(self.getExpiresInSeconds()) : Optional.empty(),
@@ -289,12 +287,11 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   {
     if (length > 0) {
       try {
-        CdnService cdnService = new CdnService(AppDependencies.getSignalRestClient(), AppDependencies.getAttachmentApi());
         SignalServiceAttachmentStream.Builder attachmentStream = SignalServiceAttachment.newStreamBuilder()
                                                                                         .withStream(stream)
                                                                                         .withContentType("application/octet-stream")
                                                                                         .withLength(length)
-                                                                                        .withResumableUploadSpec(cdnService.getResumableUploadSpecBlocking(AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(length))));
+                                                                                        .withResumableUploadSpec(SignalNetwork.cdnService().getResumableUploadSpecBlocking(AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(length))));
 
         messageSender.sendSyncMessage(SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream.build(), complete))
         );

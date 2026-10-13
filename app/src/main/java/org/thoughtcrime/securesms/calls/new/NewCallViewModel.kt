@@ -151,7 +151,6 @@ class NewCallViewModel : ViewModel() {
 }
 
 data class NewCallUiState(
-  val forceSplitPane: Boolean = SignalStore.internal.forceSplitPane,
   val searchQuery: String = "",
   val isLookingUpRecipient: Boolean = false,
   val isRefreshingContacts: Boolean = false,

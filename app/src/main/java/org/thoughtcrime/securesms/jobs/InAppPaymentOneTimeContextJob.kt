@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
 import java.io.IOException
@@ -123,7 +124,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
 
     info("Submitting request context to server...")
-    val serviceResponse = AppDependencies.donationsService.submitBoostReceiptCredentialRequestSync(
+    val serviceResponse = SignalNetwork.donationsService.submitBoostReceiptCredentialRequestSync(
       inAppPayment.data.redemption!!.paymentIntentId,
       requestContext.request,
       inAppPayment.data.paymentMethodType.toDonationProcessor()

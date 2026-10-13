@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2
@@ -61,7 +60,7 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
       return Result.success()
     }
 
-    if (TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (SignalStore.account.isUnauthorizedReceived) {
       Log.w(TAG, "Not authorized. Skipping.")
       return Result.success()
     }

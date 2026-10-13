@@ -5,7 +5,6 @@
 
 package org.signal.mediasend.screens.edit
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,9 +23,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.mediasend.R
@@ -120,7 +119,7 @@ private fun ButtonLabel(title: String, description: String) {
   }
 }
 
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@DayNightPreviews
 @Composable
 private fun QualitySelectorSheetContentStandardPreview() {
   Previews.Preview {
@@ -128,7 +127,7 @@ private fun QualitySelectorSheetContentStandardPreview() {
   }
 }
 
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@DayNightPreviews
 @Composable
 private fun QualitySelectorSheetContentHighPreview() {
   Previews.Preview {

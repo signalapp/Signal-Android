@@ -14,22 +14,13 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
-import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 
-typealias OnAvatarClickListener = (Avatar, Boolean) -> Unit
-typealias OnAvatarLongClickListener = (View, Avatar) -> Boolean
-
 object AvatarPickerItem {
 
   private val SELECTION_CHANGED = Any()
-
-  fun register(adapter: MappingAdapter, onAvatarClickListener: OnAvatarClickListener, onAvatarLongClickListener: OnAvatarLongClickListener) {
-    adapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it, onAvatarClickListener, onAvatarLongClickListener) }, R.layout.avatar_picker_item))
-  }
 
   class Model(val avatar: Avatar, val isSelected: Boolean) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean = avatar.isSameAs(newItem.avatar)
@@ -45,11 +36,7 @@ object AvatarPickerItem {
     }
   }
 
-  class ViewHolder(
-    itemView: View,
-    private val onAvatarClickListener: OnAvatarClickListener? = null,
-    private val onAvatarLongClickListener: OnAvatarLongClickListener? = null
-  ) : MappingViewHolder<Model>(itemView) {
+  class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
     private val imageView: ImageView = itemView.findViewById(R.id.avatar_picker_item_image)
     private val textView: TextView = itemView.findViewById(R.id.avatar_picker_item_text)
@@ -80,12 +67,6 @@ object AvatarPickerItem {
       textView.animate().cancel()
       selectedOverlay?.animate()?.cancel()
       selectedFader?.animate()?.cancel()
-
-      itemView.setOnLongClickListener {
-        onAvatarLongClickListener?.invoke(itemView, model.avatar) ?: false
-      }
-
-      itemView.setOnClickListener { onAvatarClickListener?.invoke(model.avatar, model.isSelected) }
 
       if (payload.isNotEmpty() && payload.contains(SELECTION_CHANGED)) {
         imageView.animate().scaleX(scale).scaleY(scale)

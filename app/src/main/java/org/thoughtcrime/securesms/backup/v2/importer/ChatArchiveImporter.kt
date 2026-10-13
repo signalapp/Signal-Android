@@ -60,14 +60,17 @@ object ChatArchiveImporter {
       .update(
         RecipientTable.TABLE_NAME,
         contentValuesOf(
-          RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.NotificationSetting.DO_NOT_NOTIFY.id else RecipientTable.NotificationSetting.ALWAYS_NOTIFY.id),
+          RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.NotificationSetting.DO_NOT_NOTIFY.id else RecipientTable.NotificationSetting.fromBoolean(chat.notifyForMentionsIfMuted).id),
           RecipientTable.MUTE_UNTIL to (chat.muteUntilMs ?: 0),
           RecipientTable.MESSAGE_EXPIRATION_TIME to (chat.expirationTimerMs?.milliseconds?.inWholeSeconds ?: 0),
           RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION to chat.expireTimerVersion,
           RecipientTable.CHAT_COLORS to chatColor?.serialize()?.encode(),
           RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColor?.id ?: ChatColors.Id.NotSet).longValue,
           RecipientTable.WALLPAPER_URI to if (chatWallpaper is UriChatWallpaper) chatWallpaper.uri.toString() else null,
-          RecipientTable.WALLPAPER to chatWallpaper?.serialize()?.encode()
+          RecipientTable.WALLPAPER to chatWallpaper?.serialize()?.encode(),
+          RecipientTable.CALL_NOTIFICATION_SETTING to RecipientTable.NotificationSetting.fromBoolean(chat.notifyForCallsIfMuted).id,
+          RecipientTable.REPLY_NOTIFICATION_SETTING to RecipientTable.NotificationSetting.fromBoolean(chat.notifyForRepliesIfMuted).id,
+          RecipientTable.UNREAD_REMINDER to RecipientTable.NotificationSetting.fromBoolean(chat.showUnreadReminders).id
         ),
         "${RecipientTable.ID} = ?",
         SqlUtil.buildArgs(recipientId.toLong())

@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconPreset
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconUtility
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 class AppIconSelectionFragment : ComposeFragment() {
   private lateinit var appIconUtility: AppIconUtility
@@ -74,7 +75,7 @@ class AppIconSelectionFragment : ComposeFragment() {
         findNavController().popBackStack()
       },
       navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
+      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
     ) { contentPadding: PaddingValues ->
       IconSelectionScreen(appIconUtility.currentAppIcon, ::updateAppIcon, ::openLearnMore, Modifier.padding(contentPadding))
     }

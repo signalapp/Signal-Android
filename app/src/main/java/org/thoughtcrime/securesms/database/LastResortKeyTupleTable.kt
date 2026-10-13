@@ -9,6 +9,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
+import org.signal.core.util.requireNonNullBlob
+import org.signal.core.util.select
 import org.signal.libsignal.protocol.ReusedBaseKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 
@@ -58,5 +61,20 @@ class LastResortKeyTupleTable(context: Context, databaseHelper: SignalDatabase) 
       Log.w(TAG, "Found duplicate use of last-resort kyber key set.", e)
       throw ReusedBaseKeyException(e)
     }
+  }
+
+  /**
+   * Whether we've already recorded the given Last-resort tuple.
+   */
+  fun exists(kyberPreKeyRowId: Int, signedKeyId: Int, publicKey: ECPublicKey): Boolean {
+    val serialized = publicKey.serialize()
+
+    return readableDatabase
+      .select(PUBLIC_KEY)
+      .from(TABLE_NAME)
+      .where("$KYBER_PREKEY = ? AND $SIGNED_KEY_ID = ?", kyberPreKeyRowId, signedKeyId)
+      .run()
+      .readToList { it.requireNonNullBlob(PUBLIC_KEY) }
+      .any { it.contentEquals(serialized) }
   }
 }

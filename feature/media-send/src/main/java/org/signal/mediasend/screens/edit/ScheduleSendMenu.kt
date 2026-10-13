@@ -65,8 +65,8 @@ sealed interface ScheduleSendOption {
     private val PRESET_HOURS = intArrayOf(8, 12, 18, 21)
 
     /**
-     * The options to offer at [currentTimeMs], ordered for a menu that opens above its trigger: the soonest suggestion
-     * sits closest to the send button and [PickTime] furthest from it.
+     * The options to offer at [currentTimeMs], in the order they are rendered top-to-bottom: the soonest suggestion
+     * first, then the rest in chronological order, with [PickTime] last.
      *
      * Suggestions are the next three [PRESET_HOURS] on the clock, plus Monday morning when the week is already over.
      */
@@ -103,7 +103,7 @@ sealed interface ScheduleSendOption {
           .toEpochMillis(zoneId)
       }
 
-      return listOf(PickTime) + times.reversed().map { PresetTime(it) }
+      return times.map { PresetTime(it) } + PickTime
     }
 
     private fun Long.toLocalDateTime(zoneId: ZoneId): LocalDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(this), zoneId)

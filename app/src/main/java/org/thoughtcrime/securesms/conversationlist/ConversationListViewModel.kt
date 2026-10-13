@@ -16,10 +16,12 @@ import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.combineLatest
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
 import kotlinx.parcelize.Parcelize
+import org.signal.core.util.logging.Log
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
@@ -48,12 +50,15 @@ sealed class ConversationListViewModel(
 ) : ViewModel() {
 
   companion object {
+    private val TAG = Log.tag(ConversationListViewModel::class.java)
     private const val STATE = "state"
 
     private var coldStart = true
   }
 
   private val disposables: CompositeDisposable = CompositeDisposable()
+
+  private val folderRefreshRequests = Channel<Unit>(capacity = Channel.CONFLATED)
 
   private var saveableState: SaveableState
     get() = savedStateHandle[STATE] ?: SaveableState()
@@ -124,6 +129,16 @@ sealed class ConversationListViewModel(
       .subscribe { controller.onDataInvalidated() }
       .addTo(disposables)
 
+    viewModelScope.launch(Dispatchers.Default) {
+      for (request in folderRefreshRequests) {
+        try {
+          loadCurrentFolders()
+        } catch (e: Exception) {
+          Log.w(TAG, "Failed to load current folders", e)
+        }
+      }
+    }
+
     Flowable.merge(
       RxDatabaseObserver
         .conversationList
@@ -132,7 +147,7 @@ sealed class ConversationListViewModel(
         .chatFolders
         .throttleLatest(500, TimeUnit.MILLISECONDS)
     )
-      .subscribe { loadCurrentFolders() }
+      .subscribe { folderRefreshRequests.trySend(Unit) }
       .addTo(disposables)
 
     val pinnedCount = RxDatabaseObserver
@@ -215,35 +230,33 @@ sealed class ConversationListViewModel(
   }
 
   private fun loadCurrentFolders() {
-    viewModelScope.launch(Dispatchers.Default) {
-      val folders = ChatFoldersRepository.getCurrentFolders()
+    val folders = ChatFoldersRepository.getCurrentFolders()
 
-      val unreadCountAndEmptyAndMutedStatus: Map<Long, Triple<Int, Boolean, Boolean>> = if (folders.size > 1) {
-        ChatFoldersRepository.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
-      } else {
-        emptyMap()
-      }
+    val unreadCountAndEmptyAndMutedStatus: Map<Long, Triple<Int, Boolean, Boolean>> = if (folders.size > 1) {
+      ChatFoldersRepository.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
+    } else {
+      emptyMap()
+    }
 
-      val selectedFolderId = if (currentFolder.id == -1L) {
-        folders.firstOrNull()?.id
-      } else {
-        currentFolder.id
-      }
-      val chatFolders = folders.map { folder ->
-        ChatFolderMappingModel(
-          chatFolder = folder,
-          unreadCount = unreadCountAndEmptyAndMutedStatus[folder.id]?.first ?: 0,
-          isEmpty = unreadCountAndEmptyAndMutedStatus[folder.id]?.second ?: false,
-          isMuted = unreadCountAndEmptyAndMutedStatus[folder.id]?.third ?: false,
-          isSelected = selectedFolderId == folder.id
-        )
-      }
-
-      saveableState = saveableState.copy(
-        currentFolder = folders.find { folder -> folder.id == selectedFolderId } ?: ChatFolderRecord(),
-        chatFolders = chatFolders
+    val selectedFolderId = if (currentFolder.id == -1L) {
+      folders.firstOrNull()?.id
+    } else {
+      currentFolder.id
+    }
+    val chatFolders = folders.map { folder ->
+      ChatFolderMappingModel(
+        chatFolder = folder,
+        unreadCount = unreadCountAndEmptyAndMutedStatus[folder.id]?.first ?: 0,
+        isEmpty = unreadCountAndEmptyAndMutedStatus[folder.id]?.second ?: false,
+        isMuted = unreadCountAndEmptyAndMutedStatus[folder.id]?.third ?: false,
+        isSelected = selectedFolderId == folder.id
       )
     }
+
+    saveableState = saveableState.copy(
+      currentFolder = folders.find { folder -> folder.id == selectedFolderId } ?: ChatFolderRecord(),
+      chatFolders = chatFolders
+    )
   }
 
   private fun setSelection(newSelection: Collection<Conversation>) {

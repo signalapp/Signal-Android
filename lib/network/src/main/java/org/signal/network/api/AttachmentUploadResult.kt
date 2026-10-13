@@ -19,5 +19,6 @@ class AttachmentUploadResult(
   val incrementalDigestChunkSize: Int,
   val dataSize: Long,
   val uploadTimestamp: Long,
-  val blurHash: String?
+  val blurHash: String?,
+  val audioHash: String?
 )

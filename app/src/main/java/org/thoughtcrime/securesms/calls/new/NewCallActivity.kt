@@ -137,7 +137,6 @@ private fun NewCallScreenUi(
 
   RecipientPickerScaffold(
     title = stringResource(R.string.NewCallActivity__new_call),
-    forceSplitPane = uiState.forceSplitPane,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = { TopAppBarActions(callbacks) },
     snackbarHostState = snackbarHostState,
@@ -245,9 +244,7 @@ private fun UserMessagesHost(
 private fun NewCallScreenPreview() {
   Previews.Preview {
     NewCallScreenUi(
-      uiState = NewCallUiState(
-        forceSplitPane = false
-      ),
+      uiState = NewCallUiState(),
       callbacks = NewCallUiCallbacks.Empty
     )
   }

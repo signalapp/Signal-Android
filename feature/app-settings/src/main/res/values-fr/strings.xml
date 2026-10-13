@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!-- RegistrationLockV2Dialog -->
-    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage d’inscription ?</string>
-    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le blocage d’inscription ?</string>
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage d\'inscription ?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le blocage d\'inscription ?</string>
     <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous ne vous souvenez plus de votre code PIN au moment de vous réinscrire à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
     <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
@@ -19,9 +19,9 @@
     <string name="preferences_app_protection__turn_off">Désactiver</string>
     <string name="preferences_app_protection__confirm_pin">Confirmer le PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre code PIN Signal</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Mémorisez bien votre code PIN ou gardez-le en lieu sûr, car il est impossible de le récupérer. En cas d’oubli, vous risquez de perdre des données lorsque vous réinscrirez votre compte Signal.</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Mémorisez bien votre code PIN ou gardez-le en lieu sûr, car il est impossible de le récupérer. En cas d\'oubli, vous risquez de perdre des données lorsque vous réinscrirez votre compte Signal.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
-    <string name="preferences_app_protection__registration_lock">Blocage d’inscription</string>
+    <string name="preferences_app_protection__registration_lock">Blocage d\'inscription</string>
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Réinscrire le compte</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
@@ -40,79 +40,312 @@
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Compte</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Les rappels deviennent moins fréquents au fil du temps</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Exiger le code PIN Signal pour réenregistrer votre numéro de téléphone sur Signal</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Exiger le code PIN Signal pour réinscrire votre numéro de téléphone sur Signal</string>
     <string name="AccountSettingsFragment__change_phone_number">Changer de numéro de téléphone</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Données du compte</string>
     <!-- Section header for the Signal Login section of account settings -->
-    <string name="AccountSettingsFragment__signal_login">Identifiant Signal</string>
+    <string name="AccountSettingsFragment__signal_login">Login Signal</string>
     <!-- Title of the card that opens the user\'s Signal Login account and recovery keys -->
-    <string name="AccountSettingsFragment__account_and_recovery">Account &amp; recovery</string>
-    <!-- Subtitle of the Signal Login card describing how many keys make up the login -->
-    <plurals name="AccountSettingsFragment__d_keys">
-        <item quantity="one">%1$d key</item>
-        <item quantity="other">%1$d keys</item>
-    </plurals>
+    <string name="AccountSettingsFragment__account_and_recovery">Compte et récupération</string>
     <!-- Description of what a Signal Login is, shown below the Signal Login card -->
-    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Your Signal Login is used to recover and restore your account. Keep these keys stored safely in a password manager you trust.</string>
+    <string name="AccountSettingsFragment__your_signal_login_is_used_to_recover">Votre login Signal vous permet d\'identifier votre compte et de le restaurer. Conservez ces clés en lieu sûr, dans un gestionnaire de mots de passe fiable.</string>
     <!-- Section header for the two-factor authentication section of account settings -->
-    <string name="AccountSettingsFragment__two_factor_authentication">Two-factor authentication</string>
-    <!-- Account setting that takes the user to the authenticator app setup flow -->
-    <string name="AccountSettingsFragment__authenticator_app">Authenticator app</string>
-    <!-- Description of the authenticator app setting -->
-    <string name="AccountSettingsFragment__use_an_authenticator_app">Use an authenticator app to generate one-time verification codes</string>
-    <!-- Description of the authenticator app setting when one has already been set up -->
-    <string name="AccountSettingsFragment__enabled">Activé</string>
-    <!-- Account setting for setting up a physical security key -->
-    <string name="AccountSettingsFragment__security_keys">Security keys</string>
-    <!-- Description of the security keys setting -->
-    <string name="AccountSettingsFragment__set_up_using_a_physical_security_key">Set up using a physical security key</string>
-    <!-- Description of two-factor authentication, shown below the two-factor authentication rows -->
-    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Use a second form of authentication to protect your account when using your Signal Login on a new device.</string>
+    <string name="AccountSettingsFragment__two_factor_authentication">Authentification à deux facteurs</string>
+    <!-- Row that opens the menu of second factors the user can add -->
+    <string name="AccountSettingsFragment__set_up">Configurer</string>
+    <!-- Menu option that starts setting up an authenticator app -->
+    <string name="AccountSettingsFragment__authenticator_app">Appli d\'authentification</string>
+    <!-- Description of the authenticator app menu option -->
+    <string name="AccountSettingsFragment__one_time_verification_codes">Codes de vérification à usage unique</string>
+    <!-- Name of a passkey in the list of second factors on the account -->
+    <string name="AccountSettingsFragment__passkey">Clé d\'accès</string>
+    <!-- Description of the passkey menu option -->
+    <string name="AccountSettingsFragment__use_your_fingerprint_face_or_screen_lock">Use your fingerprint, face, or screen lock</string>
+    <!-- Default name given to a passkey before the user chooses one -->
+    <string name="AccountSettingsRepository__passkey">Clé d\'accès</string>
+    <!-- Name given to a second factor added by a newer version of Signal that this one doesn\'t recognize -->
+    <string name="AccountSettingsFragment__two_factor_method">Two-factor method</string>
+    <!-- Subtitle of a second factor saying what kind it is and when it was added. First placeholder is the kind, second is a date or time. -->
+    <string name="AccountSettingsFragment__s_added_s">%1$s · ajouté le %2$s</string>
+    <!-- Name shown for a second factor whose details couldn\'t be read -->
+    <string name="AccountSettingsFragment__unknown">Application inconnue</string>
+    <!-- Content description of the button that opens a second factor\'s options -->
+    <string name="AccountSettingsFragment__open_two_factor_options">Accéder aux options d\'authentification à deux facteurs</string>
+    <!-- Menu option that renames a second factor -->
+    <string name="AccountSettingsFragment__rename">Renommer</string>
+    <!-- Menu option that removes a second factor -->
+    <string name="AccountSettingsFragment__remove">Supprimer</string>
+    <!-- Title of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__remove_authenticator_app">Supprimer l\'appli d\'authentification ?</string>
+    <!-- Body of the dialog confirming removal of an authenticator app -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_app">Vous ne pourrez plus utiliser cette appli pour générer des codes de vérification à usage unique lorsque vous vous connectez à Signal.</string>
+    <!-- Title of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__remove_passkey">Remove passkey?</string>
+    <!-- Body of the dialog confirming removal of a passkey -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_passkey">You won\'t be able to use this passkey when you sign in.</string>
+    <!-- Title of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__remove_two_factor_method">Remove two-factor method?</string>
+    <!-- Body of the dialog confirming removal of a second factor this version of Signal doesn\'t recognize -->
+    <string name="AccountSettingsFragment__you_wont_be_able_to_use_this_method">You won\'t be able to use this method when you sign in.</string>
+    <!-- Toast shown after a second factor has been removed from the account -->
+    <string name="AccountSettingsFragment__two_factor_method_removed">Two-factor method removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a second factor -->
+    <string name="AccountSettingsFragment__couldnt_remove_two_factor_method">Couldn\'t remove two-factor method. Check your connection and try again.</string>
+    <!-- Toast shown after a passkey has been removed from the account -->
+    <string name="AccountSettingsFragment__passkey_removed">Passkey removed</string>
+    <!-- Toast shown when we couldn\'t reach the service to remove a passkey -->
+    <string name="AccountSettingsFragment__couldnt_remove_passkey">Couldn\'t remove passkey. Check your connection and try again.</string>
+    <!-- Toast shown when the device has no passkey provider set up to create a passkey with -->
+    <string name="AccountSettingsFragment__no_passkey_provider">Set up a password manager that supports passkeys on this device, then try again.</string>
+    <!-- Toast shown when creating a passkey didn\'t work -->
+    <string name="AccountSettingsFragment__couldnt_create_passkey">Couldn\'t create passkey. Try again.</string>
+    <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Déverrouiller l\'écran pour continuer</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
+    <string name="AccountSettingsFragment__to_remove_this_method_confirm_its_you">Pour supprimer cette méthode, authentifiez-vous.</string>
+    <!-- Title of the device screen lock prompt shown before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__unlock_to_view_signal_login">Déverrouiller l\'appli pour afficher le login Signal</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the Signal Login details can be viewed -->
+    <string name="AccountSettingsFragment__to_view_your_signal_login_confirm_its_you">Pour afficher votre login Signal, authentifiez-vous.</string>
+    <!-- Title of the device screen lock prompt shown before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__unlock_to_confirm_its_you">Déverrouiller l\'écran pour vous authentifier</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before the delete account flow can be opened -->
+    <string name="AccountSettingsFragment__to_delete_your_account_confirm_its_you">Authentifiez-vous pour supprimer votre compte</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so nothing happened -->
+    <string name="AccountSettingsFragment__authentication_required">Authentification requise</string>
+    <!-- Title of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__cant_add_authenticator_app">Impossible d\'ajouter l\'appli d\'authentification</string>
+    <!-- Body of the dialog shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d">Vous ne pouvez pas ajouter plus de %1$d applis d\'authentification. Supprimez-en une, puis réessayez.</string>
+    <!-- Body of the dialog shown when the account has room for another authenticator app but already has as many two-factor methods of all kinds as it\'s allowed -->
+    <string name="AccountSettingsFragment__you_cant_add_more_than_d_two_factor_methods">Vous ne pouvez pas ajouter plus de %1$d applis d\'authentification à deux facteurs. Supprimez-en une, puis réessayez.</string>
+    <!-- Shown in place of the list when we couldn\'t work out which second factors are on the account -->
+    <string name="AccountSettingsFragment__couldnt_load_your_two_factor_methods">Impossible de charger vos applis d\'authentification à deux facteurs. Veuillez vérifier votre connexion et réessayer.</string>
+    <!-- Toast shown after an authenticator app has been removed -->
+    <string name="AccountSettingsFragment__authenticator_app_removed">Appli d\'authentification supprimée</string>
+    <!-- Toast shown when an authenticator app couldn\'t be removed -->
+    <string name="AccountSettingsFragment__couldnt_remove_authenticator_app">Impossible de supprimer l\'appli d\'authentification. Veuillez vérifier votre connexion et réessayer.</string>
+    <!-- Description of two-factor authentication, shown below the two-factor authentication list -->
+    <string name="AccountSettingsFragment__use_a_second_form_of_authentication">Activez la vérification en deux étapes pour protéger votre compte lorsque vous saisissez votre login Signal sur un nouvel appareil.</string>
     <!-- Clickable text that takes the user to a support article -->
     <string name="AccountSettingsFragment__learn_more">En savoir plus</string>
 
-    <!-- AuthenticatorSetupScreen -->
+    <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
-    <string name="AuthenticatorSetupScreen__authenticator_app">Authenticator app</string>
+    <string name="TotpSetupScreen__set_up_your_authenticator_app">Configurer une appli d\'authentification</string>
     <!-- Instructions shown at the top of the authenticator app setup screen -->
-    <string name="AuthenticatorSetupScreen__follow_these_steps">Follow these steps to set up your authenticator app.</string>
+    <string name="TotpSetupScreen__follow_these_steps">Suivez les étapes ci-dessous pour configurer votre appli d\'authentification.</string>
     <!-- Clickable text that takes the user to a support article -->
-    <string name="AuthenticatorSetupScreen__learn_more">En savoir plus</string>
+    <string name="TotpSetupScreen__learn_more">En savoir plus</string>
     <!-- Header of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_1">Step 1</string>
+    <string name="TotpSetupScreen__step_1">Étape 1</string>
     <!-- Body of the first step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__install_a_trusted_authenticator_app">Install a trusted authenticator app on your device.</string>
+    <string name="TotpSetupScreen__install_a_trusted_authenticator_app">Installez une appli d\'authentification fiable sur votre appareil.</string>
     <!-- Header of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_2">Step 2</string>
+    <string name="TotpSetupScreen__step_2">Étape 2</string>
     <!-- Body of the second step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__open_your_authenticator_app">Open your authenticator app by tapping the button below to add your Signal account.</string>
+    <string name="TotpSetupScreen__open_your_authenticator_app">Appuyez sur le bouton ci-dessous pour ouvrir l\'appli d\'authentification et y ajouter votre compte Signal.</string>
     <!-- Button that opens the user\'s authenticator app -->
-    <string name="AuthenticatorSetupScreen__open">Open</string>
+    <string name="TotpSetupScreen__open">Ouvrir</string>
     <!-- Text above the setup key explaining that it can be entered by hand instead -->
-    <string name="AuthenticatorSetupScreen__or_you_can_copy_this_key">Or you can copy this key to manually set it up.</string>
+    <string name="TotpSetupScreen__or_you_can_copy_this_key">Vous pouvez aussi copier cette clé si vous préférez configurer l\'appli manuellement.</string>
     <!-- Button that copies the setup key to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copy">Copier</string>
+    <string name="TotpSetupScreen__copy">Copier</string>
     <!-- Toast shown after the setup key has been copied to the clipboard -->
-    <string name="AuthenticatorSetupScreen__copied_to_clipboard">Copié dans le presse-papiers</string>
+    <string name="TotpSetupScreen__copied_to_clipboard">Copié dans le presse-papiers</string>
     <!-- Toast shown when there is no app installed that can handle the authenticator setup link -->
-    <string name="AuthenticatorSetupScreen__no_authenticator_app_found">No authenticator app found</string>
+    <string name="TotpSetupScreen__no_authenticator_app_found">Aucune appli d\'authentification n\'est disponible</string>
+    <!-- Dialog message shown when the account already has as many authenticator apps as it\'s allowed -->
+    <string name="TotpSetupScreen__you_cant_add_more_than_d">Vous ne pouvez pas ajouter plus de %1$d applis d\'authentification. Supprimez-en une, puis réessayez.</string>
+    <!-- Dialog message shown when we couldn\'t reach the service to start setting up an authenticator app -->
+    <string name="TotpSetupScreen__couldnt_reach_signal">Impossible d\'accéder à Signal. Veuillez vérifier votre connexion et réessayer.</string>
     <!-- Header of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__step_3">Step 3</string>
+    <string name="TotpSetupScreen__step_3">Étape 3</string>
     <!-- Body of the third step of authenticator app setup -->
-    <string name="AuthenticatorSetupScreen__copy_the_code_thats_generated">Copy the code that\'s generated and return here to continue.</string>
+    <string name="TotpSetupScreen__copy_the_code_thats_generated">Copiez le code généré par l\'appli d\'authentification et revenez à cet écran pour continuer.</string>
     <!-- Button that advances from the setup instructions to entering a code -->
-    <string name="AuthenticatorSetupScreen__continue">Continuer</string>
+    <string name="TotpSetupScreen__continue">Continuer</string>
 
-    <!-- AuthenticatorCodeEntryScreen -->
+    <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
-    <string name="AuthenticatorCodeEntryScreen__enter_your_code">Enter your code</string>
+    <string name="TotpCodeEntryScreen__enter_your_code">Saisissez votre code</string>
     <!-- Instructions shown above the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__enter_the_6_digit_code">Enter the 6-digit code from your authenticator app.</string>
-    <!-- Label of the code entry field -->
-    <string name="AuthenticatorCodeEntryScreen__code">Code</string>
+    <string name="TotpCodeEntryScreen__enter_the_6_digit_code">Saisissez le code à 6 chiffres généré par votre appli d\'authentification.</string>
     <!-- Button that submits the entered code -->
-    <string name="AuthenticatorCodeEntryScreen__done">OK</string>
+    <string name="TotpCodeEntryScreen__next">Suivant</string>
+    <!-- Error shown under the code field when the code the user entered was rejected -->
+    <string name="TotpCodeEntryScreen__incorrect_code">Code incorrect. Saisissez le code actuellement affiché sur votre appli d\'authentification.</string>
+    <!-- Error shown under the code field when we couldn\'t reach the service to check the code -->
+    <string name="TotpCodeEntryScreen__couldnt_reach_signal">Impossible d\'accéder à Signal. Veuillez vérifier votre connexion et réessayer.</string>
+
+    <!-- Default name given to an authenticator app the moment it\'s set up, before the user chooses their own name for it -->
+    <string name="TotpRepository__authenticator">Appli d\'authentification</string>
+
+    <!-- TwoFactorNameEntryScreen -->
+    <!-- Title of the screen where the user names a second factor -->
+    <string name="TwoFactorNameEntryScreen__choose_a_name">Nommer l\'application</string>
+    <!-- Instructions shown above the name field when renaming an authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name">Donnez un nom à cette appli d\'authentification.</string>
+    <!-- Instructions shown above the name field when naming a newly configured authenticator app -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_to_help_you_identify_it">Nommez cette appli d\'authentification afin de l\'identifier facilement.</string>
+    <!-- Instructions shown above the name field when renaming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method">Choose a unique name for this two-factor method.</string>
+    <!-- Instructions shown above the name field when naming a second factor this version of Signal doesn\'t recognize -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_method_to_help_you_identify_it">Choose a unique name for this two-factor method to help you identify it later.</string>
+    <!-- Instructions shown above the name field when renaming a passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey">Choose a unique name for this passkey.</string>
+    <!-- Instructions shown above the name field when naming a newly created passkey -->
+    <string name="TwoFactorNameEntryScreen__choose_a_unique_name_for_this_passkey_to_help_you_identify_it">Choose a unique name for this passkey to help you identify it later.</string>
+    <!-- Label of the name field -->
+    <string name="TwoFactorNameEntryScreen__name">Nom</string>
+    <!-- Button that submits the entered name -->
+    <string name="TwoFactorNameEntryScreen__next">Suivant</string>
     <!-- Toast shown after an authenticator app has been successfully set up -->
-    <string name="AuthenticatorCodeEntryScreen__authenticator_app_added">Authenticator app added</string>
+    <string name="TwoFactorNameEntryScreen__authenticator_app_set_up">Appli d\'authentification configurée</string>
+    <!-- Toast shown after an authenticator app has been renamed -->
+    <string name="TwoFactorNameEntryScreen__authenticator_app_renamed">Appli d\'authentification renommée</string>
+    <!-- Toast shown after a passkey has been successfully set up -->
+    <string name="TwoFactorNameEntryScreen__passkey_set_up">Passkey set up</string>
+    <!-- Toast shown after a passkey has been renamed -->
+    <string name="TwoFactorNameEntryScreen__passkey_renamed">Passkey renamed</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been set up -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_set_up">Two-factor method set up</string>
+    <!-- Toast shown after a second factor this version of Signal doesn\'t recognize has been renamed -->
+    <string name="TwoFactorNameEntryScreen__two_factor_method_renamed">Two-factor method renamed</string>
+    <!-- Toast shown when we couldn\'t reach the service to save the name -->
+    <string name="TwoFactorNameEntryScreen__couldnt_save_name">Impossible d\'enregistrer le nom. Veuillez vérifier votre connexion et réessayer.</string>
+
+    <!-- DeleteAccountScreen -->
+    <!-- DeleteAccountFragment -->
+    <string name="DeleteAccountFragment__deleting_your_account_will">La suppression de votre compte entraînera :</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">Saisissez votre numéro de téléphone</string>
+    <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
+    <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">La suppression de votre photo de profil et des informations de votre compte</string>
+    <string name="DeleteAccountFragment__delete_all_your_messages">La suppression de tous vos messages</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiement</string>
+    <string name="DeleteAccountFragment__no_country_code">Veuillez saisir l\'indicatif du pays</string>
+    <string name="DeleteAccountFragment__no_number">Veuillez saisir un numéro de téléphone</string>
+    <string name="DeleteAccountFragment__the_phone_number">Le numéro de téléphone saisi ne correspond pas à celui de votre compte.</string>
+    <string name="DeleteAccountFragment__are_you_sure">Voulez-vous vraiment supprimer votre compte ?</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Vous êtes sur le point de supprimer votre compte Signal et de réinitialiser l\'application. Signal se fermera une fois le processus terminé.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Impossible de supprimer les données locales. Vous pouvez les supprimer manuellement via les paramètres des applications Android.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">Ouvrir les paramètres de l\'application</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Vous quittez vos groupes…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Suppression du compte…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
+    <string name="DeleteAccountFragment__canceling_your_subscription">Résiliation de votre don mensuel…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">En fonction du nombre de groupes auxquels vous appartenez, cette étape peut prendre quelques minutes</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Suppression des données utilisateur et réinitialisation de l\'appli</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Compte non supprimé</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">Une erreur s\'est produite : impossible de finaliser la suppression du compte. Veuillez vérifier votre connexion réseau et réessayer.</string>
+    <!-- Body text above the bullet list on the delete account screen, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__deleting_your_account_with_username_s_will">La suppression de votre compte (nom d\'utilisateur associé : \"%1$s\") entraînera :</string>
+    <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">La suppression de votre photo de profil et des informations de votre compte, y compris de votre nom d\'utilisateur (\"%1$s\")</string>
+    <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
+    <string name="DeleteAccountScreen__this_action_can_not_be_undone">Cette action est irréversible.</string>
+    <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
+    <string name="DeleteAccountScreen__this_will_delete_your_signal_account_with_username_s">Vous êtes sur le point de supprimer votre compte Signal (nom d\'utilisateur associé : \"%1$s\") et de réinitialiser l\'application. Signal se fermera une fois le processus terminé.</string>
+    <!-- Label of the checkbox the user has to tick in the confirmation dialog before they can delete their account -->
+    <string name="DeleteAccountScreen__yes_delete_my_account">Oui, supprimer mon compte</string>
+
+    <!-- InviteScreen -->
+    <!-- Title of the screen where the user invites friends to join Signal -->
+    <string name="InviteScreen__invite_friends">Inviter</string>
+    <!-- Share button on invite screen to open the system share sheet -->
+    <string name="InviteScreen__share">Partager</string>
+
+    <!-- Shared with the registration screens -->
+    <string name="RegistrationActivity_select_your_country">Sélectionnez votre pays</string>
+    <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
+
+    <!-- ChatsSettingsFragment -->
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d dossier</item>
+        <item quantity="other">%1$d dossiers</item>
+    </plurals>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Créer un dossier de conversations</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Créer ou modifier des dossiers</string>
+    <!-- Snackbar shown when biometric authentication fails before a chat export -->
+    <string name="ChatsSettingsFragment__authentication_failed">Échec de l\'authentification</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Dossiers de conversations</string>
+    <!-- Row title for the option to export chat history as a plaintext archive -->
+    <string name="ChatsSettingsFragment__export_chat_history">Exporter l\'historique des conversations</string>
+    <!-- Row description for the plaintext chat export option -->
+    <string name="ChatsSettingsFragment__export_chat_history_label">Exportez une copie de toutes vos conversations au format JSON (lisible par machine). Les messages éphémères ne sont pas exportés.</string>
+    <string name="ChatsSettingsFragment__keyboard">Clavier</string>
+    <string name="ChatsSettingsFragment__send_with_enter">Touche Entrée pour envoyer</string>
+    <!-- Title of the toggle row in chat settings that controls whether stickers and GIFs play automatically -->
+    <string name="ChatsSettingsFragment__autoplay_stickers_and_gifs">Autoplay stickers and GIFs</string>
+    <!-- Description beneath the autoplay stickers and GIFs toggle row in chat settings -->
+    <string name="ChatsSettingsFragment__when_turned_on_stickers_and_gifs_will_play_automatically">When turned on, stickers and GIFs will play automatically</string>
+    <!-- Biometrics prompt title shown before allowing the user to export chat history -->
+    <string name="ChatsSettingsFragment__unlock_to_export_chat_history">Pour exporter les conversations, déverrouillez l\'appareil</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Utiliser les photos associées aux contacts du téléphone lorsqu\'elles sont disponibles.</string>
+    <string name="preferences__generate_link_previews">Générer des aperçus de liens</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Les conversations mises en sourdine restent archivées, même lorsque vous recevez un nouveau message.</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Ne pas désarchiver les conversations mises en sourdine</string>
+    <string name="preferences__pref_use_address_book_photos">Utiliser les photos du carnet d\'adresses</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Récupérer l\'aperçu des liens depuis les sites web lorsque vous envoyez un message.</string>
+    <string name="preferences_advanced__use_system_emoji">Utiliser les émojis système</string>
+    <string name="preferences_chats__chats">Conversations</string>
+
+    <!-- ChatExportDialogs -->
+    <!-- Bold warning prefix in the export complete dialog body -->
+    <string name="ChatExportDialogs__be_careful">ATTENTION</string>
+    <!-- Bold warning prefix in the export confirmation dialog body -->
+    <string name="ChatExportDialogs__be_careful_warning">ATTENTION !</string>
+    <!-- Progress dialog message shown while canceling an in-progress chat export -->
+    <string name="ChatExportDialogs__canceling_export">Annulation de l\'exportation…</string>
+    <!-- Body of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_body">Sur votre appareil, choisissez le dossier dans lequel vous voulez stocker vos conversations.</string>
+    <!-- Title of the dialog prompting the user to pick a destination folder for the export -->
+    <string name="ChatExportDialogs__choose_a_folder_title">Choisir un dossier</string>
+    <!-- Button that opens the system folder picker -->
+    <string name="ChatExportDialogs__choose_folder_button">Choisir un dossier</string>
+    <!-- Body of the export complete dialog, displayed after the bold "BE CAREFUL" prefix -->
+    <string name="ChatExportDialogs__complete_body">à l\'emplacement où vous enregistrez le fichier qui contient l\'historique de vos conversations. Ne le partagez avec personne. D\'autres applications installées sur votre appareil peuvent y avoir accès en fonction des autorisations que vous leur accordez.</string>
+    <!-- Title of the dialog shown when a chat export finishes successfully -->
+    <string name="ChatExportDialogs__complete_title">Exportation de la conversation terminée</string>
+    <!-- Title of the dialog asking the user to confirm they want to export chat history -->
+    <string name="ChatExportDialogs__export_chat_history_title">Exporter l\'historique des conversations ?</string>
+    <!-- Body of the export confirmation dialog, displayed after the bold "BE CAREFUL!" prefix -->
+    <string name="ChatExportDialogs__export_confirm_body">Ne partagez ce fichier avec personne. L\'historique de vos conversations sera enregistré sur votre appareil. D\'autres applications peuvent y avoir accès en fonction des autorisations que vous leur accordez. Si vous exportez également les médias, le fichier sera plus volumineux.</string>
+    <!-- Button in the export confirmation dialog to export messages and media -->
+    <string name="ChatExportDialogs__export_with_media">Exporter avec les médias</string>
+    <!-- Button in the export confirmation dialog to export messages only -->
+    <string name="ChatExportDialogs__export_without_media">Exporter sans les médias</string>
+
+    <!-- BackupCreationProgressRow -->
+    <!-- Progress text shown while media is being exported to local storage. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__exporting_media_d">Exportation des médias : %1$d %%</string>
+    <!-- Progress text shown while the backup is being finalized (e.g. cleaning up old files) -->
+    <string name="BackupCreationProgressRow__finalizing">Finalisation…</string>
+    <!-- Progress text shown while the backup is being prepared (e.g. exporting accounts, recipients, etc.) -->
+    <string name="BackupCreationProgressRow__preparing_backup">Préparation de la sauvegarde…</string>
+    <!-- Progress text shown while the backup database is being processed -->
+    <string name="BackupCreationProgressRow__processing_backup">Traitement de la sauvegarde…</string>
+    <!-- Progress text shown while messages are being processed, with no count available yet -->
+    <string name="BackupCreationProgressRow__processing_messages">Traitement des messages…</string>
+    <!-- Progress text shown while messages are being processed. %1$s is the formatted current count (e.g. "1,000"), %2$s is the formatted total count (e.g. "100,000"), %3$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__processing_messages_s_of_s_d">Traitement des messages : %1$s sur %2$s (%3$d %%)</string>
+    <!-- Progress text shown while media is being uploaded to the server. %1$d is the percent complete (e.g. 42). -->
+    <string name="BackupCreationProgressRow__uploading_media_d">Importation des médias : %1$d %%</string>
+
+    <!-- AppUpdatesSettingsScreen -->
+    <!-- Title of the app updates settings screen -->
+    <string name="preferences_app_updates__title">Mises à jour de l\'appli</string>
 </resources>

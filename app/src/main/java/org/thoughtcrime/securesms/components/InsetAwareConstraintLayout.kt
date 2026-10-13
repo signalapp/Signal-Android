@@ -148,6 +148,20 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     windowInsetsListeners.remove(listener)
   }
 
+  /**
+   * A guideline's begin and end measure from the left and right edges in either direction, while the views constrained
+   * to these two use start and end. In RTL that inverts the span, collapsing every view sized by it.
+   */
+  private fun applyHorizontalGuidelines(isLtr: Boolean, parentStart: Int, parentEnd: Int) {
+    if (isLtr) {
+      parentStartGuideline?.setGuidelineBegin(parentStart)
+      parentEndGuideline?.setGuidelineEnd(parentEnd)
+    } else {
+      parentStartGuideline?.setGuidelineEnd(parentStart)
+      parentEndGuideline?.setGuidelineBegin(parentEnd)
+    }
+  }
+
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
     val isLtr = ViewUtil.isLtr(this)
 
@@ -166,8 +180,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     if (!statusBarShrinking) {
       statusBarGuideline?.setGuidelineBegin(statusBar)
       navigationBarGuideline?.setGuidelineEnd(navigationBar)
-      parentStartGuideline?.setGuidelineBegin(parentStart)
-      parentEndGuideline?.setGuidelineEnd(parentEnd)
+      applyHorizontalGuidelines(isLtr, parentStart, parentEnd)
 
       windowInsetsListeners.forEach {
         it.onApplyWindowInsets(statusBar, navigationBar, parentStart, parentEnd)

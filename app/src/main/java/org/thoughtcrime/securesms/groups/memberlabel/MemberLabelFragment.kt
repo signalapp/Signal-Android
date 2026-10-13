@@ -59,6 +59,7 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.viewModel
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.requireParcelableCompat
 import org.signal.emoji.Emojifier
@@ -70,7 +71,6 @@ import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelUiState.SaveStat
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Screen for editing a user's group-specific label and emoji.

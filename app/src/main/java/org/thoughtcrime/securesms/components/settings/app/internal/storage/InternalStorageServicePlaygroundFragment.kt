@@ -330,6 +330,12 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
+      record.proto.favoriteSticker != null -> {
+        Column {
+          Text("Favorite Sticker", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
       else -> {
         Column {
           Text("Unknown!")

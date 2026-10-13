@@ -11,8 +11,12 @@ import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.usernames.Username
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.signal.network.api.RegistrationApiV2.AccountAttributes
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsError
 import org.signal.network.api.RegistrationApiV2.CheckSvrCredentialsResponse
@@ -20,13 +24,14 @@ import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialErro
 import org.signal.network.api.RegistrationApiV2.CreateLoginReceiptCredentialResult
 import org.signal.network.api.RegistrationApiV2.CreateSessionError
 import org.signal.network.api.RegistrationApiV2.DeviceAttributes
+import org.signal.network.api.RegistrationApiV2.GetLoginConfigurationError
 import org.signal.network.api.RegistrationApiV2.GetSessionStatusError
 import org.signal.network.api.RegistrationApiV2.LinkDeviceResponse
+import org.signal.network.api.RegistrationApiV2.LoginConfiguration
 import org.signal.network.api.RegistrationApiV2.LoginPurchasePaymentProvider
 import org.signal.network.api.RegistrationApiV2.PreKeyCollection
 import org.signal.network.api.RegistrationApiV2.RegisterAccountError
 import org.signal.network.api.RegistrationApiV2.RegisterAccountResponse
-import org.signal.network.api.RegistrationApiV2.RegisterAccountWithoutPhoneNumberError
 import org.signal.network.api.RegistrationApiV2.RegisterAsLinkedDeviceError
 import org.signal.network.api.RegistrationApiV2.RequestVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.RestoreMethod
@@ -36,6 +41,9 @@ import org.signal.network.api.RegistrationApiV2.SubmitVerificationCodeError
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
 import org.signal.network.api.RegistrationApiV2.UpdateSessionError
 import org.signal.network.api.RegistrationApiV2.VerificationCodeTransport
+import org.signal.network.service.UsernameService.ConfirmUsernameError
+import org.signal.network.service.UsernameService.ConfirmedUsername
+import org.signal.network.service.UsernameService.ReserveUsernameError
 import org.signal.registration.LinkAndSyncWaitResult
 import org.signal.registration.NetworkController
 import org.signal.registration.NetworkController.BackupMasterKeyError
@@ -49,6 +57,7 @@ import org.signal.registration.NetworkController.RestoreMasterKeyError
 import org.signal.registration.NetworkController.SetAccountAttributesError
 import org.signal.registration.NetworkController.SetProfileError
 import org.signal.registration.NetworkController.SetRegistrationLockError
+import org.signal.registration.ReceiptCredentialResult
 import java.util.Locale
 
 /**
@@ -126,21 +135,33 @@ class DebugNetworkController(
   }
 
   override suspend fun registerAccount(
-    e164: String,
+    e164: String?,
     password: String,
     sessionId: String?,
     recoveryPassword: String?,
+    receiptCredentialPresentation: ReceiptCredentialPresentation?,
     attributes: AccountAttributes,
     aciPreKeys: PreKeyCollection,
-    pniPreKeys: PreKeyCollection,
+    pniPreKeys: PreKeyCollection?,
     fcmToken: String?,
-    skipDeviceTransfer: Boolean
+    skipDeviceTransfer: Boolean,
+    aci: ACI?,
+    totp: Int?,
+    webAuthnResponse: String?
   ): RequestResult<RegisterAccountResponse, RegisterAccountError> {
     NetworkDebugState.getOverride<RequestResult<RegisterAccountResponse, RegisterAccountError>>("registerAccount")?.let {
       Log.d(TAG, "[registerAccount] Returning debug override")
       return it
     }
-    return delegate.registerAccount(e164, password, sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer)
+    return delegate.registerAccount(e164, password, sessionId, recoveryPassword, receiptCredentialPresentation, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer, aci, totp, webAuthnResponse)
+  }
+
+  override suspend fun getLoginConfiguration(): RequestResult<LoginConfiguration, GetLoginConfigurationError> {
+    NetworkDebugState.getOverride<RequestResult<LoginConfiguration, GetLoginConfigurationError>>("getLoginConfiguration")?.let {
+      Log.d(TAG, "[getLoginConfiguration] Returning debug override")
+      return it
+    }
+    return delegate.getLoginConfiguration()
   }
 
   override suspend fun createLoginPurchaseReceiptCredential(
@@ -155,19 +176,19 @@ class DebugNetworkController(
     return delegate.createLoginPurchaseReceiptCredential(purchaseIdentifier, receiptCredentialRequest, paymentProvider)
   }
 
-  override suspend fun registerAccountWithoutPhoneNumber(
-    password: String,
-    receiptCredentialPresentation: ReceiptCredentialPresentation,
-    attributes: AccountAttributes,
-    aciPreKeys: PreKeyCollection,
-    fcmToken: String?,
-    skipDeviceTransfer: Boolean
-  ): RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError> {
-    NetworkDebugState.getOverride<RequestResult<RegisterAccountResponse, RegisterAccountWithoutPhoneNumberError>>("registerAccountWithoutPhoneNumber")?.let {
-      Log.d(TAG, "[registerAccountWithoutPhoneNumber] Returning debug override")
-      return it
-    }
-    return delegate.registerAccountWithoutPhoneNumber(password, receiptCredentialPresentation, attributes, aciPreKeys, fcmToken, skipDeviceTransfer)
+  override fun createReceiptCredentialRequestContext(): ReceiptCredentialRequestContext {
+    // No override support for pure computations
+    return delegate.createReceiptCredentialRequestContext()
+  }
+
+  override fun receiveReceiptCredential(requestContext: ReceiptCredentialRequestContext, response: ReceiptCredentialResponse): ReceiptCredentialResult<ReceiptCredential> {
+    // No override support for pure computations
+    return delegate.receiveReceiptCredential(requestContext, response)
+  }
+
+  override fun createReceiptCredentialPresentation(receiptCredential: ReceiptCredential): ReceiptCredentialResult<ReceiptCredentialPresentation> {
+    // No override support for pure computations
+    return delegate.createReceiptCredentialPresentation(receiptCredential)
   }
 
   override suspend fun getFcmToken(): String? {
@@ -254,6 +275,22 @@ class DebugNetworkController(
       return it
     }
     return delegate.setProfile(givenName, familyName, avatar, discoverableByPhoneNumber)
+  }
+
+  override suspend fun reserveUsername(nickname: String, discriminator: String?): RequestResult<Username, ReserveUsernameError> {
+    NetworkDebugState.getOverride<RequestResult<Username, ReserveUsernameError>>("reserveUsername")?.let {
+      Log.d(TAG, "[reserveUsername] Returning debug override")
+      return it
+    }
+    return delegate.reserveUsername(nickname, discriminator)
+  }
+
+  override suspend fun confirmUsername(username: Username): RequestResult<ConfirmedUsername, ConfirmUsernameError> {
+    NetworkDebugState.getOverride<RequestResult<ConfirmedUsername, ConfirmUsernameError>>("confirmUsername")?.let {
+      Log.d(TAG, "[confirmUsername] Returning debug override")
+      return it
+    }
+    return delegate.confirmUsername(username)
   }
 
   override suspend fun restoreAccountRecord(timeout: kotlin.time.Duration): RequestResult<Unit, RestoreAccountRecordError> {

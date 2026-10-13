@@ -6,8 +6,6 @@
 package org.signal.registration.screens.pinentry
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -39,7 +37,7 @@ class PinEntryForSmsBypassViewModel(
   private val parentState: StateFlow<RegistrationFlowState>,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   private val svrCredentials: SvrCredentials
-) : EventDrivenViewModel<PinEntryScreenEvents>(TAG) {
+) : EventDrivenViewModel<PinEntryScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(PinEntryForSmsBypassViewModel::class)
@@ -117,7 +115,7 @@ class PinEntryForSmsBypassViewModel(
       return state
     }
 
-    return when (val result = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, forRegistrationLock = false)) {
+    return when (val result = repository.restoreMasterKeyFromSvr(svrCredentials, event.pin, forRegistrationLock = false, isRegistered = false)) {
       is RequestResult.Success -> {
         Log.i(TAG, "[PinEntered] Successfully restored master key from SVR.")
         parentEventEmitter(RegistrationFlowEvent.MasterKeyRestoredFromSvr(result.result.masterKey))
@@ -217,24 +215,14 @@ class PinEntryForSmsBypassViewModel(
             parentEventEmitter(RegistrationFlowEvent.ResetState)
             state
           }
+          is RegisterAccountError.InvalidReceiptCredentialPresentation,
+          is RegisterAccountError.TwoFactorRequired,
+          RegisterAccountError.PostQuantumRatchetRequired -> {
+            Log.w(TAG, "[Register] Unexpected error when registering: $error")
+            state.copy(loading = false, dialogs = state.dialogs.copy(unknownError = true))
+          }
         }
       }
-    }
-  }
-
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val svrCredentials: SvrCredentials
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return PinEntryForSmsBypassViewModel(
-        repository = repository,
-        parentState = parentState,
-        parentEventEmitter = parentEventEmitter,
-        svrCredentials = svrCredentials
-      ) as T
     }
   }
 }

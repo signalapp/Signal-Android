@@ -53,6 +53,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
       return false;
     }
 
+    if (SignalStore.account().isPhoneNumberless()) {
+      return false;
+    }
+
     if (pinCreationFailedDuringRegistration()) {
       return true;
     }

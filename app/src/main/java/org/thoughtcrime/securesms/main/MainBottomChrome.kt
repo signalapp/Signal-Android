@@ -8,30 +8,30 @@ package org.thoughtcrime.securesms.main
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalResources
-import org.signal.core.ui.compose.AllDevicePreviews
+import org.signal.core.ui.NavigationType
+import org.signal.core.ui.compose.BreakpointPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.showSnackbar
-import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.components.snackbars.SnackbarHostKey
 import org.thoughtcrime.securesms.components.snackbars.rememberSnackbarState
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
-import org.thoughtcrime.securesms.window.NavigationType
 
 interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
   fun onMegaphoneVisible(megaphone: Megaphone)
@@ -40,14 +40,14 @@ interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
   object Empty : MainBottomChromeCallback {
     override fun onNewChatClick() = Unit
     override fun onNewCallClick() = Unit
-    override fun onCameraClick(destination: MainNavigationListLocation) = Unit
+    override fun onCameraClick(destination: MainListRoute) = Unit
     override fun onMegaphoneVisible(megaphone: Megaphone) = Unit
     override fun onSnackbarDismissed() = Unit
   }
 }
 
 data class MainBottomChromeState(
-  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
+  val destination: MainListRoute = MainListRoute.Chats,
   val megaphoneState: MainMegaphoneState = MainMegaphoneState(),
   val mainToolbarMode: MainToolbarMode = MainToolbarMode.FULL
 )
@@ -72,7 +72,7 @@ fun MainBottomChrome(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
-      .then(if (navigationType == NavigationType.RAIL) Modifier.navigationBarsPadding() else Modifier)
+      .then(if (navigationType == NavigationType.RAIL) Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat) else Modifier)
   ) {
     if (state.mainToolbarMode == MainToolbarMode.FULL && navigationType != NavigationType.RAIL) {
       Box(
@@ -99,7 +99,7 @@ fun MainBottomChrome(
     }
 
     val snackBarModifier = if (state.mainToolbarMode == MainToolbarMode.BASIC && navigationType != NavigationType.RAIL) {
-      Modifier.navigationBarsPadding()
+      Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)
     } else {
       Modifier
     }
@@ -145,7 +145,7 @@ fun MainSnackbar(
   }
 }
 
-@AllDevicePreviews
+@BreakpointPreviews
 @Composable
 fun MainBottomChromePreview() {
   Previews.Preview {

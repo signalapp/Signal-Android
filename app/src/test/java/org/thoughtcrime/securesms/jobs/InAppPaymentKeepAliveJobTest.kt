@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
@@ -91,6 +92,38 @@ class InAppPaymentKeepAliveJobTest {
 
     assertThat(result.isSuccess).isTrue()
     verify(exactly = 1) { InAppPaymentsRepository.updateInAppPaymentWithCancelation(activeSubscription, InAppPaymentSubscriberRecord.Type.DONATION) }
+  }
+
+  @Test
+  fun `Given no subscription on the server, when I run, then I write cancellation and return early`() {
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = ActiveSubscription(null, null))
+    every { InAppPaymentsRepository.updateInAppPaymentWithLapsedSubscription(any()) } returns Unit
+
+    val job = InAppPaymentKeepAliveJob.create(InAppPaymentSubscriberRecord.Type.DONATION)
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    verify(exactly = 1) { InAppPaymentsRepository.updateInAppPaymentWithLapsedSubscription(InAppPaymentSubscriberRecord.Type.DONATION) }
+  }
+
+  @Test
+  fun `Given no subscription on the server for a backup subscriber, when I run, then I do not write cancellation`() {
+    val backupSubscriber = InAppPaymentSubscriberRecord(
+      subscriberId = SubscriberId.generate(),
+      currency = java.util.Currency.getInstance("USD"),
+      type = InAppPaymentSubscriberRecord.Type.BACKUP,
+      requiresCancel = false,
+      paymentMethodType = org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
+    )
+    every { InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP) } returns backupSubscriber
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = ActiveSubscription(null, null))
+    every { InAppPaymentsRepository.updateInAppPaymentWithLapsedSubscription(any()) } returns Unit
+
+    val job = InAppPaymentKeepAliveJob.create(InAppPaymentSubscriberRecord.Type.BACKUP)
+    job.run()
+
+    verify(exactly = 0) { InAppPaymentsRepository.updateInAppPaymentWithLapsedSubscription(any()) }
   }
 
   @Test

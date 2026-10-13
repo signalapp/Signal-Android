@@ -54,23 +54,10 @@ data class NotificationState(
   }
 
   fun getDeleteIntent(context: Context): PendingIntent? {
-    val ids = LongArray(messageCount)
-    val mms = BooleanArray(ids.size)
-    val threads: MutableList<ConversationId> = mutableListOf()
-
-    conversations.forEach { conversation ->
-      threads += conversation.thread
-      conversation.notificationItems.forEachIndexed { index, notificationItem ->
-        ids[index] = notificationItem.id
-        mms[index] = notificationItem.isMms
-      }
-    }
-
     val intent = Intent(context, DeleteNotificationReceiver::class.java)
       .setAction(DeleteNotificationReceiver.DELETE_NOTIFICATION_ACTION)
-      .putExtra(DeleteNotificationReceiver.EXTRA_IDS, ids)
-      .putExtra(DeleteNotificationReceiver.EXTRA_MMS, mms)
-      .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, ArrayList(threads))
+      .putExtra(DeleteNotificationReceiver.EXTRA_MAX_MESSAGE_ID, notificationItems.maxOfOrNull { it.id } ?: 0L)
+      .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, ArrayList(conversations.map { it.thread }))
       .makeUniqueToPreventMerging()
 
     return NotificationPendingIntentHelper.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())

@@ -42,6 +42,10 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * Most callers should use {@link #isPhoneNumberSharingEnabled()}.
    */
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return PhoneNumberSharingMode.NOBODY;
+    }
+
     return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.DEFAULT.serialize()));
   }
 
@@ -58,6 +62,10 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public @NonNull PhoneNumberDiscoverabilityMode getPhoneNumberDiscoverabilityMode() {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE;
+    }
+
     // The default for existing users is to be discoverable, but new users are set to UNDECIDED in onFirstEverAppLaunch
     return PhoneNumberDiscoverabilityMode.deserialize(getInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.DISCOVERABLE.serialize()));
   }
@@ -80,7 +88,9 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
    * these certificates types.
    */
   public Collection<CertificateType> getRequiredCertificateTypes() {
-    if (isPhoneNumberSharingEnabled()) {
+    if (SignalStore.account().isPhoneNumberless()) {
+      return ACI_ONLY_CERTIFICATE;
+    } else if (isPhoneNumberSharingEnabled()) {
       return ACI_AND_E164_CERTIFICATE;
     } else {
       return ACI_ONLY_CERTIFICATE;
@@ -88,10 +98,14 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   /**
-   * All certificate types required according to the feature flags.
+   * All certificate types the account can fetch.
    */
   public Collection<CertificateType> getAllCertificateTypes() {
-    return BOTH_CERTIFICATES;
+    if (SignalStore.account().isPhoneNumberless()) {
+      return ACI_ONLY_CERTIFICATE;
+    } else {
+      return BOTH_CERTIFICATES;
+    }
   }
 
   public enum PhoneNumberSharingMode {

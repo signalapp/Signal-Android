@@ -19,12 +19,23 @@ public class LogSectionRemoteConfig implements LogSection {
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
     StringBuilder       out           = new StringBuilder();
+    Map<String, String> overrides     = RemoteConfig.getOverrides();
     Map<String, Object> memory        = RemoteConfig.getMemoryValues();
     Map<String, Object> disk          = RemoteConfig.getDebugDiskValues();
     Map<String, Object> pending       = RemoteConfig.getDebugPendingDiskValues();
     int                 remoteLength  = memory.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
     int                 diskLength    = disk.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
     int                 pendingLength = pending.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
+
+    if (!overrides.isEmpty()) {
+      int overrideLength = overrides.keySet().stream().map(String::length).max(Integer::compareTo).orElse(0);
+
+      out.append("-- Internal Overrides (these take precedence over everything below!)\n");
+      for (Map.Entry<String, String> entry : overrides.entrySet()) {
+        out.append(Util.rightPad(entry.getKey(), overrideLength)).append(": ").append(entry.getValue()).append("\n");
+      }
+      out.append("\n");
+    }
 
     out.append("-- Memory\n");
     for (Map.Entry<String, Object> entry : memory.entrySet()) {

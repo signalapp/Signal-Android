@@ -22,11 +22,11 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
+import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stickers.StickerLocator
 
 /**
  * Empty object for when a callback can't be found.
@@ -38,12 +38,13 @@ object EmptyConversationAdapterListener : ConversationAdapter.ItemClickListener 
   override fun onLinkPreviewClicked(linkPreview: LinkPreview) = Unit
   override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
   override fun onMoreTextClicked(conversationRecipientId: RecipientId, messageId: Long, isMms: Boolean) = Unit
-  override fun onStickerClicked(stickerLocator: StickerLocator) = Unit
+  override fun onStickerClicked(stickerSlide: StickerSlide) = Unit
   override fun onViewOnceMessageClicked(messageRecord: MmsMessageRecord) = Unit
   override fun onSharedContactDetailsClicked(contact: Contact, avatarTransitionView: View) = Unit
   override fun onAddToContactsClicked(contact: Contact) = Unit
-  override fun onMessageSharedContactClicked(choices: List<Recipient?>) = Unit
-  override fun onInviteSharedContactClicked(choices: List<Recipient?>) = Unit
+  override fun onMessageSharedContactClicked(contact: Contact, choices: List<Recipient?>) = Unit
+  override fun onInviteSharedContactClicked(contact: Contact) = Unit
+  override fun onAddSharedContactToGroupClicked(contact: Contact) = Unit
   override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
   override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit
   override fun onMessageWithErrorClicked(messageRecord: MessageRecord) = Unit
@@ -82,6 +83,7 @@ object EmptyConversationAdapterListener : ConversationAdapter.ItemClickListener 
   override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) = Unit
   override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
   override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
+  override fun onViewStickerPackLink(packId: String, packKey: String) = Unit
   override fun onShowSafetyTips(forGroup: Boolean) = Unit
   override fun onReportSpamLearnMoreClicked() = Unit
   override fun onMessageRequestAcceptOptionsClicked() = Unit

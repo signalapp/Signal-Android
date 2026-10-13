@@ -19,8 +19,9 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.VideoCapture
 import androidx.compose.ui.geometry.Offset
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import assertk.assertThat
+import assertk.assertions.isCloseTo
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -59,7 +60,9 @@ class CameraScreenViewModelTest {
   private val mockContext: Context = mockk(relaxed = true)
   private val mockCameraControl: CameraControl = mockk(relaxed = true)
   private val mockCameraInfo: CameraInfo = mockk(relaxed = true)
-  private val mockZoomStateLiveData: LiveData<ZoomState> = mockk(relaxed = true)
+
+  /** A real LiveData rather than a mock, so the view model's observer runs the way it does on a device. */
+  private val zoomStateLiveData = MutableLiveData<ZoomState>()
   private val mockCamera: Camera = mockk(relaxed = true)
 
   private lateinit var viewModel: CameraScreenViewModel
@@ -79,8 +82,7 @@ class CameraScreenViewModelTest {
 
     every { mockCamera.cameraControl } returns mockCameraControl
     every { mockCamera.cameraInfo } returns mockCameraInfo
-    every { mockCameraInfo.zoomState } returns mockZoomStateLiveData
-    every { mockZoomStateLiveData.value } returns null
+    every { mockCameraInfo.zoomState } returns zoomStateLiveData
 
     every { mockCameraProvider.bindToLifecycle(any(), any(), *anyVararg()) } returns mockCamera
     every { mockCameraProvider.unbindAll() } just Runs
@@ -142,11 +144,12 @@ class CameraScreenViewModelTest {
   private fun List<Any?>.hasImageAnalysis() = any { it is ImageAnalysis }
   private fun List<Any?>.imageCapture() = filterIsInstance<ImageCapture>().firstOrNull()
 
-  private fun setupZoomState(minZoom: Float, maxZoom: Float) {
-    val mockZoomState: ZoomState = mockk()
-    every { mockZoomState.minZoomRatio } returns minZoom
-    every { mockZoomState.maxZoomRatio } returns maxZoom
-    every { mockZoomStateLiveData.value } returns mockZoomState
+  private fun setupZoomState(minZoom: Float, maxZoom: Float, zoomRatio: Float = 1f) {
+    zoomStateLiveData.value = mockk<ZoomState>().also {
+      every { it.minZoomRatio } returns minZoom
+      every { it.maxZoomRatio } returns maxZoom
+      every { it.zoomRatio } returns zoomRatio
+    }
   }
 
   // ===========================================================================
@@ -284,7 +287,7 @@ class CameraScreenViewModelTest {
     val postInitAttempts = captureBindingAttempts()
 
     try {
-      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), {})
+      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), onVideoCaptured = {})
     } catch (_: Exception) {
       // Recording internals may not work fully in the test environment
     }
@@ -301,7 +304,7 @@ class CameraScreenViewModelTest {
     val postInitAttempts = captureBindingAttempts()
 
     try {
-      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), {})
+      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), onVideoCaptured = {})
     } catch (_: Exception) {
       // Recording internals may not work fully in the test environment
     }
@@ -318,7 +321,7 @@ class CameraScreenViewModelTest {
     val postInitAttempts = captureBindingAttempts(failCount = Int.MAX_VALUE)
 
     try {
-      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), {})
+      viewModel.startRecording(mockContext, VideoOutput.FileOutput(File.createTempFile("video", ".mp4")), onVideoCaptured = {})
     } catch (_: Exception) {
       // Expected — video rebind threw, which triggers the restore path
     }
@@ -523,6 +526,81 @@ class CameraScreenViewModelTest {
   }
 
   // ===========================================================================
+  // Zoom bar animation
+  // ===========================================================================
+
+  @Test
+  fun `SetZoomRatio does not arrive at the level the moment it is asked for`() {
+    setupZoomState(minZoom = 1f, maxZoom = 16f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(4f))
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(1f)
+  }
+
+  @Test
+  fun `SetZoomRatio is on its way to the level partway through`() {
+    setupZoomState(minZoom = 1f, maxZoom = 16f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(4f))
+    testDispatcher.scheduler.advanceTimeBy(HALFWAY_MS)
+
+    val zoomRatio = viewModel.state.value.zoomRatio
+    assertThat(zoomRatio).isGreaterThan(1f)
+    assertThat(zoomRatio < 4f).isTrue()
+  }
+
+  @Test
+  fun `SetZoomRatio finishes on the level exactly`() {
+    setupZoomState(minZoom = 1f, maxZoom = 16f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(4f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(4f)
+  }
+
+  /**
+   * Two animations the same distance apart in ratio terms cover the same fraction of that distance in the same time,
+   * which is what stops a journey to a far level tearing away at the start. It holds for any easing curve, so this
+   * asserts on the interpolation rather than on the curve.
+   */
+  @Test
+  fun `SetZoomRatio covers ground evenly however far out the level is`() {
+    setupZoomState(minZoom = 1f, maxZoom = 16f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(4f))
+    testDispatcher.scheduler.advanceTimeBy(HALFWAY_MS)
+    val reachedFromOne = viewModel.state.value.zoomRatio / 1f
+
+    testDispatcher.scheduler.advanceUntilIdle()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(16f))
+    testDispatcher.scheduler.advanceTimeBy(HALFWAY_MS)
+    val reachedFromFour = viewModel.state.value.zoomRatio / 4f
+
+    assertThat(reachedFromOne).isCloseTo(reachedFromFour, RATIO_TOLERANCE)
+  }
+
+  @Test
+  fun `Given a travel under way, when the lens is pinched, then the pinch takes it over`() {
+    setupZoomState(minZoom = 1f, maxZoom = 16f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(16f))
+    testDispatcher.scheduler.advanceTimeBy(HALFWAY_MS)
+    val reached = viewModel.state.value.zoomRatio
+
+    viewModel.onEvent(CameraScreenEvents.PinchZoom(zoomFactor = 2f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo((reached * 2f).coerceAtMost(16f))
+  }
+
+  // ===========================================================================
   // Pinch zoom
   // ===========================================================================
 
@@ -576,6 +654,171 @@ class CameraScreenViewModelTest {
     viewModel.onEvent(CameraScreenEvents.PinchZoom(zoomFactor = 2f))
 
     verify { mockCameraControl.setZoomRatio(2f) }
+  }
+
+  // ===========================================================================
+  // Zoom ratio (used by the zoom bar)
+  // ===========================================================================
+
+  @Test
+  fun `SetZoomRatio without a bound camera does not change zoom ratio`() {
+    val initialZoom = viewModel.state.value.zoomRatio
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(2f))
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(initialZoom)
+  }
+
+  @Test
+  fun `SetZoomRatio travels to the given ratio`() {
+    setupZoomState(minZoom = 0.5f, maxZoom = 10f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(5f)
+    verify { mockCameraControl.setZoomRatio(5f) }
+  }
+
+  @Test
+  fun `SetZoomRatio clamps to what the lens can reach`() {
+    setupZoomState(minZoom = 1f, maxZoom = 4f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(4f)
+  }
+
+  /** Otherwise a drag after a level was picked would carry on from where the recording started instead. */
+  @Test
+  fun `Given a ratio was set, when dragged from there, then the drag carries on from it`() {
+    setupZoomState(minZoom = 1f, maxZoom = 5f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(2f))
+    testDispatcher.scheduler.advanceUntilIdle()
+    viewModel.onEvent(CameraScreenEvents.LinearZoom(0.5f))
+
+    // Half way in from a base of 2f, rather than the 3f that half way in from 1f would have reached.
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(3.5f)
+  }
+
+  // ===========================================================================
+  // Locking a running recording
+  // ===========================================================================
+
+  /** A lock with no recording behind it would outlive the gesture that asked for it and apply to the next one. */
+  @Test
+  fun `Given nothing is being recorded, when the lock is asked for, then it is not taken`() {
+    viewModel.onEvent(CameraScreenEvents.LockRecording)
+
+    assertThat(viewModel.state.value.isRecordingLocked).isFalse()
+  }
+
+  // ===========================================================================
+  // Pausing a running recording
+  // ===========================================================================
+
+  /** The screen goes by what the recorder reports, so a pause it never honored never shows. */
+  @Test
+  fun `Given nothing is being recorded, when the pause is asked for, then nothing reads as paused`() {
+    viewModel.onEvent(CameraScreenEvents.ToggleRecordingPaused)
+
+    assertThat(viewModel.state.value.isRecordingPaused).isFalse()
+  }
+
+  // ===========================================================================
+  // Zoom range
+  // ===========================================================================
+
+  @Test
+  fun `Given a camera that reports its zoom, when bound, then its reach is published`() {
+    setupZoomState(minZoom = 0.5f, maxZoom = 10f)
+
+    bindCamera()
+
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(0.5f..10f)
+  }
+
+  /** A camera that has not reported yet leaves the range at a single point, which reads as a lens that cannot zoom. */
+  @Test
+  fun `Given a camera that has not reported its zoom, when bound, then the range stays at a single point`() {
+    bindCamera()
+
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(1f..1f)
+  }
+
+  @Test
+  fun `Given nothing has been bound, when asked, then the range is a single point`() {
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(1f..1f)
+  }
+
+  /** A camera reports its zoom when it is ready rather than by the time it is bound, so a late report still counts. */
+  @Test
+  fun `Given a camera that reports its zoom after binding, when it does, then its reach is published`() {
+    bindCamera()
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(1f..1f)
+
+    setupZoomState(minZoom = 0.5f, maxZoom = 10f)
+
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(0.5f..10f)
+  }
+
+  @Test
+  fun `Given a lens whose reach changes, when a different one is bound, then the newer reach is published`() {
+    setupZoomState(minZoom = 0.5f, maxZoom = 10f)
+    bindCamera()
+
+    setupZoomState(minZoom = 1f, maxZoom = 3f)
+
+    assertThat(viewModel.state.value.zoomRange).isEqualTo(1f..3f)
+  }
+
+  /**
+   * Coming back into the camera rebinds it, which drops the lens back to its default zoom, so the zoom bar goes back
+   * with it rather than keeping a level highlighted over a preview that is no longer at it.
+   */
+  @Test
+  fun `Given a lens that has been zoomed, when rebound, then the zoom is back at 1x`() {
+    setupZoomState(minZoom = 1f, maxZoom = 8f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(5f)
+
+    bindCamera()
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(1f)
+  }
+
+  /** The reset happens on the bind itself, so a lens reporting afterwards cannot pull it back off 1x. */
+  @Test
+  fun `Given a rebound lens, when it reports the zoom it was left at, then the zoom stays at 1x`() {
+    setupZoomState(minZoom = 1f, maxZoom = 8f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(5f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    bindCamera()
+    setupZoomState(minZoom = 1f, maxZoom = 8f, zoomRatio = 5f)
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(1f)
+  }
+
+  /** The reset happens on the bind, so it cannot pull the lens back from wherever it has since been sent. */
+  @Test
+  fun `Given a bound lens that has been zoomed, when it reports again, then the zoom it was sent to stands`() {
+    setupZoomState(minZoom = 1f, maxZoom = 10f, zoomRatio = 1f)
+    bindCamera()
+
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(4f))
+    testDispatcher.scheduler.advanceUntilIdle()
+    setupZoomState(minZoom = 1f, maxZoom = 8f, zoomRatio = 1f)
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(4f)
   }
 
   // ===========================================================================
@@ -656,5 +899,45 @@ class CameraScreenViewModelTest {
     viewModel.onEvent(CameraScreenEvents.LinearZoom(0.5f))
 
     verify { mockCameraControl.setZoomRatio(2.5f) }
+  }
+
+  /**
+   * A lens that reports a narrower reach can leave the base a drag works from behind it. The camera clamps what it is
+   * sent, so the published ratio has to be clamped the same way or the zoom bar reads a level the lens is not at.
+   */
+  @Test
+  fun `Given a drag base above what the lens can reach, when dragged in, then the zoom stays within the lens's reach`() {
+    setupZoomState(minZoom = 1f, maxZoom = 10f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(8f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    setupZoomState(minZoom = 1f, maxZoom = 3f)
+    viewModel.onEvent(CameraScreenEvents.LinearZoom(0.5f))
+
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(3f)
+  }
+
+  /** Clamping the base as well as the result leaves the drag usable from the top of the range rather than pinned to it. */
+  @Test
+  fun `Given a drag base above what the lens can reach, when dragged out, then the drag works from the lens's maximum`() {
+    setupZoomState(minZoom = 1f, maxZoom = 10f)
+    bindCamera()
+    viewModel.onEvent(CameraScreenEvents.SetZoomRatio(8f))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    setupZoomState(minZoom = 1f, maxZoom = 3f)
+    viewModel.onEvent(CameraScreenEvents.LinearZoom(-0.5f))
+
+    // Half the way out from a base clamped to 3f: 3f + (3f - 1f) * -0.5f
+    assertThat(viewModel.state.value.zoomRatio).isEqualTo(2f)
+  }
+
+  private companion object {
+    /** Far enough into an animation to be clear of both ends without having to know how long it runs for. */
+    private const val HALFWAY_MS = 120L
+
+    /** Two animations sampled a frame apart land a frame's worth of ratio apart, which is the tolerance needed. */
+    private const val RATIO_TOLERANCE = 0.05f
   }
 }

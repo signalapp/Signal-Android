@@ -76,11 +76,12 @@ class StorageServiceApi(
   /**
    * Performs the provided [WriteOperation].
    *
-   * PUT /v1/storage
+   * PUT /v1/storage?sendRemoteManifestOnConflict=false
    *
    * - 200: Success
    * - 409: Your [WriteOperation] version does not equal remoteVersion + 1. That means that there have been writes that you're not aware of.
-   *   The body includes the current [StorageManifest] as binary data.
+   *   The server would include its current [StorageManifest] in the body, but we fetch it ourselves when we retry and a manifest can be sizable, so we
+   *   ask it not to.
    */
   fun writeStorageItems(authToken: String, writeOperation: WriteOperation): NetworkResult<Unit> {
     return NetworkResult.fromFetch {

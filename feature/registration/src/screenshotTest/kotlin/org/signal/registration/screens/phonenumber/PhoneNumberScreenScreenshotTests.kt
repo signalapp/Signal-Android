@@ -7,14 +7,12 @@ package org.signal.registration.screens.phonenumber
 
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 
 class PhoneNumberScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun PhoneNumberScreenPreview() {
     Previews.Preview {

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
 import android.text.format.DateFormat
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -44,14 +45,12 @@ import org.thoughtcrime.securesms.util.atUTC
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toMillis
-import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.time.temporal.TemporalAdjusters
 import java.util.Locale
 
 class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
@@ -75,16 +74,7 @@ class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
     val now = remember { LocalDateTime.now() }
 
     val defaultDateTime = remember {
-      if (now.hour < 17) {
-        now.withHour(17).withMinute(0).withSecond(0).withNano(0)
-      } else {
-        val nextMorning = if (now.dayOfWeek == DayOfWeek.FRIDAY || now.dayOfWeek == DayOfWeek.SATURDAY || now.dayOfWeek == DayOfWeek.SUNDAY) {
-          now.with(TemporalAdjusters.next(DayOfWeek.MONDAY))
-        } else {
-          now.plusDays(1)
-        }
-        nextMorning.withHour(8).withMinute(0).withSecond(0).withNano(0)
-      }
+      now.plusDays(1).withHour(8).withMinute(0).withSecond(0).withNano(0)
     }
 
     var selectedDate by remember { mutableLongStateOf(defaultDateTime.toMillis()) }
@@ -164,6 +154,8 @@ class MuteUntilTimePickerBottomSheet : ComposeBottomSheetDialogFragment() {
         if (timestamp > System.currentTimeMillis()) {
           setFragmentResult(REQUEST_KEY, bundleOf(RESULT_TIMESTAMP to timestamp))
           dismissAllowingStateLoss()
+        } else {
+          Toast.makeText(context, R.string.MuteUntilTimePickerBottomSheet__invalid, Toast.LENGTH_SHORT).show()
         }
       }
     )

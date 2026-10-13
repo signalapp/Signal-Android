@@ -1,12 +1,13 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +23,44 @@ public final class PinValues extends SignalStoreValues {
   private static final String LAST_REMINDER_TIME    = "pin.last_reminder_time";
   private static final String NEXT_INTERVAL         = "pin.interval_index";
   private static final String KEYBOARD_TYPE         = "kbs.keyboard_type";
+  private static final String MIGRATION_VERSION     = "pin.migration_version";
   public  static final String PIN_REMINDERS_ENABLED = "pin.pin_reminders_enabled";
 
-  PinValues(KeyValueStore store) {
+  private static final int CURRENT_MIGRATION_VERSION = 1;
+
+  PinValues(KeyValueStore store, @NonNull Context context) {
     super(store);
+
+    if (getLong(MIGRATION_VERSION, 0) < CURRENT_MIGRATION_VERSION) {
+      migrateFromSharedPrefsV1(context);
+    }
+  }
+
+  /**
+   * Unlike the other stores, we can't use one of the migrated keys as the "has this run?" marker: both {@link #NEXT_INTERVAL} and
+   * {@link #LAST_SUCCESSFUL_ENTRY} are keys released versions already write, so their presence says nothing about whether this
+   * migration ran. Hence the explicit {@link #MIGRATION_VERSION}.
+   *
+   * These values used to be read straight out of shared prefs as the *default* for the keys above, so only migrate the ones this
+   * store doesn't already have a value for.
+   *
+   * Do not alter. If you need to migrate more stuff, bump {@link #CURRENT_MIGRATION_VERSION} and add a new method.
+   */
+  private void migrateFromSharedPrefsV1(@NonNull Context context) {
+    Log.i(TAG, "[V1] Migrating pin values from shared prefs.");
+
+    KeyValueStore.Writer writer = getStore().beginWrite();
+
+    if (!getStore().containsKey(LAST_SUCCESSFUL_ENTRY)) {
+      writer.putLong(LAST_SUCCESSFUL_ENTRY, LegacySharedPrefs.INSTANCE.getLong(context, "pref_registration_lock_last_reminder_time_post_kbs", 0));
+    }
+
+    if (!getStore().containsKey(NEXT_INTERVAL)) {
+      writer.putLong(NEXT_INTERVAL, LegacySharedPrefs.INSTANCE.getLong(context, "pref_registration_lock_next_reminder_interval", RegistrationLockReminders.INITIAL_INTERVAL));
+    }
+
+    writer.putLong(MIGRATION_VERSION, CURRENT_MIGRATION_VERSION)
+          .commit();
   }
 
   @Override
@@ -38,7 +73,7 @@ public final class PinValues extends SignalStoreValues {
   }
 
   public void onEntrySuccess(@NonNull String pin) {
-    long nextInterval = SignalPinReminders.getNextInterval(getCurrentInterval());
+    long nextInterval = SignalPinReminders.getNextInterval(getNextReminderInterval());
     Log.i(TAG, "onEntrySuccess() nextInterval: " + nextInterval);
 
     long now = System.currentTimeMillis();
@@ -53,7 +88,7 @@ public final class PinValues extends SignalStoreValues {
   }
 
   public void onEntrySuccessWithWrongGuess(@NonNull String pin) {
-    long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
+    long nextInterval = SignalPinReminders.getPreviousInterval(getNextReminderInterval());
     Log.i(TAG, "onEntrySuccessWithWrongGuess() nextInterval: " + nextInterval);
 
     long now = System.currentTimeMillis();
@@ -75,9 +110,9 @@ public final class PinValues extends SignalStoreValues {
     long nextInterval;
 
     if (includedFailure) {
-      nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
+      nextInterval = SignalPinReminders.getPreviousInterval(getNextReminderInterval());
     } else {
-      nextInterval = getCurrentInterval();
+      nextInterval = getNextReminderInterval();
     }
 
     Log.i(TAG, "onEntrySkip(includedFailure: " + includedFailure +") nextInterval: " + nextInterval);
@@ -101,12 +136,20 @@ public final class PinValues extends SignalStoreValues {
               .apply();
   }
 
-  public long getCurrentInterval() {
-    return getLong(NEXT_INTERVAL, TextSecurePreferences.getRegistrationLockNextReminderInterval(AppDependencies.getApplication()));
+  public long getNextReminderInterval() {
+    return getLong(NEXT_INTERVAL, RegistrationLockReminders.INITIAL_INTERVAL);
+  }
+
+  public void setNextReminderInterval(long interval) {
+    putLong(NEXT_INTERVAL, interval);
   }
 
   public long getLastSuccessfulEntryTime() {
-    return getLong(LAST_SUCCESSFUL_ENTRY, TextSecurePreferences.getRegistrationLockLastReminderTime(AppDependencies.getApplication()));
+    return getLong(LAST_SUCCESSFUL_ENTRY, 0);
+  }
+
+  public void setLastSuccessfulEntryTime(long time) {
+    putLong(LAST_SUCCESSFUL_ENTRY, time);
   }
 
   public long getLastReminderTime() {

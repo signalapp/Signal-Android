@@ -44,6 +44,8 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">აირჩიე ქვეყანა</string>
     <string name="RegistrationActivity_phone_number_description">ტელეფონის ნომერი</string>
+    <!-- Label the phone number field takes on when what has been typed reads as an account ID rather than a number -->
+    <string name="RegistrationActivity_account_id">ანგარიშის ID</string>
     <!-- Error shown beneath the phone number field when the entered number is not valid -->
     <string name="RegistrationActivity_not_a_valid_phone_number">მობილურის ნომერი არ არის მოქმედი</string>
     <!-- Dialog title shown when the entered phone number is rejected as invalid -->
@@ -53,6 +55,8 @@
     <string name="RegistrationActivity_next">შემდეგი</string>
     <!-- Button on the phone number screen that starts registering with a purchased Signal Login instead of a phone number -->
     <string name="RegistrationActivity_register_without_number">დარეგისტრირდი ნომრის გარეშე</string>
+    <!-- Button on the phone number screen, shown when the user already said they have an account to restore, that goes straight to entering their existing Signal Login -->
+    <string name="RegistrationActivity_use_account_id">გამოიყენე ანგარიშის ID</string>
     <!-- Dialog title to confirm phone number -->
     <string name="RegistrationActivity_is_the_phone_number">ქვემოთ მოცემული ნომერი სწორია?</string>
     <!-- Dialog body to confirm phone number -->
@@ -159,12 +163,6 @@
     <string name="ArchiveRestoreSelectionScreen__skip_restore_title">გადატანის გარეშე გაგრძელება</string>
     <!-- Description for an option that, when clicked, will take the user to a flow to restore form a local backup -->
     <string name="ArchiveRestoreSelectionScreen__skip_restore_description">წერილები &amp; მედია ფაილები არ გადავა</string>
-    <!-- Title for the backup folder option card (V2 format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_folder">სათადარიგო ასლების საქაღალდიდან</string>
-    <!-- Title for the backup file option card (V1 legacy format) -->
-    <string name="ArchiveRestoreSelectionScreen__from_a_backup_file">სათადარიგო ასლების ფაილიდან</string>
-    <!-- Subtitle for the backup folder/file option cards -->
-    <string name="ArchiveRestoreSelectionScreen__choose_a_backup_youve_saved">აირჩიე შენი შენახული სათადარიგო ასლი</string>
     <!-- Title for the device transfer option card -->
     <string name="ArchiveRestoreSelectionScreen__from_your_old_phone">შენი ძველი მობილურიდან</string>
     <!-- Subtitle for the device transfer option card -->
@@ -209,8 +207,6 @@
     <string name="LocalBackupRestoreScreen__enter_backup_passphrase">შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
     <!-- Description for V1 passphrase entry screen -->
     <string name="LocalBackupRestoreScreen__enter_the_30_digit_passphrase">შენი ადგილობრივი სათადარიგო ასლების პასფრაზა 30-ციფრიანი კოდია, რომელიც შენი ანაგარიშისა და მონაცემების აღსადგენადაა საჭირო.</string>
-    <!-- Label for the recovery key text field -->
-    <string name="LocalBackupRestoreScreen__recovery_key">აღდგენის გასაღები</string>
     <!-- Label for the backup passphrase text field -->
     <string name="LocalBackupRestoreScreen__passphrase">პასფრაზა</string>
     <!-- Error text when passphrase is too long -->
@@ -228,8 +224,6 @@
     <string name="EnterAepScreen__recovery_key">აღდგენის გასაღები</string>
     <!-- Link for users who don\'t have their recovery key -->
     <string name="EnterAepScreen__no_recovery_key">არ გაქვს აღდგენის გასაღები?</string>
-    <!-- Error text when key is too long -->
-    <string name="EnterAepScreen__too_long">ზედმეტად გრძელია (%1$d/%2$d)</string>
     <!-- Error text when key is invalid -->
     <string name="EnterAepScreen__invalid_recovery_key">აღდგენის გასაღები არასწორია</string>
     <!-- Error text when key is correct format but does not match account -->
@@ -242,14 +236,32 @@
     <string name="EnterAepScreen__restore_to_new_account_body">სათადარიგო ასლი, რომლის აღდგენასაც ცდილობ Signal-ის სხვა ანგარიშის გამოყენებით შეიქმნა. შეგიძლია ეს სათადარიგო ასლი ახალ ანაგრიშზე აღადგინო, მაგრამ არც ერთი აღდგენილი ჯგუფის წევრი აღარ იქნები.</string>
     <!-- Confirm button label for the restore to new account dialog -->
     <string name="EnterAepScreen__restore">აღდგენა</string>
+    <!-- Title of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found">სათადარიგო ასლი ვერ მოიძებნა</string>
+    <!-- Body of the dialog shown when the entered recovery key is correct, but the account has no Signal Backup to restore -->
+    <string name="EnterAepScreen__no_backup_found_body">შენი აღდგენის გასაღები სწორია, მაგრამ ამ ანგარიშზე Signal-ის სათადარიგო ასლები არ გაქვს. აღდგენის სხვა გზის ასარჩევად უკან დაბრუნდი ან აღდგენის გარეშე განაგრძე.</string>
+    <!-- Title of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_title">აღდგენის გასაღები არასწორია</string>
+    <!-- Body of the dialog shown when the entered recovery key does not match the account being registered -->
+    <string name="EnterAepScreen__incorrect_recovery_key_dialog_body">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal backups. Backups cannot be recovered without this key.</string>
+    <!-- Button in the incorrect recovery key dialog that dismisses it so the user can re-enter their key -->
+    <string name="EnterAepScreen__try_again">ახლიდან სცადე</string>
+    <!-- Button in the incorrect recovery key dialog that offers to verify the phone number over SMS instead -->
+    <string name="EnterAepScreen__try_another_way">Try another way</string>
+    <!-- Button in the incorrect recovery key dialog that opens a support article about recovery keys -->
+    <string name="EnterAepScreen__recovery_key_help">დახმარება აღდგენის გასაღებთან დაკავშირებით</string>
+    <!-- Title of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code">Verify with SMS code?</string>
+    <!-- Body of the dialog offering to verify the phone number with an SMS code instead of the recovery key -->
+    <string name="EnterAepScreen__verify_with_sms_code_body">You can register your account by verifying via an SMS code Signal will send you. After entering the code, you can try restoring your backup with your recovery key again.</string>
+    <!-- Confirm button in the verify with SMS code dialog that requests an SMS verification code -->
+    <string name="EnterAepScreen__send_code">Send code</string>
     <!-- Text shown while preparing the restore -->
     <string name="LocalBackupRestoreScreen__preparing_restore">მზადდება აღდგენა…</string>
     <!-- Title shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_backup">მიმდინარეობს სათადარიგო ასლების აღდგენა</string>
     <!-- Description shown while restore is in progress -->
     <string name="LocalBackupRestoreScreen__restoring_description">გთხოვთ, მოიცადო, სანამ შენი წერილები და მონაცემები აღდგება.</string>
-    <!-- Description shown when restore is complete -->
-    <string name="LocalBackupRestoreScreen__restore_complete_description">Your messages and account data have been restored successfully.</string>
     <!-- Continue button text after restore is complete -->
     <string name="LocalBackupRestoreScreen__continue_button">გაგრძელება</string>
     <!-- Title shown when restore fails -->
@@ -562,41 +574,6 @@
     <string name="DeviceTransferComplete__your_account_is_now_on_this_device">ახლა შენი ანგარიში ამ მოწყობილობაზეა.</string>
     <string name="DeviceTransferComplete__continue_registration">გაგრძელება</string>
 
-    <!-- Create profile screen -->
-    <!-- Title displayed at the top of the create-profile screen during registration. -->
-    <string name="CreateProfileScreen__set_up_your_profile">შექმენი შენი პროფილი</string>
-    <!-- Subtitle on create-profile screen explaining that the profile is end-to-end encrypted and visible to recipients. -->
-    <string name="CreateProfileScreen__your_profile_is_end_to_end_encrypted">შენს პროფილსა და მასში შეტანილ ცვლილებებს დაინახავენ შენი კონტაქტები, ჯგუფები და ის ადამიანები, ვისთანაც მიმოწერა გაქვს.</string>
-    <!-- Label/hint for the first-name field, indicating it is required. -->
-    <string name="CreateProfileScreen__first_name_required">სახელი (სავალდებულო)</string>
-    <!-- Label/hint for the last-name field, indicating it is optional. -->
-    <string name="CreateProfileScreen__last_name_optional">გვარი (არასავალდებულო)</string>
-    <!-- Action button text to advance from create-profile screen. -->
-    <string name="CreateProfileScreen__next">შემდეგი</string>
-    <!-- Content description for the avatar selection control. -->
-    <string name="CreateProfileScreen__set_avatar_description">ავატარის დაყენება</string>
-
-    <!-- Phone number discoverability picker -->
-    <!-- Title row label shown on the create-profile screen pointing at the discoverability picker. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს?</string>
-    <!-- Description shown on the picker when "Everyone" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">ნებისმიერს, ვისაც შენი მობილურის ნომერი აქვს, დაინახავს, რომ Signal-ზე ხარ და შენთან ჩატის წამოწყებას შეძლებს.</string>
-    <!-- Description shown on the picker when "Nobody" is selected. -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">ვერავინ დაინახავს, რომ Signal-ზე ხარ, სანამ არ მისწერ ან თუ არსებული ჩატი არ გექნებათ.</string>
-    <!-- Radio option label for "Everyone can find me by number". -->
-    <string name="PhoneNumberPrivacy_everyone">ყველა</string>
-    <!-- Radio option label for "Nobody can find me by number". -->
-    <string name="PhoneNumberPrivacy_nobody">არავინ</string>
-    <!-- Title for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">დარწმუნებული ხარ?</string>
-    <!-- Body for the confirmation dialog shown when the user selects "Nobody". -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">თუ „ვინ მიპოვის ნომრით“ პარამეტრს „არავინ“-ზე დააყენებ, სხვებს შენი Signal-ზე პოვნა გაურთულდებათ.</string>
-    <!-- Cancel button on the "Nobody" confirmation dialog. -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">გაუქმება</string>
-    <!-- Save button on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__save">შენახვა</string>
-    <!-- Content description for the back arrow on the discoverability picker. -->
-    <string name="PhoneNumberDiscoverabilityScreen__back">უკან</string>
     <!-- Error message shown when the captcha fails to load. -->
     <string name="CaptchaScreen__failed_to_load_captcha">Captcha-ს ჩატვირთვა ვერ მოხერხდა</string>
     <!-- Button to cancel out of the captcha screen. -->
@@ -610,7 +587,7 @@
     <!-- Title of the screen where the user buys a Signal Login to register without a phone number. -->
     <string name="SignalLoginPaymentScreen__signal_login">Signal Login</string>
     <!-- Description of what a Signal Login is. Followed by a "learn more" link. -->
-    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">დარეგისტრირდი მობილურის ნომრის გარეშე Signal Login-ით. ერთჯერადი შენაძენით ანგარიშის გასაღებს მიიღებ დასაწყებად.</string>
+    <string name="SignalLoginPaymentScreen__register_without_a_phone_number">დარეგისტრირდი მობილურის ნომრის გარეშე Signal Login-ით. ერთჯერადი შენაძენით ანგარიშის ID-ს მიიღებ დასაწყებად.</string>
     <!-- Link at the end of the description that opens a support article about Signal Login. -->
     <string name="SignalLoginPaymentScreen__learn_more">გაიგე მეტი</string>
     <!-- Subtitle of the purchase option, clarifying the price is not a subscription. -->
@@ -624,7 +601,7 @@
     <!-- Title of the option for users who already bought a Signal Login. -->
     <string name="SignalLoginPaymentScreen__i_have_a_signal_login">Signal Login მაქვს</string>
     <!-- Subtitle of the existing-login option. -->
-    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">გამოიყენე შენი ანგარიშის არსებული გასაღები</string>
+    <string name="SignalLoginPaymentScreen__use_your_existing_account_key">გამოიყენე არსებული შესვლის ინფორმაცია</string>
     <!-- Selling point of the existing-login option: the account can be restored. -->
     <string name="SignalLoginPaymentScreen__login_and_restore_your_account">შედი და აღადგინე შენი ანგარიში</string>
     <!-- Selling point of the existing-login option, thanking the user for their previous purchase. -->
@@ -637,26 +614,128 @@
     <string name="SignalLoginPaymentScreen__continue">გაგრძელება</string>
     <!-- Error shown when the purchase does not go through. -->
     <string name="SignalLoginPaymentScreen__your_purchase_could_not_be_completed">შენი შენაძენი ვერ განხორციელდა. საფასური არ ჩამოგჭრია.</string>
+    <!-- Shown in place of the price when Google Play cannot offer the purchase. -->
+    <string name="SignalLoginPaymentScreen__unavailable">ხელმისაწვდომი არ არის</string>
+    <!-- Label for the button that retries loading the purchase price after it failed to load. -->
+    <string name="SignalLoginPaymentScreen__retry">თავიდან ცდა</string>
+    <!-- Shown in place of the price when the user already paid for a Signal Login but it was never redeemed. -->
+    <string name="SignalLoginPaymentScreen__already_paid">უკვე გადახდილია</string>
+    <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
+    <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">ამჟამად ამ მოწყობილობაზე Signal Login-ის შეძენა შეუძლებელია. მოგვიანებით სცადე.</string>
+    <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">შენი ტრანზაქცია ჯერ კიდევ მუშავდება. დაბრუნდი და გაგრძელებას დააჭირე, როცა დამუშავდება და თანხა აღარ ჩამოგეჭრება.</string>
+    <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
+    <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
+  <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__this_receipt_credential_is_invalid" translatable="false">This receipt credential is invalid.</string> -->
+    <!-- Title of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__update_google_play_services">განაახლე Google Play-ის სერვისები</string>
+    <!-- Body of the dialog shown when Google Play services is too old to take a payment. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_update_google_play_services">Signal Login-ის შესაძენად, განაახლე Google Play-ის სერვისები ამ მოწყობილობაზე.</string>
+    <!-- Button that updates Google Play services. -->
+    <string name="SignalLoginPaymentScreen__update">განახლება</string>
+    <!-- Title of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_missing">Google Play-ის სერვისები აკლია</string>
+    <!-- Body of the dialog shown when Google Play services is not installed. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_google_play_services_needs_to_be_installed">Signal Login-ის შესაძენად Google Play-ს სერვისები უნდა გქონდეს გადმოწერილი.</string>
+    <!-- Button that installs Google Play services. -->
+    <string name="SignalLoginPaymentScreen__install_play_services">დააინსტალირე Play სერვისები</string>
+    <!-- Title of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__google_play_services_are_updating">მიმდინარეობს Google Play-ის სერვისების განახლება</string>
+    <!-- Body of the dialog shown while Google Play services is updating itself. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">გთხოვთ, Signal Login-ის შესაძენად Google Play-ს სერვისების განახლების დასრულებას დაელოდო.</string>
+    <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
+    <string name="SignalLoginPaymentScreen__google_play_is_required">საჭიროა Google Play</string>
+    <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Signal Login-ის შესაძენად, ჩართე Google Play-ს სერვისები ამ მოწყობილობაზე და Google Play store-ს ანგარიშზე შედი.</string>
+    <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">Signal Login-ის შეძენას ვერ შეძლებ, რადგან ამ მოწყობილობას Google Play-ს სერვისების მხარდაჭერა არ აქვს. დახმარებისთვის მიმართე მობილურის მწარმოებელს.</string>
+    <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">გთხოვთ, Signal Login-ის შესაძენად Google Play store-ში შენს ანგარიშზე შეხვიდე.</string>
+    <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">Signal-ის სამ ვერსიაზე Signal Login-ს ვერ შეიძენ. შესაძენად Signal Google Play store-იდან გადმოიწერე.</string>
+    <!-- Button that opens the Google Play store so the user can sign into it. -->
+    <string name="SignalLoginPaymentScreen__open_play_store">შედი Play Store-ში</string>
 
     <!-- Signal Login details screen -->
     <!-- Title of the screen that shows the user their newly purchased Signal Login. -->
     <string name="SignalLoginInfoScreen__your_signal_login">შენი Signal Login</string>
     <!-- Description warning the user that a lost Signal Login cannot be recovered. -->
     <string name="SignalLoginInfoScreen__thanks_for_your_purchase">მადლობა შენაძენისთვის. გამოიყენე Signal Login, რათა დარეგისტრირდე ან შენი ანგარიში აღადგინო. თუ შენი პინ-კოდი დაგავიწყდება, შენი ანგარიშის აღდგენას ვეღარ შეძლებ.</string>
-    <!-- Label for the account portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__account">მონაცემები</string>
-    <!-- Label for the recovery portion of the Signal Login on the credential card. -->
-    <string name="SignalLoginInfoScreen__recovery">აღდგენა</string>
-    <!-- Button on the credential card that reveals the full Signal Login. -->
-    <string name="SignalLoginInfoScreen__view_details">დეტალების ნახვა</string>
-    <!-- Body of the dialog revealing the full Signal Login. First placeholder is the account key, second is the recovery key. -->
-    <string name="SignalLoginInfoScreen__account_s_recovery_s">ანგარიში: %1$s\n\nაღდგენა: %2$s</string>
     <!-- Action button that stores the Signal Login in the device password manager. -->
     <string name="SignalLoginInfoScreen__save_to_password_manager">პაროლების მენეჯერში შენახვა</string>
+    <!-- Toast shown when the user taps the disabled save to password manager button and the device has no password manager. -->
+    <string name="SignalLoginInfoScreen__no_password_manager_available">პაროლების მენეჯერი არ გაქვს შექმნილი.</string>
+    <!-- Body of the dialog asking the user to confirm saving their Signal Login credentials to the device password manager. -->
+    <string name="SignalLoginInfoScreen__only_store_your_credentials">Only store your credentials in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
     <!-- Action button for users who would rather write the Signal Login down themselves. -->
     <string name="SignalLoginInfoScreen__save_manually">ხელით შენახვა</string>
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">შენი Signal Login ვერ შეინახა. გთხოვთ, ხელით შეინახო.</string>
+    <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">შესვლის ინფორმაციის დასტურის ხარვეზი</string>
+    <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
+    <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">შენი Signal Login-ის დადასტურება ვერ მოხერხდა. დარწმუნდი, რომ ის შენი პაროლების მენეჯერში ან შენით შეინახე.</string>
+
+    <!-- Sheet that double-checks the user\'s Signal Login really made it into their password manager -->
+    <!-- Title of the sheet asking the user to confirm their Signal Login was saved to their password manager. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_your_login_info_is_saved">დაადასტურე, რომ შენი შესვლის ინფორმაცია შეინახა</string>
+    <!-- Description telling the user they are about to be asked to fill in the Signal Login they just saved. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_that_your_login_info_was_saved">დაადასტურე, რომ შენი Signal Login სწორადაა შენახული. შემდეგ ნაბიჯში შენი შენახული პაროლის შევსება მოგეთხოვება.</string>
+    <!-- Action button that starts checking the password manager for the Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__confirm_login_info">შესვლის ინფორმაციის დადასტურება</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedToPasswordManagerBottomSheet__see_login_info_again">შესვლის ინფორმაციის თავიდან ნახვა</string>
+
+    <!-- Save Signal Login screen -->
+    <!-- Title of the screen that spells out the Signal Login so the user can record it themselves. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_your_signal_login">შეინახე შენი Signal Login</string>
+    <!-- Description telling the user to keep their Signal Login somewhere safe and private. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__store_your_signal_login_somewhere_safe">შენი Signal Login სადმე უსაფრთხოდ შეინახე. არასდროს არავის გაუზიარო შენი შესვლის ინფორმაცია.</string>
+    <!-- Action button that saves the Signal Login to a PDF file. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__save_as_pdf">PDF-ად შენახვა</string>
+    <!-- Action button for users who are done recording their Signal Login. -->
+    <string name="SignalLoginViewDetailsForManualSaveScreen__continue">გაგრძელება</string>
+
+    <!-- Sheet that double-checks the user really saved their Signal Login -->
+    <!-- Title of the sheet asking the user to confirm they saved their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__confirm_your_login_info_is_saved">დაადასტურე, რომ შენი შესვლის ინფორმაცია შეინახა</string>
+    <!-- Description warning the user that they are about to be asked for their Signal Login and that it cannot be recovered. -->
+    <string name="ConfirmLoginSavedBottomSheet__you_will_be_prompted_to_sign_in">ამის შემდეგ მოგეთხოვება, რომ შენი Signal Login-ით შეხვიდე. დარწმუნდი, რომ ეს დეტალები შეინახე ან დააკოპირე. Signal-ი ვერ შეძლებს შენი ანგარიშის აღდგენაში დაგეხმაროს.</string>
+    <!-- Action button confirming the Signal Login is saved. -->
+    <string name="ConfirmLoginSavedBottomSheet__continue">გაგრძელება</string>
+    <!-- Action button that sends the user back to their Signal Login. -->
+    <string name="ConfirmLoginSavedBottomSheet__show_login_info_again">შესვლის ინფორმაციის თავიდან ჩვენება</string>
+
+    <!-- Errors shown beneath an account ID text field, wherever one is offered -->
+    <!-- Error shown when the entered account ID contains characters that can\'t appear in one. -->
+    <string name="AccountIdField__invalid_account_id">არასწორი ანგარიშის ID</string>
+
+    <!-- Signal Login credential entry screen -->
+    <!-- Title of the screen where a user with an existing Signal Login types it in to log back in. -->
+    <string name="SignalLoginCredentialEntryScreen__signal_login">Signal Login</string>
+    <!-- Description telling the user what to enter to log in. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key">შენი ანგარიშის აღსადგენად შეიყვანე შენი ანგარიშის ID და აღდგენის გასაღები.</string>
+    <!-- Label of the text field the account ID is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__account_id">ანგარიშის ID</string>
+    <!-- Label of the text field the recovery key is typed into. -->
+    <string name="SignalLoginCredentialEntryScreen__recovery_key">აღდგენის გასაღები</string>
+    <!-- Description of the button that spells out the typed recovery key instead of masking it. -->
+    <string name="SignalLoginCredentialEntryScreen__show_recovery_key">აღდგენის გასაღების ჩვენება</string>
+    <!-- Description of the button that masks the typed recovery key. -->
+    <string name="SignalLoginCredentialEntryScreen__hide_recovery_key">აღდგენის გასაღების დამალვა</string>
+    <!-- Button that opens a support article for users who can\'t find their Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__need_help">დახმარება გჭირდება?</string>
+    <!-- Action button that submits the entered Signal Login. -->
+    <string name="SignalLoginCredentialEntryScreen__next">შემდეგი</string>
+    <!-- Error shown when the service rejects the entered login, which means one of the two halves is wrong. -->
+    <string name="SignalLoginCredentialEntryScreen__incorrect_account_id_or_recovery_key">არასწორი ანგარიშის ID ან აღდგენის გასაღები</string>
+    <!-- Description shown instead when the user is typing back the Signal Login they were just given, to check they recorded it correctly. -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly">შეიყვანე შენი Signal Login, რათა დაადასტურო, რომ სწორადაა ჩანიშნული.</string>
+    <!-- Button that takes the user back to their Signal Login if they can\'t remember what they recorded. -->
+    <string name="SignalLoginCredentialEntryScreen__show_login_info_again">შესვლის ინფორმაციის თავიდან ჩვენება</string>
+    <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
+    <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">ეს შენთვის ნაჩვენებ Signal Login-ს არ ემთხვევა</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -685,6 +764,26 @@
     <string name="AddUsernameScreen__usernames_cannot_begin_with_a_number">მომხმარებლის სახელი ციფრით ვერ დაიწყება</string>
     <!-- Error shown when the chosen username cannot be reserved. -->
     <string name="AddUsernameScreen__this_username_is_not_available">ეს მომხმარებლის სახელი დაკავებულია. გთხოვთ, სხვა სცადო.</string>
+    <!-- Error shown when the user\'s temporary hold on a username expired before they submitted it. -->
+    <string name="AddUsernameScreen__your_username_reservation_expired">შენი მომხმარებლის სახელის დაჯავშნის ვადა ამოიწურა. გთხოვთ, თავიდან სცადო.</string>
+    <!-- Error shown when the username formed by the entered name and the user\'s chosen number is already taken. -->
+    <string name="AddUsernameScreen__this_username_is_not_available_try_another_number">მომხმარებლის სახელი არაა ხელმისაწვდომი, სხვა ნომერი სცადე.</string>
+    <!-- Validation error shown when the number the user entered after their username has too few digits. -->
+    <string name="AddUsernameScreen__enter_a_minimum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
+    <!-- Validation error shown when the number the user entered after their username has too many digits. -->
+    <string name="AddUsernameScreen__enter_a_maximum_of_d_digits">მომხმარებლის სახელი არასწორია, შეიყვანე მინიმუმ %1$d ციფრი.</string>
+    <!-- Validation error shown when the number the user entered after their username is 00. -->
+    <string name="AddUsernameScreen__this_number_cant_be_00">ეს რიცხვი ვერ იქნება 00. შეიყვანე ციფრი 1–9-მდე</string>
+    <!-- Validation error shown when the number the user entered after their username has a leading zero. -->
+    <string name="AddUsernameScreen__this_number_cant_start_with_0">2-ზე მეტ ციფრიანი რიცხვი არ შეიძლება დაიწყოს 0-ით</string>
+    <!-- Title of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__are_you_sure">დარწმუნებული ხარ?</string>
+    <!-- Body of the dialog confirming the user wants to skip choosing a username. -->
+    <string name="AddUsernameScreen__without_a_username_people_wont_be_able_to_find_you">მომხმარებლის სახელის გარეშე ხალხი Signal-ზე ვერ გიპოვის.</string>
+    <!-- Button in the skip-username confirmation dialog that returns to the screen without skipping. -->
+    <string name="AddUsernameScreen__cancel">გაუქმება</string>
+    <!-- Button in the skip-username confirmation dialog that skips choosing a username. -->
+    <string name="AddUsernameScreen__continue">გაგრძელება</string>
 
     <!-- ContactSupportDialog -->
     <!-- Title of the dialog asking the user whether they want to attach a debug log to their support request -->
@@ -695,4 +794,30 @@
     <string name="ContactSupportDialog__submit_with_debug_log">გაუმართაობის რეესტრით ატვირთვა</string>
     <!-- Button that contacts support without attaching a debug log -->
     <string name="ContactSupportDialog__submit_without_debug_log">გაუმართაობის რეესტრის გარეშე ატვირთვა</string>
+
+    <!-- TotpEntryScreen -->
+    <!-- Title of the two-factor authentication code entry screen -->
+    <string name="TotpEntryScreen__two_factor_authentication">ორნაბიჯიანი ავტორიზაცია</string>
+    <!-- Subtitle explaining where to find the code -->
+    <string name="TotpEntryScreen__to_continue_enter_the_code">გასაგრძელებლად შენი ავტორიზაციის აპიდან 6-ციფრიანი კოდი შეიყვანე.</string>
+    <!-- Button text to cancel entering a code -->
+    <string name="TotpEntryScreen__cancel">გაუქმება</string>
+
+    <!-- TwoFactorSelectionScreen -->
+    <!-- Title of the two-factor authentication method selection screen -->
+    <string name="TwoFactorSelectionScreen__two_factor_authentication">ორნაბიჯიანი ავტორიზაცია</string>
+    <!-- Subtitle telling the user to pick one of the methods listed below -->
+    <string name="TwoFactorSelectionScreen__choose_a_method_below">შენი ანგარიშის ვერიფიკაციისთვის ქვემოთ მოცემული მეთოდი აირჩიე.</string>
+    <!-- Title of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__passkey">წვდომის გასაღები</string>
+    <!-- Description of the card for verifying with a passkey -->
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">დააჭირე შენი მოწყობილობის ბიომეტრიული მონაცემების ან FIDO2 წვდომის გასაღების გამოსაყენებლად</string>
+    <!-- Title of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__authenticator_app">ავტორიზაციის აპი</string>
+    <!-- Description of the card for verifying with a code from an authenticator app -->
+    <string name="TwoFactorSelectionScreen__enter_a_one_time_code">შეიყვანე შენი ავტორიზაციის აპის მიერ გენერირებული ერთჯერადი კოდი.</string>
+    <!-- Button text to cancel two-factor authentication -->
+    <string name="TwoFactorSelectionScreen__cancel">გაუქმება</string>
+    <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
+    <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
 </resources>

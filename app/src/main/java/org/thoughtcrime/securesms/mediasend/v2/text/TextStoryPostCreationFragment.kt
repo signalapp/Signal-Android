@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.camera.CameraDisplay
 import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.activityViewModel
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.getWindowBreakpoint
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.activityViewModel
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import java.util.Optional
@@ -298,10 +298,12 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
           Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__sent_story, Toast.LENGTH_SHORT).show()
           callback.onSentWithoutResult()
         }
+
         TextStoryPostSendResult.Failure -> {
           Toast.makeText(requireContext(), R.string.TextStoryPostCreationFragment__failed_to_send_story, Toast.LENGTH_SHORT).show()
           requireActivity().finish()
         }
+
         is TextStoryPostSendResult.UntrustedRecordsError -> {
           binding.send.isClickable = true
           binding.sendInProgressIndicator.visible = false

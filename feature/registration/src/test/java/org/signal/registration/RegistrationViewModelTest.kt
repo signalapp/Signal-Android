@@ -6,6 +6,10 @@
 package org.signal.registration
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -14,6 +18,7 @@ import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -26,8 +31,10 @@ import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
+import org.signal.core.models.ServiceId.ACI
 import org.signal.network.api.RegistrationApiV2.SessionMetadata
 import org.signal.network.api.RegistrationApiV2.SvrCredentials
+import java.util.UUID
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RegistrationViewModelTest {
@@ -284,7 +291,7 @@ class RegistrationViewModelTest {
     val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
     advanceUntilIdle()
 
-    viewModel.onEvent(RegistrationFlowEvent.Registered(AccountEntropyPool.generate(), storageCapable = false))
+    viewModel.onEvent(RegistrationFlowEvent.Registered(ACI.from(UUID.randomUUID()), AccountEntropyPool.generate(), storageCapable = false, phoneNumberless = false))
     advanceUntilIdle()
 
     coVerify(exactly = 0) { mockRepository.saveFlowState(any()) }
@@ -519,6 +526,27 @@ class RegistrationViewModelTest {
   }
 
   @Test
+  fun `applyEvent NavigateToScreen RemoteRestore entered from restore selection keeps backStack`() = runTest(testDispatcher) {
+    coEvery { mockRepository.restoreFlowState() } returns null
+    coEvery { mockRepository.getPreExistingRegistrationData() } returns null
+
+    val viewModel = RegistrationViewModel(mockRepository, SavedStateHandle())
+    advanceUntilIdle()
+
+    val restoreSelection = RegistrationRoute.ArchiveRestoreSelection.forPostRegisterWithKnownAep(AccountEntropyPool.generate(), hasRemoteBackup = true)
+    val initialState = RegistrationFlowState(backStack = listOf(restoreSelection))
+
+    val remoteRestore = RegistrationRoute.RemoteRestore(AccountEntropyPool.generate(), backwardNavigationAllowed = true)
+
+    val result = viewModel.applyEvent(
+      initialState,
+      RegistrationFlowEvent.NavigateToScreen(remoteRestore)
+    )
+
+    assertThat(result.backStack).isEqualTo(listOf(restoreSelection, remoteRestore))
+  }
+
+  @Test
   fun `applyEvent NavigateToScreen post-registration ArchiveRestoreSelection clears backStack`() = runTest(testDispatcher) {
     coEvery { mockRepository.restoreFlowState() } returns null
     coEvery { mockRepository.getPreExistingRegistrationData() } returns null
@@ -732,12 +760,14 @@ class RegistrationViewModelTest {
     advanceUntilIdle()
 
     val aep = AccountEntropyPool.generate()
+    val aci = ACI.from(UUID.randomUUID())
 
     val result = viewModel.applyEvent(
       RegistrationFlowState(),
-      RegistrationFlowEvent.Registered(aep, storageCapable = true)
+      RegistrationFlowEvent.Registered(aci, aep, storageCapable = true, phoneNumberless = false)
     )
 
+    assertThat(result.aci).isEqualTo(aci)
     assertThat(result.accountEntropyPool).isEqualTo(aep)
     assertThat(result.storageCapable).isTrue()
   }
@@ -885,6 +915,26 @@ class RegistrationViewModelTest {
     assertThat(viewModel.state.value.isRestoringNavigationState).isTrue()
 
     advanceUntilIdle()
+  }
+
+  // ==================== Repository Ownership Tests ====================
+
+  @Test
+  fun `repository is closed when the view model is cleared`() = runTest(testDispatcher) {
+    val store = ViewModelStore()
+    val provider = ViewModelProvider.create(
+      store,
+      viewModelFactory {
+        initializer { RegistrationViewModel(mockRepository, SavedStateHandle()) }
+      }
+    )
+
+    provider[RegistrationViewModel::class]
+    advanceUntilIdle()
+    verify(exactly = 0) { mockRepository.close() }
+
+    store.clear()
+    verify(exactly = 1) { mockRepository.close() }
   }
 
   // ==================== Helpers ====================

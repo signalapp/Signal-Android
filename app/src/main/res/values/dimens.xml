@@ -35,6 +35,8 @@
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">12dp</dimen>
+    <dimen name="shared_contact_action_button_spacing">12dp</dimen>
+    <dimen name="shared_contact_action_button_stacked_spacing">8dp</dimen>
     <dimen name="message_bubble_top_padding">7dp</dimen>
     <dimen name="message_bubble_top_image_margin">4dp</dimen>
     <dimen name="message_bubble_text_only_top_margin">4dp</dimen>
@@ -48,6 +50,7 @@
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
+    <dimen name="shared_contact_bubble_min_width">240dp</dimen>
     <dimen name="media_bubble_min_width_solo">150dp</dimen>
     <dimen name="media_bubble_min_width_with_content">240dp</dimen>
     <dimen name="media_bubble_max_width">240dp</dimen>
@@ -140,8 +143,6 @@
     <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">30dp</dimen>
     <dimen name="conversation_reaction_scrub_vertical_translation">25dp</dimen>
     <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
-
-    <dimen name="storage_legend_circle_size">8dp</dimen>
 
     <dimen name="debug_log_text_size">12sp</dimen>
 
@@ -241,9 +242,6 @@
     <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
 
     <dimen name="chat_folder_row_height">64dp</dimen>
-
-
-    <dimen name="donation_pill_max_width">180dp</dimen>
 
     <dimen name="call_screen_overflow_item_size">72dp</dimen>
 

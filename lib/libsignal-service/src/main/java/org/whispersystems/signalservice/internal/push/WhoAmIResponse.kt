@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class WhoAmIResponse @JsonCreator constructor(
   @JsonProperty("uuid") val aci: String? = null,
   @JsonProperty val pni: String? = null,
-  @JsonProperty val number: String,
+  @JsonProperty val number: String? = null,
   @JsonProperty val usernameHash: String? = null,
   @JsonProperty val entitlements: Entitlements? = null
 ) {

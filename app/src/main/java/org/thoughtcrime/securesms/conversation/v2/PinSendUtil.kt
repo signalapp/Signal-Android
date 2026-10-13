@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import org.signal.core.models.ServiceId
+import org.signal.core.util.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -9,7 +10,6 @@ import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupAccessControl
-import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.messages.GroupSendUtil
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient

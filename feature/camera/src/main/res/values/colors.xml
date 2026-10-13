@@ -4,6 +4,10 @@
   -->
 
 <resources>
+    <!-- The HUD floats over a viewfinder, so it stays on the dark palette whatever theme the host is in. -->
     <color name="CameraHud_control_background">#CC333333</color>
+    <color name="CameraHud_control_foreground">#FFFFFFFF</color>
+
+    <!-- The record red has no equivalent in the Signal palette. -->
     <color name="CameraHud_control_red_background">#FFD92F20</color>
 </resources>

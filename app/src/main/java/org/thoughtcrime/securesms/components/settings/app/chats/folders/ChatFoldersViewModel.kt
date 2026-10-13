@@ -8,10 +8,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.swap
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -36,6 +38,16 @@ class ChatFoldersViewModel : ViewModel() {
           originalFolder = ChatFolder()
         )
       }
+    }
+  }
+
+  suspend fun shouldShowEducationSheet(): Boolean {
+    if (SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
+      return false
+    }
+
+    return withContext(Dispatchers.Default) {
+      ChatFoldersRepository.getFolderCount() == 1
     }
   }
 

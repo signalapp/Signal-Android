@@ -66,6 +66,9 @@ internal fun ImageEditor(
   // Masks everything outside the image, so it has to match the surface the editor is drawn on to read as a background.
   val blackoutColor = MaterialTheme.colorScheme.surface.toArgb()
 
+  // Crop thumbs and selection guides are light-on-dark by default, which disappears against a light surface.
+  val decorationColor = MaterialTheme.colorScheme.onSurface.toArgb()
+
   DisposableEffect(state) {
     state.attach()
     onDispose { state.detach() }
@@ -87,13 +90,16 @@ internal fun ImageEditor(
         .matchParentSize()
         .clipToBounds()
         .onSizeChanged { state.setCanvasSize(it.width.toFloat(), it.height.toFloat()) }
-        .imageEditorPointerInput(state, controller, scope)
+        .imageEditorPointerInput(state, controller, scope) {
+          hapticFeedback.performHapticFeedback(HapticFeedbackType.SegmentTick)
+        }
     ) {
       state.revision
 
       val nativeCanvas = drawContext.canvas.nativeCanvas
       val rendererContext = state.getOrCreateRendererContext(context, nativeCanvas)
       rendererContext.setBlackoutColor(blackoutColor)
+      rendererContext.setDecorationColor(decorationColor)
       rendererContext.save()
       try {
         rendererContext.canvasMatrix.initial(state.viewMatrix)
@@ -151,9 +157,9 @@ private fun HiddenTextInput(controller: ImageController) {
 /** How far a finger travels before a touch on an element counts as a drag. */
 private const val MAX_MOVE_SQUARED_BEFORE_DRAG = 10f
 
-private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController, scope: CoroutineScope): Modifier {
+private fun Modifier.imageEditorPointerInput(state: ImageEditorState, controller: ImageController, scope: CoroutineScope, onRotationSnap: () -> Unit): Modifier {
   return this.pointerInput(controller, controller.textEditingElement) {
-    val touchHandler = ImageEditorTouchHandler()
+    val touchHandler = ImageEditorTouchHandler(onRotationSnap)
 
     // The tap that a second one has to land on, and beat the timeout from, to count as a double tap.
     var lastTapElement: EditorElement? = null

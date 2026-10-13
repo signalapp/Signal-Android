@@ -7,17 +7,15 @@ package org.signal.registration.screens.messagesync
 
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
-import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.RtlPreview
+import org.signal.core.ui.compose.ScreenshotPreviews
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.mebiBytes
 import org.signal.registration.screens.messagesync.MessageSyncScreenState.Stage
 
 class MessageSyncScreenScreenshotTests {
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun MessageSyncScreenPreview() {
     Previews.Preview {
@@ -31,8 +29,7 @@ class MessageSyncScreenScreenshotTests {
   }
 
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun MessageSyncScreenPreparingPreview() {
     Previews.Preview {
@@ -44,8 +41,7 @@ class MessageSyncScreenScreenshotTests {
   }
 
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun MessageSyncScreenRestoringPreview() {
     Previews.Preview {
@@ -59,8 +55,7 @@ class MessageSyncScreenScreenshotTests {
   }
 
   @PreviewTest
-  @AllDevicePreviews
-  @RtlPreview
+  @ScreenshotPreviews
   @Composable
   fun MessageSyncScreenFinishingPreview() {
     Previews.Preview {

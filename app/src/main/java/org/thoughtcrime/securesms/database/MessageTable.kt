@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
+import org.thoughtcrime.securesms.components.settings.app.notifications.ReminderType
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.CallTable.Event
@@ -134,12 +135,14 @@ import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier.StickyThread
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo
+import org.thoughtcrime.securesms.service.UnreadReminderManager
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 import org.thoughtcrime.securesms.stories.Stories.isFeatureEnabled
 import org.thoughtcrime.securesms.util.DateUtils
@@ -147,7 +150,6 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalTrace
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.Closeable
@@ -1293,9 +1295,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  fun insertLearnedProfileNameChangeMessage(recipient: Recipient, e164: String?, username: String?) {
-    if ((e164 == null && username == null) || (e164 != null && username != null)) {
-      Log.w(TAG, "Learn profile event expects an e164 or username")
+  fun insertLearnedProfileNameChangeMessage(recipient: Recipient, e164: String? = null, username: String? = null, sharedName: String? = null) {
+    if (listOfNotNull(e164, username, sharedName).size != 1) {
+      Log.w(TAG, "Learn profile event expects exactly one of an e164, username, or shared name")
       return
     }
 
@@ -1304,7 +1306,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     if (threadId != null) {
       val now = System.currentTimeMillis()
       val extras = MessageExtras(
-        profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = e164, username = username))
+        profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = e164, username = username, sharedName = sharedName))
       )
 
       val messageId = writableDatabase
@@ -1521,13 +1523,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       whereArgs = buildArgs(threadId)
     }
 
-    return MmsReader(queryMessages(where, whereArgs, orderBy = "$TABLE_NAME.$DATE_SENT ASC, $TABLE_NAME.$ID ASC", index = INDEX_STORY_TYPE))
+    return MmsReader(queryMessages(where, whereArgs, orderBy = "$DATE_SENT ASC", index = INDEX_STORY_TYPE))
   }
 
   fun getAllOutgoingStories(reverse: Boolean, limit: Int): Reader {
     val where = "$IS_STORY_CLAUSE AND ($outgoingTypeClause)"
-    val order = if (reverse) "$TABLE_NAME.$DATE_SENT DESC, $TABLE_NAME.$ID DESC" else "$TABLE_NAME.$DATE_SENT ASC, $TABLE_NAME.$ID ASC"
-    return MmsReader(queryMessages(where, null, reverse = false, limit = limit.toLong(), orderBy = order, index = INDEX_STORY_TYPE))
+    val orderBy = if (reverse) "$DATE_SENT DESC" else "$DATE_SENT ASC"
+    return MmsReader(queryMessages(where, null, limit = limit.toLong(), orderBy = orderBy, index = INDEX_STORY_TYPE))
   }
 
   fun markAllIncomingStoriesRead(): List<MarkedMessageInfo> {
@@ -1552,7 +1554,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threadId = threads.getThreadIdIfExistsFor(recipientId)
     val where = "$IS_STORY_CLAUSE AND $THREAD_ID = ?"
     val whereArgs = buildArgs(threadId)
-    val cursor = queryMessages(where, whereArgs, false, limit.toLong(), orderBy = "$TABLE_NAME.$DATE_SENT ASC, $TABLE_NAME.$ID ASC", index = INDEX_STORY_TYPE)
+    val cursor = queryMessages(where, whereArgs, limit = limit.toLong(), orderBy = "$DATE_SENT ASC", index = INDEX_STORY_TYPE)
     return MmsReader(cursor)
   }
 
@@ -1560,7 +1562,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val threadId = threads.getThreadIdIfExistsFor(recipientId)
     val query = "$IS_STORY_CLAUSE AND NOT ($outgoingTypeClause) AND $THREAD_ID = ? AND $VIEWED_COLUMN = ?"
     val args = buildArgs(threadId, 0)
-    return MmsReader(queryMessages(query, args, false, limit.toLong(), orderBy = "$TABLE_NAME.$DATE_SENT ASC, $TABLE_NAME.$ID ASC", index = INDEX_STORY_TYPE))
+    return MmsReader(queryMessages(query, args, limit = limit.toLong(), orderBy = "$DATE_SENT ASC", index = INDEX_STORY_TYPE))
   }
 
   fun getParentStoryIdForGroupReply(messageId: Long): GroupReply? {
@@ -2274,11 +2276,30 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     return readableDatabase.select(ID)
       .from(TABLE_NAME)
-      .where("($TABLE_NAME.$ID = ? OR $TABLE_NAME.$ORIGINAL_MESSAGE_ID = ?) AND $TABLE_NAME.$ID < ?", originalMessageId, originalMessageId, messageId)
+      .where("$ORIGINAL_MESSAGE_ID = ? AND $ID < ?", originalMessageId, messageId)
       .orderBy("$ID DESC")
       .limit(1)
       .run()
+      .readToSingleLong(originalMessageId)
+  }
+
+  /** Building an edit off anything but the newest revision leaves the chain with more than one visible message. */
+  private fun getLatestRevisionId(messageId: Long): Long {
+    val chainOriginalId = readableDatabase
+      .select(ORIGINAL_MESSAGE_ID)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, messageId)
+      .run()
       .readToSingleLong(0)
+
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$ORIGINAL_MESSAGE_ID = ?", if (chainOriginalId > 0) chainOriginalId else messageId)
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .readToSingleLong(messageId)
   }
 
   fun getMessages(messageIds: Collection<Long?>): MmsReader {
@@ -2572,16 +2593,75 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
-  fun markAsNotified(id: Long) {
+  fun markAsNotified(ids: Collection<Long>) {
+    if (ids.isEmpty()) {
+      return
+    }
+
+    val now = System.currentTimeMillis()
+    val idQuery = SqlUtil.buildFastCollectionQuery(ID, ids)
+    val originalQuery = SqlUtil.buildFastCollectionQuery(ORIGINAL_MESSAGE_ID, ids)
+    val revisionQuery = SqlUtil.buildFastCollectionQuery(LATEST_REVISION_ID, ids)
+
     writableDatabase
       .update(TABLE_NAME)
       .values(
         NOTIFIED to 1,
-        REACTIONS_LAST_SEEN to System.currentTimeMillis(),
-        VOTES_LAST_SEEN to System.currentTimeMillis()
+        REACTIONS_LAST_SEEN to now,
+        VOTES_LAST_SEEN to now
       )
-      .where("$ID = ? OR $ORIGINAL_MESSAGE_ID = ? OR $LATEST_REVISION_ID = ?", id, id, id)
+      .where(
+        "(${idQuery.where}) OR (${originalQuery.where}) OR (${revisionQuery.where})",
+        idQuery.whereArgs + originalQuery.whereArgs + revisionQuery.whereArgs
+      )
       .run()
+  }
+
+  /**
+   * Marks everything not yet notified in [conversationIds] as notified, up to and including [maxMessageId].
+   */
+  fun markConversationsAsNotified(conversationIds: Collection<ConversationId>, maxMessageId: Long) {
+    if (conversationIds.isEmpty() || maxMessageId <= 0) {
+      return
+    }
+
+    val now = System.currentTimeMillis()
+    val (storyReplies, chats) = conversationIds.partition { it.groupStoryId != null }
+
+    writableDatabase.withinTransaction { db ->
+      if (chats.isNotEmpty()) {
+        val query = SqlUtil.buildFastCollectionQuery(
+          column = THREAD_ID,
+          values = chats.map { it.threadId }.distinct(),
+          prefix = "$NOTIFIED = 0 AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $ID <= $maxMessageId AND"
+        )
+
+        db.update(TABLE_NAME)
+          .values(
+            NOTIFIED to 1,
+            REACTIONS_LAST_SEEN to now,
+            VOTES_LAST_SEEN to now
+          )
+          .where(query.where, query.whereArgs)
+          .run()
+      }
+
+      storyReplies.forEach { conversationId ->
+        db.update(TABLE_NAME)
+          .values(
+            NOTIFIED to 1,
+            REACTIONS_LAST_SEEN to now,
+            VOTES_LAST_SEEN to now
+          )
+          .where(
+            "$NOTIFIED = 0 AND $STORY_TYPE = 0 AND $PARENT_STORY_ID = ? AND $THREAD_ID = ? AND $ID <= ?",
+            conversationId.groupStoryId!!,
+            conversationId.threadId,
+            maxMessageId
+          )
+          .run()
+      }
+    }
   }
 
   fun markAsNotNotified(id: Long) {
@@ -2860,7 +2940,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val expireTimerVersion = cursor.requireInt(EXPIRE_TIMER_VERSION)
       val viewOnce = cursor.requireLong(VIEW_ONCE) == 1L
       val threadId = cursor.requireLong(THREAD_ID)
-      val threadRecipient = Recipient.resolved(threads.getRecipientIdForThreadId(threadId)!!)
+      val threadRecipientId = threads.getRecipientIdForThreadId(threadId) ?: throw NoSuchMessageException("Message $messageId no longer has a thread! (threadId: $threadId)")
+      val threadRecipient = Recipient.resolved(threadRecipientId)
       val distributionType = threads.getDistributionType(threadId)
       val storyType = StoryType.fromCode(cursor.requireInt(STORY_TYPE))
       val parentStoryId = ParentStoryId.deserialize(cursor.requireLong(PARENT_STORY_ID))
@@ -3513,7 +3594,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     var editedMessage: MessageRecord? = null
     if (message.isMessageEdit) {
       try {
-        editedMessage = getMessageRecord(message.messageToEdit)
+        editedMessage = getMessageRecord(getLatestRevisionId(message.messageToEdit))
         if (!MessageConstraintsUtil.isValidEditMessageSend(editedMessage)) {
           throw MmsException("Message is not valid to edit")
         }
@@ -3664,12 +3745,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         .values(QUOTE_ID to message.sentTimeMillis)
         .where("$QUOTE_ID = ?", editedMessage.dateSent)
         .run()
-    }
 
-    if (message.messageToEdit > 0) {
+      val chainOriginalId = editedMessage.getOriginalOrOwnMessageId().id
       writableDatabase.update(TABLE_NAME)
         .values(LATEST_REVISION_ID to messageId)
-        .where("$ID_WHERE OR $LATEST_REVISION_ID = ?", message.messageToEdit, message.messageToEdit)
+        .where("$ID != ? AND ($ID = ? OR $ORIGINAL_MESSAGE_ID = ?)", messageId, chainOriginalId, chainOriginalId)
         .run()
 
       val textAttachments = (editedMessage as? MmsMessageRecord)?.slideDeck?.asAttachments()?.filter { it.contentType == MediaUtil.LONG_TEXT }?.mapNotNull { (it as? DatabaseAttachment)?.attachmentId?.id } ?: emptyList()
@@ -3677,10 +3757,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val excludeIds = HashSet<Long>()
       excludeIds += textAttachments
       excludeIds += linkPreviewAttachments
-      attachments.duplicateAttachmentsForMessage(messageId, message.messageToEdit, excludeIds)
+      attachments.duplicateAttachmentsForMessage(messageId, editedMessage.id, excludeIds)
 
-      reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
-      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = message.messageToEdit)
+      reactions.moveReactionsToNewMessage(messageId, editedMessage.id)
+      movePinnedDetailsToNewMessage(newMessageId = messageId, previousId = editedMessage.id)
     }
 
     val hasCollapsed = maybeCollapseMessage(db = writableDatabase, messageId = messageId, threadId = threadId, dateReceived = dateReceived, messageExtras = message.messageExtras, messageType = type)
@@ -4543,24 +4623,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     OptimizeMessageSearchIndexJob.enqueue()
   }
 
-  fun getMessagesInThreadAfter(threadId: Long, timestamp: Long, limit: Long = 30): List<MessageRecord> {
-    val where = "$TABLE_NAME.$THREAD_ID = ? AND ($TABLE_NAME.$DATE_RECEIVED > ? OR $TABLE_NAME.$DATE_SENT > ?) AND $TABLE_NAME.$SCHEDULED_DATE = -1 AND $TABLE_NAME.$LATEST_REVISION_ID IS NULL"
-    val args = buildArgs(threadId, timestamp, timestamp)
-
-    return mmsReaderFor(queryMessages(where, args, false, limit)).use { reader ->
-      reader.filterNotNull()
-    }
-  }
-
-  fun getRecentMessagesInThread(threadId: Long, limit: Int = 15): List<MessageRecord> {
-    val where = "$TABLE_NAME.$THREAD_ID = ? AND $TABLE_NAME.$SCHEDULED_DATE = -1 AND $TABLE_NAME.$LATEST_REVISION_ID IS NULL"
-    val args = buildArgs(threadId)
-
-    return mmsReaderFor(queryMessages(where, args, true, limit.toLong())).use { reader ->
-      reader.filterNotNull().reversed()
-    }
-  }
-
   private fun getMessagesInThreadAfterInclusive(threadId: Long, timestamp: Long, limit: Long): List<MessageRecord> {
     val where = "$TABLE_NAME.$THREAD_ID = ? AND $TABLE_NAME.$DATE_RECEIVED >= ? AND $TABLE_NAME.$SCHEDULED_DATE = -1 AND $TABLE_NAME.$LATEST_REVISION_ID IS NULL"
     val args = buildArgs(threadId, timestamp)
@@ -5354,6 +5416,93 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $ORIGINAL_MESSAGE_ID IS NULL AND $SCHEDULED_DATE = -1 AND $READ = 0 AND $pinnedMessageClause")
       .run()
       .readToSingleInt()
+  }
+
+  /**
+   * Returns the number of unread messages (based on the [ReminderType]) and up to three distinct authors from [threadId]
+   */
+  fun getUnreadContentForReminderNotification(threadId: Long, type: ReminderType, now: Long = System.currentTimeMillis()): Pair<Int, List<RecipientId>> {
+    val categoryClause = when (type) {
+      ReminderType.MENTIONS -> "AND $MENTIONS_SELF = 1"
+      ReminderType.REPLIES -> "AND $QUOTE_AUTHOR = ${Recipient.self().id.serialize()}"
+      else -> ""
+    }
+
+    val authorIds = readableDatabase
+      .select(FROM_RECIPIENT_ID)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_UNREAD_COUNT")
+      .where(
+        """
+          $THREAD_ID = $threadId AND
+          $STORY_TYPE = 0 AND 
+          $PARENT_STORY_ID <= 0 AND 
+          $SCHEDULED_DATE = -1 AND 
+          $ORIGINAL_MESSAGE_ID IS NULL AND 
+          $READ = 0 AND 
+          ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE} AND
+          $DATE_RECEIVED > ${now - UnreadReminderManager.MAX_UNREAD_MESSAGE_AGE.inWholeMilliseconds}
+          $categoryClause
+        """
+      )
+      .orderBy("$DATE_RECEIVED DESC")
+      .run()
+      .readToList { cursor -> RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID)) }
+
+    return authorIds.size to authorIds.distinct().take(3)
+  }
+
+  /**
+   * Returns true if [threadId] has an unread message that arrived after [since].
+   */
+  fun hasUnreadMessagesSince(threadId: Long, since: Long): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where(
+        """
+          $THREAD_ID = $threadId AND
+          $STORY_TYPE = 0 AND
+          $PARENT_STORY_ID <= 0 AND
+          $SCHEDULED_DATE = -1 AND
+          $ORIGINAL_MESSAGE_ID IS NULL AND
+          $READ = 0 AND
+          ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE} AND
+          $DATE_RECEIVED > $since
+        """
+      )
+      .run()
+  }
+
+  /**
+   * Returns the thread id and timestamp of the oldest unread message across [threadIds].
+   * If there is none, it returns -1 for thread id and Long.MAX_VALUE for timestamp.
+   */
+  fun getOldestUnreadMessage(threadIds: List<Long>): Pair<Long, Long> {
+    if (threadIds.isEmpty()) {
+      return Pair(-1, Long.MAX_VALUE)
+    }
+
+    val query = SqlUtil.buildFastCollectionQuery(THREAD_ID, threadIds)
+
+    return readableDatabase
+      .select(THREAD_ID, DATE_RECEIVED)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_UNREAD_COUNT")
+      .where(
+        """
+          ${query.where} AND
+          $STORY_TYPE = 0 AND
+          $PARENT_STORY_ID <= 0 AND
+          $SCHEDULED_DATE = -1 AND
+          $ORIGINAL_MESSAGE_ID IS NULL AND
+          $READ = 0 AND
+          ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK}) != ${MessageTypes.SPECIAL_TYPE_PINNED_MESSAGE} AND
+          $DATE_RECEIVED > ${System.currentTimeMillis() - UnreadReminderManager.MAX_UNREAD_MESSAGE_AGE.inWholeMilliseconds}
+        """,
+        query.whereArgs
+      )
+      .orderBy("$DATE_RECEIVED ASC")
+      .limit(1)
+      .run()
+      .readToSingleObject { cursor -> cursor.requireLong(THREAD_ID) to cursor.requireLong(DATE_RECEIVED) } ?: Pair(-1, Long.MAX_VALUE)
   }
 
   fun messageExists(messageRecord: MessageRecord): Boolean {
@@ -7002,7 +7151,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
       val messageExtras = messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
 
-      if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+      if (!SignalStore.settings.isReadReceiptsEnabled) {
         hasReadReceipt = false
         if (MessageTypes.isOutgoingMessageType(box) && !storyType.isStory) {
           isViewed = false

@@ -36,7 +36,7 @@ public final class RegistrationUtil {
     if (!SignalStore.registration().isRegistrationComplete() &&
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
-        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut() || SignalStore.account().isLinkedDevice()) &&
+        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut() || SignalStore.account().isLinkedDevice() || SignalStore.account().isPhoneNumberless()) &&
         RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState()))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
@@ -44,7 +44,7 @@ public final class RegistrationUtil {
       SignalStore.registration().setLocalRegistrationMetadata(null);
       SignalStore.registration().setRestoreMethodToken(null);
 
-      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
+      if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED && !SignalStore.account().isPhoneNumberless()) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");
         SignalStore.phoneNumberPrivacy().setPhoneNumberDiscoverabilityMode(PhoneNumberDiscoverabilityMode.DISCOVERABLE);
       }

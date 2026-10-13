@@ -34,8 +34,20 @@ sealed interface CameraScreenEvents {
   /** Zoom that happens when you pinch your fingers. */
   data class PinchZoom(val zoomFactor: Float) : CameraScreenEvents
 
+  /** Zoom straight to a ratio, as picking a level off the zoom bar does. */
+  data class SetZoomRatio(val zoomRatio: Float) : CameraScreenEvents
+
   /** Zoom that happens when you move your finger up and down during recording. Positive values zoom in, negative values zoom out. */
   data class LinearZoom(@param:FloatRange(from = -1.0, to = 1.0) val linearZoom: Float) : CameraScreenEvents
+
+  /** Leaves the running recording going without the capture button being held. */
+  data object LockRecording : CameraScreenEvents
+
+  /**
+   * Pauses the running recording, or resumes a paused one. One event rather than two because only the recorder knows
+   * which of the two applies, and a caller reading that off the screen may be a moment behind.
+   */
+  data object ToggleRecordingPaused : CameraScreenEvents
 
   /** Switches between available cameras (i.e. front and rear cameras). */
   data class SwitchCamera(val context: Context) : CameraScreenEvents

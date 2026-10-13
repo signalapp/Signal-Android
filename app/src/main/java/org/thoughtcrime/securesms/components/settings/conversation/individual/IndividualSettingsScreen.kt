@@ -32,6 +32,7 @@ import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSize
 import org.thoughtcrime.securesms.components.settings.conversation.individual.IndividualSettingsState.Dialog
 import org.thoughtcrime.securesms.components.settings.conversation.shared.BlockRow
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBar
@@ -320,7 +321,7 @@ private fun BadgeRow(
   ) {
     badges.forEach { badge ->
       AndroidView(
-        factory = { context -> BadgeImageView(context, null) },
+        factory = { context -> BadgeImageView(context, BadgeImageSize.BADGE_64) },
         modifier = Modifier.size(BADGE_SIZE)
       ) { badgeView ->
         badgeView.setBadge(badge)

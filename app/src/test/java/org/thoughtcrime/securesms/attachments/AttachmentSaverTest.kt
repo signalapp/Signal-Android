@@ -29,10 +29,15 @@ import org.signal.core.ui.util.StorageUtil
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.Host
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.RequestPermissionResult
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.SaveToStorageWarningResult
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.UiHintValues
+import org.thoughtcrime.securesms.mms.AudioSlide
+import org.thoughtcrime.securesms.mms.DocumentSlide
+import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
+import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
 
@@ -349,6 +354,66 @@ class AttachmentSaverTest {
     AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
     verify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
+  }
+
+  @Test
+  fun `saveAttachments saves only the voice note when the message record contains a voice note`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true
+    )
+
+    val voiceNoteUri = Uri.parse("content://org.thoughtcrime.securesms/part/111")
+    val deck = SlideDeck().apply {
+      addSlide(AudioSlide(UriAttachmentBuilder.build(id = 111L, uri = voiceNoteUri, contentType = "audio/aac", fileName = "voice-note.aac", voiceNote = true)))
+      addSlide(DocumentSlide(UriAttachmentBuilder.build(id = 222L, uri = Uri.parse("content://org.thoughtcrime.securesms/part/222"), contentType = "application/pdf", fileName = "test.pdf")))
+    }
+
+    val record = mockk<MmsMessageRecord> {
+      every { slideDeck } returns deck
+      every { dateSent } returns 1742234803832L
+    }
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(record)
+
+    coVerify {
+      SaveAttachmentUtil.saveAttachments(
+        setOf(
+          SaveAttachmentUtil.SaveAttachment(uri = voiceNoteUri, contentType = "audio/aac", date = 1742234803832L, fileName = "voice-note.aac")
+        )
+      )
+    }
+  }
+
+  @Test
+  fun `saveAttachments saves all attachments when the message record does not contain a voice note`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true
+    )
+
+    val audioUri = Uri.parse("content://org.thoughtcrime.securesms/part/111")
+    val documentUri = Uri.parse("content://org.thoughtcrime.securesms/part/222")
+    val deck = SlideDeck().apply {
+      addSlide(AudioSlide(UriAttachmentBuilder.build(id = 111L, uri = audioUri, contentType = "audio/aac", fileName = "audio.aac", voiceNote = false)))
+      addSlide(DocumentSlide(UriAttachmentBuilder.build(id = 222L, uri = documentUri, contentType = "application/pdf", fileName = "test.pdf")))
+    }
+
+    val record = mockk<MmsMessageRecord> {
+      every { slideDeck } returns deck
+      every { dateSent } returns 1742234803832L
+    }
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(record)
+
+    coVerify {
+      SaveAttachmentUtil.saveAttachments(
+        setOf(
+          SaveAttachmentUtil.SaveAttachment(uri = audioUri, contentType = "audio/aac", date = 1742234803832L, fileName = "audio.aac"),
+          SaveAttachmentUtil.SaveAttachment(uri = documentUri, contentType = "application/pdf", date = 1742234803832L, fileName = "test.pdf")
+        )
+      )
+    }
   }
 }
 

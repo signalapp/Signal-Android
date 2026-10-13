@@ -90,7 +90,7 @@ private fun Screen(
     title = stringResource(id = R.string.preferences_app_protection__phone_number),
     onNavigationClick = onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close),
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
     snackbarHost = {
       SnackbarHost(snackbarHostState)
     }

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.recipients;
 
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -30,7 +29,6 @@ public final class LiveRecipient {
 
   private static final String TAG = Log.tag(LiveRecipient.class);
 
-  private final Context                       context;
   private final LiveData<Recipient>           observableLiveData;
   private final LiveData<Recipient>           observableLiveDataResolved;
   private final Set<RecipientForeverObserver> observers;
@@ -40,8 +38,7 @@ public final class LiveRecipient {
   private final BehaviorSubject<Recipient>    subject;
   private final BehaviorSubject<Object>       forceNotifySubject;
 
-  LiveRecipient(@NonNull Context context, @NonNull Recipient defaultRecipient) {
-    this.context                  = context.getApplicationContext();
+  LiveRecipient(@NonNull Recipient defaultRecipient) {
     this.subject                  = BehaviorSubject.createDefault(defaultRecipient);
     this.forceNotifySubject       = BehaviorSubject.createDefault(new Object());
     this.recipient                = new AtomicReference<>(defaultRecipient);
@@ -192,7 +189,7 @@ public final class LiveRecipient {
       return Recipient.UNKNOWN;
     }
 
-    Recipient recipient = RecipientCreator.forRecord(context, record);
+    Recipient recipient = RecipientCreator.forRecord(record);
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
   }

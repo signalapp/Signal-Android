@@ -114,9 +114,11 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
     SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
 
+    final int bottomSafeArea = WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime();
+
     members.setClipToPadding(false);
-    SystemWindowInsetsSetter.attach(members, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
-    SystemWindowInsetsSetter.attach(create, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    SystemWindowInsetsSetter.attach(members, getViewLifecycleOwner(), bottomSafeArea);
+    SystemWindowInsetsSetter.attach(create, getViewLifecycleOwner(), bottomSafeArea, SystemWindowInsetsSetter.ApplyMode.MARGIN);
 
     members.initializeAdapter(getViewLifecycleOwner());
     avatarPlaceholder = Objects.requireNonNull(VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_24, requireActivity().getTheme()));

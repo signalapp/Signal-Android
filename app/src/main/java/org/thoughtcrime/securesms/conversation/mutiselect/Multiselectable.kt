@@ -4,12 +4,11 @@ import android.view.View
 import android.view.ViewGroup
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.colors.Colorizable
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable
 
 /**
  * Describes a ConversationElement that can be included in multiselect mode.
  */
-interface Multiselectable : Colorizable, GiphyMp4Playable {
+interface Multiselectable : Colorizable {
   val conversationMessage: ConversationMessage
   val root: ViewGroup
 

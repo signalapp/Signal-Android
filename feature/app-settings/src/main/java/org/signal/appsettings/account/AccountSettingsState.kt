@@ -13,6 +13,8 @@ data class AccountSettingsState(
   val userUnregistered: Boolean = false,
   val clientDeprecated: Boolean = false,
   val canTransferWhileUnregistered: Boolean = true,
+  val isPhoneNumberless: Boolean = false,
+  val arePasskeysSupported: Boolean = false,
   val signalLogin: SignalLogin? = null,
   val dialog: Dialog = Dialog.None
 ) {
@@ -21,13 +23,38 @@ data class AccountSettingsState(
     get() = !(userUnregistered || clientDeprecated)
 
   /**
-   * The Signal Login and two-factor authentication sections, which only exist when phone-numberless registration is
-   * enabled. Null means the sections aren't shown at all.
+   * The Signal Login and two-factor authentication sections, which only exist for phone-numberless accounts. Null means
+   * the sections aren't shown at all.
    */
   data class SignalLogin(
-    val keyCount: Int,
-    val hasAuthenticatorApp: Boolean
-  )
+    /** The second factors on the account, which only mean anything once [loadState] is [LoadState.LOADED]. */
+    val twoFactorMethods: List<TwoFactorMethod> = emptyList(),
+    /** How the last look at the account went, which decides what the two-factor list shows in place of rows. */
+    val loadState: LoadState = LoadState.LOADING,
+    /** How many authenticator apps the account is allowed to have at once. */
+    val maxTotpApps: Int = 0,
+    /** How many second factors of every kind the account is allowed at once, authenticator apps included. */
+    val maxTwoFactorMethods: Int = 0
+  ) {
+
+    val atMaxTotpApps: Boolean
+      get() = twoFactorMethods.count { it.kind == TwoFactorMethod.Kind.AUTHENTICATOR_APP } >= maxTotpApps
+
+    /** Whether the account is out of room for second factors of any kind, which stops another app being added too. */
+    val atMaxTwoFactorMethods: Boolean
+      get() = twoFactorMethods.size >= maxTwoFactorMethods
+  }
+
+  /** How the last attempt to read the account's second factors went, since an empty list can't say on its own. */
+  enum class LoadState {
+    /** We haven't heard back about the account yet. */
+    LOADING,
+
+    LOADED,
+
+    /** We couldn't reach the service, which is worth another try. */
+    NETWORK_FAILURE
+  }
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */
   sealed interface Dialog {
@@ -54,5 +81,17 @@ data class AccountSettingsState(
       val enable: Boolean,
       val inProgress: Boolean = false
     ) : Dialog
+
+    /** Confirms removing [method] from the account. */
+    data class ConfirmRemoveMethod(val method: TwoFactorMethod) : Dialog
+
+    /** Explains that the account already has as many authenticator apps as it's allowed. */
+    data object MaxTotpAppsReached : Dialog
+
+    /** Explains that the account already has as many second factors of all kinds as it's allowed. */
+    data object MaxTwoFactorMethodsReached : Dialog
+
+    /** Covers the two legs of a passkey ceremony that talk to the service, which a tap otherwise looks ignored during. */
+    data object PasskeyInProgress : Dialog
   }
 }

@@ -5,6 +5,7 @@
 
 package org.signal.mediasend
 
+import android.net.Uri
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.mediasend.screens.edit.ScheduleSendOption
@@ -44,7 +45,7 @@ internal sealed interface MediaSendFlowEvent {
   data class SetMediaQuality(val quality: SentMediaQuality) : MediaSendFlowEvent
   data class SetBrushWidth(val tool: BrushTool, val fraction: Float) : MediaSendFlowEvent
   data class SetBlurFacesEnabled(val enabled: Boolean) : MediaSendFlowEvent
-  data class VideoTrimChanged(val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaSendFlowEvent
+  data class VideoTrimChanged(val uri: Uri, val videoTrimData: VideoTrimData, val editingComplete: Boolean) : MediaSendFlowEvent
   data object ToggleViewOnce : MediaSendFlowEvent
   data object ToggleVideoMuted : MediaSendFlowEvent
 

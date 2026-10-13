@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.components;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -27,6 +30,7 @@ import org.signal.core.ui.view.Stub;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.glide.apng.ApngOptions;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -38,6 +42,7 @@ import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.v2.items.SenderNameWithLabelView;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -46,6 +51,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
+import org.thoughtcrime.securesms.stickers.StickerAnimationPolicy;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 
@@ -460,11 +466,17 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
         attachmentVideoOVerlayStub.setVisibility(VISIBLE);
       }
 
-      requestManager.load(slide.getUri() != null ? new DecryptableUri(slide.getUri()) : null)
-                    .centerCrop()
-                    .override(thumbWidth, thumbHeight)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .into(thumbnailView);
+      RequestBuilder<Drawable> request = requestManager.load(slide.getUri() != null ? new DecryptableUri(slide.getUri()) : null)
+                                                       .centerCrop()
+                                                       .override(thumbWidth, thumbHeight)
+                                                       .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                                                       .set(ApngOptions.ANIMATE, !slide.hasSticker() || StickerAnimationPolicy.allowAnimation());
+
+      if (MediaUtil.isGif(slide.getContentType()) && !GiphyMp4PlaybackPolicy.autoplay()) {
+        request = request.decode(Bitmap.class);
+      }
+
+      request.into(thumbnailView);
     } else if (MediaUtil.isAudioType(quoteTargetContentType) || MediaUtil.isLongTextType(quoteTargetContentType)) {
       thumbnailView.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);

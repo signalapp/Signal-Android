@@ -10,7 +10,6 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @Composable
 fun MutedNotificationScreen(
@@ -21,15 +20,13 @@ fun MutedNotificationScreen(
   Column(
     modifier = modifier
   ) {
-    if (RemoteConfig.internalUser) {
-      Rows.ToggleRow(
-        icon = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_phone_24),
-        checked = state.allowCalls,
-        text = stringResource(R.string.MutedNotificationsFragment__calls),
-        label = if (state.isGlobal) stringResource(R.string.MutedNotificationsFragment__calls_body_global) else stringResource(R.string.MutedNotificationsFragment__calls_body),
-        onCheckChanged = { onEvent(MutedNotificationsEvent.CallsToggled(it)) }
-      )
-    }
+    Rows.ToggleRow(
+      icon = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_phone_24),
+      checked = state.allowCalls,
+      text = stringResource(R.string.MutedNotificationsFragment__calls),
+      label = if (state.isGlobal) stringResource(R.string.MutedNotificationsFragment__calls_body_global) else stringResource(R.string.MutedNotificationsFragment__calls_body),
+      onCheckChanged = { onEvent(MutedNotificationsEvent.CallsToggled(it)) }
+    )
     if (state.showMentions) {
       Rows.ToggleRow(
         icon = ImageVector.vectorResource(org.signal.core.ui.R.drawable.symbol_at_24),
@@ -39,16 +36,14 @@ fun MutedNotificationScreen(
         onCheckChanged = { onEvent(MutedNotificationsEvent.MentionsToggled(it)) }
       )
     }
-    if (RemoteConfig.internalUser) {
-      if (state.showReplies) {
-        Rows.ToggleRow(
-          icon = ImageVector.vectorResource(R.drawable.symbol_reply_24),
-          checked = state.allowReplies,
-          text = stringResource(R.string.MutedNotificationsFragment__replies),
-          label = if (state.isGlobal) stringResource(R.string.MutedNotificationsFragment__replies_body_global) else stringResource(R.string.MutedNotificationsFragment__replies_body),
-          onCheckChanged = { onEvent(MutedNotificationsEvent.RepliesToggled(it)) }
-        )
-      }
+    if (state.showReplies) {
+      Rows.ToggleRow(
+        icon = ImageVector.vectorResource(R.drawable.symbol_reply_24),
+        checked = state.allowReplies,
+        text = stringResource(R.string.MutedNotificationsFragment__replies),
+        label = if (state.isGlobal) stringResource(R.string.MutedNotificationsFragment__replies_body_global) else stringResource(R.string.MutedNotificationsFragment__replies_body),
+        onCheckChanged = { onEvent(MutedNotificationsEvent.RepliesToggled(it)) }
+      )
     }
   }
 }

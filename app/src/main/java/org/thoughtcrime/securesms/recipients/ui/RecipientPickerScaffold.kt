@@ -8,19 +8,25 @@ package org.thoughtcrime.securesms.recipients.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,37 +35,38 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.AllDevicePreviews
+import androidx.window.core.layout.WindowSizeClass
+import org.signal.core.ui.compose.BreakpointPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.detailPaneMaxContentWidth
-import org.signal.core.ui.isSplitPane
+import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
+import org.signal.core.ui.listPaneDefaultPreferredWidth
 import org.signal.core.ui.rememberIsSplitPane
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
-import org.thoughtcrime.securesms.window.AppScaffold
-import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**
  * Provides the common adaptive layout structure for recipient picker screens.
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecipientPickerScaffold(
   title: String,
-  forceSplitPane: Boolean,
   onNavigateUpClick: () -> Unit,
   topAppBarActions: @Composable () -> Unit,
   snackbarHostState: SnackbarHostState,
   primaryContent: @Composable () -> Unit,
   floatingActionButton: (@Composable () -> Unit)? = null
 ) {
-  val isSplitPane = LocalResources.current.rememberIsSplitPane(forceSplitPane)
+  val isSplitPane = LocalResources.current.rememberIsSplitPane()
   val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
-  AppScaffold(
-    topBarContent = {
+  Scaffold(
+    containerColor = Color.Transparent,
+    contentWindowInsets = WindowInsets.systemBars,
+    topBar = {
       Scaffolds.DefaultTopAppBar(
         title = if (!isSplitPane) title else "",
         titleContent = { _, titleText -> Text(text = titleText, style = MaterialTheme.typography.titleLarge) },
@@ -69,41 +76,70 @@ fun RecipientPickerScaffold(
         actions = { topAppBarActions() }
       )
     },
-
-    secondaryContent = {
-      if (isSplitPane) {
-        ScreenTitlePane(
-          title = title,
-          modifier = Modifier.fillMaxSize()
-        )
-      } else {
-        Box {
-          primaryContent()
-          FloatingActionButtonContainer(floatingActionButton)
-        }
-      }
-    },
-
-    primaryContent = {
-      Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+    snackbarHost = {
+      SnackbarHost(snackbarHostState)
+    }
+  ) { paddingValues ->
+    if (isSplitPane) {
+      SplitPaneLayout(
+        title = title,
+        windowSizeClass = windowSizeClass,
+        modifier = Modifier.padding(paddingValues)
       ) {
         Box(modifier = Modifier.widthIn(max = windowSizeClass.detailPaneMaxContentWidth)) {
           primaryContent()
           FloatingActionButtonContainer(floatingActionButton)
         }
       }
-    },
+    } else {
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(paddingValues)
+      ) {
+        primaryContent()
+        FloatingActionButtonContainer(floatingActionButton)
+      }
+    }
+  }
+}
 
-    snackbarHost = {
-      SnackbarHost(snackbarHostState)
-    },
+/**
+ * Places the screen title beside [content], capping the title pane at [listPaneDefaultPreferredWidth] and splitting
+ * the available width evenly below twice that.
+ */
+@Composable
+private fun SplitPaneLayout(
+  title: String,
+  windowSizeClass: WindowSizeClass,
+  modifier: Modifier = Modifier,
+  content: @Composable () -> Unit
+) {
+  val spacerWidth = windowSizeClass.horizontalPartitionDefaultSpacerSize
 
-    navigator = rememberAppScaffoldNavigator(
-      isSplitPane = isSplitPane
-    )
-  )
+  BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+    val titlePaneWidth = ((maxWidth - spacerWidth) / 2).coerceAtMost(windowSizeClass.listPaneDefaultPreferredWidth)
+
+    Row(modifier = Modifier.fillMaxSize()) {
+      ScreenTitlePane(
+        title = title,
+        modifier = Modifier
+          .width(titlePaneWidth)
+          .fillMaxHeight()
+      )
+
+      Spacer(modifier = Modifier.width(spacerWidth))
+
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+          .weight(1f)
+          .fillMaxHeight()
+      ) {
+        content()
+      }
+    }
+  }
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -127,13 +163,12 @@ private fun BoxScope.FloatingActionButtonContainer(
   }
 }
 
-@AllDevicePreviews
+@BreakpointPreviews
 @Composable
 private fun RecipientPickerScaffoldPreview() {
   Previews.Preview {
     RecipientPickerScaffold(
       title = "Screen Title",
-      forceSplitPane = false,
       onNavigateUpClick = {},
       topAppBarActions = {},
       snackbarHostState = SnackbarHostState(),

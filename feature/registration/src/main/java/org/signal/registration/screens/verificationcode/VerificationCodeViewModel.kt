@@ -11,8 +11,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.common.api.CommonStatusCodes
@@ -42,6 +40,10 @@ import org.signal.registration.RegistrationRepository
 import org.signal.registration.RegistrationRoute
 import org.signal.registration.screens.util.navigateBack
 import org.signal.registration.screens.util.navigateTo
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldAction
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldEvents
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldPresenter
+import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
@@ -53,12 +55,10 @@ class VerificationCodeViewModel(
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
   smsCodeEvents: Flow<String> = emptyFlow(),
   private val clock: () -> Long = { System.currentTimeMillis() }
-) : EventDrivenViewModel<VerificationCodeScreenEvents>(TAG) {
+) : EventDrivenViewModel<VerificationCodeScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(VerificationCodeViewModel::class)
-
-    private const val CODE_LENGTH = VerificationCodeState.CODE_LENGTH
 
     /**
      * How old the in-progress registration data can be before we assume the verification session has expired and
@@ -103,6 +103,8 @@ class VerificationCodeViewModel(
   private val _state = MutableStateFlow(VerificationCodeState())
   val state: StateFlow<VerificationCodeState> = _state.asStateFlow()
 
+  private val codeEntryPresenter = CodeEntryFieldPresenter(viewModelScope)
+
   init {
     _state
       .onEach { Log.d(TAG, "[State] $it") }
@@ -110,6 +112,20 @@ class VerificationCodeViewModel(
 
     parentState
       .onEach { onEvent(VerificationCodeScreenEvents.ParentStateChanged(it)) }
+      .launchIn(viewModelScope)
+
+    codeEntryPresenter
+      .state
+      .onEach { onEvent(VerificationCodeScreenEvents.CodeEntryStateChanged(it)) }
+      .launchIn(viewModelScope)
+
+    codeEntryPresenter
+      .actions
+      .onEach { action ->
+        when (action) {
+          is CodeEntryFieldAction.CodeEntered -> onEvent(VerificationCodeScreenEvents.CodeEntered(action.code))
+        }
+      }
       .launchIn(viewModelScope)
 
     viewModelScope.launch {
@@ -127,10 +143,10 @@ class VerificationCodeViewModel(
   suspend fun applyEvent(state: VerificationCodeState, event: VerificationCodeScreenEvents, stateEmitter: (VerificationCodeState) -> Unit) {
     val result = when (event) {
       is VerificationCodeScreenEvents.ParentStateChanged -> applyParentState(state, event.parentState)
-      is VerificationCodeScreenEvents.CodeEntered -> submitCode(state, event.code, stateEmitter)
-      is VerificationCodeScreenEvents.DigitChanged -> applyDigitChanged(state, event.index, event.value, stateEmitter)
-      is VerificationCodeScreenEvents.CodeAutoFilled -> state.copy(autoFillCode = event.code)
-      is VerificationCodeScreenEvents.ConsumeAutoFillCode -> state.copy(autoFillCode = null)
+      is VerificationCodeScreenEvents.CodeEntered -> applyCodeEntered(state, event.code, stateEmitter)
+      is VerificationCodeScreenEvents.CodeEntryEvent -> state.also { codeEntryPresenter.onEvent(event.event) }
+      is VerificationCodeScreenEvents.CodeEntryStateChanged -> state.copy(codeEntry = event.codeEntryState)
+      is VerificationCodeScreenEvents.CodeAutoFilled -> applyCodeAutoFilled(state, event.code)
       is VerificationCodeScreenEvents.WrongNumber -> state.also { parentEventEmitter.navigateTo(RegistrationRoute.PhoneNumberEntry) }
       is VerificationCodeScreenEvents.ResendSms -> applyResendCode(state, VerificationCodeTransport.SMS)
       is VerificationCodeScreenEvents.CallMe -> applyResendCode(state, VerificationCodeTransport.VOICE)
@@ -205,94 +221,32 @@ class VerificationCodeViewModel(
     )
   }
 
-  /**
-   * Interprets the raw [value] reported by the digit field at [index] and updates the digits and focus accordingly:
-   *
-   * - an empty [value] is a backspace, deleting a digit and moving focus back
-   * - a single digit is recorded and focus advances, submitting once the full code is present
-   * - multi-character input (e.g. a pasted "123-456" or an auto-filled SMS code) populates every field at once and
-   *   submits, all in this single reducer pass
-   */
-  private suspend fun applyDigitChanged(
-    state: VerificationCodeState,
-    index: Int,
-    value: String,
-    stateEmitter: (VerificationCodeState) -> Unit
-  ): VerificationCodeState {
-    check(index in state.digits.indices) { "[DigitChanged] Out of bounds index $index." }
-
-    if (value.isEmpty()) {
-      return deleteDigit(state, index)
-    }
-
-    val currentValue = state.digits[index]
-    val remainder = if (currentValue.isNotEmpty()) value.replaceFirst(currentValue, "") else value
-    val addedDigits = remainder.filter { it.isDigit() }
-
-    return when {
-      addedDigits.isEmpty() -> state
-
-      addedDigits.length == 1 -> {
-        val updated = state.copy(
-          digits = state.digits.toMutableList().also { it[index] = addedDigits },
-          focusedDigitIndex = (index + 1).coerceAtMost(CODE_LENGTH - 1)
-        )
-
-        if (updated.isComplete && !updated.isSubmittingCode) {
-          submitCode(updated, updated.code, stateEmitter)
-        } else {
-          updated
-        }
-      }
-
-      else -> applyFullCode(state, addedDigits, stateEmitter)
-    }
-  }
-
-  /**
-   * Populates every digit field from a full pasted or auto-filled [code] in a single reducer pass and submits it.
-   * Multi-character input that isn't a complete code is ignored.
-   */
-  private suspend fun applyFullCode(
-    state: VerificationCodeState,
-    code: String,
-    stateEmitter: (VerificationCodeState) -> Unit
-  ): VerificationCodeState {
-    if (code.length != CODE_LENGTH) {
-      Log.w(TAG, "[DigitChanged] Ignoring multi-character input containing ${code.length} digits.")
+  private suspend fun applyCodeEntered(state: VerificationCodeState, code: String, stateEmitter: (VerificationCodeState) -> Unit): VerificationCodeState {
+    if (state.isSubmittingCode) {
+      Log.w(TAG, "[CodeEntered] Already submitting a code. Ignoring.")
       return state
     }
 
-    val updated = state.copy(
-      digits = code.map { it.toString() },
-      focusedDigitIndex = CODE_LENGTH - 1
-    )
-
-    return if (!updated.isSubmittingCode) {
-      submitCode(updated, updated.code, stateEmitter)
-    } else {
-      updated
-    }
+    return submitCode(state, code, stateEmitter)
   }
 
   /**
-   * Deletes the digit at [index] (or the previous one, if [index] is already empty), shifts any following digits left
-   * to fill the gap, and moves focus back.
+   * Places a [code] retrieved from an incoming SMS into the code field, which then reports it back as entered and
+   * submits it.
    */
-  private fun deleteDigit(state: VerificationCodeState, index: Int): VerificationCodeState {
-    val deleteAt = if (state.digits[index].isNotEmpty()) index else index - 1
-    if (deleteAt < 0) {
+  private fun applyCodeAutoFilled(state: VerificationCodeState, code: String): VerificationCodeState {
+    if (state.isSubmittingCode) {
+      Log.w(TAG, "[CodeAutoFilled] Already submitting a code. Ignoring the auto-filled one.")
       return state
     }
 
-    val newDigits = state.digits.toMutableList().apply {
-      for (j in deleteAt until CODE_LENGTH - 1) {
-        this[j] = this[j + 1]
-      }
-      this[CODE_LENGTH - 1] = ""
+    if (code.length != CodeEntryFieldState.CODE_LENGTH || !code.all { it.isDigit() }) {
+      Log.w(TAG, "[CodeAutoFilled] Ignoring an auto-filled code that isn't ${CodeEntryFieldState.CODE_LENGTH} digits. Length: ${code.length}")
+      return state
     }
 
-    return state.copy(digits = newDigits, focusedDigitIndex = (index - 1).coerceAtLeast(0))
+    codeEntryPresenter.onEvent(CodeEntryFieldEvents.SetCode(code))
+    return state
   }
 
   /**
@@ -300,10 +254,10 @@ class VerificationCodeViewModel(
    */
   private suspend fun submitCode(state: VerificationCodeState, code: String, stateEmitter: (VerificationCodeState) -> Unit): VerificationCodeState {
     stateEmitter(state.copy(isSubmittingCode = true))
-    return applyCodeEntered(state, code).copy(isSubmittingCode = false)
+    return performSubmission(state, code).copy(isSubmittingCode = false)
   }
 
-  private suspend fun applyCodeEntered(inputState: VerificationCodeState, code: String): VerificationCodeState {
+  private suspend fun performSubmission(inputState: VerificationCodeState, code: String): VerificationCodeState {
     var state = inputState
     var sessionMetadata = state.sessionMetadata ?: return state.also {
       parentEventEmitter(RegistrationFlowEvent.ResetState)
@@ -322,7 +276,8 @@ class VerificationCodeViewModel(
           is SubmitVerificationCodeError.InvalidSessionIdOrVerificationCode -> {
             Log.w(TAG, "[SubmitCode] Invalid sessionId or verification code entered. This is distinct from an *incorrect* verification code. Body: ${error.message}")
             val newAttempts = state.incorrectCodeAttempts + 1
-            return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts, digits = VerificationCodeState.emptyDigits(), focusedDigitIndex = 0)
+            codeEntryPresenter.onEvent(CodeEntryFieldEvents.Clear)
+            return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts)
           }
           is SubmitVerificationCodeError.SessionNotFound -> {
             Log.w(TAG, "[SubmitCode] Session not found: ${error.message}. Navigating back to phone number entry.")
@@ -360,19 +315,27 @@ class VerificationCodeViewModel(
     if (!sessionMetadata.verified) {
       Log.w(TAG, "[SubmitCode] Verification code was incorrect.")
       val newAttempts = state.incorrectCodeAttempts + 1
-      return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts, digits = VerificationCodeState.emptyDigits(), focusedDigitIndex = 0)
+      codeEntryPresenter.onEvent(CodeEntryFieldEvents.Clear)
+      return state.copy(snackbars = state.snackbars.copy(incorrectVerificationCode = true), incorrectCodeAttempts = newAttempts)
     }
 
     parentEventEmitter(RegistrationFlowEvent.VerificationCodeAccepted(code))
 
-    // Attempt to register
-    val registerResult = repository.registerAccountWithSession(e164 = state.e164, sessionId = sessionMetadata.id, skipDeviceTransfer = true)
+    // If this install was already registered with this number, its key material has to carry forward
+    val preExistingRegistrationData = parentState.value.preExistingRegistrationData?.takeIf { it.e164 == state.e164 }
+
+    val registerResult = repository.registerAccountWithSession(
+      e164 = state.e164,
+      sessionId = sessionMetadata.id,
+      skipDeviceTransfer = true,
+      preExistingRegistrationData = preExistingRegistrationData
+    )
 
     return when (registerResult) {
       is RequestResult.Success -> {
-        val (response, keyMaterial) = registerResult.result
+        val (response, keyMaterial, aci) = registerResult.result
 
-        parentEventEmitter(RegistrationFlowEvent.Registered(keyMaterial.accountEntropyPool, response.storageCapable))
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
 
         val pendingRestore = pendingRestoreNavigation()
         when {
@@ -416,6 +379,12 @@ class VerificationCodeViewModel(
           }
           is RegisterAccountError.RegistrationRecoveryPasswordIncorrect -> {
             error("[Register] Got told the registration recovery password incorrect. We don't use the RRP in this flow, and should never get this error. Resetting. Message: ${error.message}")
+          }
+          is RegisterAccountError.InvalidReceiptCredentialPresentation,
+          is RegisterAccountError.TwoFactorRequired,
+          RegisterAccountError.PostQuantumRatchetRequired -> {
+            Log.w(TAG, "[Register] Unexpected error when registering account: $error")
+            state.copy(snackbars = state.snackbars.copy(registrationError = true))
           }
         }
       }
@@ -564,31 +533,5 @@ class VerificationCodeViewModel(
       smsResendTimeRemaining = nextSmsAvailableAt?.minus(now)?.coerceAtLeast(0.seconds),
       callRequestTimeRemaining = nextCallAvailableAt?.minus(now)?.coerceAtLeast(0.seconds)
     )
-  }
-
-  /**
-   * @param smsCodeEvents The stream of auto-retrieved verification codes. Tests can inject codes directly; production
-   *   should use the [Context]-based constructor, which builds a real SMS retriever flow.
-   */
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentState: StateFlow<RegistrationFlowState>,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit,
-    private val smsCodeEvents: Flow<String>
-  ) : ViewModelProvider.Factory {
-
-    /**
-     * Builds a real SMS retriever flow from [context]. Prefer the application context.
-     */
-    constructor(
-      context: Context,
-      repository: RegistrationRepository,
-      parentState: StateFlow<RegistrationFlowState>,
-      parentEventEmitter: (RegistrationFlowEvent) -> Unit
-    ) : this(repository, parentState, parentEventEmitter, smsCodeFlow(context))
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return VerificationCodeViewModel(repository, parentState, parentEventEmitter, smsCodeEvents) as T
-    }
   }
 }

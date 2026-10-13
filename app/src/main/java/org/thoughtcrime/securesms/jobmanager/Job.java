@@ -370,7 +370,7 @@ public abstract class Job {
       return memoryOnly;
     }
 
-    int getGlobalPriority() {
+    public int getGlobalPriority() {
       return globalPriority;
     }
 

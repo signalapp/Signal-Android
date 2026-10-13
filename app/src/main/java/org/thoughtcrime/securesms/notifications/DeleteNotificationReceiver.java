@@ -16,18 +16,16 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
 
   public static String DELETE_NOTIFICATION_ACTION = "org.thoughtcrime.securesms.DELETE_NOTIFICATION";
 
-  public static final String EXTRA_IDS     = "message_ids";
-  public static final String EXTRA_MMS     = "is_mms";
-  public static final String EXTRA_THREADS = "threads";
+  public static final String EXTRA_MAX_MESSAGE_ID = "max_message_id";
+  public static final String EXTRA_THREADS        = "threads";
 
   @Override
   public void onReceive(final Context context, Intent intent) {
     if (DELETE_NOTIFICATION_ACTION.equals(intent.getAction())) {
       MessageNotifier notifier = AppDependencies.getMessageNotifier();
 
-      final long[]                        ids     = intent.getLongArrayExtra(EXTRA_IDS);
-      final boolean[]                 mms     = intent.getBooleanArrayExtra(EXTRA_MMS);
-      final ArrayList<ConversationId> threads = intent.getParcelableArrayListExtra(EXTRA_THREADS);
+      final long                      maxMessageId = intent.getLongExtra(EXTRA_MAX_MESSAGE_ID, 0);
+      final ArrayList<ConversationId> threads      = intent.getParcelableArrayListExtra(EXTRA_THREADS);
 
       if (threads != null) {
         for (ConversationId thread : threads) {
@@ -35,18 +33,12 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
         }
       }
 
-      if (ids == null || mms == null || ids.length != mms.length) return;
+      if (threads == null || threads.isEmpty() || maxMessageId <= 0) return;
 
       PendingResult finisher = goAsync();
 
       SignalExecutors.BOUNDED.execute(() -> {
-        for (int i = 0; i < ids.length; i++) {
-          if (!mms[i]) {
-            SignalDatabase.messages().markAsNotified(ids[i]);
-          } else {
-            SignalDatabase.messages().markAsNotified(ids[i]);
-          }
-        }
+        SignalDatabase.messages().markConversationsAsNotified(threads, maxMessageId);
         finisher.finish();
       });
     }

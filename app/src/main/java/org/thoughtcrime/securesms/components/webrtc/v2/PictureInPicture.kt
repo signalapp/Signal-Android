@@ -143,20 +143,60 @@ fun PictureInPicture(
       Animatable(initialOffset, IntOffset.VectorConverter)
     }
 
-    // Animate position when focused state changes or when constraints/corner changes
-    LaunchedEffect(maxWidth, maxHeight, targetContentWidth, targetContentHeight, state.corner, isFocused, baseOffsetX) {
-      if (!isDragging) {
-        val targetOffset = if (isFocused) {
-          centerOffset
-        } else {
-          getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
-        }
+    val anchor = PipAnchor(
+      corner = state.corner,
+      isFocused = isFocused,
+      contentWidth = targetContentWidth,
+      contentHeight = targetContentHeight
+    )
 
-        // Animate to new position (don't snap)
+    var previousAnchor by remember { mutableStateOf(anchor) }
+
+    // False while a move is in flight. Not offsetAnimatable.isRunning: every measurement pass relaunches
+    // the effect below, cancelling the animation and clearing that flag before the new launch reads it.
+    var isSettled by remember { mutableStateOf(true) }
+
+    // Animatable zeroes its velocity when an animation ends, cancellation included, so carry it by hand.
+    var lastVelocity by remember { mutableStateOf(IntOffset.Zero) }
+
+    // Animate position when the anchor changes, and track the bounding box directly otherwise.
+    LaunchedEffect(anchor, maxWidth, maxHeight, baseOffsetX) {
+      // Recorded even while dragging: a stale record would make the first box change after the drag look
+      // like an anchor change.
+      val anchorChanged = anchor != previousAnchor
+      previousAnchor = anchor
+
+      if (isDragging) {
+        return@LaunchedEffect
+      }
+
+      val targetOffset = if (isFocused) {
+        centerOffset
+      } else {
+        getDesiredCornerOffset(state.corner, topLeft, topRight, bottomLeft, bottomRight)
+      }
+
+      if (anchorChanged) {
+        isSettled = false
+      }
+
+      if (isSettled) {
+        // Only the box moved, and whoever moved it is already animating it -- the controls sheet, say.
+        // Follow it frame for frame instead of springing towards it.
+        offsetAnimatable.snapTo(targetOffset)
+      } else {
+        // Mid-move: the box changing means the destination moved, not that the move is over. Retarget at
+        // the current speed -- restarting from a standstill stalls the spring, snapping teleports the pip.
         offsetAnimatable.animateTo(
           targetValue = targetOffset,
-          animationSpec = PositionAnimationSpec
-        )
+          animationSpec = PositionAnimationSpec,
+          initialVelocity = lastVelocity
+        ) {
+          lastVelocity = this.velocity
+        }
+
+        isSettled = true
+        lastVelocity = IntOffset.Zero
       }
     }
 
@@ -192,12 +232,23 @@ fun PictureInPicture(
             val (corner, targetOffset) = getClosestCorner(projectedCoordinate, topLeft, topRight, bottomLeft, bottomRight)
             state.corner = corner
 
+            // A fling is a move like any other, including when released over the corner it started from
+            // and the anchor never changed. Seed the velocity: a new corner relaunches the effect above,
+            // which can cancel this fling before its first frame records anything.
+            isSettled = false
+            lastVelocity = IntOffset(velocity.x.roundToInt(), velocity.y.roundToInt())
+
             coroutineScope.launch {
               offsetAnimatable.animateTo(
                 targetValue = targetOffset,
                 initialVelocity = IntOffset(velocity.x.roundToInt(), velocity.y.roundToInt()),
                 animationSpec = FlingAnimationSpec
-              )
+              ) {
+                lastVelocity = this.velocity
+              }
+
+              isSettled = true
+              lastVelocity = IntOffset.Zero
             }
           }
         )
@@ -206,6 +257,17 @@ fun PictureInPicture(
     }
   }
 }
+
+/**
+ * Where the pip wants to sit, independent of the size of its bounding box. Changes to these
+ * properties are animated, whereas changes to the bounding box are tracked directly.
+ */
+private data class PipAnchor(
+  val corner: PictureInPictureState.Corner,
+  val isFocused: Boolean,
+  val contentWidth: Int,
+  val contentHeight: Int
+)
 
 private fun project(velocity: Float): Float {
   return (velocity / 1000f) * DECELERATION_RATE / (1f - DECELERATION_RATE)

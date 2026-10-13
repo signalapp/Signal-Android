@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.components;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.hardware.Camera;
 import android.text.SpannableString;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
@@ -82,7 +82,6 @@ import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends ConstraintLayout
     implements AudioRecordingHandler,
-               KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiEventListener,
                ConversationStickerSuggestionAdapter.EventListener
 {
@@ -102,6 +101,7 @@ public class InputPanel extends ConstraintLayout
   private AnimatingToggle       buttonToggle;
   private SendButton            sendButton;
   private View                  recordingContainer;
+  private final int[]           recordingContainerLocation = new int[2];
   private View                  recordLockCancel;
   private View                  composeContainer;
   private View                  editMessageCancel;
@@ -196,7 +196,7 @@ public class InputPanel extends ConstraintLayout
 
     mediaKeyboard.setOnClickListener(v -> listener.onEmojiToggle());
 
-    if (Camera.getNumberOfCameras() > 0) {
+    if (getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
       quickCameraToggle.setOnClickListener(v -> listener.onQuickCameraToggleClicked());
       quickCameraToggle.setVisibility(View.VISIBLE);
     } else {
@@ -396,6 +396,15 @@ public class InputPanel extends ConstraintLayout
 
   public boolean isStickerMode() {
     return mediaKeyboard.isStickerMode();
+  }
+
+  /** True only while a keyboard of ours is the one on screen. */
+  public void setMediaKeyboardToggleOffersIme(boolean offersIme) {
+    if (offersIme) {
+      mediaKeyboard.setToIme();
+    } else {
+      mediaKeyboard.setToMedia();
+    }
   }
 
   public View getMediaKeyboardToggleAnchorView() {
@@ -643,7 +652,9 @@ public class InputPanel extends ConstraintLayout
   public void onRecordMoved(float offsetX, float absoluteX) {
     slideToCancel.moveTo(offsetX);
 
-    float position  = absoluteX / recordingContainer.getWidth();
+    recordingContainer.getLocationOnScreen(recordingContainerLocation);
+
+    float position = (absoluteX - recordingContainerLocation[0]) / recordingContainer.getWidth();
 
     if (ViewUtil.isLtr(this) && position <= 0.5 ||
         ViewUtil.isRtl(this) && position >= 0.6)
@@ -712,11 +723,6 @@ public class InputPanel extends ConstraintLayout
   }
 
   @Override
-  public void onKeyboardShown() {
-    mediaKeyboard.setToMedia();
-  }
-
-  @Override
   public void onKeyEvent(KeyEvent keyEvent) {
     composeText.dispatchKeyEvent(keyEvent);
   }
@@ -739,6 +745,10 @@ public class InputPanel extends ConstraintLayout
 
   public boolean isRecordingInLockedMode() {
     return microphoneRecorderView.isRecordingLocked();
+  }
+
+  public boolean isRecordingInProgress() {
+    return microphoneRecorderView.isRecording();
   }
 
   public void releaseRecordingLockAndSend() {

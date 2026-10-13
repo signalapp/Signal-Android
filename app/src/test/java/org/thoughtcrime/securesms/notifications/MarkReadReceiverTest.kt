@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.notifications
 import android.app.Application
 import io.mockk.every
 import io.mockk.mockkObject
-import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert
@@ -23,10 +22,10 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.LinkedList
 
 @RunWith(RobolectricTestRunner::class)
@@ -46,8 +45,8 @@ class MarkReadReceiverTest {
     mockkObject(Recipient)
     every { Recipient.self() } returns Recipient()
 
-    mockkStatic(TextSecurePreferences::class)
-    every { TextSecurePreferences.isReadReceiptsEnabled(any()) } returns true
+    mockkObject(SignalStore)
+    every { SignalStore.settings.isReadReceiptsEnabled } returns true
   }
 
   @After

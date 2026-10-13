@@ -18,7 +18,6 @@ import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem;
 import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.ui.util.StorageUtil;
@@ -150,7 +149,7 @@ public class BackupUtil {
   }
 
   public static void disableBackups(@NonNull Context context) {
-    BackupPassphrase.set(context, null);
+    SignalStore.backup().setV1BackupPassphrase(null);
     SignalStore.settings().setBackupEnabled(false);
     BackupUtil.deleteAllBackups();
 
@@ -161,7 +160,7 @@ public class BackupUtil {
         return;
       }
 
-      SignalStore.settings().clearSignalBackupDirectory();
+      SignalStore.settings().setSignalBackupDirectory(null);
 
       try {
         context.getContentResolver()

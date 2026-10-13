@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
 import org.thoughtcrime.securesms.jobs.protos.AttachmentUploadJobData
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -195,6 +196,41 @@ class UploadDependencyGraphTest {
     result.forEach {
       assertValidJobChain(it, 0)
     }
+  }
+
+  @Test
+  fun `Given an audio attachment, when I consumeDeferredQueue, then I expect a wave form job between compression and upload`() {
+    // GIVEN
+    val uriAttachments = listOf(UriAttachmentBuilder.build(id = uniqueLong.getAndIncrement(), contentType = MediaUtil.AUDIO_AAC))
+    val messages = (1..1).createMessages(uriAttachments)
+    val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
+
+    // WHEN
+    val deferredQueue = testSubject.consumeDeferredQueue()
+
+    // THEN
+    assertEquals(1, deferredQueue.size)
+
+    val steps: List<List<Job>> = deferredQueue.first().jobListChain
+    assertEquals(3, steps.size)
+    assertTrue(steps[0][0] is AttachmentCompressionJob)
+    assertTrue(steps[1][0] is GenerateAudioWaveFormJob)
+    assertTrue(steps[2][0] is AttachmentUploadJob)
+  }
+
+  @Test
+  fun `Given a non-audio attachment, when I consumeDeferredQueue, then I expect no wave form job`() {
+    // GIVEN
+    val uriAttachments = listOf(UriAttachmentBuilder.build(id = uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG))
+    val messages = (1..1).createMessages(uriAttachments)
+    val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
+
+    // WHEN
+    val deferredQueue = testSubject.consumeDeferredQueue()
+
+    // THEN
+    val steps: List<List<Job>> = deferredQueue.first().jobListChain
+    assertTrue(steps.flatten().none { it is GenerateAudioWaveFormJob })
   }
 
   private fun assertValidJobChain(chain: JobManager.Chain, expectedCopyDestinationCount: Int) {

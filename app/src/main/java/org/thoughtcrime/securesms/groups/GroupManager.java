@@ -7,6 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
+import org.signal.core.util.groups.GroupChangeBusyException;
+import org.signal.core.util.groups.GroupChangeFailedException;
+import org.signal.core.util.groups.GroupInsufficientRightsException;
+import org.signal.core.util.groups.GroupNotAMemberException;
+import org.signal.core.util.groups.MembershipNotSuitableForV2Exception;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;

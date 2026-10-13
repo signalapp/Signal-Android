@@ -6,9 +6,8 @@
 package org.signal.registration.screens.signalloginpayment
 
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,26 +16,37 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RegistrationApiV2.RegisterAccountError
+import org.signal.registration.ReceiptCredentialResult
 import org.signal.registration.RegistrationFlowEvent
 import org.signal.registration.RegistrationRepository
+import org.signal.registration.RegistrationRoute
+import org.signal.registration.SignalLoginPriceResult
+import org.signal.registration.SignalLoginPurchaseResult
+import org.signal.registration.SignalLoginPurchaseStep
 import org.signal.registration.screens.util.navigateBack
+import org.signal.registration.screens.util.navigateTo
 
 class SignalLoginPaymentViewModel(
   private val repository: RegistrationRepository,
   private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-) : EventDrivenViewModel<SignalLoginPaymentScreenEvents>(TAG) {
+) : EventDrivenViewModel<SignalLoginPaymentScreenEvents>(TAG, shouldLogEvents = true) {
 
   companion object {
     private val TAG = Log.tag(SignalLoginPaymentViewModel::class)
   }
 
-  private val _state = MutableStateFlow(SignalLoginPaymentState())
+  private val _state = MutableStateFlow(SignalLoginPaymentState(showManualReceiptCredentialEntry = repository.isDebugBuild))
   val state: StateFlow<SignalLoginPaymentState> = _state.asStateFlow()
 
   private val _actions = Channel<SignalLoginPaymentScreenActions>(Channel.BUFFERED)
   val actions: Flow<SignalLoginPaymentScreenActions> = _actions.receiveAsFlow()
+
+  private var paymentInfoJob: Job? = null
 
   init {
     _state
@@ -59,7 +69,72 @@ class SignalLoginPaymentViewModel(
   ) {
     when (event) {
       is SignalLoginPaymentScreenEvents.Initialize -> {
-        // TODO [phonenumberless] Load the price from the billing library and populate SignalLoginPaymentState.formattedPrice.
+        paymentInfoJob = viewModelScope.launch {
+          val hasUnredeemedPurchase = repository.hasUnredeemedSignalLoginPurchase()
+          if (hasUnredeemedPurchase) {
+            Log.i(TAG, "[Initialize] The user already has a Signal Login purchase that was never redeemed.")
+          }
+          onEvent(SignalLoginPaymentScreenEvents.UnredeemedPurchaseLoaded(hasUnredeemedPurchase))
+          onEvent(loadPaymentInfo(repository.getPaymentAvailability()))
+        }
+      }
+
+      is SignalLoginPaymentScreenEvents.UnredeemedPurchaseLoaded -> {
+        stateEmitter(state.copy(hasUnredeemedPurchase = event.hasUnredeemedPurchase))
+      }
+
+      is SignalLoginPaymentScreenEvents.PaymentInfoLoading -> {
+        stateEmitter(
+          state.copy(
+            price = SignalLoginPaymentState.Price.Loading,
+            paymentAvailability = event.paymentAvailability,
+            dialogs = state.dialogs.copy(paymentUnavailable = false)
+          )
+        )
+      }
+
+      is SignalLoginPaymentScreenEvents.PaymentInfoLoaded -> {
+        val updated = state.copy(
+          price = event.price,
+          paymentAvailability = event.paymentAvailability,
+          dialogs = state.dialogs.copy(paymentUnavailable = !event.paymentAvailability.isAvailable)
+        )
+
+        stateEmitter(
+          if (updated.isPurchaseOptionEnabled) {
+            updated
+          } else {
+            updated.copy(selectedOption = SignalLoginPaymentState.Option.ExistingLogin)
+          }
+        )
+      }
+
+      is SignalLoginPaymentScreenEvents.PriceRetryClicked -> {
+        stateEmitter(state.copy(price = SignalLoginPaymentState.Price.Loading))
+
+        paymentInfoJob?.cancel()
+        paymentInfoJob = viewModelScope.launch {
+          onEvent(loadPaymentInfo(repository.getPaymentAvailability()))
+        }
+      }
+
+      is SignalLoginPaymentScreenEvents.Foregrounded -> {
+        if (paymentInfoJob?.isActive == true) {
+          return
+        }
+
+        val previousAvailability = state.paymentAvailability
+        paymentInfoJob = viewModelScope.launch {
+          val availability = repository.getPaymentAvailability()
+
+          if (availability != previousAvailability) {
+            Log.i(TAG, "[Foregrounded] Google Play availability changed from $previousAvailability to $availability.")
+            if (availability.isAvailable) {
+              onEvent(SignalLoginPaymentScreenEvents.PaymentInfoLoading(availability))
+            }
+            onEvent(loadPaymentInfo(availability))
+          }
+        }
       }
 
       is SignalLoginPaymentScreenEvents.BackClicked -> {
@@ -70,13 +145,52 @@ class SignalLoginPaymentViewModel(
         _actions.trySend(SignalLoginPaymentScreenActions.OpenLearnMoreArticle)
       }
 
+      is SignalLoginPaymentScreenEvents.PaymentUnavailableLearnMoreClicked -> {
+        _actions.trySend(SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle)
+      }
+
       is SignalLoginPaymentScreenEvents.OptionSelected -> {
-        stateEmitter(state.copy(selectedOption = event.option))
+        if (event.option == SignalLoginPaymentState.Option.Purchase && !state.isPurchaseOptionEnabled) {
+          Log.w(TAG, "[OptionSelected] Ignoring a purchase selection that cannot be acted on.")
+        } else {
+          stateEmitter(state.copy(selectedOption = event.option))
+        }
+      }
+
+      is SignalLoginPaymentScreenEvents.ManualReceiptCredentialChanged -> {
+        stateEmitter(state.copy(manualReceiptCredential = event.value))
       }
 
       is SignalLoginPaymentScreenEvents.ContinueClicked -> {
-        // TODO [phonenumberless] Launch the purchase flow, or navigate to account key entry for an existing login.
-        Log.i(TAG, "Continue clicked for ${state.selectedOption}, but the flow isn't implemented yet.")
+        if (state.manualReceiptCredential.isNotBlank) {
+          var localState = state.copy(showSpinner = true)
+          stateEmitter(localState)
+          localState = applyManualReceiptCredentialSubmitted(localState, parentEventEmitter)
+          stateEmitter(localState.copy(showSpinner = false))
+        } else if (state.selectedOption == SignalLoginPaymentState.Option.ExistingLogin) {
+          parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginCredentialEntry())
+        } else if (!state.paymentAvailability.isAvailable) {
+          Log.w(TAG, "[ContinueClicked] Google Play cannot take a payment: ${state.paymentAvailability}. Explaining rather than starting a purchase.")
+          stateEmitter(state.copy(dialogs = state.dialogs.copy(paymentUnavailable = true)))
+        } else {
+          val localState = state.copy(showSpinner = true)
+          stateEmitter(localState)
+
+          when (val step = repository.startOrCompleteSignalLoginPurchase()) {
+            is SignalLoginPurchaseStep.LaunchRequired -> {
+              // The spinner stays up: PurchaseFlowCompleted clears it once the sheet the UI layer opens resolves.
+              _actions.trySend(SignalLoginPaymentScreenActions.LaunchPurchaseFlow(step.launcher))
+            }
+            is SignalLoginPurchaseStep.Finished -> {
+              stateEmitter(applyPurchaseResult(localState, step.result, parentEventEmitter).copy(showSpinner = false))
+            }
+          }
+        }
+      }
+
+      is SignalLoginPaymentScreenEvents.PurchaseFlowCompleted -> {
+        val result = repository.completeSignalLoginPurchase(event.result)
+        stateEmitter(applyPurchaseResult(state, result, parentEventEmitter).copy(showSpinner = false))
       }
 
       is SignalLoginPaymentScreenEvents.NetworkErrorDialogDismissed -> {
@@ -90,16 +204,178 @@ class SignalLoginPaymentViewModel(
       is SignalLoginPaymentScreenEvents.PurchaseFailedDialogDismissed -> {
         stateEmitter(state.copy(dialogs = state.dialogs.copy(purchaseFailed = false)))
       }
+
+      is SignalLoginPaymentScreenEvents.PurchaseUnavailableDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(purchaseUnavailable = false)))
+      }
+
+      is SignalLoginPaymentScreenEvents.PurchasePendingDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(purchasePending = false)))
+      }
+
+      is SignalLoginPaymentScreenEvents.InvalidReceiptCredentialDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(invalidReceiptCredential = false)))
+      }
+
+      is SignalLoginPaymentScreenEvents.MakeGooglePlayServicesAvailableClicked -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(paymentUnavailable = false)))
+        _actions.trySend(SignalLoginPaymentScreenActions.MakeGooglePlayServicesAvailable)
+      }
+
+      is SignalLoginPaymentScreenEvents.OpenPlayStoreClicked -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(paymentUnavailable = false)))
+        _actions.trySend(SignalLoginPaymentScreenActions.OpenPlayStore)
+      }
+
+      is SignalLoginPaymentScreenEvents.PaymentUnavailableDialogDismissed -> {
+        stateEmitter(state.copy(dialogs = state.dialogs.copy(paymentUnavailable = false)))
+      }
     }
   }
 
-  class Factory(
-    private val repository: RegistrationRepository,
-    private val parentEventEmitter: (RegistrationFlowEvent) -> Unit
-  ) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return SignalLoginPaymentViewModel(repository, parentEventEmitter) as T
+  private suspend fun loadPaymentInfo(availability: PaymentAvailability): SignalLoginPaymentScreenEvents.PaymentInfoLoaded {
+    val price = when {
+      availability.isAvailable -> loadPrice()
+      availability.isTerminal -> {
+        Log.w(TAG, "[loadPaymentInfo] Google Play can never take a payment here ($availability). Offering an existing login only.")
+        SignalLoginPaymentState.Price.Unavailable
+      }
+      else -> {
+        Log.w(TAG, "[loadPaymentInfo] Google Play cannot take a payment ($availability), so there is no price to show yet.")
+        SignalLoginPaymentState.Price.TransientError
+      }
+    }
+
+    return SignalLoginPaymentScreenEvents.PaymentInfoLoaded(availability, price)
+  }
+
+  private suspend fun loadPrice(): SignalLoginPaymentState.Price {
+    return when (val result = repository.getSignalLoginPrice()) {
+      is SignalLoginPriceResult.Available -> SignalLoginPaymentState.Price.Available(result.formattedPrice)
+      SignalLoginPriceResult.Unavailable -> {
+        Log.w(TAG, "[loadPrice] A Signal Login cannot be bought here. An earlier log says why.")
+        SignalLoginPaymentState.Price.Unavailable
+      }
+      SignalLoginPriceResult.TransientError -> {
+        Log.w(TAG, "[loadPrice] Could not determine a Signal Login price. Offering a retry.")
+        SignalLoginPaymentState.Price.TransientError
+      }
+    }
+  }
+
+  /** Folds the outcome of a Signal Login purchase into the state, navigating onward when it registered an account. */
+  private fun applyPurchaseResult(
+    state: SignalLoginPaymentState,
+    result: SignalLoginPurchaseResult,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  ): SignalLoginPaymentState {
+    return when (result) {
+      is SignalLoginPurchaseResult.Registered -> {
+        Log.i(TAG, "[Purchase] Successfully registered without a phone number.")
+        val (response, keyMaterial, aci) = result.account
+
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
+        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginInfo)
+        state.copy(hasUnredeemedPurchase = false)
+      }
+      SignalLoginPurchaseResult.PurchasePending -> {
+        Log.i(TAG, "[Purchase] The payment has not settled yet.")
+        state.copy(hasUnredeemedPurchase = true, dialogs = state.dialogs.copy(purchasePending = true))
+      }
+      SignalLoginPurchaseResult.Cancelled -> {
+        Log.i(TAG, "[Purchase] The user cancelled.")
+        state
+      }
+      SignalLoginPurchaseResult.PurchaseUnavailable -> {
+        Log.w(TAG, "[Purchase] Google Play cannot sell the product on this device.")
+        state.copy(dialogs = state.dialogs.copy(purchaseUnavailable = true))
+      }
+      SignalLoginPurchaseResult.PurchaseFailed -> {
+        Log.w(TAG, "[Purchase] Google Play could not complete the purchase.")
+        state.copy(dialogs = state.dialogs.copy(purchaseFailed = true))
+      }
+      is SignalLoginPurchaseResult.RedemptionFailed -> {
+        Log.w(TAG, "[Purchase] The service would not redeem the purchase: ${result.error}")
+        state.copy(hasUnredeemedPurchase = true, dialogs = state.dialogs.copy(purchaseFailed = true))
+      }
+      is SignalLoginPurchaseResult.RegistrationFailed -> {
+        Log.w(TAG, "[Purchase] Failed to register with the purchase: ${result.error}")
+        state.copy(hasUnredeemedPurchase = true, dialogs = state.dialogs.copy(unknownError = true))
+      }
+      SignalLoginPurchaseResult.NetworkError -> {
+        Log.w(TAG, "[Purchase] Network error during the purchase.")
+        state.copy(dialogs = state.dialogs.copy(networkError = true))
+      }
+      SignalLoginPurchaseResult.UnknownError -> {
+        Log.w(TAG, "[Purchase] Unknown error during the purchase.")
+        state.copy(dialogs = state.dialogs.copy(unknownError = true))
+      }
+    }
+  }
+
+  /**
+   * Redeems the manually-pasted receipt credential by building its presentation and registering a numberless account
+   * with it, bypassing the purchase flow entirely.
+   */
+  private suspend fun applyManualReceiptCredentialSubmitted(
+    state: SignalLoginPaymentState,
+    parentEventEmitter: (RegistrationFlowEvent) -> Unit
+  ): SignalLoginPaymentState {
+    val credential = state.manualReceiptCredential.decodeOrNull()
+    if (credential == null) {
+      Log.w(TAG, "[ManualReceipt] The pasted value could not be parsed as a receipt credential.")
+      return state.copy(dialogs = state.dialogs.copy(invalidReceiptCredential = true))
+    }
+
+    val presentation = when (val built = repository.createReceiptCredentialPresentation(credential)) {
+      is ReceiptCredentialResult.Success -> built.value
+      ReceiptCredentialResult.VerificationFailed -> {
+        Log.w(TAG, "[ManualReceipt] The pasted credential was not issued by this environment's service.")
+        return state.copy(dialogs = state.dialogs.copy(invalidReceiptCredential = true))
+      }
+    }
+
+    return when (val result = repository.registerAccountWithoutPhoneNumber(presentation)) {
+      is RequestResult.Success -> {
+        Log.i(TAG, "[ManualReceipt] Successfully registered without a phone number.")
+        val (response, keyMaterial, aci) = result.result
+
+        parentEventEmitter(RegistrationFlowEvent.Registered(aci, keyMaterial.accountEntropyPool, response.storageCapable, phoneNumberless = response.e164 == null))
+        parentEventEmitter.navigateTo(RegistrationRoute.SignalLoginInfo)
+        state
+      }
+      is RequestResult.NonSuccess -> {
+        when (val error = result.error) {
+          is RegisterAccountError.InvalidReceiptCredentialPresentation -> {
+            Log.w(TAG, "[ManualReceipt] The service rejected the receipt credential presentation. Message: ${error.message}")
+            state.copy(dialogs = state.dialogs.copy(invalidReceiptCredential = true))
+          }
+          is RegisterAccountError.DeviceTransferPossible -> {
+            Log.w(TAG, "[ManualReceipt] Got told a device transfer is possible despite asking to skip it.")
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+          is RegisterAccountError.InvalidRequest -> {
+            Log.w(TAG, "[ManualReceipt] Invalid request. Message: ${error.message}")
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+          is RegisterAccountError.RateLimited -> {
+            Log.w(TAG, "[ManualReceipt] Rate limited (retryAfter: ${error.retryAfter}).")
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+          else -> {
+            Log.w(TAG, "[ManualReceipt] Unexpected registration error for a numberless registration: $error")
+            state.copy(dialogs = state.dialogs.copy(unknownError = true))
+          }
+        }
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Log.w(TAG, "[ManualReceipt] Network error.", result.networkError)
+        state.copy(dialogs = state.dialogs.copy(networkError = true))
+      }
+      is RequestResult.ApplicationError -> {
+        Log.w(TAG, "[ManualReceipt] Application error.", result.cause)
+        state.copy(dialogs = state.dialogs.copy(unknownError = true))
+      }
     }
   }
 }
