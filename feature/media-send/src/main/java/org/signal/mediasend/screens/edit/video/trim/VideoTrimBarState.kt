@@ -5,6 +5,7 @@
 
 package org.signal.mediasend.screens.edit.video.trim
 
+import android.net.Uri
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.ImageBitmap
 
@@ -16,6 +17,8 @@ import androidx.compose.ui.graphics.ImageBitmap
  */
 @Immutable
 data class VideoTrimBarState(
+  /** The video this state is for, or null before there is one. */
+  val source: Uri? = null,
   val durationUs: Long? = null,
   val startUs: Long = 0,
   val endUs: Long = 0,
@@ -34,8 +37,19 @@ data class VideoTrimBarState(
     get() = activeDrag != null
 
   override fun toString(): String {
-    return "VideoTrimBarState(durationUs=$durationUs, startUs=$startUs, endUs=$endUs, playheadUs=$playheadUs, maxRangeUs=$maxRangeUs, " +
+    return "VideoTrimBarState(source=$source, durationUs=$durationUs, startUs=$startUs, endUs=$endUs, playheadUs=$playheadUs, maxRangeUs=$maxRangeUs, " +
       "thumbnails=${thumbnails.count { it != null }}/${thumbnails.size}, activeDrag=$activeDrag)"
+  }
+}
+
+@Immutable
+data class VideoTrimBarPreview(
+  val durationUs: Long? = null,
+  val thumbnails: List<ImageBitmap?> = emptyList(),
+  val playheadUs: Long? = null
+) {
+  override fun toString(): String {
+    return "VideoTrimBarPreview(durationUs=$durationUs, thumbnails=${thumbnails.count { it != null }}/${thumbnails.size}, playheadUs=$playheadUs)"
   }
 }
 

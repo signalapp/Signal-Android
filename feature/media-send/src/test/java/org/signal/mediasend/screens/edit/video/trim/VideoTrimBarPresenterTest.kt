@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.core.net.toUri
 import assertk.assertThat
 import assertk.assertions.containsExactly
+import assertk.assertions.containsOnly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -22,6 +23,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.TestScope
@@ -303,6 +305,67 @@ class VideoTrimBarPresenterTest {
 
     assertThat(presenter.state.value.durationUs).isNull()
     assertThat(presenter.state.value.thumbnails).containsExactly(null, null, null)
+  }
+
+  @Test
+  fun `Given a neighboring video is preloaded, when it becomes the source, then its thumbnails and duration are already there`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    val bitmap = mockk<ImageBitmap>()
+    presenter.onEvent(VideoTrimBarEvents.StripMeasured(widthPx = 80, heightPx = 40))
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(setOf(VIDEO_B)))
+
+    thumbnailsFor(VIDEO_B).emit(VideoThumbnailResult.DurationKnown(DURATION_US))
+    thumbnailsFor(VIDEO_B).emit(VideoThumbnailResult.Thumbnail(0, bitmap))
+    presenter.onEvent(VideoTrimBarEvents.SourceChanged(VIDEO_B))
+
+    assertThat(presenter.previews.value.getValue(VIDEO_B)).isEqualTo(VideoTrimBarPreview(DURATION_US, listOf(bitmap, null)))
+    assertThat(presenter.state.value.source).isEqualTo(VIDEO_B)
+    assertThat(presenter.state.value.durationUs).isEqualTo(DURATION_US)
+    assertThat(presenter.state.value.thumbnails).containsExactly(bitmap, null)
+  }
+
+  @Test
+  fun `Given a preloaded video, when it is no longer a neighbor, then its strip is dropped`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    presenter.onEvent(VideoTrimBarEvents.StripMeasured(widthPx = 80, heightPx = 40))
+    presenter.onEvent(VideoTrimBarEvents.SourceChanged(VIDEO_A))
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(setOf(VIDEO_B)))
+
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(emptySet()))
+    thumbnailsFor(VIDEO_B).emit(VideoThumbnailResult.Thumbnail(0, mockk()))
+
+    assertThat(presenter.previews.value.keys).containsOnly(VIDEO_A)
+  }
+
+  @Test
+  fun `Given a fully decoded video left the neighborhood, when it comes back, then its thumbnails are not decoded again`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    val bitmaps = listOf(mockk<ImageBitmap>(), mockk<ImageBitmap>())
+    every { VideoThumbnailRepository.thumbnails(VIDEO_B, any(), any()) } returnsMany listOf(
+      flowOf(VideoThumbnailResult.DurationKnown(DURATION_US), VideoThumbnailResult.Thumbnail(0, bitmaps[0]), VideoThumbnailResult.Thumbnail(1, bitmaps[1])),
+      flowOf()
+    )
+    presenter.onEvent(VideoTrimBarEvents.StripMeasured(widthPx = 80, heightPx = 40))
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(setOf(VIDEO_B)))
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(emptySet()))
+
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(setOf(VIDEO_B)))
+
+    assertThat(presenter.previews.value.getValue(VIDEO_B)).isEqualTo(VideoTrimBarPreview(DURATION_US, bitmaps))
+  }
+
+  @Test
+  fun `Given a neighbor's player reported its position, when it becomes the source, then the playhead starts there`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    presenter.onEvent(VideoTrimBarEvents.StripMeasured(widthPx = 80, heightPx = 40))
+    presenter.onEvent(VideoTrimBarEvents.PreloadChanged(setOf(VIDEO_B)))
+
+    presenter.onEvent(VideoTrimBarEvents.PlaybackPositionChanged(VIDEO_B, 3_000_000))
+    val previewPlayheadUs = presenter.previews.value.getValue(VIDEO_B).playheadUs
+    presenter.showVideo(VIDEO_B, trim(startUs = 2_000_000, endUs = 5_000_000))
+
+    assertThat(previewPlayheadUs).isEqualTo(3_000_000L)
+    assertThat(presenter.state.value.playheadUs).isEqualTo(3_000_000L)
   }
 
   //endregion

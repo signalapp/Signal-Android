@@ -6,7 +6,9 @@
 package org.signal.mediasend.screens.edit.video.trim
 
 import android.net.Uri
+import android.util.LruCache
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +17,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import org.signal.core.ui.compose.EventDrivenPresenter
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.screens.edit.video.VideoTrimData
@@ -31,18 +36,33 @@ class VideoTrimBarPresenter(
 
     /** The shortest range that may be selected. */
     const val MINIMUM_RANGE_US = 500_000L
+
+    private const val MAX_CACHED_STRIPS = 10
   }
 
   private val _state = MutableStateFlow(VideoTrimBarState())
   private val _actions = Channel<VideoTrimBarAction>(Channel.BUFFERED)
 
+  private val _previews = MutableStateFlow<Map<Uri, VideoTrimBarPreview>>(emptyMap())
+
   val state: StateFlow<VideoTrimBarState> = _state.asStateFlow()
   val actions: Flow<VideoTrimBarAction> = _actions.receiveAsFlow()
 
+  /** The source and each preloaded video, so the bar can be shown for one before it becomes the source. */
+  val previews: StateFlow<Map<Uri, VideoTrimBarPreview>> = _previews.asStateFlow()
+
   private var source: Uri? = null
+  private var preloadUris: Set<Uri> = emptySet()
   private var stripWidthPx: Int = 0
   private var stripHeightPx: Int = 0
-  private var thumbnailJob: Job? = null
+  private val decodeJobs = mutableMapOf<Uri, Job>()
+  private val playheads = mutableMapOf<Uri, Long>()
+
+  /** Fully decoded strips, kept after their video stops being wanted so that coming back to it needs no decode. */
+  private val decodedStrips = LruCache<Uri, VideoTrimBarPreview>(MAX_CACHED_STRIPS)
+
+  /** One decode at a time, so preloads queue up rather than competing with the source's. */
+  private val decodeLock = Mutex()
 
   /** Set when the host has no trim for the source yet, so the full range has to be reported once the duration is read. */
   private var needsInitialRange = false
@@ -52,6 +72,7 @@ class VideoTrimBarPresenter(
     when (event) {
       is VideoTrimBarEvents.SourceChanged -> onSourceChanged(event.uri)
       is VideoTrimBarEvents.TrimDataChanged -> onTrimDataChanged(event)
+      is VideoTrimBarEvents.PreloadChanged -> onPreloadChanged(event.uris)
       is VideoTrimBarEvents.PlaybackPositionChanged -> onPlaybackPositionChanged(event)
       is VideoTrimBarEvents.StripMeasured -> onStripMeasured(event.widthPx, event.heightPx)
       is VideoTrimBarEvents.DragStarted -> onDragStarted(event.target)
@@ -70,10 +91,28 @@ class VideoTrimBarPresenter(
     // A drag the switch cut short still has to be reported as finished, or the host stays locked in its interaction.
     finishDrag()
 
+    val previousSource = source
     source = uri
     needsInitialRange = false
     hasReportedInitialRange = false
-    _state.value = VideoTrimBarState()
+
+    if (previousSource != null) {
+      playheads[previousSource]?.let { playheadUs -> updatePreview(previousSource) { it.copy(playheadUs = playheadUs) } }
+    }
+
+    loadThumbnails()
+    val preview = _previews.value[uri]
+    _state.value = VideoTrimBarState(source = uri, playheadUs = playheads[uri] ?: 0, thumbnails = preview?.thumbnails.orEmpty())
+
+    preview?.durationUs?.let { onDurationKnown(it) }
+  }
+
+  private fun onPreloadChanged(uris: Set<Uri>) {
+    if (uris == preloadUris) {
+      return
+    }
+
+    preloadUris = uris
     loadThumbnails()
   }
 
@@ -103,12 +142,19 @@ class VideoTrimBarPresenter(
     }
   }
 
+  /** Recorded for every video, since a preloaded video's player is already up and showing a frame before it is the source. */
   private fun onPlaybackPositionChanged(event: VideoTrimBarEvents.PlaybackPositionChanged) {
-    if (event.uri != source || _state.value.isDragging) {
-      return
-    }
+    if (event.uri == source) {
+      if (_state.value.isDragging) {
+        return
+      }
 
-    _state.update { it.copy(playheadUs = event.positionUs) }
+      playheads[event.uri] = event.positionUs
+      _state.update { it.copy(playheadUs = event.positionUs) }
+    } else {
+      playheads[event.uri] = event.positionUs
+      updatePreview(event.uri) { it.copy(playheadUs = event.positionUs) }
+    }
   }
 
   private fun onStripMeasured(widthPx: Int, heightPx: Int) {
@@ -118,6 +164,12 @@ class VideoTrimBarPresenter(
 
     stripWidthPx = widthPx
     stripHeightPx = heightPx
+
+    decodeJobs.values.forEach { it.cancel() }
+    decodeJobs.clear()
+    decodedStrips.evictAll()
+    _previews.value = emptyMap()
+    _state.update { it.copy(thumbnails = emptyList()) }
     loadThumbnails()
   }
 
@@ -196,41 +248,86 @@ class VideoTrimBarPresenter(
   }
 
   /**
-   * Restarts decoding for the current source at the strip's current size. The strip is tiled with squares as tall as it
-   * is, the last one cut off by its end.
+   * Drops the previews of videos no longer wanted, and gives each wanted one without a preview its cached strip, or
+   * starts decoding it, source first.
    */
   private fun loadThumbnails() {
-    thumbnailJob?.cancel()
-    thumbnailJob = null
+    val wanted = (listOfNotNull(source) + preloadUris).distinct()
 
-    val uri = source ?: return
+    (decodeJobs.keys - wanted.toSet()).forEach { decodeJobs.remove(it)?.cancel() }
+    _previews.update { previews -> previews.filterKeys { it in wanted } }
+
     if (stripWidthPx <= 0 || stripHeightPx <= 0) {
       return
     }
 
+    wanted.filterNot { it in _previews.value }.forEach { uri ->
+      val cached = decodedStrips[uri]
+      if (cached != null) {
+        setPreview(uri, cached.copy(playheadUs = playheads[uri]))
+      } else {
+        decode(uri)
+      }
+    }
+  }
+
+  /** The strip is tiled with squares as tall as it is, the last one cut off by its end. */
+  private fun decode(uri: Uri) {
     val count = ceil(stripWidthPx / stripHeightPx.toFloat()).toInt()
-    _state.update { it.copy(thumbnails = List(count) { null }) }
+    setPreview(uri, VideoTrimBarPreview(thumbnails = List(count) { null }, playheadUs = playheads[uri]))
 
-    thumbnailJob = coroutineScope.launch {
-      VideoThumbnailRepository.thumbnails(uri, count, stripHeightPx).collect { result ->
-        // Cancellation stops this collector, but a result already in hand must still never land on another video.
-        if (uri != source) {
-          return@collect
-        }
+    // Started only once registered, since a decode that finishes without suspending would otherwise find no job to match.
+    val decodeJob = coroutineScope.launch(start = CoroutineStart.LAZY) {
+      val thisDecode = coroutineContext.job
 
-        when (result) {
-          is VideoThumbnailResult.DurationKnown -> onDurationKnown(result.durationUs)
-          is VideoThumbnailResult.Thumbnail -> {
-            _state.update { state ->
-              if (result.index in state.thumbnails.indices) {
-                state.copy(thumbnails = state.thumbnails.toMutableList().apply { set(result.index, result.bitmap) })
-              } else {
-                state
+      decodeLock.withLock {
+        VideoThumbnailRepository.thumbnails(uri, count, stripHeightPx).collect { result ->
+          // Cancellation stops this collector, but a result already in hand must still never land on a newer decode.
+          if (decodeJobs[uri] !== thisDecode) {
+            return@collect
+          }
+
+          when (result) {
+            is VideoThumbnailResult.DurationKnown -> {
+              updatePreview(uri) { it.copy(durationUs = result.durationUs) }
+              if (uri == source) {
+                onDurationKnown(result.durationUs)
+              }
+            }
+
+            is VideoThumbnailResult.Thumbnail -> {
+              updatePreview(uri) { preview ->
+                if (result.index in preview.thumbnails.indices) {
+                  preview.copy(thumbnails = preview.thumbnails.toMutableList().apply { set(result.index, result.bitmap) })
+                } else {
+                  preview
+                }
               }
             }
           }
         }
       }
+
+      val decoded = _previews.value[uri]
+      if (decodeJobs[uri] === thisDecode && decoded != null && decoded.thumbnails.all { it != null }) {
+        decodedStrips.put(uri, decoded.copy(playheadUs = null))
+      }
+    }
+    decodeJobs[uri] = decodeJob
+    decodeJob.start()
+  }
+
+  /** Leaves a video without a preview alone, since having one is what marks its thumbnails as loaded or on their way. */
+  private fun updatePreview(uri: Uri, transform: (VideoTrimBarPreview) -> VideoTrimBarPreview) {
+    val preview = _previews.value[uri] ?: return
+    setPreview(uri, transform(preview))
+  }
+
+  private fun setPreview(uri: Uri, preview: VideoTrimBarPreview) {
+    _previews.update { it + (uri to preview) }
+
+    if (uri == source) {
+      _state.update { it.copy(thumbnails = preview.thumbnails) }
     }
   }
 

@@ -19,6 +19,9 @@ sealed interface VideoTrimBarEvents {
   /** [maxDurationUs] is the longest range that may be selected, or null for no limit. */
   data class TrimDataChanged(val uri: Uri, val videoTrimData: VideoTrimData, val maxDurationUs: Long?) : VideoTrimBarEvents
 
+  /** Videos the bar may be shown for next, whose thumbnails should be decoded ahead of time. */
+  data class PreloadChanged(val uris: Set<Uri>) : VideoTrimBarEvents
+
   data class PlaybackPositionChanged(val uri: Uri, val positionUs: Long) : VideoTrimBarEvents
 
   /** Decides how many thumbnails the strip needs, and how large. */

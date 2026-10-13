@@ -5,6 +5,9 @@
 
 package org.signal.mediasend.screens.edit.video.trim
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationVector1D
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
@@ -15,7 +18,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.systemGestureExclusion
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
@@ -48,6 +53,8 @@ import androidx.compose.ui.graphics.Canvas as GraphicsCanvas
 
 private val DimColor = Color.Black.copy(alpha = 0.72f)
 
+private const val THUMBNAIL_FADE_DURATION_MS = 200
+
 /**
  * Thumbnail strip of a video with a pair of trim handles and a playhead. Stateless: it draws [state] and reports what
  * the user does through [onEvent], in the video's time rather than in pixels. Pair it with a [VideoTrimBarPresenter].
@@ -70,6 +77,10 @@ fun VideoTrimBar(
     playhead = MaterialTheme.colorScheme.secondary,
     trimmedPlayhead = MaterialTheme.colorScheme.onSurface
   )
+
+  val thumbnailAlphas = state.thumbnails.mapIndexed { index, thumbnail ->
+    key(index) { rememberThumbnailAlpha(thumbnail) }
+  }
 
   Canvas(
     modifier = modifier
@@ -123,8 +134,25 @@ fun VideoTrimBar(
         }
       }
   ) {
-    drawTrimBar(state, VideoTrimBarGeometry(size.width, this), colors)
+    drawTrimBar(state, thumbnailAlphas, VideoTrimBarGeometry(size.width, this), colors)
   }
+}
+
+/** Fades a slot in when its thumbnail arrives, but not one already there when the bar appears. */
+@Composable
+private fun rememberThumbnailAlpha(thumbnail: ImageBitmap?): Animatable<Float, AnimationVector1D> {
+  val isLoaded = thumbnail != null
+  val alpha = remember { Animatable(if (isLoaded) 1f else 0f) }
+
+  LaunchedEffect(isLoaded) {
+    if (isLoaded) {
+      alpha.animateTo(1f, tween(durationMillis = THUMBNAIL_FADE_DURATION_MS))
+    } else {
+      alpha.snapTo(0f)
+    }
+  }
+
+  return alpha
 }
 
 private data class VideoTrimBarColors(
@@ -136,7 +164,7 @@ private data class VideoTrimBarColors(
   val trimmedPlayhead: Color
 )
 
-private fun DrawScope.drawTrimBar(state: VideoTrimBarState, geometry: VideoTrimBarGeometry, colors: VideoTrimBarColors) {
+private fun DrawScope.drawTrimBar(state: VideoTrimBarState, thumbnailAlphas: List<Animatable<Float, AnimationVector1D>>, geometry: VideoTrimBarGeometry, colors: VideoTrimBarColors) {
   val strip = geometry.strip
   val stripPath = Path().apply { addRoundRect(RoundRect(strip, CornerRadius(geometry.stripRadius))) }
 
@@ -148,7 +176,7 @@ private fun DrawScope.drawTrimBar(state: VideoTrimBarState, geometry: VideoTrimB
   )
 
   clipPath(stripPath) {
-    drawThumbnails(state.thumbnails, strip)
+    drawThumbnails(state.thumbnails, thumbnailAlphas, strip)
   }
 
   val durationUs = state.durationUs ?: 0L
@@ -172,7 +200,7 @@ private fun DrawScope.drawTrimBar(state: VideoTrimBarState, geometry: VideoTrimB
     val selectionPath = Path().apply { addRoundRect(RoundRect(selection, CornerRadius(geometry.stripRadius))) }
     clipPath(selectionPath) {
       drawRect(colors.background, topLeft = selection.topLeft, size = selection.size)
-      drawThumbnails(state.thumbnails, strip)
+      drawThumbnails(state.thumbnails, thumbnailAlphas, strip)
     }
   }
 
@@ -194,7 +222,7 @@ private fun DrawScope.drawTrimBar(state: VideoTrimBarState, geometry: VideoTrimB
 }
 
 /** Tiles the strip with square, centre-cropped thumbnails, the last cut off by the strip's end. */
-private fun DrawScope.drawThumbnails(thumbnails: List<ImageBitmap?>, strip: Rect) {
+private fun DrawScope.drawThumbnails(thumbnails: List<ImageBitmap?>, alphas: List<Animatable<Float, AnimationVector1D>>, strip: Rect) {
   val tileSize = strip.height.roundToInt()
   if (tileSize <= 0) {
     return
@@ -211,7 +239,8 @@ private fun DrawScope.drawThumbnails(thumbnails: List<ImageBitmap?>, strip: Rect
       srcOffset = IntOffset((thumbnail.width - side) / 2, (thumbnail.height - side) / 2),
       srcSize = IntSize(side, side),
       dstOffset = IntOffset((strip.left + index * strip.height).roundToInt(), strip.top.roundToInt()),
-      dstSize = IntSize(tileSize, tileSize)
+      dstSize = IntSize(tileSize, tileSize),
+      alpha = alphas.getOrNull(index)?.value ?: 1f
     )
   }
 }

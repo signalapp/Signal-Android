@@ -43,6 +43,9 @@ class VideoEditorFragment : Fragment() {
   private var isFocused = false
   private var wasPlayingBeforeEdit = false
   private var maxSend: Long = 0
+
+  /** The range the player is clipped to, or null while it plays the whole video. */
+  private var playerClip: LongRange? = null
   private lateinit var uri: Uri
   private lateinit var viewModel: VideoEditorViewModel
   private lateinit var player: VideoPlayer
@@ -50,12 +53,9 @@ class VideoEditorFragment : Fragment() {
 
   private val updatePosition = object : Runnable {
     override fun run() {
-      if (IS_VIDEO_TRANSCODE_AVAILABLE) {
-        val playbackPosition = player.truePlaybackPosition
-        if (playbackPosition >= 0) {
-          viewModel.emitEvent(uri, VideoEditorViewModel.Event.ActualPositionChanged(playbackPosition.milliseconds.inWholeMicroseconds))
-          handler.postDelayed(this, 100)
-        }
+      if (IS_VIDEO_TRANSCODE_AVAILABLE && player.truePlaybackPosition >= 0) {
+        emitPosition()
+        handler.postDelayed(this, 100)
       }
     }
   }
@@ -77,6 +77,12 @@ class VideoEditorFragment : Fragment() {
 
     shapeContentFrame(view)
 
+    val contentFrame: View? = view.findViewById(R.id.exo_content_frame)
+    contentFrame?.alpha = 0f
+    val fadeInContent = {
+      contentFrame?.animate()?.alpha(1f)?.setDuration(resources.getInteger(android.R.integer.config_shortAnimTime).toLong())
+    }
+
     uri = requireArguments().getParcelableCompat(KEY_URI, Uri::class.java)!!
     isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF)
     maxSend = requireArguments().getLong(KEY_MAX_SEND)
@@ -85,12 +91,20 @@ class VideoEditorFragment : Fragment() {
     player.setExoPlayerPool(MediaSendDependencies.exoPlayerPool)
     player.setVideoSource(uri, isVideoGif, TAG)
 
+    if (!isVideoGif) {
+      requireArguments().getParcelableCompat(KEY_TRIM_DATA, VideoTrimData::class.java)?.let { clipPlayer(it) }
+    }
+
     hud.isVisible = !isVideoGif
 
     if (isVideoGif) {
       player.setPlayerCallback(object : VideoPlayer.PlayerCallback {
         override fun onPlaying() {
           viewModel.emitEvent(uri, VideoEditorViewModel.Event.PlayerReady)
+        }
+
+        override fun onFirstFrameRendered() {
+          fadeInContent()
         }
 
         override fun onStopped() = Unit
@@ -116,6 +130,10 @@ class VideoEditorFragment : Fragment() {
       player.setPlayerCallback(object : VideoPlayer.PlayerCallback {
         override fun onReady() {
           viewModel.emitEvent(uri, VideoEditorViewModel.Event.PlayerReady)
+        }
+
+        override fun onFirstFrameRendered() {
+          fadeInContent()
         }
 
         override fun onPlaying() {
@@ -170,21 +188,37 @@ class VideoEditorFragment : Fragment() {
       } else {
         stopPositionUpdates()
         player.pause()
+
+        if (!isVideoGif) {
+          clipPlayer(getOrCreateVideoTrimData(uri))
+          emitPosition()
+        }
       }
     }
     isFocused = currentlyFocused
   }
 
   private fun bindVideoTimeline(data: VideoTrimData) {
-    val autoplay = isVideoGif
+    clipPlayer(data)
+    hud.visibility = View.VISIBLE
+    startPositionUpdates()
+  }
 
-    if (data.isDurationEdited) {
-      player.clip(data.startTimeUs, data.endTimeUs, autoplay)
+  /** Re-clipping restarts the player, so it is skipped when the clip already matches. */
+  private fun clipPlayer(data: VideoTrimData) {
+    val clip = data.startTimeUs..data.endTimeUs
+    if (!data.isDurationEdited || clip == playerClip) {
+      return
     }
 
-    if (!autoplay) {
-      hud.visibility = View.VISIBLE
-      startPositionUpdates()
+    player.clip(data.startTimeUs, data.endTimeUs, false)
+    playerClip = clip
+  }
+
+  private fun emitPosition() {
+    val playbackPosition = player.truePlaybackPosition
+    if (playbackPosition >= 0) {
+      viewModel.emitEvent(uri, VideoEditorViewModel.Event.ActualPositionChanged(playbackPosition.milliseconds.inWholeMicroseconds))
     }
   }
 
@@ -252,6 +286,7 @@ class VideoEditorFragment : Fragment() {
       player.pause()
       if (!editingComplete) {
         player.removeClip(false)
+        playerClip = null
       }
       if (!wasPlayingBeforeEdit) {
         player.truePlaybackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
@@ -259,8 +294,10 @@ class VideoEditorFragment : Fragment() {
       if (editingComplete) {
         if (data.isDurationEdited) {
           player.clip(data.startTimeUs, data.endTimeUs, wasPlayingBeforeEdit)
+          playerClip = data.startTimeUs..data.endTimeUs
         } else {
           player.removeClip(wasPlayingBeforeEdit)
+          playerClip = null
         }
 
         if (!wasPlayingBeforeEdit) {
@@ -314,14 +351,16 @@ class VideoEditorFragment : Fragment() {
     private const val KEY_IS_VIDEO_GIF = "is_video_gif"
     private const val KEY_WIDTH = "width"
     private const val KEY_HEIGHT = "height"
+    private const val KEY_TRIM_DATA = "trim_data"
 
-    fun arguments(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean, width: Int = 0, height: Int = 0): Bundle {
+    fun arguments(uri: Uri, maxAttachmentSize: Long, isVideoGif: Boolean, width: Int = 0, height: Int = 0, trimData: VideoTrimData? = null): Bundle {
       return Bundle().apply {
         putParcelable(KEY_URI, uri)
         putLong(KEY_MAX_SEND, maxAttachmentSize)
         putBoolean(KEY_IS_VIDEO_GIF, isVideoGif)
         putInt(KEY_WIDTH, width)
         putInt(KEY_HEIGHT, height)
+        putParcelable(KEY_TRIM_DATA, trimData)
       }
     }
 

@@ -12,12 +12,13 @@ import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.video.VideoTrimData
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarPreview
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarState
 import org.thoughtcrime.securesms.video.TranscodingConfig
 
 /**
  * What the edit screen renders. Everything it edits belongs to the flow, so all of it is a copy kept current through
- * [MediaEditScreenEvents.ParentStateChanged] -- apart from [isSavingMedia] and [videoTrimBar], which are this screen's
+ * [MediaEditScreenEvents.ParentStateChanged] -- apart from [isSavingMedia] and the trim bar, which are this screen's
  * own work.
  */
 internal data class MediaEditState(
@@ -41,7 +42,9 @@ internal data class MediaEditState(
   /** Whether the focused image is currently being written out to shared storage. */
   val isSavingMedia: Boolean = false,
   /** The trim bar of the focused video, which this screen drives itself. */
-  val videoTrimBar: VideoTrimBarState = VideoTrimBarState()
+  val videoTrimBar: VideoTrimBarState = VideoTrimBarState(),
+  /** Thumbnails for the focused video and its neighbors, so a neighbor's trim bar is ready while swiping to it. */
+  val videoTrimBarPreviews: Map<Uri, VideoTrimBarPreview> = emptyMap()
 ) {
 
   val focusedEditorState: EditorState?
@@ -59,7 +62,7 @@ internal data class MediaEditState(
   }
 
   /**
-   * Everything the flow reports, merged in. [isSavingMedia] and [videoTrimBar] are left alone: the flow knows nothing
+   * Everything the flow reports, merged in. [isSavingMedia] and the trim bar are left alone: the flow knows nothing
    * about them.
    */
   fun withParentState(parentState: MediaSendFlowState): MediaEditState = copy(

@@ -5,12 +5,14 @@
 
 package org.signal.mediasend.screens.edit
 
+import android.net.Uri
 import org.signal.core.models.media.Media
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarAction
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents
+import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarPreview
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarState
 
 sealed interface MediaEditScreenEvents {
@@ -42,6 +44,8 @@ sealed interface MediaEditScreenEvents {
   data class TrimBarEvent(val event: VideoTrimBarEvents) : MediaEditScreenEvents
 
   data class TrimBarStateChanged(val state: VideoTrimBarState) : MediaEditScreenEvents
+
+  data class TrimBarPreviewsChanged(val previews: Map<Uri, VideoTrimBarPreview>) : MediaEditScreenEvents
 
   data class TrimBarAction(val action: VideoTrimBarAction) : MediaEditScreenEvents
 }

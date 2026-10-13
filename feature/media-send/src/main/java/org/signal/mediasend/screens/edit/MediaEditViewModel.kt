@@ -6,6 +6,7 @@
 package org.signal.mediasend.screens.edit
 
 import android.Manifest
+import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
@@ -82,6 +83,11 @@ internal class MediaEditViewModel(
       .launchIn(viewModelScope)
 
     trimBarPresenter
+      .previews
+      .onEach { onEvent(MediaEditScreenEvents.TrimBarPreviewsChanged(it)) }
+      .launchIn(viewModelScope)
+
+    trimBarPresenter
       .actions
       .onEach { onEvent(MediaEditScreenEvents.TrimBarAction(it)) }
       .launchIn(viewModelScope)
@@ -110,6 +116,7 @@ internal class MediaEditViewModel(
       MediaEditScreenEvents.SaveMedia -> saveFocusedMediaToStorage()
       is MediaEditScreenEvents.TrimBarEvent -> trimBarPresenter.onEvent(event.event)
       is MediaEditScreenEvents.TrimBarStateChanged -> _state.update { it.copy(videoTrimBar = event.state) }
+      is MediaEditScreenEvents.TrimBarPreviewsChanged -> _state.update { it.copy(videoTrimBarPreviews = event.previews) }
       is MediaEditScreenEvents.TrimBarAction -> onTrimBarAction(event.action)
     }
   }
@@ -118,14 +125,34 @@ internal class MediaEditViewModel(
    * Points the trim bar at the focused video and passes along the flow's trim for it. Sent on every flow update, not
    * just when the trim changes: the bar ignores trims that arrive mid-drag, so the update that ends a drag has to carry
    * the trim again even if it is unchanged.
+   *
+   * The videos either side of the focused media are preloaded whatever it is, so their bars are ready to fade in with a
+   * swipe. The focused one is included, and sent ahead of the source, so the outgoing source is still wanted once the
+   * source moves to its neighbor.
    */
   private fun updateTrimBarSource() {
     val state = _state.value
-    val uri = state.focusedMedia?.uri ?: return
-    val editorState = state.focusedEditorState as? EditorState.VideoTrim ?: return
+    val uri = state.focusedMedia?.uri
+    val editorState = state.focusedEditorState
 
-    trimBarPresenter.onEvent(VideoTrimBarEvents.SourceChanged(uri))
-    trimBarPresenter.onEvent(VideoTrimBarEvents.TrimDataChanged(uri, editorState.videoTrimData, editorState.maxDurationUs.takeIf { it > 0 }))
+    trimBarPresenter.onEvent(VideoTrimBarEvents.PreloadChanged(state.videosAroundFocus()))
+
+    if (uri != null && editorState is EditorState.VideoTrim) {
+      trimBarPresenter.onEvent(VideoTrimBarEvents.SourceChanged(uri))
+      trimBarPresenter.onEvent(VideoTrimBarEvents.TrimDataChanged(uri, editorState.videoTrimData, editorState.maxDurationUs.takeIf { it > 0 }))
+    }
+  }
+
+  private fun MediaEditState.videosAroundFocus(): Set<Uri> {
+    val focusedIndex = focusedMedia?.let { selectedMedia.indexOf(it) } ?: -1
+    if (focusedIndex < 0) {
+      return emptySet()
+    }
+
+    return listOf(focusedIndex, focusedIndex - 1, focusedIndex + 1)
+      .mapNotNull { selectedMedia.getOrNull(it)?.uri }
+      .filter { editorStateMap[it] is EditorState.VideoTrim }
+      .toSet()
   }
 
   private suspend fun onTrimBarAction(action: VideoTrimBarAction) {
