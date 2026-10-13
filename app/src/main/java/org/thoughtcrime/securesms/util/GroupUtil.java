@@ -36,14 +36,26 @@ public final class GroupUtil {
   private static final String TAG = Log.tag(GroupUtil.class);
 
   public static @Nullable GroupContextV2 getGroupContextIfPresent(@NonNull Content content) {
-    if (content.dataMessage != null && SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.dataMessage)) {
+    if (content.dataMessage != null && SignalServiceProtoUtil.hasGroupContext(content.dataMessage)) {
       return content.dataMessage.groupV2;
     } else if (content.syncMessage != null                 &&
                content.syncMessage.sent != null &&
                content.syncMessage.sent.message != null &&
-               SignalServiceProtoUtil.INSTANCE.getHasGroupContext(content.syncMessage.sent.message))
+               SignalServiceProtoUtil.hasGroupContext(content.syncMessage.sent.message))
     {
       return content.syncMessage.sent.message.groupV2;
+    } else if (content.editMessage != null &&
+               content.editMessage.dataMessage != null &&
+               SignalServiceProtoUtil.hasGroupContext(content.editMessage.dataMessage))
+    {
+      return content.editMessage.dataMessage.groupV2;
+    } else if (content.syncMessage != null &&
+               content.syncMessage.sent != null &&
+               content.syncMessage.sent.editMessage != null &&
+               content.syncMessage.sent.editMessage.dataMessage != null &&
+               SignalServiceProtoUtil.hasGroupContext(content.syncMessage.sent.editMessage.dataMessage))
+    {
+      return content.syncMessage.sent.editMessage.dataMessage.groupV2;
     } else if (content.storyMessage != null && SignalServiceProtoUtil.INSTANCE.isValid(content.storyMessage.group)) {
       return content.storyMessage.group;
     } else {

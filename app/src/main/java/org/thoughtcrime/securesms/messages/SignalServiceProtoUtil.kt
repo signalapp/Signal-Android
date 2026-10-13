@@ -83,6 +83,8 @@ object SignalServiceProtoUtil {
   val DataMessage.isGroupV2Update: Boolean
     get() = hasSignedGroupChange && !hasRenderableContent
 
+  @JvmStatic
+  @get:JvmName("hasGroupContext")
   val DataMessage?.hasGroupContext: Boolean
     get() = this?.groupV2?.masterKey.isNotEmpty()
 
