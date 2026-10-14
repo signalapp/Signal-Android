@@ -2974,7 +2974,7 @@ class ConversationFragment :
     slideDeck: SlideDeck? = if (attachmentManager.isAttachmentPresent) attachmentManager.buildSlideDeck() else null,
     contacts: List<Contact> = emptyList(),
     clearCompose: Boolean = true,
-    linkPreviews: List<LinkPreview> = linkPreviewViewModel.onSend(),
+    linkPreviews: List<LinkPreview>? = null,
     preUploadResults: List<MessageSender.PreUploadResult> = emptyList(),
     bypassPreSendSafetyNumberCheck: Boolean = false,
     isViewOnce: Boolean = false,
@@ -3026,7 +3026,7 @@ class ConversationFragment :
       mentions = mentions,
       bodyRanges = bodyRanges,
       contacts = contacts,
-      linkPreviews = linkPreviews,
+      linkPreviews = linkPreviews ?: linkPreviewViewModel.onSend(),
       preUploadResults = preUploadResults,
       isViewOnce = isViewOnce
     )
