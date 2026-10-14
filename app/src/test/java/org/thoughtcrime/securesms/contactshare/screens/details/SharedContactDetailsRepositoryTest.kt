@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.AccountValues
+import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
@@ -164,6 +165,33 @@ class SharedContactDetailsRepositoryTest {
 
     assertThat(resolved).isEqualTo(seeded)
     verify(exactly = 1) { recipients.getOrInsertFromServiceId(any()) }
+  }
+
+  @Test
+  fun `a recipient created from an ACI card records the card's name`() = runTest {
+    val recipients = stubRecipients(byAci = Optional.empty(), insertedFromAci = RecipientId.from(7))
+
+    repository.resolveOrCreateRecipient(contact(name = name("Paige", "Hall"), organization = "Acme", aci = ACI_STRING))
+
+    verify { recipients.setSharedName(RecipientId.from(7), ProfileName.fromParts("Paige", "Hall")) }
+  }
+
+  @Test
+  fun `a recipient created from a company only ACI card is named after the company`() = runTest {
+    val recipients = stubRecipients(byAci = Optional.empty(), insertedFromAci = RecipientId.from(7))
+
+    repository.resolveOrCreateRecipient(contact(organization = "Acme", aci = ACI_STRING))
+
+    verify { recipients.setSharedName(RecipientId.from(7), ProfileName.fromParts("Acme", null)) }
+  }
+
+  @Test
+  fun `a recipient created from an ACI card prefers the card's nickname to its company`() = runTest {
+    val recipients = stubRecipients(byAci = Optional.empty(), insertedFromAci = RecipientId.from(7))
+
+    repository.resolveOrCreateRecipient(contact(name = Contact.Name(null, null, null, null, null, "Pai"), organization = "Acme", aci = ACI_STRING))
+
+    verify { recipients.setSharedName(RecipientId.from(7), ProfileName.fromParts("Pai", null)) }
   }
 
   @Test

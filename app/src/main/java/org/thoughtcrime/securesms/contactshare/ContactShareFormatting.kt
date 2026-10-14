@@ -84,9 +84,20 @@ internal fun Contact.resolveOrCreateSignalRecipient(): RecipientId? {
   val aci = this.signalAci ?: return null
   val id = SignalDatabase.recipients.getOrInsertFromServiceId(aci)
 
-  SignalDatabase.recipients.setSharedName(id, ProfileName.fromParts(this.name.givenName, this.name.familyName))
+  SignalDatabase.recipients.setSharedName(id, this.sharedProfileName())
 
   return id
+}
+
+/** Falls back to the nickname, then the company, when the card has no given or family name, as the display name does. */
+private fun Contact.sharedProfileName(): ProfileName {
+  val name = ProfileName.fromParts(this.name.givenName, this.name.familyName)
+  if (!name.isEmpty) {
+    return name
+  }
+
+  val fallback = this.name.nickname.nullIfBlank() ?: this.organization.nullIfBlank()
+  return ProfileName.fromParts(fallback, null)
 }
 
 internal fun Contact.Phone.labelText(context: Context): String {
