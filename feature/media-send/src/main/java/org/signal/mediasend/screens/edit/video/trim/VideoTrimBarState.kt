@@ -26,7 +26,11 @@ data class VideoTrimBarState(
   /** The longest range that may be selected, or null for no limit. */
   val maxRangeUs: Long? = null,
   val thumbnails: List<ImageBitmap?> = emptyList(),
-  val activeDrag: TrimDragTarget? = null
+  val activeDrag: TrimDragTarget? = null,
+  /** The trim handle under the user's finger, from touch-down until release. */
+  val pressedHandle: TrimDragTarget? = null,
+  /** The trim handle most recently pressed, kept after release so its timestamp can fade out in place. */
+  val lastPressedHandle: TrimDragTarget? = null
 ) {
 
   /** Whether the selection excludes any of the video. */
@@ -38,7 +42,7 @@ data class VideoTrimBarState(
 
   override fun toString(): String {
     return "VideoTrimBarState(source=$source, durationUs=$durationUs, startUs=$startUs, endUs=$endUs, playheadUs=$playheadUs, maxRangeUs=$maxRangeUs, " +
-      "thumbnails=${thumbnails.count { it != null }}/${thumbnails.size}, activeDrag=$activeDrag)"
+      "thumbnails=${thumbnails.count { it != null }}/${thumbnails.size}, activeDrag=$activeDrag, pressedHandle=$pressedHandle, lastPressedHandle=$lastPressedHandle)"
   }
 }
 

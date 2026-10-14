@@ -27,6 +27,12 @@ sealed interface VideoTrimBarEvents {
   /** Decides how many thumbnails the strip needs, and how large. */
   data class StripMeasured(val widthPx: Int, val heightPx: Int) : VideoTrimBarEvents
 
+  /** A finger went down on a trim handle, before it has moved far enough to count as a drag. */
+  data class HandlePressed(val target: TrimDragTarget) : VideoTrimBarEvents
+
+  /** Sent for every [HandlePressed] once that finger lifts or the gesture is cancelled. */
+  data object HandleReleased : VideoTrimBarEvents
+
   data class DragStarted(val target: TrimDragTarget) : VideoTrimBarEvents
 
   data class HandleDragged(val target: TrimDragTarget, val positionUs: Long) : VideoTrimBarEvents

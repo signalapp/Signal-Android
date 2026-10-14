@@ -211,6 +211,41 @@ class VideoTrimBarPresenterTest {
   }
 
   @Test
+  fun `when a handle is pressed, then it is the pressed handle until released`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    presenter.showVideo(VIDEO_A, trim(startUs = 0, endUs = DURATION_US))
+
+    presenter.onEvent(VideoTrimBarEvents.HandlePressed(TrimDragTarget.START))
+    assertThat(presenter.state.value.pressedHandle).isEqualTo(TrimDragTarget.START)
+
+    presenter.onEvent(VideoTrimBarEvents.HandleReleased)
+    assertThat(presenter.state.value.pressedHandle).isNull()
+  }
+
+  @Test
+  fun `Given a handle was pressed, when it is released and the playhead is dragged, then it is still the last pressed handle`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    presenter.showVideo(VIDEO_A, trim(startUs = 0, endUs = DURATION_US))
+
+    presenter.onEvent(VideoTrimBarEvents.HandlePressed(TrimDragTarget.START))
+    presenter.onEvent(VideoTrimBarEvents.HandleReleased)
+    presenter.onEvent(VideoTrimBarEvents.DragStarted(TrimDragTarget.PLAYHEAD))
+    presenter.onEvent(VideoTrimBarEvents.DragEnded)
+
+    assertThat(presenter.state.value.lastPressedHandle).isEqualTo(TrimDragTarget.START)
+  }
+
+  @Test
+  fun `Given the duration is unknown, when a handle is pressed, then nothing is pressed`() = runTest(testDispatcher) {
+    val presenter = createPresenter()
+    presenter.onEvent(VideoTrimBarEvents.SourceChanged(VIDEO_A))
+
+    presenter.onEvent(VideoTrimBarEvents.HandlePressed(TrimDragTarget.END))
+
+    assertThat(presenter.state.value.pressedHandle).isNull()
+  }
+
+  @Test
   fun `Given the duration is unknown, when a drag starts, then nothing is dragged`() = runTest(testDispatcher) {
     val presenter = createPresenter()
     presenter.onEvent(VideoTrimBarEvents.SourceChanged(VIDEO_A))

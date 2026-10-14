@@ -75,6 +75,8 @@ class VideoTrimBarPresenter(
       is VideoTrimBarEvents.PreloadChanged -> onPreloadChanged(event.uris)
       is VideoTrimBarEvents.PlaybackPositionChanged -> onPlaybackPositionChanged(event)
       is VideoTrimBarEvents.StripMeasured -> onStripMeasured(event.widthPx, event.heightPx)
+      is VideoTrimBarEvents.HandlePressed -> onHandlePressed(event.target)
+      VideoTrimBarEvents.HandleReleased -> _state.update { it.copy(pressedHandle = null) }
       is VideoTrimBarEvents.DragStarted -> onDragStarted(event.target)
       is VideoTrimBarEvents.HandleDragged -> onHandleDragged(event.target, event.positionUs)
       is VideoTrimBarEvents.PlayheadDragged -> onPlayheadDragged(event.positionUs)
@@ -179,6 +181,14 @@ class VideoTrimBarPresenter(
     }
 
     _state.update { it.copy(activeDrag = target) }
+  }
+
+  private fun onHandlePressed(target: TrimDragTarget) {
+    if (source == null || _state.value.durationUs == null || target == TrimDragTarget.PLAYHEAD) {
+      return
+    }
+
+    _state.update { it.copy(pressedHandle = target, lastPressedHandle = target) }
   }
 
   private suspend fun onHandleDragged(target: TrimDragTarget, positionUs: Long) {

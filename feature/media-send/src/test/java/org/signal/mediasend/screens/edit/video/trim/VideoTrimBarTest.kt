@@ -12,6 +12,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.unit.dp
 import androidx.test.core.app.ApplicationProvider
@@ -68,12 +69,25 @@ class VideoTrimBarTest {
       up()
     }
 
-    assertThat(gestureEvents.first()).isEqualTo(VideoTrimBarEvents.DragStarted(TrimDragTarget.END))
+    assertThat(gestureEvents.take(2)).containsExactly(VideoTrimBarEvents.HandlePressed(TrimDragTarget.END), VideoTrimBarEvents.DragStarted(TrimDragTarget.END))
     assertThat(gestureEvents.filterIsInstance<VideoTrimBarEvents.HandleDragged>()).isNotEmpty()
     assertThat(gestureEvents.filterIsInstance<VideoTrimBarEvents.HandleDragged>().last()).isEqualTo(
       VideoTrimBarEvents.HandleDragged(TrimDragTarget.END, DURATION_US + geometry().durationFor(-100f, DURATION_US))
     )
-    assertThat(gestureEvents.last()).isEqualTo(VideoTrimBarEvents.DragEnded)
+    assertThat(gestureEvents.takeLast(2)).containsExactly(VideoTrimBarEvents.DragEnded, VideoTrimBarEvents.HandleReleased)
+  }
+
+  @Test
+  fun `when a handle is pressed and released without moving, then only the press and release are reported`() {
+    setContent(LOADED)
+    val endHandle = geometry().endHandleCenter(geometry().strip.right)
+
+    composeTestRule.onNodeWithTag(TAG).performTouchInput {
+      down(Offset(endHandle, centerY))
+      up()
+    }
+
+    assertThat(gestureEvents).containsExactly(VideoTrimBarEvents.HandlePressed(TrimDragTarget.END), VideoTrimBarEvents.HandleReleased)
   }
 
   @Test
@@ -134,7 +148,7 @@ class VideoTrimBarTest {
   }
 
   @Test
-  fun `when the bar is tapped outside the strip, then nothing is reported`() {
+  fun `when the bar is tapped outside the strip, then the playhead is not moved`() {
     setContent(LOADED)
 
     composeTestRule.onNodeWithTag(TAG).performTouchInput {
@@ -142,7 +156,7 @@ class VideoTrimBarTest {
       up()
     }
 
-    assertThat(gestureEvents).isEmpty()
+    assertThat(gestureEvents.filterIsInstance<VideoTrimBarEvents.PlayheadTapped>()).isEmpty()
   }
 
   @Test
@@ -171,6 +185,27 @@ class VideoTrimBarTest {
     }
 
     assertThat(gestureEvents.filterIsInstance<VideoTrimBarEvents.DragStarted>()).containsExactly(VideoTrimBarEvents.DragStarted(TrimDragTarget.START))
+  }
+
+  @Test
+  fun `Given the end handle is pressed, then its time is shown`() {
+    setContent(LOADED.copy(endUs = 6_400_000, pressedHandle = TrimDragTarget.END, lastPressedHandle = TrimDragTarget.END))
+
+    composeTestRule.onNodeWithText("0:06").assertExists()
+  }
+
+  @Test
+  fun `Given the playhead is being dragged, then no time is shown`() {
+    setContent(LOADED.copy(endUs = 6_400_000, activeDrag = TrimDragTarget.PLAYHEAD, lastPressedHandle = TrimDragTarget.END))
+
+    composeTestRule.onNodeWithText("0:06").assertDoesNotExist()
+  }
+
+  @Test
+  fun `Given nothing is pressed, then no time is shown`() {
+    setContent(LOADED.copy(endUs = 6_400_000, lastPressedHandle = TrimDragTarget.END))
+
+    composeTestRule.onNodeWithText("0:06").assertDoesNotExist()
   }
 
   private fun setContent(state: VideoTrimBarState) {
