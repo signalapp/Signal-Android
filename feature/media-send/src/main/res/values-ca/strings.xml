@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">No s\'ha pogut processar la foto. Torna-ho a provar.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Interromput</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">El Signal necessita el permís del micròfon per gravar vídeos, però s\'han denegat. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi el micròfon i la càmera.</string>
 

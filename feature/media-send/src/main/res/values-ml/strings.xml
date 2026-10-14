@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">ഫോട്ടോ പ്രോസസ്സ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">താൽക്കാലികമായി നിർത്തി</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">വീഡിയോകൾ റെക്കോർഡുചെയ്യാൻ Signal-ന് മൈക്രോഫോൺ അനുമതി ആവശ്യമാണ്, പക്ഷേ അവ നിരസിക്കപ്പെട്ടു. ആപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
 

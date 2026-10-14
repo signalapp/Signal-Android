@@ -886,7 +886,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Toets jou wagwoordfrase en verifieer dat dit ooreenkom</string>
     <string name="BackupsPreferenceFragment__turn_on">Skakel rugsteun aan</string>
     <string name="BackupsPreferenceFragment__turn_off">Skakel af</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan 'n rugsteunlêer op. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin vanaf rugsteun\" en spoor dan \'n rugsteunlêer op. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Vind meer uit</string>
     <string name="BackupsPreferenceFragment__in_progress">Aan die gang…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -2612,6 +2612,12 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submitting" translatable="false">Submitting debug log</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submitting_body" translatable="false">Collecting and uploading logs. This can take a minute.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_retry" translatable="false">Retry</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_close" translatable="false">Close</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_copy" translatable="false">Copy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_copied" translatable="false">Copied to clipboard</string> -->
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Voeg toe by Kontakte</string>
@@ -2710,6 +2716,16 @@
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Skakel gekopieer</string>
+    <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
+    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
+    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <!-- Snackbar shown when a pack is hidden -->
+    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <!-- Snackbar action label to undo hiding a sticker pack. -->
+    <string name="StickerManagement_undo">Undo</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Stuur aan</string>
@@ -2719,6 +2735,8 @@
     <string name="StickerManagement_menu_install_pack">Installeer</string>
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">Verwyder</string>
+    <!-- Sticker pack list dropdown menu label for the button to hide an uninstalled sticker pack from the list of available packs. -->
+    <string name="StickerManagement_menu_hide_pack">Hide</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Kies plakkerpakkette</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
@@ -2761,7 +2779,6 @@
     <string name="StickerManagement_accessibility_clear_search">Vee Soek uit</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_untitled">Naamloos</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">Naamloos</string>
@@ -3159,6 +3176,8 @@
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Nie in staat om na eksterne berging te stoor sonder die nodige regte nie</string>
+    <!-- Toast shown when media can\'t be saved to the device storage because its data is no longer on the device and can\'t be downloaded again. -->
+    <string name="AttachmentSaver__media_no_longer_available">This media is no longer available</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Kan nie media stoor nie</string>
@@ -3340,7 +3359,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benodig Kontaktoestemming om jou kontakte te wys, maar dit is permanent geweier. Gaan asseblief na die toepassinginstelling-kieslys, kies \"Toestemmings\" en aktiveer \"Kontakte\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout met herwinning van kontakte, gaan jou netwerkverbinding na</string>
     <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam nie gevind nie</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie 'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" is nie \'n Signal-gebruiker nie. Kontroleer asb. die gebruikersnaam en probeer weer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Jy hoef nie jouself by die groep te voeg nie</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum groepgrootte bereik.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_s_members">Signal-groepe kan \'n maksimum van %1$s lede hê.</string>
@@ -3815,14 +3834,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Onlangs gebruik</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Geen resultate gevind nie</string>
 
-    <string name="GifQuickSearchOption__trending">Tans gewild</string>
-    <string name="GifQuickSearchOption__celebrate">Vier</string>
-    <string name="GifQuickSearchOption__love">Liefde</string>
-    <string name="GifQuickSearchOption__thumbs_up">Duim omhoog</string>
-    <string name="GifQuickSearchOption__surprised">Verras</string>
-    <string name="GifQuickSearchOption__excited">Opgewonde</string>
-    <string name="GifQuickSearchOption__sad">Hartseer</string>
-    <string name="GifQuickSearchOption__angry">Kwaad</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Gebruik verstek</string>
@@ -3869,6 +3880,20 @@
     <string name="preferences__enable_passphrase">Aktiveer wagwoordfrase-skermslot</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Sluit skerm en kennisgewings met \'n wagwoordfrase</string>
     <string name="preferences__screen_security">Skermsekuriteit</string>
+    <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
+  <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
+    <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
+    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <!-- Bottom sheet button that turns screen security back off -->
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <!-- Title of the dialog confirming that the user wants to turn off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <!-- Body of the dialog confirming that the user wants to turn off screen security -->
+  <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
+    <!-- Dialog button that confirms turning off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Turn off</string>
+    <!-- Snackbar shown after the user turns off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Outosluit Signal ná \'n gespesifiseerde tydperk van onaktiwiteit</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Wagwoordfrase vir sluiting a.g.v. onaktiwiteit</string>
@@ -5607,21 +5632,13 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Word ’n onderhouer</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">Emoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Open emoji-soektog</string>
-    <string name="KeyboardPagerFragment_open_sticker_search">Open plakkersoektog</string>
-    <string name="KeyboardPagerFragment_open_gif_search">Open gif-soektog</string>
-    <string name="KeyboardPagerFragment_stickers">Plakkers</string>
     <string name="KeyboardPagerFragment_backspace">Trutoets</string>
-    <string name="KeyboardPagerFragment_gifs">Gif’s</string>
     <string name="KeyboardPagerFragment_search_emoji">Deursoek emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Terug na emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Vee soekopdrag uit</string>
     <string name="KeyboardPagerFragment_search_giphy">Deursoek GIPHY</string>
 
-    <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Deursoek plakkers</string>
-    <string name="StickerSearchDialogFragment_no_results_found">Geen resultate gevind nie</string>
     <string name="EmojiSearchFragment__no_results_found">Geen resultate gevind nie</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekende luitoon</string>
 
@@ -7612,7 +7629,7 @@
     <string name="InactivePrimary__got_it">Ek verstaan</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om 'n rugsteun te herwin, installeer 'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Om \'n rugsteun te herwin, installeer \'n nuwe kopie van Signal. Maak die toepassing oop, tik op \"Herwin rugsteun\" en vind dan die rugsteunlêer."</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">Jou \"Optimaliseer Signal-stoorruimte\" is aangeskakel. As jy alle media in jou rugsteun op die toestel wil insluit, skakel hierdie instelling af.</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
@@ -8641,9 +8658,6 @@
   <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string> -->
     <!-- SearchFilterBottomSheet: Select date dialog title -->
   <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string> -->
-
-    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Navigeer op</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">Skakel aan of af</string>

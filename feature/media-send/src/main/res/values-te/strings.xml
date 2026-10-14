@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">ఫోటోను ప్రాసెస్ చేయడంలో విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">నిలిపివేయబడింది</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">వీడియోలను రికార్డ్ చేయడానికి Signal కు మైక్రోఫోన్ అనుమతులు అవసరం, కానీ అవి తిరస్కరించబడ్డాయి. దయచేసి అనువర్తన సెట్టింగ్‌లకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
 

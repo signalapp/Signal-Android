@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">ಫೋಟೋ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ವೀಡಿಯೊಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
 

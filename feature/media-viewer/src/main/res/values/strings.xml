@@ -3,11 +3,11 @@
   <!-- MediaViewerScreen -->
   <!-- Toolbar title for media you sent -->
   <string name="MediaViewerScreen__you">You</string>
-  <!-- Toolbar title for media you sent to another chat, e.g. 'You to Alice' -->
+  <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
   <string name="MediaViewerScreen__you_to_s">You to %1$s</string>
-  <!-- Toolbar title for media a sender sent to a group, e.g. 'Alice to Hiking Group' -->
+  <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
   <string name="MediaViewerScreen__s_to_s">%1$s to %2$s</string>
-  <!-- Toolbar title for media a sender sent to you, e.g. 'Alice to you' -->
+  <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
   <string name="MediaViewerScreen__s_to_you">%1$s to you</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
   <string name="MediaViewerScreen__note_to_self">Note to Self</string>

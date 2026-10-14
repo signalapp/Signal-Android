@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">無法處理相片。請重試。</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">已暫停</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal 需要「咪高峰」權限以錄製影片，但已被拒絕。請前往應用程式設定，選擇「權限」，然後啟用「咪高峰」和「相機」。</string>
 

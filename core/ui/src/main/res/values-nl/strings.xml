@@ -36,6 +36,8 @@
 
     <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
     <string name="CloseButton__content_description">Sluiten</string>
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
     <string name="StickerFavorites__add_to_favorites">Toevoegen aan Favorieten</string>
@@ -44,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Verwijderen uit Favorieten?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Je kunt deze niet opnieuw versturen of aan Favorieten toevoegen zonder de link of een stickerbericht.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Je kunt deze sticker niet opnieuw versturen of aan Favorieten toevoegen zonder het stickerpakket of stickerbericht.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Verwijderen</string>
 </resources>

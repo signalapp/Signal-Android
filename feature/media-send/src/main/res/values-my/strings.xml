@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">ဓာတ်ပုံကို စီမံဆောင်ရွက်ခြင်း မအောင်မြင်ပါ။ ထပ်ကြိုးစားကြည့်ပါ။</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">ခေတ္တရပ်ထားသည်</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ဗီဒီယိုရိုက်ကူးရန် မိုက်ခရိုဖုန်း ခွင့်ပြုချက်များ လိုအပ်ပြီး ယင်းတို့ကို ငြင်းဆိုခြင်း ခံထားရပါသည်။ အက်ပလီကေးရှင်း ဆက်တင်သို့ သွား၍ \"ခွင့်ပြုချက်များ\" ကို ရွေးချယ်ကာ \"မိုက်ခရိုဖုန်း\" နှင့် \"ကင်မရာ\" ကို ဖွင့်ပါ။</string>
 

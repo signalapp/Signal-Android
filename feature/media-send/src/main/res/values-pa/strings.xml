@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">ਫ਼ੋਟੋ ਉੱਤੇ ਕਾਰਵਾਈ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">ਰੋਕਿਆ ਗਿਆ</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ਵੀਡੀਓ ਨੂੰ ਰਿਕਾਰਡ ਕਰਨ ਲਈ Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਸੰਬੰਧੀ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਹਨਾਂ ਇਜਾਜ਼ਤਾਂ ਲਈ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾਓ, \"ਇਜਾਜ਼ਤਾਂ\" ਨੂੰ ਚੁਣੋ, ਅਤੇ \"ਮਾਈਕ੍ਰੋਫ਼ੋਨ\" ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
 

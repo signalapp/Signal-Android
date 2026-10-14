@@ -2794,6 +2794,12 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submitting" translatable="false">Submitting debug log</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submitting_body" translatable="false">Collecting and uploading logs. This can take a minute.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_retry" translatable="false">Retry</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_close" translatable="false">Close</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_copy" translatable="false">Copy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_copied" translatable="false">Copied to clipboard</string> -->
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">Додати до контактів</string>
@@ -2902,6 +2908,16 @@
     </plurals>
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Посилання скопійовано</string>
+    <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
+    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
+    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <!-- Snackbar shown when a pack is hidden -->
+    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <!-- Snackbar action label to undo hiding a sticker pack. -->
+    <string name="StickerManagement_undo">Undo</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Переслати</string>
@@ -2911,6 +2927,8 @@
     <string name="StickerManagement_menu_install_pack">Установити</string>
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">Вилучити</string>
+    <!-- Sticker pack list dropdown menu label for the button to hide an uninstalled sticker pack from the list of available packs. -->
+    <string name="StickerManagement_menu_hide_pack">Hide</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Виберіть набори стікерів</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
@@ -2953,7 +2971,6 @@
     <string name="StickerManagement_accessibility_clear_search">Очистити пошук</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_untitled">Без назви</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">Без назви</string>
@@ -3365,6 +3382,8 @@
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Не надано відповідні дозволи, тому неможливо зберегти файли в зовнішній пам\'яті</string>
+    <!-- Toast shown when media can\'t be saved to the device storage because its data is no longer on the device and can\'t be downloaded again. -->
+    <string name="AttachmentSaver__media_no_longer_available">This media is no longer available</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Не вдається зберегти медіафайл</string>
@@ -4049,14 +4068,6 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавні</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нічого не знайдено</string>
 
-    <string name="GifQuickSearchOption__trending">Популярні</string>
-    <string name="GifQuickSearchOption__celebrate">Свято</string>
-    <string name="GifQuickSearchOption__love">Кохання</string>
-    <string name="GifQuickSearchOption__thumbs_up">Усе супер</string>
-    <string name="GifQuickSearchOption__surprised">Подив</string>
-    <string name="GifQuickSearchOption__excited">Радість</string>
-    <string name="GifQuickSearchOption__sad">Сум</string>
-    <string name="GifQuickSearchOption__angry">Злість</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Використовувати типове налаштування</string>
@@ -4105,6 +4116,20 @@
     <string name="preferences__enable_passphrase">Увімкнути блокування екрана паролем</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокувати екран і сповіщення паролем</string>
     <string name="preferences__screen_security">Захист екрана</string>
+    <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
+  <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
+    <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
+    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <!-- Bottom sheet button that turns screen security back off -->
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <!-- Title of the dialog confirming that the user wants to turn off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <!-- Body of the dialog confirming that the user wants to turn off screen security -->
+  <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
+    <!-- Dialog button that confirms turning off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Turn off</string>
+    <!-- Snackbar shown after the user turns off screen security -->
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично блокувати Signal після певного періоду бездіяльності</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Питати пароль у разі бездіяльності</string>
@@ -5901,21 +5926,13 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Підтримати</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">Емоджі</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Відкрийте пошук емоджі</string>
-    <string name="KeyboardPagerFragment_open_sticker_search">Відкрити пошук стікерів</string>
-    <string name="KeyboardPagerFragment_open_gif_search">Відкрити пошук GIF</string>
-    <string name="KeyboardPagerFragment_stickers">Стікери</string>
     <string name="KeyboardPagerFragment_backspace">Клавіша повернення</string>
-    <string name="KeyboardPagerFragment_gifs">GIF</string>
     <string name="KeyboardPagerFragment_search_emoji">Пошук емоджі</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Повернутися до емоджі</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Видалити дані, введені в поле пошуку</string>
     <string name="KeyboardPagerFragment_search_giphy">Пошук на GIPHY</string>
 
-    <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Пошук стікерів</string>
-    <string name="StickerSearchDialogFragment_no_results_found">Нічого не знайдено</string>
     <string name="EmojiSearchFragment__no_results_found">Нічого не знайдено</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Невідома мелодія дзвінка</string>
 
@@ -9027,9 +9044,6 @@
   <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__clear" translatable="false">Clear</string> -->
     <!-- SearchFilterBottomSheet: Select date dialog title -->
   <!-- Removed by excludeNonTranslatables <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string> -->
-
-    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Перейти вгору</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">Поставити або зняти галочку</string>

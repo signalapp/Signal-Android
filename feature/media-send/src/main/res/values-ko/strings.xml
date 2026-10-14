@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">사진을 처리하지 못했습니다. 다시 시도해 주세요.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">일시 중지됨</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal에서 동영상을 촬영하려면 마이크 권한이 필요하지만, 현재 권한이 차단되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\'를 허용해 주세요.</string>
 

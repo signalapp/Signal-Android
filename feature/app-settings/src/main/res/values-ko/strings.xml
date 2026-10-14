@@ -3,7 +3,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">등록 잠금을 켤까요?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">등록 잠금을 끌까요?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 다시 가입할 때 PIN을 잊어버리면, 7일 동안 계정 사용이 제한됩니다.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 다시 가입할 때 PIN이 기억나지 않으면, 7일 동안 계정 사용이 제한됩니다.</string>
     <string name="RegistrationLockV2Dialog_turn_on">켜기</string>
     <string name="RegistrationLockV2Dialog_turn_off">끄기</string>
     <string name="preferences__advanced_pin_settings">PIN 고급 설정</string>
@@ -13,7 +13,7 @@
     <string name="preferences_chats__transfer_account">계정 이전</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">새 Android 기기로 계정 이전</string>
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-    <string name="preferences_app_protection__create_a_pin">PIN을 생성하세요</string>
+    <string name="preferences_app_protection__create_a_pin">PIN 생성</string>
     <string name="preferences_app_protection__change_your_pin">PIN 변경</string>
     <string name="preferences_app_protection__pin_reminders">PIN 알림</string>
     <string name="preferences_app_protection__turn_off">끄기</string>

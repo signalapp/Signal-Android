@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">படத்தைச் செயலாக்க முடியவில்லை. மீண்டும் முயலுங்கள்.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">இடைநிறுத்தப்பட்டது</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">காணொளிகளைப் பதிவு செய்ய Signal மைக்ரோஃபோன் அனுமதி தேவை, ஆனால் அது மறுக்கப்பட்டது. செயலியின் அமைப்புகளுக்கு சென்று, \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" என்பவற்றை இயலச் செய்யவும்.</string>
 

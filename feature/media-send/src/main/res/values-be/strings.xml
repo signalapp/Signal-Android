@@ -169,6 +169,8 @@
   <string name="CameraXFragment_photo_processing_failed">Не атрымалася апрацаваць фота. Паўтарыце спробу.</string>
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Прыпынена</string>
+  <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
+  <string name="CameraXFragment_multi_capture">Multi-capture</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal патрабуе дазволу на мікрафон для запісу відэа, але ён быў вамі адмоўлены. Калі ласка, перайдзіце ў меню наладаў праграмы, выберыце «Дазволы» і ўключыце «Мікрафон» і «Камера».</string>
 
