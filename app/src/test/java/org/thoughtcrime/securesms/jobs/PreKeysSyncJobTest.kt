@@ -80,9 +80,10 @@ class PreKeysSyncJobTest {
 
     // `AppDependencies.protocolStore` / `keysApi` are already relaxed mockks set up by
     // MockAppDependenciesRule; configure the chained calls we care about.
-    every { AppDependencies.protocolStore.aci() } returns aciProtocolStore
-    every { AppDependencies.protocolStore.pni() } returns pniProtocolStore
-    every { AppDependencies.protocolStore.pniOrNull() } returns pniProtocolStore
+    val protocolStore = AppDependencies.protocolStore
+    every { protocolStore.aci() } returns aciProtocolStore
+    every { protocolStore.pni() } returns pniProtocolStore
+    every { protocolStore.pniOrNull() } returns pniProtocolStore
 
     val identityKeyPair = IdentityKeyPair.generate()
     every { aciProtocolStore.identityKeyPair } returns identityKeyPair
