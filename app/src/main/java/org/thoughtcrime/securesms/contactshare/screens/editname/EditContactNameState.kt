@@ -7,9 +7,11 @@ package org.thoughtcrime.securesms.contactshare.screens.editname
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 /** The structured name of a shared contact, matching the address book fields. */
 @Parcelize
+@Serializable
 data class ContactNameParts(
   val prefix: String = "",
   val givenName: String = "",

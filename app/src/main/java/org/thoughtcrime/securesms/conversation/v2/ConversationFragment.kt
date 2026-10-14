@@ -5679,7 +5679,7 @@ class ConversationFragment :
         when (button) {
           AttachmentKeyboardButton.GALLERY -> conversationActivityResultContracts.launchGallery(recipient.id, composeText.textTrimmed, inputPanel.quote.isPresent)
 
-          AttachmentKeyboardButton.CONTACT -> conversationActivityResultContracts.launchSelectContact()
+          AttachmentKeyboardButton.CONTACT -> conversationActivityResultContracts.launchSelectContact(recipient.id)
 
           AttachmentKeyboardButton.LOCATION -> conversationActivityResultContracts.launchSelectLocation(recipient.chatColors)
 

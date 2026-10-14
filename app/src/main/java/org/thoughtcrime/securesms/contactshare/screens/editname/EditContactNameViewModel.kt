@@ -19,6 +19,7 @@ import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 class EditContactNameViewModel(
+  initialParts: ContactNameParts,
   private val savedState: SavedStateHandle
 ) : EventDrivenViewModel<EditContactNameEvent>(TAG, shouldLogEvents = true) {
 
@@ -31,8 +32,8 @@ class EditContactNameViewModel(
 
   private val _state = MutableStateFlow(
     EditContactNameState(
-      parts = savedState[KEY_PARTS] ?: ContactNameParts(),
-      original = savedState[KEY_ORIGINAL] ?: ContactNameParts()
+      parts = savedState[KEY_PARTS] ?: initialParts,
+      original = savedState[KEY_ORIGINAL] ?: initialParts
     )
   )
   val state: StateFlow<EditContactNameState> = _state.asStateFlow()
@@ -51,10 +52,6 @@ class EditContactNameViewModel(
 
   override suspend fun processEvent(event: EditContactNameEvent) {
     when (event) {
-      is EditContactNameEvent.Initialize -> {
-        _state.value = EditContactNameState(parts = event.parts, original = event.parts)
-      }
-
       is EditContactNameEvent.PrefixChanged -> updateParts { it.copy(prefix = event.value) }
       is EditContactNameEvent.GivenNameChanged -> updateParts { it.copy(givenName = event.value) }
       is EditContactNameEvent.MiddleNameChanged -> updateParts { it.copy(middleName = event.value) }

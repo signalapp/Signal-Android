@@ -220,7 +220,13 @@ private fun NameRow(
     modifier = Modifier
       .fillMaxWidth()
       .testTag(ShareContactTestTags.NAME_ROW)
-      .then(if (name.isToggleable) Modifier.clickable(onClick = onToggle) else Modifier)
+      .then(
+        when {
+          name.isToggleable -> Modifier.clickable(onClick = onToggle)
+          name.isEditable -> Modifier.clickable(onClick = onEditClick)
+          else -> Modifier
+        }
+      )
       .padding(vertical = 16.dp)
   ) {
     SelectionColumn(isSelected = name.isSelected)

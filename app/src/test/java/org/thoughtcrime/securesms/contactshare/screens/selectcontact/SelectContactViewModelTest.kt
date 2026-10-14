@@ -21,6 +21,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -78,11 +79,24 @@ class SelectContactViewModelTest {
 
   @Test
   fun `selecting a contact shows loading, since the handoff reads the provider`() = runTest(testDispatcher) {
-    val viewModel = SelectContactViewModel(fakeSource(buildResult = ContactIndexBuildResult.Success(1)))
+    val resolution = CompletableDeferred<SharedContactSource?>()
+    val source = fakeSource(buildResult = ContactIndexBuildResult.Success(1))
+    coEvery { source.resolve(any()) } coAnswers { resolution.await() }
+    val viewModel = SelectContactViewModel(source)
 
     viewModel.onEvent(SelectContactEvent.ContactClicked(contactRow(1, "Andrew Bell")))
 
     assertThat(viewModel.state.value.isLoading).isTrue()
+    resolution.complete(null)
+  }
+
+  @Test
+  fun `a resolved selection stops loading before handing off, so the list is ready to come back to`() = runTest(testDispatcher) {
+    val viewModel = SelectContactViewModel(fakeSource(contacts = contacts("Andrew Bell")))
+
+    viewModel.onEvent(SelectContactEvent.ContactClicked(contacts("Andrew Bell").first()))
+
+    assertThat(viewModel.state.value.isLoading).isFalse()
   }
 
   @Test

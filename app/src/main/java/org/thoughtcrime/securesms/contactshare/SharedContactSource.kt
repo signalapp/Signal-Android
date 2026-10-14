@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.contactshare
 import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
+import org.signal.core.models.UriSerializer
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * contact URI to identify them by. A shared contact is therefore identified by whichever of the two
  * sources it came from rather than by a URI alone.
  */
+@Serializable
 sealed interface SharedContactSource : Parcelable {
 
   /**
@@ -26,17 +29,21 @@ sealed interface SharedContactSource : Parcelable {
    * several registered numbers.
    */
   @Parcelize
-  data class AddressBook(val contactUri: Uri, val recipientId: RecipientId? = null) : SharedContactSource
+  @Serializable
+  data class AddressBook(@Serializable(with = UriSerializer::class) val contactUri: Uri, val recipientId: RecipientId? = null) : SharedContactSource
 
   /** One phone number picked from the system picker, so only a name and that number, never the rest of the entry. */
   @Parcelize
-  data class SystemPhone(val dataUri: Uri) : SharedContactSource
+  @Serializable
+  data class SystemPhone(@Serializable(with = UriSerializer::class) val dataUri: Uri) : SharedContactSource
 
   /** A Signal connection with no address book entry, so there is nothing but a profile to share. */
   @Parcelize
+  @Serializable
   data class SignalContact(val recipientId: RecipientId) : SharedContactSource
 
   /** A .vcf shared into a conversation from outside, which never passes through the picker. */
   @Parcelize
-  data class VCard(val uri: Uri) : SharedContactSource
+  @Serializable
+  data class VCard(@Serializable(with = UriSerializer::class) val uri: Uri) : SharedContactSource
 }

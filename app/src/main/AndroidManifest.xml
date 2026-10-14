@@ -791,17 +791,11 @@
 
 
         <activity
-            android:name=".contactshare.ContactShareEditActivityV2"
+            android:name=".contactshare.ContactShareActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".contactshare.SelectContactActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="false"
-            android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
         <activity
             android:name=".contactshare.SharedContactDetailsActivityV2"

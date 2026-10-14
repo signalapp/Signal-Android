@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.contacts.index
 import android.app.Application
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.io.Closeable
 
 /**
@@ -18,7 +19,7 @@ import java.io.Closeable
  * deletes the index, and because the encryption key only ever existed in this object, anything left
  * on disk after an abrupt process death is undecryptable rather than merely deleted.
  */
-class ContactIndexRepository(private val application: Application) : Closeable {
+class ContactIndexRepository(private val application: Application = AppDependencies.application) : Closeable {
 
   companion object {
     private val TAG = Log.tag(ContactIndexRepository::class.java)
