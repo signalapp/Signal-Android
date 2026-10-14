@@ -58,4 +58,6 @@ dependencies {
 
   // JUnit is used by test fixtures
   testFixturesImplementation(testLibs.junit.junit)
+  testFixturesImplementation(testLibs.androidx.test.core)
+  testFixturesApi(project(":screener"))
 }

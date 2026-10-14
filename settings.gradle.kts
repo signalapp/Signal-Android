@@ -156,6 +156,7 @@ include(":demo:list-detail")
 // Testing/Lint modules
 include(":lintchecks")
 include(":fast-lint")
+include(":screener")
 include(":benchmark")
 include(":baseline-profile")
 include(":microbenchmark")

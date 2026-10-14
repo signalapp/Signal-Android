@@ -8,15 +8,31 @@ package org.signal.core.ui.compose
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview
 
-private const val PHONE_PORTRAIT = "spec:width=360dp,height=780dp,orientation=portrait"
-private const val PHONE_LANDSCAPE = "spec:width=780dp,height=360dp,orientation=landscape"
-private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=620dp,height=720dp,orientation=portrait"
-private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=720dp,height=620dp,orientation=landscape"
-private const val FOLDABLE_PORTRAIT = "spec:width=850dp,height=881dp,orientation=portrait"
-private const val FOLDABLE_LANDSCAPE = "spec:width=881dp,height=850dp,orientation=landscape"
-private const val SMALL_TABLET_LANDSCAPE = "spec:width=960dp,height=600dp,orientation=landscape"
-private const val TABLET_PORTRAIT = "spec:width=800dp,height=1280dp,orientation=portrait"
-private const val TABLET_LANDSCAPE = "spec:width=1280dp,height=800dp,orientation=landscape"
+/**
+ * Window sizes, in dp, of the devices that previews and layout stress tests render at.
+ */
+object DeviceSizes {
+  const val PHONE_WIDTH = 360
+  const val PHONE_HEIGHT = 780
+  const val SMALL_FOLDABLE_WIDTH = 620
+  const val SMALL_FOLDABLE_HEIGHT = 720
+  const val FOLDABLE_WIDTH = 850
+  const val FOLDABLE_HEIGHT = 881
+  const val SMALL_TABLET_WIDTH = 960
+  const val SMALL_TABLET_HEIGHT = 600
+  const val TABLET_WIDTH = 800
+  const val TABLET_HEIGHT = 1280
+}
+
+private const val PHONE_PORTRAIT = "spec:width=${DeviceSizes.PHONE_WIDTH}dp,height=${DeviceSizes.PHONE_HEIGHT}dp,orientation=portrait"
+private const val PHONE_LANDSCAPE = "spec:width=${DeviceSizes.PHONE_HEIGHT}dp,height=${DeviceSizes.PHONE_WIDTH}dp,orientation=landscape"
+private const val SMALL_FOLDABLE_PORTRAIT = "spec:width=${DeviceSizes.SMALL_FOLDABLE_WIDTH}dp,height=${DeviceSizes.SMALL_FOLDABLE_HEIGHT}dp,orientation=portrait"
+private const val SMALL_FOLDABLE_LANDSCAPE = "spec:width=${DeviceSizes.SMALL_FOLDABLE_HEIGHT}dp,height=${DeviceSizes.SMALL_FOLDABLE_WIDTH}dp,orientation=landscape"
+private const val FOLDABLE_PORTRAIT = "spec:width=${DeviceSizes.FOLDABLE_WIDTH}dp,height=${DeviceSizes.FOLDABLE_HEIGHT}dp,orientation=portrait"
+private const val FOLDABLE_LANDSCAPE = "spec:width=${DeviceSizes.FOLDABLE_HEIGHT}dp,height=${DeviceSizes.FOLDABLE_WIDTH}dp,orientation=landscape"
+private const val SMALL_TABLET_LANDSCAPE = "spec:width=${DeviceSizes.SMALL_TABLET_WIDTH}dp,height=${DeviceSizes.SMALL_TABLET_HEIGHT}dp,orientation=landscape"
+private const val TABLET_PORTRAIT = "spec:width=${DeviceSizes.TABLET_WIDTH}dp,height=${DeviceSizes.TABLET_HEIGHT}dp,orientation=portrait"
+private const val TABLET_LANDSCAPE = "spec:width=${DeviceSizes.TABLET_HEIGHT}dp,height=${DeviceSizes.TABLET_WIDTH}dp,orientation=landscape"
 
 /**
  * Only generates a dark preview. Useful for screens that are only ever rendered in dark mode (like calling).
