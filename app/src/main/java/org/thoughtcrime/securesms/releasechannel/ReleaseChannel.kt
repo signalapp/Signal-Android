@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.releasechannel
 
+import org.signal.core.models.ServiceId.ACI
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.MessageTable
@@ -20,6 +21,10 @@ import java.util.UUID
  * One stop shop for inserting Release Channel messages.
  */
 object ReleaseChannel {
+
+  /** Desktop's local release notes chat ACI. Not a real account, so it must never be synced as a storage service contact. */
+  @JvmField
+  val DESKTOP_RELEASE_NOTES_ACI: ACI = ACI.parseOrThrow("11111111-1111-4111-8111-111111111111")
 
   fun insertReleaseChannelMessage(
     recipientId: RecipientId,

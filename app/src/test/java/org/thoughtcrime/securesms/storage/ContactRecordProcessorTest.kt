@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -137,6 +138,24 @@ class ContactRecordProcessorTest {
     val record = buildRecord(
       record = ContactRecord(
         aciBinary = ACI_A.toByteString()
+      )
+    )
+
+    // WHEN
+    val result = subject.isInvalid(record)
+
+    // THEN
+    assertTrue(result)
+  }
+
+  @Test
+  fun `isInvalid, aci is desktop release notes chat, true`() {
+    // GIVEN
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable, mutableSetOf())
+
+    val record = buildRecord(
+      record = ContactRecord(
+        aciBinary = ReleaseChannel.DESKTOP_RELEASE_NOTES_ACI.toByteString()
       )
     )
 

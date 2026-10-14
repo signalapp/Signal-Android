@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.storage.StorageSyncModels.localToRemoteRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -113,6 +114,9 @@ class ContactRecordProcessor(
       (selfE164 != null && remote.proto.e164.isNotBlank() && remote.proto.e164 == selfE164)
     ) {
       Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.")
+      return true
+    } else if (remote.proto.signalAci == ReleaseChannel.DESKTOP_RELEASE_NOTES_ACI) {
+      Log.w(TAG, "Found a ContactRecord for Desktop's release notes chat -- marking as invalid.")
       return true
     } else if (remote.proto.e164.isNotBlank() && !isValidE164(remote.proto.e164)) {
       Log.w(TAG, "Found a record with an invalid E164. Marking as invalid.")

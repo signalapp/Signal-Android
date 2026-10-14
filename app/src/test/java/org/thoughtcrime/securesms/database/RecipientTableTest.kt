@@ -29,6 +29,8 @@ import org.signal.core.util.update
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import java.util.UUID
 
@@ -428,6 +430,19 @@ class RecipientTableTest {
       "Self always has profile sharing enabled and must not count as an existing contact",
       SignalDatabase.recipients.hasAnyProfileSharingOrSystemContact(listOf(recipients.self, other))
     )
+  }
+
+  @Test
+  fun givenADesktopReleaseNotesRecipientWithAStorageId_whenIGetContactStorageSyncIds_thenIExpectItToBeExcluded() {
+    val contact = SignalDatabase.recipients.getOrInsertFromServiceId(ACI_A)
+    val releaseNotes = SignalDatabase.recipients.getOrInsertFromServiceId(ReleaseChannel.DESKTOP_RELEASE_NOTES_ACI)
+    SignalDatabase.recipients.updateStorageId(contact, StorageSyncHelper.generateKey())
+    SignalDatabase.recipients.updateStorageId(releaseNotes, StorageSyncHelper.generateKey())
+
+    val storageIds = SignalDatabase.recipients.getContactStorageSyncIdsMap()
+
+    assertTrue(contact in storageIds)
+    assertFalse(releaseNotes in storageIds)
   }
 
   private fun recipientFor(id: RecipientId) = RecipientCreator.forRecord(SignalDatabase.recipients.getRecord(id))
