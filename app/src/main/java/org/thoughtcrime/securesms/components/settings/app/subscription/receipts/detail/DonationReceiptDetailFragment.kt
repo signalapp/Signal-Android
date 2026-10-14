@@ -1,115 +1,54 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import android.content.Intent
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.launch
+import android.content.ActivityNotFoundException
+import android.widget.Toast
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.SignalProgressDialog
-import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
-import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
-import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.components.settings.models.SplashImage
-import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
-import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import java.util.Locale
-import org.signal.core.ui.R as CoreUiR
 
-class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.donation_receipt_detail_fragment) {
+class DonationReceiptDetailFragment : ComposeFragment() {
 
-  private lateinit var progressDialog: SignalProgressDialog
-
-  override val listClearsNavigationBar: Boolean = false
+  companion object {
+    private val TAG = Log.tag(DonationReceiptDetailFragment::class)
+  }
 
   private val viewModel: DonationReceiptDetailViewModel by viewModel {
     val id = DonationReceiptDetailFragmentArgs.fromBundle(requireArguments()).id
     DonationReceiptDetailViewModel(id)
   }
 
-  override fun bindAdapter(adapter: MappingAdapter) {
-    SplashImage.register(adapter)
+  @Composable
+  override fun FragmentContent() {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
 
-    val sharePngButton: MaterialButton = requireView().findViewById(R.id.share_png)
-    sharePngButton.isEnabled = false
+    CollectActions(viewModel.actions) { action -> handleAction(action) }
 
-    SystemWindowInsetsSetter.attach(sharePngButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
-
-    viewLifecycleOwner.lifecycleScope.launch {
-      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-        viewModel.state.collect { state ->
-          if (state.inAppPaymentReceiptRecord != null) {
-            val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
-            adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
-
-            sharePngButton.isEnabled = true
-            sharePngButton.setOnClickListener {
-              progressDialog = SignalProgressDialog.show(requireContext())
-              ReceiptImageRenderer.renderPng(
-                context = requireContext(),
-                lifecycleOwner = viewLifecycleOwner,
-                record = state.inAppPaymentReceiptRecord,
-                subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
-                callback = object : ReceiptImageRenderer.Callback {
-                  override fun onBitmapRendered() {
-                    progressDialog.dismiss()
-                  }
-
-                  override fun onStartActivity(intent: Intent) {
-                    startActivity(intent)
-                  }
-                }
-              )
-            }
-          }
-        }
-      }
-    }
+    DonationReceiptDetailScreen(
+      state = state,
+      onNavigationClick = { findNavController().popBackStack() },
+      onShareClick = { viewModel.shareReceipt(context) }
+    )
   }
 
-  private fun getConfiguration(record: InAppPaymentReceiptRecord, subscriptionName: String?): DSLConfiguration {
-    return configure {
-      customPref(
-        SplashImage.Model(
-          splashImageResId = CoreUiR.drawable.image_signal_logo_wordmark
-        )
-      )
-
-      textPref(
-        title = DSLSettingsText.from(
-          charSequence = FiatMoneyUtil.format(resources, record.amount),
-          DSLSettingsText.TextAppearanceModifier(CoreUiR.style.Signal_Text_Giant),
-          DSLSettingsText.CenterModifier
-        )
-      )
-
-      dividerPref()
-
-      textPref(
-        title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__donation_type),
-        summary = DSLSettingsText.from(
-          when (record.type) {
-            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptListFragment__recurring)
-            InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
-            InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
-            InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")
-          }
-        )
-      )
-
-      textPref(
-        title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__date_paid),
-        summary = record.let { DSLSettingsText.from(DateUtils.formatDateWithYear(Locale.getDefault(), it.timestamp)) }
-      )
+  private fun handleAction(action: DonationReceiptDetailAction) {
+    when (action) {
+      is DonationReceiptDetailAction.ShareReceipt -> {
+        try {
+          startActivity(ReceiptImageRenderer.createShareIntent(requireContext(), action.uri))
+        } catch (e: ActivityNotFoundException) {
+          Log.w(TAG, "No activity existed to share the media.", e)
+          Toast.makeText(requireContext(), R.string.MediaPreviewActivity_cant_find_an_app_able_to_share_this_media, Toast.LENGTH_LONG).show()
+        }
+      }
     }
   }
 }

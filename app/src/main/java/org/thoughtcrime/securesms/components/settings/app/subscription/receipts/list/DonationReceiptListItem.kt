@@ -5,6 +5,7 @@ import android.widget.TextView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.labelRes
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -40,14 +41,7 @@ object DonationReceiptListItem {
       itemView.setOnClickListener { onClick(model) }
       badgeView.setBadge(model.badge)
       dateView.text = DateUtils.formatDate(Locale.getDefault(), model.record.timestamp)
-      typeView.setText(
-        when (model.record.type) {
-          InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> R.string.DonationReceiptListFragment__recurring
-          InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> R.string.DonationReceiptListFragment__one_time
-          InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> R.string.DonationReceiptListFragment__donation_for_a_friend
-          InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment")
-        }
-      )
+      typeView.setText(model.record.type.labelRes)
       moneyView.text = FiatMoneyUtil.format(context.resources, model.record.amount)
     }
   }
