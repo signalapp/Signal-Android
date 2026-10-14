@@ -248,7 +248,15 @@ public final class PushGroupSendJob extends PushSendJob {
         skipped = result.skipped;
       }
 
-      List<SendMessageResult> results = deliver(message, originalEditedMessage, groupRecipient, target);
+      Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupRecipient.requireGroupId());
+
+      if (!groupRecord.isPresent()) {
+        log(TAG, String.valueOf(message.getSentTimeMillis()), "Group " + groupRecipient.requireGroupId() + " no longer exists (likely left and deleted). Skipping send of message " + messageId);
+        SignalLocalMetrics.GroupMessageSend.cancel(messageId);
+        return;
+      }
+
+      List<SendMessageResult> results = deliver(message, originalEditedMessage, groupRecipient, groupRecord.get(), target);
       processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, skipped, existingNetworkFailures, existingIdentityMismatches);
       ConversationShortcutRankingUpdateJob.enqueueForOutgoingIfNecessary(groupRecipient);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
@@ -273,7 +281,7 @@ public final class PushGroupSendJob extends PushSendJob {
     SignalDatabase.messages().markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMessage message, @Nullable MessageRecord originalEditedMessage, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
+  private List<SendMessageResult> deliver(OutgoingMessage message, @Nullable MessageRecord originalEditedMessage, @NonNull Recipient groupRecipient, @NonNull GroupRecord groupRecord, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException, NoSessionException
   {
     if (Utf8.size(message.getBody()) > SignalServiceMessageLimits.MAX_INLINE_BODY_SIZE_BYTES) {
@@ -300,39 +308,33 @@ public final class PushGroupSendJob extends PushSendJob {
       boolean                                    isRecipientUpdate                = hasPreviouslyDeliveredRecipients && SignalDatabase.messages().isSent(messageId);
 
       if (message.getStoryType().isStory()) {
-        Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
-
-        if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+        if (groupRecord.isAnnouncementGroup() && !groupRecord.isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot send stories in announcement groups!");
         }
 
-        if (groupRecord.isPresent() && !groupRecord.get().getHasV2GroupProperties()) {
+        if (!groupRecord.getHasV2GroupProperties()) {
           throw new UndeliverableMessageException("Cannot send stories to deleted groups!");
         }
 
-        if (groupRecord.isPresent()) {
-          GroupTable.V2GroupProperties v2GroupProperties = groupRecord.get().requireV2GroupProperties();
-          SignalServiceGroupV2 groupContext = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
-                                                                  .withRevision(v2GroupProperties.getGroupRevision())
-                                                                  .build();
+        GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+        SignalServiceGroupV2 groupContext = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                .withRevision(v2GroupProperties.getGroupRevision())
+                                                                .build();
 
-          final SignalServiceStoryMessage storyMessage;
-          if (message.getStoryType().isTextStory()) {
-            storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(),
-                                                                       groupContext,
-                                                                       StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor),
-                                                                       message.getStoryType().isStoryWithReplies(),
-                                                                       bodyRanges);
-          } else if (!attachmentPointers.isEmpty()) {
-            storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies(), bodyRanges);
-          } else {
-            throw new UndeliverableMessageException("No attachment on non-text story.");
-          }
-
-          return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage);
+        final SignalServiceStoryMessage storyMessage;
+        if (message.getStoryType().isTextStory()) {
+          storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(),
+                                                                     groupContext,
+                                                                     StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor),
+                                                                     message.getStoryType().isStoryWithReplies(),
+                                                                     bodyRanges);
+        } else if (!attachmentPointers.isEmpty()) {
+          storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies(), bodyRanges);
         } else {
-          throw new UndeliverableMessageException("No group found! " + groupId);
+          throw new UndeliverableMessageException("No attachment on non-text story.");
         }
+
+        return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage);
       } else if (message.isGroup() && message.isGroupUpdate()) {
         if (message.isV2Group()) {
           MessageGroupContext.GroupV2Properties properties   = message.requireGroupV2Properties();
@@ -362,18 +364,16 @@ public final class PushGroupSendJob extends PushSendJob {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
       } else {
-        Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupRecipient.requireGroupId());
-
-        if (pinnedMessage != null && groupRecord.isPresent() && groupRecord.get().getAttributesAccessControl() == GroupAccessControl.ONLY_ADMINS && !groupRecord.get().isAdmin(Recipient.self())) {
+        if (pinnedMessage != null && groupRecord.getAttributesAccessControl() == GroupAccessControl.ONLY_ADMINS && !groupRecord.isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot pin messages in this group!");
-        } else if (pinnedMessage == null && groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+        } else if (pinnedMessage == null && groupRecord.isAnnouncementGroup() && !groupRecord.isAdmin(Recipient.self())) {
           throw new UndeliverableMessageException("Non-admins cannot send messages in announcement groups!");
         }
 
         SignalServiceDataMessage.Builder builder = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis());
 
-        GroupUtil.setDataMessageGroupContext(context, builder, groupId);
+        GroupUtil.setDataMessageGroupContext(builder, groupRecord);
 
         SignalServiceDataMessage.Builder groupMessageBuilder = builder.withAttachments(attachmentPointers)
                                                                       .withBody(message.getBody())

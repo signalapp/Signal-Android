@@ -95,16 +95,27 @@ public final class GroupUtil {
       GroupTable  groupDatabase = SignalDatabase.groups();
       GroupRecord groupRecord   = groupDatabase.requireGroup(groupId);
 
-      if (!groupRecord.getHasV2GroupProperties()) {
-        throw new UndeliverableMessageException("No group properties for V2 group " + groupId + ", likely deleted; cannot attach group context.");
-      }
-
-      GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
-      SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
-                                                                              .withRevision(v2GroupProperties.getGroupRevision())
-                                                                              .build();
-      dataMessageBuilder.asGroupMessage(group);
+      setDataMessageGroupContext(dataMessageBuilder, groupRecord);
     }
+  }
+
+  public static void setDataMessageGroupContext(@NonNull SignalServiceDataMessage.Builder dataMessageBuilder,
+                                                @NonNull GroupRecord groupRecord)
+      throws UndeliverableMessageException
+  {
+    if (!groupRecord.getId().isV2()) {
+      return;
+    }
+
+    if (!groupRecord.getHasV2GroupProperties()) {
+      throw new UndeliverableMessageException("No group properties for V2 group " + groupRecord.getId() + ", likely deleted; cannot attach group context.");
+    }
+
+    GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+    SignalServiceGroupV2         group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                         .withRevision(v2GroupProperties.getGroupRevision())
+                                                                         .build();
+    dataMessageBuilder.asGroupMessage(group);
   }
 
   public static class GroupDescription {
