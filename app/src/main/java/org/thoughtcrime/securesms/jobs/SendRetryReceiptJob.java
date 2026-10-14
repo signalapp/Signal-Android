@@ -84,6 +84,11 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (recipientId.isUnknown()) {
+      Log.w(TAG, "Recipient is unknown! Skipping retry receipt.", true);
+      return;
+    }
+
     RecipientRecord recipient = SignalDatabase.recipients().getRecord(recipientId);
 
     if (recipient.getRegistered() == RegisteredState.NOT_REGISTERED) {
@@ -105,6 +110,11 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    if (recipientId.isUnknown()) {
+      Log.w(TAG, "Recipient is unknown! Skipping session reset.", true);
+      return;
+    }
+
     AppDependencies.getJobManager().add(new AutomaticSessionResetJob(recipientId, errorMessage.getDeviceId(), System.currentTimeMillis()));
   }
 

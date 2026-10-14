@@ -270,7 +270,7 @@ object MessageDecryptor {
           Log.w(TAG, "${logPrefix(envelope, e)} Retry receipts disabled! Enqueuing a session reset job, which will also insert an error message.", e, true)
 
           followUpOperations += FollowUpOperation {
-            Recipient.external(e.sender)?.let {
+            Recipient.external(e.sender)?.takeUnless { it.isUnknown }?.let {
               AutomaticSessionResetJob(it.id, e.senderDevice, envelope.clientTimestamp!!).asChain()
             } ?: null.logW(TAG, "${logPrefix(envelope, e)} Failed to create a recipient with the provided identifier!")
           }
@@ -341,7 +341,7 @@ object MessageDecryptor {
     val contentHint: ContentHint = ContentHint.fromType(protocolException.contentHint)
     val senderDevice: Int = protocolException.senderDevice
     val receivedTimestamp: Long = System.currentTimeMillis()
-    val sender: Recipient = Recipient.external(protocolException.sender) ?: return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
+    val sender: Recipient = Recipient.external(protocolException.sender)?.takeUnless { it.isUnknown } ?: return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations)
     val senderServiceId: ServiceId? = ServiceId.parseOrNull(protocolException.sender)
 
     if (sender.isSelf) {

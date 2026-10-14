@@ -89,6 +89,11 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (recipientId.isUnknown()) {
+      Log.w(TAG, "Recipient is unknown! Skipping session reset.", true);
+      return;
+    }
+
     AppDependencies.getProtocolStore().aci().sessions().archiveSessions(recipientId, deviceId);
     SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
     insertLocalMessage();

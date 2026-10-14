@@ -385,7 +385,7 @@ open class MessageContentProcessor(private val context: Context) {
   fun processException(messageState: MessageState, exceptionMetadata: ExceptionMetadata, timestamp: Long) {
     val sender = Recipient.external(exceptionMetadata.sender)
 
-    if (sender == null) {
+    if (sender == null || sender.isUnknown) {
       warn("Failed to create Recipient for identifier: $messageState")
       return
     }
