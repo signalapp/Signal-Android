@@ -88,9 +88,13 @@ object AndroidTelecomUtil {
           systemRejected = true
           AppDependencies.signalCallManager.dropCall(callId)
         } finally {
-          Log.i(TAG, "Removing incoming controller for recipientId=$recipientId")
           synchronized(controllers) {
-            controllers.remove(recipientId)
+            if (controllers[recipientId] === controller) {
+              Log.i(TAG, "Removing incoming controller for recipientId=$recipientId callId=$callId")
+              controllers.remove(recipientId)
+            } else {
+              Log.i(TAG, "Not removing incoming controller for recipientId=$recipientId callId=$callId, replaced by a newer call")
+            }
           }
         }
       }
@@ -123,9 +127,13 @@ object AndroidTelecomUtil {
           systemRejected = true
           AppDependencies.signalCallManager.dropCall(callId)
         } finally {
-          Log.i(TAG, "Removing outgoing controller for recipientId=$recipientId")
           synchronized(controllers) {
-            controllers.remove(recipientId)
+            if (controllers[recipientId] === controller) {
+              Log.i(TAG, "Removing outgoing controller for recipientId=$recipientId callId=$callId")
+              controllers.remove(recipientId)
+            } else {
+              Log.i(TAG, "Not removing outgoing controller for recipientId=$recipientId callId=$callId, replaced by a newer call")
+            }
           }
         }
       }

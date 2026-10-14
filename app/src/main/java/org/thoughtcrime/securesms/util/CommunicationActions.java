@@ -85,14 +85,6 @@ public class CommunicationActions {
   }
 
   private static void startVoiceCall(@NonNull CallContext callContext, @NonNull Recipient recipient, @NonNull OnUserAlreadyInAnotherCall onUserAlreadyInAnotherCall) {
-    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
-      Toast.makeText(callContext.getContext(),
-                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT)
-           .show();
-      return;
-    }
-
     if (recipient.isRegistered()) {
       AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
         @Override
@@ -110,6 +102,10 @@ public class CommunicationActions {
               onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
             }
           } else {
+            if (showToastIfPstnLineBusy(callContext)) {
+              return;
+            }
+
             MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(callContext.getContext())
                 .setMessage(R.string.CommunicationActions_start_voice_call)
                 .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false, false))
@@ -120,7 +116,7 @@ public class CommunicationActions {
           }
         }
       });
-    } else {
+    } else if (!showToastIfPstnLineBusy(callContext)) {
       startInsecureCall(callContext, recipient);
     }
   }
@@ -140,14 +136,6 @@ public class CommunicationActions {
   }
 
   private static void startVideoCall(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean fromCallLink, @NonNull OnUserAlreadyInAnotherCall onUserAlreadyInAnotherCall) {
-    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
-      Toast.makeText(callContext.getContext(),
-                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT)
-           .show();
-      return;
-    }
-
     AppDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
       @Override
       protected void onReceiveResult(int resultCode, Bundle resultData) {
@@ -163,7 +151,7 @@ public class CommunicationActions {
           } else {
             onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
           }
-        } else {
+        } else if (!showToastIfPstnLineBusy(callContext)) {
           startCallInternal(callContext, recipient, true, fromCallLink);
         }
       }
@@ -416,6 +404,20 @@ public class CommunicationActions {
                               callContext.getContext().getString(R.string.ConversationActivity_calls_not_supported),
                               callContext.getContext().getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
     }
+  }
+
+  /**
+   * With telecom enabled our own calls also mark the line busy, so only check after confirming Signal has no active call.
+   */
+  private static boolean showToastIfPstnLineBusy(@NonNull CallContext callContext) {
+    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
+      Toast.makeText(callContext.getContext(),
+                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
+                     Toast.LENGTH_SHORT)
+           .show();
+      return true;
+    }
+    return false;
   }
 
   private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo, boolean fromCallLink) {

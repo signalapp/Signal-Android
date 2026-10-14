@@ -144,7 +144,7 @@ class TelecomCallController(
       var needToResetAudioRoute = isOutgoing && !isVideoCall
       var initialEndpoint: SignalAudioManager.AudioDevice? = null
 
-      launch {
+      val endpointJob = launch {
         currentCallEndpoint.collect { endpoint ->
           val activeDevice = endpoint.type.toAudioDevice()
           Log.i(TAG, "currentCallEndpoint changed: ${endpoint.name} (type=${endpoint.type}) -> $activeDevice")
@@ -168,14 +168,14 @@ class TelecomCallController(
         }
       }
 
-      launch {
+      val muteJob = launch {
         isMuted.collect { muted ->
           Log.i(TAG, "isMuted changed: $muted for callId=$callId")
           AppDependencies.signalCallManager.setMuteAudio(muted)
         }
       }
 
-      launch {
+      val availableEndpointsJob = launch {
         availableEndpoints.collect { endpoints ->
           cachedEndpoints = endpoints
           val available = endpoints.map { it.type.toAudioDevice() }.toSet()
@@ -218,6 +218,11 @@ class TelecomCallController(
             }
           }
         }
+
+        Log.i(TAG, "Command loop ended, cancelling flow collectors for callId=$callId")
+        endpointJob.cancel()
+        muteJob.cancel()
+        availableEndpointsJob.cancel()
       }
     }
   }
@@ -239,6 +244,9 @@ class TelecomCallController(
 
   private fun onDisconnect(cause: DisconnectCause) {
     Log.i(TAG, "onDisconnect(code=${cause.code}, reason=${cause.reason})")
+    disconnected = true
+    commandChannel.close()
+
     when (cause.code) {
       DisconnectCause.REJECTED -> {
         Log.i(TAG, "Call rejected via system UI")
