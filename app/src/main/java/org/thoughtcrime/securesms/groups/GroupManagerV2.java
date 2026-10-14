@@ -206,12 +206,12 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupCreator create() throws GroupChangeBusyException {
-    return new GroupCreator(GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupCreator(GroupsV2ProcessingLock.acquireGroupCreationProcessingLock());
   }
 
   @WorkerThread
   GroupEditor edit(@NonNull GroupId.V2 groupId) throws GroupChangeBusyException, GroupChangeFailedException {
-    Closeable lock = GroupsV2ProcessingLock.acquireGroupProcessingLock();
+    Closeable lock = GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(groupId);
 
     GroupRecord groupRecord = groupDatabase.getGroup(groupId).orElse(null);
     if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
@@ -224,12 +224,12 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupJoiner join(@NonNull GroupMasterKey groupMasterKey, @NonNull GroupLinkPassword password) throws GroupChangeBusyException {
-    return new GroupJoiner(groupMasterKey, password, GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupJoiner(groupMasterKey, password, GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(GroupId.v2(groupMasterKey)));
   }
 
   @WorkerThread
   GroupJoiner cancelRequest(@NonNull GroupId.V2 groupId) throws GroupChangeBusyException, GroupChangeFailedException {
-    Closeable lock = GroupsV2ProcessingLock.acquireGroupProcessingLock();
+    Closeable lock = GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(groupId);
 
     GroupRecord groupRecord = groupDatabase.getGroup(groupId).orElse(null);
     if (groupRecord == null || !groupRecord.getHasV2GroupProperties()) {
@@ -244,7 +244,7 @@ final class GroupManagerV2 {
 
   @WorkerThread
   GroupUpdater updater(@NonNull GroupMasterKey groupId) throws GroupChangeBusyException {
-    return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireGroupProcessingLock());
+    return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireSingleGroupProcessingLock(GroupId.v2(groupId)));
   }
 
   final class GroupCreator extends LockOwner {
