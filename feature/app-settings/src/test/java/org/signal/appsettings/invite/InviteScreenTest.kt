@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -74,6 +75,15 @@ class InviteScreenTest {
     composeTestRule.onNodeWithTag(InviteTestTags.ROW_SHARE).performClick()
 
     assertThat(events).contains(InviteEvent.ShareClicked)
+  }
+
+  @Test
+  fun `clicking the navigation icon emits NavigateBackClicked`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
+
+    assertThat(events).contains(InviteEvent.NavigateBackClicked)
   }
 
   @Test

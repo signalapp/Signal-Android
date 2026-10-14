@@ -35,7 +35,9 @@ import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object InviteTestTags {
@@ -54,48 +56,57 @@ fun InviteScreen(
 ) {
   var inviteTextFieldValue by remember { mutableStateOf(TextFieldValue(text = state.inviteText, selection = TextRange(state.inviteText.length))) }
 
-  Column(
+  Scaffolds.Settings(
+    title = stringResource(id = R.string.InviteScreen__invite_friends),
+    onNavigationClick = { onEvent(InviteEvent.NavigateBackClicked) },
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
     modifier = modifier
-      .padding(16.dp)
-      .fillMaxHeight()
-  ) {
-    TextField(
-      value = inviteTextFieldValue,
-      onValueChange = { newValue ->
-        inviteTextFieldValue = newValue
-        onEvent(InviteEvent.InviteTextChanged(newValue.text))
-      },
-      keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
-      colors = TextFieldDefaults.colors(
-        focusedIndicatorColor = Color.Transparent,
-        unfocusedIndicatorColor = Color.Transparent,
-        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
-      ),
+  ) { paddingValues ->
+    Column(
       modifier = Modifier
-        .fillMaxWidth()
-        .padding(bottom = 16.dp)
-        .testTag(InviteTestTags.INPUT_INVITE_TEXT),
-      shape = RoundedCornerShape(12.dp)
-    )
-
-    Row(
-      modifier = Modifier
-        .clickable(onClick = { onEvent(InviteEvent.ShareClicked) })
-        .fillMaxWidth()
-        .padding(vertical = 16.dp)
-        .testTag(InviteTestTags.ROW_SHARE)
+        .padding(paddingValues)
+        .padding(16.dp)
+        .fillMaxHeight()
     ) {
-      Icon(
-        imageVector = SignalIcons.Share.imageVector,
-        contentDescription = stringResource(R.string.InviteScreen__share)
+      TextField(
+        value = inviteTextFieldValue,
+        onValueChange = { newValue ->
+          inviteTextFieldValue = newValue
+          onEvent(InviteEvent.InviteTextChanged(newValue.text))
+        },
+        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+        colors = TextFieldDefaults.colors(
+          focusedIndicatorColor = Color.Transparent,
+          unfocusedIndicatorColor = Color.Transparent,
+          unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+          focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
+        ),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(bottom = 16.dp)
+          .testTag(InviteTestTags.INPUT_INVITE_TEXT),
+        shape = RoundedCornerShape(12.dp)
       )
 
-      Text(
-        text = stringResource(id = R.string.InviteScreen__share),
-        style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier.padding(horizontal = 16.dp)
-      )
+      Row(
+        modifier = Modifier
+          .clickable(onClick = { onEvent(InviteEvent.ShareClicked) })
+          .fillMaxWidth()
+          .padding(vertical = 16.dp)
+          .testTag(InviteTestTags.ROW_SHARE)
+      ) {
+        Icon(
+          imageVector = SignalIcons.Share.imageVector,
+          contentDescription = stringResource(R.string.InviteScreen__share)
+        )
+
+        Text(
+          text = stringResource(id = R.string.InviteScreen__share),
+          style = MaterialTheme.typography.bodyLarge,
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      }
     }
   }
 }
