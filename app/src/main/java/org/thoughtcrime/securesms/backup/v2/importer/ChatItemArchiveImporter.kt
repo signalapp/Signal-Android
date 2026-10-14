@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.MessageUtil
@@ -1368,7 +1369,7 @@ class ChatItemArchiveImporter(
         val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
 
         if (aci != null && !aci.isUnknown) {
-          val id = RecipientId.from(aci)
+          val id = RecipientIds.from(aci)
           Mention(id, it.start!!, it.length!!)
         } else {
           null

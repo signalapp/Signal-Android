@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.models.ServiceId;
 import org.signal.core.models.ServiceId.ACI;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.whispersystems.signalservice.internal.push.GroupContextV2;
 
 import java.util.List;
@@ -97,7 +98,7 @@ public final class GroupProtoUtil {
       return RecipientId.UNKNOWN;
     }
 
-    return RecipientId.from(serviceId);
+    return RecipientIds.from(serviceId);
   }
 
   public static boolean isMember(@NonNull ACI aci, @NonNull List<DecryptedMember> membersList) {

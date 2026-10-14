@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -143,14 +144,14 @@ class PushProcessMessageJob private constructor(
             requireNetwork = true
           }
         }
-        getQueueName(RecipientId.from(groupId))
+        getQueueName(RecipientIds.from(groupId))
       } else if (result.content.syncMessage != null &&
         result.content.syncMessage!!.sent != null &&
         Util.anyNotNull(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)
       ) {
-        getQueueName(RecipientId.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)))
+        getQueueName(RecipientIds.from(ServiceId.parseOrThrow(result.content.syncMessage!!.sent!!.destinationServiceId, result.content.syncMessage!!.sent!!.destinationServiceIdBinary)))
       } else {
-        getQueueName(RecipientId.from(result.metadata.sourceServiceId))
+        getQueueName(RecipientIds.from(result.metadata.sourceServiceId))
       }
 
       return if (requireNetwork || !isQueueEmpty(queueName = queueName, cache = if (groupId != null) batchCache.groupQueueEmptyCache else empty1to1QueueCache)) {

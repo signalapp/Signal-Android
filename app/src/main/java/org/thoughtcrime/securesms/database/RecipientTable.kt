@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
@@ -556,7 +557,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
         if (result.affectedIds.isNotEmpty() || result.oldIds.isNotEmpty()) {
           StorageSyncHelper.scheduleSyncForDataChange()
-          RecipientId.clearCache()
+          RecipientIds.clearCache()
         }
       }
     }
@@ -4938,7 +4939,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
 
     AppDependencies.recipientCache.clear()
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
   }
 
   /**
@@ -4969,7 +4970,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
 
     AppDependencies.recipientCache.clear()
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
   }
 
   /**
@@ -4988,7 +4989,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .run()
 
     AppDependencies.recipientCache.clear()
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
   }
 
   /**
@@ -5008,7 +5009,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     )
 
     AppDependencies.recipientCache.clear()
-    RecipientId.clearCache()
+    RecipientIds.clearCache()
   }
 
   private fun updateProfileValuesForMerge(values: ContentValues, record: RecipientRecord) {

@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.asChain
@@ -122,7 +123,7 @@ object MessageDecryptor {
       val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId, envelope.sourceServiceIdBinary)
 
       if (sourceServiceId != null) {
-        val sender = RecipientId.from(sourceServiceId)
+        val sender = RecipientIds.from(sourceServiceId)
         SignalDatabase.recipients.markNeedsPniSignature(sender)
       } else {
         Log.w(TAG, "${logPrefix(envelope)} Could not mark sender as needing a PNI signature because the sender serviceId was invalid!")
@@ -237,7 +238,7 @@ object MessageDecryptor {
 
     // TODO We can move this to the "message processing" stage once we give it access to the envelope. But for now it'll stay here.
     if (envelope.report_spam_token != null && envelope.report_spam_token!!.size > 0) {
-      val sender = RecipientId.from(cipherResult.metadata.sourceServiceId)
+      val sender = RecipientIds.from(cipherResult.metadata.sourceServiceId)
       SignalDatabase.recipients.setReportingToken(sender, envelope.report_spam_token!!.toByteArray())
     }
 

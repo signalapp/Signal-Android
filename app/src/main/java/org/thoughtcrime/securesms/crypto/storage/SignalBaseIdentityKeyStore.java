@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.signal.core.util.LRUCache;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -73,7 +74,7 @@ public class SignalBaseIdentityKeyStore {
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       IdentityStoreRecord identityRecord   = cache.get(address.getName());
-      RecipientId         recipientId      = RecipientId.from(ServiceId.fromLibSignal(address.getServiceId()));
+      RecipientId         recipientId      = RecipientIds.from(ServiceId.fromLibSignal(address.getServiceId()));
 
       if (identityRecord == null) {
         Log.i(TAG, "Saving new identity for " + address);

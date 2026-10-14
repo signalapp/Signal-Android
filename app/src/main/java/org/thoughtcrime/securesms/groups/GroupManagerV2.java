@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -746,7 +747,7 @@ final class GroupManagerV2 {
       try {
         List<RecipientId> ids = groupOperations.decryptAddMembers(change.addMembers)
                                                .stream()
-                                               .map(RecipientId::from)
+                                               .map(RecipientIds::from)
                                                .collect(Collectors.toList());
 
         for (RecipientId id : ids) {
@@ -1454,7 +1455,7 @@ final class GroupManagerV2 {
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
     return DecryptedGroupUtil.pendingToServiceIdList(newPendingMembersList)
                              .stream()
-                             .map(RecipientId::from)
+                             .map(RecipientIds::from)
                              .collect(Collectors.toList());
   }
 

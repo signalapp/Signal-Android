@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.IdentityUtil
 import java.lang.AssertionError
@@ -213,7 +214,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
       .run()
       .firstOrNull { cursor ->
         IdentityRecord(
-          recipientId = RecipientId.fromSidOrE164(cursor.requireNonNullString(ADDRESS)),
+          recipientId = RecipientIds.fromSidOrE164(cursor.requireNonNullString(ADDRESS)),
           identityKey = IdentityKey(Base64.decode(cursor.requireNonNullString(IDENTITY_KEY)), 0),
           verifiedStatus = VerifiedStatus.forState(cursor.requireInt(VERIFIED)),
           firstUse = cursor.requireBoolean(FIRST_USE),

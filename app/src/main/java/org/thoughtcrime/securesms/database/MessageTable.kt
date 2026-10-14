@@ -141,6 +141,7 @@ import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo
 import org.thoughtcrime.securesms.service.UnreadReminderManager
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
@@ -3717,7 +3718,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       if (message.isGroupUpdate && message.isV2Group) {
         members += message.requireGroupV2Properties().allActivePendingAndRemovedMembers
           .distinct()
-          .map { serviceId -> RecipientId.from(serviceId) }
+          .map { serviceId -> RecipientIds.from(serviceId) }
           .toList()
 
         members -= Recipient.self().id

@@ -1058,7 +1058,7 @@ class Recipient(
         throw AssertionError()
       }
 
-      val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
+      val recipientId = RecipientIds.from(SignalServiceAddress(serviceId, e164))
       val resolved = resolved(recipientId)
 
       if (resolved.id != recipientId) {
@@ -1149,12 +1149,12 @@ class Recipient(
     @JvmStatic
     @WorkerThread
     fun externalPossiblyMigratedGroup(groupId: GroupId): Recipient {
-      val id = RecipientId.from(groupId)
+      val id = RecipientIds.from(groupId)
       return try {
         resolved(id)
       } catch (ex: MissingRecipientException) {
         Log.w(TAG, "Could not find recipient ($id) for group $groupId. Clearing RecipientId cache and trying again.", ex)
-        RecipientId.clearCache()
+        RecipientIds.clearCache()
         resolved(SignalDatabase.recipients.getOrInsertFromPossiblyMigratedGroupId(groupId))
       }
     }

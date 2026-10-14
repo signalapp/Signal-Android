@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -79,7 +80,7 @@ data class SentStorySyncManifest(
     fun fromRecipientsSet(recipientsSet: Set<SignalServiceStoryMessageRecipient>): SentStorySyncManifest {
       val entries = recipientsSet.map { recipient ->
         Entry(
-          recipientId = RecipientId.from(recipient.signalServiceAddress),
+          recipientId = RecipientIds.from(recipient.signalServiceAddress),
           allowedToReply = recipient.isAllowedToReply,
           distributionLists = recipient.distributionListIds.map { DistributionId.from(it) }
         )
@@ -91,7 +92,7 @@ data class SentStorySyncManifest(
     fun fromRecipientsSet(recipients: List<SyncMessage.Sent.StoryMessageRecipient>): SentStorySyncManifest {
       val entries = recipients.toSet().filter { Util.anyNotNull(it.destinationServiceId, it.destinationServiceIdBinary) }.map { recipient ->
         Entry(
-          recipientId = RecipientId.from(ServiceId.parseOrThrow(recipient.destinationServiceId, recipient.destinationServiceIdBinary)),
+          recipientId = RecipientIds.from(ServiceId.parseOrThrow(recipient.destinationServiceId, recipient.destinationServiceIdBinary)),
           allowedToReply = recipient.isAllowedToReply!!,
           distributionLists = recipient.distributionListIds.map { DistributionId.from(it) }
         )

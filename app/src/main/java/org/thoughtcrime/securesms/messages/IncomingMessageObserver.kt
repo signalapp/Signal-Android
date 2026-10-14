@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.net.ConnectivityState
 import org.thoughtcrime.securesms.net.InternetConnectivityMonitor
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -444,7 +444,7 @@ class IncomingMessageObserver(
       return
     }
 
-    val senderId = RecipientId.from(serviceId)
+    val senderId = RecipientIds.from(serviceId)
 
     Log.i(TAG, "Received server receipt. Sender: $senderId, Device: ${envelope.sourceDeviceId}, Timestamp: ${envelope.clientTimestamp}")
     SignalDatabase.messages.incrementDeliveryReceiptCount(envelope.clientTimestamp!!, senderId, System.currentTimeMillis())

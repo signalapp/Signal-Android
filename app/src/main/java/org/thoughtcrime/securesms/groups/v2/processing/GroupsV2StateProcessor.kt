@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct
@@ -647,7 +648,7 @@ class GroupsV2StateProcessor private constructor(
         .mapNotNull { it.change }
         .firstOrNull { it.terminateGroup }
         ?.let { ServiceId.parseOrNull(it.editorServiceIdBytes) }
-        ?.let { RecipientId.from(it) }
+        ?.let { RecipientIds.from(it) }
     } else {
       null
     }
@@ -1023,7 +1024,7 @@ class GroupsV2StateProcessor private constructor(
 
           val isNotifiable = isGroupAdd || isGroupTerminate
 
-          val groupMessage = IncomingMessage.groupUpdate(RecipientId.from(editor.get()), timestamp, groupId, updateDescription, isNotifiable, serverGuid, receivedTime)
+          val groupMessage = IncomingMessage.groupUpdate(RecipientIds.from(editor.get()), timestamp, groupId, updateDescription, isNotifiable, serverGuid, receivedTime)
           val insertResult = SignalDatabase.messages.insertMessageInbox(groupMessage)
 
           if (insertResult.isPresent) {

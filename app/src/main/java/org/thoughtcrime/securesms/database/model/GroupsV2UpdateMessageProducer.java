@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -1566,7 +1567,7 @@ final class GroupsV2UpdateMessageProducer {
                                               Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId);
+    RecipientId recipientId = RecipientIds.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),
@@ -1587,8 +1588,8 @@ final class GroupsV2UpdateMessageProducer {
     ServiceId serviceId1 = ServiceId.parseOrUnknown(serviceId1Bytes);
     ServiceId serviceId2 = ServiceId.parseOrUnknown(serviceId2Bytes);
 
-    RecipientId recipientId1 = RecipientId.from(serviceId1);
-    RecipientId recipientId2 = RecipientId.from(serviceId2);
+    RecipientId recipientId1 = RecipientIds.from(serviceId1);
+    RecipientId recipientId2 = RecipientIds.from(serviceId2);
 
     return UpdateDescription.mentioning(
         Arrays.asList(serviceId1, serviceId2),
@@ -1608,7 +1609,7 @@ final class GroupsV2UpdateMessageProducer {
                                               Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId);
+    RecipientId recipientId = RecipientIds.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),
@@ -1629,7 +1630,7 @@ final class GroupsV2UpdateMessageProducer {
                                               Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
-    RecipientId recipientId = RecipientId.from(serviceId);
+    RecipientId recipientId = RecipientIds.from(serviceId);
 
     return UpdateDescription.mentioning(
         Collections.singletonList(serviceId),

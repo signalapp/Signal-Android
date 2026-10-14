@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import java.util.Optional
 import java.util.UUID
 
@@ -1118,7 +1119,7 @@ class RecipientTableTest_getAndPossiblyMerge {
 
       AppDependencies.recipientCache.clear()
       AppDependencies.recipientCache.clearSelf()
-      RecipientId.clearCache()
+      RecipientIds.clearCache()
     }
 
     fun given(

@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -463,8 +464,8 @@ public final class PushGroupSendJob extends PushSendJob {
     Set<RecipientId>                 successIds                = successUnidentifiedStatus.stream().map(Pair::getFirst).collect(Collectors.toSet());
     Set<NetworkFailure>              resolvedNetworkFailures   = existingNetworkFailures.stream().filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
     Set<IdentityKeyMismatch>         resolvedIdentityFailures  = existingIdentityMismatches.stream().filter(failure -> successIds.contains(failure.getRecipientId())).collect(Collectors.toSet());
-    List<RecipientId>                unregisteredRecipients    = results.stream().filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).collect(Collectors.toList());
-    List<RecipientId>                invalidPreKeyRecipients   = results.stream().filter(SendMessageResult::isInvalidPreKeyFailure).map(result -> RecipientId.from(result.getAddress())).collect(Collectors.toList());
+    List<RecipientId>                unregisteredRecipients    = results.stream().filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientIds.from(result.getAddress())).collect(Collectors.toList());
+    List<RecipientId>                invalidPreKeyRecipients   = results.stream().filter(SendMessageResult::isInvalidPreKeyFailure).map(result -> RecipientIds.from(result.getAddress())).collect(Collectors.toList());
     Set<RecipientId>                 skippedRecipients         = new HashSet<>();
 
     skippedRecipients.addAll(skipped);

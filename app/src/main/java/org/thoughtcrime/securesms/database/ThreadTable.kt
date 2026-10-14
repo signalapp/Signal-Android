@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientCreator
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
@@ -2233,7 +2234,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         if (threadRecipient.isPushV2Group) {
           val inviteAddState = record.gv2AddInviteState
           if (inviteAddState != null) {
-            val from = RecipientId.from(inviteAddState.addedOrInvitedBy)
+            val from = RecipientIds.from(inviteAddState.addedOrInvitedBy)
             return if (inviteAddState.isInvited) {
               Log.i(TAG, "GV2 invite message request from $from")
               Extra.forGroupV2invite(from, authorId)

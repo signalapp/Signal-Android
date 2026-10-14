@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.signal.core.models.ServiceId;
@@ -134,7 +135,7 @@ public final class MessageGroupContext {
                    .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
                    .filter(Objects::nonNull)
-                   .map(RecipientId::fromE164)
+                   .map(RecipientIds::fromE164)
                    .filter(other -> !selfId.equals(other))
                    .collect(Collectors.toList());
     }
@@ -191,7 +192,7 @@ public final class MessageGroupContext {
       List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.groupState.members.size());
 
       for (DecryptedMember member : decryptedGroupV2Context.groupState.members) {
-        RecipientId recipient = RecipientId.from(ACI.parseOrThrow(member.aciBytes));
+        RecipientId recipient = RecipientIds.from(ACI.parseOrThrow(member.aciBytes));
         if (!Recipient.self().getId().equals(recipient)) {
           members.add(recipient);
         }

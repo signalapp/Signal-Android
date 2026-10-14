@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -902,7 +903,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, null);
 
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      Recipient recipient = Recipient.resolved(RecipientId.from(ACI.from(aciUuid)));
+      Recipient recipient = Recipient.resolved(RecipientIds.from(ACI.from(aciUuid)));
       if (recipient.isBlocked()) {
         return;
       }

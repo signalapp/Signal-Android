@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.payments.Payment
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import java.util.UUID
 import java.util.concurrent.Callable
@@ -101,7 +102,7 @@ object MessageDataFetcher {
     val recipientsFuture = executor.submitTimed {
       messageRecords.forEach { record ->
         record.getUpdateDisplayBody(context, null)?.let { description ->
-          val ids = description.mentioned.map { RecipientId.from(it) }
+          val ids = description.mentioned.map { RecipientIds.from(it) }
           Recipient.resolvedList(ids)
         }
       }

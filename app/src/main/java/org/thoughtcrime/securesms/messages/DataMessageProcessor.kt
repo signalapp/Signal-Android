@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
@@ -419,7 +420,7 @@ object DataMessageProcessor {
 
     SignalDatabase.messages.beginTransaction()
     return try {
-      val authorRecipientId = RecipientId.from(authorServiceId)
+      val authorRecipientId = RecipientIds.from(authorServiceId)
       val parentStoryId: ParentStoryId
       var quoteModel: QuoteModel? = null
       var expiresIn: Duration = 0L.seconds
@@ -742,7 +743,7 @@ object DataMessageProcessor {
 
     SignalDatabase.messages.beginTransaction()
     return try {
-      val storyAuthorRecipientId = RecipientId.from(authorServiceId)
+      val storyAuthorRecipientId = RecipientIds.from(authorServiceId)
       val selfId = Recipient.self().id
       val parentStoryId: ParentStoryId
       var quoteModel: QuoteModel? = null

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.signal.core.util.Util;
 
@@ -64,7 +64,7 @@ public final class AppInitialization {
     EmojiSearchIndexDownloadJob.scheduleImmediately();
     DeleteAbandonedAttachmentsJob.enqueue();
 
-    RecipientId.clearCache();
+    RecipientIds.clearCache();
     SignalDatabase.remappedRecords().clearCache();
     SignalDatabase.threads().clearCache();
     AppDependencies.getRecipientCache().clear();

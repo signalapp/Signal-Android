@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
@@ -102,7 +102,7 @@ class OtherClient(val serviceId: ServiceId, val e164: String, val identityKeyPai
     val now = System.currentTimeMillis()
     val content = Generator.encryptedTextMessage(now)
 
-    val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
+    val recipientId = RecipientIds.from(SignalServiceAddress(serviceId, e164))
     val sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(Recipient.resolved(recipientId))
 
     val outgoing = aliceCipher.encrypt(bobProtocolAddress, sealedSenderAccess, content)

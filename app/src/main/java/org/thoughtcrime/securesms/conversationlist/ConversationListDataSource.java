@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalTrace;
 
@@ -94,7 +95,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
           } else {
             description = MessageRecord.getGv2ChangeDescription(AppDependencies.getApplication(), record.getBody(), null);
           }
-          needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
+          needsResolve.addAll(description.getMentioned().stream().map(RecipientIds::from).collect(Collectors.toList()));
         }
       }
     }

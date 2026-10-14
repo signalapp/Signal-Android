@@ -18,6 +18,7 @@ import org.signal.core.ui.util.ThemeUtil;
 import org.signal.core.util.BidiUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -42,7 +43,7 @@ public final class LiveUpdateMessage {
     }
 
     List<LiveData<Recipient>> allMentionedRecipients = updateDescription.getMentioned().stream()
-                                                                        .map(uuid -> Recipient.live(RecipientId.from(uuid)).getLiveDataResolved()).collect(Collectors.toList());
+                                                                        .map(uuid -> Recipient.live(RecipientIds.from(uuid)).getLiveDataResolved()).collect(Collectors.toList());
 
     LiveData<?> mentionedRecipientChangeStream = allMentionedRecipients.isEmpty() ? LiveDataUtil.just(new Object())
                                                                                   : LiveDataUtil.merge(allMentionedRecipients);
