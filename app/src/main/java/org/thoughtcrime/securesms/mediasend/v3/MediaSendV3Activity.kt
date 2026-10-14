@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
-import org.thoughtcrime.securesms.scribbles.StickerSelectActivityContract
+import org.thoughtcrime.securesms.stickers.search.ImageEditorStickerSearch
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
@@ -89,10 +89,6 @@ class MediaSendV3Activity :
   private val viewModel: MediaSendFlowViewModel by viewModels { MediaSendFlowViewModel.Factory(args = contractArgs) }
 
   private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
-
-  private val stickerLauncher = registerForActivityResult(StickerSelectActivityContract()) { result ->
-    viewModel.onStickerSelected(result?.toRenderer())
-  }
 
   override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
     get() = destinations().toSet()
@@ -182,6 +178,9 @@ class MediaSendV3Activity :
               modifier = Modifier.fillMaxSize()
             )
           },
+          stickerSelectSlot = { onStickerSelected ->
+            ImageEditorStickerSearch(onResult = { onStickerSelected(it?.toRenderer()) })
+          },
           onExternalHudCommand = {
             when (it) {
               is MediaSendFlowHudCommand.ShowAddAMessageDialog -> {
@@ -193,8 +192,6 @@ class MediaSendV3Activity :
                   }
                 )
               }
-
-              is MediaSendFlowHudCommand.SelectSticker -> stickerLauncher.launch(Unit)
 
               is MediaSendFlowHudCommand.PickScheduledSendTime -> {
                 ScheduleMessageTimePickerBottomSheet.showSchedule(supportFragmentManager)

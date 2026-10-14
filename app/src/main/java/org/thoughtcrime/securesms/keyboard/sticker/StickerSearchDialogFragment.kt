@@ -1,132 +1,65 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.keyboard.sticker
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.Px
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.DialogFragment
+import android.view.WindowManager
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import org.signal.core.ui.enableEdgeToEdge
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
-import org.thoughtcrime.securesms.stickers.StickerEventListener
-import org.thoughtcrime.securesms.util.InsetItemDecoration
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
+import org.signal.mediakeyboard.MediaKeyboardAction
+import org.signal.mediakeyboard.screens.stickersearch.StickerSearch
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.mediakeyboard.SignalStickerKeyboardRepository
 import org.thoughtcrime.securesms.util.fragments.findListener
-import kotlin.math.max
 
 /**
- * Search dialog for finding stickers.
+ * Full-screen [StickerSearch] over the media keyboard, handing whatever the user does in it back to the [Callback] as
+ * the keyboard itself would.
  */
-class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter.EventListener, View.OnLayoutChangeListener {
+class StickerSearchDialogFragment : ComposeFullScreenDialogFragment() {
 
-  private lateinit var search: KeyboardPageSearchView
-  private lateinit var list: RecyclerView
-  private lateinit var noResults: View
-
-  private lateinit var adapter: KeyboardStickerListAdapter
-  private lateinit var layoutManager: GridLayoutManager
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setStyle(STYLE_NO_FRAME, R.style.Signal_DayNight_Dialog_Animated_Bottom)
-  }
+  override val padForSafeDrawing: Boolean = false
 
   override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
     return super.onGetLayoutInflater(savedInstanceState).also {
-      dialog?.window?.enableEdgeToEdge()
+      dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
   }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.sticker_search_dialog_fragment, container, false)
+  @Composable
+  override fun DialogContent() {
+    val repository = remember { SignalStickerKeyboardRepository(AppDependencies.application) }
+
+    StickerSearch(
+      repository = repository,
+      onAction = { action ->
+        if (action is MediaKeyboardAction.StickerSendClicked) {
+          dismissAllowingStateLoss()
+        }
+
+        findListener<Callback>()?.onStickerSearchAction(action)
+      },
+      onClose = ::dismissAllowingStateLoss
+    )
   }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
-      val safeArea = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
-      v.setPadding(safeArea.left, safeArea.top, safeArea.right, safeArea.bottom)
-      insets
-    }
-
-    search = view.findViewById(R.id.sticker_search_text)
-    list = view.findViewById(R.id.sticker_search_list)
-    noResults = view.findViewById(R.id.sticker_search_no_results)
-
-    adapter = KeyboardStickerListAdapter(Glide.with(this), this, true)
-    layoutManager = GridLayoutManager(requireContext(), 2)
-
-    list.layoutManager = layoutManager
-    list.adapter = adapter
-    list.addItemDecoration(InsetItemDecoration(StickerInsetSetter()))
-
-    val viewModel: StickerSearchViewModel = ViewModelProvider(this, StickerSearchViewModel.Factory()).get(StickerSearchViewModel::class.java)
-
-    viewModel.searchResults.observe(viewLifecycleOwner) { stickers ->
-      adapter.submitList(stickers)
-      noResults.visibility = if (stickers.isEmpty()) View.VISIBLE else View.GONE
-    }
-
-    search.enableBackNavigation()
-    search.callbacks = object : KeyboardPageSearchView.Callbacks {
-      override fun onQueryChanged(query: String) {
-        viewModel.query(query)
-      }
-
-      override fun onNavigationClicked() {
-        ViewUtil.hideKeyboard(requireContext(), view)
-        dismissAllowingStateLoss()
-      }
-    }
-
-    search.requestFocus()
-
-    view.addOnLayoutChangeListener(this)
-  }
-
-  override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
-    val width = right - left
-    if (width <= 0) {
-      return
-    }
-
-    val newSpanCount = calculateColumnCount(width)
-    if (layoutManager.spanCount != newSpanCount) {
-      list.post {
-        layoutManager.spanCount = newSpanCount
-      }
-    }
-  }
-
-  private fun calculateColumnCount(@Px screenWidth: Int): Int {
-    val divisor = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_width).toFloat() + resources.getDimensionPixelOffset(R.dimen.sticker_page_item_padding).toFloat()
-    return max(1, (screenWidth / divisor).toInt())
-  }
-
-  override fun onStickerClicked(sticker: KeyboardStickerListAdapter.Sticker) {
-    ViewUtil.hideKeyboard(requireContext(), requireView())
-    findListener<StickerEventListener>()?.onStickerSelected(sticker.stickerRecord)
-    dismissAllowingStateLoss()
-  }
-
-  override fun onStickerLongClicked(sticker: KeyboardStickerListAdapter.Sticker) = Unit
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
     findListener<Callback>()?.onStickerSearchDismissed()
   }
 
-  /** For a host that has to put something back once this window is gone. */
   interface Callback {
+    /** Something the user did in the search that only the host can carry out, as from the keyboard's sticker page. */
+    fun onStickerSearchAction(action: MediaKeyboardAction)
+
+    /** For a host that has to put something back once this window is gone. */
     fun onStickerSearchDismissed()
   }
 

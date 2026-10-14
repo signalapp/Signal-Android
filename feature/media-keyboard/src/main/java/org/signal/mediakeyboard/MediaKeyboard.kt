@@ -93,7 +93,7 @@ fun MediaKeyboard(
   tabs: Set<MediaKeyboardTab>? = null,
   initialTab: MediaKeyboardTab? = null
 ) {
-  val host = LocalKeyboardSheetController.current
+  val host = checkNotNull(LocalKeyboardSheetController.current) { "Not inside a KeyboardSheetScaffold's keyboard content." }
   val viewModel: MediaKeyboardViewModel = viewModel(factory = MediaKeyboardViewModel.Factory(repository, host.isEnteringText, initialTab))
   val state by viewModel.state.collectAsStateWithLifecycle()
 

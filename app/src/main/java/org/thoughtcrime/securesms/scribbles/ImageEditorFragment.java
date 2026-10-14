@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.scribbles;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,9 +51,6 @@ import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.imageeditor.core.renderers.UriGlideRenderer;
-import org.signal.imageeditor.core.stickers.AnalogClockStickerRenderer;
-import org.signal.imageeditor.core.stickers.DigitalClockStickerRenderer;
-import org.signal.imageeditor.core.stickers.FeatureSticker;
 import org.signal.mediasend.MediaConstraints;
 import org.signal.mediasend.SentMediaQuality;
 import org.thoughtcrime.securesms.R;
@@ -64,6 +61,7 @@ import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.stickers.search.StickerSearchContract;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
@@ -79,8 +77,7 @@ import java.util.stream.Collectors;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Pair;
-
-import static android.app.Activity.RESULT_OK;
+import kotlin.Unit;
 
 public final class ImageEditorFragment extends Fragment implements ImageEditorHudV2.EventListener,
                                                                    TextEntryDialogFragment.Controller
@@ -95,13 +92,13 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private static final String KEY_IMAGE_URI = "image_uri";
   private static final String KEY_MODE      = "mode";
 
-  private static final int SELECT_STICKER_REQUEST_CODE = 124;
-
   private static final int DRAW_HUD_PROTECTION = ViewUtil.dpToPx(72);
   private static final int CROP_HUD_PROTECTION = ViewUtil.dpToPx(144);
   private static final int CONTROLS_PROTECTION = ViewUtil.dpToPx(74);
 
   private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
+
+  private final ActivityResultLauncher<Unit> stickerLauncher = registerForActivityResult(new StickerSearchContract(), this::onStickerSelected);
 
   private EditorModel restoredModel;
 
@@ -404,34 +401,14 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     startTextEntityEditing(element, true);
   }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == RESULT_OK && requestCode == SELECT_STICKER_REQUEST_CODE && data != null) {
-      Renderer renderer = null;
-      if (data.hasExtra(ImageEditorStickerSelectActivity.EXTRA_FEATURE_STICKER)) {
-        FeatureSticker sticker = FeatureSticker.fromType(data.getStringExtra(ImageEditorStickerSelectActivity.EXTRA_FEATURE_STICKER));
-        switch (sticker) {
-          case DIGITAL_CLOCK:
-            renderer = new DigitalClockStickerRenderer(System.currentTimeMillis());
-            break;
-          case ANALOG_CLOCK:
-            renderer = new AnalogClockStickerRenderer(System.currentTimeMillis());
-            break;
-        }
-      } else {
-        final Uri uri = data.getData();
-        if (uri != null) {
-          renderer = new UriGlideRenderer(uri, true, imageMaxWidth, imageMaxHeight);
-        }
-      }
-      if (renderer != null) {
-        EditorElement element = new EditorElement(renderer, EditorModel.Z_STICKERS);
-        imageEditorView.getModel().addElementCentered(element, 0.4f);
-        setCurrentSelection(element);
-        hasMadeAnEditThisSession = true;
-        imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_STICKER);
-      }
+  private void onStickerSelected(@Nullable StickerSelectResult result) {
+    if (result != null) {
+      Renderer      renderer = StickerSelectResults.toRenderer(result, imageMaxWidth, imageMaxHeight);
+      EditorElement element  = new EditorElement(renderer, EditorModel.Z_STICKERS);
+      imageEditorView.getModel().addElementCentered(element, 0.4f);
+      setCurrentSelection(element);
+      hasMadeAnEditThisSession = true;
+      imageEditorHud.setMode(ImageEditorHudV2.Mode.MOVE_STICKER);
     } else {
       imageEditorHud.setMode(ImageEditorHudV2.Mode.DRAW);
     }
@@ -484,8 +461,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       }
 
       case INSERT_STICKER: {
-        Intent intent = new Intent(getContext(), ImageEditorStickerSelectActivity.class);
-        startActivityForResult(intent, SELECT_STICKER_REQUEST_CODE);
+        stickerLauncher.launch(Unit.INSTANCE);
         break;
       }
 

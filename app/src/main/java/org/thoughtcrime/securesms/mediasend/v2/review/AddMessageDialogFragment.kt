@@ -41,8 +41,6 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewMod
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
 import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBinding
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -59,8 +57,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   private val commandViewModel: EmojiKeyboardEventViewModel by activityViewModels()
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
 
   private lateinit var mentionsViewModel: MentionsPickerViewModel
 
@@ -275,7 +271,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   private fun onEmojiToggleClicked() {
     if (!emojiDrawerStub.resolved()) {
-      keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       emojiDrawerStub.get().setFragmentManager(childFragmentManager)
       binding.content.emojiToggle.attach(emojiDrawerStub.get())
     }

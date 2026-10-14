@@ -623,6 +623,13 @@
             android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
+            android:name=".stickers.search.StickerSearchActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"
+            android:theme="@style/TextSecure.DarkNoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".logsubmit.SubmitDebugLogActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
@@ -739,12 +746,6 @@
             android:exported="false"
             android:theme="@style/TextSecure.LightTheme"
             android:windowSoftInputMode="stateHidden" />
-
-        <activity
-            android:name=".scribbles.ImageEditorStickerSelectActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="false"
-            android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
             android:name=".profiles.edit.CreateProfileActivity"

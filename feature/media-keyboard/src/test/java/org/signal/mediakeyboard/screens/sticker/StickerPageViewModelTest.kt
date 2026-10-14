@@ -5,10 +5,16 @@
 
 package org.signal.mediakeyboard.screens.sticker
 
+import androidx.compose.foundation.text.input.clearText
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
+import androidx.compose.runtime.snapshots.Snapshot
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -92,6 +98,41 @@ class StickerPageViewModelTest {
   }
 
   @Test
+  fun `search query - shows the search results in place of the installed packs`() {
+    val results = listOf(
+      KeyboardStickerPack(id = StickerKeyboardRepository.SEARCH_RESULTS_PACK_ID, packKey = null, title = null, cover = null, stickers = listOf(sticker))
+    )
+    coEvery { repository.searchStickerPacks("dog") } returns results
+    val viewModel = createViewModel()
+
+    viewModel.searchFieldState.setTextAndPlaceCursorAtEnd(" dog ")
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.packs).isEqualTo(results)
+    assertThat(viewModel.state.value.selectedPackId).isEqualTo(StickerKeyboardRepository.SEARCH_RESULTS_PACK_ID)
+  }
+
+  @Test
+  fun `search query cleared - returns to the installed packs`() {
+    coEvery { repository.searchStickerPacks(any()) } returns emptyList()
+    val viewModel = createViewModel()
+
+    viewModel.searchFieldState.setTextAndPlaceCursorAtEnd("dog")
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.hasNoSearchResults).isTrue()
+
+    viewModel.searchFieldState.clearText()
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.packs).isEqualTo(packs)
+    assertThat(viewModel.state.value.hasNoSearchResults).isFalse()
+  }
+
+  @Test
   fun `pack selected - asks the grid to scroll there`() {
     val viewModel = createViewModel()
     viewModel.onEvent(StickerPageScreenEvents.PackSelected("pack-2"))
@@ -144,7 +185,7 @@ class StickerPageViewModelTest {
   @Test
   fun `view pack clicked - hands the pack's ids to the host`() {
     val viewModel = createViewModel()
-    viewModel.onEvent(StickerPageScreenEvents.ViewStickerPackClicked(sticker.packId, sticker.packKey))
+    viewModel.onEvent(StickerPageScreenEvents.ViewStickerPackClicked(sticker.packId, "pack-1-key"))
     testDispatcher.scheduler.advanceUntilIdle()
 
     assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.ViewStickerPackClicked("pack-1", "pack-1-key")))

@@ -174,8 +174,6 @@ fun rememberKeyboardSheetController(initialKeyboardHeightPx: Int = 0): KeyboardS
  * drive the scaffold without the host having to thread callbacks down to it: taking text entry over
  * for a field of its own, or reading whether it is at full height.
  *
- * Only present inside a scaffold's keyboard content.
+ * Null outside a scaffold's keyboard content.
  */
-val LocalKeyboardSheetController = staticCompositionLocalOf<KeyboardSheetController> {
-  error("Not inside a KeyboardSheetScaffold's keyboard content.")
-}
+val LocalKeyboardSheetController = staticCompositionLocalOf<KeyboardSheetController?> { null }

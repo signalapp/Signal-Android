@@ -6,14 +6,11 @@
 package org.thoughtcrime.securesms.mediasend.v3
 
 import org.signal.imageeditor.core.Renderer
-import org.signal.imageeditor.core.renderers.UriGlideRenderer
-import org.signal.imageeditor.core.stickers.AnalogClockStickerRenderer
-import org.signal.imageeditor.core.stickers.DigitalClockStickerRenderer
-import org.signal.imageeditor.core.stickers.FeatureSticker
 import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.scribbles.StickerSelectResult
+import org.thoughtcrime.securesms.scribbles.toRenderer
 import org.thoughtcrime.securesms.stories.Stories
 
 /**
@@ -37,14 +34,7 @@ fun Stories.MediaTransform.SendRequirements.toFeatureSendRequirements(): StorySe
 /**
  * Turns a sticker pick into a [Renderer] the image editor can place.
  */
-internal fun StickerSelectResult.toRenderer(): Renderer = when (this) {
-  is StickerSelectResult.Sticker -> {
-    val constraints = PushMediaConstraints(SentMediaQuality.HIGH)
-    UriGlideRenderer(uri, true, constraints.imageMaxWidth, constraints.imageMaxHeight)
-  }
-
-  is StickerSelectResult.Feature -> when (featureSticker) {
-    FeatureSticker.DIGITAL_CLOCK -> DigitalClockStickerRenderer(System.currentTimeMillis())
-    FeatureSticker.ANALOG_CLOCK -> AnalogClockStickerRenderer(System.currentTimeMillis())
-  }
+internal fun StickerSelectResult.toRenderer(): Renderer {
+  val constraints = PushMediaConstraints(SentMediaQuality.HIGH)
+  return toRenderer(constraints.imageMaxWidth, constraints.imageMaxHeight)
 }

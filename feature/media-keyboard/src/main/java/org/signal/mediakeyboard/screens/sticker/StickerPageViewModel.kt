@@ -6,34 +6,60 @@
 package org.signal.mediakeyboard.screens.sticker
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
 import org.signal.mediakeyboard.screens.MediaKeyboardPageViewModel
 
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class StickerPageViewModel(
   private val repository: StickerKeyboardRepository
 ) : MediaKeyboardPageViewModel<StickerPageScreenEvents>(TAG, shouldLogEvents = false) {
 
   companion object {
     private val TAG = Log.tag(StickerPageViewModel::class)
+    private const val SEARCH_DEBOUNCE_MS = 150L
   }
+
+  /**
+   * The search query, for a host that offers search; the keyboard leaves it empty. The field edits this directly rather
+   * than through events, which arrive a dispatch later and would let fast typing race the field's own state.
+   */
+  val searchFieldState = TextFieldState()
 
   private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, favoritesEnabled = repository.favoritesEnabled))
   val state: StateFlow<StickerPageState> = _state.asStateFlow()
 
   init {
     onEvent(StickerPageScreenEvents.Initialize)
-    repository.observeStickerPacks()
-      .onEach { onEvent(StickerPageScreenEvents.PacksUpdated(it)) }
+    snapshotFlow { searchFieldState.text.toString().trim() }
+      .distinctUntilChanged()
+      .debounce { query -> if (query.isEmpty()) 0L else SEARCH_DEBOUNCE_MS }
+      .flatMapLatest { query ->
+        if (query.isEmpty()) {
+          repository.observeStickerPacks().map { StickerPageScreenEvents.PacksUpdated(it) }
+        } else {
+          flow { emit(StickerPageScreenEvents.PacksUpdated(repository.searchStickerPacks(query), query)) }
+        }
+      }
+      .onEach { onEvent(it) }
       .launchIn(viewModelScope)
   }
 
@@ -54,7 +80,7 @@ class StickerPageViewModel(
         val selectable = event.packs.filterNot { it.isEmptyFavorites }
         val selected = state.selectedPackId?.takeIf { id -> selectable.any { it.id == id } }
           ?: selectable.firstOrNull()?.id
-        stateEmitter(state.copy(packs = event.packs, selectedPackId = selected))
+        stateEmitter(state.copy(packs = event.packs, selectedPackId = selected, searchQuery = event.searchQuery))
       }
 
       is StickerPageScreenEvents.PackSelected -> {

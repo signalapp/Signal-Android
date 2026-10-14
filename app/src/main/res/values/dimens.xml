@@ -103,7 +103,6 @@
     <integer name="media_overview_cols">4</integer>
     <dimen name="media_overview_detail_item_height">72dp</dimen>
 
-    <dimen name="sticker_page_item_padding">16dp</dimen>
     <dimen name="sticker_page_item_width">72dp</dimen>
 
     <dimen name="sticker_preview_sticker_size">96dp</dimen>

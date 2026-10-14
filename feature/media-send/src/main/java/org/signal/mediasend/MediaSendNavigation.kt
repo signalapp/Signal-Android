@@ -37,6 +37,7 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.showSnackbar
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.navigation.TransitionSpecs
+import org.signal.imageeditor.core.Renderer
 import org.signal.mediasend.screens.capture.MediaCaptureScreen
 import org.signal.mediasend.screens.capture.MediaCaptureScreenEvents
 import org.signal.mediasend.screens.capture.MediaCaptureViewModel
@@ -59,7 +60,8 @@ internal fun MediaSendNavigation(
   viewModel: MediaSendFlowViewModel,
   modifier: Modifier = Modifier,
   textStoryEditorSlot: @Composable () -> Unit = {},
-  sendSlot: @Composable (MediaSendFlowState) -> Unit = {}
+  sendSlot: @Composable (MediaSendFlowState) -> Unit = {},
+  stickerSelectSlot: @Composable (onStickerSelected: (Renderer?) -> Unit) -> Unit = {}
 ) {
   Box {
     NavDisplay(
@@ -164,6 +166,10 @@ internal fun MediaSendNavigation(
         is MediaSendRoute.Send -> NavEntry(key) {
           val state by viewModel.state.collectAsStateWithLifecycle()
           sendSlot(state)
+        }
+
+        is MediaSendRoute.StickerSelect -> NavEntry(key) {
+          stickerSelectSlot(viewModel::onStickerSelected)
         }
 
         else -> error("Unknown key: $key")

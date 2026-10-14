@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
@@ -36,8 +35,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.R
 import org.thoughtcrime.securesms.components.settings.models.TextInput
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -63,8 +60,6 @@ class GiftFlowConfirmationFragment :
     GiftFlowViewModel()
   }
 
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by activityViewModels()
-
   private lateinit var inputAwareLayout: InputAwareLayout
   private lateinit var emojiKeyboard: MediaKeyboard
 
@@ -81,8 +76,6 @@ class GiftFlowConfirmationFragment :
     GiftRowItem.register(adapter)
 
     val checkoutDelegate = InAppPaymentCheckoutDelegate(this, this, viewModel.state.filter { it.inAppPaymentId != null }.map { it.inAppPaymentId!! })
-
-    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)

@@ -10,6 +10,7 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.DisposableEffectResult
@@ -20,10 +21,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.DpSize
 import com.bumptech.glide.Glide
 import com.bumptech.glide.TransitionOptions
@@ -67,6 +72,31 @@ fun <T> GlideImage(
   fadeIn: Boolean = false,
   onLoadCompleted: (() -> Unit)? = null
 ) {
+  // Glide has no disk-cache encoder for an arbitrary drawable, and there is nothing for it to load anyway.
+  if (model is Drawable) {
+    Image(
+      painter = rememberDrawablePainter(model),
+      contentDescription = null,
+      contentScale = contentScale,
+      modifier = modifier
+    )
+    return
+  }
+
+  // Glide loads asynchronously and never completes in a static preview, so draw vector models directly.
+  if (LocalInspectionMode.current) {
+    if (model is ImageVector) {
+      Image(
+        painter = rememberVectorPainter(model),
+        contentDescription = null,
+        contentScale = contentScale,
+        colorFilter = ColorFilter.tint(LocalContentColor.current),
+        modifier = modifier
+      )
+    }
+    return
+  }
+
   var drawable by remember {
     mutableStateOf<Drawable?>(null)
   }

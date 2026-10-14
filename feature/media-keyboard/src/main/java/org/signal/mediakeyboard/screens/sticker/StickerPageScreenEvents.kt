@@ -10,7 +10,10 @@ import org.signal.mediakeyboard.data.KeyboardStickerPack
 
 sealed interface StickerPageScreenEvents {
   data object Initialize : StickerPageScreenEvents
-  data class PacksUpdated(val packs: List<KeyboardStickerPack>) : StickerPageScreenEvents
+
+  /** @param searchQuery The search the packs answer, or empty when they are the installed packs. */
+  data class PacksUpdated(val packs: List<KeyboardStickerPack>, val searchQuery: String = "") : StickerPageScreenEvents
+
   data class PackSelected(val packId: String) : StickerPageScreenEvents
   data class VisiblePackChanged(val packId: String) : StickerPageScreenEvents
   data object ScrollTargetConsumed : StickerPageScreenEvents

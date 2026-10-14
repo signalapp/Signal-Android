@@ -7,11 +7,14 @@ package org.signal.mediakeyboard.screens
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -55,12 +58,20 @@ private val SCROLL_DIRECTION_THRESHOLD = 4.dp
  * above it, so [content] is free to fill the sheet to the bottom of the window. A hidden rail takes the bar's room
  * with it, which is what lets the content run edge to edge once it is scrolled away. With no rail to do that, this
  * layout keeps the bar clear itself, since nothing else in the sheet does.
+ *
+ * @param railOverlaysContent Draws [content] full height beneath the rail, which then slides over it rather than
+ *   resizing it, and rides above the soft keyboard.
+ * @param contentAtTop Whether the content is scrolled all the way up, which always shows the rail, so content that stops
+ *   scrolling cannot leave it out of reach.
+ * @param content Given the bottom padding to leave clear, which is only non-zero with [railOverlaysContent].
  */
 @Composable
 internal fun PinnedRailLayout(
   rail: (@Composable () -> Unit)?,
   modifier: Modifier = Modifier,
-  content: @Composable () -> Unit
+  railOverlaysContent: Boolean = false,
+  contentAtTop: Boolean = false,
+  content: @Composable (contentPadding: PaddingValues) -> Unit
 ) {
   val density = LocalDensity.current
   val expanded = LocalMediaKeyboardExpanded.current
@@ -73,10 +84,10 @@ internal fun PinnedRailLayout(
     object : NestedScrollConnection {
       override fun onPostScroll(consumed: Offset, available: Offset, source: NestedScrollSource): Offset {
         if (source == NestedScrollSource.UserInput) {
-          val delta = if (consumed.y != 0f) consumed.y else available.y
-          if (delta < -scrollThresholdPx) {
+          // Hiding takes a real scroll; showing takes any pull down, so content that stops scrolling cannot strand it.
+          if (consumed.y < -scrollThresholdPx) {
             railHidden = true
-          } else if (delta > scrollThresholdPx) {
+          } else if (consumed.y + available.y.coerceAtLeast(0f) > scrollThresholdPx) {
             railHidden = false
           }
         }
@@ -85,8 +96,8 @@ internal fun PinnedRailLayout(
     }
   }
 
-  LaunchedEffect(expanded) {
-    if (expanded) {
+  LaunchedEffect(expanded, contentAtTop) {
+    if (expanded || contentAtTop) {
       railHidden = false
     }
   }
@@ -103,18 +114,26 @@ internal fun PinnedRailLayout(
       .clipToBounds()
       .nestedScroll(scrollConnection)
   ) {
-    val contentBottomPadding = if (rail != null) {
-      with(density) { (railHeight * (1f - railHiddenFraction)).toDp() }
+    val clearBottom = if (rail != null) {
+      with(density) { railHeight.toDp() }
     } else {
       WindowInsets.navigationBarsCompat.asPaddingValues().calculateBottomPadding()
     }
 
-    Box(
-      modifier = Modifier
-        .fillMaxSize()
-        .padding(bottom = contentBottomPadding)
-    ) {
-      content()
+    if (railOverlaysContent) {
+      Box(modifier = Modifier.fillMaxSize()) {
+        content(PaddingValues(bottom = clearBottom))
+      }
+    } else {
+      val contentBottomPadding = if (rail != null) clearBottom * (1f - railHiddenFraction) else clearBottom
+
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(bottom = contentBottomPadding)
+      ) {
+        content(PaddingValues())
+      }
     }
 
     if (rail != null) {
@@ -126,7 +145,13 @@ internal fun PinnedRailLayout(
           .graphicsLayer { translationY = railHeight * railHiddenFraction }
       ) {
         Surface(color = SignalTheme.colors.colorSurface3) {
-          Box(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBarsCompat)) {
+          val bottomInsets = if (railOverlaysContent) {
+            WindowInsets.ime.union(WindowInsets.navigationBarsCompat)
+          } else {
+            WindowInsets.navigationBarsCompat
+          }
+
+          Box(modifier = Modifier.windowInsetsPadding(bottomInsets)) {
             rail()
           }
         }

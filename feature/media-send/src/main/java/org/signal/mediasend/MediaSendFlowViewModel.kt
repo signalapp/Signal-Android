@@ -268,7 +268,7 @@ class MediaSendFlowViewModel(
 
       is MediaSendFlowEvent.AddMessageRequested -> onAddMessageRequested(event.startWithEmojiKeyboard)
       is MediaSendFlowEvent.ScheduleSendRequested -> onScheduleSendClick(event.option)
-      MediaSendFlowEvent.StickerRequested -> sendHudCommand(MediaSendFlowHudCommand.SelectSticker)
+      MediaSendFlowEvent.StickerRequested -> backStack.goToStickerSelect()
       MediaSendFlowEvent.NextRequested -> onNextClick()
 
       is MediaSendFlowEvent.NavigateToFiles -> backStack.goToFiles(event.mediaFolder)
@@ -330,10 +330,14 @@ class MediaSendFlowViewModel(
   }
 
   /**
-   * Result of the picker opened for [MediaSendFlowHudCommand.SelectSticker], applied to the focused image. A null [renderer] means
+   * Result of the picker shown for [MediaSendRoute.StickerSelect], applied to the focused image. A null [renderer] means
    * the picker was dismissed.
    */
   fun onStickerSelected(renderer: Renderer?) {
+    if (backStack.lastOrNull() == MediaSendRoute.StickerSelect) {
+      backStack.pop()
+    }
+
     val controller = focusedImageController() ?: return
 
     if (renderer != null) {

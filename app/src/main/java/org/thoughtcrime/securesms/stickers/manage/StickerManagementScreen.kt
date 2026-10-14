@@ -36,7 +36,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -49,7 +48,6 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -63,14 +61,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -440,9 +436,10 @@ private fun SearchTopAppBar(
       .background(MaterialTheme.colorScheme.surface)
       .windowInsetsPadding(TopAppBarDefaults.windowInsets)
   ) {
-    TextFields.TextField(
+    TextFields.SearchField(
       value = query,
       onValueChange = onQueryChange,
+      placeholder = stringResource(R.string.StickerManagement_search),
       leadingIcon = {
         IconButton(onClick = onCloseClick) {
           Icon(
@@ -461,18 +458,7 @@ private fun SearchTopAppBar(
           }
         }
       },
-      placeholder = { Text(text = stringResource(R.string.StickerManagement_search)) },
-      textStyle = MaterialTheme.typography.bodyLarge,
-      singleLine = true,
-      shape = RoundedCornerShape(50),
-      contentPadding = PaddingValues(0.dp),
-      colors = TextFieldDefaults.colors(
-        unfocusedIndicatorColor = Color.Transparent,
-        focusedIndicatorColor = Color.Transparent,
-        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
-      ),
       modifier = Modifier
-        .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
         .padding(horizontal = 16.dp, vertical = 10.dp)
         .fillMaxWidth()
         .focusRequester(focusRequester)

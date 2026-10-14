@@ -15,8 +15,6 @@ import org.signal.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
@@ -45,10 +43,6 @@ class StoryDirectReplyDialogFragment :
     factoryProducer = {
       StoryDirectReplyViewModel.Factory(storyId, recipientId, StoryDirectReplyRepository(requireContext()))
     }
-  )
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
-    ownerProducer = { requireActivity() }
   )
 
   private val storyViewerPageViewModel: StoryViewerPageViewModel by viewModels(
@@ -95,7 +89,6 @@ class StoryDirectReplyDialogFragment :
       }
 
       override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-        keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
         mediaKeyboard.setFragmentManager(childFragmentManager)
       }
     }

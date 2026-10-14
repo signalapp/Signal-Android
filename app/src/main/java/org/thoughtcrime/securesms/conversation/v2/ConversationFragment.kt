@@ -836,9 +836,10 @@ class ConversationFragment :
       }
 
       is MediaKeyboardAction.AddStickerToFavoritesClicked -> {
+        val packKey = action.sticker.packKey ?: return
         viewLifecycleOwner.lifecycleScope.launch {
           val result = withContext(SignalDispatchers.IO) {
-            StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = true)
+            StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = true)
           }
 
           when (result) {
@@ -850,9 +851,10 @@ class ConversationFragment :
       }
 
       is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed -> {
+        val packKey = action.sticker.packKey ?: return
         viewLifecycleOwner.lifecycleScope.launch {
           val result = withContext(SignalDispatchers.IO) {
-            StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = false)
+            StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = false)
           }
 
           when (result) {
@@ -864,8 +866,9 @@ class ConversationFragment :
       }
 
       is MediaKeyboardAction.MoveFavoriteToTopClicked -> {
+        val packKey = action.sticker.packKey ?: return
         viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.IO) {
-          StickerFavoriteRepository.setFavorite(action.sticker.packId, action.sticker.packKey, action.sticker.stickerId.toInt(), favorited = true)
+          StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = true)
         }
       }
 
@@ -1426,6 +1429,10 @@ class ConversationFragment :
       stickerRecord = sticker,
       clearCompose = false
     )
+  }
+
+  override fun onStickerSearchAction(action: MediaKeyboardAction) {
+    onMediaKeyboardAction(action)
   }
 
   override fun onStickerSearchDismissed() {

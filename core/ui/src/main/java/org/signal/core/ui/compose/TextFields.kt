@@ -6,19 +6,34 @@
 package org.signal.core.ui.compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.TextFieldLineLimits
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +49,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Shape
@@ -44,6 +60,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
@@ -193,6 +210,119 @@ object TextFields {
   }
 
   /**
+   * The pill-shaped search field used in search app bars, with its leading and trailing [IconButton]s placed to spec.
+   */
+  @Composable
+  fun SearchField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
+  ) {
+    val textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurface)
+
+    BasicTextField(
+      value = value,
+      onValueChange = onValueChange,
+      singleLine = true,
+      textStyle = textStyle,
+      cursorBrush = SolidColor(MaterialTheme.colorScheme.onSurface),
+      keyboardOptions = keyboardOptions,
+      keyboardActions = keyboardActions,
+      modifier = modifier.height(44.dp),
+      decorationBox = { innerTextField ->
+        SearchFieldDecoration(
+          isEmpty = value.isEmpty(),
+          placeholder = placeholder,
+          textStyle = textStyle,
+          leadingIcon = leadingIcon,
+          trailingIcon = trailingIcon,
+          innerTextField = innerTextField
+        )
+      }
+    )
+  }
+
+  /**
+   * A [SearchField] whose text lives in [state], such as one held by a view model.
+   */
+  @Composable
+  fun SearchField(
+    state: TextFieldState,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
+  ) {
+    val textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurface)
+
+    BasicTextField(
+      state = state,
+      lineLimits = TextFieldLineLimits.SingleLine,
+      textStyle = textStyle,
+      cursorBrush = SolidColor(MaterialTheme.colorScheme.onSurface),
+      keyboardOptions = keyboardOptions,
+      modifier = modifier.height(44.dp),
+      decorator = { innerTextField ->
+        SearchFieldDecoration(
+          isEmpty = state.text.isEmpty(),
+          placeholder = placeholder,
+          textStyle = textStyle,
+          leadingIcon = leadingIcon,
+          trailingIcon = trailingIcon,
+          innerTextField = innerTextField
+        )
+      }
+    )
+  }
+
+  @Composable
+  private fun SearchFieldDecoration(
+    isEmpty: Boolean,
+    placeholder: String,
+    textStyle: TextStyle,
+    leadingIcon: @Composable (() -> Unit)?,
+    trailingIcon: @Composable (() -> Unit)?,
+    innerTextField: @Composable () -> Unit
+  ) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape)
+        .padding(start = if (leadingIcon != null) 4.dp else 16.dp, end = if (trailingIcon != null) 0.dp else 16.dp)
+    ) {
+      if (leadingIcon != null) {
+        leadingIcon()
+        Spacer(modifier = Modifier.width(4.dp))
+      }
+
+      Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = Modifier.weight(1f)
+      ) {
+        if (isEmpty) {
+          Text(
+            text = placeholder,
+            style = textStyle,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1
+          )
+        }
+
+        innerTextField()
+      }
+
+      trailingIcon?.invoke()
+    }
+  }
+
+  /**
    * A text field label that sits at Label Medium weight once it has minimized above the input, which is what happens
    * when the field is focused or already has text in it.
    *
@@ -217,5 +347,45 @@ object TextFields {
       isEmpty() -> TextRange.Zero
       else -> TextRange(length, length)
     }
+  }
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun SearchFieldPreview() {
+  Column {
+    TextFields.SearchField(
+      value = "",
+      onValueChange = {},
+      placeholder = "Search",
+      leadingIcon = {
+        IconButton(onClick = {}) {
+          Icon(imageVector = SignalIcons.ArrowStart.imageVector, contentDescription = null)
+        }
+      },
+      modifier = Modifier
+        .padding(horizontal = 16.dp, vertical = 10.dp)
+        .fillMaxWidth()
+    )
+
+    TextFields.SearchField(
+      value = "dog",
+      onValueChange = {},
+      placeholder = "Search",
+      leadingIcon = {
+        IconButton(onClick = {}) {
+          Icon(imageVector = SignalIcons.ArrowStart.imageVector, contentDescription = null)
+        }
+      },
+      trailingIcon = {
+        IconButton(onClick = {}) {
+          Icon(imageVector = SignalIcons.X.imageVector, contentDescription = null)
+        }
+      },
+      modifier = Modifier
+        .padding(horizontal = 16.dp, vertical = 10.dp)
+        .fillMaxWidth()
+    )
   }
 }

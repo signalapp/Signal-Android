@@ -44,8 +44,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.keyboard.KeyboardPage
-import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
@@ -108,10 +106,6 @@ class StoryGroupReplyFragment :
   )
 
   private val inlineQueryViewModel: InlineQueryViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
-
-  private val keyboardPagerViewModel: KeyboardPagerViewModel by viewModels(
     ownerProducer = { requireActivity() }
   )
 
@@ -390,7 +384,6 @@ class StoryGroupReplyFragment :
   override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
 
   override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-    keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
     mediaKeyboard.setFragmentManager(childFragmentManager)
   }
 
