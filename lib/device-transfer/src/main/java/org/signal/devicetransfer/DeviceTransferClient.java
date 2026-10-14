@@ -68,6 +68,9 @@ final class DeviceTransferClient implements Handler.Callback {
   private final AtomicBoolean started = new AtomicBoolean(false);
   private final AtomicBoolean stopped = new AtomicBoolean(false);
 
+  private boolean  terminated;
+  private Runnable onStopped;
+
   private static void update(@NonNull TransferStatus transferStatus) {
     Log.d(TAG, "transferStatus: " + transferStatus.getTransferMode().name());
     EventBus.getDefault().postSticky(transferStatus);
@@ -98,7 +101,14 @@ final class DeviceTransferClient implements Handler.Callback {
   }
 
   @MainThread
-  public void stop() {
+  public void stop(@NonNull Runnable onStopped) {
+    if (terminated) {
+      ThreadUtil.postToMain(onStopped);
+      return;
+    }
+
+    this.onStopped = onStopped;
+
     if (stopped.compareAndSet(false, true)) {
       handler.sendEmptyMessage(STOP_CLIENT);
     }
@@ -124,12 +134,24 @@ final class DeviceTransferClient implements Handler.Callback {
     }
 
     EventBus.getDefault().removeStickyEvent(TransferStatus.class);
+
+    ThreadUtil.postToMain(this::onTerminated);
+  }
+
+  @MainThread
+  private void onTerminated() {
+    terminated = true;
+    if (onStopped != null) {
+      Runnable callback = onStopped;
+      onStopped = null;
+      callback.run();
+    }
   }
 
   private void internalShutdown() {
     shutdown();
     if (shutdownCallback != null) {
-      shutdownCallback.shutdown();
+      ThreadUtil.postToMain(shutdownCallback::shutdown);
     }
   }
 

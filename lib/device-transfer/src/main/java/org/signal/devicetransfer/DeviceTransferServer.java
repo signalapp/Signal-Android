@@ -45,6 +45,9 @@ final class DeviceTransferServer implements Handler.Callback {
   private static final int NETWORK_FAILURE            = 4;
   private static final int SET_VERIFIED               = 5;
   private static final int NETWORK_CONNECTION_CHANGED = 6;
+  private static final int REFRESH_DISCOVERY          = 7;
+
+  private static final long REFRESH_DISCOVERY_INTERVAL = TimeUnit.SECONDS.toMillis(30);
 
   private       NetworkServerThread         serverThread;
   private       HandlerThread               commandAndControlThread;
@@ -54,9 +57,13 @@ final class DeviceTransferServer implements Handler.Callback {
   private final ServerTask                  serverTask;
   private final ShutdownCallback            shutdownCallback;
   private       IpExchange.IpExchangeThread ipExchangeThread;
+  private       boolean                     networkConnected;
 
   private final AtomicBoolean started = new AtomicBoolean(false);
   private final AtomicBoolean stopped = new AtomicBoolean(false);
+
+  private boolean  terminated;
+  private Runnable onStopped;
 
   private static void update(@NonNull TransferStatus transferStatus) {
     Log.d(TAG, "transferStatus: " + transferStatus.getTransferMode().name());
@@ -84,7 +91,14 @@ final class DeviceTransferServer implements Handler.Callback {
   }
 
   @MainThread
-  public void stop() {
+  public void stop(@NonNull Runnable onStopped) {
+    if (terminated) {
+      ThreadUtil.postToMain(onStopped);
+      return;
+    }
+
+    this.onStopped = onStopped;
+
     if (stopped.compareAndSet(false, true)) {
       handler.sendEmptyMessage(STOP_SERVER);
     }
@@ -110,12 +124,24 @@ final class DeviceTransferServer implements Handler.Callback {
     }
 
     EventBus.getDefault().removeStickyEvent(TransferStatus.class);
+
+    ThreadUtil.postToMain(this::onTerminated);
+  }
+
+  @MainThread
+  private void onTerminated() {
+    terminated = true;
+    if (onStopped != null) {
+      Runnable callback = onStopped;
+      onStopped = null;
+      callback.run();
+    }
   }
 
   private void internalShutdown() {
     shutdown();
     if (shutdownCallback != null) {
-      shutdownCallback.shutdown();
+      ThreadUtil.postToMain(shutdownCallback::shutdown);
     }
   }
 
@@ -142,6 +168,9 @@ final class DeviceTransferServer implements Handler.Callback {
         break;
       case NETWORK_CONNECTION_CHANGED:
         requestNetworkInfo((Boolean) message.obj);
+        break;
+      case REFRESH_DISCOVERY:
+        refreshDiscovery();
         break;
       case NetworkServerThread.NETWORK_SERVER_STARTED:
         startWifiDirect(message.arg1);
@@ -179,6 +208,7 @@ final class DeviceTransferServer implements Handler.Callback {
       wifiDirect.startDiscoveryService(String.valueOf(port));
       Log.i(TAG, "Started discovery service, waiting for connections...");
       update(TransferStatus.discovery());
+      handler.sendEmptyMessageDelayed(REFRESH_DISCOVERY, REFRESH_DISCOVERY_INTERVAL);
     } catch (WifiDirectUnavailableException e) {
       Log.e(TAG, e);
       internalShutdown();
@@ -196,6 +226,8 @@ final class DeviceTransferServer implements Handler.Callback {
       return;
     }
 
+    handler.removeMessages(REFRESH_DISCOVERY);
+
     try {
       Log.i(TAG, "Stopping discovery service");
       wifiDirect.stopDiscoveryService();
@@ -205,7 +237,22 @@ final class DeviceTransferServer implements Handler.Callback {
     }
   }
 
+  private void refreshDiscovery() {
+    if (wifiDirect == null || networkConnected) {
+      return;
+    }
+
+    try {
+      Log.i(TAG, "Still waiting for a client, refreshing peer discovery");
+      wifiDirect.refreshPeerDiscovery();
+      handler.sendEmptyMessageDelayed(REFRESH_DISCOVERY, REFRESH_DISCOVERY_INTERVAL);
+    } catch (WifiDirectUnavailableException e) {
+      Log.w(TAG, e);
+    }
+  }
+
   private void stopWifiDirect() {
+    handler.removeMessages(REFRESH_DISCOVERY);
     if (wifiDirect != null) {
       Log.i(TAG, "Shutting down WiFi Direct");
       wifiDirect.shutdown();
@@ -219,12 +266,22 @@ final class DeviceTransferServer implements Handler.Callback {
     }
 
     if (isNetworkConnected) {
+      networkConnected = true;
       try {
         wifiDirect.requestNetworkInfo();
       } catch (WifiDirectUnavailableException e) {
         Log.e(TAG, e);
         internalShutdown();
         update(TransferStatus.failed());
+      }
+    } else if (networkConnected) {
+      networkConnected = false;
+      Log.i(TAG, "Network disconnected, restarting WiFi Direct to advertise again");
+      stopIpExchange();
+      stopWifiDirect();
+      if (serverThread != null) {
+        serverThread.setVerified(false);
+        startWifiDirect(serverThread.getLocalPort());
       }
     }
   }
