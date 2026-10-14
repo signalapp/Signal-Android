@@ -398,7 +398,7 @@ private fun RemoteBackupsSettingsContent(
         },
         onNavigationClick = contentCallbacks::onNavigationClick,
         navigationIcon = SignalIcons.ArrowStart.imageVector,
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+        navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
         scrollBehavior = scrollBehavior
       )
     },

@@ -112,7 +112,7 @@ fun SelectContactScreen(
     title = stringResource(R.string.SelectContactScreen__select_contact),
     onNavigationClick = { onEvent(SelectContactEvent.BackClicked) },
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
   ) { contentPadding ->
     val listState = rememberLazyListState()
     val keyboardController = LocalSoftwareKeyboardController.current

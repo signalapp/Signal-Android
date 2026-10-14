@@ -362,7 +362,7 @@ private fun TopAppBar(
         ) {
           Icon(
             imageVector = SignalIcons.ArrowStart.imageVector,
-            contentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+            contentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
           )
         }
       } else {

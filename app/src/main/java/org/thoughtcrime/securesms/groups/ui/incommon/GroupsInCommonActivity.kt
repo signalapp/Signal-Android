@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 import java.text.NumberFormat
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays a list of groups that the user has in common with the specified [RecipientId].
@@ -152,7 +153,7 @@ private fun TopAppBar(
     title = pluralStringResource(R.plurals.GroupsInCommon__n_groups_in_common_title, groupCount, NumberFormat.getInstance().format(groupCount)),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onBackPress,
     scrollBehavior = scrollBehavior
   )

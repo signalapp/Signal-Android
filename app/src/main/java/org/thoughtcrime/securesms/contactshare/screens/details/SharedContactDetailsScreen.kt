@@ -85,7 +85,7 @@ fun SharedContactDetailsScreen(
     title = null,
     onNavigationClick = { onEvent(SharedContactDetailsEvent.BackClicked) },
     navigationIconRes = CoreUiR.drawable.symbol_arrow_start_24,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description)
   ) { contentPadding ->
     if (state.isLoading) {
       Box(

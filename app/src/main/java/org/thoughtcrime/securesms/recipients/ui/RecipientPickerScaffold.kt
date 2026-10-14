@@ -44,8 +44,8 @@ import org.signal.core.ui.detailPaneMaxContentWidth
 import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
 import org.signal.core.ui.listPaneDefaultPreferredWidth
 import org.signal.core.ui.rememberIsSplitPane
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.ScreenTitlePane
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Provides the common adaptive layout structure for recipient picker screens.
@@ -71,7 +71,7 @@ fun RecipientPickerScaffold(
         title = if (!isSplitPane) title else "",
         titleContent = { _, titleText -> Text(text = titleText, style = MaterialTheme.typography.titleLarge) },
         navigationIcon = SignalIcons.ArrowStart.imageVector,
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+        navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
         onNavigationClick = onNavigateUpClick,
         actions = { topAppBarActions() }
       )

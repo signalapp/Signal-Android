@@ -8679,9 +8679,6 @@
     <!-- SearchFilterBottomSheet: Select date dialog title -->
     <string name="SearchFilterBottomSheet__select_date" translatable="false">Select date</string>
 
-    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>
-
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">Toggle</string>
     <!-- Accessibility label describing a checked checkbox. -->

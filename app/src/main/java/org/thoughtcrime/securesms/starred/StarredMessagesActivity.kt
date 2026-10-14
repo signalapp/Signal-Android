@@ -84,6 +84,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration
 import org.thoughtcrime.securesms.video.inline.InlineVideoController
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 class StarredMessagesActivity : PassphraseRequiredActivity() {
 
@@ -158,7 +159,7 @@ private fun StarredMessagesScreen(
         title = stringResource(R.string.StarredMessagesActivity__starred_messages),
         titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
         navigationIcon = SignalIcons.ArrowStart.imageVector,
-        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+        navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
         onNavigationClick = onNavigateBack,
         scrollBehavior = scrollBehavior
       )

@@ -245,7 +245,7 @@ private fun StickerPackPreviewScreen(
     title = stickerManifest?.let { it.title.orNull() ?: untitledPackTitle } ?: "",
     onNavigationClick = onNavigationClick,
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+    navigationContentDescription = stringResource(CoreUiR.string.DefaultTopAppBar__navigate_up_content_description),
     snackbarHost = { Snackbars.Host(snackbarHostState) },
     titleContent = { _, toolbarTitle ->
       ToolbarTitle(
