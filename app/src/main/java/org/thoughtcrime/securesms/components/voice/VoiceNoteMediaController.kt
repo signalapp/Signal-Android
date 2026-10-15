@@ -384,7 +384,7 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
     ): VoiceNotePlaybackState {
       val speed = mediaController.playbackParameters.speed
       var duration = mediaController.contentDuration
-      val mediaMetadata = mediaController.mediaMetadata
+      val mediaExtras = mediaController.currentMediaItem?.mediaMetadata?.extras
       var position = mediaController.currentPosition
       val autoReset = mediaUri == VoiceNoteMediaItemFactory.NEXT_URI || mediaUri == VoiceNoteMediaItemFactory.END_URI
       if (previousState != null && mediaUri == previousState.uri) {
@@ -403,7 +403,7 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
           autoReset,
           speed,
           mediaController.isPlaying,
-          getClipType(mediaMetadata.extras)
+          getClipType(mediaExtras)
         )
       } else {
         VoiceNotePlaybackState.NONE
