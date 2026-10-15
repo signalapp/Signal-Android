@@ -10,6 +10,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.net.LinkAddress
+import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
@@ -48,7 +50,7 @@ import kotlin.time.Duration.Companion.minutes
 /**
  * Monitors internet connectivity and proxy settings changes.
  *
- * [onConnectivityUpdated] is invoked when the [ConnectivityState] or the set of tracked networks changes (a
+ * [onConnectivityUpdated] is invoked when the [ConnectivityState], the set of tracked networks, or the default network or its addresses change (a
  * transport swap leaves the old transport stale), and on the first state of every callback re-registration.
  * The current state is delivered immediately upon registration. If the OS reports no matching networks at all,
  * [ConnectivityState.OFFLINE] is reported after [INITIAL_STATE_TIMEOUT], since no callbacks will ever arrive.
@@ -217,10 +219,32 @@ class InternetConnectivityMonitor(
     private val networks = mutableMapOf<Network, NetworkState>()
     private val pendingNotifies = mutableMapOf<Network, Job>()
     private val pendingBlocked = mutableMapOf<Network, Boolean>()
+    private var defaultNetwork: DefaultNetwork? = null
+
+    private val defaultNetworkCallback = DefaultNetworkCallback()
 
     // Written by the registering coroutine, cancelled from the callback lane.
     @Volatile
     private var bootstrapJob: Job? = null
+
+    fun register(request: NetworkRequest) {
+      connectivityManager.registerNetworkCallback(request, this)
+      if (Build.VERSION.SDK_INT >= 24) {
+        try {
+          connectivityManager.registerDefaultNetworkCallback(defaultNetworkCallback)
+        } catch (e: Throwable) {
+          connectivityManager.unregisterNetworkCallback(this)
+          throw e
+        }
+      }
+    }
+
+    fun unregister() {
+      connectivityManager.unregisterNetworkCallback(this)
+      if (Build.VERSION.SDK_INT >= 24) {
+        connectivityManager.unregisterNetworkCallback(defaultNetworkCallback)
+      }
+    }
 
     fun bootstrap() {
       bootstrapJob = scope.launch {
@@ -318,8 +342,40 @@ class InternetConnectivityMonitor(
       pendingNotifies.remove(network)?.cancel()
     }
 
+    private fun updateDefault(updated: DefaultNetwork?) {
+      if (defaultNetwork == updated) return
+      defaultNetwork = updated
+      // The default callback can beat the aggregate one, and a loss is always followed by the aggregate onLost, so only notify for a settled, tracked network.
+      if (updated != null && updated.network in networks && updated.network !in pendingNotifies) {
+        notifyState()
+      }
+    }
+
     private fun notifyState() {
-      onStateChanged(ConnectivitySnapshot(ConnectivityStateCalculator.calculate(networks.values), networks.toMap()))
+      onStateChanged(ConnectivitySnapshot(ConnectivityStateCalculator.calculate(networks.values), networks.toMap(), defaultNetwork))
+    }
+
+    inner class DefaultNetworkCallback : ConnectivityManager.NetworkCallback() {
+      override fun onAvailable(network: Network) {
+        val addresses = connectivityManager.getLinkProperties(network)?.linkAddresses?.toSet() ?: emptySet()
+        scope.launch { updateDefault(DefaultNetwork(network, addresses)) }
+      }
+
+      override fun onLinkPropertiesChanged(network: Network, linkProperties: LinkProperties) {
+        scope.launch {
+          if (defaultNetwork?.network == network) {
+            updateDefault(DefaultNetwork(network, linkProperties.linkAddresses.toSet()))
+          }
+        }
+      }
+
+      override fun onLost(network: Network) {
+        scope.launch {
+          if (defaultNetwork?.network == network) {
+            updateDefault(null)
+          }
+        }
+      }
     }
   }
 
@@ -352,20 +408,20 @@ class InternetConnectivityMonitor(
 
     callback.bootstrap()
     try {
-      connectivityManager.registerNetworkCallback(request, callback)
+      callback.register(request)
     } catch (e: Throwable) {
       callbackScope.cancel()
       throw e
     }
 
     awaitClose {
-      connectivityManager.unregisterNetworkCallback(callback)
+      callback.unregister()
       callbackScope.cancel()
     }
   }.conflate()
     .debounce { if (it.state.isAssumedOnline) ONLINE_SETTLE_TIMEOUT else Duration.ZERO }
-    // Keyed on networks too: a swap can hold the state (WiFi drops, cellular stays ONLINE) while the old transport goes stale.
-    .distinctUntilChanged { old, new -> old.state == new.state && old.networks.keys == new.networks.keys }
+    // Keyed on networks and the default too: a swap can hold the state (WiFi drops, cellular stays ONLINE) while the old transport goes stale.
+    .distinctUntilChanged { old, new -> old.state == new.state && old.networks.keys == new.networks.keys && old.defaultNetwork == new.defaultNetwork }
 
   private fun resilientProxyChangesFlow(): Flow<Unit> = proxyChangesFlow()
     .retryWhen { cause, attempt ->
@@ -410,7 +466,9 @@ class InternetConnectivityMonitor(
    */
   class NetworkStateStaleException(message: String) : Exception(message)
 
-  private data class ConnectivitySnapshot(val state: ConnectivityState, val networks: Map<Network, NetworkState>) {
+  private data class DefaultNetwork(val network: Network, val addresses: Set<LinkAddress>)
+
+  private data class ConnectivitySnapshot(val state: ConnectivityState, val networks: Map<Network, NetworkState>, val defaultNetwork: DefaultNetwork? = null) {
     fun summary(): String {
       return networks.entries.joinToString(prefix = "[", postfix = "]") { (network, state) ->
         buildString {
@@ -418,6 +476,7 @@ class InternetConnectivityMonitor(
           append(if (state.validated) "=validated" else "=unvalidated")
           if (state.blocked) append(",blocked")
           if (state.onVpn) append(",vpn")
+          if (network == defaultNetwork?.network) append(",default")
         }
       }
     }
