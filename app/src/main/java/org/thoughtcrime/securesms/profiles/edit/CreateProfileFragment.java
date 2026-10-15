@@ -300,11 +300,11 @@ public class CreateProfileFragment extends LoggingFragment {
       case DISCOVERABLE:
       case UNDECIDED:
         binding.whoCanFindMeIcon.setImageResource(R.drawable.symbol_group_24);
-        binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
+        binding.whoCanFindMeDescription.setText(org.signal.appsettings.R.string.PhoneNumberPrivacy_everyone);
         break;
       case NOT_DISCOVERABLE:
         binding.whoCanFindMeIcon.setImageResource(org.signal.core.ui.R.drawable.symbol_lock_24);
-        binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_nobody);
+        binding.whoCanFindMeDescription.setText(org.signal.appsettings.R.string.PhoneNumberPrivacy_nobody);
         break;
     }
   }

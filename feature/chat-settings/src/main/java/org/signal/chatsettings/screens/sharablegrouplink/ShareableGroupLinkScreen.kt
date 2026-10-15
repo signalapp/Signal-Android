@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
-import org.signal.chatsettings.ErrorSnackbarHost
 import org.signal.chatsettings.R
 import org.signal.chatsettings.screens.sharablegrouplink.ShareableGroupLinkState.Dialog
 import org.signal.core.ui.compose.DayNightPreviews
@@ -22,6 +21,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -45,9 +45,10 @@ fun ShareableGroupLinkScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.ShareableGroupLinkScreen__go_back),
     snackbarHost = {
-      ErrorSnackbarHost(
-        errorMessage = state.errorMessage,
-        onDismiss = { onEvent(ShareableGroupLinkEvents.SnackbarDismissed) }
+      Snackbars.Host(
+        message = state.errorMessage?.let { stringResource(it) },
+        onDismissed = { onEvent(ShareableGroupLinkEvents.SnackbarDismissed) },
+        duration = Snackbars.Duration.LONG
       )
     }
   ) { paddingValues ->

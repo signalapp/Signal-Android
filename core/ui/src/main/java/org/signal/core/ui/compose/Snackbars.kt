@@ -13,6 +13,10 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -74,6 +78,30 @@ object Snackbars {
     SnackbarHost(hostState = snackbarHostState, modifier = modifier) {
       Default(snackbarData = it)
     }
+  }
+
+  /**
+   * Host for a snackbar that lives in screen state. Shows [message] whenever it becomes non-null, then calls
+   * [onDismissed] once it's gone so the state can be cleared and the next message can show.
+   */
+  @Composable
+  fun Host(
+    message: String?,
+    onDismissed: () -> Unit,
+    modifier: Modifier = Modifier,
+    duration: Duration = Duration.SHORT
+  ) {
+    val hostState = remember { SnackbarHostState() }
+    val currentOnDismissed by rememberUpdatedState(onDismissed)
+
+    LaunchedEffect(message) {
+      if (message != null) {
+        hostState.showSnackbar(message = message, duration = duration)
+        currentOnDismissed()
+      }
+    }
+
+    Host(hostState, modifier = modifier)
   }
 
   @Composable

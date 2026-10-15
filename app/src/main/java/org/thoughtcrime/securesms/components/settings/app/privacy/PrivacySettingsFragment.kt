@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import org.signal.appsettings.R as AppSettingsR
 
 private val TAG = Log.tag(PrivacySettingsFragment::class.java)
 
@@ -116,7 +117,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     return configure {
       if (state.hasPhoneNumber) {
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences_app_protection__phone_number),
+          title = DSLSettingsText.from(AppSettingsR.string.preferences_app_protection__phone_number),
           summary = DSLSettingsText.from(R.string.preferences_app_protection__choose_who_can_see),
           onClick = {
             Navigation.findNavController(requireView())

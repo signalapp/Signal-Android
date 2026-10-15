@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
-import org.signal.chatsettings.ErrorSnackbarHost
 import org.signal.chatsettings.R
 import org.signal.chatsettings.screens.grouppermissions.GroupPermissionsState.Dialog
 import org.signal.core.ui.compose.DayNightPreviews
@@ -23,6 +22,7 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 
 /** Row values, in the order [R.array.GroupPermissionsScreen__editor_labels] declares their labels. */
 private const val VALUE_ONLY_ADMINS = "only_admins"
@@ -46,9 +46,10 @@ fun GroupPermissionsScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.GroupPermissionsScreen__go_back),
     snackbarHost = {
-      ErrorSnackbarHost(
-        errorMessage = state.errorMessage,
-        onDismiss = { onEvent(GroupPermissionsEvents.SnackbarDismissed) }
+      Snackbars.Host(
+        message = state.errorMessage?.let { stringResource(it) },
+        onDismissed = { onEvent(GroupPermissionsEvents.SnackbarDismissed) },
+        duration = Snackbars.Duration.LONG
       )
     }
   ) { paddingValues ->
