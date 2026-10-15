@@ -1,9 +1,8 @@
 package org.thoughtcrime.securesms.stories.settings.select
 
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -11,16 +10,14 @@ import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 
-class BaseStoryRecipientSelectionRepository {
+object BaseStoryRecipientSelectionRepository {
 
-  fun getRecord(distributionListId: DistributionListId): Single<DistributionListRecord> {
-    return Single.fromCallable {
-      SignalDatabase.distributionLists.getList(distributionListId) ?: error("Record does not exist.")
-    }.subscribeOn(Schedulers.io())
+  suspend fun getRecord(distributionListId: DistributionListId): DistributionListRecord = withContext(SignalDispatchers.Default) {
+    SignalDatabase.distributionLists.getList(distributionListId) ?: error("Record does not exist.")
   }
 
-  fun updateDistributionListMembership(distributionListRecord: DistributionListRecord, recipients: Set<RecipientId>) {
-    SignalExecutors.BOUNDED.execute {
+  suspend fun updateDistributionListMembership(distributionListRecord: DistributionListRecord, recipients: Set<RecipientId>) {
+    withContext(SignalDispatchers.Default) {
       val currentRecipients = SignalDatabase.distributionLists.getRawMembers(distributionListRecord.id, distributionListRecord.privacyMode).toSet()
       val oldNotNew = currentRecipients - recipients
       val newNotOld = recipients - currentRecipients
@@ -37,16 +34,14 @@ class BaseStoryRecipientSelectionRepository {
     }
   }
 
-  fun getAllSignalContacts(): Single<Set<RecipientId>> {
-    return Single.fromCallable {
-      SignalDatabase.recipients.getSignalContacts(RecipientTable.IncludeSelfMode.Exclude).use {
-        val recipientSet = mutableSetOf<RecipientId>()
-        while (it.moveToNext()) {
-          recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
-        }
+  suspend fun getAllSignalContacts(): Set<RecipientId> = withContext(SignalDispatchers.Default) {
+    SignalDatabase.recipients.getSignalContacts(RecipientTable.IncludeSelfMode.Exclude).use {
+      val recipientSet = mutableSetOf<RecipientId>()
+      while (it.moveToNext()) {
+        recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
+      }
 
-        recipientSet
-      } ?: emptySet()
-    }.subscribeOn(Schedulers.io())
+      recipientSet
+    }
   }
 }

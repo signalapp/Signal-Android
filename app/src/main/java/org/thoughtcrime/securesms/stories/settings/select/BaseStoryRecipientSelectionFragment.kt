@@ -9,14 +9,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
-import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.ui.viewModel
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
@@ -34,13 +33,9 @@ import java.util.function.Consumer
 
 abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_base_recipient_selection_fragment), ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.HeaderActionProvider {
 
-  private val viewModel: BaseStoryRecipientSelectionViewModel by viewModels(
-    factoryProducer = {
-      BaseStoryRecipientSelectionViewModel.Factory(distributionListId, BaseStoryRecipientSelectionRepository())
-    }
-  )
-
-  private val lifecycleDisposable = LifecycleDisposable()
+  private val viewModel: BaseStoryRecipientSelectionViewModel by viewModel {
+    BaseStoryRecipientSelectionViewModel(distributionListId)
+  }
 
   protected open val toolbarTitleId: Int = R.string.CreateStoryViewerSelectionFragment__choose_viewers
   abstract val actionButtonLabel: Int
@@ -67,8 +62,6 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     SystemWindowInsetsSetter.attach(view.findViewById(R.id.contacts_container), viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
     SystemWindowInsetsSetter.attach(actionButton, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars(), SystemWindowInsetsSetter.ApplyMode.MARGIN)
 
-    lifecycleDisposable.bindTo(viewLifecycleOwner)
-
     actionButton.setText(actionButtonLabel)
 
     searchField.doAfterTextChanged {
@@ -91,26 +84,30 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
 
     viewLifecycleOwner.lifecycleScope.launch {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-        viewModel.state.collect {
-          actionButton.isEnabled = it.selection.isNotEmpty()
+        launch {
+          viewModel.state.collect {
+            actionButton.isEnabled = it.selection.isNotEmpty()
 
-          if (it.distributionListId == null || it.privateStory != null) {
-            if (it.isStartingSelection) {
-              getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
-              viewModel.onStartingSelectionAdded()
+            if (it.distributionListId == null || it.privateStory != null) {
+              if (it.isStartingSelection) {
+                getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
+                viewModel.onStartingSelectionAdded()
+              }
+              presentTitle(toolbar, it.selection.size)
             }
-            presentTitle(toolbar, it.selection.size)
           }
         }
-      }
-    }
 
-    lifecycleDisposable += viewModel.actionObservable.subscribe { action ->
-      when (action) {
-        is BaseStoryRecipientSelectionViewModel.Action.ExitFlow -> exitFlow()
-        is BaseStoryRecipientSelectionViewModel.Action.GoToNextScreen -> goToNextScreen(
-          getAttachedContactSelectionFragment().selectedContacts.map { it.getOrCreateRecipientId() }.toSet()
-        )
+        launch {
+          viewModel.actions.collect { action ->
+            when (action) {
+              BaseStoryRecipientSelectionViewModel.Action.ExitFlow -> exitFlow()
+              BaseStoryRecipientSelectionViewModel.Action.GoToNextScreen -> goToNextScreen(
+                getAttachedContactSelectionFragment().selectedContacts.map { it.getOrCreateRecipientId() }.toSet()
+              )
+            }
+          }
+        }
       }
     }
   }
@@ -160,7 +157,8 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     return HeaderAction(
       R.string.BaseStoryRecipientSelectionFragment__select_all
     ) {
-      lifecycleDisposable += viewModel.toggleSelectAll().subscribe { updatedRecipients ->
+      viewLifecycleOwner.lifecycleScope.launch {
+        val updatedRecipients = viewModel.toggleSelectAll()
         getAttachedContactSelectionFragment().markSelected(updatedRecipients)
       }
     }
