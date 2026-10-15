@@ -5281,8 +5281,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun getMessagePositionInConversation(threadId: Long, receivedTimestamp: Long, authorId: RecipientId): Int {
     val validMessageExists: Boolean = readableDatabase
-      .exists(TABLE_NAME)
-      .where("$DATE_RECEIVED = $receivedTimestamp AND $FROM_RECIPIENT_ID = ? AND $DELETED_BY IS NULL AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL", authorId)
+      .exists("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
+      .where("$THREAD_ID = $threadId AND $DATE_RECEIVED = $receivedTimestamp AND $FROM_RECIPIENT_ID = ? AND $DELETED_BY IS NULL AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL", authorId)
       .run()
 
     if (!validMessageExists) {
@@ -5291,7 +5291,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     return readableDatabase
       .select("COUNT(*)")
-      .from(TABLE_NAME)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
       .where("$THREAD_ID = $threadId AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $DATE_RECEIVED > $receivedTimestamp AND $COLLAPSED_STATE != ${CollapsedState.COLLAPSED.id}")
       .run()
       .readToSingleInt(-1)
