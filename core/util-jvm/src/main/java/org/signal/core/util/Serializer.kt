@@ -1,8 +1,5 @@
 package org.signal.core.util
 
-import android.content.ContentValues
-import android.database.Cursor
-
 /**
  * Generalized serializer for finer control
  */
@@ -15,11 +12,6 @@ interface BaseSerializer<Data, Input, Output> {
  * Generic serialization interface for use with database and store operations.
  */
 interface Serializer<T, R> : BaseSerializer<T, R, R>
-
-/**
- * Serializer specifically for working with SQLite
- */
-interface DatabaseSerializer<Data> : BaseSerializer<Data, Cursor, ContentValues>
 
 interface StringSerializer<T> : Serializer<T, String>
 

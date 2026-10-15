@@ -12,7 +12,6 @@ android {
 dependencies {
   api(project(":core:util-jvm"))
 
-  implementation(libs.androidx.sqlite)
   implementation(libs.androidx.documentfile)
   implementation(libs.google.jsr305)
   implementation(libs.androidx.lifecycle.process)
@@ -22,7 +21,6 @@ dependencies {
   implementation(libs.jackson.module.kotlin)
   implementation(libs.google.libphonenumber)
   implementation(libs.google.play.services.base)
-  testImplementation(libs.androidx.sqlite.framework)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

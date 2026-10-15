@@ -103,6 +103,7 @@ include(":core:models-jvm")
 include(":core:network")
 include(":core:ui")
 include(":core:serialization")
+include(":core:database")
 
 // Lib modules
 include(":lib:libsignal-service")

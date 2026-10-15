@@ -687,6 +687,7 @@ dependencies {
   ktlintRuleset(libs.ktlint.twitter.compose)
   coreLibraryDesugaring(libs.android.tools.desugar)
 
+  implementation(project(":core:database"))
   implementation(project(":core:models"))
   implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))

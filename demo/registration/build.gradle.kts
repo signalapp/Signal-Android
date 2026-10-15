@@ -58,6 +58,7 @@ dependencies {
   // Core dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
+  implementation(project(":core:database"))
   implementation(project(":core:models-jvm"))
   implementation(project(":lib:libsignal-service"))
   implementation(project(":lib:network"))
