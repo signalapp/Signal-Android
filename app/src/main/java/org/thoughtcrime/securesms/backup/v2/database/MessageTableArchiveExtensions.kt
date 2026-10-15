@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2.database
 
+import org.signal.core.database.select
 import org.signal.core.util.logging.Log
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter

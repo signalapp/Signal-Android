@@ -7,13 +7,13 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import androidx.core.content.contentValuesOf
 import org.signal.archive.proto.Contact
+import org.signal.core.database.insertInto
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.Base64
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.database.IdentityTable

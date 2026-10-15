@@ -9,7 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.deleteAll
+import org.signal.core.database.deleteAll
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.polls.PollOption

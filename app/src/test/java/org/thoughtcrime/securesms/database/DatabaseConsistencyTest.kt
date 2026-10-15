@@ -13,10 +13,10 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.ForeignKeyConstraint
-import org.signal.core.util.Index
-import org.signal.core.util.getForeignKeys
-import org.signal.core.util.getIndexes
+import org.signal.core.database.ForeignKeyConstraint
+import org.signal.core.database.Index
+import org.signal.core.database.getForeignKeys
+import org.signal.core.database.getIndexes
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations

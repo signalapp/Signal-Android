@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.database.withinTransaction
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.Util
 import org.signal.core.util.bitmaps.BitmapUtil
@@ -24,7 +25,6 @@ import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.roundedString
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.attachments.Attachment

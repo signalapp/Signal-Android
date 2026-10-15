@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.storage
 import androidx.annotation.VisibleForTesting
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.Base64.encodeWithPadding
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.Util
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log

@@ -5,8 +5,8 @@ import android.app.Application
 import android.content.ContentValues
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider

@@ -13,7 +13,7 @@ import android.net.Uri
 import android.os.RemoteException
 import android.provider.BaseColumns
 import android.provider.ContactsContract
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong

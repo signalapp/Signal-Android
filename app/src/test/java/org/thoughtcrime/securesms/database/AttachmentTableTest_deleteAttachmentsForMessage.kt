@@ -16,8 +16,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.select
 import org.signal.core.util.logging.Log
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SignalDatabaseRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger

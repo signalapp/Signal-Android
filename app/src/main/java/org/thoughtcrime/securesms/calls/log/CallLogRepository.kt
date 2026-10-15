@@ -4,8 +4,8 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.concurrent.SignalExecutors
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver

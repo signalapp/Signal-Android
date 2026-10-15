@@ -1,4 +1,4 @@
-package org.signal.core.util;
+package org.signal.core.database;
 
 import android.app.Application;
 import android.content.ContentValues;
@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.signal.core.util.Hex;
 import org.signal.core.util.database.DatabaseId;
 
 import java.io.IOException;

@@ -16,14 +16,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.insertInto
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.testutil.SignalDatabaseMigrationRule
 
 @Suppress("ClassName")

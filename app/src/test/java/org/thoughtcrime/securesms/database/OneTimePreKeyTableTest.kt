@@ -14,13 +14,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.select
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLongOrNull
-import org.signal.core.util.select
-import org.signal.core.util.update
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule

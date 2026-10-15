@@ -19,12 +19,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.deleteAll
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.deleteAll
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup

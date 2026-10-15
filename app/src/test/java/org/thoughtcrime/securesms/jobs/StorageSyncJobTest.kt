@@ -30,13 +30,13 @@ import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.IssueReporter

@@ -24,11 +24,12 @@ import org.signal.archive.proto.SimpleChatUpdate
 import org.signal.archive.proto.StandardMessage
 import org.signal.archive.proto.Sticker
 import org.signal.archive.proto.ViewOnceMessage
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.update
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.JsonUtils
-import org.signal.core.util.SqlUtil
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.asList
 import org.signal.core.util.forEach
@@ -37,7 +38,6 @@ import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment

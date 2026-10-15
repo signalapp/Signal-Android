@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import org.signal.core.database.delete
+import org.signal.core.database.deleteAll
+import org.signal.core.database.exists
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.LRUCache
-import org.signal.core.util.delete
-import org.signal.core.util.deleteAll
-import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import java.util.concurrent.locks.ReentrantReadWriteLock

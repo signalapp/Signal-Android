@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.AttachmentTable

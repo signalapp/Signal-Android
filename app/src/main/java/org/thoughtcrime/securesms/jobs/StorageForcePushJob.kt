@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
 import org.signal.network.NetworkResult

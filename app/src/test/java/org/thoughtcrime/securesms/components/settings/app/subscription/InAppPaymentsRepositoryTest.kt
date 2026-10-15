@@ -23,9 +23,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.deleteAll
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.billing.BillingPurchaseState
-import org.signal.core.util.deleteAll
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType

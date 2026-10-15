@@ -32,6 +32,13 @@ import org.signal.archive.stream.EncryptedBackupReader
 import org.signal.archive.stream.EncryptedBackupWriter
 import org.signal.archive.stream.PlainTextBackupReader
 import org.signal.archive.stream.PlainTextBackupWriter
+import org.signal.core.database.forceForeignKeyConstraintsEnabled
+import org.signal.core.database.fullWalCheckpoint
+import org.signal.core.database.getAllIndexDefinitions
+import org.signal.core.database.getAllTableDefinitions
+import org.signal.core.database.getAllTriggerDefinitions
+import org.signal.core.database.getForeignKeyViolations
+import org.signal.core.database.withinTransaction
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
@@ -54,12 +61,6 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.decodeOrNull
-import org.signal.core.util.forceForeignKeyConstraintsEnabled
-import org.signal.core.util.fullWalCheckpoint
-import org.signal.core.util.getAllIndexDefinitions
-import org.signal.core.util.getAllTableDefinitions
-import org.signal.core.util.getAllTriggerDefinitions
-import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.core.util.money.FiatMoney
@@ -69,7 +70,6 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.toMillis
-import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.net.DeleteBackupMediaItem
 import org.signal.libsignal.net.RequestResult

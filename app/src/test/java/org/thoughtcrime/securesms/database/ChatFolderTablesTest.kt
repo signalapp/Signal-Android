@@ -16,8 +16,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.deleteAll
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.recipients.Recipient

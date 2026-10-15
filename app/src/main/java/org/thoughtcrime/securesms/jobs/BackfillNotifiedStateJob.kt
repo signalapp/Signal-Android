@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.fullWalCheckpoint
+import org.signal.core.database.fullWalCheckpoint
+import org.signal.core.database.update
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies

@@ -19,6 +19,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.select
+import org.signal.core.database.update
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.database.AttachmentId
@@ -27,8 +29,6 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireString
-import org.signal.core.util.select
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentTable

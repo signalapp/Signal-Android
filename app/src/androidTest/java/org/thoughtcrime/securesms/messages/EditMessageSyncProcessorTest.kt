@@ -9,10 +9,10 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.database.select
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.readToList
-import org.signal.core.util.select
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase

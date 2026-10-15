@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
-import org.signal.core.util.SqlUtil.buildArgs
+import org.signal.core.database.SqlUtil.buildArgs
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.internal.push.Content
 

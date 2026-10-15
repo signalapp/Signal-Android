@@ -21,13 +21,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.database.deleteAll
+import org.signal.core.database.select
 import org.signal.core.models.database.FavoriteStickerSyncRecord
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.util.Hex
-import org.signal.core.util.deleteAll
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
 import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper

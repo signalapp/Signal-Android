@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.migrations
 
 import android.database.sqlite.SQLiteException
+import org.signal.core.database.delete
+import org.signal.core.database.select
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.Stopwatch
-import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToMap
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.ACI_COLUMN

@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import org.signal.core.util.getAllTables
+import org.signal.core.database.getAllTables
 import org.signal.core.util.logTime
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase

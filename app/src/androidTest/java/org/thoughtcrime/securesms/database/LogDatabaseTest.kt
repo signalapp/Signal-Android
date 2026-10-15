@@ -10,11 +10,11 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.Test
+import org.signal.core.database.select
+import org.signal.core.database.updateAll
 import org.signal.core.util.forEach
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.signal.core.util.select
-import org.signal.core.util.updateAll
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 

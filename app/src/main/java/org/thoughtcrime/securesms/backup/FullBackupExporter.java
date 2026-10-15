@@ -14,9 +14,9 @@ import androidx.documentfile.provider.DocumentFile;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.database.SqlUtil;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SetUtil;
-import org.signal.core.util.SqlUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.core.models.database.AttachmentId;

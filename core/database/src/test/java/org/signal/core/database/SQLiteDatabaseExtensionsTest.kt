@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.core.util
+package org.signal.core.database
 
 import android.app.Application
 import androidx.sqlite.db.SupportSQLiteOpenHelper
@@ -17,6 +17,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.readToSingleObject
+import org.signal.core.util.requireBlob
+import org.signal.core.util.requireFloat
+import org.signal.core.util.requireLong
+import org.signal.core.util.requireString
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)

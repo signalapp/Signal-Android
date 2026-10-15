@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.database.helpers
 import android.app.Application
 import android.content.Context
 import android.database.sqlite.SQLiteException
-import org.signal.core.util.areForeignKeyConstraintsEnabled
+import org.signal.core.database.areForeignKeyConstraintsEnabled
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.helpers.migration.SignalDatabaseMigration

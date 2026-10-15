@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job

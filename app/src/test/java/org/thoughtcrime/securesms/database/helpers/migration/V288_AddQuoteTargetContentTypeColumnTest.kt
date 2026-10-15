@@ -15,9 +15,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.util.SqlUtil
-import org.signal.core.util.insertInto
-import org.signal.core.util.select
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.insertInto
+import org.signal.core.database.select
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.testutil.SignalDatabaseMigrationRule
 

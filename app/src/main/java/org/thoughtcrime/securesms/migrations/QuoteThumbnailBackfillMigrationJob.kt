@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.migrations
 
+import org.signal.core.database.update
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
 import org.thoughtcrime.securesms.database.AttachmentTable.Companion.QUOTE

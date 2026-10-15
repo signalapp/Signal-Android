@@ -11,9 +11,10 @@ import android.database.Cursor
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.getTableRowCount
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.Util
-import org.signal.core.util.getTableRowCount
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
@@ -23,7 +24,6 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.toInt
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook
 import org.thoughtcrime.securesms.database.SqlCipherDeletingErrorHandler

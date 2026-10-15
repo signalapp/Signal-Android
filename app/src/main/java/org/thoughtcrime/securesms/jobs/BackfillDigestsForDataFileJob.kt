@@ -5,12 +5,12 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.copyTo
 import org.signal.core.util.logging.Log
 import org.signal.core.util.stream.NullOutputStream
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.BackfillDigestsForDataFileJobData

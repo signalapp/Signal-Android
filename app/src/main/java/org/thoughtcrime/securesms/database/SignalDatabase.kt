@@ -5,10 +5,10 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.logging.Log
-import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runInTransaction
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations

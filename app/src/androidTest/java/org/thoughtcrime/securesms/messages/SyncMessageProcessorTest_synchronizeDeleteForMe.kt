@@ -19,11 +19,11 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.database.update
+import org.signal.core.database.withinTransaction
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.signal.core.util.update
-import org.signal.core.util.withinTransaction
 import org.signal.network.api.AttachmentUploadResult
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment

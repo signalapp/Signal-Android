@@ -24,6 +24,7 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.database.update
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.SentMediaQuality
@@ -32,7 +33,6 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
 import org.signal.core.util.stream.NullOutputStream
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment

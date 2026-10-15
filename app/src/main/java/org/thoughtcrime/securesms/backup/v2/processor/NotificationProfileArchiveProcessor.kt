@@ -8,9 +8,9 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.database.insertInto
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
-import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.ExportState

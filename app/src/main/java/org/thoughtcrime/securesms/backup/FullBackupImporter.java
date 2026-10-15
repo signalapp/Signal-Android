@@ -14,7 +14,7 @@ import androidx.annotation.VisibleForTesting;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.SqlUtil;
+import org.signal.core.database.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.backup.proto.Attachment;
 import org.thoughtcrime.securesms.backup.proto.Avatar;

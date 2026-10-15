@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.database.select
+import org.signal.core.database.update
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
-import org.signal.core.util.select
-import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.CollapsedState
 import org.thoughtcrime.securesms.database.CollapsibleEvents
 import org.thoughtcrime.securesms.database.MessageTable

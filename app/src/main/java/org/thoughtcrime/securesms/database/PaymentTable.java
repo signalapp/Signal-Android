@@ -13,10 +13,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.mobilecoin.lib.exceptions.SerializationException;
 
+import org.signal.core.database.SQLiteDatabaseExtensionsKt;
+import org.signal.core.database.SqlUtil;
 import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
-import org.signal.core.util.SQLiteDatabaseExtensionsKt;
-import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;

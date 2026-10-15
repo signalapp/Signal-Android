@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import org.signal.core.util.SqlUtil
+import org.signal.core.database.SqlUtil
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
