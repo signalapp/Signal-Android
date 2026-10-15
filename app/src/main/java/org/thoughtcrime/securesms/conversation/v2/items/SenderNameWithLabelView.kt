@@ -112,7 +112,7 @@ class SenderNameWithLabelView(context: Context, attrs: AttributeSet? = null) : V
       MeasureSpec.getSize(widthMeasureSpec) - horizontalPadding
     }
 
-    measureChildWithMargins(nameView, widthMeasureSpec, horizontalPadding, heightMeasureSpec, verticalPadding)
+    measureChildWithMargins(nameView, widthMeasureSpec, 0, heightMeasureSpec, 0)
     val nameWidth = nameView.outerWidth()
     val nameHeight = nameView.outerHeight()
 
@@ -123,7 +123,7 @@ class SenderNameWithLabelView(context: Context, attrs: AttributeSet? = null) : V
       contentWidth = nameWidth
       contentHeight = nameHeight
     } else {
-      measureChildWithMargins(labelView, widthMeasureSpec, horizontalPadding, heightMeasureSpec, verticalPadding)
+      measureChildWithMargins(labelView, widthMeasureSpec, 0, heightMeasureSpec, 0)
       val labelWidth = labelView.outerWidth()
       val labelHeight = labelView.outerHeight()
 
