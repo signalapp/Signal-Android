@@ -78,7 +78,7 @@ public class ChatWallpaperFragment extends Fragment {
     scrollView.setClipToPadding(false);
     SystemWindowInsetsSetter.attach(scrollView, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars());
 
-    toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
+    toolbar.setTitle(org.signal.appsettings.R.string.preferences__chat_color_and_wallpaper);
     toolbar.setNavigationOnClickListener(nav -> {
       if (!Navigation.findNavController(nav).popBackStack()) {
         requireActivity().finish();

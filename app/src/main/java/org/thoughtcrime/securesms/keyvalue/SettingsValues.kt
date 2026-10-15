@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.webrtc.CallDataMode
 import java.util.Arrays
 import java.util.Random
 import kotlin.math.abs
+import org.signal.appsettings.R as AppSettingsR
 
 @Suppress("DEPRECATION")
 class SettingsValues internal constructor(store: KeyValueStore, private val context: Context) : SignalStoreValues(store) {
@@ -238,7 +239,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
 
   fun getMessageQuoteFontSize(context: Context): Int {
     val currentMessageSize = messageFontSize
-    val possibleMessageSizes = context.resources.getIntArray(R.array.pref_message_font_size_values)
+    val possibleMessageSizes = context.resources.getIntArray(AppSettingsR.array.pref_message_font_size_values)
     val possibleQuoteSizes = context.resources.getIntArray(R.array.pref_message_font_quote_size_values)
     var sizeIndex = Arrays.binarySearch(possibleMessageSizes, currentMessageSize)
 

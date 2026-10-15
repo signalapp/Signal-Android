@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconPreset
 import org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util.AppIconUtility
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 class AppIconSelectionFragment : ComposeFragment() {
@@ -70,7 +71,7 @@ class AppIconSelectionFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     Scaffolds.Settings(
-      title = stringResource(id = R.string.preferences__app_icon),
+      title = stringResource(id = AppSettingsR.string.preferences__app_icon),
       onNavigationClick = {
         findNavController().popBackStack()
       },

@@ -3863,10 +3863,6 @@
     <string name="arrays__video">Video</string>
     <string name="arrays__documents">Documents</string>
 
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
 
     <string name="arrays__default">Default</string>
     <string name="arrays__high">High</string>
@@ -3954,13 +3950,6 @@
     <string name="preferences__conversation_length_limit">Chat length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__linked_devices">Linked devices</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
     <!-- Approval for changing the app icon. -->
     <string name="preferences__app_icon_dialog_ok">OK</string>
     <!-- Cancelling the operation of changing the app icon. -->
@@ -3983,8 +3972,6 @@
     <string name="preferences__enable_pin">Enable PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall. You won’t need your PIN to open the app.</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__language">Language</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
@@ -4067,7 +4054,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Priority</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4105,14 +4091,6 @@
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
     <string name="preferences_enter_proxy_address">Enter proxy address</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatic key verification</string>
     <!-- Preference summary for automatic key verification -->

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 @Composable
@@ -53,7 +54,7 @@ fun ChatColorAndWallpaperRow(
   modifier: Modifier = Modifier
 ) {
   Rows.TextRow(
-    text = stringResource(R.string.preferences__chat_color_and_wallpaper),
+    text = stringResource(AppSettingsR.string.preferences__chat_color_and_wallpaper),
     icon = painterResource(R.drawable.symbol_color_24),
     onClick = onClick,
     modifier = modifier

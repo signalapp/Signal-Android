@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="language_entries">
+<!-- zz --><item>@string/preferences__system_default</item>
+<!-- en --><item>English</item>
+<!-- af --><item>Afrikaans</item>
+<!-- ar --><item> العربية</item>
+<!-- az --><item>Azərbaycan</item>
+<!-- be --><item>Беларуская мова</item>
+<!-- bn --><item>বাংলা</item>
+<!-- bs --><item>Bosanski</item>
+<!-- bg --><item>български</item>
+<!-- my --><item>မြန်မာဘာသာ</item>
+<!-- ca --><item>Català</item>
+<!-- cs --><item>Čeština</item>
+<!-- yue --><item>繁體廣東話（香港）</item>
+<!-- zh_CN --><item>简体中文</item>
+<!-- zh_TW --><item>繁體中文（台灣）</item>
+<!-- zh_HK --><item>繁體中文（香港）</item>
+<!-- da --><item>Dansk</item>
+<!-- de --><item>Deutsch</item>
+<!-- et --><item>Еesti keel</item>
+<!-- es --><item>Español</item>
+<!-- eu --><item>Euskara</item>
+<!-- tl --><item>Filipino</item>
+<!-- fr --><item>Français</item>
+<!-- ga --><item>Gaeilge</item>
+<!-- gl --><item>Galego</item>
+<!-- ka --><item>ქართული</item>
+<!-- el --><item>Ελληνικά</item>
+<!-- gu --><item>ગુજરાતી</item>
+<!-- he/iw --><item>עברית</item>
+<!-- hi --><item>हिंदी</item>
+<!-- hr --><item>Hrvatski</item>
+<!-- id/in --><item>Indonesia</item>
+<!-- it --><item>Italiano</item>
+<!-- ja --><item>日本語</item>
+<!-- kn --><item>ಕನ್ನಡ</item>
+<!-- kk --><item>Қазақша</item>
+<!-- km --><item>ភាសាខ្មែរ</item>
+<!-- sw --><item>Kiswahili</item>
+<!-- ko --><item>한국어</item>
+<!-- ky --><item>Кыргызча</item>
+<!-- lv --><item>Latviešu</item>
+<!-- lt --><item>Lietuvių</item>
+<!-- mk --><item>Македонски</item>
+<!-- hu --><item>Magyar</item>
+<!-- ms --><item>Bahasa Melayu</item>
+<!-- ml --><item>മലയാളം</item>
+<!-- mr --><item>मराठी</item>
+<!-- nl --><item>Nederlands</item>
+<!-- nb --><item>Norsk (bokmål)</item>
+<!-- fa --><item>فارسی</item>
+<!-- pl --><item>Polski</item>
+<!-- pt --><item>Português</item>
+<!-- pt_BR --><item>Português do Brasil</item>
+<!-- pa --><item>ਪੰਜਾਬੀ</item>
+<!-- ro --><item>Română</item>
+<!-- ru --><item>Русский</item>
+<!-- sr --><item>Српски</item>
+<!-- sq --><item>Shqip</item>
+<!-- sl --><item>Slovenščina</item>
+<!-- sk --><item>Slovenčina</item>
+<!-- fi --><item>Suomi</item>
+<!-- sv --><item>Svenska</item>
+<!-- ta --><item>தமிழ்</item>
+<!-- te --><item>తెలుగు</item>
+<!-- th --><item>ภาษาไทย</item>
+<!-- tr --><item>Türkçe</item>
+<!-- uk --><item>Українська</item>
+<!-- ur --><item> اردو‎</item>
+<!-- ug --><item>ئۇيغۇرچە</item>
+<!-- vi --><item>Tiếng Việt</item>
+  </string-array>
+
+  <string-array name="language_values">
+      <item>zz</item>
+      <item>en</item>
+      <item>af</item>
+      <item>ar</item>
+      <item>az</item>
+      <item>be</item>
+      <item>bn</item>
+      <item>bs</item>
+      <item>bg</item>
+      <item>my</item>
+      <item>ca</item>
+      <item>cs</item>
+      <item>yue</item>
+      <item>zh_CN</item>
+      <item>zh_TW</item>
+      <item>zh_HK</item>
+      <item>da</item>
+      <item>de</item>
+      <item>et</item>
+      <item>es</item>
+      <item>eu</item>
+      <item>tl</item>
+      <item>fr</item>
+      <item>ga</item>
+      <item>gl</item>
+      <item>ka</item>
+      <item>el</item>
+      <item>gu</item>
+      <item>iw</item>
+      <item>hi</item>
+      <item>hr</item>
+      <item>in</item>
+      <item>it</item>
+      <item>ja</item>
+      <item>kn</item>
+      <item>kk</item>
+      <item>km</item>
+      <item>sw</item>
+      <item>ko</item>
+      <item>ky</item>
+      <item>lv</item>
+      <item>lt</item>
+      <item>mk</item>
+      <item>hu</item>
+      <item>ms</item>
+      <item>ml</item>
+      <item>mr</item>
+      <item>nl</item>
+      <item>nb</item>
+      <item>fa</item>
+      <item>pl</item>
+      <item>pt</item>
+      <item>pt_BR</item>
+      <item>pa</item>
+      <item>ro</item>
+      <item>ru</item>
+      <item>sr</item>
+      <item>sq</item>
+      <item>sl</item>
+      <item>sk</item>
+      <item>fi</item>
+      <item>sv</item>
+      <item>ta</item>
+      <item>te</item>
+      <item>th</item>
+      <item>tr</item>
+      <item>uk</item>
+      <item>ur</item>
+      <item>ug</item>
+      <item>vi</item>
+  </string-array>
+
+  <string-array name="pref_message_font_size_entries">
+    <item>@string/arrays__small</item>
+    <item>@string/arrays__normal</item>
+    <item>@string/arrays__large</item>
+    <item>@string/arrays__extra_large</item>
+  </string-array>
+
+  <integer-array name="pref_message_font_size_values">
+    <item>14</item>
+    <item>16</item>
+    <item>22</item>
+    <item>28</item>
+  </integer-array>
+</resources>

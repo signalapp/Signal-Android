@@ -348,4 +348,28 @@
     <!-- AppUpdatesSettingsScreen -->
     <!-- Title of the app updates settings screen -->
     <string name="preferences_app_updates__title">App updates</string>
+
+    <!-- AppearanceSettingsScreen -->
+    <string name="preferences__appearance">Appearance</string>
+    <string name="preferences__language">Language</string>
+    <string name="preferences__theme">Theme</string>
+    <string name="preferences__system_default">System default</string>
+    <string name="preferences__light_theme">Light</string>
+    <string name="preferences__dark_theme">Dark</string>
+    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
+    <string name="preferences__app_icon">App Icon</string>
+    <string name="preferences_chats__message_text_size">Message font size</string>
+    <string name="arrays__small">Small</string>
+    <string name="arrays__normal">Normal</string>
+    <string name="arrays__large">Large</string>
+    <string name="arrays__extra_large">Extra large</string>
+    <!-- Preference title for changing navigation (bottom) bar size -->
+    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <!-- Preference summary for normal navigation bar size -->
+    <string name="preferences_normal">Normal</string>
+    <!-- Preference summary for compact navigation bar size -->
+    <string name="preferences_compact">Compact</string>
+    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
+    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
 </resources>

@@ -42,6 +42,7 @@ dependencies {
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(libs.androidx.compose.ui.test.junit4)
+  testImplementation(testFixtures(project(":core:ui")))
 
   // Supplies the ComponentActivity that createComposeRule() launches the screen into
   debugImplementation(libs.androidx.compose.ui.test.manifest)

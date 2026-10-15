@@ -363,7 +363,7 @@ private fun AppSettingsContent(
 
         item {
           Rows.TextRow(
-            text = stringResource(R.string.preferences__appearance),
+            text = stringResource(AppSettingsR.string.preferences__appearance),
             icon = painterResource(R.drawable.symbol_appearance_24),
             onClick = {
               callbacks.navigate(AppSettingsRoute.AppearanceRoute.Appearance)
