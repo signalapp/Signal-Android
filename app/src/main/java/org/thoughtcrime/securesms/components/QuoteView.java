@@ -155,6 +155,8 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
 
     cornerMask = new CornerMask(this);
 
+    authorView.applyQuoteAuthorStyle();
+
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.QuoteView, 0, 0);
 

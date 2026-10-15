@@ -6,107 +6,185 @@
 package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.ColorInt
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.AbstractComposeView
-import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import org.signal.core.ui.util.ThemeUtil
+import org.signal.core.util.dp
+import org.signal.core.util.isNotNullOrBlank
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
-import org.thoughtcrime.securesms.groups.memberlabel.SenderNameWithLabel
+import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 /**
- * @see SenderNameWithLabel
+ * Displays a sender and their member label. The XML version of [MemberLabelPill] used in conversations
  */
-class SenderNameWithLabelView : AbstractComposeView {
-  constructor(context: Context) : super(context)
-  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
-  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+class SenderNameWithLabelView(context: Context, attrs: AttributeSet? = null) : ViewGroup(context, attrs) {
 
-  init {
-    setViewCompositionStrategy(ViewCompositionStrategy.Default)
+  companion object {
+    private val HORIZONTAL_SPACING = 4.dp
+    private val VERTICAL_SPACING = 2.dp
   }
 
-  private var senderName: String by mutableStateOf("")
-  private var senderColor: Color by mutableStateOf(Color.Unspecified)
-  private var labelTextColor: Color by mutableStateOf(Color.Unspecified)
-  private var labelBackgroundColor: Color by mutableStateOf(Color.Unspecified)
+  private val nameView: EmojiTextView
+  private val labelView: View
+  private val labelEmojiView: EmojiTextView
+  private val labelTextView: EmojiTextView
+  private var isLabelWrapped = false
 
-  private var memberLabel: MemberLabel? by mutableStateOf(null)
+  init {
+    inflate(context, R.layout.sender_name_with_label_view, this)
+
+    nameView = findViewById(R.id.member_name)
+    labelView = findViewById(R.id.member_label)
+    labelEmojiView = findViewById(R.id.member_label_emoji)
+    labelTextView = findViewById(R.id.member_label_text)
+  }
 
   /**
-   * Sets sender and label state and forces fresh composition to avoid stale measurements from a previously bound item.
-   * Intended for use in a RecyclerView.
+   * Sets sender and label state. Intended for use in a RecyclerView.
    */
   fun bind(name: String, @ColorInt tintColor: Int, label: MemberLabel?) {
-    setSender(name, tintColor)
-    setLabel(label)
+    val isDark = ThemeUtil.isDarkTheme(context)
+    val labelBackgroundColor = Color(tintColor).copy(alpha = if (isDark) 0.32f else 0.10f).toArgb()
+    val labelTextColor = if (isDark) {
+      Color.White.copy(alpha = 0.25f).compositeOver(Color(tintColor))
+    } else {
+      Color.Black.copy(alpha = 0.30f).compositeOver(Color(tintColor))
+    }.toArgb()
 
-    // AbstractComposeView caches measurements across RecyclerView recycling. This forces fresh composition on the
-    // next measure to avoid stale cached measurements during recycling that can cause sender name / label clipping.
-    disposeComposition()
+    bind(name, tintColor, label, labelTextColor, labelBackgroundColor)
   }
 
   /**
    * Variant of [bind] with explicit label text/background colors.
    */
-  fun bind(name: String, @ColorInt tintColor: Int, label: MemberLabel?, @ColorInt textColor: Int, @ColorInt backgroundColor: Int) {
-    setSender(name, tintColor)
-    setLabel(label, textColor, backgroundColor)
-    disposeComposition()
-  }
+  fun bind(name: String, @ColorInt tintColor: Int, label: MemberLabel?, @ColorInt labelTextColor: Int, @ColorInt labelBackgroundColor: Int) {
+    nameView.text = name
+    nameView.setTextColor(tintColor)
 
-  fun setSender(name: String, @ColorInt tintColor: Int) {
-    senderName = name
-    senderColor = Color(tintColor)
-  }
+    if (label != null) {
+      presentLabel(label)
+      labelView.backgroundTintList = ColorStateList.valueOf(labelBackgroundColor)
+      labelTextView.setTextColor(labelTextColor)
+    }
 
-  /**
-   * Sets the label with colors derived from the sender name tint color.
-   */
-  fun setLabel(label: MemberLabel?) {
-    memberLabel = label
-    labelTextColor = Color.Unspecified
-    labelBackgroundColor = Color.Unspecified
-  }
-
-  /**
-   * Sets the label with explicit text and background colors.
-   */
-  fun setLabel(label: MemberLabel?, @ColorInt textColor: Int, @ColorInt backgroundColor: Int) {
-    memberLabel = label
-    labelTextColor = Color(textColor)
-    labelBackgroundColor = Color(backgroundColor)
+    labelView.visible = label != null
   }
 
   /**
    * Used to update the colors in response to theme changes (e.g., wallpaper enabled/disabled).
    */
   fun updateColors(@ColorInt foregroundColor: Int, @ColorInt labelBackgroundColor: Int) {
-    senderColor = Color(foregroundColor)
-    labelTextColor = Color(foregroundColor)
-    this.labelBackgroundColor = Color(labelBackgroundColor)
+    nameView.setTextColor(foregroundColor)
+    labelView.backgroundTintList = ColorStateList.valueOf(labelBackgroundColor)
+    labelTextView.setTextColor(foregroundColor)
   }
 
-  @Composable
-  override fun Content() {
-    if (labelTextColor != Color.Unspecified || labelBackgroundColor != Color.Unspecified) {
-      SenderNameWithLabel(
-        senderName = senderName,
-        senderColor = senderColor,
-        memberLabel = memberLabel,
-        labelTextColor = labelTextColor,
-        labelBackgroundColor = labelBackgroundColor
-      )
+  fun applyQuoteAuthorStyle() {
+    nameView.setTextAppearance(CoreUiR.style.Signal_Text_LabelLarge)
+  }
+
+  private fun presentLabel(label: MemberLabel) {
+    labelEmojiView.visible = label.emoji.isNotNullOrBlank()
+    labelEmojiView.text = label.emoji
+
+    labelTextView.visible = label.text.isNotEmpty()
+    labelTextView.text = label.displayText
+  }
+
+  override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    val horizontalPadding = paddingStart + paddingEnd
+    val verticalPadding = paddingTop + paddingBottom
+    val availableWidth = if (MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.UNSPECIFIED) {
+      Int.MAX_VALUE
     } else {
-      SenderNameWithLabel(
-        senderName = senderName,
-        senderColor = senderColor,
-        memberLabel = memberLabel
-      )
+      MeasureSpec.getSize(widthMeasureSpec) - horizontalPadding
+    }
+
+    measureChildWithMargins(nameView, widthMeasureSpec, horizontalPadding, heightMeasureSpec, verticalPadding)
+    val nameWidth = nameView.outerWidth()
+    val nameHeight = nameView.outerHeight()
+
+    val contentWidth: Int
+    val contentHeight: Int
+
+    if (labelView.isGone) {
+      contentWidth = nameWidth
+      contentHeight = nameHeight
+    } else {
+      measureChildWithMargins(labelView, widthMeasureSpec, horizontalPadding, heightMeasureSpec, verticalPadding)
+      val labelWidth = labelView.outerWidth()
+      val labelHeight = labelView.outerHeight()
+
+      isLabelWrapped = nameWidth.toLong() + HORIZONTAL_SPACING + labelWidth > availableWidth
+      if (isLabelWrapped) {
+        contentWidth = maxOf(nameWidth, labelWidth)
+        contentHeight = nameHeight + VERTICAL_SPACING + labelHeight
+      } else {
+        contentWidth = nameWidth + HORIZONTAL_SPACING + labelWidth
+        contentHeight = maxOf(nameHeight, labelHeight)
+      }
+    }
+
+    setMeasuredDimension(
+      resolveSize(contentWidth + horizontalPadding, widthMeasureSpec),
+      resolveSize(contentHeight + verticalPadding, heightMeasureSpec)
+    )
+  }
+
+  override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+    if (!labelView.isVisible) {
+      layoutChild(nameView, paddingStart, paddingTop)
+    } else if (isLabelWrapped) {
+      layoutChild(nameView, paddingStart, paddingTop)
+      layoutChild(labelView, paddingStart, paddingTop + nameView.outerHeight() + VERTICAL_SPACING)
+    } else {
+      val rowHeight = maxOf(nameView.outerHeight(), labelView.outerHeight())
+      layoutChild(nameView, paddingStart, paddingTop + (rowHeight - nameView.outerHeight()) / 2)
+      layoutChild(labelView, paddingStart + nameView.outerWidth() + HORIZONTAL_SPACING, paddingTop + (rowHeight - labelView.outerHeight()) / 2)
     }
   }
+
+  private fun layoutChild(child: View, start: Int, top: Int) {
+    val params = child.layoutParams as MarginLayoutParams
+    val childTop = top + params.topMargin
+    val childStart = start + params.marginStart
+
+    val left = if (ViewUtil.isRtl(child)) {
+      width - childStart - child.measuredWidth
+    } else {
+      childStart
+    }
+
+    child.layout(left, childTop, left + child.measuredWidth, childTop + child.measuredHeight)
+  }
+
+  private fun View.outerWidth(): Int {
+    val params = layoutParams as MarginLayoutParams
+    return measuredWidth + params.marginStart + params.marginEnd
+  }
+
+  private fun View.outerHeight(): Int {
+    val params = layoutParams as MarginLayoutParams
+    return measuredHeight + params.topMargin + params.bottomMargin
+  }
+
+  override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams = MarginLayoutParams(context, attrs)
+
+  override fun generateDefaultLayoutParams(): LayoutParams = MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+
+  override fun generateLayoutParams(p: LayoutParams): LayoutParams = MarginLayoutParams(p)
+
+  override fun checkLayoutParams(p: LayoutParams?): Boolean = p is MarginLayoutParams
 }
