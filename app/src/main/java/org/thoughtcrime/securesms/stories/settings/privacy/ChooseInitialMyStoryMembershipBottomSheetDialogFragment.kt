@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.radiobutton.MaterialRadioButton
+import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
-import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
@@ -32,8 +33,6 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
   override val peekHeightPercentage: Float = 1f
 
   private val viewModel: ChooseInitialMyStoryMembershipViewModel by viewModels()
-
-  private lateinit var lifecycleDisposable: LifecycleDisposable
 
   private lateinit var allRow: View
   private lateinit var allExceptRow: View
@@ -75,10 +74,8 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
       isEnabled = false
     }
 
-    lifecycleDisposable = LifecycleDisposable().apply { bindTo(viewLifecycleOwner) }
-
-    lifecycleDisposable += viewModel.state
-      .subscribe { state ->
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewModel.state.collect { state ->
         allRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL && state.hasUserPerformedManualSelection
         allExceptRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT && state.hasUserPerformedManualSelection
         onlyWitRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH && state.hasUserPerformedManualSelection
@@ -97,6 +94,7 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
 
         save.isEnabled = state.recipientId != null && state.hasUserPerformedManualSelection
       }
+    }
 
     val clickListener = { v: View ->
       val selection = when (v) {
@@ -106,26 +104,24 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
         else -> throw AssertionError()
       }
 
-      viewModel
-        .select(selection)
-        .subscribe { confirmedSelection ->
-          when (confirmedSelection) {
-            DistributionListPrivacyMode.ALL_EXCEPT -> AllExceptFragment.createAsDialog().show(childFragmentManager, SELECTION_FRAGMENT)
-            DistributionListPrivacyMode.ONLY_WITH -> OnlyShareWithFragment.createAsDialog().show(childFragmentManager, SELECTION_FRAGMENT)
-            else -> Unit
-          }
+      viewLifecycleOwner.lifecycleScope.launch {
+        viewModel.select(selection)
+        when (selection) {
+          DistributionListPrivacyMode.ALL_EXCEPT -> AllExceptFragment.createAsDialog().show(childFragmentManager, SELECTION_FRAGMENT)
+          DistributionListPrivacyMode.ONLY_WITH -> OnlyShareWithFragment.createAsDialog().show(childFragmentManager, SELECTION_FRAGMENT)
+          else -> Unit
         }
+      }
     }
 
     listOf(allRow, allExceptRow, onlyWitRow).forEach { it.setOnClickListener { v -> clickListener(v) } }
 
     save.setOnClickListener {
-      lifecycleDisposable += viewModel
-        .save()
-        .subscribe { recipientId ->
-          dismissAllowingStateLoss()
-          findListener<Callback>()?.onMyStoryConfigured(recipientId)
-        }
+      viewLifecycleOwner.lifecycleScope.launch {
+        val recipientId = viewModel.save()
+        dismissAllowingStateLoss()
+        findListener<Callback>()?.onMyStoryConfigured(recipientId)
+      }
     }
   }
 

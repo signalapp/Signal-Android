@@ -1,59 +1,88 @@
 package org.thoughtcrime.securesms.stories.settings.my
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.livedata.Store
 
-class MyStorySettingsViewModel @JvmOverloads constructor(private val repository: MyStorySettingsRepository = MyStorySettingsRepository()) : ViewModel() {
-  private val store = Store(MyStorySettingsState(hasUserPerformedManualSelection = SignalStore.story.userHasBeenNotifiedAboutStories))
-  private val disposables = CompositeDisposable()
+/**
+ * Drives [MyStorySettingsScreen].
+ */
+class MyStorySettingsViewModel(
+  private val repository: MyStorySettingsRepository = MyStorySettingsRepository()
+) : EventDrivenViewModel<MyStorySettingsEvent>(TAG) {
 
-  val state: LiveData<MyStorySettingsState> = store.stateLiveData
-
-  override fun onCleared() {
-    disposables.clear()
+  companion object {
+    private val TAG = Log.tag(MyStorySettingsViewModel::class)
   }
 
-  fun refresh() {
-    disposables.clear()
-    disposables += repository.getPrivacyState()
-      .subscribe { myStoryPrivacyState -> store.update { it.copy(myStoryPrivacyState = myStoryPrivacyState) } }
-    disposables += repository.getRepliesAndReactionsEnabled()
-      .subscribe { repliesAndReactionsEnabled -> store.update { it.copy(areRepliesAndReactionsEnabled = repliesAndReactionsEnabled) } }
-    disposables += repository.getAllSignalConnectionsCount()
-      .subscribe { allSignalConnectionsCount -> store.update { it.copy(allSignalConnectionsCount = allSignalConnectionsCount) } }
-  }
+  private val _state = MutableStateFlow(MyStorySettingsState(hasUserPerformedManualSelection = repository.hasUserPerformedManualSelection()))
+  private val _actions = Channel<MyStorySettingsAction>(Channel.BUFFERED)
 
-  fun setRepliesAndReactionsEnabled(repliesAndReactionsEnabled: Boolean) {
-    disposables += repository.setRepliesAndReactionsEnabled(repliesAndReactionsEnabled)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { refresh() }
-  }
+  val state: StateFlow<MyStorySettingsState> = _state.asStateFlow()
+  val actions: Flow<MyStorySettingsAction> = _actions.receiveAsFlow()
 
-  fun setMyStoryPrivacyMode(privacyMode: DistributionListPrivacyMode): Completable {
-    store.update { state ->
-      state.copy(hasUserPerformedManualSelection = true)
+  override suspend fun processEvent(event: MyStorySettingsEvent) {
+    when (event) {
+      MyStorySettingsEvent.ScreenResumed -> {
+        refresh()
+      }
+      MyStorySettingsEvent.NavigateBackClicked -> {
+        _actions.send(MyStorySettingsAction.NavigateBack)
+      }
+      MyStorySettingsEvent.AllSignalConnectionsClicked -> {
+        selectPrivacyMode(DistributionListPrivacyMode.ALL)
+      }
+      MyStorySettingsEvent.ViewAllSignalConnectionsClicked -> {
+        _actions.send(MyStorySettingsAction.ShowAllSignalConnections)
+      }
+      MyStorySettingsEvent.AllExceptClicked -> {
+        selectPrivacyMode(DistributionListPrivacyMode.ALL_EXCEPT)
+        _actions.send(MyStorySettingsAction.NavigateToAllExcept)
+      }
+      MyStorySettingsEvent.OnlyShareWithClicked -> {
+        selectPrivacyMode(DistributionListPrivacyMode.ONLY_WITH)
+        _actions.send(MyStorySettingsAction.NavigateToOnlyShareWith)
+      }
+      MyStorySettingsEvent.LearnMoreClicked -> {
+        _actions.send(MyStorySettingsAction.ShowSignalConnectionsEducation)
+      }
+      is MyStorySettingsEvent.RepliesAndReactionsToggled -> {
+        repository.setRepliesAndReactionsEnabled(event.enabled)
+        refresh()
+      }
     }
+  }
 
-    SignalStore.story.userHasBeenNotifiedAboutStories = true
+  private suspend fun selectPrivacyMode(privacyMode: DistributionListPrivacyMode) {
+    _state.update { it.copy(hasUserPerformedManualSelection = true) }
+    repository.markUserPerformedManualSelection()
 
-    return if (privacyMode == state.value!!.myStoryPrivacyState.privacyMode) {
-      Completable.fromAction {
-        Stories.onStorySettingsChanged(Recipient.self().id)
-      }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    if (privacyMode == _state.value.myStoryPrivacyState.privacyMode) {
+      repository.notifyStorySettingsChanged()
     } else {
-      repository.setPrivacyMode(privacyMode)
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnComplete { refresh() }
+      repository.setMyStoryPrivacyMode(privacyMode)
+      refresh()
+    }
+  }
+
+  private suspend fun refresh() {
+    val privacyState = repository.getPrivacyState()
+    val repliesAndReactionsEnabled = repository.getRepliesAndReactionsEnabled()
+    val allSignalConnectionsCount = repository.getAllSignalConnectionsCount()
+
+    _state.update {
+      it.copy(
+        myStoryPrivacyState = privacyState,
+        areRepliesAndReactionsEnabled = repliesAndReactionsEnabled,
+        allSignalConnectionsCount = allSignalConnectionsCount
+      )
     }
   }
 }
