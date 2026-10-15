@@ -1,59 +1,46 @@
 package org.thoughtcrime.securesms.badges.view
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.thoughtcrime.securesms.badges.BadgeRepository
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.asFlow
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class ViewBadgeViewModel(
   private val startBadge: Badge?,
-  private val recipientId: RecipientId,
-  private val repository: BadgeRepository
+  recipientId: RecipientId
 ) : ViewModel() {
 
-  private val disposables = CompositeDisposable()
-
-  private val store = Store(ViewBadgeState())
-
-  val state: LiveData<ViewBadgeState> = store.stateLiveData
+  private val internalState = MutableStateFlow(ViewBadgeState())
+  val state: StateFlow<ViewBadgeState> = internalState
 
   init {
-    store.update(Recipient.live(recipientId).liveData) { recipient, state ->
-      state.copy(
-        recipient = recipient,
-        allBadgesVisibleOnProfile = recipient.badges,
-        selectedBadge = startBadge ?: recipient.badges.firstOrNull(),
-        badgeLoadState = ViewBadgeState.LoadState.LOADED
-      )
+    viewModelScope.launch {
+      Recipient.observable(recipientId).asFlow().collect { recipient ->
+        internalState.update {
+          it.copy(
+            recipient = recipient,
+            allBadgesVisibleOnProfile = recipient.badges,
+            selectedBadge = startBadge ?: recipient.badges.firstOrNull(),
+            badgeLoadState = ViewBadgeState.LoadState.LOADED
+          )
+        }
+      }
     }
-  }
-
-  override fun onCleared() {
-    disposables.clear()
   }
 
   fun onPageSelected(position: Int) {
-    if (position > store.state.allBadgesVisibleOnProfile.size - 1 || position < 0) {
+    if (position > internalState.value.allBadgesVisibleOnProfile.size - 1 || position < 0) {
       return
     }
 
-    store.update {
+    internalState.update {
       it.copy(selectedBadge = it.allBadgesVisibleOnProfile[position])
-    }
-  }
-
-  class Factory(
-    private val startBadge: Badge?,
-    private val recipientId: RecipientId,
-    private val repository: BadgeRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(ViewBadgeViewModel(startBadge, recipientId, repository)))
     }
   }
 }
