@@ -11,11 +11,15 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.launch
 import org.signal.core.util.EditTextUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -87,12 +91,17 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
     recycler.adapter = adapter
 
     val viewHolder = AvatarPickerItem.ViewHolder(view)
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      EditTextUtil.setCursorColor(textInput, state.currentAvatar.color.foregroundColor)
-      viewHolder.bind(AvatarPickerItem.Model(state.currentAvatar, false))
 
-      adapter.submitList(state.colors().map { AvatarColorItem.Model(it) })
-      hasBoundFromViewModel = true
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          EditTextUtil.setCursorColor(textInput, state.currentAvatar.color.foregroundColor)
+          viewHolder.bind(AvatarPickerItem.Model(state.currentAvatar, false))
+
+          adapter.submitList(state.colors().map { AvatarColorItem.Model(it) })
+          hasBoundFromViewModel = true
+        }
+      }
     }
 
     EditTextUtil.addGraphemeClusterLimitFilter(textInput, 3)
