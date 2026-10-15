@@ -10,8 +10,12 @@ import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.ContactSelectionListFragment
@@ -85,15 +89,19 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
       initializeContactSelectionFragment()
     }
 
-    viewModel.state.observe(viewLifecycleOwner) {
-      actionButton.isEnabled = it.selection.isNotEmpty()
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect {
+          actionButton.isEnabled = it.selection.isNotEmpty()
 
-      if (it.distributionListId == null || it.privateStory != null) {
-        if (it.isStartingSelection) {
-          getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
-          viewModel.onStartingSelectionAdded()
+          if (it.distributionListId == null || it.privateStory != null) {
+            if (it.isStartingSelection) {
+              getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
+              viewModel.onStartingSelectionAdded()
+            }
+            presentTitle(toolbar, it.selection.size)
+          }
         }
-        presentTitle(toolbar, it.selection.size)
       }
     }
 
