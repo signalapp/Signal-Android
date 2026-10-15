@@ -8,7 +8,6 @@ package org.signal.appsettings.invite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel
@@ -35,7 +34,7 @@ class InviteFragment : ComposeFragment() {
     CollectActions(viewModel.actions) { action ->
       when (action) {
         is InviteAction.ShareInvite -> InviteActions.inviteUserToSignal(requireContext(), ::startActivity, action.inviteText)
-        InviteAction.NavigateBack -> findNavController().popBackStack()
+        InviteAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
       }
     }
 
