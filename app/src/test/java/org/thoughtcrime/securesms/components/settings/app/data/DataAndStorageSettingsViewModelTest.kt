@@ -65,12 +65,12 @@ class DataAndStorageSettingsViewModelTest {
     every { DataAndStorageSettingsRepository.totalStorageUseBytes() } returns storageUse
     every { DataAndStorageSettingsRepository.refreshStorageUsage() } just Runs
     every { DataAndStorageSettingsRepository.getAutoDownload(any()) } answers { autoDownload[firstArg()].orEmpty() }
-    coEvery { DataAndStorageSettingsRepository.setAutoDownload(any(), any()) } answers { autoDownload[firstArg()] = secondArg() }
+    every { DataAndStorageSettingsRepository.setAutoDownload(any(), any()) } answers { autoDownload[firstArg()] = secondArg() }
     every { DataAndStorageSettingsRepository.getAlwaysAutoDownloadedBytes() } returns 102_400
     every { DataAndStorageSettingsRepository.getSentMediaQuality() } answers { sentMediaQuality }
-    coEvery { DataAndStorageSettingsRepository.setSentMediaQuality(any()) } answers { sentMediaQuality = firstArg() }
+    every { DataAndStorageSettingsRepository.setSentMediaQuality(any()) } answers { sentMediaQuality = firstArg() }
     every { DataAndStorageSettingsRepository.getCallDataMode() } answers { callDataMode }
-    coEvery { DataAndStorageSettingsRepository.setCallDataMode(any()) } answers { callDataMode = firstArg() }
+    every { DataAndStorageSettingsRepository.setCallDataMode(any()) } answers { callDataMode = firstArg() }
     every { DataAndStorageSettingsRepository.isForceWebsocketModeEnabled() } answers { forceWebsocket }
     coEvery { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) } answers { forceWebsocket = firstArg() }
     every { DataAndStorageSettingsRepository.isPlayServicesAvailable() } returns true
@@ -151,7 +151,7 @@ class DataAndStorageSettingsViewModelTest {
 
     viewModel.onEvent(DataAndStorageSettingsEvent.AutoDownloadChanged(AutoDownloadNetwork.ROAMING, setOf(AutoDownloadMediaType.AUDIO)))
 
-    coVerify { DataAndStorageSettingsRepository.setAutoDownload(AutoDownloadNetwork.ROAMING, setOf(AutoDownloadMediaType.AUDIO)) }
+    verify { DataAndStorageSettingsRepository.setAutoDownload(AutoDownloadNetwork.ROAMING, setOf(AutoDownloadMediaType.AUDIO)) }
     assertThat(viewModel.state.value.autoDownloadFor(AutoDownloadNetwork.ROAMING)).isEqualTo(setOf(AutoDownloadMediaType.AUDIO))
     assertThat(viewModel.state.value.autoDownloadFor(AutoDownloadNetwork.WIFI)).isEqualTo(emptySet())
   }
@@ -162,7 +162,7 @@ class DataAndStorageSettingsViewModelTest {
 
     viewModel.onEvent(DataAndStorageSettingsEvent.SentMediaQualitySelected(SentMediaQuality.HIGH))
 
-    coVerify { DataAndStorageSettingsRepository.setSentMediaQuality(SentMediaQuality.HIGH) }
+    verify { DataAndStorageSettingsRepository.setSentMediaQuality(SentMediaQuality.HIGH) }
     assertThat(viewModel.state.value.sentMediaQuality).isEqualTo(SentMediaQuality.HIGH)
   }
 
@@ -172,7 +172,7 @@ class DataAndStorageSettingsViewModelTest {
 
     viewModel.onEvent(DataAndStorageSettingsEvent.CallDataModeSelected(CallDataMode.HIGH_ON_WIFI))
 
-    coVerify { DataAndStorageSettingsRepository.setCallDataMode(CallDataMode.HIGH_ON_WIFI) }
+    verify { DataAndStorageSettingsRepository.setCallDataMode(CallDataMode.HIGH_ON_WIFI) }
     assertThat(viewModel.state.value.callDataMode).isEqualTo(CallDataMode.HIGH_ON_WIFI)
   }
 

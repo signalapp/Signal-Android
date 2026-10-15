@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Dialog for selecting a custom expire timer value.
@@ -26,7 +27,7 @@ class CustomExpireTimerSelectDialog : DialogFragment() {
     return MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.ExpireTimerSettingsFragment__custom_time)
       .setView(dialogView)
-      .setPositiveButton(R.string.ExpireTimerSettingsFragment__set) { _, _ ->
+      .setPositiveButton(CoreUiR.string.ExpireTimerSettingsFragment__set) { _, _ ->
         viewModel.select(selector.getTimer())
       }
       .setNegativeButton(android.R.string.cancel, null)

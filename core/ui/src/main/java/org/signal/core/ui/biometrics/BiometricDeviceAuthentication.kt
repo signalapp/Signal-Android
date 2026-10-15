@@ -44,6 +44,20 @@ class BiometricDeviceAuthentication(
     fun createPromptInfoBuilder(): PromptInfo.Builder {
       return PromptInfo.Builder().setAllowedAuthenticators(ALLOWED_AUTHENTICATORS)
     }
+
+    /** Whether the device has any biometric or device credential the user could authenticate with. */
+    @JvmStatic
+    fun isAvailable(context: Context): Boolean {
+      return canAuthenticate(BiometricManager.from(context), context)
+    }
+
+    private fun canAuthenticate(biometricManager: BiometricManager, context: Context): Boolean {
+      return if (Build.VERSION.SDK_INT >= 30) {
+        biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+      } else {
+        biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS || ServiceUtil.getKeyguardManager(context).isDeviceSecure
+      }
+    }
   }
 
   private fun isDeviceSecure(context: Context): Boolean {
@@ -57,11 +71,7 @@ class BiometricDeviceAuthentication(
    * > Developers that wish to check for the presence of a PIN, pattern, or password on these versions should instead use KeyguardManager.isDeviceSecure().
    */
   fun canAuthenticate(context: Context): Boolean {
-    return if (Build.VERSION.SDK_INT >= 30) {
-      biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
-    } else {
-      biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS || isDeviceSecure(context)
-    }
+    return canAuthenticate(biometricManager, context)
   }
 
   /**

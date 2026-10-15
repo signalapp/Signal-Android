@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.Callbacks
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.signal.core.ui.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.video.inline.InlineVideoCell;

@@ -53,4 +53,48 @@
     <string name="preferences__none">None</string>
     <string name="preferences_off">Off</string>
     <string name="preferences_on">On</string>
+    <string name="ExpireTimerSettingsFragment__set">Set</string>
+    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
+    <string name="CustomExpireTimerSelectorView__hours">hours</string>
+    <string name="CustomExpireTimerSelectorView__days">days</string>
+    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <!-- expiration -->
+    <string name="expiration_off">Off</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%dw</string>
+    <string name="expiration_combined">%1$s %2$s</string>
 </resources>

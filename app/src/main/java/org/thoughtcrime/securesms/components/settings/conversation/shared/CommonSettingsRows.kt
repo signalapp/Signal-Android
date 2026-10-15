@@ -21,8 +21,8 @@ import androidx.compose.ui.res.stringResource
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.util.ExpirationUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ExpirationUtil
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import org.signal.appsettings.R as AppSettingsR

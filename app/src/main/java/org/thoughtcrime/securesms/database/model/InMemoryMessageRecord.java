@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.CollapsedState;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.signal.core.ui.util.ExpirationUtil;
 
 import java.util.Collections;
 import java.util.function.Consumer;

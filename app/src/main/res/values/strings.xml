@@ -3551,45 +3551,6 @@
 
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Off</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">%d second</item>
-        <item quantity="other">%d seconds</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">%d minute</item>
-        <item quantity="other">%d minutes</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%dm</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">%d hour</item>
-        <item quantity="other">%d hours</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%dh</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">%d day</item>
-        <item quantity="other">%d days</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%dd</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">%d week</item>
-        <item quantity="other">%d weeks</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
     <string name="IdentityUtil_unverified_banner_two">Your safety numbers with %1$s and %2$s are no longer verified</string>
@@ -4634,7 +4595,6 @@
     <string name="BackupUtil_unknown">Unknown</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
@@ -4661,24 +4621,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Off</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
 
     <string name="Recipient_unknown">Unknown</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5478,14 +5420,7 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
     <string name="ExpireTimerSettingsFragment__save">Save</string>
-
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
 
     <!-- HelpSettingsFragment -->
     <string name="HelpSettingsFragment__support_center">Support center</string>

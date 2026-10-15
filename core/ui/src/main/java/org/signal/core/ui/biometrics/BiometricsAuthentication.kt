@@ -83,12 +83,20 @@ class BiometricsAuthentication internal constructor(
  *
  * - `val biometrics = rememberBiometricsAuthentication(...)`
  * - `onClick = { biometrics.withBiometricsAuthentication { performAction() } }`
+ *
+ * When the device can't show a prompt at all, the action runs anyway unless [proceedWhenUnavailable] is false. Pass
+ * false for actions that must never happen without authenticating, such as turning off a lock.
+ *
+ * [deviceCredentialTitle] titles the device credential screen shown when biometrics aren't available, and defaults to
+ * [promptTitle].
  */
 @Composable
 fun rememberBiometricsAuthentication(
   promptTitle: String? = null,
   educationSheetMessage: String? = null,
-  onAuthenticationFailed: (() -> Unit)? = null
+  onAuthenticationFailed: (() -> Unit)? = null,
+  proceedWhenUnavailable: Boolean = true,
+  deviceCredentialTitle: String? = null
 ): BiometricsAuthentication {
   if (LocalInspectionMode.current) {
     return remember {
@@ -166,12 +174,15 @@ fun rememberBiometricsAuthentication(
     biometricDeviceAuthentication.updatePromptInfo(promptInfo)
 
     if (!biometricDeviceAuthentication.authenticate(context, true) {
-        deviceCredentialLauncher.launch(promptTitleForPrompt)
+        deviceCredentialLauncher.launch(deviceCredentialTitle?.takeIf { it.isNotBlank() } ?: promptTitleForPrompt)
       }
     ) {
-      // If we cannot authenticate at all, preserve existing call-site behavior and just proceed.
       pendingHolder.take()
-      pending.onAuthenticated()
+      if (proceedWhenUnavailable) {
+        pending.onAuthenticated()
+      } else {
+        pending.onAuthenticationFailed?.invoke()
+      }
     }
   }
 

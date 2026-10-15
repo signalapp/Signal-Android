@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.signal.core.ui.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends ConstraintLayout {

@@ -42,14 +42,12 @@ object DataAndStorageSettingsRepository {
     return values.mapNotNull { value -> AutoDownloadMediaType.entries.firstOrNull { it.storageValue == value } }.toSet()
   }
 
-  suspend fun setAutoDownload(network: AutoDownloadNetwork, mediaTypes: Set<AutoDownloadMediaType>) {
+  fun setAutoDownload(network: AutoDownloadNetwork, mediaTypes: Set<AutoDownloadMediaType>) {
     val values = mediaTypes.map { it.storageValue }.toSet()
-    withContext(Dispatchers.Default) {
-      when (network) {
-        AutoDownloadNetwork.MOBILE -> SignalStore.settings.mobileMediaDownloadAllowed = values
-        AutoDownloadNetwork.WIFI -> SignalStore.settings.wifiMediaDownloadAllowed = values
-        AutoDownloadNetwork.ROAMING -> SignalStore.settings.roamingMediaDownloadAllowed = values
-      }
+    when (network) {
+      AutoDownloadNetwork.MOBILE -> SignalStore.settings.mobileMediaDownloadAllowed = values
+      AutoDownloadNetwork.WIFI -> SignalStore.settings.wifiMediaDownloadAllowed = values
+      AutoDownloadNetwork.ROAMING -> SignalStore.settings.roamingMediaDownloadAllowed = values
     }
   }
 
@@ -57,19 +55,15 @@ object DataAndStorageSettingsRepository {
 
   fun getSentMediaQuality(): SentMediaQuality = SignalStore.settings.sentMediaQuality
 
-  suspend fun setSentMediaQuality(quality: SentMediaQuality) {
-    withContext(Dispatchers.Default) {
-      SignalStore.settings.sentMediaQuality = quality
-    }
+  fun setSentMediaQuality(quality: SentMediaQuality) {
+    SignalStore.settings.sentMediaQuality = quality
   }
 
   fun getCallDataMode(): CallDataMode = SignalStore.settings.callDataMode
 
-  suspend fun setCallDataMode(mode: CallDataMode) {
-    withContext(Dispatchers.Default) {
-      SignalStore.settings.callDataMode = mode
-      AppDependencies.signalCallManager.dataModeUpdate()
-    }
+  fun setCallDataMode(mode: CallDataMode) {
+    SignalStore.settings.callDataMode = mode
+    AppDependencies.signalCallManager.dataModeUpdate()
   }
 
   fun isForceWebsocketModeEnabled(): Boolean = SignalStore.settings.forceWebsocketMode.isEnabled
