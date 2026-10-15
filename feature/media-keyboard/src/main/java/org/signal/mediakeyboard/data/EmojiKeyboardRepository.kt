@@ -69,6 +69,8 @@ data class EmojiCategoryPage(
 )
 
 enum class EmojiKeyboardCategory(val key: String, @field:StringRes val label: Int) {
+  /** The reactions already on the message being reacted to. */
+  THIS_MESSAGE("ThisMessage", R.string.MediaKeyboard__this_message),
   RECENTS("Recents", R.string.MediaKeyboard__recently_used),
   PEOPLE("People", R.string.MediaKeyboard__smileys_and_people),
   NATURE("Nature", R.string.MediaKeyboard__nature),

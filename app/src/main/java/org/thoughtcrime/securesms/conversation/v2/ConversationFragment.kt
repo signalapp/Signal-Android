@@ -5041,7 +5041,7 @@ class ConversationFragment :
       .subscribeBy(
         onSuccess = {
           ReactWithAnyEmojiBottomSheetDialogFragment
-            .createForMessageRecord(messageRecord, -1)
+            .createForMessageRecord(messageRecord)
             .show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
         }
       )

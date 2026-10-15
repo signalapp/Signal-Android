@@ -431,11 +431,19 @@
 
     <style name="Widget.Signal.ReactWithAny" parent="Widget.Signal.FixedRoundedCorners">
         <item name="bottomSheetStyle">@style/Widget.Signal.ReactWithAny.BottomSheet</item>
+        <!--
+          Lays the dialog out edge to edge on every API level, which BottomSheetDialog only does with a translucent
+          navigation bar. It then pads the sheet clear of the status bar once it is pulled up beneath it.
+        -->
+        <item name="enableEdgeToEdge">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Widget.Signal.ReactWithAny.BottomSheet" parent="Widget.Material3.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
         <item name="backgroundTint">@color/react_with_any_background</item>
+        <!-- The content keeps clear of the navigation bar and keyboard itself. -->
+        <item name="paddingBottomSystemWindowInsets">false</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners" parent="Widget.CoreUi.FixedRoundedCorners">

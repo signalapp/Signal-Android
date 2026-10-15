@@ -58,6 +58,7 @@ import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.CollapsingBarsState
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
@@ -86,8 +87,8 @@ private val STICKER_CELL_SPACING = 12.dp
  *   search field, so the top bar can drop its now-redundant search icon.
  * @param contentPadding Space the grid starts its content within but still scrolls through, for a host that draws its
  *   own chrome over the page.
- * @param fullBleed Runs the grid beneath the pack rail too, which then slides over it, for a host that fills the screen.
- * @param gridState The sticker grid's scroll state, for a host whose own chrome follows the scroll.
+ * @param barsState For a full-screen host, overlays the pack rail on the grid and collapses it with the host's chrome.
+ * @param gridState The sticker grid's scroll state.
  * @param longPressMenu Opens a menu of what can be done with a long pressed sticker, for a host with nowhere of its
  *   own to offer it. Otherwise the long press is reported for the host to handle.
  */
@@ -98,7 +99,7 @@ fun StickerPageScreen(
   modifier: Modifier = Modifier,
   onSearchFieldRevealedChange: (Boolean) -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(),
-  fullBleed: Boolean = false,
+  barsState: CollapsingBarsState? = null,
   gridState: LazyGridState = rememberLazyGridState(),
   longPressMenu: Boolean = false
 ) {
@@ -110,7 +111,7 @@ fun StickerPageScreen(
     PinnedRailLayout(
       rail = { StickerPackRail(state = state, onEvent = onEvent) },
       modifier = modifier,
-      railOverlaysContent = fullBleed,
+      barsState = barsState,
       contentAtTop = gridAtTop
     ) { railPadding ->
       StickerGrid(

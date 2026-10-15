@@ -5,14 +5,13 @@
 
 package org.signal.mediakeyboard.screens.emoji
 
-import org.signal.mediakeyboard.MediaKeyboardState
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.KeyboardEmoji
 
 sealed interface EmojiPageScreenEvents {
   data object Initialize : EmojiPageScreenEvents
   data object RefreshRecents : EmojiPageScreenEvents
-  data class ParentStateChanged(val parentState: MediaKeyboardState) : EmojiPageScreenEvents
+  data class SearchQueryChanged(val query: String?) : EmojiPageScreenEvents
   data class CategorySelected(val category: EmojiKeyboardCategory) : EmojiPageScreenEvents
   data class VisibleCategoryChanged(val category: EmojiKeyboardCategory) : EmojiPageScreenEvents
   data object ScrollTargetConsumed : EmojiPageScreenEvents

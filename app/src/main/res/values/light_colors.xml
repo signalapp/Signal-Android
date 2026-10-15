@@ -185,9 +185,6 @@
     <color name="quote_view_label_background_outgoing_wallpaper">@color/transparent_white_36</color>
 
     <color name="react_with_any_background">@color/signal_colorSurface1</color>
-    <color name="react_with_any_search_background">@color/signal_colorSurfaceVariant</color>
-    <color name="react_with_any_search_hint">@color/signal_colorOnSurfaceVariant</color>
-    <color name="react_with_any_customize_background">@color/signal_colorSurfaceVariant</color>
 
     <color name="voice_note_player_view_background">@color/signal_colorSurface1</color>
 

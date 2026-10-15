@@ -28,7 +28,8 @@ data class EmojiPageState(
     val emoji: KeyboardEmoji
   )
 
+  /** Emoji without variations, such as recents and reactions, are already the exact form to show. */
   fun displayEmoji(emoji: KeyboardEmoji): String {
-    return preferredVariations[emoji.canonical] ?: emoji.canonical
+    return if (emoji.hasVariations) preferredVariations[emoji.canonical] ?: emoji.canonical else emoji.canonical
   }
 }

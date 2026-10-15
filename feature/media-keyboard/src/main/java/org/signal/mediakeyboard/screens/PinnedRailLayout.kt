@@ -37,6 +37,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.CollapsingBarsState
+import org.signal.core.ui.compose.LocalBottomSheetHostState
+import org.signal.core.ui.compose.collapsingBottomBar
 import org.signal.core.ui.compose.navigationBarsCompat
 import org.signal.core.ui.compose.theme.SignalTheme
 
@@ -59,19 +62,31 @@ private val SCROLL_DIRECTION_THRESHOLD = 4.dp
  * with it, which is what lets the content run edge to edge once it is scrolled away. With no rail to do that, this
  * layout keeps the bar clear itself, since nothing else in the sheet does.
  *
- * @param railOverlaysContent Draws [content] full height beneath the rail, which then slides over it rather than
- *   resizing it, and rides above the soft keyboard.
- * @param contentAtTop Whether the content is scrolled all the way up, which always shows the rail, so content that stops
- *   scrolling cannot leave it out of reach.
- * @param content Given the bottom padding to leave clear, which is only non-zero with [railOverlaysContent].
+ * @param barsState Overlays the rail on full-height [content], above the keyboard, collapsing with the host's chrome.
+ * @param contentAtTop Shows the rail while the content is scrolled to the top. Ignored with [barsState].
+ * @param content Given the bottom padding to leave clear, which is non-zero only with [barsState].
  */
 @Composable
 internal fun PinnedRailLayout(
   rail: (@Composable () -> Unit)?,
   modifier: Modifier = Modifier,
-  railOverlaysContent: Boolean = false,
+  barsState: CollapsingBarsState? = null,
   contentAtTop: Boolean = false,
   content: @Composable (contentPadding: PaddingValues) -> Unit
+) {
+  if (barsState != null) {
+    OverlaidRailLayout(rail = rail, barsState = barsState, modifier = modifier, content = content)
+  } else {
+    InsetRailLayout(rail = rail, contentAtTop = contentAtTop, modifier = modifier, content = { content(PaddingValues()) })
+  }
+}
+
+@Composable
+private fun InsetRailLayout(
+  rail: (@Composable () -> Unit)?,
+  contentAtTop: Boolean,
+  modifier: Modifier = Modifier,
+  content: @Composable () -> Unit
 ) {
   val density = LocalDensity.current
   val expanded = LocalMediaKeyboardExpanded.current
@@ -114,48 +129,82 @@ internal fun PinnedRailLayout(
       .clipToBounds()
       .nestedScroll(scrollConnection)
   ) {
-    val clearBottom = if (rail != null) {
-      with(density) { railHeight.toDp() }
+    val contentBottomPadding = if (rail != null) {
+      with(density) { (railHeight * (1f - railHiddenFraction)).toDp() }
     } else {
       WindowInsets.navigationBarsCompat.asPaddingValues().calculateBottomPadding()
     }
 
-    if (railOverlaysContent) {
-      Box(modifier = Modifier.fillMaxSize()) {
-        content(PaddingValues(bottom = clearBottom))
-      }
-    } else {
-      val contentBottomPadding = if (rail != null) clearBottom * (1f - railHiddenFraction) else clearBottom
-
-      Box(
-        modifier = Modifier
-          .fillMaxSize()
-          .padding(bottom = contentBottomPadding)
-      ) {
-        content(PaddingValues())
-      }
+    Box(
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(bottom = contentBottomPadding)
+    ) {
+      content()
     }
 
     if (rail != null) {
-      Box(
+      RailSurface(
+        insets = WindowInsets.navigationBarsCompat,
+        rail = rail,
         modifier = Modifier
           .align(Alignment.BottomStart)
-          .fillMaxWidth()
           .onSizeChanged { measuredRailHeight = it.height }
           .graphicsLayer { translationY = railHeight * railHiddenFraction }
-      ) {
-        Surface(color = SignalTheme.colors.colorSurface3) {
-          val bottomInsets = if (railOverlaysContent) {
-            WindowInsets.ime.union(WindowInsets.navigationBarsCompat)
-          } else {
-            WindowInsets.navigationBarsCompat
-          }
+      )
+    }
+  }
+}
 
-          Box(modifier = Modifier.windowInsetsPadding(bottomInsets)) {
-            rail()
-          }
-        }
-      }
+@Composable
+private fun OverlaidRailLayout(
+  rail: (@Composable () -> Unit)?,
+  barsState: CollapsingBarsState,
+  modifier: Modifier = Modifier,
+  content: @Composable (contentPadding: PaddingValues) -> Unit
+) {
+  val bottomInsets = WindowInsets.ime.union(WindowInsets.navigationBarsCompat)
+  val sheet = LocalBottomSheetHostState.current
+
+  Box(
+    modifier = modifier
+      .fillMaxSize()
+      .clipToBounds()
+  ) {
+    val clearBottom = if (rail != null) {
+      with(LocalDensity.current) { barsState.bottomBarHeightPx.toDp() }
+    } else {
+      bottomInsets.asPaddingValues().calculateBottomPadding()
+    }
+
+    content(PaddingValues(bottom = clearBottom))
+
+    if (rail != null) {
+      RailSurface(
+        insets = bottomInsets,
+        rail = rail,
+        modifier = Modifier
+          .align(Alignment.BottomStart)
+          // Kept on screen when an enclosing bottom sheet extends below it.
+          .graphicsLayer { translationY = -sheet.overflowBottomPx.toFloat() }
+          .collapsingBottomBar(barsState)
+      )
+    }
+  }
+}
+
+@Composable
+private fun RailSurface(
+  insets: WindowInsets,
+  rail: @Composable () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  Surface(
+    color = SignalTheme.colors.colorSurface3,
+    modifier = modifier.fillMaxWidth()
+  ) {
+    Box(modifier = Modifier.windowInsetsPadding(insets)) {
+      rail()
     }
   }
 }

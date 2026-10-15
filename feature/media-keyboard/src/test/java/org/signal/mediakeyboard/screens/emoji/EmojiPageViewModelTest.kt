@@ -5,6 +5,9 @@
 
 package org.signal.mediakeyboard.screens.emoji
 
+import androidx.compose.foundation.text.input.clearText
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
+import androidx.compose.runtime.snapshots.Snapshot
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
@@ -17,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -26,8 +30,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.mediakeyboard.MediaKeyboardAction
-import org.signal.mediakeyboard.MediaKeyboardState
-import org.signal.mediakeyboard.MediaKeyboardTab
 import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.EmojiKeyboardRepository
@@ -42,7 +44,7 @@ class EmojiPageViewModelTest {
   private val grin = KeyboardEmoji("😀")
 
   private lateinit var repository: EmojiKeyboardRepository
-  private lateinit var parentState: MutableStateFlow<MediaKeyboardState>
+  private lateinit var hostSearchQuery: MutableStateFlow<String?>
   private lateinit var actions: MutableList<MediaKeyboardAction>
   private lateinit var collectorScope: CoroutineScope
 
@@ -54,7 +56,7 @@ class EmojiPageViewModelTest {
     coEvery { repository.getRecentEmoji() } returns listOf(KeyboardEmoji("😂"))
     coEvery { repository.getPreferredVariations() } returns emptyMap()
 
-    parentState = MutableStateFlow(MediaKeyboardState(offeredTabs = MediaKeyboardTab.entries, preferredTab = MediaKeyboardTab.EMOJI, initialized = true))
+    hostSearchQuery = MutableStateFlow(null)
     actions = mutableListOf()
     collectorScope = CoroutineScope(testDispatcher)
   }
@@ -65,8 +67,8 @@ class EmojiPageViewModelTest {
     Dispatchers.resetMain()
   }
 
-  private fun createViewModel(): EmojiPageViewModel {
-    val viewModel = EmojiPageViewModel(repository, parentState)
+  private fun createViewModel(searchQuery: Flow<String?>? = hostSearchQuery): EmojiPageViewModel {
+    val viewModel = EmojiPageViewModel(repository, searchQuery)
     collectorScope.launch { viewModel.actions.collect { actions += it } }
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
@@ -164,18 +166,68 @@ class EmojiPageViewModelTest {
   }
 
   @Test
-  fun `parent search - populates search results`() {
+  fun `host search - populates search results`() {
     coEvery { repository.search("smile") } returns listOf(grin)
 
     val viewModel = createViewModel()
-    parentState.value = parentState.value.copy(searchActive = true, searchQuery = "smile")
+    hostSearchQuery.value = "smile"
     testDispatcher.scheduler.advanceUntilIdle()
 
     assertThat(viewModel.state.value.searchResults).isEqualTo(listOf(grin))
 
-    parentState.value = parentState.value.copy(searchActive = false, searchQuery = "")
+    hostSearchQuery.value = null
     testDispatcher.scheduler.advanceUntilIdle()
 
     assertThat(viewModel.state.value.searchResults).isNull()
+  }
+
+  @Test
+  fun `host search - blank query shows recents in place of results`() {
+    val viewModel = createViewModel()
+    hostSearchQuery.value = ""
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchResults).isEqualTo(listOf(KeyboardEmoji("😂")))
+  }
+
+  @Test
+  fun `field search - typing searches and clearing goes back to the grid`() {
+    coEvery { repository.search("smile") } returns listOf(grin)
+    val viewModel = createViewModel(searchQuery = null)
+
+    viewModel.searchFieldState.setTextAndPlaceCursorAtEnd(" smile ")
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchResults).isEqualTo(listOf(grin))
+    assertThat(viewModel.state.value.searchQuery).isEqualTo("smile")
+
+    viewModel.searchFieldState.clearText()
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchResults).isNull()
+  }
+
+  @Test
+  fun `field search - blank field is not searching`() {
+    val viewModel = createViewModel(searchQuery = null)
+
+    viewModel.searchFieldState.setTextAndPlaceCursorAtEnd("   ")
+    Snapshot.sendApplyNotifications()
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchResults).isNull()
+  }
+
+  @Test
+  fun `initialize - this message leads, ahead of recents`() {
+    val thisMessage = EmojiCategoryPage(EmojiKeyboardCategory.THIS_MESSAGE, listOf(thumbsUp))
+    coEvery { repository.getEmojiPages() } returns listOf(thisMessage, EmojiCategoryPage(EmojiKeyboardCategory.PEOPLE, listOf(grin)))
+
+    val viewModel = createViewModel()
+
+    val categories = viewModel.state.value.pages.map { it.category }
+    assertThat(categories).isEqualTo(listOf(EmojiKeyboardCategory.THIS_MESSAGE, EmojiKeyboardCategory.RECENTS, EmojiKeyboardCategory.PEOPLE))
   }
 }

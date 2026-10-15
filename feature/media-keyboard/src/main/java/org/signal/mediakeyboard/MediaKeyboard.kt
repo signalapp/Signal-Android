@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
@@ -318,7 +319,12 @@ private fun EmojiTab(
 ) {
   val viewModel: EmojiPageViewModel = viewModel(
     key = "media-keyboard-emoji",
-    factory = EmojiPageViewModel.Factory(repository.emoji, parentStateFlow)
+    factory = EmojiPageViewModel.Factory(
+      repository = repository.emoji,
+      searchQuery = parentStateFlow.map { parent ->
+        parent.searchQuery.takeIf { parent.searchActive && parent.selectedTab == MediaKeyboardTab.EMOJI }
+      }
+    )
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
 
