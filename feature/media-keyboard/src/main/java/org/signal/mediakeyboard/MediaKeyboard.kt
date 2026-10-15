@@ -317,13 +317,17 @@ private fun EmojiTab(
   onSearchClicked: () -> Unit,
   onSearchFieldRevealedChange: (Boolean) -> Unit
 ) {
+  val searchQuery = remember(parentStateFlow) {
+    parentStateFlow.map { parent ->
+      parent.searchQuery.takeIf { parent.searchActive && parent.selectedTab == MediaKeyboardTab.EMOJI }
+    }
+  }
+
   val viewModel: EmojiPageViewModel = viewModel(
     key = "media-keyboard-emoji",
     factory = EmojiPageViewModel.Factory(
       repository = repository.emoji,
-      searchQuery = parentStateFlow.map { parent ->
-        parent.searchQuery.takeIf { parent.searchActive && parent.selectedTab == MediaKeyboardTab.EMOJI }
-      }
+      searchQuery = searchQuery
     )
   )
   val state by viewModel.state.collectAsStateWithLifecycle()
