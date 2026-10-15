@@ -38,6 +38,9 @@ val maxHotfixVersions = 100
 // We don't want versions to ever end in 0 so that they don't conflict with nightly versions
 val possibleHotfixVersions = (0 until maxHotfixVersions).toList().filter { it % 10 != 0 }
 
+// Nightly tags look like v8.33.0-nightly-1767-3: the canonical version code of the tagged commit, then a build number from 0 to 9 that resets with it.
+val nightlyTagRegex = Regex("^v\\d+\\.\\d+\\.\\d+-nightly-(\\d+)-(\\d)$")
+
 val debugKeystorePropertiesProvider: Provider<Properties> = providers.of(PropertiesFileValueSource::class.java) {
   parameters.file.set(rootProject.layout.projectDirectory.file("keystore.debug.properties"))
 }
@@ -571,19 +574,21 @@ androidComponents {
 
     // Version overrides
     if (variant.name.contains("nightly", ignoreCase = true)) {
-      var tag = getNightlyTagForCurrentCommit()
-      if (!tag.isNullOrEmpty()) {
-        if (tag.startsWith("v")) {
-          tag = tag.substring(1)
-        }
-
-        // We add a multiple of maxHotfixVersions to nightlies to ensure we're always at least that many versions ahead
-        val nightlyBuffer = (5 * maxHotfixVersions)
-        val nightlyVersionCode = (canonicalVersionCode * maxHotfixVersions) + (getNightlyBuildNumber(tag) * 10) + nightlyBuffer
+      val tag = getNightlyTagForCurrentCommit()
+      if (tag != null) {
+        val nightlyVersionCode = providers.provider { getNightlyVersionCode(tag) }
 
         variant.outputs.forEach { output ->
-          output.versionName.set("$tag | ${getLastCommitDateTimeUtc()}")
+          output.versionName.set("${tag.removePrefix("v")} | ${getLastCommitDateTimeUtc()}")
           output.versionCode.set(nightlyVersionCode)
+        }
+      } else if (variant.buildType == "release") {
+        val missingTag = providers.provider<Int> {
+          throw GradleException("Nightly release builds need a tag like v<version>-nightly-$canonicalVersionCode-<n> pointing at HEAD.")
+        }
+
+        variant.outputs.forEach { output ->
+          output.versionCode.set(missingTag)
         }
       }
     }
@@ -905,21 +910,21 @@ fun getNightlyTagForCurrentCommit(): String? {
     commandLine("git", "tag", "--points-at", "HEAD")
   }.standardOutput.asText.get().trim()
 
-  return if (output.isNotEmpty()) {
-    val tags = output.split("\n").toList()
-    tags.firstOrNull { it.contains("nightly") } ?: tags[0]
-  } else {
-    null
-  }
+  return output.lines()
+    .mapNotNull { nightlyTagRegex.matchEntire(it) }
+    .maxByOrNull { it.groupValues[2].toInt() }
+    ?.value
 }
 
-fun getNightlyBuildNumber(tag: String?): Int {
-  if (tag == null) {
-    return 0
+fun getNightlyVersionCode(tag: String): Int {
+  val (tagCanonicalVersionCode, buildNumber) = checkNotNull(nightlyTagRegex.matchEntire(tag)).destructured
+
+  if (tagCanonicalVersionCode.toInt() != canonicalVersionCode) {
+    throw GradleException("Nightly tag '$tag' is for canonical version code $tagCanonicalVersionCode, but HEAD is at $canonicalVersionCode.")
   }
 
-  val match = Regex("-(\\d{3})$").find(tag)
-  return match?.groupValues?.get(1)?.toIntOrNull() ?: 0
+  // Nightlies sit 5 canonical versions ahead and only use version codes ending in 0, so they never collide with a release or hotfix.
+  return ((canonicalVersionCode + 5) * maxHotfixVersions) + (buildNumber.toInt() * 10)
 }
 
 fun getLastCommitDateTimeUtc(): String {
