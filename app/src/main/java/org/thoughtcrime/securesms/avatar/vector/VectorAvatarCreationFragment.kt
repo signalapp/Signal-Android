@@ -6,10 +6,11 @@ import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.core.ui.viewModel
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarBundler
 import org.thoughtcrime.securesms.avatar.AvatarColorItem
@@ -24,13 +25,11 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
  */
 class VectorAvatarCreationFragment : Fragment(R.layout.vector_avatar_creation_fragment) {
 
-  private val viewModel: VectorAvatarCreationViewModel by viewModels(factoryProducer = this::createFactory)
-
-  private fun createFactory(): VectorAvatarCreationViewModel.Factory {
+  private val viewModel: VectorAvatarCreationViewModel by viewModel {
     val args = VectorAvatarCreationFragmentArgs.fromBundle(requireArguments())
     val vectorBundle = args.vectorAvatar
 
-    return VectorAvatarCreationViewModel.Factory(AvatarBundler.extractVector(vectorBundle))
+    VectorAvatarCreationViewModel(AvatarBundler.extractVector(vectorBundle))
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +47,7 @@ class VectorAvatarCreationFragment : Fragment(R.layout.vector_avatar_creation_fr
       viewModel.setColor(it)
     }
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
+    collectFlowOnViewLifecycle(viewModel.state) { state ->
       preview.background.colorFilter = SimpleColorFilter(state.currentAvatar.color.backgroundColor)
       preview.setImageResource(requireNotNull(Avatars.getDrawableResource(state.currentAvatar.key)))
       adapter.submitList(state.colors().map { AvatarColorItem.Model(it) })

@@ -1,27 +1,21 @@
 package org.thoughtcrime.securesms.avatar.vector
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.Avatars
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class VectorAvatarCreationViewModel(initialAvatar: Avatar.Vector) : ViewModel() {
 
-  private val store = Store(VectorAvatarCreationState(initialAvatar))
+  private val internalState = MutableStateFlow(VectorAvatarCreationState(initialAvatar))
 
-  val state: LiveData<VectorAvatarCreationState> = store.stateLiveData
+  val state: StateFlow<VectorAvatarCreationState> = internalState
 
   fun setColor(colorPair: Avatars.ColorPair) {
-    store.update { it.copy(currentAvatar = it.currentAvatar.copy(color = colorPair)) }
+    internalState.update { it.copy(currentAvatar = it.currentAvatar.copy(color = colorPair)) }
   }
 
-  fun getCurrentAvatar() = store.state.currentAvatar
-
-  class Factory(private val initialAvatar: Avatar.Vector) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(VectorAvatarCreationViewModel(initialAvatar)))
-    }
-  }
+  fun getCurrentAvatar() = internalState.value.currentAvatar
 }
