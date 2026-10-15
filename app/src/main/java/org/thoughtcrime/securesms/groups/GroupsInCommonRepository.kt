@@ -45,6 +45,11 @@ object GroupsInCommonRepository {
   }
 
   fun getGroupsInCommon(context: Context, recipientId: RecipientId): Flow<List<Recipient>> {
+    return getNamedGroupsInCommon(context, recipientId)
+      .map { groups -> groups.map { it.recipient } }
+  }
+
+  fun getNamedGroupsInCommon(context: Context, recipientId: RecipientId): Flow<List<GroupInCommon>> {
     return Recipient.observable(recipientId)
       .asFlow()
       .map { recipient ->
@@ -56,15 +61,26 @@ object GroupsInCommonRepository {
       }
   }
 
-  private suspend fun getGroupsContainingRecipient(context: Context, recipientId: RecipientId): List<Recipient> = withContext(Dispatchers.Default) {
+  private suspend fun getGroupsContainingRecipient(context: Context, recipientId: RecipientId): List<GroupInCommon> = withContext(Dispatchers.Default) {
     SignalDatabase.groups
       .getPushGroupsContainingMember(recipientId)
       .asSequence()
       .filter { it.members.contains(Recipient.self().id) }
       .map { groupRecord -> Recipient.resolved(groupRecord.recipientId) }
-      .sortedBy { group -> group.getDisplayName(context) }
+      .map { group -> GroupInCommon(recipient = group, name = group.getDisplayName(context)) }
+      .sortedBy { it.name }
       .toList()
   }
+}
+
+/**
+ * A group in common, along with its display name.
+ */
+data class GroupInCommon(
+  val recipient: Recipient,
+  val name: String
+) {
+  override fun toString(): String = "GroupInCommon(recipientId=${recipient.id})"
 }
 
 /**
