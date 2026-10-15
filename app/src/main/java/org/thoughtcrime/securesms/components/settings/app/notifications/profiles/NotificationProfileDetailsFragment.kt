@@ -5,11 +5,15 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.orderOfDaysInWeek
 import org.signal.emoji.EmojiUtil
@@ -72,22 +76,27 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
     NotificationProfileRecipient.register(adapter)
     LargeIconClickPreference.register(adapter)
 
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      when (state) {
-        is NotificationProfileDetailsViewModel.State.Valid -> {
-          toolbar?.title = state.profile.name
-          toolbar?.setOnMenuItemClickListener { item ->
-            if (item.itemId == R.id.action_edit) {
-              findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
-              true
-            } else {
-              false
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.state.collect { state ->
+          when (state) {
+            is NotificationProfileDetailsViewModel.State.Valid -> {
+              toolbar?.title = state.profile.name
+              toolbar?.setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.action_edit) {
+                  findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
+                  true
+                } else {
+                  false
+                }
+              }
+              adapter.submitList(getConfiguration(state).toMappingModelList())
             }
+
+            NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
+            NotificationProfileDetailsViewModel.State.Invalid -> requireActivity().onBackPressedDispatcher.onBackPressed()
           }
-          adapter.submitList(getConfiguration(state).toMappingModelList())
         }
-        NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
-        NotificationProfileDetailsViewModel.State.Invalid -> requireActivity().onBackPressed()
       }
     }
   }

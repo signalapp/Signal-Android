@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -9,18 +8,20 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
 
 class NotificationProfileDetailsViewModel(private val profileId: Long, private val repository: NotificationProfilesRepository) : ViewModel() {
 
-  private val store = Store<State>(State.NotLoaded)
+  private val internalState = MutableStateFlow<State>(State.NotLoaded)
   private val disposables = CompositeDisposable()
 
-  val state: LiveData<State> = store.stateLiveData
+  val state: StateFlow<State> = internalState
 
   init {
     disposables += repository.getProfiles()
@@ -40,7 +41,7 @@ class NotificationProfileDetailsViewModel(private val profileId: Long, private v
         onNext = { newState ->
           when (newState) {
             State.NotLoaded -> Unit
-            State.Invalid -> store.update { newState }
+            State.Invalid -> internalState.update { newState }
             is State.Valid -> updateWithValidState(newState)
           }
         }
@@ -48,7 +49,7 @@ class NotificationProfileDetailsViewModel(private val profileId: Long, private v
   }
 
   private fun updateWithValidState(newState: State.Valid) {
-    store.update { oldState: State ->
+    internalState.update { oldState: State ->
       if (oldState is State.Valid) {
         oldState.copy(profile = newState.profile, recipients = newState.recipients, isOn = newState.isOn)
       } else {
@@ -93,7 +94,7 @@ class NotificationProfileDetailsViewModel(private val profileId: Long, private v
   }
 
   fun showAllMembers() {
-    store.update { s ->
+    internalState.update { s ->
       if (s is State.Valid) {
         s.copy(expanded = true)
       } else {
