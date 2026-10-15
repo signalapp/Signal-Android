@@ -48,7 +48,18 @@ class StickerManagementViewModel : ViewModel() {
   private suspend fun loadStickerPacks() {
     combine(stickerManagementRepo.getStickerPacks(), downloadStatusByPackId, ::Pair)
       .collectLatest { (stickerPacksResult, downloadStatuses) ->
-        val allPacks = (stickerPacksResult.blessedPacks + stickerPacksResult.availablePacks + stickerPacksResult.installedPacks)
+        val allRecords = stickerPacksResult.blessedPacks + stickerPacksResult.availablePacks + stickerPacksResult.installedPacks
+        val installedPackIds = allRecords
+          .filter { it.isInstalled }
+          .map { StickerPackId(it.packId) }
+          .filter { downloadStatuses.containsKey(it) }
+          .toSet()
+        if (installedPackIds.isNotEmpty()) {
+          downloadStatusByPackId.update { it - installedPackIds }
+          return@collectLatest
+        }
+
+        val allPacks = allRecords
           .map { record ->
             val packId = StickerPackId(record.packId)
             StickerPack(
@@ -91,10 +102,8 @@ class StickerManagementViewModel : ViewModel() {
   }
 
   private fun updatePackDownloadStatus(packId: StickerPackId, newStatus: DownloadStatus?) {
-    downloadStatusByPackId.value = if (newStatus == null) {
-      downloadStatusByPackId.value.minus(packId)
-    } else {
-      downloadStatusByPackId.value.plus(packId to newStatus)
+    downloadStatusByPackId.update {
+      if (newStatus == null) it - packId else it + (packId to newStatus)
     }
   }
 
@@ -123,8 +132,6 @@ class StickerManagementViewModel : ViewModel() {
     val packsToUninstall = internalUiState.value.installedPacks.filter { packIds.contains(it.id) }
     viewModelScope.launch {
       StickerManagementRepository.uninstallStickerPacks(packsToUninstall.associate { it.id to it.key })
-
-      packsToUninstall.forEach { updatePackDownloadStatus(it.id, null) }
 
       internalUiState.update {
         it.copy(
