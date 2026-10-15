@@ -24,12 +24,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.dismissWithAnimation
 import org.signal.mediasend.R
-import org.signal.mediasend.SentMediaQuality
 
 /**
  * Modal bottom sheet offering the media quality options, dismissing itself once one is picked.

@@ -7,8 +7,8 @@ package org.signal.mediasend.screens.edit
 
 import android.net.Uri
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.MediaSendFlowState
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarAction
 import org.signal.mediasend.screens.edit.video.trim.VideoTrimBarEvents

@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.mediasend.v3
 
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.imageeditor.core.Renderer
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.scribbles.StickerSelectResult

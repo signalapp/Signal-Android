@@ -8,12 +8,12 @@ package org.signal.mediasend.screens.edit
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.android.tools.screenshot.PreviewTest
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.ScreenshotPreviews
 import org.signal.core.util.ContentTypeUtil
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.EditorState
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.video.VideoTrimData
 
 class MediaEditScreenScreenshotTests {

@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet
 import org.thoughtcrime.securesms.util.RingtoneUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.signal.core.ui.R as CoreUiR
 
 class NotificationsSettingsFragment : ComposeFragment() {
 
@@ -620,7 +621,7 @@ private fun getWhileMutedString(state: NotificationsSettingsState): String {
   return if (body.isNotEmpty()) {
     body.joinToString(", ")
   } else {
-    stringResource(R.string.preferences__none)
+    stringResource(CoreUiR.string.preferences__none)
   }
 }
 

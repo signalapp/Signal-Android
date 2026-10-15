@@ -433,7 +433,7 @@ private fun AppSettingsContent(
 
         item {
           Rows.TextRow(
-            text = stringResource(R.string.preferences__data_and_storage),
+            text = stringResource(AppSettingsR.string.preferences__data_and_storage),
             icon = painterResource(R.drawable.symbol_data_24),
             onClick = {
               callbacks.navigate(AppSettingsRoute.DataAndStorageRoute.DataAndStorage)

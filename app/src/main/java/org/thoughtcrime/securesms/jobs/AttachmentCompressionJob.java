@@ -21,7 +21,7 @@ import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
 import org.signal.core.util.logging.Log;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.mediasend.MediaConstraints;
-import org.signal.mediasend.SentMediaQuality;
+import org.signal.core.models.media.SentMediaQuality;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;

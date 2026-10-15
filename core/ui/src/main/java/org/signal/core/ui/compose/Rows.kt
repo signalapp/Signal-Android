@@ -247,11 +247,13 @@ object Rows {
     values: Array<String>,
     selection: Array<String>,
     noSelectionLabel: String,
+    modifier: Modifier = Modifier,
     onSelectionChanged: (Array<String>) -> Unit
   ) {
     var displayDialog by remember { mutableStateOf(false) }
 
     TextRow(
+      modifier = modifier,
       text = text,
       label = if (selection.isNotEmpty()) {
         selection.joinToString(", ") {

@@ -10,6 +10,7 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.rules.ExternalResource
 import org.signal.camera.CameraDependencies
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushWidths
 import kotlin.time.Duration.Companion.seconds
 

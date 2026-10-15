@@ -11,13 +11,13 @@ import androidx.media3.exoplayer.ExoPlayer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.mediasend.MediaConstraints
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.SignalDatabase

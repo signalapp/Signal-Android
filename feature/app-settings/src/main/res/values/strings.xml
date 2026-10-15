@@ -398,4 +398,41 @@
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
     <string name="PhoneNumberPrivacy_everyone">Everyone</string>
     <string name="PhoneNumberPrivacy_nobody">Nobody</string>
+    <string name="arrays__images">Images</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Documents</string>
+    <string name="preferences__data_and_storage">Data and storage</string>
+    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
+    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
+    <string name="preferences_chats__when_roaming">When roaming</string>
+    <string name="preferences_chats__media_auto_download">Media auto-download</string>
+    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
+    <string name="preferences_data_and_storage__never">Never</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Use proxy</string>
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
+    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <!-- Category title for the quality of the media to be sent -->
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
+    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
+    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
+  <string name="SentMediaQuality__high">High</string>
+  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
+  <string name="SentMediaQuality__standard">Standard</string>
 </resources>

@@ -52,7 +52,7 @@ import org.signal.imageeditor.core.renderers.BezierDrawingRenderer;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.imageeditor.core.renderers.UriGlideRenderer;
 import org.signal.mediasend.MediaConstraints;
-import org.signal.mediasend.SentMediaQuality;
+import org.signal.core.models.media.SentMediaQuality;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.attachments.AttachmentSaver;

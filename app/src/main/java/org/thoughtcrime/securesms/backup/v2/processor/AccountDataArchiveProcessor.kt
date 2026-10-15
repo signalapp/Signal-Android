@@ -11,11 +11,12 @@ import org.signal.archive.proto.AccountData
 import org.signal.archive.proto.ChatStyle
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
+import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.thoughtcrime.securesms.webrtc.CallDataMode
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.AppleIAPOriginalTransactionId
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.GooglePlayBillingPurchaseToken

@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.WriteWith
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.parcelers.NullableCharSequenceParceler
 
 /**

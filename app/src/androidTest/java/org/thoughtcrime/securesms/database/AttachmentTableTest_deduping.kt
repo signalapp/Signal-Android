@@ -13,13 +13,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.readFully
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.update
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.dependencies.AppDependencies

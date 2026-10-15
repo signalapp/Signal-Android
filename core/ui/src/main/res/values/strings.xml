@@ -49,4 +49,8 @@
     <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again without a link or sticker message.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Remove</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">None</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_on">On</string>
 </resources>

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView
 import org.thoughtcrime.securesms.util.visible
+import org.signal.core.ui.R as CoreUiR
 
 @Discouraged("The DSL API can be completely replaced by compose. See ComposeFragment or ComposeBottomSheetFragment for an alternative to this API")
 class DSLSettingsAdapter : MappingAdapter() {
@@ -186,7 +187,7 @@ class MultiSelectListPreferenceViewHolder(itemView: View) : PreferenceViewHolder
       .joinToString(", ")
 
     if (summaryText.isEmpty()) {
-      summaryView.setText(R.string.preferences__none)
+      summaryView.setText(CoreUiR.string.preferences__none)
     } else {
       summaryView.text = summaryText
     }

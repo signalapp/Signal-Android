@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mms
 
-import org.signal.mediasend.SentMediaQuality
+import org.signal.core.models.media.SentMediaQuality
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.video.TranscodingConfig

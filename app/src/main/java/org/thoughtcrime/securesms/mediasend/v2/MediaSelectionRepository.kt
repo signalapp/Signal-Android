@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.ThreadUtil
@@ -15,7 +16,6 @@ import org.signal.core.util.logging.Log
 import org.signal.imageeditor.core.model.EditorModel
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaValidator
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType

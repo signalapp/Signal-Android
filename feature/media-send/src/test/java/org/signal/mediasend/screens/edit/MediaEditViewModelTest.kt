@@ -40,6 +40,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.EditorState
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendDependenciesRule
@@ -47,7 +48,6 @@ import org.signal.mediasend.MediaSendFlowEvent
 import org.signal.mediasend.MediaSendFlowState
 import org.signal.mediasend.R
 import org.signal.mediasend.SaveToStorageResult
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.SnackbarEvent
 import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.video.VideoEditorViewModel

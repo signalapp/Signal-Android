@@ -282,7 +282,7 @@ private fun LazyListScope.managementSection(
     item {
       Rows.TextRow(
         text = stringResource(R.string.ConversationSettingsFragment__group_link),
-        label = stringResource(if (state.groupLinkEnabled) R.string.preferences_on else R.string.preferences_off),
+        label = stringResource(if (state.groupLinkEnabled) CoreUiR.string.preferences_on else CoreUiR.string.preferences_off),
         icon = SignalIcons.Link.painter,
         enabled = state.isActive && !state.isDeprecatedOrUnregistered,
         onClick = { onEvent(GroupSettingsEvent.GroupLinkClicked) }

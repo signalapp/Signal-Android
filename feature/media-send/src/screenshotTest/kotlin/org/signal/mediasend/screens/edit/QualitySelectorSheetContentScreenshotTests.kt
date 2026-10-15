@@ -7,10 +7,10 @@ package org.signal.mediasend.screens.edit
 
 import androidx.compose.runtime.Composable
 import com.android.tools.screenshot.PreviewTest
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.RtlPreview
-import org.signal.mediasend.SentMediaQuality
 
 class QualitySelectorSheetContentScreenshotTests {
   @PreviewTest

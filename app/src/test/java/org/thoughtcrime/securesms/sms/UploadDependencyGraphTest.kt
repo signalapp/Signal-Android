@@ -10,9 +10,9 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
 import org.signal.core.util.JsonUtils
-import org.signal.mediasend.SentMediaQuality
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentTable

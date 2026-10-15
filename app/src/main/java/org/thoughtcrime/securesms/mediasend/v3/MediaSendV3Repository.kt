@@ -19,6 +19,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalLong
@@ -37,7 +38,6 @@ import org.signal.mediasend.MediaValidator
 import org.signal.mediasend.SaveToStorageResult
 import org.signal.mediasend.SendRequest
 import org.signal.mediasend.SendResult
-import org.signal.mediasend.SentMediaQuality
 import org.signal.mediasend.StorySendRequirements
 import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.screens.edit.image.BrushWidths

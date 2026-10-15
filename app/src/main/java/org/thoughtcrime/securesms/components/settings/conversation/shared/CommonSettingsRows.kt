@@ -160,7 +160,7 @@ fun DeleteChatRow(
 
 private fun formatDisappearingMessagesLifespan(context: Context, lifespanSeconds: Int): String {
   return if (lifespanSeconds <= 0) {
-    context.getString(R.string.preferences_off)
+    context.getString(CoreUiR.string.preferences_off)
   } else {
     ExpirationUtil.getExpirationDisplayValue(context, lifespanSeconds)
   }

@@ -39,6 +39,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.signal.core.models.media.Media
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.ui.compose.DialogController
 import org.signal.core.ui.compose.DialogResult
 import org.signal.core.ui.compose.SignalIcons

@@ -7,6 +7,7 @@ package org.signal.mediasend
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import org.signal.core.models.media.SentMediaQuality
 import org.signal.mediasend.screens.edit.image.BrushWidths
 import org.thoughtcrime.securesms.video.TranscodingConfig
 import kotlin.time.Duration.Companion.seconds
