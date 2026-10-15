@@ -347,12 +347,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
-    try {
-      Log.i(TAG, "Performing a state refresh.")
-      performStateRefresh(lastPurchase)
-    } catch (e: Exception) {
-      Log.w(TAG, "State refresh failed", e)
-      throw e
+    withContext(Dispatchers.IO) {
+      try {
+        Log.i(TAG, "Performing a state refresh.")
+        performStateRefresh(lastPurchase)
+      } catch (e: Exception) {
+        Log.w(TAG, "State refresh failed", e)
+        throw e
+      }
     }
   }
 
