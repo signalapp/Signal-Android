@@ -788,13 +788,16 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Returns recipient records eligible for a profile fetch.
    * - Must have a service id (ACI or PNI)
    * - Last profile fetch must be before [debounceThreshold] if non-null
+   * - Unregistered recipients' last profile fetch must be before [unregisteredDebounceThreshold] if non-null
    */
-  fun getRecordsForProfileFetch(ids: Collection<RecipientId>, debounceThreshold: Duration?): List<RecipientRecord> {
+  fun getRecordsForProfileFetch(ids: Collection<RecipientId>, debounceThreshold: Duration?, unregisteredDebounceThreshold: Duration?): List<RecipientRecord> {
     if (ids.isEmpty()) {
       return emptyList()
     }
 
-    val prefix = "($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND ${if (debounceThreshold != null) " ($LAST_PROFILE_FETCH < ${debounceThreshold.inWholeMilliseconds}) AND " else ""}"
+    val debounceClause = if (debounceThreshold != null) " ($LAST_PROFILE_FETCH < ${debounceThreshold.inWholeMilliseconds}) AND " else ""
+    val unregisteredDebounceClause = if (unregisteredDebounceThreshold != null) " ($REGISTERED != ${RegisteredState.NOT_REGISTERED.id} OR $LAST_PROFILE_FETCH < ${unregisteredDebounceThreshold.inWholeMilliseconds}) AND " else ""
+    val prefix = "($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND $debounceClause$unregisteredDebounceClause"
     val idQuery = SqlUtil.buildFastCollectionQuery(ID, ids, prefix)
 
     return readableDatabase

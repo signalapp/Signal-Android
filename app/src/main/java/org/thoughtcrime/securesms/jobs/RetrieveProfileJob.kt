@@ -52,6 +52,7 @@ import org.whispersystems.signalservice.api.profiles.ProfileRepository.SignalSer
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
@@ -97,10 +98,12 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val stopwatch = Stopwatch("RetrieveProfile")
 
-    val debounceThreshold = if (skipDebounce) null else System.currentTimeMillis().milliseconds - PROFILE_FETCH_DEBOUNCE_TIME
+    val now = System.currentTimeMillis().milliseconds
+    val debounceThreshold = if (skipDebounce) null else now - PROFILE_FETCH_DEBOUNCE_TIME
+    val unregisteredDebounceThreshold = if (skipDebounce) null else now - UNREGISTERED_PROFILE_FETCH_DEBOUNCE_TIME
     val recipientsToFetch = SignalDatabase
       .recipients
-      .getRecordsForProfileFetch(recipientIds, debounceThreshold)
+      .getRecordsForProfileFetch(recipientIds, debounceThreshold, unregisteredDebounceThreshold)
       .map { RecipientCreator.forRecord(it) }
 
     stopwatch.split("resolve")
@@ -178,7 +181,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     }
     stopwatch.split("process")
 
-    SignalDatabase.recipients.markProfilesFetched(successIds, System.currentTimeMillis())
+    SignalDatabase.recipients.markProfilesFetched(successIds + response.unregistered, System.currentTimeMillis())
     stopwatch.split("mark-fetched")
 
     if (newlyRegisteredIds.isNotEmpty()) {
@@ -575,6 +578,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     private const val QUEUE_PREFIX = "RetrieveProfileJob_"
 
     private val PROFILE_FETCH_DEBOUNCE_TIME = 5.minutes
+    private val UNREGISTERED_PROFILE_FETCH_DEBOUNCE_TIME = 6.hours
 
     /**
      * Submits the necessary job to refresh the profile of the requested recipient. Works for any
