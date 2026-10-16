@@ -6,10 +6,10 @@ import java.util.regex.Pattern
 object NameUtil {
 
   /**
-   * \p{L} is letter, \p{Nd} is digit, \p{S} is whitespace/separator
+   * \p{L} is letter, \p{Nd} is digit, \p{S} is symbol (which includes most emoji)
    * https://www.regular-expressions.info/unicode.html#category
    */
-  private val PATTERN = Pattern.compile("[^\\p{L}\\p{Nd}\\p{S}]+")
+  private val PATTERN = Pattern.compile("^[\\p{L}\\p{Nd}\\p{S}]")
 
   /**
    * Returns an abbreviation of the input, up to two characters long.
@@ -18,18 +18,17 @@ object NameUtil {
   fun getAbbreviation(name: String): String? {
     val parts = name
       .split(" ")
-      .map { it.trim() }
-      .map { PATTERN.matcher(it).replaceFirst("") }
-      .filter { it.isNotEmpty() }
+      .mapNotNull { it.trim().firstValidGrapheme() }
 
     return when {
       parts.isEmpty() -> null
-      parts.size == 1 -> parts[0].firstGrapheme()
-      else -> "${parts[0].firstGrapheme()}${parts[1].firstGrapheme()}"
+      parts.size == 1 -> parts[0]
+      else -> "${parts[0]}${parts[1]}"
     }
   }
 
-  private fun String.firstGrapheme(): String {
-    return CharacterIterable(this).first()
+  /** Returns the first grapheme cluster that starts with a letter, digit, or symbol. */
+  private fun String.firstValidGrapheme(): String? {
+    return CharacterIterable(this).firstOrNull { PATTERN.matcher(it).find() }
   }
 }

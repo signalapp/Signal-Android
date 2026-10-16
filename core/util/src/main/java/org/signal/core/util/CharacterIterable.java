@@ -40,7 +40,7 @@ public final class CharacterIterable implements Iterable<String> {
       if (lastIndex == UNINITIALIZED) {
         lastIndex = breakIterator.first();
       }
-      return !breakIterator.isDone(lastIndex);
+      return !breakIterator.isDone(lastIndex) && lastIndex < string.length();
     }
 
     @Override
