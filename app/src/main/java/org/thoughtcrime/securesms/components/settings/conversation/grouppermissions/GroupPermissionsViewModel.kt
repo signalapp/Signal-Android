@@ -53,18 +53,23 @@ class GroupPermissionsViewModel(
       }
 
       is GroupPermissionsEvents.SetNonAdminCanAddMembers -> {
+        if (event.allowed == _state.value.permissions.nonAdminCanAddMembers) return
         applyChange { repository.applyMembershipRightsChange(groupId, event.allowed.asGroupAccessControl()) }
       }
 
       is GroupPermissionsEvents.SetNonAdminCanEditGroupInfo -> {
+        if (event.allowed == _state.value.permissions.nonAdminCanEditGroupInfo) return
         applyChange { repository.applyAttributesRightsChange(groupId, event.allowed.asGroupAccessControl()) }
       }
 
       is GroupPermissionsEvents.SetNonAdminCanSendMessages -> {
+        if (event.allowed == _state.value.permissions.nonAdminCanSendMessages) return
         applyChange { repository.applyAnnouncementGroupChange(groupId, isAnnouncementGroup = !event.allowed) }
       }
 
       is GroupPermissionsEvents.SetNonAdminCanSetMemberLabel -> {
+        if (event.allowed == _state.value.permissions.nonAdminCanSetMemberLabel) return
+
         if (!event.allowed && _state.value.permissions.nonAdminsHaveMemberLabels) {
           _state.update { it.copy(dialog = Dialog.MemberLabelsWillBeCleared) }
         } else {

@@ -49,6 +49,8 @@ class GroupPermissionsViewModelTest {
 
     coEvery { repository.applyMembershipRightsChange(any(), any()) } returns GroupChangeResult.SUCCESS
     coEvery { repository.applyMemberLabelRightsChange(any(), any()) } returns GroupChangeResult.SUCCESS
+    coEvery { repository.applyAttributesRightsChange(any(), any()) } returns GroupChangeResult.SUCCESS
+    coEvery { repository.applyAnnouncementGroupChange(any(), any()) } returns GroupChangeResult.SUCCESS
   }
 
   @After
@@ -98,7 +100,7 @@ class GroupPermissionsViewModelTest {
 
   @Test
   fun `opening member labels up to all members never warns`() = runTest(testDispatcher) {
-    val viewModel = createViewModel(nonAdminsHaveMemberLabels = true)
+    val viewModel = createViewModel(nonAdminsHaveMemberLabels = true, nonAdminCanSetMemberLabel = false)
 
     viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanSetMemberLabel(true))
     advanceUntilIdle()
@@ -138,7 +140,7 @@ class GroupPermissionsViewModelTest {
 
     val viewModel = createViewModel(nonAdminsHaveMemberLabels = true)
 
-    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanAddMembers(true))
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanAddMembers(false))
     viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanSetMemberLabel(false))
     advanceUntilIdle()
 
@@ -146,6 +148,34 @@ class GroupPermissionsViewModelTest {
 
     inFlight.complete(GroupChangeResult.SUCCESS)
     advanceUntilIdle()
+  }
+
+  @Test
+  fun `confirming the permission that is already selected does not change the group`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(nonAdminsHaveMemberLabels = true)
+
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanAddMembers(true))
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanEditGroupInfo(true))
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanSendMessages(true))
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanSetMemberLabel(true))
+    advanceUntilIdle()
+
+    coVerify(exactly = 0) { repository.applyMembershipRightsChange(any(), any()) }
+    coVerify(exactly = 0) { repository.applyAttributesRightsChange(any(), any()) }
+    coVerify(exactly = 0) { repository.applyAnnouncementGroupChange(any(), any()) }
+    coVerify(exactly = 0) { repository.applyMemberLabelRightsChange(any(), any()) }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `confirming admins only for member labels when already set does not warn`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(nonAdminsHaveMemberLabels = true, nonAdminCanSetMemberLabel = false)
+
+    viewModel.onEvent(GroupPermissionsEvents.SetNonAdminCanSetMemberLabel(false))
+    advanceUntilIdle()
+
+    coVerify(exactly = 0) { repository.applyMemberLabelRightsChange(any(), any()) }
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
   @Test
@@ -178,14 +208,17 @@ class GroupPermissionsViewModelTest {
    * Builds a view model and lets the group's permissions land before returning it, since the screen keeps every row
    * disabled until they do.
    */
-  private fun TestScope.createViewModel(nonAdminsHaveMemberLabels: Boolean): GroupPermissionsViewModel {
+  private fun TestScope.createViewModel(
+    nonAdminsHaveMemberLabels: Boolean,
+    nonAdminCanSetMemberLabel: Boolean = true
+  ): GroupPermissionsViewModel {
     every { repository.observePermissions(groupId) } returns flowOf(
       GroupPermissions(
         selfCanEditSettings = true,
         nonAdminCanAddMembers = true,
         nonAdminCanEditGroupInfo = true,
         nonAdminCanSendMessages = true,
-        nonAdminCanSetMemberLabel = true,
+        nonAdminCanSetMemberLabel = nonAdminCanSetMemberLabel,
         nonAdminsHaveMemberLabels = nonAdminsHaveMemberLabels
       )
     )
