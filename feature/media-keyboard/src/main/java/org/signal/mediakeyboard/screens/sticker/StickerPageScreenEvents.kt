@@ -17,7 +17,7 @@ sealed interface StickerPageScreenEvents {
   data class PackSelected(val packId: String) : StickerPageScreenEvents
   data class VisiblePackChanged(val packId: String) : StickerPageScreenEvents
   data object ScrollTargetConsumed : StickerPageScreenEvents
-  data class StickerClicked(val sticker: KeyboardSticker) : StickerPageScreenEvents
+  data class StickerLongPressed(val sticker: KeyboardSticker) : StickerPageScreenEvents
   data class StickerSendClicked(val sticker: KeyboardSticker) : StickerPageScreenEvents
   data object SearchClicked : StickerPageScreenEvents
   data class ViewStickerPackClicked(val packId: String, val packKey: String) : StickerPageScreenEvents

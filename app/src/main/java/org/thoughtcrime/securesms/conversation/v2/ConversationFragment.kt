@@ -686,9 +686,16 @@ class ConversationFragment :
 
   private val stickerConfirmation: ChatStickerConfirmationController by lazy(LazyThreadSafetyMode.NONE) {
     ChatStickerConfirmationController(
+      favoritesEnabled = mediaKeyboardRepository.stickers.favoritesEnabled,
       onSend = { sticker ->
         mediaKeyboardRepository.stickers.onStickerUsed(sticker)
         sendKeyboardSticker(sticker)
+      },
+      onToggleFavorite = { sticker -> setStickerFavorite(sticker, favorited = !sticker.isFavorite) },
+      onViewPack = { sticker ->
+        sticker.packKey?.let { packKey ->
+          startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(sticker.packId), StickerPackKey(packKey)))
+        }
       },
       onShowingChanged = ::onStickerConfirmationShowingChanged
     )
@@ -774,6 +781,28 @@ class ConversationFragment :
     }
   }
 
+  private fun setStickerFavorite(sticker: KeyboardSticker, favorited: Boolean) {
+    val packKey = sticker.packKey ?: return
+    viewLifecycleOwner.lifecycleScope.launch {
+      val result = withContext(SignalDispatchers.IO) {
+        StickerFavoriteRepository.setFavorite(sticker.packId, packKey, sticker.stickerId.toInt(), favorited = favorited)
+      }
+
+      when (result) {
+        StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> {
+          stickerConfirmation.onFavoriteChanged(sticker, favorited)
+          snackbar(if (favorited) R.string.StickerFavorites__added_to_favorites else R.string.StickerFavorites__removed_from_favorites, duration = Snackbar.LENGTH_SHORT)
+        }
+        StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> {
+          if (favorited) {
+            snackbar(getString(R.string.StickerFavorites__favorites_limit_reached, StickerTables.MAX_FAVORITES), duration = Snackbar.LENGTH_SHORT)
+          }
+        }
+        StickerFavoriteRepository.SetFavoriteResult.FAILURE -> snackbar(R.string.StickerFavorites__unknown_error, duration = Snackbar.LENGTH_SHORT)
+      }
+    }
+  }
+
   private fun onMediaKeyboardAction(action: MediaKeyboardAction) {
     when (action) {
       is MediaKeyboardAction.EmojiSelected -> inputPanel.onEmojiSelected(action.emoji)
@@ -835,35 +864,9 @@ class ConversationFragment :
         }
       }
 
-      is MediaKeyboardAction.AddStickerToFavoritesClicked -> {
-        val packKey = action.sticker.packKey ?: return
-        viewLifecycleOwner.lifecycleScope.launch {
-          val result = withContext(SignalDispatchers.IO) {
-            StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = true)
-          }
+      is MediaKeyboardAction.AddStickerToFavoritesClicked -> setStickerFavorite(action.sticker, favorited = true)
 
-          when (result) {
-            StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> snackbar(R.string.StickerFavorites__added_to_favorites, duration = Snackbar.LENGTH_SHORT)
-            StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> snackbar(getString(R.string.StickerFavorites__favorites_limit_reached, StickerTables.MAX_FAVORITES), duration = Snackbar.LENGTH_SHORT)
-            StickerFavoriteRepository.SetFavoriteResult.FAILURE -> snackbar(R.string.StickerFavorites__unknown_error, duration = Snackbar.LENGTH_SHORT)
-          }
-        }
-      }
-
-      is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed -> {
-        val packKey = action.sticker.packKey ?: return
-        viewLifecycleOwner.lifecycleScope.launch {
-          val result = withContext(SignalDispatchers.IO) {
-            StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = false)
-          }
-
-          when (result) {
-            StickerFavoriteRepository.SetFavoriteResult.SUCCESS -> snackbar(R.string.StickerFavorites__removed_from_favorites, duration = Snackbar.LENGTH_SHORT)
-            StickerFavoriteRepository.SetFavoriteResult.LIMIT_REACHED -> Unit
-            StickerFavoriteRepository.SetFavoriteResult.FAILURE -> snackbar(R.string.StickerFavorites__unknown_error, duration = Snackbar.LENGTH_SHORT)
-          }
-        }
-      }
+      is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed -> setStickerFavorite(action.sticker, favorited = false)
 
       is MediaKeyboardAction.MoveFavoriteToTopClicked -> {
         val packKey = action.sticker.packKey ?: return
@@ -3033,6 +3036,10 @@ class ConversationFragment :
 
     disposables += send
       .doOnSubscribe {
+        if (mediaKeyboardController.isExpanded) {
+          mediaKeyboardController.collapse()
+        }
+
         if (clearCompose) {
           AppDependencies.typingStatusSender.onTypingStopped(args.threadId)
           composeTextEventsListener?.typingStatusEnabled = false

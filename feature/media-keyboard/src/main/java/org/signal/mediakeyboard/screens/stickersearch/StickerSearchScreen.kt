@@ -125,7 +125,8 @@ internal fun StickerSearchScreen(
         onEvent = { onEvent(StickerSearchEvents.StickerPageScreenEvent(it)) },
         contentPadding = PaddingValues(top = statusBarHeight + SEARCH_BAR_HEIGHT),
         fullBleed = true,
-        gridState = gridState
+        gridState = gridState,
+        longPressMenu = true
       )
 
       Box(

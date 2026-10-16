@@ -18,12 +18,14 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -133,28 +135,45 @@ private fun GifQuickSearchRail(
   onEvent: (GifPageScreenEvents) -> Unit
 ) {
   LazyRow(
+    horizontalArrangement = Arrangement.spacedBy(4.dp),
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 8.dp, vertical = 2.dp)
+      .padding(horizontal = 8.dp)
   ) {
     items(GifQuickSearchOption.entries, key = { it.name }) { option ->
-      IconButtons.IconToggleButton(
-        checked = option == state.selectedQuickSearch,
-        onCheckedChange = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) },
-        colors = IconButtons.iconToggleButtonColors(
-          containerColor = Color.Transparent,
-          contentColor = MaterialTheme.colorScheme.onSurface,
-          checkedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-          checkedContainerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-      ) {
-        Icon(
-          imageVector = option.icon(),
-          contentDescription = stringResource(option.label)
-        )
-      }
+      QuickSearchButton(
+        option = option,
+        selected = option == state.selectedQuickSearch,
+        onClick = { onEvent(GifPageScreenEvents.QuickSearchSelected(option)) }
+      )
     }
+  }
+}
+
+@Composable
+private fun QuickSearchButton(
+  option: GifQuickSearchOption,
+  selected: Boolean,
+  onClick: () -> Unit
+) {
+  IconButtons.IconToggleButton(
+    checked = selected,
+    onCheckedChange = { onClick() },
+    size = 36.dp,
+    shape = RoundedCornerShape(12.dp),
+    modifier = Modifier.padding(vertical = 8.dp).size(32.dp),
+    colors = IconButtons.iconToggleButtonColors(
+      checkedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+      checkedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+      containerColor = Color.Transparent,
+      contentColor = MaterialTheme.colorScheme.onSurface
+    )
+  ) {
+    Icon(
+      imageVector = option.icon(),
+      contentDescription = stringResource(option.label)
+    )
   }
 }
 

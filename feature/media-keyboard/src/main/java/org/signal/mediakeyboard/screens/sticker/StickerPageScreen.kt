@@ -5,7 +5,6 @@
 
 package org.signal.mediakeyboard.screens.sticker
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +18,7 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.plus
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -27,7 +27,7 @@ import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material3.Icon
@@ -46,6 +46,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -60,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.keyboard.LocalKeyboardSheetController
@@ -86,6 +88,8 @@ private val STICKER_CELL_SPACING = 12.dp
  *   own chrome over the page.
  * @param fullBleed Runs the grid beneath the pack rail too, which then slides over it, for a host that fills the screen.
  * @param gridState The sticker grid's scroll state, for a host whose own chrome follows the scroll.
+ * @param longPressMenu Opens a menu of what can be done with a long pressed sticker, for a host with nowhere of its
+ *   own to offer it. Otherwise the long press is reported for the host to handle.
  */
 @Composable
 fun StickerPageScreen(
@@ -95,7 +99,8 @@ fun StickerPageScreen(
   onSearchFieldRevealedChange: (Boolean) -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(),
   fullBleed: Boolean = false,
-  gridState: LazyGridState = rememberLazyGridState()
+  gridState: LazyGridState = rememberLazyGridState(),
+  longPressMenu: Boolean = false
 ) {
   if (state.hasNoSearchResults) {
     NoSearchResults(query = state.searchQuery, modifier = modifier.padding(contentPadding))
@@ -113,7 +118,8 @@ fun StickerPageScreen(
         onEvent = onEvent,
         onSearchFieldRevealedChange = onSearchFieldRevealedChange,
         contentPadding = contentPadding + railPadding,
-        gridState = gridState
+        gridState = gridState,
+        longPressMenu = longPressMenu
       )
     }
   }
@@ -185,10 +191,11 @@ private fun StickerPackRail(
   onEvent: (StickerPageScreenEvents) -> Unit
 ) {
   LazyRow(
+    horizontalArrangement = Arrangement.spacedBy(4.dp),
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 8.dp, vertical = 2.dp)
+      .padding(horizontal = 8.dp)
   ) {
     items(state.packs, key = { it.id }) { pack ->
       PackButton(
@@ -206,60 +213,47 @@ private fun PackButton(
   selected: Boolean,
   onClick: () -> Unit
 ) {
-  IconButton(onClick = onClick) {
-    val backgroundModifier = if (selected) {
-      Modifier.background(MaterialTheme.colorScheme.secondaryContainer, CircleShape)
-    } else {
-      Modifier
-    }
-
-    Box(
-      contentAlignment = Alignment.Center,
-      modifier = backgroundModifier.size(36.dp)
-    ) {
-      when (pack.id) {
-        StickerKeyboardRepository.FAVORITES_PACK_ID -> {
-          Icon(
-            imageVector = SignalIcons.Favorite.imageVector,
-            contentDescription = stringResource(R.string.MediaKeyboard__favorites),
-            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        }
-        StickerKeyboardRepository.RECENT_PACK_ID -> {
-          Icon(
-            imageVector = Icons.Outlined.Schedule,
-            contentDescription = stringResource(R.string.MediaKeyboard__recently_used),
-            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        }
-        StickerKeyboardRepository.SEARCH_RESULTS_PACK_ID -> {
-          Icon(
-            imageVector = SignalIcons.Search.imageVector,
-            contentDescription = stringResource(R.string.MediaKeyboard__search_stickers),
-            tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        }
-        else -> {
-          GlideImage(
-            model = rememberStickerImageModel(pack.cover),
-            imageSize = DpSize(28.dp, 28.dp),
-            modifier = Modifier.size(28.dp)
-          )
-        }
+  IconButtons.IconToggleButton(
+    checked = selected,
+    onCheckedChange = { onClick() },
+    size = 36.dp,
+    shape = RoundedCornerShape(12.dp),
+    modifier = Modifier.padding(vertical = 8.dp).size(32.dp),
+    colors = IconButtons.iconToggleButtonColors(
+      checkedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+      checkedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+      containerColor = Color.Transparent,
+      contentColor = MaterialTheme.colorScheme.onSurface
+    )
+  ) {
+    when (pack.id) {
+      StickerKeyboardRepository.FAVORITES_PACK_ID -> {
+        Icon(
+          imageVector = SignalIcons.Favorite.imageVector,
+          contentDescription = stringResource(R.string.MediaKeyboard__favorites)
+        )
+      }
+      StickerKeyboardRepository.RECENT_PACK_ID -> {
+        Icon(
+          imageVector = Icons.Outlined.Schedule,
+          contentDescription = stringResource(R.string.MediaKeyboard__recently_used)
+        )
+      }
+      StickerKeyboardRepository.SEARCH_RESULTS_PACK_ID -> {
+        Icon(
+          imageVector = SignalIcons.Search.imageVector,
+          contentDescription = stringResource(R.string.MediaKeyboard__search_stickers)
+        )
+      }
+      else -> {
+        GlideImage(
+          model = rememberStickerImageModel(pack.cover),
+          imageSize = DpSize(28.dp, 28.dp),
+          modifier = Modifier.size(28.dp)
+        )
       }
     }
   }
-}
-
-@Composable
-private operator fun PaddingValues.plus(other: PaddingValues): PaddingValues {
-  val layoutDirection = LocalLayoutDirection.current
-  return PaddingValues(
-    start = calculateStartPadding(layoutDirection) + other.calculateStartPadding(layoutDirection),
-    top = calculateTopPadding() + other.calculateTopPadding(),
-    end = calculateEndPadding(layoutDirection) + other.calculateEndPadding(layoutDirection),
-    bottom = calculateBottomPadding() + other.calculateBottomPadding()
-  )
 }
 
 private val KeyboardStickerPack.hasGridHeader: Boolean
@@ -286,7 +280,8 @@ private fun StickerGrid(
   modifier: Modifier = Modifier,
   onSearchFieldRevealedChange: (Boolean) -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(),
-  gridState: LazyGridState = rememberLazyGridState()
+  gridState: LazyGridState = rememberLazyGridState(),
+  longPressMenu: Boolean = false
 ) {
   val gridPacks = remember(state.packs) { state.packs.filterNot { it.isEmptyFavorites } }
 
@@ -374,6 +369,7 @@ private fun StickerGrid(
                 sticker = sticker,
                 isInFavorites = pack.id == StickerKeyboardRepository.FAVORITES_PACK_ID,
                 favoritesEnabled = state.favoritesEnabled,
+                longPressMenu = longPressMenu,
                 allowAnimation = state.allowAnimation,
                 cellSize = cellSize,
                 onEvent = onEvent
@@ -541,6 +537,7 @@ private fun StickerCell(
   sticker: KeyboardSticker,
   isInFavorites: Boolean,
   favoritesEnabled: Boolean,
+  longPressMenu: Boolean,
   allowAnimation: Boolean,
   cellSize: Dp,
   onEvent: (StickerPageScreenEvents) -> Unit
@@ -557,7 +554,11 @@ private fun StickerCell(
           onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
         },
         onLongClick = {
-          controller.show()
+          if (longPressMenu) {
+            controller.show()
+          } else {
+            onEvent(StickerPageScreenEvents.StickerLongPressed(sticker))
+          }
         }
       )
   ) {
@@ -571,60 +572,79 @@ private fun StickerCell(
       modifier = Modifier.fillMaxSize()
     )
 
-    DropdownMenus.Menu(
-      controller = controller
-    ) {
+    if (longPressMenu) {
+      StickerCellMenu(
+        sticker = sticker,
+        isInFavorites = isInFavorites,
+        favoritesEnabled = favoritesEnabled,
+        controller = controller,
+        onEvent = onEvent
+      )
+    }
+  }
+}
+
+@Composable
+private fun StickerCellMenu(
+  sticker: KeyboardSticker,
+  isInFavorites: Boolean,
+  favoritesEnabled: Boolean,
+  controller: DropdownMenus.MenuController,
+  onEvent: (StickerPageScreenEvents) -> Unit
+) {
+  DropdownMenus.Menu(
+    controller = controller
+  ) {
+    DropdownMenus.ItemWithIcon(
+      menuController = controller,
+      imageVector = SignalIcons.Send.imageVector,
+      stringResId = R.string.MediaKeyboard__send,
+      onClick = {
+        onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
+      }
+    )
+
+    // Everything below acts on the sticker's pack, which a sticker with no key does not have.
+    val packKey = sticker.packKey ?: return@Menu
+
+    DropdownMenus.ItemWithIcon(
+      menuController = controller,
+      imageVector = SignalIcons.StickerPack.imageVector,
+      stringResId = R.string.MediaKeyboard__view_pack,
+      onClick = {
+        onEvent(StickerPageScreenEvents.ViewStickerPackClicked(sticker.packId, packKey))
+      }
+    )
+
+    if (isInFavorites) {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
-        imageVector = SignalIcons.Send.imageVector,
-        stringResId = R.string.MediaKeyboard__send,
+        imageVector = SignalIcons.Transfer.imageVector,
+        stringResId = R.string.MediaKeyboard__move_to_top,
         onClick = {
-          onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))
+          onEvent(StickerPageScreenEvents.MoveFavoriteToTopClicked(sticker))
         }
       )
+    }
 
-      // Everything below acts on the sticker's pack, which a sticker with no key does not have.
-      val packKey = sticker.packKey ?: return@Menu
-
+    if (favoritesEnabled && sticker.isFavorite) {
       DropdownMenus.ItemWithIcon(
         menuController = controller,
-        imageVector = SignalIcons.StickerPack.imageVector,
-        stringResId = R.string.MediaKeyboard__view_pack,
+        imageVector = SignalIcons.FavoriteOff.imageVector,
+        stringResId = CoreUiR.string.StickerFavorites__remove_from_favorites,
         onClick = {
-          onEvent(StickerPageScreenEvents.ViewStickerPackClicked(sticker.packId, packKey))
+          onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
         }
       )
-
-      if (isInFavorites) {
-        DropdownMenus.ItemWithIcon(
-          menuController = controller,
-          imageVector = SignalIcons.Transfer.imageVector,
-          stringResId = R.string.MediaKeyboard__move_to_top,
-          onClick = {
-            onEvent(StickerPageScreenEvents.MoveFavoriteToTopClicked(sticker))
-          }
-        )
-      }
-
-      if (favoritesEnabled && sticker.isFavorite) {
-        DropdownMenus.ItemWithIcon(
-          menuController = controller,
-          imageVector = SignalIcons.FavoriteOff.imageVector,
-          stringResId = CoreUiR.string.StickerFavorites__remove_from_favorites,
-          onClick = {
-            onEvent(StickerPageScreenEvents.RemoveStickerFromFavoritesClicked(sticker))
-          }
-        )
-      } else if (favoritesEnabled) {
-        DropdownMenus.ItemWithIcon(
-          menuController = controller,
-          imageVector = SignalIcons.Favorite.imageVector,
-          stringResId = CoreUiR.string.StickerFavorites__add_to_favorites,
-          onClick = {
-            onEvent(StickerPageScreenEvents.AddStickerToFavoritesClicked(sticker))
-          }
-        )
-      }
+    } else if (favoritesEnabled) {
+      DropdownMenus.ItemWithIcon(
+        menuController = controller,
+        imageVector = SignalIcons.Favorite.imageVector,
+        stringResId = CoreUiR.string.StickerFavorites__add_to_favorites,
+        onClick = {
+          onEvent(StickerPageScreenEvents.AddStickerToFavoritesClicked(sticker))
+        }
+      )
     }
   }
 }

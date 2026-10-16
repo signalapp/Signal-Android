@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.view.View
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
@@ -31,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.AndroidFragment
 import androidx.lifecycle.ViewModelStore
@@ -100,10 +98,7 @@ fun ChatScreen(
 
   val minimumVisibleContent = with(LocalDensity.current) { minimumVisibleContentPx.toDp() }
 
-  val stickerBlurRadius by animateDpAsState(
-    targetValue = if (stickerConfirmation.isShowing) StickerConfirmationBlurRadius else 0.dp,
-    label = "stickerBlurRadius"
-  )
+  val stickerConfirmationFade = rememberStickerConfirmationFade(stickerConfirmation)
 
   val keyboardHeight = remember(minimumHeight, topMargin, minimumVisibleContent, isBubble) {
     KeyboardSheetHeight(
@@ -157,10 +152,11 @@ fun ChatScreen(
           overlay = {
             ChatStickerConfirmation(
               controller = stickerConfirmation,
+              fade = stickerConfirmationFade,
               modifier = Modifier.fillMaxSize()
             )
           },
-          blurRadius = { stickerBlurRadius }
+          blurRadius = { StickerConfirmationBlurRadius * stickerConfirmationFade.value }
         ) {
           CompositionLocalProvider(LocalViewModelStoreOwner provides mediaKeyboardViewModelStoreOwner) {
             MediaKeyboard(

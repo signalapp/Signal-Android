@@ -14,7 +14,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.signal.core.ui.compose.CollectActions
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
-import org.signal.mediakeyboard.screens.sticker.StickerPageScreenEvents
 import org.signal.mediakeyboard.screens.sticker.StickerPageViewModel
 
 /**
@@ -42,12 +41,8 @@ fun StickerSearch(
     onEvent = { event ->
       when (event) {
         StickerSearchEvents.NavigateBack -> onClose()
-        is StickerSearchEvents.StickerPageScreenEvent -> viewModel.onEvent(event.event.sendingTappedSticker())
+        is StickerSearchEvents.StickerPageScreenEvent -> viewModel.onEvent(event.event)
       }
     }
   )
-}
-
-private fun StickerPageScreenEvents.sendingTappedSticker(): StickerPageScreenEvents {
-  return if (this is StickerPageScreenEvents.StickerClicked) StickerPageScreenEvents.StickerSendClicked(sticker) else this
 }

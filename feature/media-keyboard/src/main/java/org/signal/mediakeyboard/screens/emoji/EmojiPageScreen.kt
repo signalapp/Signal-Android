@@ -9,8 +9,10 @@ import android.graphics.drawable.Drawable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -28,7 +31,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,18 +43,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.mediakeyboard.R
@@ -121,10 +127,11 @@ private fun EmojiCategoryRail(
   onEvent: (EmojiPageScreenEvents) -> Unit
 ) {
   LazyRow(
+    horizontalArrangement = Arrangement.spacedBy(4.dp),
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = 8.dp, vertical = 2.dp)
+      .padding(horizontal = 8.dp)
   ) {
     items(state.pages, key = { it.category.key }) { page ->
       CategoryButton(
@@ -142,18 +149,22 @@ private fun CategoryButton(
   selected: Boolean,
   onClick: () -> Unit
 ) {
-  IconButton(onClick = onClick) {
+  IconButtons.IconToggleButton(
+    checked = selected,
+    onCheckedChange = { onClick() },
+    size = 36.dp,
+    shape = RoundedCornerShape(12.dp),
+    modifier = Modifier.padding(vertical = 8.dp).size(32.dp),
+    colors = IconButtons.iconToggleButtonColors(
+      checkedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+      checkedContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+      containerColor = Color.Transparent,
+      contentColor = MaterialTheme.colorScheme.onSurface
+    )
+  ) {
     Icon(
       imageVector = category.icon(),
-      contentDescription = stringResource(category.label),
-      tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = if (selected) {
-        Modifier
-          .background(MaterialTheme.colorScheme.secondaryContainer, CircleShape)
-          .padding(6.dp)
-      } else {
-        Modifier
-      }
+      contentDescription = stringResource(category.label)
     )
   }
 }
@@ -393,17 +404,36 @@ private fun EmojiImage(
   } else {
     val isEmoticon = remember(emoji) { emoji.isEmoticon() }
 
-    Text(
-      text = emoji,
-      color = MaterialTheme.colorScheme.onSurface,
-      maxLines = 1,
-      softWrap = false,
-      autoSize = TextAutoSize.StepBased(
-        minFontSize = 6.sp,
-        maxFontSize = if (isEmoticon) 13.sp else 22.sp
-      ),
-      modifier = modifier.padding(horizontal = 2.dp)
-    )
+    if (isEmoticon) {
+      Text(
+        text = emoji,
+        color = MaterialTheme.colorScheme.onSurface,
+        maxLines = 1,
+        softWrap = false,
+        autoSize = TextAutoSize.StepBased(
+          minFontSize = 6.sp,
+          maxFontSize = 13.sp
+        ),
+        modifier = modifier.padding(horizontal = 2.dp)
+      )
+    } else {
+      // Fit to the same box as a drawn emoji, sized off the dp rather than the font scale, as the drawn ones are.
+      val maxFontSize = with(LocalDensity.current) { EMOJI_SIZE.toSp() }
+
+      Text(
+        text = emoji,
+        color = MaterialTheme.colorScheme.onSurface,
+        maxLines = 1,
+        softWrap = false,
+        textAlign = TextAlign.Center,
+        style = LocalTextStyle.current.copy(lineHeight = TextUnit.Unspecified),
+        autoSize = TextAutoSize.StepBased(
+          minFontSize = 6.sp,
+          maxFontSize = maxFontSize
+        ),
+        modifier = modifier.size(EMOJI_SIZE).wrapContentHeight()
+      )
+    }
   }
 }
 
@@ -455,4 +485,26 @@ private fun EmojiPageScreenPreview() {
     ),
     onEvent = {}
   )
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun EmojiImageSystemEmojiPreview() {
+  Row(
+    horizontalArrangement = Arrangement.spacedBy(8.dp),
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier.padding(8.dp)
+  ) {
+    listOf("😀", "👍🏽", "🇨🇦", "🐶", ":-)", "¯\\_(ツ)_/¯").forEach { emoji ->
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+          .size(EMOJI_CELL_MIN_SIZE)
+          .border(1.dp, MaterialTheme.colorScheme.outlineVariant)
+      ) {
+        EmojiImage(emoji = emoji, getEmojiDrawable = { null })
+      }
+    }
+  }
 }

@@ -26,12 +26,12 @@ sealed interface MediaKeyboardAction {
   data object Backspace : MediaKeyboardAction
 
   /**
-   * The user tapped a sticker. Nothing is sent or recorded yet, so the host can ask first, then
-   * report a send through [StickerKeyboardRepository.onStickerUsed].
+   * The user long pressed a sticker. Nothing is sent or recorded yet, so the host can offer it up
+   * with what can be done to it, then report a send through [StickerKeyboardRepository.onStickerUsed].
    */
   data class StickerSelected(val sticker: KeyboardSticker) : MediaKeyboardAction
 
-  /** @param sticker The sticker to send right away, from a double tap or its long press menu. */
+  /** @param sticker The sticker to send right away, from a tap. */
   data class StickerSendClicked(val sticker: KeyboardSticker) : MediaKeyboardAction
 
   /** @param gif The gif to send. */

@@ -101,7 +101,7 @@ class StickerPageViewModel(
         stateEmitter(state.copy(scrollTargetPackId = null))
       }
 
-      is StickerPageScreenEvents.StickerClicked -> {
+      is StickerPageScreenEvents.StickerLongPressed -> {
         emitAction(MediaKeyboardAction.StickerSelected(event.sticker))
       }
 

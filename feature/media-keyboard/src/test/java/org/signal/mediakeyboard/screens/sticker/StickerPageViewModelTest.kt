@@ -163,9 +163,9 @@ class StickerPageViewModelTest {
   }
 
   @Test
-  fun `sticker clicked - reports the selection without recording a use`() {
+  fun `sticker long pressed - reports the selection without recording a use`() {
     val viewModel = createViewModel()
-    viewModel.onEvent(StickerPageScreenEvents.StickerClicked(sticker))
+    viewModel.onEvent(StickerPageScreenEvents.StickerLongPressed(sticker))
     testDispatcher.scheduler.advanceUntilIdle()
 
     verify(exactly = 0) { repository.onStickerUsed(any()) }
