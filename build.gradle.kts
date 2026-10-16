@@ -1,3 +1,8 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -31,7 +36,7 @@ buildscript {
     classpath(libs.gradle)
     classpath(libs.androidx.navigation.safe.args.gradle.plugin)
     classpath(libs.protobuf.gradle.plugin)
-    classpath("com.squareup.wire:wire-gradle-plugin:6.4.5") {
+    classpath(libs.wire.plugin.get().toString()) {
       exclude(group = "com.squareup.wire", module = "wire-swift-generator")
       exclude(group = "com.squareup.wire", module = "wire-grpc-client")
       exclude(group = "com.squareup.wire", module = "wire-grpc-jvm")
