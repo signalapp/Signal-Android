@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.importer
 import android.content.ContentValues
 import org.signal.archive.proto.Group
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 

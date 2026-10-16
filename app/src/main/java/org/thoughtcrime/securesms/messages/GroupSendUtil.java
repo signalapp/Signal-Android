@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Util;
 import org.signal.core.util.groups.GroupChangeException;
 import org.signal.core.util.logging.Log;
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.RemoteConfig;

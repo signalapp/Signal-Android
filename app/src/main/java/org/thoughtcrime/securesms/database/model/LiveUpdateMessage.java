@@ -13,11 +13,11 @@ import androidx.lifecycle.Transformations;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols;
 import org.signal.core.ui.util.ThemeUtil;
 import org.signal.core.util.BidiUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;

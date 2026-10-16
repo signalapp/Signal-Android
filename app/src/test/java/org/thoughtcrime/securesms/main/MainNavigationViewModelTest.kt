@@ -25,11 +25,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.PaneAnchor
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 

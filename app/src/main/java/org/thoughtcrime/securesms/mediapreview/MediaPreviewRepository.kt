@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.withAttachments
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.longmessage.resolveBody
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.AttachmentUtil
 

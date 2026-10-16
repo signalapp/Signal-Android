@@ -27,6 +27,7 @@ import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavigator
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import java.util.Optional
 import kotlin.time.Duration.Companion.milliseconds

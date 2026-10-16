@@ -29,11 +29,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.CoreUiDependenciesRule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.groups.GroupInCommon
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)

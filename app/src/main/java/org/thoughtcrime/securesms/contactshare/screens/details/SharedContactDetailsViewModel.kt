@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.ContactAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailKind
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class SharedContactDetailsViewModel(
   private val contact: Contact,

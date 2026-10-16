@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.viewModel
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.ContactSelectionListFragment
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import java.util.Optional

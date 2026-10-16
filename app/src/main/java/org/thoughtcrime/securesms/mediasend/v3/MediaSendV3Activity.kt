@@ -28,6 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.mediasend.v2.QuickRestoreInfoDialog
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet

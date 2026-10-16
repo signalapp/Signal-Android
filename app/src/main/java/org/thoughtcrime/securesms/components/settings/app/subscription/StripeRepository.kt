@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret
 

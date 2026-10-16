@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models
 
 import android.view.View
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder

@@ -25,6 +25,7 @@ import android.os.Bundle;
 
 import androidx.core.app.RemoteInput;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.MessageUtil;
 

@@ -33,12 +33,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.offset
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.AllNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Mutable holder for bar dimensions, used to pass measurement results from

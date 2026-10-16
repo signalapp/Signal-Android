@@ -6,10 +6,10 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.NavGraphHostActivity;
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragmentArgs;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
  * For select a expire timer for a recipient (individual or group).

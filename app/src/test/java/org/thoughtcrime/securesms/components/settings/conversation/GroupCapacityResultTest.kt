@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import org.junit.Assert
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 private const val SELECTION_WARNING = 151
 private const val SELECTION_LIMIT = 1001

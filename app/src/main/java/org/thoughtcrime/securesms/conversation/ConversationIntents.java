@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.models.media.Media;
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.signal.network.util.Preconditions;
 

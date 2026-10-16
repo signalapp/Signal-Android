@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.conversation.v2.groups
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** State of a group call used solely within rendering UX/UI in the conversation */
 data class ConversationGroupCallState(

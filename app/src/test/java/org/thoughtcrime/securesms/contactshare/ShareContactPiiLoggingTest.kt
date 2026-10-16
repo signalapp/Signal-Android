@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
 import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsAction
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectConta
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactEvent
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactAction
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactEvent
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.full.primaryConstructor

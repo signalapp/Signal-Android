@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.events;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.signal.core.models.recipients.RecipientId;
 
 public final class GroupCallPeekEvent {
   private final RecipientId groupRecipientId;

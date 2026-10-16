@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.recipients
 import android.annotation.SuppressLint
 import androidx.annotation.AnyThread
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.database.SignalDatabase

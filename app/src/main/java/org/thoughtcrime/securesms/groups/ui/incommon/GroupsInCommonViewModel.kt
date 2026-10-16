@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration.Companion.seconds
 
 class GroupsInCommonViewModel(

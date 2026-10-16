@@ -28,10 +28,10 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.groups.GroupInCommon
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)

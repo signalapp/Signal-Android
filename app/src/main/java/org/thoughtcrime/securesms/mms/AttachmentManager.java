@@ -37,6 +37,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.ui.view.Stub;
 import org.signal.core.util.ExpiringProfileCredentialUtil;
@@ -73,7 +74,6 @@ import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;

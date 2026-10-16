@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.thoughtcrime.securesms.database.GroupTable
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.jobs.protos.AdminDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.GroupSendUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.whispersystems.signalservice.api.crypto.ContentHint

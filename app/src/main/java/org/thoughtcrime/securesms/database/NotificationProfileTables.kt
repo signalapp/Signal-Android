@@ -13,6 +13,7 @@ import org.signal.core.database.insertInto
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.hasUnknownFields
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncModels.toLocal

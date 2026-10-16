@@ -32,6 +32,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.paging.compose.collectAsLazyPagingItems
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.navigation.ResultEffect
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactEvent
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactRepository
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactScreen
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactViewModel
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 private const val EDITED_NAME_RESULT = "edited_name_result"

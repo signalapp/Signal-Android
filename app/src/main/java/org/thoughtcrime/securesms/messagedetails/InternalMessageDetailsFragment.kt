@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFullScreenDialogFragment
 import org.signal.core.ui.compose.Dialogs
@@ -46,7 +47,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.AttachmentInfo
 import org.thoughtcrime.securesms.messagedetails.InternalMessageDetailsViewModel.ViewState
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 
 class InternalMessageDetailsFragment : ComposeFullScreenDialogFragment() {

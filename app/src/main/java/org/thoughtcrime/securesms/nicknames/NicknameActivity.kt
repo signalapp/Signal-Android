@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ClearableTextField
 import org.signal.core.ui.compose.DayNightPreviews
@@ -53,7 +54,6 @@ import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.signal.core.ui.R as CoreUiR
 

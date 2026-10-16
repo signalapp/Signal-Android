@@ -25,12 +25,12 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.ContactAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailAction
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailKind
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailRow
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)

@@ -13,11 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.requireParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**

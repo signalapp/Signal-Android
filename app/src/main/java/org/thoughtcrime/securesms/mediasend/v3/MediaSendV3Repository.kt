@@ -20,6 +20,7 @@ import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.models.media.SentMediaQuality
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalLong
@@ -55,7 +56,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.PushMediaConstraints
 import org.thoughtcrime.securesms.mms.TranscodingConfigProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories

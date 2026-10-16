@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.contactshare.screens.share
 import android.content.Context
 import androidx.core.net.toUri
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import java.io.IOException

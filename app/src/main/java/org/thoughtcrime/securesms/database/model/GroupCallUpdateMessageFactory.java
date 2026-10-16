@@ -6,11 +6,11 @@ import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.signal.core.models.ServiceId;

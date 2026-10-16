@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -27,7 +28,6 @@ import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 private enum class Dialog {
   NONE,

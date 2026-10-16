@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.safety.SafetyNumberRecipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.signalservice.api.SignalSessionLock;

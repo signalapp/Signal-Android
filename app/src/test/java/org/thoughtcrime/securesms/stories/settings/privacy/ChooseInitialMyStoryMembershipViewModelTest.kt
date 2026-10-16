@@ -23,8 +23,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.MyStoryPrivacyState
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsRepository
 

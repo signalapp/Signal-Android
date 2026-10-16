@@ -5,6 +5,7 @@ import androidx.core.util.Consumer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Result
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.groups.GroupChangeBusyException
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.io.IOException
 
 private val TAG: String = Log.tag(GroupManagementRepository::class.java)

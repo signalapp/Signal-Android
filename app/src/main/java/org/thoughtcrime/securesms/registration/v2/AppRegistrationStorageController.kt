@@ -32,6 +32,7 @@ import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.backup.MessageBackupKey
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.AppUtil
 import org.signal.core.util.Result
 import org.signal.core.util.StreamUtil
@@ -90,7 +91,6 @@ import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener

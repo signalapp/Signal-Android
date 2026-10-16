@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.ServiceUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplace
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.List;
 import java.util.Objects;

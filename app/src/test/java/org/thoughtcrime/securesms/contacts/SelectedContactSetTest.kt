@@ -6,7 +6,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.Test
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 class SelectedContactSetTest {
   private val selectedContactSet = SelectedContactSet()

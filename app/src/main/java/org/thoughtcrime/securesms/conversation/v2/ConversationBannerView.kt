@@ -17,6 +17,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.view.Stub
 import org.thoughtcrime.securesms.R
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible

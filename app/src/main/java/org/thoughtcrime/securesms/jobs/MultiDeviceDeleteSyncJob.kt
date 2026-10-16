@@ -9,6 +9,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.Content

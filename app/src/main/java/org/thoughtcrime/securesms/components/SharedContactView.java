@@ -23,6 +23,7 @@ import androidx.core.widget.ImageViewCompat;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -35,7 +36,6 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;

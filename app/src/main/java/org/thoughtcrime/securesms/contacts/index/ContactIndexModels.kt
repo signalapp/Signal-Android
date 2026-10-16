@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contacts.index
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Which sources a row came from, which is what decides the badges and actions the row offers.

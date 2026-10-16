@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import kotlinx.coroutines.runBlocking
 import okio.ByteString
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Util
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil

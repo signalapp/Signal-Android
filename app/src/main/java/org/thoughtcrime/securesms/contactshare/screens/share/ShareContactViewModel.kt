@@ -15,12 +15,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /** A loaded contact alongside the state derived from it. */
 data class LoadedContact(

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientCreator
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import java.util.UUID
 import kotlin.random.Random

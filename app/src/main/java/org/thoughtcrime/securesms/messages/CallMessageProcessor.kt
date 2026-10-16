@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.orNull
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -9,7 +10,6 @@ import org.thoughtcrime.securesms.jobs.ProfileKeySendJob
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata

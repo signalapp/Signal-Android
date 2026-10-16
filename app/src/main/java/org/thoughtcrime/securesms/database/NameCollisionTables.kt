@@ -15,6 +15,7 @@ import org.signal.core.database.insertInto
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

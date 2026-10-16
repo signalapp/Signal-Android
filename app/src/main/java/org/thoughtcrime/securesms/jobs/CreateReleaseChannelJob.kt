@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.core.content.ContextCompat
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

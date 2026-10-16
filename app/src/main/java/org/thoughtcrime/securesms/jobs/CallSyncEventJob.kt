@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.CallTable
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.CallSyncEventJobData
 import org.thoughtcrime.securesms.jobs.protos.CallSyncEventJobRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
 import org.thoughtcrime.securesms.service.webrtc.CallEventSyncMessageUtil
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage

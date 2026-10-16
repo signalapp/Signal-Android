@@ -24,10 +24,10 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 import org.signal.contacts.SystemContactsRepository
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
 import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)

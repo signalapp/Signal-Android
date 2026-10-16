@@ -35,6 +35,7 @@ import com.bumptech.glide.RequestManager;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -48,7 +49,6 @@ import org.signal.core.models.media.Media;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.signal.core.util.bitmaps.BitmapUtil;
 import org.signal.core.ui.util.ExpirationUtil;

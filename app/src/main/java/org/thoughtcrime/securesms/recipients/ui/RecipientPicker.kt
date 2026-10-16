@@ -36,6 +36,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.util.DimensionUnit
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.conversation.RecipientSearchBar
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode.Companion.flag
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.KeyboardType
 import java.util.Optional

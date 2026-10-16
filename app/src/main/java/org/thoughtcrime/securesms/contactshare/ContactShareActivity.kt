@@ -11,10 +11,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.core.content.IntentCompat
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Hosts [ContactShareNavHost], returning the shared [Contact] under [KEY_CONTACTS].

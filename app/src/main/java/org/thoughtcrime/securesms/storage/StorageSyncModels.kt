@@ -4,6 +4,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.FavoriteStickerSyncRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.isNotEmpty
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord

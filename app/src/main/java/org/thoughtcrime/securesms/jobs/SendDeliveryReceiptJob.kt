@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.ReceiptSender.ReceiptSendOperation
 import org.thoughtcrime.securesms.jobs.ReceiptSender.sendWithSessionRepair
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.whispersystems.signalservice.api.crypto.ContentHint

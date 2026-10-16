@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionListFragment
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.util.Optional

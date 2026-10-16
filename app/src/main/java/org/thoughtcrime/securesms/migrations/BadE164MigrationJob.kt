@@ -5,6 +5,7 @@ import org.signal.core.database.delete
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.database.RecipientTable.Companion.PNI_COLUMN
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.TABLE_NAME
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**

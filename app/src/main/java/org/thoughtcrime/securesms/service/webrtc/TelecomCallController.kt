@@ -12,6 +12,7 @@ import androidx.core.telecom.CallEndpointCompat
 import androidx.core.telecom.CallsManager
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCommand
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager

@@ -8,6 +8,7 @@ import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SignalE164Util

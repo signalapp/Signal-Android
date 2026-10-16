@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.database
 
 import org.signal.core.database.select
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.database.MessageTable.Companion.PARENT_STORY_I
 import org.thoughtcrime.securesms.database.MessageTable.Companion.SCHEDULED_DATE
 import org.thoughtcrime.securesms.database.MessageTable.Companion.STORY_TYPE
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"

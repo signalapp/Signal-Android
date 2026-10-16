@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.LRUCache;
 import org.thoughtcrime.securesms.database.model.ServiceMessageId;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Collection;
 import java.util.HashSet;

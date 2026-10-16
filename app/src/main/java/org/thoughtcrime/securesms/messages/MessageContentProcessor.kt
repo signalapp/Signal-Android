@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messages
 
 import android.content.Context
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Util
 import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.groups.GroupNotAMemberException
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toDecryptionEr
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Result;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.groups.GroupChangeException;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;

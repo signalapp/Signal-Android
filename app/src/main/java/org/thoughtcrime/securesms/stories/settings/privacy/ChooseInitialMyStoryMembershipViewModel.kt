@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsRepository
 
 class ChooseInitialMyStoryMembershipViewModel @JvmOverloads constructor(

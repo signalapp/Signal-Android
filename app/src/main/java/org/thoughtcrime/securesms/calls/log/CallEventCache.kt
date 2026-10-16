@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import java.util.concurrent.Executor
 import kotlin.math.abs

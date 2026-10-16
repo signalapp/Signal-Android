@@ -7,13 +7,13 @@ import org.signal.core.database.delete
 import org.signal.core.database.deleteAll
 import org.signal.core.database.select
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSet
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireString
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 
 /**

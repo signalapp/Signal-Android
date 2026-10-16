@@ -14,6 +14,7 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.ParcelFileDescriptor
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PartAuthorityUris
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.contentproviders.BaseContentProvider
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientCreator
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AdaptiveBitmapMetrics
 import org.thoughtcrime.securesms.util.AvatarUtil

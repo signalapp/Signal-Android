@@ -5,12 +5,12 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeResult;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.IOException;
 import java.util.List;

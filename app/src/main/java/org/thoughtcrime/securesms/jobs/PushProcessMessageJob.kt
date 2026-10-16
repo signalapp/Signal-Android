@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.message.CiphertextMessage
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.messages.BatchCache
 import org.thoughtcrime.securesms.messages.MessageContentProcessor
 import org.thoughtcrime.securesms.messages.MessageDecryptor
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics

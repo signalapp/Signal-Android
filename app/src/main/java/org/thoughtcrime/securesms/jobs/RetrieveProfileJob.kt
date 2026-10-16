@@ -4,6 +4,7 @@ import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Stopwatch
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forC
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientCreator
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.transport.RetryLaterException

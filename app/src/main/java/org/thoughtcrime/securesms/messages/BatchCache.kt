@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.messages
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.thoughtcrime.securesms.database.MessageTable
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupMasterKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.util.Optional
 

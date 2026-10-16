@@ -35,6 +35,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.UntrustedIdentityException
 import org.signal.network.service.MessageService
@@ -60,7 +61,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule

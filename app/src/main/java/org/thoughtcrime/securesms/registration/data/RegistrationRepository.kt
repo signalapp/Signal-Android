@@ -24,6 +24,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.logging.Log
@@ -57,7 +58,6 @@ import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getAciIdentityKeyPair
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getAciPreKeyCollection
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getPniIdentityKeyPair

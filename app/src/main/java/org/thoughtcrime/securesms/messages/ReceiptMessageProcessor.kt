@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.messages
 
 import android.annotation.SuppressLint
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -8,7 +9,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.log
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.warn
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata

@@ -44,6 +44,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.await
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
@@ -58,7 +59,6 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
 import org.thoughtcrime.securesms.profiles.username.SetUpUsernameBanner
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode

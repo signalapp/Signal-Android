@@ -9,12 +9,12 @@ import android.os.Bundle
 import android.os.ResultReceiver
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.ThrottledDebouncer
 import org.signal.core.util.concurrent.SerialExecutor
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallData
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import java.util.concurrent.Executor

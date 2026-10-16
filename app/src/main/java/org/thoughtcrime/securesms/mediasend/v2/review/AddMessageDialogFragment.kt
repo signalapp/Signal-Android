@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.view.Stub
 import org.signal.core.ui.viewModel
 import org.signal.core.util.ByteLimitInputFilter
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBin
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.ViewUtil

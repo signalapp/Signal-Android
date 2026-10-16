@@ -9,6 +9,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.Frame
 import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.database.insertInto
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.database.NotificationProfileTables.Notificatio
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.serialize
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import java.time.DayOfWeek
 import org.signal.archive.proto.NotificationProfile as NotificationProfileProto

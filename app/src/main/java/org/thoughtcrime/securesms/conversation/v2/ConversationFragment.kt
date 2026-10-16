@@ -129,6 +129,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.keyboard.KeyboardSheetAction
 import org.signal.core.ui.compose.keyboard.KeyboardSheetController
@@ -355,7 +356,6 @@ import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity

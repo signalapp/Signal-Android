@@ -8,13 +8,13 @@ import org.signal.core.database.delete
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 
 /**

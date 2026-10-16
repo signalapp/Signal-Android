@@ -47,6 +47,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols.Glyph;
 import org.signal.core.util.ContextUtil;
 import org.signal.core.util.DimensionUnit;
@@ -78,7 +79,6 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.glide.targets.GlideLiveDataTarget;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.signal.core.ui.util.ExpirationUtil;

@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;

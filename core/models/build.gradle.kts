@@ -14,7 +14,11 @@ android {
 }
 
 dependencies {
+  api(project(":core:util-jvm"))
+
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.jackson.core)
   implementation(libs.jackson.module.kotlin)
+
+  testImplementation(testLibs.assertk)
 }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts.sync
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.network.NetworkResult
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.whispersystems.signalservice.api.cds.CdsiV2Service

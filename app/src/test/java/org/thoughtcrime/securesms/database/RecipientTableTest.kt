@@ -25,10 +25,10 @@ import org.signal.core.database.SqlUtil
 import org.signal.core.database.update
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientCreator
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.RecipientTestRule

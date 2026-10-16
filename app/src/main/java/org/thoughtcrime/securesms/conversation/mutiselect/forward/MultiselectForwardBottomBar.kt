@@ -38,6 +38,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
@@ -46,7 +47,6 @@ import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.isSplitPane
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 /**

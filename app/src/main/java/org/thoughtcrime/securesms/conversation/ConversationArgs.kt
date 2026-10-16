@@ -11,10 +11,10 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.models.UriSerializer
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.mms.SlideFactory
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 
 @Serializable

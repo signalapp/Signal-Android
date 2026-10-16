@@ -11,8 +11,8 @@ import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class ContactShareBackStackTest {
 

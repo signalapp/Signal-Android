@@ -25,6 +25,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.util.StorageUtil
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.Host
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.RequestPermissionResult
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder

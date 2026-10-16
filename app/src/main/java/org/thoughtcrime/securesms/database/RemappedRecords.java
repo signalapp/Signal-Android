@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.database;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.network.util.Preconditions;
 
 import java.util.Collection;

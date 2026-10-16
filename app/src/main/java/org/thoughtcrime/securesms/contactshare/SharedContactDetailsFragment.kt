@@ -20,6 +20,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.conversation.v2.AddToContactsContract
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.signal.core.util.R as CoreUtilsR
 

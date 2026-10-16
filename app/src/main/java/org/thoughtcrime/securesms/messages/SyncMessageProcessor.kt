@@ -8,6 +8,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
@@ -112,7 +113,6 @@ import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials

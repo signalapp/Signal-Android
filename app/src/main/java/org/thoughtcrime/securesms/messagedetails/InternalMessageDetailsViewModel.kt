@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.signal.core.models.backup.MediaName
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.network.util.JsonUtil
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class InternalMessageDetailsViewModel(val messageId: Long) : ViewModel() {
 

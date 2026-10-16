@@ -10,7 +10,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.models.UriSerializer
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Where a card being shared comes from.

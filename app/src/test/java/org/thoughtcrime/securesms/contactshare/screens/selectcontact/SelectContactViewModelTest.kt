@@ -34,12 +34,12 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.index.ContactIndexBuildResult
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
 import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.selectcontact.SelectContactState.ContactsPermissionState
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)

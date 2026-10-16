@@ -14,6 +14,7 @@ import io.mockk.spyk
 import org.junit.Before
 import org.junit.Test
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.CallTable.Direction
 import org.thoughtcrime.securesms.database.CallTable.Event
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.database.CallTable.Type
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import java.util.UUID

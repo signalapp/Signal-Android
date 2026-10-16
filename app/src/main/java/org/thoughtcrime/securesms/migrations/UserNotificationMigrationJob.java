@@ -13,6 +13,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.TaskStackBuilder;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.List;
 import java.util.Set;

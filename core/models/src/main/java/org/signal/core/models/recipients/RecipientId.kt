@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.recipients
+package org.signal.core.models.recipients
 
 import android.os.Parcelable
 import kotlinx.parcelize.IgnoredOnParcel

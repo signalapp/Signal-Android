@@ -22,11 +22,11 @@ import org.robolectric.annotation.Config
 import org.signal.archive.proto.ChatItem
 import org.signal.archive.proto.RemoteDeletedMessage
 import org.signal.core.models.backup.MediaRootBackupKey
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.backup.v2.BackupMode
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)

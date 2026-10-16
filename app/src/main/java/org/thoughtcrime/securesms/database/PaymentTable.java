@@ -15,6 +15,7 @@ import com.mobilecoin.lib.exceptions.SerializationException;
 
 import org.signal.core.database.SQLiteDatabaseExtensionsKt;
 import org.signal.core.database.SqlUtil;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.logging.Log;
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.payments.Payee;
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.payments.Money;

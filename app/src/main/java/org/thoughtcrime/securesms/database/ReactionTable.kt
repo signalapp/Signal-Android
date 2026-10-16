@@ -7,13 +7,13 @@ import org.signal.core.database.SqlUtil
 import org.signal.core.database.delete
 import org.signal.core.database.select
 import org.signal.core.database.update
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Store reactions on messages.

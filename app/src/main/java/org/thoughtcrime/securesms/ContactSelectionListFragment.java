@@ -45,6 +45,7 @@ import androidx.transition.TransitionManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.jetbrains.annotations.NotNull;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.util.UsernameUtil;
@@ -78,7 +79,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameAciFetchResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ViewUtil;

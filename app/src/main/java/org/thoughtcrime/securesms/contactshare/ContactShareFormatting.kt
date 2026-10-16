@@ -8,13 +8,13 @@ package org.thoughtcrime.securesms.contactshare
 import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.nullIfBlank
 import org.signal.emoji.EmojiStrings
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.SignalE164Util
 
 /** Detail ids are positional, so a selection can be resolved back against the contact it came from. */

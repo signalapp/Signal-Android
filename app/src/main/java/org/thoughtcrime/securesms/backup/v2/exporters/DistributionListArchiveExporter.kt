@@ -9,6 +9,7 @@ import android.database.Cursor
 import okio.ByteString.Companion.toByteString
 import org.signal.archive.proto.DistributionList
 import org.signal.archive.proto.DistributionListItem
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.Closeable
 

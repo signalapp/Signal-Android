@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.RecipientRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Encapsulates data around processing a tuple of user data into a user entry in [RecipientTable].

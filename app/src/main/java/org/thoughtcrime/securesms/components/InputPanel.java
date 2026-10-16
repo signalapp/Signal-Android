@@ -39,6 +39,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.models.database.StickerRecord;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.view.Stub;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.ListenableFuture;
@@ -69,7 +70,6 @@ import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;

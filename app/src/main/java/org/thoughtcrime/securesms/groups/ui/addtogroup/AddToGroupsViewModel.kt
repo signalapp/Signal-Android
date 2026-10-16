@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsUiState.UserMe
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class AddToGroupsViewModel(
   private val recipientId: RecipientId,

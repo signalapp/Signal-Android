@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel;
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabelRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 

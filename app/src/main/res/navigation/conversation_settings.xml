@@ -22,7 +22,7 @@
             <argument
                 android:name="recipient_id"
                 android:defaultValue="@null"
-                app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+                app:argType="org.signal.core.models.recipients.RecipientId"
                 app:nullable="true" />
 
             <argument
@@ -39,7 +39,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:argType="org.signal.core.models.recipients.RecipientId"
             app:nullable="true" />
 
         <argument
@@ -66,7 +66,7 @@
 
             <argument
                 android:name="recipient_id"
-                app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+                app:argType="org.signal.core.models.recipients.RecipientId" />
 
         </action>
 
@@ -94,7 +94,7 @@
 
             <argument
                 android:name="recipient_id"
-                app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+                app:argType="org.signal.core.models.recipients.RecipientId" />
 
         </action>
 
@@ -150,7 +150,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+            app:argType="org.signal.core.models.recipients.RecipientId" />
 
         <action
             android:id="@+id/action_soundsAndNotificationsSettingsFragment_to_customNotificationsSettingsFragment"
@@ -176,7 +176,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+            app:argType="org.signal.core.models.recipients.RecipientId" />
 
     </fragment>
 
@@ -196,7 +196,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+            app:argType="org.signal.core.models.recipients.RecipientId" />
 
     </fragment>
 
@@ -206,7 +206,7 @@
 
         <argument
             android:name="recipient_id"
-            app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+            app:argType="org.signal.core.models.recipients.RecipientId" />
 
     </fragment>
 

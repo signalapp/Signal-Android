@@ -10,11 +10,11 @@ import androidx.annotation.WorkerThread;
 
 import java.util.function.Function;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.models.ServiceId;
 
 import java.util.ArrayList;

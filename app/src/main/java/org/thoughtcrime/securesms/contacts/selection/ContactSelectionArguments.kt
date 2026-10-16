@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.contacts.selection
 
 import android.content.Intent
 import android.os.Bundle
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 @Suppress("KotlinConstantConditions")
 data class ContactSelectionArguments(

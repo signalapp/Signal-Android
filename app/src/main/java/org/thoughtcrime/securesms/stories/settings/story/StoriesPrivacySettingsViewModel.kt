@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.signal.core.models.recipients.RecipientId
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.archive.StoryArchiveDuration
 import org.thoughtcrime.securesms.util.rx.RxStore

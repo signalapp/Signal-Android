@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.database.Cursor
 import androidx.annotation.WorkerThread
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UsernameUtil
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.R
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.search.MessageResult
 import org.thoughtcrime.securesms.search.MessageSearchResult
 import org.thoughtcrime.securesms.search.SearchRepository

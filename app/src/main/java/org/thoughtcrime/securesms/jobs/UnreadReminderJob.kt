@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
 import androidx.core.content.ContextCompat
 import androidx.core.content.LocusIdCompat
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.Stopwatch
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.notifications.v2.getContactDrawable
 import org.thoughtcrime.securesms.notifications.v2.makeUniqueToPreventMerging
 import org.thoughtcrime.securesms.notifications.v2.toLargeBitmap
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 

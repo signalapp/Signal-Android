@@ -24,6 +24,7 @@ import androidx.media3.session.MediaNotification
 import androidx.media3.session.MediaSession
 import androidx.media3.session.SessionCommand
 import com.google.common.collect.ImmutableList
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PendingIntentFlags.cancelCurrent
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import java.util.Arrays
 import androidx.media3.session.R as Media3SessionR

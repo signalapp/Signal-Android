@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.signal.core.util.Util;

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.storage.protos.groups.AccessControl
 import org.signal.storageservice.storage.protos.groups.GroupChange
@@ -16,7 +17,6 @@ import org.signal.storageservice.storage.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.storage.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupChangeLog
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations

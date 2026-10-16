@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class BaseStoryRecipientSelectionViewModel(
   private val distributionListId: DistributionListId?

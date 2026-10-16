@@ -6,6 +6,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;

@@ -7,12 +7,12 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import org.signal.archive.proto.DistributionList
 import org.signal.archive.proto.DistributionListItem
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 
 /**

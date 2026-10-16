@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.stories.settings.select
 
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 
 object BaseStoryRecipientSelectionRepository {

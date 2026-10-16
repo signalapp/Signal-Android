@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 

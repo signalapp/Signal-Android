@@ -11,6 +11,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.viewModel
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**

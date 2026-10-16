@@ -5,11 +5,11 @@ import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.jobmanager.JobMigration.JobData
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class SendReadReceiptsJobMigrationTest {
   private val mockDatabase = mockk<MessageTable>()

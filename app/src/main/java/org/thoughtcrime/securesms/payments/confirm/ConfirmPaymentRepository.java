@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobs.PaymentSendJob;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.payments.Payee;
 import org.thoughtcrime.securesms.payments.PaymentsAddressException;
 import org.thoughtcrime.securesms.payments.Wallet;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.signal.core.util.Util;
 import org.whispersystems.signalservice.api.payments.Money;

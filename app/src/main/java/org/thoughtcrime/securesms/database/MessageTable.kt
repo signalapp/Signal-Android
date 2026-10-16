@@ -43,6 +43,7 @@ import org.signal.core.database.withFtsSecureDelete
 import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.JsonUtils
@@ -140,7 +141,6 @@ import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier.Sticky
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo
 import org.thoughtcrime.securesms.service.UnreadReminderManager

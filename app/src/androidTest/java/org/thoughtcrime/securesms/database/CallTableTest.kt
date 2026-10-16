@@ -8,10 +8,10 @@ import org.junit.Assert.assertNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.recipients.RecipientId
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 
 @RunWith(AndroidJUnit4::class)

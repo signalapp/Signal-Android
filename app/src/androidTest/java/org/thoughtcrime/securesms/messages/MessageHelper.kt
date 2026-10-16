@@ -11,6 +11,7 @@ import io.mockk.mockkStatic
 import io.mockk.slot
 import io.mockk.unmockkStatic
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.jobs.ThreadUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule

@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import android.net.Uri
 import androidx.compose.ui.unit.IntRect
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -14,7 +15,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * One-shot side effects that need an Activity, FragmentManager, or the legacy nav graph, and therefore have to be

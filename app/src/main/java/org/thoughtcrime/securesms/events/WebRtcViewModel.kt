@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.events
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.ringrtc.CallManager.CallEndReason
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createLocal
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState

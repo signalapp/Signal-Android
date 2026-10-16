@@ -7,9 +7,9 @@ package org.thoughtcrime.securesms.contactshare
 
 import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 
 /** What a shared contact bubble needs to present itself. */

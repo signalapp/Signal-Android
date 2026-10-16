@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.components.settings.conversation.sounds.custom
 
 import android.net.Uri
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class CustomNotificationsSettingsState(
   val recipientId: RecipientId = Recipient.UNKNOWN.id,

@@ -4,6 +4,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.ServiceId.PNI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.isEmpty
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.storage.StorageSyncModels.localToRemoteRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
 

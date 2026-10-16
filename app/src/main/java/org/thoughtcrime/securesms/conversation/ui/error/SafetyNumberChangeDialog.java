@@ -25,10 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.stream.Collectors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Collection;

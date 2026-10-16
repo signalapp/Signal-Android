@@ -5,12 +5,12 @@ import assertk.assertions.containsExactlyInAnyOrder
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createRemote
 import org.thoughtcrime.securesms.events.CallParticipant.DeviceOrdinal
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.recipients.RecipientCreator.forId
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class CallParticipantListUpdateTest {
   @Test

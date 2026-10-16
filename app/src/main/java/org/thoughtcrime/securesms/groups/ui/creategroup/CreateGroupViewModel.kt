@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
 import org.thoughtcrime.securesms.recipients.PhoneNumber
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientRepository
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.util.RemoteConfig

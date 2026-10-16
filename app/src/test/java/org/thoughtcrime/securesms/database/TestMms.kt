@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import androidx.sqlite.db.SupportSQLiteDatabase
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Helper methods for inserting an MMS message into the MMS table.

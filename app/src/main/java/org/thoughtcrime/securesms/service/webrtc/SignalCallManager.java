@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.KeyedSerialMonoLifoExecutor;
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;

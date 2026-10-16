@@ -18,6 +18,7 @@ import com.bumptech.glide.RequestManager
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import org.signal.core.models.recipients.RecipientId
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import kotlin.time.Duration.Companion.minutes
 

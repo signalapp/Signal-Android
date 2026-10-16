@@ -10,6 +10,7 @@ import org.signal.core.database.delete
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.UuidUtil
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListPrivacyData
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper

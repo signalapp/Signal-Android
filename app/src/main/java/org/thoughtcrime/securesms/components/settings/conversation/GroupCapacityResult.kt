@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class GroupCapacityResult(
   private val selfId: RecipientId,

@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBa
 import org.thoughtcrime.securesms.components.settings.conversation.shared.SharedMediaLoader
 import org.thoughtcrime.securesms.components.settings.conversation.shared.toConversationSettingsAction
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * View model behind all three 1:1 settings screens: [IndividualSettingsScreen], [NoteToSelfSettingsScreen], and

@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.polls
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /**
  * Tracks general information of a poll vote including who they are and what poll they voted in. Primarily used in notifications.

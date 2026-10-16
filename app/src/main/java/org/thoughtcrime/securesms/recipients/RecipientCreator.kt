@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.recipients
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState

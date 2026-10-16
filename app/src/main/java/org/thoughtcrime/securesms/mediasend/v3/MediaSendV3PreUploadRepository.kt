@@ -9,6 +9,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.preupload.PreUploadRepository
 import org.signal.mediasend.preupload.PreUploadResult
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 
 object MediaSendV3PreUploadRepository : PreUploadRepository {

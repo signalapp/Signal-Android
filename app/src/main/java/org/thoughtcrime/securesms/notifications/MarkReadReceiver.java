@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import java.util.stream.Collectors;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.CallTable;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.jobs.CallLogEventSendJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

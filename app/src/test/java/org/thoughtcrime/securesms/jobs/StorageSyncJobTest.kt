@@ -33,6 +33,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.StorageSyncJobTest.Companion.BASE_MANIFEST_VERSION
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.FakeStorageServiceRule
 import org.thoughtcrime.securesms.testutil.RecipientTestRule

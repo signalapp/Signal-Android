@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.NoSessionException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import java.io.IOException

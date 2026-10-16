@@ -10,13 +10,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import org.signal.core.models.media.Media
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRecipient
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Activity
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**

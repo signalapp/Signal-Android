@@ -14,6 +14,7 @@ import org.signal.archive.stream.BackupFrameEmitter
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.media.SentMediaQuality
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberD
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents

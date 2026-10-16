@@ -16,6 +16,7 @@ import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkRootKey
@@ -47,7 +48,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 
 class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fragment) {

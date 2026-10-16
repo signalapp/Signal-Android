@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.models.media.Media;
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.mediasend.MediaSendLauncher;
 import org.thoughtcrime.securesms.mms.SlideFactory;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;

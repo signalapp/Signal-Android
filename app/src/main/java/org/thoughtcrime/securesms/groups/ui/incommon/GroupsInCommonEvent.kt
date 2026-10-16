@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.groups.ui.incommon
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 sealed interface GroupsInCommonEvent {
 

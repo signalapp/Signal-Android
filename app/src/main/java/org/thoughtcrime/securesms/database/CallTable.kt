@@ -14,6 +14,7 @@ import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.IntSerializer
 import org.signal.core.util.Serializer
 import org.signal.core.util.flatten
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.CallLinkUpdateSendJob
 import org.thoughtcrime.securesms.jobs.CallSyncEventJob
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.internal.push.SyncMessage.CallEvent
 import java.util.UUID

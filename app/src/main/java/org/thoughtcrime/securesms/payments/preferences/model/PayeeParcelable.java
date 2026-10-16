@@ -6,9 +6,9 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.Payee;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 public final class PayeeParcelable implements Parcelable {
   private final Payee payee;

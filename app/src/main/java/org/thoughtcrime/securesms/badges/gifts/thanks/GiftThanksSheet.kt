@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.badges.gifts.thanks
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFrag
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Displays a "Thank you" message in a conversation when redirected

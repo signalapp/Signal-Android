@@ -45,6 +45,7 @@ import org.signal.archive.proto.ThreadMergeChatUpdate
 import org.signal.archive.proto.ViewOnceMessage
 import org.signal.core.models.ServiceId
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
@@ -109,7 +110,6 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.polls.PollRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.mb
 import java.io.Closeable

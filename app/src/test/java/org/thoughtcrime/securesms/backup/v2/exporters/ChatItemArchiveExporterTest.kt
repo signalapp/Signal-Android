@@ -24,6 +24,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.ServerSecretParams
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
 import org.signal.libsignal.zkgroup.receipts.ReceiptSerial
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.archive.proto.GiftBadge as BackupGiftBadge
 
 @RunWith(RobolectricTestRunner::class)

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.contacts.SystemContactUris;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment;
 import org.signal.core.ui.BottomSheetUtil;

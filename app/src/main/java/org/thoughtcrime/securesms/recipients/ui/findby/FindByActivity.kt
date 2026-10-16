@@ -61,6 +61,7 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Animations.navHostSlideInTransition
 import org.signal.core.ui.compose.Animations.navHostSlideOutTransition
 import org.signal.core.ui.compose.Buttons
@@ -79,7 +80,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameQrScannerActivity
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeSelectScreen
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeState

@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.share
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** State for the "Share contact" screen. */
 data class ShareContactState(

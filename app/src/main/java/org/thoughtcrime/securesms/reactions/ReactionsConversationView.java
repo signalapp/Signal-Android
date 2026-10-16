@@ -14,12 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.signal.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;

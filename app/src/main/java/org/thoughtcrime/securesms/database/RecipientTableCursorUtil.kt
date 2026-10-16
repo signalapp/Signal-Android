@@ -9,6 +9,7 @@ import android.content.Context
 import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Bitmask
 import org.signal.core.util.Util
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper

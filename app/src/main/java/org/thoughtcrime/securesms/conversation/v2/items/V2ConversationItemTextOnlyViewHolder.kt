@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.util.StringUtil
 import org.signal.core.util.dp
@@ -46,7 +47,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.MAX_BODY_DISPLAY_LENGTH

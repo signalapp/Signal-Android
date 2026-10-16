@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSource
 import org.signal.donations.StripeApi
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.protos.InAppPaymentSetupJobData
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  *  Handles one-time Stripe transactions.

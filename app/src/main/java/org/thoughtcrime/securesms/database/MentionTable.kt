@@ -9,12 +9,12 @@ import org.signal.core.database.insertInto
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.database.model.Mention
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference, ThreadIdDatabaseReference {
 

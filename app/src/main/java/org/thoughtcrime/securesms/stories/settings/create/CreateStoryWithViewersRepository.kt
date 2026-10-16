@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.stories.settings.create
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 
 class CreateStoryWithViewersRepository {

@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomShee
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper

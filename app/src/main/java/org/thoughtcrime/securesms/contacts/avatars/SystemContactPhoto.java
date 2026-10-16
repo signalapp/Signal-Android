@@ -7,8 +7,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Conversions;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 

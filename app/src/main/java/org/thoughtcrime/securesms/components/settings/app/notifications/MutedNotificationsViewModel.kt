@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.database.RecipientTable.NotificationSetting
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
 class MutedNotificationsViewModel(private val recipientId: RecipientId? = null) : EventDrivenViewModel<MutedNotificationsEvent>(TAG, shouldLogEvents = true) {

@@ -13,7 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours

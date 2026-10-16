@@ -75,6 +75,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import kotlinx.coroutines.flow.flowOf
 import org.signal.contacts.SystemContactsRepository
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -89,7 +90,6 @@ import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
 import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.core.ui.R as CoreUiR
 
 private val ROW_HEIGHT = 64.dp

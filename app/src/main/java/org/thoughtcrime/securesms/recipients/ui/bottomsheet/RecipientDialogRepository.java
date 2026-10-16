@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.groups.GroupChangeException;
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.IOException;
 import java.util.ArrayList;

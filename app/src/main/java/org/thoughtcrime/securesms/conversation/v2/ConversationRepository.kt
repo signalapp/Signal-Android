@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.database.StickerRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.DrawableUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
@@ -90,7 +91,6 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult

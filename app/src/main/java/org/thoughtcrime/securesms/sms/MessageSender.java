@@ -26,6 +26,7 @@ import androidx.annotation.WorkerThread;
 
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.signal.core.models.database.AttachmentId;
@@ -63,7 +64,6 @@ import org.signal.core.models.media.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.core.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;

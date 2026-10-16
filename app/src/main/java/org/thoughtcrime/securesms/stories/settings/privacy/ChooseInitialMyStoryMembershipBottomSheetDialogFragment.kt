@@ -11,12 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.radiobutton.MaterialRadioButton
 import kotlinx.coroutines.launch
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.connections.ViewAllSignalConnectionsFragment
 import org.thoughtcrime.securesms.stories.settings.select.BaseStoryRecipientSelectionFragment
 import org.thoughtcrime.securesms.util.fragments.findListener

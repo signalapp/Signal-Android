@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup;
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.util.SignalE164Util;

@@ -9,6 +9,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.groups.GroupNotAMemberException
 import org.signal.core.util.logging.Log
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil

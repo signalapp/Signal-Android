@@ -5,10 +5,10 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.shared
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * A recipient that can render in a preview. It needs an id, or it'd be equal to [Recipient.UNKNOWN] and the screen

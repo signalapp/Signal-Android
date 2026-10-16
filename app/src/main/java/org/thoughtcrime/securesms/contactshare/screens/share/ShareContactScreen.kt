@@ -51,6 +51,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -69,7 +70,6 @@ import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.C
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.DetailLabel
 import org.thoughtcrime.securesms.contactshare.screens.share.ShareContactState.DetailSelection
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.core.ui.R as CoreUiR
 
 /** Width of the leading selection column, so every row's content shares one text margin. */

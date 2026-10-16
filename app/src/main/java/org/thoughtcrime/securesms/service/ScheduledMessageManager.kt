@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
-import org.thoughtcrime.securesms.recipients.RecipientId
 import kotlin.time.Duration.Companion.seconds
 
 /**

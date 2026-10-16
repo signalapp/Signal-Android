@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.details
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 sealed interface SharedContactDetailsAction {
   data object Exit : SharedContactDetailsAction

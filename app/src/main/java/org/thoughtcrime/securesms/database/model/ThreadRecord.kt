@@ -5,9 +5,9 @@
 package org.thoughtcrime.securesms.database.model
 
 import android.net.Uri
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Represents a single row in the thread table.

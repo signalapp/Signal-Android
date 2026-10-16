@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.conversation.ui.edit
 import android.net.Uri
 import android.view.View
 import androidx.lifecycle.Observer
+import org.signal.core.models.recipients.RecipientId
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Empty object for when a callback can't be found.

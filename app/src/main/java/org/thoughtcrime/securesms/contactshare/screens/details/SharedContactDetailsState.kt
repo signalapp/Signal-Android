@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.contactshare.screens.details
 
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 /** State for a received contact card. Any section can be absent. */
 data class SharedContactDetailsState(

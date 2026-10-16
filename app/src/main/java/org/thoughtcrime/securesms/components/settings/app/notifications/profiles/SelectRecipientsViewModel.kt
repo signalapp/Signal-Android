@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class SelectRecipientsViewModel(
   private val profileId: Long,

@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import androidx.compose.runtime.Immutable
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MediaUtil.SlideType
 

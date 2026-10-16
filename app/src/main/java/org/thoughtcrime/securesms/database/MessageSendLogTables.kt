@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.database.SqlUtil
 import org.signal.core.database.delete
 import org.signal.core.database.update
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -15,7 +16,6 @@ import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RecipientAccessList
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.ContentHint

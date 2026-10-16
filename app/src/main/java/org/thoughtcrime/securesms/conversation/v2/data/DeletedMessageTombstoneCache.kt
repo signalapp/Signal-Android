@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.conversation.v2.data
 
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 
 /**

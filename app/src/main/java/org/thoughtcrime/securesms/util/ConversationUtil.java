@@ -14,6 +14,7 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 
 import com.google.common.collect.Sets;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
 import java.util.Collection;

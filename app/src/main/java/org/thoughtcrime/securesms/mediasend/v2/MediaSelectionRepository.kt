@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.media.TransformProperties
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult

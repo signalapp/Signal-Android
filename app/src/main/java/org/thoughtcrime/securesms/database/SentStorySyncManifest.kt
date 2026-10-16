@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.database
 
 import androidx.annotation.WorkerThread
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
 import org.whispersystems.signalservice.api.push.DistributionId

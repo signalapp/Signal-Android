@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 

@@ -43,6 +43,7 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -62,7 +63,6 @@ import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.ui.incommon.GroupsInCommonActivity
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.signal.core.ui.R as CoreUiR

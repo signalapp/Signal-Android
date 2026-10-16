@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.JsonUtils;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;

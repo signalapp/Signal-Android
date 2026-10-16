@@ -5,12 +5,12 @@
 
 package org.thoughtcrime.securesms.main
 
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.ListDetailBackStack
 import org.signal.core.ui.compose.split.ListNavKey
 import org.signal.core.ui.compose.split.detailLocation
 import org.signal.core.ui.compose.split.listLocation
 import org.thoughtcrime.securesms.calls.log.CallLogRow
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * The list currently being displayed.

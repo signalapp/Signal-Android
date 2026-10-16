@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.models.database.AttachmentId;
+import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols.Glyph;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.payments.CryptoValueUtil;
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.polls.PollRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 import org.whispersystems.signalservice.api.payments.Money;
 

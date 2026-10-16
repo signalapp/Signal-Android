@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.util
 
 import org.signal.core.models.ServiceId
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 
 /**

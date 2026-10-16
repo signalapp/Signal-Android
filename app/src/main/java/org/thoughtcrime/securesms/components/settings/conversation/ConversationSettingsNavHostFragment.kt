@@ -13,12 +13,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfo
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfoProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 
 class ConversationSettingsNavHostFragment : NavHostFragment(), FragmentBackPressedInfoProvider {
 

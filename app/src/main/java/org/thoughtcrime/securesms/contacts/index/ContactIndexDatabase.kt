@@ -14,6 +14,7 @@ import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.database.SqlUtil
 import org.signal.core.database.getTableRowCount
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook
 import org.thoughtcrime.securesms.database.SqlCipherDeletingErrorHandler
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader
-import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.concurrent.atomic.AtomicLong
 
 /**

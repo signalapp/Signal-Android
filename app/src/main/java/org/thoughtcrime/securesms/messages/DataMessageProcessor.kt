@@ -7,6 +7,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.models.database.StickerRecord
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.UuidUtil
@@ -92,7 +93,6 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator

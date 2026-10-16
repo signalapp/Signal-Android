@@ -48,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDeta
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailKind
 import org.thoughtcrime.securesms.contactshare.screens.details.SharedContactDetailsState.DetailRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.signal.core.ui.R as CoreUiR
 
 /** Matches the share screen, so icons and text line up across both. */

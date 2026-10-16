@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.enableEdgeToEdge
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.select.BaseStoryRecipientSelectionFragment
 
 class CreateStoryFlowDialogFragment : DialogFragment(R.layout.create_story_flow_dialog_fragment), BaseStoryRecipientSelectionFragment.Callback, CreateStoryWithViewersFragment.Callback {

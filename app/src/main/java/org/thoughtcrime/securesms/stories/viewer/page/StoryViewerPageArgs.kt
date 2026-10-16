@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer.page
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.recipients.RecipientId
+import org.signal.core.models.recipients.RecipientId
 
 @Parcelize
 data class StoryViewerPageArgs(
