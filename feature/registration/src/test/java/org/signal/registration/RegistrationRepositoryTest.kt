@@ -374,7 +374,8 @@ class RegistrationRepositoryTest {
       ephemeralBackupKey = null,
       accountEntropyPool = aep.value,
       mediaRootBackupKey = null,
-      readReceipts = null
+      readReceipts = null,
+      authCredentialSalt = null
     )
   }
 

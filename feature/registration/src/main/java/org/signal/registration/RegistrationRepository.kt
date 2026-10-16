@@ -898,6 +898,9 @@ class RegistrationRepository(
     if (phoneNumberData == null) {
       check(isPhoneNumberlessRegistrationAvailable) { "Primary sent no phone number data, but linking to an account with no phone number isn't supported!" }
       Log.i(TAG, "[registerAsLinkedDevice] Primary sent no phone number data. Linking to an account with no phone number.")
+      if (message.authCredentialSalt == null) {
+        Log.w(TAG, "[registerAsLinkedDevice] Primary did not send an authCredentialSalt!")
+      }
     }
 
     val e164 = phoneNumberData?.e164
@@ -986,6 +989,10 @@ class RegistrationRepository(
 
         if (pni != null) {
           this.pni = pni.toString()
+        }
+
+        if (message.authCredentialSalt != null) {
+          this.authCredentialSalt = message.authCredentialSalt
         }
 
         this.linkedDeviceData = LinkedDeviceData(

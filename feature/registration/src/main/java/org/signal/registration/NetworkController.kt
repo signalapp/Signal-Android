@@ -615,7 +615,9 @@ interface NetworkController {
     val ephemeralBackupKey: ByteString?,
     val accountEntropyPool: String?,
     val mediaRootBackupKey: ByteString?,
-    val readReceipts: Boolean?
+    val readReceipts: Boolean?,
+    /** Salt used to generate auth credentials for an account with no phone number. */
+    val authCredentialSalt: ByteString?
   ) {
     /**
      * The phone-number-linked half of the provisioning data. Absent when the account has no phone number.

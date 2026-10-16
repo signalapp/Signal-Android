@@ -719,7 +719,8 @@ class AppRegistrationNetworkController(
                 ephemeralBackupKey = msg.ephemeralBackupKey,
                 accountEntropyPool = msg.accountEntropyPool,
                 mediaRootBackupKey = msg.mediaRootBackupKey,
-                readReceipts = msg.readReceipts
+                readReceipts = msg.readReceipts,
+                authCredentialSalt = msg.authCredentialSalt
               )
             )
           )
