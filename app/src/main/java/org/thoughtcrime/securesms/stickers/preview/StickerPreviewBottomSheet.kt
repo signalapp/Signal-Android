@@ -215,7 +215,7 @@ fun StickerPreviewSheetContent(
 
     if (showForward) {
       Rows.TextRow(
-        text = stringResource(R.string.StickerManagement_menu_send_pack),
+        text = stringResource(R.string.StickerPreviewBottomSheet__send_sticker),
         icon = SignalIcons.Forward.imageVector,
         onClick = onForwardClick
       )
