@@ -96,24 +96,26 @@ object LocalArchiver {
             filesFileSystem.delete(mediaName)
           }
 
-          source()?.use { sourceStream ->
-            val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
+          try {
+            source()?.use { sourceStream ->
+              val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
 
-            if (destination == null) {
-              Log.w(TAG, "Unable to create output file for ${attachment.attachmentId}")
-              createFailures.add(attachment.attachmentId)
-            } else {
-              try {
+              if (destination == null) {
+                Log.w(TAG, "Unable to create output file for ${attachment.attachmentId}")
+                createFailures.add(attachment.attachmentId)
+              } else {
                 PaddingInputStream(sourceStream, attachment.size).use { input ->
                   AttachmentCipherOutputStream(attachment.localBackupKey.key, null, destination).use { output ->
                     StreamUtil.copy(input, output, false, false)
                   }
                 }
-              } catch (e: IOException) {
-                Log.w(TAG, "Unable to save ${attachment.attachmentId}", e)
-                readWriteFailures.add(attachment.attachmentId)
               }
             }
+          } catch (e: Exception) {
+            // Opening the source is as failure-prone as copying it: the file may be missing, or undecryptable with the secrets this install has. Neither should
+            // take down the whole backup, and not every such failure arrives as an IOException, so this records the attachment and moves on.
+            Log.w(TAG, "Unable to save ${attachment.attachmentId}", e)
+            readWriteFailures.add(attachment.attachmentId)
           }
         }
       }
