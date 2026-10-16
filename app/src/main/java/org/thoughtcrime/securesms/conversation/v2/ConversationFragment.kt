@@ -1366,7 +1366,11 @@ class ConversationFragment :
   }
 
   private fun openLink(url: String) {
-    startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).encourageNewBrowserTab())
+    startActivity(
+      Intent(Intent.ACTION_VIEW, url.toUri())
+        .encourageNewBrowserTab()
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    )
   }
 
   //endregion
