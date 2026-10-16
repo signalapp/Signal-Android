@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -77,6 +78,8 @@ import okio.ByteString;
 public class FullBackupExporter extends FullBackupBase {
 
   private static final String TAG = Log.tag(FullBackupExporter.class);
+
+  private static final int OUTPUT_BUFFER_SIZE = 64 * 1024;
 
   private static final long DATABASE_VERSION_RECORD_COUNT    = 1L;
   private static final long TABLE_RECORD_COUNT_MULTIPLIER    = 3L;
@@ -114,7 +117,7 @@ public class FullBackupExporter extends FullBackupBase {
                             @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
-    try (OutputStream outputStream = new FileOutputStream(output)) {
+    try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(output), OUTPUT_BUFFER_SIZE)) {
       return internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
     }
   }
@@ -128,7 +131,7 @@ public class FullBackupExporter extends FullBackupBase {
                             @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
-    try (OutputStream outputStream = Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri()))) {
+    try (OutputStream outputStream = new BufferedOutputStream(Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri())), OUTPUT_BUFFER_SIZE)) {
       return internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
     }
   }
