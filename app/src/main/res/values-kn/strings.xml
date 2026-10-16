@@ -516,6 +516,8 @@
     <string name="ChatStickerConfirmation__reply_to_yourself">ನಿಮಗೆ ನೀವೇ ಉತ್ತರಿಸಿ</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">ಹಿಂದಕ್ಕೆ ಹೋಗಿ</string>
+    <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
+    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2725,7 +2727,7 @@
     <!-- Snackbar shown when a pack is hidden -->
     <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
-    <string name="StickerManagement_undo">Undo</string>
+    <string name="StickerManagement_undo">ರದ್ದುಗೊಳಿಸಿ</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">ಫಾರ್ವರ್ಡ್</string>
@@ -2736,7 +2738,7 @@
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">ತೆಗೆದುಹಾಕಿ</string>
     <!-- Sticker pack list dropdown menu label for the button to hide an uninstalled sticker pack from the list of available packs. -->
-    <string name="StickerManagement_menu_hide_pack">Hide</string>
+    <string name="StickerManagement_menu_hide_pack">ಅಡಗಿಸು</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">ಸ್ಟಿಕ್ಕರ್ ಪ್ಯಾಕ್‌ಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
@@ -2792,6 +2794,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">ಪ್ಯಾಕ್ ವೀಕ್ಷಿಸಿ</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">ಸ್ಟಿಕ್ಕರ್ ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3177,7 +3181,7 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ಅನುಮತಿಗಳಿಲ್ಲದೆ ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
     <!-- Toast shown when media can\'t be saved to the device storage because its data is no longer on the device and can\'t be downloaded again. -->
-    <string name="AttachmentSaver__media_no_longer_available">This media is no longer available</string>
+    <string name="AttachmentSaver__media_no_longer_available">ಈ ಮೀಡಿಯಾ ಇನ್ನು ಮುಂದೆ ಲಭ್ಯ ಇರುವುದಿಲ್ಲ</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">ಮೀಡಿಯಾವನ್ನು ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
@@ -3891,7 +3895,7 @@
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Turn off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">ಆಫ್ ಮಾಡಿ</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ನಿರ್ದಿಷ್ಟ ಸಮಯದ ಚಟುವಟಿಕೆಯಿಲ್ಲದ ವಿರಾಮದ ನಂತರ Signal ಆಟೋ-ಲಾಕ್</string>

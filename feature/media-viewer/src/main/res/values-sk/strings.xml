@@ -2,57 +2,57 @@
 <resources>
   <!-- MediaViewerScreen -->
   <!-- Toolbar title for media you sent -->
-  <string name="MediaViewerScreen__you">You</string>
+  <string name="MediaViewerScreen__you">Vy</string>
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
-  <string name="MediaViewerScreen__you_to_s">You to %1$s</string>
+  <string name="MediaViewerScreen__you_to_s">Vy do %1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
-  <string name="MediaViewerScreen__s_to_s">%1$s to %2$s</string>
+  <string name="MediaViewerScreen__s_to_s">od %1$s do %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
-  <string name="MediaViewerScreen__s_to_you">%1$s to you</string>
+  <string name="MediaViewerScreen__s_to_you">%1$s vám</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
-  <string name="MediaViewerScreen__note_to_self">Note to Self</string>
+  <string name="MediaViewerScreen__note_to_self">Poznámka pre seba</string>
   <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
-  <string name="MediaViewerScreen__draft">Draft</string>
+  <string name="MediaViewerScreen__draft">Koncept</string>
   <!-- Overflow menu item that opens the media editor -->
-  <string name="MediaViewerScreen__edit">Edit</string>
+  <string name="MediaViewerScreen__edit">Upraviť</string>
   <!-- Overflow menu item that saves the media to the device -->
-  <string name="MediaViewerScreen__save">Save</string>
+  <string name="MediaViewerScreen__save">Uložiť</string>
   <!-- Overflow menu item that deletes the media -->
-  <string name="MediaViewerScreen__delete">Delete</string>
+  <string name="MediaViewerScreen__delete">Vymazať</string>
   <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
-  <string name="MediaViewerScreen__delete_dialog_delete">Delete</string>
+  <string name="MediaViewerScreen__delete_dialog_delete">Vymazať</string>
   <!-- Title of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_title">Delete message?</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_title">Vymazať správu?</string>
   <!-- Body of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_message">This will permanently delete this message.</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_message">Týmto natrvalo odstránite túto správu.</string>
   <!-- Delete dialog button that deletes the media only on this device -->
-  <string name="MediaViewerScreen__delete_for_me">Delete for me</string>
+  <string name="MediaViewerScreen__delete_for_me">Vymazať pre mňa</string>
   <!-- Delete dialog button that deletes the media for all members of the chat -->
-  <string name="MediaViewerScreen__delete_for_everyone">Delete for everyone</string>
+  <string name="MediaViewerScreen__delete_for_everyone">Vymazať pre všetkých</string>
   <!-- Generic dialog cancel button -->
-  <string name="MediaViewerScreen__cancel">Cancel</string>
+  <string name="MediaViewerScreen__cancel">Zrušiť</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
   <string name="MediaViewerScreen__read_more">… Read more</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__cant_save_media">Can\'t save media</string>
+  <string name="MediaViewerScreen__cant_save_media">Médiá nie je možné uložiť</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
-  <string name="MediaViewerScreen__view_storage_settings">View storage settings</string>
+  <string name="MediaViewerScreen__view_storage_settings">Zobraziť nastavenia úložiska</string>
   <!-- Generic dialog confirmation button -->
   <string name="MediaViewerScreen__ok">OK</string>
   <!-- Content description of the toolbar back button -->
-  <string name="MediaViewerScreen__navigate_back">Navigate back</string>
+  <string name="MediaViewerScreen__navigate_back">Prejsť späť</string>
   <!-- Content description of the toolbar overflow menu button -->
-  <string name="MediaViewerScreen__more_options">More options</string>
+  <string name="MediaViewerScreen__more_options">Viac možností</string>
   <!-- Content description of the share button -->
-  <string name="MediaViewerScreen__share">Share</string>
+  <string name="MediaViewerScreen__share">Zdieľať</string>
   <!-- Content description of the forward button -->
-  <string name="MediaViewerScreen__forward">Forward</string>
+  <string name="MediaViewerScreen__forward">Preposlať</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Play</string>
+  <string name="MediaViewerScreen__play">Prehrať</string>
   <!-- Content description of the video pause button -->
-  <string name="MediaViewerScreen__pause">Pause</string>
+  <string name="MediaViewerScreen__pause">Pozastaviť</string>
   <!-- Content description of the video rewind button -->
   <string name="MediaViewerScreen__rewind">Rewind</string>
   <!-- Content description of the video fast-forward button -->

@@ -37,7 +37,7 @@
     <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
     <string name="CloseButton__content_description">Close</string>
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>
+    <string name="DefaultTopAppBar__navigate_up_content_description">Жоғары көтерілу</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
     <string name="StickerFavorites__add_to_favorites">\"Таңдаулылар\" тізіміне қосу</string>

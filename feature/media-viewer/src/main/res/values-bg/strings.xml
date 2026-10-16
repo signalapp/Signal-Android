@@ -2,63 +2,63 @@
 <resources>
   <!-- MediaViewerScreen -->
   <!-- Toolbar title for media you sent -->
-  <string name="MediaViewerScreen__you">You</string>
+  <string name="MediaViewerScreen__you">Вие</string>
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
-  <string name="MediaViewerScreen__you_to_s">You to %1$s</string>
+  <string name="MediaViewerScreen__you_to_s">От вас към %1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
-  <string name="MediaViewerScreen__s_to_s">%1$s to %2$s</string>
+  <string name="MediaViewerScreen__s_to_s">%1$s до %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
-  <string name="MediaViewerScreen__s_to_you">%1$s to you</string>
+  <string name="MediaViewerScreen__s_to_you">От %1$s към вас</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
-  <string name="MediaViewerScreen__note_to_self">Note to Self</string>
+  <string name="MediaViewerScreen__note_to_self">Лична бележка</string>
   <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
-  <string name="MediaViewerScreen__draft">Draft</string>
+  <string name="MediaViewerScreen__draft">Чернова</string>
   <!-- Overflow menu item that opens the media editor -->
-  <string name="MediaViewerScreen__edit">Edit</string>
+  <string name="MediaViewerScreen__edit">Редактиране</string>
   <!-- Overflow menu item that saves the media to the device -->
-  <string name="MediaViewerScreen__save">Save</string>
+  <string name="MediaViewerScreen__save">Запазване</string>
   <!-- Overflow menu item that deletes the media -->
-  <string name="MediaViewerScreen__delete">Delete</string>
+  <string name="MediaViewerScreen__delete">Изтриване</string>
   <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
-  <string name="MediaViewerScreen__delete_dialog_delete">Delete</string>
+  <string name="MediaViewerScreen__delete_dialog_delete">Изтриване</string>
   <!-- Title of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_title">Delete message?</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_title">Изтриване на съобщението?</string>
   <!-- Body of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_message">This will permanently delete this message.</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_message">Това ще изтрие перманентно текущото съобщение.</string>
   <!-- Delete dialog button that deletes the media only on this device -->
-  <string name="MediaViewerScreen__delete_for_me">Delete for me</string>
+  <string name="MediaViewerScreen__delete_for_me">Изтриване за мен</string>
   <!-- Delete dialog button that deletes the media for all members of the chat -->
-  <string name="MediaViewerScreen__delete_for_everyone">Delete for everyone</string>
+  <string name="MediaViewerScreen__delete_for_everyone">Изтриване за всички</string>
   <!-- Generic dialog cancel button -->
-  <string name="MediaViewerScreen__cancel">Cancel</string>
+  <string name="MediaViewerScreen__cancel">Отказ</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… Прочетете повече</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__cant_save_media">Can\'t save media</string>
+  <string name="MediaViewerScreen__cant_save_media">Мултимедията не може да бъде запазена</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">Това мултимедийно съдържание вече не се съхранява на това устройство. Можете да промените настройките на вашето хранилище и отново да изтеглите това мултимедийно съдържание чрез неограничена Wi-Fi връзка.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
-  <string name="MediaViewerScreen__view_storage_settings">View storage settings</string>
+  <string name="MediaViewerScreen__view_storage_settings">Преглед на настройките на хранилището</string>
   <!-- Generic dialog confirmation button -->
-  <string name="MediaViewerScreen__ok">OK</string>
+  <string name="MediaViewerScreen__ok">ОК</string>
   <!-- Content description of the toolbar back button -->
-  <string name="MediaViewerScreen__navigate_back">Navigate back</string>
+  <string name="MediaViewerScreen__navigate_back">Връщане обратно</string>
   <!-- Content description of the toolbar overflow menu button -->
-  <string name="MediaViewerScreen__more_options">More options</string>
+  <string name="MediaViewerScreen__more_options">Още опции</string>
   <!-- Content description of the share button -->
-  <string name="MediaViewerScreen__share">Share</string>
+  <string name="MediaViewerScreen__share">Споделяне</string>
   <!-- Content description of the forward button -->
-  <string name="MediaViewerScreen__forward">Forward</string>
+  <string name="MediaViewerScreen__forward">Препращане</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Play</string>
+  <string name="MediaViewerScreen__play">Пускане</string>
   <!-- Content description of the video pause button -->
-  <string name="MediaViewerScreen__pause">Pause</string>
+  <string name="MediaViewerScreen__pause">Пауза</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">Превъртане назад</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">Превъртане напред</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">Миниатюра на мултимедия</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
-  <string name="MediaViewerScreen__remaining_time">−%1$s</string>
+  <string name="MediaViewerScreen__remaining_time">–%1$s</string>
 </resources>

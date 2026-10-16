@@ -518,7 +518,7 @@
     <string name="ChatStickerConfirmation__reply_to_yourself">Reply to yourself</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Go back</string>
-    <!-- Content description for the button that opens the sticker's pack, where it can be managed -->
+    <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
     <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
 
     <!-- ConversationFragment -->

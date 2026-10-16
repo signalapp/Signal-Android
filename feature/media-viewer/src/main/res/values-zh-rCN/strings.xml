@@ -2,57 +2,57 @@
 <resources>
   <!-- MediaViewerScreen -->
   <!-- Toolbar title for media you sent -->
-  <string name="MediaViewerScreen__you">You</string>
+  <string name="MediaViewerScreen__you">您</string>
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
-  <string name="MediaViewerScreen__you_to_s">You to %1$s</string>
+  <string name="MediaViewerScreen__you_to_s">您发送至%1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
-  <string name="MediaViewerScreen__s_to_s">%1$s to %2$s</string>
+  <string name="MediaViewerScreen__s_to_s">%1$s 至 %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
-  <string name="MediaViewerScreen__s_to_you">%1$s to you</string>
+  <string name="MediaViewerScreen__s_to_you">%1$s发送给您</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
-  <string name="MediaViewerScreen__note_to_self">Note to Self</string>
+  <string name="MediaViewerScreen__note_to_self">备忘录</string>
   <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
-  <string name="MediaViewerScreen__draft">Draft</string>
+  <string name="MediaViewerScreen__draft">草稿</string>
   <!-- Overflow menu item that opens the media editor -->
-  <string name="MediaViewerScreen__edit">Edit</string>
+  <string name="MediaViewerScreen__edit">编辑</string>
   <!-- Overflow menu item that saves the media to the device -->
-  <string name="MediaViewerScreen__save">Save</string>
+  <string name="MediaViewerScreen__save">保存</string>
   <!-- Overflow menu item that deletes the media -->
-  <string name="MediaViewerScreen__delete">Delete</string>
+  <string name="MediaViewerScreen__delete">删除</string>
   <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
-  <string name="MediaViewerScreen__delete_dialog_delete">Delete</string>
+  <string name="MediaViewerScreen__delete_dialog_delete">删除</string>
   <!-- Title of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_title">Delete message?</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_title">删除消息？</string>
   <!-- Body of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_message">This will permanently delete this message.</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_message">这将永久删除该消息。</string>
   <!-- Delete dialog button that deletes the media only on this device -->
-  <string name="MediaViewerScreen__delete_for_me">Delete for me</string>
+  <string name="MediaViewerScreen__delete_for_me">为我删除</string>
   <!-- Delete dialog button that deletes the media for all members of the chat -->
-  <string name="MediaViewerScreen__delete_for_everyone">Delete for everyone</string>
+  <string name="MediaViewerScreen__delete_for_everyone">对每个人删除</string>
   <!-- Generic dialog cancel button -->
-  <string name="MediaViewerScreen__cancel">Cancel</string>
+  <string name="MediaViewerScreen__cancel">取消</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
   <string name="MediaViewerScreen__read_more">… Read more</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__cant_save_media">Can\'t save media</string>
+  <string name="MediaViewerScreen__cant_save_media">无法保存媒体</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
-  <string name="MediaViewerScreen__view_storage_settings">View storage settings</string>
+  <string name="MediaViewerScreen__view_storage_settings">查看存储设置</string>
   <!-- Generic dialog confirmation button -->
-  <string name="MediaViewerScreen__ok">OK</string>
+  <string name="MediaViewerScreen__ok">好</string>
   <!-- Content description of the toolbar back button -->
-  <string name="MediaViewerScreen__navigate_back">Navigate back</string>
+  <string name="MediaViewerScreen__navigate_back">返回</string>
   <!-- Content description of the toolbar overflow menu button -->
-  <string name="MediaViewerScreen__more_options">More options</string>
+  <string name="MediaViewerScreen__more_options">更多选项</string>
   <!-- Content description of the share button -->
-  <string name="MediaViewerScreen__share">Share</string>
+  <string name="MediaViewerScreen__share">分享</string>
   <!-- Content description of the forward button -->
-  <string name="MediaViewerScreen__forward">Forward</string>
+  <string name="MediaViewerScreen__forward">转发</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Play</string>
+  <string name="MediaViewerScreen__play">播放</string>
   <!-- Content description of the video pause button -->
-  <string name="MediaViewerScreen__pause">Pause</string>
+  <string name="MediaViewerScreen__pause">暂停</string>
   <!-- Content description of the video rewind button -->
   <string name="MediaViewerScreen__rewind">Rewind</string>
   <!-- Content description of the video fast-forward button -->

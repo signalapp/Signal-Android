@@ -516,6 +516,8 @@
     <string name="ChatStickerConfirmation__reply_to_yourself">Erantzun zeure buruari</string>
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Joan atzera</string>
+    <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
+    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2717,15 +2719,15 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Kopiatu da esteka</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">Eranskailu-paketea ezkutatu nahi duzu?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">Eranskailu-paketea pakete erabilgarrietatik ezkutatuko da. Esteka bat edo eranskailu-mezurik izan ezean, ezingo duzu berriro gehitu.</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">Eranskailu-paketea kendu egingo da, eta pakete erabilgarrietatik ezkutatuko. Esteka bat edo eranskailu-mezurik izan ezean, ezingo duzu berriro gehitu.</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">Ezkutatu da eranskailu-paketea</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
-    <string name="StickerManagement_undo">Undo</string>
+    <string name="StickerManagement_undo">Desegin</string>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Birbidali</string>
@@ -2736,7 +2738,7 @@
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">Kendu</string>
     <!-- Sticker pack list dropdown menu label for the button to hide an uninstalled sticker pack from the list of available packs. -->
-    <string name="StickerManagement_menu_hide_pack">Hide</string>
+    <string name="StickerManagement_menu_hide_pack">Ezkutatu</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Hautatu eranskailu-paketeak</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
@@ -2792,6 +2794,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Ikusi paketea</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Gehitu da eranskailua gogokoetan</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3177,7 +3181,7 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Ezin izan da kanpoko gordailuan idatzi baimen faltagatik</string>
     <!-- Toast shown when media can\'t be saved to the device storage because its data is no longer on the device and can\'t be downloaded again. -->
-    <string name="AttachmentSaver__media_no_longer_available">This media is no longer available</string>
+    <string name="AttachmentSaver__media_no_longer_available">Multimedia-eduki hau jada ez dago erabilgarri</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">Ezin da gorde multimedia-edukia</string>
@@ -3883,17 +3887,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">Segurtasun-pantaila gaituta dago</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Desaktibatu segurtasun-pantaila</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Segurtasun-pantaila desaktibatu nahi duzu?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Turn off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Desaktibatu</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Segurtasun-pantaila desaktibatuta dago</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blokeatu Signal automatikoki jarduerarik gabe denbora tarte bat pasa eta gero.</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Jarduerarik gabeko denbora muga osteko pasaesaldia</string>
