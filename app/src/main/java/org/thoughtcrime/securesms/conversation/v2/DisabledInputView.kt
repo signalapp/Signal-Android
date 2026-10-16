@@ -210,8 +210,10 @@ class DisabledInputView @JvmOverloads constructor(
           context.getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported)
         } else if (threadContainsSms) {
           context.getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here, recipient.getDisplayName(context))
-        } else {
+        } else if (recipient.hasAci) {
           context.getString(R.string.ConversationActivity__this_person_is_no_longer_using_signal)
+        } else {
+          context.getString(R.string.ConversationActivity__this_person_is_not_using_signal)
         }
 
         findViewById<MaterialButton>(R.id.export_sms_button).apply {
