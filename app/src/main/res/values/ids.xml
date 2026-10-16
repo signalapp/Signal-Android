@@ -34,4 +34,11 @@
     <item name="edittext_clear_formatting" type="id" />
 
     <item name="nav_host_wrapper_container" type="id" />
+
+    <item name="conversation_list_accessibility_archive_action" type="id" />
+    <item name="conversation_list_accessibility_read_action" type="id" />
+    <item name="conversation_list_accessibility_pin_action" type="id" />
+    <item name="conversation_list_accessibility_mute_action" type="id" />
+    <item name="conversation_list_accessibility_select_action" type="id" />
+    <item name="conversation_list_accessibility_delete_action" type="id" />
 </resources>
