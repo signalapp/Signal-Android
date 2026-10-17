@@ -371,7 +371,6 @@ open class MessageContentProcessor(private val context: Context) {
     val earlyCacheEntries: List<EarlyMessageCacheEntry>? = AppDependencies
       .earlyMessageCache
       .retrieve(senderRecipient.id, envelope.clientTimestamp!!)
-      .orNull()
 
     if (!processingEarlyContent && earlyCacheEntries != null) {
       log(envelope.clientTimestamp!!, "Found " + earlyCacheEntries.size + " dependent item(s) that were retrieved earlier. Processing.")
