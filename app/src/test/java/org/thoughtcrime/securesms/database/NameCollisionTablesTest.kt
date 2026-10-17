@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import assertk.assertThat
 import assertk.assertions.hasSize
+import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThan
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -15,6 +17,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.recipients.RecipientId
+import org.signal.core.util.readToSingleLong
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
@@ -195,6 +198,37 @@ class NameCollisionTablesTest {
 
     assertThat(SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)).hasSize(0)
     assertThat(SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)).hasSize(0)
+  }
+
+  @Test
+  fun givenTwoUsersInTheSameNameCollision_whenOneIsDeleted_thenIExpectTheCollisionToBePruned() {
+    setProfileNameAndCheckCollision(alice, ProfileName.fromParts("Bob", "Android"))
+    setProfileNameAndCheckCollision(bob, ProfileName.fromParts("Bob", "Android"))
+    assertThat(collisionCount()).isGreaterThan(0)
+
+    SignalDatabase.nameCollisions.onDeletedRecipient(alice)
+
+    assertThat(collisionCount()).isEqualTo(0)
+  }
+
+  @Test
+  fun givenAGroupNameCollision_whenTheNamesNoLongerMatch_thenIExpectTheCollisionToBePruned() {
+    val info = recipients.createGroup(alice, bob)
+    SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(info.recipientId))
+
+    recipients.setProfileName(alice, ProfileName.fromParts("Bob", "Android"))
+    recipients.setProfileName(bob, ProfileName.fromParts("Bob", "Android"))
+    SignalDatabase.messages.insertProfileNameChangeMessages(Recipient.resolved(alice), "Bob Android", "Alice Android")
+    assertThat(collisionCount()).isEqualTo(1)
+
+    recipients.setProfileName(alice, ProfileName.fromParts("Alice", "Android"))
+    SignalDatabase.messages.insertProfileNameChangeMessages(Recipient.resolved(alice), "Alice Android", "Bob Android")
+
+    assertThat(collisionCount()).isEqualTo(0)
+  }
+
+  private fun collisionCount(): Long {
+    return SignalDatabase.writableDatabase.rawQuery("SELECT COUNT(*) FROM name_collision", null).readToSingleLong()
   }
 
   private fun setProfileNameAndCheckCollision(recipientId: RecipientId, name: ProfileName) {

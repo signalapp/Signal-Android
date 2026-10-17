@@ -1252,7 +1252,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun insertProfileNameChangeMessages(recipient: Recipient, newProfileName: String, previousProfileName: String) {
-    writableDatabase.withinTransaction { db ->
+    val groupRecords = writableDatabase.withinTransaction { db ->
       val groupRecords = groups.getGroupsContainingMember(recipient.id, false)
 
       val extras = MessageExtras(
@@ -1290,9 +1290,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           TrimThreadJob.enqueueAsync(threadId)
         }
 
-      groupRecords.filter { it.hasV2GroupProperties }.forEach {
-        SignalDatabase.nameCollisions.handleGroupNameCollisions(it.id.requireV2(), setOf(recipient.id))
-      }
+      groupRecords
+    }
+
+    groupRecords.filter { it.hasV2GroupProperties }.forEach {
+      SignalDatabase.nameCollisions.handleGroupNameCollisions(it.id.requireV2(), setOf(recipient.id))
     }
   }
 

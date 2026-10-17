@@ -220,7 +220,7 @@ class NameCollisionTables(
             .run()
         }
 
-        pruneCollision(collisionId)
+        pruneCollisions(setOf(collisionId))
       }
     }
 
@@ -234,6 +234,7 @@ class NameCollisionTables(
   fun handleIndividualNameCollision(recipientId: RecipientId) {
     writableDatabase.withinTransaction { db ->
       val similarRecipients = SignalDatabase.recipients.getSimilarRecipientIds(Recipient.resolved(recipientId))
+      val affectedCollisionIds: MutableSet<Long> = getCollisionIdsForRecipient(recipientId).toMutableSet()
 
       db.delete(NameCollisionMembershipTable.TABLE_NAME)
         .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
@@ -256,10 +257,10 @@ class NameCollisionTables(
 
             recipients.map { ReviewRecipient(it) }.toSet()
           }
-        )
+        )?.let { affectedCollisionIds += it }
       }
 
-      pruneCollisions()
+      pruneCollisions(affectedCollisionIds)
     }
   }
 
@@ -270,43 +271,59 @@ class NameCollisionTables(
   fun handleGroupNameCollisions(groupId: GroupId.V2, changed: Set<RecipientId>) {
     writableDatabase.withinTransaction {
       val threadRecipientId = SignalDatabase.recipients.getByGroupId(groupId).orNull() ?: return@withinTransaction
-      handleNameCollisions(
+      val collisionId = handleNameCollisions(
         threadRecipientId = threadRecipientId,
         getCollisionRecipients = { getDuplicatedGroupRecipients(groupId, changed).toSet() }
-      )
+      ) ?: return@withinTransaction
 
-      pruneCollisions()
+      pruneCollisions(setOf(collisionId))
     }
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase.execSQL(
-      "UPDATE OR REPLACE ${NameCollisionMembershipTable.TABLE_NAME} SET ${NameCollisionMembershipTable.RECIPIENT_ID} = ? WHERE ${NameCollisionMembershipTable.RECIPIENT_ID} = ?",
-      arrayOf(toId.serialize(), fromId.serialize())
-    )
+    writableDatabase.withinTransaction { db ->
+      val affectedCollisionIds = getCollisionIdsForRecipient(fromId)
+
+      db.execSQL(
+        "UPDATE OR REPLACE ${NameCollisionMembershipTable.TABLE_NAME} SET ${NameCollisionMembershipTable.RECIPIENT_ID} = ? WHERE ${NameCollisionMembershipTable.RECIPIENT_ID} = ?",
+        arrayOf(toId.serialize(), fromId.serialize())
+      )
+
+      pruneCollisions(affectedCollisionIds)
+    }
     Log.d(TAG, "Remapped $fromId to $toId")
   }
 
   override fun onDeletedRecipient(recipientId: RecipientId) {
-    val deleted = writableDatabase
-      .delete(NameCollisionMembershipTable.TABLE_NAME)
-      .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
-      .run()
+    val deleted = writableDatabase.withinTransaction { db ->
+      val affectedCollisionIds = getCollisionIdsForRecipient(recipientId)
+
+      val deleted = db
+        .delete(NameCollisionMembershipTable.TABLE_NAME)
+        .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
+        .run()
+
+      pruneCollisions(affectedCollisionIds)
+      deleted
+    }
 
     Log.d(TAG, "Deleted recipient: $deleted")
   }
 
+  /**
+   * @return The id of the collision that was updated, if any.
+   */
   private fun handleNameCollisions(
     threadRecipientId: RecipientId,
     getCollisionRecipients: () -> Set<ReviewRecipient>
-  ) {
+  ): Long? {
     check(writableDatabase.inTransaction())
 
     val resolved = Recipient.resolved(threadRecipientId)
     val collisionRecipients: Set<ReviewRecipient> = getCollisionRecipients()
 
     if (collisionRecipients.size < 2 && !collisionExists(threadRecipientId)) {
-      return
+      return null
     }
 
     val collision: NameCollision = getOrCreateCollision(resolved)
@@ -319,6 +336,17 @@ class NameCollisionTables(
         dismissed = if (!collision.dismissed) false else collision.hash == hash
       )
     )
+
+    return collision.id
+  }
+
+  private fun getCollisionIdsForRecipient(recipientId: RecipientId): Set<Long> {
+    return writableDatabase
+      .select(NameCollisionMembershipTable.COLLISION_ID)
+      .from(NameCollisionMembershipTable.TABLE_NAME)
+      .where("${NameCollisionMembershipTable.RECIPIENT_ID} = ?", recipientId)
+      .run()
+      .readToSet { it.requireLong(NameCollisionMembershipTable.COLLISION_ID) }
   }
 
   private fun collisionExists(threadRecipientId: RecipientId): Boolean {
@@ -464,48 +492,29 @@ class NameCollisionTables(
   }
 
   /**
-   * Remove any collision for which there are fewer than two members.
+   * Removes any of the given collisions that have fewer than two members. Scoped to specific ids so that
+   * each check is an index lookup rather than a scan of every collision.
    */
-  private fun pruneCollisions() {
+  private fun pruneCollisions(collisionIds: Collection<Long>) {
     check(writableDatabase.inTransaction())
 
-    writableDatabase.execSQL(
-      """
-      DELETE FROM ${NameCollisionTable.TABLE_NAME}
-      WHERE $ID NOT IN (
-          SELECT ${NameCollisionMembershipTable.COLLISION_ID}
-          FROM ${NameCollisionMembershipTable.TABLE_NAME}
-          GROUP BY ${NameCollisionMembershipTable.COLLISION_ID}
-          HAVING COUNT(*) >= 2
-      )
-      """.trimIndent()
-    )
-  }
+    if (collisionIds.isEmpty()) {
+      return
+    }
 
-  /**
-   * Removes the given collision if it has fewer than two members.
-   *
-   * Unlike [pruneCollisions], this is scoped to a single collision so it can be used on hot paths
-   * (e.g. opening a conversation) without scanning the entire [NameCollisionTable] while holding the
-   * write lock. Callers that may have modified the membership of more than one collision should
-   * continue to use [pruneCollisions].
-   */
-  private fun pruneCollision(collisionId: Long) {
-    check(writableDatabase.inTransaction())
-
-    writableDatabase.execSQL(
-      """
-      DELETE FROM ${NameCollisionTable.TABLE_NAME}
-      WHERE $ID = ? AND $ID NOT IN (
-          SELECT ${NameCollisionMembershipTable.COLLISION_ID}
+    for (query in SqlUtil.buildCollectionQuery(ID, collisionIds)) {
+      writableDatabase.execSQL(
+        """
+        DELETE FROM ${NameCollisionTable.TABLE_NAME}
+        WHERE ${query.where} AND (
+          SELECT COUNT(*)
           FROM ${NameCollisionMembershipTable.TABLE_NAME}
-          WHERE ${NameCollisionMembershipTable.COLLISION_ID} = ?
-          GROUP BY ${NameCollisionMembershipTable.COLLISION_ID}
-          HAVING COUNT(*) >= 2
+          WHERE ${NameCollisionMembershipTable.TABLE_NAME}.${NameCollisionMembershipTable.COLLISION_ID} = ${NameCollisionTable.TABLE_NAME}.$ID
+        ) < 2
+        """.trimIndent(),
+        query.whereArgs
       )
-      """.trimIndent(),
-      arrayOf(collisionId, collisionId)
-    )
+    }
   }
 
   private fun getDuplicatedGroupRecipients(groupId: V2, toCheck: Set<RecipientId>): List<ReviewRecipient> {
