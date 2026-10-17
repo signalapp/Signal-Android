@@ -1734,7 +1734,7 @@ object DataMessageProcessor {
     val packId: String = Hex.toStringCondensed(sticker.packId!!.toByteArray())
     val packKey: String = Hex.toStringCondensed(sticker.packKey!!.toByteArray())
     val stickerId: Int = sticker.stickerId!!
-    val emoji: String? = sticker.emoji
+    val emoji: String? = sticker.emoji?.takeIf { EmojiUtil.isEmoji(it) }
 
     val stickerLocator = StickerLocator(packId, packKey, stickerId, emoji)
     val stickerRecord: StickerRecord? = SignalDatabase.stickers.getSticker(stickerLocator.packId, stickerLocator.stickerId, false)
