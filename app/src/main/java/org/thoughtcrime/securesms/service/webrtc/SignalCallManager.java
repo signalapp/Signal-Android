@@ -185,6 +185,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     return lockManager;
   }
 
+  public void setCallScreenVisible(boolean visible) {
+    lockManager.setCallScreenVisible(visible);
+  }
+
   public @NonNull Flowable<Map<RecipientId, CallLinkPeekInfo>> getPeekInfoCache() {
     return linkPeekInfoStore.getStateFlowable();
   }

@@ -287,6 +287,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     super.onResume()
 
     initializeScreenshotSecurity()
+    AppDependencies.signalCallManager.setCallScreenVisible(true)
 
     if (!EventBus.getDefault().isRegistered(eventBusSubscriber)) {
       EventBus.getDefault().register(eventBusSubscriber)
@@ -331,6 +332,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   override fun onPause() {
     Log.i(TAG, "onPause")
     super.onPause()
+
+    AppDependencies.signalCallManager.setCallScreenVisible(false)
 
     disableIncomingRingingVanity()
 

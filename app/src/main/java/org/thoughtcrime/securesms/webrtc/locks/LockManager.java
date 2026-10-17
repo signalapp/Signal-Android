@@ -22,6 +22,8 @@ public class LockManager {
   private final ProximityLock         proximityLock;
 
   private boolean     proximityDisabled = false;
+  private boolean     callScreenVisible = true;
+  private PhoneState  phoneState        = PhoneState.IDLE;
 
   public enum PhoneState {
     IDLE,
@@ -59,19 +61,30 @@ public class LockManager {
   }
 
   private void updateInCallLockState() {
-    if (!proximityDisabled) {
+    if (proximityDisabled) {
+      setLockState(LockState.FULL);
+    } else if (callScreenVisible) {
       setLockState(LockState.PROXIMITY);
     } else {
-      setLockState(LockState.FULL);
+      setLockState(LockState.PARTIAL);
     }
   }
 
-  public void updatePhoneState(PhoneState state) {
+  public synchronized void setCallScreenVisible(boolean visible) {
+    callScreenVisible = visible;
+    if (phoneState == PhoneState.IN_CALL) {
+      updateInCallLockState();
+    }
+  }
+
+  public synchronized void updatePhoneState(PhoneState state) {
+    phoneState = state;
     switch(state) {
       case IDLE:
         setLockState(LockState.SLEEP);
         break;
       case PROCESSING:
+        callScreenVisible = true;
         setLockState(LockState.PARTIAL);
         break;
       case INTERACTIVE:
