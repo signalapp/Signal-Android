@@ -15,10 +15,13 @@ data class StickerRecord(
   @JvmField val contentType: String,
   @JvmField val size: Long,
   @JvmField val isCover: Boolean,
-  @JvmField val isFavorite: Boolean = false
+  @JvmField val favoritedAt: Long = 0
 ) {
   @JvmField
   val uri: Uri = PartAuthorityUris.getStickerUri(rowId)
+
+  @JvmField
+  val isFavorite: Boolean = favoritedAt > 0
 }
 
 /**

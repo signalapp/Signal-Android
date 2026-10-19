@@ -40,6 +40,7 @@ message ArchiveUploadProgressState {
         NotificationProfile = 7;
         ChatFolder = 8;
         HiddenStickerPack = 9;
+        FavoriteStickerList = 10;
     }
 
     State state = 1;
@@ -83,6 +84,7 @@ message LocalBackupCreationProgress {
         MESSAGE = 9;
         FINALIZING = 10;
         HIDDEN_STICKER_PACK = 11;
+        FAVORITE_STICKER_LIST = 12;
     }
 
     oneof state {

@@ -334,6 +334,10 @@ object ArchiveUploadProgress {
       updatePhase(ArchiveUploadProgressState.BackupPhase.HiddenStickerPack)
     }
 
+    override fun onFavoriteStickerList() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.FavoriteStickerList)
+    }
+
     override fun onMessage(currentProgress: Long, approximateCount: Long) {
       updatePhase(ArchiveUploadProgressState.BackupPhase.Message, currentProgress, approximateCount)
     }

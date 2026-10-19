@@ -262,22 +262,43 @@ class StickerTables(
 
   /**
    * Inserts a pack reference (its cover only) without any downloaded sticker data, used when restoring
-   * from an archive. If the pack already exists, this is a no-op.
+   * from an archive. If the pack already exists, we ensure its marked installed with the right position.
    */
   fun insertPackReference(packId: String, packKey: String) {
     writableDatabase.withinTransaction { db ->
-      db
-        .insertInto(Pack.TABLE_NAME)
-        .values(
-          Pack.PACK_ID to packId,
-          Pack.PACK_KEY to packKey,
-          Pack.PACK_TITLE to "",
-          Pack.PACK_AUTHOR to "",
-          Pack.INSTALLED to 1,
-          Pack.POSITION to getNextPosition(db),
-          Pack.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
-        )
-        .run(SQLiteDatabase.CONFLICT_IGNORE)
+      val position = getNextPosition(db)
+      val packExists = db
+        .exists(Pack.TABLE_NAME)
+        .where("${Pack.PACK_ID} = ?", packId)
+        .run()
+
+      if (!packExists) {
+        db
+          .insertInto(Pack.TABLE_NAME)
+          .values(
+            Pack.PACK_ID to packId,
+            Pack.PACK_KEY to packKey,
+            Pack.PACK_TITLE to "",
+            Pack.PACK_AUTHOR to "",
+            Pack.INSTALLED to 1,
+            Pack.POSITION to position,
+            Pack.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+          )
+          .run()
+      } else {
+        db
+          .update(Pack.TABLE_NAME)
+          .values(
+            Pack.PACK_KEY to packKey,
+            Pack.INSTALLED to 1,
+            Pack.POSITION to position,
+            Pack.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+          )
+          .where("${Pack.PACK_ID} = ? AND ${Pack.INSTALLED} = 0", packId)
+          .run()
+
+        markPackUnhidden(db, packId)
+      }
 
       val hasCover = db
         .exists(Sticker.TABLE_NAME)
@@ -307,7 +328,7 @@ class StickerTables(
    */
   fun insertHiddenPack(packId: String, packKey: String) {
     writableDatabase.withinTransaction { db ->
-      db
+      val inserted = db
         .insertInto(Pack.TABLE_NAME)
         .values(
           Pack.PACK_ID to packId,
@@ -318,7 +339,62 @@ class StickerTables(
           Pack.HIDDEN to 1,
           Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
         )
-        .run(SQLiteDatabase.CONFLICT_IGNORE)
+        .run(SQLiteDatabase.CONFLICT_IGNORE) != -1L
+
+      if (!inserted) {
+        db
+          .update(Pack.TABLE_NAME)
+          .values(
+            Pack.HIDDEN to 1,
+            Pack.HIDDEN_STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+          )
+          .where("${Pack.PACK_ID} = ? AND ${Pack.INSTALLED} = 0 AND ${Pack.HIDDEN} = 0", packId)
+          .run()
+      }
+    }
+  }
+
+  /**
+   * Gets any favorited stickers that belong to an uninstalled pack. Used following a backup restore.
+   */
+  fun getFavoritesFromUninstalledPacks(): Cursor {
+    return readableDatabase
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0 AND ${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} = '' AND ${Pack.TABLE_NAME}.${Pack.INSTALLED} = 0")
+      .run()
+  }
+
+  /**
+   * Inserts a favorite sticker from a backup restore without downloading any data.
+   */
+  fun insertFavoritesFromArchive(favorites: List<StickerRecord>) {
+    writableDatabase.withinTransaction { db ->
+      favorites.forEach { favorite ->
+        db
+          .insertInto(Pack.TABLE_NAME)
+          .values(
+            Pack.PACK_ID to favorite.packId,
+            Pack.PACK_KEY to favorite.packKey,
+            Pack.PACK_TITLE to "",
+            Pack.PACK_AUTHOR to "",
+            Pack.INSTALLED to 0
+          )
+          .run(SQLiteDatabase.CONFLICT_IGNORE)
+
+        db
+          .insertInto(Sticker.TABLE_NAME)
+          .values(
+            Sticker.PACK_ID to favorite.packId,
+            Sticker.STICKER_ID to favorite.stickerId,
+            Sticker.EMOJI to favorite.emoji,
+            Sticker.COVER to 0,
+            Sticker.FILE_PATH to "",
+            Sticker.FAVORITED_AT to favorite.favoritedAt,
+            Sticker.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
+          )
+          .run(SQLiteDatabase.CONFLICT_IGNORE)
+      }
     }
   }
 
@@ -430,6 +506,15 @@ class StickerTables(
       .select(*RECORD_PROJECTION)
       .from(JOINED_TABLES)
       .where("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0 AND ${Sticker.TABLE_NAME}.${Sticker.FILE_PATH} != ''")
+      .orderBy("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} DESC")
+      .run()
+  }
+
+  fun getFavoriteStickersForBackup(): Cursor {
+    return readableDatabase
+      .select(*RECORD_PROJECTION)
+      .from(JOINED_TABLES)
+      .where("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} > 0 AND ${Sticker.TABLE_NAME}.${Sticker.COVER} = 0")
       .orderBy("${Sticker.TABLE_NAME}.${Sticker.FAVORITED_AT} DESC")
       .run()
   }
@@ -1629,7 +1714,7 @@ class StickerTables(
         contentType = cursor.requireString(Sticker.CONTENT_TYPE) ?: MediaUtil.IMAGE_WEBP,
         size = cursor.requireLong(Sticker.FILE_LENGTH),
         isCover = cursor.requireBoolean(Sticker.COVER),
-        isFavorite = cursor.requireLong(Sticker.FAVORITED_AT) > 0
+        favoritedAt = cursor.requireLong(Sticker.FAVORITED_AT)
       )
     }
 

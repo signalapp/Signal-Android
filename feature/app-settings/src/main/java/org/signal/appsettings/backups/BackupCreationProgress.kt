@@ -46,6 +46,7 @@ sealed interface BackupCreationProgress {
     NOTIFICATION_PROFILE,
     CHAT_FOLDER,
     HIDDEN_STICKER_PACK,
+    FAVORITE_STICKER_LIST,
     MESSAGE,
     FINALIZING
   }

@@ -270,7 +270,8 @@ class ArchiveUploadProgressTest {
       ({ ArchiveBackupProgressListener.onInstalledStickerPack() }) to BackupPhase.InstalledStickerPack,
       ({ ArchiveBackupProgressListener.onNotificationProfile() }) to BackupPhase.NotificationProfile,
       ({ ArchiveBackupProgressListener.onChatFolder() }) to BackupPhase.ChatFolder,
-      ({ ArchiveBackupProgressListener.onHiddenStickerPack() }) to BackupPhase.HiddenStickerPack
+      ({ ArchiveBackupProgressListener.onHiddenStickerPack() }) to BackupPhase.HiddenStickerPack,
+      ({ ArchiveBackupProgressListener.onFavoriteStickerList() }) to BackupPhase.FavoriteStickerList
     )
 
     cases.forEach { (action, expectedPhase) ->

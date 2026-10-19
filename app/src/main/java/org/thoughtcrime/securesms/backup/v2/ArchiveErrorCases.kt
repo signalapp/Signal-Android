@@ -79,6 +79,14 @@ object ExportSkips {
     return log(0, "Sticker pack  had an invalid packKey.")
   }
 
+  fun invalidFavoriteStickerPackId(): String {
+    return log(0, "Favorite sticker had an invalid packId.")
+  }
+
+  fun invalidFavoriteStickerPackKey(): String {
+    return log(0, "Favorite sticker had an invalid packKey.")
+  }
+
   fun identityUpdateForSelf(sentTimestamp: Long): String {
     return log(sentTimestamp, "Identity update for ourselves.")
   }
@@ -321,6 +329,10 @@ object ImportSkips {
 
   fun missingAdminDeleteRecipient(sentTimestamp: Long, chatId: Long): String {
     return log(sentTimestamp, "Missing admin delete recipient for chat $chatId")
+  }
+
+  fun invalidFavoriteSticker(): String {
+    return log(0, "Favorite sticker was missing or had an invalid packId, packKey, or favoritedAtTimestamp.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

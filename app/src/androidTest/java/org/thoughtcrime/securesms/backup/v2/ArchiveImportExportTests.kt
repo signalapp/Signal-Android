@@ -227,6 +227,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun favoriteStickerList() {
+    runTests { it.startsWith("favorite_sticker_list_") }
+  }
+
+//  @Test
   fun notificationProfiles() {
     runTests { it.startsWith("notification_profile_") }
   }

@@ -95,6 +95,7 @@ import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.FavoriteStickerArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.HiddenStickerPackArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.InstalledStickerPackArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileArchiveProcessor
@@ -1029,6 +1030,18 @@ object BackupRepository {
             return@export
           }
 
+          progressEmitter?.onFavoriteStickerList()
+          FavoriteStickerArchiveProcessor.export(dbSnapshot) { frame ->
+            writer.write(frame)
+            extraFrameOperation?.invoke(frame)
+            eventTimer.emit("favorite-sticker-list")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
           val approximateMessageCount = dbSnapshot.messageTable.getApproximateExportableMessageCount(exportState.threadIds)
           val frameCountStart = frameCount
           progressEmitter?.onMessage(0, approximateMessageCount)
@@ -1304,6 +1317,7 @@ object BackupRepository {
         val frameChatFolder = frame.chatFolder
         val frameChatItem = frame.chatItem
         val frameHiddenStickerPack = frame.hiddenStickerPack
+        val frameFavoriteStickerList = frame.favoriteStickerList
         when {
           frameAccount != null -> {
             AccountDataArchiveProcessor.import(frameAccount, selfId, importState)
@@ -1350,6 +1364,12 @@ object BackupRepository {
           frameHiddenStickerPack != null -> {
             HiddenStickerPackArchiveProcessor.import(frameHiddenStickerPack)
             eventTimer.emit("hidden-sticker-pack")
+            frameCount++
+          }
+
+          frameFavoriteStickerList != null -> {
+            FavoriteStickerArchiveProcessor.import(frameFavoriteStickerList)
+            eventTimer.emit("favorite-sticker-list")
             frameCount++
           }
 
@@ -1443,7 +1463,7 @@ object BackupRepository {
       AppDependencies.jobManager.add(ResetSvrGuessCountJob())
     }
 
-    val stickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
+    val installedStickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
       val reader = StickerTables.StickerPackRecordReader(cursor)
       reader
         .filter { it.isInstalled }
@@ -1451,7 +1471,12 @@ object BackupRepository {
           StickerPackDownloadJob.forInstall(it.packId, it.packKey, false)
         }
     }
-    AppDependencies.jobManager.addAll(stickerJobs)
+
+    val favoriteStickerJobs = SignalDatabase.stickers.getFavoritesFromUninstalledPacks().use { cursor ->
+      StickerTables.StickerRecordReader(cursor).map { StickerPackDownloadJob.forFavoriteSticker(it.packId, it.packKey, it.stickerId) }
+    }
+    AppDependencies.jobManager.addAll(installedStickerJobs + favoriteStickerJobs)
+
     stopwatch.split("sticker-jobs")
 
     val recipientIds = SignalDatabase.threads.getRecentConversationList(
@@ -2136,6 +2161,7 @@ object BackupRepository {
     fun onNotificationProfile()
     fun onChatFolder()
     fun onHiddenStickerPack()
+    fun onFavoriteStickerList()
     fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
   }
