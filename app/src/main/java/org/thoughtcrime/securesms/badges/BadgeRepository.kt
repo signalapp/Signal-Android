@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.badges
 
-import android.content.Context
 import androidx.annotation.WorkerThread
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -15,15 +17,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ProfileUtil
-import java.io.IOException
 
-class BadgeRepository(context: Context) {
+object BadgeRepository {
 
-  companion object {
-    private val TAG = Log.tag(BadgeRepository::class.java)
-  }
-
-  private val context = context.applicationContext
+  private val TAG = Log.tag(BadgeRepository::class.java)
 
   /**
    * Sets the visibility for each badge on a user's profile, and uploads them to the server.
@@ -32,52 +29,90 @@ class BadgeRepository(context: Context) {
    *
    * @return A list of the badges, properly modified to either visible or not visible, according to user preferences.
    */
-  @Throws(IOException::class)
   @WorkerThread
   fun setVisibilityForAllBadgesSync(
     displayBadgesOnProfile: Boolean,
     selfBadges: List<Badge>
-  ): List<Badge> {
+  ): NetworkResult<List<Badge>> {
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Setting badge visibility...", true)
 
     val recipientTable: RecipientTable = SignalDatabase.recipients
     val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Uploading profile...", true)
-    ProfileUtil.uploadProfileWithBadges(context, badges)
-    SignalStore.inAppPayments.setDisplayBadgesOnProfile(displayBadgesOnProfile)
-    recipientTable.markNeedsSync(Recipient.self().id)
+    return uploadProfile(badges).map {
+      SignalStore.inAppPayments.setDisplayBadgesOnProfile(displayBadgesOnProfile)
+      recipientTable.markNeedsSync(Recipient.self().id)
 
-    Log.d(TAG, "[setVisibilityForAllBadgesSync] Requesting data change sync...", true)
-    StorageSyncHelper.scheduleSyncForDataChange()
+      Log.d(TAG, "[setVisibilityForAllBadgesSync] Requesting data change sync...", true)
+      StorageSyncHelper.scheduleSyncForDataChange()
 
-    return badges
+      badges
+    }
   }
 
-  fun setVisibilityForAllBadges(
+  suspend fun setVisibilityForAllBadges(
     displayBadgesOnProfile: Boolean,
     selfBadges: List<Badge> = Recipient.self().badges
-  ): Completable = Completable.fromAction {
-    setVisibilityForAllBadgesSync(displayBadgesOnProfile, selfBadges)
+  ): NetworkResult<Unit> = withContext(SignalDispatchers.IO) {
+    setVisibilityForAllBadgesSync(displayBadgesOnProfile, selfBadges).map {
+      Log.d(TAG, "[setVisibilityForAllBadges] Enqueueing profile refresh...", true)
+      AppDependencies.jobManager
+        .startChain(RefreshOwnProfileJob())
+        .then(MultiDeviceProfileContentUpdateJob())
+        .enqueue()
+    }
+  }
 
-    Log.d(TAG, "[setVisibilityForAllBadges] Enqueueing profile refresh...", true)
-    AppDependencies.jobManager
-      .startChain(RefreshOwnProfileJob())
-      .then(MultiDeviceProfileContentUpdateJob())
-      .enqueue()
-  }.subscribeOn(Schedulers.io())
-
-  fun setFeaturedBadge(featuredBadge: Badge): Completable = Completable.fromAction {
+  suspend fun setFeaturedBadge(featuredBadge: Badge): NetworkResult<Unit> = withContext(SignalDispatchers.IO) {
     val badges = Recipient.self().badges
     val reOrderedBadges = listOf(featuredBadge.copy(visible = true)) + (badges.filterNot { it.id == featuredBadge.id })
 
     Log.d(TAG, "[setFeaturedBadge] Uploading profile with reordered badges...", true)
-    ProfileUtil.uploadProfileWithBadges(context, reOrderedBadges)
+    return@withContext uploadProfile(reOrderedBadges).runIfSuccessful {
+      Log.d(TAG, "[setFeaturedBadge] Enqueueing profile refresh...", true)
+      AppDependencies.jobManager
+        .startChain(RefreshOwnProfileJob())
+        .then(MultiDeviceProfileContentUpdateJob())
+        .enqueue()
+    }
+  }
 
-    Log.d(TAG, "[setFeaturedBadge] Enqueueing profile refresh...", true)
-    AppDependencies.jobManager
-      .startChain(RefreshOwnProfileJob())
-      .then(MultiDeviceProfileContentUpdateJob())
-      .enqueue()
-  }.subscribeOn(Schedulers.io())
+  /**
+   * Applies the badge toggle shown after a donation. Runs outside of any UI scope so that it completes after the sheet is gone.
+   */
+  fun commitDonationBadgeToggle(toggle: DonationBadgeToggle, badge: Badge, isChecked: Boolean) {
+    SignalExecutors.UNBOUNDED.execute {
+      when (toggle) {
+        DonationBadgeToggle.DISPLAY_ON_PROFILE -> {
+          val result = runBlocking { setVisibilityForAllBadges(isChecked) }
+          if (result !is NetworkResult.Success) {
+            Log.w(TAG, "Failure while updating badge visibility", result.getCause())
+          }
+        }
+
+        DonationBadgeToggle.MAKE_FEATURED -> {
+          if (!isChecked) {
+            return@execute
+          }
+
+          val result = runBlocking { setFeaturedBadge(badge) }
+          if (result !is NetworkResult.Success) {
+            Log.w(TAG, "Failure while updating featured badge", result.getCause())
+          }
+        }
+      }
+    }
+  }
+
+  private fun uploadProfile(badges: List<Badge>): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      ProfileUtil.uploadProfileWithBadges(AppDependencies.application, badges)
+    }
+  }
+
+  enum class DonationBadgeToggle {
+    DISPLAY_ON_PROFILE,
+    MAKE_FEATURED
+  }
 }

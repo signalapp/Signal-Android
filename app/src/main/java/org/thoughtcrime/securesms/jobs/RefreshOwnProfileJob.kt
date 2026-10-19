@@ -389,8 +389,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
         true
       )
 
-      val badgeRepository = BadgeRepository(context)
-      val updatedBadges = badgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges)
+      val updatedBadges = BadgeRepository.setVisibilityForAllBadgesSync(displayBadgesOnProfile, appBadges).successOrThrow()
       SignalDatabase.recipients.setBadges(Recipient.self().id, updatedBadges)
     } else {
       SignalDatabase.recipients.setBadges(Recipient.self().id, appBadges)

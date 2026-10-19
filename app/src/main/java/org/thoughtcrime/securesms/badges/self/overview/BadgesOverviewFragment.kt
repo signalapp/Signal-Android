@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.badges.self.overview
 
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.ui.viewModel
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -26,12 +25,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
   layoutManagerProducer = Badges::createLayoutManagerForGridWithBadges
 ) {
 
-  private val lifecycleDisposable = LifecycleDisposable()
-  private val viewModel: BadgesOverviewViewModel by viewModels(
-    factoryProducer = {
-      BadgesOverviewViewModel.Factory(BadgeRepository(requireContext()))
-    }
-  )
+  private val viewModel: BadgesOverviewViewModel by viewModel { BadgesOverviewViewModel() }
 
   override fun bindAdapter(adapter: MappingAdapter) {
     Badge.register(adapter) { badge, _, isFaded ->
@@ -42,19 +36,15 @@ class BadgesOverviewFragment : DSLSettingsFragment(
       }
     }
 
-    lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
-
-    viewModel.state.observe(viewLifecycleOwner) { state ->
+    collectFlowOnViewLifecycle(viewModel.state) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
 
-    lifecycleDisposable.add(
-      viewModel.events.subscribe { event: BadgesOverviewEvent ->
-        when (event) {
-          BadgesOverviewEvent.FAILED_TO_UPDATE_PROFILE -> Toast.makeText(requireContext(), R.string.BadgesOverviewFragment__failed_to_update_profile, Toast.LENGTH_LONG).show()
-        }
+    collectFlowOnViewLifecycle(viewModel.events) { event ->
+      when (event) {
+        BadgesOverviewEvent.FAILED_TO_UPDATE_PROFILE -> Toast.makeText(requireContext(), R.string.BadgesOverviewFragment__failed_to_update_profile, Toast.LENGTH_LONG).show()
       }
-    )
+    }
   }
 
   private fun getConfiguration(state: BadgesOverviewState): DSLConfiguration {

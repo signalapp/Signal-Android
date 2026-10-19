@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import kotlinx.coroutines.rx3.rxCompletable
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.BadgeRepository
@@ -28,8 +29,7 @@ import java.util.concurrent.TimeUnit
 class ViewReceivedGiftViewModel(
   sentFrom: RecipientId,
   private val messageId: Long,
-  repository: ViewGiftRepository,
-  val badgeRepository: BadgeRepository
+  repository: ViewGiftRepository
 ) : ViewModel() {
 
   companion object {
@@ -91,7 +91,7 @@ class ViewReceivedGiftViewModel(
 
     return if (snapshot.controlState != null && snapshot.badge != null) {
       if (snapshot.controlState == ViewReceivedGiftState.ControlState.DISPLAY) {
-        badgeRepository.setVisibilityForAllBadges(snapshot.getControlChecked()).andThen(awaitRedemptionCompletion(false))
+        rxCompletable { BadgeRepository.setVisibilityForAllBadges(snapshot.getControlChecked()).successOrThrow() }.andThen(awaitRedemptionCompletion(false))
       } else if (snapshot.getControlChecked()) {
         awaitRedemptionCompletion(true)
       } else {
@@ -129,11 +129,10 @@ class ViewReceivedGiftViewModel(
   class Factory(
     private val sentFrom: RecipientId,
     private val messageId: Long,
-    private val repository: ViewGiftRepository,
-    private val badgeRepository: BadgeRepository
+    private val repository: ViewGiftRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ViewReceivedGiftViewModel(sentFrom, messageId, repository, badgeRepository)) as T
+      return modelClass.cast(ViewReceivedGiftViewModel(sentFrom, messageId, repository)) as T
     }
   }
 }

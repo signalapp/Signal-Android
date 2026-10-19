@@ -5744,7 +5744,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">You must select a badge</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->

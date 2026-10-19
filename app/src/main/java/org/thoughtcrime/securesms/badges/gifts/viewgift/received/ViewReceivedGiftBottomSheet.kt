@@ -19,7 +19,6 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheetConfiguration.forExpiredGiftBadge
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -80,7 +79,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
     get() = requireArguments().getLong(ARG_MESSAGE_ID)
 
   private val viewModel: ViewReceivedGiftViewModel by viewModels(
-    factoryProducer = { ViewReceivedGiftViewModel.Factory(sentFrom, messageId, ViewGiftRepository(), BadgeRepository(requireContext())) }
+    factoryProducer = { ViewReceivedGiftViewModel.Factory(sentFrom, messageId, ViewGiftRepository()) }
   )
 
   private var errorDialog: DialogInterface? = null

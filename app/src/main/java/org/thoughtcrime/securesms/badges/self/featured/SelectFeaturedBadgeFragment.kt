@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.ui.viewModel
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
@@ -28,9 +27,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   layoutManagerProducer = Badges::createLayoutManagerForGridWithBadges
 ) {
 
-  private val viewModel: SelectFeaturedBadgeViewModel by viewModels(factoryProducer = { SelectFeaturedBadgeViewModel.Factory(BadgeRepository(requireContext())) })
-
-  private val lifecycleDisposable = LifecycleDisposable()
+  private val viewModel: SelectFeaturedBadgeViewModel by viewModel { SelectFeaturedBadgeViewModel() }
 
   private lateinit var scrollShadow: View
   private lateinit var save: View
@@ -42,7 +39,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
 
     save = view.findViewById(R.id.save)
     save.setOnClickListener {
-      viewModel.save()
+      viewModel.onEvent(SelectFeaturedBadgeEvents.Save)
     }
   }
 
@@ -57,25 +54,27 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   override fun bindAdapter(adapter: MappingAdapter) {
     Badge.register(adapter) { badge, isSelected, _ ->
       if (!isSelected) {
-        viewModel.setSelectedBadge(badge)
+        viewModel.onEvent(SelectFeaturedBadgeEvents.BadgeSelected(badge))
       }
     }
 
     val previewView: View = requireView().findViewById(R.id.preview)
     val previewViewHolder = BadgePreview.ViewHolder<BadgePreview.BadgeModel.FeaturedModel>(previewView)
 
-    lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
-    lifecycleDisposable += viewModel.events.subscribe { event: SelectFeaturedBadgeEvent ->
-      when (event) {
-        SelectFeaturedBadgeEvent.NO_BADGE_SELECTED -> Toast.makeText(requireContext(), R.string.SelectFeaturedBadgeFragment__you_must_select_a_badge, Toast.LENGTH_LONG).show()
-        SelectFeaturedBadgeEvent.FAILED_TO_UPDATE_PROFILE -> Toast.makeText(requireContext(), R.string.SelectFeaturedBadgeFragment__failed_to_update_profile, Toast.LENGTH_LONG).show()
-        SelectFeaturedBadgeEvent.SAVE_SUCCESSFUL -> findNavController().popBackStack()
+    collectFlowOnViewLifecycle(viewModel.actions) { action ->
+      when (action) {
+        SelectFeaturedBadgeActions.ShowFailedToUpdateProfile -> Toast.makeText(requireContext(), R.string.SelectFeaturedBadgeFragment__failed_to_update_profile, Toast.LENGTH_LONG).show()
       }
     }
 
     var hasBoundPreview = false
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      save.isEnabled = state.stage == SelectFeaturedBadgeState.Stage.READY
+    collectFlowOnViewLifecycle(viewModel.state) { state ->
+      if (state.stage == SelectFeaturedBadgeState.Stage.SAVED) {
+        findNavController().popBackStack()
+        return@collectFlowOnViewLifecycle
+      }
+
+      save.isEnabled = state.stage == SelectFeaturedBadgeState.Stage.READY && state.selectedBadge != null
 
       if (hasBoundPreview) {
         previewViewHolder.setPayload(listOf(Unit))

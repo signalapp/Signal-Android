@@ -10,6 +10,7 @@ data class SelectFeaturedBadgeState(
   enum class Stage {
     INIT,
     READY,
-    SAVING
+    SAVING,
+    SAVED
   }
 }

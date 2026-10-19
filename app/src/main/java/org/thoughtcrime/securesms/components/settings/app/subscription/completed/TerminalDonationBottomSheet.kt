@@ -41,7 +41,6 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImage112
@@ -76,7 +75,7 @@ class TerminalDonationBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private val viewModel: TerminalDonationViewModel by viewModel {
-    TerminalDonationViewModel(terminalDonation, badgeRepository = BadgeRepository(requireContext()))
+    TerminalDonationViewModel(terminalDonation)
   }
 
   @Composable
@@ -122,20 +121,6 @@ class TerminalDonationBottomSheet : ComposeBottomSheetDialogFragment() {
     super.onDismiss(dialog)
 
     viewModel.commitToggleState()
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun DonationPaymentFailureBottomSheet() {
-  Previews.Preview {
-    Surface {
-      DonationPaymentFailureBottomSheet(
-        badge = null,
-        onTryAgainClick = {},
-        onNotNowClick = {}
-      )
-    }
   }
 }
 
@@ -218,22 +203,6 @@ private fun DonationPaymentFailureBottomSheet(
     ) {
       Text(
         text = stringResource(id = R.string.DonationErrorBottomSheet__not_now)
-      )
-    }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun DonationCompletedSheetContentPreview() {
-  Previews.Preview {
-    Surface {
-      DonationCompletedSheetContent(
-        badge = null,
-        isToggleChecked = false,
-        toggleType = TerminalDonationViewModel.ToggleType.NONE,
-        onCheckChanged = {},
-        onDoneClick = {}
       )
     }
   }
@@ -333,5 +302,35 @@ private fun DonationToggleRow(
       onCheckedChange = onCheckChanged,
       modifier = Modifier.align(Alignment.CenterVertically)
     )
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun DonationPaymentFailureBottomSheetPreview() {
+  Previews.Preview {
+    Surface {
+      DonationPaymentFailureBottomSheet(
+        badge = null,
+        onTryAgainClick = {},
+        onNotNowClick = {}
+      )
+    }
+  }
+}
+
+@DayNightPreviews
+@Composable
+private fun DonationCompletedSheetContentPreview() {
+  Previews.Preview {
+    Surface {
+      DonationCompletedSheetContent(
+        badge = null,
+        isToggleChecked = false,
+        toggleType = TerminalDonationViewModel.ToggleType.NONE,
+        onCheckChanged = {},
+        onDoneClick = {}
+      )
+    }
   }
 }
