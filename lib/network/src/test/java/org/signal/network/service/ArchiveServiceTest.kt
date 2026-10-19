@@ -96,6 +96,78 @@ class ArchiveServiceTest {
 
   // endregion
 
+  // region Routine credential refresh
+
+  @Test
+  fun `routine credential refresh skips the fetch when credentials are cached`() = runTest {
+    val store = storeWithCredentials()
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.isRight()).isTrue()
+    coVerify(exactly = 0) { archiveApi.getServiceCredentials(any()) }
+  }
+
+  @Test
+  fun `routine credential refresh fetches, adds, and trims when the cache is empty`() = runTest {
+    val store = FakeArchiveCacheStore()
+    givenSuccessfulCredentialFetch()
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.isRight()).isTrue()
+    coVerify(exactly = 1) { archiveApi.getServiceCredentials(any()) }
+    assertThat(store.messageCredentials.isEmpty).isFalse()
+    assertThat(store.mediaCredentials.isEmpty).isFalse()
+    assertThat(store.messageCredentials.clearedOlderThan).hasSize(1)
+    assertThat(store.mediaCredentials.clearedOlderThan).hasSize(1)
+  }
+
+  @Test
+  fun `routine credential refresh does nothing before backups are initialized`() = runTest {
+    val store = FakeArchiveCacheStore(mediaBackupInitialized = false)
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.isRight()).isTrue()
+    coVerify(exactly = 0) { archiveApi.getServiceCredentials(any()) }
+  }
+
+  @Test
+  fun `routine credential refresh runs on a linked device even though it never initializes backups`() = runTest {
+    val store = FakeArchiveCacheStore(messageBackupInitialized = false, mediaBackupInitialized = false, isLinkedDevice = true)
+    givenSuccessfulCredentialFetch()
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.isRight()).isTrue()
+    coVerify(exactly = 1) { archiveApi.getServiceCredentials(any()) }
+  }
+
+  @Test
+  fun `routine credential refresh does nothing before the restore decision during registration`() = runTest {
+    val store = FakeArchiveCacheStore(isPreRestoreDuringRegistration = true)
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.isRight()).isTrue()
+    coVerify(exactly = 0) { archiveApi.getServiceCredentials(any()) }
+  }
+
+  @Test
+  fun `routine credential refresh resets initialized state when the fetch is rejected`() = runTest {
+    val store = FakeArchiveCacheStore()
+    coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.NonSuccess(ArchiveApiV2.GetServiceCredentialsError.Unauthorized)
+
+    val result = serviceFor(store).refreshServiceCredentialsIfNecessary()
+
+    assertThat(result.error()).isInstanceOf<ArchiveError.CredentialError.Unauthorized>()
+    assertThat(store.messageBackupInitialized).isFalse()
+    assertThat(store.mediaBackupInitialized).isFalse()
+  }
+
+  // endregion
+
   // region Failed zk derivation resets the initialized state of whichever archive it came from
 
   @Test
@@ -833,6 +905,15 @@ class ArchiveServiceTest {
   /** The raised error, failing the test if the operation actually succeeded. */
   private fun <E : ArchiveError, T> Either<E, T>.error(): E {
     return leftOrNull() ?: throw AssertionError("Expected an error, but the operation succeeded with ${getOrNull()}")
+  }
+
+  private fun givenSuccessfulCredentialFetch() {
+    coEvery { archiveApi.getServiceCredentials(any()) } returns RequestResult.Success(
+      ArchiveApiV2.ArchiveCredentials(
+        messageCredentials = listOf(credential()),
+        mediaCredentials = listOf(credential())
+      )
+    )
   }
 
   private fun givenSuccessfulRefresh(backupLevel: BackupLevel = BackupLevel.FREE) {

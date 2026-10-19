@@ -66,8 +66,8 @@ interface ArchiveCacheStore {
     /** Adds the given credentials to the existing set. */
     fun add(credentials: List<ArchiveServiceCredential>)
 
-    /** Trims out credentials for days older than [startOfDayInSeconds]. */
-    fun clearOlderThan(startOfDayInSeconds: Long)
+    /** Trims out credentials for days before the one containing [currentTime]. */
+    fun clearOlderThan(currentTime: Duration)
 
     /** Clears all credentials, including [cdnReadCredentials]. */
     fun clearAll()

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollecti
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
+import org.thoughtcrime.securesms.service.ArchiveCredentialRefreshListener
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
@@ -50,6 +51,7 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
     private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
     private const val KEY_LAST_CHECK_IN_SNOOZE_MILLIS = "backup.lastCheckInSnoozeMilliseconds"
+    private const val KEY_NEXT_CREDENTIAL_REFRESH_TIME = "backup.nextCredentialRefreshTime"
     private const val KEY_FIRST_APP_VERSION = "backup.firstAppVersion"
     private const val KEY_FINISHED_INITIAL_BACKUP = "backup.finishedInitialBackup"
 
@@ -291,6 +293,11 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
    * The last time the device notified the server that the archive is still in use.
    */
   var lastCheckInMillis: Long by longValue(KEY_LAST_CHECK_IN_MILLIS, 0L)
+
+  /**
+   * When the next routine archive credential refresh is scheduled for. See [ArchiveCredentialRefreshListener].
+   */
+  var nextCredentialRefreshTime: Long by longValue(KEY_NEXT_CREDENTIAL_REFRESH_TIME, 0L)
 
   /**
    * The time we last displayed the "Your media will be deleted today" sheet.
@@ -757,10 +764,10 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
       putString(authKey, JsonUtil.toJson(SerializedCredentials(current)))
     }
 
-    /** Trims out any credentials that are for days older than the given timestamp. */
-    fun clearOlderThan(startOfDayInSeconds: Long) {
-      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
-      val updated = current.filterKeys { it < startOfDayInSeconds }
+    /** Trims out any credentials that are for days before the one containing [currentTime]. */
+    fun clearOlderThan(currentTime: Duration) {
+      val startOfDayInSeconds: Long = currentTime.inWholeDays.days.inWholeSeconds
+      val updated = byDay.filterKeys { it >= startOfDayInSeconds }
       putString(authKey, JsonUtil.toJson(SerializedCredentials(updated)))
     }
 

@@ -1520,6 +1520,14 @@
         </receiver>
 
         <receiver
+            android:name=".service.ArchiveCredentialRefreshListener"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
             android:name="org.signal.core.util.ForegroundServiceUtil$Receiver"
             android:exported="false" />
 

@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.registration.v2.AppRegistrationNetworkControll
 import org.thoughtcrime.securesms.registration.v2.AppRegistrationStorageController;
 import org.thoughtcrime.securesms.ringrtc.RingRtcLogger;
 import org.thoughtcrime.securesms.service.AnalyzeDatabaseAlarmListener;
+import org.thoughtcrime.securesms.service.ArchiveCredentialRefreshListener;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
@@ -554,6 +555,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
     RotateSenderCertificateListener.schedule(this);
     RoutineMessageFetchReceiver.startOrUpdateAlarm(this);
     AnalyzeDatabaseAlarmListener.schedule(this);
+    ArchiveCredentialRefreshListener.schedule(this);
 
     if (BuildConfig.MANAGES_APP_UPDATES) {
       ApkUpdateRefreshListener.schedule(this);

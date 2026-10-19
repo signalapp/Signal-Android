@@ -75,6 +75,9 @@ class ArchiveService(
 
     /** Only suitable for debugging -- an account can have far more media than this in a single page. */
     private const val DEBUG_MEDIA_PAGE_SIZE = 10_000
+
+    /** How far ahead the cached credentials must reach before [refreshServiceCredentialsIfNecessary] considers them sufficient. */
+    private val CREDENTIAL_PREFETCH_HORIZON = 3.days
   }
 
   /**
@@ -127,6 +130,35 @@ class ArchiveService(
         refreshBackupAccess(access.mediaBackupAccess)
         Log.d(TAG, "Refreshed media backup access.")
       }
+    }
+  }
+
+  /**
+   * The routine background fetch of archive credentials. Fetches a fresh batch when the cache doesn't cover today through [CREDENTIAL_PREFETCH_HORIZON], so
+   * that the authenticated fetch happens well ahead of, and decoupled from, the anonymous requests that use the credentials.
+   *
+   * On a primary device, does nothing until backups have been initialized, since there's no backupId to fetch credentials for until then.
+   */
+  suspend fun refreshServiceCredentialsIfNecessary(): Either<CredentialError, Unit> = request {
+    if (!store.isLinkedDevice && !(store.messageBackupInitialized && store.mediaBackupInitialized)) {
+      Log.i(TAG, "Backups not initialized. Skipping credential refresh.")
+      return@request
+    }
+
+    if (store.isPreRestoreDuringRegistration) {
+      Log.i(TAG, "Pre-restore during registration. Skipping credential refresh.")
+      return@request
+    }
+
+    val currentTime = System.currentTimeMillis()
+    if (hasCredentialsThrough(currentTime.milliseconds, currentTime.milliseconds + CREDENTIAL_PREFETCH_HORIZON)) {
+      Log.i(TAG, "Cached credentials are sufficient. Skipping credential refresh.")
+      return@request
+    }
+
+    Log.i(TAG, "Cached credentials are running low. Fetching new ones.")
+    withAuthErrorActions {
+      fetchAndCacheServiceCredentials(currentTime)
     }
   }
 
@@ -427,8 +459,8 @@ class ArchiveService(
   }
 
   /**
-   * Retrieves an archive credential pair, preferring the cached values. Falling through to the network here means the routine background fetch isn't running
-   * properly, since fetching on-demand undermines the anonymity the credentials exist to provide.
+   * Retrieves an archive credential pair, preferring the cached values. Falling through to the network here means [refreshServiceCredentialsIfNecessary] isn't
+   * running properly, since fetching on-demand undermines the anonymity the credentials exist to provide.
    */
   private suspend fun Raise<CredentialError>.fetchArchiveServiceAccessPair(): ArchiveServiceAccessPair {
     val currentTime = System.currentTimeMillis()
@@ -445,18 +477,35 @@ class ArchiveService(
 
     Log.w(TAG, "No credentials found for today, need to fetch new ones! This shouldn't happen under normal circumstances. We should ensure the routine fetch is running properly.")
 
+    fetchAndCacheServiceCredentials(currentTime)
+
+    val fetchedMessageCredential = store.messageCredentials.getForTime(currentTime.milliseconds)
+    val fetchedMediaCredential = store.mediaCredentials.getForTime(currentTime.milliseconds)
+
+    if (fetchedMessageCredential == null || fetchedMediaCredential == null) {
+      raise(ArchiveError.ApplicationError(IllegalStateException("Fetched credentials did not include one for the current time.")))
+    }
+
+    return ArchiveServiceAccessPair(
+      messageBackupAccess = ArchiveServiceAccess(fetchedMessageCredential, store.messageBackupKey),
+      mediaBackupAccess = ArchiveServiceAccess(fetchedMediaCredential, store.mediaRootBackupKey)
+    )
+  }
+
+  private suspend fun Raise<CredentialError>.fetchAndCacheServiceCredentials(currentTime: Long) {
     val response = fetchServiceCredentials(currentTime)
 
     store.messageCredentials.add(response.messageCredentials)
-    store.messageCredentials.clearOlderThan(currentTime)
+    store.messageCredentials.clearOlderThan(currentTime.milliseconds)
 
     store.mediaCredentials.add(response.mediaCredentials)
-    store.mediaCredentials.clearOlderThan(currentTime)
+    store.mediaCredentials.clearOlderThan(currentTime.milliseconds)
+  }
 
-    return ArchiveServiceAccessPair(
-      messageBackupAccess = ArchiveServiceAccess(store.messageCredentials.getForTime(currentTime.milliseconds)!!, store.messageBackupKey),
-      mediaBackupAccess = ArchiveServiceAccess(store.mediaCredentials.getForTime(currentTime.milliseconds)!!, store.mediaRootBackupKey)
-    )
+  private fun hasCredentialsThrough(currentTime: Duration, horizon: Duration): Boolean {
+    return listOf(currentTime, horizon).all { time ->
+      store.messageCredentials.getForTime(time) != null && store.mediaCredentials.getForTime(time) != null
+    }
   }
 
   /**

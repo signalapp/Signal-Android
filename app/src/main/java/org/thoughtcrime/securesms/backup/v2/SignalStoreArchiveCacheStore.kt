@@ -86,7 +86,7 @@ object SignalStoreArchiveCacheStore : ArchiveCacheStore {
 
     override fun add(credentials: List<ArchiveServiceCredential>) = store.add(credentials)
 
-    override fun clearOlderThan(startOfDayInSeconds: Long) = store.clearOlderThan(startOfDayInSeconds)
+    override fun clearOlderThan(currentTime: Duration) = store.clearOlderThan(currentTime)
 
     override fun clearAll() = store.clearAll()
 
