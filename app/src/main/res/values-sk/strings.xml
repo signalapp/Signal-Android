@@ -2911,13 +2911,13 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Odkaz skopírovaný</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">Skryť balíček nálepiek?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">Týmto sa balíček nálepiek skryje z dostupných balíčkov. Bez odkazu alebo správy s nálepkou ho už nebudete môcť znova pridať.</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">Týmto sa odstráni balíček nálepiek a skryje sa z dostupných balíčkov. Bez odkazu alebo správy s nálepkou ho už nebudete môcť znova pridať.</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">Balíček nálepiek je skrytý</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
     <string name="StickerManagement_undo">Späť</string>
 
@@ -2986,8 +2986,6 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Zobraziť balíček</string>
-    <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Nálepka bola pridaná medzi Obľúbené</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -4123,17 +4121,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">Zabezpečenie obrazovky je zapnuté</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Vypnúť zabezpečenie obrazovky</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Vypnúť zabezpečenie obrazovky?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Vypnúť</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Zabezpečenie obrazovky je vypnuté</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknúť Signal po určenej dobe bez aktivity</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Heslo po neaktivite</string>

@@ -6,9 +6,9 @@
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
   <string name="MediaViewerScreen__you_to_s">你發送俾 %1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
-  <string name="MediaViewerScreen__s_to_s">%1$s 畀 %2$s</string>
+  <string name="MediaViewerScreen__s_to_s">%1$s 俾 %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
-  <string name="MediaViewerScreen__s_to_you">%1$s 畀您</string>
+  <string name="MediaViewerScreen__s_to_you">%1$s 俾您</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
   <string name="MediaViewerScreen__note_to_self">俾自己嘅筆記</string>
   <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
@@ -32,13 +32,13 @@
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">取消</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">…睇多啲</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__cant_save_media">儲存唔到媒體</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">呢個媒體冇再儲存喺呢部裝置度。你可以改一改儲存空間設定，同埋用唔限流量嘅 Wi-Fi 連線重新下載媒體。</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
-  <string name="MediaViewerScreen__view_storage_settings">睇吓儲存空間設定</string>
+  <string name="MediaViewerScreen__view_storage_settings">睇下儲存空間設定</string>
   <!-- Generic dialog confirmation button -->
   <string name="MediaViewerScreen__ok">確定</string>
   <!-- Content description of the toolbar back button -->
@@ -54,11 +54,11 @@
   <!-- Content description of the video pause button -->
   <string name="MediaViewerScreen__pause">暫停</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">後退</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">快進</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">媒體縮圖</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
   <string name="MediaViewerScreen__remaining_time">−%1$s</string>
 </resources>

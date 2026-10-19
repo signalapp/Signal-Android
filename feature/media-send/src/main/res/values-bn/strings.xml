@@ -170,7 +170,7 @@
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">স্থগিত করা হয়েছে</string>
   <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
-  <string name="CameraXFragment_multi_capture">Multi-capture</string>
+  <string name="CameraXFragment_multi_capture">মাল্টি-ক্যাপচার</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">ভিডিও রেকর্ড করতে Signal এর মাইক্রোফোনের অনুমতি প্রয়োজন, তবে সেগুলি অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" এবং \"ক্যামেরা\" সক্ষম করুন|</string>
 

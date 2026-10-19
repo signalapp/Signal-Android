@@ -170,7 +170,7 @@
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Pozastavené</string>
   <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
-  <string name="CameraXFragment_multi_capture">Multi-capture</string>
+  <string name="CameraXFragment_multi_capture">Viacnásobná snímka</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal potrebuje pre nahrávanie videí prístup k mikrofónu, no ten bol zamietnutý. Pokračujte, prosím, do nastavení aplikácie, vyberte „Povolenia“ a povoľte „Mikrofón“ a „Fotoaparát“.</string>
 

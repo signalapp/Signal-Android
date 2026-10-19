@@ -170,7 +170,7 @@
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Σε αναμονή</string>
   <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
-  <string name="CameraXFragment_multi_capture">Multi-capture</string>
+  <string name="CameraXFragment_multi_capture">Πολλαπλή λήψη</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Το Signal χρειάζεται τα δικαιώματα μικροφώνου για τη λήψη βίντεο , αλλά αυτά δεν έχουν δοθεί. Πήγαινε στις ρυθμίσεις εφαρμογών, επίλεξε τα «Δικαιώματα», και ενεργοποίησε το «Μικρόφωνο» και την «Κάμερα».</string>
 

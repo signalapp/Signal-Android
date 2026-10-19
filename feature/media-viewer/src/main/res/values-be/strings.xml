@@ -32,11 +32,11 @@
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">Скасаваць</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… Чытаць далей</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__cant_save_media">Немагчыма захаваць медыяфайлы</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">Гэты медыяфайл больш не захаваны ў сховішчы на гэтай прыладзе. Вы можаце змяніць налады сховішча і нанова спампаваць гэты медыяфайл праз безлімітнае Wi-Fi-злучэнне.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">Прагледзець налады сховішча</string>
   <!-- Generic dialog confirmation button -->
@@ -50,15 +50,15 @@
   <!-- Content description of the forward button -->
   <string name="MediaViewerScreen__forward">Пераслаць</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Play</string>
+  <string name="MediaViewerScreen__play">Прайграць</string>
   <!-- Content description of the video pause button -->
-  <string name="MediaViewerScreen__pause">Pause</string>
+  <string name="MediaViewerScreen__pause">Прыпыніць</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">Пераматаць назад</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">Пераматаць наперад</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">Мініяцюра медыяфайла</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
-  <string name="MediaViewerScreen__remaining_time">−%1$s</string>
+  <string name="MediaViewerScreen__remaining_time">-%1$s</string>
 </resources>

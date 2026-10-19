@@ -1561,7 +1561,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Scrios ainm úsáideora?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d\'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -3082,8 +3082,6 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Féach ar an mbeart</string>
-    <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Greamán curtha leis na Ceanáin</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -5080,7 +5078,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Beidh tú dofheicthe ar Signal ag daoine ach amháin má sheolann tú teachtaireacht chucu nó má tá comhrá ar siúl agat leo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m\'uimhir a fheiceáil go Duine ar bith."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Leis an socrú sin a athrú, socraigh Daoine atá in ann m'uimhir a fheiceáil go Duine ar bith."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">An bhfuil tú cinnte?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -7055,7 +7053,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína bheith i dteagmhálaithe do ghutháin</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d\'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Cuir amharcóir leis</string>
     <!-- Clickable option to delete a custom story -->

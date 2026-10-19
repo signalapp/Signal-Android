@@ -40,7 +40,7 @@
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">Vedi le Impostazioni di archiviazione</string>
   <!-- Generic dialog confirmation button -->
-  <string name="MediaViewerScreen__ok">Ok</string>
+  <string name="MediaViewerScreen__ok">OK</string>
   <!-- Content description of the toolbar back button -->
   <string name="MediaViewerScreen__navigate_back">Torna indietro</string>
   <!-- Content description of the toolbar overflow menu button -->
@@ -50,7 +50,7 @@
   <!-- Content description of the forward button -->
   <string name="MediaViewerScreen__forward">Inoltra</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Vedi</string>
+  <string name="MediaViewerScreen__play">Riproduci</string>
   <!-- Content description of the video pause button -->
   <string name="MediaViewerScreen__pause">Pausa</string>
   <!-- Content description of the video rewind button -->

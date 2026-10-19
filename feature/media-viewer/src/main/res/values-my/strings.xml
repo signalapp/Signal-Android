@@ -22,21 +22,21 @@
   <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
   <string name="MediaViewerScreen__delete_dialog_delete">ဖျက်ရန်</string>
   <!-- Title of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_title">စာကို ဖျက်မည်လား။</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_title">မက်ဆေ့ချ်ကို ဖျက်မည်လား။</string>
   <!-- Body of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_message">ဤမက်ဆေ့ကို အပြီးတိုင်ဖျက်သွားမည်။</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_message">ဤမက်ဆေ့ချ်ကို အပြီးတိုင်ဖျက်သွားမည်။</string>
   <!-- Delete dialog button that deletes the media only on this device -->
-  <string name="MediaViewerScreen__delete_for_me">ကျွန်ုပ်အတွက် ဖျက်မည်</string>
+  <string name="MediaViewerScreen__delete_for_me">ကျွန်ုပ်အတွက် ဖျက်ရန်</string>
   <!-- Delete dialog button that deletes the media for all members of the chat -->
-  <string name="MediaViewerScreen__delete_for_everyone">လူတိုင်းအတွက် ဖျက်ပါ</string>
+  <string name="MediaViewerScreen__delete_for_everyone">လူတိုင်းအတွက် ဖျက်ရန်</string>
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">မလုပ်တော့ပါ</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… ပိုမိုဖတ်ရှုရန်</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__cant_save_media">မီဒီယာကို သိမ်းဆည်း၍မရပါ</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">ဤမီဒီယာဖိုင်ကို ဤစက်တွင် သိမ်းဆည်းထားခြင်း မရှိတော့ပါ။ သိုလှောင်မှုဆက်တင်ကို ပြောင်းလဲပြီး ဒေတာအသုံးပြုခ ပေးဆောင်ရန်မလိုသော Wi-Fi ကွန်ရက်ကို အသုံးပြု၍ ဤမီဒီယာကို ပြန်လည်ဒေါင်းလုဒ်လုပ်နိုင်သည်။</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">ထားသိုမှုဆက်တင်ကို ကြည့်ရှုရန်</string>
   <!-- Generic dialog confirmation button -->
@@ -46,19 +46,19 @@
   <!-- Content description of the toolbar overflow menu button -->
   <string name="MediaViewerScreen__more_options">နောက်ထပ် ရွေးစရာများ</string>
   <!-- Content description of the share button -->
-  <string name="MediaViewerScreen__share">ဝေမျှမည်</string>
+  <string name="MediaViewerScreen__share">ဝေမျှရန်</string>
   <!-- Content description of the forward button -->
-  <string name="MediaViewerScreen__forward">ထပ်ဆင့် ပေးပို့မည်</string>
+  <string name="MediaViewerScreen__forward">ထပ်ဆင့် ပေးပို့ရန်</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">ဖွင့်သည်</string>
+  <string name="MediaViewerScreen__play">ဖွင့်ရန်</string>
   <!-- Content description of the video pause button -->
-  <string name="MediaViewerScreen__pause">ခဏရပ်သည်</string>
+  <string name="MediaViewerScreen__pause">ခဏရပ်ရန်</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">နောက်ပြန်လှည့်ရန်</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">ရှေ့သို့ အမြန်သွားရန်</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">မီဒီယာအကြိုကြည့်ပုံ</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
   <string name="MediaViewerScreen__remaining_time">−%1$s</string>
 </resources>

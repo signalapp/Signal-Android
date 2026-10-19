@@ -170,7 +170,7 @@
   <!-- Label shown below the elapsed time while a video recording is paused -->
   <string name="CameraXFragment_paused">Паузирано</string>
   <!-- Accessibility label for the camera toggle that keeps the camera open after each capture so several photos or videos can be taken in a row -->
-  <string name="CameraXFragment_multi_capture">Multi-capture</string>
+  <string name="CameraXFragment_multi_capture">Вишеструко снимање</string>
   <!-- Displayed in a permissions dialog when the user has denied access to hardware for image and video capture. -->
   <string name="CameraXFragment_signal_needs_the_recording_permissions_to_capture_video">Signal-у је потребна дозвола за приступ микрофону да би могао да снима видео, али му је она одбијена. Идите у мени за подешавања апликације, изаберите „Дозволе“ и укључите опције „Микрофон“ и „Камера“.</string>
 

@@ -32,11 +32,11 @@
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">Avbryt</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… Les mer</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__cant_save_media">Mediefilen(e) kan ikke lagres</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">Denne mediefilen er ikke lenger lagret på enheten. Du kan endre lagringsinnstillingene dine og laste ned mediefilen på nytt via en Wi-Fi-tilkobling uten datamåling.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">Åpne lagringsinnstillingene</string>
   <!-- Generic dialog confirmation button -->
@@ -50,15 +50,15 @@
   <!-- Content description of the forward button -->
   <string name="MediaViewerScreen__forward">Videresend</string>
   <!-- Content description of the video play button -->
-  <string name="MediaViewerScreen__play">Spill</string>
+  <string name="MediaViewerScreen__play">Spill av</string>
   <!-- Content description of the video pause button -->
   <string name="MediaViewerScreen__pause">Sett på pause</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">Spol tilbake</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">Spol frem</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">Miniatyrbilde av mediefil</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
   <string name="MediaViewerScreen__remaining_time">−%1$s</string>
 </resources>

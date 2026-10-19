@@ -6,7 +6,7 @@
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
   <string name="MediaViewerScreen__you_to_s">De ti para %1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
-  <string name="MediaViewerScreen__s_to_s">de %1$s a %2$s</string>
+  <string name="MediaViewerScreen__s_to_s">De %1$s para %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
   <string name="MediaViewerScreen__s_to_you">De %1$s para ti</string>
   <!-- Toolbar title for media in your own note-to-self chat -->

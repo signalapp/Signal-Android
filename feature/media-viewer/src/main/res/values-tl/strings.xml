@@ -4,11 +4,11 @@
   <!-- Toolbar title for media you sent -->
   <string name="MediaViewerScreen__you">Ikaw</string>
   <!-- Toolbar title for media you sent to another chat, e.g. \'You to Alice\' -->
-  <string name="MediaViewerScreen__you_to_s">Ikaw para sa %1$s</string>
+  <string name="MediaViewerScreen__you_to_s">Ikaw para kay %1$s</string>
   <!-- Toolbar title for media a sender sent to a group, e.g. \'Alice to Hiking Group\' -->
   <string name="MediaViewerScreen__s_to_s">%1$s hanggang %2$s</string>
   <!-- Toolbar title for media a sender sent to you, e.g. \'Alice to you\' -->
-  <string name="MediaViewerScreen__s_to_you">%1$s to you</string>
+  <string name="MediaViewerScreen__s_to_you">Si %1$s para sa \'yo</string>
   <!-- Toolbar title for media in your own note-to-self chat -->
   <string name="MediaViewerScreen__note_to_self">Note to Self</string>
   <!-- Toolbar subtitle when previewing a draft attachment that has not been sent yet -->
@@ -32,11 +32,11 @@
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">I-cancel</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… Magbasa pa</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
   <string name="MediaViewerScreen__cant_save_media">Hindi ma-save ang media</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">Ang media na ito ay wala na sa device na ito. Maaari mong palitan ang storage settings mo at i-download ulit ang media na ito gamit Wi-Fi connection na walang data limit.</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">Tignan ang storage settings</string>
   <!-- Generic dialog confirmation button -->

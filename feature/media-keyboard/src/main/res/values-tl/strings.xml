@@ -28,7 +28,7 @@
   <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
   <string name="MediaKeyboard__no_results_found">Walang nakitang resulta</string>
   <!-- Message shown in place of the sticker grid when a sticker search matches nothing. %1$s is the search query the user typed. -->
-  <string name="MediaKeyboard__no_results_found_for_s">No results found for ‘%1$s’</string>
+  <string name="MediaKeyboard__no_results_found_for_s">Walang nakitang resulta para sa \'%1$s\'</string>
 
   <!-- Emoji page -->
   <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
