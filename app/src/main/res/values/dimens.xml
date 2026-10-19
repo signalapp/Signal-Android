@@ -16,7 +16,6 @@
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
-    <dimen name="keyboard_toolbar_height">44dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
     <dimen name="album_2_total_height">105dp</dimen>

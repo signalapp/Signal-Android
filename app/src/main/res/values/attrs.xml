@@ -225,14 +225,6 @@
         <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="MediaKeyboard">
-        <attr name="tabs_gravity" format="enum">
-            <enum name="bottom" value="0" />
-            <enum name="top" value="1" />
-        </attr>
-        <attr name="media_keyboard_theme" format="reference" />
-    </declare-styleable>
-
     <declare-styleable name="ContactFilterView">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
@@ -303,14 +295,6 @@
         <attr name="search_icon_tint" format="color|reference" />
         <attr name="search_hint" format="string|reference" />
         <attr name="click_only" format="boolean" />
-    </declare-styleable>
-
-    <declare-styleable name="TopShadowBehavior">
-        <attr name="app_bar_layout_id" format="reference" />
-    </declare-styleable>
-
-    <declare-styleable name="BottomShadowBehavior">
-        <attr name="bottom_bar_id" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ButtonStripItemView">

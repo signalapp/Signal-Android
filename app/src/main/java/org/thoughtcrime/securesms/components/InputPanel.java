@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.animation.AnimationStartListener;
 import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.signal.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
@@ -411,7 +410,7 @@ public class InputPanel extends ConstraintLayout
     return mediaKeyboard;
   }
 
-  public MediaKeyboard.MediaKeyboardListener getMediaKeyboardListener() {
+  public EmojiToggle getMediaKeyboardToggle() {
     return mediaKeyboard;
   }
 

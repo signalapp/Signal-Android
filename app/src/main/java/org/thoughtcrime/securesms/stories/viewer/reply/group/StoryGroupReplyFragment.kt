@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import android.content.ClipData
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -26,7 +25,6 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.configure
@@ -45,7 +43,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardCallback
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
@@ -70,7 +67,6 @@ class StoryGroupReplyFragment :
   Fragment(R.layout.stories_group_replies_fragment),
   StoryViewsAndRepliesPagerChild,
   StoryReplyComposer.Callback,
-  EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback,
   SafetyNumberBottomSheet.Callbacks {
 
@@ -353,10 +349,6 @@ class StoryGroupReplyFragment :
     sendReaction(emoji)
   }
 
-  override fun onEmojiSelected(emoji: String?) {
-    composer.onEmojiSelected(emoji)
-  }
-
   private fun sendReaction(emoji: String) {
     findListener<Callback>()?.onReactionEmojiSelected(emoji)
 
@@ -381,26 +373,12 @@ class StoryGroupReplyFragment :
       )
   }
 
-  override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
-
-  override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-    mediaKeyboard.setFragmentManager(childFragmentManager)
-  }
-
   override fun onShowEmojiKeyboard() {
     requireListener<Callback>().requestFullScreen(true)
   }
 
   override fun onHideEmojiKeyboard() {
     requireListener<Callback>().requestFullScreen(false)
-  }
-
-  override fun openEmojiSearch() {
-    composer.openEmojiSearch()
-  }
-
-  override fun closeEmojiSearch() {
-    composer.closeEmojiSearch()
   }
 
   override fun onReactWithAnyEmojiDialogDismissed() = Unit

@@ -3797,9 +3797,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">No thanks</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">This Message</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recently Used</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No results found</string>
 
 
@@ -5489,14 +5486,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
-    <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_search_emoji">Search emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Back to emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Clear search entry</string>
     <string name="KeyboardPagerFragment_search_giphy">Search GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">No results found</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
 
     <!-- ConversationSettingsFragment -->

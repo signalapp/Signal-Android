@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.text.TextUtils
 import android.view.Gravity
-import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -33,7 +32,6 @@ import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
-import org.signal.emoji.EmojiEventListener
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendFlowHudCommand
 import org.signal.mediasend.MediaSendFlowViewModel
@@ -50,10 +48,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ReenableScheduledMessagesDialogFragment
 import org.thoughtcrime.securesms.conversation.ScheduleMessageDialogCallback
 import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEvent
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardEventViewModel
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.QuickRestoreInfoDialog
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageDialogFragment
@@ -76,9 +70,6 @@ class MediaSendV3Activity :
   PassphraseRequiredActivity(),
   SafetyNumberBottomSheet.Callbacks,
   TextStoryPostCreationFragment.Callback,
-  EmojiKeyboardPageFragment.Callback,
-  EmojiEventListener,
-  EmojiSearchFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback {
 
@@ -87,8 +78,6 @@ class MediaSendV3Activity :
   private val contractArgs: MediaSendFlowActivityContract.Args by lazy { MediaSendFlowActivityContract.Args.fromIntent(intent) }
 
   private val viewModel: MediaSendFlowViewModel by viewModels { MediaSendFlowViewModel.Factory(args = contractArgs) }
-
-  private val addMessageCommandViewModel: EmojiKeyboardEventViewModel by viewModels()
 
   override val textStoryDestinations: Set<ContactSearchKey.RecipientSearchKey>
     get() = destinations().toSet()
@@ -291,22 +280,6 @@ class MediaSendV3Activity :
   override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() = error("Unsupported, we do not hand in a message id.")
 
   override fun onCanceled() = Unit
-
-  override fun openEmojiSearch() {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.OpenEmojiSearch)
-  }
-
-  override fun closeEmojiSearch() {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.CloseEmojiSearch)
-  }
-
-  override fun onEmojiSelected(emoji: String?) {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiInsert(emoji))
-  }
-
-  override fun onKeyEvent(keyEvent: KeyEvent?) {
-    addMessageCommandViewModel.onEvent(EmojiKeyboardEvent.EmojiKeyEvent(keyEvent))
-  }
 
   override fun onScheduleSend(scheduledTime: Long) {
     viewModel.onScheduledSendTimeSelected(scheduledTime)

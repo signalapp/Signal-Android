@@ -1466,15 +1466,15 @@ class ConversationFragment :
   }
 
   private fun onShown() {
-    inputPanel.mediaKeyboardListener.onShown()
+    inputPanel.mediaKeyboardToggle.onShown()
   }
 
   private fun onHidden() {
-    inputPanel.mediaKeyboardListener.onHidden()
+    inputPanel.mediaKeyboardToggle.onHidden()
   }
 
   private fun onKeyboardChanged(page: KeyboardPage) {
-    inputPanel.mediaKeyboardListener.onKeyboardChanged(page)
+    inputPanel.mediaKeyboardToggle.onKeyboardChanged(page)
   }
 
   override fun onScheduleSend(scheduledTime: Long) {

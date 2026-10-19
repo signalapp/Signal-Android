@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -29,6 +30,7 @@ import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
@@ -342,6 +344,57 @@ private fun EmojiSearchResults(
             onEvent = onEvent,
             getEmojiDrawable = getEmojiDrawable,
             modifier = Modifier.aspectRatio(1f)
+          )
+        }
+      }
+    }
+  }
+}
+
+/**
+ * A single row of emoji search results, for a search that shares the screen with the system keyboard. With nothing
+ * searched for yet, offers recents instead.
+ */
+@Composable
+internal fun EmojiSearchResultsRow(
+  state: EmojiPageState,
+  onEvent: (EmojiPageScreenEvents) -> Unit,
+  getEmojiDrawable: (String) -> Drawable?,
+  modifier: Modifier = Modifier
+) {
+  val results = state.searchResults ?: state.pages.firstOrNull { it.category == EmojiKeyboardCategory.RECENTS }?.emoji.orEmpty()
+
+  Box(
+    contentAlignment = Alignment.CenterStart,
+    modifier = modifier
+      .fillMaxWidth()
+      .height(EMOJI_CELL_MIN_SIZE + 8.dp)
+  ) {
+    if (results.isEmpty()) {
+      if (state.searchQuery.isNotBlank()) {
+        Text(
+          text = stringResource(R.string.MediaKeyboard__no_results_found),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          textAlign = TextAlign.Center,
+          modifier = Modifier.fillMaxWidth()
+        )
+      }
+    } else {
+      LazyRow(
+        contentPadding = PaddingValues(horizontal = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        itemsIndexed(results, key = { index, _ -> "search-row:$index" }) { index, emoji ->
+          val cellKey = "search-row:$index"
+          EmojiCell(
+            emoji = emoji,
+            display = state.displayEmoji(emoji),
+            cellKey = cellKey,
+            showVariationSelector = state.variationSelector?.cellKey == cellKey,
+            onEvent = onEvent,
+            getEmojiDrawable = getEmojiDrawable,
+            modifier = Modifier.size(EMOJI_CELL_MIN_SIZE)
           )
         }
       }

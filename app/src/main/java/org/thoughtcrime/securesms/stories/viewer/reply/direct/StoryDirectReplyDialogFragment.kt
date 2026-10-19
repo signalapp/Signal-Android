@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.stories.viewer.reply.direct
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -12,12 +11,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
-import org.signal.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
@@ -28,9 +23,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
  */
 class StoryDirectReplyDialogFragment :
   KeyboardEntryDialogFragment(R.layout.stories_reply_to_story_fragment),
-  EmojiKeyboardPageFragment.Callback,
-  EmojiEventListener,
-  EmojiSearchFragment.Callback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   private val lifecycleDisposable = LifecycleDisposable()
@@ -87,10 +79,6 @@ class StoryDirectReplyDialogFragment :
         isRequestingReactWithAny = true
         ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
       }
-
-      override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
-        mediaKeyboard.setFragmentManager(childFragmentManager)
-      }
     }
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -112,10 +100,6 @@ class StoryDirectReplyDialogFragment :
     super.onPause()
 
     ViewUtil.hideKeyboard(requireContext(), composer.input)
-  }
-
-  override fun openEmojiSearch() {
-    composer.openEmojiSearch()
   }
 
   override fun onKeyboardHidden() {
@@ -144,16 +128,6 @@ class StoryDirectReplyDialogFragment :
       }
     }
   }
-
-  override fun onEmojiSelected(emoji: String?) {
-    composer.onEmojiSelected(emoji)
-  }
-
-  override fun closeEmojiSearch() {
-    composer.closeEmojiSearch()
-  }
-
-  override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
 
   override fun onReactWithAnyEmojiDialogDismissed() {
     isRequestingReactWithAny = false

@@ -9,7 +9,7 @@
 
     <include layout="@layout/gift_flow_confirmation_content" />
 
-    <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+    <org.thoughtcrime.securesms.components.emoji.EmojiKeyboardView
         android:id="@+id/emoji_drawer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

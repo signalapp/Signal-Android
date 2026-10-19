@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.InputAwareLayout
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardView
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -35,8 +35,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.R
 import org.thoughtcrime.securesms.components.settings.models.TextInput
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
-import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -51,9 +49,7 @@ class GiftFlowConfirmationFragment :
     titleId = R.string.GiftFlowConfirmationFragment__confirm_donation,
     layoutId = R.layout.gift_flow_confirmation_fragment
   ),
-  EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  EmojiSearchFragment.Callback,
   InAppPaymentCheckoutDelegate.Callback {
 
   private val viewModel: GiftFlowViewModel by activityViewModel {
@@ -61,7 +57,7 @@ class GiftFlowConfirmationFragment :
   }
 
   private lateinit var inputAwareLayout: InputAwareLayout
-  private lateinit var emojiKeyboard: MediaKeyboard
+  private lateinit var emojiKeyboard: EmojiKeyboardView
 
   private val lifecycleDisposable = LifecycleDisposable()
   private lateinit var processingDonationPaymentDialog: AlertDialog
@@ -91,7 +87,7 @@ class GiftFlowConfirmationFragment :
     inputAwareLayout.setInsetPaddingMode(KeyboardAwareLinearLayout.InsetPaddingMode.KEYBOARD_AND_NAVIGATION_BAR)
     emojiKeyboard = requireView().findViewById(R.id.emoji_drawer)
 
-    emojiKeyboard.setFragmentManager(childFragmentManager)
+    emojiKeyboard.emojiEventListener = this
 
     setFragmentResultListener(GatewaySelectorBottomSheet.REQUEST_KEY) { _, bundle ->
       if (bundle.containsKey(GatewaySelectorBottomSheet.FAILURE_KEY)) {
@@ -120,7 +116,7 @@ class GiftFlowConfirmationFragment :
     textInputViewHolder.onAttachedToWindow()
 
     inputAwareLayout.addOnKeyboardShownListener {
-      if (emojiKeyboard.isEmojiSearchMode) {
+      if (emojiKeyboard.isSearching) {
         return@addOnKeyboardShownListener
       }
 
@@ -150,7 +146,7 @@ class GiftFlowConfirmationFragment :
           viewModel.setAdditionalMessage(it)
         },
         onEmojiToggleClicked = {
-          if ((inputAwareLayout.isKeyboardOpen && !emojiKeyboard.isEmojiSearchMode) || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
+          if ((inputAwareLayout.isKeyboardOpen && !emojiKeyboard.isSearching) || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
             inputAwareLayout.show(it, emojiKeyboard)
             emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
           } else {
@@ -220,14 +216,6 @@ class GiftFlowConfirmationFragment :
 
   override fun onToolbarNavigationClicked() {
     findNavController().popBackStack()
-  }
-
-  override fun openEmojiSearch() {
-    emojiKeyboard.onOpenEmojiSearch()
-  }
-
-  override fun closeEmojiSearch() {
-    emojiKeyboard.onCloseEmojiSearch()
   }
 
   override fun onEmojiSelected(emoji: String?) {

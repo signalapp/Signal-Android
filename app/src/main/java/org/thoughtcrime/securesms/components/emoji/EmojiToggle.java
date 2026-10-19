@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
-public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.MediaKeyboardListener {
+public class EmojiToggle extends AppCompatImageButton implements EmojiKeyboardView.VisibilityListener {
 
   private Drawable emojiToggle;
   private Drawable stickerToggle;
@@ -56,8 +56,8 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     setToMedia();
   }
 
-  public void attach(MediaKeyboard drawer) {
-    drawer.setKeyboardListener(this);
+  public void attach(EmojiKeyboardView drawer) {
+    drawer.setVisibilityListener(this);
   }
 
   public void setStickerMode(@NonNull KeyboardPage page) {
@@ -90,7 +90,6 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     setToMedia();
   }
 
-  @Override
   public void onKeyboardChanged(@NonNull KeyboardPage page) {
     setStickerMode(page);
     switch (page) {
