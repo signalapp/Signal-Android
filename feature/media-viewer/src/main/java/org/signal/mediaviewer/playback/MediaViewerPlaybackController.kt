@@ -39,6 +39,9 @@ open class MediaViewerPlaybackController(initialState: PlaybackUiState = Playbac
 
   open fun detach(player: VideoPlayer) {
     if (this.player === player) {
+      if (uiState.isScrubbing) {
+        player.setScrubbingModeEnabled(false)
+      }
       this.player = null
       isLooping = false
       uiState = PlaybackUiState()
@@ -69,16 +72,19 @@ open class MediaViewerPlaybackController(initialState: PlaybackUiState = Playbac
   open fun beginScrub() {
     wasPlayingBeforeScrub = uiState.isPlaying
     player?.pause()
+    player?.setScrubbingModeEnabled(true)
     uiState = uiState.copy(isScrubbing = true)
   }
 
   open fun scrubTo(positionMs: Long) {
-    uiState = uiState.copy(positionMs = positionMs.coerceIn(0, uiState.durationMs))
+    val target = positionMs.coerceIn(0, uiState.durationMs)
+    player?.playbackPosition = target
+    uiState = uiState.copy(positionMs = target)
   }
 
   open fun endScrub() {
     val player = this.player ?: return
-    player.playbackPosition = uiState.positionMs
+    player.setScrubbingModeEnabled(false)
     if (wasPlayingBeforeScrub) {
       player.play()
     }

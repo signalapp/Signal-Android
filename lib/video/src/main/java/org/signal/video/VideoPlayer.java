@@ -361,6 +361,7 @@ public class VideoPlayer extends FrameLayout {
 
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);
+      exoPlayer.setScrubbingModeEnabled(false);
 
       exoPlayerPool.pool(exoPlayer);
       this.exoPlayer = null;
@@ -403,6 +404,16 @@ public class VideoPlayer extends FrameLayout {
   public void setPlaybackPosition(long positionMs) {
     if (this.exoPlayer != null) {
       this.exoPlayer.seekTo(positionMs);
+    }
+  }
+
+  /**
+   * Optimizes the player for many rapid seeks, such as while dragging a seek bar. Disable it as soon as the
+   * interaction ends, which also performs the most recently requested seek.
+   */
+  public void setScrubbingModeEnabled(boolean enabled) {
+    if (this.exoPlayer != null) {
+      exoPlayer.setScrubbingModeEnabled(enabled);
     }
   }
 
