@@ -29,7 +29,7 @@ object SignalGlideDependencies {
   val application: Application
     get() = _application
 
-  fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0): InputStreamFactory = _provider.getUriInputStreamFactory(uri, thumbnailTimeUs)
+  fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0, contentType: String? = null): InputStreamFactory = _provider.getUriInputStreamFactory(uri, thumbnailTimeUs, contentType)
 
   @JvmStatic
   fun isLocalUri(uri: Uri): Boolean = _provider.isLocalUri(uri)
@@ -37,8 +37,9 @@ object SignalGlideDependencies {
   interface Provider {
     /**
      * A factory which can create an [java.io.InputStream] from a given [Uri]. For videos, [thumbnailTimeUs] specifies the frame time to extract.
+     * [contentType], if known, is the content type of the data at [uri].
      */
-    fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0): InputStreamFactory
+    fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long = 0, contentType: String? = null): InputStreamFactory
 
     /** Whether [uri] names locally-served content that [getUriInputStreamFactory] can open. */
     fun isLocalUri(uri: Uri): Boolean

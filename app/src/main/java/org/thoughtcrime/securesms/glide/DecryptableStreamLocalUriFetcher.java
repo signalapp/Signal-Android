@@ -9,6 +9,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+
+import androidx.annotation.Nullable;
 import kotlin.Pair;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
@@ -36,27 +38,35 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private final Context context;
   private final long    thumbnailTimeUs;
+  private final String  contentType;
 
-  DecryptableStreamLocalUriFetcher(Context context, Uri uri, long thumbnailTimeUs) {
+  private Boolean hasVideoThumbnail;
+  private boolean videoFrameLoaded;
+  private byte[]  videoFrame;
+  private Boolean safeSize;
+
+  /**
+   * Instances memoize the expensive checks and the extracted video frame, so a single instance should be reused for every stream opened for the same
+   * uri during a load.
+   *
+   * @param contentType The content type of the data at the uri, if known. Avoids a database lookup to determine whether it's a video.
+   */
+  DecryptableStreamLocalUriFetcher(Context context, Uri uri, long thumbnailTimeUs, @Nullable String contentType) {
     super(context.getContentResolver(), uri);
     this.context          = context;
     this.thumbnailTimeUs  = thumbnailTimeUs;
+    this.contentType      = contentType;
   }
 
   @Override
   protected InputStream loadResource(Uri uri, ContentResolver contentResolver) throws FileNotFoundException {
-    if (MediaUtil.hasVideoThumbnail(context, uri)) {
-      long   timeUs    = thumbnailTimeUs > 0 ? thumbnailTimeUs : 1000;
-      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, timeUs);
-
-      if (thumbnail != null) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        ByteArrayInputStream thumbnailStream = new ByteArrayInputStream(baos.toByteArray());
-        thumbnail.recycle();
-        return thumbnailStream;
+    if (hasVideoThumbnail(uri)) {
+      byte[] frame = getVideoFrame(uri);
+      if (frame != null) {
+        return new ByteArrayInputStream(frame);
       }
-      if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
+
+      if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(contentType != null ? contentType : PartAuthority.getAttachmentContentType(context, uri))) {
         try {
           AttachmentId attachmentId = PartAuthority.requireAttachmentId(uri);
           Uri          thumbnailUri = PartAuthority.getAttachmentThumbnailUri(attachmentId);
@@ -73,7 +83,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     try {
       if (PartAuthority.isBlobUri(uri) && BlobProvider.isSingleUseMemoryBlob(uri)) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
-      } else if (isSafeSize(context, uri)) {
+      } else if (isSafeSizeMemoized(uri)) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
       } else {
         throw new IOException("File dimensions are too large!");
@@ -82,6 +92,39 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
       Log.w(TAG, ioe);
       throw new FileNotFoundException("PartAuthority couldn't load Uri resource.");
     }
+  }
+
+  private synchronized boolean hasVideoThumbnail(Uri uri) {
+    if (hasVideoThumbnail == null) {
+      hasVideoThumbnail = contentType != null ? MediaUtil.isVideoType(contentType) : MediaUtil.hasVideoThumbnail(context, uri);
+    }
+    return hasVideoThumbnail;
+  }
+
+  private synchronized @Nullable byte[] getVideoFrame(Uri uri) {
+    if (videoFrameLoaded) {
+      return videoFrame;
+    }
+
+    long   timeUs    = thumbnailTimeUs > 0 ? thumbnailTimeUs : 1000;
+    Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, timeUs);
+
+    if (thumbnail != null) {
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+      thumbnail.recycle();
+      videoFrame = baos.toByteArray();
+    }
+
+    videoFrameLoaded = true;
+    return videoFrame;
+  }
+
+  private synchronized boolean isSafeSizeMemoized(Uri uri) throws IOException {
+    if (safeSize == null) {
+      safeSize = isSafeSize(context, uri);
+    }
+    return safeSize;
   }
 
   private boolean isSafeSize(Context context, Uri uri) throws IOException {

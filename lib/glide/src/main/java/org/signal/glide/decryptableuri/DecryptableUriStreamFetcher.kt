@@ -22,7 +22,7 @@ class DecryptableUriStreamFetcher(
 
   override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStreamFactory>) {
     try {
-      callback.onDataReady(InputStreamFactory.build(decryptableUri.uri, decryptableUri.thumbnailTimeUs))
+      callback.onDataReady(InputStreamFactory.build(decryptableUri.uri, decryptableUri.thumbnailTimeUs, decryptableUri.contentType))
     } catch (e: Exception) {
       callback.onLoadFailed(e)
     }

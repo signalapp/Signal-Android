@@ -167,7 +167,7 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
 
       conversationContext
         .requestManager
-        .load(DecryptableUri(thumbnailUri, videoTrimStartTimeUs))
+        .load(DecryptableUri(thumbnailUri, videoTrimStartTimeUs, thumbnail.contentType))
         .centerInside()
         .dontAnimate()
         .override(thumbnailSize.width, thumbnailSize.height)

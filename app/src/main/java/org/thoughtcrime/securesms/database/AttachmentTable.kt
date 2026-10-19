@@ -3267,7 +3267,7 @@ class AttachmentTable(
   private fun insertQuoteAttachment(messageId: Long, attachment: Attachment): AttachmentId {
     Log.d(TAG, "[insertQuoteAttachment] Inserting quote attachment for messageId $messageId.")
 
-    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!), attachment.contentType)
+    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!, contentType = attachment.contentType), attachment.contentType)
     if (thumbnail != null) {
       Log.d(TAG, "[insertQuoteAttachment] Successfully generated quote thumbnail for messageId $messageId.")
 
@@ -3333,20 +3333,15 @@ class AttachmentTable(
         }
 
         MediaUtil.isVideoType(contentType) -> {
-          val videoThumbnail = MediaUtil.getVideoThumbnail(context, uri.uri)
-          if (videoThumbnail != null) {
-            ImageCompressionUtil.compress(
-              context,
-              MediaUtil.IMAGE_JPEG,
-              MediaUtil.IMAGE_JPEG,
-              uri,
-              QUOTE_THUMBNAIL_DIMEN,
-              QUOTE_THUMBAIL_QUALITY
-            )
-          } else {
-            Log.w(TAG, "[generateQuoteThumbnail] Failed to extract video thumbnail")
-            null
-          }
+          // Loading the video uri through Glide extracts a frame from it.
+          ImageCompressionUtil.compress(
+            context,
+            MediaUtil.IMAGE_JPEG,
+            MediaUtil.IMAGE_JPEG,
+            uri,
+            QUOTE_THUMBNAIL_DIMEN,
+            QUOTE_THUMBAIL_QUALITY
+          )
         }
 
         else -> {

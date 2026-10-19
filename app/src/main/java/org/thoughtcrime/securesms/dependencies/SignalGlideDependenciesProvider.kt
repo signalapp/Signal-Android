@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.glide.DecryptableStreamFactory
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 object SignalGlideDependenciesProvider : SignalGlideDependencies.Provider {
-  override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long): InputStreamFactory {
-    return DecryptableStreamFactory(uri, thumbnailTimeUs)
+  override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long, contentType: String?): InputStreamFactory {
+    return DecryptableStreamFactory(uri, thumbnailTimeUs, contentType)
   }
 
   override fun isLocalUri(uri: Uri): Boolean {

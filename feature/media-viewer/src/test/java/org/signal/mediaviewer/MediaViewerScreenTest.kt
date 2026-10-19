@@ -79,7 +79,7 @@ class MediaViewerScreenTest {
     SignalGlideDependencies.init(
       ApplicationProvider.getApplicationContext(),
       object : SignalGlideDependencies.Provider {
-        override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long): InputStreamFactory {
+        override fun getUriInputStreamFactory(uri: Uri, thumbnailTimeUs: Long, contentType: String?): InputStreamFactory {
           return object : InputStreamFactory {
             override fun create(): InputStream = ByteArrayInputStream(ByteArray(0))
           }

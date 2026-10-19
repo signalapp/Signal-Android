@@ -681,7 +681,8 @@ public class ThumbnailView extends FrameLayout {
       videoTrimStartTimeUs = transformProperties.videoTrimStartTimeUs;
     }
 
-    RequestBuilder<Drawable> requestBuilder = applySizing(requestManager.load(new DecryptableUri(Objects.requireNonNull(slide.getDisplayUri()), videoTrimStartTimeUs))
+    String                   contentType    = slide.getUri() != null ? slide.getContentType() : null;
+    RequestBuilder<Drawable> requestBuilder = applySizing(requestManager.load(new DecryptableUri(Objects.requireNonNull(slide.getDisplayUri()), videoTrimStartTimeUs, contentType))
                                                               .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                                                               .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                               .transition(withCrossFade()));
