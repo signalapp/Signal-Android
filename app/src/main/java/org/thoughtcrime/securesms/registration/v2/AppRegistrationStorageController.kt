@@ -21,9 +21,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.archive.LocalBackupRestoreProgress
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
@@ -37,6 +34,7 @@ import org.signal.core.util.AppUtil
 import org.signal.core.util.Result
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.crypto.AttachmentSecretProvider
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.getLength
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
@@ -322,16 +320,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     val totalBytes = context.contentResolver.getLength(backupUri) ?: 0L
     var countingStream: CountingInputStream? = null
 
-    val subscriber = object {
-      @Subscribe(threadMode = ThreadMode.POSTING)
-      fun onBackupEvent(event: BackupEvent) {
-        if (event.type == BackupEvent.Type.PROGRESS) {
-          trySend(LocalBackupRestoreProgress.InProgress(bytesRead = countingStream?.count ?: 0L, totalBytes = totalBytes))
-        }
+    val subscription = EventBus.default.subscribe<BackupEvent> { event ->
+      if (event.type == BackupEvent.Type.PROGRESS) {
+        trySend(LocalBackupRestoreProgress.InProgress(bytesRead = countingStream?.count ?: 0L, totalBytes = totalBytes))
       }
     }
-
-    EventBus.getDefault().register(subscriber)
 
     launch(Dispatchers.IO) {
       val progressService = BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title))
@@ -394,7 +387,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     awaitClose {
-      EventBus.getDefault().unregister(subscriber)
+      subscription.unsubscribe()
     }
   }
 
@@ -415,16 +408,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
 
     // The import posts RestoreV2Event frame-progress events as it reads through the main archive stream, tracking bytes
     // read against the stream length. Bridge those into InProgress so the UI can show a real percentage.
-    val subscriber = object {
-      @Subscribe(threadMode = ThreadMode.POSTING)
-      fun onRestoreEvent(event: RestoreV2Event) {
-        if (event.type == RestoreV2Event.Type.PROGRESS_RESTORE) {
-          trySend(LocalBackupRestoreProgress.InProgress(bytesRead = event.count.inWholeBytes, totalBytes = event.estimatedTotalCount.inWholeBytes))
-        }
+    val subscription = EventBus.default.subscribe<RestoreV2Event> { event ->
+      if (event.type == RestoreV2Event.Type.PROGRESS_RESTORE) {
+        trySend(LocalBackupRestoreProgress.InProgress(bytesRead = event.count.inWholeBytes, totalBytes = event.estimatedTotalCount.inWholeBytes))
       }
     }
-
-    EventBus.getDefault().register(subscriber)
 
     launch(Dispatchers.IO) {
       val progressService = BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title))
@@ -495,7 +483,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     awaitClose {
-      EventBus.getDefault().unregister(subscriber)
+      subscription.unsubscribe()
     }
   }
 
@@ -577,19 +565,14 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   override fun restoreRemoteBackup(aep: AccountEntropyPool): Flow<RemoteBackupRestoreProgress> = callbackFlow {
-    val subscriber = object {
-      @Subscribe(threadMode = ThreadMode.POSTING)
-      fun onRestoreEvent(event: RestoreV2Event) {
-        val progress = when (event.type) {
-          RestoreV2Event.Type.PROGRESS_DOWNLOAD -> RemoteBackupRestoreProgress.Downloading(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
-          RestoreV2Event.Type.PROGRESS_RESTORE -> RemoteBackupRestoreProgress.Restoring(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
-          RestoreV2Event.Type.PROGRESS_FINALIZING -> RemoteBackupRestoreProgress.Finalizing
-        }
-        trySend(progress)
+    val subscription = EventBus.default.subscribe<RestoreV2Event> { event ->
+      val progress = when (event.type) {
+        RestoreV2Event.Type.PROGRESS_DOWNLOAD -> RemoteBackupRestoreProgress.Downloading(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
+        RestoreV2Event.Type.PROGRESS_RESTORE -> RemoteBackupRestoreProgress.Restoring(event.count.inWholeBytes, event.estimatedTotalCount.inWholeBytes)
+        RestoreV2Event.Type.PROGRESS_FINALIZING -> RemoteBackupRestoreProgress.Finalizing
       }
+      trySend(progress)
     }
-
-    EventBus.getDefault().register(subscriber)
 
     launch(Dispatchers.IO) {
       try {
@@ -631,7 +614,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     awaitClose {
-      EventBus.getDefault().unregister(subscriber)
+      subscription.unsubscribe()
     }
   }
 
@@ -645,19 +628,14 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
       return@callbackFlow
     }
 
-    val subscriber = object {
-      @Subscribe(threadMode = ThreadMode.POSTING)
-      fun onRestoreEvent(event: RestoreV2Event) {
-        val progress = when (event.type) {
-          RestoreV2Event.Type.PROGRESS_DOWNLOAD -> LinkAndSyncProgress.Downloading(event.count, event.estimatedTotalCount)
-          RestoreV2Event.Type.PROGRESS_RESTORE -> LinkAndSyncProgress.Restoring(event.count, event.estimatedTotalCount)
-          RestoreV2Event.Type.PROGRESS_FINALIZING -> LinkAndSyncProgress.Finalizing
-        }
-        trySend(progress)
+    val subscription = EventBus.default.subscribe<RestoreV2Event> { event ->
+      val progress = when (event.type) {
+        RestoreV2Event.Type.PROGRESS_DOWNLOAD -> LinkAndSyncProgress.Downloading(event.count, event.estimatedTotalCount)
+        RestoreV2Event.Type.PROGRESS_RESTORE -> LinkAndSyncProgress.Restoring(event.count, event.estimatedTotalCount)
+        RestoreV2Event.Type.PROGRESS_FINALIZING -> LinkAndSyncProgress.Finalizing
       }
+      trySend(progress)
     }
-
-    EventBus.getDefault().register(subscriber)
 
     launch(Dispatchers.IO) {
       try {
@@ -681,7 +659,7 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
     }
 
     awaitClose {
-      EventBus.getDefault().unregister(subscriber)
+      subscription.unsubscribe()
     }
   }
 

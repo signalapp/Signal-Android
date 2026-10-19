@@ -20,6 +20,7 @@ import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Util
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
@@ -122,6 +123,9 @@ import java.io.Closeable
 import java.io.IOException
 import java.security.SecureRandom
 import java.util.Locale
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -265,24 +269,19 @@ class AppRegistrationNetworkController(
 
   override suspend fun awaitPushChallengeToken(): String? = withContext(Dispatchers.IO) {
     try {
-      val latch = java.util.concurrent.CountDownLatch(1)
-      val challenge = java.util.concurrent.atomic.AtomicReference<String>()
+      val latch = CountDownLatch(1)
+      val challenge = AtomicReference<String>()
 
-      val subscriber = object {
-        @org.greenrobot.eventbus.Subscribe(threadMode = org.greenrobot.eventbus.ThreadMode.POSTING)
-        fun onChallengeEvent(event: PushChallengeRequest.PushChallengeEvent) {
-          challenge.set(event.challenge)
-          latch.countDown()
-        }
+      val subscription = EventBus.default.subscribe<PushChallengeRequest.PushChallengeEvent> { event ->
+        challenge.set(event.challenge)
+        latch.countDown()
       }
 
-      val eventBus = org.greenrobot.eventbus.EventBus.getDefault()
-      eventBus.register(subscriber)
       try {
-        latch.await(PUSH_REQUEST_TIMEOUT, java.util.concurrent.TimeUnit.MILLISECONDS)
+        latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
         challenge.get()
       } finally {
-        eventBus.unregister(subscriber)
+        subscription.unsubscribe()
       }
     } catch (e: Exception) {
       Log.w(TAG, "Failed to await push challenge token", e)

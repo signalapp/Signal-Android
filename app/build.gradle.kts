@@ -785,7 +785,6 @@ dependencies {
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
-  implementation(libs.greenrobot.eventbus)
   implementation(libs.google.zxing.android.integration)
   implementation(libs.google.zxing.core)
   implementation(libs.google.flexbox)

@@ -6,13 +6,13 @@ package org.thoughtcrime.securesms.jobs
 
 import android.content.Context
 import android.text.TextUtils
-import org.greenrobot.eventbus.EventBus
 import org.signal.blurhash.BlurHash
 import org.signal.core.models.ServiceId
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -257,7 +257,7 @@ abstract class PushSendJob protected constructor(parameters: Parameters) : BaseJ
         .withResumableUploadSpec(uploadSpec)
         .withListener(object : SignalServiceAttachment.ProgressListener {
           override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
-            EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
+            EventBus.default.postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
           }
 
           override fun shouldCancel(): Boolean {

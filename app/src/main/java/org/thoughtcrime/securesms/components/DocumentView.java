@@ -19,10 +19,10 @@ import androidx.annotation.Nullable;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ByteSize;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.RestartableSubscription;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -63,6 +63,8 @@ public class DocumentView extends FrameLayout {
 
   private Disposable awaitingDisposable = Disposable.disposed();
 
+  private final RestartableSubscription progressSubscription = new RestartableSubscription(() -> EventBus.getDefault().subscribeSticky(PartProgressEvent.class, ThreadMode.MAIN, this::onPartProgress));
+
   public DocumentView(@NonNull Context context) {
     this(context, null);
   }
@@ -102,9 +104,7 @@ public class DocumentView extends FrameLayout {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    if (!EventBus.getDefault().isRegistered(this)) {
-      EventBus.getDefault().register(this);
-    }
+    progressSubscription.start();
 
     awaitingDisposable = AttachmentBackfill.awaitingChanges()
                                            .observeOn(AndroidSchedulers.mainThread())
@@ -116,7 +116,7 @@ public class DocumentView extends FrameLayout {
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
-    EventBus.getDefault().unregister(this);
+    progressSubscription.stop();
     awaitingDisposable.dispose();
   }
 
@@ -217,8 +217,7 @@ public class DocumentView extends FrameLayout {
     this.downloadButton.setEnabled(enabled);
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventAsync(final PartProgressEvent event) {
+  private void onPartProgress(final PartProgressEvent event) {
     if (documentSlide != null && event.attachment.equals(documentSlide.asAttachment())) {
       downloadProgress.setInstantProgress(((float) event.progress) / event.total);
     }

@@ -16,14 +16,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.ByteSize
 import org.signal.core.util.ThrottledDebouncer
 import org.signal.core.util.bytes
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -58,6 +58,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   /** Active while view is attached */
   private var renderScope: CoroutineScope? = null
+  private val progressSubscription = RestartableSubscription { EventBus.default.subscribeSticky<PartProgressEvent>(ThreadMode.MAIN, ::onPartProgress) }
 
   /** Per-instance id so a single recycled view can be isolated in logcat when [VERBOSE_DEVELOPMENT_LOGGING] is on. */
   private val viewId by lazy { UUID.randomUUID().toString().take(8) }
@@ -82,7 +83,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
-    if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    progressSubscription.start()
 
     renderScope = CoroutineScope(Dispatchers.Main.immediate).also { scope ->
       scope.launch {
@@ -93,7 +94,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
 
   override fun onDetachedFromWindow() {
     super.onDetachedFromWindow()
-    EventBus.getDefault().unregister(this)
+    progressSubscription.stop()
     renderScope?.cancel()
     renderScope = null
   }
@@ -138,8 +139,7 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
     }
   }
 
-  @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  fun onEventAsync(event: PartProgressEvent) {
+  private fun onPartProgress(event: PartProgressEvent) {
     val attachment = event.attachment
     updateState {
       if (!it.networkProgress.containsKey(attachment)) {

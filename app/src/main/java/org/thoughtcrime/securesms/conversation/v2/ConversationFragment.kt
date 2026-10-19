@@ -123,9 +123,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.models.media.Media
 import org.signal.core.models.media.TransformProperties
@@ -154,6 +151,9 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.dp
 import org.signal.core.util.encourageNewBrowserTab
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.invite.InviteActions
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -1112,6 +1112,7 @@ class ConversationFragment :
     viewModel.resetBackPressedState()
     binding.toolbar.isBackInvokedCallbackEnabled = false
     disposables.bindTo(viewLifecycleOwner)
+    subscribeToEventsWhileResumed()
 
     if (requireActivity() is ConversationActivity) {
       FullscreenHelper(requireActivity()).showSystemUI()
@@ -1264,8 +1265,6 @@ class ConversationFragment :
   override fun onResume() {
     super.onResume()
 
-    EventBus.getDefault().register(this)
-
     // Reselects which gifs play, since a gif whose tapped playback was dropped on pause may now autoplay.
     binding.conversationItemRecycler.requestLayout()
 
@@ -1317,8 +1316,6 @@ class ConversationFragment :
     }
 
     inputPanel.onPause()
-
-    EventBus.getDefault().unregister(this)
   }
 
   override fun onConfigurationChanged(newConfig: Configuration) {
@@ -2838,7 +2835,7 @@ class ConversationFragment :
       SignalStore.settings.mediaKeyboardMode = MediaKeyboardMode.STICKER
       inputPanel.setMediaKeyboardToggleMode(KeyboardPage.STICKER)
       conversationTooltips.displayStickerIntroductionTooltip(inputPanel.mediaKeyboardToggleAnchorView) {
-        EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent::class.java)
+        EventBus.default.removeStickyEvent<StickerPackInstallEvent>()
       }
     }
   }
@@ -5728,35 +5725,36 @@ class ConversationFragment :
 
   //region Event Bus
 
-  @Subscribe(threadMode = ThreadMode.POSTING)
-  fun onIdentityRecordUpdate(event: IdentityRecord?) {
+  private fun subscribeToEventsWhileResumed() {
+    listOf(
+      RestartableSubscription { EventBus.default.subscribe<IdentityRecord>(handler = ::onIdentityRecordUpdate) },
+      RestartableSubscription { EventBus.default.subscribeSticky<StickerPackInstallEvent>(ThreadMode.MAIN, ::onStickerPackInstalled) },
+      RestartableSubscription { EventBus.default.subscribeSticky<GroupCallPeekEvent>(ThreadMode.MAIN, ::onGroupCallPeekEvent) },
+      RestartableSubscription { EventBus.default.subscribe<RecaptchaRequiredEvent>(ThreadMode.MAIN, ::onRecaptchaRequiredEvent) }
+    ).forEach { it.bindTo(viewLifecycleOwner, Lifecycle.State.RESUMED) }
+  }
+
+  private fun onIdentityRecordUpdate(event: IdentityRecord) {
     viewModel.updateIdentityRecordsInBackground()
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-  fun onStickerPackInstalled(event: StickerPackInstallEvent?) {
-    if (event == null) {
-      return
-    }
-
+  private fun onStickerPackInstalled(event: StickerPackInstallEvent) {
     if (!SignalStore.tooltips.hasSeenStickerIntroTooltip()) {
       return
     }
 
-    EventBus.getDefault().removeStickyEvent(event)
+    EventBus.default.removeStickyEvent(event)
 
     if (!inputPanel.isStickerMode) {
       conversationTooltips.displayStickerPackInstalledTooltip(inputPanel.mediaKeyboardToggleAnchorView, event)
     }
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-  fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
+  private fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
     groupCallViewModel.onGroupCallPeekEvent(groupCallPeekEvent)
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onRecaptchaRequiredEvent(recaptchaRequiredEvent: RecaptchaRequiredEvent) {
+  private fun onRecaptchaRequiredEvent(recaptchaRequiredEvent: RecaptchaRequiredEvent) {
     RecaptchaProofBottomSheetFragment.show(childFragmentManager)
   }
 

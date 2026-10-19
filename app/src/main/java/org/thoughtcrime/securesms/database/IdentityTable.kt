@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.database.delete
 import org.signal.core.database.exists
 import org.signal.core.database.select
@@ -27,6 +26,7 @@ import org.signal.core.models.ServiceId
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.firstOrNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
@@ -169,7 +169,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
     if (updated > 0) {
       val record = getIdentityRecord(addressName)
       if (record.isPresent) {
-        EventBus.getDefault().post(record.get())
+        EventBus.default.post(record.get())
       }
       recipients.markNeedsSync(recipientId)
       StorageSyncHelper.scheduleSyncForDataChange()
@@ -187,7 +187,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
 
       val record = getIdentityRecord(addressName)
       if (record.isPresent) {
-        EventBus.getDefault().post(record.get())
+        EventBus.default.post(record.get())
       }
 
       AppDependencies.protocolStore.aci().identities().invalidate(addressName)
@@ -257,7 +257,7 @@ class IdentityTable internal constructor(context: Context?, databaseHelper: Sign
       FIRST_USE to if (firstUse) 1 else 0
     )
     writableDatabase.replace(TABLE_NAME, null, contentValues)
-    EventBus.getDefault().post(IdentityRecord(recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval))
+    EventBus.default.post(IdentityRecord(recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval))
   }
 
   enum class VerifiedStatus {

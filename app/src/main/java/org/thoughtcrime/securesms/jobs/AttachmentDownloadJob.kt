@@ -6,11 +6,11 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.Source
 import okio.buffer
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.Util
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
@@ -335,7 +335,7 @@ class AttachmentDownloadJob private constructor(
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
         override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
-          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
+          EventBus.default.postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
         }
 
         override fun shouldCancel(): Boolean {

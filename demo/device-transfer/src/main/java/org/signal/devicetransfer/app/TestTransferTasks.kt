@@ -6,7 +6,7 @@
 package org.signal.devicetransfer.app
 
 import android.content.Context
-import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.ClientTask
 import org.signal.devicetransfer.ServerTask
@@ -68,7 +68,7 @@ class TestClientTask(private val totalBytes: Long) : ClientTask {
       reporter.finish(sent)
     } catch (e: IOException) {
       Log.w(TAG, "Send failed", e)
-      EventBus.getDefault().post(TestTaskUpdate.Failed(e.toString()))
+      EventBus.default.post(TestTaskUpdate.Failed(e.toString()))
       throw e
     }
   }
@@ -76,7 +76,7 @@ class TestClientTask(private val totalBytes: Long) : ClientTask {
   override fun success() {
     val duration = System.currentTimeMillis() - startMillis
     Log.i(TAG, "Send complete in $duration ms")
-    EventBus.getDefault().post(TestTaskUpdate.Sent(totalBytes, duration))
+    EventBus.default.post(TestTaskUpdate.Sent(totalBytes, duration))
   }
 }
 
@@ -112,10 +112,10 @@ class TestServerTask : ServerTask {
       reporter.finish(received)
 
       Log.i(TAG, "Receive complete in $duration ms, checksum matches: $matches")
-      EventBus.getDefault().post(TestTaskUpdate.Received(received, duration, matches))
+      EventBus.default.post(TestTaskUpdate.Received(received, duration, matches))
     } catch (e: IOException) {
       Log.w(TAG, "Receive failed", e)
-      EventBus.getDefault().post(TestTaskUpdate.Failed(e.toString()))
+      EventBus.default.post(TestTaskUpdate.Failed(e.toString()))
       throw e
     }
   }
@@ -138,6 +138,6 @@ private class ProgressReporter(private val totalBytes: Long) {
   }
 
   private fun post(bytes: Long, now: Long) {
-    EventBus.getDefault().post(TestTaskUpdate.Progress(bytes, totalBytes, now - startMillis))
+    EventBus.default.post(TestTaskUpdate.Progress(bytes, totalBytes, now - startMillis))
   }
 }

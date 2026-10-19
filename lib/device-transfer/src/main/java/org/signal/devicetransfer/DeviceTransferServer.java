@@ -13,9 +13,9 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.devicetransfer.SelfSignedIdentity.SelfSignedKeys;
 

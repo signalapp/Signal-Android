@@ -12,10 +12,10 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.TransferStatus
 import org.thoughtcrime.securesms.R
@@ -37,7 +37,13 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
   }
 
   private val onBackPressed = OnBackPressed()
-  private val transferModeListener = TransferModeListener()
+  private val transferStatusSubscription = RestartableSubscription {
+    EventBus.default.subscribeSticky<TransferStatus>(ThreadMode.MAIN) { event ->
+      if (event.transferMode != TransferStatus.TransferMode.SERVICE_CONNECTED) {
+        abort()
+      }
+    }
+  }
   protected val binding: FragmentDeviceTransferBinding by ViewBinderDelegate(FragmentDeviceTransferBinding::bind)
   protected val status: TextView by lazy { binding.deviceTransferFragmentStatus }
 
@@ -71,12 +77,12 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
       cancelActiveTransfer()
     }
     binding.deviceTransferFragmentTryAgain.setOnClickListener {
-      EventBus.getDefault().unregister(transferModeListener)
-      EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
+      ignoreTransferStatusEvents()
+      EventBus.default.removeStickyEvent<TransferStatus>()
       navigateToRestartTransfer()
     }
 
-    EventBus.getDefault().register(transferModeListener)
+    transferStatusSubscription.start()
 
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,
@@ -86,7 +92,7 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
 
   override fun onDestroyView() {
     requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-    EventBus.getDefault().unregister(transferModeListener)
+    ignoreTransferStatusEvents()
     super.onDestroyView()
   }
 
@@ -95,9 +101,9 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
       setTitle(R.string.DeviceTransfer__stop_transfer)
       setMessage(R.string.DeviceTransfer__all_transfer_progress_will_be_lost)
       setPositiveButton(R.string.DeviceTransfer__stop_transfer) { _, _ ->
-        EventBus.getDefault().unregister(transferModeListener)
+        ignoreTransferStatusEvents()
         DeviceToDeviceTransferService.stop(requireContext())
-        EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
+        EventBus.default.removeStickyEvent<TransferStatus>()
         navigateAwayFromTransfer()
       }
       setNegativeButton(android.R.string.cancel, null)
@@ -106,7 +112,7 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
   }
 
   protected fun ignoreTransferStatusEvents() {
-    EventBus.getDefault().unregister(transferModeListener)
+    transferStatusSubscription.stop()
   }
 
   protected abstract fun navigateToRestartTransfer()
@@ -120,7 +126,7 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
   }
 
   protected fun abort(@StringRes errorMessage: Int) {
-    EventBus.getDefault().unregister(transferModeListener)
+    ignoreTransferStatusEvents()
     DeviceToDeviceTransferService.stop(requireContext())
 
     binding.deviceTransferFragmentProgress.visible = false
@@ -133,15 +139,6 @@ abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device
     binding.deviceTransferFragmentCancel.setOnClickListener { navigateAwayFromTransfer() }
 
     onBackPressed.isActiveTransfer = false
-  }
-
-  private inner class TransferModeListener {
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    fun onEventMainThread(event: TransferStatus) {
-      if (event.transferMode != TransferStatus.TransferMode.SERVICE_CONNECTED) {
-        abort()
-      }
-    }
   }
 
   protected inner class OnBackPressed : OnBackPressedCallback(true) {

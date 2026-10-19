@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.fragment.NavHostFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.RestartableSubscription;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
@@ -24,17 +24,18 @@ import java.text.NumberFormat;
  */
 public final class OldDeviceTransferFragment extends DeviceTransferFragment {
 
-  private final ClientTaskListener clientTaskListener = new ClientTaskListener();
+  private final ClientTaskListener      clientTaskListener     = new ClientTaskListener();
+  private final RestartableSubscription clientTaskSubscription = new RestartableSubscription(() -> EventBus.getDefault().subscribe(OldDeviceClientTask.Status.class, ThreadMode.MAIN, clientTaskListener::onStatus));
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    EventBus.getDefault().register(clientTaskListener);
+    clientTaskSubscription.start();
   }
 
   @Override
   public void onDestroyView() {
-    EventBus.getDefault().unregister(clientTaskListener);
+    clientTaskSubscription.stop();
     super.onDestroyView();
   }
 
@@ -45,7 +46,7 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
 
   @Override
   protected void navigateAwayFromTransfer() {
-    EventBus.getDefault().unregister(clientTaskListener);
+    clientTaskSubscription.stop();
     requireActivity().finish();
   }
 
@@ -63,8 +64,7 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
       formatter.setMaximumFractionDigits(1);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
+    public void onStatus(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
         setTransferFinished(true);
         ignoreTransferStatusEvents();

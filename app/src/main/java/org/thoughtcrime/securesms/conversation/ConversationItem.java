@@ -68,9 +68,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.fonts.SignalSymbols;
 import org.signal.core.ui.util.ThemeUtil;
@@ -79,6 +76,9 @@ import org.signal.core.util.BidiUtil;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.Util;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.RestartableSubscription;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
@@ -2909,6 +2909,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     private              View  parentView;
     private              Slide activeSlide;
 
+    private final RestartableSubscription progressSubscription = new RestartableSubscription(() -> EventBus.getDefault().subscribeSticky(PartProgressEvent.class, ThreadMode.MAIN, this::onPartProgress));
+
     @Override
     public void onClick(View v, Slide slide) {
       if (MediaUtil.isInstantVideoSupported(slide)) {
@@ -2933,19 +2935,16 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     private void setup(View v, Slide slide) {
       parentView  = v;
       activeSlide = slide;
-      if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this);
+      progressSubscription.start();
     }
 
     private void cleanup() {
       parentView  = null;
       activeSlide = null;
-      if (EventBus.getDefault().isRegistered(this)) {
-        EventBus.getDefault().unregister(this);
-      }
+      progressSubscription.stop();
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onEventAsync(PartProgressEvent event) {
+    private void onPartProgress(PartProgressEvent event) {
       final Slide currentActiveSlide = activeSlide;
       if (currentActiveSlide == null || !event.attachment.equals(currentActiveSlide.asAttachment())) {
         return;

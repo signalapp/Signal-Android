@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.backup
 
-import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.core.util.stream.NullOutputStream
 import org.thoughtcrime.securesms.backup.proto.Attachment
@@ -38,7 +38,7 @@ object BackupVerifier {
           return false
         }
 
-        EventBus.getDefault().post(BackupEvent(BackupEvent.Type.PROGRESS_VERIFYING, ++count, expectedCount))
+        EventBus.default.post(BackupEvent(BackupEvent.Type.PROGRESS_VERIFYING, ++count, expectedCount))
 
         frame = inputStream.readFrame()
       }

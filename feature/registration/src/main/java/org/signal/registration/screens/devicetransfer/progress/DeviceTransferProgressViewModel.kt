@@ -18,10 +18,9 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.NewDeviceRestoreStatus
@@ -42,14 +41,8 @@ class DeviceTransferProgressViewModel(
 
     /** Cold Flow over [NewDeviceRestoreStatus] EventBus events. */
     fun restoreStatusFlow(): Flow<NewDeviceRestoreStatus> = callbackFlow {
-      val subscriber = object {
-        @Subscribe(threadMode = ThreadMode.MAIN)
-        fun onEventMainThread(event: NewDeviceRestoreStatus) {
-          trySend(event)
-        }
-      }
-      EventBus.getDefault().register(subscriber)
-      awaitClose { EventBus.getDefault().unregister(subscriber) }
+      val subscription = EventBus.default.subscribe<NewDeviceRestoreStatus>(threadMode = ThreadMode.MAIN) { trySend(it) }
+      awaitClose { subscription.unsubscribe() }
     }.flowOn(Dispatchers.Main.immediate)
   }
 
@@ -129,6 +122,6 @@ class DeviceTransferProgressViewModel(
 
   private fun stopService() {
     DeviceToDeviceTransferService.stop(context)
-    EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
+    EventBus.default.removeStickyEvent<TransferStatus>()
   }
 }

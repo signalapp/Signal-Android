@@ -6,15 +6,13 @@ import android.Manifest;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.ui.util.StorageUtil;
 import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.UnableToStartException;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupEvent;
@@ -114,14 +112,14 @@ public final class LocalBackupJob extends BaseJob {
       throw new IOException("No external storage permission!");
     }
 
-    ProgressUpdater updater = new ProgressUpdater(context.getString(R.string.LocalBackupJob_verifying_signal_backup));
+    ProgressUpdater       updater      = new ProgressUpdater(context.getString(R.string.LocalBackupJob_verifying_signal_backup));
+    EventBus.Subscription subscription = EventBus.getDefault().subscribe(BackupEvent.class, updater::onEvent);
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
                                                                      context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                      NotificationChannels.getInstance().BACKUPS,
                                                                      org.signal.core.ui.R.drawable.ic_signal_backup))
     {
       updater.setNotification(notification);
-      EventBus.getDefault().register(updater);
       notification.setIndeterminateProgress();
 
       String backupPassword  = SignalStore.backup().getV1BackupPassphrase();
@@ -190,7 +188,7 @@ public final class LocalBackupJob extends BaseJob {
       Log.w(TAG, "This should not happen on API < 31");
       throw new AssertionError(e);
     } finally {
-      EventBus.getDefault().unregister(updater);
+      subscription.unsubscribe();
       updater.setNotification(null);
     }
   }
@@ -228,7 +226,6 @@ public final class LocalBackupJob extends BaseJob {
       this.verifyProgressTitle = verifyProgressTitle;
     }
 
-    @Subscribe(threadMode = ThreadMode.POSTING)
     public void onEvent(BackupEvent event) {
       if (notification == null) {
         return;

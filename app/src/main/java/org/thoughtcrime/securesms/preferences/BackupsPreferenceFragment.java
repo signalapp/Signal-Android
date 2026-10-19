@@ -27,13 +27,12 @@ import androidx.navigation.Navigation;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.ui.permissions.Permissions;
 import org.signal.core.ui.util.StorageUtil;
 import org.signal.core.util.NoExternalStorageException;
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
@@ -77,6 +76,7 @@ public class BackupsPreferenceFragment extends Fragment {
   private final NumberFormat formatter = NumberFormat.getInstance();
 
   private BackupsPreferenceViewModel viewModel;
+  private EventBus.Subscription      backupEventSubscription;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class BackupsPreferenceFragment extends Fragment {
     formatter.setMinimumFractionDigits(1);
     formatter.setMaximumFractionDigits(1);
 
-    EventBus.getDefault().register(this);
+    backupEventSubscription = EventBus.getDefault().subscribe(BackupEvent.class, ThreadMode.MAIN, this::onBackupEvent);
 
     viewModel = new ViewModelProvider(this).get(BackupsPreferenceViewModel.class);
     viewModel.getBackupsEnabled().observe(getViewLifecycleOwner(), enabled -> {
@@ -136,7 +136,7 @@ public class BackupsPreferenceFragment extends Fragment {
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    EventBus.getDefault().unregister(this);
+    backupEventSubscription.unsubscribe();
   }
 
   @Override
@@ -161,8 +161,7 @@ public class BackupsPreferenceFragment extends Fragment {
     }
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onEvent(BackupEvent event) {
+  private void onBackupEvent(BackupEvent event) {
     if (event.getType() == BackupEvent.Type.PROGRESS || event.getType() == BackupEvent.Type.PROGRESS_VERIFYING) {
       create.setEnabled(false);
       summary.setText(getString(event.getType() == BackupEvent.Type.PROGRESS ? R.string.BackupsPreferenceFragment__in_progress

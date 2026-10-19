@@ -45,9 +45,6 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.Permissions
@@ -57,6 +54,9 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.ThrottledDebouncer
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.isInMultiWindowModeCompat
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallManager
@@ -151,7 +151,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private var answeredFromNotification: Boolean = false
   private var ephemeralStateDisposable = Disposable.empty()
   private val callPermissionsDialogController = CallPermissionsDialogController()
-  private val eventBusSubscriber = EventBusSubscriber()
+  private val eventSubscriptions = listOf(
+    RestartableSubscription { EventBus.default.subscribe<RecaptchaRequiredEvent>(ThreadMode.MAIN, ::onRecaptchaRequiredEvent) },
+    RestartableSubscription { EventBus.default.subscribeSticky<WebRtcViewModel>(ThreadMode.MAIN, ::onEventMainThread) }
+  )
   private val mediaProjectionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
     if (result.resultCode == RESULT_OK && result.data != null) {
       AppDependencies.signalCallManager.startScreenShare(result.data!!)
@@ -288,15 +291,13 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     initializeScreenshotSecurity()
 
-    if (!EventBus.getDefault().isRegistered(eventBusSubscriber)) {
-      EventBus.getDefault().register(eventBusSubscriber)
-    }
+    subscribeToEvents()
 
-    val rtcViewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel::class.java)
+    val rtcViewModel = EventBus.default.getStickyEvent<WebRtcViewModel>()
     if (rtcViewModel == null) {
       Log.w(TAG, "Activity resumed without service event, perform delay destroy")
       ThreadUtil.runOnMainDelayed({
-        val delayedViewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel::class.java)
+        val delayedViewModel = EventBus.default.getStickyEvent<WebRtcViewModel>()
         if (delayedViewModel == null) {
           Log.w(TAG, "Activity still without service event, finishing activity")
           finish()
@@ -335,7 +336,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     disableIncomingRingingVanity()
 
     if (!isInPipMode() || isFinishing) {
-      EventBus.getDefault().unregister(eventBusSubscriber)
+      unsubscribeFromEvents()
     }
 
     if (!callPermissionsDialogController.isAskingForPermission && !viewModel.isCallStarting && !isChangingConfigurations) {
@@ -357,7 +358,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     ephemeralStateDisposable.dispose()
 
     if (!isInPipMode() || isFinishing) {
-      EventBus.getDefault().unregister(eventBusSubscriber)
+      unsubscribeFromEvents()
       requestNewSizesThrottle.clear()
     }
 
@@ -379,7 +380,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     Log.d(TAG, "onDestroy")
     super.onDestroy()
     windowInfoTrackerCallbackAdapter.removeWindowLayoutInfoListener(windowLayoutInfoConsumer)
-    EventBus.getDefault().unregister(eventBusSubscriber)
+    unsubscribeFromEvents()
   }
 
   @SuppressLint("MissingSuperCall")
@@ -680,9 +681,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       if (info.isInPictureInPictureMode) {
         callScreen.maybeDismissAudioPicker()
 
-        if (!EventBus.getDefault().isRegistered(eventBusSubscriber)) {
-          EventBus.getDefault().register(eventBusSubscriber)
-        }
+        subscribeToEvents()
       }
       viewModel.setIsLandscapeEnabled(info.isInPictureInPictureMode)
     }
@@ -997,7 +996,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     callScreen.setStatusFromHangupType(this, hangupType)
 
-    EventBus.getDefault().removeStickyEvent(WebRtcViewModel::class.java)
+    EventBus.default.removeStickyEvent<WebRtcViewModel>()
 
     if (hangupType == HangupMessage.Type.NEED_PERMISSION) {
       startActivity(CalleeMustAcceptMessageRequestActivity.createIntent(this, recipient.id))
@@ -1016,7 +1015,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun handleCallBusy() {
-    EventBus.getDefault().removeStickyEvent(WebRtcViewModel::class.java)
+    EventBus.default.removeStickyEvent<WebRtcViewModel>()
     callScreen.setStatus(getString(R.string.RedPhone_busy))
     delayedFinish(SignalCallManager.BUSY_TONE_LENGTH.toLong())
   }
@@ -1044,13 +1043,13 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun handleRecipientUnavailable() {
-    EventBus.getDefault().removeStickyEvent(WebRtcViewModel::class.java)
+    EventBus.default.removeStickyEvent<WebRtcViewModel>()
     callScreen.setStatus(getString(R.string.RedPhone_recipient_unavailable))
     delayedFinish()
   }
 
   private fun handleServerFailure() {
-    EventBus.getDefault().removeStickyEvent(WebRtcViewModel::class.java)
+    EventBus.default.removeStickyEvent<WebRtcViewModel>()
     callScreen.setStatus(getString(R.string.RedPhone_network_failed))
   }
 
@@ -1530,15 +1529,11 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
   }
 
-  private inner class EventBusSubscriber {
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onRecaptchaRequiredEvent(recaptchaRequiredEvent: RecaptchaRequiredEvent) {
-      this@WebRtcCallActivity.onRecaptchaRequiredEvent(recaptchaRequiredEvent)
-    }
+  private fun subscribeToEvents() {
+    eventSubscriptions.forEach { it.start() }
+  }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    fun onEventMainThread(event: WebRtcViewModel) {
-      this@WebRtcCallActivity.onEventMainThread(event)
-    }
+  private fun unsubscribeFromEvents() {
+    eventSubscriptions.forEach { it.stop() }
   }
 }

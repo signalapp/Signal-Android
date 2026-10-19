@@ -7,10 +7,9 @@ import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Util;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
@@ -21,6 +20,7 @@ import org.thoughtcrime.securesms.util.VersionTracker;
 import java.util.Currency;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Manages application-level migrations.
@@ -277,36 +277,38 @@ public class ApplicationMigrations {
       final long startTime = System.currentTimeMillis();
       final int  uiVersion = uiBlockingVersion;
 
-      EventBus.getDefault().register(new Object() {
-        @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-        public void onMigrationComplete(MigrationCompleteEvent event) {
-          Log.i(TAG, "Received MigrationCompleteEvent for version " + event.getVersion() + ". (Current: " + CURRENT_VERSION + ")");
+      AtomicReference<EventBus.Subscription> subscription = new AtomicReference<>();
 
-          if (event.getVersion() > CURRENT_VERSION) {
-            throw new AssertionError("Received a higher version than the current version? App downgrades are not supported. (received: " + event.getVersion() + ", current: " + CURRENT_VERSION + ")");
-          }
+      subscription.set(EventBus.getDefault().subscribeSticky(MigrationCompleteEvent.class, ThreadMode.MAIN, event -> {
+        Log.i(TAG, "Received MigrationCompleteEvent for version " + event.getVersion() + ". (Current: " + CURRENT_VERSION + ")");
 
-          int storedVersion = PlainTextKeyValueStore.getAppMigrationVersion();
-          if (event.getVersion() <= storedVersion) {
-            Log.w(TAG, "Ignoring stale MigrationCompleteEvent for version " + event.getVersion() + ". Already at version " + storedVersion + ".");
-            return;
-          }
-
-          Log.i(TAG, "Updating last migration version to " + event.getVersion());
-          PlainTextKeyValueStore.setAppMigrationVersion(event.getVersion());
-
-          if (event.getVersion() == CURRENT_VERSION) {
-            Log.i(TAG, "Migration complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
-            EventBus.getDefault().unregister(this);
-
-            VersionTracker.updateLastSeenVersion();
-            UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
-          } else if (event.getVersion() >= uiVersion) {
-            Log.i(TAG, "Version is >= the UI-blocking version. Posting 'false'.");
-            UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
-          }
+        if (event.getVersion() > CURRENT_VERSION) {
+          throw new AssertionError("Received a higher version than the current version? App downgrades are not supported. (received: " + event.getVersion() + ", current: " + CURRENT_VERSION + ")");
         }
-      });
+
+        int storedVersion = PlainTextKeyValueStore.getAppMigrationVersion();
+        if (event.getVersion() <= storedVersion) {
+          Log.w(TAG, "Ignoring stale MigrationCompleteEvent for version " + event.getVersion() + ". Already at version " + storedVersion + ".");
+          return;
+        }
+
+        Log.i(TAG, "Updating last migration version to " + event.getVersion());
+        PlainTextKeyValueStore.setAppMigrationVersion(event.getVersion());
+
+        if (event.getVersion() == CURRENT_VERSION) {
+          Log.i(TAG, "Migration complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
+          EventBus.Subscription current = subscription.get();
+          if (current != null) {
+            current.unsubscribe();
+          }
+
+          VersionTracker.updateLastSeenVersion();
+          UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
+        } else if (event.getVersion() >= uiVersion) {
+          Log.i(TAG, "Version is >= the UI-blocking version. Posting 'false'.");
+          UI_BLOCKING_MIGRATION_RUNNING.setValue(false);
+        }
+      }));
     } else {
       Log.d(TAG, "No migrations.");
       PlainTextKeyValueStore.setAppMigrationVersion(CURRENT_VERSION);

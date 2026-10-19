@@ -12,13 +12,13 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.Util;
 import org.signal.core.util.concurrent.KeyedSerialMonoLifoExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.zkgroup.GenericServerPublicParams;

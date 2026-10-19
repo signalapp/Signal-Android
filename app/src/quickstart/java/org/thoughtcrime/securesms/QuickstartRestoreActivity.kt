@@ -24,20 +24,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.RestartableSubscription
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ImportResult
 import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
-import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -75,8 +76,6 @@ class QuickstartRestoreActivity : BaseActivity() {
 
   private var restoreStatus by mutableStateOf("Restoring data...")
 
-  private val eventBusSubscriber = EventBusSubscriber()
-
   private val manageStorageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
     if (hasStorageAccess()) {
       startRestore()
@@ -112,7 +111,11 @@ class QuickstartRestoreActivity : BaseActivity() {
       }
     }
 
-    org.greenrobot.eventbus.EventBus.getDefault().registerForLifecycle(subscriber = eventBusSubscriber, lifecycleOwner = this)
+    RestartableSubscription {
+      EventBus.default.subscribe<RestoreV2Event>(ThreadMode.MAIN) { restoreEvent ->
+        restoreStatus = "${restoreEvent.type}: ${restoreEvent.count} / ${restoreEvent.estimatedTotalCount}"
+      }
+    }.bindTo(this, Lifecycle.State.RESUMED)
 
     if (hasStorageAccess()) {
       startRestore()
@@ -194,13 +197,6 @@ class QuickstartRestoreActivity : BaseActivity() {
           finishAffinity()
         }
       }
-    }
-  }
-
-  private inner class EventBusSubscriber {
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(restoreEvent: RestoreV2Event) {
-      restoreStatus = "${restoreEvent.type}: ${restoreEvent.count} / ${restoreEvent.estimatedTotalCount}"
     }
   }
 }

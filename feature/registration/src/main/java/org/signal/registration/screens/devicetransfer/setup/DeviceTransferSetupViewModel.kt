@@ -25,11 +25,10 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.eventbus.EventBus
+import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.logging.Log
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.TransferStatus
@@ -57,14 +56,8 @@ class DeviceTransferSetupViewModel(
 
     /** Cold Flow over sticky [TransferStatus] EventBus events. */
     fun transferStatusFlow(): Flow<TransferStatus> = callbackFlow {
-      val subscriber = object {
-        @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-        fun onEventMainThread(event: TransferStatus) {
-          trySend(event)
-        }
-      }
-      EventBus.getDefault().register(subscriber)
-      awaitClose { EventBus.getDefault().unregister(subscriber) }
+      val subscription = EventBus.default.subscribeSticky<TransferStatus>(threadMode = ThreadMode.MAIN) { trySend(it) }
+      awaitClose { subscription.unsubscribe() }
     }.flowOn(Dispatchers.Main.immediate)
   }
 
@@ -317,7 +310,7 @@ class DeviceTransferSetupViewModel(
 
   private fun stopService() {
     DeviceToDeviceTransferService.stop(context)
-    EventBus.getDefault().removeStickyEvent(TransferStatus::class.java)
+    EventBus.default.removeStickyEvent<TransferStatus>()
   }
 
   private fun isLocationPermissionGranted(): Boolean {

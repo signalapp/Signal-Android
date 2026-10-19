@@ -31,7 +31,6 @@ import com.google.android.gms.security.ProviderInstaller;
 import net.zetetic.database.Logger;
 
 import org.conscrypt.ConscryptSignal;
-import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.AppForegroundObserver;
 import org.signal.core.util.DiskUtil;
@@ -198,7 +197,6 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addBlocking("anr-detector", this::startAnrDetector)
               .addBlocking("crash-handling", this::initializeCrashHandling)
               .addBlocking("rx-init", this::initializeRx)
-              .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
               .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getMasterKey().deriveLoggingKey()))
               .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
               .addBlocking("app-migrations", this::initializeApplicationMigrations)

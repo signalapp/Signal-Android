@@ -7,9 +7,7 @@ package org.thoughtcrime.securesms.ratelimit
 
 import android.content.Context
 import androidx.annotation.WorkerThread
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -105,10 +103,12 @@ object ProofRequiredExceptionHandler {
 
   private class PushChallengeRequest(val timeout: Duration) {
     private val latch = CountDownLatch(1)
-    private val eventBus = EventBus.getDefault()
 
     fun blockUntilSuccess(): Boolean {
-      eventBus.register(this)
+      val subscription = EventBus.default.subscribe<SuccessEvent> {
+        Log.i(TAG, "[Proof Required] Received a successful result!")
+        latch.countDown()
+      }
 
       return try {
         latch.await(timeout.inWholeMilliseconds, TimeUnit.MILLISECONDS)
@@ -116,14 +116,8 @@ object ProofRequiredExceptionHandler {
         Log.w(TAG, "[Proof Required] Interrupted?", e)
         false
       } finally {
-        eventBus.unregister(this)
+        subscription.unsubscribe()
       }
-    }
-
-    @Subscribe(threadMode = ThreadMode.POSTING)
-    fun onSuccessReceived(event: SuccessEvent) {
-      Log.i(TAG, "[Proof Required] Received a successful result!")
-      latch.countDown()
     }
   }
 }

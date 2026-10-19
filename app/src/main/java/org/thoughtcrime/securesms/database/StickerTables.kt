@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
-import org.greenrobot.eventbus.EventBus
 import org.signal.core.database.SqlUtil
 import org.signal.core.database.delete
 import org.signal.core.database.exists
@@ -19,6 +18,7 @@ import org.signal.core.util.StreamUtil
 import org.signal.core.util.crypto.AttachmentSecret
 import org.signal.core.util.crypto.ModernDecryptingPartInputStream
 import org.signal.core.util.crypto.ModernEncryptingPartOutputStream
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.forEach
 import org.signal.core.util.hasUnknownFields
 import org.signal.core.util.isNotNullOrBlank
@@ -1591,7 +1591,7 @@ class StickerTables(
     val pack = getStickerPack(packId)
 
     if (pack != null) {
-      EventBus.getDefault().postSticky(StickerPackInstallEvent(DecryptableUri(pack.cover.uri)))
+      EventBus.default.postSticky(StickerPackInstallEvent(DecryptableUri(pack.cover.uri)))
     }
   }
 

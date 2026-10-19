@@ -16,8 +16,6 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.MasterKey
 import org.signal.core.models.ServiceId
@@ -27,6 +25,7 @@ import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
 import org.signal.core.util.crypto.DeviceNameCipher
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.util.KeyHelper
@@ -558,8 +557,7 @@ object RegistrationRepository {
   private suspend fun createSessionAndBlockForPushChallenge(accountManager: RegistrationApi, fcmToken: String, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> = withContext(Dispatchers.IO) {
     // TODO [regv2]: do not use event bus nor latch
     val subscriber = PushTokenChallengeSubscriber()
-    val eventBus = EventBus.getDefault()
-    eventBus.register(subscriber)
+    val subscription = EventBus.default.subscribe<PushChallengeRequest.PushChallengeEvent>(handler = subscriber::onChallengeEvent)
 
     try {
       Log.d(TAG, "Requesting a registration session with FCM token…")
@@ -569,7 +567,6 @@ object RegistrationRepository {
       }
 
       val receivedPush = subscriber.latch.await(PUSH_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
-      eventBus.unregister(subscriber)
 
       if (receivedPush) {
         val challenge = subscriber.challenge
@@ -587,6 +584,8 @@ object RegistrationRepository {
     } catch (ex: Exception) {
       Log.w(TAG, "Exception caught, but the earlier try block should have caught it?", ex)
       return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(ex)
+    } finally {
+      subscription.unsubscribe()
     }
   }
 
@@ -755,7 +754,6 @@ object RegistrationRepository {
     var challenge: String? = null
     val latch = CountDownLatch(1)
 
-    @Subscribe
     fun onChallengeEvent(pushChallengeEvent: PushChallengeRequest.PushChallengeEvent) {
       Log.d(TAG, "Push challenge received!")
       challenge = pushChallengeEvent.challenge

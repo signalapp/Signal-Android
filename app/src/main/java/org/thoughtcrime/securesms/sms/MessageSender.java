@@ -25,8 +25,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.recipients.RecipientId;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.signal.core.models.database.AttachmentId;

@@ -19,9 +19,8 @@ import androidx.core.location.LocationManagerCompat
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.eventbus.EventBus
 import org.signal.devicetransfer.DeviceToDeviceTransferService
 import org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData
 import org.signal.devicetransfer.TransferStatus
@@ -79,15 +78,13 @@ class DeviceTransferTestRepository(context: Context) {
   }
 
   fun transferStatuses(): Flow<TransferStatus> = callbackFlow {
-    val subscriber = TransferStatusSubscriber { trySend(it) }
-    EventBus.getDefault().register(subscriber)
-    awaitClose { EventBus.getDefault().unregister(subscriber) }
+    val subscription = EventBus.default.subscribeSticky<TransferStatus> { trySend(it) }
+    awaitClose { subscription.unsubscribe() }
   }
 
   fun taskUpdates(): Flow<TestTaskUpdate> = callbackFlow {
-    val subscriber = TaskUpdateSubscriber { trySend(it) }
-    EventBus.getDefault().register(subscriber)
-    awaitClose { EventBus.getDefault().unregister(subscriber) }
+    val subscription = EventBus.default.subscribe<TestTaskUpdate> { trySend(it) }
+    awaitClose { subscription.unsubscribe() }
   }
 
   private fun isGranted(permission: String): Boolean {
@@ -100,15 +97,5 @@ class DeviceTransferTestRepository(context: Context) {
 
   private fun contentIntent(): PendingIntent {
     return PendingIntent.getActivity(context, 0, Intent(context, MainActivity::class.java), PendingIntentFlags.mutable())
-  }
-
-  private class TransferStatusSubscriber(private val onStatus: (TransferStatus) -> Unit) {
-    @Subscribe(sticky = true)
-    fun onEvent(status: TransferStatus) = onStatus(status)
-  }
-
-  private class TaskUpdateSubscriber(private val onUpdate: (TestTaskUpdate) -> Unit) {
-    @Subscribe
-    fun onEvent(update: TestTaskUpdate) = onUpdate(update)
   }
 }

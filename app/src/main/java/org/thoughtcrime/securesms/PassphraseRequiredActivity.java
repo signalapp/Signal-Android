@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.AppForegroundObserver;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.devicetransfer.TransferStatus;

@@ -61,9 +61,6 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.models.recipients.RecipientId;
 import org.signal.core.ui.BottomSheetUtil;
 import org.signal.core.ui.WindowSizeClassExtensionsKt;
@@ -76,6 +73,8 @@ import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
+import org.signal.core.util.eventbus.EventBus;
+import org.signal.core.util.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
@@ -443,7 +442,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
-    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(
+        this,
+        mainNavigationViewModel.getDetailLocation(),
+        () -> EventBus.getDefault().subscribeSticky(MessageSender.MessageSentEvent.class, ThreadMode.MAIN, this::onMessageSent)
+    );
 
     String query = contactSearchViewModel.getQuery().getValue();
     if (query != null) {
@@ -1465,8 +1468,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     return true;
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-  public void onEvent(MessageSender.MessageSentEvent event) {
+  private void onMessageSent(MessageSender.MessageSentEvent event) {
     EventBus.getDefault().removeStickyEvent(event);
     closeSearchIfOpen();
   }

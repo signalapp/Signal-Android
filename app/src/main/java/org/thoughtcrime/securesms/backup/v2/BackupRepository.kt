@@ -22,7 +22,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
-import org.greenrobot.eventbus.EventBus
 import org.signal.archive.proto.BackupDebugInfo
 import org.signal.archive.proto.BackupInfo
 import org.signal.archive.proto.Frame
@@ -62,6 +61,7 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.decodeOrNull
+import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.core.util.money.FiatMoney
@@ -1369,14 +1369,14 @@ object BackupRepository {
 
           else -> Log.w(TAG, "Unrecognized frame")
         }
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead().bytes, totalLength.bytes))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead().bytes, totalLength.bytes))
       }
 
       if (chatItemInserter.flush()) {
         eventTimer.emit("chatItem")
       }
 
-      EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_FINALIZING, 0.bytes, 0.bytes))
+      EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_FINALIZING, 0.bytes, 0.bytes))
 
       if (!importState.importedChatFolders) {
         // Add back default All Chats chat folder after clearing data if missing
@@ -1814,7 +1814,7 @@ object BackupRepository {
           progress = progress.value,
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
       }
 
       override fun shouldCancel() = cancellationSignal()
@@ -1946,7 +1946,7 @@ object BackupRepository {
           progress = progress.value,
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+        EventBus.default.post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
       }
 
       override fun shouldCancel() = cancellationSignal()

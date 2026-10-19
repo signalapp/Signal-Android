@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.media3.common.MimeTypes;
 
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.models.database.AttachmentId;
 import org.signal.core.models.media.TransformProperties;
 import org.signal.core.util.MemoryFileDescriptor.MemoryFileException;
@@ -18,6 +17,7 @@ import org.signal.core.util.crypto.AttachmentSecret;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
 import org.signal.core.util.crypto.ModernDecryptingPartInputStream;
 import org.signal.core.util.crypto.ModernEncryptingPartOutputStream;
+import org.signal.core.util.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.mediasend.MediaConstraints;
