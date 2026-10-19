@@ -64,11 +64,16 @@ fun MessageRecord.hasDocument(): Boolean = isMms && (this as MmsMessageRecord).s
 fun MessageRecord.isViewOnceMessage(): Boolean = isMms && (this as MmsMessageRecord).isViewOnce
 
 fun MessageRecord.hasExtraText(): Boolean {
-  val hasTextSlide = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null
   val hasOverflowText: Boolean = body.length > MAX_BODY_DISPLAY_LENGTH
 
-  return hasTextSlide || hasOverflowText
+  return isBodyTruncated() || hasOverflowText
 }
+
+/**
+ * True if the inline [MessageRecord.body] is only a prefix of the full message text, with the remainder living in a text slide
+ * (regardless of whether that slide has been downloaded yet).
+ */
+fun MessageRecord.isBodyTruncated(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null
 
 fun MessageRecord.hasQuote(): Boolean = isMms && (this as MmsMessageRecord).quote != null
 

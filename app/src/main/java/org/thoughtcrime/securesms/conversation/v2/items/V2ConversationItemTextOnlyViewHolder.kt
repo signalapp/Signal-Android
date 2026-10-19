@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.hasExtraText
 import org.thoughtcrime.securesms.util.hasNoBubble
+import org.thoughtcrime.securesms.util.isBodyTruncated
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -427,7 +428,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private fun linkifyMessageBody(messageBody: Spannable) {
-    V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked)
+    V2ConversationItemUtils.linkifyUrlLinks(messageBody, conversationContext.selectedItems.isEmpty(), conversationContext.clickListener::onUrlClicked, conversationMessage.messageRecord.isBodyTruncated())
 
     if (conversationMessage.hasStyleLinks()) {
       val isReleaseNotes = conversationMessage.threadRecipient.isReleaseNotes

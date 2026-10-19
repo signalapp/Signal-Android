@@ -1852,7 +1852,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void linkifyMessageBody(@NonNull Spannable messageBody,
                                   boolean shouldLinkifyAllLinks)
   {
-    V2ConversationItemUtils.linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener);
+    V2ConversationItemUtils.linkifyUrlLinks(messageBody, shouldLinkifyAllLinks, urlClickListener, MessageRecordUtil.isBodyTruncated(messageRecord));
 
     if (conversationMessage.hasStyleLinks()) {
       for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
