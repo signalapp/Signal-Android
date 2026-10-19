@@ -154,11 +154,11 @@ public class PartAuthority {
   }
 
   public static Uri getAttachmentDataUri(AttachmentId attachmentId) {
-    return PartAuthorityUris.getAttachmentDataUri(attachmentId);
+    return PartAuthorityUris.getAttachmentDataUri(attachmentId.id);
   }
 
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
-    return PartAuthorityUris.getAttachmentThumbnailUri(attachmentId);
+    return PartAuthorityUris.getAttachmentThumbnailUri(attachmentId.id);
   }
 
   public static Uri getStickerUri(long id) {
