@@ -48,7 +48,6 @@ object MediaIntentFactory {
     val initialCaption: String? = null,
     val initialMessageBody: @WriteWith<NullableCharSequenceParceler> CharSequence? = null,
     val leftIsRecent: Boolean = false,
-    val hideAllMedia: Boolean = false,
     val showThread: Boolean = false,
     val allMediaInRail: Boolean = false,
     val sorting: MediaTable.Sorting,

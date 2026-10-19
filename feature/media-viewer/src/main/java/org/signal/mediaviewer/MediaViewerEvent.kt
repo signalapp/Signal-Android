@@ -84,14 +84,6 @@ sealed interface MediaViewerEvent {
   /** The fast-path single-item read of the initially opened attachment finished. */
   data class InitialItemLoaded(val item: MediaViewerItem) : MediaViewerEvent
 
-  /**
-   * The fast-path read of the items immediately around the initially opened attachment finished,
-   * making the pager swipeable before the full paged gallery load lands.
-   */
-  data class InitialWindowLoaded(val items: List<MediaViewerItem>, val anchorIndex: Int) : MediaViewerEvent {
-    override fun toString(): String = "InitialWindowLoaded(size=${items.size}, anchorIndex=$anchorIndex)"
-  }
-
   /** The opened attachment is not part of the viewable gallery, so there is nothing to page through. */
   data object GalleryAnchorMissing : MediaViewerEvent
 

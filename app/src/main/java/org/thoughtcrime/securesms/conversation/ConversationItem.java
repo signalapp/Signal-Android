@@ -3063,7 +3063,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         false,
         false,
         false,
-        false,
         MediaTable.Sorting.Newest,
         slide.isVideoGif(),
         new MediaIntentFactory.SharedElementArgs(

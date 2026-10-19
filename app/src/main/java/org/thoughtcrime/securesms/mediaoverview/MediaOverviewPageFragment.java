@@ -362,7 +362,6 @@ public final class MediaOverviewPageFragment extends LoggingFragment
           mediaRecord.getAttachment().caption,
           null,
           true,
-          true,
           threadId == MediaTable.ALL_THREADS,
           true,
           sorting,

@@ -104,7 +104,7 @@ class MediaViewerPagedDataSource(
 }
 
 /** Maps a database record to the feature module's item model. Null when the record has no attachment. */
-private fun MediaTable.MediaRecord.toMediaViewerItem(context: Context): MediaViewerItem? {
+internal fun MediaTable.MediaRecord.toMediaViewerItem(context: Context): MediaViewerItem? {
   val attachment = this.attachment ?: return null
   val threadRecipient = Recipient.resolved(threadRecipientId)
   val (formattedDate, formattedDateContentDescription) = if (date > 0) {

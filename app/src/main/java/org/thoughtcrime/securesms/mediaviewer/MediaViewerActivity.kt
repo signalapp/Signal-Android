@@ -303,8 +303,8 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         startActivity(MediaSendLauncher.editor(context = this, media = listOf(action.media)))
       }
       is MediaViewerAction.JumpToMessage -> {
-        startActivity(action.intent)
         finish()
+        startActivity(action.intent)
       }
       MediaViewerAction.PauseVoiceNotes -> {
         voiceNoteMediaController.pausePlayback()
@@ -344,6 +344,11 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   override fun onDestroy() {
     hdrHeadroomAnimator?.cancel()
     super.onDestroy()
+  }
+
+  override fun finish() {
+    super.finish()
+    overridePendingTransition(R.anim.stationary, R.anim.slide_fade_to_bottom)
   }
 
   override fun finishAfterTransition() {

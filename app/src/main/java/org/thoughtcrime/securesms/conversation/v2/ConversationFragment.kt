@@ -118,6 +118,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
@@ -145,6 +146,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.atMidnight
 import org.signal.core.util.atUTC
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.ListenableFuture
 import org.signal.core.util.concurrent.SignalDispatchers
@@ -1704,6 +1706,10 @@ class ConversationFragment :
       .observeOn(AndroidSchedulers.mainThread())
       .distinctUntilChanged { r1, r2 -> r1 === r2 || r1.hasSameContent(r2) }
       .subscribeBy(onNext = this::onRecipientChanged)
+
+    collectFlowOnViewLifecycle(mainNavigationViewModel.conversationJumps.filter { it.threadId == args.threadId }) {
+      moveToPosition(it.position)
+    }
 
     disposables += viewModel.titleViewParticipants
       .map { createGroupSubtitleString(it) }

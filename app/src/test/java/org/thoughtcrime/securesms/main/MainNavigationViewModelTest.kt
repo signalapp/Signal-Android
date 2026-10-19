@@ -14,8 +14,10 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -28,7 +30,10 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.PaneAnchor
+import org.thoughtcrime.securesms.conversation.ConversationArgs
+import org.thoughtcrime.securesms.conversation.ConversationIntents.ConversationScreenType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
@@ -83,6 +88,28 @@ class MainNavigationViewModelTest {
   private fun MainNavigationViewModel.sendEvent(event: MainNavigationEvents) {
     onEvent(event)
     testDispatcher.scheduler.advanceUntilIdle()
+  }
+
+  private fun conversation(startingPosition: Int = -1): MainDetailRoute.Conversation {
+    return MainDetailRoute.Conversation(
+      ConversationArgs(
+        recipientId = RecipientId.from(1),
+        threadId = 10,
+        draftText = null,
+        draftMedia = null,
+        draftContentType = null,
+        media = null,
+        stickerLocator = null,
+        isBorderless = false,
+        distributionType = ThreadTable.DistributionTypes.DEFAULT,
+        startingPosition = startingPosition,
+        isFirstTimeInSelfCreatedGroup = false,
+        isWithSearchOpen = false,
+        giftBadge = null,
+        shareDataTimestamp = -1L,
+        conversationScreenType = ConversationScreenType.NORMAL
+      )
+    )
   }
 
   @Test
@@ -333,6 +360,27 @@ class MainNavigationViewModelTest {
     viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.DETAIL_ONLY)))
 
     viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.Back))
+
+    assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
+  }
+
+  @Test
+  fun `given a conversation is open, when going to a position in it, then it stays open and is asked to scroll`() = runTest(testDispatcher) {
+    val open = conversation()
+    viewModel.navigator.processEvent(ListDetailEvents.Push(open, MainListRoute.Chats))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversation(startingPosition = 42)))
+
+    assertEquals(listOf(MainListRoute.Chats, open), viewModel.navigator[MainListRoute.Chats])
+    assertEquals(MainNavigationViewModel.ConversationJump(threadId = 10, position = 42), viewModel.conversationJumps.first())
+  }
+
+  @Test
+  fun `given a conversation is open and the list fills the window, when going to a position in it, then the detail is revealed`() {
+    viewModel.navigator.processEvent(ListDetailEvents.Push(conversation(), MainListRoute.Chats))
+    viewModel.sendEvent(MainNavigationEvents.ListDetailEvent(ListDetailEvents.AnchorSelected(PaneAnchor.LIST_ONLY)))
+
+    viewModel.sendEvent(MainNavigationEvents.GoToDetail(conversation(startingPosition = 42)))
 
     assertEquals(PaneAnchor.DETAIL_ONLY, viewModel.paneAnchor.value)
   }

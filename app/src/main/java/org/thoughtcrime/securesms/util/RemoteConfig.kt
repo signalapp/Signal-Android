@@ -1598,7 +1598,7 @@ object RemoteConfig {
 
   /** Whether to use the new Compose media viewer in place of MediaPreviewActivity. */
   val useNewMediaViewer: Boolean by remoteBoolean(
-    key = "android.newMediaViewer",
+    key = "android.newMediaViewer.2",
     defaultValue = false,
     hotSwappable = true
   )
