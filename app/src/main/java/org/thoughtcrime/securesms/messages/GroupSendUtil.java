@@ -286,7 +286,11 @@ public final class GroupSendUtil {
         refreshGroupSendEndorsements = true;
       }
 
-      if (refreshGroupSendEndorsements) {
+      if (refreshGroupSendEndorsements && !groupRecord.get().isMember()) {
+        Log.i(TAG, "Not a member of the group, unable to refresh group send endorsements, using legacy");
+        useGroupSendEndorsements    = false;
+        groupSendEndorsementRecords = new GroupSendEndorsementRecords(Collections.emptyMap());
+      } else if (refreshGroupSendEndorsements) {
         try {
           GroupManager.updateGroupSendEndorsements(context, groupRecord.get().requireV2GroupProperties().getGroupMasterKey());
 
