@@ -886,8 +886,9 @@ class AppRegistrationNetworkController(
               return null
             }
             429 -> {
-              Log.w(TAG, "[awaitTransferArchiveFromPrimary] Rate-limited; will retry after ${result.retryAfter()}.")
-              result.retryAfter()?.let { delay(it) }
+              val retryAfter = result.retryAfter() ?: RETRY_BACKOFF
+              Log.w(TAG, "[awaitTransferArchiveFromPrimary] Rate-limited; will retry after $retryAfter.")
+              delay(retryAfter)
             }
             else -> {
               Log.w(TAG, "[awaitTransferArchiveFromPrimary] Unexpected status ${result.code}; will retry after $RETRY_BACKOFF.")

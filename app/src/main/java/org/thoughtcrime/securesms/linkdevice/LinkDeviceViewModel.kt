@@ -377,7 +377,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  private fun addDeviceWithoutSync(linkUri: Uri) {
+  private suspend fun addDeviceWithoutSync(linkUri: Uri) {
     val result = LinkDeviceRepository.addDevice(linkUri, ephemeralMessageBackupKey = null)
 
     _state.update {

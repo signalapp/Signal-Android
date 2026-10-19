@@ -720,10 +720,9 @@ object RegistrationRepository {
               return null
             }
             429 -> {
-              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a rate-limit. Will try to wait again after delay: ${result.retryAfter()}.")
-              result.retryAfter()?.let { retryAfter ->
-                delay(retryAfter)
-              }
+              val retryAfter = result.retryAfter() ?: 5.seconds
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a rate-limit. Will try to wait again after delay: $retryAfter.")
+              delay(retryAfter)
             }
             else -> {
               Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit an unknown status code of ${result.code}. Will try to wait again.")

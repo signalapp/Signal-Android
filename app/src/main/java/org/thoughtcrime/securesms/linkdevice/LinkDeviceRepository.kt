@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.linkdevice
 
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import org.signal.core.models.backup.MessageBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
@@ -43,6 +46,7 @@ import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 
 /**
@@ -51,6 +55,7 @@ import org.signal.libsignal.net.LinkedDevice as LibSignalLinkedDevice
 object LinkDeviceRepository {
 
   private val TAG = Log.tag(LinkDeviceRepository::class)
+  private val WAIT_FOR_LINK_RETRY_BACKOFF = 5.seconds
   private const val DECRYPTION_INFO = "deviceCreatedAt"
   private const val MAX_ARCHIVE_UPLOAD_ATTEMPTS = 5
 
@@ -277,14 +282,15 @@ object LinkDeviceRepository {
    *
    * @param token Comes from [LinkDeviceResult.Success]
    */
-  fun waitForDeviceToBeLinked(token: String, maxWaitTime: Duration): WaitForLinkedDeviceResponse? {
+  suspend fun waitForDeviceToBeLinked(token: String, maxWaitTime: Duration): WaitForLinkedDeviceResponse? {
     Log.d(TAG, "[waitForDeviceToBeLinked] Starting to wait for device.")
 
     val startTime = System.currentTimeMillis()
     var timeRemaining = maxWaitTime.inWholeMilliseconds
 
-    while (timeRemaining > 0) {
+    while (timeRemaining > 0 && currentCoroutineContext().isActive) {
       Log.d(TAG, "[waitForDeviceToBeLinked] Willing to wait for $timeRemaining ms...")
+      var retryDelay: Duration = Duration.ZERO
       val result = SignalNetwork.linkDeviceApi.waitForLinkedDevice(
         token = token,
         timeout = timeRemaining.milliseconds
@@ -300,7 +306,8 @@ object LinkDeviceRepository {
           throw result.throwable
         }
         is NetworkResult.NetworkError -> {
-          Log.w(TAG, "[waitForDeviceToBeLinked] Hit a network error while waiting for linking. Will try to wait again.", result.exception)
+          Log.w(TAG, "[waitForDeviceToBeLinked] Hit a network error while waiting for linking. Will try to wait again after $WAIT_FOR_LINK_RETRY_BACKOFF.", result.exception)
+          retryDelay = WAIT_FOR_LINK_RETRY_BACKOFF
         }
         is NetworkResult.StatusCodeError -> {
           when (result.code) {
@@ -309,14 +316,18 @@ object LinkDeviceRepository {
               return null
             }
             429 -> {
-              Log.w(TAG, "[waitForDeviceToBeLinked] Hit a rate-limit. Will try to wait again.")
+              retryDelay = result.retryAfter() ?: WAIT_FOR_LINK_RETRY_BACKOFF
+              Log.w(TAG, "[waitForDeviceToBeLinked] Hit a rate-limit. Will try to wait again after $retryDelay.")
             }
             else -> {
-              Log.w(TAG, "[waitForDeviceToBeLinked] Hit an unknown status code of ${result.code}. Will try to wait again.")
+              Log.w(TAG, "[waitForDeviceToBeLinked] Hit an unknown status code of ${result.code}. Will try to wait again after $WAIT_FOR_LINK_RETRY_BACKOFF.")
+              retryDelay = WAIT_FOR_LINK_RETRY_BACKOFF
             }
           }
         }
       }
+
+      delay(minOf(retryDelay.inWholeMilliseconds, maxWaitTime.inWholeMilliseconds - (System.currentTimeMillis() - startTime)))
 
       timeRemaining = maxWaitTime.inWholeMilliseconds - (System.currentTimeMillis() - startTime)
     }
