@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.util.DimensionUnit
@@ -21,7 +22,6 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheetConfiguration.forExpiredGiftBadge
 import org.thoughtcrime.securesms.badges.gifts.viewgift.ViewGiftRepository
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay160
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration

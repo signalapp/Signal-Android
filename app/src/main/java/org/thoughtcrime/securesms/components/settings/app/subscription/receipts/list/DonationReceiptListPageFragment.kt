@@ -12,9 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import org.signal.core.models.badges.Badge
 import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.TextPreference
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord

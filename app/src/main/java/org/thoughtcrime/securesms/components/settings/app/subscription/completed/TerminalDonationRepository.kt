@@ -6,10 +6,10 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.completed
 
 import kotlinx.coroutines.withContext
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.network.NetworkResult
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.services.DonationsService

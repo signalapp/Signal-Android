@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.BidiUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -18,7 +19,6 @@ import org.signal.core.util.money.PlatformCurrencyUtil
 import org.signal.core.util.orNull
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository

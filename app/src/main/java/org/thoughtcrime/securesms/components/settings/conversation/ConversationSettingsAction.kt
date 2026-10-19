@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import android.net.Uri
 import androidx.compose.ui.unit.IntRect
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId

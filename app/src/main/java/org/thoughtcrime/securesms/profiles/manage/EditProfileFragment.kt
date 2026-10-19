@@ -22,6 +22,7 @@ import com.airbnb.lottie.SimpleColorFilter
 import com.bumptech.glide.Glide
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.media.Media
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatars.getForegroundColor
 import org.thoughtcrime.securesms.avatar.Avatars.getTextSizeForLength
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment.Companion.show
 import org.thoughtcrime.securesms.databinding.EditProfileFragmentBinding
 import org.thoughtcrime.securesms.keyvalue.AccountValues

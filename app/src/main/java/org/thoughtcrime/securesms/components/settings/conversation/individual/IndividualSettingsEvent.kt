@@ -5,11 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.conversation.individual
 
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
 import org.signal.uicomponents.recentmediarail.RecentMediaRailAction
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.signal.uicomponents.recentmediarail.RecentMediaRailState
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.conversation.shared.CallEntry
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState

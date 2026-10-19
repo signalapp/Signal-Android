@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.badges.gifts
 
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText

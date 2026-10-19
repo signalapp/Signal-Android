@@ -5,7 +5,7 @@
 
 package org.thoughtcrime.securesms.badges.self.featured
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 
 sealed interface SelectFeaturedBadgeEvents {
   /** User has selected a badge to feature */

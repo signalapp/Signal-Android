@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.badges.self.overview
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 
 data class BadgesOverviewState(
   val stage: Stage = Stage.INIT,

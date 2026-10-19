@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app
 
 import androidx.compose.runtime.Immutable
 import com.google.common.base.Objects
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 

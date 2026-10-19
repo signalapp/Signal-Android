@@ -10,8 +10,8 @@ import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
+import org.thoughtcrime.securesms.badges.models.SelectableBadge
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.configure
@@ -52,7 +52,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    Badge.register(adapter) { badge, isSelected, _ ->
+    SelectableBadge.register(adapter) { badge, isSelected, _ ->
       if (!isSelected) {
         viewModel.onEvent(SelectFeaturedBadgeEvents.BadgeSelected(badge))
       }

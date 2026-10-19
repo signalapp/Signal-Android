@@ -7,7 +7,7 @@ import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.badges.models.SelectableBadge
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -28,7 +28,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
   private val viewModel: BadgesOverviewViewModel by viewModel { BadgesOverviewViewModel() }
 
   override fun bindAdapter(adapter: MappingAdapter) {
-    Badge.register(adapter) { badge, _, isFaded ->
+    SelectableBadge.register(adapter) { badge, _, isFaded ->
       if (badge.isExpired() || isFaded) {
         findNavController().safeNavigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge, null, null))
       } else {

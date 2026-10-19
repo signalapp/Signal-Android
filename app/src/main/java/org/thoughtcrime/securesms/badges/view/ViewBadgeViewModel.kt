@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ViewBadgeViewModel(

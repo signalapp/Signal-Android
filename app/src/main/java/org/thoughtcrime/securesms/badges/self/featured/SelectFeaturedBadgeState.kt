@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.badges.self.featured
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 
 data class SelectFeaturedBadgeState(
   val stage: Stage = Stage.INIT,

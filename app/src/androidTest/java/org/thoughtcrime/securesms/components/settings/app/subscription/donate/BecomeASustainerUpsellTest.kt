@@ -32,10 +32,10 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment
 import org.thoughtcrime.securesms.badges.self.overview.BadgesOverviewFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity

@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 
 import android.view.View
 import android.widget.TextView
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.labelRes
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil

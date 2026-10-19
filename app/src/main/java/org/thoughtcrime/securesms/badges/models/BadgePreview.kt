@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.badges.models
 
 import android.view.View
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView

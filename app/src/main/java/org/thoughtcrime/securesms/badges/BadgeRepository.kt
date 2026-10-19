@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.badges
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.network.NetworkResult
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies

@@ -7,12 +7,13 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import org.signal.core.models.badges.Badge
+import org.signal.core.models.badges.Badge.Category.Companion.fromCode
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.ScreenDensity
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.badges.models.Badge.Category.Companion.fromCode
+import org.thoughtcrime.securesms.badges.models.SelectableBadge
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
@@ -32,7 +33,7 @@ object Badges {
   ) {
     badges
       .map {
-        Badge.Model(
+        SelectableBadge.Model(
           badge = it,
           isSelected = it == selectedBadge,
           isFaded = it.id == fadedBadgeId
@@ -46,7 +47,7 @@ object Badges {
 
     val empties = ((perRow - (badges.size % perRow)) % perRow)
     repeat(empties) {
-      customPref(Badge.EmptyModel())
+      customPref(SelectableBadge.EmptyModel())
     }
   }
 

@@ -14,7 +14,7 @@ import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
-import org.thoughtcrime.securesms.badges.models.Badge;
+import org.signal.core.models.badges.Badge;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.glide.OkHttpStreamFetcher;
 
@@ -35,7 +35,7 @@ public class BadgeLoader implements ModelLoader<Badge, InputStream> {
 
   @Override
   public @Nullable LoadData<InputStream> buildLoadData(@NonNull Badge request, int width, int height, @NonNull Options options) {
-    return new LoadData<>(request, new OkHttpStreamFetcher(client, new GlideUrl(request.getImageUrl().toString())));
+    return new LoadData<>(new BadgeKey(request), new OkHttpStreamFetcher(client, new GlideUrl(request.getImageUrl().toString())));
   }
 
   @Override

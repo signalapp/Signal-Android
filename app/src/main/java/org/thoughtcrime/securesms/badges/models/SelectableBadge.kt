@@ -1,19 +1,18 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.badges.models
 
 import android.animation.ObjectAnimator
-import android.net.Uri
-import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.compose.runtime.Stable
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.Key
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
-import org.signal.core.models.UriSerializer
+import org.signal.core.models.badges.Badge
 import org.signal.core.ui.util.ThemeUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.load.BadgeSpriteTransformation
@@ -21,42 +20,15 @@ import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
-import java.security.MessageDigest
 
 typealias OnBadgeClicked = (Badge, Boolean, Boolean) -> Unit
 
 /**
- * A Badge that can be collected and displayed by a user.
+ * Selectable badge grid item used when displaying a user's badges in a list.
  */
-@Stable
-@Parcelize
-@Serializable
-data class Badge(
-  val id: String,
-  val category: Category,
-  val name: String,
-  val description: String,
-  @Serializable(with = UriSerializer::class) val imageUrl: Uri,
-  val imageDensity: String,
-  val expirationTimestamp: Long,
-  val visible: Boolean,
-  val duration: Long
-) : Parcelable, Key {
+object SelectableBadge {
 
-  fun isExpired(): Boolean = expirationTimestamp < System.currentTimeMillis() && expirationTimestamp > 0
-  fun isBoost(): Boolean = id == BOOST_BADGE_ID
-  fun isGift(): Boolean = id == GIFT_BADGE_ID
-  fun isSubscription(): Boolean = !isBoost() && !isGift()
-
-  override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-    messageDigest.update(id.toByteArray(Key.CHARSET))
-    messageDigest.update(imageUrl.toString().toByteArray(Key.CHARSET))
-    messageDigest.update(imageDensity.toByteArray(Key.CHARSET))
-  }
-
-  fun resolveDescription(shortName: String): String {
-    return description.replace("{short_name}", shortName)
-  }
+  private val SELECTION_CHANGED = Any()
 
   class EmptyModel : PreferenceModel<EmptyModel>() {
     override fun areItemsTheSame(newItem: EmptyModel): Boolean = true
@@ -152,31 +124,8 @@ data class Badge(
     }
   }
 
-  enum class Category(val code: String) {
-    Donor("donor"),
-    Other("other"),
-    Testing("testing"); // Will be removed before final release
-
-    companion object {
-      fun fromCode(code: String): Category {
-        return when (code) {
-          "donor" -> Donor
-          "testing" -> Testing
-          else -> Other
-        }
-      }
-    }
-  }
-
-  companion object {
-    const val BOOST_BADGE_ID = "BOOST"
-    const val GIFT_BADGE_ID = "GIFT"
-
-    private val SELECTION_CHANGED = Any()
-
-    fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
-      mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))
-      mappingAdapter.registerFactory(EmptyModel::class.java, LayoutFactory({ EmptyViewHolder(it) }, R.layout.badge_preference_view))
-    }
+  fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
+    mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))
+    mappingAdapter.registerFactory(EmptyModel::class.java, LayoutFactory({ EmptyViewHolder(it) }, R.layout.badge_preference_view))
   }
 }

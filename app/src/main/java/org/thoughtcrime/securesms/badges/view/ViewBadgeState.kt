@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.badges.view
 
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 import org.thoughtcrime.securesms.recipients.Recipient
 
 data class ViewBadgeState(

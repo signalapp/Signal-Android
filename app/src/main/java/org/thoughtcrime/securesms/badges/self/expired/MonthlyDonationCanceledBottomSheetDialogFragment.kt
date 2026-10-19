@@ -29,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
+import org.signal.core.models.badges.Badge
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
@@ -40,7 +41,6 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImage112
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.ManageDonationsFragment

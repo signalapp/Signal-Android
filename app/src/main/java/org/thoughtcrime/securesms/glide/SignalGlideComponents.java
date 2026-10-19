@@ -27,7 +27,7 @@ import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
 import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
-import org.thoughtcrime.securesms.badges.models.Badge;
+import org.signal.core.models.badges.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;

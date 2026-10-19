@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
+import org.signal.core.models.badges.Badge
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.money.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.Companion.BOOST_LEVEL
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration.Companion.GIFT_LEVEL

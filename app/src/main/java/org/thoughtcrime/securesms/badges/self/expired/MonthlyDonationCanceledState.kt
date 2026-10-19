@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.badges.self.expired
 
 import androidx.annotation.StringRes
-import org.thoughtcrime.securesms.badges.models.Badge
+import org.signal.core.models.badges.Badge
 
 data class MonthlyDonationCanceledState(
   val loadState: LoadState = LoadState.LOADING,
