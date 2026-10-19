@@ -177,6 +177,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.searchStyleFactory      = () -> new CharacterStyle[] { new ForegroundColorSpan(ContextCompat.getColor(getContext(), org.signal.core.ui.R.color.signal_colorOnSurface)), SpanUtil.getBoldSpan() };
 
     getLayoutTransition().setDuration(150);
+    getLayoutTransition().setAnimateParentHierarchy(false);
   }
 
   /**
