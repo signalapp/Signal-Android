@@ -15,6 +15,7 @@ android {
 
 dependencies {
   api(project(":core:util-jvm"))
+  api(project(":core:models-jvm"))
 
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.jackson.core)

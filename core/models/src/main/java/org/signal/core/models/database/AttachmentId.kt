@@ -8,7 +8,6 @@ package org.signal.core.models.database
 import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.parcelize.Parcelize
-import org.signal.core.util.database.DatabaseId
 
 @Parcelize
 data class AttachmentId(

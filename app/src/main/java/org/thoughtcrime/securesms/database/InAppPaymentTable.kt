@@ -21,8 +21,8 @@ import org.signal.core.database.insertInto
 import org.signal.core.database.select
 import org.signal.core.database.update
 import org.signal.core.database.withinTransaction
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.Serializer
-import org.signal.core.util.database.DatabaseId
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean

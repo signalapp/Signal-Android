@@ -8,8 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
 import androidx.sqlite.db.SupportSQLiteStatement
 import org.signal.core.database.SqlUtil.ForeignKeyViolation
+import org.signal.core.models.database.DatabaseId
 import org.signal.core.util.ThreadUtil
-import org.signal.core.util.database.DatabaseId
 import org.signal.core.util.flatten
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList

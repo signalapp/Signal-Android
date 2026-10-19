@@ -15,6 +15,7 @@ dependencies {
   api(project(":core:util-jvm"))
   api(libs.androidx.sqlite)
   implementation(project(":core:util"))
+  implementation(project(":core:models-jvm"))
 
   testImplementation(testLibs.assertk)
   testImplementation(libs.androidx.sqlite.framework)
