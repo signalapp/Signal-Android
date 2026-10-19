@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents;
 
 import io.reactivex.rxjava3.core.Single;
+import kotlin.Pair;
 import kotlin.Unit;
 
 import java.io.IOException;
@@ -274,13 +275,19 @@ public class CommunicationActions {
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
       GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
-      return group != null && (group.isMember() || group.isTerminated()) ? Recipient.resolved(group.getRecipientId())
-                                                                         : null;
+      if (group != null && (group.isMember() || group.isTerminated())) {
+        boolean isPendingMember = group.isPendingMember(Recipient.self());
+        return new Pair<>(Recipient.resolved(group.getRecipientId()), isPendingMember);
+      } else {
+        return null;
+      }
     },
-    recipient -> {
-      if (recipient != null) {
-        CommunicationActions.startConversation(activity, recipient, null);
-        Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
+    result -> {
+      if (result != null) {
+        CommunicationActions.startConversation(activity, result.getFirst(), null);
+        if (!result.getSecond()) {
+          Toast.makeText(activity, R.string.GroupJoinBottomSheetDialogFragment_you_are_already_a_member, Toast.LENGTH_SHORT).show();
+        }
       } else {
         GroupJoinBottomSheetDialogFragment.show(activity.getSupportFragmentManager(), groupInviteLinkUrl);
       }
