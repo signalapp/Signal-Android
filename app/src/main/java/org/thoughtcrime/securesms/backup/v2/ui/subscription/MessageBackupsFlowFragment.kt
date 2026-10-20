@@ -31,6 +31,7 @@ import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Dialogs
@@ -160,9 +161,24 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       startDestination = state.startScreen.name
     ) {
       composable(route = MessageBackupsStage.Route.EDUCATION.name) {
+        val context = LocalContext.current
+        val biometrics = rememberBiometricsAuthentication(
+          promptTitle = stringResource(R.string.MessageBackupsFlowFragment__unlock_to_set_up_secure_backups),
+          educationSheetMessage = stringResource(R.string.MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you),
+          onAuthenticationFailed = {
+            Toast.makeText(context, R.string.MessageBackupsFlowFragment__authentication_required, Toast.LENGTH_SHORT).show()
+          }
+        )
+
         MessageBackupsEducationScreen(
           onNavigationClick = viewModel::goToPreviousStage,
-          onEnableBackups = viewModel::goToNextStage,
+          onEnableBackups = {
+            if (state.isPhoneNumberless) {
+              biometrics.withBiometricsAuthentication(viewModel::goToNextStage)
+            } else {
+              viewModel.goToNextStage()
+            }
+          },
           onNotNow = viewModel::goToPreviousStage
         )
       }

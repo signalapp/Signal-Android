@@ -100,8 +100,14 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.AddTotpAppClicked -> {
         applyAddTotpAppClicked()
       }
+      AccountSettingsEvent.AddTotpAppAuthenticated -> {
+        _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+      }
       AccountSettingsEvent.AddPasskeyClicked -> {
         applyAddPasskeyClicked()
+      }
+      AccountSettingsEvent.AddPasskeyAuthenticated -> {
+        applyAddPasskeyAuthenticated()
       }
       is AccountSettingsEvent.PasskeyCeremonyCompleted -> {
         applyPasskeyCeremonyCompleted(event.result)
@@ -210,20 +216,22 @@ class AccountSettingsViewModel(
     when {
       signalLogin?.atMaxTotpApps == true -> _state.update { it.copy(dialog = Dialog.MaxTotpAppsReached) }
       signalLogin?.atMaxTwoFactorMethods == true -> _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
-      else -> _actions.send(AccountSettingsAction.NavigateToTotpSetup)
+      else -> _actions.send(AccountSettingsAction.AuthenticateToAddTotpApp)
+    }
+  }
+
+  private suspend fun applyAddPasskeyClicked() {
+    if (_state.value.signalLogin?.atMaxTwoFactorMethods == true) {
+      _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
+    } else {
+      _actions.send(AccountSettingsAction.AuthenticateToAddPasskey)
     }
   }
 
   /**
    * Starts the ceremony, but we need to show an activity, so we send out an action for the UI to do the next step and send back the results as an event.
    */
-  private suspend fun applyAddPasskeyClicked() {
-    val signalLogin = _state.value.signalLogin
-    if (signalLogin?.atMaxTwoFactorMethods == true) {
-      _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
-      return
-    }
-
+  private suspend fun applyAddPasskeyAuthenticated() {
     _state.update { it.copy(dialog = Dialog.PasskeyInProgress) }
 
     when (val result = accountRepository.startPasskeyRegistration()) {

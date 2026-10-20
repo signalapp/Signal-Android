@@ -8132,6 +8132,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">A network failure occurred. Please try again later.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

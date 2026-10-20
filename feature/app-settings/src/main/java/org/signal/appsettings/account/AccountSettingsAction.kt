@@ -31,8 +31,14 @@ sealed interface AccountSettingsAction {
   /** Open the screen that shows the account and recovery keys that make up the Signal Login. */
   data object NavigateToSignalLoginDetails : AccountSettingsAction
 
+  /** Ask the user to get past their screen lock before we send them into authenticator app setup. */
+  data object AuthenticateToAddTotpApp : AccountSettingsAction
+
   /** Open the flow that pairs a new authenticator app. */
   data object NavigateToTotpSetup : AccountSettingsAction
+
+  /** Ask the user to get past their screen lock before we start the passkey ceremony. */
+  data object AuthenticateToAddPasskey : AccountSettingsAction
 
   /** Run the passkey creation ceremony, which needs an Activity to put the provider's sheet on screen. */
   data class CreatePasskey(val parameters: PasskeyCreationParameters) : AccountSettingsAction

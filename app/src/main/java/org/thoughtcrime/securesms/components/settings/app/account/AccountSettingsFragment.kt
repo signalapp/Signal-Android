@@ -88,6 +88,12 @@ class AccountSettingsFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    val addMethodBiometrics = rememberBiometricsAuthentication(
+      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_add_two_factor_method),
+      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_add_this_method_confirm_its_you),
+      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
+    )
+
     val removalBiometrics = rememberBiometricsAuthentication(
       promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_remove_two_factor_method),
       educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_remove_this_method_confirm_its_you),
@@ -106,7 +112,7 @@ class AccountSettingsFragment : ComposeFragment() {
       onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
     )
 
-    CollectActions(viewModel.actions) { action -> handleAction(action, removalBiometrics, signalLoginBiometrics, deleteAccountBiometrics) }
+    CollectActions(viewModel.actions) { action -> handleAction(action, addMethodBiometrics, removalBiometrics, signalLoginBiometrics, deleteAccountBiometrics) }
 
     AccountSettingsScreen(
       state = state,
@@ -116,6 +122,7 @@ class AccountSettingsFragment : ComposeFragment() {
 
   private fun handleAction(
     action: AccountSettingsAction,
+    addMethodBiometrics: BiometricsAuthentication,
     removalBiometrics: BiometricsAuthentication,
     signalLoginBiometrics: BiometricsAuthentication,
     deleteAccountBiometrics: BiometricsAuthentication
@@ -147,8 +154,20 @@ class AccountSettingsFragment : ComposeFragment() {
         findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment)
       }
 
+      AccountSettingsAction.AuthenticateToAddTotpApp -> {
+        addMethodBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.AddTotpAppAuthenticated)
+        }
+      }
+
       AccountSettingsAction.NavigateToTotpSetup -> {
         findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
+      }
+
+      AccountSettingsAction.AuthenticateToAddPasskey -> {
+        addMethodBiometrics.withBiometricsAuthentication {
+          viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
+        }
       }
 
       is AccountSettingsAction.CreatePasskey -> {

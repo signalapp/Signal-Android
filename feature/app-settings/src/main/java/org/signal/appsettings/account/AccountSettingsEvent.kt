@@ -50,11 +50,17 @@ sealed interface AccountSettingsEvent {
   /** The user confirmed turning registration lock on or off. */
   data object RegistrationLockConfirmed : AccountSettingsEvent
 
-  /** The user tapped the authenticator app option in the two-factor set-up menu. */
+  /** The user tapped the authenticator app option in the two-factor set-up menu, which asks for the screen lock first. */
   data object AddTotpAppClicked : AccountSettingsEvent
 
-  /** The user tapped the passkey option in the two-factor set-up menu. */
+  /** The user got past their screen lock, so we can send them into authenticator app setup. */
+  data object AddTotpAppAuthenticated : AccountSettingsEvent
+
+  /** The user tapped the passkey option in the two-factor set-up menu, which asks for the screen lock first. */
   data object AddPasskeyClicked : AccountSettingsEvent
+
+  /** The user got past their screen lock, so we can start the passkey ceremony. */
+  data object AddPasskeyAuthenticated : AccountSettingsEvent
 
   /** The passkey ceremony finished, one way or another. A credential still has to be verified by the service to count. */
   data class PasskeyCeremonyCompleted(val result: PasskeyCreationResult) : AccountSettingsEvent

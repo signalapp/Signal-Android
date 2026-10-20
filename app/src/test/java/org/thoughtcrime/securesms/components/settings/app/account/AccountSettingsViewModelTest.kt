@@ -395,7 +395,7 @@ class AccountSettingsViewModelTest {
   }
 
   @Test
-  fun `AddTotpAppClicked opens setup when there's room for another app`() = runTest(testDispatcher) {
+  fun `AddTotpAppClicked asks for the screen lock when there's room for another app`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
 
@@ -403,6 +403,19 @@ class AccountSettingsViewModelTest {
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AccountSettingsEvent.AddTotpAppClicked)
+
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToAddTotpApp)
+  }
+
+  @Test
+  fun `AddTotpAppAuthenticated opens setup`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddTotpAppAuthenticated)
 
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.NavigateToTotpSetup)
   }
@@ -439,7 +452,7 @@ class AccountSettingsViewModelTest {
   }
 
   @Test
-  fun `AddPasskeyClicked hands the ceremony parameters out to be run`() = runTest(testDispatcher) {
+  fun `AddPasskeyClicked asks for the screen lock before starting a ceremony`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
 
@@ -448,18 +461,33 @@ class AccountSettingsViewModelTest {
 
     viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
 
+    assertThat(actions.last()).isEqualTo(AccountSettingsAction.AuthenticateToAddPasskey)
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    coVerify(exactly = 0) { repository.startPasskeyRegistration() }
+  }
+
+  @Test
+  fun `AddPasskeyAuthenticated hands the ceremony parameters out to be run`() = runTest(testDispatcher) {
+    every { repository.isPhoneNumberless() } returns true
+    coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
+
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.CreatePasskey(CREATION_PARAMETERS))
   }
 
   /** The service leg of the ceremony happens before the provider's sheet, so the tap needs something to show for it. */
   @Test
-  fun `AddPasskeyClicked shows progress until the ceremony is over`() = runTest(testDispatcher) {
+  fun `AddPasskeyAuthenticated shows progress until the ceremony is over`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
 
     val viewModel = createViewModel()
 
-    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.PasskeyInProgress)
 
@@ -475,7 +503,7 @@ class AccountSettingsViewModelTest {
 
     val viewModel = createViewModel()
 
-    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
     viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
@@ -500,7 +528,7 @@ class AccountSettingsViewModelTest {
 
   /** Another device can fill the account up between the limit check here and the service hearing about it. */
   @Test
-  fun `AddPasskeyClicked explains the limit the service reports`() = runTest(testDispatcher) {
+  fun `AddPasskeyAuthenticated explains the limit the service reports`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
     coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.TooManyMethods
@@ -508,7 +536,7 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.MaxTwoFactorMethodsReached)
     assertThat(actions).isEmpty()
@@ -516,7 +544,7 @@ class AccountSettingsViewModelTest {
 
   /** A ceremony that never starts has to take the spinner back down, or the user is stuck looking at it. */
   @Test
-  fun `AddPasskeyClicked that cannot reach the service takes the progress dialog back down`() = runTest(testDispatcher) {
+  fun `AddPasskeyAuthenticated that cannot reach the service takes the progress dialog back down`() = runTest(testDispatcher) {
     every { repository.isPhoneNumberless() } returns true
     coEvery { twoFactorMethodService.getMethods(any()) } returns methods(TOTP_APP)
     coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.NetworkFailure
@@ -524,7 +552,7 @@ class AccountSettingsViewModelTest {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.onEvent(AccountSettingsEvent.AddPasskeyClicked)
+    viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     assertThat(actions.last()).isEqualTo(AccountSettingsAction.ShowPasskeyCreationFailed)

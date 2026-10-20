@@ -1626,6 +1626,7 @@ object DataMessageProcessor {
     }
 
     if (threadRecipient.isGroup) {
+      // e.g. a download that failed mid-playback. Refreshing would drop it out from under the user.
       val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
       if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
         warn(timestamp, "Sender is not in the group! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
