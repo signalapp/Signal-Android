@@ -1,19 +1,26 @@
 package org.thoughtcrime.securesms.main
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactive.asFlow
+import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
+import kotlin.time.Duration.Companion.milliseconds
 
 object MainNavigationRepository {
 
+  private val THROTTLE_INTERVAL = 500.milliseconds
+
   fun getNumberOfUnreadMessages(): Flow<Long> {
-    return RxDatabaseObserver.conversationList.map { SignalDatabase.threads.getUnreadMessageCount() }.asFlow()
+    return onConversationListChanged { SignalDatabase.threads.getUnreadMessageCount() }
   }
 
   fun getNumberOfUnseenStories(): Flow<Long> {
-    return RxDatabaseObserver.conversationList.map {
+    return onConversationListChanged {
       SignalDatabase
         .messages
         .getUnreadStoryThreadRecipientIds()
@@ -21,14 +28,22 @@ object MainNavigationRepository {
         .filterNot { it.shouldHideStory }
         .size
         .toLong()
-    }.asFlow()
+    }
   }
 
   fun getHasFailedOutgoingStories(): Flow<Boolean> {
-    return RxDatabaseObserver.conversationList.map { SignalDatabase.messages.hasFailedOutgoingStory() }.asFlow()
+    return onConversationListChanged { SignalDatabase.messages.hasFailedOutgoingStory() }
   }
 
   fun getNumberOfUnseenCalls(): Flow<Long> {
-    return RxDatabaseObserver.conversationList.map { SignalDatabase.calls.getUnreadMissedCallCount() }.asFlow()
+    return onConversationListChanged { SignalDatabase.calls.getUnreadMissedCallCount() }
+  }
+
+  private fun <T> onConversationListChanged(query: () -> T): Flow<T> {
+    return RxDatabaseObserver.conversationList
+      .asFlow()
+      .throttleLatest(THROTTLE_INTERVAL)
+      .map { query() }
+      .flowOn(Dispatchers.Default)
   }
 }
