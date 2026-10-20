@@ -65,10 +65,10 @@ import org.signal.core.ui.compose.list.ReorderableItem
 import org.signal.core.ui.compose.list.rememberReorderableListState
 import org.signal.core.ui.compose.list.reorderableList
 import org.signal.core.ui.enableEdgeToEdge
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.polls.Poll
-import org.thoughtcrime.securesms.util.ViewUtil
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.R as CoreUiR
 

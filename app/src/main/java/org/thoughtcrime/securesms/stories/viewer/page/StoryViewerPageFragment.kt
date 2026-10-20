@@ -50,6 +50,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Debouncer
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.ServiceUtil
@@ -101,7 +102,6 @@ import org.thoughtcrime.securesms.util.LongClickCopySpan
 import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.Projection
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible

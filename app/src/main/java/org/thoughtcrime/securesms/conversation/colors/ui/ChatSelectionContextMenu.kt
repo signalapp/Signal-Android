@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.core.content.ContextCompat
+import org.signal.core.ui.util.ViewUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.ViewUtil
 
 class ChatSelectionContextMenu(val context: Context) : PopupWindow(context) {
 

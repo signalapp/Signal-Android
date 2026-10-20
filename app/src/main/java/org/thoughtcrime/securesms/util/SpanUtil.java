@@ -36,6 +36,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.ui.util.ViewUtil;
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 

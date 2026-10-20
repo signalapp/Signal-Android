@@ -21,7 +21,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 /**
  * View responsible for displaying the delivery status (NONE, PENDING, SENT, DELIVERED, READ) of a given outgoing message.

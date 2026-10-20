@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.signal.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

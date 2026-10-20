@@ -14,6 +14,7 @@ import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.viewModel
 import org.signal.core.util.collectFlowOnViewLifecycle
 import org.signal.core.util.getParcelableCompat
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDona
 import org.thoughtcrime.securesms.databinding.ViewBadgeBottomSheetDialogFragmentBinding
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.visible
 import kotlin.math.ceil

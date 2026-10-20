@@ -9,6 +9,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.viewModel
 import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.avatar.AvatarColorItem
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**

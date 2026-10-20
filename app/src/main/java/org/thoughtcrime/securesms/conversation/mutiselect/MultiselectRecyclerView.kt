@@ -7,7 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.util.ViewUtil
 
 /**
  * Adjusts touch events when child is in Multiselect mode so that we can

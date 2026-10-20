@@ -21,6 +21,7 @@ import org.signal.core.models.media.Media
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.avatar.photo.PhotoEditorActivity
 import org.thoughtcrime.securesms.avatar.text.TextAvatarCreationFragment
 import org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**

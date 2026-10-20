@@ -17,12 +17,12 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import org.signal.core.ui.util.ThemeUtil
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.dp
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import org.signal.core.ui.R as CoreUiR
 

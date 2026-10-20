@@ -24,6 +24,7 @@ import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.getWindowBreakpoint
 import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.util.StorageUtil
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.permissions.PermissionCompat
 import org.thoughtcrime.securesms.R
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.conversation.ManageContextMenu
 import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil

@@ -19,6 +19,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.materialswitch.MaterialSwitch
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Debouncer
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import org.signal.core.ui.R as CoreUiR
 

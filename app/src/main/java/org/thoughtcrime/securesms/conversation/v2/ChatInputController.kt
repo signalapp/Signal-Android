@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.EditText
 import org.signal.core.ui.compose.keyboard.KeyboardSheetController
 import org.signal.core.ui.compose.keyboard.KeyboardSheetKey
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.signal.core.ui.util.ViewUtil
 
 /**
  * Adapts [KeyboardSheetController] to the conversation's view code, which asks for keyboards from

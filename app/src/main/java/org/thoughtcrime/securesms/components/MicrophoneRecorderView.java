@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.signal.core.ui.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public final class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
 

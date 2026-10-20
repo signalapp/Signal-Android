@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 import com.airbnb.lottie.SimpleColorFilter;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public final class ConversationScrollToView extends FrameLayout {
 

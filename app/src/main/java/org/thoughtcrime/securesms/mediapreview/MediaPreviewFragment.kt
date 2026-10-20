@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.models.media.Media
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.logging.LoggingFragment
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.Debouncer
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
@@ -79,7 +80,6 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.OffloadedMediaDialogUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit

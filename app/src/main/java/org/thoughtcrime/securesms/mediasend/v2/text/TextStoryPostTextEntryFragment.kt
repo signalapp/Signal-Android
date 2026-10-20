@@ -26,6 +26,7 @@ import androidx.transition.TransitionManager
 import com.airbnb.lottie.SimpleColorFilter
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.activityViewModel
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.scribbles.HSVColorSlider.getColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setColor
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider.setUpForColor
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import java.util.Locale

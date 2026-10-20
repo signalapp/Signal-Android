@@ -47,6 +47,7 @@ import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.LocalFragmentManager
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.viewModel
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
@@ -78,7 +79,6 @@ import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogF
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog

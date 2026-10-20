@@ -29,12 +29,12 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.widget.ImageViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.button.MaterialButton
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.dp
 import org.signal.core.util.requireDrawable
 import org.signal.libsignal.protocol.fingerprint.Fingerprint
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.qr.QrCodeUtil
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.nio.charset.Charset
 import java.util.Locale

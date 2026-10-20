@@ -20,6 +20,7 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.EditTextUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.components.BoldSelectionTabItem
 import org.thoughtcrime.securesms.components.ControllableTabLayout
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**

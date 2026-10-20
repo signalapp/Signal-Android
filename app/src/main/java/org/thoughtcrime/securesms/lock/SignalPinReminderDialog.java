@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.signal.core.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.whispersystems.signalservice.api.kbs.PinHashUtil;
 
 import java.util.Objects;

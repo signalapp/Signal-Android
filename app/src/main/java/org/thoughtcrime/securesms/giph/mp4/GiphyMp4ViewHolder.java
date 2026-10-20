@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.video.inline.InlineVideoCell;
 import org.thoughtcrime.securesms.video.inline.InlineVideoHost;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;

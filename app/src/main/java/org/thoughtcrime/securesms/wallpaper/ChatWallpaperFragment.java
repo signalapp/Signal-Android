@@ -34,7 +34,7 @@ import org.signal.core.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.signal.core.ui.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.util.Collections;

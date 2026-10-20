@@ -5,10 +5,10 @@ import android.view.ViewTreeObserver
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.util.ViewUtil
 import org.signal.core.util.concurrent.ListenableFuture.Listener
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
-import org.thoughtcrime.securesms.util.ViewUtil
 import java.util.concurrent.ExecutionException
 
 class SignalBottomActionBarController(

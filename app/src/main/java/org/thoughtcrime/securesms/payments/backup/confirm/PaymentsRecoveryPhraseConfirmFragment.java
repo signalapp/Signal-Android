@@ -25,7 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {

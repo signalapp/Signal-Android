@@ -21,7 +21,7 @@ import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.NumericKeyboardView;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.signal.core.ui.util.ViewUtil;
 
 public class VerificationPinKeyboard extends FrameLayout {
 
