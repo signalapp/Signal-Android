@@ -330,7 +330,7 @@ private fun RemoteBackupWithLocalDisabledInfo() {
   )
 
   InfoRow(
-    R.drawable.symbol_error_circle_24,
+    CoreUiR.drawable.symbol_error_circle_24,
     R.string.MessageBackupsKeyEducationScreen__if_you_lose_it
   )
 }

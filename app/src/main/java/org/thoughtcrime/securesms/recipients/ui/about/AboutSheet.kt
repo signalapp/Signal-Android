@@ -346,7 +346,7 @@ private fun Content(
       }
 
       val groupsInCommonIcon = if (!model.profileSharing && model.groupsInCommon == 0) {
-        ImageVector.vectorResource(R.drawable.symbol_error_circle_24)
+        ImageVector.vectorResource(CoreUiR.drawable.symbol_error_circle_24)
       } else {
         ImageVector.vectorResource(R.drawable.symbol_group_24)
       }

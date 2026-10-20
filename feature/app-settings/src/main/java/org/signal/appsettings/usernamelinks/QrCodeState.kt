@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.usernamelinks
+package org.signal.appsettings.usernamelinks
 
 import org.signal.core.ui.compose.QrCodeData
 

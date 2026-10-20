@@ -1,6 +1,7 @@
-package org.thoughtcrime.securesms.components.settings.app.usernamelinks
+package org.signal.appsettings.usernamelinks
 
 import android.content.res.Configuration
+import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
@@ -29,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,11 +39,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.appsettings.R
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
-import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
+
+@VisibleForTesting
+object QrCodeBadgeTestTags {
+  /** The username, which is user-entered and has no break points, so it may wrap mid-word. */
+  const val USERNAME = "qr-code-badge-username"
+}
 
 /**
  * Renders a QR code and username as a badge.
@@ -109,9 +118,9 @@ fun QrCodeBadge(
               )
             } else if (data is QrCodeState.NotSet) {
               Image(
-                painter = painterResource(id = R.drawable.symbol_error_circle_24),
+                painter = painterResource(id = CoreUiR.drawable.symbol_error_circle_24),
                 contentDescription = stringResource(id = R.string.UsernameLinkSettings_link_not_set_label),
-                colorFilter = ColorFilter.tint(colorResource(R.color.core_grey_25)),
+                colorFilter = ColorFilter.tint(colorResource(CoreUiR.color.core_grey_25)),
                 modifier = Modifier
                   .width(28.dp)
                   .height(28.dp)
@@ -157,7 +166,9 @@ fun QrCodeBadge(
           lineHeight = 26.sp,
           fontWeight = FontWeight.W600,
           textAlign = TextAlign.Center,
-          modifier = Modifier.padding(start = 6.dp)
+          modifier = Modifier
+            .padding(start = 6.dp)
+            .testTag(QrCodeBadgeTestTags.USERNAME)
         )
       }
     }

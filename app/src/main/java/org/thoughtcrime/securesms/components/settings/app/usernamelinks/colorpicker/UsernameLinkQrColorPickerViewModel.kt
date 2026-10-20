@@ -1,72 +1,57 @@
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.colorpicker
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.collections.immutable.toImmutableList
-import org.signal.core.ui.compose.QrCodeData
-import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerAction
+import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerEvent
+import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerScreen
+import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerState
+import org.signal.appsettings.usernamelinks.QrCodeState
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class UsernameLinkQrColorPickerViewModel : ViewModel() {
+/**
+ * Drives [UsernameLinkQrColorPickerScreen].
+ */
+class UsernameLinkQrColorPickerViewModel : EventDrivenViewModel<UsernameLinkQrColorPickerEvent>(TAG) {
 
-  private val _state = mutableStateOf(
+  companion object {
+    private val TAG = Log.tag(UsernameLinkQrColorPickerViewModel::class)
+  }
+
+  private val _state = MutableStateFlow(
     UsernameLinkQrColorPickerState(
-      username = SignalStore.account.username!!,
-      qrCodeData = QrCodeState.Loading,
-      colorSchemes = UsernameQrCodeColorScheme.entries.toImmutableList(),
-      selectedColorScheme = SignalStore.misc.usernameQrCodeColorScheme
+      username = UsernameLinkQrColorPickerRepository.getUsername(),
+      selectedColorScheme = UsernameLinkQrColorPickerRepository.getColorScheme()
     )
   )
+  private val _actions = Channel<UsernameLinkQrColorPickerAction>(Channel.BUFFERED)
 
-  val state: State<UsernameLinkQrColorPickerState> = _state
-
-  private val disposable: CompositeDisposable = CompositeDisposable()
+  val state: StateFlow<UsernameLinkQrColorPickerState> = _state.asStateFlow()
+  val actions: Flow<UsernameLinkQrColorPickerAction> = _actions.receiveAsFlow()
 
   init {
-    val usernameLink = SignalStore.account.usernameLink
-
-    if (usernameLink != null) {
-      disposable += Single
-        .fromCallable { QrCodeData.forData(usernameLink.toLink()) }
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { qrData ->
-          _state.value = _state.value.copy(
-            qrCodeData = QrCodeState.Present(qrData)
-          )
-        }
-    } else {
-      _state.value = _state.value.copy(
-        qrCodeData = QrCodeState.NotSet
-      )
+    viewModelScope.launch {
+      val qrCodeData = UsernameLinkQrColorPickerRepository.getQrCodeData()
+      _state.update { it.copy(qrCodeData = if (qrCodeData != null) QrCodeState.Present(qrCodeData) else QrCodeState.NotSet) }
     }
   }
 
-  override fun onCleared() {
-    disposable.clear()
-  }
-
-  fun onColorSelected(color: UsernameQrCodeColorScheme) {
-    SignalStore.misc.usernameQrCodeColorScheme = color
-    SignalExecutors.BOUNDED.run {
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
+  override suspend fun processEvent(event: UsernameLinkQrColorPickerEvent) {
+    when (event) {
+      UsernameLinkQrColorPickerEvent.NavigateBackClicked -> _actions.send(UsernameLinkQrColorPickerAction.NavigateBack)
+      UsernameLinkQrColorPickerEvent.DoneClicked -> _actions.send(UsernameLinkQrColorPickerAction.NavigateBack)
+      is UsernameLinkQrColorPickerEvent.ColorSelected -> {
+        _state.update { it.copy(selectedColorScheme = event.colorScheme) }
+        UsernameLinkQrColorPickerRepository.setColorScheme(event.colorScheme)
+      }
     }
-
-    _state.value = _state.value.copy(
-      selectedColorScheme = color
-    )
   }
 }

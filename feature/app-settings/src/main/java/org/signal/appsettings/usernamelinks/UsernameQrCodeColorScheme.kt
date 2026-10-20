@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.settings.app.usernamelinks
+package org.signal.appsettings.usernamelinks
 
 import androidx.compose.ui.graphics.Color
 

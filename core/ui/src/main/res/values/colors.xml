@@ -6,4 +6,6 @@
          sheet out edge-to-edge and pads it for the navigation bar itself. -->
     <color name="signal_bottom_sheet_navigation_bar">@color/signal_colorSurface1</color>
 
+    <color name="core_grey_25">#b9b9b9</color>
+
 </resources>

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import android.content.Context
+import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint

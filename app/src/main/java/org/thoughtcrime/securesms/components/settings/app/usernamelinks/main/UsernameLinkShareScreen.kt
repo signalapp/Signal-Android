@@ -32,6 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.signal.appsettings.usernamelinks.QrCodeBadge
+import org.signal.appsettings.usernamelinks.QrCodeState
+import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -39,13 +42,11 @@ import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.UUID
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -198,7 +199,7 @@ private fun LinkRow(linkState: UsernameLinkState, onClick: () -> Unit = {}) {
     Text(
       text = when (linkState) {
         is UsernameLinkState.Present -> linkState.link
-        is UsernameLinkState.NotSet -> stringResource(id = R.string.UsernameLinkSettings_link_not_set_label)
+        is UsernameLinkState.NotSet -> stringResource(id = AppSettingsR.string.UsernameLinkSettings_link_not_set_label)
         is UsernameLinkState.Resetting -> stringResource(id = R.string.UsernameLinkSettings_resetting_link_label)
       },
       modifier = Modifier.padding(start = 26.dp),
