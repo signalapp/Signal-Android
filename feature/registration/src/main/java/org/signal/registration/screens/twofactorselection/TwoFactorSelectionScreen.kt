@@ -221,7 +221,7 @@ private fun MethodCard(
   when (method) {
     is TwoFactorMethod.Passkey -> {
       SelectionCard(
-        imageVector = SignalIcons.Key.imageVector,
+        imageVector = SignalIcons.PersonKeyLight.imageVector,
         title = stringResource(R.string.TwoFactorSelectionScreen__passkey),
         subtitle = stringResource(R.string.TwoFactorSelectionScreen__tap_to_use_your_device_biometrics),
         onClick = onClick,

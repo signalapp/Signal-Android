@@ -430,7 +430,7 @@ private fun SetUpTwoFactorRow(
       if (arePasskeysSupported) {
         DropdownMenus.Item(
           contentPadding = TWO_LINE_MENU_ITEM_PADDING,
-          leadingIconResId = CoreUiR.drawable.symbol_key_24,
+          leadingIconResId = CoreUiR.drawable.symbol_person_key_24,
           leadingIconSpacing = MENU_ITEM_EXTRA_ICON_GAP,
           text = {
             Column {
@@ -467,7 +467,7 @@ private fun TwoFactorMethodRow(
 
   val icon = when (method.kind) {
     TwoFactorMethod.Kind.AUTHENTICATOR_APP -> SignalIcons.DevicePhone
-    TwoFactorMethod.Kind.PASSKEY -> SignalIcons.Key
+    TwoFactorMethod.Kind.PASSKEY -> SignalIcons.PersonKey
     TwoFactorMethod.Kind.OTHER -> SignalIcons.Lock
   }
 

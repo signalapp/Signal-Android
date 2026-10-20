@@ -105,6 +105,8 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Open(icon(R.drawable.symbol_open_24)),
   Pause(icon(R.drawable.symbol_pause_24)),
   PersonCircle(icon(R.drawable.symbol_person_circle_24)),
+  PersonKey(icon(R.drawable.symbol_person_key_24)),
+  PersonKeyLight(icon(R.drawable.symbol_person_key_light_24)),
   Phone(icon(R.drawable.symbol_phone_24)),
   PhoneUnlock(icon(R.drawable.ic_phone_right_unlock_24)),
   Photo(icon(R.drawable.symbol_photo_24)),
