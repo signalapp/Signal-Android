@@ -42,4 +42,15 @@ public final class DynamicLanguageContextWrapper {
 
     prepareOverrideConfiguration(config);
   }
+
+  /**
+   * A context whose resources use the user's selected language. The application context only has it applied once at
+   * startup, and a later configuration change resets it to the system language.
+   */
+  public static @NonNull Context createLocalizedContext(@NonNull Context context) {
+    Configuration config = new Configuration(context.getResources().getConfiguration());
+    config.setLocale(getUsersSelectedLocale());
+
+    return context.createConfigurationContext(config);
+  }
 }

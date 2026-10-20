@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,11 +21,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -43,16 +47,24 @@ import java.math.BigDecimal
 import java.util.Currency
 import org.signal.core.ui.R as CoreUiR
 
+@VisibleForTesting
+object DonationReceiptDetailTestTags {
+  const val SCROLLER = "scroller"
+  const val BUTTON_SHARE = "button-share"
+}
+
+/**
+ * The details of a single donation receipt, with a button to share it as an image.
+ */
 @Composable
 fun DonationReceiptDetailScreen(
   state: DonationReceiptDetailState,
-  onNavigationClick: () -> Unit,
-  onShareClick: () -> Unit,
+  onEvent: (DonationReceiptDetailEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   Scaffolds.Settings(
     title = "",
-    onNavigationClick = onNavigationClick,
+    onNavigationClick = { onEvent(DonationReceiptDetailEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     modifier = modifier
   ) { paddingValues ->
@@ -61,18 +73,23 @@ fun DonationReceiptDetailScreen(
         .fillMaxSize()
         .padding(paddingValues)
     ) {
-      LazyColumn(modifier = Modifier.weight(1f)) {
+      LazyColumn(
+        modifier = Modifier
+          .weight(1f)
+          .testTag(DonationReceiptDetailTestTags.SCROLLER)
+      ) {
         if (state.inAppPaymentReceiptRecord != null) {
           receiptDetails(state.inAppPaymentReceiptRecord)
         }
       }
 
       Buttons.LargeTonal(
-        onClick = onShareClick,
-        enabled = state.inAppPaymentReceiptRecord != null && !state.isRenderingReceipt,
+        onClick = { onEvent(DonationReceiptDetailEvent.ShareClicked) },
+        enabled = state.canShare,
         modifier = Modifier
           .fillMaxWidth()
           .padding(horizontal = 48.dp, vertical = 16.dp)
+          .testTag(DonationReceiptDetailTestTags.BUTTON_SHARE)
       ) {
         Text(text = stringResource(R.string.DonationReceiptDetailsFragment__share_receipt))
       }
@@ -101,6 +118,12 @@ private fun LazyListScope.receiptDetails(record: InAppPaymentReceiptRecord) {
       text = amount,
       style = MaterialTheme.typography.displayMedium,
       textAlign = TextAlign.Center,
+      maxLines = 1,
+      softWrap = false,
+      autoSize = TextAutoSize.StepBased(
+        minFontSize = 24.sp,
+        maxFontSize = MaterialTheme.typography.displayMedium.fontSize
+      ),
       modifier = Modifier
         .fillMaxWidth()
         .horizontalGutters()
@@ -143,8 +166,7 @@ private fun DonationReceiptDetailScreenPreview() {
         subscriptionLevel = 500
       )
     ),
-    onNavigationClick = {},
-    onShareClick = {}
+    onEvent = {}
   )
 }
 
@@ -154,7 +176,6 @@ private fun DonationReceiptDetailScreenPreview() {
 private fun DonationReceiptDetailScreenLoadingPreview() {
   DonationReceiptDetailScreen(
     state = DonationReceiptDetailState(),
-    onNavigationClick = {},
-    onShareClick = {}
+    onEvent = {}
   )
 }

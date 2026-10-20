@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.CollectActions
@@ -28,19 +27,18 @@ class DonationReceiptDetailFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val context = LocalContext.current
 
     CollectActions(viewModel.actions) { action -> handleAction(action) }
 
     DonationReceiptDetailScreen(
       state = state,
-      onNavigationClick = { findNavController().popBackStack() },
-      onShareClick = { viewModel.shareReceipt(context) }
+      onEvent = viewModel::onEvent
     )
   }
 
   private fun handleAction(action: DonationReceiptDetailAction) {
     when (action) {
+      DonationReceiptDetailAction.NavigateBack -> findNavController().popBackStack()
       is DonationReceiptDetailAction.ShareReceipt -> {
         try {
           startActivity(ReceiptImageRenderer.createShareIntent(requireContext(), action.uri))

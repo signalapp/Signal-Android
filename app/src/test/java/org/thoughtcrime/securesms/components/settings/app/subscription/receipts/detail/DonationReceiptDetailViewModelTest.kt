@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import android.content.Context
 import android.net.Uri
 import assertk.assertThat
 import assertk.assertions.containsExactly
@@ -34,7 +33,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import java.math.BigDecimal
@@ -43,103 +41,124 @@ import java.util.Currency
 @OptIn(ExperimentalCoroutinesApi::class)
 class DonationReceiptDetailViewModelTest {
 
+  companion object {
+    private const val RECEIPT_ID = 7L
+
+    private val RECORD = InAppPaymentReceiptRecord(
+      amount = FiatMoney(BigDecimal.valueOf(5), Currency.getInstance("USD")),
+      timestamp = 1760000000000L,
+      type = InAppPaymentReceiptRecord.Type.RECURRING_DONATION,
+      subscriptionLevel = 500
+    )
+  }
+
   private val testDispatcher = UnconfinedTestDispatcher()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
-  private val context: Context = mockk()
-  private val uri: Uri = mockk()
-
-  private val record = InAppPaymentReceiptRecord(
-    id = RECORD_ID,
-    amount = FiatMoney(BigDecimal.valueOf(5), Currency.getInstance("USD")),
-    timestamp = 1760000000000L,
-    type = InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION,
-    subscriptionLevel = -1
-  )
+  private val receiptUri = mockk<Uri>()
 
   @Before
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
+    mockkObject(DonationReceiptDetailRepository)
 
-    mockkObject(DonationReceiptDetailRepository, ReceiptImageRenderer)
-    coEvery { DonationReceiptDetailRepository.getDonationReceiptRecord(RECORD_ID) } returns record
-    coEvery { ReceiptImageRenderer.renderPng(any(), any()) } returns uri
+    coEvery { DonationReceiptDetailRepository.getDonationReceiptRecord(RECEIPT_ID) } returns RECORD
+    coEvery { DonationReceiptDetailRepository.renderReceiptImage(RECORD) } returns receiptUri
   }
 
   @After
   fun tearDown() {
+    unmockkObject(DonationReceiptDetailRepository)
     Dispatchers.resetMain()
-    unmockkObject(DonationReceiptDetailRepository, ReceiptImageRenderer)
   }
 
   @Test
-  fun `record is loaded out of the repository`() = runTest(testDispatcher) {
+  fun `the receipt is read out of the repository on creation`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
 
-    assertThat(viewModel.state.value).isEqualTo(DonationReceiptDetailState(inAppPaymentReceiptRecord = record))
+    assertThat(viewModel.state.value).isEqualTo(DonationReceiptDetailState(inAppPaymentReceiptRecord = RECORD))
+    assertThat(viewModel.state.value.canShare).isTrue()
   }
 
   @Test
-  fun `shareReceipt is ignored before the record loads`() = runTest(testDispatcher) {
-    val recordGate = CompletableDeferred<InAppPaymentReceiptRecord>()
-    coEvery { DonationReceiptDetailRepository.getDonationReceiptRecord(RECORD_ID) } coAnswers { recordGate.await() }
-
+  fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.shareReceipt(context)
+    viewModel.onEvent(DonationReceiptDetailEvent.NavigateBackClicked)
 
+    assertThat(actions).containsExactly(DonationReceiptDetailAction.NavigateBack)
+  }
+
+  @Test
+  fun `ShareClicked renders the receipt and shares it`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(DonationReceiptDetailEvent.ShareClicked)
+
+    assertThat(actions).containsExactly(DonationReceiptDetailAction.ShareReceipt(receiptUri))
     assertThat(viewModel.state.value.isRenderingReceipt).isFalse()
-    assertThat(actions).isEmpty()
-    coVerify(exactly = 0) { ReceiptImageRenderer.renderPng(any(), any()) }
   }
 
   @Test
-  fun `shareReceipt marks the screen as rendering until the render completes`() = runTest(testDispatcher) {
-    val renderGate = CompletableDeferred<Uri>()
-    coEvery { ReceiptImageRenderer.renderPng(any(), any()) } coAnswers { renderGate.await() }
+  fun `ShareClicked shows rendering progress until the image is ready`() = runTest(testDispatcher) {
+    val rendered = CompletableDeferred<Uri>()
+    coEvery { DonationReceiptDetailRepository.renderReceiptImage(RECORD) } coAnswers { rendered.await() }
 
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.shareReceipt(context)
+    viewModel.onEvent(DonationReceiptDetailEvent.ShareClicked)
 
     assertThat(viewModel.state.value.isRenderingReceipt).isTrue()
+    assertThat(viewModel.state.value.canShare).isFalse()
     assertThat(actions).isEmpty()
 
-    renderGate.complete(uri)
+    rendered.complete(receiptUri)
 
     assertThat(viewModel.state.value.isRenderingReceipt).isFalse()
-    assertThat(actions).containsExactly(DonationReceiptDetailAction.ShareReceipt(uri))
+    assertThat(actions).containsExactly(DonationReceiptDetailAction.ShareReceipt(receiptUri))
   }
 
   @Test
-  fun `a second shareReceipt during a render does not render twice`() = runTest(testDispatcher) {
-    val renderGate = CompletableDeferred<Uri>()
-    coEvery { ReceiptImageRenderer.renderPng(any(), any()) } coAnswers { renderGate.await() }
+  fun `a second ShareClicked while rendering does not render again`() = runTest(testDispatcher) {
+    val rendered = CompletableDeferred<Uri>()
+    coEvery { DonationReceiptDetailRepository.renderReceiptImage(RECORD) } coAnswers { rendered.await() }
 
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
-    viewModel.shareReceipt(context)
-    viewModel.shareReceipt(context)
-    renderGate.complete(uri)
+    viewModel.onEvent(DonationReceiptDetailEvent.ShareClicked)
+    viewModel.onEvent(DonationReceiptDetailEvent.ShareClicked)
+    rendered.complete(receiptUri)
 
-    coVerify(exactly = 1) { ReceiptImageRenderer.renderPng(context, record) }
-    assertThat(actions).containsExactly(DonationReceiptDetailAction.ShareReceipt(uri))
+    coVerify(exactly = 1) { DonationReceiptDetailRepository.renderReceiptImage(RECORD) }
+    assertThat(actions).containsExactly(DonationReceiptDetailAction.ShareReceipt(receiptUri))
   }
 
-  private fun createViewModel(): DonationReceiptDetailViewModel = DonationReceiptDetailViewModel(RECORD_ID)
+  @Test
+  fun `ShareClicked before the receipt has loaded does nothing`() = runTest(testDispatcher) {
+    val loaded = CompletableDeferred<InAppPaymentReceiptRecord>()
+    coEvery { DonationReceiptDetailRepository.getDonationReceiptRecord(RECEIPT_ID) } coAnswers { loaded.await() }
+
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(DonationReceiptDetailEvent.ShareClicked)
+
+    coVerify(exactly = 0) { DonationReceiptDetailRepository.renderReceiptImage(any()) }
+    assertThat(viewModel.state.value.isRenderingReceipt).isFalse()
+    assertThat(actions).isEmpty()
+  }
+
+  private fun createViewModel(): DonationReceiptDetailViewModel = DonationReceiptDetailViewModel(RECEIPT_ID)
 
   private fun TestScope.collectActions(actions: Flow<DonationReceiptDetailAction>): List<DonationReceiptDetailAction> {
     val collected = mutableListOf<DonationReceiptDetailAction>()
     backgroundScope.launch { actions.toList(collected) }
     return collected
-  }
-
-  companion object {
-    private const val RECORD_ID = 1L
   }
 }

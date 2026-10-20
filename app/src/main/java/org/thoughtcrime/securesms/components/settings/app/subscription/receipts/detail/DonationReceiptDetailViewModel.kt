@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -11,9 +9,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class DonationReceiptDetailViewModel(id: Long) : ViewModel() {
+/**
+ * Drives [DonationReceiptDetailScreen].
+ */
+class DonationReceiptDetailViewModel(id: Long) : EventDrivenViewModel<DonationReceiptDetailEvent>(TAG) {
+
+  companion object {
+    private val TAG = Log.tag(DonationReceiptDetailViewModel::class)
+  }
+
   private val _state = MutableStateFlow(DonationReceiptDetailState())
   private val _actions = Channel<DonationReceiptDetailAction>(Channel.BUFFERED)
 
@@ -27,15 +34,27 @@ class DonationReceiptDetailViewModel(id: Long) : ViewModel() {
     }
   }
 
-  fun shareReceipt(context: Context) {
-    val record = _state.value.inAppPaymentReceiptRecord
-    if (record == null || _state.value.isRenderingReceipt) {
+  override suspend fun processEvent(event: DonationReceiptDetailEvent) {
+    when (event) {
+      DonationReceiptDetailEvent.NavigateBackClicked -> _actions.send(DonationReceiptDetailAction.NavigateBack)
+      DonationReceiptDetailEvent.ShareClicked -> shareReceipt()
+    }
+  }
+
+  /**
+   * Renders outside the event queue so the guard sees [DonationReceiptDetailState.isRenderingReceipt] immediately;
+   * awaiting it here would let a queued second tap start another render once the first finishes.
+   */
+  private fun shareReceipt() {
+    val state = _state.value
+    val record = state.inAppPaymentReceiptRecord
+    if (record == null || state.isRenderingReceipt) {
       return
     }
 
     _state.update { it.copy(isRenderingReceipt = true) }
     viewModelScope.launch {
-      val uri = ReceiptImageRenderer.renderPng(context, record)
+      val uri = DonationReceiptDetailRepository.renderReceiptImage(record)
       _state.update { it.copy(isRenderingReceipt = false) }
       _actions.send(DonationReceiptDetailAction.ShareReceipt(uri))
     }
