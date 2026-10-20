@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.groups.GroupChangeBusyException;
 import org.signal.core.util.groups.GroupNotAMemberException;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.v2.groups.GroupStateRefreshThrottle;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -122,6 +123,7 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    GroupStateRefreshThrottle.clear(groupId);
   }
 
   public static final class Factory implements Job.Factory<RequestGroupV2InfoWorkerJob> {

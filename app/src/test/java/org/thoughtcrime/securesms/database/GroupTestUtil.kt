@@ -139,9 +139,10 @@ class GroupStateTestData(private val masterKey: GroupMasterKey, private val grou
     inviteLinkPassword: ByteArray = ByteArray(0),
     disappearingMessageTimer: DecryptedTimer = DecryptedTimer(),
     isPlaceholderGroup: Boolean = false,
-    terminated: Boolean = false
+    terminated: Boolean = false,
+    needsServerSnapshot: Boolean = false
   ) {
-    localState = decryptedGroup(revision, title, avatar, description, accessControl, members, pendingMembers, requestingMembers, inviteLinkPassword, disappearingMessageTimer, isPlaceholderGroup, terminated)
+    localState = decryptedGroup(revision, title, avatar, description, accessControl, members, pendingMembers, requestingMembers, inviteLinkPassword, disappearingMessageTimer, isPlaceholderGroup, terminated, needsServerSnapshot)
     groupRecord = groupRecord(masterKey, localState!!, active = active)
   }
 
@@ -231,7 +232,8 @@ fun decryptedGroup(
   inviteLinkPassword: ByteArray = ByteArray(0),
   disappearingMessageTimer: DecryptedTimer = DecryptedTimer(),
   isPlaceholderGroup: Boolean = false,
-  terminated: Boolean = false
+  terminated: Boolean = false,
+  needsServerSnapshot: Boolean = false
 ): DecryptedGroup {
   return DecryptedGroup(
     accessControl = accessControl,
@@ -246,6 +248,7 @@ fun decryptedGroup(
     pendingMembers = pendingMembers,
     requestingMembers = requestingMembers,
     isPlaceholderGroup = isPlaceholderGroup,
-    terminated = terminated
+    terminated = terminated,
+    needsServerSnapshot = needsServerSnapshot
   )
 }

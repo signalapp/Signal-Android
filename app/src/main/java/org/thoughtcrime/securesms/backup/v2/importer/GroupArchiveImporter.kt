@@ -149,8 +149,10 @@ private fun Group.MemberBanned.toLocal(): DecryptedBannedMember {
 
 private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
   val selfAciBytes = SignalStore.account.aci?.toByteString()
+  val members = this.members.map { member -> member.toLocal() }
   val requestingMembers = this.membersPendingAdminApproval.map { requesting -> requesting.toLocal() }
-  val isPlaceholder = requestingMembers.any { it.aciBytes == selfAciBytes }
+  val isJoinPlaceholder = this.accessControl == null && members.size == 1 && members[0].aciBytes == selfAciBytes
+  val isPlaceholder = isJoinPlaceholder || requestingMembers.any { it.aciBytes == selfAciBytes }
 
   return DecryptedGroup(
     title = this.title?.title ?: "",
@@ -158,7 +160,7 @@ private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOper
     disappearingMessagesTimer = DecryptedTimer(duration = this.disappearingMessagesTimer?.disappearingMessagesDuration ?: 0),
     accessControl = this.accessControl?.toLocal(),
     revision = this.version,
-    members = this.members.map { member -> member.toLocal() },
+    members = members,
     pendingMembers = this.membersPendingProfileKey.map { pending -> pending.toLocal(operations) },
     requestingMembers = requestingMembers,
     inviteLinkPassword = this.inviteLinkPassword,

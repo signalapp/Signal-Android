@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 final class ProtobufTestUtils {
 
   /** Tags that should be ignored and not count as part of 'needs support' in the various group decryption tests. */
-  static final Set<Integer> IGNORED_DECRYPTED_GROUP_TAGS = Collections.singleton(64);
+  static final Set<Integer> IGNORED_DECRYPTED_GROUP_TAGS = Set.of(64, 65);
 
   /**
    * Finds the largest declared field number in the supplied protobuf class.
