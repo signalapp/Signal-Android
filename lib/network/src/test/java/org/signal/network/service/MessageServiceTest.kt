@@ -346,6 +346,31 @@ class MessageServiceTest {
   }
 
   @Test
+  fun `non-story sealed send to self raises ApplicationError without sending`() = runTest {
+    val service = newService()
+
+    val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = individualUnidentifiedAccessFirst(ByteArray(16) { 1 }), story = false, isOnline = false)
+
+    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
+  fun `non-story unsealed send to self raises ApplicationError without sending`() = runTest {
+    val service = newService()
+
+    val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = null, story = false, isOnline = false)
+
+    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
+    verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
+    coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
+  }
+
+  @Test
   fun `ServiceIdNotFoundException maps to NotRegistered`() = runTest {
     val service = newService()
     every { protocolStore.getSubDeviceSessions(recipientAci.toString()) } returns emptyList()

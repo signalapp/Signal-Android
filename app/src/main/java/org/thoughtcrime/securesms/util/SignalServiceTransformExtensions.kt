@@ -33,17 +33,24 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.api.crypto.ContentHint
+import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.CallMessage
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
+import org.whispersystems.signalservice.internal.push.NullMessage
 import org.whispersystems.signalservice.internal.push.Preview
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.util.Util
 import java.io.IOException
+import java.util.Optional
 
 private const val TAG = "DataMessageTransforms"
+
+private const val MAX_NULL_MESSAGE_PADDING_BYTES = 140
 
 /**
  * Builds the wire [DataMessage] for this outgoing message. It is technically possible, though rare, that we may not be
@@ -452,6 +459,12 @@ private fun List<AttachmentPointer>.capIncrementalMacs(max: Int): List<Attachmen
       pointer.newBuilder().incrementalMac(null).chunkSize(null).build()
     }
   }
+}
+
+fun createNullMessageEnvelopeContent(): EnvelopeContent {
+  val padding = DataMessage(body = Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(MAX_NULL_MESSAGE_PADDING_BYTES))).encode()
+  val content = Content(nullMessage = NullMessage(padding = padding.toByteString()))
+  return EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty())
 }
 
 /**

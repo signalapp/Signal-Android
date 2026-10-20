@@ -90,7 +90,8 @@ open class MessageService(
   /**
    * Sends [envelopeContent] to [serviceId]. Handles things like establishing sessions with newly-discovered linked devices.
    *
-   * Sends sealed when given a [sealedSenderAccess], falling back to unsealed if the server rejects it.
+   * Sends sealed when given a [sealedSenderAccess], falling back to unsealed if the server rejects it. Non-story sends to the local
+   * account must use [sendSyncMessage] instead.
    *
    * Story sends are not fully supported yet. A story whose access is only [SealedSenderAccess.isUnrestrictedForStory] fails with
    * [SendError.Unauthorized] when it needs a new session, because the server usually rejects that access for prekey fetches. The legacy
@@ -130,6 +131,10 @@ open class MessageService(
             raise(SendError.Unauthorized())
           }
         }
+      }
+
+      if (serviceId == localAddress.serviceId) {
+        raise(SendError.ApplicationError(IllegalArgumentException("Use sendSyncMessage to send to the local account")))
       }
 
       if (sealedSenderAccess != null) {
