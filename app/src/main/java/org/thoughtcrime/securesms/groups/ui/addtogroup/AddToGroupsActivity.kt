@@ -29,6 +29,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsUiState.UserMe
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
-import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 
 /**
@@ -127,7 +127,7 @@ private fun AddToGroupsScreenUi(
     stringResource(R.string.AddToGroupActivity_add_to_a_group)
   }
 
-  RecipientPickerScaffold(
+  Scaffolds.TitlePane(
     title = title,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},

@@ -49,6 +49,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -63,7 +64,6 @@ import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker.DisplayMode
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
-import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
@@ -203,7 +203,7 @@ private fun NewConversationScreenUi(
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
 
-  RecipientPickerScaffold(
+  Scaffolds.TitlePane(
     title = stringResource(R.string.NewConversationActivity__new_message),
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = { TopAppBarActions(callbacks) },

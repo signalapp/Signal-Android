@@ -35,6 +35,7 @@ import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
@@ -51,7 +52,6 @@ import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersUiState.UserMes
 import org.thoughtcrime.securesms.recipients.ui.RecipientLookupFailureMessage
 import org.thoughtcrime.securesms.recipients.ui.RecipientPicker
 import org.thoughtcrime.securesms.recipients.ui.RecipientPickerCallbacks
-import org.thoughtcrime.securesms.recipients.ui.RecipientPickerScaffold
 import org.thoughtcrime.securesms.recipients.ui.RecipientSelection
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
@@ -161,7 +161,7 @@ private fun AddMembersScreenUi(
     stringResource(R.string.AddMembersActivity__add_members)
   }
 
-  RecipientPickerScaffold(
+  Scaffolds.TitlePane(
     title = title,
     onNavigateUpClick = callbacks::onBackPressed,
     topAppBarActions = {},
