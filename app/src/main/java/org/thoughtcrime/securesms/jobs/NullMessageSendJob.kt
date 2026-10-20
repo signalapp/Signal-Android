@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.InvalidSessionException
-import org.signal.libsignal.protocol.NoSessionException
 import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
@@ -15,7 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.createNullMessageEnvelopeContent
+import org.thoughtcrime.securesms.util.OutgoingContent
 import java.util.concurrent.TimeUnit
 
 /**
@@ -75,14 +73,14 @@ class NullMessageSendJob private constructor(
     val result = if (serviceId == SignalStore.account.aci) {
       SignalNetwork.messageService.sendSyncMessage(
         timestamp = System.currentTimeMillis(),
-        envelopeContent = createNullMessageEnvelopeContent(),
+        envelopeContent = OutgoingContent.nullMessage(),
         urgent = false,
         onEncrypted = null
       )
     } else {
       SignalNetwork.messageService.sendMessage(
         serviceId = serviceId,
-        envelopeContent = createNullMessageEnvelopeContent(),
+        envelopeContent = OutgoingContent.nullMessage(),
         timestamp = System.currentTimeMillis(),
         sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
         story = false,
@@ -108,40 +106,11 @@ class NullMessageSendJob private constructor(
             Result.failure()
           }
 
-          is MessageService.SendError.SessionAttemptsExhausted,
-          is MessageService.SendError.PreKeyUnavailable -> {
-            Log.w(TAG, "Unable to establish a session, retrying.", error)
-            Result.retry(defaultBackoff())
-          }
-
-          is MessageService.SendError.RateLimited -> {
-            val backoff = maxOf(defaultBackoff(), error.retryAfter?.inWholeMilliseconds ?: 0L)
-            Log.w(TAG, "Rate limited, retryAfter=${error.retryAfter}, using backoff=${backoff}ms", error)
-            Result.retry(backoff)
-          }
-
-          is MessageService.SendError.NetworkError -> {
-            Log.w(TAG, "Network error, retrying.", error.exception)
-            Result.retry(defaultBackoff())
-          }
-
-          is MessageService.SendError.ApplicationError -> when (val cause = error.exception) {
-            is NoSessionException,
-            is InvalidSessionException -> {
-              Log.w(TAG, "Bad session, retrying.", cause)
-              Result.retry(defaultBackoff())
-            }
-
-            is RuntimeException -> {
-              Log.e(TAG, "Unexpected error sending null message.", cause)
-              Result.fatalFailure(cause)
-            }
-
-            else -> {
-              Log.w(TAG, "Application error.", cause)
-              Result.failure()
-            }
-          }
+          is MessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.ApplicationError -> error.toJobResult(TAG, "null message", defaultBackoff())
         }
       }
     )

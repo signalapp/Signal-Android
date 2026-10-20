@@ -35,8 +35,10 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.ServiceId.ACI
+import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.net.ChallengeOption
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.UntrustedIdentityException
 import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -73,7 +75,6 @@ import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
-import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import java.io.IOException
 import java.util.Optional
 import java.util.UUID
@@ -552,7 +553,9 @@ class IndividualSendJobV2Test {
   @Test
   fun `Given a send needs PNI signature, when send succeeds, then write a pending PNI signature record`() {
     every { recipient.needsPniSignature } returns true
-    every { AppDependencies.signalServiceMessageSender.createPniSignatureMessage() } returns PniSignatureMessage()
+    every { signalStore.account.pni } returns PNI.from(UUID.randomUUID())
+    every { signalStore.account.pniIdentityKeyOrNull } returns IdentityKeyPair.generate()
+    every { signalStore.account.aciIdentityKey } returns IdentityKeyPair.generate()
     stubSuccessfulSend()
 
     createAndRunJob()

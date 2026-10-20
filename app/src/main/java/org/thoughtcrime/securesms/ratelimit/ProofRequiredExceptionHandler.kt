@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -31,6 +32,9 @@ object ProofRequiredExceptionHandler {
 
   private val TAG = Log.tag(ProofRequiredExceptionHandler::class)
   private val PUSH_CHALLENGE_TIMEOUT: Duration = 10.seconds
+  private val PUSH_CHALLENGE_THROTTLE: Duration = 30.seconds
+
+  private val lastThrottledPushChallengeRequest = AtomicLong(0)
 
   /**
    * Handles the given exception, updating state as necessary.
@@ -41,24 +45,11 @@ object ProofRequiredExceptionHandler {
     Log.w(TAG, "[Proof Required] Options: ${proofRequired.options}")
 
     if (ProofRequiredException.Option.PUSH_CHALLENGE in proofRequired.options) {
-      when (val result = SignalNetwork.rateLimitChallengeApi.requestPushChallenge()) {
-        is NetworkResult.Success -> {
-          Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to $PUSH_CHALLENGE_TIMEOUT ms.")
-          val success = PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess()
-
-          if (success) {
-            Log.i(TAG, "Successfully responded to a push challenge. Retrying message send.")
-            return Result.RETRY_NOW
-          } else {
-            Log.w(TAG, "Failed to respond to the push challeng in time. Falling back.")
-          }
-        }
-        is NetworkResult.StatusCodeError -> Log.w(TAG, "[Proof Required] Could not request a push challenge (${result.code}). Falling back.", result.exception)
-        is NetworkResult.NetworkError -> {
-          Log.w(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.")
-          return Result.RETRY_LATER
-        }
-        is NetworkResult.ApplicationError -> throw result.throwable
+      when (tryPushChallenge()) {
+        PushChallengeResult.SUCCESS -> return Result.RETRY_NOW
+        PushChallengeResult.NETWORK_ERROR -> return Result.RETRY_LATER
+        PushChallengeResult.FAILED,
+        PushChallengeResult.THROTTLED -> Unit
       }
     }
 
@@ -80,6 +71,54 @@ object ProofRequiredExceptionHandler {
     }
 
     return Result.RETHROW
+  }
+
+  /**
+   * Requests a push challenge and waits for it to be solved. Never prompts the user.
+   */
+  @WorkerThread
+  fun tryPushChallenge(): PushChallengeResult {
+    return when (val result = SignalNetwork.rateLimitChallengeApi.requestPushChallenge()) {
+      is NetworkResult.Success -> {
+        Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to $PUSH_CHALLENGE_TIMEOUT ms.")
+        if (PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess()) {
+          Log.i(TAG, "[Proof Required] Successfully responded to a push challenge.")
+          PushChallengeResult.SUCCESS
+        } else {
+          Log.w(TAG, "[Proof Required] Failed to respond to the push challenge in time.")
+          PushChallengeResult.FAILED
+        }
+      }
+      is NetworkResult.StatusCodeError -> {
+        Log.w(TAG, "[Proof Required] Could not request a push challenge (${result.code}).", result.exception)
+        PushChallengeResult.FAILED
+      }
+      is NetworkResult.NetworkError -> {
+        Log.w(TAG, "[Proof Required] Network error when requesting push challenge.")
+        PushChallengeResult.NETWORK_ERROR
+      }
+      is NetworkResult.ApplicationError -> throw result.throwable
+    }
+  }
+
+  @WorkerThread
+  fun tryThrottledPushChallenge(): PushChallengeResult {
+    val now = System.currentTimeMillis()
+    val last = lastThrottledPushChallengeRequest.get()
+
+    if (now - last < PUSH_CHALLENGE_THROTTLE.inWholeMilliseconds || !lastThrottledPushChallengeRequest.compareAndSet(last, now)) {
+      Log.i(TAG, "[Proof Required] Push challenge requested recently. Skipping.")
+      return PushChallengeResult.THROTTLED
+    }
+
+    return tryPushChallenge()
+  }
+
+  enum class PushChallengeResult {
+    SUCCESS,
+    NETWORK_ERROR,
+    FAILED,
+    THROTTLED
   }
 
   enum class Result {

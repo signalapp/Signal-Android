@@ -4,26 +4,23 @@ import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
-import org.thoughtcrime.securesms.jobs.ReceiptSender.ReceiptSendOperation
-import org.thoughtcrime.securesms.jobs.ReceiptSender.sendWithSessionRepair
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException
+import org.thoughtcrime.securesms.util.OutgoingContent
+import org.thoughtcrime.securesms.util.toSendMessageResult
 import org.whispersystems.signalservice.api.crypto.ContentHint
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
-import java.io.IOException
+import org.whispersystems.signalservice.internal.push.ReceiptMessage
 import java.util.concurrent.TimeUnit
 
 class SendDeliveryReceiptJob private constructor(
@@ -32,7 +29,7 @@ class SendDeliveryReceiptJob private constructor(
   private val messageSentTimestamps: List<Long>,
   private val messageIds: List<MessageId>,
   private val receiptSentTimestamp: Long
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY: String = "SendDeliveryReceiptJob"
@@ -85,7 +82,7 @@ class SendDeliveryReceiptJob private constructor(
     return KEY
   }
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
       return Result.failure()
     }
@@ -94,7 +91,6 @@ class SendDeliveryReceiptJob private constructor(
       return Result.success()
     }
 
-    val messageSender = AppDependencies.signalServiceMessageSender
     val recipient = SignalDatabase.recipients.getRecord(recipientId)
 
     if (recipient.id == Recipient.self().id) {
@@ -107,49 +103,48 @@ class SendDeliveryReceiptJob private constructor(
       return Result.failure()
     }
 
-    if (recipient.serviceId == null && recipient.e164 == null) {
-      Log.w(TAG, "No serviceId or e164!")
+    val serviceId = recipient.serviceId
+    if (serviceId == null) {
+      Log.w(TAG, "${recipient.id} has no serviceId!")
       return Result.failure()
     }
 
-    val result = try {
-      val remoteAddress = RecipientUtil.toSignalServiceAddress(recipient)
-      val receiptMessage = SignalServiceReceiptMessage(
-        SignalServiceReceiptMessage.Type.DELIVERY,
-        messageSentTimestamps,
-        receiptSentTimestamp
-      )
+    val result = SignalNetwork.messageService.sendMessage(
+      serviceId = serviceId,
+      envelopeContent = OutgoingContent.receipt(ReceiptMessage.Type.DELIVERY, messageSentTimestamps, recipient.needsPniSignature),
+      timestamp = receiptSentTimestamp,
+      sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient) { getGroupSendFullToken() },
+      story = false,
+      isOnline = false,
+      urgent = false
+    )
 
-      sendWithSessionRepair(
-        recipientId,
-        ReceiptSendOperation {
-          messageSender.sendReceipt(
-            remoteAddress,
-            SealedSenderAccessUtil.getSealedSenderAccessFor(recipient) { this.getGroupSendFullToken() },
-            receiptMessage,
-            recipient.needsPniSignature
-          )
+    return result.fold(
+      ifRight = { success ->
+        if (messageIds.isNotEmpty()) {
+          SignalDatabase.messageLog.insertIfPossible(recipientId, receiptSentTimestamp, success.toSendMessageResult(serviceId), ContentHint.IMPLICIT, messageIds, false)
         }
-      )
-    } catch (e: ServerRejectedException) {
-      Log.i(TAG, "Send failed", e)
-      return Result.failure()
-    } catch (e: IOException) {
-      Log.d(TAG, "Send failed, retrying", e)
-      return Result.retry(defaultBackoff())
-    } catch (e: UntrustedIdentityException) {
-      Log.i(TAG, "Send failed", e)
-      return Result.failure()
-    } catch (e: UndeliverableMessageException) {
-      Log.i(TAG, "Send failed", e)
-      return Result.failure()
-    }
+        Result.success()
+      },
+      ifLeft = { error ->
+        when (error) {
+          is MessageService.SendError.IdentityMismatch,
+          is MessageService.SendError.NotRegistered,
+          is MessageService.SendError.Unauthorized,
+          is MessageService.SendError.ContentTooLarge -> {
+            Log.w(TAG, "Failed to send delivery receipt.", error)
+            Result.failure()
+          }
 
-    if (result != null && messageIds.isNotEmpty()) {
-      SignalDatabase.messageLog.insertIfPossible(recipientId, receiptSentTimestamp, result, ContentHint.IMPLICIT, messageIds, false)
-    }
-
-    return Result.success()
+          is MessageService.SendError.ChallengeRequired -> error.tryPushChallengeAndToJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.ApplicationError -> error.toJobResult(TAG, "delivery receipt", defaultBackoff())
+        }
+      }
+    )
   }
 
   private fun getGroupSendFullToken(): GroupSendFullToken? {

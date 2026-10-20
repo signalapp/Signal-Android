@@ -297,7 +297,7 @@ public final class JobManagerFactories {
       put(SendPaymentsActivatedJob.KEY,                new SendPaymentsActivatedJob.Factory());
       put(SendReadReceiptJob.KEY,                      new SendReadReceiptJob.Factory());
       put(SendRetryReceiptJob.KEY,                     new SendRetryReceiptJob.Factory());
-      put(SendViewedReceiptJob.KEY,                    new SendViewedReceiptJob.Factory(application));
+      put(SendViewedReceiptJob.KEY,                    new SendViewedReceiptJob.Factory());
       put(StorageRotateManifestJob.KEY,                new StorageRotateManifestJob.Factory());
       put(SyncSystemContactLinksJob.KEY,               new SyncSystemContactLinksJob.Factory());
       put(MultiDeviceStorySendSyncJob.KEY,             new MultiDeviceStorySendSyncJob.Factory());

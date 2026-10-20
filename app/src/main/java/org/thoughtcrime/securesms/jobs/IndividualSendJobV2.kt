@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.isUrgent
@@ -400,7 +401,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       )
     } else {
       val pniSignature = if (recipient.needsPniSignature) {
-        AppDependencies.signalServiceMessageSender.createPniSignatureMessage()?.also {
+        OutgoingContent.pniSignature()?.also {
           Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Including PNI signature.")
         }
       } else {

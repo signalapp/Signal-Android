@@ -18,8 +18,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.createNullMessageEnvelopeContent
 import java.util.concurrent.TimeUnit
 
 /**
@@ -128,14 +128,14 @@ class AutomaticSessionResetJob private constructor(
     val result = if (serviceId == SignalStore.account.aci) {
       SignalNetwork.messageService.sendSyncMessage(
         timestamp = System.currentTimeMillis(),
-        envelopeContent = createNullMessageEnvelopeContent(),
+        envelopeContent = OutgoingContent.nullMessage(),
         urgent = false,
         onEncrypted = null
       )
     } else {
       SignalNetwork.messageService.sendMessage(
         serviceId = serviceId,
-        envelopeContent = createNullMessageEnvelopeContent(),
+        envelopeContent = OutgoingContent.nullMessage(),
         timestamp = System.currentTimeMillis(),
         sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
         story = false,
