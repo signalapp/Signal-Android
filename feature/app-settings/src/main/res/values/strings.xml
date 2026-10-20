@@ -171,6 +171,26 @@
     <!-- Button that advances from the setup instructions to entering a code -->
     <string name="TotpSetupScreen__continue">Continue</string>
 
+    <!-- PasskeySetupScreen -->
+    <!-- Title of the screen that explains passkeys before the user sets one up -->
+    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <!-- Link that opens a support article about passkeys -->
+    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <!-- Bullet point explaining that the user can name their passkey -->
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <!-- Bullet point explaining where the passkey is stored -->
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <!-- Bullet point explaining that passkeys can be managed later -->
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <!-- Button that starts creating a passkey -->
+    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it's allowed -->
+    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it's allowed. %1$d is the limit. -->
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
     <string name="TotpCodeEntryScreen__enter_your_code">Enter your code</string>

@@ -26,9 +26,6 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.MfaKeyKind
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.service.TwoFactorMethodService
-import org.signal.passwordmanager.PasskeyCreationResult
-import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.FinishPasskeyRegistrationResult
-import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.StartPasskeyRegistrationResult
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -107,10 +104,7 @@ class AccountSettingsViewModel(
         applyAddPasskeyClicked()
       }
       AccountSettingsEvent.AddPasskeyAuthenticated -> {
-        applyAddPasskeyAuthenticated()
-      }
-      is AccountSettingsEvent.PasskeyCeremonyCompleted -> {
-        applyPasskeyCeremonyCompleted(event.result)
+        _actions.send(AccountSettingsAction.NavigateToPasskeySetup)
       }
       is AccountSettingsEvent.LearnMoreClicked -> {
         _actions.send(AccountSettingsAction.OpenSupportArticle(event.url))
@@ -225,74 +219,6 @@ class AccountSettingsViewModel(
       _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
     } else {
       _actions.send(AccountSettingsAction.AuthenticateToAddPasskey)
-    }
-  }
-
-  /**
-   * Starts the ceremony, but we need to show an activity, so we send out an action for the UI to do the next step and send back the results as an event.
-   */
-  private suspend fun applyAddPasskeyAuthenticated() {
-    _state.update { it.copy(dialog = Dialog.PasskeyInProgress) }
-
-    when (val result = accountRepository.startPasskeyRegistration()) {
-      is StartPasskeyRegistrationResult.Success -> {
-        _actions.send(AccountSettingsAction.CreatePasskey(result.parameters))
-      }
-      StartPasskeyRegistrationResult.TooManyMethods -> {
-        _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
-      }
-      StartPasskeyRegistrationResult.NetworkFailure -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
-      }
-    }
-  }
-
-  private suspend fun applyPasskeyCeremonyCompleted(result: PasskeyCreationResult) {
-    when (result) {
-      is PasskeyCreationResult.Success -> {
-        registerNewPasskey(result)
-      }
-      PasskeyCreationResult.UserCanceled -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        Log.i(TAG, "The user backed out of the passkey provider's sheet.")
-      }
-      PasskeyCreationResult.NoProviderAvailable -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(AccountSettingsAction.ShowNoPasskeyProvider)
-      }
-      PasskeyCreationResult.CeremonyFailed -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
-      }
-    }
-  }
-
-  /** Hands the completed ceremony to the service, which is what actually puts the passkey on the account. */
-  private suspend fun registerNewPasskey(ceremony: PasskeyCreationResult.Success) {
-    val result = accountRepository.finishPasskeyRegistration(
-      attestationObject = ceremony.attestationObject,
-      collectedClientDataJson = ceremony.collectedClientDataJson
-    )
-
-    when (result) {
-      is FinishPasskeyRegistrationResult.Success -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        refreshTwoFactorMethods()
-        _actions.send(
-          AccountSettingsAction.NavigateToNameNewPasskey(
-            TwoFactorMethod(id = result.passkeyId, kind = TwoFactorMethod.Kind.PASSKEY, name = null, createdAt = result.createdAt)
-          )
-        )
-      }
-      FinishPasskeyRegistrationResult.TooManyMethods -> {
-        _state.update { it.copy(dialog = Dialog.MaxTwoFactorMethodsReached) }
-      }
-      FinishPasskeyRegistrationResult.CeremonyRejected,
-      FinishPasskeyRegistrationResult.NetworkFailure -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(AccountSettingsAction.ShowPasskeyCreationFailed)
-      }
     }
   }
 

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.appsettings.account
+package org.signal.appsettings.passkeysetup
 
 /**
  * Everything an authenticator needs to create a passkey for the account, as handed out by the service and passed

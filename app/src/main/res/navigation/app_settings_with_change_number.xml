@@ -237,6 +237,26 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_passkeySetupFragment"
+            app:destination="@id/passkeySetupFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/passkeySetupFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupFragment"
+        android:label="passkey_setup_fragment">
+        <action
+            android:id="@+id/action_passkeySetupFragment_to_twoFactorNameFragment"
+            app:destination="@id/twoFactorNameFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment

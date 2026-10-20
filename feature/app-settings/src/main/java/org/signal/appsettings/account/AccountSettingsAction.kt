@@ -37,14 +37,11 @@ sealed interface AccountSettingsAction {
   /** Open the flow that pairs a new authenticator app. */
   data object NavigateToTotpSetup : AccountSettingsAction
 
-  /** Ask the user to get past their screen lock before we start the passkey ceremony. */
+  /** Ask the user to get past their screen lock before we open passkey setup. */
   data object AuthenticateToAddPasskey : AccountSettingsAction
 
-  /** Run the passkey creation ceremony, which needs an Activity to put the provider's sheet on screen. */
-  data class CreatePasskey(val parameters: PasskeyCreationParameters) : AccountSettingsAction
-
-  /** Open the screen that names [method], the passkey that was just added to the account and has no name yet. */
-  data class NavigateToNameNewPasskey(val method: TwoFactorMethod) : AccountSettingsAction
+  /** Open the screen that explains passkeys and sets one up. */
+  data object NavigateToPasskeySetup : AccountSettingsAction
 
   /** Open the screen that renames [method]. */
   data class NavigateToRenameMethod(val method: TwoFactorMethod) : AccountSettingsAction
@@ -60,12 +57,6 @@ sealed interface AccountSettingsAction {
 
   /** Tell the user the removal didn't go through, so they know the method is still on the account. */
   data class ShowMethodRemovalFailed(val kind: TwoFactorMethod.Kind) : AccountSettingsAction
-
-  /** Tell the user there's no passkey provider on the device to create a credential with. */
-  data object ShowNoPasskeyProvider : AccountSettingsAction
-
-  /** Tell the user the ceremony didn't produce a passkey. */
-  data object ShowPasskeyCreationFailed : AccountSettingsAction
 
   /** Send the user to the support article at [url]. */
   data class OpenSupportArticle(val url: String) : AccountSettingsAction

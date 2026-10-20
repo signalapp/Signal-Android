@@ -17,15 +17,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.launch
 import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsScreen
-import org.signal.appsettings.account.PasskeyCreationParameters
 import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.core.ui.ViewModelFactory
 import org.signal.core.ui.biometrics.BiometricsAuthentication
@@ -33,8 +29,6 @@ import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.ServiceUtil
-import org.signal.core.util.logging.Log
-import org.signal.passwordmanager.PasskeyCreationResult
 import org.signal.passwordmanager.SignalPasskeyManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNavArgs
@@ -52,16 +46,10 @@ import org.signal.appsettings.R as AppSettingsR
  */
 class AccountSettingsFragment : ComposeFragment() {
 
-  companion object {
-    private val TAG = Log.tag(AccountSettingsFragment::class)
-  }
-
   private val viewModel: AccountSettingsViewModel by viewModels(
     factoryProducer = ViewModelFactory.factoryProducer {
       AccountSettingsViewModel(
-        accountRepository = AccountSettingsRepository(
-          defaultPasskeyName = getString(AppSettingsR.string.AccountSettingsRepository__passkey)
-        ),
+        accountRepository = AccountSettingsRepository(),
         arePasskeysSupported = SignalPasskeyManager.isSupported(requireContext())
       )
     }
@@ -170,15 +158,8 @@ class AccountSettingsFragment : ComposeFragment() {
         }
       }
 
-      is AccountSettingsAction.CreatePasskey -> {
-        createPasskey(action.parameters)
-      }
-
-      is AccountSettingsAction.NavigateToNameNewPasskey -> {
-        findNavController().safeNavigate(
-          R.id.action_accountSettingsFragment_to_twoFactorNameFragment,
-          Bundle().apply { TwoFactorNavArgs.putNewMethod(this, action.method) }
-        )
+      AccountSettingsAction.NavigateToPasskeySetup -> {
+        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_passkeySetupFragment)
       }
 
       is AccountSettingsAction.NavigateToRenameMethod -> {
@@ -215,14 +196,6 @@ class AccountSettingsFragment : ComposeFragment() {
           TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_two_factor_method
         }
       )
-
-      AccountSettingsAction.ShowNoPasskeyProvider -> {
-        toast(AppSettingsR.string.AccountSettingsFragment__no_passkey_provider)
-      }
-
-      AccountSettingsAction.ShowPasskeyCreationFailed -> {
-        toast(AppSettingsR.string.AccountSettingsFragment__couldnt_create_passkey)
-      }
 
       is AccountSettingsAction.OpenSupportArticle -> {
         CommunicationActions.openBrowserLink(requireContext(), action.url)
@@ -279,29 +252,6 @@ class AccountSettingsFragment : ComposeFragment() {
       AccountSettingsAction.ShowRegistrationLockDisableFailed -> {
         toast(R.string.preferences_app_protection__failed_to_disable_registration_lock)
       }
-    }
-  }
-
-  /** Runs the middle leg of the passkey ceremony, which requires an activity context. */
-  private fun createPasskey(parameters: PasskeyCreationParameters) {
-    lifecycleScope.launch {
-      val result = try {
-        SignalPasskeyManager.createPasskey(
-          activityContext = requireActivity(),
-          rpId = parameters.relyingPartyId,
-          rpName = parameters.relyingPartyName,
-          userHandle = parameters.userHandle,
-          userName = parameters.userName,
-          allowedAlgorithms = parameters.allowedAlgorithms,
-          excludeCredentialIds = parameters.excludeCredentialIds
-        )
-      } catch (e: CancellationException) {
-        Log.w(TAG, "The passkey ceremony was canceled before it could finish.", e)
-        viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
-        throw e
-      }
-
-      viewModel.onEvent(AccountSettingsEvent.PasskeyCeremonyCompleted(result))
     }
   }
 

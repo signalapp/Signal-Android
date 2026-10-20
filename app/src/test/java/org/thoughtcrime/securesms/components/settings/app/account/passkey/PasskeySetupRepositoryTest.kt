@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.account
+package org.thoughtcrime.securesms.components.settings.app.account.passkey
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
@@ -21,13 +21,13 @@ import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.WebAuthnCreateParameters
 import org.signal.libsignal.net.WebAuthnRegistrationUnsuccessfulException
 import org.signal.network.api.AccountApiV2
-import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.FinishPasskeyRegistrationResult
-import org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsRepository.StartPasskeyRegistrationResult
+import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupRepository.FinishPasskeyRegistrationResult
+import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupRepository.StartPasskeyRegistrationResult
 import java.io.IOException
 import java.time.Instant
 import java.time.ZoneOffset
 
-class AccountSettingsRepositoryTest {
+class PasskeySetupRepositoryTest {
 
   companion object {
     /** 2023-11-14T22:13:20Z, which is the date the credential gets labelled with. */
@@ -47,7 +47,7 @@ class AccountSettingsRepositoryTest {
   }
 
   private val api = mockk<AccountApiV2>()
-  private val repository = AccountSettingsRepository(
+  private val repository = PasskeySetupRepository(
     defaultPasskeyName = DEFAULT_NAME,
     api = api,
     masterKeyProvider = { MASTER_KEY },

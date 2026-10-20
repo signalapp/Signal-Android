@@ -372,7 +372,6 @@ fun AccountSettingsScreen(
     is Dialog.ConfirmRemoveMethod -> ConfirmRemoveMethodDialog(method = dialog.method, onEvent = onEvent)
     Dialog.MaxTotpAppsReached -> MaxTotpAppsReachedDialog(maxApps = state.signalLogin?.maxTotpApps ?: 0, onEvent = onEvent)
     Dialog.MaxTwoFactorMethodsReached -> MaxTwoFactorMethodsReachedDialog(maxTwoFactorMethods = state.signalLogin?.maxTwoFactorMethods ?: 0, onEvent = onEvent)
-    Dialog.PasskeyInProgress -> Dialogs.IndeterminateProgressDialog()
   }
 }
 

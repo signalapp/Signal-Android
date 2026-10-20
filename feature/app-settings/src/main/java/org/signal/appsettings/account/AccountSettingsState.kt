@@ -90,8 +90,5 @@ data class AccountSettingsState(
 
     /** Explains that the account already has as many second factors of all kinds as it's allowed. */
     data object MaxTwoFactorMethodsReached : Dialog
-
-    /** Covers the two legs of a passkey ceremony that talk to the service, which a tap otherwise looks ignored during. */
-    data object PasskeyInProgress : Dialog
   }
 }
