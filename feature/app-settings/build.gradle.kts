@@ -40,6 +40,7 @@ dependencies {
   // Testing
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)
+  testImplementation(testLibs.mockk)
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(libs.androidx.compose.ui.test.junit4)

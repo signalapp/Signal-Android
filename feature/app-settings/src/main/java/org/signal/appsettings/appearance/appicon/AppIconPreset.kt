@@ -1,0 +1,35 @@
+/*
+ * Copyright 2023 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.signal.appsettings.appearance.appicon
+
+import android.content.ComponentName
+import android.content.Context
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import org.signal.appsettings.R
+
+/**
+ * @param labelResId The launcher label shown with this icon, or null to use the app's own name.
+ */
+enum class AppIconPreset(private val componentName: String, @DrawableRes val iconPreviewResId: Int, @StringRes val labelResId: Int?) {
+  DEFAULT(".RoutingActivity", R.drawable.ic_app_icon_default_top_preview, null),
+  WHITE(".RoutingActivityAltWhite", R.drawable.ic_app_icon_signal_white_top_preview, null),
+  COLOR(".RoutingActivityAltColor", R.drawable.ic_app_icon_signal_color_top_preview, null),
+  DARK(".RoutingActivityAltDark", R.drawable.ic_app_icon_signal_dark_top_preview, null),
+  DARK_VARIANT(".RoutingActivityAltDarkVariant", R.drawable.ic_app_icon_signal_dark_variant_top_preview, null),
+  CHAT(".RoutingActivityAltChat", R.drawable.ic_app_icon_chat_top_preview, null),
+  BUBBLES(".RoutingActivityAltBubbles", R.drawable.ic_app_icon_bubbles_top_preview, null),
+  YELLOW(".RoutingActivityAltYellow", R.drawable.ic_app_icon_yellow_top_preview, null),
+  NEWS(".RoutingActivityAltNews", R.drawable.ic_app_icon_news_top_preview, R.string.app_icon_label_news),
+  NOTES(".RoutingActivityAltNotes", R.drawable.ic_app_icon_notes_top_preview, R.string.app_icon_label_notes),
+  WEATHER(".RoutingActivityAltWeather", R.drawable.ic_app_icon_weather_top_preview, R.string.app_icon_label_weather),
+  WAVES(".RoutingActivityAltWaves", R.drawable.ic_app_icon_waves_top_preview, R.string.app_icon_label_waves);
+
+  fun getComponentName(context: Context): ComponentName {
+    val applicationContext = context.applicationContext
+    return ComponentName(applicationContext, "org.thoughtcrime.securesms" + componentName)
+  }
+}

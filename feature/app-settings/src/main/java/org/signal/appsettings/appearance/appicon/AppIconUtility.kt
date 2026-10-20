@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.appearance.appicon.util
+package org.signal.appsettings.appearance.appicon
 
 import android.content.ComponentName
 import android.content.Context
