@@ -5,58 +5,66 @@
 
 package org.thoughtcrime.securesms.components.settings.app.labs
 
-import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import org.signal.appsettings.labs.LabsSettingsAction
+import org.signal.appsettings.labs.LabsSettingsEvent
+import org.signal.appsettings.labs.LabsSettingsScreen
+import org.signal.appsettings.labs.LabsSettingsState
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
-class LabsSettingsViewModel : ViewModel() {
+/**
+ * Drives [LabsSettingsScreen].
+ */
+class LabsSettingsViewModel : EventDrivenViewModel<LabsSettingsEvent>(TAG) {
 
-  private val _state = MutableStateFlow(loadState())
-  val state: StateFlow<LabsSettingsState> = _state
-
-  fun onEvent(event: LabsSettingsEvents) {
-    when (event) {
-      is LabsSettingsEvents.ToggleIndividualChatPlaintextExport -> {
-        SignalStore.labs.individualChatPlaintextExport = event.enabled
-        _state.value = _state.value.copy(individualChatPlaintextExport = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleStoryArchive -> {
-        SignalStore.labs.storyArchive = event.enabled
-        _state.value = _state.value.copy(storyArchive = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleIncognito -> {
-        SignalStore.labs.incognito = event.enabled
-        _state.value = _state.value.copy(incognito = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleBetterSearch -> {
-        SignalStore.labs.betterSearch = event.enabled
-        _state.value = _state.value.copy(betterSearch = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleStarredMessages -> {
-        SignalStore.labs.starredMessages = event.enabled
-        _state.value = _state.value.copy(starredMessages = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleStickerReplies -> {
-        SignalStore.labs.stickerReplies = event.enabled
-        _state.value = _state.value.copy(stickerReplies = event.enabled)
-      }
-      is LabsSettingsEvents.ToggleImprovedMessageDeletion -> {
-        SignalStore.labs.improvedMessageDeletion = event.enabled
-        _state.value = _state.value.copy(improvedMessageDeletion = event.enabled)
-      }
-    }
+  companion object {
+    private val TAG = Log.tag(LabsSettingsViewModel::class)
   }
 
-  private fun loadState(): LabsSettingsState {
-    return LabsSettingsState(
-      individualChatPlaintextExport = SignalStore.labs.individualChatPlaintextExport,
-      storyArchive = SignalStore.labs.storyArchive,
-      incognito = SignalStore.labs.incognito,
-      betterSearch = SignalStore.labs.betterSearch,
-      starredMessages = SignalStore.labs.starredMessages,
-      stickerReplies = SignalStore.labs.stickerReplies,
-      improvedMessageDeletion = SignalStore.labs.improvedMessageDeletion
-    )
+  private val _state = MutableStateFlow(LabsSettingsRepository.getState())
+  private val _actions = Channel<LabsSettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<LabsSettingsState> = _state.asStateFlow()
+  val actions: Flow<LabsSettingsAction> = _actions.receiveAsFlow()
+
+  override suspend fun processEvent(event: LabsSettingsEvent) {
+    when (event) {
+      LabsSettingsEvent.NavigateBackClicked -> _actions.send(LabsSettingsAction.NavigateBack)
+      is LabsSettingsEvent.IndividualChatPlaintextExportToggled -> {
+        LabsSettingsRepository.setIndividualChatPlaintextExport(event.enabled)
+        _state.update { it.copy(individualChatPlaintextExport = event.enabled) }
+      }
+      is LabsSettingsEvent.StoryArchiveToggled -> {
+        LabsSettingsRepository.setStoryArchive(event.enabled)
+        _state.update { it.copy(storyArchive = event.enabled) }
+      }
+      is LabsSettingsEvent.IncognitoToggled -> {
+        LabsSettingsRepository.setIncognito(event.enabled)
+        _state.update { it.copy(incognito = event.enabled) }
+      }
+      is LabsSettingsEvent.BetterSearchToggled -> {
+        LabsSettingsRepository.setBetterSearch(event.enabled)
+        _state.update { it.copy(betterSearch = event.enabled) }
+      }
+      is LabsSettingsEvent.StarredMessagesToggled -> {
+        LabsSettingsRepository.setStarredMessages(event.enabled)
+        _state.update { it.copy(starredMessages = event.enabled) }
+      }
+      is LabsSettingsEvent.StickerRepliesToggled -> {
+        LabsSettingsRepository.setStickerReplies(event.enabled)
+        _state.update { it.copy(stickerReplies = event.enabled) }
+      }
+      is LabsSettingsEvent.ImprovedMessageDeletionToggled -> {
+        LabsSettingsRepository.setImprovedMessageDeletion(event.enabled)
+        _state.update { it.copy(improvedMessageDeletion = event.enabled) }
+      }
+    }
   }
 }

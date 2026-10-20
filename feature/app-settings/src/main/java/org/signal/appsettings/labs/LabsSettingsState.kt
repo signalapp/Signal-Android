@@ -3,11 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.labs
+package org.signal.appsettings.labs
 
-import androidx.compose.runtime.Immutable
-
-@Immutable
+/**
+ * [LabsSettingsScreen] state: whether each internal-only pre-release feature is turned on.
+ *
+ * This is logged, so be sure `toString()` contains nothing sensitive.
+ */
 data class LabsSettingsState(
   val individualChatPlaintextExport: Boolean = false,
   val storyArchive: Boolean = false,
