@@ -39,6 +39,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   private static final String TAG = Log.tag(RetrieveProfileAvatarJob.class);
 
   private static final long MIN_TIME_BETWEEN_FORCE_RETRY = TimeUnit.DAYS.toMillis(1);
+  private static final int  BACKUP_RESTORE_MAX_ATTEMPTS  = 5;
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_RECIPIENT      = "recipient";
@@ -62,6 +63,13 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     return new RetrieveProfileAvatarJob(recipient, profileAvatar, forceUpdate, false, Parameters.PRIORITY_HIGH);
   }
 
+  /**
+   * Runs on the {@link ProfileUploadJob} queue so the post-restore profile upload waits for this download, since uploading without the avatar file deletes it from the server.
+   */
+  public static RetrieveProfileAvatarJob forBackupRestore(Recipient self, String profileAvatar) {
+    return new RetrieveProfileAvatarJob(self, profileAvatar, false, false, Parameters.PRIORITY_DEFAULT, ProfileUploadJob.QUEUE, BACKUP_RESTORE_MAX_ATTEMPTS);
+  }
+
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(recipient, profileAvatar, false);
   }
@@ -75,8 +83,13 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   }
 
   private RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar, boolean forceUpdate, boolean forUnblurred, @Parameters.Priority int priority) {
+    this(recipient, profileAvatar, forceUpdate, forUnblurred, priority, "RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey(), 1);
+  }
+
+  private RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar, boolean forceUpdate, boolean forUnblurred, @Parameters.Priority int priority, @NonNull String queue, int maxAttempts) {
     this(new Job.Parameters.Builder().setGlobalPriority(priority)
-                                     .setQueue("RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey())
+                                     .setQueue(queue)
+                                     .setMaxAttempts(maxAttempts)
                                      .addConstraint(NetworkConstraint.KEY)
                                      .addConstraint(DataRestoreConstraint.KEY)
                                      .setLifespan(TimeUnit.HOURS.toMillis(1))

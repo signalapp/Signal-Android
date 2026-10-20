@@ -239,7 +239,7 @@ object AccountDataArchiveProcessor {
     }
 
     if (accountData.avatarUrlPath.isNotEmpty()) {
-      AppDependencies.jobManager.add(RetrieveProfileAvatarJob(Recipient.self().fresh(), accountData.avatarUrlPath))
+      AppDependencies.jobManager.add(RetrieveProfileAvatarJob.forBackupRestore(Recipient.self().fresh(), accountData.avatarUrlPath))
     }
 
     val usernameLink = accountData.usernameLink
