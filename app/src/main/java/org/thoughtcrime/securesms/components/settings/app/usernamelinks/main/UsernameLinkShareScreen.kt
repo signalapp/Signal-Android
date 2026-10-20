@@ -35,11 +35,11 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.Util
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab

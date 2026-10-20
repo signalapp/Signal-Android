@@ -38,6 +38,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.QrCode
+import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
 import org.thoughtcrime.securesms.R
 

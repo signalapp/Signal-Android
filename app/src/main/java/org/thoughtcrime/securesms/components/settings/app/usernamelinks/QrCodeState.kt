@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks
 
+import org.signal.core.ui.compose.QrCodeData
+
 sealed class QrCodeState {
   /** QR code data exists and is available. */
   data class Present(val data: QrCodeData) : QrCodeState()

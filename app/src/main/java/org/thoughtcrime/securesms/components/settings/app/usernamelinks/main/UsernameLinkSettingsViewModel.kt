@@ -34,11 +34,10 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import org.signal.core.ui.compose.QrCodeData
+import org.signal.core.ui.compose.drawQr
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeState
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.drawQr
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -48,6 +47,7 @@ import org.thoughtcrime.securesms.util.NetworkUtil
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import java.util.Optional
 import java.util.UUID
+import org.signal.core.ui.R as CoreUiR
 
 class UsernameLinkSettingsViewModel : ViewModel() {
 
@@ -298,7 +298,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     }
 
     // Draw the signal logo -- unfortunately can't have the normal QR code drawing handle it because it requires a composable ImageBitmap
-    BitmapFactory.decodeResource(AppDependencies.application.resources, R.drawable.qrcode_logo).also { logoBitmap ->
+    BitmapFactory.decodeResource(AppDependencies.application.resources, CoreUiR.drawable.qrcode_logo).also { logoBitmap ->
       val tintedPaint = Paint().apply {
         colorFilter = PorterDuffColorFilter(state.qrCodeColorScheme.foregroundColor.toArgb(), PorterDuff.Mode.SRC_IN)
       }
