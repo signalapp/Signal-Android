@@ -56,6 +56,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.ui.viewModel
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
@@ -71,7 +72,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.tr
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.details.BankTransferDetailsViewModel.Field
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**

@@ -414,7 +414,7 @@ fun DeviceListScreen(
       modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 12.dp, bottom = 4.dp)
     )
     ClickableText(
-      text = AnnotatedString(stringResource(id = R.string.LearnMoreTextView_learn_more)),
+      text = AnnotatedString(stringResource(id = CoreUiR.string.LearnMoreTextView_learn_more)),
       style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.primary)
     ) {
       onLearnMoreClicked()

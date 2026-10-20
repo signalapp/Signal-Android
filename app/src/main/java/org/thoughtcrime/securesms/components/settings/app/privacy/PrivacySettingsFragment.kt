@@ -23,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
 import org.signal.core.ui.biometrics.BiometricDeviceLockContract
 import org.signal.core.ui.util.ExpirationUtil
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.ServiceUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseChangeActivity
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate

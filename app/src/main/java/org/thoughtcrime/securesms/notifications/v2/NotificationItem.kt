@@ -9,6 +9,7 @@ import android.text.TextUtils
 import androidx.annotation.StringRes
 import androidx.core.graphics.drawable.IconCompat
 import org.signal.core.ui.permissions.Permissions
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.emoji.EmojiStrings
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.hasPoll
 import org.thoughtcrime.securesms.util.hasPollTerminate

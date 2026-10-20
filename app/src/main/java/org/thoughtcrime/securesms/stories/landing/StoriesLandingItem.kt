@@ -13,6 +13,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireDrawable
 import org.signal.glide.decryptableuri.DecryptableUri
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

@@ -55,11 +55,11 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.DonationTransferTestTags
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**

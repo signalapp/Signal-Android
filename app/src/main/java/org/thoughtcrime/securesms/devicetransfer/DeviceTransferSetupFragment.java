@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.signal.core.ui.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
 import org.signal.core.ui.util.ViewUtil;
 

@@ -85,7 +85,7 @@ import org.signal.core.ui.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;

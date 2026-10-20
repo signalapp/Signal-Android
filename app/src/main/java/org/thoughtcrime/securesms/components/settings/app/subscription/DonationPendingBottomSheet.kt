@@ -33,12 +33,12 @@ import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
 
 /**
  * Displayed after the user completes the donation flow for a bank transfer.

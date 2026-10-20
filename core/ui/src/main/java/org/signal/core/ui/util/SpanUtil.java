@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.ui.util;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -36,9 +36,8 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.ui.util.ViewUtil;
+import org.signal.core.ui.R;
 import org.signal.core.util.DimensionUnit;
-import org.thoughtcrime.securesms.R;
 
 public final class SpanUtil {
 
@@ -200,7 +199,7 @@ public final class SpanUtil {
   }
 
   public static Spannable clickSubstring(@NonNull Context context, @StringRes int mainString, @StringRes int clickableString, @NonNull View.OnClickListener clickListener) {
-    return clickSubstring(context, mainString, clickableString, clickListener, false, org.signal.core.ui.R.color.signal_accent_primary);
+    return clickSubstring(context, mainString, clickableString, clickListener, false, R.color.signal_accent_primary);
   }
 
   /**
@@ -251,7 +250,7 @@ public final class SpanUtil {
     return clickSubstring(fullString,
                           substring,
                           clickListener,
-                          ContextCompat.getColor(context, org.signal.core.ui.R.color.signal_accent_primary));
+                          ContextCompat.getColor(context, R.color.signal_accent_primary));
   }
 
   public static CharSequence clickSubstring(@NonNull CharSequence fullString,

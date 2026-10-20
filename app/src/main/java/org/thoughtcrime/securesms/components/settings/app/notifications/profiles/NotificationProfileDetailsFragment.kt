@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
 import org.signal.core.models.recipients.RecipientId
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.orderOfDaysInWeek
 import org.signal.emoji.EmojiUtil
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.navigation.safeNavigate

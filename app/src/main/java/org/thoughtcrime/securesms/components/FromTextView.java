@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.signal.core.ui.util.ViewUtil;
 
 public class FromTextView extends SimpleEmojiTextView {

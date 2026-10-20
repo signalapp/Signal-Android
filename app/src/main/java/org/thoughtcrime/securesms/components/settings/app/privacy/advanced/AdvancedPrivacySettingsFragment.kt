@@ -44,6 +44,7 @@ import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays advanced privacy controls such as call relaying and
@@ -282,7 +283,7 @@ private fun AdvancedPrivacySettingsScreen(
               callbacks.onSealedSenderLearnMoreClick()
             })
           ) {
-            append(stringResource(R.string.LearnMoreTextView_learn_more))
+            append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
           }
         }
 
@@ -304,7 +305,7 @@ private fun AdvancedPrivacySettingsScreen(
               callbacks.onAutomaticVerificationLearnMoreClick()
             })
           ) {
-            append(stringResource(R.string.LearnMoreTextView_learn_more))
+            append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
           }
         }
 

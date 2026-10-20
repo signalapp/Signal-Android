@@ -46,6 +46,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.ui.compose.FastScrollCharacterProvider
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.requireDrawable
 import org.signal.emoji.EmojiUtil
@@ -64,7 +65,6 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SearchUtil
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel

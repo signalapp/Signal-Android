@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.payments.preferences.PaymentType;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;

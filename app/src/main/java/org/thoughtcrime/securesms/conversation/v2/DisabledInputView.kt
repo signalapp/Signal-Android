@@ -16,13 +16,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.visible
 import org.signal.core.ui.R as CoreUiR
 

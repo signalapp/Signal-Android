@@ -14,6 +14,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.materialswitch.MaterialSwitch
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
+import org.signal.core.ui.util.SpanUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.BadgeRepository
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.badges.BadgeRepository.DonationBadgeToggle
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import org.signal.core.ui.R as CoreUiR

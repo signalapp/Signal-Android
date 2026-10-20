@@ -111,7 +111,7 @@ fun VerifyDisplayScreen(
               CommunicationActions.openBrowserLink(context, "https://signal.org/redirect/safety-numbers")
             }
           ) {
-            append(stringResource(R.string.LearnMoreTextView_learn_more))
+            append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
           }
         },
         textAlign = TextAlign.Center,
@@ -149,7 +149,7 @@ fun VerifyDisplayScreen(
                 CommunicationActions.openBrowserLink(context, url)
               }
             ) {
-              append(stringResource(R.string.LearnMoreTextView_learn_more))
+              append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
             }
           },
           style = MaterialTheme.typography.bodyMedium,

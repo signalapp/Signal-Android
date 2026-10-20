@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.bitmaps.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 
 import java.util.ArrayList;
 import java.util.List;

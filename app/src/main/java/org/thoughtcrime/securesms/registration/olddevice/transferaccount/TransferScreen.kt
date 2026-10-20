@@ -42,12 +42,12 @@ import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.fonts.SignalSymbols
 import org.signal.core.ui.fonts.SignalSymbols.SignalSymbol
+import org.signal.core.ui.util.SpanUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceActivity
 import org.thoughtcrime.securesms.registration.olddevice.QuickTransferOldDeviceState
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -479,7 +479,7 @@ private fun LegacyGroupNotice(
   when (legacyGroupState) {
     LegacyGroupState.LEARN_MORE -> {
       body = stringResource(R.string.ManageGroupActivity_legacy_group_learn_more)
-      linkLabel = stringResource(R.string.LearnMoreTextView_learn_more)
+      linkLabel = stringResource(CoreUiR.string.LearnMoreTextView_learn_more)
       onClick = onLearnMoreClick
     }
 

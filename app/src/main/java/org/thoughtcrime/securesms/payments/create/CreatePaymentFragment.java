@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.payments.MoneyView;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.signal.core.ui.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
@@ -107,7 +107,7 @@ public class CreatePaymentFragment extends LoggingFragment {
       new MaterialAlertDialogBuilder(requireContext())
           .setMessage(R.string.CreatePaymentFragment__conversions_are_just_estimates)
           .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
-          .setNegativeButton(R.string.LearnMoreTextView_learn_more, (dialog, which) -> {
+          .setNegativeButton(org.signal.core.ui.R.string.LearnMoreTextView_learn_more, (dialog, which) -> {
             dialog.dismiss();
             CommunicationActions.openBrowserLink(requireContext(), getString(R.string.CreatePaymentFragment__learn_more__conversions));
           })

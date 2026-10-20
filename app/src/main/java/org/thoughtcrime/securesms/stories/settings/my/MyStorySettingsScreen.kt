@@ -37,6 +37,7 @@ import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object MyStorySettingsTestTags {
@@ -207,7 +208,7 @@ private fun LearnMoreText(onEvent: (MyStorySettingsEvent) -> Unit) {
         linkInteractionListener = { onEvent(MyStorySettingsEvent.LearnMoreClicked) }
       )
     ) {
-      append(stringResource(R.string.LearnMoreTextView_learn_more))
+      append(stringResource(CoreUiR.string.LearnMoreTextView_learn_more))
     }
   }
 

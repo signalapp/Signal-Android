@@ -41,11 +41,11 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.util.SpanUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.SpanUtil
 import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 

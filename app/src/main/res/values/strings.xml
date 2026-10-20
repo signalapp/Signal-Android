@@ -1554,11 +1554,6 @@
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Discard</string>
 
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
-
-    <string name="SpanUtil__read_more">Read more</string>
-
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Unable to find message</string>
     <string name="LongMessageActivity_message_from_s">Message from %1$s</string>

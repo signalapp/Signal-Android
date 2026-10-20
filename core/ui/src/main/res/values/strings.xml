@@ -97,4 +97,9 @@
 
     <string name="expiration_weeks_abbreviated">%dw</string>
     <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Learn more</string>
+
+    <string name="SpanUtil__read_more">Read more</string>
 </resources>

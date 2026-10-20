@@ -19,7 +19,7 @@ import org.signal.core.ui.util.ThemeUtil;
 import org.signal.core.util.BidiUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
-import org.thoughtcrime.securesms.util.SpanUtil;
+import org.signal.core.ui.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;

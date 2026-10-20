@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.ui.util;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
