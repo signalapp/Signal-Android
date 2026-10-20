@@ -97,8 +97,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_install_app,
-              width = 48.dp,
-              height = 52.dp
+              width = 64.dp,
+              height = 64.dp
             )
           }
         )
@@ -109,8 +109,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_open_app,
-              width = 45.dp,
-              height = 86.dp
+              width = 64.dp,
+              height = 96.dp
             )
           }
         ) {
@@ -177,8 +177,8 @@ fun TotpSetupScreen(
           illustration = {
             StepImage(
               image = R.drawable.image_authenticator_copy_code,
-              width = 62.dp,
-              height = 38.dp
+              width = 64.dp,
+              height = 64.dp
             )
           }
         )

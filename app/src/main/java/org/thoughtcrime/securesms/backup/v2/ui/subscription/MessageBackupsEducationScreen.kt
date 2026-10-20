@@ -70,7 +70,7 @@ fun MessageBackupsEducationScreen(
             contentDescription = null,
             modifier = Modifier
               .padding(top = 24.dp)
-              .size(80.dp)
+              .size(96.dp)
           )
         }
 

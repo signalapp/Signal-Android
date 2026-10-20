@@ -110,7 +110,7 @@ fun MessageBackupsTypeSelectionScreen(
           Image(
             painter = painterResource(id = R.drawable.image_signal_backups_plans),
             contentDescription = null,
-            modifier = Modifier.size(88.dp)
+            modifier = Modifier.size(96.dp)
           )
         }
 
