@@ -299,9 +299,7 @@ object RecurringInAppPaymentRepository {
 
       if (response.status == 200 || response.status == 204) {
         Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${response.status}", true)
-        SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(subscriberType)
-        MultiDeviceSubscriptionSyncRequestJob.enqueue()
-        syncAccountRecord().subscribe()
+        onSubscriptionLevelSet(subscriberType)
       } else {
         if (response.applicationError.isPresent) {
           Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${response.status}", response.applicationError.get(), true)
@@ -320,6 +318,15 @@ object RecurringInAppPaymentRepository {
     InAppPaymentRecurringContextJob.createJobChain(freshPayment).enqueue()
 
     return freshPayment
+  }
+
+  /**
+   * Local bookkeeping to perform after the server accepts a subscription level update.
+   */
+  fun onSubscriptionLevelSet(subscriberType: InAppPaymentSubscriberRecord.Type) {
+    SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(subscriberType)
+    MultiDeviceSubscriptionSyncRequestJob.enqueue()
+    syncAccountRecord().subscribe()
   }
 
   /**

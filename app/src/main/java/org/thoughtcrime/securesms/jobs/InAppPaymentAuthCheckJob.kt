@@ -15,6 +15,7 @@ import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
 import org.signal.donations.json.StripePaymentIntent
 import org.signal.donations.json.StripeSetupIntent
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.util.Environment
+import org.whispersystems.signalservice.api.successOrThrow
 import org.whispersystems.signalservice.internal.ServiceResponse
 import kotlin.concurrent.withLock
 import kotlin.time.Duration
@@ -153,13 +155,20 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Downloading payment intent.")
-    val stripeIntentData: StripePaymentIntent = stripeApi.getPaymentIntent(
+    val stripeIntentDataResult = stripeApi.getPaymentIntent(
       StripeIntentAccessor(
         objectType = StripeIntentAccessor.ObjectType.PAYMENT_INTENT,
         intentId = inAppPayment.data.waitForAuth.stripeIntentId,
         intentClientSecret = inAppPayment.data.waitForAuth.stripeClientSecret
       )
     )
+
+    if (stripeIntentDataResult is RequestResult.RetryableNetworkError) {
+      Log.w(TAG, "Network error while downloading payment intent.", stripeIntentDataResult.networkError, true)
+      return CheckResult.Retry
+    }
+
+    val stripeIntentData: StripePaymentIntent = stripeIntentDataResult.successOrThrow()
 
     val checkIntentStatusResult = checkIntentStatus(stripeIntentData.status)
     if (checkIntentStatusResult !is CheckResult.Success) {
@@ -192,13 +201,20 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Downloading setup intent.")
-    val stripeSetupIntent: StripeSetupIntent = stripeApi.getSetupIntent(
+    val stripeSetupIntentResult = stripeApi.getSetupIntent(
       StripeIntentAccessor(
         objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
         intentId = inAppPayment.data.waitForAuth.stripeIntentId,
         intentClientSecret = inAppPayment.data.waitForAuth.stripeClientSecret
       )
     )
+
+    if (stripeSetupIntentResult is RequestResult.RetryableNetworkError) {
+      Log.w(TAG, "Network error while downloading setup intent.", stripeSetupIntentResult.networkError, true)
+      return CheckResult.Retry
+    }
+
+    val stripeSetupIntent: StripeSetupIntent = stripeSetupIntentResult.successOrThrow()
 
     val checkIntentStatusResult = checkIntentStatus(stripeSetupIntent.status)
     if (checkIntentStatusResult !is CheckResult.Success) {
@@ -277,6 +293,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
       if (updateLevelResponse.status in listOf(200, 204)) {
         Log.d(TAG, "Successfully set user subscription to level $level with response code ${updateLevelResponse.status}", true)
+        RecurringInAppPaymentRepository.onSubscriptionLevelSet(subscriber.type)
         SignalDatabase.inAppPayments.update(
           inAppPayment = inAppPayment.copy(
             state = InAppPaymentTable.State.PENDING,

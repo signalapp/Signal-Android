@@ -46,7 +46,7 @@ object SharedInAppPaymentPipeline {
    * Awaits completion of the transaction with Stripe.
    *
    * This method will enqueue the proper setup job based off the type of [InAppPaymentTable.InAppPayment] and then
-   * await for either [InAppPaymentTable.State.PENDING], [InAppPaymentTable.State.REQUIRES_ACTION] or [InAppPaymentTable.State.END]
+   * await for either [InAppPaymentTable.State.PENDING], [InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION], [InAppPaymentTable.State.REQUIRES_ACTION] or [InAppPaymentTable.State.END]
    * before moving further, handling each state appropriately.
    */
   @CheckResult
@@ -75,12 +75,17 @@ object SharedInAppPaymentPipeline {
 
         AppDependencies.jobManager.add(job)
       }
-      .skipWhile { it.state != InAppPaymentTable.State.PENDING && it.state != InAppPaymentTable.State.REQUIRES_ACTION && it.state != InAppPaymentTable.State.END }
+      .skipWhile {
+        it.state != InAppPaymentTable.State.PENDING &&
+          it.state != InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION &&
+          it.state != InAppPaymentTable.State.REQUIRES_ACTION &&
+          it.state != InAppPaymentTable.State.END
+      }
       .firstOrError()
       .flatMap { iap ->
         when (iap.state) {
-          InAppPaymentTable.State.PENDING -> {
-            Log.w(TAG, "Payment of type ${iap.type} is pending. Awaiting completion.")
+          InAppPaymentTable.State.PENDING, InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION -> {
+            Log.w(TAG, "Payment of type ${iap.type} is ${iap.state}. Awaiting completion.")
             awaitRedemption(iap, paymentSource.type)
           }
 

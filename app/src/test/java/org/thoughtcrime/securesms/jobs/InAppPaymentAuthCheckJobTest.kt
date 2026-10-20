@@ -30,7 +30,9 @@ import org.signal.donations.StripeApi
 import org.signal.donations.json.StripeIntentStatus
 import org.signal.donations.json.StripePaymentIntent
 import org.signal.donations.json.StripeSetupIntent
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentSubscriberTable
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -45,6 +47,7 @@ import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.math.BigDecimal
+import java.net.SocketTimeoutException
 import java.util.Currency
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -73,12 +76,15 @@ class InAppPaymentAuthCheckJobTest {
     mockkConstructor(StripeApi::class)
     mockkObject(RemoteConfig)
     every { RemoteConfig.defaultMaxBackoff } returns 60.minutes.inWholeMilliseconds
+    mockkObject(RecurringInAppPaymentRepository)
+    every { RecurringInAppPaymentRepository.onSubscriptionLevelSet(any()) } returns Unit
   }
 
   @After
   fun tearDown() {
     unmockkConstructor(StripeApi::class)
     unmockkObject(RemoteConfig)
+    unmockkObject(RecurringInAppPaymentRepository)
   }
 
   @Test
@@ -131,6 +137,19 @@ class InAppPaymentAuthCheckJobTest {
     assertThat(payment.data.waitForAuth?.checkedVerification).isEqualTo(true)
   }
 
+  @Test
+  fun givenNetworkErrorDownloadingPaymentIntent_whenIRun_thenIExpectRetryAndPaymentStillWaiting() {
+    every { anyConstructed<StripeApi>().getPaymentIntent(any()) } returns RequestResult.RetryableNetworkError(SocketTimeoutException())
+    val id = insertWaitingForAuth(checkedVerification = false, age = 5.minutes)
+
+    val result = InAppPaymentAuthCheckJob().run()
+
+    assertThat(result.isRetry).isTrue()
+    val payment = SignalDatabase.inAppPayments.getById(id)!!
+    assertThat(payment.state).isEqualTo(InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION)
+    assertThat(payment.data.error).isNull()
+  }
+
   // region SEPA / PROCESSING -- settlement can take up to two weeks, so these must never time out.
 
   @Test
@@ -149,14 +168,16 @@ class InAppPaymentAuthCheckJobTest {
   }
 
   @Test
-  fun givenProcessingRecurringSepaSetupOlderThanTimeout_whenIRun_thenIExpectSubscriptionLevelUpdateAndPending() {
+  fun givenProcessingRecurringSepaSetupOlderThanTimeout_whenIRun_thenIExpectSubscriptionLevelUpdateBookkeepingAndPending() {
     val subscriberId = insertDonationSubscriber()
-    every { anyConstructed<StripeApi>().getSetupIntent(any()) } returns StripeSetupIntent(
-      id = "test-intent-id",
-      clientSecret = "test-client-secret",
-      status = StripeIntentStatus.PROCESSING,
-      paymentMethodId = "pm_test",
-      customer = null
+    every { anyConstructed<StripeApi>().getSetupIntent(any()) } returns RequestResult.Success(
+      StripeSetupIntent(
+        id = "test-intent-id",
+        clientSecret = "test-client-secret",
+        status = StripeIntentStatus.PROCESSING,
+        paymentMethodId = "pm_test",
+        customer = null
+      )
     )
     every { signalStore.inAppPayments.getLevelOperation(any()) } returns null
     every { AppDependencies.donationsService.setDefaultStripePaymentMethod(any(), any()) } returns ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, "")
@@ -175,6 +196,7 @@ class InAppPaymentAuthCheckJobTest {
     assertThat(SignalDatabase.inAppPayments.getById(id)!!.state).isEqualTo(InAppPaymentTable.State.PENDING)
     verify { AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriberId, "pm_test") }
     verify { AppDependencies.donationsService.updateSubscriptionLevel(subscriberId, "500", "EUR", any(), any()) }
+    verify { RecurringInAppPaymentRepository.onSubscriptionLevelSet(InAppPaymentSubscriberRecord.Type.DONATION) }
   }
 
   @Test
@@ -246,11 +268,13 @@ class InAppPaymentAuthCheckJobTest {
   }
 
   private fun givenStripeStatus(status: StripeIntentStatus) {
-    every { anyConstructed<StripeApi>().getPaymentIntent(any()) } returns StripePaymentIntent(
-      id = "test-intent-id",
-      clientSecret = "test-client-secret",
-      status = status,
-      paymentMethod = null
+    every { anyConstructed<StripeApi>().getPaymentIntent(any()) } returns RequestResult.Success(
+      StripePaymentIntent(
+        id = "test-intent-id",
+        clientSecret = "test-client-secret",
+        status = status,
+        paymentMethod = null
+      )
     )
   }
 

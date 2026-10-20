@@ -136,7 +136,12 @@ class InAppPaymentCheckoutDelegate(
     } else {
       fragment.lifecycleScope.launch {
         val inAppPayment = withContext(SignalDispatchers.Default) {
-          SignalDatabase.inAppPayments.getById(result.inAppPaymentId!!)!!
+          val inAppPayment = SignalDatabase.inAppPayments.getById(result.inAppPaymentId!!)!!
+          if (inAppPayment.state == InAppPaymentTable.State.END && inAppPayment.data.error == null && !inAppPayment.notified) {
+            SignalDatabase.inAppPayments.update(inAppPayment.copy(notified = true))
+          }
+
+          inAppPayment
         }
 
         callback.onPaymentComplete(inAppPayment)
