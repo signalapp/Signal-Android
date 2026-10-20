@@ -7,8 +7,8 @@ package org.thoughtcrime.securesms.components.settings.app.appearance.appicon
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.appearance.appicon.AppIconTutorialEvent
-import org.signal.appsettings.appearance.appicon.AppIconTutorialScreen
+import org.signal.appsettings.appicon.AppIconTutorialEvent
+import org.signal.appsettings.appicon.AppIconTutorialScreen
 import org.signal.core.ui.compose.ComposeFragment
 
 class AppIconTutorialFragment : ComposeFragment() {

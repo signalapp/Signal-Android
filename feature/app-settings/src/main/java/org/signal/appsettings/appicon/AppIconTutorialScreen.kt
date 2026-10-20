@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.appsettings.appearance.appicon
+package org.signal.appsettings.appicon
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.VisibleForTesting

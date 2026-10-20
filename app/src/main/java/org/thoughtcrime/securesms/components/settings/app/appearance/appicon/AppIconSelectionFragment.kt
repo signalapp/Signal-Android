@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.appearance.appicon.AppIconSelectionAction
-import org.signal.appsettings.appearance.appicon.AppIconSelectionScreen
-import org.signal.appsettings.appearance.appicon.AppIconSelectionViewModel
-import org.signal.appsettings.appearance.appicon.AppIconUtility
+import org.signal.appsettings.appicon.AppIconSelectionAction
+import org.signal.appsettings.appicon.AppIconSelectionScreen
+import org.signal.appsettings.appicon.AppIconSelectionViewModel
+import org.signal.appsettings.appicon.AppIconUtility
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel

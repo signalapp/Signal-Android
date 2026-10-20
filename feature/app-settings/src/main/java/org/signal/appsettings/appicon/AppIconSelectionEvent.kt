@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.appsettings.appearance.appicon
+package org.signal.appsettings.appicon
 
 /**
  * Reminder that these events are logged, so don't include anything sensitive in the toString.
