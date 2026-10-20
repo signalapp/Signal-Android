@@ -5,82 +5,35 @@
 
 package org.thoughtcrime.securesms.components.settings.app.help
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.rxjava3.subscribeAsState
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.getValue
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.appsettings.help.LicenseAction
+import org.signal.appsettings.help.LicenseScreen
+import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
-import java.io.InputStream
-import org.signal.appsettings.R as AppSettingsR
-import org.signal.core.ui.R as CoreUiR
 
 class LicenseFragment : ComposeFragment() {
-  private val TAG = Log.tag(LicenseFragment::class.java)
+
+  private val viewModel: LicenseViewModel by viewModels()
 
   @Composable
   override fun FragmentContent() {
-    val textState: State<List<String>> = Single
-      .fromCallable {
-        requireContext().resources.openRawResource(R.raw.third_party_licenses).readToLines() +
-          requireContext().assets.open("acknowledgments/libsignal.md").readToLines() +
-          requireContext().assets.open("acknowledgments/ringrtc.md").readToLines()
-      }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeAsState(initial = emptyList())
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Scaffolds.Settings(
-      title = stringResource(id = AppSettingsR.string.HelpSettingsFragment__licenses),
-      onNavigationClick = findNavController()::popBackStack,
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) {
-      LicenseScreen(licenseTextLines = textState.value, modifier = Modifier.padding(it))
+    CollectActions(viewModel.actions) { handleAction(it) }
+
+    LicenseScreen(
+      state = state,
+      onEvent = viewModel::onEvent
+    )
+  }
+
+  private fun handleAction(action: LicenseAction) {
+    when (action) {
+      LicenseAction.NavigateBack -> findNavController().popBackStack()
     }
   }
-}
-
-@Composable
-fun LicenseScreen(licenseTextLines: List<String>, modifier: Modifier = Modifier) {
-  Surface(modifier = modifier) {
-    LazyColumn(modifier = Modifier.padding(horizontal = 4.dp)) {
-      licenseTextLines.forEach { line ->
-        item {
-          Text(
-            text = line,
-            style = MaterialTheme.typography.bodyMedium
-          )
-        }
-      }
-    }
-  }
-}
-
-@DayNightPreviews
-@Composable
-fun LicenseFragmentPreview() {
-  Previews.Preview {
-    LicenseScreen(listOf("Lorem ipsum", "Delor"))
-  }
-}
-
-private fun InputStream.readToLines(): List<String> {
-  return this.bufferedReader().use { it.readText().split("\n") }
 }
