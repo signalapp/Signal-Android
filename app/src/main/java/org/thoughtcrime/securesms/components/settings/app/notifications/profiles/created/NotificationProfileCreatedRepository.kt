@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
+package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.created
 
 import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers

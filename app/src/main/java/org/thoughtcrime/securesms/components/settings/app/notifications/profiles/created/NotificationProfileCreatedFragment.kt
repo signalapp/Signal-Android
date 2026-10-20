@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
+package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.created
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
