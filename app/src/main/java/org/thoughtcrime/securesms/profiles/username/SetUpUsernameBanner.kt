@@ -50,8 +50,8 @@ fun SetUpUsernameBanner(
       .fillMaxWidth()
       .clip(RoundedCornerShape(36.dp))
       .background(colorResource(R.color.set_up_username_banner_background))
-      .defaultMinSize(minHeight = 72.dp)
-      .padding(start = 20.dp, end = 12.dp, top = 8.dp, bottom = 8.dp)
+      .defaultMinSize(minHeight = 56.dp)
+      .padding(start = 16.dp, end = 12.dp, top = 8.dp, bottom = 8.dp)
   ) {
     Icon(
       imageVector = ImageVector.vectorResource(CoreUiR.drawable.symbol_at_24),
@@ -61,8 +61,8 @@ fun SetUpUsernameBanner(
     )
 
     Text(
-      text = stringResource(R.string.SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you),
-      style = MaterialTheme.typography.bodyMedium,
+      text = stringResource(R.string.SetUpUsernameBanner__choose_a_username),
+      style = MaterialTheme.typography.bodyLarge,
       color = colorResource(CoreUiR.color.signal_light_colorOnSurface),
       modifier = Modifier
         .weight(1f)
