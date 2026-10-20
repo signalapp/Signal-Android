@@ -75,6 +75,7 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.appsettings.twofactorverify.TwoFactorVerifyMethod
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.NavigationType
 import org.signal.core.ui.compose.Snackbars
@@ -115,6 +116,7 @@ import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSh
 import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
@@ -774,6 +776,26 @@ class MainActivity :
 
     if (requestCode == AppSettingsActivity.REQUEST_CODE_UPGRADE_LOCAL_BACKUPS) {
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.USE_NEW_ON_DEVICE_BACKUPS))
+    }
+
+    if (resultCode == RESULT_OK && requestCode == TwoFactorVerifyActivity.REQUEST_CODE) {
+      val message = when (TwoFactorVerifyActivity.getVerifiedMethod(data)) {
+        TwoFactorVerifyMethod.AUTHENTICATOR_APP -> getString(R.string.TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app)
+        TwoFactorVerifyMethod.PASSKEY -> getString(R.string.TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey)
+        null -> null
+      }
+
+      if (message != null) {
+        mainNavigationViewModel.snackbarRegistry.emit(
+          SnackbarState(
+            message = message,
+            duration = Snackbars.Duration.SHORT,
+            hostKey = MainSnackbarHostKey.MainChrome
+          )
+        )
+      }
+
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.TWO_FACTOR_REMINDER))
     }
   }
 

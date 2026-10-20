@@ -89,6 +89,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
     private const val KEY_HAS_INACTIVE_PRIMARY_DEVICE_ALERT = "account.has_inactive_primary_device_alert"
+    private const val KEY_HAS_TWO_FACTOR_METHODS = "account.has_two_factor_methods"
     private const val KEY_NOT_SYNCED_ROTATED_SELF_PROFILE_KEY = "account.not_synced_rotated_self_profile_key"
 
     private const val KEY_VERIFICATION_CODE_REQUESTED_AT = "account.verification_code_requested_at"
@@ -577,6 +578,9 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   @get:JvmName("hasInactivePrimaryDeviceAlert")
   var hasInactivePrimaryDeviceAlert: Boolean by booleanValue(KEY_HAS_INACTIVE_PRIMARY_DEVICE_ALERT, false)
+
+  /** Whether the account had at least one two-factor method the last time anything checked with the service. Only phone-numberless accounts have them. */
+  var hasTwoFactorMethods: Boolean by booleanValue(KEY_HAS_TWO_FACTOR_METHODS, false)
 
   /** The local user's full username (nickname.discriminator), if set. */
   var username: String?

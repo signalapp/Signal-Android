@@ -849,6 +849,10 @@ class RegistrationRepository(
       Log.w(TAG, "[reRegisterAccountWithoutPhoneNumber] The service did not return an authCredentialSalt!")
     }
 
+    if (result is RequestResult.Success && (totp != null || webAuthnResponse != null)) {
+      storageController.markHasTwoFactorMethods()
+    }
+
     result
   }
 

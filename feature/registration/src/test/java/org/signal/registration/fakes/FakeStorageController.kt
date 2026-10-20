@@ -40,6 +40,10 @@ class FakeStorageController : StorageController {
   var restoreDecision: RestoreDecision? = null
     private set
 
+  /** Whether the flow told us the account has two-factor methods, which it learns by having to present one. */
+  var hasTwoFactorMethods: Boolean = false
+    private set
+
   /** How many times [onRegistrationFlowFinished] has been called. The app hangs post-registration bookkeeping off of this. */
   var registrationFlowFinishedCount: Int = 0
     private set
@@ -114,6 +118,10 @@ class FakeStorageController : StorageController {
 
   override suspend fun onRegistrationFlowFinished() {
     registrationFlowFinishedCount++
+  }
+
+  override suspend fun markHasTwoFactorMethods() {
+    hasTwoFactorMethods = true
   }
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) {

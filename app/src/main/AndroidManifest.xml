@@ -930,6 +930,12 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".groups.ui.incommon.GroupsInCommonActivity"
             android:exported="false"
             android:theme="@style/Signal.DayNight.NoActionBar" />

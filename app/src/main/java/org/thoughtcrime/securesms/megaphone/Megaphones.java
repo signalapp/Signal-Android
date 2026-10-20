@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupUpsellBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
@@ -133,6 +134,7 @@ public final class Megaphones {
       put(Event.BACKUP_MESSAGE_COUNT_UPSELL, shouldShowBackupMessageCountUpsell() ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.BACKUPS_GENERIC_UPSELL, shouldShowGenericBackupsMegaphone(context) ? new BackupUpsellSchedule(records, TimeUnit.DAYS.toMillis(60)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
+      put(Event.TWO_FACTOR_REMINDER, new TwoFactorReminderSchedule());
       put(Event.USE_NEW_ON_DEVICE_BACKUPS, shouldShowUseNewOnDeviceBackupsMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
 
       // The Great Wall of PIN Reminder -- megaphones below this may not be seen by users who never do reminders
@@ -202,6 +204,8 @@ public final class Megaphones {
         return buildBackupLowStorageUpsellMegaphone();
       case VERIFY_BACKUP_KEY:
         return buildVerifyBackupKeyMegaphone();
+      case TWO_FACTOR_REMINDER:
+        return buildTwoFactorReminderMegaphone();
       case USE_NEW_ON_DEVICE_BACKUPS:
         return buildUseNewOnDeviceBackupsMegaphone();
       case INACTIVE_PRIMARY:
@@ -513,6 +517,27 @@ public final class Megaphones {
     return builder.build();
   }
 
+  public static @NonNull Megaphone buildTwoFactorReminderMegaphone() {
+    Megaphone.Builder builder = new Megaphone.Builder(Event.TWO_FACTOR_REMINDER, Megaphone.Style.BASIC)
+        .setImage(R.drawable.megaphone_two_factor)
+        .setTitle(R.string.TwoFactorReminderMegaphone__verify_your_two_factor_method)
+        .setBody(R.string.TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify)
+        .setActionButton(R.string.TwoFactorReminderMegaphone__verify, (megaphone, controller) -> {
+          Intent intent = TwoFactorVerifyActivity.createIntent(controller.getMegaphoneActivity());
+
+          controller.onMegaphoneNavigationRequested(intent, TwoFactorVerifyActivity.REQUEST_CODE);
+        });
+
+    if (!SignalStore.uiHints().hasSnoozedTwoFactorReminder()) {
+      builder.setSecondaryButton(R.string.TwoFactorReminderMegaphone__not_now, (megaphone, controller) -> {
+        SignalStore.uiHints().setHasSnoozedTwoFactorReminder(true);
+        controller.onMegaphoneSnooze(Event.TWO_FACTOR_REMINDER);
+      });
+    }
+
+    return builder.build();
+  }
+
   public static @NonNull Megaphone buildUseNewOnDeviceBackupsMegaphone() {
     return new Megaphone.Builder(Event.USE_NEW_ON_DEVICE_BACKUPS, Megaphone.Style.FULLSCREEN)
         .setOnVisibleListener((megaphone, controller) -> {
@@ -776,7 +801,8 @@ public final class Megaphones {
     BACKUP_LOW_STORAGE_UPSELL("backup_storage_upsell"),
     VERIFY_BACKUP_KEY("verify_backup_key"),
     USE_NEW_ON_DEVICE_BACKUPS("use_new_on_device_backups"),
-    INACTIVE_PRIMARY("inactive_primary");
+    INACTIVE_PRIMARY("inactive_primary"),
+    TWO_FACTOR_REMINDER("two_factor_reminder");
 
     private final String key;
 

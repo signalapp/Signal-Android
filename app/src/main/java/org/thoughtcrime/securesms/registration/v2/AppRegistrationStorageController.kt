@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
@@ -289,6 +290,10 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   override suspend fun saveUsername(username: String, usernameLink: UsernameLinkComponents) = withContext(Dispatchers.IO) {
     UsernameRepository.persistUsernameAndLink(username, usernameLink)
     SignalStore.uiHints.markHasSetOrSkippedUsernameCreation()
+  }
+
+  override suspend fun markHasTwoFactorMethods() = withContext(Dispatchers.Default) {
+    TwoFactorReminderSchedule.onMethodsObserved(true)
   }
 
   override suspend fun setRestoreDecision(decision: RestoreDecision) = withContext(Dispatchers.Default) {

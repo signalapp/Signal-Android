@@ -7321,6 +7321,19 @@
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
 
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->

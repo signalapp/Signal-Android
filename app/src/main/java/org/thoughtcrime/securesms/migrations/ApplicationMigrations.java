@@ -218,9 +218,10 @@ public class ApplicationMigrations {
     static final int SVR2_ENCLAVE_UPDATE_7         = 173;
     static final int DISABLE_UNREAD_REMINDER       = 174;
     static final int MENTIONS_STORAGE_SERVICE      = 175;
+    static final int TWO_FACTOR_METHODS            = 176;
   }
 
-  public static final int CURRENT_VERSION = 175;
+  public static final int CURRENT_VERSION = 176;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -1017,6 +1018,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.MENTIONS_STORAGE_SERVICE) {
       jobs.put(Version.MENTIONS_STORAGE_SERVICE, new MentionsStorageServiceMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.TWO_FACTOR_METHODS) {
+      jobs.put(Version.TWO_FACTOR_METHODS, new TwoFactorMethodsMigrationJob());
     }
 
     return jobs;

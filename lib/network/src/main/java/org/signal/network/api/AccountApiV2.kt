@@ -23,8 +23,11 @@ import org.signal.libsignal.net.FinishWebAuthnRegistrationError
 import org.signal.libsignal.net.GenerateTotpKeyError
 import org.signal.libsignal.net.MfaKeyNotFoundException
 import org.signal.libsignal.net.MfaMetadata
+import org.signal.libsignal.net.MfaNotVerifiedException
+import org.signal.libsignal.net.MfaVerificationCredential
 import org.signal.libsignal.net.PendingTotpKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.net.StartMfaVerificationResponse
 import org.signal.libsignal.net.StartWebAuthnRegistrationError
 import org.signal.libsignal.net.SvrKey
 import org.signal.libsignal.net.UsernameNotAvailableException
@@ -213,7 +216,7 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
    * it, returning the id the service assigned. The metadata is encrypted under a key derived from [masterKey], so the
    * service never sees it.
    *
-   * A [MfaNotVerifiedException][org.signal.libsignal.net.MfaNotVerifiedException] means the
+   * A [MfaNotVerifiedException] means the
    * password was wrong, the clocks are too far apart, or there was no pending key -- the service can't tell us which.
    */
   suspend fun confirmTotpKey(oneTimePassword: Int, metadata: MfaMetadata, masterKey: MasterKey): RequestResult<Int, ConfirmTotpKeyError> {
@@ -290,6 +293,30 @@ class AccountApiV2(private val authWebSocket: SignalWebSocket.AuthenticatedWebSo
   suspend fun removeMfaKey(keyId: Int): RequestResult<Unit, Nothing> {
     return authWebSocket.runCatchingWithChatConnection { connection ->
       AuthAccountsService(connection).removeMfaKey(keyId)
+    }
+  }
+
+  /**
+   * Starts a check that the user still holds one of the account's MFA keys, returning which kinds of key the account
+   * has and, for passkeys, the challenge an assertion has to sign. Both can be absent when the account has no keys this
+   * build understands. The check is completed with [finishMfaVerification].
+   */
+  suspend fun startMfaVerification(): RequestResult<StartMfaVerificationResponse, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).startMfaVerification()
+    }
+  }
+
+  /**
+   * Finishes the check [startMfaVerification] began by handing the service a one-time password or a passkey assertion.
+   * Nothing on the account changes either way.
+   *
+   * A [MfaNotVerifiedException] means the service couldn't verify the credential, whether because the code was wrong,
+   * the challenge expired, or the assertion didn't check out.
+   */
+  suspend fun finishMfaVerification(credential: MfaVerificationCredential): RequestResult<Unit, MfaNotVerifiedException> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthAccountsService(connection).finishMfaVerification(credential)
     }
   }
 

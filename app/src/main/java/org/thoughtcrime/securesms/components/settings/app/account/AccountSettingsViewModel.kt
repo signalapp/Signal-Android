@@ -267,7 +267,10 @@ class AccountSettingsViewModel(
 
   private suspend fun refreshTwoFactorMethods() {
     val (methods, loadState) = when (val result = twoFactorMethodService.getMethods(accountRepository.masterKey())) {
-      is RequestResult.Success -> result.result.map { it.toTwoFactorMethod() }.sortedBy { it.kind.sortRank() } to LoadState.LOADED
+      is RequestResult.Success -> {
+        accountRepository.setHasTwoFactorMethods(result.result.isNotEmpty())
+        result.result.map { it.toTwoFactorMethod() }.sortedBy { it.kind.sortRank() } to LoadState.LOADED
+      }
       is RequestResult.RetryableNetworkError, is RequestResult.ApplicationError -> {
         Log.w(TAG, "Couldn't reach the service to list the account's second factors.")
         emptyList<TwoFactorMethod>() to LoadState.NETWORK_FAILURE

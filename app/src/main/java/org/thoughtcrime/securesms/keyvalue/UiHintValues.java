@@ -41,6 +41,9 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG            = "uihints.has_seen_admin_delete_education_dialog";
   private static final String DISMISSED_SET_UP_USERNAME_BANNER                  = "uihints.dismissed_set_up_username_banner";
   private static final String HAS_PROMPTED_OPTIMIZE_DOZE                        = "uihints.has_prompted_optimize_doze";
+  private static final String TWO_FACTOR_LAST_VERIFIED_TIME                     = "uihints.two_factor_last_verified_time";
+  private static final String HAS_VERIFIED_TWO_FACTOR_BEFORE                    = "uihints.has_verified_two_factor_before";
+  private static final String HAS_SNOOZED_TWO_FACTOR_REMINDER                   = "uihints.has_snoozed_two_factor_reminder";
 
   UiHintValues(@NonNull KeyValueStore store, @NonNull Context context) {
     super(store);
@@ -284,5 +287,32 @@ public class UiHintValues extends SignalStoreValues {
 
   public void setHasSeenAdminDeleteEducationDialog() {
     putBoolean(HAS_SEEN_ADMIN_DELETE_EDUCATION_DIALOG, true);
+  }
+
+  /** When the user last proved they still hold a two-factor method, or when we first learned the account had one. */
+  public long getTwoFactorLastVerifiedTime() {
+    return getLong(TWO_FACTOR_LAST_VERIFIED_TIME, 0);
+  }
+
+  public void setTwoFactorLastVerifiedTime(long time) {
+    putLong(TWO_FACTOR_LAST_VERIFIED_TIME, time);
+  }
+
+  /** Whether the user has ever completed the two-factor reminder's verification, which spaces later reminders out further. */
+  public boolean hasVerifiedTwoFactorBefore() {
+    return getBoolean(HAS_VERIFIED_TWO_FACTOR_BEFORE, false);
+  }
+
+  public void setHasVerifiedTwoFactorBefore(boolean verified) {
+    putBoolean(HAS_VERIFIED_TWO_FACTOR_BEFORE, verified);
+  }
+
+  /** Whether the user has snoozed the current two-factor reminder, which they only get to do once per reminder. */
+  public boolean hasSnoozedTwoFactorReminder() {
+    return getBoolean(HAS_SNOOZED_TWO_FACTOR_REMINDER, false);
+  }
+
+  public void setHasSnoozedTwoFactorReminder(boolean snoozed) {
+    putBoolean(HAS_SNOOZED_TWO_FACTOR_REMINDER, snoozed);
   }
 }

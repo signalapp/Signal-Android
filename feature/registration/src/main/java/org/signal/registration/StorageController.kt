@@ -106,6 +106,12 @@ interface StorageController {
   suspend fun onRegistrationFlowFinished()
 
   /**
+   * Records that the account has at least one two-factor method, learned by having to present one to log in. The app
+   * uses this to decide whether to remind the user to verify a method later on.
+   */
+  suspend fun markHasTwoFactorMethods()
+
+  /**
    * Persists the terminal [RestoreDecision] the user reached during registration directly to permanent app state,
    * so the rest of the app knows whether we're a fresh account, skipped a restore, or successfully restored data.
    */
