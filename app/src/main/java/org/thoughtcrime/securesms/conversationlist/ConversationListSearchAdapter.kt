@@ -28,11 +28,12 @@ class ConversationListSearchAdapter(
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   callButtonClickCallbacks: CallButtonClickCallbacks,
   lifecycleOwner: LifecycleOwner,
-  requestManager: RequestManager
+  requestManager: RequestManager,
+  onAccessibilityAction: ConversationListAccessibilityHelper.OnAccessibilityActionListener? = null
 ) : ContactSearchAdapter(context, fixedContacts, displayOptions, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks, callButtonClickCallbacks), TimestampPayloadSupport {
 
   init {
-    ConversationListSearchModels.registerThreads(this, onClickedCallbacks::onThreadClicked, onClickedCallbacks::onThreadLongClicked, lifecycleOwner, requestManager)
+    ConversationListSearchModels.registerThreads(this, onClickedCallbacks::onThreadClicked, onClickedCallbacks::onThreadLongClicked, lifecycleOwner, requestManager, onAccessibilityAction)
     ConversationListSearchModels.registerMessages(this, onClickedCallbacks::onMessageClicked, lifecycleOwner, requestManager)
     ConversationListSearchModels.registerGroupsWithMembers(this, onClickedCallbacks::onGroupWithMembersClicked, lifecycleOwner, requestManager)
     ConversationListSearchModels.registerEmpty(this)
