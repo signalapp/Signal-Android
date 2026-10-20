@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models
 
+import android.text.format.DateFormat
 import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLocale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.SimpleColorFilter
@@ -44,6 +47,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSche
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
 
@@ -83,10 +87,13 @@ object NotificationProfilePreference {
   }
 }
 
+/**
+ * @param activeStatus How long [profile] stays on if it is the active profile, or null if it isn't active.
+ */
 @Composable
 fun NotificationProfileRow(
   profile: NotificationProfile,
-  isActiveProfile: Boolean = false,
+  activeStatus: NotificationProfiles.ActiveStatus? = null,
   showSwitch: Boolean = false,
   enabled: Boolean = true,
   onClick: (Long) -> Unit,
@@ -139,17 +146,9 @@ fun NotificationProfileRow(
         style = MaterialTheme.typography.bodyLarge
       )
 
-      val summary = remember(isActiveProfile) {
-        if (isActiveProfile) {
-          NotificationProfiles.getActiveProfileDescription(context, profile)
-        } else {
-          null
-        }
-      }
-
-      if (summary != null) {
+      if (activeStatus != null) {
         Text(
-          text = summary,
+          text = activeStatusDescription(activeStatus),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -158,10 +157,21 @@ fun NotificationProfileRow(
 
     if (showSwitch) {
       Switch(
-        checked = isActiveProfile,
+        checked = activeStatus != null,
         onCheckedChange = { onClick(profile.id) },
         enabled = enabled
       )
+    }
+  }
+}
+
+@Composable
+private fun activeStatusDescription(activeStatus: NotificationProfiles.ActiveStatus): String {
+  return when (activeStatus) {
+    NotificationProfiles.ActiveStatus.On -> stringResource(R.string.NotificationProfilesFragment__on)
+    is NotificationProfiles.ActiveStatus.OnUntil -> {
+      val until = activeStatus.until.formatHours(is24Hour = DateFormat.is24HourFormat(LocalContext.current), locale = LocalLocale.current.platformLocale)
+      stringResource(R.string.NotificationProfileSelection__on_until_s, until)
     }
   }
 }

@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -91,7 +92,7 @@ object Scaffolds {
     navigationIcon: ImageVector? = null,
     navigationContentDescription: String? = null,
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
-      Text(text = title, style = MaterialTheme.typography.titleLarge)
+      Text(text = title, style = MaterialTheme.typography.titleLarge.copy(hyphens = Hyphens.Auto))
     },
     snackbarHost: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},

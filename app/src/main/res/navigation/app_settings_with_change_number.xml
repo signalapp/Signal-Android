@@ -1195,7 +1195,7 @@
     <!-- Notification Profiles -->
     <fragment
         android:id="@+id/notificationProfilesFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.list.NotificationProfilesFragment"
         tools:layout="@layout/notification_profiles_empty">
 
         <action

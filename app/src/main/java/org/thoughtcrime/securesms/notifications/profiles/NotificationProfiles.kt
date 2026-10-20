@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.formatHours
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.ZoneId
 
 /**
@@ -75,21 +76,40 @@ object NotificationProfiles {
     return shouldScheduleSync
   }
 
-  fun getActiveProfileDescription(context: Context, profile: NotificationProfile, now: Long = System.currentTimeMillis()): String {
+  /**
+   * How long [profile], which must be the active profile, stays on: indefinitely after being turned on by hand, or until a time.
+   */
+  fun getActiveStatus(profile: NotificationProfile, now: Long = System.currentTimeMillis()): ActiveStatus {
     val storeValues: NotificationProfileValues = SignalStore.notificationProfile
 
     if (profile.id == storeValues.manuallyEnabledProfile) {
       if (storeValues.manuallyEnabledUntil.isForever()) {
-        return context.getString(R.string.NotificationProfilesFragment__on)
+        return ActiveStatus.On
       } else if (now < storeValues.manuallyEnabledUntil) {
-        return context.getString(R.string.NotificationProfileSelection__on_until_s, storeValues.manuallyEnabledUntil.toLocalTime().formatHours(context))
+        return ActiveStatus.OnUntil(storeValues.manuallyEnabledUntil.toLocalTime())
       }
     }
 
-    return context.getString(R.string.NotificationProfileSelection__on_until_s, profile.schedule.endTime().formatHours(context))
+    return ActiveStatus.OnUntil(profile.schedule.endTime())
+  }
+
+  fun getActiveProfileDescription(context: Context, profile: NotificationProfile, now: Long = System.currentTimeMillis()): String {
+    return when (val status = getActiveStatus(profile, now)) {
+      ActiveStatus.On -> context.getString(R.string.NotificationProfilesFragment__on)
+      is ActiveStatus.OnUntil -> context.getString(R.string.NotificationProfileSelection__on_until_s, status.until.formatHours(context))
+    }
   }
 
   private fun Long.isForever(): Boolean {
     return this == Long.MAX_VALUE
+  }
+
+  /** How long the active profile stays on. */
+  sealed interface ActiveStatus {
+    /** Turned on by hand with no end time. */
+    data object On : ActiveStatus
+
+    /** On until [until], either a manual end time or the end of the schedule. */
+    data class OnUntil(val until: LocalTime) : ActiveStatus
   }
 }
