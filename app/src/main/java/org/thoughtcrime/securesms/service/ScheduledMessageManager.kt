@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.IndividualSendJob
+import org.thoughtcrime.securesms.jobs.IndividualSendJobV2
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import kotlin.time.Duration.Companion.seconds
@@ -61,7 +61,7 @@ class ScheduledMessageManager(
         if (record.toRecipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient.id, emptySet(), true)
         } else {
-          IndividualSendJob.enqueue(application, AppDependencies.jobManager, record.id, record.toRecipient, true)
+          IndividualSendJobV2.enqueue(application, record.id, record.toRecipient, true)
         }
 
         if (isNoteToSelf) {

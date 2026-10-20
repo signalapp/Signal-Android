@@ -1260,19 +1260,6 @@ object RemoteConfig {
   )
 
   /**
-   * When true, individual 1:1 sends are routed through [IndividualSendJobV2], which uses the
-   * network-module [org.signal.network.service.MessageService] instead of the legacy
-   * [SignalServiceMessageSender] send path.
-   */
-  @JvmStatic
-  @get:JvmName("useIndividualSendJobV2")
-  val useIndividualSendJobV2: Boolean by remoteBoolean(
-    key = "android.useIndividualSendJobV2.4",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /**
    * Also determines how long an unregistered/deleted record should remain in storage service
    */
   val messageQueueTime: Long by remoteValue(

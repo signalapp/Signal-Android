@@ -67,8 +67,6 @@ import kotlin.jvm.optionals.getOrNull
  * - Routes the actual send through the new [MessageService] (which encapsulates device resolution,
  *   prekey fetching, session building, encryption, and sync-transcript delivery).
  *
- * Used when [RemoteConfig.useIndividualSendJobV2] is true.
- *
  * Behavior should match [IndividualSendJob] exactly for observable state changes (marking sent,
  * UD-mode updates, expiration starts, view-once cleanup, etc.). The primary divergence is the
  * network layer.
