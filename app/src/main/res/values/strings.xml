@@ -984,7 +984,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">All messaging on linked devices is private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked. Your previous message history will not appear.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">On the device you want to link, visit %s to install Signal</string>
     <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
