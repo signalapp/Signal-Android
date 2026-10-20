@@ -5,127 +5,22 @@
 
 package org.thoughtcrime.securesms.components.settings.app.appearance.appicon
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.appearance.appicon.AppIconTutorialEvent
+import org.signal.appsettings.appearance.appicon.AppIconTutorialScreen
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
-import org.signal.core.ui.R as CoreUiR
 
 class AppIconTutorialFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    Scaffolds.Settings(
-      title = "",
-      onNavigationClick = {
-        findNavController().popBackStack()
-      },
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) { contentPadding: PaddingValues ->
-      TutorialScreen(Modifier.padding(contentPadding))
-    }
+    AppIconTutorialScreen(onEvent = ::onEvent)
   }
 
-  @Composable
-  fun TutorialScreen(modifier: Modifier = Modifier) {
-    Box(modifier = modifier) {
-      Column(
-        modifier = Modifier
-          .padding(horizontal = 24.dp)
-          .align(Alignment.Center)
-          .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
-      ) {
-        val borderShape = RoundedCornerShape(12.dp)
-
-        Text(
-          text = stringResource(R.string.preferences__app_icon_warning),
-          style = MaterialTheme.typography.bodyLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          textAlign = TextAlign.Start,
-          modifier = Modifier
-            .padding(vertical = 20.dp)
-            .fillMaxWidth()
-        )
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .fillMaxWidth()
-            .clip(borderShape)
-            .border(1.dp, MaterialTheme.colorScheme.outline, shape = borderShape)
-        ) {
-          Image(
-            painter = painterResource(R.drawable.app_icon_tutorial_apps_homescreen),
-            contentDescription = stringResource(R.string.preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible),
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-              .widthIn(max = 328.dp)
-          )
-        }
-        Text(
-          text = stringResource(id = R.string.preferences__app_icon_notification_warning),
-          style = MaterialTheme.typography.bodyLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          textAlign = TextAlign.Start,
-          modifier = Modifier
-            .padding(vertical = 20.dp)
-            .fillMaxWidth()
-        )
-        Box(
-          contentAlignment = Alignment.Center,
-          modifier = Modifier
-            .fillMaxWidth()
-            .clip(borderShape)
-            .border(1.dp, MaterialTheme.colorScheme.outline, shape = borderShape)
-        ) {
-          Image(
-            painter = painterResource(R.drawable.app_icon_tutorial_notification),
-            contentDescription = stringResource(R.string.preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible),
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-              .widthIn(max = 328.dp)
-          )
-        }
-      }
+  private fun onEvent(event: AppIconTutorialEvent) {
+    when (event) {
+      AppIconTutorialEvent.NavigateBackClicked -> findNavController().popBackStack()
     }
-  }
-
-  @DayNightPreviews
-  @Composable
-  private fun TutorialScreenPreview() {
-    Previews.Preview {
-      TutorialScreen()
-    }
-  }
-
-  companion object {
-    val TAG = Log.tag(AppIconTutorialFragment::class.java)
   }
 }
