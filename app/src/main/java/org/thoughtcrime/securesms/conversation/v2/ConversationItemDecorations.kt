@@ -333,7 +333,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
         unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.transparent_black_80))
       } else {
         unreadText.background = null
-        unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.core_grey_45))
+        unreadDivider.setBackgroundColor(ContextCompat.getColor(itemView.context, CoreUiR.color.core_grey_45))
       }
     }
   }

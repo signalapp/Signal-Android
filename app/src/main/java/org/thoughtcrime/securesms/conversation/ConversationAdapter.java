@@ -452,7 +452,7 @@ public class ConversationAdapter
       viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
     } else {
       viewHolder.clearBackground();
-      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.core_grey_45));
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(org.signal.core.ui.R.color.core_grey_45));
     }
   }
 

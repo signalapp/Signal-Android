@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.util.hasNoBubble
 import org.thoughtcrime.securesms.util.isScheduled
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Represents a text-only conversation item.
@@ -177,7 +178,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     binding.body.movementMethod = LongClickMovementMethod.getInstance(context)
 
     if (binding.isIncoming) {
-      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) R.color.core_grey_60 else R.color.core_grey_20))
+      binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, if (ThemeUtil.isDarkTheme(context)) CoreUiR.color.core_grey_60 else CoreUiR.color.core_grey_20))
     } else {
       binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
@@ -433,7 +434,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       val linkColor = if (isReleaseNotes) {
         themeDelegate.getBodyTextColor(conversationMessage)
       } else {
-        ContextCompat.getColor(getContext(), R.color.signal_accent_primary)
+        ContextCompat.getColor(getContext(), CoreUiR.color.signal_accent_primary)
       }
       val underline = isReleaseNotes
       messageBody.getSpans(0, messageBody.length, PlaceholderURLSpan::class.java).forEach { placeholder ->

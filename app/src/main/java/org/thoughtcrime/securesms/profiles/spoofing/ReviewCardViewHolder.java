@@ -160,7 +160,7 @@ class ReviewCardViewHolder extends RecyclerView.ViewHolder {
 
     Drawable chevron = ContextCompat.getDrawable(context, org.signal.core.ui.R.drawable.symbol_chevron_right_24);
     Preconditions.checkNotNull(chevron);
-    chevron.setTint(ContextCompat.getColor(context, R.color.core_grey_45));
+    chevron.setTint(ContextCompat.getColor(context, org.signal.core.ui.R.color.core_grey_45));
 
     SpannableStringBuilder builder = new SpannableStringBuilder(context.getString(R.string.AboutSheet__signal_connection));
     SpanUtil.appendCenteredImageSpan(builder, chevron, 20, 20);

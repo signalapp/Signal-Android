@@ -332,7 +332,7 @@ private fun AppSettingsContent(
               if (state.hasExpiredGiftBadge) {
                 Icon(
                   painter = painterResource(CoreUiR.drawable.symbol_info_fill_24),
-                  tint = colorResource(R.color.signal_accent_primary),
+                  tint = colorResource(CoreUiR.color.signal_accent_primary),
                   contentDescription = null
                 )
               }

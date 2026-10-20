@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.withFixedSize
+import org.signal.core.ui.R as CoreUiR
 
 class ChatColorSelectionAdapter(
   context: Context,
@@ -93,7 +94,7 @@ class ChatColorSelectionAdapter(
         SignalStore.chatColors.shouldShowAutoTooltip = false
         TooltipPopup.forTarget(itemView)
           .setText(R.string.ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper)
-          .setBackgroundTint(ContextCompat.getColor(context, R.color.signal_accent_primary))
+          .setBackgroundTint(ContextCompat.getColor(context, CoreUiR.color.signal_accent_primary))
           .setTextColor(Color.WHITE)
           .show(TooltipPopup.POSITION_BELOW)
       }

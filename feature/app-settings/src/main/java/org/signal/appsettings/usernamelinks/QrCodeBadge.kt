@@ -39,11 +39,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.signal.appsettings.R
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.QrCode
 import org.signal.core.ui.compose.QrCodeData
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
@@ -119,7 +119,7 @@ fun QrCodeBadge(
             } else if (data is QrCodeState.NotSet) {
               Image(
                 painter = painterResource(id = CoreUiR.drawable.symbol_error_circle_24),
-                contentDescription = stringResource(id = R.string.UsernameLinkSettings_link_not_set_label),
+                contentDescription = stringResource(id = AppSettingsR.string.UsernameLinkSettings_link_not_set_label),
                 colorFilter = ColorFilter.tint(colorResource(CoreUiR.color.core_grey_25)),
                 modifier = Modifier
                   .width(28.dp)

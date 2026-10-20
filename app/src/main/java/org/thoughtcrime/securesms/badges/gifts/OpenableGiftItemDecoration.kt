@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.util.Projection
 import kotlin.math.PI
 import kotlin.math.max
 import kotlin.math.sin
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Controls the gift box top and related animations for Gift bubbles.
@@ -44,7 +45,7 @@ class OpenableGiftItemDecoration(context: Context) : RecyclerView.ItemDecoration
 
   private val boxPaint = Paint().apply {
     isAntiAlias = true
-    color = ContextCompat.getColor(context, R.color.core_ultramarine)
+    color = ContextCompat.getColor(context, CoreUiR.color.core_ultramarine)
   }
 
   private val bowPaint = Paint().apply {

@@ -113,16 +113,16 @@ public class ConversationItemFooter extends ConstraintLayout {
       int     mode       = typedArray.getInt(R.styleable.ConversationItemFooter_footer_mode, 0);
       boolean isOutgoing = mode == 0;
       if (isOutgoing) {
-        playbackSpeedToggleTextView.setTextColor(getResources().getColor(R.color.core_white));
+        playbackSpeedToggleTextView.setTextColor(getResources().getColor(org.signal.core.ui.R.color.core_white));
         playbackSpeedToggleTextView.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.transparent_white_20));
       } else {
         playbackSpeedToggleTextView.setTextColor(getResources().getColor(R.color.signal_text_secondary));
         playbackSpeedToggleTextView.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.transparent_black_08));
       }
 
-      setTextColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_text_color, getResources().getColor(R.color.core_white)));
-      setIconColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_icon_color, getResources().getColor(R.color.core_white)));
-      setRevealDotColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_reveal_dot_color, getResources().getColor(R.color.core_white)));
+      setTextColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_text_color, getResources().getColor(org.signal.core.ui.R.color.core_white)));
+      setIconColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_icon_color, getResources().getColor(org.signal.core.ui.R.color.core_white)));
+      setRevealDotColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_reveal_dot_color, getResources().getColor(org.signal.core.ui.R.color.core_white)));
       typedArray.recycle();
     }
 

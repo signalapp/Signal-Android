@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImag
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
+import org.signal.core.ui.R as CoreUiR
 
 @Composable
 fun NotificationProfileAddMembers(
@@ -116,7 +117,7 @@ fun NotificationProfileRecipient(
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.ic_minus_circle_20),
         contentDescription = stringResource(R.string.delete),
-        tint = colorResource(R.color.core_grey_45)
+        tint = colorResource(CoreUiR.color.core_grey_45)
       )
     }
   }

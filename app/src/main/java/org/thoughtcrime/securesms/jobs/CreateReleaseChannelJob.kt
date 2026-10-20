@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Creates the Release Channel (Signal) recipient.
@@ -89,7 +90,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
       context,
       Avatar.Resource(
         R.drawable.ic_signal_logo_large,
-        Avatars.ColorPair(ContextCompat.getColor(context, R.color.notification_background_ultramarine), ContextCompat.getColor(context, R.color.core_white), "")
+        Avatars.ColorPair(ContextCompat.getColor(context, R.color.notification_background_ultramarine), ContextCompat.getColor(context, CoreUiR.color.core_white), "")
       ),
       onAvatarRendered = { media ->
         AvatarHelper.setAvatar(context, id, AppDependencies.blobs.getStream(context, media.uri))

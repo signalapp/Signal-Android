@@ -104,9 +104,9 @@ public final class PaymentItem implements MappingModel<PaymentItem> {
     } else if (payment.getState() == State.FAILED) {
       return R.color.signal_text_secondary;
     } else if (paymentType == PaymentType.REQUEST) {
-      return R.color.core_grey_45;
+      return org.signal.core.ui.R.color.core_grey_45;
     } else if (payment.getDirection().isReceived()) {
-      return R.color.core_green;
+      return org.signal.core.ui.R.color.core_green;
     } else {
       return R.color.signal_text_primary;
     }

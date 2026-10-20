@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TooltipPopup
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Any and all tooltips that the conversation can display, and a light amount of related presentation logic.
@@ -26,8 +27,8 @@ class ConversationTooltips(fragment: Fragment) {
    */
   fun displayStickerIntroductionTooltip(anchor: View, onDismiss: () -> Unit) {
     TooltipPopup.forTarget(anchor)
-      .setBackgroundTint(ContextCompat.getColor(anchor.context, R.color.core_ultramarine))
-      .setTextColor(ContextCompat.getColor(anchor.context, R.color.core_white))
+      .setBackgroundTint(ContextCompat.getColor(anchor.context, CoreUiR.color.core_ultramarine))
+      .setTextColor(ContextCompat.getColor(anchor.context, CoreUiR.color.core_white))
       .setText(R.string.ConversationActivity_new_say_it_with_stickers)
       .setOnDismissListener {
         SignalStore.tooltips.markStickerIntroTooltipSeen()

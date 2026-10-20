@@ -271,8 +271,8 @@ class ImageEditorHudV2 @JvmOverloads constructor(
   fun showBlurHudTooltip() {
     TooltipPopup.forTarget(blurButton)
       .setText(R.string.ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur)
-      .setBackgroundTint(ContextCompat.getColor(context, R.color.core_ultramarine))
-      .setTextColor(ContextCompat.getColor(context, R.color.core_white))
+      .setBackgroundTint(ContextCompat.getColor(context, CoreUiR.color.core_ultramarine))
+      .setTextColor(ContextCompat.getColor(context, CoreUiR.color.core_white))
       .show(TooltipPopup.POSITION_BELOW)
   }
 
