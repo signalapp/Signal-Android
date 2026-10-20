@@ -17,6 +17,8 @@ dependencies {
   api(project(":core:util-jvm"))
   api(project(":core:models-jvm"))
 
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.runtime.annotation)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.jackson.core)
   implementation(libs.jackson.module.kotlin)

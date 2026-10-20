@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.badges.load
+package org.signal.glide.badges
 
 import com.bumptech.glide.load.Key
 import org.signal.core.models.badges.Badge

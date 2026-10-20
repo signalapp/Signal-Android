@@ -7,6 +7,7 @@ package org.signal.core.models.badges
 
 import android.net.Uri
 import android.os.Parcelable
+import androidx.compose.runtime.Stable
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.models.UriSerializer
@@ -14,6 +15,7 @@ import org.signal.core.models.UriSerializer
 /**
  * A Badge that can be collected and displayed by a user.
  */
+@Stable
 @Parcelize
 @Serializable
 data class Badge(

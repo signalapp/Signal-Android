@@ -18,19 +18,20 @@ import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
 
 import org.signal.apng.ApngDecoder;
 import org.signal.blurhash.BlurHash;
+import org.signal.core.models.badges.Badge;
 import org.signal.core.util.crypto.AttachmentSecret;
 import org.signal.core.util.crypto.AttachmentSecretProvider;
+import org.signal.glide.badges.BadgeLoader;
 import org.signal.glide.blurhash.BlurHashModelLoader;
 import org.signal.glide.blurhash.BlurHashResourceDecoder;
 import org.signal.glide.common.io.InputStreamFactory;
 import org.signal.glide.decryptableuri.DecryptableUri;
 import org.signal.glide.decryptableuri.DecryptableUriStreamLoader;
-import org.thoughtcrime.securesms.badges.load.BadgeLoader;
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel;
-import org.signal.core.models.badges.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhotoLoader;
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.glide.cache.ApngDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngInputStreamFactoryResourceDecoder;
@@ -112,7 +113,7 @@ public class SignalGlideComponents implements RegisterGlideComponents {
     registry.append(ChunkedImageUrl.class, InputStream.class, new ChunkedImageUrlLoader.Factory());
     registry.append(StickerRemoteUri.class, InputStream.class, new StickerRemoteUriLoader.Factory());
     registry.append(BlurHash.class, BlurHash.class, new BlurHashModelLoader.Factory());
-    registry.append(Badge.class, InputStream.class, BadgeLoader.createFactory());
+    registry.append(Badge.class, InputStream.class, new BadgeLoader.Factory(AppDependencies.getSignalOkHttpClient()));
     registry.append(GiftBadgeModel.class, InputStream.class, GiftBadgeModel.createFactory());
     registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
   }

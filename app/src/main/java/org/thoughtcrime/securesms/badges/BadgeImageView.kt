@@ -10,8 +10,8 @@ import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.util.ThemeUtil
 import org.signal.core.util.ScreenDensity
+import org.signal.glide.badges.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.load.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.badges.load.GiftBadgeModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSize
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge

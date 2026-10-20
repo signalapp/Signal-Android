@@ -14,9 +14,11 @@ android {
 
 dependencies {
   implementation(project(":core:util"))
+  implementation(project(":core:models"))
   implementation(project(":lib:blurhash"))
 
   api(libs.glide.glide)
+  api(libs.square.okhttp3)
   ksp(libs.glide.ksp)
 
   implementation(platform(libs.androidx.compose.bom))

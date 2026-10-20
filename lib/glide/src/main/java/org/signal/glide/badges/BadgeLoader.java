@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.badges.load;
+package org.signal.glide.badges;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +15,7 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.signal.core.models.badges.Badge;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.glide.OkHttpStreamFetcher;
+import org.signal.glide.load.OkHttpStreamFetcher;
 
 import java.io.InputStream;
 
@@ -43,15 +42,11 @@ public class BadgeLoader implements ModelLoader<Badge, InputStream> {
     return true;
   }
 
-  public static Factory createFactory() {
-    return new Factory(AppDependencies.getSignalOkHttpClient());
-  }
-
   public static class Factory implements ModelLoaderFactory<Badge, InputStream> {
 
     private final OkHttpClient client;
 
-    private Factory(@NonNull OkHttpClient client) {
+    public Factory(@NonNull OkHttpClient client) {
       this.client = client;
     }
 

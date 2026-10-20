@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.glide;
+package org.signal.glide.load;
 
 import androidx.annotation.NonNull;
 
