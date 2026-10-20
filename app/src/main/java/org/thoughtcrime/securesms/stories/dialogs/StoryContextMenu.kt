@@ -259,7 +259,7 @@ object StoryContextMenu {
 
       if ((isToGroup || !isFromSelf) && !isFromReleaseChannel) {
         add(
-          ActionItem(R.drawable.symbol_open_20, context.getString(R.string.StoriesLandingItem__go_to_chat)) {
+          ActionItem(CoreUiR.drawable.symbol_open_20, context.getString(R.string.StoriesLandingItem__go_to_chat)) {
             callbacks.onGoToChat()
           }
         )

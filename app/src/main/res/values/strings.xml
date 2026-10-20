@@ -3891,7 +3891,6 @@
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
-    <string name="preferences__help">Help</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Donate to Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
@@ -5422,21 +5421,6 @@
     <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
     <string name="ExpireTimerSettingsFragment__save">Save</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
 
 
     <!-- ChatColorSelectionFragment -->

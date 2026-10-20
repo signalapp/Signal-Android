@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import java.io.InputStream
+import org.signal.appsettings.R as AppSettingsR
 import org.signal.core.ui.R as CoreUiR
 
 class LicenseFragment : ComposeFragment() {
@@ -46,7 +47,7 @@ class LicenseFragment : ComposeFragment() {
       .subscribeAsState(initial = emptyList())
 
     Scaffolds.Settings(
-      title = stringResource(id = R.string.HelpSettingsFragment__licenses),
+      title = stringResource(id = AppSettingsR.string.HelpSettingsFragment__licenses),
       onNavigationClick = findNavController()::popBackStack,
       navigationIcon = SignalIcons.ArrowStart.imageVector,
       navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)

@@ -100,7 +100,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
     dynamicTheme.onCreate(this);
     setContentView(R.layout.submit_debug_log_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.HelpSettingsFragment__debug_log);
+    getSupportActionBar().setTitle(org.signal.appsettings.R.string.HelpSettingsFragment__debug_log);
 
     // Insets are re-dispatched by appcompat's ActionBarOverlayLayout with the action bar height folded into the top inset.
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {

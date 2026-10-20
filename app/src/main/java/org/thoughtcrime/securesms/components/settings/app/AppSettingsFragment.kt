@@ -502,7 +502,7 @@ private fun AppSettingsContent(
 
         item {
           Rows.TextRow(
-            text = stringResource(R.string.preferences__help),
+            text = stringResource(AppSettingsR.string.preferences__help),
             icon = painterResource(R.drawable.symbol_help_24),
             onClick = {
               callbacks.navigate(AppSettingsRoute.HelpRoute.Settings())

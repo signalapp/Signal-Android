@@ -253,7 +253,7 @@ class ExternalLinkPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Ex
   override fun bind(model: ExternalLinkPreference) {
     super.bind(model)
 
-    val externalLinkIcon = requireNotNull(ContextCompat.getDrawable(context, R.drawable.symbol_open_20)).apply {
+    val externalLinkIcon = requireNotNull(ContextCompat.getDrawable(context, CoreUiR.drawable.symbol_open_20)).apply {
       colorFilter = PorterDuffColorFilter(ContextCompat.getColor(context, R.color.signal_icon_tint_primary), PorterDuff.Mode.SRC_IN)
     }
     externalLinkIcon.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20))
