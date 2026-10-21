@@ -18,7 +18,6 @@
     <string name="google_pay_url" translatable="false">https://pay.google.com</string>
     <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
     <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
     <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
     <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
     <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string>
@@ -5059,47 +5058,6 @@
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
-
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>
