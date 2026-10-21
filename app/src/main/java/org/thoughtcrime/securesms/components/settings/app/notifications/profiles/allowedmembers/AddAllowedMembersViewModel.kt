@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
 
 /**
  * Drives [AddAllowedMembersScreen].
@@ -53,12 +54,12 @@ class AddAllowedMembersViewModel(
         _actions.send(AddAllowedMembersAction.NavigateToSelectRecipients(profile.id, profile.allowedMembers))
       }
       is AddAllowedMembersEvent.RemoveMemberClicked -> {
-        val removed = AddAllowedMembersRepository.removeMember(profileId, event.recipientId)
+        val removed = NotificationProfileEdits.removeMember(profileId, event.recipientId)
         _state.update { it.copy(snackbar = AddAllowedMembersState.Snackbar.MemberRemoved(removed)) }
       }
-      is AddAllowedMembersEvent.UndoRemoveMemberClicked -> AddAllowedMembersRepository.addMember(profileId, event.recipientId)
-      is AddAllowedMembersEvent.AllowAllCallsToggled -> AddAllowedMembersRepository.setAllowAllCalls(profileId, event.enabled)
-      is AddAllowedMembersEvent.NotifyForAllMentionsToggled -> AddAllowedMembersRepository.setAllowAllMentions(profileId, event.enabled)
+      is AddAllowedMembersEvent.UndoRemoveMemberClicked -> NotificationProfileEdits.addMember(profileId, event.recipientId)
+      is AddAllowedMembersEvent.AllowAllCallsToggled -> NotificationProfileEdits.setAllowAllCalls(profileId, event.enabled)
+      is AddAllowedMembersEvent.NotifyForAllMentionsToggled -> NotificationProfileEdits.setAllowAllMentions(profileId, event.enabled)
       AddAllowedMembersEvent.NextClicked -> _actions.send(AddAllowedMembersAction.NavigateToSchedule(profileId))
       AddAllowedMembersEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = AddAllowedMembersState.Snackbar.None) }
     }

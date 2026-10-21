@@ -34,6 +34,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.core.models.recipients.RecipientId
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -71,17 +72,19 @@ class AddAllowedMembersViewModelTest {
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
     mockkObject(AddAllowedMembersRepository)
+    mockkObject(NotificationProfileEdits)
 
     every { AddAllowedMembersRepository.observeProfile(PROFILE_ID) } returns profiles
-    coEvery { AddAllowedMembersRepository.removeMember(PROFILE_ID, any()) } returns alice
-    coEvery { AddAllowedMembersRepository.addMember(PROFILE_ID, any()) } just Runs
-    coEvery { AddAllowedMembersRepository.setAllowAllCalls(PROFILE_ID, any()) } just Runs
-    coEvery { AddAllowedMembersRepository.setAllowAllMentions(PROFILE_ID, any()) } just Runs
+    coEvery { NotificationProfileEdits.removeMember(PROFILE_ID, any()) } returns alice
+    coEvery { NotificationProfileEdits.addMember(PROFILE_ID, any()) } just Runs
+    coEvery { NotificationProfileEdits.setAllowAllCalls(PROFILE_ID, any()) } just Runs
+    coEvery { NotificationProfileEdits.setAllowAllMentions(PROFILE_ID, any()) } just Runs
   }
 
   @After
   fun tearDown() {
     unmockkObject(AddAllowedMembersRepository)
+    unmockkObject(NotificationProfileEdits)
     Dispatchers.resetMain()
   }
 
@@ -117,7 +120,7 @@ class AddAllowedMembersViewModelTest {
 
     viewModel.onEvent(AddAllowedMembersEvent.RemoveMemberClicked(ALICE))
 
-    coVerify(exactly = 1) { AddAllowedMembersRepository.removeMember(PROFILE_ID, ALICE) }
+    coVerify(exactly = 1) { NotificationProfileEdits.removeMember(PROFILE_ID, ALICE) }
     assertThat(viewModel.state.value.snackbar).isEqualTo(AddAllowedMembersState.Snackbar.MemberRemoved(alice))
   }
 
@@ -127,7 +130,7 @@ class AddAllowedMembersViewModelTest {
 
     viewModel.onEvent(AddAllowedMembersEvent.UndoRemoveMemberClicked(ALICE))
 
-    coVerify(exactly = 1) { AddAllowedMembersRepository.addMember(PROFILE_ID, ALICE) }
+    coVerify(exactly = 1) { NotificationProfileEdits.addMember(PROFILE_ID, ALICE) }
   }
 
   @Test
@@ -146,7 +149,7 @@ class AddAllowedMembersViewModelTest {
 
     viewModel.onEvent(AddAllowedMembersEvent.AllowAllCallsToggled(false))
 
-    coVerify(exactly = 1) { AddAllowedMembersRepository.setAllowAllCalls(PROFILE_ID, false) }
+    coVerify(exactly = 1) { NotificationProfileEdits.setAllowAllCalls(PROFILE_ID, false) }
   }
 
   @Test
@@ -155,7 +158,7 @@ class AddAllowedMembersViewModelTest {
 
     viewModel.onEvent(AddAllowedMembersEvent.NotifyForAllMentionsToggled(true))
 
-    coVerify(exactly = 1) { AddAllowedMembersRepository.setAllowAllMentions(PROFILE_ID, true) }
+    coVerify(exactly = 1) { NotificationProfileEdits.setAllowAllMentions(PROFILE_ID, true) }
   }
 
   @Test

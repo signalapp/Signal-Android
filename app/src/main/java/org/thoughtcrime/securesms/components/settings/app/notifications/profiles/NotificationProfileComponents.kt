@@ -55,11 +55,29 @@ fun NotificationProfileAddMembers(
   onClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
+  NotificationProfileCircleIconRow(
+    icon = ImageVector.vectorResource(R.drawable.ic_plus_24),
+    text = stringResource(R.string.AddAllowedMembers__add_people_or_groups),
+    onClick = onClick,
+    modifier = modifier
+  )
+}
+
+/**
+ * A clickable row led by [icon] in a filled circle, sized to line up with the member avatars below it.
+ */
+@Composable
+fun NotificationProfileCircleIconRow(
+  icon: ImageVector,
+  text: String,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
   Rows.TextRow(
     modifier = modifier,
     icon = {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24),
+        imageVector = icon,
         contentDescription = null,
         modifier = Modifier
           .size(40.dp)
@@ -72,7 +90,7 @@ fun NotificationProfileAddMembers(
     },
     text = {
       Text(
-        text = stringResource(R.string.AddAllowedMembers__add_people_or_groups),
+        text = text,
         style = MaterialTheme.typography.bodyLarge
       )
     },

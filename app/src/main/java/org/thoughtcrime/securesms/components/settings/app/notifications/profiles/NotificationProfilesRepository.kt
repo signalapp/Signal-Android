@@ -103,22 +103,6 @@ class NotificationProfilesRepository {
       .subscribeOn(Schedulers.io())
   }
 
-  fun toggleAllowAllMentions(profileId: Long): Single<NotificationProfile> {
-    return getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { updateProfile(it.copy(allowAllMentions = !it.allowAllMentions)) }
-      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
-  }
-
-  fun toggleAllowAllCalls(profileId: Long): Single<NotificationProfile> {
-    return getProfile(profileId)
-      .take(1)
-      .singleOrError()
-      .flatMap { updateProfile(it.copy(allowAllCalls = !it.allowAllCalls)) }
-      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
-  }
-
   fun manuallyToggleProfile(profile: NotificationProfile, now: Long = System.currentTimeMillis()): Completable {
     return manuallyToggleProfile(profile.id, profile.schedule, now)
   }

@@ -1302,8 +1302,7 @@
 
     <fragment
         android:id="@+id/notificationProfileDetailsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileDetailsFragment"
-        tools:layout="@layout/dsl_settings_fragment">
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details.NotificationProfileDetailsFragment">
 
         <argument
             android:name="profileId"

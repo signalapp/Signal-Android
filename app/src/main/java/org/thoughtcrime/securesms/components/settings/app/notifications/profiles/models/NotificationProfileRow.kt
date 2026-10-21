@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models
 
 import android.text.format.DateFormat
-import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,65 +26,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
-import com.airbnb.lottie.SimpleColorFilter
 import com.google.accompanist.drawablepainter.rememberDrawablePainter
-import com.google.android.material.materialswitch.MaterialSwitch
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.emoji.EmojiUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
-import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
-import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.formatHours
-import org.thoughtcrime.securesms.util.visible
 import java.util.UUID
-
-/**
- * DSL custom preference for showing Notification Profile rows.
- */
-object NotificationProfilePreference {
-
-  fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(Model::class.java, LayoutFactory(::ViewHolder, R.layout.notification_profile_preference_item))
-  }
-
-  class Model(
-    override val title: DSLSettingsText,
-    override val summary: DSLSettingsText?,
-    override val icon: DSLSettingsIcon?,
-    val color: AvatarColor,
-    val isOn: Boolean = false,
-    val showSwitch: Boolean = false,
-    val onClick: () -> Unit
-  ) : PreferenceModel<Model>()
-
-  private class ViewHolder(itemView: View) : PreferenceViewHolder<Model>(itemView) {
-
-    private val switchWidget: MaterialSwitch = itemView.findViewById(R.id.switch_widget)
-
-    override fun bind(model: Model) {
-      super.bind(model)
-      itemView.setOnClickListener { model.onClick() }
-      switchWidget.setOnCheckedChangeListener(null)
-      switchWidget.visible = model.showSwitch
-      switchWidget.isEnabled = model.isEnabled
-      switchWidget.isChecked = model.isOn
-      iconView.background.colorFilter = SimpleColorFilter(model.color.colorInt())
-      switchWidget.setOnCheckedChangeListener { _, _ -> model.onClick() }
-    }
-  }
-}
 
 /**
  * @param activeStatus How long [profile] stays on if it is the active profile, or null if it isn't active.
@@ -176,38 +130,37 @@ private fun activeStatusDescription(activeStatus: NotificationProfiles.ActiveSta
   }
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun NotificationProfileRowPreview() {
-  Previews.Preview {
-    Column {
-      NotificationProfileRow(
-        profile = NotificationProfile(
-          id = 1L,
-          name = "Work",
-          createdAt = 0L,
-          schedule = NotificationProfileSchedule(
-            id = 1L
-          ),
-          emoji = "",
-          notificationProfileId = NotificationProfileId(UUID.randomUUID())
+  Column {
+    NotificationProfileRow(
+      profile = NotificationProfile(
+        id = 1L,
+        name = "Work",
+        createdAt = 0L,
+        schedule = NotificationProfileSchedule(
+          id = 1L
         ),
-        onClick = {}
-      )
+        emoji = "",
+        notificationProfileId = NotificationProfileId(UUID.randomUUID())
+      ),
+      onClick = {}
+    )
 
-      NotificationProfileRow(
-        profile = NotificationProfile(
-          id = 1L,
-          name = "Sleep",
-          createdAt = 0L,
-          schedule = NotificationProfileSchedule(
-            id = 1L
-          ),
-          emoji = "",
-          notificationProfileId = NotificationProfileId(UUID.randomUUID())
+    NotificationProfileRow(
+      profile = NotificationProfile(
+        id = 1L,
+        name = "Sleep",
+        createdAt = 0L,
+        schedule = NotificationProfileSchedule(
+          id = 1L
         ),
-        onClick = {}
-      )
-    }
+        emoji = "",
+        notificationProfileId = NotificationProfileId(UUID.randomUUID())
+      ),
+      onClick = {}
+    )
   }
 }
