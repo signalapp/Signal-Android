@@ -37,7 +37,8 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.multiselect_forward
               multiShareArgs = emptyList(),
               title = R.string.GiftFlowRecipientSelectionFragment__choose_recipient,
               forceDisableAddMessage = true,
-              selectSingleRecipient = true
+              selectSingleRecipient = true,
+              searchHint = R.string.GiftFlowRecipientSelectionFragment__search
             )
           )
         )

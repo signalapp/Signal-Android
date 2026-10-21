@@ -163,6 +163,7 @@ private fun MultiselectForwardContent(
       if (args.isSearchEnabled) {
         val query by contactSearchViewModel.query.collectAsStateWithLifecycle()
         RecipientSearchBar(
+          hint = stringResource(args.searchHint),
           modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp)
