@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.contacts.paged
 import android.content.Context
 import android.view.View
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -65,6 +66,7 @@ import org.signal.core.ui.R as CoreUiR
  * @param additionalEntries       Extra [MappingEntryProvider] entries layered on top of the base
  *                                set from [ContactSearchModels.composeEntries]. The base set is
  *                                always applied; on key collisions the base entry wins.
+ * @param contentPadding          Padding around the list's rows, inside the scrolling area.
  */
 @Composable
 fun ContactSearch(
@@ -79,7 +81,8 @@ fun ContactSearch(
   clickCallbacks: ContactSearchAdapter.ClickCallbacks = rememberDefaultContactSearchItemClickCallbacks(viewModel, callbacks),
   longClickCallbacks: ContactSearchAdapter.LongClickCallbacks = rememberDefaultContactSearchItemLongClickCallbacks(),
   storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks = rememberDefaultContactSearchItemStoryContextMenuCallbacks(viewModel),
-  callButtonClickCallbacks: ContactSearchAdapter.CallButtonClickCallbacks = rememberDefaultContactSearchItemCallButtonClickCallbacks()
+  callButtonClickCallbacks: ContactSearchAdapter.CallButtonClickCallbacks = rememberDefaultContactSearchItemCallButtonClickCallbacks(),
+  contentPadding: PaddingValues = PaddingValues()
 ) {
   val mappingModels by viewModel.mappingModels.collectAsStateWithLifecycle()
   val controller by viewModel.controller.collectAsStateWithLifecycle()
@@ -156,6 +159,7 @@ fun ContactSearch(
       userScrollEnabled = !isDisplayingContextMenu,
       controller = mappingCtrl,
       lazyListState = it,
+      contentPadding = contentPadding,
       modifier = Modifier.fillMaxSize()
     )
   }

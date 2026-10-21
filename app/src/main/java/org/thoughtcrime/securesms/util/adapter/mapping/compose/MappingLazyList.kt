@@ -6,6 +6,7 @@ package org.thoughtcrime.securesms.util.adapter.mapping.compose
 
 import android.content.Context
 import android.widget.FrameLayout
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -53,13 +54,15 @@ fun <T : Any> MappingLazyColumn(
   controller: MappingLazyListController<T>,
   modifier: Modifier = Modifier,
   lazyListState: LazyListState = rememberLazyListState(),
-  userScrollEnabled: Boolean = true
+  userScrollEnabled: Boolean = true,
+  contentPadding: PaddingValues = PaddingValues()
 ) {
   val items = controller.items
 
   LazyColumn(
     state = lazyListState,
     userScrollEnabled = userScrollEnabled,
+    contentPadding = contentPadding,
     modifier = modifier
   ) {
     insertProvidedItems(items, controller.entryProvider, controller.placeholder)

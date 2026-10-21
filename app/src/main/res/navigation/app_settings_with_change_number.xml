@@ -1284,8 +1284,7 @@
 
     <fragment
         android:id="@+id/selectRecipientsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.SelectRecipientsFragment"
-        tools:layout="@layout/fragment_select_recipients_fragment">
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.selectrecipients.SelectRecipientsFragment">
 
         <argument
             android:name="profileId"
