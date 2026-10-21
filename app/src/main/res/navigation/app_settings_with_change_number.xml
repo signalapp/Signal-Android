@@ -1177,8 +1177,7 @@
     <fragment
         android:id="@+id/donationReceiptListFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.subscription.receipts.list.DonationReceiptListFragment"
-        android:label="donation_receipt_list_fragment"
-        tools:layout="@layout/donation_receipt_list_fragment">
+        android:label="donation_receipt_list_fragment">
         <action
             android:id="@+id/action_donationReceiptListFragment_to_donationReceiptDetailFragment"
             app:destination="@id/donationReceiptDetailFragment"

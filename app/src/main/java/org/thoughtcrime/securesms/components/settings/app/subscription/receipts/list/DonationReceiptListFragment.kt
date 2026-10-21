@@ -1,46 +1,39 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.list
 
-import android.os.Bundle
-import android.view.View
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.BoldSelectionTabItem
-import org.thoughtcrime.securesms.components.ControllableTabLayout
-import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
+import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.ui.viewModel
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class DonationReceiptListFragment : Fragment(R.layout.donation_receipt_list_fragment) {
+/**
+ * Lists every donation receipt, split by kind of donation, each opening its receipt.
+ */
+class DonationReceiptListFragment : ComposeFragment() {
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val pager: ViewPager2 = view.findViewById(R.id.pager)
-    val tabs: ControllableTabLayout = view.findViewById(R.id.tabs)
-    val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+  private val viewModel: DonationReceiptListViewModel by viewModel { DonationReceiptListViewModel() }
 
-    toolbar.setNavigationOnClickListener {
-      findNavController().popBackStack()
+  @Composable
+  override fun FragmentContent() {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    CollectActions(viewModel.actions) { handleAction(it) }
+
+    DonationReceiptListScreen(
+      state = state,
+      onEvent = viewModel::onEvent
+    )
+  }
+
+  private fun handleAction(action: DonationReceiptListAction) {
+    when (action) {
+      DonationReceiptListAction.NavigateBack -> findNavController().popBackStack()
+      is DonationReceiptListAction.NavigateToReceipt -> {
+        findNavController().safeNavigate(DonationReceiptListFragmentDirections.actionDonationReceiptListFragmentToDonationReceiptDetailFragment(action.receiptId))
+      }
     }
-
-    SystemWindowInsetsSetter.attach(view.findViewById<AppBarLayout>(R.id.app_bar), viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
-
-    pager.adapter = DonationReceiptListPageAdapter(this)
-
-    BoldSelectionTabItem.registerListeners(tabs)
-
-    TabLayoutMediator(tabs, pager) { tab, position ->
-      tab.setText(
-        when (position) {
-          0 -> R.string.DonationReceiptListFragment__all
-          1 -> R.string.DonationReceiptListFragment__recurring
-          2 -> R.string.DonationReceiptListFragment__one_time
-          3 -> R.string.DonationReceiptListFragment__for_a_friend
-          else -> error("Unsupported index $position")
-        }
-      )
-    }.attach()
   }
 }

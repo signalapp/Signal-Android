@@ -33,7 +33,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,11 +41,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
-import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -71,7 +67,6 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
@@ -87,6 +82,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.TabbedPager
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.list.ReorderListEvent
@@ -306,34 +302,13 @@ fun StickerManagementScreen(
       null -> Unit
     }
 
-    Column(
+    TabbedPager(
+      tabTitles = pages.map { it.title },
+      pagerState = pagerState,
+      beyondViewportPageCount = 1,
       modifier = modifier.padding(padding)
-    ) {
-      SecondaryTabRow(
-        selectedTabIndex = pagerState.currentPage,
-        indicator = {
-          TabRowDefaults.SecondaryIndicator(
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.tabIndicatorOffset(pagerState.currentPage)
-          )
-        }
-      ) {
-        repeat(pages.size) { pageIndex ->
-          PagerTab(
-            title = pages[pageIndex].title,
-            selected = pagerState.currentPage == pageIndex,
-            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(pageIndex) } },
-            modifier = Modifier.weight(1f)
-          )
-        }
-      }
-
-      HorizontalPager(
-        state = pagerState,
-        beyondViewportPageCount = 1
-      ) { pageIndex ->
-        pages[pageIndex].getContent()
-      }
+    ) { pageIndex ->
+      pages[pageIndex].getContent()
     }
   }
 }
@@ -468,28 +443,6 @@ private fun SearchTopAppBar(
   LaunchedEffect(Unit) {
     focusRequester.requestFocus()
   }
-}
-
-@Composable
-private fun PagerTab(
-  title: String,
-  selected: Boolean,
-  onClick: () -> Unit,
-  modifier: Modifier = Modifier
-) {
-  Tab(
-    text = {
-      Text(
-        text = title,
-        style = MaterialTheme.typography.bodyLarge,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-      )
-    },
-    selected = selected,
-    onClick = onClick,
-    modifier = modifier
-  )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
