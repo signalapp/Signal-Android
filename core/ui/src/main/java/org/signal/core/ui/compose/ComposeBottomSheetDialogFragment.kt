@@ -36,6 +36,9 @@ import androidx.compose.runtime.snapshots.Snapshot
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.findRootCoordinates
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -45,6 +48,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.ui.compose.theme.SignalTheme
+import kotlin.math.roundToInt
 
 /**
  * Base class for bottom sheets whose content is entirely Compose.
@@ -139,7 +143,8 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
 }
 
 /**
- * The position of the enclosing [ComposeBottomSheetDialogFragment], for content that follows it.
+ * The position of the enclosing sheet, for content that follows it. Driven by [ComposeBottomSheetDialogFragment] and
+ * by [BottomSheets.BottomSheet].
  *
  * @param onExpand Takes the sheet to full height.
  */
@@ -158,7 +163,17 @@ class BottomSheetHostState(private val onExpand: () -> Unit = {}) {
 
   internal fun updateOverflow(bottomSheet: View) {
     val windowHeight = (bottomSheet.parent as? View)?.height ?: return
-    val overflow = (bottomSheet.bottom - windowHeight).coerceAtLeast(0)
+    setOverflow(bottomSheet.bottom - windowHeight)
+  }
+
+  /** @param sheetContent The sheet's content, whose bottom passes the bottom of its window while the sheet is part way up. */
+  internal fun updateOverflow(sheetContent: LayoutCoordinates) {
+    val windowHeight = sheetContent.findRootCoordinates().size.height
+    setOverflow((sheetContent.positionInRoot().y + sheetContent.size.height).roundToInt() - windowHeight)
+  }
+
+  private fun setOverflow(overflowPx: Int) {
+    val overflow = overflowPx.coerceAtLeast(0)
     if (overflow != overflowBottomPx) {
       overflowBottomPx = overflow
       // Apply now so content following the sheet moves in the same frame.
