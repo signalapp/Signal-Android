@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -42,11 +44,19 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.signal.core.ui.R as CoreUiR
 
+@VisibleForTesting
+object NotificationProfileComponentsTestTags {
+  /** A member's display name, which is user-entered and may wrap mid-word. */
+  const val RECIPIENT_NAME = "notification-profile-recipient-name"
+}
+
 @Composable
 fun NotificationProfileAddMembers(
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Rows.TextRow(
+    modifier = modifier,
     icon = {
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24),
@@ -73,11 +83,12 @@ fun NotificationProfileAddMembers(
 @Composable
 fun NotificationProfileRecipient(
   recipient: Recipient,
-  onRemoveClick: (RecipientId) -> Unit
+  onRemoveClick: (RecipientId) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier
+    modifier = modifier
       .defaultMinSize(minHeight = 64.dp)
       .horizontalGutters()
   ) {
@@ -107,7 +118,9 @@ fun NotificationProfileRecipient(
       Text(
         text = string,
         inlineContent = map,
-        modifier = Modifier.weight(1f)
+        modifier = Modifier
+          .weight(1f)
+          .testTag(NotificationProfileComponentsTestTags.RECIPIENT_NAME)
       )
     }
 

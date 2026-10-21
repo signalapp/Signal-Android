@@ -11,6 +11,10 @@ android {
     compose = true
   }
 
+  testFixtures {
+    enable = true
+  }
+
   testOptions {
     unitTests {
       isIncludeAndroidResources = true
@@ -44,4 +48,9 @@ dependencies {
 
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.assertk)
+
+  testFixturesImplementation(project(":core:util"))
+  testFixturesImplementation(testLibs.junit.junit)
+  testFixturesImplementation(platform(libs.androidx.compose.bom))
+  testFixturesImplementation(libs.androidx.compose.material3)
 }

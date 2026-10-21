@@ -851,6 +851,7 @@ dependencies {
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockk)
   testImplementation(testFixtures(project(":core:ui")))
+  testImplementation(testFixtures(project(":lib:emoji")))
   testImplementation(testFixtures(project(":lib:libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)

@@ -1,6 +1,7 @@
 package org.signal.emoji
 
 import android.app.Application
+import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.Assert
@@ -15,7 +16,7 @@ import org.robolectric.annotation.Config
 class EmojiUtilTest_isEmoji(private val input: String?, private val output: Boolean) {
 
   @get:Rule
-  val emojiDependencies = MockEmojiDependenciesRule()
+  val emojiDependencies = EmojiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   @Throws(Exception::class)
   @Test
