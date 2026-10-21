@@ -1337,8 +1337,7 @@
 
     <fragment
         android:id="@+id/editNotificationProfileScheduleFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragment"
-        tools:layout="@layout/fragment_edit_notification_profile_schedule">
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.schedule.EditNotificationProfileScheduleFragment">
 
         <argument
             android:name="profileId"

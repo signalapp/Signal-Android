@@ -102,4 +102,10 @@
     <string name="LearnMoreTextView_learn_more">Learn more</string>
 
     <string name="SpanUtil__read_more">Read more</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Switch to clock</string>
 </resources>
