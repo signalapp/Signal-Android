@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">डिलीट करें</string>
     <string name="save">सेव करें</string>
     <string name="note_to_self">खुद के लिए नोट</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">मौसम</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">नोट</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">खबर</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">वेव</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal पर अब SMS मैसेजिंग की सुविधा मौजूद नहीं है। %1$s को Signal आने के लिए इनवाइट भेजें और आगे की बातचीत यहीं करें।</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">यह व्यक्ति अब Signal का यूज़र नहीं है। उन्हें Signal पर आने के लिए इनवाइट भेजें और आगे की बातचीत यहीं करें।</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal इस्तेमाल करने के लिए इनवाइट भेजें</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">लिंक किए गए डिवाइस पर सभी मैसेज गोपनीय होते हैं</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">लिंक होने के बाद, आपके मोबाइल फ़ोन के Signal के साथ मैसेज अपने आप सिंक हो जाएंगे। पहले के मैसेज यहां दिखाई नहीं देंगे।</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">जिस डिवाइस को लिंक करना है उस पर Signal इंस्टॉल करने के लिए %1$s पर जाएं</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ऐसा करने के बाद इसे बदला या कैंसिल नहीं किया जा सकता।</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">रद्द करें</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">ज़्यादा जानें</string>
-
-    <string name="SpanUtil__read_more">ज़्यादा पढ़ें</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">मैसेज नहीं मिला</string>
@@ -2719,13 +2706,13 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">लिंक कॉपी किया गया</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">स्टिकर पैक छिपाना है?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">ऐसा करने से यह स्टिकर पैक आपकी पैक सूची में दिखाई देना बंद हो जाएगा। फिर इन्हें बिना लिंक या स्टिकर मैसेज के दोबारा जोड़ना मुमकिन नहीं होगा।</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">ऐसा करने से यह स्टिकर पैक हट जाएगा और आपकी पैक सूची में दिखाई देना बंद हो जाएगा। फिर इन्हें बिना लिंक या स्टिकर मैसेज के दोबारा जोड़ना मुमकिन नहीं होगा।</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">स्टिकर पैक छिपा हुआ है</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
     <string name="StickerManagement_undo">पहले जैसा करें</string>
 
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">पैक देखें</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">स्टिकर को \'पसंदीदा\' में जोड़ा गया</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3179,7 +3168,7 @@
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ऐक्सेस के बिना बाहरी स्टोरेज में इसे सेव नहीं किया जा सकता</string>
     <!-- Toast shown when media can\'t be saved to the device storage because its data is no longer on the device and can\'t be downloaded again. -->
-    <string name="AttachmentSaver__media_no_longer_available">अब यह मीडिया उपलब्ध नहीं है</string>
+    <string name="AttachmentSaver__media_no_longer_available">यह मीडिया अब उपलब्ध नहीं है</string>
 
     <!-- Dialog title shown when attempting to save media that has been offloaded from the device by the storage optimization feature. -->
     <string name="AttachmentSaver__cant_save_media">मीडिया सेव नहीं किया जा सकता</string>
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">कोई एक यूज़रनेम चुनें ताकि दूसरे लोग आपसे कनेक्ट हो सकें।</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">सेटअप करें</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">नया डिवाइस लिंक करें</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">बंद करें</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">%1$d सेकंड</item>
-        <item quantity="other">%1$d सेकंड</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$dसे.</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">%1$d मिनट</item>
-        <item quantity="other">%1$d मिनट</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dमि.</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">%1$d घंटा</item>
-        <item quantity="other">%1$d घंटे</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dघं.</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">%1$d दिन</item>
-        <item quantity="other">%1$d दिन</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dदि.</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">%1$d सप्ताह</item>
-        <item quantity="other">%1$d सप्ताह</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dस.</string>
-    <string name="expiration_combined">%1$s%2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है और अब इसे दोबारा वेरिफ़ाई करना होगा</string>
     <string name="IdentityUtil_unverified_banner_two">%1$s और %2$s के साथ आपका सेफ़्टी नंबर अब वेरिफ़ाई नहीं है</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">नहीं, रहने दें</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">हाल ही के</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">यह मैसेज</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">हाल ही में इस्तेमाल किया</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">कोई नतीजा नहीं मिला</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">सिर्फ़ नाम</string>
     <string name="arrays__no_name_or_message">कोई नाम या मैसेज नहीं</string>
 
-    <string name="arrays__images">इमेज</string>
-    <string name="arrays__audio">ऑडियो</string>
-    <string name="arrays__video">वीडियो</string>
-    <string name="arrays__documents">डॉक्यूमेंट</string>
 
-    <string name="arrays__small">छोटा</string>
-    <string name="arrays__normal">सामान्य</string>
-    <string name="arrays__large">बड़ा</string>
-    <string name="arrays__extra_large">ज़्यादा बड़ा</string>
 
     <string name="arrays__default">डिफ़ॉल्ट</string>
     <string name="arrays__high">ज़्यादा</string>
@@ -3885,17 +3824,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">स्क्रीन सिक्योरिटी चालू है</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">स्क्रीन सिक्योरिटी बंद करें</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">स्क्रीन सिक्योरिटी बंद करनी है?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">बंद करें</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">स्क्रीन सिक्योरिटी बंद है</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">खास समय तक इस्तेमाल नहीं होने पर Signal को अपने-आप लॉक होने दें</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">इस्तेमाल नहीं होने पर डाले जाने वाला पासफ़्रेज़</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">साइएन</string>
     <string name="preferences__magenta">मैजंटा</string>
     <string name="preferences__white">सफ़ेद</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">कोई नहीं</string>
     <string name="preferences__fast">तेज़</string>
     <string name="preferences__normal">सामान्य</string>
     <string name="preferences__slow">धीमा</string>
-    <string name="preferences__help">मदद</string>
     <string name="preferences__advanced">ऐडवांस</string>
     <string name="preferences__donate_to_signal">Signal को दान करें</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">प्राइवेसी</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">स्टोरीज़</string>
-    <string name="preferences__data_and_storage">डेटा और स्टोरेज</string>
     <string name="preferences__storage">स्टोरेज</string>
     <string name="preferences__payments">पेमेंट</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">चैट में अधिकतम मैसेज की सीमा</string>
     <string name="preferences__keep_messages">मैसेज रखें</string>
     <string name="preferences__linked_devices">लिंक डिवाइस</string>
-    <string name="preferences__light_theme">हल्का</string>
-    <string name="preferences__dark_theme">गहरा</string>
-    <string name="preferences__appearance">अपीयरेंस</string>
-    <string name="preferences__theme">थीम</string>
-    <string name="preferences__chat_color_and_wallpaper">संदेश का रंग &amp; वॉलपेपर</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">ऐप का आइकन</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">ठीक है</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">कैंसिल करें</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">ऐप का आइकन और नाम बदलकर \"%1$s\" करें</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">ऐप का आइकन और नाम बदलने के लिए Signal को बंद करना होगा। नोटिफ़िकेशन में हमेशा Signal का डिफ़ॉल्ट आइकन और नाम ही दिखेगा।</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">ऐप का आइकन और नाम चुनें। ये आपके फ़ोन की होम स्क्रीन और ऐप ड्रॉअर पर दिखाई देंगे। नोटिफ़िकेशन में हमेशा Signal का डिफ़ॉल्ट आइकन और नाम ही दिखेगा। और जानें</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">ऐप का आइकन और नाम होम स्क्रीन और ऐप ड्रॉअर पर दिखाई देंगे।</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">नोटिफ़िकेशन में हमेशा Signal का डिफ़ॉल्ट आइकन और नाम ही दिखेगा।</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">और जानें</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">इस ग्राफ़िक में दिखाया गया है कि नया ऐप आइकन किस जगह नज़र आएगा।</string>
     <string name="preferences__disable_pin">पिन हटाएं</string>
     <string name="preferences__enable_pin">पिन सेट करें</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">अगर आपने पिन हटा दिया है, तो Signal पर दोबारा रजिस्टर करने पर आपका सारा डेटा मिट जाएगा। हालांकि, अगर आपने मैन्युअल तरीके से डेटा का बैकअप लिया है, तो आपके पास रीस्टोर करने का विकल्प रहेगा। पिन बंद रहने पर रजिस्ट्रेशन लॉक चालू नहीं किया जा सकता।</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">पिन की मदद से Signal पर आपकी जानकारी एन्क्रिप्टेड रूप में स्टोर की जाती है, ताकि सिर्फ़ आप ही उसे देख सकें। Signal दोबारा इंस्टॉल करने पर आपकी प्रोफ़ाइल, सेटिंग, और कॉन्टैक्ट रीस्टोर हो जाएगा। ऐप खोलने के लिए पिन की ज़रूरत नहीं होगी।</string>
-    <string name="preferences__system_default">डिफ़ॉल्ट सिस्टम</string>
-    <string name="preferences__language">भाषा</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">एडवांस पिन सेटिंग</string>
     <string name="preferences__submit_debug_log">डीबग लॉग सबमिट करें</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">कीबोर्ड से पर्सनलाइज़ लर्निंग की सुविधा बंद करने का अनुरोध करें।</string>
     <string name="preferences__this_setting_is_not_a_guarantee">ज़रूरी नहीं है कि यह सेटिंग पूरी तरह कारगर हो। आपका कीबोर्ड इस अनुरोध को अनसुना कर सकता है।</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">मोबाइल डेटा इस्तेमाल करने पर</string>
-    <string name="preferences_chats__when_using_wifi">वाई-फ़ाई इस्तेमाल करने पर</string>
-    <string name="preferences_chats__when_roaming">रोमिंग के समय</string>
-    <string name="preferences_chats__media_auto_download">मीडिया ऑटो डाउनलोड होने दें</string>
     <string name="preferences_storage__storage_usage">स्टोरेज का इस्तेमाल</string>
     <string name="preferences_storage__photos">फ़ोटो</string>
     <string name="preferences_storage__videos">वीडियो</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">हमेशा इसी तरह कॉल करें</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">पेमेंट</string>
-    <string name="preferences_data_and_storage__manage_storage">स्टोरेज मैनेज करें</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">कम डेटा में कॉल करें</string>
-    <string name="preferences_data_and_storage__never">कभी नहीं</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">वाई-फ़ाई और मोबाइल डेटा</string>
-    <string name="preferences_data_and_storage__mobile_data_only">सिर्फ़ मोबाइल डेटा</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">कम डेटा का इस्तेमाल करने से खराब नेटवर्क में भी कॉल की क्वालिटी अच्छी रह सकती है।</string>
     <string name="preferences_notifications__in_chat_sounds">चैट में आवाज</string>
     <string name="preferences_notifications__show">दिखाएं</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">अगर म्यूट की गई चैट में नहीं पढ़े गए मैसेज हों, तो बीच-बीच में नोटिफ़िकेशन पाएं</string>
     <string name="preferences_notifications__ringtone">रिंगटोन</string>
-    <string name="preferences_chats__message_text_size">मैसेज का फ़ॉन्ट साइज़</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">प्राथमिकता</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">एनक्रिप्टेड सेंडर</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">कोई भी मुझे मैसेज भेज सकता है</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">जो लोग आपके कॉन्टैक्ट में नहीं हैं और जिन लोगों के साथ आपने अपनी प्रोफ़ाइल शेयर नहीं की है उनसे आने वाले मैसेज के लिए एनक्रिप्टेड सेंडर की सुविधा चालू करें।</string>
-    <string name="preferences_proxy">प्रॉक्सी</string>
-    <string name="preferences_use_proxy">प्रॉक्सी इस्तेमाल करें</string>
-    <string name="preferences_off">बंद है</string>
-    <string name="preferences_on">चालू है</string>
     <string name="preferences_proxy_address">प्रॉक्सी पता</string>
     <string name="preferences_only_use_a_proxy_if">प्रॉक्सी का इस्तेमाल तभी करें, जब आपके पास मोबाइल डेटा या वाई-फ़ाई के ज़रिए Signal से कनेक्ट करने की सुविधा मौजूद हो।</string>
     <string name="preferences_share">शेयर करें</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">हो गया</string>
     <string name="preferences_failed_to_connect">कनेक्ट नहीं हो सका</string>
     <string name="preferences_enter_proxy_address">प्रॉक्सी पता डालें</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">नेविगेशन बार का साइज़</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">सामान्य</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">कॉम्पैक्ट</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">नई भाषा सेटिंग लागू करने के लिए ऐप रीस्टार्ट होगा।</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">ऑटोमैटिक \'की\' वेरिफ़िकेशन</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">कभी नहीं</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">अनजान</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">फ़ोन नंबर</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">चुनें कि कौन आपका फ़ोन नंबर देख सकता है और कौन इसके ज़रिए आपसे Signal पर संपर्क कर सकता है।</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">मेरा नंबर कौन देख सकता है</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">आपका फ़ोन नंबर उन लोगों और ग्रुप को दिखेगा जिन्हें आपने मैसेज भेजा है।</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">आपका फ़ोन नंबर किसी को तब तक नहीं दिखाई देगा जब तक कि उसने अपने फ़ोन के कॉन्टैक्ट में इसे सेव न किया हो।</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">आपका फ़ोन नंबर किसी को दिखाई नहीं देगा।</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">मुझे नंबर के ज़रिए कौन ढूंढ सकता है</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">जिस भी व्यक्ति के पास आपका फ़ोन नंबर है वह यह देख सकता है कि आप Signal पर मौजूद हैं। साथ ही, वह आपके साथ चैट कर सकता है।</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">अगर आपने किसी को मैसेज नहीं भेजा है या फिर किसी के साथ आपने पहले चैट नहीं की है, तो कोई नहीं जान पाएगा कि आप Signal पर हैं।</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"इस सेटिंग को बदलने के लिए, ‘मेरा नंबर कौन देख सकता है’ को ‘कोई नहीं’ पर सेट करें।"</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">क्या आपको वाकई ऐसा करना है?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"मुझे नंबर से कौन ढूंढ सकता है\" को \"कोई नहीं\" पर सेट करने पर किसी के लिए भी Signal पर आपको ढूंढना मुश्किल हो जाएगा।</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">कैंसिल करें</string>
-    <string name="PhoneNumberPrivacy_everyone">सभी</string>
-    <string name="PhoneNumberPrivacy_nobody">कोई नहीं</string>
-    <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">स्क्रीन लॉक का इस्तेमाल करने के लिए, इस डिवाइस पर पिन, पैटर्न या पासवर्ड सेट करें।</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">रजिस्ट्रेशन लॉक चालू नहीं हो सका।</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">बंद करें</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">स्क्रीन लॉक का इस्तेमाल करें</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">ऐप छोड़ने या स्विच करने पर, Signal को अनलॉक करने के लिए आपको Android डिवाइस की लॉक सेटिंग की ज़रूरत पड़ सकती है। लॉक होने पर, नोटिफ़िकेशन प्रीव्यू में मैसेज का कॉन्टेंट दिखाई नहीं देगा।</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">स्क्रीन लॉक शुरू करें</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">1 मिनट बाद</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">5 मिनट बाद</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">30 मिनट बाद</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">खुद से समय डालें</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal स्क्रीन लॉक का इस्तेमाल करें</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal स्क्रीन लॉक बंद करें</string>
 
     <string name="Recipient_unknown">अनजान</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">बैकअप सब्सक्राइबर id को क्लिपबोर्ड पर कॉपी किया गया</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">आपका अकाउंट डेटा</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">अपने Signal अकाउंट डेटा की रिपोर्ट एक्सपोर्ट करें। इस रिपोर्ट में कोई मैसेज या मीडिया शामिल नहीं है। %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">और जानें</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">रिपोर्ट एक्सपोर्ट करें</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">TXT फ़ॉर्मैट में एक्सपोर्ट करें</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">आसानी से पढ़ी जा सकने वाली टेक्स्ट फ़ाइल</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON फ़ॉर्मैट में एक्सपोर्ट करें</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">मशीन द्वारा पढ़ी जा सकने वाली फ़ाइल</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">कैंसिल करें</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">ठीक है</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">रिपोर्ट जनरेट नहीं हो सकी</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">अपना इंटरनेट कनेक्शन देखें और दोबारा कोशिश करें।</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">डेटा एक्सपोर्ट करना है?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">अपने Signal अकाउंट के डेटा सिर्फ़ भरोसेमंद लोगों या ऐप के साथ ही शेयर करें।</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">एक्सपोर्ट करें</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">रिपोर्ट बनाई जा रही है…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">आपकी रिपोर्ट केवल निर्यात के समय उत्पन्न होती है और आपके डिवाइस पर Signal द्वारा संग्रहित नहीं की जाती है।</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">अपने मौजूदा फ़ोन नंबर को नए फ़ोन नंबर से बदलने के लिए इसका इस्तेमाल करें। बदलाव होने के बाद इसे पहले जैसा नहीं किया जा सकता।\n\nआगे बढ़ने से पहले, पक्का कर लें कि आपके नए नंबर पर SMS या कॉल आने की सुविधा मौजूद है।</string>
     <string name="ChangeNumberFragment__continue">जारी रखें</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 मिनट</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 सेकंड</string>
     <string name="ExpireTimerSettingsFragment__custom_time">अपनी पसंद से समय डालें</string>
-    <string name="ExpireTimerSettingsFragment__set">सेट करें</string>
     <string name="ExpireTimerSettingsFragment__save">सेव करें</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">सेकंड</string>
-    <string name="CustomExpireTimerSelectorView__minutes">मिनट</string>
-    <string name="CustomExpireTimerSelectorView__hours">घंटे</string>
-    <string name="CustomExpireTimerSelectorView__days">दिन</string>
-    <string name="CustomExpireTimerSelectorView__weeks">हफ़्ते</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">सहायता केंद्र</string>
-    <string name="HelpSettingsFragment__contact_us">हमसे संपर्क करें</string>
-    <string name="HelpSettingsFragment__version">वर्ज़न</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया</string>
-    <string name="HelpSettingsFragment__debug_log">डीबग लॉग</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">लाइसेंस</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">नियम और गोपनीयता नीति</string>
-    <string name="HelpFragment__copyright_signal_messenger">कॉपीराइट Signal मैसेंजर</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 के तहत लाइसेंस प्राप्त</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal एक गैर-लाभकारी संस्था है</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">मीडिया की क्वालिटी</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">गणना की जा रही है…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">भेजे गए मीडिया की क्वालिटी</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">हाई क्वालिटी मीडिया भेजने में ज़्यादा डेटा लगेगा।</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">वॉइस मैसेज और स्टिकर (%1$s से कम) हमेशा अपने-आप डाउनलोड हो जाते हैं।</string>
-    <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">बैकग्राउंड में कनेक्टेड रखें</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">बैकग्राउंड में कनेक्टेड रहने से बैटरी ज़्यादा खर्च हो सकती है। ज़्यादातर डिवाइस में इसकी ज़रूरत नहीं होती है। इसे तभी चालू करें, जब आपको नोटिफ़िकेशन मिलने में कोई दिक्कत आ रही हो।</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">चालू करें</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">सस्टेनर बनें</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">इमोजी खोजें</string>
-    <string name="KeyboardPagerFragment_backspace">बैकस्पेस</string>
     <string name="KeyboardPagerFragment_search_emoji">इमोजी खोजें</string>
     <string name="KeyboardPagerfragment_back_to_emoji">वापस इमोजी पर जाएं</string>
     <string name="KeyboardPagerfragment_clear_search_entry">सर्च में डाले गए शब्द हटाएं</string>
     <string name="KeyboardPagerFragment_search_giphy">GIPHY खोजें</string>
 
-    <string name="EmojiSearchFragment__no_results_found">कोई नतीजा नहीं मिला</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">अनजान रिंगटोन</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">एक बैज चुनें</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपको एक बैज चुनना होगा</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफ़ाइल अपडेट नहीं हो सकी</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">फ़ोकस</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">प्रोफ़ाइल नेम ज़रूरी है</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">इन नोटिफ़िकेशन को मंज़ूरी मिली हुई हैं</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">आगे बढ़ें</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">शेड्यूल में कम से कम एक दिन होना चाहिए</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">प्रोफ़ाइल बनाई गई</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">हो गया</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">आप चैट सूची पर मेनू के माध्यम से मैनुअल तरीके से अपनी प्रोफ़ाइल ऑन या ऑफ़ कर सकते हैं।</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">सेटिंग में जाकर शेड्यूल जोड़ें, ताकि आपकी प्रोफ़ाइल अपने-आप बदलती रहे।</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">आपकी प्रोफ़ाइल आपके शेड्यूल के मुताबिक अपने-आप चालू और बंद होती रहेगी।</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">नई प्रोफ़ाइल</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">यूज़रनेम कॉपी किया गया</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">लिंक कॉपी किया गया</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">लिंक सेट नहीं है</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">लिंक रीसेट किया जा रहा है…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">रीसेट करें</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">रीसेट करें</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">हो गया</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">कोड</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">स्कैन करें</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">अपने कॉन्टैक्ट के डिवाइस पर QR कोड स्कैन करें।</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">रंग</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR कोड सही नहीं था।</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">इंटरनेट में कोई गड़बड़ी हुई। कृपया बाद में कोशिश करें।</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">बैकअप डिलीट हो रहा है।</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">फिर से कोशिश करने के लिए, इस डिवाइस पर Signal को अनइंस्टॉल करके दोबारा इंस्टॉल करें और \'रीस्टोर या ट्रांसफ़र करें\' चुनें।</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">वेरिफ़िकेशन कोड का अनुरोध किया गया</string>

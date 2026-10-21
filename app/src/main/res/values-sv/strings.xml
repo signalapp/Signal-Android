@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Ta bort</string>
     <string name="save">Spara</string>
     <string name="note_to_self">Egen anteckning</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Väder</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Anteckningar</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Nyheter</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Vågor</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Sms-meddelanden stöds inte längre i Signal. Bjud in %1$s till Signal för att hålla konversationen här.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Den här personen använder inte längre Signal. Bjud in dem till Signal för att hålla konversationen här.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Bjud in till Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alla meddelanden på länkade enheter är privata</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal-meddelanden synkroniseras med Signal på din mobiltelefon efter att den har länkats. Din tidigare meddelandehistorik kommer inte att visas.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Besök %1$s på den enhet som du vill länka för att installera Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Denna åtgärd kan inte ångras.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Kassera</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Läs mer</string>
-
-    <string name="SpanUtil__read_more">Läs mer</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Det gick inte att hitta meddelandet</string>
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Visa paket</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Stickern lades till i Favoriter</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Välj ett användarnamn så att andra kan kontakta dig.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Ställ in</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">Länka ny enhet</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Av</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">%1$d sekund</item>
-        <item quantity="other">%1$d sekunder</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minut</item>
-        <item quantity="other">%1$d minuter</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">%1$d timme</item>
-        <item quantity="other">%1$d timmar</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dh</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">%1$d dag</item>
-        <item quantity="other">%1$d dagar</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dd</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">%1$d vecka</item>
-        <item quantity="other">%1$d veckor</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dv</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Ditt säkerhetsnummer med %1$s har ändrats och är inte längre verifierat</string>
     <string name="IdentityUtil_unverified_banner_two">Dina säkerhetsnummer med %1$s och %2$s är inte längre verifierat</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nej tack</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Senaste</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Inga resultat hittades</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">Endast namn</string>
     <string name="arrays__no_name_or_message">Inget namn eller meddelande</string>
 
-    <string name="arrays__images">Bilder</string>
-    <string name="arrays__audio">Ljud</string>
-    <string name="arrays__video">Filmer</string>
-    <string name="arrays__documents">Dokument</string>
 
-    <string name="arrays__small">Liten</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Stor</string>
-    <string name="arrays__extra_large">Extra stor</string>
 
     <string name="arrays__default">Standard</string>
     <string name="arrays__high">Hög</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">Turkos</string>
     <string name="preferences__magenta">Lila</string>
     <string name="preferences__white">Vit</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Ingen</string>
     <string name="preferences__fast">Snabb</string>
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Långsam</string>
-    <string name="preferences__help">Hjälp</string>
     <string name="preferences__advanced">Avancerat</string>
     <string name="preferences__donate_to_signal">Donera till Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Integritet</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
-    <string name="preferences__data_and_storage">Data och lagring</string>
     <string name="preferences__storage">Lagring</string>
     <string name="preferences__payments">Betalningar</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">Högsta antal meddelanden i ett chatt</string>
     <string name="preferences__keep_messages">Spara meddelanden</string>
     <string name="preferences__linked_devices">Länkade enheter</string>
-    <string name="preferences__light_theme">Ljust</string>
-    <string name="preferences__dark_theme">Mörkt</string>
-    <string name="preferences__appearance">Utseende</string>
-    <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Chattfärg och -bakgrund</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Appikon</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Avbryt</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Ändra appikon och namn till \"%1$s\"</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal måste stängas för att ändra appikonen och namn. Aviseringar visar alltid standardikonen för Signal och namn.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Välj en appikon och ett namn som kommer att synas på telefonens startskärm och app-låda. Aviseringar visar alltid standardikonen för Signal och namn. Läs mer</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Appikoner och namn syns på startskärmen och app-lådan.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Aviseringar visar alltid standardikonen för Signal och namn.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Läs mer</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik som illustrerar var ersättningsappikonen kommer att synas.</string>
     <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
     <string name="preferences__enable_pin">Aktivera PIN-koden</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koden håller information lagrad hos Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
-    <string name="preferences__system_default">Systemets standard</string>
-    <string name="preferences__language">Språk</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avancerade PIN-kodsinställningar</string>
     <string name="preferences__submit_debug_log">Skicka in felsökningslogg</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">Begär att tangentbordet inaktiverar personlig inlärning.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Denna inställning är ingen garanti och ditt tangentbord kanske ignorerar det.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Vid användning av mobildata</string>
-    <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">Vid roaming</string>
-    <string name="preferences_chats__media_auto_download">Automatisk hämtning av media</string>
     <string name="preferences_storage__storage_usage">Lagringsutrymme</string>
     <string name="preferences_storage__photos">Foton</string>
     <string name="preferences_storage__videos">Videor</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">Slussa alltid samtal</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalningar</string>
-    <string name="preferences_data_and_storage__manage_storage">Hantera lagring</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Använd mindre data för samtal</string>
-    <string name="preferences_data_and_storage__never">Aldrig</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi och mobildata</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Endast mobildata</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Att använda mindre data kan förbättra samtal på dåliga nätverk.</string>
     <string name="preferences_notifications__in_chat_sounds">Ljud i chattar</string>
     <string name="preferences_notifications__show">Visa</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Avisera ibland när det finns olästa meddelanden i tystade chattar</string>
     <string name="preferences_notifications__ringtone">Rington</string>
-    <string name="preferences_chats__message_text_size">Teckenstorlek för meddelanden</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">Dold avsändare</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillåt från alla</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte har delat din profil med.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Använd proxy</string>
-    <string name="preferences_off">Av</string>
-    <string name="preferences_on">På</string>
     <string name="preferences_proxy_address">Proxyadress</string>
     <string name="preferences_only_use_a_proxy_if">Använd endast en proxy om du inte kan ansluta till Signal på mobildata eller Wi-Fi.</string>
     <string name="preferences_share">Dela</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">Lyckades</string>
     <string name="preferences_failed_to_connect">Det gick inte att ansluta</string>
     <string name="preferences_enter_proxy_address">Ange proxyadress</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Storlek på navigeringsfältet</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Kompakt</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Appen startar om för att tillämpa den nya språkinställningen.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automatisk nyckelverifiering</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">Aldrig</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Okänd</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Telefonnummer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Välj vem som kan se ditt telefonnummer och vem som kan använda det för att kontakta dig på Signal.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Vem kan se mitt nummer</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Ditt telefonnummer kommer att vara synligt för personer och grupper som du skickar meddelanden till.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ditt telefonnummer kommer inte att vara synligt för någon om de inte har det sparat i telefonens kontakter.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ditt telefonnummer kommer inte att vara synligt för någon.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Vem kan hitta mig med nummer</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Alla som har ditt telefonnummer ser att du är på Signal och kan börja chatta med dig.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ingen kommer att kunna se att du är på Signal om du inte skickar ett meddelande eller har en befintlig chatt med dem.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Om du vill ändra den här inställningen ställer du in Vem kan se mitt nummer till Ingen."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Är du säker?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Om du ställer in \"Vem kan hitta mig med nummer\" till \"Ingen\" blir det svårare för andra att hitta dig på Signal.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Avbryt</string>
-    <string name="PhoneNumberPrivacy_everyone">Alla</string>
-    <string name="PhoneNumberPrivacy_nobody">Ingen</string>
-    <string name="preferences_app_protection__screen_lock">Skärmlås</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Om du vill använda skärmlåset anger du en pinkod, ett mönster eller ett lösenord på den här enheten.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Det gick inte att aktivera registreringslåset.</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Av</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Använd skärmlås</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Låsinställningarna på din Android-enhet kommer att behövas för att låsa upp Signal när du lämnar eller byter app. Förhandsvisning av aviseringar visar inte meddelandeinnehåll när låset är aktiverat.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Starta skärmlås</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">Efter 1 minut</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">Efter 5 minuter</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">Efter 30 minuter</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Anpassad tid</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Använd Signal-skärmlås</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Stäng av Signal-skärmlåset</string>
 
     <string name="Recipient_unknown">Okänt</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopierade prenumerant-id för säkerhetskopior till urklipp</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Dina kontodata</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Exportera en rapport med dina Signal-kontodata. Denna rapport innehåller inga meddelanden eller media. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Läs mer</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Exportera rapport</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Exportera som .txt</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Lättläst textfil</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Exportera som JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Maskinläsbar fil</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Avbryt</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Det gick inte att generera rapport</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Kontrollera din anslutning och försök igen.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Exportera data?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Dela bara dina Signal-kontodata med personer eller appar som du litar på.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Exportera</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Genererar rapport …</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Din rapport genereras endast vid exporttillfället och lagras inte av Signal på din enhet.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Använd detta för att ändra ditt nuvarande telefonnummer till ett nytt telefonnummer. Du kan inte ångra denna ändring.\n\nInnan du fortsätter, se till att ditt nya nummer kan ta emot SMS eller samtal.</string>
     <string name="ChangeNumberFragment__continue">Fortsätt</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minuter</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 sekunder</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Anpassad tid</string>
-    <string name="ExpireTimerSettingsFragment__set">Ställ in</string>
     <string name="ExpireTimerSettingsFragment__save">Spara</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">sekunder</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minuter</string>
-    <string name="CustomExpireTimerSelectorView__hours">timmar</string>
-    <string name="CustomExpireTimerSelectorView__days">dagar</string>
-    <string name="CustomExpireTimerSelectorView__weeks">veckor</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Supportcenter</string>
-    <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>
-    <string name="HelpSettingsFragment__version">Version</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Kopierad till urklipp</string>
-    <string name="HelpSettingsFragment__debug_log">Felsökningslogg</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenser</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; integritetspolicy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensierad under GNU AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal är en ideell organisation</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Beräknar …</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Skickade mediekvalitet</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Om du skickar högkvalitativa medier kommer du att använda mera data.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Röstmeddelanden och klistermärken (under %1$s) hämtas alltid automatiskt.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Förbli ansluten i bakgrunden</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Att vara ansluten i bakgrunden leder troligen till ökad batteriförbrukning. Det här är inte nödvändigt för de flesta enheter. Aktivera bara det här om du har haft problem med aviseringar.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Aktivera</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en upprätthållare</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Öppna emoji-sökning</string>
-    <string name="KeyboardPagerFragment_backspace">Backsteg</string>
     <string name="KeyboardPagerFragment_search_emoji">Sök emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Tillbaka till emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Rensa sökpost</string>
     <string name="KeyboardPagerFragment_search_giphy">Sök GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Inga resultat hittades</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Okänd ringsignal</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Välj ett märke</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Du måste välja ett märke</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">Fokus</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Måste ha ett namn</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Tillåtna aviseringar</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">Nästa</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Schema måste ha minst en dag</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profil skapad</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Klar</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan slå på eller av din profil manuellt via menyn på chattlistan.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Lägg till ett schema i inställningarna för att automatisera din profil.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Din profil slås på och av automatiskt enligt ditt schema.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Ny profil</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Användarnamn kopierat</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Länken kopierades</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Länken är inte angiven</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Återställer länk …</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Återställ</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Återställ</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Klar</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Kod</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Skanna</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Skanna QR-koden på din kontakts enhet.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Färg</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR-koden är ogiltig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Ett nätverksfel har inträffat. Försök igen senare.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">En radering av säkerhetskopia pågår.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Försök igen genom att avinstallera och installera om Signal på den här enheten och välja ”Återställ eller överför”.</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">En verifieringskod har begärts</string>

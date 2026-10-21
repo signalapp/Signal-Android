@@ -44,10 +44,6 @@
   <string name="AddAMessageRow__view_once_media">한 번만 볼 수 있는 미디어</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
   <string name="AddAMessageRow__toggle_view_once">한 번만 보기 설정 전환</string>
-  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">높음</string>
-  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">기본</string>
   <!-- Label for our standard quality media conversion. -->
   <string name="QualitySelectorBottomSheetDialog__standard">기본</string>
   <!-- Description for our standard quality media conversion. -->

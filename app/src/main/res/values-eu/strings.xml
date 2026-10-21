@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Ezabatu</string>
     <string name="save">Gorde</string>
     <string name="note_to_self">Norberarentzako oharra</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Eguraldia</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Oharrak</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Berriak</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Uhinak</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal-en jada ez dira onartzen SMS mezuak. %1$s(r)ekin duzun elkarrizketa mantentzeko, gonbida ezazu Signal-era.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Pertsona honek jada ez du Signal erabiltzen. Harekin duzun elkarrizketa mantentzeko, gonbida ezazu Signal-era.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Lotutako gailuetako mezuak pribatuak dira</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal-mezuak Signal-ekin sinkronizatzen dira telefono mugikorrean, lotu ondoren. Zure aurreko mezuen historia ez da agertuko.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Lotu nahi duzun gailuan, joan %1$s webgunera Signal instalatzeko</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Ekintza hau ezin da desegin.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Baztertu</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
-
-    <string name="SpanUtil__read_more">Irakurri gehiago</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Ezin izan da mezua aurkitu</string>
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Ikusi paketea</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Gehitu da eranskailua gogokoetan</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Aukeratu erabiltzaile-izen bat besteak zurekin konektatzeko.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Konfiguratu</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">Lotu gailu berria</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Desaktibatuta</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">segundo %1$d</item>
-        <item quantity="other">%1$d segundu</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">minutu %1$d</item>
-        <item quantity="other">%1$d minutu</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">Ordu %1$d</item>
-        <item quantity="other">%1$d ordu</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$do</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">Egun %1$d</item>
-        <item quantity="other">%1$d egun</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$de</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">Aste %1$d</item>
-        <item quantity="other">%1$d aste</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$da</string>
-    <string name="expiration_combined">%1$s%2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">%1$s erabiltzailearekin duzun segurtasun zenbakia aldatu da eta egiaztatu gabe dago</string>
     <string name="IdentityUtil_unverified_banner_two">%1$seta %2$serabiltzaileekin duzun segurtasun zenbakiak egiaztatu gabe daude</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Ez eskerrik asko</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Azkenaldikoak</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mezu Hau</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Arestian erabilia</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ez da emaitzarik aurkitu</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">Izena bakarrik</string>
     <string name="arrays__no_name_or_message">Ez izena eta ez mezua</string>
 
-    <string name="arrays__images">Irudiak</string>
-    <string name="arrays__audio">Audioa</string>
-    <string name="arrays__video">Bideoa</string>
-    <string name="arrays__documents">Agiriak</string>
 
-    <string name="arrays__small">Txikia</string>
-    <string name="arrays__normal">Normala</string>
-    <string name="arrays__large">Handia</string>
-    <string name="arrays__extra_large">Oso handia</string>
 
     <string name="arrays__default">Lehenetsia</string>
     <string name="arrays__high">Altua</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Zuria</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Bat ere ez</string>
     <string name="preferences__fast">Arina</string>
     <string name="preferences__normal">Normala</string>
     <string name="preferences__slow">Motela</string>
-    <string name="preferences__help">Laguntza</string>
     <string name="preferences__advanced">Aurreratua</string>
     <string name="preferences__donate_to_signal">Egin dohaintza bat Signal-i</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Pribatutasuna</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Istorioak</string>
-    <string name="preferences__data_and_storage">Datuak eta Biltegiratzea</string>
     <string name="preferences__storage">Biltegia</string>
     <string name="preferences__payments">Ordainketak</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">Txataren gehieneko luzera</string>
     <string name="preferences__keep_messages">Mezuak gorde</string>
     <string name="preferences__linked_devices">Lotutako gailuak</string>
-    <string name="preferences__light_theme">Argia</string>
-    <string name="preferences__dark_theme">Iluna</string>
-    <string name="preferences__appearance">Itxura</string>
-    <string name="preferences__theme">Gaia</string>
-    <string name="preferences__chat_color_and_wallpaper">Txat-kolorea eta horma-papera</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Aplikazioaren ikonoa</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">Ados</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Utzi</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Ezarri \"%1$s\" aplikazioaren ikono eta izen gisa</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Aplikazioaren ikonoa eta izena aldatzeko, Signal itxi egin beharko da. Jakinarazpenek beti erakutsiko dituzte Signal-en ikono eta izen lehenetsiak.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Hautatu aplikazioaren zer ikono eta izen nahi duzun telefonoaren hasierako pantailan eta aplikazio-menuan ikusgai egotea. Jakinarazpenek beti erakutsiko dituzte Signal-en ikono eta izen lehenetsiak. Informazio gehiago</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Aplikazioen ikonoak eta izenak hasierako pantailan eta aplikazio-menuan daude ikusgai.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Jakinarazpenek beti erakutsiko dituzte Signal-en ikono eta izen lehenetsiak.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Informazio gehiago</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Ordezko aplikazioaren ikonoa non egongo den erakusten duen ilustrazio grafikoa.</string>
     <string name="preferences__disable_pin">Desaktibatu PINa</string>
     <string name="preferences__enable_pin">Aktibatu PINa</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ez baduzu modu manualean segurtasun kopiak egiten, PINa desaktibatzen baduzu, datu guztiak galduko dituzu signal berriro erregistratzen duzunean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desaktibatuta dagoen bitartean.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-ek zure Signal kontuarekin batera gordetako informazioa enkriptatuta mantentzen dute, zuk bakarrik eskuratu ahal izateko. Zure profila, ezarpenak eta kontaktuak Signal berrinstalatzen duzunean berreskuratuko dira. Ez duzu PINa behar aplikazioa irekitzeko.</string>
-    <string name="preferences__system_default">Sisteman lehenetsia</string>
-    <string name="preferences__language">Hizkuntza</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">PINarekin loturiko ezarpen aurreratuak</string>
     <string name="preferences__submit_debug_log">Arazketaren informazioa bidali</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">Eskatu teklatuari ikasketa pertsonalizatua desgaitzeko</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Ezarpen honek ez du ezer bermatzen, eta baliteke teklatuak ezikusi egitea.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
-    <string name="preferences_chats__when_using_wifi">Wi-Fia erabiltzerakoan</string>
-    <string name="preferences_chats__when_roaming">Ibiltaritzako datuak erabiltzerakoan</string>
-    <string name="preferences_chats__media_auto_download">Multimedia edukien deskargatze automatikoa</string>
     <string name="preferences_storage__storage_usage">Biltegiaren erabilera</string>
     <string name="preferences_storage__photos">Argazkiak</string>
     <string name="preferences_storage__videos">Bideoak</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">Birtransmititu deiak beti</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Ordainketak</string>
-    <string name="preferences_data_and_storage__manage_storage">Kudeatu biltegiratzea</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Deientzat datu gutxiago erabili</string>
-    <string name="preferences_data_and_storage__never">Inoiz ez</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifia eta datu-konexioa</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Datu-konexioa soilik</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Datu gutxiago erabiliz gero, baliteke sare txarretan deiak hobetzea.</string>
     <string name="preferences_notifications__in_chat_sounds">Txat barruko soinuak</string>
     <string name="preferences_notifications__show">Erakutsi</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Jakinarazi noizean behin irakurri gabeko mezuak daudenean isilarazitako txatetan</string>
     <string name="preferences_notifications__ringtone">Doinua</string>
-    <string name="preferences_chats__message_text_size">Mezuaren letra-tipoaren tamaina</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Lehentasuna</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">Igorle Zigilatuta</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Edozeinengandik onartu</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktibatu igorle zigilatuta zure kontaktuetan ez dauden edo zure profila partekatu ez duzun erabiltzaileek bidaltzen dituzten mezuetarako.</string>
-    <string name="preferences_proxy">Proxya</string>
-    <string name="preferences_use_proxy">Erabili proxya</string>
-    <string name="preferences_off">Desaktibatuta</string>
-    <string name="preferences_on">Aktibatuta</string>
     <string name="preferences_proxy_address">Proxyaren helbidea</string>
     <string name="preferences_only_use_a_proxy_if">Signal-era datu-konexio edo wifi bidez konektatu ezin bazara, erabili proxy bat.</string>
     <string name="preferences_share">Partekatu</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">Ondo</string>
     <string name="preferences_failed_to_connect">Konexioak huts egin du</string>
     <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Nabigazio-barraren tamaina</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normala</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Trinkoa</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Aplikazioa berrabiarazi egingo da, hizkuntza-ezarpen berria aplikatzeko.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Gakoen egiaztapen automatikoa</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">Inoiz ez</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ezezaguna</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Telefono-zenbakia</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Aukeratu nork ikus dezakeen zure telefono-zenbakia eta nor jar daitekeen zurekin harremanetan Signal-en.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Nork ikus dezake nire zenbakia?</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Zure telefono-zenbakia ikusgai egongo da erabiltzaileei nahiz taldeetara mezuak bidaltzen.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Telefonoko kontaktuetan gordeta eduki ezean, ezingo du inork ikusi zure telefono-zenbakia.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ezingo du inork ikusi zure telefono-zenbakia.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Nork aurki nazake zenbakia erabiliz?</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Zure telefono-zenbakia daukaten pertsonek Signal-en zaudela ikusi eta zurekin txateatu ahalko dute.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ezingo du inork ikusi Signal-en zaudela, salbu eta mezuak bidaltzen badituzu edo lehendik txaten bat baduzu norbaitekin.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Ezarpen hori aldatzeko, joan \"Nork ikus dezake nire zenbakia?\" atalera eta aukeratu \"Inork ez\"."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Ziur zaude?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Nork aurki nazake zenbakia erabiliz?\" ezarpenean \"Inork ez\" aukeratuz gero, jendearentzat zailagoa izango da zu Signal-en aurkitzea.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Utzi</string>
-    <string name="PhoneNumberPrivacy_everyone">Guztiak</string>
-    <string name="PhoneNumberPrivacy_nobody">Inor ez</string>
-    <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Pantaila-blokeoa erabiltzeko, ezarri PIN, eredu edo pasahitz bat gailu honetan.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Erresgistratzea blokeatzea aktibatzeak huts egin du.</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Desaktibatuta</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Erabili pantaila-blokeoa</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Aplikazioetatik irteten zarenean edo aplikazioz aldatzen zarenean, Android-eko gailuaren blokeatze-ezarpenek Signal desblokeatu beharko dute. Blokeatuta dagoen bitartean, jakinarazpenen aurrebistetan ez da ikusiko mezuen edukia.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Aktibatu pantaila-blokeoa</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">Minutu baten buruan</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">5 minuturen buruan</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">30 minuturen buruan</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Denbora pertsonalizatua</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Erabili Signal-en pantaila-blokeoa</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Desaktibatu Signal-en pantaila-blokeoa</string>
 
     <string name="Recipient_unknown">Ezezaguna</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopiatu da arbelean babeskopien harpidedun IDa</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Zure kontuaren datuak</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Esportatu Signal-eko kontuaren datuen txostena. Txosten horrek ez du mezurik edo multimedia-edukirik. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Informazio gehiago</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Esportatu txostena</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Esportatu TXT gisa</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Erraz irakurtzeko testu-fitxategia</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Esportatu JSON gisa</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Makinaz irakur daitekeen fitxategia</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Utzi</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">Ados</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Ezin izan da sortu txostena</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Egiaztatu zure konexioa eta saiatu berriro.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Datuak esportatu nahi dituzu?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Partekatu Signal-eko kontuaren datuak fidagarriak diren pertsonekin edo aplikazioekin soilik.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Esportatu</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Txostena sortzen…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Esportatzeko unean soilik sortzen da txostena, eta Signal-ek ez du gordetzen zure gailuan.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Erabili hau zure oraingo telefono-zenbakia telefono-zenbaki berri batera aldatzeko. Ezin duzu aldaketa hau desegin.\n\nJarraitu aurretik, ziurtatu zure zenbaki berriak SMSak edo deiak jaso ditzakeela.</string>
     <string name="ChangeNumberFragment__continue">Jarraitu</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minutu</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 segundo</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Denbora pertsonalizatua</string>
-    <string name="ExpireTimerSettingsFragment__set">Ezarri</string>
     <string name="ExpireTimerSettingsFragment__save">Gorde</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">segunduak</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutuak</string>
-    <string name="CustomExpireTimerSelectorView__hours">orduak</string>
-    <string name="CustomExpireTimerSelectorView__days">egunak</string>
-    <string name="CustomExpireTimerSelectorView__weeks">asteak</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Laguntza zentroa</string>
-    <string name="HelpSettingsFragment__contact_us">Harremanetan jarri gurekin</string>
-    <string name="HelpSettingsFragment__version">Bertsioa</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Arbelera kopiatuta</string>
-    <string name="HelpSettingsFragment__debug_log">Arazteko informazioa</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Lizentziak</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Baldintzak eta Pribatutasun Arauak</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 lizentziapean</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal irabazi-asmorik gabeko erakunde bat da</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media kalitatea</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Kalkulatzen…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Bidali media kalitatea</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kalitate handiko multimedia bidaltzeak datu gehiago erabiliko ditu.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Ahots-mezuak eta eranskailuak (%1$s baino txikiagoak) automatikoki deskargatzen dira beti.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Deiak</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Mantendu konektatuta atzeko planoan</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Atzeko planoan konektatuta mantenduz gero, seguruenik bateria gehiago kontsumituko da. Hori ez da beharrezkoa gailu gehienetan. Gaitu aukera hori jakinarazpenekin lotutako arazoak izan badituzu bakarrik.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Gaitu</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bilaka zaitez sostengatzaile</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Ireki emoji-en bilaketa</string>
-    <string name="KeyboardPagerFragment_backspace">Atzerapena</string>
     <string name="KeyboardPagerFragment_search_emoji">Bilatu emoji-a</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Bueltatu emoji-etara</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Garbitu bilaketa-sarrera</string>
     <string name="KeyboardPagerFragment_search_giphy">Bilatu GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Ez da emaitzarik aurkitu</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Dei-tonu ezezaguna</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Hautatu bereizgarri bat</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bereizgarri bat hautatu behar duzu</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ezin izan da eguneratu profila</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">Kontzentratu</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Izena izan behar du</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Baimendutako jakinarazpenak</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">Hurrengoa</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Ordutegiak egun bat izan behar du gutxienez</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profila sortu da</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Eginda</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Txat zerrendako menuaren bidez, zure profila eskuz aktibatu edo desaktiba dezakezu.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Gehitu programazio bat ezarpenetan zure profila automatizatzeko.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Zure profila automatikoki piztu eta itzaliko da zure ordutegiaren arabera.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Profil berria</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Kopiatu da erabiltzaile-izena</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Kopiatu da esteka</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Esteka ez dago ezarrita</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Esteka berrezartzen…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Berrezarri</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Berrabiarazi</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Eginda</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Kodea</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Eskaneatu</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Eskaneatu QR kodea kontaktuaren gailuarekin.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Kolorea</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR kodeak ez du balio.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Sareko arazo bat izan da. Saiatu berriro geroago.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Babeskopia bat ezabatzen ari gara.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Berriro saiatzeko, desinstalatu Signal eta instala ezazu berriro gailu honetan, eta aukeratu \"Leheneratu edo transferitu\".</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Egiaztapen-kode bat eskatu da</string>

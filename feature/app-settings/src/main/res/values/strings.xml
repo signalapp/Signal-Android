@@ -228,9 +228,9 @@
     <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
-    <!-- Title of the dialog shown when the account already has as many two-factor methods as it's allowed -->
+    <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
-    <!-- Body of the dialog shown when the account already has as many two-factor methods as it's allowed. %1$d is the limit. -->
+    <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
 
     <!-- TotpCodeEntryScreen -->

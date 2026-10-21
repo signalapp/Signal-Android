@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">ลบ</string>
     <string name="save">บันทึก</string>
     <string name="note_to_self">บันทึกส่วนตัว</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">อากาศ</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">บันทึก</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">ข่าว</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">คลื่น</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -494,6 +484,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">ผู้ติดต่อคนนี้ไม่ได้ใช้ Signal แล้ว ชวนเพื่อนมาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">เชิญมาใช้ Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -962,7 +954,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ทุกการส่งและรับข้อความบนอุปกรณ์ที่เชื่อมโยงอยู่นั้นเป็นส่วนตัว</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">ข้อความ Signal จะเริ่มซิงค์กับแอป Signal บนมือถือคุณหลังการเชื่อมโยงอุปกรณ์เสร็จสิ้น ประวัติการส่งข้อความก่อนหน้านั้นจะไม่ปรากฏบนเดสก์ท็อป</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">ติดตั้ง Signal โดยไปที่ %1$s จากอุปกรณ์เครื่องที่คุณต้องการเชื่อมโยง</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1511,11 +1503,6 @@
     <string name="InputPanel__this_action_cant_be_undone">เมื่อดำเนินการแล้วจะไม่สามารถแก้ไขหรือเปลี่ยนแปลงได้</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">ยกเลิก</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
-
-    <string name="SpanUtil__read_more">อ่านเพิ่มเติม</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">หาข้อความไม่พบ</string>
@@ -2698,6 +2685,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">ดูชุดสติกเกอร์</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">เพิ่มสติกเกอร์ในรายการโปรดแล้ว</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3147,7 +3136,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">กำหนดชื่อผู้ใช้เพื่อให้ผู้ติดต่อเริ่มพูดคุยกับคุณได้</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">ตั้งชื่อผู้ใช้</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3439,40 +3428,6 @@
 
     <string name="device_list_fragment__link_new_device">เชื่อมโยงอุปกรณ์ใหม่</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">ปิด</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="other">%1$d วินาที</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="other">%1$d นาที</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="other">%1$d ชั่วโมง</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dh</string>
-
-    <plurals name="expiration_days">
-        <item quantity="other">%1$d วัน</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dd</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="other">%1$d สัปดาห์</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">หมายเลขความปลอดภัยของคุณกับ %1$s ได้เปลี่ยนไป และไม่ถือว่าถูกตรวจยืนยันอีกต่อไป</string>
     <string name="IdentityUtil_unverified_banner_two">หมายเลขความปลอดภัยของคุณกับ %1$s และ %2$s ไม่ถือว่าถูกตรวจยืนยันอีกต่อไป</string>
@@ -3714,9 +3669,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">ไม่ ขอบคุณ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ล่าสุด</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ไม่พบผลลัพธ์</string>
 
 
@@ -3738,15 +3690,7 @@
     <string name="arrays__name_only">ชื่อเท่านั้น</string>
     <string name="arrays__no_name_or_message">ไม่มีชื่อหรือข้อความ</string>
 
-    <string name="arrays__images">รูปภาพ</string>
-    <string name="arrays__audio">เสียง</string>
-    <string name="arrays__video">วิดีโอ</string>
-    <string name="arrays__documents">เอกสาร</string>
 
-    <string name="arrays__small">เล็ก</string>
-    <string name="arrays__normal">ปกติ</string>
-    <string name="arrays__large">ใหญ่</string>
-    <string name="arrays__extra_large">ใหญ่พิเศษ</string>
 
     <string name="arrays__default">ค่าเริ่มต้น</string>
     <string name="arrays__high">สูง</string>
@@ -3813,19 +3757,15 @@
     <string name="preferences__cyan">ฟ้าอมเขียว</string>
     <string name="preferences__magenta">แดงอมม่วง</string>
     <string name="preferences__white">ขาว</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">ไม่มี</string>
     <string name="preferences__fast">เร็ว</string>
     <string name="preferences__normal">ปกติ</string>
     <string name="preferences__slow">ช้า</string>
-    <string name="preferences__help">ช่วยเหลือ</string>
     <string name="preferences__advanced">ขั้นสูง</string>
     <string name="preferences__donate_to_signal">บริจาคให้ Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">ความเป็นส่วนตัว</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">สตอรี่</string>
-    <string name="preferences__data_and_storage">ข้อมูลและที่เก็บ</string>
     <string name="preferences__storage">พื้นที่จัดเก็บ</string>
     <string name="preferences__payments">การจ่ายเงิน</string>
     <!-- Privacy settings payments section description -->
@@ -3833,37 +3773,10 @@
     <string name="preferences__conversation_length_limit">จำกัดจำนวนข้อความในแชทสูงสุด</string>
     <string name="preferences__keep_messages">เก็บข้อความ</string>
     <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
-    <string name="preferences__light_theme">สว่าง</string>
-    <string name="preferences__dark_theme">มืด</string>
-    <string name="preferences__appearance">ลักษณะ</string>
-    <string name="preferences__theme">ธีม</string>
-    <string name="preferences__chat_color_and_wallpaper">สีและภาพพื้นหลังแชท</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">ไอคอนแอป</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">ตกลง</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">ยกเลิก</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">เปลี่ยนไอคอนและชื่อของแอปเป็น \"%1$s\"</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal ต้องปิดแอปก่อน จึงจะเปลี่ยนไอคอนและชื่อของแอปได้ โดยระบบจะแสดงชื่อและไอคอนเริ่มต้นของแอป Signal ในการแจ้งเตือนเสมอ</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">เลือกไอคอนและชื่อของแอป ซึ่งจะแสดงในหน้าจอหลักและลิ้นชักแอปของโทรศัพท์คุณ โดยระบบจะแสดงชื่อและไอคอนเริ่มต้นของแอป Signal ในการแจ้งเตือนเสมอ เรียนรู้เพิ่มเติม</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">ไอคอนและชื่อของแอปจะแสดงในหน้าจอหลักและลิ้นชักแอป</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">โดยระบบจะแสดงชื่อและไอคอนเริ่มต้นของแอป Signal ในการแจ้งเตือนเสมอ</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">เรียนรู้เพิ่มเติม</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">ภาพกราฟิกแสดงตำแหน่งของไอคอนใหม่ของแอป</string>
     <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
     <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
-    <string name="preferences__system_default">ค่าปริยายของระบบ</string>
-    <string name="preferences__language">ภาษา</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">การตั้งค่า PIN ขั้นสูง</string>
     <string name="preferences__submit_debug_log">ส่งปูมดีบัก</string>
@@ -3875,10 +3788,6 @@
     <string name="preferences__request_keyboard_to_disable">ขอให้แป้นพิมพ์ปิดใช้งานการเรียนรู้การแนะนำคำ</string>
     <string name="preferences__this_setting_is_not_a_guarantee">การตั้งค่านี้ไม่ได้รับการรับประกัน และแป้นพิมพ์ของคุณอาจละเลยไป</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
-    <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามแดนอัตโนมัติ (โรมมิ่ง)</string>
-    <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
     <string name="preferences_storage__storage_usage">การใช้พื้นที่จัดเก็บ</string>
     <string name="preferences_storage__photos">รูปภาพ</string>
     <string name="preferences_storage__videos">วิดีโอ</string>
@@ -3925,12 +3834,6 @@
     <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">การจ่ายเงิน</string>
-    <string name="preferences_data_and_storage__manage_storage">จัดการพื้นที่จัดเก็บ</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
-    <string name="preferences_data_and_storage__never">ไม่เลย</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
-    <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้อินเทอร์เน็ตมือถือน้อยลงอาจช่วยปรับปรุงการโทรบนเครือข่ายที่ไม่เสถียร</string>
     <string name="preferences_notifications__in_chat_sounds">เสียงในแชท</string>
     <string name="preferences_notifications__show">แสดง</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -3944,7 +3847,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">เตือนความจำเป็นครั้งคราวเมื่อคุณมีข้อความที่ยังไม่ได้อ่านในแชทที่ปิดการแจ้งเตือนไว้</string>
     <string name="preferences_notifications__ringtone">เสียงเรียกเข้า</string>
-    <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">ความสำคัญ</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -3965,10 +3867,6 @@
     <string name="preferences_communication__category_sealed_sender">ผู้ส่งที่ปกปิดตัวตน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
-    <string name="preferences_proxy">พร็อกซี</string>
-    <string name="preferences_use_proxy">ใช้พร็อกซี</string>
-    <string name="preferences_off">ปิด</string>
-    <string name="preferences_on">เปิด</string>
     <string name="preferences_proxy_address">ที่อยู่พร็อกซี</string>
     <string name="preferences_only_use_a_proxy_if">ใช้พร็อกซีเฉพาะเมื่อคุณไม่สามารถเชื่อมต่อ Signal ผ่านข้อมูลมือถือหรือ Wi-Fi เท่านั้น</string>
     <string name="preferences_share">แบ่งปัน</string>
@@ -3982,14 +3880,6 @@
     <string name="preferences_success">สำเร็จ</string>
     <string name="preferences_failed_to_connect">เชื่อมต่อล้มเหลว</string>
     <string name="preferences_enter_proxy_address">ป้อนที่อยู่พร็อกซี</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">ขนาดของแถบนำทาง</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">ปกติ</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">กะทัดรัด</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">แอปจะรีสตาร์ทเพื่อเปลี่ยนภาษา</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">การตรวจยืนยันโดยอัตโนมัติ</string>
     <!-- Preference summary for automatic key verification -->
@@ -4543,35 +4433,8 @@
     <string name="BackupUtil_never">ไม่เลย</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">ไม่ทราบ</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">หมายเลขโทรศัพท์</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">เลือกว่าจะให้ใครเห็นหมายเลขโทรศัพท์ของคุณและใช้หมายเลขโทรศัพท์นั้นติดต่อคุณบน Signal ได้</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">ผู้ใช้และกลุ่มที่คุณส่งข้อความหาจะเห็นหมายเลขโทรศัพท์ของคุณ</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณ เว้นแต่ว่าคนคนนั้นจะบันทึกเบอร์คุณไว้ในรายชื่อผู้ติดต่อบนโทรศัพท์</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">จะไม่มีใครเห็นหมายเลขโทรศัพท์ของคุณ</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">ผู้ใช้ที่มีหมายเลขโทรศัพท์ของคุณจะเห็นว่าคุณใช้งาน Signal และจะสามารถเริ่มแชทกับคุณได้</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">จะไม่มีใครเห็นว่าคุณใช้งาน Signal เว้นแต่ว่าคุณจะส่งข้อความหาหรือเคยแชทกับผู้ใช้คนนั้น</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"หากต้องการเปลี่ยนการตั้งค่านี้ ให้ไปที่หัวข้อ “คนที่สามารถเห็นหมายเลขโทรศัพท์ของฉัน” แล้วเลือก “ไม่อนุญาตให้ใครเห็น”"</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ต้องการดำเนินการต่อหรือไม่</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">การตั้งค่า \"คนที่สามารถใช้หมายเลขโทรศัพท์ค้นหาฉันได้\" เป็น \"ไม่อนุญาตให้ใครค้นหา\" จะทำให้ผู้ใช้คนอื่นค้นหาคุณได้ยากขึ้นบน Signal</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">ยกเลิก</string>
-    <string name="PhoneNumberPrivacy_everyone">ทุกคน</string>
-    <string name="PhoneNumberPrivacy_nobody">คนที่คุณไม่รู้จัก</string>
-    <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">เปิดใช้งานการล็อกหน้าจอด้วยการตั้ง PIN, รูปแบบการวาดเส้น หรือรหัสผ่านบนอุปกรณ์เครื่องนี้</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">การเปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
@@ -4598,24 +4461,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">ปิด</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">ใช้การล็อกหน้าจอ</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">ระบบจะใช้รูปแบบการล็อกที่คุณตั้งค่าไว้บนอุปกรณ์ Android มาปลดล็อก Signal เมื่อคุณสลับหรือปิดแอป โดยแถบการแจ้งเตือนจะไม่แสดงเนื้อหาของข้อความในระหว่างที่แอปถูกล็อก</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">เริ่มล็อกหน้าจอ</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">ผ่านไป 1 นาที</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">ผ่านไป 5 นาที</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">ผ่านไป 30 นาที</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">กำหนดเวลาเอง</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">ใช้การล็อกหน้าจอของ Signal</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">ปิดใช้การล็อกหน้าจอของ Signal</string>
 
     <string name="Recipient_unknown">ไม่ทราบ</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5079,47 +4924,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">คัดลอกข้อมูลสำรองของรหัสสมาชิกไปยังคลิปบอร์ดแล้ว</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">ข้อมูลบัญชีของคุณ</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">ส่งออกรายงานข้อมูลบัญชี Signal ของคุณ โดยรายงานนี้จะไม่มีข้อความหรือสื่อใดๆ %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">เรียนรู้เพิ่มเติม</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">ส่งออกรายงาน</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">ส่งออกเป็นไฟล์ TXT</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">ไฟล์ข้อความที่อ่านง่าย</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">ส่งออกเป็นไฟล์ JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">ไฟล์ที่คอมพิวเตอร์อ่านได้</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">ยกเลิก</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">ตกลง</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">ไม่สามารถสร้างรายงานได้</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">กรุณาตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">ส่งออกข้อมูลใช่หรือไม่</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">เราขอแนะนำให้แชร์ข้อมูลบัญชี Signal ของคุณให้กับคนรู้จักหรือแอปที่คุณไว้วางใจเท่านั้น</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">ส่งออก</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">กำลังสร้างรายงาน…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">รายงานจะถูกสร้างในตอนที่ส่งออกเท่านั้น และ Signal จะไม่จัดเก็บรายงานไว้บนอุปกรณ์ของคุณ</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">ใช้สิ่งนี้เพื่อเปลี่ยนหมายเลขโทรศัพท์ปัจจุบันเป็นหมายเลขโทรศัพท์ใหม่ คุณไม่สามารถยกเลิกการเปลี่ยนแปลงได้ \n\nก่อนที่จะดำเนินการต่อ ตรวจสอบให้มั่นใจว่าหมายเลขใหม่สามารถรับ SMS หรือรับสายได้</string>
     <string name="ChangeNumberFragment__continue">ทำต่อ</string>
@@ -5399,46 +5203,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 นาที</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 วินาที</string>
     <string name="ExpireTimerSettingsFragment__custom_time">เวลากำหนดเอง</string>
-    <string name="ExpireTimerSettingsFragment__set">ตั้ง</string>
     <string name="ExpireTimerSettingsFragment__save">บันทึก</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">วินาที</string>
-    <string name="CustomExpireTimerSelectorView__minutes">นาที</string>
-    <string name="CustomExpireTimerSelectorView__hours">ชั่วโมง</string>
-    <string name="CustomExpireTimerSelectorView__days">วัน</string>
-    <string name="CustomExpireTimerSelectorView__weeks">สัปดาห์</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">ศูนย์ความช่วยเหลือ</string>
-    <string name="HelpSettingsFragment__contact_us">ติดต่อเรา</string>
-    <string name="HelpSettingsFragment__version">รุ่น</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
-    <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">ใบอนุญาต</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
-    <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">เผยแพร่ภายใต้สัญญาอนุญาต GNU AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal เป็นแอปไม่แสวงหาผลกำไร</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">คุณภาพของสื่อ</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">กำลังคำนวณ…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">ส่งคุณภาพสื่อแล้ว</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">การส่งสื่อคุณภาพสูงจะใช้ข้อมูลมากขึ้น</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ระบบจะดาวน์โหลดข้อความเสียงและสติกเกอร์ (ต่ำกว่า %1$s) โดยอัตโนมัติเสมอ</string>
-    <string name="DataAndStorageSettingsFragment__calls">การโทร</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">เชื่อมต่อเสมอในพื้นหลัง</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">การทำงานแบบเชื่อมต่อเสมอในพื้นหลังจะทำให้อุปกรณ์ใช้แบตเตอรี่มากขึ้น อุปกรณ์ส่วนใหญ่มักไม่จำเป็นต้องใช้ตัวเลือกนี้ เราขอแนะนำให้เปิดใช้งานในกรณีที่คุณประสบปัญหาเกี่ยวกับการแจ้งเตือนเท่านั้น</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">เปิดใช้งาน</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5487,14 +5253,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">เป็นผู้สนับสนุน</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
-    <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_search_emoji">หาอีโมจิ</string>
     <string name="KeyboardPagerfragment_back_to_emoji">กลับไปอีโมจิ</string>
     <string name="KeyboardPagerfragment_clear_search_entry">ล้างคำค้น</string>
     <string name="KeyboardPagerFragment_search_giphy">หา GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">ไม่พบผลลัพธ์</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">เสียงเรียกเข้าที่ไม่รู้จัก</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5736,7 +5499,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">เลือกโล่</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">คุณต้องเลือกโล่</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6027,6 +5789,10 @@
     <string name="EditNotificationProfileFragment__focus">โฟกัส</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">ต้องมีชื่อ</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">อนุญาตการแจ้งเตือนแล้ว</string>
@@ -6120,17 +5886,6 @@
     <string name="EditNotificationProfileSchedule__next">ถัดไป</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">กำหนดการต้องมีอย่างน้อยหนึ่งวัน</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">โปรไฟล์ที่สร้างไว้</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">เสร็จสิ้น</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">คุณสามารถเปิดหรือปิดโปรไฟล์ได้ด้วยตัวเองผ่านทางเมนูที่อยู่บนรายการแชท</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">เพิ่มกำหนดการในการตั้งค่าเพื่อทำให้โปรไฟล์เป็นอัตโนมัติ</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">โปรไฟล์ของคุณจะเปิดและปิดอัตโนมัติตามตารางของคุณ</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">โปรไฟล์ใหม่</string>
@@ -7292,8 +7047,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">คัดลอกชื่อผู้ใช้แล้ว</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">คัดลอกลิงก์แล้ว</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">ยังไม่ได้ตั้งค่าลิงก์</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">กำลังรีเซ็ตลิงก์…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7304,16 +7057,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">รีเซ็ต</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">รีเซ็ต</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">เสร็จสิ้น</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">โค้ด</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">สแกน</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">สแกนคิวอาร์โค้ดบนอุปกรณ์ของผู้ติดต่อของคุณ</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">สี</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">คิวอาร์โค้ดไม่ถูกต้อง</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8156,6 +7905,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">เกิดข้อผิดพลาดด้านเครือข่าย โปรดลองอีกครั้งในภายหลัง</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">กำลังอยู่ระหว่างการลบข้อมูลสำรอง</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8763,6 +8518,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">หากต้องการลองอีกครั้ง โปรดถอนการติดตั้งแล้วติดตั้ง Signal ใหม่บนอุปกรณ์เครื่องนี้ จากนั้นให้เลือก \"กู้คืนหรือถ่ายโอน\"</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">ขอรหัสยืนยันแล้ว</string>

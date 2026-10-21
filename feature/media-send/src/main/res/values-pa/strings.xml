@@ -44,10 +44,6 @@
   <string name="AddAMessageRow__view_once_media">ਇੱਕ ਵਾਰ ਦੇਖਿਆ ਜਾ ਸਕਣ ਵਾਲਾ ਮੀਡੀਆ</string>
   <!-- Accessibility label for the button at the end of the add-a-message row that turns view-once mode on and off. -->
   <string name="AddAMessageRow__toggle_view_once">\"ਇੱਕ ਵਾਰ ਦੇਖੋ\" ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
-  <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">ਹਾਈ</string>
-  <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">ਸਟੈਂਡਰਡ</string>
   <!-- Label for our standard quality media conversion. -->
   <string name="QualitySelectorBottomSheetDialog__standard">ਸਟੈਂਡਰਡ</string>
   <!-- Description for our standard quality media conversion. -->

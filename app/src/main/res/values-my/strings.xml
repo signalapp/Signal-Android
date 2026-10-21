@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">ဖျက်ရန်</string>
     <string name="save">သိမ်းထားမည်</string>
     <string name="note_to_self">မိမိမှတ်စု</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">မိုးလေဝသ</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">မှတ်စုများ</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">သတင်း</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">လှိုင်းများ</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -494,6 +484,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS မက်ဆေ့ချ်လုပ်ဆောင်ချက်ကို Signal တွင် မပံ့ပိုးပေးတော့ပါ။ ဤတွင် ဆက်လက်ဆွေးနွေးနိုင်ရန် %1$s အား Signal သို့ ဖိတ်ခေါ်ပါ။</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">ဤပုဂ္ဂိုလ်သည် Signal မသုံးတော့ပါ။ ဤနေရာတွင် ဆက်လက်ဆွေးနွေးနိုင်ရန် သူ့ကို Signal သို့ ဖိတ်ခေါ်ပါ။</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal သို့ ဖိတ်ခေါ်မည်</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -962,7 +954,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ချိတ်ထားသည့် စက်များတွင် မက်ဆေ့ချ်ဆက်သွယ်မှုအားလုံးမှာ သီးသန့်ဖြစ်ပါသည်</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">သင့်မိုဘိုင်းဖုန်းနှင့် ချိတ်ပြီးသောအခါ Signal မက်ဆေ့ချ်များကို ထိုဖုန်းရှိ Signal နှင့် တူအောင်ညှိလိုက်သည်။ သင်၏ ယခင်မက်ဆေ့ချ်ပို့ခဲ့သော မှတ်တမ်းမှာ ပေါ်နေမည် မဟုတ်ပါ။</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">သင်လင့်ခ်ချိတ်လိုသော စက်တွင် Signal ထည့်သွင်းရန် %1$s သို့ သွားပါ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1511,11 +1503,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရနိုင်ပါ။</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">ပယ်ဖျက်မည်</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">ထပ်မံလေ့လာရန်</string>
-
-    <string name="SpanUtil__read_more">ပိုမိုဖတ်ရှုရန်</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">မက်ဆေ့ခ်ျရှာမတွေ့ပါ</string>
@@ -2698,6 +2685,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">စတစ်ကာတွဲကို ကြည့်ရှုရန်</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">စတစ်ကာကို အကြိုက်ဆုံးများထဲသို့ ထည့်ပြီးပါပြီ</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3147,7 +3136,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">အခြားသူများက သင်နှင့် ချိတ်ဆက်နိုင်ရန် သုံးစွဲသူအမည်တစ်ခုကို ရွေးပါ။</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">သတ်မှတ်ရန်</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3439,40 +3428,6 @@
 
     <string name="device_list_fragment__link_new_device">ဖုန်းအသစ်ကို ချိတ်ရန်</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">ပိတ်သည်</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="other">%1$d စက္ကန့်</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$dစက္ကန့်</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="other">%1$d မိနစ်</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dမိနစ်</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="other">%1$d နာရီ</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dနာရီ</string>
-
-    <plurals name="expiration_days">
-        <item quantity="other">%1$dရက်</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dရက်</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="other">%1$dပတ်</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dပတ်</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">%1$sဖြင့်စိတ်ချရသောနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
     <string name="IdentityUtil_unverified_banner_two">%1$sနှင့်%2$sတို့ဖြင့်စိတ်ချရသောနံပါတ်ပြောင်းလဲသွားပြီး ထပ်မံအတည်မပြုရသေးပါ။</string>
@@ -3714,9 +3669,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">မလုပ်လိုပါ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">နောက်ဆုံး</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">၎င်းမက်ဆေ့ချ်</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">နောက်ဆုံးသုံးခဲ့သော</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ရလဒ်များ ရှာမတွေ့ပါ</string>
 
 
@@ -3738,15 +3690,7 @@
     <string name="arrays__name_only">အမည်တစ်ခုတည်းသာ</string>
     <string name="arrays__no_name_or_message">အမည် သို့မဟုတ် စာ မရှိ</string>
 
-    <string name="arrays__images">ပုံများ</string>
-    <string name="arrays__audio">အသံ</string>
-    <string name="arrays__video">ဗီဒီယို</string>
-    <string name="arrays__documents">စာရွက်စာတမ်းများ</string>
 
-    <string name="arrays__small">သေးငယ်သော</string>
-    <string name="arrays__normal">ပုံမှန်</string>
-    <string name="arrays__large">ကြီးသော</string>
-    <string name="arrays__extra_large">အလွန် ကြီးသော</string>
 
     <string name="arrays__default">မူလ</string>
     <string name="arrays__high">မြင့်သော</string>
@@ -3813,19 +3757,15 @@
     <string name="preferences__cyan">ခရမ်း</string>
     <string name="preferences__magenta">ခရမ်းရင့်</string>
     <string name="preferences__white">အဖြူ</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">မည်သည့်အရာမှ မဟုတ်သော</string>
     <string name="preferences__fast">အမြန်</string>
     <string name="preferences__normal">ပုံမှန်</string>
     <string name="preferences__slow">အနှေး</string>
-    <string name="preferences__help">အကူအညီ</string>
     <string name="preferences__advanced">အဆင့်မြင့်</string>
     <string name="preferences__donate_to_signal">Signal ကို လှူဒါန်းရန်</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">စတိုရီများ</string>
-    <string name="preferences__data_and_storage">ဒေတာ နှင့် သိမ်းဆည်းမှု</string>
     <string name="preferences__storage">သိမ်းဆည်းမှု</string>
     <string name="preferences__payments">ငွေပေးချေမှုများ</string>
     <!-- Privacy settings payments section description -->
@@ -3833,37 +3773,10 @@
     <string name="preferences__conversation_length_limit">ချက်(တ်)အရှည် ကန့်သတ်ချက်</string>
     <string name="preferences__keep_messages">မက်ဆေ့များကို သိမ်းထားပါ</string>
     <string name="preferences__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
-    <string name="preferences__light_theme">အလင်း</string>
-    <string name="preferences__dark_theme">အမှောင်</string>
-    <string name="preferences__appearance">ပုံပန်းသဏ္ဌာန်</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__chat_color_and_wallpaper">ချက်(တ်) အရောင်နှင့် နောက်ခံပုံ</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">အက်ပ်အိုင်ကွန်</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">အိုကေ</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">မလုပ်တော့ပါ</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">အက်ပ်အိုင်ကွန်နှင့် အမည်ကို \"%1$s\" ဟု ပြောင်းခြင်း</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">အက်ပ်အိုင်ကွန်နှင့် အမည်ကို ပြောင်းရန်အတွက် Signal ကို ပိတ်ရန် လိုအပ်ပါသည်။ အသိပေးချက်များတွင် ပုံသေ Signal အိုင်ကွန်နှင့် အမည်ကိုသာ အမြဲတမ်းပြသပါမည်။</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">သင့်ဖုန်း၏ ပင်မမျက်နှာပြင်နှင့် အက်ပ်အံဆွဲတွင် မြင်တွေ့နိုင်မည့် အက်ပ်အိုင်ကွန်နှင့် အမည်တစ်ခုကို ရွေးချယ်ပါ။ အသိပေးချက်များတွင် ပုံသေ Signal အိုင်ကွန်နှင့် အမည်ကိုသာ အမြဲတမ်းပြသပါမည်။ ပိုမို လေ့လာရန်</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">အက်ပ်အိုင်ကွန်များနှင့် အမည်များကို ပင်မမျက်နှာပြင်နှင့် အက်ပ်အံဆွဲတွင် မြင်တွေ့နိုင်ပါသည်။</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">အသိပေးချက်များတွင် ပုံသေ Signal အိုင်ကွန်နှင့် အမည်ကိုသာ အမြဲတမ်းပြသပါမည်။</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">ပိုမို လေ့လာရန်</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">အစားထိုး အက်ပ်အိုင်ကွန်အား မြင်တွေ့နိုင်မည့် နေရာကို သရုပ်ဖော်ပြသသည့် ဂရပ်ဖစ်ပုံ။</string>
     <string name="preferences__disable_pin">ပင်နံပါတ်ပိတ်ပါ</string>
     <string name="preferences__enable_pin">ပင်နံပါတ်ဖွင့်ပါ</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ပင်နံပါတ်ကို ပိတ်ထားလျှင် သင်မှ​ ကိုယ်တိုင် အရန်ပြုပြင်ထားခြင်းမရှိခဲ့လျှင် Signal ပေါ်ပြန်စာရင်းသွင်းသောအခါ ဒေတာအားလုံးကို ဆုံးရှူံးပါလိမ့်မည်။ ပင်နံပါတ်ကို ပိတ်ထားစဉ် မှတ်ပုံတင်ခြင်းသော့ကို သင်ဖွင့်၍ မရပါ။</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ပင်နံပါတ်များသည် Signal ပေါ်တွင် အချက်အလက်များကို ကုဒ်ဖြင့်သိမ်းဆည်းထားဖြင့် သင်သာ သုံးခွင်းရှိပါသည်။ သင့် ပရိုဖိုင်း၊ အပြင်အဆင်များ၊ နှင့် အဆက်အသွယ်များကို သင် ပြန်ထည့်သွင်းသောအခါ ပြန်လည်ရရှိပါမည်။​ အပ္ပလီကေးရှင်း ဖွင့်ရန် သင့် ပင်နံပါတ်မလိုအပ်ပါ။</string>
-    <string name="preferences__system_default">မူလ စနစ်</string>
-    <string name="preferences__language">ဘာသာစကား</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
     <string name="preferences__submit_debug_log">Debug log ကို တင်ပြပါ</string>
@@ -3875,10 +3788,6 @@
     <string name="preferences__request_keyboard_to_disable">တစ်ဦးချင်းအလိုက် ကိုက်ညီမှုရှိအောင် လေ့လာသင်ယူမှုကို ပိတ်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ။</string>
     <string name="preferences__this_setting_is_not_a_guarantee">ဤဆက်တင်သည် မသေချာသည့်အပြင် သင့်ကီးဘုတ်က ၎င်းကို လျစ်လျူရှုနိုင်ပါသည်။</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ</string>
-    <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ</string>
-    <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>
-    <string name="preferences_chats__media_auto_download">ရုပ်/သံ/ပုံကို အလိုအလျောက် ဒေါင်းလုတ်လုပ်ပါ</string>
     <string name="preferences_storage__storage_usage">သိုလှောင်မှုအသုံးပြုမှု</string>
     <string name="preferences_storage__photos">ဓါတ်ပုံများ</string>
     <string name="preferences_storage__videos">ဗီဒီယိုများ</string>
@@ -3925,12 +3834,6 @@
     <string name="preferences_advanced__always_relay_calls">ဖုန်းခေါ်ဆိုမှုများကို လွှဲပြောင်းပါ</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ငွေပေးချေမှုများ</string>
-    <string name="preferences_data_and_storage__manage_storage">သိုလှောင်မှုကိုစီမံပါ</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
-    <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် အင်တာနက်</string>
-    <string name="preferences_data_and_storage__mobile_data_only">အင်တာနက်</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ဒေတာလျှော့သုံးခြင်းဖြင့် လိုင်းမကောင်းသော ကွန်ရက်များပေါ်တွင် ဖုန်းခေါ်ဆိုမှု အရည်အသွေးကို ပိုမိုကောင်းမွန်စေနိုင်ပါသည်။</string>
     <string name="preferences_notifications__in_chat_sounds">ချက်(တ်)အတွင်း အသံများ</string>
     <string name="preferences_notifications__show">ပြပါ</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -3944,7 +3847,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">အသံပိတ်ထားသော ချက်(တ်)များတွင် မဖတ်ရသေးသော မက်ဆေ့ချ်များရှိပါက ရံဖန်ရံခါ အသိပေးပါ</string>
     <string name="preferences_notifications__ringtone">ဖုန်းသံစဉ်များ</string>
-    <string name="preferences_chats__message_text_size">စာလုံးအရွယ်အစား</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">ဦးစားပေး</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -3965,10 +3867,6 @@
     <string name="preferences_communication__category_sealed_sender">ဖုံးကွယ်ထားသော ပေးပို့သူ</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">မည်သူမဆိုထံမှခွင့်ပြုပါ</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">အဆက်အသွယ်မဟုတ်သောသူများ နှင့် သင်၏ ပရိုဖိုင်းကို မမျှဝေရသေးသော သူများ မှ အဝင်မက်ဆေ့ချ်များအတွက် ပေးပိုးသူဖုံးခြင်း ဖွင့်ပါ။</string>
-    <string name="preferences_proxy">ကြားခံ</string>
-    <string name="preferences_use_proxy">ကြားခံ ကိုသုံးမယ်</string>
-    <string name="preferences_off">ပိတ်ထားမယ်</string>
-    <string name="preferences_on">ဖွင့်ထားမယ်</string>
     <string name="preferences_proxy_address">ကြားခံလိပ်စာ</string>
     <string name="preferences_only_use_a_proxy_if">မိုဘိုင်းဒေတာ သို့မဟုတ် Wi-Fi သုံး၍ Signal နှင့် ချိတ်ဆက် မရပါက ပရောက်စီတစ်ခုကိုသာ သုံးပါ။</string>
     <string name="preferences_share">ဝေမျှမယ်</string>
@@ -3982,14 +3880,6 @@
     <string name="preferences_success">အောင်မြင်မှု</string>
     <string name="preferences_failed_to_connect">ချိတ်ဆက်ရန်မအောင်မြင်ပါ</string>
     <string name="preferences_enter_proxy_address">ကြားခံလိပ်စာကို ထည့်ပါ</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">လမ်းညွှန် ဘား အရွယ်အစား</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">ပုံမှန်</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">ကျစ်လျစ်</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">ဘာသာစကားဆက်တင်အသစ်ကို အသုံးပြုရန်အတွက် အက်ပ်သည် ပြန်လည်စတင်ပါလိမ့်မည်။</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">အလိုအလျောက် ကီးအတည်ပြုခြင်း</string>
     <!-- Preference summary for automatic key verification -->
@@ -4543,35 +4433,8 @@
     <string name="BackupUtil_never">ဘယ်တော့မှ</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">မသိ</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">ဖုန်းနံပါတ်</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">သင့်ဖုန်းနံပါတ်ကို မြင်နိုင်သူများနှင့် Signal တွင် ထိုနံပါတ်ဖြင့် သင့်ထံသို့ ဆက်သွယ်နိုင်သူများကို ရွေးချယ်ပါ။</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">ကျွန်ုပ်၏ ဖုန်းနံပါတ်ကို မြင်နိုင်သူများ</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">သင်၏ ဖုန်းနံပါတ်ကို သင် မက်ဆေ့ခ်ျပို့ထားသော လူများနှင့် အဖွဲ့များ မြင်နိုင်ပါမည်။</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">သင့်ဖုန်းနံပါတ်ကို မိမိဖုန်း၏ အဆက်အသွယ်များထဲတွင် သိမ်းဆည်းမထားပါက ၎င်းကို မည်သူမျှ တွေ့မြင်ရမည်မဟုတ်ပါ။</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">သင့်ဖုန်းနံပါတ်ကို မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ဖုန်းနံပါတ်ဖြင့် ကျွန်ုပ်ကို ရှာနိုင်သူများ</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">သင့်ဖုန်းနံပါတ် ရှိသူတိုင်းသည် သင် Signal သုံးနေကြောင်း မြင်တွေ့နိုင်ပြီး သင်နှင့် ချက်(တ်)စတင်နိုင်ပါသည်။</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">သင် ၎င်းတို့ကို မက်ဆေ့ချ်မပို့ပါက သို့မဟုတ် ၎င်းတို့နှင့် ပြောလက်စ ချက်(တ်)တစ်ခု မရှိပါက သင် Signal သုံးနေကြောင်း မည်သူမျှ မြင်တွေ့ရမည်မဟုတ်ပါ။</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ဤဆက်တင်ကို ပြောင်းရန် ကျွန်ုပ်၏နံပါတ်ကို မည်သူတို့မြင်တွေ့နိုင်သနည်းအား Nobody ဟု သတ်မှတ်ပါ။"</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">သေချာပါသလား။</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ကျွန်ုပ်ကို ဖုန်းနံပါတ်ဖြင့် ရှာဖွေနိုင်သူများ\" ကို \"မည်သူမျှမရှာနိုင်\" ဟု သတ်မှတ်ထားခြင်းဖြင့် သင့်ကို Signal တွင် ရှာဖွေရန် ပိုမိုခက်ခဲစေပါမည်။</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">မလုပ်တော့ပါ</string>
-    <string name="PhoneNumberPrivacy_everyone">လူသားတိုင်း</string>
-    <string name="PhoneNumberPrivacy_nobody">ဘယ်သူမှ</string>
-    <string name="preferences_app_protection__screen_lock">စကင်ရင် ပိတ်ထားခြင်း</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">မျက်နှာပြင်လော့ခ်ကို အသုံးပြုရန် ဤစက်ပေါ်တွင် ပင်နံပါတ်၊ ပုံစံ သို့မဟုတ် စကားဝှက်ကို သတ်မှတ်ပါ။</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">မှတ်ပုံတင်ခြင်းသော့ခတ်ရန် မအောင်မြင်ပါ</string>
@@ -4598,24 +4461,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">ပိတ်ထားသည်</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">မျက်နှာပြင်လော့ခ်ကိုသုံးပါ</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">သင်ထွက်ခွာသည့်အခါ သို့မဟုတ် အက်ပ်များကို ပြောင်းသည့်အခါ သင့် Android စက်၏ လော့ခ်ဆက်တင်များ လိုအပ်ပါမည်။ လော့ခ်ချထားသောအခါ အသိပေးချက် ကြိုတင်ကြည့်ရှုမှုများသည် မက်ဆေ့ချ်အကြောင်းအရာကို ပြသမည်မဟုတ်ပါ။</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">မျက်နှာပြင်လော့ခ်ကိုစတင်ပါ</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">၁ မိနစ်ပြီးနောက်</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">၅ မိနစ်ပြီးနောက်</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">၃၀ မိနစ်ပြီးနောက်</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">စိတ်ကြိုက် အချိန်</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal မျက်နှာပြင်လော့ခ်ကို သုံးပါ</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal မျက်နှာပြင်လော့ခ်ကို ပိတ်ပါ</string>
 
     <string name="Recipient_unknown">အမျိုးအမည်မသိ</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5079,47 +4924,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ပုံမှန်လှူဒါန်းသူ၏ ဘက်ခ်အပ် ID ကို ကလစ်ဘုတ်တွင် ကူးယူထားသည်</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">သင့်အကောင့်ဒေတာ</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">သင့် Signal အကောင့်ဒေတာ၏ အစီရင်ခံစာတစ်စောင်ကို ထုတ်ယူပါ။ ဤအစီရင်ခံစာတွင် မက်ဆေ့ချ် သို့မဟုတ် မီဒီယာတစ်ခုမျှ မပါဝင်ပါ။ %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">ပိုမိုလေ့လာရန်</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">အစီရင်ခံစာ ထုတ်ယူရန်</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">TXT အဖြစ် ထုတ်ယူရန်</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">ဖတ်ရလွယ်ကူသော စာသားဖိုင်</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON အဖြစ် ထုတ်ယူရန်</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">စက်ဖြင့် ဖတ်၍ရသော ဖိုင်</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">မလုပ်တော့ပါ</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">အိုကေ</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">အစီရင်ခံစာ မထုတ်နိုင်ခဲ့ပါ</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">ဒေတာ ထုတ်ယူမည်လား။</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">သင့် Signal အကောင့်ဒေတာကို သင် ယုံကြည်သော လူများ သို့မဟုတ် အက်ပ်များနှင့်သာ ဝေမျှပါ။</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">ထုတ်ယူရန်</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">အစီရင်ခံစာ ထုတ်နေဆဲ…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">သင့်အစီရင်ခံစာကို ထုတ်သိမ်းသည့်အချိန်တွင်သာ ထုတ်ယူထားပြီး သင့်စက်တွင် Signal က မသိမ်းထားပါ။</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">သင့်လက်ရှိဖုန်းနံပါတ်ကို အသစ်တစ်ခုသို့ ပြောင်းရန် ဤသည်ကို သုံးပါ။ ဤပြောင်းလဲမှုကို ပြန်လည်ဖျက်သိမ်း၍ မရနိုင်ပါ။\n\nဆက်မလုပ်မီ သင့်နံပါတ်အသစ်တွင် SMS သို့မဟုတ် ကောလ်များ လက်ခံရရှိနိုင်ကြောင်း သေချာပါစေ။</string>
     <string name="ChangeNumberFragment__continue">ဆက်လက်ရန်</string>
@@ -5399,46 +5203,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 မိနစ်</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 စက္ကန့်</string>
     <string name="ExpireTimerSettingsFragment__custom_time">စိတ်ကြိုက် အချိန်</string>
-    <string name="ExpireTimerSettingsFragment__set">တပ်ဆင်မယ်</string>
     <string name="ExpireTimerSettingsFragment__save">သိမ်းမယ်</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">စက္ကန့်</string>
-    <string name="CustomExpireTimerSelectorView__minutes">မိနစ်</string>
-    <string name="CustomExpireTimerSelectorView__hours">နာရီ</string>
-    <string name="CustomExpireTimerSelectorView__days">ရက်</string>
-    <string name="CustomExpireTimerSelectorView__weeks">ရက်သတ္တပတ်</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">အကူအညီရယူရေး စင်တာ</string>
-    <string name="HelpSettingsFragment__contact_us">ကျွန်ုပ်တို့ကိုဆက်သွယ်ရန်</string>
-    <string name="HelpSettingsFragment__version">ဗားရှင်း</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ ကူးယူပြီး</string>
-    <string name="HelpSettingsFragment__debug_log">ပြစ်ချက်မှတ်တမ်း</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">လိုင်စင်များ</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
-    <string name="HelpFragment__copyright_signal_messenger">မူပိုင်ခွင့် Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 အတိုင်း ခွင့်ပြုထားသည်</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal သည် အကျိုးအမြတ်မယူပါ</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">တွက်ချက်နေသည်…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">မီဒီယာ အရည်အသွေး ပို့ပြီး</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">အရည်အသွေးမြင့်သည့် မီဒီယာဖိုင်ကို ပို့လျှင် ဒေတာ ပိုသုံးပါလိမ့်မည်။</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">အသံမက်ဆေ့(ချ်)နှင့် စတစ်ကာများ (%1$s အောက်) ကို အမြဲတမ်း အလိုအလျောက် ဒေါင်းလုဒ်လုပ်ပါသည်။</string>
-    <string name="DataAndStorageSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">နောက်ခံတွင် ချိတ်ဆက်ထားရန်</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">နောက်ခံတွင် ရှိနေစဉ် ချိတ်ဆက်နေခြင်းသည် ဘက်ထရီအသုံးပြုမှုကို မြင့်တက်စေနိုင်သည်။ ၎င်းသည် စက်အများစုအတွက် မလိုအပ်ပါ။ အသိပေးချက် ပြဿနာများ ကြုံတွေ့နေရမှသာ ၎င်းကိုဖွင့်ပါ။</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">ဖွင့်မည်</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5487,14 +5253,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">ပါဝင်အားဖြည့်သူ ဖြစ်စေရန်</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">အီမိုဂျိ ရှာဖွေမှုကို ဖွင့်ရန်</string>
-    <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_search_emoji">အီမိုဂျိ ရှာရန်</string>
     <string name="KeyboardPagerfragment_back_to_emoji">အီမိုဂျိသို့ ပြန်သွားရန်</string>
     <string name="KeyboardPagerfragment_clear_search_entry">ရှာဖွေရန် ဖြည့်သွင်းမှုကို ရှင်းရန်</string>
     <string name="KeyboardPagerFragment_search_giphy">GIPHY ရှာရန်</string>
 
-    <string name="EmojiSearchFragment__no_results_found">ရလဒ်များ ရှာမတွေ့ပါ</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">မသိသော ဖုန်းမြည်သံ</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5736,7 +5499,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">ဘဲ့ဂျ်တစ်ခု ရွေးချယ်ရန်</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">ဘဲ့ဂျ်တစ်ခု ရွေးချယ်ရပါမည်</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ပရိုဖိုင် အပ်ဒိတ်လုပ်ရန် မအောင်မြင်ခဲ့ပါ</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6027,6 +5789,10 @@
     <string name="EditNotificationProfileFragment__focus">အာရုံစိုက်ချိန်</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">အမည်တစ်ခု ရှိရပါမည်</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">ခွင့်ပြုထားသော အသိပေးချက်များ</string>
@@ -6120,17 +5886,6 @@
     <string name="EditNotificationProfileSchedule__next">နောက်ထက်</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">အချိန်ဇယားသည် အနည်းဆုံး တစ်ရက် ဖြစ်ရပါမည်</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">ပရိုဖိုင် ဖန်တီးပြီး</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">ပြီးပါပြီ</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ချက်(တ်) စာရင်းရှိ မီနူးမှတစ်ဆင့် သင့်ပရိုဖိုင်ကို ကိုယ်တိုင် အဖွင့်၊ အပိတ် လုပ်နိုင်ပါသည်။</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">သင့်ပရိုဖိုင်ကို အော်တို ပြုလုပ်ရန် ဆက်တင်တွင် အချိန်ဇယား ပေါင်းထည့်ပါ။</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">သင့်အချိန်ဇယားအတိုင်း သင့်ပရိုဖိုင်သည် အော်တို အဖွင့်၊ အပိတ် လုပ်ပါမည်။</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">ပရိုဖိုင် အသစ်ပြုလုပ်ရန်</string>
@@ -7292,8 +7047,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">သုံးစွဲသူအမည် ကူးပြီး</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">လင့်ခ် ကူးပြီး</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">လင့်ခ်ကို မသတ်မှတ်ထားပါ</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">လင့်ခ်ကို ပြန်လည်သတ်မှတ်နေဆဲ…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7304,16 +7057,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ပြန်လည်သတ်မှတ်ရန်</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ရီဆက်ချမည်</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">ပြီးပါပြီ</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">ကုဒ်</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">စကန်ဖတ်ရန်</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">သင့်အဆက်အသွယ်၏ စက်ပေါ်တွင် QR ကုဒ်ကို စကန်ဖတ်ပါ။</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">အရောင်</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR ကုဒ် မမှန်ကန်ပါ။</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8156,6 +7905,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">ကွန်ရက်ချို့ယွင်းမှုတစ်ခု ဖြစ်နေပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">ဘက်ခ်အပ်အား ဖျက်ခြင်းကို လုပ်ဆောင်နေပါသည်။</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8763,6 +8518,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">ထပ်ကြိုးစားရန် ဤစက်တွင် Signal ကို ဖြုတ်ပြီး ပြန်လည်ထည့်သွင်းပါ၊ ထို့နောက် \"ပြန်လည်ရယူရန် သို့မဟုတ် လွှဲပြောင်းရန်\" ကို ရွေးချယ်ပါ။</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">အတည်ပြုကုဒ် တောင်းဆိုထားပါသည်</string>

@@ -46,7 +46,61 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">အကြိုက်ဆုံးများထဲမှ ဖယ်ရှားမလား။</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">လင့်ခ် သို့မဟုတ် စတစ်ကာပါသော မက်ဆေ့ချ်မရှိပါက ၎င်းကို ထပ်မံပေးပို့ခြင်း သို့မဟုတ် အကြိုက်ဆုံးများထဲသို့ ထည့်ခြင်း ပြုလုပ်၍မရပါ။</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ဖယ်ရှားရန်</string>
+    <!-- Text shown when no preference label has been selected -->
+    <string name="preferences__none">None</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_on">On</string>
+    <string name="ExpireTimerSettingsFragment__set">Set</string>
+    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
+    <string name="CustomExpireTimerSelectorView__hours">hours</string>
+    <string name="CustomExpireTimerSelectorView__days">days</string>
+    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <!-- expiration -->
+    <string name="expiration_off">Off</string>
+
+    <plurals name="expiration_seconds">
+        <item quantity="other">%1$d seconds</item>
+    </plurals>
+
+    <string name="expiration_seconds_abbreviated">%1$ds</string>
+
+    <plurals name="expiration_minutes">
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+
+    <string name="expiration_minutes_abbreviated">%1$dm</string>
+
+    <plurals name="expiration_hours">
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+
+    <string name="expiration_hours_abbreviated">%1$dh</string>
+
+    <plurals name="expiration_days">
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <string name="expiration_days_abbreviated">%1$dd</string>
+
+    <plurals name="expiration_weeks">
+        <item quantity="other">%1$d weeks</item>
+    </plurals>
+
+    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_combined">%1$s %2$s</string>
+
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Learn more</string>
+
+    <string name="SpanUtil__read_more">Read more</string>
+
+    <!-- Dialogs -->
+    <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
+    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
+    <string name="Dialogs__switch_to_clock">Switch to clock</string>
 </resources>

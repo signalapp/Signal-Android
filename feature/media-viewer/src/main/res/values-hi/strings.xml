@@ -22,21 +22,21 @@
   <!-- Button in the note-to-self delete confirmation dialog that deletes the media -->
   <string name="MediaViewerScreen__delete_dialog_delete">डिलीट करें</string>
   <!-- Title of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_title">चयनित मेसेज डिलीट करें?</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_title">मैसेज डिलीट करना है?</string>
   <!-- Body of the dialog confirming deletion of a media message -->
-  <string name="MediaViewerScreen__media_delete_confirmation_message">यह इस मेसेज को स्थायी रूप से डिलीट कर देगा।</string>
+  <string name="MediaViewerScreen__media_delete_confirmation_message">इससे यह मैसेज हमेशा के लिए डिलीट हो जाएगा।</string>
   <!-- Delete dialog button that deletes the media only on this device -->
-  <string name="MediaViewerScreen__delete_for_me">मेरे लिये डिलीट करें</string>
+  <string name="MediaViewerScreen__delete_for_me">मेरे लिए डिलीट करें</string>
   <!-- Delete dialog button that deletes the media for all members of the chat -->
-  <string name="MediaViewerScreen__delete_for_everyone">सब के लिये डिलीट करें</string>
+  <string name="MediaViewerScreen__delete_for_everyone">सभी के लिए डिलीट करें</string>
   <!-- Generic dialog cancel button -->
   <string name="MediaViewerScreen__cancel">कैंसिल करें</string>
   <!-- Suffix appended after a truncated caption, tapped to expand it. Starts with an ellipsis marking where the caption was cut off. -->
-  <string name="MediaViewerScreen__read_more">… Read more</string>
+  <string name="MediaViewerScreen__read_more">… ज़्यादा पढ़ें</string>
   <!-- Title of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__cant_save_media">मीडिया सेव नहीं किया जा सकता</string>
+  <string name="MediaViewerScreen__cant_save_media">मीडिया सेव नहीं हो सकता</string>
   <!-- Body of the dialog shown when media cannot be saved because it is not on this device -->
-  <string name="MediaViewerScreen__media_offloaded_message">This media is no longer stored on this device. You can change your storage settings and re-download this media over an unmetered Wi-Fi connection.</string>
+  <string name="MediaViewerScreen__media_offloaded_message">यह मीडिया अब इस डिवाइस पर स्टोर नहीं है। स्टोरेज सेटिंग बदलकर, बिना किसी डेटा लिमिट वाले वाई-फ़ाई से इस मीडिया को दोबारा डाउनलोड करें।</string>
   <!-- Button on the offloaded-media dialog that opens storage settings -->
   <string name="MediaViewerScreen__view_storage_settings">स्टोरेज सेटिंग देखें</string>
   <!-- Generic dialog confirmation button -->
@@ -54,11 +54,11 @@
   <!-- Content description of the video pause button -->
   <string name="MediaViewerScreen__pause">पॉज़ करें</string>
   <!-- Content description of the video rewind button -->
-  <string name="MediaViewerScreen__rewind">Rewind</string>
+  <string name="MediaViewerScreen__rewind">रिवाइंड करें</string>
   <!-- Content description of the video fast-forward button -->
-  <string name="MediaViewerScreen__fast_forward">Fast-forward</string>
+  <string name="MediaViewerScreen__fast_forward">फ़ास्ट-फ़ॉरवर्ड करें</string>
   <!-- Content description of a thumbnail in the album rail at the bottom of the screen -->
-  <string name="MediaViewerScreen__album_rail_thumbnail">Media thumbnail</string>
+  <string name="MediaViewerScreen__album_rail_thumbnail">मीडिया थंबनेल</string>
   <!-- Time left in the playing video, shown at the end of the seek bar. %1$s is the remaining time, e.g. 0:38. The leading minus sign marks it as a countdown. -->
   <string name="MediaViewerScreen__remaining_time">−%1$s</string>
 </resources>

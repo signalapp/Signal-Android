@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Өчүрүү</string>
     <string name="save">Сактоо</string>
     <string name="note_to_self">Өзүм үчүн белгилеп коюу</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Аба ырайы</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Эскертүүлөр</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Жаңылыктар</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Толкундар</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal кызматында мындан ары SMS менен жазыша албайсыз. %1$s менен бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Бул адам Signal\'ды колдонбой калган. Бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal\'га чакыруу</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -888,7 +880,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Камдык көчүрмөңүздүн сыр сөз айкашын сынап көрүп, анын иштеп жатканын текшериңиз</string>
     <string name="BackupsPreferenceFragment__turn_on">Камдык көчүрмөлөрдү күйгүзүү</string>
     <string name="BackupsPreferenceFragment__turn_off">Өчүрүү</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Камдык көчүрмөдөн калыбына келтирүү үчүн Signal'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөнүн файлын тандаңыз. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Камдык көчүрмөдөн калыбына келтирүү үчүн Signal\'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөнүн файлын тандаңыз. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Кененирээк маалымат</string>
     <string name="BackupsPreferenceFragment__in_progress">Иштелип жатат…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Байланышкан түзмөктөрдө купуя жазышасыз</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Мобилдик телефонуңуз байланыштырылгандан кийин, Signal\'дагы билдирүүлөр андагы Signal менен шайкештирилет. Ага чейинки билдирүүлөрүңүз көрүнбөйт.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Signal\'ды орнотуу үчүн байланыша турган түзмөктө бул жерге өтүңүз: %1$s</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Кайра калыбына келбейт.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Жокко чыгаруу</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Кененирээк маалымат</string>
-
-    <string name="SpanUtil__read_more">Дагы</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Билдирүү табылган жок</string>
@@ -2719,13 +2706,13 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Шилтеме көчүрүлдү</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">Стикерлер топтомун жашырасызбы?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">Стикерлер топтому жеткиликтүү топтомдордун арасынан жашырылат. Аны кайра кошуу үчүн шилтеме же стикер билдирүүсү керек болот.</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">Стикерлер топтому жеткиликтүү топтомдордун арасынан жашырылат. Аны кайра кошуу үчүн шилтеме же стикер билдирүүсү керек болот.</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">Стикерлер топтому жашырылды</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
     <string name="StickerManagement_undo">Токтотуу</string>
 
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Топтомду карап көрүү</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Стикер \"Тандалгандарга\" кошулду</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Башкалар сиз менен байланыша турган колдонуучу атты тандаңыз.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Коюу</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">Жаңы түзмөктү байланыштыруу</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Өчүк</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one"></item>
-        <item quantity="other">%1$d секунд</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$dсек</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one"></item>
-        <item quantity="other">%1$d мүнөт</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dмүн</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one"></item>
-        <item quantity="other">%1$d саат</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dс</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one"></item>
-        <item quantity="other">%1$d күн</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dк</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one"></item>
-        <item quantity="other">%1$d апта</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dа</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">%1$s менен болгон коопсуздук кодуңуз өзгөрүп, ырастала элек</string>
     <string name="IdentityUtil_unverified_banner_two">%1$s менен %2$s менен болгон коопсуздук коддоруңуз өзгөрүп, ырастала элек</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Жок, рахмат</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Соңкулар</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Бул билдирүү</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Жакында колдонулгандар</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Эч нерсе табылган жок</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">Ат гана</string>
     <string name="arrays__no_name_or_message">Ат дагы эмес, билдирүү дагы эмес</string>
 
-    <string name="arrays__images">Сүрөттөр</string>
-    <string name="arrays__audio">Аудио</string>
-    <string name="arrays__video">Видео</string>
-    <string name="arrays__documents">Документтер</string>
 
-    <string name="arrays__small">Кичине</string>
-    <string name="arrays__normal">Кадимки</string>
-    <string name="arrays__large">Чоң</string>
-    <string name="arrays__extra_large">Өтө чоң</string>
 
     <string name="arrays__default">Демейки</string>
     <string name="arrays__high">Шашылыш</string>
@@ -3885,17 +3824,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">Экранды коргоо иштеп жатат</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Экранды коргоону өчүрүү</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Экранды коргоону өчүрөсүзбү?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Өчүрүү</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Экранды коргоо өчүк</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Белгилүү бир убакыт бою эч нерсе жасалбаса, Signal автоматтык түрдө кулпуланат</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Эч нерсе жасалбагандагы сыр сөз айкашы</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">Көгүш</string>
     <string name="preferences__magenta">Мажента</string>
     <string name="preferences__white">Ак</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Эч бир</string>
     <string name="preferences__fast">Тез</string>
     <string name="preferences__normal">Кадимки</string>
     <string name="preferences__slow">Жай</string>
-    <string name="preferences__help">Жардам</string>
     <string name="preferences__advanced">Өркүндөтүлгөн</string>
     <string name="preferences__donate_to_signal">Signal\'га колдоо көрсөтүү</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Купуялык</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Окуялар</string>
-    <string name="preferences__data_and_storage">Маалыматтар жана сактагыч</string>
     <string name="preferences__storage">Сактагыч</string>
     <string name="preferences__payments">Төлөмдөр</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">Маектин узундугун чектөө</string>
     <string name="preferences__keep_messages">Билдирүүлөрдү сактоо</string>
     <string name="preferences__linked_devices">Байланышкан түзмөктөр</string>
-    <string name="preferences__light_theme">Ачык</string>
-    <string name="preferences__dark_theme">Күңүрт</string>
-    <string name="preferences__appearance">Тышкы көрүнүшү</string>
-    <string name="preferences__theme">Тема</string>
-    <string name="preferences__chat_color_and_wallpaper">Маектин түсү жана тушкагазы</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Колдонмонун сүрөтчөсү</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Жок</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Колдонмонун сүрөтчөсү жана аталышы \"%1$s\" болуп өзгөрүлөт</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Колдонмонун сүрөтчөсү менен аталышы өзгөрүшү үчүн Signal\'ды жабышыңыз керек. Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Телефонуңуздун башкы экранында жана колдонмонун тактасында көрүнө турган колдонмонун сүрөтчөсү менен аталышын тандаңыз. Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат. Кененирээк маалымат</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Колдонмолордун сүрөтчөлөрү менен аталыштары башкы экранда жана колдонмонун тактасында көрүнөт.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Билдирмелерде такай демейки Signal сүрөтчөсү менен аталышы көрүнүп турат.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Кененирээк маалымат</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Колдонмонун сүрөтчөсү кайсы жерде көрүнөрүн чагылдырган графика.</string>
     <string name="preferences__disable_pin">PIN кодду өчүрүү</string>
     <string name="preferences__enable_pin">PIN кодду иштетүү</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN кодду өчүрүп салсаңыз, Signal колдонмосун кайра орноткондо аккаунтуңуздагы бардык нерселер өчүп калат (эгер алардын көчүрмөсүн кол менен башка жерге сактап койбосоңуз). PIN код өчүк болгондо, Катталууга жол бербөө функциясын иштете албай каласыз.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN коддор Signal\'да сакталган маалыматты шифрлеп, аны өзүңүз гана көрө аласыз. Signal\'ды кайра орнотсоңуз, профилиңиз, параметрлериңиз жана байланыштарыңыз калыбына келтирилет. Колдонмону ачуу үчүн PIN коддун кереги жок.</string>
-    <string name="preferences__system_default">Демейки</string>
-    <string name="preferences__language">Тил</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Өркүндөтүлгөн PIN параметрлери</string>
     <string name="preferences__submit_debug_log">Мүчүлүштүктөр журналын жөнөтүү</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">Баскычтоптун жекелештирилген үйрөнүүсүн өчүрүү өтүнүчү.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Бул жөндөө кепилдик бербейт жана баскычтопуңуз ага көңүл бурбай калышы мүмкүн.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Мобилдик берилмелерди колдонууда</string>
-    <string name="preferences_chats__when_using_wifi">Wi-Fi колдонууда</string>
-    <string name="preferences_chats__when_roaming">Роуминг колдонууда</string>
-    <string name="preferences_chats__media_auto_download">Медианы авто-жүктөө</string>
     <string name="preferences_storage__storage_usage">Сактагычтын колдонулушу</string>
     <string name="preferences_storage__photos">Сүрөттөр</string>
     <string name="preferences_storage__videos">Видеолор</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">Чалууларды ар дайым ретрансляциялоо</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Төлөмдөр</string>
-    <string name="preferences_data_and_storage__manage_storage">Сактагычты башкаруу</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Чалууларга азыраак трафик колдонуу</string>
-    <string name="preferences_data_and_storage__never">Эч качан</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi жана мобилдик берилмелер</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Мобилдик берилмелер гана</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Интернет начар болгондо, трафикти үнөмдөсөңүз, чалуулардын сапаты жакшырышы мүмкүн.</string>
     <string name="preferences_notifications__in_chat_sounds">Маектеги үндөр</string>
     <string name="preferences_notifications__show">Көрсөтүү</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Үнү басылган маектерде окула элек билдирүүлөр бар экенин билип турасыз</string>
     <string name="preferences_notifications__ringtone">Шыңгыр</string>
-    <string name="preferences_chats__message_text_size">Билдирүүнүн шрифтинин өлчөмү</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Биринчилик</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">Жашыруун жөнөтүүчү</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Бардыгы үчүн уруксат берүү</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Сиздин байланыштарыңызда болбогон жана профилиңизди бөлүшпөгөн адамдардан жашыруун жөнөтүүчү билдирүүлөрдү алууну иштетиңиз.</string>
-    <string name="preferences_proxy">Прокси</string>
-    <string name="preferences_use_proxy">Проксини колдонуу</string>
-    <string name="preferences_off">Өчүк</string>
-    <string name="preferences_on">Күйүк</string>
     <string name="preferences_proxy_address">Прокси дарек</string>
     <string name="preferences_only_use_a_proxy_if">Мобилдик берилмелер же Wi-Fi аркылуу Signal\'га туташа албасаңыз гана прокси колдонуңуз.</string>
     <string name="preferences_share">Бөлүшүү</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">Ийгиликтүү!</string>
     <string name="preferences_failed_to_connect">Туташуу ишке ашкан жок</string>
     <string name="preferences_enter_proxy_address">Прокси дарегин киргизүү</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Чабыттоо тилкесинин өлчөмү</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Кадимки</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Чакан</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Жаңы тил параметрин колдонуу үчүн колдонмо өчүп күйөт.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Ачкычтарды автотекшерүү</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">Эч качан</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Белгисиз</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Телефон номериңиз</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Телефон номериңиз кимдерге көрүнүп, Signal\'да сиз менен кимдер байланыша алышат.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Менин номерим кимге көрүнөт</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Телефон номериңиз ким менен жазышсаңыз ошолорго көрүнөт.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Телефон номериңизди байланыштар тизмесине сактабаса, ал эч кимге көрүнбөйт.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Телефон номериңиз эч кимге көрүнбөйт.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Номерим аркылуу мени ким таба алат</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Телефон номериңизди билген адам сизди Signal\'да көрүп, сүйлөшө алат.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Билдирүү жазмайынча же маектешип баштамайынча, сиздин Signal\'да отурганыңызды эч ким билбейт.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Бул параметрди өзгөртүү үчүн Менин телефон номерим кимге көрүнөт дегенди Эч кимге деп коюңуз."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Чын элеби?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"Мени телефон номерим боюнча ким таба алат\" деген параметрге \"Эч ким\" дегенди койсоңор, сизди Signal\'да табуу кыйын болуп калат.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Жок</string>
-    <string name="PhoneNumberPrivacy_everyone">Баары</string>
-    <string name="PhoneNumberPrivacy_nobody">Эч ким</string>
-    <string name="preferences_app_protection__screen_lock">Экран кулпусу</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Экран кулпусуна ушул түзмөктөн PIN кодду, графикалык ачкычты же сырсөздү коюңуз.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Катталууну кулпулоо ишке ашырылбады.</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Өчүк</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Экран кулпусун иштетүү</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Колдонмодон чыкканда же башкасына которулганда, Android түзмөгүнүн кулпусу керек болот. Кулпуланып турганда, билдирмелердин мазмуну алдын ала көрүнбөйт.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Экран кулпусу качан иштесин</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">1 мүнөттөн кийин</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">5 мүнөттөн кийин</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">30 мүнөттөн кийин</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Башка убакытта</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal\'дын экранын кулпулоо</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal\'дын экран кулпусун өчүрүү</string>
 
     <string name="Recipient_unknown">Белгисиз</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Камдык көчүрмөлөргө жазылуучунун идентификатору алмашуу буферине көчүрүлдү</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Аккаунтуңуздагы нерселер</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Signal аккаунтуңуздагы нерселердин отчетун экспорттоо. Бул отчетто билдирүүлөр же медиа файлдар болбойт. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Кененирээк маалымат</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Отчетту экспорттоо</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">TXT түрүндө экспорттоо</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Оңой окулуучу текст файлы</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">JSON түрүндө экспорттоо</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Машина окуй алчу файл</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Жок</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Отчет түзүлгөн жок</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Байланышыңызды текшерип, кайталап көрүңүз.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Маалыматтарды экспорттойсузбу?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Signal аккаунтуңуздагы нерселерди ишенимдүү адамдар же колдонмолор менен гана бөлүшүңүз.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Экспорттоо</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Отчет түзүлүүдө…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Отчет экспорт учурунда гана түзүлүп, Signal аны түзмөгүңүзгө сактабайт.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Муну учурдагы телефон номериңизди жаңы телефон номерине өзгөртүү үчүн колдонуңуз. Бул өзгөртүүнү артка кайтара албайсыз.\n\nУлантуудан мурун, жаңы номериңиз SMS же чалууларды кабыл ала аларын текшериңиз.</string>
     <string name="ChangeNumberFragment__continue">Улантуу</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 мүнөт</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 секунда</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Ыңгайлаштырылган убакыт</string>
-    <string name="ExpireTimerSettingsFragment__set">Орнотуу</string>
     <string name="ExpireTimerSettingsFragment__save">Сактоо</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">секунда</string>
-    <string name="CustomExpireTimerSelectorView__minutes">мүнөт</string>
-    <string name="CustomExpireTimerSelectorView__hours">саат</string>
-    <string name="CustomExpireTimerSelectorView__days">күн</string>
-    <string name="CustomExpireTimerSelectorView__weeks">жума</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Кардарларды колдоо борбору</string>
-    <string name="HelpSettingsFragment__contact_us">Биз менен байланышыңыз</string>
-    <string name="HelpSettingsFragment__version">Версия</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Буферге көчүрүлдү</string>
-    <string name="HelpSettingsFragment__debug_log">Мүчүлүштүктөр журналы</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Уруксаттамалар</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Шарттар жана жоболор; Купуялык Саясаты</string>
-    <string name="HelpFragment__copyright_signal_messenger">Signal Mesenger автордук укугу</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 боюнча уруксаттамаланган</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal 501c3 категориясындагы коммерциялык эмес уюм</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Медиа сапаты</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Эсептелүүдө…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Жөнөтүлгөн медиа сапаты</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Жогорку сапаттагы медианы жөнөтүү көбүрөөк берилмелерди колдонот.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Үн билдирүүлөрү жана стикерлер (%1$s чейин) автоматтык түрдө жүктөлүп алынат.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Чалуулар</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Фондо иштей берсин</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Фондо иштей берсе, батарея тез отуруп калышы мүмкүн. Көп түзмөккө бул нерсе талап кылынбайт. Андыктан билдирмелер иштебей жатканда гана күйгүзгөнүңүз оң.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Күйгүзүү</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Колдоочу болуңуз</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Быйтыкчалар издөөнү ачуу</string>
-    <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_search_emoji">Быйтыкчаларды издөө</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Быйтыкчаларга кайтуу</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Издөө жазуусун тазалоо</string>
     <string name="KeyboardPagerFragment_search_giphy">GIPHY издөө</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Эч нерсе табылган жок</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Белгисиз рингтон</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Төшбелги тандоо</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Төшбелги тандашыңыз керек</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">Фокус</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Профиль аты болушу керек</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Уруксат берилген билдирмелер</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">Кийинки</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Графикте жок дегенде бир күн болушу керек</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Профиль түзүлдү</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Бүттү</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Маек тизмесиндеги меню аркылуу профилиңизди кол менен иштетип же өчүрө аласыз.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Профилиңизди автоматташтыруу үчүн тууралоолорго график кошуңуз.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Профилиңизди автоматташтыруу үчүн тууралоолорго график кошуңуз.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Жаңы профиль</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Колдонуучу аты көчүрүлдү</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Шилтеме көчүрүлдү</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Шилтеме коюлган жок</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Шилтеме кайра коюлууда…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Кайра коюу</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Баштапкы абалга келтирүү</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Бүттү</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Код</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Скандоо</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Байланышыңыздын түзмөгүндөгү QR кодду скандаңыз.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Түс</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR код жарабайт.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -7631,7 +7375,7 @@
     <string name="InactivePrimary__got_it">Түшүндүм</string>
 
     <!-- Text describing how to restore a backup displayed on the on-device backups screen -->
-    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Камдык көчүрмөнү калыбына келтирүү үчүн Signal'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөлөр сакталган папканы табыңыз."</string>
+    <string name="OnDeviceBackupsScreen__to_restore_a_backup">"Камдык көчүрмөнү калыбына келтирүү үчүн Signal\'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөлөр сакталган папканы табыңыз."</string>
     <!-- Body of a dialog shown when turning on on-device backups while "Optimize Signal storage" is enabled, warning that optimized media won\'t be included -->
     <string name="OnDeviceBackupsScreen__you_have_optimize_signal_storage_on">\"Signal сактагычын оптималдаштыруу\" дегенди күйгүздүңүз. Түзмөктөгү камдык көчүрмөлөрдөгү бардык медиа файлдар кошулсун десеңиз, бул параметрди өчүрүп коюңуз.</string>
     <!-- Dialog action that takes the user to the "Optimize Signal storage" setting -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Интернет жоголуп кетти. Бир аздан кийин кайталап көрүңүз.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Камдык көчүрмө өчүрүлүүдө.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Кайра аракет кылып көрүү үчүн Signal\'ды бул түзмөккө кайра орнотуп, \"Калыбына келтирүү же өткөрүү\" дегенди тандаңыз.</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Ырастоо коду суралды</string>

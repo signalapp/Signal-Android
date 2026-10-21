@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">წაშლა</string>
     <string name="save">შენახვა</string>
     <string name="note_to_self">ჩემი ჩანიშვნები</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">ამინდი</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">ჩანიშვნები</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">სიახლეები</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">ტალღები</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS მიმოწერები Signal-ში აღარ არის ხელმისაწვდომი. მოიწვიე %1$s Signal-ში, რათა მიმოწერა აქ განაგრძოთ.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">ეს ადამიანი Signal-ს აღარ იყენებს. მოიწვიე ის Signal-ში, რათა მიმოწერა აქ განაგრძოთ.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">მოიწვიე Signal-ში</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">დაკავშირებულ მოწყობილობებზე ნებისმიერი მიმოწერა კონფიდენციალურია</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">დაკავშირების შემდეგ Signal-ის შეტყობინებები შენს მობილურ ტელეფონში Signal-თან სინქრონიზდება. შენი წინა შეტყობინებების ისტორია არ გამოჩნდება.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Signal-ის დასაყენებლად, ეწვიე %1$s-ს მოწყობილობაზე, რომლის მიბმაც გსურს</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">ამ მოქმედებას ვეღარ გააუქმებ.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">გაუქმება</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">გაიგე მეტი</string>
-
-    <string name="SpanUtil__read_more">წაიკითე მეტი</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">შეტყობინების მოძებნა ვერ მოხერხდა</string>
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">ნაკრების ნახვა</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">სტიკერი ფავორიტებში დაემატა</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">აირჩიე მომხმარებლის სახელი, რომ სხვებმა შენთან დაკავშირება შეძლონ.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">დაყენება</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">ახალი მოწყობილობის დაკავშირება</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">გამორთული</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">%1$d წამი</item>
-        <item quantity="other">%1$d წამი</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$d წმ</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">%1$d წუთი</item>
-        <item quantity="other">%1$d წუთი</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dწთ</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">%1$d საათი</item>
-        <item quantity="other">%1$d საათი</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dსთ</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">%1$d დღე</item>
-        <item quantity="other">%1$d დღე</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dდ</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">%1$d კვირა</item>
-        <item quantity="other">%1$d კვირა</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dკ</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">შენი უსაფრთხოების ნომერი %1$s-თან შეიცვალა და აღარ არის ვერიფიცირებული</string>
     <string name="IdentityUtil_unverified_banner_two">შენი უსაფრთხოების ნომრები %1$s-თან და %2$s-თან შეიცვალა და აღარ არის ვერიფიცირებული</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">არა, მადლობა</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ბოლოს გამოყენებული</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ეს შეტყობინება</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ბოლოს გამოყენებული</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ვერაფერი მოიძებნა</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">მხოლოდ სახელი</string>
     <string name="arrays__no_name_or_message">არც სახელი და არც შეტყობინება</string>
 
-    <string name="arrays__images">სურათები</string>
-    <string name="arrays__audio">აუდიო</string>
-    <string name="arrays__video">ვიდეო</string>
-    <string name="arrays__documents">დოკუმენტები</string>
 
-    <string name="arrays__small">პატარა</string>
-    <string name="arrays__normal">ნორმალური</string>
-    <string name="arrays__large">დიდი</string>
-    <string name="arrays__extra_large">ძალიან დიდი</string>
 
     <string name="arrays__default">ძირითადი</string>
     <string name="arrays__high">მაღალი</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">შაბიამნისფერი</string>
     <string name="preferences__magenta">იისფერი</string>
     <string name="preferences__white">თეთრი</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">არცერთი</string>
     <string name="preferences__fast">სწრაფი</string>
     <string name="preferences__normal">ნორმალური</string>
     <string name="preferences__slow">ნელი</string>
-    <string name="preferences__help">დახმარება</string>
     <string name="preferences__advanced">დეტალური</string>
     <string name="preferences__donate_to_signal">Signal-ისთვის დონაციის გაკეთება</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">კონფიდენციალურობა</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories-ები</string>
-    <string name="preferences__data_and_storage">მონაცემები და მეხსიერება</string>
     <string name="preferences__storage">მეხსიერება</string>
     <string name="preferences__payments">ტრანზაქციები</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">ჩატის სიგრძის ლიმიტი</string>
     <string name="preferences__keep_messages">შეტყობინებების შენახვა</string>
     <string name="preferences__linked_devices">დაკავშირებული მოწყობილობები</string>
-    <string name="preferences__light_theme">ღია</string>
-    <string name="preferences__dark_theme">მუქი</string>
-    <string name="preferences__appearance">ვიზუალი</string>
-    <string name="preferences__theme">აპის ფონი</string>
-    <string name="preferences__chat_color_and_wallpaper">ჩატის ფერი &amp; ფონის სურათი</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">აპის ხატულა</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">გაუქმება</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">შეცვალე აპის ხატულა და სახელი „%1$s“-ზე</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">აპის ხატულასა და სახელის შესაცვლელად Signal-ი უნდა დაიხუროს. შეტყობინებები ყოველთვის გამოჩნდება Signal-ის ნაგულისხმევი ხატულათი და სახელით.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">აირჩიე აპის ხატულა და სახელი, რომელიც შენი ტელეფონის მთავარ ეკრანზე და აპის პანელზე გამოჩნდება. შეტყობინებები ყოველთვის გამოჩნდება Signal-ის ნაგულისხმევი ხატულათი და სახელით. გაიგე მეტი</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">აპის ხატულები და სახელები ხილვადია მთავარ ეკრანზე და აპის პანელზე.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">შეტყობინებები ყოველთვის გამოჩნდება Signal-ის ნაგულისხმევი ხატულათი და სახელით.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">გაიგე მეტი</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">გრაფიკული ილუსტრაცია, სადაც აპის ჩასანაცვლებელი ხატულა გამოჩნდება.</string>
     <string name="preferences__disable_pin">პინ-კოდის გამორთვა</string>
     <string name="preferences__enable_pin">პინ-კოდის ჩართვა</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">თუ პინ-კოდს გამორთავ, Signal-ზე ხელახლა დარეგისტრირებისას ყველა მონაცემს დაკარგავ, თუ ხელით არ შექმნი სარეზერვო კოპიას და არ აღადგენ. რეგისტრაციის დაბლოკვას ვერ ჩართავ, სანამ პინ-კოდი გამორთულია.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">პინ-კოდები ინარჩუნებს Signal-ით შენახული ინფორმაციის დაშიფრულად, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები აღდგება ხელახალი ინსტალაციისას. შენი პინ-კოდი აპის გასახსნელად არ დაგჭირდება.</string>
-    <string name="preferences__system_default">სისტემის ნაგულისხმევი პარამეტრები</string>
-    <string name="preferences__language">ენა</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">პინ-კოდის გაფართოებული პარამეტრები</string>
     <string name="preferences__submit_debug_log">გაუმართაობის რეესტრის გაგზავნა</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">მოითხოვე, რომ კლავიატურამ გათიშოს პერსონალიზებული სწავლა.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">ეს პარამეტრი არ არის გარანტირებული და შენმა კლავიატურამ შეიძლება ის უგულებელყოს.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">მობილური ინტერნეტის გამოყენებისას</string>
-    <string name="preferences_chats__when_using_wifi">Wi-Fi-ის გამოყენებისას</string>
-    <string name="preferences_chats__when_roaming">როუმინგში</string>
-    <string name="preferences_chats__media_auto_download">მედია-ფაილების ავტომატური ჩამოტვირთვა</string>
     <string name="preferences_storage__storage_usage">მეხსიერების ათვისება</string>
     <string name="preferences_storage__photos">ფოტოები</string>
     <string name="preferences_storage__videos">ვიდეოები</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">ყოველთვის გადაიტანე ზარები</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">ტრანზაქციები</string>
-    <string name="preferences_data_and_storage__manage_storage">მეხსიერების მართვა</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ზარებისთვის ნაკლები მონაცემების გამოყენება</string>
-    <string name="preferences_data_and_storage__never">არასდროს</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi და მობილური ინტერნეტი</string>
-    <string name="preferences_data_and_storage__mobile_data_only">მხოლოდ მობილური ინტერნეტი</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ნაკლები მონაცემის გამოყენებამ შეიძლება გააუმჯობესოს ზარები, როცა ქსელი კარგად არ მუშაობს.</string>
     <string name="preferences_notifications__in_chat_sounds">ჩატს-შიდა ხმები</string>
     <string name="preferences_notifications__show">ჩვენება</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">ხანდახან შემატყობინეთ, როცა დადუმებულ ჩატებში ახალი წაუკითხავი წერილები მექნება</string>
     <string name="preferences_notifications__ringtone">მელოდია</string>
-    <string name="preferences_chats__message_text_size">შეტყობინების ფონტის ზომა</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">პრიორიტეტი</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">დალუქული გამგზავნი</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">ყველასთვის დაშვება</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ჩართე დალუქული გამგზავნი შემომავალი შეტყობინებებისთვის იმ ადამიანებისგან, ვინც არ გყავს კონტაქტებში და ვისთანაც არ გაგიზიარებია შენი პროფილი.</string>
-    <string name="preferences_proxy">პროქსი</string>
-    <string name="preferences_use_proxy">პროქსის გამოყენება</string>
-    <string name="preferences_off">გამორთული</string>
-    <string name="preferences_on">ჩართული</string>
     <string name="preferences_proxy_address">Პროქსის მისამართი</string>
     <string name="preferences_only_use_a_proxy_if">პროქსი მხოლოდ იმ შემთხვევაში გამოიყენე, თუ ვერ ახერხებ Signal-თან დაკავშირებას მობილური ინტერნეტით ან Wi-Fi-ით.</string>
     <string name="preferences_share">გაზიარება</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">წარმატება</string>
     <string name="preferences_failed_to_connect">დაკავშირება ვერ მოხერხდა</string>
     <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">სანავიგაციო პანელის ზომა</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">ნორმალური</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">კომპაქტური</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">აპლიკაცია გადაიტვირთება ახალი ენის პარამეტრის გამოსაყენებლად.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">ავტომატური ვერიფიკაცია გასაღებით</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">არასდროს</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">უცნობი</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">ტელეფონის ნომერი</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">შეარჩიე, ვის შეუძლია ნახოს შენი ტელეფონის ნომერი და ვინ შეიძლება დაგიკავშირდეს Signal-ზე მისი დახმარებით.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">ვის შეუძლია ჩემი ნომრის ნახვა</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, რომელთაც სწერ.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">შენი მობილურის ნომერს ვერავინ ნახავს, თუ ის თავისი მობილურის კონტაქტებში არ აქვთ შენახული.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">შენი მობილურის ნომერს ვერავინ ნახავს.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ვის შეუძლია ნომრით მიპოვოს</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">ნებისმიერს, ვისაც შენი მობილურის ნომერი აქვს, დაინახავს, რომ Signal-ზე ხარ და შენთან ჩატის წამოწყებას შეძლებს.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">ვერავინ დაინახავს, რომ Signal-ზე ხარ, სანამ არ მისწერ ან თუ არსებული ჩატი არ გექნებათ.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ამ პარამეტრის შესაცვლელად, დააყენე \"ვინ ხედავს ჩემს ნომერს\" \"არავინ\"-ზე."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">დარწმუნებული ხარ?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">თუ „ვინ მიპოვის ნომრით“ პარამეტრს „არავინ“-ზე დააყენებ, სხვებს შენი Signal-ზე პოვნა გაურთულდებათ.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">გაუქმება</string>
-    <string name="PhoneNumberPrivacy_everyone">ყველა</string>
-    <string name="PhoneNumberPrivacy_nobody">არავინ</string>
-    <string name="preferences_app_protection__screen_lock">Ეკრანის დაბლოკვა</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">ეკრანის დაბლოკვის გამოსაყენებლად ამ მოწყობილობაზე პინ-კოდი, პატერნი ან პაროლი დააყენე.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">რეგისტრაციის დაბლოკვა ვერ გააქტიურდა.</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">გამორთული</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">ეკრანის დაბლოკვის გამოყენება</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">როცა აპიდან გამოხვალ ან სხვა აპში შეხვალ, Signal-ის განბლოკვისთვის შენი Android მოწყობილობის დაბლოკვის პარამეტრები იქნება საჭირო. როდესაც დაბლოკილია, შეტყობინებების წინასწარი ნახვა შეტყობინების შინაარსს არ აჩვენებს.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">ეკრანის დაბლოკვის დაწყება</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">1 წუთის შემდეგ</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">5 წუთის შემდეგ</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">30 წუთის შემდეგ</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">არასტანდარტული დროით</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal-ის ეკრანის დაბლოკვის გამოყენება</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">გამორთე Signal-ის ეკრანის დაბლოკვა</string>
 
     <string name="Recipient_unknown">უცნობი</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">სარეზერვო კოპირების გამომწერის ID ბუფერში დაკოპირდა</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">შენი პროფილის მონაცემები</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">შენი Signal-ის პროფილის მონაცემების ანგარიშის ექსპორტირება. ეს ანგარიში არ მოიცავს წერილებსა და მედია ფაილებს. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">გაიგე მეტი</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">ანგარიშის ექსპორტირება</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">დააექსპორტირე TXT-ად</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">მარტივად წასაკითხი ტექსტური ფაილი</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">დააექსპორტირე JSON-ად</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">მოწყობილობით წაკითხვადი ფაილი</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">გაუქმება</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">ანგარიშის გენერირება ვერ მოხერხდა</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">შეამოწმე შენი კავშირი და თავიდან სცადე.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">დავაექსპორტიროთ მონაცემები?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">შენი Signal-ის პროფილის მონაცემები მხოლოდ სანდო ადამიანებსა და აპებს გაუზიარე.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">ექსპორტირება</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">მიმდინარეობს ანგარიშის გენერირება…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">შენი ანგარიში მხოლოდ ექსპორტირების დროს იქმნება და შენს მოწყობილობაზე Signal-ის მიერ არ ინახება.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">გამოიყენე ეს შენი ამჟამინდელი ტელეფონის ნომრის ახალი ნომრით ჩასანაცვლებლად. ამ ცვლილების გაუქმება შეუძლებელია.\n\nგაგრძელებამდე დარწმუნდი, რომ შენს ახალ ნომერს შეუძლია SMS-ის ან ზარების მიღება.</string>
     <string name="ChangeNumberFragment__continue">გაგრძელება</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 წუთით</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
     <string name="ExpireTimerSettingsFragment__custom_time">არასტანდარტული დროით</string>
-    <string name="ExpireTimerSettingsFragment__set">დაყენება</string>
     <string name="ExpireTimerSettingsFragment__save">შენახვა</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">წამები</string>
-    <string name="CustomExpireTimerSelectorView__minutes">წუთები</string>
-    <string name="CustomExpireTimerSelectorView__hours">საათები</string>
-    <string name="CustomExpireTimerSelectorView__days">დღეები</string>
-    <string name="CustomExpireTimerSelectorView__weeks">კვირები</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">მხარდაჭერის ცენტრი</string>
-    <string name="HelpSettingsFragment__contact_us">დაგვიკავშირდი</string>
-    <string name="HelpSettingsFragment__version">ვერსია</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">დაკოპირებულია ბუფერში</string>
-    <string name="HelpSettingsFragment__debug_log">გაუმართაობის რეესტრი</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">ლიცენზიები</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">პირობები &amp; კონფიდენციალურობის პოლიტიკა</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">ლიცენზირებულია GNU AGPLv3-ით</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal-ი არაკომერციული ორგანიზაციაა</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">მედია-ფაილების ხარისხი</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">მიმდინარეობს გამოთვლა…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">გაგზავნილი მედია-ფაილების ხარისხი</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">მაღალი ხარისხის მედია-ფაილის გაგზავნა უფრო მეტ მობილურ ინტერნეტს გამოიყენებს.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ხმოვანი შეტყობინებები და სტიკერები (%1$s-(ი)ს ქვეშ) ყოველთვის ავტომატურად იტვირთება.</string>
-    <string name="DataAndStorageSettingsFragment__calls">ზარები</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">დარჩი ხაზზე პარალელურად</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">პარალელურად ხაზზე დარჩენა, დიდი ალბათობით, ელემენტის გაზრდილ მოხმარებას გამოიწვევს. ეს მოწყობილობების უმრავლესობისთვის საჭირო არაა. ეს მხოლოდ იმ შემთხვევაში ჩართე, თუ შეტყობინებებთან დაკავშირებული პრობლემები გაქვს.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">ჩართვა</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">გახდი მხარდამჭერი</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Emoji-ის საძიებოს გახსნა</string>
-    <string name="KeyboardPagerFragment_backspace">უკან გასვლა</string>
     <string name="KeyboardPagerFragment_search_emoji">emoji-ის მოძებნა</string>
     <string name="KeyboardPagerfragment_back_to_emoji">emoji-ზე დაბრუნება</string>
     <string name="KeyboardPagerfragment_clear_search_entry">საძიებო ჩანაწერის გასუფთავება</string>
     <string name="KeyboardPagerFragment_search_giphy">GIPHY-ის მოძებნა</string>
 
-    <string name="EmojiSearchFragment__no_results_found">ვერაფერი მოიძებნა</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">ზარის უცნობი მელოდია</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">ემბლემის არჩევა</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">ემბლემა უნდა აირჩიო</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">პროფილის განახლება ვერ მოხერხდა</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">ფოკუსი</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">სახელის ქონა აუცილებელია</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">დაშვებული შეტყობინებები</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">შემდეგი</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">განრიგს მინიმუმ ერთი დღე უნდა ჰქონდეს</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">პროფილი შექმნილია</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">შესრულებულია</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">შეგიძლია ხელით ჩართო ან გამორთო შენი პროფილი ჩატის სიის მენიუდან.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">დაამატე განრიგი პარამეტრებში, შენი პროფილის ავტომატიზირებისთვის.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">შენი პროფილი ავტომატურად ჩაირთვება და გამოირთვება შენი განრიგის მიხედვით.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">ახალი პროფილი</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">მომხმარებლის სახელი დაკოპირდა</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">ბმული დაკოპირდა</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">ბმული არ არის დაყენებული</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">მიმდინარეობს ბმულის ახლიდან დაყენება…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ახლიდან დაყენება</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">ახლიდან დაყენება</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">შესრულებულია</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">კოდი</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">სკანირება</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">დაასკანირე QR კოდი შენი კონტაქტის მოწყობილობაზე.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">ფერი</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR კოდი არასწორია.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">დაფიქსირდა ქსელის ხარვეზი. გთხოვთ, მოგვიანებით სცადო.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">სათადარიგო ასლის წაშლა მიმდინარეობს.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">თავიდან საცდელად, Signal-ი შენს მოწყობილობაზე წაშალე და თავიდან დააინსტალირე, შემდეგ კი \"აღდგენა ან გადატანა\" აირჩიე.</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">ვერიფიკაციის კოდი მოთხოვნილია</string>

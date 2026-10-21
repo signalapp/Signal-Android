@@ -5940,7 +5940,7 @@
     <string name="EditNotificationProfileFragment__focus">Focus</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Must have a name</string>
-    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile's emoji -->
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
     <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
     <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>

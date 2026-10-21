@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Padam</string>
     <string name="save">Simpan</string>
     <string name="note_to_self">Nota untuk Diri Sendiri</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Cuaca</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Nota</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Berita</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Ombak</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -494,6 +484,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Pemesejan SMS tidak lagi disokong dalam Signal. Jemput %1$s ke Signal untuk meneruskan perbualan di sini.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Orang ini tidak lagi menggunakan Signal. Jemput ke Signal untuk meneruskan perbualan di sini.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Jemput ke Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -962,7 +954,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Semua pemesejan pada peranti terpaut adalah peribadi</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Mesej Signal disegerakkan dengan Signal pada telefon mudah alih anda selepas ia dipautkan. Sejarah mesej anda sebelum ini tidak akan dipaparkan.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Pada peranti yang ingin anda pautkan, lawati %1$s untuk memasang Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1511,11 +1503,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Tindakan ini tidak boleh dibatalkan.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Buang</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Ketahui lebih lanjut</string>
-
-    <string name="SpanUtil__read_more">Baca lagi</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Mesej tidak dapat mencari</string>
@@ -2623,13 +2610,13 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Pautan telah disalin</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">Sembunyikan pek pelekat?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">Tindakan ini akan menyembunyikan pek pelekat daripada pek anda yang tersedia. Anda tidak boleh menambahnya lagi tanpa pautan atau mesej pelekat.</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">Tindakan ini akan mengalih keluar pek pelekat dan sembunyikannya daripada pek anda yang tersedia. Anda tidak boleh menambahnya lagi tanpa pautan atau mesej pelekat.</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">Pek pelekat disembunyikan</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
     <string name="StickerManagement_undo">Buat Asal</string>
 
@@ -2698,6 +2685,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Lihat Pek</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Pelekat ditambahkan kepada Kegemaran</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3147,7 +3136,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Pilih nama pengguna supaya orang lain boleh berhubung dengan anda.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Tetapkan</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3439,40 +3428,6 @@
 
     <string name="device_list_fragment__link_new_device">Memautkan peranti baru</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Mati</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="other">%1$dsaat</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$d s</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="other">%1$d minit</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dmin</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="other">%1$d jam</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$d j</string>
-
-    <plurals name="expiration_days">
-        <item quantity="other">%1$d hari</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$d h</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="other">%1$d minggu</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$d m</string>
-    <string name="expiration_combined">%1$s%2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Nombor keselamatan anda dengan %1$s telah ditukar dan tidak lagi disahkan</string>
     <string name="IdentityUtil_unverified_banner_two">Nombor-nombor keselamatan anda dengan %1$s dan %2$s tidak lagi disahkan</string>
@@ -3714,9 +3669,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Tidak, terima kasih</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Terkini</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Tidak ada keputusan dijumpai</string>
 
 
@@ -3738,15 +3690,7 @@
     <string name="arrays__name_only">Nama sahaja</string>
     <string name="arrays__no_name_or_message">Tiada nama atau mesej</string>
 
-    <string name="arrays__images">Imej</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Dokumen</string>
 
-    <string name="arrays__small">Kecil</string>
-    <string name="arrays__normal">Biasa</string>
-    <string name="arrays__large">Besar</string>
-    <string name="arrays__extra_large">Lebih besar</string>
 
     <string name="arrays__default">Lalai</string>
     <string name="arrays__high">Tinggi</string>
@@ -3767,17 +3711,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">Keselamatan skrin didayakan</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Matikan keselamatan skrin</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Matikan keselamatan skrin?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Matikan</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Keselamatan skrin dimatikan</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Autokunci Signal selepas selang masa tertentu tidak beraktif</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Frasa laluan tidak aktif tamat masa</string>
@@ -3813,19 +3757,15 @@
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Putih</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Tiada</string>
     <string name="preferences__fast">Laju</string>
     <string name="preferences__normal">Biasa</string>
     <string name="preferences__slow">Lambat</string>
-    <string name="preferences__help">Bantu</string>
     <string name="preferences__advanced">Lanjutan</string>
     <string name="preferences__donate_to_signal">Derma kepada Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Privasi</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Cerita</string>
-    <string name="preferences__data_and_storage">Data dan penyimpanan</string>
     <string name="preferences__storage">Penyimpanan</string>
     <string name="preferences__payments">Pembayaran</string>
     <!-- Privacy settings payments section description -->
@@ -3833,37 +3773,10 @@
     <string name="preferences__conversation_length_limit">Had panjang sembang</string>
     <string name="preferences__keep_messages">Simpan mesej</string>
     <string name="preferences__linked_devices">Peranti dipaut</string>
-    <string name="preferences__light_theme">Cerah</string>
-    <string name="preferences__dark_theme">Gelap</string>
-    <string name="preferences__appearance">Penampilan</string>
-    <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Warna &amp; hiasan dinding</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Ikon Aplikasi</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Batal</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Tukar ikon dan nama aplikasi kepada \"%1$s\"</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal perlu ditutup untuk menukar ikon dan nama aplikasi. Pemberitahuan akan sentiasa memaparkan ikon dan nama Signal lalai.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Pilih ikon dan nama aplikasi, yang akan kelihatan pada skrin utama telefon anda dan laci aplikasi. Pemberitahuan akan sentiasa memaparkan ikon dan nama Signal lalai. Ketahui lebih lanjut</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Ikon dan nama aplikasi boleh dilihat pada skrin utama dan laci aplikasi.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Pemberitahuan akan sentiasa memaparkan ikon dan nama Signal lalai.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Ketahui lebih lanjut</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik yang menggambarkan tempat ikon aplikasi ganti akan kelihatan.</string>
     <string name="preferences__disable_pin">Nyahdayakan PIN</string>
     <string name="preferences__enable_pin">Dayakan PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Sekiranya anda menyahdayakan PIN, anda akan kehilangan semua data apabila anda mendaftar semula Signal melainkan anda membuat sandaran dan pemulihan secara manual. Anda tidak dapat menghidupkan Kunci Pendaftaran semasa PIN dinyahdayakan.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN memastikan maklumat yang disimpan dengan Signal disulitkan supaya hanya anda yang dapat mengaksesnya. Profil, tetapan dan kenalan anda akan dipulihkan apabila anda memasang semula. Anda tidak memerlukan PIN anda untuk membuka aplikasi.</string>
-    <string name="preferences__system_default">Lalai sistem</string>
-    <string name="preferences__language">Bahasa</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Tetapan PIN lanjutan</string>
     <string name="preferences__submit_debug_log">Menghantar log debug</string>
@@ -3875,10 +3788,6 @@
     <string name="preferences__request_keyboard_to_disable">Memerlukan papan kekunci untuk menyahdayakan pembelajaran yang diperibadikan.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Tetapan ini bukan jaminan, dan papan kekunci anda mungkin mengabaikannya.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Semasa mengguna data mudah alih</string>
-    <string name="preferences_chats__when_using_wifi">Semasa mengguna WI-Fi</string>
-    <string name="preferences_chats__when_roaming">Semasa perayauan</string>
-    <string name="preferences_chats__media_auto_download">Memuat turun media secara automatik</string>
     <string name="preferences_storage__storage_usage">Penggunaan simpanan</string>
     <string name="preferences_storage__photos">Foto</string>
     <string name="preferences_storage__videos">Video</string>
@@ -3925,12 +3834,6 @@
     <string name="preferences_advanced__always_relay_calls">Sentiasa menyampaikan panggilan</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pembayaran</string>
-    <string name="preferences_data_and_storage__manage_storage">Uruskan penyimpanan</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Gunakan kurang data untuk panggilan</string>
-    <string name="preferences_data_and_storage__never">Tidak pernah</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi dan data mudah alih</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Data mudah alih sahaja</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Menggunakan kurang data mungkin dapat memperbaik panggilan pada rangkaian yang tidak baik.</string>
     <string name="preferences_notifications__in_chat_sounds">Bunyi di dalam sembang</string>
     <string name="preferences_notifications__show">Papar</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -3944,7 +3847,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Berikan pemberitahuan sekali-sekala apabila terdapat mesej yang belum dibaca dalam sembang yang diredamkan</string>
     <string name="preferences_notifications__ringtone">Nada dering</string>
-    <string name="preferences_chats__message_text_size">Saiz huruf mesej</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Keutamaan</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -3965,10 +3867,6 @@
     <string name="preferences_communication__category_sealed_sender">Penghantar dimeretai</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Benarkan daripada sesiapa</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Mendayakan penghantar yang dimeterai untuk mesej masuk daripada bukan kenalan dan orang yang anda tidak berkongsi profil anda.</string>
-    <string name="preferences_proxy">Proksi</string>
-    <string name="preferences_use_proxy">Gunakan proksi</string>
-    <string name="preferences_off">Mati</string>
-    <string name="preferences_on">Hidup</string>
     <string name="preferences_proxy_address">Alamat proksi</string>
     <string name="preferences_only_use_a_proxy_if">Hanya gunakan proksi jika anda tidak dapat menyambung ke Signal pada data mudah alih atau Wi-Fi.</string>
     <string name="preferences_share">Kongsi</string>
@@ -3982,14 +3880,6 @@
     <string name="preferences_success">Berjaya</string>
     <string name="preferences_failed_to_connect">Gagal untuk menyambung</string>
     <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Saiz bar navigasi</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Biasa</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Padat</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Aplikasi akan dimulakan semula untuk menggunakan tetapan bahasa baharu.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Pengesahan Kunci Automatik</string>
     <!-- Preference summary for automatic key verification -->
@@ -4543,35 +4433,8 @@
     <string name="BackupUtil_never">Tidak pernah</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Tidak diketahui</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Nombor telefon</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Pilih siapa yang boleh melihat nombor telefon anda dan siapa yang boleh menghubungi nombor anda di Signal.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Siapa boleh lihat nombor saya</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Nombor telefon anda akan dapat dilihat oleh semua orang dan kumpulan yang anda hantar mesej.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Nombor telefon anda tidak akan kelihatan kepada sesiapa melainkan mereka menyimpannya dalam kenalan telefon.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Nombor telefon anda tidak akan kelihatan kepada sesiapa.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Siapa boleh cari saya dengan nombor</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Sesiapa yang mempunyai nombor telefon anda akan dapat melihat anda di Signal dan boleh mula bersembang dengan anda.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Tiada sesiapa boleh melihat anda di Signal melainkan anda menghantar mesej kepada mereka atau mempunyai sembang sedia ada dengan mereka.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Untuk menukar tetapan ini, tetapkan \"Siapa yang boleh lihat nombor saya\" kepada \"Tiada sesiapa\"."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Adakah anda pasti?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Menetapkan \"Siapa boleh cari saya dengan nombor telefon\" kepada \"Tiada sesiapa\" akan menyukarkan orang ramai untuk cari anda di Signal.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Batal</string>
-    <string name="PhoneNumberPrivacy_everyone">Semua orang</string>
-    <string name="PhoneNumberPrivacy_nobody">Tiada sesiapa</string>
-    <string name="preferences_app_protection__screen_lock">Kunci skrin</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Untuk menggunakan kunci skrin, tetapkan PIN, corak atau kata laluan pada peranti ini.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mendayakan kunci pendaftaran.</string>
@@ -4598,24 +4461,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Mati</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Gunakan kunci skrin</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Tetapan kunci peranti Android anda diperlukan untuk membuka kunci Signal apabila anda meninggalkan atau menukar aplikasi. Apabila dikunci, pratonton pemberitahuan tidak akan menunjukkan kandungan mesej.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Mulakan kunci skrin</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">Selepas 1 minit</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">Selepas 5 minit</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">Selepas 30 minit</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Masa tersuai</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Gunakan kunci skrin Signal</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Matikan kunci skrin Signal</string>
 
     <string name="Recipient_unknown">Tidak diketahui</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5079,47 +4924,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Menyalin id pelanggan sandaran ke papan keratan</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Data akaun anda</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Eksport laporan data akaun Signal anda. Laporan ini tidak termasuk sebarang mesej atau media. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Ketahui lebih lanjut</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Eksport laporan</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Eksport sebagai TXT</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Fail teks mudah dibaca</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Eksport sebagai JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Fail mudah dibaca mesin</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Batal</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Tidak dapat menjana laporan</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Periksa sambungan anda dan cuba lagi.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Eksport data?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Hanya kongsikan data akaun Signal anda dengan orang atau aplikasi yang anda percayai.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Eksport</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Menjana laporan…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Laporan anda dijana hanya pada masa eksport dan tidak disimpan oleh Signal pada peranti anda.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gunakan ini untuk menukar nombor telefon semasa anda ke nombor telefon yang baharu. Anda tidak boleh membatalkan perubahan ini.\n\\Sebelum meneruskan, sila pastikan nombor telefon yang baharu boleh menerima SMS atau panggilan.</string>
     <string name="ChangeNumberFragment__continue">Teruskan</string>
@@ -5399,46 +5203,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minit</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 saat</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Masa tersuai</string>
-    <string name="ExpireTimerSettingsFragment__set">Tetapkan</string>
     <string name="ExpireTimerSettingsFragment__save">Simpan</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">saat</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minit</string>
-    <string name="CustomExpireTimerSelectorView__hours">jam</string>
-    <string name="CustomExpireTimerSelectorView__days">hari</string>
-    <string name="CustomExpireTimerSelectorView__weeks">minggu</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Pusat sokongan</string>
-    <string name="HelpSettingsFragment__contact_us">Hubungi kami</string>
-    <string name="HelpSettingsFragment__version">Versi</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Disalin ke papan klip</string>
-    <string name="HelpSettingsFragment__debug_log">Log Nyahpepijat</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Lesen</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terma &amp; Dasar Privasi</string>
-    <string name="HelpFragment__copyright_signal_messenger">Hak Cipta Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Berlesen di bawah GNU AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ialah organisasi bukan untung</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Kualiti media</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Mengira…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Kualiti media yang dihantar</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Menghantar media berkualiti tinggi akan menggunakan lebih banyak data.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Mesej suara dan pelekat (di bawah %1$s) sentiasa dimuat turun secara automatik.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Panggilan</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Kekal bersambung di latar belakang</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Kekal bersambung semasa berada di latar belakang berkemungkinan menyebabkan penggunaan bateri yang lebih tinggi. Ini tidak diperlukan untuk kebanyakan peranti. Hanya aktifkan ini jika anda mengalami masalah dengan pemberitahuan.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Dayakan</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5487,14 +5253,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Jadilah seorang Sustainer</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Buka carian emoji</string>
-    <string name="KeyboardPagerFragment_backspace">Undur Ruang</string>
     <string name="KeyboardPagerFragment_search_emoji">Cari emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Kembali ke emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Kosongkan entri carian</string>
     <string name="KeyboardPagerFragment_search_giphy">Cari GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Tiada keputusan dijumpai</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Nada dering tidak diketahui</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5736,7 +5499,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Pilih satu lencana</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Anda mesti pilih lencana</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal mengemaskini profil</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6027,6 +5789,10 @@
     <string name="EditNotificationProfileFragment__focus">Fokus</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Mesti mempunyai nama</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Benarkan pemberitahuan</string>
@@ -6120,17 +5886,6 @@
     <string name="EditNotificationProfileSchedule__next">Seterusnya</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Jadual mesti mempunyai sekurang-kurangnya satu hari</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profil dicipta</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Selesai</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Anda boleh hidupkan atau matikan profil anda secara manual melalui menu pada senarai sembang.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tambah jadual dalam tetapan untuk mengautomatikkan profil anda.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profil akan dihidupkan dan dimatikan secara automatik bergantung kepada jadual.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Profil baru</string>
@@ -7292,8 +7047,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Nama pengguna disalin</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Pautan telah disalin</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Pautan tidak ditetapkan</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Menetapkan semula pautan…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7304,16 +7057,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Tetapkan semula</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Tetap semula</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Selesai</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Kod</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Imbas</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Imbas Kod QR pada peranti kenalan anda.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Warna</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Kod QR tidak sah.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8156,6 +7905,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Kegagalan rangkaian telah berlaku. Sila cuba lagi nanti.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Pemadaman sandaran sedang dijalankan.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8763,6 +8518,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Untuk mencuba lagi, nyahpasang dan pasang semula Signal pada peranti ini, kemudian pilih “Pulihkan atau pindahkan”.</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Kod pengesahan telah diminta</string>

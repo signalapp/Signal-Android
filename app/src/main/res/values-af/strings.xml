@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Skrap</string>
     <string name="save">Stoor</string>
     <string name="note_to_self">Nota aan myself</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weer</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notas</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Nuus</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Golwe</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -498,6 +488,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS-boodskappe word nie meer in Signal ondersteun nie. Nooi %1$s na Signal om die gesprek hier te hou.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Hierdie persoon gebruik nie meer Signal nie. Nooi hulle na Signal om die gesprek hier te hou.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Nooi na Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -989,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alle boodskappe op gekoppelde toestelle is privaat</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal-boodskappe word gesinchroniseer met Signal op jou selfoon nadat dit gekoppel is. Jou geskiedenis van vorige boodskappe sal nie verskyn nie.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Op die toestel wat jy wil koppel, besoek %1$s om Signal te installeer</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1558,11 +1550,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Hierdie aksie kan nie ongedaan gemaak word nie.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Wys af</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Vind meer uit</string>
-
-    <string name="SpanUtil__read_more">Lees meer</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Kon die boodskap nie vind nie</string>
@@ -2794,6 +2781,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Besigtig pakket</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Plakker by Gunstelinge gevoeg</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3250,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Kies \'n gebruikersnaam sodat ander mense met jou kontak kan maak.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Stel op</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3548,45 +3537,6 @@
 
     <string name="device_list_fragment__link_new_device">Koppel nuwe toestel</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Af</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="one">%1$d sekonde</item>
-        <item quantity="other">%1$d sekondes</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minuut</item>
-        <item quantity="other">%1$d minute</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="one">%1$d uur</item>
-        <item quantity="other">%1$d ure</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dh</string>
-
-    <plurals name="expiration_days">
-        <item quantity="one">%1$d dag</item>
-        <item quantity="other">%1$d dae</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dd</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="other">%1$d weke</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Jou veiligheidsnommer met %1$s het verander en is nie meer geverifieer nie.</string>
     <string name="IdentityUtil_unverified_banner_two">Jou veiligheidsnommers met %1$s en %2$s is nie meer geverifieer nie.</string>
@@ -3831,9 +3781,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nee dankie</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Onlangs</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Hierdie boodskap</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Onlangs gebruik</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Geen resultate gevind nie</string>
 
 
@@ -3855,15 +3802,7 @@
     <string name="arrays__name_only">Slegs naam</string>
     <string name="arrays__no_name_or_message">Geen naam of boodskap nie</string>
 
-    <string name="arrays__images">Beelde</string>
-    <string name="arrays__audio">Klank</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Dokumente</string>
 
-    <string name="arrays__small">Klein</string>
-    <string name="arrays__normal">Normaal</string>
-    <string name="arrays__large">Groot</string>
-    <string name="arrays__extra_large">Ekstra-groot</string>
 
     <string name="arrays__default">Verstek</string>
     <string name="arrays__high">Hoog</string>
@@ -3931,19 +3870,15 @@
     <string name="preferences__cyan">Siaan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Wit</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Geen</string>
     <string name="preferences__fast">Vinnig</string>
     <string name="preferences__normal">Normaal</string>
     <string name="preferences__slow">Stadig</string>
-    <string name="preferences__help">Hulp</string>
     <string name="preferences__advanced">Gevorderd</string>
     <string name="preferences__donate_to_signal">Skenk aan Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Privaatheid</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
-    <string name="preferences__data_and_storage">Data en stoorruimte</string>
     <string name="preferences__storage">Berging</string>
     <string name="preferences__payments">Betalings</string>
     <!-- Privacy settings payments section description -->
@@ -3951,37 +3886,10 @@
     <string name="preferences__conversation_length_limit">Kletslengtebeperking</string>
     <string name="preferences__keep_messages">Hou boodskappe</string>
     <string name="preferences__linked_devices">Gekoppelde toestelle</string>
-    <string name="preferences__light_theme">Lig</string>
-    <string name="preferences__dark_theme">Donker</string>
-    <string name="preferences__appearance">Voorkoms</string>
-    <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Kletskleur &amp; muurpapier</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Toepassingikoon</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">Goed</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Kanselleer</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Verander toepassingikoon en naam na \"%1$s\"</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal sal moet toemaak om die toepassingikoon en -naam te verander. Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Kies \'n toepassingikoon en -naam wat op jou foon se tuisskerm en toepassingkassie sigbaar sal wees. Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon. Vind meer uit</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Toepassingikone en -name is sigbaar op die tuisskerm en toepassingkassie.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Kennisgewings sal altyd die verstek-Signal-ikoon en -naam vertoon.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Vind meer uit</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafiese illustrasie waar die plaasvervangende toepassingikoon sigbaar sal wees.</string>
     <string name="preferences__disable_pin">Deaktiveer PIN</string>
     <string name="preferences__enable_pin">Aktiveer PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Indien jy die PIN deaktiveer sal jy alle data verloor wanneer jy Signal herregistreer, tensy jy met die hand \'n rugsteun maak en dit herwin. Jy kan nie Registrasiesluiting aanskakel terwyl die PIN gedeaktiveer is nie.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN’s sorg dat inligting wat met Signal geberg word, geënkripteer is sodat jy alleen toegang daartoe het. Jou profiel, instellings en kontakte sal teruggestel word wanneer jy herinstalleer. Jou PIN sal nie benodig word om die toepassing oop te maak nie.</string>
-    <string name="preferences__system_default">Stelsel verstek</string>
-    <string name="preferences__language">Taal</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Gevorderde PIN-instellings</string>
     <string name="preferences__submit_debug_log">Dien ontfout-log in</string>
@@ -3993,10 +3901,6 @@
     <string name="preferences__request_keyboard_to_disable">Versoek toetsbord om verpersoonlikte lêer te deaktiveer.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Hierdie instelling is nie \'n waarborg nie en jou sleutelbord kan dit moontlik ignoreer.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Wanneer mobiele data gebruik word</string>
-    <string name="preferences_chats__when_using_wifi">Wanneer Wi-Fi gebruik word</string>
-    <string name="preferences_chats__when_roaming">Wanneer jy reisend is</string>
-    <string name="preferences_chats__media_auto_download">Media-outoaflaai</string>
     <string name="preferences_storage__storage_usage">Bergingsverbruik</string>
     <string name="preferences_storage__photos">Foto\'s</string>
     <string name="preferences_storage__videos">Videos</string>
@@ -4045,12 +3949,6 @@
     <string name="preferences_advanced__always_relay_calls">Herlei altyd oproepe</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalings</string>
-    <string name="preferences_data_and_storage__manage_storage">Bestuur stoorruimte</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Gebruik minder data vir oproepe</string>
-    <string name="preferences_data_and_storage__never">Nooit</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi en mobiele data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Slegs mobiele data</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Die gebruik van minder data kan oproepe op swak netwerke verbeter.</string>
     <string name="preferences_notifications__in_chat_sounds">Klanke tydens klets</string>
     <string name="preferences_notifications__show">Vertoon</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4064,7 +3962,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Stel af en toe in kennis wanneer daar ongeleesde boodskappe in gedempte kletse is</string>
     <string name="preferences_notifications__ringtone">Luitoon</string>
-    <string name="preferences_chats__message_text_size">Boodskaplettergrootte</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Prioriteit</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4085,10 +3982,6 @@
     <string name="preferences_communication__category_sealed_sender">Verseëlde afsender</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Laat van enigiemand af toe</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiveer verseëlde afsender vir inkomende boodskappe van nie-kontakte en mense met wie jy nie jou profiel gedeel het nie.</string>
-    <string name="preferences_proxy">Tussenganger</string>
-    <string name="preferences_use_proxy">Gebruik tussenganger</string>
-    <string name="preferences_off">Af</string>
-    <string name="preferences_on">Aan</string>
     <string name="preferences_proxy_address">Tussengangeradres</string>
     <string name="preferences_only_use_a_proxy_if">Gebruik slegs \'n tussenganger as jy nie op mobiele data of Wi-Fi met Signal kan verbind nie.</string>
     <string name="preferences_share">Deel</string>
@@ -4102,14 +3995,6 @@
     <string name="preferences_success">Sukses</string>
     <string name="preferences_failed_to_connect">Kon nie verbind nie</string>
     <string name="preferences_enter_proxy_address">Sleutel tussengangeradres in</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigasiebalkgrootte</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normaal</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Kompak</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Die toepassing sal herlaai word om die nuwe taalinstelling toe te pas.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Outomatiese sleutelverifiëring</string>
     <!-- Preference summary for automatic key verification -->
@@ -4672,35 +4557,8 @@
     <string name="BackupUtil_never">Nooit</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Onbekend</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Telefoonnommer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Kies wie jou telefoonnommer kan sien en wie jou daarmee op Signal kan kontak.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Wie my nommer kan sien</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Jou telefoonnommer sal sigbaar wees vir mense en groepe aan wie jy boodskappe stuur.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Jou telefoonnommer sal nie vir enigiemand sigbaar wees nie, tensy hulle dit in hul foon se kontakte gestoor het.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Jou telefoonnommer sal nie vir enigiemand sigbaar wees nie.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Wie my volgens my nommer kan vind</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Enigiemand wat jou telefoonnommer het, sal sien jy is op Signal en kan met jou begin klets.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Niemand sal kan sien jy is op Signal nie, tensy jy vir hulle \'n boodskap stuur of \'n bestaande klets met hulle het.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Om hierdie instelling te verander, stel Wie kan my nommer sien na Niemand."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Is jy seker?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Deur \"Wie kan my volgens my nommer vind\" op \"Niemand\" te stel, sal dit vir mense moeiliker maak om jou op Signal te vind.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Kanselleer</string>
-    <string name="PhoneNumberPrivacy_everyone">Enigiemand</string>
-    <string name="PhoneNumberPrivacy_nobody">Niemand</string>
-    <string name="preferences_app_protection__screen_lock">Skermslot</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Om skermslot te gebruik, stel \'n PIN, patroon of wagwoord op hierdie toestel op.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Kon nie registrasieslot aktiveer nie.</string>
@@ -4727,24 +4585,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Af</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Gebruik skermslot</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Jou Android-toestel se slotinstellings sal vereis word om Signal te ontsluit wanneer jy toepassings verlaat of verander. Indien dit gesluit is, sal die kennisgewingvoorskou nie die boodskapinhoud wys nie.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Begin skermslot</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">Ná 1 minuut</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">Ná 5 minute</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">Ná 30 minute</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Pasgemaakte tyd</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Gebruik Signal-skermslot</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Skakel Signal-skermslot af</string>
 
     <string name="Recipient_unknown">Onbekend</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5216,47 +5056,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Rugsteun-intekenaar se ID na knipbord gekopieer</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Jou rekeningdata</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Voer \'n verslag van jou Signal-rekeningdata uit. Hierdie verslag sluit geen boodskappe of media in nie. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Vind meer uit</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Voer verslag uit</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Voer uit as TXT</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Maklik leesbare tekslêer</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Voer uit as JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Masjienleesbare lêer</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Kanselleer</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">Goed</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Kon nie verslag genereer nie</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Gaan jou verbinding na en probeer weer.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Voer data uit?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Deel jou Signal-rekeningdata slegs met mense of toepassings wat jy vertrou.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Voer uit</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Genereer tans verslag…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Jou verslag word slegs ten tyde van uitvoer gegenereer en word nie deur Signal op jou toestel gestoor nie.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit om jou huidige telefoonnommer na ’n nuwe een te verander. Jy kan hierdie verandering nie ongedaan maak nie.\n\nMaak seker jou nuwe nommer kan SMS’e of oproepe ontvang voor jy voortgaan.</string>
     <string name="ChangeNumberFragment__continue">Gaan voort</string>
@@ -5544,46 +5343,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 sekondes</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Pasgemaakte tyd</string>
-    <string name="ExpireTimerSettingsFragment__set">Stel</string>
     <string name="ExpireTimerSettingsFragment__save">Stoor</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">sekondes</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minute</string>
-    <string name="CustomExpireTimerSelectorView__hours">uur</string>
-    <string name="CustomExpireTimerSelectorView__days">dae</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weke</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Steundienssentrum</string>
-    <string name="HelpSettingsFragment__contact_us">Kontak ons</string>
-    <string name="HelpSettingsFragment__version">Weergawe</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Na knipbord gekopieer</string>
-    <string name="HelpSettingsFragment__debug_log">Ontfoutlog</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Lisensies</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Bepalings &amp; Privaatheidsbeleid</string>
-    <string name="HelpFragment__copyright_signal_messenger">Kopiereg Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Gelisensieer onder die GNU AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is \'n niewinsgewende organisasie</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Besig om te bereken…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Gestuurde mediakwaliteit</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Stuur van hoëkwaliteitmedia sal meer data gebruik.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Stemboodskappe en plakkers (onder %1$s) word altyd outomaties afgelaai.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Oproepe</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Bly in die agtergrond verbind</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Deur in die agtergrond verbind te bly sal waarskynlik verhoogde batterygebruik tot gevolg hê. Vir die meeste toestelle is dit nie nodig nie. Aktiveer dit slegs indien jy probleme met kennisgewings ervaar het.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Aktiveer</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5634,14 +5395,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Word ’n onderhouer</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Open emoji-soektog</string>
-    <string name="KeyboardPagerFragment_backspace">Trutoets</string>
     <string name="KeyboardPagerFragment_search_emoji">Deursoek emoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Terug na emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Vee soekopdrag uit</string>
     <string name="KeyboardPagerFragment_search_giphy">Deursoek GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Geen resultate gevind nie</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekende luitoon</string>
 
     <!-- ConversationSettingsFragment -->
@@ -5889,7 +5647,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies ’n wapen</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Jy moet ’n wapen kies</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Kon nie profiel bywerk nie</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6180,6 +5937,10 @@
     <string name="EditNotificationProfileFragment__focus">Fokus</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Moet ’n naam hê</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Toegelate kennisgewings</string>
@@ -6273,17 +6034,6 @@
     <string name="EditNotificationProfileSchedule__next">Volgende</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Skedule moet ten minste een dag hê</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profiel geskep</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Klaar</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Jy kan jou profiel handmatig aan- of afskakel d.m.v. die kieslys op die kletslys.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg ’n skedule toe in instellings om jou profiel te outomatiseer.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Jou profiel sal outomaties aan- en afskakel volgens jou skedule.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Nuwe profiel</string>
@@ -7471,8 +7221,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Gebruikersnaam gekopieer</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Skakel gekopieer</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Skakel nie gestel nie</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Besig om skakel terug te stel…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7483,16 +7231,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Stel terug</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Stel terug</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Klaar</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Kode</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Skandeer</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Skandeer die QR-kode op jou kontak se toestel.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Kleur</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Die QR-kode was ongeldig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8347,6 +8091,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">\'n Netwerkfout het voorgekom. Probeer asseblief later weer.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Rugsteunskrapping is tans aan die gang.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8958,6 +8708,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Om weer te probeer, deïnstalleer en herinstalleer Signal op hierdie toestel en kies \"Herwin of dra oor\".</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">\'n Verifiëringskode is aangevra</string>

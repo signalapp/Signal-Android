@@ -28,11 +28,17 @@
   <!-- Message shown in place of the grid when a media keyboard search matches no emoji or GIFs. -->
   <string name="MediaKeyboard__no_results_found">Nenhum resultado encontrado</string>
   <!-- Message shown in place of the sticker grid when a sticker search matches nothing. %1$s is the search query the user typed. -->
-  <string name="MediaKeyboard__no_results_found_for_s">No results found for ‘%1$s’</string>
+  <string name="MediaKeyboard__no_results_found_for_s">Nenhum resultado encontrado para \"%1$s\"</string>
+
+  <!-- Emoji sheet -->
+  <!-- Accessibility description for the button in the emoji picker sheet that opens the screen where the user picks their quick reactions. -->
+  <string name="MediaKeyboard__customize_reactions">Customize reactions</string>
 
   <!-- Emoji page -->
   <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
   <string name="MediaKeyboard__backspace">Apagar</string>
+  <!-- Header, and rail accessibility description, for the emoji already reacted with on the message the user is reacting to. -->
+  <string name="MediaKeyboard__this_message">This message</string>
   <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
   <string name="MediaKeyboard__recently_used">Utilizada recentemente</string>
   <!-- Header for the emoji category holding faces and people. -->

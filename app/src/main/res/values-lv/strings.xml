@@ -16,7 +16,6 @@
   <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
   <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="inactive_primary_support" translatable="false">https://support.signal.org/hc/articles/9021007554074</string> -->
@@ -30,15 +29,6 @@
     <string name="delete">Dzēst</string>
     <string name="save">Saglabāt</string>
     <string name="note_to_self">Piezīme sev</string>
-
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Laikapstākļi</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Piezīmes</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Jaunumi</string>
-    <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Viļņi</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
@@ -502,6 +492,8 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal vairs netiek atbalstīta SMS ziņu sūtīšana. Uzaiciniet lietotāju %1$s izmantot Signal, lai turpinātu sarunu šeit.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Šī persona vairs neizmanto Signal. Lai turpinātu sarunāties šajā platformā, uzaiciniet šo personu izmantot Signal.</string>
+    <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
+    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Uzaicināt uz Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -1016,7 +1008,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Visas ziņas saistītajās ierīcēs ir privātas</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal ziņas tiek sinhronizētas ar Signal jūsu mobilajā tālrunī, kad tas tiek piesaistīts. Iepriekšējo ziņu vēsture netiks rādīta.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Lai instalētu Signal, apmeklējiet vietni %1$s ierīcē, kuru vēlaties saistīt</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -1605,11 +1597,6 @@
     <string name="InputPanel__this_action_cant_be_undone">Šo darbību nevar atsaukt.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
     <string name="InputPanel__discard">Atmest</string>
-
-    <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Lasīt vairāk</string>
-
-    <string name="SpanUtil__read_more">Lasīt vairāk</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Neizdevās atrast ziņu</string>
@@ -2815,13 +2802,13 @@
     <!-- Message shown after copying a sticker pack link. -->
     <string name="StickerManagement_copied">Saite nokopēta</string>
     <!-- Title of the confirmation dialog shown before hiding a sticker pack. -->
-    <string name="StickerManagement_hide_pack_confirmation">Hide sticker pack?</string>
+    <string name="StickerManagement_hide_pack_confirmation">Vai paslēpt uzlīmju komplektu?</string>
     <!-- Body of the confirmation dialog shown before hiding a sticker pack that is not installed. -->
-    <string name="StickerManagement_hide_pack_confirmation_body">This will hide the sticker pack from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_pack_confirmation_body">Šī darbība paslēps uzlīmju komplektu no jums pieejamo komplektu saraksta. Jūs nevarēsiet to pievienot atkārtoti bez saites vai ziņas par uzlīmi.</string>
     <!-- Body of the confirmation dialog shown before hiding an installed sticker pack, which also removes it. -->
-    <string name="StickerManagement_hide_installed_pack_confirmation_body">This will remove the sticker pack and hide it from your available packs. You can\'t add it again without a link or sticker message.</string>
+    <string name="StickerManagement_hide_installed_pack_confirmation_body">Šī darbība noņems uzlīmju komplektu no jums pieejamo komplektu saraksta. Jūs nevarēsiet to pievienot atkārtoti bez saites vai ziņas par uzlīmi.</string>
     <!-- Snackbar shown when a pack is hidden -->
-    <string name="StickerManagement_hidden_pack">Sticker pack hidden</string>
+    <string name="StickerManagement_hidden_pack">Uzlīmju komplekts ir paslēpts</string>
     <!-- Snackbar action label to undo hiding a sticker pack. -->
     <string name="StickerManagement_undo">Atsaukt</string>
 
@@ -2890,6 +2877,8 @@
     <string name="StickerPreviewBottomSheet__title_author">%1$s · %2$s</string>
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Skatīt komplektu</string>
+    <!-- Bottom sheet label for sending a sticker. -->
+    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Uzlīme pievienota izlasei</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3353,7 +3342,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username_so_others_can_connect_with_you">Izvēlieties lietotājvārdu, lai citi lietotāji varētu ar jums sazināties.</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Iestatīt</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3657,50 +3646,6 @@
 
     <string name="device_list_fragment__link_new_device">Piesaistīt jaunu ierīci</string>
 
-    <!-- expiration -->
-    <string name="expiration_off">Nav</string>
-
-    <plurals name="expiration_seconds">
-        <item quantity="zero">%1$dsekundes</item>
-        <item quantity="one">%1$dsekunde</item>
-        <item quantity="other">%1$d sekundes</item>
-    </plurals>
-
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
-
-    <plurals name="expiration_minutes">
-        <item quantity="zero">%1$d minūtes</item>
-        <item quantity="one">%1$d minūte</item>
-        <item quantity="other">%1$d minūtes</item>
-    </plurals>
-
-    <string name="expiration_minutes_abbreviated">%1$d min</string>
-
-    <plurals name="expiration_hours">
-        <item quantity="zero">%1$d stundas</item>
-        <item quantity="one">%1$d stunda</item>
-        <item quantity="other">%1$d stundas</item>
-    </plurals>
-
-    <string name="expiration_hours_abbreviated">%1$dh</string>
-
-    <plurals name="expiration_days">
-        <item quantity="zero">%1$d dienas</item>
-        <item quantity="one">%1$d diena</item>
-        <item quantity="other">%1$d dienas</item>
-    </plurals>
-
-    <string name="expiration_days_abbreviated">%1$dd</string>
-
-    <plurals name="expiration_weeks">
-        <item quantity="zero">%1$dnedēļas</item>
-        <item quantity="one">%1$dnedēļa</item>
-        <item quantity="other">%1$d nedēļas</item>
-    </plurals>
-
-    <string name="expiration_weeks_abbreviated">%1$d ned</string>
-    <string name="expiration_combined">%1$s %2$s</string>
-
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Jūsu drošības numurs ar %1$s ir mainījies un vairāk nav verificēts</string>
     <string name="IdentityUtil_unverified_banner_two">Jūsu drošības numuri ar %1$s un %2$s vairāk nav verificēti</string>
@@ -3948,9 +3893,6 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nē, paldies</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Pēdējās</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Šī ziņa</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nesen lietotie</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nekas netika atrasts</string>
 
 
@@ -3972,15 +3914,7 @@
     <string name="arrays__name_only">Tikai vārds</string>
     <string name="arrays__no_name_or_message">Bez vārda vai ziņas</string>
 
-    <string name="arrays__images">Attēli</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Dokumenti</string>
 
-    <string name="arrays__small">Mazs</string>
-    <string name="arrays__normal">Normāls</string>
-    <string name="arrays__large">Liels</string>
-    <string name="arrays__extra_large">Ļoti liels</string>
 
     <string name="arrays__default">Noklusējuma</string>
     <string name="arrays__high">Augsta</string>
@@ -4003,17 +3937,17 @@
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
-    <string name="AssistantScreenSecurityBottomSheet__title">Screen security is enabled</string>
+    <string name="AssistantScreenSecurityBottomSheet__title">Ekrāna drošība ir iespējota</string>
     <!-- Bottom sheet button that turns screen security back off -->
-    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Turn off screen security</string>
+    <string name="AssistantScreenSecurityBottomSheet__turn_off_screen_security">Izslēgt ekrāna drošību</string>
     <!-- Title of the dialog confirming that the user wants to turn off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__title">Turn off screen security?</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__title">Vai izslēgt ekrāna drošību?</string>
     <!-- Body of the dialog confirming that the user wants to turn off screen security -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityTurnOffDialog__body" translatable="false">Enable screenshots?</string> -->
     <!-- Dialog button that confirms turning off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Izslēgt</string>
     <!-- Snackbar shown after the user turns off screen security -->
-    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Screen security is off</string>
+    <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Ekrāna drošība ir izslēgta</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automātiski slēgt Signal pēc noteikta bezdarbības intervāla</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Bezdarbības noildzes parole</string>
@@ -4049,19 +3983,15 @@
     <string name="preferences__cyan">Ciāns</string>
     <string name="preferences__magenta">Fuksīns</string>
     <string name="preferences__white">Balts</string>
-    <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Neko</string>
     <string name="preferences__fast">Ātrs</string>
     <string name="preferences__normal">Normāls</string>
     <string name="preferences__slow">Lēns</string>
-    <string name="preferences__help">Palīdzība</string>
     <string name="preferences__advanced">Papildu</string>
     <string name="preferences__donate_to_signal">Ziedot Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Privātums</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stāsti</string>
-    <string name="preferences__data_and_storage">Dati un krātuve</string>
     <string name="preferences__storage">Krātuve</string>
     <string name="preferences__payments">Maksājumi</string>
     <!-- Privacy settings payments section description -->
@@ -4069,37 +3999,10 @@
     <string name="preferences__conversation_length_limit">Maksimālais sarunas ziņu skaits</string>
     <string name="preferences__keep_messages">Paturēt ziņas</string>
     <string name="preferences__linked_devices">Piesaistās ierīces</string>
-    <string name="preferences__light_theme">Gaišs</string>
-    <string name="preferences__dark_theme">Tumšs</string>
-    <string name="preferences__appearance">Izskats</string>
-    <string name="preferences__theme">Dizains</string>
-    <string name="preferences__chat_color_and_wallpaper">Sarunas krāsa un fona tapete</string>
-    <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">Lietotnes ikona</string>
-    <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">Ok</string>
-    <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Atcelt</string>
-    <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Mainīt lietotnes ikonu un nosaukumu uz \"%1$s\"</string>
-    <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Lai mainītu lietotnes ikonu un nosaukumu, Signal būs jāaizver. Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums.</string>
-    <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Atlasiet lietotnes ikonu un nosaukumu, kas būs redzams tālruņa sākuma ekrānā un lietotņu panelī. Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums. Lasīt vairāk</string>
-    <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">Lietotņu ikonas un nosaukumi ir redzami sākuma ekrānā un lietotņu panelī.</string>
-    <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Paziņojumos vienmēr tiks rādīta Signal noklusējuma ikona un nosaukums.</string>
-    <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Lasīt vairāk</string>
-    <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafika, kas demonstrē, kur būs redzama nomainītā lietotnes ikona.</string>
     <string name="preferences__disable_pin">Atspējot PIN</string>
     <string name="preferences__enable_pin">Iespējot PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ja atspējosiet PIN, jūs zaudēsiet visus datus, atkārtoti reģistrējoties lietotnē Signal, ja vien manuāli tos nedublēsiet un neatjaunosiet. Reģistrācijas bloķēšanu nevar ieslēgt, kamēr PIN ir atspējots.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN kodos ir informācija, kas lietotnē Signal ir šifrēta, lai šai informācijai varētu piekļūt tikai jūs. Veicot atkārtotu instalēšanu, jūsu profils, iestatījumi un kontaktpersonas tiks atjaunotas. Lai atvērtu lietotni, PIN kods nebūs nepieciešams.</string>
-    <string name="preferences__system_default">Sistēmas noklusējums</string>
-    <string name="preferences__language">Valoda</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Advancētie PIN iestatījumi</string>
     <string name="preferences__submit_debug_log">Iesniegt kļūdas labošanas ierakstu.</string>
@@ -4111,10 +4014,6 @@
     <string name="preferences__request_keyboard_to_disable">Pieprasīt tastatūrai atspējot personalizētu mācīšanos.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Šis iestatījums nesniedz nekādas garantijas, un tastatūra to var ignorēt.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences_chats__when_using_mobile_data">Izmantojot mobilos datus</string>
-    <string name="preferences_chats__when_using_wifi">Izmantojot Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">Izmantojot viesabonēšanau</string>
-    <string name="preferences_chats__media_auto_download">Multivides automātiskā lejupielāde</string>
     <string name="preferences_storage__storage_usage">Krātuves lietojums</string>
     <string name="preferences_storage__photos">Attēli</string>
     <string name="preferences_storage__videos">Video</string>
@@ -4165,12 +4064,6 @@
     <string name="preferences_advanced__always_relay_calls">Vienmēr pārslēgt zvanus</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Maksājumi</string>
-    <string name="preferences_data_and_storage__manage_storage">Pārvaldīt krātuvi</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Izmantot mazāk datus zvaniem</string>
-    <string name="preferences_data_and_storage__never">Nekad</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi un mobilie dati</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Tikai mobilie dati</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Taupīgāka datu lietošana var uzlabot zvanu kvalitāti sliktos tīklos.</string>
     <string name="preferences_notifications__in_chat_sounds">Skaņas sarunā</string>
     <string name="preferences_notifications__show">Rādīt</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4184,7 +4077,6 @@
     <!-- Body option to turn on unread reminders -->
     <string name="preferences_notifications__notify_unread">Laiku pa laikam paziņot par neizlasītām ziņām sarunās, kurās ir izslēgta skaņa</string>
     <string name="preferences_notifications__ringtone">Zvana signāls</string>
-    <string name="preferences_chats__message_text_size">Ziņu fonta lielums</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Prioritāte</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
@@ -4205,10 +4097,6 @@
     <string name="preferences_communication__category_sealed_sender">Aizzīmogots sūtītājs</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Atļaut no visiem</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Iespējot slēptā sūtītāja funkciju ienākošajām ziņām no cilvēkiem ārpus kontaktpersonu loka, un cilvēkiem, kuriem nav redzams jūsu profils</string>
-    <string name="preferences_proxy">Starpniekserveris</string>
-    <string name="preferences_use_proxy">Izmantot starpniekserveri</string>
-    <string name="preferences_off">Izslēgts</string>
-    <string name="preferences_on">Ieslēgts</string>
     <string name="preferences_proxy_address">Starpniekservera adrese</string>
     <string name="preferences_only_use_a_proxy_if">Izmantojiet starpniekserveri tikai tad, ja, lietojot mobilos datus vai Wi-Fi, nevar izveidot savienojumu ar Signal.</string>
     <string name="preferences_share">Kopīgot</string>
@@ -4222,14 +4110,6 @@
     <string name="preferences_success">Sekmīgi darīts</string>
     <string name="preferences_failed_to_connect">Neizdevās pievienoties</string>
     <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
-    <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigācijas joslas izmērs</string>
-    <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normāls</string>
-    <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Kompakts</string>
-    <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">Lietotne tiks restartēta, lai piemērotu jauno valodas iestatījumu.</string>
     <!-- Preference title for automatic key verification -->
     <string name="preferences_automatic_key_verification">Automātiskā atslēgas verifikācija</string>
     <!-- Preference summary for automatic key verification -->
@@ -4801,35 +4681,8 @@
     <string name="BackupUtil_never">Nekad</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Nezināms</string>
-    <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Tālruņa numurs</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Izvēlieties, kas var redzēt jūsu tālruņa numuru un kas var ar jums sazināties lietotnē Signal, izmantojot to.</string>
-    <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Kas var redzēt manu numuru</string>
-    <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Jūsu tālruņa numurs būs redzams cilvēkiem un grupām, kurām sūtīsiet ziņas.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Jūsu tālruņa numurs nevienam netiks rādīts, izņemot personām, kuras to ir saglabājušas sava tālruņa kontaktpersonu sarakstā.</string>
-    <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Jūsu tālruņa numurs nevienam netiks rādīts.</string>
-    <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kas var mani atrast pēc numura</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Ikviens, kuram ir jūsu tālruņa numurs, redzēs, ka izmantojat Signal, un varēs uzsākt ar jums sarunas.</string>
-    <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Neviens neredzēs, ka izmantojat Signal, izņemot tos, kuriem nosūtīsiet ziņu vai ar kuriem jau esat sarunājušies iepriekš.</string>
-    <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Lai mainītu šo iestatījumu, sadaļā \"Kas var redzēt manu numuru\" atzīmējiet \"Neviens\"."</string>
-    <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Vai tiešām turpināt?</string>
-    <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Funkcijai \"Kas var mani atrast pēc numura\" iestatot \"Neviens\", cilvēkiem būs grūtāk jūs atrast Signal platformā.</string>
-    <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Atcelt</string>
-    <string name="PhoneNumberPrivacy_everyone">Ikviens</string>
-    <string name="PhoneNumberPrivacy_nobody">Neviens</string>
-    <string name="preferences_app_protection__screen_lock">Ekrāna bloķēšana</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">Lai izmantotu ekrāna bloķēšanu, iestatiet PIN kodu, kombināciju vai paroli šajā ierīcē.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
@@ -4856,24 +4709,6 @@
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">Izslēgta</string>
-    <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Izmantot ekrāna bloķēšanu</string>
-    <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Kad aizvērsiet lietotni vai pārslēgsieties uz citu lietotni, lai atbloķētu Signal, būs jāizmanto Android ierīces bloķēšanas iestatījumi. Ja lietotne ir bloķēta, paziņojumu priekšskatījumos netiks rādīts ziņu saturs.</string>
-    <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Bloķēt ekrānu</string>
-    <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">Pēc 1 minūtes</string>
-    <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">Pēc 5 minūtēm</string>
-    <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">Pēc 30 minūtēm</string>
-    <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Pielāgots laiks</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Izmantojiet Signal ekrāna bloķēšanu</string>
-    <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Izslēdziet Signal ekrāna bloķēšanu</string>
 
     <string name="Recipient_unknown">Nezināms</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5353,47 +5188,6 @@
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Rezerves kopiju abonenta ID nokopēts starpliktuvē</string>
 
-    <!-- ExportAccountDataFragment -->
-    <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Jūsu konta dati</string>
-    <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Eksportējiet pārskatu par saviem Signal konta datiem. Šajā pārskatā nav iekļautas ziņas un multivides faili. %1$s</string>
-    <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Lasīt vairāk</string>
-    <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Eksportēt pārskatu</string>
-
-    <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Eksportēt kā TXT</string>
-    <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Viegli lasāms teksta fails</string>
-    <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Eksportēt kā JSON</string>
-    <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Mašīnlasāms fails</string>
-
-    <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Atcelt</string>
-
-    <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">Ok</string>
-    <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Nevarēja izveidot pārskatu</string>
-    <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Pārbaudiet savienojumu un mēģiniet vēlreiz.</string>
-
-    <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Vai eksportēt datus?</string>
-    <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Kopīgojiet savus Signal konta datus tikai ar personām vai lietotnēm, kurām uzticaties.</string>
-    <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Eksportēt</string>
-
-    <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Notiek pārskata izveidošana…</string>
-    <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Pārskats tiek izveidots tikai eksportēšanas laikā, un Signal to nesaglabā jūsu ierīcē.</string>
-
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Lietojiet šo, lai mainītu savu pašreizējo tālruņa numuru uz jaunu. Jūs nevarat atsaukt šo izmaiņu.\n\nPirms turpināt, pārliecinieties, ka uz savu jauno numuru varat saņemt SMS un zvanus.</string>
     <string name="ChangeNumberFragment__continue">Turpināt</string>
@@ -5689,46 +5483,8 @@
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minūtes</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 sekundes</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Pielāgots laiks</string>
-    <string name="ExpireTimerSettingsFragment__set">Iestatīt</string>
     <string name="ExpireTimerSettingsFragment__save">Saglabāt</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">sekundes</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minūtes</string>
-    <string name="CustomExpireTimerSelectorView__hours">stundas</string>
-    <string name="CustomExpireTimerSelectorView__days">dienas</string>
-    <string name="CustomExpireTimerSelectorView__weeks">nedēļas</string>
-
-    <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Atbalsta centrs</string>
-    <string name="HelpSettingsFragment__contact_us">Sazināties ar mums</string>
-    <string name="HelpSettingsFragment__version">Versija</string>
-    <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Iekopēts starpliktuvē</string>
-    <string name="HelpSettingsFragment__debug_log">Atkļūdošanas žurnāls</string>
-    <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licences</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Noteikumi &amp; privātuma politika</string>
-    <string name="HelpFragment__copyright_signal_messenger">Autortiesības Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licencēta saskaņā ar GPLv3 AGPLv3</string>
-    <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ir bezpeļņas organizācija</string>
-
-    <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Multivides kvalitāte</string>
-    <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Aprēķina…</string>
-    <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Nosūtītās multivides kvalitāte</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sūtot augstas kvalitātes multivides saturu, tiks izmantots vairāk datu.</string>
-    <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Balss ziņas un uzlīmes (mazākas par %1$s) vienmēr tiek lejupielādētas automātiski.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Zvani</string>
-    <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Saglabāt savienojumu fonā</string>
-    <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Saglabājot savienojumu fonā, visticamāk, palielināsies akumulatora enerģijas patēriņš. Lielākajai daļai ierīču tas nav nepieciešams. Iespējojiet tikai tad, ja jums ir problēmas ar paziņojumiem.</string>
-    <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Iespējot</string>
 
     <!-- ChatColorSelectionFragment -->
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
@@ -5781,14 +5537,11 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Kļūstiet par Uzturētāju</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_open_emoji_search">Atvērt emocijzīmju meklēšanu</string>
-    <string name="KeyboardPagerFragment_backspace">Dzēst (uz atpakaļu)</string>
     <string name="KeyboardPagerFragment_search_emoji">Meklēt emocijzīmes</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Atpakaļ pie emocijzīmēm</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Notīrīt meklēšanas ierakstu</string>
     <string name="KeyboardPagerFragment_search_giphy">Meklēt GIPHY</string>
 
-    <string name="EmojiSearchFragment__no_results_found">Nekas netika atrasts</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Nezināms zvana signāls</string>
 
     <!-- ConversationSettingsFragment -->
@@ -6042,7 +5795,6 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Izvēlēties nozīmīti</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Jums jāizvēlas nozīmīte</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Neizdevās atjaunināt profilu</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
@@ -6333,6 +6085,10 @@
     <string name="EditNotificationProfileFragment__focus">Fokuss</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Jābūt ar nosaukumu</string>
+    <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
+    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <!-- Accessibility label for the button that clears both the profile name and its emoji -->
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Atļautie paziņojumi</string>
@@ -6426,17 +6182,6 @@
     <string name="EditNotificationProfileSchedule__next">Tālāk</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Grafikā jābūt vismaz vienai dienai</string>
-
-    <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profils izveidots</string>
-    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Darīts</string>
-    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Jūs varat ieslēgt un izslēgt profilu manuāli caur izvēlni sarunu sarakstā.</string>
-    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Pievienojiet grafiku iestatījumos, lai automatizētu jūsu profilu.</string>
-    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Jūsu profils ieslēgsies un izslēgsies automātiski, saskaņā ar grafiku.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Jauns profils</string>
@@ -7650,8 +7395,6 @@
     <string name="UsernameLinkSettings_username_copied_toast">Lietotājvārds nokopēts</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Saite nokopēta</string>
-    <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Saite nav iestatīta</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
     <string name="UsernameLinkSettings_resetting_link_label">Notiek saites atiestatīšana…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7662,16 +7405,12 @@
     <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Atiestatīt</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Atstatīt</string>
-    <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Darīts</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Kods</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Skenēt</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Skenējiet QR kodu ar sava kontakta ierīci.</string>
-    <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Krāsa</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">QR kods nebija derīgs.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
@@ -8538,6 +8277,12 @@
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Radās tīkla kļūda. Lūdzu, vēlāk mēģiniet vēlreiz.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Notiek rezerves kopijas dzēšana.</string>
+    <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
+    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -9153,6 +8898,9 @@
 
     <!-- Body of the sheet shown when a local backup restore could not be completed, explaining how to try again -->
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Lai mēģinātu vēlreiz, atinstalējiet un atkārtoti instalējiet Signal šajā ierīcē un izvēlieties “Atjaunot vai pārsūtīt”.</string>
+
+    <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Tika pieprasīts verifikācijas kods</string>
