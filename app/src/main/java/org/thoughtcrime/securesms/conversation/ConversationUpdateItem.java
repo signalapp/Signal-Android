@@ -105,7 +105,8 @@ public final class ConversationUpdateItem extends FrameLayout
   private float                     lastYDownRelativeToThis;
   private int                       tint;
 
-  private final UpdateObserver updateObserver = new UpdateObserver();
+  private final LiveDataObserverManager<SpannableString> displayBodyObserver          = new LiveDataObserverManager<>(new DisplayBodyObserver());
+  private final LiveDataObserverManager<SpannableString> displayBodyWithTimerObserver = new LiveDataObserverManager<>(new UpdateObserver());
 
   private final PresentOnChange          presentOnChange = new PresentOnChange();
   private final RecipientObserverManager senderObserver  = new RecipientObserverManager(presentOnChange);
@@ -194,6 +195,8 @@ public final class ConversationUpdateItem extends FrameLayout
                     boolean hasWallpaper,
                     boolean isMessageRequestAccepted)
   {
+    boolean isNewMessage = this.messageRecord == null || this.messageRecord.getId() != conversationMessage.getMessageRecord().getId();
+
     this.conversationMessage      = conversationMessage;
     this.messageRecord            = conversationMessage.getMessageRecord();
     this.previousMessageRecord    = previousMessageRecord;
@@ -201,6 +204,11 @@ public final class ConversationUpdateItem extends FrameLayout
     this.conversationRecipient    = conversationRecipient;
     this.isMessageRequestAccepted = isMessageRequestAccepted;
     this.hasWallpaper             = hasWallpaper;
+
+    if (isNewMessage) {
+      displayBody = null;
+      displayBodyWithTimer.setValue(null);
+    }
 
     senderObserver.observe(lifecycleOwner, messageRecord.getFromRecipient());
 
@@ -223,8 +231,8 @@ public final class ConversationUpdateItem extends FrameLayout
     LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, textColor, true);
     LiveData<SpannableString> spannableMessage  = loading(liveUpdateMessage);
 
-    observeDisplayBody(lifecycleOwner, spannableMessage);
-    observeDisplayBodyWithTimer(lifecycleOwner);
+    displayBodyObserver.observe(lifecycleOwner, spannableMessage);
+    displayBodyWithTimerObserver.observe(lifecycleOwner, displayBodyWithTimer);
 
     this.tint = updateDescription.getTint(getContext());
 
@@ -263,7 +271,8 @@ public final class ConversationUpdateItem extends FrameLayout
 
   @Override
   public void unbind() {
-    this.displayBodyWithTimer.removeObserver(updateObserver);
+    displayBodyObserver.clear();
+    displayBodyWithTimerObserver.clear();
     handler.removeCallbacks(timerUpdateRunnable);
     activeCallDisposable.dispose();
   }
@@ -308,6 +317,40 @@ public final class ConversationUpdateItem extends FrameLayout
 
     @NonNull Recipient getObservedRecipient() {
       return recipient.get();
+    }
+  }
+
+  private final class DisplayBodyObserver implements Observer<SpannableString> {
+    @Override
+    public void onChanged(SpannableString body) {
+      displayBody = body;
+      updateBodyWithTimer();
+    }
+  }
+
+  private static final class LiveDataObserverManager<T> {
+    private final Observer<? super T> observer;
+    private LiveData<T>               source;
+
+    LiveDataObserverManager(@NonNull Observer<? super T> observer) {
+      this.observer = observer;
+    }
+
+    void observe(@NonNull LifecycleOwner lifecycleOwner, @NonNull LiveData<T> source) {
+      if (this.source == source) {
+        return;
+      }
+
+      clear();
+      this.source = source;
+      this.source.observe(lifecycleOwner, observer);
+    }
+
+    void clear() {
+      if (source != null) {
+        source.removeObserver(observer);
+        source = null;
+      }
     }
   }
 
@@ -440,19 +483,6 @@ public final class ConversationUpdateItem extends FrameLayout
     int        bottom     = (int) projection.getY() + projection.getHeight() + getTop();
     projection.release();
     return bottom;
-  }
-
-  private void observeDisplayBody(@NonNull LifecycleOwner lifecycleOwner, @Nullable LiveData<SpannableString> message) {
-    if (message != null) {
-      message.observe(lifecycleOwner, it -> {
-        displayBody = it;
-        updateBodyWithTimer();
-      });
-    }
-  }
-
-  private void observeDisplayBodyWithTimer(@NonNull LifecycleOwner lifecycleOwner) {
-    this.displayBodyWithTimer.observe(lifecycleOwner, updateObserver);
   }
 
   private void updateBodyWithTimer() {
