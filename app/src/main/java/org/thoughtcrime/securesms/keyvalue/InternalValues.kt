@@ -39,6 +39,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val CALLING_USE_HARDWARE_VP9_DECODE: String = "internal.calling_use_hardware_vp9_decode"
     const val CALLING_USE_SOFTWARE_VP9_ENCODE: String = "internal.calling_use_software_vp9_encode"
     const val CALLING_USE_SOFTWARE_VP9_DECODE: String = "internal.calling_use_software_vp9_decode"
+    const val CALLING_USE_HARDWARE_H265_ENCODE: String = "internal.calling_use_hardware_h265_encode"
+    const val CALLING_USE_HARDWARE_H265_DECODE: String = "internal.calling_use_hardware_h265_decode"
     const val CALLING_ENABLE_SVC: String = "internal.calling_enable_svc"
     const val CALLING_STATS_INTERVAL_SECS: String = "internal.calling_stats_interval_secs"
     const val CALLING_MINIMUM_CAPTURE_FPS: String = "internal.calling_minimum_capture_fps"
@@ -198,6 +200,16 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
    * If overriding the video settings, use software VP9 encoder or not
    */
   var callingUseSoftwareVp9Decode by booleanValue(CALLING_USE_SOFTWARE_VP9_DECODE, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the video settings, use hardware H.265 encoder or not if available.
+   */
+  var callingUseHardwareH265Encode by booleanValue(CALLING_USE_HARDWARE_H265_ENCODE, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the video settings, use hardware H.265 decoder or not if available.
+   */
+  var callingUseHardwareH265Decode by booleanValue(CALLING_USE_HARDWARE_H265_DECODE, true).defaultForExternalUsers()
 
   var callingEnableSvc by booleanValue(CALLING_ENABLE_SVC, false).defaultForExternalUsers()
 

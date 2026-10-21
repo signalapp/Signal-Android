@@ -51,6 +51,8 @@ object RingRtcDynamicConfiguration {
       videoConfig.enableHardwareVp9Decode = SignalStore.internal.callingUseHardwareVp9Decode
       videoConfig.enableSoftwareVp9Encode = SignalStore.internal.callingUseSoftwareVp9Encode
       videoConfig.enableSoftwareVp9Decode = SignalStore.internal.callingUseSoftwareVp9Decode
+      videoConfig.enableHardwareH265Encode = SignalStore.internal.callingUseHardwareH265Encode
+      videoConfig.enableHardwareH265Decode = SignalStore.internal.callingUseHardwareH265Decode
       return videoConfig
     }
 

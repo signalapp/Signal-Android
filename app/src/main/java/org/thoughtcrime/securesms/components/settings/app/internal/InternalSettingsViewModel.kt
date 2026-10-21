@@ -167,6 +167,16 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalCallingUseHardwareH265Encode(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_HARDWARE_H265_ENCODE, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseHardwareH265Decode(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_HARDWARE_H265_DECODE, enabled)
+    refresh()
+  }
+
   fun setInternalCallingEnableSvc(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.CALLING_ENABLE_SVC, enabled)
     refresh()
@@ -268,6 +278,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingUseHardwareVp9Decode = SignalStore.internal.callingUseHardwareVp9Decode,
     callingUseSoftwareVp9Encode = SignalStore.internal.callingUseSoftwareVp9Encode,
     callingUseSoftwareVp9Decode = SignalStore.internal.callingUseSoftwareVp9Decode,
+    callingUseHardwareH265Encode = SignalStore.internal.callingUseHardwareH265Encode,
+    callingUseHardwareH265Decode = SignalStore.internal.callingUseHardwareH265Decode,
     callingEnableSvc = SignalStore.internal.callingEnableSvc,
     callingStatsIntervalSecs = SignalStore.internal.callingStatsIntervalSecs,
     callingMinimumCaptureFps = SignalStore.internal.callingMinimumCaptureFps,

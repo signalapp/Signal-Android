@@ -24,6 +24,8 @@ data class InternalSettingsState(
   val callingUseHardwareVp9Decode: Boolean,
   val callingUseSoftwareVp9Encode: Boolean,
   val callingUseSoftwareVp9Decode: Boolean,
+  val callingUseHardwareH265Encode: Boolean,
+  val callingUseHardwareH265Decode: Boolean,
   val callingEnableSvc: Boolean,
   val callingStatsIntervalSecs: Int,
   val callingMinimumCaptureFps: Int,

@@ -881,6 +881,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
+        title = DSLSettingsText.from("    Use Hardware H265 Encode"),
+        isChecked = state.callingUseHardwareH265Encode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareH265Encode(!state.callingUseHardwareH265Encode)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Hardware H265 Decode"),
+        isChecked = state.callingUseHardwareH265Decode,
+        isEnabled = state.callingSetVideoConfig,
+        onClick = {
+          viewModel.setInternalCallingUseHardwareH265Decode(!state.callingUseHardwareH265Decode)
+        }
+      )
+
+      switchPref(
         title = DSLSettingsText.from("Enable SVC"),
         isChecked = state.callingEnableSvc,
         onClick = {
