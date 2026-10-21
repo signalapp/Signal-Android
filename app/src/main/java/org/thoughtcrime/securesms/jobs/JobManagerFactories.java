@@ -248,7 +248,6 @@ public final class JobManagerFactories {
       put(OptimizeMediaJob.KEY,                        new OptimizeMediaJob.Factory());
       put(OptimizeMessageSearchIndexJob.KEY,           new OptimizeMessageSearchIndexJob.Factory());
       put(PaymentLedgerUpdateJob.KEY,                  new PaymentLedgerUpdateJob.Factory());
-      put(PaymentNotificationSendJob.KEY,              new PaymentNotificationSendJob.Factory());
       put(PaymentNotificationSendJobV2.KEY,            new PaymentNotificationSendJobV2.Factory());
       put(PaymentSendJob.KEY,                          new PaymentSendJob.Factory());
       put(PaymentTransactionCheckJob.KEY,              new PaymentTransactionCheckJob.Factory());
@@ -462,6 +461,7 @@ public final class JobManagerFactories {
       put("BackfillDigestsMigrationJob",                 new PassingMigrationJob.Factory());
       put("BackfillDigestJob",                           new FailingJob.Factory());
       put("ResumableUploadSpecJob",                      new FailingJob.Factory());
+      put("PaymentNotificationSendJob",                  new FailingJob.Factory());
     }};
   }
 

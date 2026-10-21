@@ -85,7 +85,7 @@ public final class PaymentSendJob extends BaseJob {
                                             .then(new MultiDeviceOutgoingPaymentSyncJob(uuid));
 
     if (recipientId != null) {
-      chain.then(PaymentNotificationSendJob.create(recipientId, uuid, recipientId.toQueueKey(true)));
+      chain.then(new PaymentNotificationSendJobV2(recipientId, uuid));
     }
 
     chain.then(PaymentLedgerUpdateJob.updateLedgerToReflectPayment(uuid))
