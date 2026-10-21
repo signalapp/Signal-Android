@@ -4,9 +4,15 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.groups.GroupSessionBuilder
+import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
+import org.whispersystems.signalservice.api.crypto.SignalGroupSessionBuilder
+import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.NullMessage
@@ -50,5 +56,13 @@ object OutgoingContent {
       pni = UuidUtil.toByteString(pni.rawUuid),
       signature = signature.toByteString()
     )
+  }
+
+  /**
+   * Returns our sender key distribution message for [distributionId], creating a sender key session if one doesn't exist.
+   */
+  fun senderKeyDistributionMessage(distributionId: DistributionId): SenderKeyDistributionMessage {
+    val self = SignalStore.account.requireAci().toProtocolAddress(SignalStore.account.deviceId)
+    return SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(AppDependencies.protocolStore.aci())).create(self, distributionId.asUuid())
   }
 }

@@ -18,10 +18,18 @@ fun MessageService.SendError.PreKeyUnavailable.toJobResult(tag: String, defaultB
   return Job.Result.retry(defaultBackoff)
 }
 
-fun MessageService.SendError.ChallengeRequired.tryPushChallengeAndToJobResult(tag: String, defaultBackoff: Long): Job.Result {
+/**
+ * Retries immediately if a push challenge is solved. Otherwise retries with backoff, or fails when [defaultBackoff] is null.
+ */
+fun MessageService.SendError.ChallengeRequired.tryPushChallengeAndToJobResult(tag: String, defaultBackoff: Long?): Job.Result {
   if (ChallengeOption.PUSH_CHALLENGE in options && ProofRequiredExceptionHandler.tryThrottledPushChallenge() == ProofRequiredExceptionHandler.PushChallengeResult.SUCCESS) {
     Log.i(tag, "Solved a push challenge, retrying now.")
     return Job.Result.retry(0L)
+  }
+
+  if (defaultBackoff == null) {
+    Log.w(tag, "Challenge required, options=$options, not retrying.")
+    return Job.Result.failure()
   }
 
   val backoff = maxOf(defaultBackoff, retryAfter?.inWholeMilliseconds ?: 0L)
