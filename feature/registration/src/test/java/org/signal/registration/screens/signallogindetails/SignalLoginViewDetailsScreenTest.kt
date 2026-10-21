@@ -76,7 +76,7 @@ class SignalLoginViewDetailsScreenTest {
 
     composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_ACCOUNT_ID_COPY_BUTTON).performScrollTo().performClick()
 
-    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked(ACCOUNT_KEY))
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked)
   }
 
   @Test
@@ -85,7 +85,7 @@ class SignalLoginViewDetailsScreenTest {
 
     composeTestRule.onNodeWithTag(SignalLoginTestTags.KEY_DETAILS_RECOVERY_KEY_COPY_BUTTON).performScrollTo().performClick()
 
-    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(RECOVERY_KEY))
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked)
   }
 
   @Test
@@ -129,11 +129,44 @@ class SignalLoginViewDetailsScreenTest {
     composeTestRule.onNodeWithTag(SignalLoginTestTags.VIEW_DETAILS_RESET_RECOVERY_KEY_BUTTON).assertIsNotDisplayed()
   }
 
+  @Test
+  fun `when no action is waiting behind the do-not-share warning, the sheet is not shown`() {
+    setContent()
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.DO_NOT_SHARE_SHEET).assertIsNotDisplayed()
+  }
+
+  @Test
+  fun `when an action is waiting behind the do-not-share warning, the sheet is shown`() {
+    setContent(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_ACCOUNT_ID)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.DO_NOT_SHARE_SHEET).assertIsDisplayed()
+  }
+
+  @Test
+  fun `when got it on the do-not-share warning is clicked, DoNotShareWarningGotItClicked is emitted`() {
+    setContent(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.SAVE_AS_PDF)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.DO_NOT_SHARE_GOT_IT_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked)
+  }
+
+  @Test
+  fun `when learn more on the do-not-share warning is clicked, DoNotShareWarningLearnMoreClicked is emitted`() {
+    setContent(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.SAVE_AS_PDF)
+
+    composeTestRule.onNodeWithTag(SignalLoginTestTags.DO_NOT_SHARE_LEARN_MORE_BUTTON).performClick()
+
+    assertThat(events).contains(SignalLoginViewDetailsScreenEvents.DoNotShareWarningLearnMoreClicked)
+  }
+
   private fun setContent(
     showSaveToPasswordManagerButton: Boolean = true,
     isPasswordManagerAvailable: Boolean = true,
     showResetRecoveryKeyButton: Boolean = false,
-    resetRecoveryKeyButtonLoading: Boolean = false
+    resetRecoveryKeyButtonLoading: Boolean = false,
+    doNotShareWarningAction: SignalLoginViewDetailsState.DoNotShareWarningAction? = null
   ) {
     composeTestRule.setContent {
       SignalTheme {
@@ -144,7 +177,8 @@ class SignalLoginViewDetailsScreenTest {
             showSaveToPasswordManagerButton = showSaveToPasswordManagerButton,
             isPasswordManagerAvailable = isPasswordManagerAvailable,
             showResetRecoveryKeyButton = showResetRecoveryKeyButton,
-            resetRecoveryKeyButtonLoading = resetRecoveryKeyButtonLoading
+            resetRecoveryKeyButtonLoading = resetRecoveryKeyButtonLoading,
+            doNotShareWarningAction = doNotShareWarningAction
           ),
           onEvent = { events += it }
         )

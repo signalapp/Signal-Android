@@ -122,7 +122,7 @@ class SettingsSignalLoginDetailsViewModel(
         _state.update { it.copy(showSaveToPasswordManagerConfirmation = false) }
       }
       SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked -> {
-        _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)
+        _state.update { it.copy(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.SAVE_AS_PDF) }
       }
       SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked -> {
         _resetRecoveryKeyState.update {
@@ -136,11 +136,36 @@ class SettingsSignalLoginDetailsViewModel(
           }
         }
       }
-      is SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked -> {
-        _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(event.aci))
+      SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked -> {
+        _state.update { it.copy(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_ACCOUNT_ID) }
       }
-      is SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked -> {
-        _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(event.aep))
+      SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked -> {
+        _state.update { it.copy(doNotShareWarningAction = SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_RECOVERY_KEY) }
+      }
+      SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked -> {
+        val state = _state.value
+        _state.update { it.copy(doNotShareWarningAction = null) }
+        when (state.doNotShareWarningAction) {
+          SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_ACCOUNT_ID -> {
+            _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(state.accountKey))
+          }
+          SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_RECOVERY_KEY -> {
+            _actions.send(SignalLoginViewDetailsAction.CopyTextToClipboard(state.recoveryKey))
+          }
+          SignalLoginViewDetailsState.DoNotShareWarningAction.SAVE_AS_PDF -> {
+            _actions.send(SignalLoginViewDetailsAction.LaunchSaveAsPdf)
+          }
+          null -> {
+            Log.w(TAG, "Do-not-share warning acknowledged with nothing waiting behind it. Ignoring.")
+          }
+        }
+      }
+      SignalLoginViewDetailsScreenEvents.DoNotShareWarningLearnMoreClicked -> {
+        _state.update { it.copy(doNotShareWarningAction = null) }
+        _actions.send(SignalLoginViewDetailsAction.OpenDoNotShareLearnMoreArticle)
+      }
+      SignalLoginViewDetailsScreenEvents.DoNotShareWarningDismissed -> {
+        _state.update { it.copy(doNotShareWarningAction = null) }
       }
     }
   }

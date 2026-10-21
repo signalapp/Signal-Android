@@ -5,7 +5,6 @@
 
 package org.signal.registration.screens.signalloginmanualsave
 
-import org.signal.core.util.censor
 import org.signal.registration.RegistrationFlowState
 
 sealed class SignalLoginViewDetailsForManualSaveScreenEvents {
@@ -16,14 +15,10 @@ sealed class SignalLoginViewDetailsForManualSaveScreenEvents {
   data object BackClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
 
   /** The user tapped the copy button on the account ID field. */
-  data class CopyAccountIdClicked(val accountId: String) : SignalLoginViewDetailsForManualSaveScreenEvents() {
-    override fun toString(): String = "CopyAccountIdClicked(accountId=${accountId.censor()})"
-  }
+  data object CopyAccountIdClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
 
   /** The user tapped the copy button on the recovery key field. */
-  data class CopyRecoveryKeyClicked(val recoveryKey: String) : SignalLoginViewDetailsForManualSaveScreenEvents() {
-    override fun toString(): String = "CopyRecoveryKeyClicked(recoveryKey=${recoveryKey.censor()})"
-  }
+  data object CopyRecoveryKeyClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
 
   /** The user chose to save the credentials as a PDF. */
   data object SaveAsPdfClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
@@ -39,4 +34,13 @@ sealed class SignalLoginViewDetailsForManualSaveScreenEvents {
 
   /** The user dismissed the confirm-you-saved-it sheet without answering it. */
   data object ConfirmSavedSheetDismissed : SignalLoginViewDetailsForManualSaveScreenEvents()
+
+  /** The user acknowledged the do-not-share warning, so the copy or save they started should go ahead. */
+  data object DoNotShareWarningGotItClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
+
+  /** The user tapped "learn more" on the do-not-share warning. */
+  data object DoNotShareWarningLearnMoreClicked : SignalLoginViewDetailsForManualSaveScreenEvents()
+
+  /** The user dismissed the do-not-share warning without acknowledging it. */
+  data object DoNotShareWarningDismissed : SignalLoginViewDetailsForManualSaveScreenEvents()
 }

@@ -47,6 +47,7 @@ import org.signal.registration.screens.attachDebugLogHelper
 import org.signal.registration.screens.shared.BackTopAppBar
 import org.signal.registration.test.TestTags
 import org.signal.signallogin.details.SignalLoginKeyDetails
+import org.signal.signallogin.warning.DoNotShareLoginBottomSheet
 
 /**
  * Spells out both halves of the Signal Login the user just bought so they can record it somewhere themselves, then
@@ -66,6 +67,14 @@ fun SignalLoginViewDetailsForManualSaveScreen(
       onContinue = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.ConfirmSavedContinueClicked) },
       onShowLoginInfoAgain = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.ShowLoginInfoAgainClicked) },
       onDismiss = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.ConfirmSavedSheetDismissed) }
+    )
+  }
+
+  if (state.doNotShareWarningAction != null) {
+    DoNotShareLoginBottomSheet(
+      onGotIt = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningGotItClicked) },
+      onLearnMore = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningLearnMoreClicked) },
+      onDismiss = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningDismissed) }
     )
   }
 
@@ -193,8 +202,8 @@ private fun KeyDetails(
   SignalLoginKeyDetails(
     accountId = state.accountId,
     recoveryKeyGroups = state.recoveryKeyGroups,
-    onCopyAccountId = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.CopyAccountIdClicked(it)) },
-    onCopyRecoveryKey = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.CopyRecoveryKeyClicked(it)) }
+    onCopyAccountId = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.CopyAccountIdClicked) },
+    onCopyRecoveryKey = { onEvent(SignalLoginViewDetailsForManualSaveScreenEvents.CopyRecoveryKeyClicked) }
   )
 }
 

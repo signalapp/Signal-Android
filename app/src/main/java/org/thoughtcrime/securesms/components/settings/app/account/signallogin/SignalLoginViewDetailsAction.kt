@@ -33,6 +33,9 @@ sealed interface SignalLoginViewDetailsAction {
   /** Launch the system document picker so the user can choose where to save the login PDF. */
   data object LaunchSaveAsPdf : Shared
 
+  /** Open the help article on keeping the Signal Login safe. */
+  data object OpenDoNotShareLearnMoreArticle : Shared
+
   /** Copy the specified text to the clipboard */
   data class CopyTextToClipboard(val text: String) : Shared {
     override fun toString(): String {

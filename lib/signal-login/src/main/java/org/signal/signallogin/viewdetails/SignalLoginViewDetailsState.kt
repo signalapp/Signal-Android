@@ -19,6 +19,9 @@ import org.signal.signallogin.RecoveryKeyGroups
  *
  * [isPasswordManagerAvailable] is false when the device has no password manager at all. The save button is still shown
  * then, but styled as disabled, so the user can find out why it isn't an option rather than wonder where it went.
+ *
+ * [doNotShareWarningAction] is the copy or save the user started that is waiting behind the do-not-share warning sheet,
+ * or null when the sheet is down.
  */
 data class SignalLoginViewDetailsState(
   val accountKey: String = "",
@@ -28,11 +31,19 @@ data class SignalLoginViewDetailsState(
   val isGooglePasswordManagerDefault: Boolean = false,
   val showResetRecoveryKeyButton: Boolean = false,
   val resetRecoveryKeyButtonLoading: Boolean = false,
-  val showSaveToPasswordManagerConfirmation: Boolean = false
+  val showSaveToPasswordManagerConfirmation: Boolean = false,
+  val doNotShareWarningAction: DoNotShareWarningAction? = null
 ) {
   /** The recovery key broken into character groups, in display order. */
   val recoveryKeyGroups: RecoveryKeyGroups
     get() = RecoveryKeyGroups.from(recoveryKey)
 
-  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, isPasswordManagerAvailable=$isPasswordManagerAvailable, isGooglePasswordManagerDefault=$isGooglePasswordManagerDefault, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading, showSaveToPasswordManagerConfirmation=$showSaveToPasswordManagerConfirmation)"
+  override fun toString(): String = "SignalLoginViewDetailsState(accountKey=${accountKey.censor()}, recoveryKey=${recoveryKey.censor()}, showSaveToPasswordManagerButton=$showSaveToPasswordManagerButton, isPasswordManagerAvailable=$isPasswordManagerAvailable, isGooglePasswordManagerDefault=$isGooglePasswordManagerDefault, showResetRecoveryKeyButton=$showResetRecoveryKeyButton, resetRecoveryKeyButtonLoading=$resetRecoveryKeyButtonLoading, showSaveToPasswordManagerConfirmation=$showSaveToPasswordManagerConfirmation, doNotShareWarningAction=$doNotShareWarningAction)"
+
+  /** The actions that are gated behind the do-not-share warning sheet. */
+  enum class DoNotShareWarningAction {
+    COPY_ACCOUNT_ID,
+    COPY_RECOVERY_KEY,
+    SAVE_AS_PDF
+  }
 }

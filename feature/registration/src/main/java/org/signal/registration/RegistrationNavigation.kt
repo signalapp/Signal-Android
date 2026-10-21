@@ -410,6 +410,8 @@ private const val AEP_FOR_REMOTE_BACKUP_RESULT = "aep_for_remote_backup_result"
 private const val TWO_FACTOR_CODE_RESULT = "two_factor_code_result"
 private const val PASSKEY_ASSERTION_RESULT = "passkey_assertion_result"
 
+private const val DO_NOT_SHARE_LOGIN_LEARN_MORE_URL = "https://support.signal.org/hc/articles/9932566320410"
+
 private const val TAG = "RegistrationNavigation"
 
 /**
@@ -829,6 +831,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
       when (action) {
         RegistrationSignalLoginDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
 
+        RegistrationSignalLoginDetailsAction.OpenDoNotShareLearnMoreArticle -> openUrl(context, DO_NOT_SHARE_LOGIN_LEARN_MORE_URL)
+
         is RegistrationSignalLoginDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }
     }
@@ -865,6 +869,8 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     CollectActions(viewModel.actions) { action ->
       when (action) {
         SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(context))
+
+        SignalLoginViewDetailsForManualSaveScreenActions.OpenDoNotShareLearnMoreArticle -> openUrl(context, DO_NOT_SHARE_LOGIN_LEARN_MORE_URL)
 
         is SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard -> Util.copyToClipboardSensitive(context, action.text)
       }

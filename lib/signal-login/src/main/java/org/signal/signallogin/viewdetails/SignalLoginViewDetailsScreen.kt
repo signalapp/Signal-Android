@@ -56,6 +56,7 @@ import org.signal.signallogin.SignalLoginTestTags
 import org.signal.signallogin.beta.SignalLoginBetaDisclaimer
 import org.signal.signallogin.beta.SignalLoginBetaTag
 import org.signal.signallogin.details.SignalLoginKeyDetails
+import org.signal.signallogin.warning.DoNotShareLoginBottomSheet
 
 /** Aspect ratio of the credential card artwork. */
 private const val CARD_ASPECT_RATIO = 1.75f
@@ -183,6 +184,14 @@ fun SignalLoginViewDetailsScreen(
       onDismiss = { onEvent(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerConfirmationDismissed) }
     )
   }
+
+  if (state.doNotShareWarningAction != null) {
+    DoNotShareLoginBottomSheet(
+      onGotIt = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked) },
+      onLearnMore = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningLearnMoreClicked) },
+      onDismiss = { onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningDismissed) }
+    )
+  }
 }
 
 @Composable
@@ -298,8 +307,8 @@ private fun KeyDetails(
   SignalLoginKeyDetails(
     accountId = state.accountKey,
     recoveryKeyGroups = state.recoveryKeyGroups,
-    onCopyAccountId = { onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked(it)) },
-    onCopyRecoveryKey = { onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(it)) }
+    onCopyAccountId = { onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked) },
+    onCopyRecoveryKey = { onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked) }
   )
 }
 

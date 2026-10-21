@@ -10,6 +10,7 @@ import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.mockk
@@ -28,6 +29,7 @@ import org.junit.Test
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreenEvents
+import org.signal.signallogin.viewdetails.SignalLoginViewDetailsState
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsAction
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SignalLoginViewDetailsRepository
 import java.util.UUID
@@ -135,34 +137,88 @@ class MessageBackupsSignalLoginDetailsViewModelTest {
   }
 
   @Test
-  fun `SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
+  fun `SaveAsPdfClicked raises the do-not-share warning before saving`() = runTest(testDispatcher) {
     val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
     val actions = collectActions(viewModel)
 
     viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveAsPdf)
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.doNotShareWarningAction).isEqualTo(SignalLoginViewDetailsState.DoNotShareWarningAction.SAVE_AS_PDF)
   }
 
   @Test
-  fun `CopyAccountIdClicked copies the account key to the clipboard`() = runTest(testDispatcher) {
+  fun `acknowledging the warning after SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
     val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.SaveAsPdfClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked)
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchSaveAsPdf)
+    assertThat(viewModel.state.value.doNotShareWarningAction).isNull()
+  }
+
+  @Test
+  fun `CopyAccountIdClicked raises the do-not-share warning before copying`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked)
+
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.doNotShareWarningAction).isEqualTo(SignalLoginViewDetailsState.DoNotShareWarningAction.COPY_ACCOUNT_ID)
+  }
+
+  @Test
+  fun `acknowledging the warning after CopyAccountIdClicked copies the account key to the clipboard`() = runTest(testDispatcher) {
+    every { repository.getAci() } returns ACI.from(UUID.fromString("a6b28482-2e32-83d0-7f23-91360a4c2b91"))
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyAccountIdClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked)
 
     assertThat(actions).containsExactly(SignalLoginViewDetailsAction.CopyTextToClipboard("A6B28482-2E32-83D0-7F23-91360A4C2B91"))
+    assertThat(viewModel.state.value.doNotShareWarningAction).isNull()
   }
 
   @Test
-  fun `CopyRecoveryKeyClicked copies the recovery key to the clipboard`() = runTest(testDispatcher) {
-    val recoveryKey = AccountEntropyPool.generate().displayValue
+  fun `acknowledging the warning after CopyRecoveryKeyClicked copies the recovery key to the clipboard`() = runTest(testDispatcher) {
+    val aep = AccountEntropyPool.generate()
+    every { repository.getAccountEntropyPool() } returns aep
     val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
     val actions = collectActions(viewModel)
 
-    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked(recoveryKey))
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningGotItClicked)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.CopyTextToClipboard(recoveryKey))
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.CopyTextToClipboard(aep.displayValue))
+    assertThat(viewModel.state.value.doNotShareWarningAction).isNull()
+  }
+
+  @Test
+  fun `DoNotShareWarningLearnMoreClicked drops the warning and opens the help article without copying`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningLearnMoreClicked)
+
+    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.OpenDoNotShareLearnMoreArticle)
+    assertThat(viewModel.state.value.doNotShareWarningAction).isNull()
+  }
+
+  @Test
+  fun `DoNotShareWarningDismissed drops the warning without copying`() = runTest(testDispatcher) {
+    val viewModel = MessageBackupsSignalLoginDetailsViewModel(repository)
+    val actions = collectActions(viewModel)
+
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.CopyRecoveryKeyClicked)
+    viewModel.onEvent(SignalLoginViewDetailsScreenEvents.DoNotShareWarningDismissed)
+
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.doNotShareWarningAction).isNull()
   }
 
   @Test

@@ -24,4 +24,8 @@ object SignalLoginTestTags {
   const val KEY_DETAILS_RECOVERY_KEY_BLOCK = "signal_login_key_details_recovery_key_block"
   const val KEY_DETAILS_ACCOUNT_ID_COPY_BUTTON = "signal_login_key_details_account_id_copy_button"
   const val KEY_DETAILS_RECOVERY_KEY_COPY_BUTTON = "signal_login_key_details_recovery_key_copy_button"
+
+  const val DO_NOT_SHARE_SHEET = "signal_login_do_not_share_sheet"
+  const val DO_NOT_SHARE_GOT_IT_BUTTON = "signal_login_do_not_share_got_it_button"
+  const val DO_NOT_SHARE_LEARN_MORE_BUTTON = "signal_login_do_not_share_learn_more_button"
 }

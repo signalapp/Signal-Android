@@ -24,10 +24,12 @@ import org.signal.core.util.Util
 import org.signal.passwordmanager.SignalCredentialManager
 import org.signal.signallogin.pdf.SignalLoginPdfRenderer
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.DownloadMediaDialog
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.KeyLimitExceededDialog
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.signallogin.R as SignalLoginR
 
@@ -124,6 +126,7 @@ class SettingsSignalLoginDetailsFragment : ComposeFragment() {
       }
 
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
+      SignalLoginViewDetailsAction.OpenDoNotShareLearnMoreArticle -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.recovery_key_phishing_support_url))
       SignalLoginViewDetailsAction.LaunchRecoveryKeyReset -> {
         findNavController().safeNavigate(
           SettingsSignalLoginDetailsFragmentDirections.actionSettingsSignalLoginDetailsFragmentToBackupKeyDisplayFragment().setStartWithKeyRotation(true)

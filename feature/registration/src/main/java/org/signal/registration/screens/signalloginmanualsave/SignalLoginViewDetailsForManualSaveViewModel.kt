@@ -77,15 +77,42 @@ class SignalLoginViewDetailsForManualSaveViewModel(
       }
 
       is SignalLoginViewDetailsForManualSaveScreenEvents.CopyAccountIdClicked -> {
-        _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard(event.accountId))
+        stateEmitter(state.copy(doNotShareWarningAction = SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.COPY_ACCOUNT_ID))
       }
 
       is SignalLoginViewDetailsForManualSaveScreenEvents.CopyRecoveryKeyClicked -> {
-        _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard(event.recoveryKey))
+        stateEmitter(state.copy(doNotShareWarningAction = SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.COPY_RECOVERY_KEY))
       }
 
       is SignalLoginViewDetailsForManualSaveScreenEvents.SaveAsPdfClicked -> {
-        _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf)
+        stateEmitter(state.copy(doNotShareWarningAction = SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.SAVE_AS_PDF))
+      }
+
+      is SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningGotItClicked -> {
+        stateEmitter(state.copy(doNotShareWarningAction = null))
+        when (state.doNotShareWarningAction) {
+          SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.COPY_ACCOUNT_ID -> {
+            _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard(state.accountId))
+          }
+          SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.COPY_RECOVERY_KEY -> {
+            _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.CopyTextToClipboard(state.recoveryKey))
+          }
+          SignalLoginViewDetailsForManualSaveState.DoNotShareWarningAction.SAVE_AS_PDF -> {
+            _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.LaunchSaveAsPdf)
+          }
+          null -> {
+            Log.w(TAG, "Do-not-share warning acknowledged with nothing waiting behind it. Ignoring.")
+          }
+        }
+      }
+
+      is SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningLearnMoreClicked -> {
+        stateEmitter(state.copy(doNotShareWarningAction = null))
+        _actions.trySend(SignalLoginViewDetailsForManualSaveScreenActions.OpenDoNotShareLearnMoreArticle)
+      }
+
+      is SignalLoginViewDetailsForManualSaveScreenEvents.DoNotShareWarningDismissed -> {
+        stateEmitter(state.copy(doNotShareWarningAction = null))
       }
 
       is SignalLoginViewDetailsForManualSaveScreenEvents.ContinueClicked -> {

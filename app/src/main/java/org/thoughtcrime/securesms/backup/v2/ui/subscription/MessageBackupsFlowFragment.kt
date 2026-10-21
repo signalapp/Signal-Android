@@ -365,6 +365,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       }
 
       SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
+      SignalLoginViewDetailsAction.OpenDoNotShareLearnMoreArticle -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.recovery_key_phishing_support_url))
       is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
     }
   }
