@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Edit this file using gnome-text-editor, because Android Studio renders many of these symbols as multi-character string -->
+    <string-array name="dark_emojis_in_need_of_white_background" translatable="false">
+        <!-- Smileys & People -->
+        <item>🖤</item>
+        <item>🗨️</item>
+        <item>👣</item>
+        <!-- Nature -->
+        <item>🐕‍🦺</item>
+        <item>🐈‍⬛</item>
+        <item>🐃</item>
+        <item>🦨</item>
+        <item>🐾</item>
+        <item>🦅</item>
+        <item>🐦‍⬛</item>
+        <item>🫍</item>
+        <item>🐜</item>
+        <item>🕷️</item>
+        <!-- Food -->
+        <!-- Activities -->
+        <item>🪄</item>
+        <item>🎮</item>
+        <item>🕹️</item>
+        <item>♠️</item>
+        <item>♣️</item>
+        <item>♟️</item>
+        <!-- Places -->
+        <item>🕋</item>
+        <item>🦽</item>
+        <item>🦼</item>
+        <item>🚲</item>
+        <item>🛹</item>
+        <item>🌑</item>
+        <!-- Objects -->
+        <item>🕶️</item>
+        <item>🪮</item>
+        <item>🎩</item>
+        <item>🎓</item>
+        <item>🎼</item>
+        <item>🎵</item>
+        <item>🎶</item>
+        <item>🔌</item>
+        <item>🎥</item>
+        <item>📼</item>
+        <item>🗝️</item>
+        <item>💣</item>
+        <!-- Symbols -->
+        <item>🔙</item>
+        <item>🔚</item>
+        <item>🔛</item>
+        <item>🔜</item>
+        <item>🔝</item>
+        <item>✖️</item>
+        <item>➕</item>
+        <item>➖</item>
+        <item>➗</item>
+        <item>🟰</item>
+        <item>♾️</item>
+        <item>〰️</item>
+        <item>💱</item>
+        <item>💲</item>
+        <item>✔️</item>
+        <item>➰</item>
+        <item>➿</item>
+        <item>©️</item>
+        <item>®️</item>
+        <item>™️</item>
+        <!-- Flags -->
+        <item>🏴</item>
+        <item>🏴‍☠️</item>
+    </string-array>
+</resources>
