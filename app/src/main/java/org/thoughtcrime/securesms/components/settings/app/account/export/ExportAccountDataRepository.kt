@@ -1,18 +1,19 @@
 package org.thoughtcrime.securesms.components.settings.app.account.export
 
 import android.net.Uri
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.node.ObjectNode
+import arrow.core.getOrElse
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import org.signal.appsettings.exportaccountdata.ExportAccountDataFormat
-import org.signal.core.util.JsonUtils
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
+import org.signal.core.util.serialization.SignalJson
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.AccountApiV2
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.net.SignalNetwork
-import java.io.IOException
 
 class ExportAccountDataRepository(
   private val api: AccountApiV2 = SignalNetwork.accountApiV2
@@ -53,28 +54,25 @@ class ExportAccountDataRepository(
       fileName = "account-data.txt"
     }
 
-    val tree: JsonNode = try {
-      JsonUtils.getMapper().readTree(report)
-    } catch (e: IOException) {
-      Log.w(TAG, "The account data report wasn't valid JSON.", e)
+    val tree = SignalJson.decode<JsonElement>(report).getOrElse {
+      Log.w(TAG, "The account data report wasn't valid JSON.", it.cause)
       return GenerateReportResult.Failed
     }
 
-    if (tree !is ObjectNode) {
+    if (tree !is JsonObject) {
       Log.w(TAG, "The account data report wasn't a JSON object.")
       return GenerateReportResult.Failed
     }
 
     val dataStr = if (exportAsJson) {
-      tree.remove("text")
-      tree.toString()
+      JsonObject(tree - "text").toString()
     } else {
-      val text = tree["text"]
-      if (text == null || !text.isTextual) {
+      val text = tree["text"] as? JsonPrimitive
+      if (text == null || !text.isString) {
         Log.w(TAG, "The account data report had no text to export.")
         return GenerateReportResult.Failed
       }
-      text.asText()
+      text.content
     }
 
     val uri = AppDependencies.blobs

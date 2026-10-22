@@ -6,13 +6,11 @@
 package org.thoughtcrime.securesms.components.settings.app.account.export
 
 import android.app.Application
-import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isTrue
-import com.fasterxml.jackson.core.JsonParseException
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -21,6 +19,8 @@ import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonObject
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +28,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.appsettings.exportaccountdata.ExportAccountDataFormat
-import org.signal.core.util.JsonUtils
+import org.signal.core.util.serialization.SignalJson
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.AccountApiV2
 import org.thoughtcrime.securesms.components.settings.app.account.export.ExportAccountDataRepository.GenerateReportResult
@@ -83,6 +83,8 @@ class ExportAccountDataRepositoryTest {
     every { AppDependencies.blobs.forData(capture(writtenReport)) } returns mockk(relaxed = true)
   }
 
+  private fun writtenJson(): JsonObject = SignalJson.json.parseToJsonElement(String(writtenReport.captured)).jsonObject
+
   @Test
   fun `a TXT export is just the text rendering`() = runTest(testDispatcher) {
     coEvery { api.accountDataReport() } returns RequestResult.Success(REPORT)
@@ -91,7 +93,6 @@ class ExportAccountDataRepositoryTest {
 
     assertThat(result.mimeType).isEqualTo("text/plain")
     assertThat(String(writtenReport.captured)).isEqualTo(REPORT_TEXT)
-    assertFailure { JsonUtils.getMapper().readTree(writtenReport.captured) }.isInstanceOf(JsonParseException::class)
   }
 
   @Test
@@ -101,11 +102,20 @@ class ExportAccountDataRepositoryTest {
     val result = repository.downloadAccountDataReport(ExportAccountDataFormat.JSON) as GenerateReportResult.Success
 
     assertThat(result.mimeType).isEqualTo("application/json")
-    val json = JsonUtils.getMapper().readTree(writtenReport.captured)
-    assertThat(json.has("text")).isFalse()
-    assertThat(json.has("data")).isTrue()
-    assertThat(json.has("reportId")).isTrue()
-    assertThat(json.has("reportTimestamp")).isTrue()
+    val json = writtenJson()
+    assertThat(json.containsKey("text")).isFalse()
+    assertThat(json.containsKey("data")).isTrue()
+    assertThat(json.containsKey("reportId")).isTrue()
+    assertThat(json.containsKey("reportTimestamp")).isTrue()
+  }
+
+  @Test
+  fun `a JSON export keeps the rest of the report exactly as the server sent it`() = runTest(testDispatcher) {
+    coEvery { api.accountDataReport() } returns RequestResult.Success("""{"reportId":"abc","data":{"big":12345678901234567890,"list":[1,2.50,null,true]},"text":"t"}""")
+
+    repository.downloadAccountDataReport(ExportAccountDataFormat.JSON)
+
+    assertThat(String(writtenReport.captured)).isEqualTo("""{"reportId":"abc","data":{"big":12345678901234567890,"list":[1,2.50,null,true]}}""")
   }
 
   @Test
@@ -164,12 +174,20 @@ class ExportAccountDataRepositoryTest {
   }
 
   @Test
+  fun `a TXT export of a report whose text is a number is a failure`() = runTest(testDispatcher) {
+    coEvery { api.accountDataReport() } returns RequestResult.Success("""{ "text": 5 }""")
+
+    assertThat(repository.downloadAccountDataReport(ExportAccountDataFormat.TXT)).isEqualTo(GenerateReportResult.Failed)
+    verify(exactly = 0) { AppDependencies.blobs.forData(any<ByteArray>()) }
+  }
+
+  @Test
   fun `a JSON export of a report with no text still succeeds`() = runTest(testDispatcher) {
     coEvery { api.accountDataReport() } returns RequestResult.Success("""{ "reportId": "4c0ca2aa-151b-4e9e-8bf4-ea2c64345a22" }""")
 
     val result = repository.downloadAccountDataReport(ExportAccountDataFormat.JSON)
 
     assertThat(result).isInstanceOf(GenerateReportResult.Success::class)
-    assertThat(JsonUtils.getMapper().readTree(writtenReport.captured).has("reportId")).isTrue()
+    assertThat(writtenJson().containsKey("reportId")).isTrue()
   }
 }
