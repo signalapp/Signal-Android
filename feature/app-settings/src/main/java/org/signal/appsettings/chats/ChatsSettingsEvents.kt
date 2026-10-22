@@ -20,6 +20,11 @@ sealed interface ChatsSettingsEvents {
   data object Refresh : ChatsSettingsEvents
 
   /**
+   * User tapped the navigation (back) icon.
+   */
+  data object NavigateBackClicked : ChatsSettingsEvents
+
+  /**
    * User tapped the row that adds or edits chat folders.
    */
   data object ChatFoldersClicked : ChatsSettingsEvents

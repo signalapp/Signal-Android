@@ -13,12 +13,21 @@ import org.signal.appsettings.backups.BackupCreationProgress
 import org.signal.appsettings.chats.ChatExportState
 import org.signal.appsettings.chats.ChatsSettingsEvents
 import org.signal.appsettings.chats.ChatsSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.toBackupCreationProgress
 
-class ChatsSettingsViewModel : EventDrivenViewModel<ChatsSettingsEvents>(TAG) {
+/**
+ * Drives [org.signal.appsettings.chats.ChatsSettingsScreen]. Navigation goes straight to [parentEventEmitter].
+ */
+class ChatsSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<ChatsSettingsEvents>(TAG) {
 
   companion object {
     private val TAG = Log.tag(ChatsSettingsViewModel::class)
@@ -66,7 +75,8 @@ class ChatsSettingsViewModel : EventDrivenViewModel<ChatsSettingsEvents>(TAG) {
       ChatsSettingsEvents.StartExportCanceled,
       ChatsSettingsEvents.ExportCompletionConfirmed -> _state.update { it.copy(chatExportState = ChatExportState.None, includeMediaInExport = false) }
       is ChatsSettingsEvents.AutoplayStickersAndGifsChanged -> setAutoplayStickersAndGifsEnabled(event.enabled)
-      ChatsSettingsEvents.ChatFoldersClicked -> error("Handled in the fragment.")
+      ChatsSettingsEvents.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      ChatsSettingsEvents.ChatFoldersClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.ChatFoldersRoute.ChatFolders)
     }
   }
 

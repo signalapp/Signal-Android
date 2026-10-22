@@ -5,7 +5,6 @@
 
 package org.signal.appsettings.chats
 
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -71,12 +70,11 @@ fun ChatsSettingsScreen(
     }
   )
 
-  val backPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-
   Scaffolds.Settings(
     title = stringResource(R.string.preferences_chats__chats),
-    onNavigationClick = { backPressedDispatcher?.onBackPressed() },
+    onNavigationClick = { onEvent(ChatsSettingsEvents.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(R.string.ChatsSettingsScreen__go_back),
     snackbarHost = {
       Snackbars.Host(snackbarHostState)
     }

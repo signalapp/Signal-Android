@@ -702,4 +702,7 @@
     <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
     <!-- Toggle button label for compact size -->
     <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+
+    <!-- Content description for the back button on the chats settings screen -->
+    <string name="ChatsSettingsScreen__go_back">Go back</string>
 </resources>

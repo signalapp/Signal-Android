@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import android.net.Uri
 import assertk.assertThat
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
@@ -32,6 +33,8 @@ import org.junit.Test
 import org.signal.appsettings.backups.BackupCreationProgress
 import org.signal.appsettings.chats.ChatExportState
 import org.signal.appsettings.chats.ChatsSettingsEvents
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.keyvalue.protos.LocalBackupCreationProgress
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
@@ -51,6 +54,7 @@ class ChatsSettingsViewModelTest {
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
   private val plaintextExportProgress = MutableStateFlow(IDLE)
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -87,7 +91,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `initial state is read out of the repository`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
     val state = viewModel.state.value
 
     assertThat(state.generateLinkPreviews).isTrue()
@@ -99,7 +103,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `Refresh reloads the folder count and local backup state`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
     every { ChatsSettingsRepository.getFolderCount() } returns 3
     every { ChatsSettingsRepository.isLocalBackupsEnabled() } returns true
 
@@ -111,7 +115,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `GenerateLinkPreviewsChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.GenerateLinkPreviewsChanged(false))
 
@@ -121,7 +125,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `AutoplayStickersAndGifsChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.AutoplayStickersAndGifsChanged(false))
 
@@ -131,7 +135,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `UseAddressBookChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.UseAddressBookChanged(true))
 
@@ -141,7 +145,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `KeepMutedChatsArchivedChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.KeepMutedChatsArchivedChanged(true))
 
@@ -151,7 +155,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `UseSystemEmojiChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.UseSystemEmojiChanged(true))
 
@@ -161,7 +165,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `EnterKeySendsChanged updates state and writes through`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.EnterKeySendsChanged(true))
 
@@ -171,7 +175,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `ExportChatHistoryAuthenticated asks the user to confirm the export`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.ExportChatHistoryAuthenticated)
 
@@ -180,7 +184,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `ExportConfirmed remembers the media choice and asks for a folder`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.ExportChatHistoryAuthenticated)
     viewModel.onEvent(ChatsSettingsEvents.ExportConfirmed(withMedia = true))
@@ -191,7 +195,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `ExportFolderSelected starts the export with the chosen media option`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
     val uri = mockk<Uri>()
 
     viewModel.onEvent(ChatsSettingsEvents.ExportConfirmed(withMedia = true))
@@ -203,7 +207,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `StartExportCanceled clears the export flow`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.ExportConfirmed(withMedia = true))
     viewModel.onEvent(ChatsSettingsEvents.StartExportCanceled)
@@ -214,7 +218,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `CancelInFlightExportClicked shows the canceling state and cancels the export`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.CancelInFlightExportClicked)
 
@@ -224,7 +228,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `export progress is mapped into state`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     plaintextExportProgress.value = EXPORTING
 
@@ -233,7 +237,7 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `a newly succeeded export shows the completion dialog`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     plaintextExportProgress.value = EXPORTING
     plaintextExportProgress.value = SUCCEEDED
@@ -245,14 +249,14 @@ class ChatsSettingsViewModelTest {
   fun `an export that already succeeded before the screen opened does not show the completion dialog`() = runTest(testDispatcher) {
     plaintextExportProgress.value = SUCCEEDED
 
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     assertThat(viewModel.state.value.chatExportState).isEqualTo(ChatExportState.None)
   }
 
   @Test
   fun `a canceled export dismisses the canceling dialog`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(ChatsSettingsEvents.CancelInFlightExportClicked)
     plaintextExportProgress.value = CANCELED
@@ -262,12 +266,34 @@ class ChatsSettingsViewModelTest {
 
   @Test
   fun `ExportCompletionConfirmed dismisses the completion dialog`() = runTest(testDispatcher) {
-    val viewModel = ChatsSettingsViewModel()
+    val viewModel = createViewModel()
 
     plaintextExportProgress.value = EXPORTING
     plaintextExportProgress.value = SUCCEEDED
     viewModel.onEvent(ChatsSettingsEvents.ExportCompletionConfirmed)
 
     assertThat(viewModel.state.value.chatExportState).isEqualTo(ChatExportState.None)
+  }
+
+  @Test
+  fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(ChatsSettingsEvents.NavigateBackClicked)
+
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+  }
+
+  @Test
+  fun `ChatFoldersClicked opens chat folders`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(ChatsSettingsEvents.ChatFoldersClicked)
+
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+  }
+
+  private fun createViewModel(): ChatsSettingsViewModel {
+    return ChatsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
   }
 }

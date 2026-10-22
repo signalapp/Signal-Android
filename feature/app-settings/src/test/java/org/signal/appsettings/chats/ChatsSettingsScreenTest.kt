@@ -119,6 +119,15 @@ class ChatsSettingsScreenTest {
   }
 
   @Test
+  fun whenNavigationIconClicked_thenIExpectNavigateBackClickedEvent() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithContentDescription(context.getString(R.string.ChatsSettingsScreen__go_back)).performClick()
+
+    assertThat(events).contains(ChatsSettingsEvents.NavigateBackClicked)
+  }
+
+  @Test
   fun givenPlaintextExportDisabled_whenScreenDisplayed_thenExportRowIsAbsent() {
     setContent(createState(isPlaintextExportEnabled = false))
 
