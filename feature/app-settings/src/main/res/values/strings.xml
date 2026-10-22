@@ -694,4 +694,12 @@
     <string name="AppSettingsScreen__stories">Stories</string>
     <!-- App settings row that opens backup settings -->
     <string name="AppSettingsScreen__backups">Backups</string>
+
+    <!-- Navigation bar size dialog, in appearance settings -->
+    <!-- Dialog title, displayed below the header image -->
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <!-- Toggle button label for normal size -->
+    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <!-- Toggle button label for compact size -->
+    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
 </resources>

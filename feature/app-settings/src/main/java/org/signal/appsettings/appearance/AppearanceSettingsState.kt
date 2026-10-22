@@ -34,5 +34,8 @@ data class AppearanceSettingsState(
 
     /** Warns that switching to [language] restarts the app. */
     data class ConfirmLanguageChange(val language: String) : Dialog
+
+    /** Lets the user choose between a full-sized and a compact navigation bar. [isCompact] is the choice so far. */
+    data class NavigationBarSize(val isCompact: Boolean) : Dialog
   }
 }

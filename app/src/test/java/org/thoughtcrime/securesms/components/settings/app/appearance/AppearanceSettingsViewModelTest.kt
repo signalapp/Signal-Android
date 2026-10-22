@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import assertk.assertThat
+import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -35,6 +36,8 @@ import org.signal.appsettings.appearance.AppearanceSettingsEvent
 import org.signal.appsettings.appearance.AppearanceSettingsState
 import org.signal.appsettings.appearance.AppearanceSettingsState.Dialog
 import org.signal.appsettings.appearance.AppearanceSettingsState.Theme
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -44,6 +47,8 @@ class AppearanceSettingsViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -59,6 +64,7 @@ class AppearanceSettingsViewModelTest {
     every { AppearanceSettingsRepository.applyLanguage(any()) } just Runs
     every { AppearanceSettingsRepository.setTheme(any()) } just Runs
     every { AppearanceSettingsRepository.setMessageFontSize(any()) } just Runs
+    every { AppearanceSettingsRepository.setCompactNavigationBar(any()) } just Runs
   }
 
   @After
@@ -76,7 +82,7 @@ class AppearanceSettingsViewModelTest {
     every { AppearanceSettingsRepository.isSystemThemeAvailable() } returns false
     every { AppearanceSettingsRepository.isAppIconSupported() } returns false
 
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
 
     assertThat(viewModel.state.value).isEqualTo(
       AppearanceSettingsState(
@@ -92,17 +98,16 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.NavigateBackClicked)
 
-    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.NavigateBack))
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
   }
 
   @Test
   fun `LanguageSelected asks for confirmation before applying it`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
 
@@ -113,7 +118,7 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `LanguageChangeConfirmed applies the selected language`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
     viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
@@ -125,7 +130,7 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `LanguageChangeConfirmed does nothing without a pending language change`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.LanguageChangeConfirmed)
 
@@ -134,7 +139,7 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `DialogDismissed cancels the language change`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.LanguageSelected("de"))
     viewModel.onEvent(AppearanceSettingsEvent.DialogDismissed)
@@ -145,7 +150,7 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `ThemeSelected stores the theme and updates the splash screen`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppearanceSettingsEvent.ThemeSelected(Theme.DARK))
@@ -157,7 +162,7 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `MessageFontSizeSelected stores the font size`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+    val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppearanceSettingsEvent.MessageFontSizeSelected(28))
@@ -169,43 +174,68 @@ class AppearanceSettingsViewModelTest {
 
   @Test
   fun `ChatColorAndWallpaperClicked opens chat color and wallpaper`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.ChatColorAndWallpaperClicked)
 
-    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.NavigateToChatColorAndWallpaper))
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AppearanceRoute.Wallpaper))
   }
 
   @Test
   fun `AppIconClicked opens the app icon picker`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.AppIconClicked)
 
-    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.NavigateToAppIcon))
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AppearanceRoute.AppIconSelection))
   }
 
   @Test
-  fun `NavigationBarSizeClicked shows the navigation bar size picker`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+  fun `NavigationBarSizeClicked opens the picker on the current size`() = runTest(testDispatcher) {
+    every { AppearanceSettingsRepository.isCompactNavigationBar() } returns true
+    val viewModel = createViewModel()
 
     viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeClicked)
 
-    assertThat(actions).isEqualTo(listOf(AppearanceSettingsAction.ShowNavigationBarSizePicker))
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.NavigationBarSize(isCompact = true))
   }
 
   @Test
-  fun `NavigationBarSizeChanged rereads the navigation bar size`() = runTest(testDispatcher) {
-    val viewModel = AppearanceSettingsViewModel()
+  fun `NavigationBarSizeSelected changes the choice without saving it`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeClicked)
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeSelected(isCompact = true))
+
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.NavigationBarSize(isCompact = true))
     assertThat(viewModel.state.value.isCompactNavigationBar).isFalse()
+    verify(exactly = 0) { AppearanceSettingsRepository.setCompactNavigationBar(any()) }
+  }
 
-    every { AppearanceSettingsRepository.isCompactNavigationBar() } returns true
-    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeChanged)
+  @Test
+  fun `NavigationBarSizeConfirmed saves the choice and closes the picker`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
 
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeClicked)
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeSelected(isCompact = true))
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeConfirmed)
+
+    verify { AppearanceSettingsRepository.setCompactNavigationBar(true) }
     assertThat(viewModel.state.value.isCompactNavigationBar).isTrue()
+    assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+  }
+
+  @Test
+  fun `NavigationBarSizeConfirmed is ignored without the picker`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeConfirmed)
+
+    verify(exactly = 0) { AppearanceSettingsRepository.setCompactNavigationBar(any()) }
+  }
+
+  private fun createViewModel(): AppearanceSettingsViewModel {
+    return AppearanceSettingsViewModel(parentEventEmitter = { navigationEvents += it })
   }
 
   private fun TestScope.collectActions(actions: Flow<AppearanceSettingsAction>): List<AppearanceSettingsAction> {

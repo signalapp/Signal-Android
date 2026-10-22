@@ -6,23 +6,12 @@
 package org.signal.appsettings.appearance
 
 /**
- * One-shot side effects that have to be carried out by the host rather than the screen itself.
+ * One-shot side effects that need an Activity, and therefore have to be carried out by the host rather than the screen
+ * itself. Navigation doesn't come through here: the view model sends it straight to its parent.
  *
  * Actions are logged, so be sure `toString()` contains nothing sensitive.
  */
 sealed interface AppearanceSettingsAction {
-
-  /** Leave the screen. */
-  data object NavigateBack : AppearanceSettingsAction
-
-  /** Open the chat color and wallpaper settings. */
-  data object NavigateToChatColorAndWallpaper : AppearanceSettingsAction
-
-  /** Open the app icon picker. */
-  data object NavigateToAppIcon : AppearanceSettingsAction
-
-  /** Show the navigation bar size picker. */
-  data object ShowNavigationBarSizePicker : AppearanceSettingsAction
 
   /** The theme changed, so the activity's splash screen theme has to follow it. */
   data class ApplySplashScreenTheme(val theme: AppearanceSettingsState.Theme) : AppearanceSettingsAction

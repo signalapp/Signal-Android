@@ -15,13 +15,19 @@ import kotlinx.coroutines.flow.update
 import org.signal.appsettings.appearance.AppearanceSettingsAction
 import org.signal.appsettings.appearance.AppearanceSettingsEvent
 import org.signal.appsettings.appearance.AppearanceSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 /**
- * Drives [org.signal.appsettings.appearance.AppearanceSettingsScreen].
+ * Drives [org.signal.appsettings.appearance.AppearanceSettingsScreen]. Navigation goes straight to [parentEventEmitter].
  */
-class AppearanceSettingsViewModel : EventDrivenViewModel<AppearanceSettingsEvent>(TAG) {
+class AppearanceSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<AppearanceSettingsEvent>(TAG) {
 
   companion object {
     private val TAG = Log.tag(AppearanceSettingsViewModel::class)
@@ -35,7 +41,7 @@ class AppearanceSettingsViewModel : EventDrivenViewModel<AppearanceSettingsEvent
 
   override suspend fun processEvent(event: AppearanceSettingsEvent) {
     when (event) {
-      AppearanceSettingsEvent.NavigateBackClicked -> _actions.send(AppearanceSettingsAction.NavigateBack)
+      AppearanceSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
 
       is AppearanceSettingsEvent.LanguageSelected -> {
         _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.ConfirmLanguageChange(event.language)) }
@@ -53,19 +59,28 @@ class AppearanceSettingsViewModel : EventDrivenViewModel<AppearanceSettingsEvent
         _actions.send(AppearanceSettingsAction.ApplySplashScreenTheme(event.theme))
       }
 
-      AppearanceSettingsEvent.ChatColorAndWallpaperClicked -> _actions.send(AppearanceSettingsAction.NavigateToChatColorAndWallpaper)
+      AppearanceSettingsEvent.ChatColorAndWallpaperClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AppearanceRoute.Wallpaper)
 
-      AppearanceSettingsEvent.AppIconClicked -> _actions.send(AppearanceSettingsAction.NavigateToAppIcon)
+      AppearanceSettingsEvent.AppIconClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AppearanceRoute.AppIconSelection)
 
       is AppearanceSettingsEvent.MessageFontSizeSelected -> {
         AppearanceSettingsRepository.setMessageFontSize(event.size)
         _state.update { it.copy(messageFontSize = event.size) }
       }
 
-      AppearanceSettingsEvent.NavigationBarSizeClicked -> _actions.send(AppearanceSettingsAction.ShowNavigationBarSizePicker)
+      AppearanceSettingsEvent.NavigationBarSizeClicked -> {
+        _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = it.isCompactNavigationBar)) }
+      }
 
-      AppearanceSettingsEvent.NavigationBarSizeChanged -> {
-        _state.update { it.copy(isCompactNavigationBar = AppearanceSettingsRepository.isCompactNavigationBar()) }
+      is AppearanceSettingsEvent.NavigationBarSizeSelected -> {
+        val dialog = _state.value.dialog as? AppearanceSettingsState.Dialog.NavigationBarSize ?: return
+        _state.update { it.copy(dialog = dialog.copy(isCompact = event.isCompact)) }
+      }
+
+      AppearanceSettingsEvent.NavigationBarSizeConfirmed -> {
+        val dialog = _state.value.dialog as? AppearanceSettingsState.Dialog.NavigationBarSize ?: return
+        AppearanceSettingsRepository.setCompactNavigationBar(dialog.isCompact)
+        _state.update { it.copy(isCompactNavigationBar = dialog.isCompact, dialog = AppearanceSettingsState.Dialog.None) }
       }
 
       AppearanceSettingsEvent.DialogDismissed -> _state.update { it.copy(dialog = AppearanceSettingsState.Dialog.None) }

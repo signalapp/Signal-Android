@@ -31,11 +31,14 @@ sealed interface AppearanceSettingsEvent {
   /** The user picked a message font size, in sp. */
   data class MessageFontSizeSelected(val size: Int) : AppearanceSettingsEvent
 
-  /** The user tapped the navigation bar size row. */
+  /** The user tapped the navigation bar size row, which asks them to pick a size. */
   data object NavigationBarSizeClicked : AppearanceSettingsEvent
 
-  /** The navigation bar size picker saved a new size. */
-  data object NavigationBarSizeChanged : AppearanceSettingsEvent
+  /** The user picked a size in the navigation bar size dialog, but hasn't confirmed it yet. */
+  data class NavigationBarSizeSelected(val isCompact: Boolean) : AppearanceSettingsEvent
+
+  /** The user confirmed the size picked in the navigation bar size dialog. */
+  data object NavigationBarSizeConfirmed : AppearanceSettingsEvent
 
   /** Dismisses whatever is in [AppearanceSettingsState.dialog]. */
   data object DialogDismissed : AppearanceSettingsEvent

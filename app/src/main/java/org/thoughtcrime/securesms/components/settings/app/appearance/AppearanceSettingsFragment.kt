@@ -3,54 +3,45 @@ package org.thoughtcrime.securesms.components.settings.app.appearance
 import android.os.Bundle
 import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.appearance.AppearanceSettingsAction
-import org.signal.appsettings.appearance.AppearanceSettingsEvent
-import org.signal.appsettings.appearance.AppearanceSettingsScreen
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.ComposeFragment
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.appearance.navbar.ChooseNavigationBarStyleFragment
-import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
- * Allows the user to change language, theme, etc. from application settings.
+ * Fragment host for [AppearanceSettingsEntry] until app settings moves to Nav3. Only translates routes into the nav graph.
  */
 class AppearanceSettingsFragment : ComposeFragment() {
 
-  private val viewModel: AppearanceSettingsViewModel by viewModels()
+  private val appSettingsRouter by viewModels<AppSettingsRouter>()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    childFragmentManager.setFragmentResultListener(ChooseNavigationBarStyleFragment.REQUEST_KEY, viewLifecycleOwner) { key, bundle ->
-      if (bundle.getBoolean(key, false)) {
-        viewModel.onEvent(AppearanceSettingsEvent.NavigationBarSizeChanged)
+    super.onViewCreated(view, savedInstanceState)
+
+    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
+      when (event) {
+        AppSettingsNavigationEvent.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
+        is AppSettingsNavigationEvent.NavigateToScreen -> navigateToScreen(event.route)
       }
+    }
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.AppearanceRoute.Wallpaper -> findNavController().safeNavigate(R.id.action_appearanceSettings_to_wallpaperActivity)
+      AppSettingsRoute.AppearanceRoute.AppIconSelection -> findNavController().safeNavigate(R.id.action_appearanceSettings_to_appIconActivity)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    AppearanceSettingsScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
-  }
-
-  private fun handleAction(action: AppearanceSettingsAction) {
-    when (action) {
-      AppearanceSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-      AppearanceSettingsAction.NavigateToChatColorAndWallpaper -> findNavController().safeNavigate(R.id.action_appearanceSettings_to_wallpaperActivity)
-      AppearanceSettingsAction.NavigateToAppIcon -> findNavController().safeNavigate(R.id.action_appearanceSettings_to_appIconActivity)
-      AppearanceSettingsAction.ShowNavigationBarSizePicker -> ChooseNavigationBarStyleFragment().show(childFragmentManager, null)
-      is AppearanceSettingsAction.ApplySplashScreenTheme -> SplashScreenUtil.setSplashScreenThemeIfNecessary(activity, action.theme.toSettingsTheme())
-    }
+    AppearanceSettingsEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
 }

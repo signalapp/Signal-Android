@@ -36,4 +36,9 @@ class AppearanceSettingsLayoutTest : SignalLayoutStressTest() {
   fun `confirming a language change`() = assertPassesLayoutChecks {
     AppearanceSettingsScreen(state = populated.copy(dialog = AppearanceSettingsState.Dialog.ConfirmLanguageChange("de")), onEvent = {})
   }
+
+  @Test
+  fun `picking a navigation bar size`() = assertPassesLayoutChecks {
+    AppearanceSettingsScreen(state = populated.copy(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = true)), onEvent = {})
+  }
 }

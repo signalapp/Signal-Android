@@ -7,6 +7,8 @@ package org.signal.appsettings.appearance
 
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotSelected
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -142,6 +144,36 @@ class AppearanceSettingsScreenTest {
     composeTestRule.onNodeWithTag(Dialogs.TEST_TAG_ALERT_DIALOG_DISMISS_BUTTON).performClick()
 
     assertThat(events).containsExactly(AppearanceSettingsEvent.DialogDismissed)
+  }
+
+  @Test
+  fun `picking a size in the navigation bar size dialog emits NavigationBarSizeSelected`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = false)))
+
+    composeTestRule.onNodeWithTag(AppearanceSettingsTestTags.BUTTON_NAVIGATION_BAR_COMPACT).performClick()
+    composeTestRule.onNodeWithTag(AppearanceSettingsTestTags.BUTTON_NAVIGATION_BAR_NORMAL).performClick()
+
+    assertThat(events).containsExactly(
+      AppearanceSettingsEvent.NavigationBarSizeSelected(isCompact = true),
+      AppearanceSettingsEvent.NavigationBarSizeSelected(isCompact = false)
+    )
+  }
+
+  @Test
+  fun `the navigation bar size dialog marks the current choice`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = true)))
+
+    composeTestRule.onNodeWithTag(AppearanceSettingsTestTags.BUTTON_NAVIGATION_BAR_COMPACT).assertIsSelected()
+    composeTestRule.onNodeWithTag(AppearanceSettingsTestTags.BUTTON_NAVIGATION_BAR_NORMAL).assertIsNotSelected()
+  }
+
+  @Test
+  fun `confirming the navigation bar size dialog emits NavigationBarSizeConfirmed`() {
+    setContent(AppearanceSettingsState(dialog = AppearanceSettingsState.Dialog.NavigationBarSize(isCompact = true)))
+
+    composeTestRule.onNodeWithTag(AppearanceSettingsTestTags.BUTTON_NAVIGATION_BAR_CONFIRM).performClick()
+
+    assertThat(events).containsExactly(AppearanceSettingsEvent.NavigationBarSizeConfirmed)
   }
 
   private fun setContent(state: AppearanceSettingsState) {

@@ -43,6 +43,10 @@ object AppearanceSettingsRepository {
 
   fun isCompactNavigationBar(): Boolean = SignalStore.settings.useCompactNavigationBar
 
+  fun setCompactNavigationBar(isCompact: Boolean) {
+    SignalStore.settings.useCompactNavigationBar = isCompact
+  }
+
   fun isSystemThemeAvailable(): Boolean = DynamicTheme.systemThemeAvailable()
 
   fun isAppIconSupported(): Boolean = Build.VERSION.SDK_INT >= 26
