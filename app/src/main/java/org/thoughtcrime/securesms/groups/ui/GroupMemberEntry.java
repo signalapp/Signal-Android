@@ -36,39 +36,6 @@ public abstract class GroupMemberEntry {
 
   abstract boolean sameId(@NonNull GroupMemberEntry newItem);
 
-  public final static class NewGroupCandidate extends GroupMemberEntry {
-
-    private final Recipient member;
-
-    public NewGroupCandidate(@NonNull Recipient member) {
-      this.member = member;
-    }
-
-    public @NonNull Recipient getMember() {
-      return member;
-    }
-
-    @Override
-    boolean sameId(@NonNull GroupMemberEntry newItem) {
-      if (getClass() != newItem.getClass()) return false;
-
-      return member.getId().equals(((NewGroupCandidate) newItem).member.getId());
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-      if (!(obj instanceof NewGroupCandidate)) return false;
-
-      NewGroupCandidate other = (NewGroupCandidate) obj;
-      return other.member.equals(member);
-    }
-
-    @Override
-    public int hashCode() {
-      return member.hashCode();
-    }
-  }
-
   public final static class FullMember extends GroupMemberEntry {
 
     private final           Recipient   member;

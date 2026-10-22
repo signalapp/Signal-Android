@@ -35,7 +35,6 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
   private static final int FULL_MEMBER                = 0;
   private static final int OWN_INVITE_PENDING         = 1;
   private static final int OTHER_INVITE_PENDING_COUNT = 2;
-  private static final int NEW_GROUP_CANDIDATE        = 3;
   private static final int REQUESTING_MEMBER          = 4;
 
   private final List<GroupMemberEntry>  data                    = new ArrayList<>();
@@ -116,14 +115,6 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
                                                        selectionChangeListener,
                                                        selectable,
                                                        lifecycleOwner);
-      case NEW_GROUP_CANDIDATE:
-        return new NewGroupInviteeViewHolder(LayoutInflater.from(parent.getContext())
-                                                           .inflate(R.layout.group_new_candidate_recipient_list_item, parent, false),
-                                             recipientClickListener,
-                                             recipientLongClickListener,
-                                             selectionChangeListener,
-                                             selectable,
-                                             lifecycleOwner);
       case REQUESTING_MEMBER:
         return new RequestingMemberViewHolder(LayoutInflater.from(parent.getContext())
                                                            .inflate(R.layout.group_recipient_requesting_list_item, parent, false),
@@ -171,8 +162,6 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       return OWN_INVITE_PENDING;
     } else if (groupMemberEntry instanceof GroupMemberEntry.UnknownPendingMemberCount) {
       return OTHER_INVITE_PENDING_COUNT;
-    } else if (groupMemberEntry instanceof GroupMemberEntry.NewGroupCandidate) {
-      return NEW_GROUP_CANDIDATE;
     } else if (groupMemberEntry instanceof GroupMemberEntry.RequestingMember) {
       return REQUESTING_MEMBER;
     }
@@ -371,38 +360,6 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       }
     }
   }
-  final static class NewGroupInviteeViewHolder extends ViewHolder {
-
-    private final View smsContact;
-    private final View smsWarning;
-
-    NewGroupInviteeViewHolder(@NonNull View itemView,
-                              @Nullable RecipientClickListener recipientClickListener,
-                              @Nullable RecipientLongClickListener recipientLongClickListener,
-                              @NonNull SelectionChangeListener selectionChangeListener,
-                              boolean selectable,
-                              @NonNull LifecycleOwner lifecycleOwner)
-    {
-      super(itemView, recipientClickListener, recipientLongClickListener, null, selectionChangeListener, selectable, lifecycleOwner);
-
-      smsContact = itemView.findViewById(R.id.sms_contact);
-      smsWarning = itemView.findViewById(R.id.sms_warning);
-    }
-
-    @Override
-    void bind(@NonNull GroupMemberEntry memberEntry, boolean isSelected) {
-      GroupMemberEntry.NewGroupCandidate newGroupCandidate = (GroupMemberEntry.NewGroupCandidate) memberEntry;
-
-      bindRecipient(newGroupCandidate.getMember());
-      bindRecipientClick(newGroupCandidate.getMember());
-
-      int smsWarningVisibility = newGroupCandidate.getMember().isRegistered() ? View.GONE : View.VISIBLE;
-
-      smsContact.setVisibility(smsWarningVisibility);
-      smsWarning.setVisibility(smsWarningVisibility);
-    }
-  }
-
   final static class OwnInvitePendingMemberViewHolder extends ViewHolder {
 
     OwnInvitePendingMemberViewHolder(@NonNull View itemView,
