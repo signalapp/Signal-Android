@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -39,11 +40,14 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimatable
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieAnimatable
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.airbnb.lottie.compose.rememberLottieDynamicProperties
+import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -268,6 +272,13 @@ private fun SkipButton(
   val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(rawRes))
   val animatable: LottieAnimatable = rememberLottieAnimatable()
   val scope = rememberCoroutineScope()
+  val dynamicProperties = rememberLottieDynamicProperties(
+    rememberLottieDynamicProperty(
+      property = LottieProperty.COLOR,
+      value = MaterialTheme.colorScheme.onSurface.toArgb(),
+      keyPath = arrayOf("**")
+    )
+  )
 
   IconButton(
     onClick = {
@@ -279,6 +290,7 @@ private fun SkipButton(
     LottieAnimation(
       composition = composition,
       progress = { animatable.progress },
+      dynamicProperties = dynamicProperties,
       modifier = Modifier.size(SKIP_LOTTIE_SIZE)
     )
   }
