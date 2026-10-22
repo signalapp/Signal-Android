@@ -35,10 +35,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -50,11 +47,14 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.viewModel
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
 import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRouter
+import org.thoughtcrime.securesms.components.settings.app.routes.navigateTo
 import org.thoughtcrime.securesms.components.settings.models.Banner
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet
@@ -79,20 +79,19 @@ class NotificationsSettingsFragment : ComposeFragment() {
 
     callbacks = DefaultNotificationsSettingsCallbacks(requireActivity(), viewModel, appSettingsRouter, DefaultNotificationsSettingsCallbacks.ActivityResultRegisterer.ForFragment(this))
 
-    viewLifecycleOwner.lifecycleScope.launch {
-      repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        appSettingsRouter.currentRoute.collect {
-          when (it) {
-            AppSettingsRoute.NotificationsRoute.NotificationProfiles -> {
-              findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
-            }
-
-            AppSettingsRoute.NotificationsRoute.MutedNotifications -> {
-              findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_mutedNotificationsFragment)
-            }
-
-            else -> error("Unexpected route: ${it.javaClass.name}")
+    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
+      when (event) {
+        AppSettingsNavigationEvent.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
+        is AppSettingsNavigationEvent.NavigateToScreen -> when (event.route) {
+          AppSettingsRoute.NotificationsRoute.NotificationProfiles -> {
+            findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
           }
+
+          AppSettingsRoute.NotificationsRoute.MutedNotifications -> {
+            findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_mutedNotificationsFragment)
+          }
+
+          else -> error("Unexpected route: ${event.route.javaClass.name}")
         }
       }
     }
@@ -263,7 +262,7 @@ open class DefaultNotificationsSettingsCallbacks(
   }
 
   override fun onNavigationProfilesClick() {
-    appSettingsRouter.navigateTo(AppSettingsRoute.NotificationsRoute.NotificationProfiles)
+    appSettingsRouter::onEvent.navigateTo(AppSettingsRoute.NotificationsRoute.NotificationProfiles)
   }
 
   override fun setNotifyWhenContactJoinsSignal(enabled: Boolean) {
@@ -271,7 +270,7 @@ open class DefaultNotificationsSettingsCallbacks(
   }
 
   override fun onMutedClicked() {
-    appSettingsRouter.navigateTo(AppSettingsRoute.NotificationsRoute.MutedNotifications)
+    appSettingsRouter::onEvent.navigateTo(AppSettingsRoute.NotificationsRoute.MutedNotifications)
   }
 
   override fun setReactionNotificationEnabled(enabled: Boolean) {

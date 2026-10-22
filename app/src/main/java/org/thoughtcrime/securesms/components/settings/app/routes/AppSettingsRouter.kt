@@ -8,22 +8,26 @@ package org.thoughtcrime.securesms.components.settings.app.routes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 /**
- * Router which manages what screen we are displaying in app settings. Underneath, this is a ViewModel
- * that is tied to the top-level parent, so that all screens throughout the app settings can access it.
+ * Router which manages what screen we are displaying in app settings. Screen view models are handed [onEvent] as their
+ * parent event emitter and navigate with [navigateTo] / [navigateBack].
  *
  * This gives a single point to navigate to a new page, but assumes that the actual backstack of routes
  * will be handled elsewhere. This just emits routing requests.
  */
-class AppSettingsRouter() : ViewModel() {
+class AppSettingsRouter : ViewModel() {
 
-  val currentRoute = MutableSharedFlow<AppSettingsRoute>()
+  private val _events = MutableSharedFlow<AppSettingsNavigationEvent>()
 
-  fun navigateTo(route: AppSettingsRoute) {
+  val events: SharedFlow<AppSettingsNavigationEvent> = _events.asSharedFlow()
+
+  fun onEvent(event: AppSettingsNavigationEvent) {
     viewModelScope.launch {
-      currentRoute.emit(route)
+      _events.emit(event)
     }
   }
 }
