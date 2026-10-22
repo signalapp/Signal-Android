@@ -489,7 +489,7 @@ class SignalLoginCredentialEntryViewModelTest {
   }
 
   @Test
-  fun `NextClicked requiring a passkey goes to the selection screen carrying the ceremony parameters`() = runTest(testDispatcher) {
+  fun `NextClicked requiring only a passkey goes to the passkey verification screen carrying the ceremony parameters`() = runTest(testDispatcher) {
     val parameters = WebAuthnAuthenticationParameters(
       challenge = byteArrayOf(1, 2, 3),
       timeoutSeconds = 60,
@@ -504,15 +504,41 @@ class SignalLoginCredentialEntryViewModelTest {
       .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
       .prop(RegistrationFlowEvent.NavigateToScreen::route)
       .isEqualTo(
-        RegistrationRoute.TwoFactorSelection(
-          methods = listOf(
-            TwoFactorMethod.Passkey(
-              WebAuthnParameters(
-                challenge = byteArrayOf(1, 2, 3),
-                timeoutSeconds = 60,
-                allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))
-              )
-            )
+        RegistrationRoute.PasskeyVerification(
+          parameters = WebAuthnParameters(
+            challenge = byteArrayOf(1, 2, 3),
+            timeoutSeconds = 60,
+            allowedCredentialIds = listOf(byteArrayOf(4, 5, 6))
+          )
+        )
+      )
+  }
+
+  /**
+   * The service describes every passkey on the account with one set of parameters, so several passkeys are still a single
+   * method and the user is not asked to choose between them.
+   */
+  @Test
+  fun `NextClicked requiring one of several passkeys goes to the passkey verification screen allowing all of them`() = runTest(testDispatcher) {
+    val parameters = WebAuthnAuthenticationParameters(
+      challenge = byteArrayOf(1, 2, 3),
+      timeoutSeconds = 60,
+      allowedCredentialIds = listOf(byteArrayOf(4, 5, 6), byteArrayOf(7, 8, 9))
+    )
+    coEvery { mockRepository.reRegisterAccountWithoutPhoneNumber(any(), any(), any(), any(), any()) } returns
+      RequestResult.NonSuccess(RegisterAccountError.TwoFactorRequired(MfaFailureResponse(hasTotpKey = false, webAuthnParameters = parameters)))
+
+    applyEvent(completeState(), SignalLoginCredentialEntryScreenEvents.NextClicked)
+
+    assertThat(emittedParentEvents.last())
+      .isInstanceOf<RegistrationFlowEvent.NavigateToScreen>()
+      .prop(RegistrationFlowEvent.NavigateToScreen::route)
+      .isEqualTo(
+        RegistrationRoute.PasskeyVerification(
+          parameters = WebAuthnParameters(
+            challenge = byteArrayOf(1, 2, 3),
+            timeoutSeconds = 60,
+            allowedCredentialIds = listOf(byteArrayOf(4, 5, 6), byteArrayOf(7, 8, 9))
           )
         )
       )

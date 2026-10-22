@@ -29,16 +29,19 @@ sealed interface TwoFactorMethod : Parcelable {
 }
 
 /**
- * The route to send the user to in order to authenticate with one of these [TwoFactorMethod]s. An account with nothing
- * but authenticator apps has no choice to make, so we skip straight to the code entry screen. Anything involving a
- * passkey goes through the selection screen, which is where the passkey ceremony is started from.
+ * The route to send the user to in order to authenticate with one of these [TwoFactorMethod]s. When there's no choice to
+ * make we skip the selection screen: an account with nothing but authenticator apps goes straight to code entry, and one
+ * whose only second factor is a passkey goes to a screen that explains how to use it. Anything else goes through the
+ * selection screen, which is where the passkey ceremony is started from.
  *
  * Multiple entries of a kind are fine: the service checks the credential against every one the account has registered.
  */
 fun List<TwoFactorMethod>.toAuthenticationRoute(): RegistrationRoute {
-  return if (isNotEmpty() && all { it is TwoFactorMethod.AuthenticatorApp }) {
-    RegistrationRoute.TotpEntry
-  } else {
-    RegistrationRoute.TwoFactorSelection(methods = this)
+  val onlyMethod = singleOrNull()
+
+  return when {
+    onlyMethod is TwoFactorMethod.Passkey -> RegistrationRoute.PasskeyVerification(parameters = onlyMethod.parameters)
+    isNotEmpty() && all { it is TwoFactorMethod.AuthenticatorApp } -> RegistrationRoute.TotpEntry
+    else -> RegistrationRoute.TwoFactorSelection(methods = this)
   }
 }

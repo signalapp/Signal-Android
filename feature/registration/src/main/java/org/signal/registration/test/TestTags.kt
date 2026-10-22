@@ -193,6 +193,12 @@ object TestTags {
   const val TWO_FACTOR_SELECTION_CANCEL_BUTTON = "two_factor_selection_cancel_button"
   const val TWO_FACTOR_SELECTION_PASSKEY_ERROR_DIALOG = "two_factor_selection_passkey_error_dialog"
 
+  // Passkey Verification Screen
+  const val PASSKEY_VERIFICATION_SCREEN = "passkey_verification_screen"
+  const val PASSKEY_VERIFICATION_CONTINUE_BUTTON = "passkey_verification_continue_button"
+  const val PASSKEY_VERIFICATION_CANCEL_BUTTON = "passkey_verification_cancel_button"
+  const val PASSKEY_VERIFICATION_ERROR_DIALOG = "passkey_verification_error_dialog"
+
   // Remote Backup Restore Screen
   const val REMOTE_BACKUP_RESTORE_SCREEN = "remote_backup_restore_screen"
   const val REMOTE_BACKUP_RESTORE_RESTORE_BUTTON = "remote_backup_restore_restore_button"
