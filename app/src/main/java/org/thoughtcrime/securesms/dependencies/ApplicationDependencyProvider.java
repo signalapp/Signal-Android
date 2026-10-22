@@ -51,6 +51,7 @@ import org.signal.network.config.NetworkProxyState;
 import org.signal.network.config.ProxyConfig;
 import org.signal.network.config.SignalServiceConfiguration;
 import org.signal.network.rest.SignalRestClient;
+import org.signal.network.util.Tls12SocketFactory;
 import org.signal.network.service.ArchiveService;
 import org.signal.network.service.CdnService;
 import org.signal.network.service.MessageService;
@@ -153,12 +154,19 @@ import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
+import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
 
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 
@@ -578,10 +586,20 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull OkHttpClient provideOkHttpClient() {
-    return new OkHttpClient.Builder()
-        .addInterceptor(new StandardUserAgentInterceptor())
-        .dns(SignalServiceNetworkAccess.DNS)
-        .build();
+    try {
+      X509TrustManager trustManager = BlacklistingTrustManager.createForDefaultTrustStore();
+      SSLContext       sslContext   = SSLContext.getInstance("TLS");
+
+      sslContext.init(null, new TrustManager[] { trustManager }, null);
+
+      return new OkHttpClient.Builder()
+          .sslSocketFactory(new Tls12SocketFactory(sslContext.getSocketFactory()), trustManager)
+          .addInterceptor(new StandardUserAgentInterceptor())
+          .dns(SignalServiceNetworkAccess.DNS)
+          .build();
+    } catch (NoSuchAlgorithmException | KeyManagementException e) {
+      throw new AssertionError(e);
+    }
   }
 
   @Override

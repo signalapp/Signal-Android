@@ -65,17 +65,28 @@ public class BlacklistingTrustManager implements X509TrustManager {
       "92c063d67e8f14db71d288e11266ffdaf69cbf115f7bab14f3bc2f68d25e0e30"
   )));
 
-  public static TrustManager[] createFor(TrustManager[] trustManagers) {
+  public static BlacklistingTrustManager createFor(TrustManager[] trustManagers) {
     for (TrustManager trustManager : trustManagers) {
       if (trustManager instanceof X509TrustManager) {
-        TrustManager[] results = new BlacklistingTrustManager[1];
-        results[0] = new BlacklistingTrustManager((X509TrustManager)trustManager);
-
-        return results;
+        return new BlacklistingTrustManager((X509TrustManager) trustManager);
       }
     }
 
     throw new AssertionError("No X509 Trust Managers!");
+  }
+
+  /**
+   * Creates a blacklisting trust manager backed by the platform's default trust store.
+   */
+  public static BlacklistingTrustManager createForDefaultTrustStore() {
+    try {
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+      trustManagerFactory.init((KeyStore) null);
+
+      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
+    } catch (KeyStoreException | NoSuchAlgorithmException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static TrustManager[] createFor(TrustStore trustStore) {
@@ -88,7 +99,7 @@ public class BlacklistingTrustManager implements X509TrustManager {
       TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("X509");
       trustManagerFactory.init(keyStore);
 
-      return BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers());
+      return new TrustManager[] { BlacklistingTrustManager.createFor(trustManagerFactory.getTrustManagers()) };
     } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

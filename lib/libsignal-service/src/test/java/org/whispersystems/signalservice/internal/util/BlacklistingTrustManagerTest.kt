@@ -11,6 +11,7 @@ import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isInstanceOf
+import assertk.assertions.isNotEmpty
 import assertk.assertions.isNotNull
 import io.mockk.every
 import io.mockk.mockk
@@ -28,6 +29,13 @@ class BlacklistingTrustManagerTest {
 
   private val delegate = mockk<X509TrustManager>(relaxed = true)
   private val trustManager = BlacklistingTrustManager(delegate)
+
+  @Test
+  fun `default trust store is wrapped with the blacklist`() {
+    val trustManager = BlacklistingTrustManager.createForDefaultTrustStore()
+
+    assertThat(trustManager.acceptedIssuers).isNotEmpty()
+  }
 
   @Test
   fun `blacklist matches the published eMudhra intermediates`() {

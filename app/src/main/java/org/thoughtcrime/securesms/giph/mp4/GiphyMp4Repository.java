@@ -10,8 +10,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
-import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -31,10 +29,9 @@ final class GiphyMp4Repository {
   private final OkHttpClient client;
 
   GiphyMp4Repository() {
-    this.client = new OkHttpClient.Builder().proxySelector(new ContentProxySelector())
-                                            .addInterceptor(new StandardUserAgentInterceptor())
-                                            .dns(SignalServiceNetworkAccess.DNS)
-                                            .build();
+    this.client = AppDependencies.getOkHttpClient().newBuilder()
+                                 .proxySelector(new ContentProxySelector())
+                                 .build();
   }
 
   void saveToBlob(@NonNull GiphyImage giphyImage, boolean isForMms, @NonNull Consumer<GiphyMp4SaveResult> resultConsumer) {
