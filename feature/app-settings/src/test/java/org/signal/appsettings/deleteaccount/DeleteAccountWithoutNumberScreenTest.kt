@@ -13,6 +13,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import assertk.assertThat
 import assertk.assertions.contains
 import org.junit.Rule
@@ -50,6 +51,8 @@ class DeleteAccountWithoutNumberScreenTest {
 
     composeTestRule.onNodeWithText(context.getString(R.string.DeleteAccountFragment__deleting_your_account_will)).assertIsDisplayed()
     composeTestRule.onNodeWithText(context.getString(R.string.DeleteAccountFragment__delete_your_account_info_and_profile_photo)).assertIsDisplayed()
+    composeTestRule.onNodeWithText(context.getString(R.string.DeleteAccountScreen__delete_your_account_id_and_recovery_key)).performScrollTo().assertIsDisplayed()
+    composeTestRule.onNodeWithText(context.getString(R.string.DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account)).performScrollTo().assertIsDisplayed()
   }
 
   @Test

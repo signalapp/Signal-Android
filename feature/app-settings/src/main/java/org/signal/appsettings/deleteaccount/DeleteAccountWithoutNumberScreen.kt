@@ -162,6 +162,10 @@ private fun Bullets(
       Bullet(text = stringResource(R.string.DeleteAccountFragment__delete_s_in_your_payments_account, walletBalance))
     }
 
+    Bullet(text = stringResource(R.string.DeleteAccountScreen__delete_your_account_id_and_recovery_key))
+
+    Bullet(text = stringResource(R.string.DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account))
+
     Bullet(text = stringResource(R.string.DeleteAccountScreen__this_action_can_not_be_undone))
   }
 }
