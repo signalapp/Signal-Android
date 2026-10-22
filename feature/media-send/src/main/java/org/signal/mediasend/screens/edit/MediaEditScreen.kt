@@ -246,6 +246,7 @@ internal fun MediaEditScreen(
     HorizontalPager(
       state = pagerState,
       modifier = Modifier.fillMaxSize(),
+      key = { state.selectedMedia[it].uri },
       snapPosition = SnapPosition.Center,
       userScrollEnabled = !isInteracting
     ) { index ->
