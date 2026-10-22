@@ -22,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Chips
@@ -79,8 +80,9 @@ private fun RecipientChip(
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
+  val noteToSelf = stringResource(R.string.note_to_self)
   val label by rememberRecipientField(recipientId) {
-    if (isSelf) context.getString(R.string.note_to_self) else getShortDisplayName(context)
+    if (isSelf) noteToSelf else getShortDisplayName(context)
   }
 
   Chips.Removable(

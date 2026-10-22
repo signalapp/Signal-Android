@@ -761,7 +761,7 @@ public class ThumbnailView extends FrameLayout {
     Uri thumbnailUri = slide.getThumbnailUri();
 
     if (thumbnailUri != null) {
-      bitmap = bitmap.load(slide.getThumbnailUri());
+      bitmap = bitmap.load(new DecryptableUri(thumbnailUri, 0, MediaUtil.IMAGE_WEBP));
     } else {
       bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
     }
