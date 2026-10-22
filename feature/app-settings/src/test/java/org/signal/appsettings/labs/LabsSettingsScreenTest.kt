@@ -50,7 +50,6 @@ class LabsSettingsScreenTest {
       LabsSettingsTestTags.ROW_INCOGNITO to LabsSettingsEvent.IncognitoToggled(true),
       LabsSettingsTestTags.ROW_BETTER_SEARCH to LabsSettingsEvent.BetterSearchToggled(true),
       LabsSettingsTestTags.ROW_STARRED_MESSAGES to LabsSettingsEvent.StarredMessagesToggled(true),
-      LabsSettingsTestTags.ROW_STICKER_REPLIES to LabsSettingsEvent.StickerRepliesToggled(true),
       LabsSettingsTestTags.ROW_IMPROVED_MESSAGE_DELETION to LabsSettingsEvent.ImprovedMessageDeletionToggled(true)
     )
 

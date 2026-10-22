@@ -39,7 +39,6 @@ object LabsSettingsTestTags {
   const val ROW_INCOGNITO = "row-incognito"
   const val ROW_BETTER_SEARCH = "row-better-search"
   const val ROW_STARRED_MESSAGES = "row-starred-messages"
-  const val ROW_STICKER_REPLIES = "row-sticker-replies"
   const val ROW_IMPROVED_MESSAGE_DELETION = "row-improved-message-deletion"
 }
 
@@ -114,16 +113,6 @@ fun LabsSettingsScreen(
           label = "Enables starring messages for later reference. Adds star/unstar to the long-press menu and a starred messages screen accessible from conversation settings and the main menu.",
           onCheckChanged = { onEvent(LabsSettingsEvent.StarredMessagesToggled(it)) },
           modifier = Modifier.testTag(LabsSettingsTestTags.ROW_STARRED_MESSAGES)
-        )
-      }
-
-      item {
-        Rows.ToggleRow(
-          checked = state.stickerReplies,
-          text = "Sticker Replies",
-          label = "Keep a pending quote when sending a sticker so the sticker is sent as a reply. Normally the quote is dropped when you send a sticker.",
-          onCheckChanged = { onEvent(LabsSettingsEvent.StickerRepliesToggled(it)) },
-          modifier = Modifier.testTag(LabsSettingsTestTags.ROW_STICKER_REPLIES)
         )
       }
 

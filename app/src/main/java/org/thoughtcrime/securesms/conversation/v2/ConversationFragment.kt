@@ -769,10 +769,6 @@ class ConversationFragment :
 
   /** Header describing who a sticker sent now would reply to, matching whether [sendSticker] will attach the quote. */
   private suspend fun stickerReplyHeader(): String? {
-    if (!SignalStore.labs.stickerReplies) {
-      return null
-    }
-
     val authorId = inputPanel.quote.orNull()?.author ?: return null
     val author = withContext(Dispatchers.Default) { Recipient.resolved(authorId) }
 
@@ -2927,11 +2923,7 @@ class ConversationFragment :
         ?: MediaUtil.IMAGE_WEBP
     )
 
-    val quote = if (SignalStore.labs.stickerReplies) {
-      inputPanel.quote.orNull()
-    } else {
-      null
-    }
+    val quote = inputPanel.quote.orNull()
 
     sendMessageWithoutComposeInput(slide = slide, quote = quote, clearCompose = clearCompose)
 

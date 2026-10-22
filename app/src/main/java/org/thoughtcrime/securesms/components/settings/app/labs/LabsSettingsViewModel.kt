@@ -57,10 +57,6 @@ class LabsSettingsViewModel : EventDrivenViewModel<LabsSettingsEvent>(TAG) {
         LabsSettingsRepository.setStarredMessages(event.enabled)
         _state.update { it.copy(starredMessages = event.enabled) }
       }
-      is LabsSettingsEvent.StickerRepliesToggled -> {
-        LabsSettingsRepository.setStickerReplies(event.enabled)
-        _state.update { it.copy(stickerReplies = event.enabled) }
-      }
       is LabsSettingsEvent.ImprovedMessageDeletionToggled -> {
         LabsSettingsRepository.setImprovedMessageDeletion(event.enabled)
         _state.update { it.copy(improvedMessageDeletion = event.enabled) }

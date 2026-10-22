@@ -56,7 +56,6 @@ class LabsSettingsViewModelTest {
     every { LabsSettingsRepository.setIncognito(any()) } just Runs
     every { LabsSettingsRepository.setBetterSearch(any()) } just Runs
     every { LabsSettingsRepository.setStarredMessages(any()) } just Runs
-    every { LabsSettingsRepository.setStickerReplies(any()) } just Runs
     every { LabsSettingsRepository.setImprovedMessageDeletion(any()) } just Runs
   }
 
@@ -121,16 +120,6 @@ class LabsSettingsViewModelTest {
 
     verify { LabsSettingsRepository.setStarredMessages(true) }
     assertThat(viewModel.state.value).isEqualTo(INITIAL_STATE.copy(starredMessages = true))
-  }
-
-  @Test
-  fun `StickerRepliesToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
-
-    viewModel.onEvent(LabsSettingsEvent.StickerRepliesToggled(true))
-
-    verify { LabsSettingsRepository.setStickerReplies(true) }
-    assertThat(viewModel.state.value).isEqualTo(INITIAL_STATE.copy(stickerReplies = true))
   }
 
   @Test

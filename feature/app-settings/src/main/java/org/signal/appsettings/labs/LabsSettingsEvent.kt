@@ -28,9 +28,6 @@ sealed interface LabsSettingsEvent {
   /** The user flipped the starred messages toggle. */
   data class StarredMessagesToggled(val enabled: Boolean) : LabsSettingsEvent
 
-  /** The user flipped the sticker replies toggle. */
-  data class StickerRepliesToggled(val enabled: Boolean) : LabsSettingsEvent
-
   /** The user flipped the improved message deletion toggle. */
   data class ImprovedMessageDeletionToggled(val enabled: Boolean) : LabsSettingsEvent
 }

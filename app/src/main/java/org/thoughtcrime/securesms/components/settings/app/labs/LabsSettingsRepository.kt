@@ -20,7 +20,6 @@ object LabsSettingsRepository {
       incognito = SignalStore.labs.incognito,
       betterSearch = SignalStore.labs.betterSearch,
       starredMessages = SignalStore.labs.starredMessages,
-      stickerReplies = SignalStore.labs.stickerReplies,
       improvedMessageDeletion = SignalStore.labs.improvedMessageDeletion
     )
   }
@@ -43,10 +42,6 @@ object LabsSettingsRepository {
 
   fun setStarredMessages(enabled: Boolean) {
     SignalStore.labs.starredMessages = enabled
-  }
-
-  fun setStickerReplies(enabled: Boolean) {
-    SignalStore.labs.stickerReplies = enabled
   }
 
   fun setImprovedMessageDeletion(enabled: Boolean) {

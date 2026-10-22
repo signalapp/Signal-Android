@@ -24,7 +24,6 @@ class LabsSettingsLayoutTest : SignalLayoutStressTest() {
         incognito = true,
         betterSearch = true,
         starredMessages = true,
-        stickerReplies = true,
         improvedMessageDeletion = true
       ),
       onEvent = {}
