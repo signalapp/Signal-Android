@@ -138,44 +138,44 @@
     <!-- ExportAccountDataFragment -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">您的账户数据</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">导出您的 Signal 账户数据报告。该报告不包含任何消息或媒体。%1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">了解详情</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">导出报告</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">导出为 TXT 文件</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">易读文本文件</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">导出为 JSON 文件</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">机器可读文件</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">取消</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">好</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">无法生成报告</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">请检查您的网络连接并重试。</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">要导出数据？</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">请只将您的 Signal 账户数据分享给您信任的人或应用。</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">导出</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">正在生成报告…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">您的报告只在导出时生成，不会由 Signal 保存在您的设备上。</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -215,23 +215,23 @@
 
     <!-- PasskeySetupScreen -->
     <!-- Title of the screen that explains passkeys before the user sets one up -->
-    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <string name="PasskeySetupScreen__passkeys">通行密钥</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">使用通行密钥，您可以轻松为账户添加第二重安全验证防护。通行密钥可以使用您设备的生物识别或兼容的 FIDO2 安全密钥。</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <string name="PasskeySetupScreen__learn_more">了解详情</string>
     <!-- Bullet point explaining that the user can name their passkey -->
-    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">为您的通行密钥起一个好记的名称，方便识别</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">使用您设备的生物识别或 FIDO2 安全密钥来储存您的通行密钥</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
-    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">随时添加或删除通行密钥。</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">设置通行密钥</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">您最多只能添加 %1$d 个双重身份验证方式。请先移除其他方式。</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -415,176 +415,176 @@
     <string name="preferences_app_updates__title">应用更新</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__language">Language</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <string name="preferences__appearance">外观</string>
+    <string name="preferences__language">语言</string>
+    <string name="preferences__theme">主题</string>
+    <string name="preferences__system_default">系统默认</string>
+    <string name="preferences__light_theme">浅色</string>
+    <string name="preferences__dark_theme">深色</string>
+    <string name="preferences__chat_color_and_wallpaper">聊天颜色与墙纸</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
+    <string name="preferences__app_icon">应用图标</string>
+    <string name="preferences_chats__message_text_size">消息字体大小</string>
+    <string name="arrays__small">小尺寸</string>
+    <string name="arrays__normal">正常尺寸</string>
+    <string name="arrays__large">大尺寸</string>
+    <string name="arrays__extra_large">超大尺寸</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">导航栏大小</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">正常</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">紧凑</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">应用将重启以应用新的语言设置。</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">手机号码</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">谁可以看到我的电话号码</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">您的手机号码将对您发送消息的用户和群组可见。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">您的手机号码将对任何人不可见，除非对方已将其保存在自己的手机通讯录中。</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">您的手机号码将对任何人不可见。</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">谁可以通过电话号码找到我</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">知道您的手机号码的任何人均可以在 Signal 上看到您的上线状态，并可以开始跟您聊天。</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">没人能在 Signal 上看到您的上线状态，除非您给对方发送消息，或与对方有一个现有的聊天窗口。</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"如要更改此设置，请设置“谁可以看到我的电话号码”。"</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">确定吗？</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">如果将“谁可以通过电话号码找到我”设置为“没有人”，这将会使其他用户更难在 Signal 上找到您。</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
-    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
-    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
-    <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Documents</string>
-    <string name="preferences__data_and_storage">Data and storage</string>
-    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">When roaming</string>
-    <string name="preferences_chats__media_auto_download">Media auto-download</string>
-    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
-    <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">取消</string>
+    <string name="PhoneNumberPrivacy_everyone">所有人</string>
+    <string name="PhoneNumberPrivacy_nobody">没有人</string>
+    <string name="arrays__images">图片</string>
+    <string name="arrays__audio">音频</string>
+    <string name="arrays__video">视频</string>
+    <string name="arrays__documents">文档</string>
+    <string name="preferences__data_and_storage">数据和存储</string>
+    <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
+    <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
+    <string name="preferences_chats__when_roaming">当漫游时</string>
+    <string name="preferences_chats__media_auto_download">自动下载媒体</string>
+    <string name="preferences_data_and_storage__manage_storage">管理存储</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">通话使用更少数据</string>
+    <string name="preferences_data_and_storage__never">永不</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 和移动数据</string>
+    <string name="preferences_data_and_storage__mobile_data_only">仅移动数据</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话。</string>
+    <string name="preferences_proxy">代理</string>
+    <string name="preferences_use_proxy">使用代理</string>
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">媒体质量</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">正在计算…</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">已发送媒体质量</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">发送高质量媒体将会使用更多数据。</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">语音消息和表情（小于 %1$s）始终自动下载。</string>
+    <string name="DataAndStorageSettingsFragment__calls">通话</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">在后台保持连接</string>
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">在后台保持连接可能会增加电量消耗。大多数设备无需启用此功能。请仅在遇到通知问题时才启用此功能。</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+    <string name="DataAndStorageSettingsFragment__enable">启用</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">High</string>
+  <string name="SentMediaQuality__high">高</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standard</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+  <string name="SentMediaQuality__standard">标准</string>
+    <string name="preferences_app_protection__screen_lock">屏幕锁定</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">使用屏幕锁定</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">当您离开 Signal 或切换应用时，您需要 Android 设备锁设置来解锁 Signal。在锁定时，通知预览将不会显示消息内容。</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">开始屏幕锁定</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 分钟后</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 分数后</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 分钟后</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">自定义时间</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">使用 Signal 屏幕锁定</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">关闭 Signal 屏幕锁定</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="preferences__help">Help</string>
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="preferences__help">帮助</string>
+    <string name="HelpSettingsFragment__support_center">支持中心</string>
+    <string name="HelpSettingsFragment__contact_us">联系我们</string>
+    <string name="HelpSettingsFragment__version">版本</string>
     <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__copied_to_clipboard">已复制到剪贴板</string>
+    <string name="HelpSettingsFragment__debug_log">调试日志</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpSettingsFragment__licenses">许可证</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">条款和隐私政策</string>
+    <string name="HelpFragment__copyright_signal_messenger">版权所有 Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">根据 GNU AGPLv3 授权许可</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal 是一个非营利组织</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">应用图标和名称将显示在主屏幕和应用程序抽屉中。</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">通知将始终显示默认的 Signal 图标和名称。</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">图片说明了替代的应用图标将在哪里可见。</string>
 
     <!-- AppIconSelectionScreen -->
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">天气</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notes</string>
+    <string name="app_icon_label_notes">笔记</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">新闻</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">波浪</string>
     <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <string name="preferences__app_icon_dialog_ok">好</string>
     <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Cancel</string>
+    <string name="preferences__app_icon_dialog_cancel">取消</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">更改应用图标并将其命名为“%1$s”</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">Signal 需要关闭以更改应用图标和名称。通知将始终显示默认的 Signal 图标和名称。</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">请选择一个应用图标和名称，这将显示在您手机的主屏幕和应用程序抽屉中。通知将始终显示默认的 Signal 图标和名称。了解详情</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">了解详情</string>
 
     <!-- QrCodeBadge -->
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">未设置链接</string>
 
     <!-- UsernameLinkQrColorPickerScreen -->
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">颜色</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">完成</string>
 
     <!-- NotificationProfileCreatedScreen -->
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <string name="NotificationProfileCreated__profile_created">配置已创建</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Done</string>
+    <string name="NotificationProfileCreated__done">完成</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">您可以通过聊天列表上的菜单手动开启或关闭通知配置。</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">在设置中添加时间安排以自动管理您的配置。</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">您的配置将会按照您的时间安排自动开启和关闭。</string>
 </resources>

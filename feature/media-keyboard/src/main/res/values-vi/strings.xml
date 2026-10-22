@@ -32,13 +32,13 @@
 
   <!-- Emoji sheet -->
   <!-- Accessibility description for the button in the emoji picker sheet that opens the screen where the user picks their quick reactions. -->
-  <string name="MediaKeyboard__customize_reactions">Customize reactions</string>
+  <string name="MediaKeyboard__customize_reactions">Tuỳ chỉnh phản ứng</string>
 
   <!-- Emoji page -->
   <!-- Accessibility description for the button in the media keyboard top bar that deletes the character before the cursor. Verb, as an action the button performs. -->
   <string name="MediaKeyboard__backspace">Xoá lùi</string>
   <!-- Header, and rail accessibility description, for the emoji already reacted with on the message the user is reacting to. -->
-  <string name="MediaKeyboard__this_message">This message</string>
+  <string name="MediaKeyboard__this_message">Tin nhắn này</string>
   <!-- Header, and rail accessibility description, for the group of emoji or stickers the user picked most recently. -->
   <string name="MediaKeyboard__recently_used">Gần đây sử dụng</string>
   <!-- Header for the emoji category holding faces and people. -->

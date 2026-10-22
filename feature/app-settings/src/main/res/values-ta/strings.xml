@@ -138,44 +138,44 @@
     <!-- ExportAccountDataFragment -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">உங்கள் கணக்குத் தரவு</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">உங்கள் Signal கணக்குத் தரவின் அறிக்கையை ஏற்றுமதி செய்க. இந்த அறிக்கையில் செய்திகள் அல்லது ஊடகம் எதுவும் இல்லை. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">மேலும் அறிக</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">அறிக்கையை ஏற்றுமதி செய்க</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ஆக ஏற்றுமதி செய்க</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">எளிதாகப் படிக்கக்கூடிய உரை கோப்பு</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON ஆக ஏற்றுமதி செய்க</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">இயந்திரம் படிக்கக்கூடிய கோப்பு</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">ரத்துசெய்</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">சரி</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">அறிக்கையை உருவாக்க முடியவில்லை</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">தரவை ஏற்றுமதி செய்ய வேண்டுமா?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">உங்கள் Signal கணக்குத் தரவை நீங்கள் நம்பும் நபர்கள் அல்லது ஆப்ஸ்களுடன் மட்டும் பகிரவும்.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">ஏற்றுமதி செய்க</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">அறிக்கையை உருவாக்குகிறது…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">உங்கள் அறிக்கை ஏற்றுமதியின் போது மட்டுமே உருவாக்கப்படும் மற்றும் உங்கள் டிவைஸில் Signal மூலம் சேமிக்கப்படாது.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -215,23 +215,23 @@
 
     <!-- PasskeySetupScreen -->
     <!-- Title of the screen that explains passkeys before the user sets one up -->
-    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <string name="PasskeySetupScreen__passkeys">கடவுக்குறியீடுகள்</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">கடவுக்குறியீடுகள் மூலம் உங்கள் கணக்கில் பாதுகாப்பான இரண்டாவது அங்கீகார முறையை எளிதாகச் சேர்க்கலாம். கடவுக்குறியீடுகள் உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸை அல்லது இணக்கமான FIDO2 பாதுகாப்புக் குறியீட்டைப் பயன்படுத்தும்.</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <string name="PasskeySetupScreen__learn_more">மேலும் அறிக</string>
     <!-- Bullet point explaining that the user can name their passkey -->
-    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">உங்கள் கடவுக்குறியீட்டை அடையாளம் காண அதற்கு ஒரு பெயரைச் சூட்டவும்</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">உங்கள் கடவுக்குறியீட்டைச் சேமிக்க, உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸை அல்லது FIDO2 பாதுகாப்புக் குறியீட்டைப் பயன்படுத்தவும்</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
-    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">எப்போது வேண்டுமானாலும் கடவுக்குறியீடுகளைச் சேர்க்கலாம் அல்லது அகற்றலாம்.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">கடவுக்குறியீட்டை அமைக்கவும்</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -416,176 +416,176 @@
     <string name="preferences_app_updates__title">பயன்பாடு புதுப்பிப்புகள்</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__language">Language</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <string name="preferences__appearance">தோற்றம்</string>
+    <string name="preferences__language">மொழி</string>
+    <string name="preferences__theme">நிறவடிவமைப்பு</string>
+    <string name="preferences__system_default">கருவி இயல்புநிலை</string>
+    <string name="preferences__light_theme">ஒளி</string>
+    <string name="preferences__dark_theme">இருட்டு</string>
+    <string name="preferences__chat_color_and_wallpaper">சாட் கலர் &amp; வால்பேப்பர்</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
+    <string name="preferences__app_icon">செயலி ஐகான்</string>
+    <string name="preferences_chats__message_text_size">செய்தி எழுத்துரு அளவு</string>
+    <string name="arrays__small">சிறிய</string>
+    <string name="arrays__normal">சாதாரணமாக</string>
+    <string name="arrays__large">பெரிய</string>
+    <string name="arrays__extra_large">கூடுதல் பெரியது</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">சாதாரண அளவு</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">பொருந்திய அளவு</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">புதிய மொழி அமைப்பைப் பயன்படுத்த, செயலி மறுதொடக்கம் செய்யப்படும்.</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">தொலைபேசி எண்</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">எனது எண்ணை யார் பார்க்கலாம்</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">நீங்கள் மெசேஜ் அனுப்பும் அனைத்து நபர்களுக்கும் குழுக்களுக்கும் உங்கள் தொலைபேசி எண் புலனாகும்.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">உங்கள்தொலைபேசி எண்ணை அவர்கள் ஃபோனின் தொடர்புகளில் சேமித்து வைத்திருக்கும் வரை, அது யாருக்கும் காட்டப்படாது.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">உங்கள் தொலைபேசி எண் யாருக்கும் காட்டப்படாது.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">உங்கள் தொலைபேசி எண்ணை வைத்திருக்கும் எவரும் நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை அறிவார்கள், மேலும் உங்களுடன் அவர்கள் சாட் செய்யத் தொடங்கலாம்.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">நீங்கள் அவர்களுக்கு மெசேஜ் அனுப்பாத வரை அல்லது அவர்களுடன் ஏற்கனவே சாட் செய்யாத வரை, நீங்கள் சிக்னலை பயன்படுத்திக் கொண்டிருப்பதை யாராலும் பார்க்க முடியாது.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"இந்த அமைப்பை மாற்ற, எனது எண்ணை யார் பார்க்கலாம் என்னும் ஆப்ஷனில் யாரும் இல்லை என மாற்றி அமைக்கவும்."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ஃபோன் எண் மூலம் என்னை யார் கண்டுப்பிடிக்க முடியும்\" என்பதை \"யாரும் இல்லை\" என அமைப்பது உங்களை சிக்னலில் கண்டறிவதை மற்றவர்களுக்கு கடினமாக்கும்.</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
-    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
-    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
-    <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Documents</string>
-    <string name="preferences__data_and_storage">Data and storage</string>
-    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">When roaming</string>
-    <string name="preferences_chats__media_auto_download">Media auto-download</string>
-    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
-    <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ரத்துசெய்</string>
+    <string name="PhoneNumberPrivacy_everyone">எல்லோரும்</string>
+    <string name="PhoneNumberPrivacy_nobody">ஒருவருமில்லை</string>
+    <string name="arrays__images">புகைப்படங்கள்</string>
+    <string name="arrays__audio">ஒலி</string>
+    <string name="arrays__video">காணொளி</string>
+    <string name="arrays__documents">ஆவணங்கள்</string>
+    <string name="preferences__data_and_storage">தரவு மற்றும் சேமிப்பு</string>
+    <string name="preferences_chats__when_using_mobile_data">மொபைல் தரவைப் பயன்படுத்தும் போது</string>
+    <string name="preferences_chats__when_using_wifi">வைஃபை பயன்படுத்தும் போது</string>
+    <string name="preferences_chats__when_roaming">ரோமிங் செய்யும் போது</string>
+    <string name="preferences_chats__media_auto_download">மீடியா தானாக பதிவிறக்கம்</string>
+    <string name="preferences_data_and_storage__manage_storage">சேமிப்பிடத்தை நிர்வகிக்கவும்</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">அழைப்புகளுக்கு குறைந்த தரவைப் பயன்படும்</string>
+    <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">வைஃபை மற்றும் மொபைல் தரவு</string>
+    <string name="preferences_data_and_storage__mobile_data_only">மொபைல் தரவு மட்டும்</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்.</string>
+    <string name="preferences_proxy">பதிலி</string>
+    <string name="preferences_use_proxy">பதிலியைப் பயன்படுத்து.</string>
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">மீடியா தரம்</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">கணக்கிடுகிறது…</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">அனுப்பிய மீடியா தரம்</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">உயர்தரத்தை அனுப்புகிறது ஊடகம் அதிக தரவைப் பயன்படுத்தும்.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">வாய்ஸ் மெசேஜ்கள் மற்றும் ஸ்டிக்கர்கள் (%1$s அளவின் கீழ் உள்ளவை) எப்போதும் தானாகவே பதிவிறக்கப்படுகின்றன.</string>
+    <string name="DataAndStorageSettingsFragment__calls">அழைப்புகள்</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">பின்னணியில் இணைந்திரு</string>
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">பின்னணியில் இணைந்திருப்பதால் பேட்டரி நுகர்வு அதிகரிக்கும். பெரும்பாலான சாதனங்களுக்கு இவ்வாறு செயல்பட வேண்டியதில்லை. அறிவிப்புச் சிக்கல்களைச் சந்தித்தால் மட்டுமே இதைச் செயல்படுத்துங்கள்.</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+    <string name="DataAndStorageSettingsFragment__enable">செயல்படுத்து</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">High</string>
+  <string name="SentMediaQuality__high">உயர்</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standard</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+  <string name="SentMediaQuality__standard">தரநிலை</string>
+    <string name="preferences_app_protection__screen_lock">திரை பூட்டு</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">திரைப் பூட்டைப் பயன்படுத்தவும்</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">நீங்கள் வெளியேறும்போது அல்லது செயலிகளை மாற்றும்போது சிக்னலைத் திறக்க உங்கள் ஆண்ட்ராய்டு டிவைஸ் பூட்டு அமைப்புகள் தேவைப்படும். பூட்டப்பட்டிருக்கும்போது, அறிவிப்பு முன்னோட்டங்கள் மெசேஜ் உள்ளடக்கத்தைக் காட்டாது.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">திரைப் பூட்டைத் துவங்கு</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 நிமிடத்திற்குப் பின்</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 நிமிடங்களுக்குப் பின்</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 நிமிடங்களுக்குப் பின்</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">விருப்ப நேரம்</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">சிக்னல் திரைப் பூட்டைப் பயன்படுத்துக</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">சிக்னல் திரைப் பூட்டை ஆஃப் செய்</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="preferences__help">Help</string>
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="preferences__help">உதவி</string>
+    <string name="HelpSettingsFragment__support_center">ஆதரவு மையம்</string>
+    <string name="HelpSettingsFragment__contact_us">எங்களை தொடர்பு கொள்ள</string>
+    <string name="HelpSettingsFragment__version">பதிப்பு</string>
     <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+    <string name="HelpSettingsFragment__debug_log">பிழைத்திருத்த பதிவு</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpSettingsFragment__licenses">உரிமங்கள்</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
+    <string name="HelpFragment__copyright_signal_messenger">பதிப்புரிமை Signal தூதர்</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 இன் கீழ் உரிமம் பெற்றது</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">சிக்னல் ஓர் இலாப நோக்கற்ற அமைப்பாகும்.</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">செயலி ஐகான்கள் மற்றும் பெயர்கள் முகப்புத் திரை மற்றும் செயலி டிராயரில் தெரிகிறது.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும்.</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">மாற்று செயலி ஐகான் எங்கு தெரியும் என்பதை கிராஃபிக் விளக்குகிறது.</string>
 
     <!-- AppIconSelectionScreen -->
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">வானிலை</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notes</string>
+    <string name="app_icon_label_notes">குறிப்புகள்</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">செய்தி</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">அலைகள்</string>
     <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <string name="preferences__app_icon_dialog_ok">சரி</string>
     <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Cancel</string>
+    <string name="preferences__app_icon_dialog_cancel">ரத்துசெய்</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">செயலி ஐகானையும் பெயரையும் \"%1$s\" என மாற்றவும்</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">செயலியின் ஐகானையும் பெயரையும் மாற்ற Signal மூடப்பட வேண்டும். அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும்.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">செயலி ஐகானையும் பெயரையும் தேர்ந்தெடுக்கவும், இது உங்கள் மொபைலின் முகப்புத் திரை மற்றும் ஆப் டிராயரில் தெரியும். அறிவிப்புகள் எப்போதும் இயல்புநிலை Signal ஐகானையும் பெயரையும் காண்பிக்கும். மேலும் அறிக</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">மேலும் அறிக</string>
 
     <!-- QrCodeBadge -->
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">இணைப்பு அமைக்கப்படவில்லை</string>
 
     <!-- UsernameLinkQrColorPickerScreen -->
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">நிறம்</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">முடிந்தது</string>
 
     <!-- NotificationProfileCreatedScreen -->
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <string name="NotificationProfileCreated__profile_created">சுயவிவரம் உருவாக்கப்பட்டது</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Done</string>
+    <string name="NotificationProfileCreated__done">முடிந்தது</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">சாட் பட்டியலில் உள்ள மெனு மூலம் உங்கள் சுயவிவரத்தை கைமுறையாக இயக்கலாம் அல்லது முடக்கலாம்.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">உங்கள் சுயவிவரத்தை தானியக்கமாக்க அமைப்புகளில் ஒரு கால அட்டவணையைச் சேர்க்கவும்.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">உங்கள் அட்டவணையின்படி உங்கள் சுயவிவரம் தானாகவே ஆன் மற்றும் ஆஃப் செய்யப்படும்.</string>
 </resources>

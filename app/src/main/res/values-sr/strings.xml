@@ -981,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Све поруке на повезаним уређајима су приватне</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Поруке на Signal-у се синхронизују са Signal-ом на вашем мобилном телефону након што га повежете.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">На уређају који желите да повежете посетите %1$s да бисте инсталирали Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -8096,7 +8096,7 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
     <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
-    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
+    <string name="MessageBackupsFlowFragment__authentication_required">Потребна је потврда идентитета</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8710,7 +8710,7 @@
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">Ако желите да покушате поново, деинсталирајте и поново инсталирајте Signal на овом уређају, а онда изберите „Врати или пренеси“.</string>
 
     <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
-    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Сазнајте више</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Затражен је верификациони код</string>

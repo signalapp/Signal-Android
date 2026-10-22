@@ -138,44 +138,44 @@
     <!-- ExportAccountDataFragment -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">మీ ఖాతా డేటా</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">మీ Signal ఖాతా డేటా యొక్క నివేదికను ఎగుమతి చేయండి. ఈ నివేదికలో ఎలాంటి మీడియా లేదా సందేశాలు ఉండవు. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">నివేదికను ఎగుమతి చేయండి</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT లాగా ఎగుమతి చేయండి</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">సులభంగా చదవగలిగే టెక్స్ట్ ఫైల్</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON లాగా ఎగుమతి చేయండి</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">మెషీన్-చదవగల ఫైల్</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">రద్దు చేయండి</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">సరే</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">నివేదికను రూపొందించలేక పోయాను</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">మీ కనెక్షన్‌ను తనిఖీ చేయండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">డేటా ఎగుమతి చేసేదా?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">మీరు విశ్వసించే వ్యక్తులు లేదా యాప్‌లతో మాత్రమే మీ Signal ఖాతా డేటాను పంచుకోండి.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">ఎగుమతి చేయండి</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">నివేదికను రూపొందిస్తోంది…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">ఎగుమతి సమయంలో మాత్రమే మీ నివేదిక రూపొందించ బడుతుంది మరియు మీ పరికరంలో Signal ద్వారా నిల్వచేయబడదు.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -215,23 +215,23 @@
 
     <!-- PasskeySetupScreen -->
     <!-- Title of the screen that explains passkeys before the user sets one up -->
-    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <string name="PasskeySetupScreen__passkeys">పాస్‌కీలు</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">పాస్‌కీలతో, మీరు మీ ఖాతాకు సురక్షితమైన రెండవ ప్రమాణీకరణ విధానాన్ని సులభంగా జోడించవచ్చు. పాస్‌కీలు మీ పరికరం యొక్క బయోమెట్రిక్స్ లేదా అనుకూలమైన FIDO2 సెక్యూరిటీ కీని ఉపయోగించగలవు.</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <string name="PasskeySetupScreen__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Bullet point explaining that the user can name their passkey -->
-    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">మీ పాస్‌కీని గుర్తించడానికి వీలుగా దానికి ఒక స్నేహపూర్వకమైన పేరు పెట్టండి.</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">మీ పాస్‌కీని భద్రపరచడానికి మీ పరికరం యొక్క బయోమెట్రిక్స్ లేదా FIDO2 సెక్యూరిటీ కీని ఉపయోగించండి</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
-    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">ఎప్పుడైనా పాస్‌కీలను జోడించండి లేదా తొలగించండి.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">పాస్‌కీని సెటప్ చేయండి</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">మీరు %1$d కంటే ఎక్కువ రెండు-దశల అథెంటికేషన్ పద్ధతులను జోడించలేరు. ముందుగా ఒకదాన్ని తొలగించడానికి ప్రయత్నించండి.</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -416,176 +416,176 @@
     <string name="preferences_app_updates__title">అనువర్తన నవీకరణలు</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__language">Language</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <string name="preferences__appearance">స్వరూపం</string>
+    <string name="preferences__language">భాష</string>
+    <string name="preferences__theme">థీమ్</string>
+    <string name="preferences__system_default">సిస్టమ్ అప్రమేయం</string>
+    <string name="preferences__light_theme">లైటు</string>
+    <string name="preferences__dark_theme">గుప్తమైన</string>
+    <string name="preferences__chat_color_and_wallpaper">చాట్ రంగు &amp; వాల్‌పేపర్</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
+    <string name="preferences__app_icon">యాప్ ఐకాన్</string>
+    <string name="preferences_chats__message_text_size">సందేశం ఫాంట్ పరిమాణం</string>
+    <string name="arrays__small">చిన్న</string>
+    <string name="arrays__normal">సాధారణంగా</string>
+    <string name="arrays__large">పెద్ద</string>
+    <string name="arrays__extra_large">చాలా పెద్దది</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">నావిగేషన్ బార్ పరిమాణం</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">సాధారణం</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">సంక్షిప్తము</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">కొత్త భాషా సెట్టింగ్‌ను వర్తింపజేయడానికి యాప్ పునఃప్రారంభించబడుతుంది.</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">ఫోన్ నంబర్</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">నా నంబర్‌ను ఎవరు చూడగలరు</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">మీరు సందేశం పంపిన వ్యక్తులకు మరియు సమూహాలకు మీ ఫోన్ నంబర్ కనిపిస్తుంది.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">మీ ఫోన్ నంబర్‌ను వారి ఫోన్ కాంటాక్ట్‌లలో వారు సేవ్ చేసుకుంటే తప్ప అది ఎవరికీ కనిపించదు.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">మీ ఫోన్ నంబర్ ఎవరికీ కనిపించదు.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">మీ ఫోన్ నంబర్‌ను కలిగి ఉన్న ఎవరైనా మీరు Signal లో ఉన్నట్లు చూస్తారు మరియు మీతో చాట్‌లను ప్రారంభించగలరు.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">మీరు వారికి సందేశం పంపితే లేదా వారితో ఇప్పటికే చాట్ చేస్తే తప్ప మీరు Signal లో ఉన్నారని ఎవరూ చూడలేరు.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ఈ సెట్టింగ్‌ను మార్చడానికి, నా నంబర్‌ను ఎవరు చూడగలరు అనే దానిని ఎవరూ చూడలేరుకు సెట్ చేయండి."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ఖచ్చితంగా చేయాలా?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"నంబరు ద్వారా నన్ను ఎవరు కనుగొనగలరు\" అనే సెట్టింగ్‌ను \"ఎవరూ లేరు\" కు సెట్ చేయడం వలన వ్యక్తులు మిమ్మల్ని Signal లో కనుగొనడం కష్టతరం చేస్తుంది.</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
-    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
-    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
-    <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Documents</string>
-    <string name="preferences__data_and_storage">Data and storage</string>
-    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">When roaming</string>
-    <string name="preferences_chats__media_auto_download">Media auto-download</string>
-    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
-    <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">రద్దు చేయండి</string>
+    <string name="PhoneNumberPrivacy_everyone">ప్రతి ఒక్కరూ</string>
+    <string name="PhoneNumberPrivacy_nobody">యెవరు లేరు</string>
+    <string name="arrays__images">చిత్రాలు</string>
+    <string name="arrays__audio">ఆడియో</string>
+    <string name="arrays__video">వీడియో</string>
+    <string name="arrays__documents">పత్రాలు</string>
+    <string name="preferences__data_and_storage">డేటా మరియు నిల్వ</string>
+    <string name="preferences_chats__when_using_mobile_data">మొబైల్ సమాచారం ఉపయోగిస్తున్నప్పుడు</string>
+    <string name="preferences_chats__when_using_wifi">వైఫై ఉపయోగించి చేసినప్పుడు</string>
+    <string name="preferences_chats__when_roaming">రోమింగ్లో ఉన్నప్పుడు</string>
+    <string name="preferences_chats__media_auto_download">ప్రసార మాధ్యమం దానంతట అదే దిగుమతి</string>
+    <string name="preferences_data_and_storage__manage_storage">నిల్వను నిర్వహించండి</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">కాల్‌ల కోసం తక్కువ డేటాను ఉపయోగించండి</string>
+    <string name="preferences_data_and_storage__never">ఎప్పుడూ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi మరియు మొబైల్ డేటా</string>
+    <string name="preferences_data_and_storage__mobile_data_only">మొబైల్ డేటా మాత్రమే</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">తక్కువ డేటాను ఉపయోగించడం వల్ల చెడ్డ నెట్‌వర్క్‌లలో కాల్‌లను మెరుగుపరుస్తుంది</string>
+    <string name="preferences_proxy">ప్రాక్సీ</string>
+    <string name="preferences_use_proxy">ప్రాక్సీని ఉపయోగించండి</string>
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">మీడియా నాణ్యత</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">లెక్కిస్తోంది…</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">పంపిన మీడియా నాణ్యత</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">అధిక నాణ్యత కలిగిన మీడియాను పంపడం వల్ల మరింత డేటా ఉపయోగించబడుతుంది.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">స్వర సందేశలు మరియు స్టిక్కర్‌లు (%1$s క్రింద) ఎల్లప్పుడూ స్వయంచాలకంగా డౌన్‌లోడ్ చేయబడతాయి.</string>
+    <string name="DataAndStorageSettingsFragment__calls">కాల్స్</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">బ్యాక్‌గ్రౌండ్‌లో అనుసంధానమై ఉండండి</string>
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">బ్యాక్‌గ్రౌండ్‌లో ఉన్నప్పుడు కూడా అనుసంధానమై ఉండటం వల్ల బ్యాటరీ వినియోగం పెరిగే అవకాశం ఉంది. చాలా పరికరాలకు ఇది అవసరం లేదు. ఒకవేళ మీరు నోటిఫికేషన్ సమస్యలను ఎదుర్కొంటున్నట్లయితే మాత్రమే దీనిని ప్రారంభించాలి.</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+    <string name="DataAndStorageSettingsFragment__enable">ప్రారంభించండి</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">High</string>
+  <string name="SentMediaQuality__high">అధికం</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standard</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+  <string name="SentMediaQuality__standard">ప్రామాణికం</string>
+    <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">స్క్రీన్ లాక్ ఉపయోగించండి</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">మీరు యాప్‌లను విడిచిపెట్టినప్పుడు లేదా యాప్‌ల మధ్య మారినప్పుడు Signal ను అన్‌లాక్ చేయడానికి మీ ఆండ్రాయిడ్ పరికరం లాక్ సెట్టింగ్‌లు అవసరం. లాక్ చేయబడినప్పుడు, నోటిఫికేషన్ ప్రివ్యూలు సందేశ కంటెంట్‌ను చూపవు.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">స్క్రీన్ లాక్‌ను ప్రారంభించండి</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 నిమిషం తర్వాత</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 నిమిషాల తర్వాత</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 నిమిషాల తర్వాత</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">అనుకూల సమయం</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal స్క్రీన్ లాక్ ఉపయోగించండి</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal స్క్రీన్ లాక్ ఆఫ్ చేయండి</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="preferences__help">Help</string>
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="preferences__help">సహాయం</string>
+    <string name="HelpSettingsFragment__support_center">మద్దతు సెంటర్</string>
+    <string name="HelpSettingsFragment__contact_us">మమ్మల్ని సంప్రదించండి</string>
+    <string name="HelpSettingsFragment__version">వివరణము</string>
     <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__copied_to_clipboard">క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
+    <string name="HelpSettingsFragment__debug_log">డీబగ్ సంఘటన లేకరి</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpSettingsFragment__licenses">లైసెన్స్‌లు</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">నిబంధనలు &amp; గోప్యతా విధానం</string>
+    <string name="HelpFragment__copyright_signal_messenger">కాపీరైట్ Signal మెసెంజర్</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 కింద లైసెన్స్ పొందింది</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ఒక 501c3 లాభాపేక్ష లేని సంస్థ</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">యాప్ ఐకాన్స్ మరియు పేర్లు హోమ్ స్క్రీన్ మరియు యాప్ డ్రాయర్‌పై కనిపిస్తాయి.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి.</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">రీప్లేస్‌మెంట్ యాప్ ఐకాన్ ఎక్కడ కనిపిస్తుందో వివరించే గ్రాఫిక్.</string>
 
     <!-- AppIconSelectionScreen -->
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">వాతావరణం</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notes</string>
+    <string name="app_icon_label_notes">గమనికలు</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">వార్తలు</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">తరంగాలు</string>
     <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <string name="preferences__app_icon_dialog_ok">సరే</string>
     <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Cancel</string>
+    <string name="preferences__app_icon_dialog_cancel">రద్దు చేయండి</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">యాప్ ఐకాన్ మరియు పేరును \"%1$s\"కు మార్చండి</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">యాప్ ఐకాన్ మరియు పేరును మార్చడానికి Signal ను మూసివేయాల్సి ఉంటుంది. నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">యాప్ ఐకాన్ మరియు పేరును ఎంచుకోండి, ఇది మీ ఫోన్ యొక్క హోమ్ స్క్రీన్ మరియు యాప్ డ్రాయర్‌పై కనిపిస్తుంది. నోటిఫికేషన్లు ఎల్లప్పుడూ డిఫాల్ట్ Signal ఐకాన్ మరియు పేరును ప్రదర్శిస్తాయి. మరింత తెలుసుకోండి</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">మరింత తెలుసుకోండి</string>
 
     <!-- QrCodeBadge -->
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">లింక్ సెట్ చేయబడలేదు</string>
 
     <!-- UsernameLinkQrColorPickerScreen -->
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">రంగు</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">పూర్తయింది</string>
 
     <!-- NotificationProfileCreatedScreen -->
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <string name="NotificationProfileCreated__profile_created">ప్రొఫైల్ సృష్టించబడింది</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Done</string>
+    <string name="NotificationProfileCreated__done">పూర్తయింది</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">చాట్ జాబితాలోని మెనూ ద్వారా మీరు మీ ప్రొఫైల్‌ను మాన్యువల్‌గా ఆన్ లేదా ఆఫ్ చేయవచ్చు.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">మీ ప్రొఫైల్‌ని ఆటోమేట్ చేయడానికి సెట్టింగ్‌ల్లో ఒక షెడ్యూల్‌ని జోడించండి.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">మీ షెడ్యూల్‌కు అనుగుణంగా మీ ప్రొఫైల్ ఆటోమేటిక్‌గా ఆన్ లేదా ఆఫ్ అవుతుంది.</string>
 </resources>

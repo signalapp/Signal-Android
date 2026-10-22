@@ -981,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">Alle beskeder på forbundne enheder er private</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal-beskeder synkroniseres med Signal på din mobiltelefon, når forbindelsen er oprettet.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Gå til %1$s for at installere Signal på den enhed, du gerne vil oprette forbindelse til.</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -8096,7 +8096,7 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
     <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
-    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
+    <string name="MessageBackupsFlowFragment__authentication_required">Autentificering påkrævet</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8710,7 +8710,7 @@
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">For at prøve igen skal du afinstallere og geninstallere Signal på denne enhed og vælge \"Gendan eller overfør\".</string>
 
     <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
-    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Få mere at vide</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">Der blev anmodet om en bekræftelseskode</string>

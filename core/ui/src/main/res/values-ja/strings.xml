@@ -50,53 +50,53 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">削除</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">なし</string>
+    <string name="preferences_off">オフ</string>
+    <string name="preferences_on">オン</string>
+    <string name="ExpireTimerSettingsFragment__set">設定する</string>
+    <string name="CustomExpireTimerSelectorView__seconds">秒</string>
+    <string name="CustomExpireTimerSelectorView__minutes">分</string>
+    <string name="CustomExpireTimerSelectorView__hours">時間</string>
+    <string name="CustomExpireTimerSelectorView__days">日</string>
+    <string name="CustomExpireTimerSelectorView__weeks">週間</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">オフ</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="other">%1$d秒</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d秒</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d分</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d分</string>
 
     <plurals name="expiration_hours">
-        <item quantity="other">%1$d hours</item>
+        <item quantity="other">%1$d時間</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d時間</string>
 
     <plurals name="expiration_days">
-        <item quantity="other">%1$d days</item>
+        <item quantity="other">%1$d日</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d日</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="other">%1$d週間</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$d週</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">詳しく見る</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">続きを読む</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

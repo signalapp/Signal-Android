@@ -138,44 +138,44 @@
     <!-- ExportAccountDataFragment -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">ನಿಮ್ಮ ಖಾತೆ ಡೇಟಾ</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">ನಿಮ್ಮ Signal ಖಾತೆ ಡೇಟಾದ ವರದಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ. ಈ ವರದಿ ಯಾವುದೇ ಮೆಸೇಜ್‌ಗಳು ಅಥವಾ ಮೀಡಿಯಾವನ್ನು ಒಳಗೊಂಡಿಲ್ಲ. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">ವರದಿಯನ್ನು ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT ರೂಪದಲ್ಲಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">ಸುಲಭವಾಗಿ ಓದಬಹುದಾದ ಟೆಕ್ಸ್ಟ್ ಫೈಲ್</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON ರೂಪದಲ್ಲಿ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">ಯಂತ್ರ ಓದಬಹುದಾದ ಫೈಲ್</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">ರದ್ದುಮಾಡಿ</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">ಓಕೆ</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">ವರದಿಯನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">ಡೇಟಾ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಬೇಕೇ?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">ನಿಮ್ಮ Signal ಖಾತೆ ಡೇಟಾವನ್ನು ನೀವು ನಂಬುವ ಜನರು ಅಥವಾ ಆ್ಯಪ್‌ಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">ಎಕ್ಸ್‌ಪೋರ್ಟ್ ಮಾಡಿ</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">ಎಕ್ಸ್‌ಪೋರ್ಟ್‌ನ ವೇಳೆಯಲ್ಲಷ್ಟೇ ನಿಮ್ಮ ವರದಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ Signal ನಿಂದ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -215,23 +215,23 @@
 
     <!-- PasskeySetupScreen -->
     <!-- Title of the screen that explains passkeys before the user sets one up -->
-    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <string name="PasskeySetupScreen__passkeys">ಪಾಸ್‌ಕೀಗಳು</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">ಪಾಸ್‌ಕೀಗಳ ಮೂಲಕ ನಿಮ್ಮ ಖಾತೆಗೆ ನೀವು ಸುಲಭವಾಗಿ ಸುರಕ್ಷಿತ ಎರಡನೇ ಸ್ವರೂಪದ ಅಥೆಂಟಿಕೇಶನ್ ಅನ್ನು ಸೇರಿಸಬಹುದು. ಪಾಸ್‌ಕೀಗಳು ನಿಮ್ಮ ಸಾಧನದ ಬಯೊಮೆಟ್ರಿಕ್ಸ್ ಅಥವಾ ಹೊಂದಾಣಿಕೆಯಾಗುವ FIDO2 ಭದ್ರತಾ ಕೀ ಅನ್ನು ಬಳಸಬಹುದು.</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <string name="PasskeySetupScreen__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Bullet point explaining that the user can name their passkey -->
-    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">ನಿಮ್ಮ ಪಾಸ್‌ಕೀ ಅನ್ನು ಗುರುತಿಸಲು ಅದಕ್ಕೆ ಒಂದು ಸುಲಭವಾದ ಹೆಸರನ್ನು ನೀಡಿ</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">ನಿಮ್ಮ ಪಾಸ್‌ಕೀ ಅನ್ನು ಸಂಗ್ರಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದ ಬಯೊಮೆಟ್ರಿಕ್ಸ್ ಅಥವಾ FIDO2 ಭದ್ರತೆ ಕೀ ಅನ್ನು ಬಳಸಿ</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
-    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">ಪಾಸ್‌ಕೀಗಳನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಸೇರಿಸಿ ಅಥವಾ ತೆಗೆದುಹಾಕಿ.</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">ಪಾಸ್‌ಕೀ ಸೆಟಪ್ ಮಾಡಿ</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಎರಡು-ಹಂತದ ಅಥೆಂಟಿಕೇಶನ್ ವಿಧಾನಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -416,176 +416,176 @@
     <string name="preferences_app_updates__title">ಅಪ್ಲಿಕೇಶನ್ ನವೀಕರಣಗಳು</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__language">Language</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <string name="preferences__appearance">ಲಕ್ಷಣ</string>
+    <string name="preferences__language">ಭಾಷೆ</string>
+    <string name="preferences__theme">ಥೀಮ್</string>
+    <string name="preferences__system_default">ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್</string>
+    <string name="preferences__light_theme">ತಿಳಿ</string>
+    <string name="preferences__dark_theme">ಗಾಢ</string>
+    <string name="preferences__chat_color_and_wallpaper">ಚಾಟ್ ಬಣ್ಣ ಮತ್ತು ವಾಲ್‌ಪೇಪರ್</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
+    <string name="preferences__app_icon">ಆ್ಯಪ್ ಐಕಾನ್</string>
+    <string name="preferences_chats__message_text_size">ಸಂದೇಶ ಫಾಂಟ್ ಗಾತ್ರ</string>
+    <string name="arrays__small">ಸಣ್ಣ</string>
+    <string name="arrays__normal">ಸಾಧಾರಣ</string>
+    <string name="arrays__large">ದೊಡ್ಡದು</string>
+    <string name="arrays__extra_large">ಹೆಚ್ಚು ದೊಡ್ಡದು</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">ನ್ಯಾವಿಗೇಶನ್ ಬಾರ್ ಗಾತ್ರ</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">ಸಾಧಾರಣ</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">ಚಿಕ್ಕ</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">ಹೊಸ ಭಾಷೆಯ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಅನ್ವಯಿಸಲು ಆ್ಯಪ್ ಮರುಪ್ರಾರಂಭಗೊಳ್ಳುತ್ತದೆ.</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">ನನ್ನ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">ನೀವು ಮೆಸೇಜ್ ಮಾಡುವ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಕಾಣಿಸುತ್ತದೆ.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಅವರು ತಮ್ಮ ಫೋನ್‌ನ ಸಂಪರ್ಕಗಳಲ್ಲಿ ಉಳಿಸದ ಹೊರತು ಯಾರಿಗೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಯಾರಿಗೂ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ಕಂಡುಹಿಡಿಯಬಹುದು</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನೀವು Signal ‌ನಲ್ಲಿರುವುದನ್ನು ನೋಡುತ್ತಾರೆ ಮತ್ತು ನಿಮ್ಮೊಂದಿಗೆ ಚಾಟ್‌ಗಳನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">ನೀವು ಮೆಸೇಜ್ ಕಳುಹಿಸದ ಹೊರತು ಅಥವಾ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಚಾಟ್ ಅನ್ನು ಹೊಂದಿರದ ಹೊರತು ನೀವು Signal ‌ನಲ್ಲಿದ್ದೀರಿ ಎಂದು ಯಾರಿಗೂ ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಬದಲಾಯಿಸಲು, ನನ್ನ ಸಂಖ್ಯೆಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂಬುದನ್ನು ಯಾರೂ ಇಲ್ಲ ಎಂಬುದಾಗಿ ಹೊಂದಿಸಿ."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ನಿಮಗೆ ಖಾತ್ರಿಯಿದೆಯೇ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"ಯಾರು ನನ್ನ ನಂಬರನ್ನು ಹುಡುಕಬಹುದು\" ಅನ್ನು \"ಯಾರೂ ಇಲ್ಲ\" ಅಂದು ಸೆಟ್ ಮಾಡಿದರೆ, Signal ನಲ್ಲಿ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಜನರಿಗೆ ಇನ್ನೂ ಕಷ್ಟವಾಗುವುದು.</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
-    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
-    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
-    <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Documents</string>
-    <string name="preferences__data_and_storage">Data and storage</string>
-    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">When roaming</string>
-    <string name="preferences_chats__media_auto_download">Media auto-download</string>
-    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
-    <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">ರದ್ದುಮಾಡಿ</string>
+    <string name="PhoneNumberPrivacy_everyone">ಎಲ್ಲರೂ</string>
+    <string name="PhoneNumberPrivacy_nobody">ಯಾರೂ ಇಲ್ಲ</string>
+    <string name="arrays__images">ಚಿತ್ರಗಳು</string>
+    <string name="arrays__audio">ಆಡಿಯೊ</string>
+    <string name="arrays__video">ವೀಡಿಯೊ</string>
+    <string name="arrays__documents">ದಾಖಲೆಗಳು</string>
+    <string name="preferences__data_and_storage">ಡೇಟಾ ಮತ್ತು ಸ್ಟೊರೇಜ್</string>
+    <string name="preferences_chats__when_using_mobile_data">ಮೊಬೈಲ್ ಡೇಟಾ ಬಳಸುತ್ತಿರುವಾಗ</string>
+    <string name="preferences_chats__when_using_wifi">ವೈಫೈ ಬಳಸುತ್ತಿರುವಾಗ</string>
+    <string name="preferences_chats__when_roaming">ರೋಮಿಂಗ್-ನಲ್ಲಿರುವಾಗ</string>
+    <string name="preferences_chats__media_auto_download">ಮೀಡಿಯಾ ಆಟೋ ಡೌನ್‌ಲೋಡ್</string>
+    <string name="preferences_data_and_storage__manage_storage">ಸ್ಟೊರೇಜ್ ನಿರ್ವಹಿಸಿ</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">ಕಾಲ್‌ಗಳಿಗೆ ಕಡಿಮೆ ಡೇಟಾ ಬಳಸಿ</string>
+    <string name="preferences_data_and_storage__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">ವೈಫೈ ಮತ್ತು ಮೊಬೈಲ್ ಡೇಟಾ</string>
+    <string name="preferences_data_and_storage__mobile_data_only">ಮೊಬೈಲ್ ಡೇಟಾ ಮಾತ್ರ</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ಕಡಿಮೆ ಡೇಟಾ ಬಳಸುವುದರಿಂದ ಕೆಟ್ಟ ನೆಟ್‌ವರ್ಕ್‌ಗಳಲ್ಲಿ ಕರೆಗಳನ್ನು ಸುಧಾರಿಸಬಹುದು.</string>
+    <string name="preferences_proxy">ಪ್ರಾಕ್ಸಿ</string>
+    <string name="preferences_use_proxy">ಪ್ರಾಕ್ಸಿ ಬಳಸಿ</string>
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟ</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">ಮಾಧ್ಯಮ ಗುಣಮಟ್ಟವನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ಉನ್ನತ ಗುಣಮಟ್ಟದ ಮಾಧ್ಯಮವನ್ನು ಕಳುಹಿಸುವಿಕೆಯು ಹೆಚ್ಚು ಡೇಟಾವನ್ನು ಬಳಸಲಿದೆ.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ಧ್ವನಿ ಸಂದೇಶಗಳು ಮತ್ತು ಸ್ಟಿಕ್ಕರ್‌ಗಳು (%1$s ಗಿಂತ ಕಡಿಮೆ) ಯಾವಾಗಲೂ ಸ್ವಯಂ-ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತವೆ.</string>
+    <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಸಂಪರ್ಕದಲ್ಲಿರಿ</string>
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ಹಿನ್ನೆಲೆಯಲ್ಲಿದ್ದುಕೊಂಡು ಸಂಪರ್ಕದಲ್ಲಿರುವುದು ಬ್ಯಾಟರಿ ಬಳಕೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಸಾಧ್ಯತೆಯಿದೆ. ಬಹುತೇಕ ಸಾಧನಗಳಿಗೆ ಇದು ಅಗತ್ಯವಿಲ್ಲ. ನೀವು ನೋಟಿಫಿಕೇಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಎದುರಿಸುತ್ತಿದ್ದರೆ ಮಾತ್ರ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+    <string name="DataAndStorageSettingsFragment__enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">High</string>
+  <string name="SentMediaQuality__high">ಹೆಚ್ಚು</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standard</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+  <string name="SentMediaQuality__standard">ಪ್ರಮಾಣಿತ</string>
+    <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಬಳಸಿ</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">ನೀವು ಆ್ಯಪ್‌ಗಳನ್ನು ತೊರೆದಾಗ ಅಥವಾ ಬದಲಾಯಿಸಿದಾಗ Signal ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ನಿಮ್ಮ Android ಸಾಧನ ಲಾಕ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ. ಲಾಕ್ ಮಾಡಿದಾಗ, ಅಧಿಸೂಚನೆ ಪ್ರಿವ್ಯೂಗಳು ಮೆಸೇಜ್‌ನ ಕಂಟೆಂಟ್ ಅನ್ನು ತೋರಿಸುವುದಿಲ್ಲ.</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಪ್ರಾರಂಭಿಸಿ</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 ನಿಮಿಷದ ನಂತರ</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 ನಿಮಿಷಗಳ ನಂತರ</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 ನಿಮಿಷಗಳ ನಂತರ</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">ಕಸ್ಟಮ್ ಸಮಯ</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಬಳಸಿ</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಆಫ್ ಮಾಡಿ</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="preferences__help">Help</string>
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="preferences__help">ಸಹಾಯ</string>
+    <string name="HelpSettingsFragment__support_center">ಬೆಂಬಲ ಕೇಂದ್ರ</string>
+    <string name="HelpSettingsFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+    <string name="HelpSettingsFragment__version">ಆವೃತ್ತಿ</string>
     <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
+    <string name="HelpSettingsFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpSettingsFragment__licenses">ಪರವಾನಗಿಗಳು</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
+    <string name="HelpFragment__copyright_signal_messenger">ಹಕ್ಕುಸ್ವಾಮ್ಯ Signal ಮೆಸೆಂಜರ್</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 ಅಡಿಯಲ್ಲಿ ಪರವಾನಗಿ ಹೊಂದಿದೆ</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal 501c3 ಲಾಭರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದೆ</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">ಆ್ಯಪ್ ಐಕಾನ್‌ಗಳು ಮತ್ತು ಹೆಸರುಗಳು ಹೋಮ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಆ್ಯಪ್ ಡ್ರಾಯರ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">ಬದಲಿ ಆ್ಯಪ್ ಐಕಾನ್ ಕಾಣಿಸುವಲ್ಲಿ ಗ್ರಾಫಿಕ್ ವಿವರಣೆಯಿರುತ್ತದೆ.</string>
 
     <!-- AppIconSelectionScreen -->
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">ಹವಾಮಾನ</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notes</string>
+    <string name="app_icon_label_notes">ಟಿಪ್ಪಣಿಗಳು</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">ಸುದ್ದಿ</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">ಅಲೆಗಳು</string>
     <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <string name="preferences__app_icon_dialog_ok">ಓಕೆ</string>
     <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Cancel</string>
+    <string name="preferences__app_icon_dialog_cancel">ರದ್ದುಮಾಡಿ</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">ಆ್ಯಪ್ ಐಕಾನ್ ಬದಲಾಯಿಸಿ ಮತ್ತು \"%1$s\" ಎಂಬುದಾಗಿ ಹೆಸರಿಸಿ</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">ಆ್ಯಪ್ ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು Signal ಅನ್ನು ಮುಚ್ಚಬೇಕಾಗುತ್ತದೆ. ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">ಒಂದು ಆ್ಯಪ್ ಐಕಾನ್ ಮತ್ತು ಹೆಸರು ಆಯ್ಕೆ ಮಾಡಿ, ಅದು ನಿಮ್ಮ ಫೋನ್‌ನ ಹೋಮ್ ಸ್ಕ್ರೀನ್ ಮತ್ತು ಆ್ಯಪ್ ಡ್ರಾಯರ್‌ನಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ. ಅಧಿಸೂಚನೆಗಳು ಯಾವತ್ತೂ ಡೀಫಾಲ್ಟ್ Signal ಐಕಾನ್ ಮತ್ತು ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ. ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
 
     <!-- QrCodeBadge -->
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿಸಲಾಗಿಲ್ಲ</string>
 
     <!-- UsernameLinkQrColorPickerScreen -->
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">ಬಣ್ಣ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">ಮುಗಿದಿದೆ</string>
 
     <!-- NotificationProfileCreatedScreen -->
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <string name="NotificationProfileCreated__profile_created">ಪ್ರೊಫೈಲ್ ರಚಿಸಲಾಗಿದೆ</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Done</string>
+    <string name="NotificationProfileCreated__done">ಮುಗಿದಿದೆ</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ಚಾಟ್ ಲಿಸ್ಟ್‌ನಲ್ಲಿರುವ ಮೆನು ಮೂಲಕ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ನೀವು ಕೈಯಾರೆ ಆನ್ ಅಥವಾ ಆಫ್ ಮಾಡಬಹುದು.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಸ್ವಯಂಚಾಲನೆಗೊಳಿಸಲು ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ವೇಳಾಪಟ್ಟಿ ಸೇರಿಸಿ.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">ನಿಮ್ಮ ವೇಳಾಪಟ್ಟಿ ಪ್ರಕಾರವಾಗಿ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆನ್ ಅಥವಾ ಆಫ್ ಆಗಲಿದೆ.</string>
 </resources>

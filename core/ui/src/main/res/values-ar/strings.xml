@@ -50,78 +50,78 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">إزالة</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">لا شيء</string>
+    <string name="preferences_off">في حالة إيقاف</string>
+    <string name="preferences_on">في حالة تشغيل</string>
+    <string name="ExpireTimerSettingsFragment__set">تعيين</string>
+    <string name="CustomExpireTimerSelectorView__seconds">ثوان</string>
+    <string name="CustomExpireTimerSelectorView__minutes">دقائق</string>
+    <string name="CustomExpireTimerSelectorView__hours">ساعات</string>
+    <string name="CustomExpireTimerSelectorView__days">أيام</string>
+    <string name="CustomExpireTimerSelectorView__weeks">أسابيع</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">مغلق</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="zero">%1$d seconds</item>
-        <item quantity="one">%1$d second</item>
-        <item quantity="two">%1$d seconds</item>
-        <item quantity="few">%1$d seconds</item>
-        <item quantity="many">%1$d seconds</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="zero">%1$d ثانية</item>
+        <item quantity="one">%1$d ثانية</item>
+        <item quantity="two">%1$d ثانيتين</item>
+        <item quantity="few">%1$d ثواني</item>
+        <item quantity="many">%1$d ثواني</item>
+        <item quantity="other">%1$d ثواني</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d ثانية</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="zero">%1$d minutes</item>
-        <item quantity="one">%1$d minute</item>
-        <item quantity="two">%1$d minutes</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="zero">%1$d دقيقة</item>
+        <item quantity="one">%1$d دقيقة</item>
+        <item quantity="two">%1$d دقيقتين</item>
+        <item quantity="few">%1$d دقائق</item>
+        <item quantity="many">%1$d دقائق</item>
+        <item quantity="other">%1$d دقائق</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d دقيقة</string>
 
     <plurals name="expiration_hours">
-        <item quantity="zero">%1$d hours</item>
-        <item quantity="one">%1$d hour</item>
-        <item quantity="two">%1$d hours</item>
-        <item quantity="few">%1$d hours</item>
-        <item quantity="many">%1$d hours</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="zero">%1$d ساعة</item>
+        <item quantity="one">%1$d ساعة</item>
+        <item quantity="two">%1$d ساعتين</item>
+        <item quantity="few">%1$d ساعات</item>
+        <item quantity="many">%1$d ساعةً</item>
+        <item quantity="other">%1$d ساعةٍ</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d ساعة</string>
 
     <plurals name="expiration_days">
-        <item quantity="zero">%1$d days</item>
-        <item quantity="one">%1$d day</item>
-        <item quantity="two">%1$d days</item>
-        <item quantity="few">%1$d days</item>
-        <item quantity="many">%1$d days</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="zero">%1$d يوم</item>
+        <item quantity="one">%1$d يوم</item>
+        <item quantity="two">%1$d يومين</item>
+        <item quantity="few">%1$d أيام</item>
+        <item quantity="many">%1$d يومًا</item>
+        <item quantity="other">%1$d يومٍ</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d يوم</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="zero">%1$d weeks</item>
-        <item quantity="one">%1$d week</item>
-        <item quantity="two">%1$d weeks</item>
-        <item quantity="few">%1$d weeks</item>
-        <item quantity="many">%1$d weeks</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="zero">%1$d أسبوع</item>
+        <item quantity="one">%1$d أسبوع</item>
+        <item quantity="two">%1$d أسبوعين</item>
+        <item quantity="few">%1$d أسابيع</item>
+        <item quantity="many">%1$d أسبوعًا</item>
+        <item quantity="other">%1$d أسبوعٍ</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
+    <string name="expiration_weeks_abbreviated">%1$d أسبوع</string>
+    <string name="expiration_combined">‏%1$s‏%2$s‏</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">اعرف المزيد</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">اقرأ المزيد</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

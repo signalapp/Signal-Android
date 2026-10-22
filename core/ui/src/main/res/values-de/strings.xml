@@ -50,58 +50,58 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Entfernen</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">Keine</string>
+    <string name="preferences_off">Aus</string>
+    <string name="preferences_on">Ein</string>
+    <string name="ExpireTimerSettingsFragment__set">Festlegen</string>
+    <string name="CustomExpireTimerSelectorView__seconds">Sekunden</string>
+    <string name="CustomExpireTimerSelectorView__minutes">Minuten</string>
+    <string name="CustomExpireTimerSelectorView__hours">Stunden</string>
+    <string name="CustomExpireTimerSelectorView__days">Tage</string>
+    <string name="CustomExpireTimerSelectorView__weeks">Wochen</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">Aus</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d second</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="one">%1$d Sekunde</item>
+        <item quantity="other">%1$d Sekunden</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d Sek.</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d Minute</item>
+        <item quantity="other">%1$d Minuten</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d Min.</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="one">%1$d Stunde</item>
+        <item quantity="other">%1$d Stunden</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d Std.</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">%1$d day</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="one">%1$d Tag</item>
+        <item quantity="other">%1$d Tage</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d Tg.</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="one">%1$d Woche</item>
+        <item quantity="other">%1$d Wochen</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$d Wo.</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">Weiterlesen</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

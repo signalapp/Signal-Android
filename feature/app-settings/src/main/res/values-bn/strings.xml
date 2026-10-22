@@ -138,44 +138,44 @@
     <!-- ExportAccountDataFragment -->
   <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
-    <string name="ExportAccountDataFragment__your_account_data">Your account data</string>
+    <string name="ExportAccountDataFragment__your_account_data">আপনার অ্যাকাউন্টের ডেটা</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Export a report of your Signal account data. This report does not include any messages or media. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">আপনার Signal অ্যাকাউন্টের ডেটার একটি রিপোর্ট এক্সপোর্ট করুন। এই রিপোর্টে কোনো ম্যাসেজ বা মিডিয়া অন্তর্ভুক্ত নেই। %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Learn more</string>
+    <string name="ExportAccountDataFragment__learn_more">আরো জানুন</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Export report</string>
+    <string name="ExportAccountDataFragment__export_report">রিপোর্ট এক্সপোর্ট করুন</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Export as TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">TXT হিসেবে এক্সপোর্ট করুন</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Easy-to-read text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">সহজে পড়া যায় এমন টেক্সট ফাইল</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Export as JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">JSON হিসেবে এক্সপোর্ট করুন</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Machine-readable file</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">মেশিন-পাঠযোগ্য ফাইল</string>
 
     <!-- Action to cancel (in a dialog) -->
-    <string name="ExportAccountDataFragment__cancel_action">Cancel</string>
+    <string name="ExportAccountDataFragment__cancel_action">বাতিল করুন</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">OK</string>
+    <string name="ExportAccountDataFragment__ok_action">ঠিক আছে</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Couldn\'t generate report</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">রিপোর্ট তৈরি করা যায়নি</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Check your connection and try again.</string>
+    <string name="ExportAccountDataFragment__check_network">আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Export data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">ডেটা এক্সপোর্ট করতে চান?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Only share your Signal account data with people or apps you trust.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">শুধুমাত্র আপনার বিশ্বাসযোগ্য ব্যক্তি বা অ্যাপের সাথে আপনার Signal অ্যাকাউন্টের ডেটা শেয়ার করুন।</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Export</string>
+    <string name="ExportAccountDataFragment__export_report_action">এক্সপোর্ট করুন</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Generating report…</string>
+    <string name="ExportAccountDataFragment__download_progress">রিপোর্ট তৈরি করা হচ্ছে…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Your report is generated only at the time of export and is not stored by Signal on your device.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">আপনার রিপোর্ট শুধুমাত্র এক্সপোর্ট করার সময় তৈরি হয় এবং Signal কর্তৃক আপনার ডিভাইসে সংরক্ষণ করা হয় না।</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -215,23 +215,23 @@
 
     <!-- PasskeySetupScreen -->
     <!-- Title of the screen that explains passkeys before the user sets one up -->
-    <string name="PasskeySetupScreen__passkeys">Passkeys</string>
+    <string name="PasskeySetupScreen__passkeys">পাস-কি</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">With passkeys you can easily add a secure second form of authentication to your account. Passkeys can use your device\'s biometrics or a compatible FIDO2 security key.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">পাস-কি\'র মাধ্যমে আপনি সহজেই আপনার অ্যাকাউন্টে একটি নিরাপদ দ্বিতীয় অথেন্টিকেশন পদ্ধতি যোগ করতে পারেন। পাস-কি আপনার ডিভাইসের বায়োমেট্রিক্স অথবা একটি সামঞ্জস্যপূর্ণ FIDO2 নিরাপত্তা \'কি\' ব্যবহার করতে পারে।</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Learn more</string>
+    <string name="PasskeySetupScreen__learn_more">আরো জানুন</string>
     <!-- Bullet point explaining that the user can name their passkey -->
-    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Give your passkey a friendly name to identify it</string>
+    <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">আপনার পাস-কি শনাক্ত করার জন্য এটিকে একটি সহজবোধ্য নাম দিন</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Use your device\'s biometrics or a FIDO2 security key to store your passkey</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">আপনার পাস-কি সংরক্ষণ করতে আপনার ডিভাইসের বায়োমেট্রিক্স অথবা একটি FIDO2 নিরাপত্তা \'কি\' ব্যবহার করুন</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
-    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Add or remove passkeys at any time.</string>
+    <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">যেকোনো সময় পাস-কি যোগ করুন বা মুছুন।</string>
     <!-- Button that starts creating a passkey -->
-    <string name="PasskeySetupScreen__set_up_a_passkey">Set up a passkey</string>
+    <string name="PasskeySetupScreen__set_up_a_passkey">একটি পাস-কি সেট আপ করুন</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
     <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">You can\'t add more than %1$d two-factor authentication methods. Try removing one first.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">আপনি %1$d-টির বেশি টু-ফ্যাক্টর অথেন্টিকেশন পদ্ধতি যোগ করতে পারবেন না। প্রথমে একটি মুছে ফেলার চেষ্টা করুন।</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -416,176 +416,176 @@
     <string name="preferences_app_updates__title">অ্যাপ আপডেট সমূহ</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Appearance</string>
-    <string name="preferences__language">Language</string>
-    <string name="preferences__theme">Theme</string>
-    <string name="preferences__system_default">System default</string>
-    <string name="preferences__light_theme">Light</string>
-    <string name="preferences__dark_theme">Dark</string>
-    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
+    <string name="preferences__appearance">অবয়ব।</string>
+    <string name="preferences__language">ভাষা</string>
+    <string name="preferences__theme">থীম</string>
+    <string name="preferences__system_default">সিস্টেম ডিফল্ট</string>
+    <string name="preferences__light_theme">আলো</string>
+    <string name="preferences__dark_theme">অন্ধকার</string>
+    <string name="preferences__chat_color_and_wallpaper">চ্যাটের রং ও ওয়ালপেপার</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">App Icon</string>
-    <string name="preferences_chats__message_text_size">Message font size</string>
-    <string name="arrays__small">Small</string>
-    <string name="arrays__normal">Normal</string>
-    <string name="arrays__large">Large</string>
-    <string name="arrays__extra_large">Extra large</string>
+    <string name="preferences__app_icon">অ্যাপ আইকন</string>
+    <string name="preferences_chats__message_text_size">বার্তার হরফের আকার</string>
+    <string name="arrays__small">ছোট</string>
+    <string name="arrays__normal">সাধারন</string>
+    <string name="arrays__large">বড়</string>
+    <string name="arrays__extra_large">অতিরিক্ত বড়</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Navigation bar size</string>
+    <string name="preferences_navigation_bar_size">নেভিগেশন বারের আকার</string>
     <!-- Preference summary for normal navigation bar size -->
-    <string name="preferences_normal">Normal</string>
+    <string name="preferences_normal">সাধারণ</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">সংক্ষিপ্ত</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
-    <string name="preferences_language_change_confirmation_message">The app will restart to apply the new language setting.</string>
+    <string name="preferences_language_change_confirmation_message">নতুন ভাষার সেটিং প্রয়োগ করতে অ্যাপটি পুনরায় চালু হবে।</string>
     <!-- Phone number heading displayed as a screen title -->
-    <string name="preferences_app_protection__phone_number">Phone number</string>
+    <string name="preferences_app_protection__phone_number">ফোন নম্বর</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Who can see my number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">আমার নম্বর কে দেখতে পাবেন</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Your phone number will be visible to people and groups you message.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">আপনার ফোন নম্বরটি সকল মানুষ এবং গ্ৰুপের কাছে দৃশ্যমান হবে।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Your phone number will not be visible to anyone unless they have it saved in their phone\'s contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">আপনার ফোন নম্বরটি কেউ দেখতে পাবেন না, যদি না তারা এটি তাদের ফোনের কন্টাক্টে সেভ করে থাকেন।</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Your phone number will not be visible to anyone.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">আপনার ফোন নম্বর কেউ দেখতে পাবেন না।</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Who can find me by number</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">নম্বরের মাধ্যমে কে আমাকে খুঁজে পাবেন</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Anyone who has your phone number will see you\'re on Signal and can start chats with you.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">যাদের কাছে আপনার ফোন নম্বর আছে তারা দেখতে পাবেন আপনি Signal-এ আছেন এবং আপনার সাথে চ্যাট শুরু করতে পারবেন।</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nobody will be able to see you\'re on Signal unless you message them or have an existing chat with them.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">আপনি Signal-এ আছেন তা কেউ দেখতে পাবেন না যদি না আপনি তাদের মেসেজ পাঠান বা তাদের সাথে কোনো চ্যাট বিদ্যমান থাকে।</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"To change this setting, set Who can see my number to Nobody."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"এই সেটিংসটি পরিবর্তন করতে, \"কে আমার নম্বর দেখতে পারবেন\" তা \"কেউই নয়\"-তে সেট করুন।"</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Are you sure?</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">আপনি কি নিশ্চিত?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Setting \"Who can find me by number\" to \"Nobody\" will make it harder for people to find you on Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"কারা আমাকে নম্বরের মাধ্যমে খুঁজে পেতে পারেন\"-এ \"কেউ নয়\" সেট করা হলে তা আপনাকে Signal-এ খুঁজে পাওয়া অন্যদের কাছে কঠিন করে তুলবে।</string>
     <!-- Dialog button text for canceling change action -->
-    <string name="PhoneNumberPrivacySettingsFragment__cancel">Cancel</string>
-    <string name="PhoneNumberPrivacy_everyone">Everyone</string>
-    <string name="PhoneNumberPrivacy_nobody">Nobody</string>
-    <string name="arrays__images">Images</string>
-    <string name="arrays__audio">Audio</string>
-    <string name="arrays__video">Video</string>
-    <string name="arrays__documents">Documents</string>
-    <string name="preferences__data_and_storage">Data and storage</string>
-    <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
-    <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
-    <string name="preferences_chats__when_roaming">When roaming</string>
-    <string name="preferences_chats__media_auto_download">Media auto-download</string>
-    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
-    <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks.</string>
-    <string name="preferences_proxy">Proxy</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="PhoneNumberPrivacySettingsFragment__cancel">বাতিল করুন</string>
+    <string name="PhoneNumberPrivacy_everyone">সকলে</string>
+    <string name="PhoneNumberPrivacy_nobody">কেউ না</string>
+    <string name="arrays__images">ছবিসমূহ</string>
+    <string name="arrays__audio">অডিও</string>
+    <string name="arrays__video">ভিডিও</string>
+    <string name="arrays__documents">নথিপত্র</string>
+    <string name="preferences__data_and_storage">ডাটা এবং স্টোরেজ</string>
+    <string name="preferences_chats__when_using_mobile_data">মোবাইল ডেটা ব্যবহার করার সময়</string>
+    <string name="preferences_chats__when_using_wifi">ওয়াইফাই ব্যবহার করার সময়</string>
+    <string name="preferences_chats__when_roaming">রোমিং করার সময়</string>
+    <string name="preferences_chats__media_auto_download">মিডিয়া অটো-ডাউনলোড</string>
+    <string name="preferences_data_and_storage__manage_storage">স্টোরেজ ব্যাবস্থাপনা</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">কলগুলির জন্য কম ডেটা ব্যবহার করুন</string>
+    <string name="preferences_data_and_storage__never">কখনোই না</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">ওয়াইফাই এবং মোবাইল ডেটা</string>
+    <string name="preferences_data_and_storage__mobile_data_only">কেবল মোবাইল ডেটা</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত হতে পারে।</string>
+    <string name="preferences_proxy">প্রক্সি</string>
+    <string name="preferences_use_proxy">প্রক্সি ব্যবহার করুন</string>
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">মিডিয়ার মান</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
-    <string name="DataAndStorageSettingsFragment__calculating">Calculating…</string>
+    <string name="DataAndStorageSettingsFragment__calculating">হিসাব করা হচ্ছে…</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">পাঠানো মিডিয়ার মান</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">উচ্চ মানের মিডিয়া প্রেরণে আরও ডেটা ব্যবহার হবে।</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
-    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Voice messages and stickers (under %1$s) are always auto-downloaded.</string>
-    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">ভয়েস মেসেজ ও স্টিকার (%1$s-এর চেয়ে কম) সবসময় স্বয়ংক্রিয়ভাবে ডাউনলোড হয়।</string>
+    <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
     <!-- Title of a toggle that keeps Signal connected in the background via a persistent foreground service instead of using FCM push messages -->
-    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">Stay connected in background</string>
+    <string name="DataAndStorageSettingsFragment__stay_connected_in_background">ব্যাকগ্রাউন্ডে সংযুক্ত থাকুন</string>
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
-    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">Staying connected while in the background will likely result in increased battery usage. This is not necessary for most devices. Only enable this if you\'ve been experiencing notification issues.</string>
+    <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">ব্যাকগ্রাউন্ডে সংযুক্ত থাকলে ব্যাটারির ব্যবহার বেড়ে যাওয়ার সম্ভাবনা থাকে। বেশিরভাগ ডিভাইসের জন্য এটির প্রয়োজন নেই। আপনি যদি নোটিফিকেশন সংক্রান্ত সমস্যার সম্মুখীন হয়ে থাকেন, তবেই এটি সক্রিয় করুন।</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">Enable</string>
+    <string name="DataAndStorageSettingsFragment__enable">সক্রিয় করুন</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-  <string name="SentMediaQuality__high">High</string>
+  <string name="SentMediaQuality__high">উচ্চ</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
-  <string name="SentMediaQuality__standard">Standard</string>
-    <string name="preferences_app_protection__screen_lock">Screen lock</string>
+  <string name="SentMediaQuality__standard">স্ট্যান্ডার্ড</string>
+    <string name="preferences_app_protection__screen_lock">স্ক্রীন এর লক্</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">Use screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">স্ক্রিন লক ব্যবহার করুন</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Your Android device lock settings will be required to unlock Signal when you leave or switch apps. When locked, notification previews will not show message content.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">আপনি যখন অ্যাপ্লিকেশন থেকে বেরিয়ে যান বা স্যুইচ করেন তখন Signal আনলক করতে আপনার Android ডিভাইস লক সেটিংসের প্রয়োজন হবে। লক করা অবস্থায় নোটিফিকেশন প্রিভিউ-এ মেসেজ কন্টেন্ট দেখা যাবে না।</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">Start screen lock</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">স্ক্রিন লক চালু করুন</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">After 1 minute</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 মিনিট পর</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">After 5 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 মিনিট পর</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">After 30 minutes</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">30 মিনিট পর</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
-    <string name="ScreenLockSettingsFragment__custom_time">Custom time</string>
+    <string name="ScreenLockSettingsFragment__custom_time">কাস্টম সময়</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Use Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal স্ক্রিন লক ব্যবহার করুন</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Turn off Signal screen lock</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal স্ক্রিন লক বন্ধ করুন</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="preferences__help">Help</string>
-    <string name="HelpSettingsFragment__support_center">Support center</string>
-    <string name="HelpSettingsFragment__contact_us">Contact us</string>
-    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="preferences__help">সাহায্য</string>
+    <string name="HelpSettingsFragment__support_center">সহায়তা কেন্দ্র</string>
+    <string name="HelpSettingsFragment__contact_us">আমাদের সাথে যোগাযোগ করুন</string>
+    <string name="HelpSettingsFragment__version">সংস্করণ</string>
     <!-- Displayed when copying help screen text to the clipboard -->
-    <string name="HelpSettingsFragment__copied_to_clipboard">Copied to clipboard</string>
-    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__copied_to_clipboard">ক্লিপবোর্ডে কপি করা হয়েছে</string>
+    <string name="HelpSettingsFragment__debug_log">ডিবাগ লগ</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
-    <string name="HelpSettingsFragment__licenses">Licenses</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
-    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">Licensed under the GNU AGPLv3</string>
+    <string name="HelpSettingsFragment__licenses">লাইসেন্স</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">শর্তাদি এবং গোপনীয়তা নীতি</string>
+    <string name="HelpFragment__copyright_signal_messenger">Signal Messenger এর কপিরাইট</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3-এর অধীনে লাইসেন্সকৃত</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
-    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal is a 501c3 nonprofit</string>
+    <string name="HelpSettingsFragment__signal_is_a_501c3">Signal একটি অলাভজনক প্রতিষ্ঠান</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">App icons and names are visible on the home screen and app drawer.</string>
+    <string name="preferences__app_icon_warning">অ্যাপ আইকন ও নাম হোম স্ক্রিন ও অ্যাপ ড্রয়ারে দৃশ্যমান।</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_notification_warning">নোটিফিকেশনে সবসময় ডিফল্ট Signal আইকন ও নাম দেখা যাবে।</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphic illustrating where the replacement app icon will be visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">প্রতিস্থাপিত অ্যাপ আইকনটি যেখানে দৃশ্যমান হবে সেখানে গ্রাফিক চিত্রায়ন থাকবে।</string>
 
     <!-- AppIconSelectionScreen -->
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
-    <string name="app_icon_label_weather">Weather</string>
+    <string name="app_icon_label_weather">আবহাওয়া</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
-    <string name="app_icon_label_notes">Notes</string>
+    <string name="app_icon_label_notes">নোট</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">News</string>
+    <string name="app_icon_label_news">খবর</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">Waves</string>
+    <string name="app_icon_label_waves">ঢেউ</string>
     <!-- Approval for changing the app icon. -->
-    <string name="preferences__app_icon_dialog_ok">OK</string>
+    <string name="preferences__app_icon_dialog_ok">ঠিক আছে</string>
     <!-- Cancelling the operation of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_cancel">Cancel</string>
+    <string name="preferences__app_icon_dialog_cancel">বাতিল করুন</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">Change app icon and name to \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">অ্যাপ আইকন ও নাম \"%1$s\"-এ পরিবর্তন করুন</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">Signal will need to close to change the app icon and name. Notifications will always display the default Signal icon and name.</string>
+    <string name="preferences__app_icon_dialog_description">অ্যাপ আইকন ও নাম পরিবর্তন করতে Signal বন্ধ করতে হবে। নোটিফিকেশনে সবসময় ডিফল্ট Signal আইকন ও নাম দেখা যাবে।</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Select an app icon and name, which will be visible on your phone\'s home screen and app drawer. Notifications will always display the default Signal icon and name. Learn more</string>
+    <string name="preferences__app_icon_warning_learn_more">একটি অ্যাপ আইকন ও নাম বেছে নিন, যা আপনার ফোনের হোম স্ক্রিন এবং অ্যাপ ড্রয়ারে দেখা যাবে। নোটিফিকেশনে সবসময় ডিফল্ট Signal আইকন ও নাম দেখা যাবে। আরো জানুন</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Learn more</string>
+    <string name="preferences__app_icon_learn_more">আরো জানুন</string>
 
     <!-- QrCodeBadge -->
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
-    <string name="UsernameLinkSettings_link_not_set_label">Link not set</string>
+    <string name="UsernameLinkSettings_link_not_set_label">লিংক সেট করা হয়নি</string>
 
     <!-- UsernameLinkQrColorPickerScreen -->
     <!-- App bar title for the username QR code color picker screen -->
-    <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
+    <string name="UsernameLinkSettings_color_picker_app_bar_title">রঙ</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Done</string>
+    <string name="UsernameLinkSettings_done_button_label">সম্পন্ন হয়েছে</string>
 
     <!-- NotificationProfileCreatedScreen -->
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <string name="NotificationProfileCreated__profile_created">প্রোফাইল তৈরি করা হয়েছে</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
-    <string name="NotificationProfileCreated__done">Done</string>
+    <string name="NotificationProfileCreated__done">শেষ</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">আপনি চ্যাট তালিকার মেন্যুর মাধ্যমে ম্যানুয়ালি আপনার প্রোফাইল চালু বা বন্ধ করতে পারবেন।</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">আপনার প্রোফাইল স্বয়ংক্রিয় করতে সেটিংসে একটি সময়সূচী যোগ করুন।</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">আপনার প্রোফাইল আপনার সময়সূচী অনুযায়ী স্বয়ংক্রিয়ভাবে চালু এবং বন্ধ হবে।</string>
 </resources>

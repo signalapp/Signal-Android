@@ -981,7 +981,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಲ್ಲಿನ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಮಾಡುವಿಕೆಯು ಖಾಸಗಿಯಾಗಿರುತ್ತದೆ</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal ಮೆಸೇಜ್‌ಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಿದ ನಂತರ ನಿಮ್ಮ ಮೊಬೈಲ್ ಫೋನ್‌ನಲ್ಲಿ Signal ಜೊತೆಗೆ ಸಿಂಕ್ರೋನೈಸ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">ನೀವು ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವ ಸಾಧನದಲ್ಲಿ, Signal ಅನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು %1$s ಗೆ ಭೇಟಿ ನೀಡಿ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -8096,7 +8096,7 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
     <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
-    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
+    <string name="MessageBackupsFlowFragment__authentication_required">ದೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8710,7 +8710,7 @@
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">ಪುನಃ ಪ್ರಯತ್ನಿಸಲು, ಈ ಸಾಧನದಲ್ಲಿ Signal ಅನ್ನು ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಮತ್ತು ಮರುಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಹಾಗೂ \"ರಿಸ್ಟೋರ್ ಮಾಡಿ ಅಥವಾ ವರ್ಗಾಯಿಸಿ\" ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
 
     <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
-    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">ದೃಢೀಕರಣ ಕೋಡ್ ವಿನಂತಿಸಲಾಗಿದೆ</string>

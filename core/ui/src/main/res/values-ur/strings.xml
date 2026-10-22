@@ -50,58 +50,58 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ہٹا دیں</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">کوئی نہیں</string>
+    <string name="preferences_off">بند کریں</string>
+    <string name="preferences_on">چلائیں</string>
+    <string name="ExpireTimerSettingsFragment__set">سیٹ کریں</string>
+    <string name="CustomExpireTimerSelectorView__seconds">سیکنڈز</string>
+    <string name="CustomExpireTimerSelectorView__minutes">منٹیسس</string>
+    <string name="CustomExpireTimerSelectorView__hours">گھنٹے</string>
+    <string name="CustomExpireTimerSelectorView__days">دن</string>
+    <string name="CustomExpireTimerSelectorView__weeks">ہفتوں</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">بند کریں</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d second</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="one">%1$dسیکنڈ</item>
+        <item quantity="other">%1$dسیکنڈز</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$dایس</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d منٹس</item>
+        <item quantity="other">%1$dمنٹس</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$dم</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="one">%1$d</item>
+        <item quantity="other">%1$dگھنٹے</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$dایچ</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">%1$d day</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="one">%1$d</item>
+        <item quantity="other">%1$dدنوں</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$dڈی</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="one">%1$d</item>
+        <item quantity="other">%1$dہفتے</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
+    <string name="expiration_weeks_abbreviated">%1$dڈبلیو</string>
+    <string name="expiration_combined">%1$s%2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">مزید پڑھیں</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

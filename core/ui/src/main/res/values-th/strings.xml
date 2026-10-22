@@ -50,53 +50,53 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ลบ</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">ไม่มี</string>
+    <string name="preferences_off">ปิด</string>
+    <string name="preferences_on">เปิด</string>
+    <string name="ExpireTimerSettingsFragment__set">ตั้ง</string>
+    <string name="CustomExpireTimerSelectorView__seconds">วินาที</string>
+    <string name="CustomExpireTimerSelectorView__minutes">นาที</string>
+    <string name="CustomExpireTimerSelectorView__hours">ชั่วโมง</string>
+    <string name="CustomExpireTimerSelectorView__days">วัน</string>
+    <string name="CustomExpireTimerSelectorView__weeks">สัปดาห์</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">ปิด</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="other">%1$d วินาที</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d นาที</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$dm</string>
 
     <plurals name="expiration_hours">
-        <item quantity="other">%1$d hours</item>
+        <item quantity="other">%1$d ชั่วโมง</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$dh</string>
 
     <plurals name="expiration_days">
-        <item quantity="other">%1$d days</item>
+        <item quantity="other">%1$d วัน</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$dd</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="other">%1$d สัปดาห์</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$dw</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">อ่านเพิ่มเติม</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

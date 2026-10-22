@@ -50,53 +50,53 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">چىقىرىۋەت</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">ھېچنېمە</string>
+    <string name="preferences_off">تاقاق</string>
+    <string name="preferences_on">ئاچ</string>
+    <string name="ExpireTimerSettingsFragment__set">بېكىتىڭ</string>
+    <string name="CustomExpireTimerSelectorView__seconds">سېكۇنت</string>
+    <string name="CustomExpireTimerSelectorView__minutes">مىنۇت</string>
+    <string name="CustomExpireTimerSelectorView__hours">سائەت</string>
+    <string name="CustomExpireTimerSelectorView__days">كۈن</string>
+    <string name="CustomExpireTimerSelectorView__weeks">ھەپتە</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">تاقاق</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="other">%1$d سېكۇنت</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d سېكۇنت</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d مىنۇت</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d مىنۇت</string>
 
     <plurals name="expiration_hours">
-        <item quantity="other">%1$d hours</item>
+        <item quantity="other">%1$d سائەت</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d سائەت</string>
 
     <plurals name="expiration_days">
-        <item quantity="other">%1$d days</item>
+        <item quantity="other">%1$d كۈن</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d كۈن</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="other">%1$d ھەپتە</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$d ھەپتە</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">كۆپرەك ئۆگىنىش</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">تېخىمۇ كۆپ</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

@@ -954,7 +954,7 @@
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
     <string name="LinkDeviceFragment__all_messaging_is_private">所有連結裝置上面嘅訊息都係私密嘅</string>
     <!-- Bottom sheet description explaining that future messages on linked devices will be in sync with your phone but previous messages will not appear -->
-    <string name="LinkDeviceFragment__signal_messages_are_synchronized">Signal messages are synchronized with Signal on your mobile phone after it is linked.</string>
+    <string name="LinkDeviceFragment__signal_messages_are_synchronized">連結之後，Signal 訊息會同手機上嘅 Signal 同步。</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">喺你想連嗰部機度，㩒入 %1$s 安裝 Signal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
@@ -7910,7 +7910,7 @@
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
     <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
-    <string name="MessageBackupsFlowFragment__authentication_required">Authentication required</string>
+    <string name="MessageBackupsFlowFragment__authentication_required">要認證</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8520,7 +8520,7 @@
     <string name="CouldNotCompleteBackupRestoreSheet__body_retry">要再試過嘅話，請喺呢部裝置上面解除安裝 Signal 再重新安裝，然後揀「還原或者轉移」。</string>
 
     <!-- Button on the sheet shown when a local backup restore could not be completed, opening a support article about it -->
-    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">Learn more</string>
+    <string name="CouldNotCompleteBackupRestoreSheet__learn_more">了解詳情</string>
 
     <!-- Title of the sheet shown when the server reports a verification code was requested for the user\'s phone number -->
     <string name="VerificationCodeRequestedBottomSheet__title">已經要求驗證碼</string>

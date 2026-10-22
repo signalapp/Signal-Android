@@ -50,58 +50,58 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Kendu</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">Bat ere ez</string>
+    <string name="preferences_off">Desaktibatuta</string>
+    <string name="preferences_on">Aktibatuta</string>
+    <string name="ExpireTimerSettingsFragment__set">Ezarri</string>
+    <string name="CustomExpireTimerSelectorView__seconds">segunduak</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutuak</string>
+    <string name="CustomExpireTimerSelectorView__hours">orduak</string>
+    <string name="CustomExpireTimerSelectorView__days">egunak</string>
+    <string name="CustomExpireTimerSelectorView__weeks">asteak</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">Desaktibatuta</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d second</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="one">segundo %1$d</item>
+        <item quantity="other">%1$d segundu</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">minutu %1$d</item>
+        <item quantity="other">%1$d minutu</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$dm</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="one">Ordu %1$d</item>
+        <item quantity="other">%1$d ordu</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$do</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">%1$d day</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="one">Egun %1$d</item>
+        <item quantity="other">%1$d egun</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$de</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="one">Aste %1$d</item>
+        <item quantity="other">%1$d aste</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
+    <string name="expiration_weeks_abbreviated">%1$da</string>
+    <string name="expiration_combined">%1$s%2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">Irakurri gehiago</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->

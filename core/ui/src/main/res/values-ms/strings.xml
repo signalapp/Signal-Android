@@ -50,53 +50,53 @@
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Alih keluar</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">None</string>
-    <string name="preferences_off">Off</string>
-    <string name="preferences_on">On</string>
-    <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="preferences__none">Tiada</string>
+    <string name="preferences_off">Mati</string>
+    <string name="preferences_on">Hidup</string>
+    <string name="ExpireTimerSettingsFragment__set">Tetapkan</string>
+    <string name="CustomExpireTimerSelectorView__seconds">saat</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minit</string>
+    <string name="CustomExpireTimerSelectorView__hours">jam</string>
+    <string name="CustomExpireTimerSelectorView__days">hari</string>
+    <string name="CustomExpireTimerSelectorView__weeks">minggu</string>
     <!-- expiration -->
-    <string name="expiration_off">Off</string>
+    <string name="expiration_off">Mati</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="other">%1$dsaat</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d s</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="other">%1$d minit</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$dmin</string>
 
     <plurals name="expiration_hours">
-        <item quantity="other">%1$d hours</item>
+        <item quantity="other">%1$d jam</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d j</string>
 
     <plurals name="expiration_days">
-        <item quantity="other">%1$d days</item>
+        <item quantity="other">%1$d hari</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d h</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="other">%1$d minggu</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
-    <string name="expiration_combined">%1$s %2$s</string>
+    <string name="expiration_weeks_abbreviated">%1$d m</string>
+    <string name="expiration_combined">%1$s%2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Learn more</string>
+    <string name="LearnMoreTextView_learn_more">Ketahui lebih lanjut</string>
 
-    <string name="SpanUtil__read_more">Read more</string>
+    <string name="SpanUtil__read_more">Baca lagi</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
