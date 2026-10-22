@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Looper
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.click
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -157,8 +158,8 @@ class MediaViewerScreenTest {
   fun givenChromeHidden_thenIExpectNoToolbar() {
     setContent(createState(chromeVisible = false))
 
-    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.TOP_BAR).assertDoesNotExist()
-    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.SHARE_BUTTON).assertDoesNotExist()
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.TOP_BAR).assertIsNotDisplayed()
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.SHARE_BUTTON).assertIsNotDisplayed()
   }
 
   @Test

@@ -6,8 +6,10 @@
 package org.signal.mediaviewer
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
@@ -36,11 +38,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -103,56 +107,54 @@ fun MediaViewerScreen(
       modifier = Modifier.fillMaxSize()
     )
 
-    AnimatedVisibility(
-      visible = state.chromeVisible,
-      enter = fadeIn(),
-      exit = fadeOut(),
-      modifier = Modifier.align(Alignment.TopCenter)
-    ) {
-      MediaViewerTopBar(
-        item = state.currentItem,
-        isDraft = state.isDraft,
-        showThread = state.showThread,
-        playbackController = playbackController,
-        onEvent = onEvent,
-        modifier = Modifier
-          .background(MaterialTheme.colorScheme.surface.copy(alpha = CHROME_BACKGROUND_ALPHA))
-          .windowInsetsPadding(WindowInsets.statusBars.union(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)))
-      )
-    }
+    // The chrome fades rather than leaving composition, so the rail keeps its scroll position,
+    // thumbnails, and selection across a hide and show.
+    val chromeAlpha by animateFloatAsState(
+      targetValue = if (state.chromeVisible) 1f else 0f,
+      animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+      label = "chromeAlpha"
+    )
 
-    AnimatedVisibility(
-      visible = state.chromeVisible,
-      enter = fadeIn(),
-      exit = fadeOut(),
-      modifier = Modifier.align(Alignment.BottomCenter)
+    MediaViewerTopBar(
+      item = state.currentItem,
+      isDraft = state.isDraft,
+      showThread = state.showThread,
+      playbackController = playbackController,
+      onEvent = onEvent,
+      modifier = Modifier
+        .align(Alignment.TopCenter)
+        .fadingChrome { chromeAlpha }
+        .background(MaterialTheme.colorScheme.surface.copy(alpha = CHROME_BACKGROUND_ALPHA))
+        .windowInsetsPadding(WindowInsets.statusBars.union(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)))
+    )
+
+    Column(
+      modifier = Modifier
+        .align(Alignment.BottomCenter)
+        .fadingChrome { chromeAlpha }
+        .background(MaterialTheme.colorScheme.surface.copy(alpha = CHROME_BACKGROUND_ALPHA))
+        .windowInsetsPadding(WindowInsets.navigationBars.union(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)))
+        .fillMaxWidth()
     ) {
-      Column(
-        modifier = Modifier
-          .background(MaterialTheme.colorScheme.surface.copy(alpha = CHROME_BACKGROUND_ALPHA))
-          .windowInsetsPadding(WindowInsets.navigationBars.union(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)))
-          .fillMaxWidth()
-      ) {
-        AnimatedContent(
-          targetState = state.currentCaption?.takeIf { it.text.isNotEmpty() },
-          transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform() },
-          contentKey = { it?.text }
-        ) { caption ->
-          if (caption != null) {
-            ExpandingCaption(caption = caption)
-          } else {
-            Spacer(modifier = Modifier.fillMaxWidth())
-          }
+      AnimatedContent(
+        targetState = state.currentCaption?.takeIf { it.text.isNotEmpty() },
+        transitionSpec = { fadeIn() togetherWith fadeOut() using SizeTransform() },
+        contentKey = { it?.text }
+      ) { caption ->
+        if (caption != null) {
+          ExpandingCaption(caption = caption)
+        } else {
+          Spacer(modifier = Modifier.fillMaxWidth())
         }
-
-        MediaViewerBottomBar(
-          controlMode = state.controlMode,
-          railItems = state.railItems,
-          selectedRailItem = state.currentItem,
-          playbackController = playbackController,
-          onEvent = onEvent
-        )
       }
+
+      MediaViewerBottomBar(
+        controlMode = state.controlMode,
+        railItems = state.railItems,
+        selectedRailItem = state.currentItem,
+        playbackController = playbackController,
+        onEvent = onEvent
+      )
     }
   }
 
@@ -427,6 +429,22 @@ private fun MediaViewerScreenDraftPreview() {
 }
 
 private const val CHROME_BACKGROUND_ALPHA = 0.87f
+
+/**
+ * Applies [alpha] in the layout phase so a fade never recomposes the content. Fully hidden
+ * content is left unplaced, so it neither draws nor takes touches away from the pager.
+ */
+private fun Modifier.fadingChrome(alpha: () -> Float): Modifier {
+  return layout { measurable, constraints ->
+    val placeable = measurable.measure(constraints)
+    layout(placeable.width, placeable.height) {
+      val currentAlpha = alpha()
+      if (currentAlpha > 0f) {
+        placeable.placeWithLayer(0, 0) { this.alpha = currentAlpha }
+      }
+    }
+  }
+}
 
 /** Composition-scoped bookkeeping so a composition-time [androidx.compose.foundation.pager.PagerState.requestScrollToPage] fires once per request. */
 private class LastImmediateScrollId(var value: Long? = null)

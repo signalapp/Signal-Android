@@ -40,6 +40,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -53,6 +54,16 @@ import org.signal.mediaviewer.MediaViewerItem
 import org.signal.mediaviewer.MediaViewerPreviewFixtures
 import org.signal.mediaviewer.MediaViewerScreenTestTags
 import org.signal.mediaviewer.R
+
+private val ITEM_SIZE = 44.dp
+private val ITEM_SPACING = 8.dp
+private val CORNER_RADIUS = 6.dp
+private val BORDER_WIDTH = 2.5.dp
+private val BORDER_GAP = 2.dp
+private const val SELECTED_SCRIM_ALPHA = 0.12f
+private const val UNSELECTED_SCRIM_ALPHA = 0.24f
+private const val RAIL_VIDEO_THUMBNAIL_TIME_US = 1000L
+private val THUMBNAIL_SIZE = DpSize(ITEM_SIZE, ITEM_SIZE)
 
 /**
  * Horizontal rail of thumbnails for the current album (or the whole gallery). Hidden when there
@@ -69,8 +80,8 @@ internal fun AlbumRail(
     return
   }
 
-  val listState = rememberLazyListState()
   val selectedIndex = items.indexOfFirst { it != null && it.attachmentId == selectedItem?.attachmentId }
+  val listState = rememberLazyListState(initialFirstVisibleItemIndex = selectedIndex.coerceAtLeast(0))
 
   val currentOnEvent by rememberUpdatedState(onEvent)
   LaunchedEffect(listState) {
@@ -152,6 +163,7 @@ private fun RailThumbnail(
       ) {
         GlideImage(
           model = remember(item.uri) { DecryptableUri(item.uri, thumbnailTimeUs = if (item.isVideo) RAIL_VIDEO_THUMBNAIL_TIME_US else 0L) },
+          imageSize = THUMBNAIL_SIZE,
           scaleType = GlideImageScaleType.CENTER_CROP,
           modifier = Modifier
             .fillMaxSize()
@@ -178,15 +190,6 @@ private fun RailThumbnail(
     }
   }
 }
-
-private val ITEM_SIZE = 44.dp
-private val ITEM_SPACING = 8.dp
-private val CORNER_RADIUS = 6.dp
-private val BORDER_WIDTH = 2.5.dp
-private val BORDER_GAP = 2.dp
-private const val SELECTED_SCRIM_ALPHA = 0.12f
-private const val UNSELECTED_SCRIM_ALPHA = 0.24f
-private const val RAIL_VIDEO_THUMBNAIL_TIME_US = 1000L
 
 @DayNightPreviews
 @Composable
