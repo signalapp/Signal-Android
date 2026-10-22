@@ -13,6 +13,7 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.util.NameUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Specifies what kind of avatar should be generated for a given recipient.
@@ -98,7 +99,7 @@ sealed interface FallbackAvatar {
       override fun getIconBySize(size: Size): Int {
         return when (size) {
           Size.SMALL -> R.drawable.symbol_stories_compact_16
-          Size.MEDIUM -> R.drawable.symbol_stories_24
+          Size.MEDIUM -> CoreUiR.drawable.symbol_stories_24
           Size.LARGE -> R.drawable.symbol_stories_display_bold_40
         }
       }

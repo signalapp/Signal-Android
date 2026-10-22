@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app
+package org.signal.appsettings.home
 
 /**
  * Describes the current backup failure state.

@@ -3,16 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.routes
+package org.signal.appsettings.routes
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import kotlinx.parcelize.Parcelize
 import org.signal.core.models.recipients.RecipientId
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.profiles.manage.UsernameEditMode
 
 /**
  * Describes a route that the AppSettings screen can open. Every route listed here is displayed in
@@ -45,13 +42,21 @@ sealed interface AppSettingsRoute : Parcelable {
   sealed interface StoriesRoute : AppSettingsRoute {
     data class Privacy(@StringRes val titleId: Int) : StoriesRoute
     data object MyStory : StoriesRoute
-    data class PrivateStory(val distributionListId: DistributionListId) : StoriesRoute
-    data class GroupStory(val groupId: GroupId) : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    data class PrivateStory(val distributionListId: Long) : StoriesRoute
+
+    /** [groupId] is a serialized `GroupId`. */
+    data class GroupStory(val groupId: String) : StoriesRoute
     data object OnlyShareWith : StoriesRoute
     data object AllExcept : StoriesRoute
     data object SignalConnections : StoriesRoute
-    data class EditName(val distributionListId: DistributionListId, val name: String) : StoriesRoute
-    data class AddViewers(val distributionListId: DistributionListId) : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    data class EditName(val distributionListId: Long, val name: String) : StoriesRoute
+
+    /** [distributionListId] is a serialized `DistributionListId`. */
+    data class AddViewers(val distributionListId: Long) : StoriesRoute
   }
 
   @Parcelize

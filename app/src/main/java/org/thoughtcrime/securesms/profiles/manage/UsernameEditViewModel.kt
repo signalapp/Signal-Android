@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
+import org.signal.appsettings.routes.UsernameEditMode
 import org.signal.core.util.Result
 import org.signal.core.util.UsernameUtil.InvalidReason
 import org.signal.core.util.UsernameUtil.checkDiscriminator

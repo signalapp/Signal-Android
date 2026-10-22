@@ -36,6 +36,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.AppSettingsRouter
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -51,10 +55,6 @@ import org.signal.core.util.collectFlowOnViewLifecycle
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRouter
-import org.thoughtcrime.securesms.components.settings.app.routes.navigateTo
 import org.thoughtcrime.securesms.components.settings.models.Banner
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet

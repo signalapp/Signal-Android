@@ -12,12 +12,12 @@ import org.signal.appsettings.privacy.PrivacySettingsEvent
 import org.signal.appsettings.privacy.PrivacySettingsState
 import org.signal.appsettings.privacy.PrivacySettingsState.Dialog
 import org.signal.appsettings.privacy.PrivacySettingsState.Snackbar
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
-import org.thoughtcrime.securesms.components.settings.app.routes.navigateBack
-import org.thoughtcrime.securesms.components.settings.app.routes.navigateTo
 
 /**
  * Drives [org.signal.appsettings.privacy.PrivacySettingsScreen]. Navigation goes straight to [parentEventEmitter].

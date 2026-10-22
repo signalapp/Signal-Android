@@ -39,7 +39,7 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
             stringId = R.string.ChooseStoryTypeBottomSheet__visible_only_to
           ),
           icon = DSLSettingsIcon.from(
-            iconId = R.drawable.symbol_stories_24,
+            iconId = CoreUiR.drawable.symbol_stories_24,
             iconTintId = CoreUiR.color.signal_colorOnSurface,
             backgroundId = R.drawable.circle_tintable,
             backgroundTint = CoreUiR.color.signal_colorSurface5,

@@ -23,7 +23,6 @@ import assertk.assertions.isTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.testing.DisableAnimationsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
@@ -64,7 +63,7 @@ class InviteFragmentTest {
   @Test
   fun givenLaunchFromAppSettings_whenNavigationIconClicked_thenAppSettingsIsDisplayed() {
     ActivityScenario.launch<AppSettingsActivity>(AppSettingsActivity.home(context)).use { scenario ->
-      val inviteRowText = context.getString(R.string.AppSettingsFragment__invite_your_friends)
+      val inviteRowText = context.getString(AppSettingsR.string.AppSettingsFragment__invite_your_friends)
 
       composeRule.onNode(hasScrollAction()).performScrollToNode(hasText(inviteRowText))
       composeRule.onNodeWithText(inviteRowText).performClick()
@@ -72,7 +71,7 @@ class InviteFragmentTest {
 
       clickNavigationIcon()
 
-      composeRule.onNodeWithText(context.getString(R.string.text_secure_normal__menu_settings)).assertIsDisplayed()
+      composeRule.onNodeWithText(context.getString(AppSettingsR.string.AppSettingsScreen__settings)).assertIsDisplayed()
       composeRule.onNodeWithText(context.getString(AppSettingsR.string.InviteScreen__invite_friends)).assertDoesNotExist()
       assertThat(scenario.state).isEqualTo(Lifecycle.State.RESUMED)
     }

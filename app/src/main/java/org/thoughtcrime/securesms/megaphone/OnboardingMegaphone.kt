@@ -239,7 +239,7 @@ enum class OnboardingListItem(
   ),
   INVITE(
     title = R.string.Megaphones_invite_friends,
-    icon = R.drawable.symbol_invite_24,
+    icon = CoreUiR.drawable.symbol_invite_24,
     cardColor = R.color.onboarding_background_2
   ),
   ADD_PHOTO(

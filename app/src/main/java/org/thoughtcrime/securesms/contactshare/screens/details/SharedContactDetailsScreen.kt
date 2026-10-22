@@ -175,7 +175,7 @@ private fun Header(
 
       Row(horizontalArrangement = Arrangement.spacedBy(32.dp)) {
         CallButton(
-          iconRes = R.drawable.symbol_chat_24,
+          iconRes = CoreUiR.drawable.symbol_chat_24,
           labelRes = R.string.SharedContactDetailsScreen__message,
           testTag = SharedContactDetailsTestTags.MESSAGE_BUTTON,
           onClick = { onEvent(SharedContactDetailsEvent.MessageClicked) }
@@ -381,7 +381,7 @@ private fun LeadingIcon(iconRes: Int) {
 }
 
 private fun ContactAction.iconRes(): Int = when (this) {
-  ContactAction.INVITE_TO_SIGNAL -> R.drawable.symbol_invite_24
+  ContactAction.INVITE_TO_SIGNAL -> CoreUiR.drawable.symbol_invite_24
   ContactAction.ADD_TO_PHONE_CONTACTS -> CoreUiR.drawable.symbol_person_circle_24
   ContactAction.ADD_TO_GROUP -> R.drawable.symbol_plus_circle_24
 }
@@ -396,12 +396,12 @@ private fun DetailKind.iconRes(): Int = when (this) {
   DetailKind.PHONE -> CoreUiR.drawable.symbol_phone_24
   DetailKind.NICKNAME -> CoreUiR.drawable.symbol_edit_24
   DetailKind.NOTE -> R.drawable.symbol_note_24
-  DetailKind.EMAIL -> R.drawable.symbol_invite_24
+  DetailKind.EMAIL -> CoreUiR.drawable.symbol_invite_24
   DetailKind.ADDRESS -> R.drawable.symbol_pin_24
 }
 
 private fun DetailAction.iconRes(): Int = when (this) {
-  DetailAction.MESSAGE -> R.drawable.symbol_chat_24
+  DetailAction.MESSAGE -> CoreUiR.drawable.symbol_chat_24
   DetailAction.VIDEO_CALL -> R.drawable.symbol_video_24
   DetailAction.AUDIO_CALL -> CoreUiR.drawable.symbol_phone_24
   DetailAction.OPEN_IN_MAPS -> R.drawable.symbol_open_24

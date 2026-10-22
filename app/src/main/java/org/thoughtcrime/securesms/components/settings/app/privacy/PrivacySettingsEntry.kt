@@ -22,10 +22,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.signal.appsettings.privacy.PrivacySettingsAction
 import org.signal.appsettings.privacy.PrivacySettingsEvent
 import org.signal.appsettings.privacy.PrivacySettingsScreen
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseChangeActivity
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.signal.appsettings.R as AppSettingsR
 

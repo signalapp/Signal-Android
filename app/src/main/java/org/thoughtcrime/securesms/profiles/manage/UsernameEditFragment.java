@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
+import org.signal.appsettings.routes.UsernameEditMode;
 import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.res.ColorStateList;

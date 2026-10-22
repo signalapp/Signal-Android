@@ -7,12 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**

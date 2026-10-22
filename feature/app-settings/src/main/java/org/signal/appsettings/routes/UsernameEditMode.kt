@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.profiles.manage
+package org.signal.appsettings.routes
 
 enum class UsernameEditMode {
   /** A typical launch, no special conditions. */

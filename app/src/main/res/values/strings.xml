@@ -3863,8 +3863,6 @@
     <string name="preferences__slow">Slow</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__donate_to_signal">Donate to Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Privacy</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
     <string name="preferences__storage">Storage</string>
@@ -5011,20 +5009,8 @@
     <string name="GroupDescriptionDialog__group_description">Group description</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>

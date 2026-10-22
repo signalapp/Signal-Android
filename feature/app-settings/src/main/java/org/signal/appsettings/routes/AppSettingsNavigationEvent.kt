@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.routes
+package org.signal.appsettings.routes
 
 /**
  * Navigation requests that app settings screens send to [AppSettingsRouter].

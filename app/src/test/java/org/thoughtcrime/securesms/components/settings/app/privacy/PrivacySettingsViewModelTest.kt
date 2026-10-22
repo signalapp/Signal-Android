@@ -37,8 +37,8 @@ import org.signal.appsettings.privacy.PrivacySettingsAction
 import org.signal.appsettings.privacy.PrivacySettingsEvent
 import org.signal.appsettings.privacy.PrivacySettingsState.Dialog
 import org.signal.appsettings.privacy.PrivacySettingsState.Snackbar
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsNavigationEvent
-import org.thoughtcrime.securesms.components.settings.app.routes.AppSettingsRoute
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days

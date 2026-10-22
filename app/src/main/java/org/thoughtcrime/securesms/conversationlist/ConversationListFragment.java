@@ -1404,7 +1404,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       if (conversation.getThreadRecord().isRead()) {
         items.add(new ActionItem(R.drawable.symbol_chat_badge_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, 1), () -> handleMarkAsUnread(id)));
       } else {
-        items.add(new ActionItem(R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1), () -> handleMarkAsRead(id)));
+        items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, 1), () -> handleMarkAsRead(id)));
       }
 
       if (conversation.getThreadRecord().isPinned()) {
@@ -1539,7 +1539,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                       .collect(Collectors.toSet());
 
     if (hasUnread) {
-      items.add(new ActionItem(R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
+      items.add(new ActionItem(org.signal.core.ui.R.drawable.symbol_chat_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
     } else {
       items.add(new ActionItem(R.drawable.symbol_chat_badge_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(selectionIds)));
     }

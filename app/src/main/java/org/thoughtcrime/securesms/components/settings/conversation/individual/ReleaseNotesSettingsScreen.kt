@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.previe
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.signal.appsettings.R as AppSettingsR
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Settings for the Signal release notes chat.
@@ -119,7 +120,7 @@ fun ReleaseNotesSettingsScreen(
     item {
       Rows.TextRow(
         text = stringResource(AppSettingsR.string.HelpSettingsFragment__support_center),
-        icon = painterResource(R.drawable.symbol_help_24),
+        icon = painterResource(CoreUiR.drawable.symbol_help_24),
         onClick = { onEvent(IndividualSettingsEvent.SupportCenterClicked) }
       )
     }
@@ -127,7 +128,7 @@ fun ReleaseNotesSettingsScreen(
     item {
       Rows.TextRow(
         text = stringResource(AppSettingsR.string.HelpSettingsFragment__contact_us),
-        icon = painterResource(R.drawable.symbol_invite_24),
+        icon = painterResource(CoreUiR.drawable.symbol_invite_24),
         onClick = { onEvent(IndividualSettingsEvent.ContactUsClicked) }
       )
     }

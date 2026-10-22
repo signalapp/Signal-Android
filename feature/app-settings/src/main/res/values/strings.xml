@@ -658,4 +658,40 @@
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
     <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+
+    <!-- AppSettingsScreen -->
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
+    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <!-- App settings row that opens privacy settings -->
+    <string name="preferences__privacy">Privacy</string>
+    <!-- Title of the top level app settings screen -->
+    <string name="AppSettingsScreen__settings">Settings</string>
+    <!-- Content description for the back button on the top level app settings screen -->
+    <string name="AppSettingsScreen__go_back">Go back</string>
+    <!-- Warning row in app settings shown when the user's backups subscription was already redeemed -->
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <!-- App settings row that opens donations -->
+    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <!-- App settings row that opens internal-only preferences -->
+    <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
+    <!-- App settings row that opens linked devices -->
+    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <!-- App settings row that opens notification settings -->
+    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <!-- App settings row that opens payments -->
+    <string name="AppSettingsScreen__payments">Payments</string>
+    <!-- App settings row that opens story settings -->
+    <string name="AppSettingsScreen__stories">Stories</string>
+    <!-- App settings row that opens backup settings -->
+    <string name="AppSettingsScreen__backups">Backups</string>
 </resources>

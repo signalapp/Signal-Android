@@ -26,6 +26,7 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.appsettings.routes.UsernameEditMode
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
