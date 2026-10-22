@@ -113,6 +113,7 @@ fun MediaViewerScreen(
         item = state.currentItem,
         isDraft = state.isDraft,
         showThread = state.showThread,
+        playbackController = playbackController,
         onEvent = onEvent,
         modifier = Modifier
           .background(MaterialTheme.colorScheme.surface.copy(alpha = CHROME_BACKGROUND_ALPHA))

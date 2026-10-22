@@ -39,16 +39,19 @@ import org.signal.mediaviewer.MediaViewerItem
 import org.signal.mediaviewer.MediaViewerPreviewFixtures
 import org.signal.mediaviewer.MediaViewerScreenTestTags
 import org.signal.mediaviewer.R
+import org.signal.mediaviewer.playback.MediaViewerPlaybackController
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * Toolbar: back button, sender/time labels that jump to the message's chat, and the overflow menu.
+ * Toolbar: back button, sender/time labels that jump to the message's chat, and the forward, share,
+ * and overflow menu actions.
  */
 @Composable
 internal fun MediaViewerTopBar(
   item: MediaViewerItem?,
   isDraft: Boolean,
   showThread: Boolean,
+  playbackController: MediaViewerPlaybackController,
   onEvent: (MediaViewerEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -79,6 +82,34 @@ internal fun MediaViewerTopBar(
         .weight(1f)
         .padding(horizontal = 4.dp)
     )
+
+    IconButton(
+      onClick = {
+        playbackController.pause()
+        onEvent(MediaViewerEvent.ForwardClicked)
+      },
+      modifier = Modifier.testTag(MediaViewerScreenTestTags.FORWARD_BUTTON)
+    ) {
+      Icon(
+        painter = painterResource(CoreUiR.drawable.symbol_forward_24),
+        contentDescription = stringResource(R.string.MediaViewerScreen__forward),
+        tint = MaterialTheme.colorScheme.onSurface
+      )
+    }
+
+    IconButton(
+      onClick = {
+        playbackController.pause()
+        onEvent(MediaViewerEvent.ShareClicked)
+      },
+      modifier = Modifier.testTag(MediaViewerScreenTestTags.SHARE_BUTTON)
+    ) {
+      Icon(
+        painter = painterResource(CoreUiR.drawable.symbol_share_android_24),
+        contentDescription = stringResource(R.string.MediaViewerScreen__share),
+        tint = MaterialTheme.colorScheme.onSurface
+      )
+    }
 
     OverflowMenu(
       isDraft = isDraft,
@@ -224,6 +255,7 @@ private fun MediaViewerTopBarPreview() {
       item = MediaViewerPreviewFixtures.previewItem(),
       isDraft = false,
       showThread = false,
+      playbackController = MediaViewerPlaybackController(),
       onEvent = {}
     )
   }
@@ -237,6 +269,7 @@ private fun MediaViewerTopBarThreadPreview() {
       item = MediaViewerPreviewFixtures.previewItem(isOutgoing = true),
       isDraft = false,
       showThread = true,
+      playbackController = MediaViewerPlaybackController(),
       onEvent = {}
     )
   }
@@ -250,6 +283,7 @@ private fun MediaViewerTopBarDraftPreview() {
       item = MediaViewerPreviewFixtures.previewItem(),
       isDraft = true,
       showThread = false,
+      playbackController = MediaViewerPlaybackController(),
       onEvent = {}
     )
   }

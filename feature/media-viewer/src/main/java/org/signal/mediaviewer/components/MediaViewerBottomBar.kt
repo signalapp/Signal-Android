@@ -11,24 +11,20 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,12 +32,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimatable
 import com.airbnb.lottie.compose.LottieAnimation
@@ -64,8 +60,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * The bottom control bar: the video seek row, the album rail, and the share / transport / forward
- * button row.
+ * The bottom control bar: the video seek row, the album rail, and the video transport buttons.
  */
 @Composable
 internal fun MediaViewerBottomBar(
@@ -114,12 +109,16 @@ internal fun MediaViewerBottomBar(
       )
     }
 
-    ButtonRow(
-      controlMode = controlMode,
-      playbackController = playbackController,
-      onEvent = onEvent,
-      modifier = Modifier.fillMaxWidth()
-    )
+    AnimatedVisibility(
+      visible = controlMode == MediaViewerState.ControlMode.VIDEO,
+      enter = fadeIn() + expandVertically(),
+      exit = fadeOut() + shrinkVertically()
+    ) {
+      TransportRow(
+        playbackController = playbackController,
+        modifier = Modifier.fillMaxWidth()
+      )
+    }
   }
 }
 
@@ -145,7 +144,7 @@ private fun SeekBarRow(
       playbackController = playbackController,
       modifier = Modifier
         .weight(1f)
-        .padding(horizontal = 16.dp)
+        .padding(horizontal = 12.dp)
     )
 
     Text(
@@ -165,6 +164,12 @@ private fun SeekBarSlider(
 ) {
   val playback = playbackController.uiState
   val fraction = if (playback.durationMs > 0) playback.positionMs.toFloat() / playback.durationMs else 0f
+  val interactionSource = remember { MutableInteractionSource() }
+  val colors = SliderDefaults.colors(
+    thumbColor = MaterialTheme.colorScheme.onSurfaceVariant,
+    activeTrackColor = MaterialTheme.colorScheme.onSurfaceVariant,
+    inactiveTrackColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
+  )
 
   Slider(
     value = fraction,
@@ -175,37 +180,21 @@ private fun SeekBarSlider(
       playbackController.scrubTo((newFraction * playbackController.uiState.durationMs).toLong())
     },
     onValueChangeFinished = { playbackController.endScrub() },
+    interactionSource = interactionSource,
     thumb = {
-      Box(
-        modifier = Modifier
-          .requiredSize(8.dp)
-          .offset(y = 4.dp)
-          .clip(CircleShape)
-          .background(MaterialTheme.colorScheme.onSurface)
+      SliderDefaults.Thumb(
+        interactionSource = interactionSource,
+        colors = colors,
+        thumbSize = DpSize(SEEK_BAR_THUMB_WIDTH, SEEK_BAR_HEIGHT)
       )
     },
     track = { sliderState ->
-      Box(
-        contentAlignment = Alignment.CenterStart,
-        modifier = Modifier
-          .fillMaxWidth()
-          .height(SEEK_BAR_HEIGHT)
-      ) {
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .height(4.dp)
-            .clip(RoundedCornerShape(2.dp))
-            .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f))
-        ) {
-          Box(
-            modifier = Modifier
-              .fillMaxWidth(sliderState.value.coerceIn(0f, 1f))
-              .fillMaxHeight()
-              .background(MaterialTheme.colorScheme.onSurface)
-          )
-        }
-      }
+      SliderDefaults.Track(
+        sliderState = sliderState,
+        colors = colors,
+        drawStopIndicator = null,
+        modifier = Modifier.height(SEEK_BAR_TRACK_HEIGHT)
+      )
     },
     modifier = modifier
       .height(SEEK_BAR_HEIGHT)
@@ -214,79 +203,38 @@ private fun SeekBarSlider(
 }
 
 @Composable
-private fun ButtonRow(
-  controlMode: MediaViewerState.ControlMode,
+private fun TransportRow(
   playbackController: MediaViewerPlaybackController,
-  onEvent: (MediaViewerEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
   val playback = playbackController.uiState
-  val isVideo = controlMode == MediaViewerState.ControlMode.VIDEO
-  val showSkipButtons = isVideo && playback.durationMs > MINIMUM_DURATION_FOR_SKIP_MS
+  val showSkipButtons = playback.durationMs > MINIMUM_DURATION_FOR_SKIP_MS
 
-  Box(modifier = modifier.padding(horizontal = 12.dp, vertical = 4.dp)) {
-    IconButton(
-      onClick = {
-        playbackController.pause()
-        onEvent(MediaViewerEvent.ShareClicked)
-      },
-      modifier = Modifier
-        .align(Alignment.CenterStart)
-        .testTag(MediaViewerScreenTestTags.SHARE_BUTTON)
-    ) {
-      Icon(
-        painter = painterResource(CoreUiR.drawable.symbol_share_android_24),
-        contentDescription = stringResource(R.string.MediaViewerScreen__share),
-        tint = MaterialTheme.colorScheme.onSurface
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterHorizontally),
+    modifier = modifier.padding(vertical = 4.dp)
+  ) {
+    if (showSkipButtons) {
+      SkipButton(
+        rawRes = R.raw.lottie_15s_skip_back,
+        contentDescription = stringResource(R.string.MediaViewerScreen__rewind),
+        onClick = { playbackController.rewind() },
+        modifier = Modifier.testTag(MediaViewerScreenTestTags.REWIND_BUTTON)
       )
     }
 
-    AnimatedVisibility(
-      visible = isVideo,
-      enter = fadeIn(),
-      exit = fadeOut(),
-      modifier = Modifier.align(Alignment.Center)
-    ) {
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        if (showSkipButtons) {
-          SkipButton(
-            rawRes = R.raw.lottie_15s_skip_back,
-            contentDescription = stringResource(R.string.MediaViewerScreen__rewind),
-            onClick = { playbackController.rewind() },
-            modifier = Modifier.testTag(MediaViewerScreenTestTags.REWIND_BUTTON)
-          )
-        }
+    PlayPauseButton(
+      isPlaying = playback.isPlaying,
+      onClick = { playbackController.togglePlayPause() }
+    )
 
-        PlayPauseButton(
-          isPlaying = playback.isPlaying,
-          onClick = { playbackController.togglePlayPause() },
-          modifier = Modifier.padding(horizontal = 8.dp)
-        )
-
-        if (showSkipButtons) {
-          SkipButton(
-            rawRes = R.raw.lottie_15s_skip_forward,
-            contentDescription = stringResource(R.string.MediaViewerScreen__fast_forward),
-            onClick = { playbackController.fastForward() },
-            modifier = Modifier.testTag(MediaViewerScreenTestTags.FAST_FORWARD_BUTTON)
-          )
-        }
-      }
-    }
-
-    IconButton(
-      onClick = {
-        playbackController.pause()
-        onEvent(MediaViewerEvent.ForwardClicked)
-      },
-      modifier = Modifier
-        .align(Alignment.CenterEnd)
-        .testTag(MediaViewerScreenTestTags.FORWARD_BUTTON)
-    ) {
-      Icon(
-        painter = painterResource(CoreUiR.drawable.symbol_forward_24),
-        contentDescription = stringResource(R.string.MediaViewerScreen__forward),
-        tint = MaterialTheme.colorScheme.onSurface
+    if (showSkipButtons) {
+      SkipButton(
+        rawRes = R.raw.lottie_15s_skip_forward,
+        contentDescription = stringResource(R.string.MediaViewerScreen__fast_forward),
+        onClick = { playbackController.fastForward() },
+        modifier = Modifier.testTag(MediaViewerScreenTestTags.FAST_FORWARD_BUTTON)
       )
     }
   }
@@ -303,7 +251,7 @@ private fun PlayPauseButton(
     modifier = modifier.testTag(MediaViewerScreenTestTags.PLAY_PAUSE_BUTTON)
   ) {
     Icon(
-      painter = painterResource(if (isPlaying) CoreUiR.drawable.symbol_pause_24 else CoreUiR.drawable.symbol_play_24),
+      painter = painterResource(if (isPlaying) CoreUiR.drawable.symbol_pause_24 else CoreUiR.drawable.symbol_play_fill_24),
       contentDescription = stringResource(if (isPlaying) R.string.MediaViewerScreen__pause else R.string.MediaViewerScreen__play),
       tint = MaterialTheme.colorScheme.onSurface
     )
@@ -331,7 +279,7 @@ private fun SkipButton(
     LottieAnimation(
       composition = composition,
       progress = { animatable.progress },
-      modifier = Modifier.size(20.dp)
+      modifier = Modifier.size(SKIP_LOTTIE_SIZE)
     )
   }
 }
@@ -344,7 +292,12 @@ private fun formatTime(ms: Long): String {
 
 private class LastRailItems(var value: List<MediaViewerItem?>)
 
-private val SEEK_BAR_HEIGHT = 24.dp
+private val SEEK_BAR_HEIGHT = 32.dp
+private val SEEK_BAR_TRACK_HEIGHT = 8.dp
+private val SEEK_BAR_THUMB_WIDTH = 4.dp
+
+/** The skip Lottie artwork fills 75% of its canvas, so 32dp renders a 24dp glyph. */
+private val SKIP_LOTTIE_SIZE = 32.dp
 
 private const val MINIMUM_DURATION_FOR_SKIP_MS = 30_000L
 
