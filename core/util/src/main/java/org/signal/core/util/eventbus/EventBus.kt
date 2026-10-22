@@ -24,6 +24,7 @@ class EventBus {
 
   private val subscriptions = CopyOnWriteArrayList<Subscription>()
   private val stickyEvents = ConcurrentHashMap<Class<*>, Any>()
+  private val mainThreadPoster by lazy { MainThreadPoster() }
 
   /**
    * Subscribes [handler] to events of type [eventClass] until the returned [Subscription] is unsubscribed.
@@ -120,13 +121,15 @@ class EventBus {
           if (ThreadUtil.isMainThread()) {
             invoke(event)
           } else {
-            ThreadUtil.postToMain {
-              if (active) {
-                invoke(event)
-              }
-            }
+            bus.mainThreadPoster.enqueue(this, event)
           }
         }
+      }
+    }
+
+    internal fun invokeIfActive(event: Any) {
+      if (active) {
+        invoke(event)
       }
     }
 

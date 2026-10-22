@@ -161,6 +161,20 @@ class EventBusTest {
   }
 
   @Test
+  fun `MAIN - a burst from background threads is delivered in order on the main looper`() {
+    val received = mutableListOf<Int>()
+    bus.subscribe<Event>(threadMode = ThreadMode.MAIN) { received += it.value }
+
+    val thread = Thread { repeat(50) { bus.post(Event(it)) } }
+    thread.start()
+    thread.join()
+
+    assertThat(received).isEmpty()
+    shadowOf(Looper.getMainLooper()).idle()
+    assertThat(received).isEqualTo((0 until 50).toList())
+  }
+
+  @Test
   fun `MAIN - unsubscribing before the main looper runs drops the event`() {
     val received = mutableListOf<Int>()
     val subscription = bus.subscribe<Event>(threadMode = ThreadMode.MAIN) { received += it.value }
