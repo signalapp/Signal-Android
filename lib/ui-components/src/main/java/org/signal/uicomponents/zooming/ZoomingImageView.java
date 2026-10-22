@@ -46,6 +46,9 @@ public class ZoomingImageView extends FrameLayout {
   private static final float LARGE_IMAGES_ZOOM_LEVEL_MID = 2.0f;
   private static final float LARGE_IMAGES_ZOOM_LEVEL_MAX = 5.0f;
 
+  private static final int MAX_TILE_SIZE_PX = 2048;
+  private static final int MINIMUM_TILE_DPI = 160;
+
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
 
@@ -76,6 +79,8 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView.setDoubleTapZoomDuration(ZOOM_TRANSITION_DURATION);
     this.subsamplingImageView.setDoubleTapZoomScale(LARGE_IMAGES_ZOOM_LEVEL_MID);
     this.subsamplingImageView.setMaxScale(LARGE_IMAGES_ZOOM_LEVEL_MAX);
+    this.subsamplingImageView.setMaxTileSize(MAX_TILE_SIZE_PX);
+    this.subsamplingImageView.setMinimumTileDpi(MINIMUM_TILE_DPI);
 
     this.gifView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
