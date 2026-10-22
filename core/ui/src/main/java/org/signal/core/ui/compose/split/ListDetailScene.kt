@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose.split
 
-import androidx.compose.animation.EnterExitState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -44,7 +43,6 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
-import androidx.navigation3.ui.LocalNavAnimatedContentScope
 import org.signal.core.ui.R
 import kotlin.math.max
 
@@ -206,12 +204,7 @@ private fun Modifier.minContentWidth(minWidth: Dp): Modifier {
 internal fun ListPaneContent(content: @Composable () -> Unit) {
   val chrome = LocalListPaneChrome.current
 
-  // A scene being left for a deferred enter has already handed its list to that scene, and lets go of the chrome
-  // as well so that it moves across with the list rather than being composed afresh.
-  val isHandingOff = LocalPendingDeferredEnter.current != null &&
-    LocalNavAnimatedContentScope.current.transition.targetState == EnterExitState.PostExit
-
-  if (chrome != null && !isHandingOff) {
+  if (chrome != null) {
     chrome(content)
   } else {
     content()

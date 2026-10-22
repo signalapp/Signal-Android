@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
-import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -102,17 +101,12 @@ fun ListDetailNavDisplay(
 
   val pendingDeferredEnter = rememberPendingDeferredEnter(entries)
 
-  // Movable so that a scene taking over the list from another can take its chrome along too, rather than rebuilding it.
-  val movableListPaneChrome: ListPaneChrome? = remember(listPaneChrome) {
-    listPaneChrome?.let { chrome -> movableContentOf { content: @Composable () -> Unit -> chrome(content) } }
-  }
-
   val paneShift = TransitionSpecs.paneShift()
   val paneShiftPop = TransitionSpecs.paneShift(pop = true)
 
   CompositionLocalProvider(
     LocalListDetailPaneLayout provides layout,
-    LocalListPaneChrome provides movableListPaneChrome,
+    LocalListPaneChrome provides listPaneChrome,
     LocalEmptyDetailContent provides emptyDetailContent,
     LocalPendingDeferredEnter provides pendingDeferredEnter
   ) {
