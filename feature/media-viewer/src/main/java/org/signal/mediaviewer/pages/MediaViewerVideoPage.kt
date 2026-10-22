@@ -9,9 +9,11 @@ import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -21,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.glide.decryptableuri.DecryptableUri
@@ -187,12 +189,19 @@ private fun VideoThumbnail(
     )
 
     if (!item.isVideoGif) {
-      Icon(
-        painter = painterResource(CoreUiR.drawable.symbol_play_24),
-        contentDescription = null,
-        tint = Color.White,
-        modifier = Modifier.size(48.dp)
-      )
+      Box(
+        modifier = Modifier
+          .size(56.dp)
+          .background(if (isSystemInDarkTheme()) SignalTheme.colors.colorTransparentInverse4 else SignalTheme.colors.colorTransparent4, CircleShape),
+        contentAlignment = Alignment.Center
+      ) {
+        Icon(
+          painter = painterResource(CoreUiR.drawable.symbol_play_fill_24),
+          contentDescription = null,
+          tint = MaterialTheme.colorScheme.onSurface,
+          modifier = Modifier.size(32.dp)
+        )
+      }
     }
   }
 }
