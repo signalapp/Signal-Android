@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.ServiceId
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
@@ -21,6 +22,7 @@ import org.whispersystems.signalservice.internal.push.NullMessage
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import org.whispersystems.signalservice.internal.push.ReceiptMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.Verified
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 
@@ -127,6 +129,48 @@ object OutgoingContent {
 
   fun syncRequest(type: SyncMessage.Request.Type): EnvelopeContent {
     return syncMessage(SyncMessage(request = SyncMessage.Request(type = type)))
+  }
+
+  fun syncRead(read: List<SyncMessage.Read>): EnvelopeContent {
+    return syncMessage(SyncMessage(read = read))
+  }
+
+  fun syncViewed(viewed: List<SyncMessage.Viewed>): EnvelopeContent {
+    return syncMessage(SyncMessage(viewed = viewed))
+  }
+
+  fun syncViewOnceOpen(viewOnceOpen: SyncMessage.ViewOnceOpen): EnvelopeContent {
+    return syncMessage(SyncMessage(viewOnceOpen = viewOnceOpen))
+  }
+
+  fun syncConfiguration(configuration: SyncMessage.Configuration): EnvelopeContent {
+    return syncMessage(SyncMessage(configuration = configuration))
+  }
+
+  fun syncStickerPackOperations(operations: List<SyncMessage.StickerPackOperation>): EnvelopeContent {
+    return syncMessage(SyncMessage(stickerPackOperation = operations))
+  }
+
+  fun syncContacts(contacts: SyncMessage.Contacts): EnvelopeContent {
+    return syncMessage(SyncMessage(contacts = contacts))
+  }
+
+  fun syncMessageRequestResponse(response: SyncMessage.MessageRequestResponse): EnvelopeContent {
+    return syncMessage(SyncMessage(messageRequestResponse = response))
+  }
+
+  fun syncOutgoingPayment(outgoingPayment: SyncMessage.OutgoingPayment): EnvelopeContent {
+    return syncMessage(SyncMessage(outgoingPayment = outgoingPayment))
+  }
+
+  fun syncVerified(destinationAci: ServiceId.ACI, identityKey: ByteArray, state: Verified.State): EnvelopeContent {
+    val verified = Verified(
+      destinationAciBinary = destinationAci.toByteString(),
+      identityKey = identityKey.toByteString(),
+      state = state,
+      nullMessage = Util.getRandomLengthSecretBytes(MAX_SYNC_MESSAGE_PADDING_BYTES).toByteString()
+    )
+    return syncMessage(SyncMessage(verified = verified))
   }
 
   private fun syncMessage(syncMessage: SyncMessage): EnvelopeContent {

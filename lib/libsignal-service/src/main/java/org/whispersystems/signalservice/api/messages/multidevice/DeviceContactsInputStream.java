@@ -7,6 +7,7 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.signal.core.util.stream.LimitedInputStream;
+import org.signal.core.util.stream.NonClosingInputStream;
 import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.internal.push.ContactDetails;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -19,11 +20,22 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
   private static final String TAG = DeviceContactsInputStream.class.getSimpleName();
 
+  private InputStream previousAvatar;
+
   public DeviceContactsInputStream(InputStream in) {
     super(in);
   }
 
+  /**
+   * Reads the next contact. Any part of the previous contact's avatar the caller didn't read is skipped first.
+   */
   public DeviceContact read() throws IOException {
+    if (previousAvatar != null) {
+      byte[] buffer = new byte[4096];
+      while (previousAvatar.read(buffer) != -1) { }
+      previousAvatar = null;
+    }
+
     int detailsLength = (int) readRawVarint32();
     if (detailsLength == -1) {
       return null;
@@ -34,12 +46,13 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     ContactDetails details = ContactDetails.ADAPTER.decode(detailsSerialized);
 
-    if (ACI.parseOrNull(details.aci, details.aciBinary) == null) {
+    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci, details.aciBinary));
+    Optional<String>              e164               = Optional.ofNullable(details.number);
+
+    if (aci.isEmpty() && e164.isEmpty()) {
       throw new IOException("Missing contact address!");
     }
 
-    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci, details.aciBinary));
-    Optional<String>              e164               = Optional.ofNullable(details.number);
     Optional<String>              name               = Optional.ofNullable(details.name);
     Optional<DeviceContactAvatar> avatar             = Optional.empty();
     Optional<Integer>             expireTimer        = Optional.empty();
@@ -48,10 +61,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     if (details.avatar != null && details.avatar.length != null) {
       long        avatarLength      = details.avatar.length;
-      InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
+      InputStream avatarStream      = new LimitedInputStream(new NonClosingInputStream(in), avatarLength);
       String      avatarContentType = details.avatar.contentType != null ? details.avatar.contentType : "image/*";
 
-      avatar = Optional.of(new DeviceContactAvatar(avatarStream, avatarLength, avatarContentType));
+      avatar         = Optional.of(new DeviceContactAvatar(avatarStream, avatarLength, avatarContentType));
+      previousAvatar = avatarStream;
     }
 
     if (details.expireTimer != null && details.expireTimer > 0) {

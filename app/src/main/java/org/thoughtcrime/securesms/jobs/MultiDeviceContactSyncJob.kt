@@ -81,6 +81,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
       }
 
       if (recipient == null) {
+        contact = deviceContacts.read()
         continue
       }
 

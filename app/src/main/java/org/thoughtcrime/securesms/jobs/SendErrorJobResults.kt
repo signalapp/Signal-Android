@@ -1,9 +1,14 @@
 package org.thoughtcrime.securesms.jobs
 
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.right
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.ChallengeOption
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.NoSessionException
+import org.signal.network.api.CdnApi
 import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
@@ -87,5 +92,53 @@ fun MessageService.SendError.toSyncJobResult(tag: String, description: String, d
     is MessageService.SendError.RateLimited -> toJobResult(tag, defaultBackoff)
     is MessageService.SendError.NetworkError -> toJobResult(tag, defaultBackoff)
     is MessageService.SendError.ApplicationError -> toJobResult(tag, description, defaultBackoff)
+  }
+}
+
+/**
+ * Unwraps an upload result. On failure, Left is the job result to return.
+ */
+fun <T> RequestResult<T, CdnApi.UploadError>.toEither(tag: String, defaultBackoff: Long): Either<Job.Result, T> {
+  return when (this) {
+    is RequestResult.Success -> result.right()
+    is RequestResult.NonSuccess -> error.toJobResult(tag, defaultBackoff).left()
+    is RequestResult.RetryableNetworkError -> {
+      val backoff = maxOf(defaultBackoff, retryAfter?.toMillis() ?: 0L)
+      Log.w(tag, "Network error uploading, retryAfter=$retryAfter, using backoff=${backoff}ms", networkError)
+      Job.Result.retry(backoff).left()
+    }
+    is RequestResult.ApplicationError -> when (val cause = cause) {
+      is RuntimeException -> {
+        Log.e(tag, "Unexpected error uploading.", cause)
+        Job.Result.fatalFailure(cause).left()
+      }
+
+      else -> {
+        Log.w(tag, "Application error uploading.", cause)
+        Job.Result.failure().left()
+      }
+    }
+  }
+}
+
+private fun CdnApi.UploadError.toJobResult(tag: String, defaultBackoff: Long): Job.Result {
+  return when (this) {
+    is CdnApi.UploadError.TooLarge,
+    is CdnApi.UploadError.ChecksumMismatch -> {
+      Log.w(tag, "Upload rejected: $this")
+      Job.Result.failure()
+    }
+
+    is CdnApi.UploadError.InvalidRequest,
+    is CdnApi.UploadError.ResumeLocationInvalid -> {
+      Log.w(tag, "Upload needs to start over: $this")
+      Job.Result.retry(defaultBackoff)
+    }
+
+    is CdnApi.UploadError.RateLimited -> {
+      val backoff = maxOf(defaultBackoff, retryAfter?.inWholeMilliseconds ?: 0L)
+      Log.w(tag, "Upload rate limited, retryAfter=$retryAfter, using backoff=${backoff}ms")
+      Job.Result.retry(backoff)
+    }
   }
 }

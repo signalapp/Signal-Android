@@ -258,6 +258,46 @@ class CdnServiceTest {
   }
 
   @Test
+  fun `uploading without a form fetches one and uploads with a new key`() = runTest {
+    every { attachmentApi.getAttachmentV4UploadForm(CIPHERTEXT_LENGTH) } returns RequestResult.Success(cdn3Form)
+    var sent: ByteArray? = null
+    coEvery { cdnApi.createUploadWithData(cdn3Form, null, CIPHERTEXT_LENGTH, CIPHERTEXT_LENGTH, any()) } answers {
+      sent = writeBody(arg(4))
+      RequestResult.Success(CIPHERTEXT_LENGTH)
+    }
+
+    val result = service.uploadAttachment(attachmentStream())
+
+    val upload = (result as RequestResult.Success).result
+    assertThat(upload.cdnNumber).isEqualTo(3)
+    assertThat(upload.remoteId.toString()).isEqualTo("cdn-key")
+    assertThat(upload.dataSize).isEqualTo(PLAINTEXT_LENGTH)
+    assertThat(upload.key.size).isEqualTo(64)
+    assertThat(sent!!.size.toLong()).isEqualTo(CIPHERTEXT_LENGTH)
+  }
+
+  @Test
+  fun `uploading without a form reports a too large form as TooLarge without contacting the CDN`() = runTest {
+    every { attachmentApi.getAttachmentV4UploadForm(CIPHERTEXT_LENGTH) } returns RequestResult.NonSuccess(UploadTooLargeException("too large"))
+
+    val result = service.uploadAttachment(attachmentStream())
+
+    assertThat(result).isEqualTo(RequestResult.NonSuccess(CdnApi.UploadError.TooLarge))
+    coVerify(exactly = 0) { cdnApi.createUploadWithData(any(), any(), any(), any(), any()) }
+    coVerify(exactly = 0) { cdnApi.createResumableUpload(any(), any()) }
+  }
+
+  @Test
+  fun `uploading without a form passes through a network error fetching the form`() = runTest {
+    val error = RequestResult.RetryableNetworkError(IOException("offline"))
+    every { attachmentApi.getAttachmentV4UploadForm(CIPHERTEXT_LENGTH) } returns error
+
+    val result = service.uploadAttachment(attachmentStream())
+
+    assertThat(result).isEqualTo(error)
+  }
+
+  @Test
   fun `getResumableUploadSpec builds a spec from the form and resumable url`() = runTest {
     every { attachmentApi.getAttachmentV4UploadForm(100) } returns RequestResult.Success(cdn2Form)
     coEvery { cdnApi.createResumableUpload(cdn2Form, null) } returns RequestResult.Success(RESUME_URL)

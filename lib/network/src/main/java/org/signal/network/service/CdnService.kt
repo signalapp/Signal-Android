@@ -163,6 +163,32 @@ class CdnService(
   }
 
   /**
+   * Fetches an upload form sized for [attachmentStream] and uploads it with a new key and IV. For uploads that start over on every attempt,
+   * so there's no resumable state to persist. A form request rejected as too large is reported as [UploadError.TooLarge].
+   */
+  suspend fun uploadAttachment(attachmentStream: SignalServiceAttachmentStream): RequestResult<AttachmentUploadResult, UploadError> {
+    val ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachmentStream.length))
+
+    val form = when (val result = attachmentApi.getAttachmentV4UploadForm(ciphertextLength)) {
+      is RequestResult.Success -> result.result
+      is RequestResult.NonSuccess -> {
+        Log.w(TAG, "Upload form rejected for $ciphertextLength bytes.", result.error)
+        return RequestResult.NonSuccess(UploadError.TooLarge)
+      }
+      is RequestResult.RetryableNetworkError -> return result
+      is RequestResult.ApplicationError -> return result
+    }
+
+    return uploadAttachment(
+      form = form,
+      key = Util.getSecretBytes(64),
+      iv = Util.getSecretBytes(16),
+      checksumSha256 = null,
+      attachmentStream = attachmentStream
+    )
+  }
+
+  /**
    * Uploads a pre-encrypted backup file, automatically choosing the best upload strategy based on CDN version.
    * For CDN3, uses TUS "Creation With Upload" (single POST). For other CDNs, falls back to the legacy
    * resumable upload flow.
