@@ -25,6 +25,8 @@ interface CallScreenControlsListener {
   fun onOverflowClicked()
   fun onDismissOverflow()
   fun onCameraDirectionChanged()
+
+  fun onTorchModeChanged()
   fun onEndCallPressed()
   fun onDenyCallPressed()
   fun onAcceptCallWithVoiceOnlyPressed()
@@ -48,6 +50,7 @@ interface CallScreenControlsListener {
     override fun onOverflowClicked() = Unit
     override fun onDismissOverflow() = Unit
     override fun onCameraDirectionChanged() = Unit
+    override fun onTorchModeChanged() = Unit
     override fun onEndCallPressed() = Unit
     override fun onDenyCallPressed() = Unit
     override fun onAcceptCallWithVoiceOnlyPressed() = Unit

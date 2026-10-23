@@ -70,6 +70,7 @@ fun MoveableLocalVideoRenderer(
   savedLocalParticipantLandscape: Boolean,
   onClick: () -> Unit,
   onToggleCameraDirectionClick: () -> Unit,
+  onToggleTorchModeClick: () -> Unit,
   onFocusLocalParticipantClick: () -> Unit,
   isVideoLandscape: Boolean = rememberIsLocalVideoLandscape(localParticipant),
   margin: Dp = PipMargin,
@@ -146,6 +147,7 @@ fun MoveableLocalVideoRenderer(
           selfPipMode = selfPipMode,
           isMoreThanOneCameraAvailable = localParticipant.cameraState.cameraCount > 1,
           onSwitchCameraClick = onToggleCameraDirectionClick,
+          onTorchModeClick = onToggleTorchModeClick,
           modifier = Modifier
             .fillMaxSize()
             .dropShadow(
@@ -250,6 +252,7 @@ private fun MoveableLocalVideoRendererPreview() {
           }
         },
         onToggleCameraDirectionClick = {},
+        onToggleTorchModeClick = {},
         onFocusLocalParticipantClick = {
           localRenderState = if (localRenderState == WebRtcLocalRenderState.FOCUSED) {
             WebRtcLocalRenderState.EXPANDED

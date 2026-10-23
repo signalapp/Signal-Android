@@ -334,7 +334,8 @@ private fun CallElementsLayoutPreview() {
           savedLocalParticipantLandscape = false,
           onClick = {},
           onFocusLocalParticipantClick = {},
-          onToggleCameraDirectionClick = {}
+          onToggleCameraDirectionClick = {},
+          onToggleTorchModeClick = {}
         )
       },
       reactionsSlot = {

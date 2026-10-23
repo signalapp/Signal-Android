@@ -420,6 +420,7 @@ fun CallScreen(
               savedLocalParticipantLandscape = savedLocalParticipantLandscape,
               onClick = onLocalPictureInPictureClicked,
               onToggleCameraDirectionClick = callScreenControlsListener::onCameraDirectionChanged,
+              onToggleTorchModeClick = callScreenControlsListener::onTorchModeChanged,
               onFocusLocalParticipantClick = onLocalPictureInPictureFocusClicked,
               isVideoLandscape = isLocalVideoLandscape,
               margin = pipMargin,

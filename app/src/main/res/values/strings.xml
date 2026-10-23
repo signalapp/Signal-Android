@@ -9579,6 +9579,7 @@
     <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
+    <string name="TorchModeButton__toggle_flashlight">Toggle flashlight</string>
 
     <!-- EOF -->
 </resources>

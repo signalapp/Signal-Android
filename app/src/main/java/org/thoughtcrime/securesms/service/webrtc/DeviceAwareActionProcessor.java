@@ -72,6 +72,16 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleToggleTorchMode(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleToggleTorchMode():");
+
+    if (currentState.getLocalDeviceState().getCameraState().isEnabled() && currentState.getVideoState().getRouter() != null) {
+      currentState.getVideoState().getRouter().toggleTorchMode();
+    }
+    return currentState;
+  }
+
+  @Override
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted():");
 

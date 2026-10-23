@@ -886,6 +886,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     AppDependencies.signalCallManager.flipCamera()
   }
 
+  private fun handleTorchMode() {
+    AppDependencies.signalCallManager.toggleTorchMode()
+  }
+
   private fun handleAnswerWithAudio() {
     askAudioPermissions {
       callScreen.setStatus(getString(R.string.RedPhone_answering))
@@ -1385,6 +1389,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     override fun onCameraDirectionChanged() {
       handleFlipCamera()
+    }
+
+    override fun onTorchModeChanged() {
+      handleTorchMode()
     }
 
     override fun onEndCallPressed() {

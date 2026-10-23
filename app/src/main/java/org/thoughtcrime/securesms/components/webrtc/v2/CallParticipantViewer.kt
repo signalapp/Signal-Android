@@ -183,6 +183,7 @@ fun SelfPipContent(
   selfPipMode: SelfPipMode,
   isMoreThanOneCameraAvailable: Boolean,
   onSwitchCameraClick: (() -> Unit)?,
+  onTorchModeClick: (() -> Unit)?,
   modifier: Modifier = Modifier,
   showAudioIndicator: Boolean = true
 ) {
@@ -201,6 +202,12 @@ fun SelfPipContent(
           modifier = Modifier.align(Alignment.BottomStart)
         )
       }
+
+      TorchModeButton(
+        selfPipMode = selfPipMode,
+        onClick = onTorchModeClick,
+        modifier = Modifier.align(Alignment.BottomEnd)
+      )
 
       if (isMoreThanOneCameraAvailable) {
         SwitchCameraButton(
@@ -606,6 +613,69 @@ private fun SwitchCameraButton(
 }
 
 @Composable
+private fun TorchModeButton(
+  selfPipMode: SelfPipMode,
+  onClick: (() -> Unit)?,
+  modifier: Modifier = Modifier
+) {
+  val targetSize = when (selfPipMode) {
+    SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 48.dp
+    else -> 28.dp
+  }
+
+  val size by animateDpAsState(targetSize)
+
+  val targetMargin = when (selfPipMode) {
+    SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
+    else -> 10.dp
+  }
+
+  val margin by animateDpAsState(targetMargin)
+
+  val targetIconInset = when (selfPipMode) {
+    SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
+    SelfPipMode.MINI_SELF_PIP -> 7.dp
+    else -> 6.dp
+  }
+
+  val iconInset by animateDpAsState(targetIconInset)
+  val hasActiveClick = (selfPipMode == SelfPipMode.EXPANDED_SELF_PIP || selfPipMode == SelfPipMode.FOCUSED_SELF_PIP) && onClick != null
+
+  val clickModifier = if (hasActiveClick) {
+    Modifier.clickable { onClick() }
+  } else {
+    Modifier
+  }
+
+  val background by animateColorAsState(
+    if (hasActiveClick) {
+      MaterialTheme.colorScheme.secondaryContainer
+    } else {
+      MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
+    }
+  )
+
+  Box(
+    modifier = modifier
+      .padding(end = margin, bottom = margin)
+      .size(size)
+      .background(
+        color = background,
+        shape = CircleShape
+      )
+      .padding(iconInset)
+      .then(clickModifier),
+    contentAlignment = Alignment.Center
+  ) {
+    Icon(
+      painter = painterResource(id = R.drawable.symbol_flash_24),
+      contentDescription = stringResource(R.string.TorchModeButton__toggle_flashlight),
+      tint = Color.White
+    )
+  }
+}
+
+@Composable
 private fun RaiseHandIndicator(
   name: String,
   iconSize: Dp,
@@ -887,6 +957,7 @@ private fun SelfPipNormalPreview() {
       selfPipMode = SelfPipMode.NORMAL_SELF_PIP,
       isMoreThanOneCameraAvailable = true,
       onSwitchCameraClick = {},
+      onTorchModeClick = {},
       modifier = Modifier.size(rememberCallScreenMetrics().normalRendererDpSize)
     )
   }
@@ -905,6 +976,7 @@ private fun SelfPipExpandedPreview() {
       selfPipMode = SelfPipMode.EXPANDED_SELF_PIP,
       isMoreThanOneCameraAvailable = true,
       onSwitchCameraClick = {},
+      onTorchModeClick = {},
       modifier = Modifier.size(rememberCallScreenMetrics().expandedRendererDpSize)
     )
   }
@@ -923,6 +995,7 @@ private fun SelfPipMiniPreview() {
       selfPipMode = SelfPipMode.MINI_SELF_PIP,
       isMoreThanOneCameraAvailable = true,
       onSwitchCameraClick = {},
+      onTorchModeClick = {},
       modifier = Modifier.size(rememberCallScreenMetrics().overflowParticipantRendererDpSize)
     )
   }
@@ -941,6 +1014,7 @@ private fun SelfPipCameraOffPreview() {
       selfPipMode = SelfPipMode.NORMAL_SELF_PIP,
       isMoreThanOneCameraAvailable = false,
       onSwitchCameraClick = null,
+      onTorchModeClick = null,
       modifier = Modifier.size(rememberCallScreenMetrics().normalRendererDpSize)
     )
   }

@@ -36,6 +36,8 @@ class OutgoingVideoSourceRouter(
   var isScreenSharing: Boolean = false
     private set
 
+  private var torchMode: Boolean = false
+
   override fun hasCapturer(): Boolean {
     return camera.hasCapturer()
   }
@@ -48,6 +50,9 @@ class OutgoingVideoSourceRouter(
 
   override fun setEnabled(enable: Boolean) {
     camera.setEnabled(enable)
+    if (enable) {
+      torchMode = false
+    }
   }
 
   override fun flip() {
@@ -56,6 +61,11 @@ class OutgoingVideoSourceRouter(
 
   override fun setOrientation(orientation: Int?) {
     camera.setOrientation(orientation)
+  }
+
+  fun toggleTorchMode() {
+    torchMode = !torchMode
+    camera.setTorchMode(torchMode);
   }
 
   val cameraState: CameraState
@@ -123,6 +133,7 @@ class OutgoingVideoSourceRouter(
     screenShareCapturer?.dispose()
     screenShareCapturer = null
     isScreenSharing = false
+    torchMode = false
     camera.dispose()
   }
 

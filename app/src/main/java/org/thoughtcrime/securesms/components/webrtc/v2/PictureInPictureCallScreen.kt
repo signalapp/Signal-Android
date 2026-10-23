@@ -193,6 +193,7 @@ private fun PictureInPictureSelfPip(
         selfPipMode = SelfPipMode.OVERLAY_SELF_PIP,
         isMoreThanOneCameraAvailable = false,
         onSwitchCameraClick = null,
+        onTorchModeClick = null,
         showAudioIndicator = false,
         modifier = Modifier.fillMaxSize()
       )

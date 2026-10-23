@@ -289,6 +289,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleSetCameraFlip(s));
   }
 
+  public void toggleTorchMode() {
+    process((s, p) -> p.handleToggleTorchMode(s));
+  }
+
   public void acceptCall(boolean answerWithVideo) {
     process((s, p) -> p.handleAcceptCall(s, answerWithVideo));
   }

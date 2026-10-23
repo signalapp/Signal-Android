@@ -596,6 +596,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleToggleTorchMode(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleToggleTorchMode not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleScreenOffChange(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleScreenOffChange not processed");
     return currentState;

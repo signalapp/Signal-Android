@@ -141,6 +141,25 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     }
   }
 
+  public void setTorchMode(boolean torch) {
+    if (capturer == null || !isInitialized) {
+      return;
+    }
+
+    final CameraManager cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+    if (cameraManager == null) {
+      return;
+    }
+
+    try {
+        for (String cameraId: cameraManager.getCameraIdList()) {
+          cameraManager.setTorchMode(cameraId, torch);
+        }
+    } catch (CameraAccessException e) {
+      Log.e(TAG, "Camera access exception: " + e);
+    }
+  }
+
   public void pauseCapture() {
     if (capturer != null && capturing) {
       paused = true;
@@ -186,6 +205,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   public void dispose() {
     if (capturer != null) {
+      setTorchMode(false);
       capturer.dispose();
       isInitialized = false;
       capturing     = false;
@@ -229,6 +249,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     } catch (InterruptedException e) {
       Log.w(TAG, "Interrupted stopping capture", e);
     }
+    setTorchMode(false);
     capturing = false;
   }
 
