@@ -15,8 +15,10 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.GroupCallPeekJob
 import org.thoughtcrime.securesms.jobs.PushProcessEarlyMessagesJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
+import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.groupMasterKey
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
 import org.whispersystems.signalservice.internal.push.DataMessage
@@ -83,6 +85,10 @@ abstract class BatchCache {
     SignalDatabase.messageLog.deleteEntriesForRecipient(timestamps, recipientId, device)
   }
 
+  protected fun flushGroupCallPeek(data: GroupCallPeekJobData) {
+    GroupCallPeekJob.enqueue(data)
+  }
+
   protected fun flushDeliveryReceipt(recipientId: RecipientId, timestamp: Long, messageId: MessageId) {
     SendDeliveryReceiptJob.create(recipientId, listOf(timestamp), listOf(messageId)).forEach { flushJob(it) }
   }
@@ -91,6 +97,7 @@ abstract class BatchCache {
   abstract fun addIncomingMessageInsertThreadUpdate(threadId: Long)
   abstract fun addMslDelete(recipientId: RecipientId, device: Int, timestamps: List<Long>)
   abstract fun addDeliveryReceipt(recipientId: RecipientId, groupId: GroupId.V2?, timestamp: Long, messageId: MessageId)
+  abstract fun addGroupCallPeek(data: GroupCallPeekJobData)
   abstract fun requiresEarlyMessageProcessing()
 }
 
@@ -117,6 +124,10 @@ class OneTimeBatchCache : BatchCache() {
     flushDeliveryReceipt(recipientId, timestamp, messageId)
   }
 
+  override fun addGroupCallPeek(data: GroupCallPeekJobData) {
+    flushGroupCallPeek(data)
+  }
+
   override fun requiresEarlyMessageProcessing() {
     flushEarlyMessageProcessing()
   }
@@ -139,6 +150,7 @@ class ReusedBatchCache : BatchCache() {
   private val threadUpdates = HashSet<Long>(BATCH_SIZE)
   private val mslDeletes = HashMap<Pair<RecipientId, Int>, MutableList<Long>>(BATCH_SIZE)
   private val deliveryReceipts = HashMap<Pair<RecipientId, GroupId.V2?>, DeliveryReceiptAccumulator>(BATCH_SIZE)
+  private val groupCallPeeks = HashMap<Long, GroupCallPeekJobData>(BATCH_SIZE)
   private var earlyMessageProcessingNeeded = false
 
   override fun addJob(job: Job) {
@@ -159,6 +171,10 @@ class ReusedBatchCache : BatchCache() {
     accumulator.messageIds += messageId
   }
 
+  override fun addGroupCallPeek(data: GroupCallPeekJobData) {
+    groupCallPeeks[data.groupRecipientId] = data
+  }
+
   override fun requiresEarlyMessageProcessing() {
     earlyMessageProcessingNeeded = true
   }
@@ -175,6 +191,9 @@ class ReusedBatchCache : BatchCache() {
       AppDependencies.jobManager.addAll(batchedJobs)
     }
     batchedJobs.clear()
+
+    groupCallPeeks.values.forEach { flushGroupCallPeek(it) }
+    groupCallPeeks.clear()
 
     if (earlyMessageProcessingNeeded) {
       flushEarlyMessageProcessing()
