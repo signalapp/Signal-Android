@@ -1678,24 +1678,8 @@ class ConversationFragment :
 
     viewLifecycleOwner.lifecycle.addObserver(LastScrolledPositionUpdater(adapter, layoutManager, viewModel))
 
-    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Default) {
-      var wasTerminated: Boolean? = null
-      viewModel
-        .groupRecordFlow
-        .collect { record ->
-          val isTerminated = record.isTerminated
-          if (wasTerminated == false && isTerminated) {
-            val terminatedByRecipientId = record.terminatedByRecipientId
-            if (terminatedByRecipientId == null || terminatedByRecipientId != Recipient.self().id) {
-              val context = context ?: return@collect
-              val adminName = terminatedByRecipientId?.let { Recipient.resolved(it).getDisplayName(context) }
-              withContext(Dispatchers.Main) {
-                TerminatedGroupBottomSheetDialog.show(childFragmentManager, adminName)
-              }
-            }
-          }
-          wasTerminated = isTerminated
-        }
+    collectFlowOnViewLifecycle(viewModel.groupTerminatedEvents, Lifecycle.State.RESUMED) { terminatorName ->
+      TerminatedGroupBottomSheetDialog.show(childFragmentManager, terminatorName)
     }
 
     disposables += viewModel.recipient
