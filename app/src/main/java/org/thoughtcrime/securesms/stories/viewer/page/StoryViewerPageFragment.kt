@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
@@ -1169,43 +1170,38 @@ class StoryViewerPageFragment :
     if (Recipient.self() == post.sender) {
       if (isReceiptsEnabled) {
         if (post.replyCount == 0) {
-          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
-          viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
-          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-          viewsAndReplies.text = views
+          presentViewsAndRepliesWithChevron(views)
         } else {
-          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
-          viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
-          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-          viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
+          presentViewsAndRepliesWithChevron(getString(R.string.StoryViewerFragment__s_s, views, replies))
         }
       } else {
         if (post.replyCount == 0) {
           viewsAndReplies.icon = null
           viewsAndReplies.setText(R.string.StoryViewerPageFragment__views_off)
         } else {
-          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
-          viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
-          viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-          viewsAndReplies.text = replies
+          presentViewsAndRepliesWithChevron(replies)
         }
       }
     } else if (post.replyCount > 0) {
-      viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
-      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
-      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
-      viewsAndReplies.text = replies
+      presentViewsAndRepliesWithChevron(replies)
     } else if (post.group != null) {
-      viewsAndReplies.setIconResource(R.drawable.symbol_reply_24)
-      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
-      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+      setViewsAndRepliesIcon(R.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
-      viewsAndReplies.setIconResource(R.drawable.symbol_reply_24)
-      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
-      viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+      setViewsAndRepliesIcon(R.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
     }
+  }
+
+  private fun presentViewsAndRepliesWithChevron(text: CharSequence) {
+    setViewsAndRepliesIcon(R.drawable.symbol_chevron_right_compact_bold_16, 16.dp, MaterialButton.ICON_GRAVITY_TEXT_END)
+    viewsAndReplies.text = text
+  }
+
+  private fun setViewsAndRepliesIcon(@DrawableRes iconRes: Int, iconSize: Int, iconGravity: Int) {
+    viewsAndReplies.iconGravity = iconGravity
+    viewsAndReplies.iconSize = iconSize
+    viewsAndReplies.setIconResource(iconRes)
   }
 
   override fun setIsDisplayingLinkPreviewTooltip(isDisplayingLinkPreviewTooltip: Boolean) {
