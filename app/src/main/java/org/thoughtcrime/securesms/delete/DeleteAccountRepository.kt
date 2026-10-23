@@ -38,6 +38,9 @@ class DeleteAccountRepository {
 
     /** The WebSocket closes with this status once the account is gone, which is a success rather than a failure. */
     private const val ACCOUNT_DELETED_WEBSOCKET_CLOSE_CODE = 4401
+
+    /** The WebSocket sometimes closes with this status (which means "connected elsewhere"), which is a success rather than a failure. */
+    private const val ACCOUNT_CONNECTED_ELSEWHERE_WEBSOCKET_CLOSE_CODE = 4409
   }
 
   fun getRegionDisplayName(region: String): String = E164Util.getRegionDisplayName(region).orElse("")
@@ -185,8 +188,8 @@ class DeleteAccountRepository {
     try {
       NetworkResultUtil.toBasicLegacy(SignalNetwork.accountApi.deleteAccount())
     } catch (e: IOException) {
-      if (e is NonSuccessfulResponseCodeException && e.code == ACCOUNT_DELETED_WEBSOCKET_CLOSE_CODE) {
-        Log.i(TAG, "deleteAccount: WebSocket closed with expected status after delete account, moving forward as delete was successful")
+      if (e is NonSuccessfulResponseCodeException && (e.code == ACCOUNT_DELETED_WEBSOCKET_CLOSE_CODE || e.code == ACCOUNT_CONNECTED_ELSEWHERE_WEBSOCKET_CLOSE_CODE)) {
+        Log.i(TAG, "deleteAccount: WebSocket closed with expected status (${e.code}) after delete account, moving forward as delete was successful")
       } else {
         Log.w(TAG, "deleteAccount: failed to delete account from signal service, bail", e)
         return DeletionResult.ServerDeletionFailed

@@ -148,6 +148,7 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
    * DELETE /v1/accounts/me
    * - 204: Success
    * - 4401: Success
+   * - 4409: Also basically success, but it technically means "connected elsewhere". Server can race and report this instead of 4401.
    */
   fun deleteAccount(): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.delete("/v1/accounts/me")

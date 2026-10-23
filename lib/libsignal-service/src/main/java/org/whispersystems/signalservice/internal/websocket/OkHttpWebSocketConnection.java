@@ -360,7 +360,7 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
     Iterator<Map.Entry<Long, OutgoingRequest>> iterator = outgoingRequests.entrySet().iterator();
 
     IOException exception;
-    if (code == 403 || code == 4401) {
+    if (code == 403 || code == 4401 || code == 4409) {
       exception = new NonSuccessfulResponseCodeException(code);
     } else {
       exception = new SocketException("Closed unexpectedly");
