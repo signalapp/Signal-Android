@@ -9,6 +9,7 @@ import arrow.core.Either
 import arrow.core.raise.Raise
 import arrow.core.raise.either
 import assertk.assertThat
+import assertk.assertions.doesNotContain
 import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import io.mockk.Runs
@@ -24,6 +25,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64
+import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.net.MismatchedDeviceException
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.RequestUnauthorizedException
@@ -816,5 +818,12 @@ class MessageServiceTest {
       }
     } just Runs
     return spy
+  }
+
+  @Test
+  fun `ChallengeRequired toString leaves out the token`() {
+    val error = MessageService.SendError.ChallengeRequired(token = "secret-token-123", options = setOf(ChallengeOption.PUSH_CHALLENGE), retryAfter = 5.seconds)
+
+    assertThat(error.toString()).doesNotContain("secret-token-123")
   }
 }

@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.jobs.protos.DeviceNameChangeJobData
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.SyncMessage
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit
 class DeviceNameChangeJob private constructor(
   private val data: DeviceNameChangeJobData,
   parameters: Parameters
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
   companion object {
     const val KEY: String = "DeviceNameChangeJob"
     private val TAG = Log.tag(DeviceNameChangeJob::class.java)
@@ -44,29 +43,25 @@ class DeviceNameChangeJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
       Log.w(TAG, "Not registered")
       return Result.failure()
     }
 
-    return try {
-      val result = AppDependencies.signalServiceMessageSender.sendSyncMessage(
-        SignalServiceSyncMessage.forDeviceNameChange(SyncMessage.DeviceNameChange(data.deviceId))
-      )
-      if (result.isSuccess) {
-        Result.success()
-      } else {
-        Log.w(TAG, "Unable to send device name sync - trying later")
-        Result.retry(defaultBackoff())
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncDeviceNameChange(SyncMessage.DeviceNameChange(data.deviceId)),
+      urgent = false,
+      onEncrypted = null
+    )
+
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "device name sync", defaultBackoff())
       }
-    } catch (e: IOException) {
-      Log.w(TAG, "Unable to send device name sync - trying later", e)
-      Result.retry(defaultBackoff())
-    } catch (e: UntrustedIdentityException) {
-      Log.w(TAG, "Unable to send device name sync", e)
-      Result.failure()
-    }
+    )
   }
 
   override fun onFailure() = Unit

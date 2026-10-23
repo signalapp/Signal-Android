@@ -1,21 +1,21 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.network.exceptions.PushNetworkException
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
+import org.thoughtcrime.securesms.util.OutgoingContent
+import org.whispersystems.signalservice.internal.push.SyncMessage
 
 /**
  * Sends a sync message to linked devices to notify them to refresh subscription status.
  */
-class MultiDeviceSubscriptionSyncRequestJob private constructor(parameters: Parameters) : BaseJob(parameters) {
+class MultiDeviceSubscriptionSyncRequestJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "MultiDeviceSubscriptionSyncRequestJob"
@@ -46,23 +46,30 @@ class MultiDeviceSubscriptionSyncRequestJob private constructor(parameters: Para
     Log.w(TAG, "Did not succeed!")
   }
 
-  override fun onRun() {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
-      throw NotPushRegisteredException()
+      Log.w(TAG, "Not registered, aborting...")
+      return Result.failure()
     }
 
     if (!SignalStore.account.isMultiDevice) {
       Log.i(TAG, "Not multi device, aborting...")
-      return
+      return Result.success()
     }
 
-    val messageSender = AppDependencies.signalServiceMessageSender
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncFetchLatest(SyncMessage.FetchLatest.Type.SUBSCRIPTION_STATUS),
+      urgent = false,
+      onEncrypted = null
+    )
 
-    messageSender.sendSyncMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.SUBSCRIPTION_STATUS))
-  }
-
-  override fun onShouldRetry(e: Exception): Boolean {
-    return e is PushNetworkException && e !is ServerRejectedException
+    return result.fold(
+      ifRight = { Result.success() },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "subscription sync request", defaultBackoff())
+      }
+    )
   }
 
   class Factory : Job.Factory<MultiDeviceSubscriptionSyncRequestJob> {

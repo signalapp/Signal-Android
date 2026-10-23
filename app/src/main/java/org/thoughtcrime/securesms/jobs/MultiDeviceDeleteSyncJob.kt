@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
@@ -26,16 +27,12 @@ import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AttachmentDelete
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.internal.push.AddressableMessage
-import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.ConversationIdentifier
-import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage.DeleteForMe
-import java.io.IOException
-import java.util.Optional
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -49,7 +46,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     .setMaxAttempts(Parameters.UNLIMITED)
     .setLifespan(1.days.inWholeMilliseconds)
     .build()
-) : Job(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "MultiDeviceDeleteSendSyncJob"
@@ -228,7 +225,7 @@ class MultiDeviceDeleteSyncJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
       Log.w(TAG, "Not registered")
       return Result.failure()
@@ -240,7 +237,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     }
 
     if (data.messageDeletes.isNotEmpty()) {
-      val success = syncDelete(
+      val outcome = syncDelete(
         DeleteForMe(
           messageDeletes = data.messageDeletes.groupBy { it.threadRecipientId }.mapNotNull { (threadRecipientId, messages) ->
             val conversation = Recipient.resolved(RecipientId.from(threadRecipientId)).toDeleteSyncConversationId()
@@ -257,13 +254,13 @@ class MultiDeviceDeleteSyncJob private constructor(
         )
       )
 
-      if (!success) {
-        return Result.retry(defaultBackoff())
+      if (outcome is SyncDeleteResult.Failed) {
+        return outcome.result
       }
     }
 
     if (data.threadDeletes.isNotEmpty()) {
-      val success = syncDelete(
+      val outcome = syncDelete(
         DeleteForMe(
           conversationDeletes = data.threadDeletes.mapNotNull { threadDelete ->
             val conversation = Recipient.resolved(RecipientId.from(threadDelete.threadRecipientId)).toDeleteSyncConversationId()
@@ -282,13 +279,13 @@ class MultiDeviceDeleteSyncJob private constructor(
         )
       )
 
-      if (!success) {
-        return Result.retry(defaultBackoff())
+      if (outcome is SyncDeleteResult.Failed) {
+        return outcome.result
       }
     }
 
     if (data.localOnlyThreadDeletes.isNotEmpty()) {
-      val success = syncDelete(
+      val outcome = syncDelete(
         DeleteForMe(
           localOnlyConversationDeletes = data.localOnlyThreadDeletes.mapNotNull {
             val conversation = Recipient.resolved(RecipientId.from(it.threadRecipientId)).toDeleteSyncConversationId()
@@ -304,13 +301,13 @@ class MultiDeviceDeleteSyncJob private constructor(
         )
       )
 
-      if (!success) {
-        return Result.retry(defaultBackoff())
+      if (outcome is SyncDeleteResult.Failed) {
+        return outcome.result
       }
     }
 
     if (data.attachmentDeletes.isNotEmpty()) {
-      val success = syncDelete(
+      val outcome = syncDelete(
         DeleteForMe(
           attachmentDeletes = data.attachmentDeletes.mapNotNull {
             val conversation = Recipient.resolved(RecipientId.from(it.targetMessage!!.threadRecipientId)).toDeleteSyncConversationId()
@@ -332,8 +329,8 @@ class MultiDeviceDeleteSyncJob private constructor(
         )
       )
 
-      if (!success) {
-        return Result.retry(defaultBackoff())
+      if (outcome is SyncDeleteResult.Failed) {
+        return outcome.result
       }
     }
 
@@ -342,36 +339,31 @@ class MultiDeviceDeleteSyncJob private constructor(
 
   override fun onFailure() = Unit
 
-  private fun syncDelete(deleteForMe: DeleteForMe): Boolean {
+  private suspend fun syncDelete(deleteForMe: DeleteForMe): SyncDeleteResult {
     if (deleteForMe.conversationDeletes.isEmpty() &&
       deleteForMe.messageDeletes.isEmpty() &&
       deleteForMe.localOnlyConversationDeletes.isEmpty() &&
       deleteForMe.attachmentDeletes.isEmpty()
     ) {
       Log.i(TAG, "No valid deletes, nothing to send, skipping")
-      return true
+      return SyncDeleteResult.NothingToSend
     }
 
-    val syncMessageContent = deleteForMeContent(deleteForMe)
+    Log.d(TAG, "Sending delete sync messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size} attachmentDeletes=${deleteForMe.attachmentDeletes.size}")
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = System.currentTimeMillis(),
+      envelopeContent = OutgoingContent.syncDeleteForMe(deleteForMe),
+      urgent = true,
+      onEncrypted = null
+    )
 
-    return try {
-      Log.d(TAG, "Sending delete sync messageDeletes=${deleteForMe.messageDeletes.size} conversationDeletes=${deleteForMe.conversationDeletes.size} localOnlyConversationDeletes=${deleteForMe.localOnlyConversationDeletes.size} attachmentDeletes=${deleteForMe.attachmentDeletes.size}")
-      AppDependencies.signalServiceMessageSender.sendSyncMessage(syncMessageContent, true, Optional.empty()).isSuccess
-    } catch (e: IOException) {
-      Log.w(TAG, "Unable to send message delete sync", e)
-      false
-    } catch (e: UntrustedIdentityException) {
-      Log.w(TAG, "Unable to send message delete sync", e)
-      false
-    }
-  }
-
-  private fun deleteForMeContent(deleteForMe: DeleteForMe): Content {
-    val syncMessage = SyncMessage.Builder()
-      .pad()
-      .deleteForMe(deleteForMe)
-
-    return Content(syncMessage = syncMessage.build())
+    return result.fold(
+      ifRight = { SyncDeleteResult.Sent },
+      ifLeft = { error ->
+        val jobResult = error.toSyncJobResult(TAG, "message delete sync", defaultBackoff())
+        SyncDeleteResult.Failed(jobResult)
+      }
+    )
   }
 
   private fun Recipient.toDeleteSyncConversationId(): ConversationIdentifier? {
@@ -404,6 +396,12 @@ class MultiDeviceDeleteSyncJob private constructor(
         sentTimestamp = sentTimestamp
       )
     }
+  }
+
+  private sealed interface SyncDeleteResult {
+    data object Sent : SyncDeleteResult
+    data object NothingToSend : SyncDeleteResult
+    data class Failed(val result: Result) : SyncDeleteResult
   }
 
   class Factory : Job.Factory<MultiDeviceDeleteSyncJob> {

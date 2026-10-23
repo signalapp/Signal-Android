@@ -2,24 +2,23 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient
-import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import java.util.Optional
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.concurrent.TimeUnit
 
 /**
  * Transmits a sent sync transcript to linked devices containing the story sync manifest for the given sent timestamp.
  * The transmitted message will contain all current recipients of a given story.
  */
-class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, private val sentTimestamp: Long, private val deletedMessageId: Long) : BaseJob(parameters) {
+class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, private val sentTimestamp: Long, private val deletedMessageId: Long) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY = "MultiDeviceStorySendSyncJob"
@@ -54,42 +53,53 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
 
   override fun getFactoryKey(): String = KEY
 
-  override fun onRun() {
+  override suspend fun doRun(): Result {
     val updateManifest = SignalDatabase.storySends.getLocalManifest(sentTimestamp)
     val recipientsSet: Set<SignalServiceStoryMessageRecipient> = updateManifest.toRecipientsSet()
-    val transcriptMessage: SignalServiceSyncMessage = SignalServiceSyncMessage.forSentTranscript(buildSentTranscript(recipientsSet))
-    val sendMessageResult = AppDependencies.signalServiceMessageSender.sendSyncMessage(transcriptMessage)
 
-    Log.i(TAG, "Sent transcript message with ${recipientsSet.size} recipients")
+    val result = SignalNetwork.messageService.sendSyncMessage(
+      timestamp = sentTimestamp,
+      envelopeContent = OutgoingContent.syncSent(buildSentTranscript(recipientsSet)),
+      urgent = false,
+      onEncrypted = null
+    )
 
-    if (!sendMessageResult.isSuccess) {
-      throw RetryableException()
-    }
-
-    SignalDatabase.messages.deleteRemotelyDeletedStory(deletedMessageId)
+    return result.fold(
+      ifRight = {
+        Log.i(TAG, "Sent transcript message with ${recipientsSet.size} recipients")
+        SignalDatabase.messages.deleteRemotelyDeletedStory(deletedMessageId)
+        Result.success()
+      },
+      ifLeft = { error ->
+        error.toSyncJobResult(TAG, "story recipient update transcript", defaultBackoff())
+      }
+    )
   }
 
-  override fun onShouldRetry(e: Exception): Boolean {
-    return e is RetryableException
-  }
+  private fun buildSentTranscript(recipientsSet: Set<SignalServiceStoryMessageRecipient>): SyncMessage.Sent {
+    val self = Recipient.self().requireAci().toByteString()
 
-  private fun buildSentTranscript(recipientsSet: Set<SignalServiceStoryMessageRecipient>): SentTranscriptMessage {
-    return SentTranscriptMessage(
-      Optional.of(SignalServiceAddress(Recipient.self().requireAci())),
-      sentTimestamp,
-      Optional.empty(),
-      0,
-      emptyMap(),
-      true,
-      Optional.empty(),
-      recipientsSet,
-      Optional.empty()
+    return SyncMessage.Sent(
+      destinationServiceIdBinary = self,
+      timestamp = sentTimestamp,
+      unidentifiedStatus = listOf(
+        SyncMessage.Sent.UnidentifiedDeliveryStatus(
+          destinationServiceIdBinary = self,
+          unidentified = false
+        )
+      ),
+      storyMessageRecipients = recipientsSet.map {
+        SyncMessage.Sent.StoryMessageRecipient(
+          distributionListIds = it.distributionListIds,
+          destinationServiceIdBinary = it.signalServiceAddress.serviceId.toByteString(),
+          isAllowedToReply = it.isAllowedToReply
+        )
+      }.distinct(),
+      isRecipientUpdate = true
     )
   }
 
   override fun onFailure() = Unit
-
-  class RetryableException : Exception()
 
   class Factory : Job.Factory<MultiDeviceStorySendSyncJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): MultiDeviceStorySendSyncJob {

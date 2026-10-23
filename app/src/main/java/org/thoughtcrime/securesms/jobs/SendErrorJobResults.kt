@@ -67,3 +67,25 @@ fun MessageService.SendError.ApplicationError.toJobResult(tag: String, descripti
     }
   }
 }
+
+/**
+ * Retries challenges and rate limits, so only use it from jobs that don't share a queue with user sends.
+ */
+fun MessageService.SendError.toSyncJobResult(tag: String, description: String, defaultBackoff: Long): Job.Result {
+  return when (this) {
+    is MessageService.SendError.IdentityMismatch,
+    is MessageService.SendError.NotRegistered,
+    is MessageService.SendError.Unauthorized,
+    is MessageService.SendError.ContentTooLarge -> {
+      Log.w(tag, "Failed to send $description.", this)
+      Job.Result.failure()
+    }
+
+    is MessageService.SendError.ChallengeRequired -> tryPushChallengeAndToJobResult(tag, defaultBackoff)
+    is MessageService.SendError.PreKeyUnavailable -> toJobResult(tag, defaultBackoff)
+    is MessageService.SendError.SessionAttemptsExhausted -> toJobResult(tag, defaultBackoff)
+    is MessageService.SendError.RateLimited -> toJobResult(tag, defaultBackoff)
+    is MessageService.SendError.NetworkError -> toJobResult(tag, defaultBackoff)
+    is MessageService.SendError.ApplicationError -> toJobResult(tag, description, defaultBackoff)
+  }
+}

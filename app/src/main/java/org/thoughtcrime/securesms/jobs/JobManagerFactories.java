@@ -239,6 +239,7 @@ public final class JobManagerFactories {
       put(MultiDeviceStickerPackSyncJob.KEY,           new MultiDeviceStickerPackSyncJob.Factory());
       put(MultiDeviceStorageSyncRequestJob.KEY,        new MultiDeviceStorageSyncRequestJob.Factory());
       put(MultiDeviceSubscriptionSyncRequestJob.KEY,   new MultiDeviceSubscriptionSyncRequestJob.Factory());
+      put(MultiDeviceSyncRequestJob.KEY,               new MultiDeviceSyncRequestJob.Factory());
       put(MultiDeviceUsernameChangeSyncJob.KEY,        new MultiDeviceUsernameChangeSyncJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,            new MultiDeviceVerifiedUpdateJob.Factory());
       put(MultiDeviceViewOnceOpenJob.KEY,              new MultiDeviceViewOnceOpenJob.Factory());

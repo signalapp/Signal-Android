@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.models.AccountEntropyPool
+import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.util.Base64
 import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
@@ -18,6 +20,7 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.NullMessage
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import org.whispersystems.signalservice.internal.push.ReceiptMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 
@@ -26,6 +29,7 @@ object OutgoingContent {
   private val TAG = Log.tag(OutgoingContent::class.java)
 
   private const val MAX_NULL_MESSAGE_PADDING_BYTES = 140
+  private const val MAX_SYNC_MESSAGE_PADDING_BYTES = 512
 
   fun nullMessage(): EnvelopeContent {
     val padding = DataMessage(body = Base64.encodeWithPadding(Util.getRandomLengthSecretBytes(MAX_NULL_MESSAGE_PADDING_BYTES))).encode()
@@ -64,5 +68,69 @@ object OutgoingContent {
   fun senderKeyDistributionMessage(distributionId: DistributionId): SenderKeyDistributionMessage {
     val self = SignalStore.account.requireAci().toProtocolAddress(SignalStore.account.deviceId)
     return SignalGroupSessionBuilder(ReentrantSessionLock.INSTANCE, GroupSessionBuilder(AppDependencies.protocolStore.aci())).create(self, distributionId.asUuid())
+  }
+
+  fun syncKeys(accountEntropyPool: AccountEntropyPool?, mediaRootBackupKey: MediaRootBackupKey?): EnvelopeContent {
+    return syncMessage(
+      SyncMessage(
+        keys = SyncMessage.Keys(
+          accountEntropyPool = accountEntropyPool?.value,
+          mediaRootBackupKey = mediaRootBackupKey?.value?.toByteString()
+        )
+      )
+    )
+  }
+
+  fun syncCallEvent(callEvent: SyncMessage.CallEvent): EnvelopeContent {
+    return syncMessage(SyncMessage(callEvent = callEvent))
+  }
+
+  fun syncCallLinkUpdate(callLinkUpdate: SyncMessage.CallLinkUpdate): EnvelopeContent {
+    return syncMessage(SyncMessage(callLinkUpdate = callLinkUpdate))
+  }
+
+  fun syncCallLogEvent(callLogEvent: SyncMessage.CallLogEvent): EnvelopeContent {
+    return syncMessage(SyncMessage(callLogEvent = callLogEvent))
+  }
+
+  fun syncAttachmentBackfillRequest(request: SyncMessage.AttachmentBackfillRequest): EnvelopeContent {
+    return syncMessage(SyncMessage(attachmentBackfillRequest = request))
+  }
+
+  fun syncAttachmentBackfillResponse(response: SyncMessage.AttachmentBackfillResponse): EnvelopeContent {
+    return syncMessage(SyncMessage(attachmentBackfillResponse = response))
+  }
+
+  fun syncDeviceNameChange(deviceNameChange: SyncMessage.DeviceNameChange): EnvelopeContent {
+    return syncMessage(SyncMessage(deviceNameChange = deviceNameChange))
+  }
+
+  fun syncUsernameChange(): EnvelopeContent {
+    return syncMessage(SyncMessage(usernameChange = SyncMessage.UsernameChange()))
+  }
+
+  fun syncFetchLatest(type: SyncMessage.FetchLatest.Type): EnvelopeContent {
+    return syncMessage(SyncMessage(fetchLatest = SyncMessage.FetchLatest(type = type)))
+  }
+
+  fun syncDeleteForMe(deleteForMe: SyncMessage.DeleteForMe): EnvelopeContent {
+    return syncMessage(SyncMessage(deleteForMe = deleteForMe))
+  }
+
+  fun syncBlocked(blocked: SyncMessage.Blocked): EnvelopeContent {
+    return syncMessage(SyncMessage(blocked = blocked))
+  }
+
+  fun syncSent(sent: SyncMessage.Sent): EnvelopeContent {
+    return syncMessage(SyncMessage(sent = sent))
+  }
+
+  fun syncRequest(type: SyncMessage.Request.Type): EnvelopeContent {
+    return syncMessage(SyncMessage(request = SyncMessage.Request(type = type)))
+  }
+
+  private fun syncMessage(syncMessage: SyncMessage): EnvelopeContent {
+    val padded = syncMessage.copy(padding = Util.getRandomLengthSecretBytes(MAX_SYNC_MESSAGE_PADDING_BYTES).toByteString())
+    return EnvelopeContent.encrypted(Content(syncMessage = padded), ContentHint.IMPLICIT, Optional.empty())
   }
 }

@@ -43,8 +43,6 @@ import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
-import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
@@ -262,7 +260,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           .enqueue()
       } else {
         Log.w(TAG, "Failed to decrypt remote storage! Requesting new keys from primary.", e)
-        AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forRequest(RequestMessage.forType(SyncMessage.Request.Type.KEYS)))
+        AppDependencies.jobManager.add(MultiDeviceSyncRequestJob(SyncMessage.Request.Type.KEYS))
       }
     }
   }

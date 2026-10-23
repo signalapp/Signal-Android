@@ -651,7 +651,9 @@ open class MessageService(
      * [token] is the challenge token; [options] enumerates the supported challenge mechanisms
      * (e.g. "captcha", "pushChallenge"). [retryAfter] is the Retry-After hint, if provided.
      */
-    data class ChallengeRequired(val token: String, val options: Set<ChallengeOption>, val retryAfter: Duration?) : SendError()
+    data class ChallengeRequired(val token: String, val options: Set<ChallengeOption>, val retryAfter: Duration?) : SendError() {
+      override fun toString(): String = "ChallengeRequired(options=$options, retryAfter=$retryAfter)"
+    }
 
     /**
      * The encoded content exceeded the configured size cap. Permanent failure for this message —
