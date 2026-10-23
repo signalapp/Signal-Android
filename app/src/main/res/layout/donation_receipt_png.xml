@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/core_white"
     android:paddingHorizontal="132px"
+    android:paddingBottom="96px"
     tools:ignore="PxUsage">
 
     <ImageView
