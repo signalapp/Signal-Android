@@ -741,7 +741,7 @@ open class MessageContentProcessor(private val context: Context) {
       )
     } else if (archivedSession) {
       warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL, but we archived the session, so we're sending a null message to complete the reset.")
-      AppDependencies.jobManager.add(NullMessageSendJob(requester.id))
+      AppDependencies.jobManager.add(NullMessageSendJob.forRetryReceipt(requester.id))
     } else {
       warn(envelope.clientTimestamp!!, "[RetryReceipt-I] Could not find an entry in the MSL. Skipping.")
     }

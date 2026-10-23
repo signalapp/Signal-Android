@@ -1668,14 +1668,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setLastSessionResetTime(id: RecipientId, lastResetTime: DeviceLastResetTime) {
-    val values = ContentValues(1).apply {
-      put(LAST_SESSION_RESET, lastResetTime.encode())
-    }
-    update(id, values)
+  fun getLastSessionResetTime(id: RecipientId, deviceId: Int): Long {
+    return getLastSessionResetTimes(id).resetTime.firstOrNull { it.deviceId == deviceId }?.lastResetTime ?: 0
   }
 
-  fun getLastSessionResetTimes(id: RecipientId): DeviceLastResetTime {
+  fun setLastSessionResetTime(id: RecipientId, deviceId: Int, time: Long) {
+    writableDatabase.withinTransaction {
+      val resetTimes = getLastSessionResetTimes(id).resetTime.filter { it.deviceId != deviceId } + DeviceLastResetTime.Pair(deviceId = deviceId, lastResetTime = time)
+      val values = ContentValues(1).apply {
+        put(LAST_SESSION_RESET, DeviceLastResetTime(resetTime = resetTimes).encode())
+      }
+      update(id, values)
+    }
+  }
+
+  private fun getLastSessionResetTimes(id: RecipientId): DeviceLastResetTime {
     readableDatabase.query(TABLE_NAME, arrayOf(LAST_SESSION_RESET), ID_WHERE, SqlUtil.buildArgs(id), null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
         return try {

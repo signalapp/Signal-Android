@@ -18,9 +18,12 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Just sends an empty message to a target recipient. Only suitable for individuals, NOT groups.
+ *
+ * With a [resetDeviceId], the session reset cooldown is recorded when the job finishes, including on failure.
  */
 class NullMessageSendJob private constructor(
   private val recipientId: RecipientId,
+  private val resetDeviceId: Int?,
   parameters: Parameters
 ) : CoroutineJob(parameters) {
 
@@ -30,20 +33,38 @@ class NullMessageSendJob private constructor(
     private val TAG = Log.tag(NullMessageSendJob::class.java)
 
     private const val KEY_RECIPIENT_ID = "recipient_id"
+    private const val KEY_RESET_DEVICE_ID = "reset_device_id"
+
+    fun forRetryReceipt(recipientId: RecipientId): NullMessageSendJob {
+      return create(recipientId = recipientId, resetDeviceId = null)
+    }
+
+    fun forSessionReset(recipientId: RecipientId, deviceId: Int): NullMessageSendJob {
+      return create(recipientId = recipientId, resetDeviceId = deviceId)
+    }
+
+    private fun create(recipientId: RecipientId, resetDeviceId: Int?): NullMessageSendJob {
+      return NullMessageSendJob(
+        recipientId,
+        resetDeviceId,
+        Parameters.Builder()
+          .setQueue(if (resetDeviceId != null) "${recipientId.toQueueKey()}::SESSION_RESET::$resetDeviceId" else recipientId.toQueueKey())
+          .addConstraint(NetworkConstraint.KEY)
+          .addConstraint(SealedSenderConstraint.KEY)
+          .setLifespan(TimeUnit.DAYS.toMillis(1))
+          .setMaxAttempts(Parameters.UNLIMITED)
+          .setMaxInstancesForQueue(if (resetDeviceId != null) 1 else Parameters.UNLIMITED)
+          .build()
+      )
+    }
   }
 
-  constructor(recipientId: RecipientId) : this(
-    recipientId = recipientId,
-    parameters = Parameters.Builder()
-      .setQueue(recipientId.toQueueKey())
-      .addConstraint(NetworkConstraint.KEY)
-      .addConstraint(SealedSenderConstraint.KEY)
-      .setLifespan(TimeUnit.DAYS.toMillis(1))
-      .setMaxAttempts(Parameters.UNLIMITED)
-      .build()
-  )
-
-  override fun serialize(): ByteArray? = JsonJobData.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize()).serialize()
+  override fun serialize(): ByteArray? {
+    return JsonJobData.Builder()
+      .putString(KEY_RECIPIENT_ID, recipientId.serialize())
+      .apply { resetDeviceId?.let { putInt(KEY_RESET_DEVICE_ID, it) } }
+      .serialize()
+  }
 
   override fun getFactoryKey(): String = KEY
 
@@ -62,6 +83,7 @@ class NullMessageSendJob private constructor(
 
     if (recipient.registered == RegisteredState.NOT_REGISTERED) {
       Log.w(TAG, "${recipient.id} not registered!")
+      return Result.failure()
     }
 
     val serviceId = recipient.serviceId
@@ -90,11 +112,15 @@ class NullMessageSendJob private constructor(
     }
 
     return result.fold(
-      ifRight = { Result.success() },
+      ifRight = {
+        markSessionReset()
+        Result.success()
+      },
       ifLeft = { error ->
         when (error) {
           is MessageService.SendError.IdentityMismatch -> {
             Log.w(TAG, "Unable to send null message due to an identity mismatch.")
+            markSessionReset()
             Result.success()
           }
 
@@ -116,12 +142,26 @@ class NullMessageSendJob private constructor(
     )
   }
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    markSessionReset()
+  }
+
+  private fun markSessionReset() {
+    if (resetDeviceId != null) {
+      val now = System.currentTimeMillis()
+      SignalDatabase.recipients.setLastSessionResetTime(recipientId, resetDeviceId, now)
+      Log.i(TAG, "Marked last reset time for device $resetDeviceId: $now", true)
+    }
+  }
 
   class Factory : Job.Factory<NullMessageSendJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): NullMessageSendJob {
       val data = JsonJobData.deserialize(serializedData)
-      return NullMessageSendJob(RecipientId.from(data.getString(KEY_RECIPIENT_ID)), parameters)
+      return NullMessageSendJob(
+        recipientId = RecipientId.from(data.getString(KEY_RECIPIENT_ID)),
+        resetDeviceId = if (data.hasInt(KEY_RESET_DEVICE_ID)) data.getInt(KEY_RESET_DEVICE_ID) else null,
+        parameters = parameters
+      )
     }
   }
 }
