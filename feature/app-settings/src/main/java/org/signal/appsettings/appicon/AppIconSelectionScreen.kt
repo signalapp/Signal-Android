@@ -37,6 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewWrapper
@@ -191,7 +192,7 @@ private fun IconGridElement(preset: AppIconPreset, isSelected: Boolean, onClick:
     Text(
       text = presetLabel(preset),
       textAlign = TextAlign.Center,
-      style = MaterialTheme.typography.bodySmall,
+      style = MaterialTheme.typography.bodySmall.copy(hyphens = Hyphens.Auto),
       color = MaterialTheme.colorScheme.onSurfaceVariant
     )
   }

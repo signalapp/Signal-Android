@@ -2307,9 +2307,9 @@ class RegistrationEndToEndTest {
     useExistingSignalLogin()
     enterSignalLogin(login)
 
-    // A passkey needs the provider's sheet, so the ceremony is started from the selection screen rather than skipped
-    waitForTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION)
-    composeTestRule.onNodeWithTag(TestTags.TWO_FACTOR_SELECTION_PASSKEY_OPTION).performClick()
+    // A passkey needs the provider's sheet, so the ceremony is started from the passkey-only verification screen
+    waitForTag(TestTags.PASSKEY_VERIFICATION_CONTINUE_BUTTON)
+    composeTestRule.onNodeWithTag(TestTags.PASSKEY_VERIFICATION_CONTINUE_BUTTON).performClick()
 
     waitFor("registration to complete") { registrationComplete }
 

@@ -30,6 +30,7 @@ import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
@@ -156,7 +157,7 @@ private fun Description(
         append(stringResource(R.string.PasskeySetupScreen__learn_more))
       }
     },
-    style = MaterialTheme.typography.bodyLarge,
+    style = MaterialTheme.typography.bodyLarge.copy(hyphens = Hyphens.Auto),
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     textAlign = TextAlign.Center,
     modifier = modifier.testTag(PasskeySetupTestTags.LINK_LEARN_MORE)

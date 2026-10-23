@@ -66,6 +66,7 @@ object Rows {
     modifier: Modifier = Modifier,
     label: String? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
     enabled: Boolean = true,
     icon: ImageVector
   ) {
@@ -83,6 +84,7 @@ object Rows {
         text = text,
         label = label,
         textColor = textColor,
+        textStyle = textStyle,
         enabled = enabled,
         modifier = Modifier.padding(end = 16.dp)
       )

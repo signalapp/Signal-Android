@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
@@ -134,6 +135,7 @@ fun ScreenLockSettingsScreen(
         ) {
           Text(
             text = stringResource(R.string.ScreenLockSettingsFragment__use_screen_lock),
+            style = MaterialTheme.typography.bodyLarge.copy(hyphens = Hyphens.Auto),
             modifier = Modifier.weight(1f)
           )
           Spacer(Modifier.width(16.dp))
