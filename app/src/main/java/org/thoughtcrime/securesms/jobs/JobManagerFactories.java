@@ -103,6 +103,7 @@ import org.thoughtcrime.securesms.migrations.ReleaseChannelRecipientFixMigration
 import org.thoughtcrime.securesms.migrations.ResetArchiveTierMigrationJob;
 import org.thoughtcrime.securesms.migrations.ResetKeyTransparencyMigrationJob;
 import org.thoughtcrime.securesms.migrations.SelfRegisteredStateMigrationJob;
+import org.thoughtcrime.securesms.migrations.SignalLoginReminderMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerDayByDayMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
@@ -385,6 +386,7 @@ public final class JobManagerFactories {
       put(ResetKeyTransparencyMigrationJob.KEY,           new ResetKeyTransparencyMigrationJob.Factory());
       put(SelfRegisteredStateMigrationJob.KEY,            new SelfRegisteredStateMigrationJob.Factory());
       put(StickerLaunchMigrationJob.KEY,                  new StickerLaunchMigrationJob.Factory());
+      put(SignalLoginReminderMigrationJob.KEY,            new SignalLoginReminderMigrationJob.Factory());
       put(StickerAdditionMigrationJob.KEY,                new StickerAdditionMigrationJob.Factory());
       put(StickerDayByDayMigrationJob.KEY,                new StickerDayByDayMigrationJob.Factory());
       put(StickerMyDailyLifeMigrationJob.KEY,             new StickerMyDailyLifeMigrationJob.Factory());

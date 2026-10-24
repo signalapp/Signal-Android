@@ -7334,6 +7334,17 @@
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
     <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
 
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->

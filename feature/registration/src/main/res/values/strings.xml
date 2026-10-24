@@ -736,6 +736,8 @@
     <string name="SignalLoginCredentialEntryScreen__show_login_info_again">Show login info again</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">That doesn\'t match the Signal Login you were shown</string>
+    <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->

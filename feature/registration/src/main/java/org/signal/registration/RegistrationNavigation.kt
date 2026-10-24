@@ -732,7 +732,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val purchaseScope = rememberCoroutineScope()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
+        SignalLoginPaymentScreenActions.OpenLearnMoreArticle -> openUrl(context, SignalLoginCredentialEntryScreenActions.NEED_HELP_ARTICLE_URL)
 
         SignalLoginPaymentScreenActions.OpenPaymentUnavailableArticle -> openUrl(context, "https://support.signal.org/hc/articles/11228705649690")
 
@@ -920,7 +920,7 @@ private fun EntryProviderScope<NavKey>.navigationEntries(
     val state by viewModel.state.collectAsStateWithLifecycle()
     CollectActions(viewModel.actions) { action ->
       when (action) {
-        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, "https://support.signal.org/hc/articles/11197884108826")
+        SignalLoginCredentialEntryScreenActions.OpenNeedHelpArticle -> openUrl(context, SignalLoginCredentialEntryScreenActions.NEED_HELP_ARTICLE_URL)
       }
     }
 

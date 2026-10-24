@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSh
 import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.verify.SignalLoginVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
@@ -796,6 +797,18 @@ class MainActivity :
       }
 
       mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.TWO_FACTOR_REMINDER))
+    }
+
+    if (resultCode == RESULT_OK && requestCode == SignalLoginVerifyActivity.REQUEST_CODE) {
+      mainNavigationViewModel.snackbarRegistry.emit(
+        SnackbarState(
+          message = getString(R.string.SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login),
+          duration = Snackbars.Duration.SHORT,
+          hostKey = MainSnackbarHostKey.MainChrome
+        )
+      )
+
+      mainNavigationViewModel.onEvent(MainNavigationEvents.MegaphoneSnoozed(Megaphones.Event.SIGNAL_LOGIN_REMINDER))
     }
   }
 

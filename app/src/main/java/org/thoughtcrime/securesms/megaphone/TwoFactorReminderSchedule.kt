@@ -13,7 +13,6 @@ import kotlin.time.Duration.Companion.days
  * - Only when the account is known to have a method
  * - First 14 days after the account was first seen to have one, then every 6 months after each verification
  * - Snoozable only once per reminder, for a week
- *
  */
 class TwoFactorReminderSchedule : MegaphoneSchedule {
 

@@ -93,8 +93,8 @@ private val MINIMIZED_LABEL_LINE_HEIGHT = 16.sp
 
 /**
  * Collects a Signal Login -- the account ID and the recovery key that pairs with it. What happens with the pair depends
- * on [SignalLoginCredentialEntryState.mode] and the view model behind it: it either logs an existing user back in, or
- * checks a brand new login against the one the user was just shown.
+ * on [SignalLoginCredentialEntryState.mode] and the view model behind it: it either logs an existing user back in,
+ * checks a brand new login against the one the user was just shown, or checks a logged-in user still knows theirs.
  */
 @Composable
 fun SignalLoginCredentialEntryScreen(
@@ -218,6 +218,7 @@ private fun Header(mode: SignalLoginCredentialEntryState.Mode, twoPane: Boolean 
   val subtitle = when (mode) {
     SignalLoginCredentialEntryState.Mode.Login -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_account_id_followed_by_your_recovery_key)
     SignalLoginCredentialEntryState.Mode.ConfirmSaved -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_signal_login_to_confirm_it_was_recorded_correctly)
+    SignalLoginCredentialEntryState.Mode.Verify -> stringResource(R.string.SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it)
   }
 
   Image(
@@ -469,7 +470,8 @@ private fun Footer(
         modifier = Modifier.weight(1f)
       ) {
         when (state.mode) {
-          SignalLoginCredentialEntryState.Mode.Login -> NeedHelpButton(onEvent)
+          SignalLoginCredentialEntryState.Mode.Login,
+          SignalLoginCredentialEntryState.Mode.Verify -> NeedHelpButton(onEvent)
           SignalLoginCredentialEntryState.Mode.ConfirmSaved -> ShowLoginInfoAgainButton(onEvent)
         }
       }
@@ -571,6 +573,17 @@ private fun SignalLoginCredentialEntryScreenConfirmSavedPreview() {
   Previews.Preview {
     SignalLoginCredentialEntryScreen(
       state = SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.ConfirmSaved),
+      onEvent = {}
+    )
+  }
+}
+
+@AllDevicePreviews
+@Composable
+private fun SignalLoginCredentialEntryScreenVerifyPreview() {
+  Previews.Preview {
+    SignalLoginCredentialEntryScreen(
+      state = SignalLoginCredentialEntryState(mode = SignalLoginCredentialEntryState.Mode.Verify),
       onEvent = {}
     )
   }

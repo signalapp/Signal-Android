@@ -44,6 +44,9 @@ public class UiHintValues extends SignalStoreValues {
   private static final String TWO_FACTOR_LAST_VERIFIED_TIME                     = "uihints.two_factor_last_verified_time";
   private static final String HAS_VERIFIED_TWO_FACTOR_BEFORE                    = "uihints.has_verified_two_factor_before";
   private static final String HAS_SNOOZED_TWO_FACTOR_REMINDER                   = "uihints.has_snoozed_two_factor_reminder";
+  private static final String SIGNAL_LOGIN_LAST_VERIFIED_TIME                   = "uihints.signal_login_last_verified_time";
+  private static final String HAS_VERIFIED_SIGNAL_LOGIN_BEFORE                  = "uihints.has_verified_signal_login_before";
+  private static final String HAS_SNOOZED_SIGNAL_LOGIN_REMINDER                 = "uihints.has_snoozed_signal_login_reminder";
 
   UiHintValues(@NonNull KeyValueStore store, @NonNull Context context) {
     super(store);
@@ -314,5 +317,35 @@ public class UiHintValues extends SignalStoreValues {
 
   public void setHasSnoozedTwoFactorReminder(boolean snoozed) {
     putBoolean(HAS_SNOOZED_TWO_FACTOR_REMINDER, snoozed);
+  }
+
+  /**
+   * When the user last proved they know their Signal Login, whether by logging in with it or through the reminder. Zero
+   * until the app first notices the account has one.
+   */
+  public long getSignalLoginLastVerifiedTime() {
+    return getLong(SIGNAL_LOGIN_LAST_VERIFIED_TIME, 0);
+  }
+
+  public void setSignalLoginLastVerifiedTime(long time) {
+    putLong(SIGNAL_LOGIN_LAST_VERIFIED_TIME, time);
+  }
+
+  /** Whether the user has ever completed the Signal Login reminder's verification, which spaces later reminders out further. */
+  public boolean hasVerifiedSignalLoginBefore() {
+    return getBoolean(HAS_VERIFIED_SIGNAL_LOGIN_BEFORE, false);
+  }
+
+  public void setHasVerifiedSignalLoginBefore(boolean verified) {
+    putBoolean(HAS_VERIFIED_SIGNAL_LOGIN_BEFORE, verified);
+  }
+
+  /** Whether the user has snoozed the current Signal Login reminder, which they only get to do once per reminder. */
+  public boolean hasSnoozedSignalLoginReminder() {
+    return getBoolean(HAS_SNOOZED_SIGNAL_LOGIN_REMINDER, false);
+  }
+
+  public void setHasSnoozedSignalLoginReminder(boolean snoozed) {
+    putBoolean(HAS_SNOOZED_SIGNAL_LOGIN_REMINDER, snoozed);
   }
 }

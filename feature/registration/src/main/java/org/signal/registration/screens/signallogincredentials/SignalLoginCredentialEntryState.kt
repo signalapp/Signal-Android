@@ -52,7 +52,10 @@ data class SignalLoginCredentialEntryState(
     Login,
 
     /** The user just bought a Signal Login and is typing it back to prove they recorded it. */
-    ConfirmSaved
+    ConfirmSaved,
+
+    /** The user is already logged in and is typing their Signal Login in to prove they still know it. */
+    Verify
   }
 }
 

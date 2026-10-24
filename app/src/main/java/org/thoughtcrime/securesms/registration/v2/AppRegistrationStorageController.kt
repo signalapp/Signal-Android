@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.megaphone.SignalLoginReminderSchedule
 import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.profiles.AvatarHelper
@@ -281,6 +282,11 @@ class AppRegistrationStorageController(private val context: Context) : StorageCo
   }
 
   override suspend fun onRegistrationFlowFinished() = withContext(Dispatchers.Default) {
+    if (SignalStore.account.isPhoneNumberless) {
+      // Getting through registration means the user knows their Signal Login right now, so the reminder can wait.
+      SignalLoginReminderSchedule.onLoggedIn()
+    }
+
     if (SignalStore.misc.needsUsernameRestore) {
       Log.i(TAG, "[onRegistrationFlowFinished] Username reclaim is still pending. Enqueuing a job to handle it.")
       AppDependencies.jobManager.add(ReclaimUsernameAndLinkJob())

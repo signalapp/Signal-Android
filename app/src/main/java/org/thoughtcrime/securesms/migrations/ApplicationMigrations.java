@@ -219,9 +219,10 @@ public class ApplicationMigrations {
     static final int DISABLE_UNREAD_REMINDER       = 174;
     static final int MENTIONS_STORAGE_SERVICE      = 175;
     static final int TWO_FACTOR_METHODS            = 176;
+    static final int SIGNAL_LOGIN_REMINDER         = 177;
   }
 
-  public static final int CURRENT_VERSION = 176;
+  public static final int CURRENT_VERSION = 177;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -1022,6 +1023,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.TWO_FACTOR_METHODS) {
       jobs.put(Version.TWO_FACTOR_METHODS, new TwoFactorMethodsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SIGNAL_LOGIN_REMINDER) {
+      jobs.put(Version.SIGNAL_LOGIN_REMINDER, new SignalLoginReminderMigrationJob());
     }
 
     return jobs;
