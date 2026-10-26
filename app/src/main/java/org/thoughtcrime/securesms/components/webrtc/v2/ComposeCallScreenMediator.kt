@@ -435,6 +435,11 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
     controlsListener.value.onScreenShareChanged(sharing)
   }
 
+  override fun onTorchModeClick() {
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+    controlsListener.value.onTorchModeChanged()
+  }
+
   private fun handleFailure() {
     Toast.makeText(activity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }

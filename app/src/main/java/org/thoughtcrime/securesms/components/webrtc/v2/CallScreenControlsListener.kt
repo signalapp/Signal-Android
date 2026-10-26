@@ -25,7 +25,6 @@ interface CallScreenControlsListener {
   fun onOverflowClicked()
   fun onDismissOverflow()
   fun onCameraDirectionChanged()
-
   fun onTorchModeChanged()
   fun onEndCallPressed()
   fun onDenyCallPressed()

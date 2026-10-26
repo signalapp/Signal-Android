@@ -152,8 +152,14 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     }
 
     try {
-        for (String cameraId: cameraManager.getCameraIdList()) {
-          cameraManager.setTorchMode(cameraId, torch);
+      // Set torch mode for every available camera
+      // Cameras with no flashlight will throw IllegalArgumentException, skip them
+      for (String cameraId: cameraManager.getCameraIdList()) {
+          try {
+            cameraManager.setTorchMode(cameraId, torch);
+          } catch (CameraAccessException | IllegalArgumentException e) {
+            Log.i(TAG, "Camera exception ignored: " + e);
+          }
         }
     } catch (CameraAccessException e) {
       Log.e(TAG, "Camera access exception: " + e);

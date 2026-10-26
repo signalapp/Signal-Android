@@ -203,12 +203,6 @@ fun SelfPipContent(
         )
       }
 
-      TorchModeButton(
-        selfPipMode = selfPipMode,
-        onClick = onTorchModeClick,
-        modifier = Modifier.align(Alignment.BottomEnd)
-      )
-
       if (isMoreThanOneCameraAvailable) {
         SwitchCameraButton(
           selfPipMode = selfPipMode,
@@ -607,69 +601,6 @@ private fun SwitchCameraButton(
     Icon(
       painter = painterResource(id = R.drawable.symbol_switch_24),
       contentDescription = stringResource(R.string.SwitchCameraButton__switch_camera_direction),
-      tint = Color.White
-    )
-  }
-}
-
-@Composable
-private fun TorchModeButton(
-  selfPipMode: SelfPipMode,
-  onClick: (() -> Unit)?,
-  modifier: Modifier = Modifier
-) {
-  val targetSize = when (selfPipMode) {
-    SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 48.dp
-    else -> 28.dp
-  }
-
-  val size by animateDpAsState(targetSize)
-
-  val targetMargin = when (selfPipMode) {
-    SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
-    else -> 10.dp
-  }
-
-  val margin by animateDpAsState(targetMargin)
-
-  val targetIconInset = when (selfPipMode) {
-    SelfPipMode.EXPANDED_SELF_PIP, SelfPipMode.FOCUSED_SELF_PIP -> 12.dp
-    SelfPipMode.MINI_SELF_PIP -> 7.dp
-    else -> 6.dp
-  }
-
-  val iconInset by animateDpAsState(targetIconInset)
-  val hasActiveClick = (selfPipMode == SelfPipMode.EXPANDED_SELF_PIP || selfPipMode == SelfPipMode.FOCUSED_SELF_PIP) && onClick != null
-
-  val clickModifier = if (hasActiveClick) {
-    Modifier.clickable { onClick() }
-  } else {
-    Modifier
-  }
-
-  val background by animateColorAsState(
-    if (hasActiveClick) {
-      MaterialTheme.colorScheme.secondaryContainer
-    } else {
-      MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
-    }
-  )
-
-  Box(
-    modifier = modifier
-      .padding(end = margin, bottom = margin)
-      .size(size)
-      .background(
-        color = background,
-        shape = CircleShape
-      )
-      .padding(iconInset)
-      .then(clickModifier),
-    contentAlignment = Alignment.Center
-  ) {
-    Icon(
-      painter = painterResource(id = R.drawable.symbol_flash_24),
-      contentDescription = stringResource(R.string.TorchModeButton__toggle_flashlight),
       tint = Color.White
     )
   }

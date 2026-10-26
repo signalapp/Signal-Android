@@ -57,12 +57,14 @@ interface AdditionalActionsListener {
   fun onReactWithAnyClick()
   fun onRaiseHandClick(raised: Boolean)
   fun onScreenShareClick(sharing: Boolean)
+  fun onTorchModeClick()
 
   object Empty : AdditionalActionsListener {
     override fun onReactClick(reaction: String) = Unit
     override fun onReactWithAnyClick() = Unit
     override fun onRaiseHandClick(raised: Boolean) = Unit
     override fun onScreenShareClick(sharing: Boolean) = Unit
+    override fun onTorchModeClick() = Unit
   }
 }
 
@@ -102,7 +104,8 @@ private fun AdditionalActionsPopupContent(
       isSelfHandRaised = state.isSelfHandRaised,
       isScreenSharing = state.isScreenSharing,
       displayScreenShareToggle = state.displayScreenShareToggle,
-      onScreenShareClick = state.listener::onScreenShareClick
+      onScreenShareClick = state.listener::onScreenShareClick,
+      onTorchModeClick = state.listener::onTorchModeClick
     )
   }
 }
@@ -150,7 +153,8 @@ private fun CallScreenMenu(
   onRaiseHandClick: (Boolean) -> Unit,
   isScreenSharing: Boolean = false,
   displayScreenShareToggle: Boolean = false,
-  onScreenShareClick: (Boolean) -> Unit = {}
+  onScreenShareClick: (Boolean) -> Unit = {},
+  onTorchModeClick: () -> Unit = {}
 ) {
   Column(
     modifier = Modifier
@@ -172,6 +176,12 @@ private fun CallScreenMenu(
         onClick = { onScreenShareClick(!isScreenSharing) }
       )
     }
+
+    CallScreenMenuOption(
+      imageVector = ImageVector.vectorResource(R.drawable.symbol_flash_24),
+      title = stringResource(R.string.CallOverflowPopupWindow__toggle_flashlight),
+      onClick = { onTorchModeClick() }
+    )
   }
 }
 

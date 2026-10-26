@@ -2495,7 +2495,8 @@
     <string name="CallOverflowPopupWindow__stop_screen_share">Stop sharing</string>
     <!-- A button to take you to a list of participants with raised hands -->
     <string name="CallOverflowPopupWindow__view">View</string>
-
+    <!-- A clickable button to toggle flashlight (torch mode) -->
+    <string name="CallOverflowPopupWindow__toggle_flashlight">Flashlight</string>
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
     <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
@@ -9579,7 +9580,6 @@
     <string name="ResetRecoveryKeyBottomSheet__continue">Continue</string>
     <!-- Dialog body shown when the recovery key change limit is exhausted and the user does not have backups enabled. -->
     <string name="BackupKeyRotationDialogs__limit_exceeded_body_no_backups">You\'ve exhausted the number of new keys you can create. You will be able to create a new recovery key in 7 days.</string>
-    <string name="TorchModeButton__toggle_flashlight">Toggle flashlight</string>
 
     <!-- EOF -->
 </resources>

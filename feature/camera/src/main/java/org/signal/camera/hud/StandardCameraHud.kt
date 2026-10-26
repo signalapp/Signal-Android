@@ -847,6 +847,34 @@ private fun CameraSwitchButton(
 }
 
 @Composable
+private fun TorchModeToggleButton(
+  onClick: () -> Unit,
+  stringResources: StringResources,
+  modifier: Modifier = Modifier
+) {
+  val contentDescription = if (stringResources.flashOn != 0) {
+    stringResource(stringResources.flashOn)
+  } else {
+    null
+  }
+
+  IconButton(
+    onClick = onClick,
+    modifier = modifier
+      .size(52.dp)
+      .background(colorResource(R.color.CameraHud_control_background), shape = CircleShape)
+      .testTag(TestTags.CAMERA_HUD_FLASH_BUTTON)
+  ) {
+    Icon(
+      imageVector = SignalIcons.FlashOn.imageVector,
+      contentDescription = contentDescription,
+      tint = colorResource(R.color.CameraHud_control_foreground),
+      modifier = Modifier.size(24.dp)
+    )
+  }
+}
+
+@Composable
 private fun FlashToggleButton(
   flashMode: FlashMode,
   onToggle: () -> Unit,
