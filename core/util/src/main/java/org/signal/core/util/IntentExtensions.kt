@@ -1,9 +1,9 @@
 package org.signal.core.util
 
 import android.content.Intent
-import android.os.Build
 import android.os.Parcelable
 import android.provider.Browser
+import androidx.core.content.IntentCompat
 import java.util.UUID
 
 /**
@@ -19,19 +19,9 @@ fun Intent.encourageNewBrowserTab(): Intent {
 }
 
 fun <T : Parcelable> Intent.getParcelableExtraCompat(key: String, clazz: Class<T>): T? {
-  return if (Build.VERSION.SDK_INT >= 33) {
-    this.getParcelableExtra(key, clazz)
-  } else {
-    @Suppress("DEPRECATION")
-    this.getParcelableExtra(key)
-  }
+  return IntentCompat.getParcelableExtra(this, key, clazz)
 }
 
 fun <T : Parcelable> Intent.getParcelableArrayListExtraCompat(key: String, clazz: Class<T>): ArrayList<T>? {
-  return if (Build.VERSION.SDK_INT >= 33) {
-    this.getParcelableArrayListExtra(key, clazz)
-  } else {
-    @Suppress("DEPRECATION")
-    this.getParcelableArrayListExtra(key)
-  }
+  return IntentCompat.getParcelableArrayListExtra(this, key, clazz)
 }

@@ -6,8 +6,11 @@
 package org.signal.appsettings.home
 
 import android.app.Application
+import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.isSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithTag
@@ -25,6 +28,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.appsettings.R
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.emoji.EmojiDependenciesRule
 
 @RunWith(RobolectricTestRunner::class)
@@ -199,11 +203,58 @@ class AppSettingsScreenTest {
     assertThat(interactionEvents).containsExactly(AppSettingsEvent.SnackbarDismissed)
   }
 
-  private fun setContent(state: AppSettingsState) {
+  @Test
+  fun `with nothing open beside the screen, no row is selected`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_PROFILE).assert(!isSelected())
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_ACCOUNT).assert(!isSelected())
+  }
+
+  @Test
+  fun `managing the profile selects the profile row rather than account`() {
+    setContent(createState(), selectedRoute = AppSettingsRoute.AccountRoute.ManageProfile)
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_PROFILE).assertIsSelected()
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_ACCOUNT).assert(!isSelected())
+  }
+
+  @Test
+  fun `the username link selects the profile row`() {
+    setContent(createState(), selectedRoute = AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_PROFILE).assertIsSelected()
+  }
+
+  @Test
+  fun `other account routes select the account row`() {
+    setContent(createState(), selectedRoute = AppSettingsRoute.AccountRoute.DeleteAccount)
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_ACCOUNT).assertIsSelected()
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_PROFILE).assert(!isSelected())
+  }
+
+  @Test
+  fun `changing number selects the account row`() {
+    setContent(createState(), selectedRoute = AppSettingsRoute.ChangeNumberRoute.Start)
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_ACCOUNT).assertIsSelected()
+  }
+
+  @Test
+  fun `chat folders select the chats row`() {
+    setContent(createState(), selectedRoute = AppSettingsRoute.ChatFoldersRoute.ChatFolders)
+    scrollTo(AppSettingsTestTags.ROW_CHATS)
+
+    composeTestRule.onNodeWithTag(AppSettingsTestTags.ROW_CHATS).assertIsSelected()
+  }
+
+  private fun setContent(state: AppSettingsState, selectedRoute: AppSettingsRoute? = null) {
     composeTestRule.setContent {
       AppSettingsScreen(
         state = state,
-        onEvent = { events += it }
+        onEvent = { events += it },
+        selectedRoute = selectedRoute
       )
     }
   }

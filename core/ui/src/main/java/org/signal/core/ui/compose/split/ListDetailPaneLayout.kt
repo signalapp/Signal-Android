@@ -52,6 +52,7 @@ internal val LocalListDetailPaneLayout = compositionLocalOf<ListDetailPaneLayout
  * @param metrics the baseline geometry, which decides the widths, the gutter and the corners.
  * @param collapsedListWidth what is left of the list pane once the detail fills the window. Zero unless
  *   something inside the list stays on screen, such as a navigation rail.
+ * @param isResizable whether the divider can be dragged. When false the panes stay wherever [paneAnchor] puts them.
  */
 @Composable
 fun rememberListDetailPaneLayout(
@@ -59,7 +60,8 @@ fun rememberListDetailPaneLayout(
   maxWidth: Dp,
   onAnchorSelected: (PaneAnchor) -> Unit,
   metrics: ListDetailPaneMetrics = rememberListDetailPaneMetrics(),
-  collapsedListWidth: Dp = 0.dp
+  collapsedListWidth: Dp = 0.dp,
+  isResizable: Boolean = true
 ): ListDetailPaneLayout {
   val isSplitPane = LocalResources.current.rememberIsSplitPane()
   val splitWidth = metrics.rememberSplitListPaneWidth(maxWidth)
@@ -85,14 +87,14 @@ fun rememberListDetailPaneLayout(
     expansion.goTo(paneAnchor)
   }
 
-  return remember(expansion, metrics, isSplitPane, splitWidth) {
+  return remember(expansion, metrics, isSplitPane, splitWidth, isResizable) {
     ListDetailPaneLayout(
       expansion = expansion,
       partitionWidth = metrics.partitionWidth,
       listPaddingStart = metrics.listPaddingStart,
       detailPaddingEnd = metrics.detailPaddingEnd,
       shape = metrics.shape,
-      hasDragHandle = isSplitPane,
+      hasDragHandle = isSplitPane && isResizable,
       minPaneContentWidth = splitWidth
     )
   }
@@ -114,3 +116,9 @@ internal val LocalListPaneChrome = compositionLocalOf<ListPaneChrome?> { null }
  * own background.
  */
 internal val LocalEmptyDetailContent = compositionLocalOf<@Composable () -> Unit> { {} }
+
+/**
+ * Whether content is displayed in the detail pane of a split, beside the list. False for a single pane, including
+ * detail content filling a narrow window.
+ */
+val LocalIsInDetailPane = compositionLocalOf { false }

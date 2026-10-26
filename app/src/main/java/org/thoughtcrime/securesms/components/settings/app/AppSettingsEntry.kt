@@ -21,6 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.signal.appsettings.home.AppSettingsAction
 import org.signal.appsettings.home.AppSettingsScreen
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.CollectActions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -37,7 +38,8 @@ import org.thoughtcrime.securesms.util.CommunicationActions
  */
 @Composable
 fun AppSettingsEntry(
-  parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+  parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
+  selectedRoute: AppSettingsRoute? = null
 ) {
   val viewModel: AppSettingsViewModel = viewModel { AppSettingsViewModel(parentEventEmitter) }
   val state by viewModel.state.collectAsStateWithLifecycle()
@@ -63,6 +65,7 @@ fun AppSettingsEntry(
   AppSettingsScreen(
     state = state,
     onEvent = viewModel::onEvent,
+    selectedRoute = selectedRoute,
     avatar = { self?.let { SelfAvatar(it) } },
     banner = { bannerManager.Banner() }
   )

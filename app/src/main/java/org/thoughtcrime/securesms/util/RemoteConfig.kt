@@ -12,6 +12,7 @@ import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.serialization.SignalJson
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -1586,6 +1587,15 @@ object RemoteConfig {
   /** Whether to use the new Compose media viewer in place of MediaPreviewActivity. */
   val useNewMediaViewer: Boolean by remoteBoolean(
     key = "android.newMediaViewer.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation"
+
+  /** Whether to host app settings in [AppSettingsNavigationActivity] in place of the fragment nav graph. */
+  val useAppSettingsNavigation: Boolean by remoteBoolean(
+    key = APP_SETTINGS_NAVIGATION_KEY,
     defaultValue = false,
     hotSwappable = true
   )

@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.systemGestureExclusion
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -91,10 +92,12 @@ internal class ListDetailScene(
               .background(color = MaterialTheme.colorScheme.surface)
               .minContentWidth(layout.minPaneContentWidth)
           ) {
-            if (detailEntry != null) {
-              detailEntry.Content()
-            } else {
-              LocalEmptyDetailContent.current()
+            CompositionLocalProvider(LocalIsInDetailPane provides true) {
+              if (detailEntry != null) {
+                detailEntry.Content()
+              } else {
+                LocalEmptyDetailContent.current()
+              }
             }
           }
         }

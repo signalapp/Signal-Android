@@ -77,7 +77,8 @@ fun ChatsSettingsScreen(
     navigationContentDescription = stringResource(R.string.ChatsSettingsScreen__go_back),
     snackbarHost = {
       Snackbars.Host(snackbarHostState)
-    }
+    },
+    collapseTopBarInSplitPane = true
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier
@@ -234,19 +235,21 @@ fun ChatsSettingsScreen(
 @Composable
 private fun ChatsSettingsScreenPreview() {
   ChatsSettingsScreen(
-    state = ChatsSettingsState(
-      generateLinkPreviews = true,
-      useAddressBook = true,
-      keepMutedChatsArchived = true,
-      useSystemEmoji = false,
-      enterKeySends = false,
-      localBackupsEnabled = true,
-      folderCount = 1,
-      userUnregistered = false,
-      clientDeprecated = false,
-      isPlaintextExportEnabled = true,
-      plaintextExportProgress = BackupCreationProgress.Idle
-    ),
+    state = chatsSettingsPreviewState,
     onEvent = {}
   )
 }
+
+internal val chatsSettingsPreviewState = ChatsSettingsState(
+  generateLinkPreviews = true,
+  useAddressBook = true,
+  keepMutedChatsArchived = true,
+  useSystemEmoji = false,
+  enterKeySends = false,
+  localBackupsEnabled = true,
+  folderCount = 1,
+  userUnregistered = false,
+  clientDeprecated = false,
+  isPlaintextExportEnabled = true,
+  plaintextExportProgress = BackupCreationProgress.Idle
+)

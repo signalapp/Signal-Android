@@ -59,7 +59,9 @@ class RemoteConfig_StaticValuesTest {
       "PROMPT_FOR_NOTIFICATION_LOGS",
       "overridableConfigs",
       "overrides",
-      "REMOTE_VALUES"
+      "REMOTE_VALUES",
+      // TODO Remove once the app settings navigation override button is removed.
+      "APP_SETTINGS_NAVIGATION_KEY"
     )
 
     val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties

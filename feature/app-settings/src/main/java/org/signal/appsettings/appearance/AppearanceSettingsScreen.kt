@@ -73,7 +73,8 @@ fun AppearanceSettingsScreen(
     title = stringResource(R.string.preferences__appearance),
     onNavigationClick = { onEvent(AppearanceSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    modifier = modifier
+    modifier = modifier,
+    collapseTopBarInSplitPane = true
   ) { paddingValues ->
     LazyColumn(
       modifier = Modifier

@@ -114,7 +114,8 @@ fun PrivacySettingsScreen(
         onDismissed = { onEvent(PrivacySettingsEvent.SnackbarDismissed) }
       )
     },
-    modifier = modifier
+    modifier = modifier,
+    collapseTopBarInSplitPane = true
   ) { paddingValues ->
     LazyColumn(
       state = listState,

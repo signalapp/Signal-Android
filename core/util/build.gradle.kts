@@ -12,6 +12,7 @@ android {
 dependencies {
   api(project(":core:util-jvm"))
 
+  implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.documentfile)
   implementation(libs.google.jsr305)
   implementation(libs.androidx.lifecycle.process)

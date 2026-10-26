@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -69,23 +70,6 @@ open class NavGraphHostActivity : PassphraseRequiredActivity() {
     }
   }
 
-  private fun enableSettingsEdgeToEdge() {
-    val navBarColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorSurface2)
-    val isDark = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-
-    if (Build.VERSION.SDK_INT >= 26) {
-      enableEdgeToEdge(
-        navigationBarStyle = if (isDark) {
-          SystemBarStyle.dark(navBarColor)
-        } else {
-          SystemBarStyle.light(navBarColor, navBarColor)
-        }
-      )
-    } else {
-      enableEdgeToEdge()
-    }
-  }
-
   protected open fun onWillFinish() {}
 
   protected open fun resolveNavGraphId(): Int = intent.getIntExtra(ARG_NAV_GRAPH, -1)
@@ -101,5 +85,25 @@ open class NavGraphHostActivity : PassphraseRequiredActivity() {
     override fun handleOnBackPressed() {
       onNavigateUp()
     }
+  }
+}
+
+/**
+ * Edge-to-edge with the navigation bar tinted to match the settings surfaces beneath it.
+ */
+fun ComponentActivity.enableSettingsEdgeToEdge() {
+  val navBarColor = ContextCompat.getColor(this, CoreUiR.color.signal_colorSurface2)
+  val isDark = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+
+  if (Build.VERSION.SDK_INT >= 26) {
+    enableEdgeToEdge(
+      navigationBarStyle = if (isDark) {
+        SystemBarStyle.dark(navBarColor)
+      } else {
+        SystemBarStyle.light(navBarColor, navBarColor)
+      }
+    )
+  } else {
+    enableEdgeToEdge()
   }
 }

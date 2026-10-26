@@ -27,6 +27,8 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -35,26 +37,70 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.TopAppBarState
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.offset
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.R
+import org.signal.core.ui.compose.split.LocalIsInDetailPane
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.detailPaneMaxContentWidth
 import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
 import org.signal.core.ui.listPaneDefaultPreferredWidth
 import org.signal.core.ui.rememberIsSplitPane
+import kotlin.math.roundToInt
+
+/**
+ * How much further than Material's 16dp the expanded title of a [Scaffolds.CollapsingTopAppBar] starts, for 24dp.
+ */
+private val EXPANDED_TITLE_EXTRA_INSET = 8.dp
+
+/**
+ * Insets the title by [EXPANDED_TITLE_EXTRA_INSET], fading to nothing as the bar collapses. The large bar composes the
+ * same title into its expanded and collapsed rows, so this is what gives the expanded one its inset without moving
+ * the collapsed one. Read during layout, so scrolling doesn't recompose the title.
+ */
+private fun Modifier.expandedTitleInset(state: TopAppBarState): Modifier {
+  return layout { measurable, constraints ->
+    val inset = (EXPANDED_TITLE_EXTRA_INSET.toPx() * (1f - state.collapsedFraction)).roundToInt()
+    val placeable = measurable.measure(constraints.offset(horizontal = -inset))
+
+    layout(placeable.width + inset, placeable.height) {
+      placeable.placeRelative(x = inset, y = 0)
+    }
+  }
+}
+
+/**
+ * Whether settings screens may use their split-pane treatment on a split-pane window: a collapsing top bar where a
+ * [Scaffolds.Settings] opts in, no navigation icon in the detail pane, and their split-pane colors. Off by default, so
+ * that a screen shared between hosts keeps its current look until its host is ready for the change.
+ */
+val LocalSplitPaneSettingsEnabled = staticCompositionLocalOf { false }
+
+/**
+ * Whether this is a split-pane window under a host that enables [LocalSplitPaneSettingsEnabled].
+ */
+@Composable
+fun rememberIsSplitPaneSettings(): Boolean {
+  return LocalSplitPaneSettingsEnabled.current && LocalResources.current.rememberIsSplitPane()
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 object Scaffolds {
@@ -105,7 +151,10 @@ object Scaffolds {
   /**
    * Settings scaffold that takes an icon as an ImageVector.
    *
-   * @param titleContent The title area content. First parameter is the contentOffset.
+   * @param titleContent The title area content. First parameter is the contentOffset. Unused by the collapsing top bar.
+   * @param collapseTopBarInSplitPane on split-pane windows (foldables, tablets), shows a large top bar that collapses as
+   *   the content scrolls, rather than the pinned one used on phones. Only takes effect under a host that enables
+   *   [LocalSplitPaneSettingsEnabled], which also hides the navigation icon in the detail pane of a split.
    */
   @Composable
   fun Settings(
@@ -114,32 +163,99 @@ object Scaffolds {
     modifier: Modifier = Modifier,
     navigationIcon: ImageVector? = null,
     navigationContentDescription: String? = null,
+    containerColor: Color = MaterialTheme.colorScheme.background,
+    contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor).takeOrElse { MaterialTheme.colorScheme.onSurface },
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge.copy(hyphens = Hyphens.Auto))
     },
     snackbarHost: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
+    collapseTopBarInSplitPane: Boolean = false,
     content: @Composable (PaddingValues) -> Unit
   ) {
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val isSplitPaneHost = rememberIsSplitPaneSettings()
+    val isCollapsing = collapseTopBarInSplitPane && isSplitPaneHost
+    // Beside its list, a detail pane is closed by picking something else from the list rather than by navigating up.
+    val visibleNavigationIcon = navigationIcon.takeUnless { isSplitPaneHost && LocalIsInDetailPane.current }
+    val scrollBehavior = if (isCollapsing) {
+      TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    } else {
+      TopAppBarDefaults.pinnedScrollBehavior()
+    }
 
     Scaffold(
       snackbarHost = snackbarHost,
       topBar = {
-        DefaultTopAppBar(
-          title = title,
-          titleContent = titleContent,
-          onNavigationClick = onNavigationClick,
-          navigationIcon = navigationIcon,
-          navigationContentDescription = navigationContentDescription,
-          actions = actions,
-          scrollBehavior = scrollBehavior
-        )
+        if (isCollapsing) {
+          CollapsingTopAppBar(
+            title = title,
+            onNavigationClick = onNavigationClick,
+            navigationIcon = visibleNavigationIcon,
+            navigationContentDescription = navigationContentDescription,
+            containerColor = containerColor,
+            actions = actions,
+            scrollBehavior = scrollBehavior
+          )
+        } else {
+          DefaultTopAppBar(
+            title = title,
+            titleContent = titleContent,
+            onNavigationClick = onNavigationClick,
+            navigationIcon = visibleNavigationIcon,
+            navigationContentDescription = navigationContentDescription,
+            containerColor = containerColor,
+            actions = actions,
+            scrollBehavior = scrollBehavior
+          )
+        }
       },
+      containerColor = containerColor,
+      contentColor = contentColor,
       bottomBar = bottomBar,
       modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
       content = content
+    )
+  }
+
+  /**
+   * Large top app bar that collapses to a regular one as the content scrolls, which needs an
+   * [TopAppBarDefaults.exitUntilCollapsedScrollBehavior] connected to that content.
+   */
+  @Composable
+  fun CollapsingTopAppBar(
+    title: String,
+    onNavigationClick: () -> Unit,
+    navigationIcon: ImageVector?,
+    scrollBehavior: TopAppBarScrollBehavior,
+    navigationContentDescription: String? = null,
+    containerColor: Color = MaterialTheme.colorScheme.background,
+    actions: @Composable RowScope.() -> Unit = {}
+  ) {
+    LargeTopAppBar(
+      title = {
+        Text(
+          text = title,
+          style = LocalTextStyle.current.copy(hyphens = Hyphens.Auto),
+          modifier = Modifier.expandedTitleInset(scrollBehavior.state)
+        )
+      },
+      navigationIcon = {
+        if (navigationIcon != null) {
+          IconButton(onClick = onNavigationClick) {
+            Icon(
+              imageVector = navigationIcon,
+              contentDescription = navigationContentDescription ?: stringResource(R.string.DefaultTopAppBar__navigate_up_content_description)
+            )
+          }
+        }
+      },
+      actions = actions,
+      scrollBehavior = scrollBehavior,
+      colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = containerColor,
+        scrolledContainerColor = SignalTheme.colors.colorSurface2
+      )
     )
   }
 
@@ -153,12 +269,14 @@ object Scaffolds {
     onNavigationClick: () -> Unit,
     navigationIcon: ImageVector?,
     navigationContentDescription: String? = null,
+    containerColor: Color = MaterialTheme.colorScheme.surface,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
     DefaultTopAppBar(
       title = title,
       titleContent = titleContent,
+      containerColor = containerColor,
       navigationIconContent = {
         if (navigationIcon != null) {
           IconButton(
@@ -185,6 +303,7 @@ object Scaffolds {
     title: String,
     titleContent: @Composable (Float, String) -> Unit,
     navigationIconContent: @Composable () -> Unit,
+    containerColor: Color = MaterialTheme.colorScheme.surface,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
   ) {
@@ -193,6 +312,7 @@ object Scaffolds {
       navigationIcon = navigationIconContent,
       scrollBehavior = scrollBehavior,
       colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = containerColor,
         scrolledContainerColor = SignalTheme.colors.colorSurface2
       ),
       actions = actions

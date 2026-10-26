@@ -21,10 +21,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -36,6 +38,7 @@ import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import org.signal.appsettings.R
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons
@@ -45,6 +48,8 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.rememberIsSplitPaneSettings
+import org.signal.core.ui.compose.selectionHighlight
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.emoji.Emojifier
 import org.signal.core.ui.R as CoreUiR
@@ -79,6 +84,7 @@ object AppSettingsTestTags {
 /**
  * The top level of app settings: the user's profile, a row for each settings section, and any backup warnings.
  *
+ * @param selectedRoute The section open beside this screen, whose row is highlighted. Null when nothing is beside it.
  * @param avatar The user's avatar and featured badge, drawn into an 80dp box beside their profile.
  * @param banner Shown above the list, for app-wide problems such as being unregistered.
  */
@@ -87,6 +93,9 @@ fun AppSettingsScreen(
   state: AppSettingsState,
   onEvent: (AppSettingsEvent) -> Unit,
   modifier: Modifier = Modifier,
+  containerColor: Color = if (rememberIsSplitPaneSettings()) SignalTheme.colors.colorSurface4 else MaterialTheme.colorScheme.background,
+  contentColor: Color = MaterialTheme.colorScheme.contentColorFor(containerColor).takeOrElse { MaterialTheme.colorScheme.onSurface },
+  selectedRoute: AppSettingsRoute? = null,
   avatar: @Composable () -> Unit = {},
   banner: @Composable () -> Unit = {}
 ) {
@@ -106,6 +115,9 @@ fun AppSettingsScreen(
         onDismissed = { onEvent(AppSettingsEvent.SnackbarDismissed) }
       )
     },
+    containerColor = containerColor,
+    contentColor = contentColor,
+    collapseTopBarInSplitPane = true,
     modifier = modifier
   ) { contentPadding ->
     Column(
@@ -121,7 +133,8 @@ fun AppSettingsScreen(
             ProfileRow(
               profile = state.profile,
               avatar = avatar,
-              onEvent = onEvent
+              onEvent = onEvent,
+              modifier = Modifier.selectionHighlight(selectedRoute.isProfile())
             )
           }
         }
@@ -144,7 +157,9 @@ fun AppSettingsScreen(
             text = stringResource(R.string.AccountSettingsFragment__account),
             icon = SignalIcons.PersonCircle.painter,
             onClick = { onEvent(AppSettingsEvent.AccountClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_ACCOUNT)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute.isAccount())
+              .testTag(AppSettingsTestTags.ROW_ACCOUNT)
           )
         }
 
@@ -155,7 +170,9 @@ fun AppSettingsScreen(
               icon = SignalIcons.Devices.painter,
               onClick = { onEvent(AppSettingsEvent.LinkedDevicesClicked) },
               enabled = state.isRegisteredAndUpToDate,
-              modifier = Modifier.testTag(AppSettingsTestTags.ROW_LINKED_DEVICES)
+              modifier = Modifier
+                .selectionHighlight(selectedRoute is AppSettingsRoute.LinkDeviceRoute)
+                .testTag(AppSettingsTestTags.ROW_LINKED_DEVICES)
             )
           }
         }
@@ -185,7 +202,9 @@ fun AppSettingsScreen(
             },
             onClick = { onEvent(AppSettingsEvent.DonateClicked) },
             onLongClick = { onEvent(AppSettingsEvent.DonateLongClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_DONATE)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.DonationsRoute)
+              .testTag(AppSettingsTestTags.ROW_DONATE)
           )
         }
 
@@ -198,7 +217,9 @@ fun AppSettingsScreen(
             text = stringResource(R.string.preferences__appearance),
             icon = SignalIcons.Appearance.painter,
             onClick = { onEvent(AppSettingsEvent.AppearanceClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_APPEARANCE)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.AppearanceRoute)
+              .testTag(AppSettingsTestTags.ROW_APPEARANCE)
           )
         }
 
@@ -208,7 +229,9 @@ fun AppSettingsScreen(
             icon = SignalIcons.Chat.painter,
             onClick = { onEvent(AppSettingsEvent.ChatsClicked) },
             enabled = state.isRegisteredAndUpToDate,
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_CHATS)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.ChatsRoute || selectedRoute is AppSettingsRoute.ChatFoldersRoute)
+              .testTag(AppSettingsTestTags.ROW_CHATS)
           )
         }
 
@@ -218,7 +241,9 @@ fun AppSettingsScreen(
             icon = SignalIcons.Stories.painter,
             onClick = { onEvent(AppSettingsEvent.StoriesClicked) },
             enabled = state.isRegisteredAndUpToDate,
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_STORIES)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.StoriesRoute)
+              .testTag(AppSettingsTestTags.ROW_STORIES)
           )
         }
 
@@ -228,7 +253,9 @@ fun AppSettingsScreen(
             icon = SignalIcons.Bell.painter,
             onClick = { onEvent(AppSettingsEvent.NotificationsClicked) },
             enabled = state.isRegisteredAndUpToDate,
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_NOTIFICATIONS)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.NotificationsRoute)
+              .testTag(AppSettingsTestTags.ROW_NOTIFICATIONS)
           )
         }
 
@@ -238,7 +265,9 @@ fun AppSettingsScreen(
             icon = SignalIcons.Lock.painter,
             onClick = { onEvent(AppSettingsEvent.PrivacyClicked) },
             enabled = state.isRegisteredAndUpToDate,
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_PRIVACY)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.PrivacyRoute)
+              .testTag(AppSettingsTestTags.ROW_PRIVACY)
           )
         }
 
@@ -249,7 +278,9 @@ fun AppSettingsScreen(
             onClick = { onEvent(AppSettingsEvent.BackupsClicked) },
             onLongClick = { onEvent(AppSettingsEvent.BackupsLongClicked) },
             enabled = state.isRegisteredAndUpToDate,
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_BACKUPS)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.BackupsRoute)
+              .testTag(AppSettingsTestTags.ROW_BACKUPS)
           )
         }
 
@@ -258,7 +289,9 @@ fun AppSettingsScreen(
             text = stringResource(R.string.preferences__data_and_storage),
             icon = SignalIcons.Data.painter,
             onClick = { onEvent(AppSettingsEvent.DataAndStorageClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_DATA_AND_STORAGE)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.DataAndStorageRoute)
+              .testTag(AppSettingsTestTags.ROW_DATA_AND_STORAGE)
           )
         }
 
@@ -268,7 +301,9 @@ fun AppSettingsScreen(
               text = "App updates",
               icon = SignalIcons.Calendar.painter,
               onClick = { onEvent(AppSettingsEvent.AppUpdatesClicked) },
-              modifier = Modifier.testTag(AppSettingsTestTags.ROW_APP_UPDATES)
+              modifier = Modifier
+                .selectionHighlight(selectedRoute == AppSettingsRoute.AppUpdates)
+                .testTag(AppSettingsTestTags.ROW_APP_UPDATES)
             )
           }
         }
@@ -281,7 +316,8 @@ fun AppSettingsScreen(
           item {
             PaymentsRow(
               unreadPaymentsCount = state.unreadPaymentsCount,
-              onClick = { onEvent(AppSettingsEvent.PaymentsClicked) }
+              onClick = { onEvent(AppSettingsEvent.PaymentsClicked) },
+              modifier = Modifier.selectionHighlight(selectedRoute == AppSettingsRoute.Payments)
             )
           }
         }
@@ -295,7 +331,9 @@ fun AppSettingsScreen(
             text = stringResource(R.string.preferences__help),
             icon = SignalIcons.Help.painter,
             onClick = { onEvent(AppSettingsEvent.HelpClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_HELP)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute is AppSettingsRoute.HelpRoute)
+              .testTag(AppSettingsTestTags.ROW_HELP)
           )
         }
 
@@ -304,7 +342,9 @@ fun AppSettingsScreen(
             text = stringResource(R.string.AppSettingsFragment__invite_your_friends),
             icon = SignalIcons.Invite.painter,
             onClick = { onEvent(AppSettingsEvent.InviteClicked) },
-            modifier = Modifier.testTag(AppSettingsTestTags.ROW_INVITE)
+            modifier = Modifier
+              .selectionHighlight(selectedRoute == AppSettingsRoute.Invite)
+              .testTag(AppSettingsTestTags.ROW_INVITE)
           )
         }
 
@@ -318,7 +358,9 @@ fun AppSettingsScreen(
               text = "Labs",
               icon = SignalIcons.FlashOn.painter,
               onClick = { onEvent(AppSettingsEvent.LabsClicked) },
-              modifier = Modifier.testTag(AppSettingsTestTags.ROW_LABS)
+              modifier = Modifier
+                .selectionHighlight(selectedRoute is AppSettingsRoute.LabsRoute)
+                .testTag(AppSettingsTestTags.ROW_LABS)
             )
           }
 
@@ -327,13 +369,23 @@ fun AppSettingsScreen(
               text = stringResource(R.string.AppSettingsScreen__internal_preferences),
               icon = SignalIcons.Key.painter,
               onClick = { onEvent(AppSettingsEvent.InternalClicked) },
-              modifier = Modifier.testTag(AppSettingsTestTags.ROW_INTERNAL)
+              modifier = Modifier
+                .selectionHighlight(selectedRoute is AppSettingsRoute.InternalRoute)
+                .testTag(AppSettingsTestTags.ROW_INTERNAL)
             )
           }
         }
       }
     }
   }
+}
+
+private fun AppSettingsRoute?.isProfile(): Boolean {
+  return this == AppSettingsRoute.AccountRoute.ManageProfile || this is AppSettingsRoute.AccountRoute.Username || this is AppSettingsRoute.UsernameLinkRoute
+}
+
+private fun AppSettingsRoute?.isAccount(): Boolean {
+  return (this is AppSettingsRoute.AccountRoute && !isProfile()) || this is AppSettingsRoute.ChangeNumberRoute
 }
 
 @Composable
@@ -390,7 +442,8 @@ private fun BackupWarningRow(
 @Composable
 private fun PaymentsRow(
   unreadPaymentsCount: Int,
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Rows.TextRow(
     text = {
@@ -423,7 +476,7 @@ private fun PaymentsRow(
       )
     },
     onClick = onClick,
-    modifier = Modifier.testTag(AppSettingsTestTags.ROW_PAYMENTS)
+    modifier = modifier.testTag(AppSettingsTestTags.ROW_PAYMENTS)
   )
 }
 
@@ -431,13 +484,14 @@ private fun PaymentsRow(
 private fun ProfileRow(
   profile: AppSettingsState.Profile,
   avatar: @Composable () -> Unit,
-  onEvent: (AppSettingsEvent) -> Unit
+  onEvent: (AppSettingsEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   val hasUsername = profile.username.isNotBlank()
 
   Row(
     verticalAlignment = Alignment.CenterVertically,
-    modifier = Modifier
+    modifier = modifier
       .clickable(onClick = { onEvent(AppSettingsEvent.ProfileClicked) })
       .horizontalGutters()
       .testTag(AppSettingsTestTags.ROW_PROFILE)
@@ -526,7 +580,7 @@ private fun AppSettingsState.Snackbar.message(): String? {
   }
 }
 
-private val previewState = AppSettingsState(
+internal val appSettingsPreviewState = AppSettingsState(
   profile = AppSettingsState.Profile(
     name = "Miles Morales ❤\uFE0F",
     formattedPhoneNumber = "+1 555-555-5555",
@@ -548,7 +602,7 @@ private val previewState = AppSettingsState(
 @Composable
 private fun AppSettingsScreenPreview() {
   AppSettingsScreen(
-    state = previewState,
+    state = appSettingsPreviewState,
     onEvent = {},
     avatar = { PreviewAvatar() }
   )
@@ -559,7 +613,7 @@ private fun AppSettingsScreenPreview() {
 @Composable
 private fun AppSettingsScreenUnregisteredPreview() {
   AppSettingsScreen(
-    state = previewState.copy(userUnregistered = true),
+    state = appSettingsPreviewState.copy(userUnregistered = true),
     onEvent = {},
     avatar = { PreviewAvatar() }
   )
@@ -570,8 +624,8 @@ private fun AppSettingsScreenUnregisteredPreview() {
 @Composable
 private fun AppSettingsScreenNoPhoneNumberPreview() {
   AppSettingsScreen(
-    state = previewState.copy(
-      profile = previewState.profile?.copy(formattedPhoneNumber = ""),
+    state = appSettingsPreviewState.copy(
+      profile = appSettingsPreviewState.profile?.copy(formattedPhoneNumber = ""),
       backupFailureState = BackupFailureState.COULD_NOT_COMPLETE_BACKUP
     ),
     onEvent = {},
@@ -580,7 +634,7 @@ private fun AppSettingsScreenNoPhoneNumberPreview() {
 }
 
 @Composable
-private fun PreviewAvatar() {
+internal fun PreviewAvatar() {
   Box(
     modifier = Modifier
       .size(80.dp)

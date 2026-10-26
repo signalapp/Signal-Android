@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
@@ -68,9 +69,7 @@ class NotificationsSettingsFragment : ComposeFragment() {
     NotificationsSettingsViewModel.Factory().create(NotificationsSettingsViewModel::class.java)
   }
 
-  private val appSettingsRouter: AppSettingsRouter by viewModel {
-    AppSettingsRouter()
-  }
+  private val appSettingsRouter: AppSettingsRouter by viewModels()
 
   private lateinit var callbacks: DefaultNotificationsSettingsCallbacks
 

@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import androidx.navigation.NavDirections
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.appsettings.routes.AppSettingsRoute
@@ -19,16 +18,14 @@ import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
-import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.SignalE164Util
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_ROUTE = "app.settings.args.START_ROUTE"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
-private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
+internal const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
 class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
 
@@ -99,23 +96,8 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
       navController.safeNavigate(it)
     }
 
-    SignalStore.settings.onConfigurationSettingChanged.observe(this) { key ->
-      if (key == SettingsValues.THEME) {
-        DynamicTheme.setDefaultDayNightMode(this)
-        recreate()
-      }
-    }
-
-    if (savedInstanceState == null) {
-      when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
-        ACTION_CHANGE_NUMBER_SUCCESS -> {
-          MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(SignalStore.account.requireE164())))
-            .setPositiveButton(R.string.ChangeNumber__okay, null)
-            .show()
-        }
-      }
-    }
+    recreateOnThemeChange()
+    performActionOnCreate(savedInstanceState)
   }
 
   override fun onNewIntent(intent: Intent) {
@@ -233,6 +215,10 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
     fun upgradeLocalBackups(context: Context): Intent = getIntentForStartLocation(context, AppSettingsRoute.BackupsRoute.Local(triggerUpdateFlow = true))
 
     private fun getIntentForStartLocation(context: Context, startRoute: AppSettingsRoute): Intent {
+      if (RemoteConfig.useAppSettingsNavigation) {
+        return AppSettingsNavigationActivity.createIntent(context, startRoute)
+      }
+
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
         .putExtra(START_ROUTE, startRoute)

@@ -503,6 +503,14 @@
             android:theme="@style/Signal.DayNight.NoActionBar" />
 
         <activity
+            android:name=".components.settings.app.AppSettingsNavigationActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden"
+            android:enableOnBackInvokedCallback="true"
+            android:exported="false"
+            android:theme="@style/Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".components.settings.app.AppSettingsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"

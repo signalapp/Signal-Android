@@ -2,6 +2,7 @@ plugins {
   id("signal-library")
   id("kotlin-parcelize")
   alias(libs.plugins.compose.compiler)
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -39,6 +40,10 @@ dependencies {
   implementation(libs.androidx.compose.material3)
   implementation(libs.androidx.lifecycle.runtime.compose)
   implementation(libs.androidx.lifecycle.viewmodel.ktx)
+  implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+  implementation(libs.androidx.navigation3.runtime)
+  implementation(libs.androidx.navigation3.ui)
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.androidx.compose.ui.tooling.preview)
   debugImplementation(libs.androidx.compose.ui.tooling.core)
 
