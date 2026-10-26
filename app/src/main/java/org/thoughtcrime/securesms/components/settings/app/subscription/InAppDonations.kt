@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
 import org.thoughtcrime.securesms.util.RemoteConfig
+import java.util.Currency
 
 /**
  * Helper object to determine in-app donations availability.
@@ -27,7 +28,10 @@ object InAppDonations {
     return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable() || isIDEALAvailable()
   }
 
-  fun isDonationsPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType): Boolean {
+  /**
+   * @param currency The currency the user selected for the payment, if known. Used to decide region-based availability for accounts without a phone number.
+   */
+  fun isDonationsPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType, currency: Currency? = null): Boolean {
     if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
       error("Not supported.")
     }
@@ -36,8 +40,8 @@ object InAppDonations {
       PaymentSourceType.PayPal -> isPayPalAvailableForDonateToSignalType(inAppPaymentType)
       PaymentSourceType.Stripe.CreditCard -> isCreditCardAvailable()
       PaymentSourceType.Stripe.GooglePay -> isGooglePayAvailable()
-      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(inAppPaymentType)
-      PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(inAppPaymentType)
+      PaymentSourceType.Stripe.SEPADebit -> isSEPADebitAvailableForDonateToSignalType(inAppPaymentType, currency)
+      PaymentSourceType.Stripe.IDEAL -> isIDEALAvailbleForDonateToSignalType(inAppPaymentType, currency)
       PaymentSourceType.GooglePlayBilling -> false
       PaymentSourceType.Unknown -> false
     }
@@ -76,33 +80,35 @@ object InAppDonations {
   }
 
   /**
-   * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number.
+   * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number, or
+   * locale and the selected [currency] for accounts without a phone number.
    */
-  fun isSEPADebitAvailable(): Boolean {
-    return Environment.IS_STAGING || (RemoteConfig.sepaDebitDonations && LocaleRemoteConfig.isSepaEnabled())
+  fun isSEPADebitAvailable(currency: Currency? = null): Boolean {
+    return Environment.IS_STAGING || (RemoteConfig.sepaDebitDonations && LocaleRemoteConfig.isSepaEnabled(currency))
   }
 
   /**
-   * Whether the user is in a region which supports IDEAL transfers, based off local phone number.
+   * Whether the user is in a region which supports IDEAL transfers, based off local phone number, or
+   * locale and the selected [currency] for accounts without a phone number.
    */
-  fun isIDEALAvailable(): Boolean {
-    return Environment.IS_STAGING || (RemoteConfig.idealDonations && LocaleRemoteConfig.isIdealEnabled())
+  fun isIDEALAvailable(currency: Currency? = null): Boolean {
+    return Environment.IS_STAGING || (RemoteConfig.idealDonations && LocaleRemoteConfig.isIdealEnabled(currency))
   }
 
   /**
    * Whether the user is in a region which supports SEPA Debit transfers, based off local phone number
    * and donation type.
    */
-  fun isSEPADebitAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
-    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isSEPADebitAvailable()
+  fun isSEPADebitAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentType, currency: Currency? = null): Boolean {
+    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isSEPADebitAvailable(currency)
   }
 
   /**
    * Whether the user is in a region which suports IDEAL transfers, based off local phone number and
    * donation type
    */
-  fun isIDEALAvailbleForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
-    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isIDEALAvailable()
+  fun isIDEALAvailbleForDonateToSignalType(inAppPaymentType: InAppPaymentType, currency: Currency? = null): Boolean {
+    return inAppPaymentType != InAppPaymentType.ONE_TIME_GIFT && isIDEALAvailable(currency)
   }
 
   /**

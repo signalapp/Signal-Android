@@ -66,9 +66,9 @@ class InAppPaymentsTestRule : ExternalResource() {
     mockkObject(InAppDonations)
     every { InAppDonations.isPayPalAvailable() } returns true
     every { InAppDonations.isGooglePayAvailable() } returns true
-    every { InAppDonations.isSEPADebitAvailable() } returns true
+    every { InAppDonations.isSEPADebitAvailable(any()) } returns true
     every { InAppDonations.isCreditCardAvailable() } returns true
-    every { InAppDonations.isIDEALAvailable() } returns true
+    every { InAppDonations.isIDEALAvailable(any()) } returns true
 
     mockkObject(SignalDatabase.Companion)
     every { SignalDatabase.Companion.donationReceipts } returns mockk {

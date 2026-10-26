@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,12 +69,20 @@ public final class LocaleRemoteConfig {
     return isEnabledE164Start(RemoteConfig.paypalDisabledRegions());
   }
 
-  public static boolean isIdealEnabled() {
-    return isEnabledE164Start(RemoteConfig.idealEnabledRegions());
+  /**
+   * @param currency The currency the user selected for the payment, or null if none has been selected yet.
+   * @return Whether iDEAL is enabled in this region. Numberless accounts fall back to locale and currency.
+   */
+  public static boolean isIdealEnabled(@Nullable Currency currency) {
+    return isEnabledE164StartOrNumberlessRegion(RemoteConfig.idealEnabledRegions(), currency);
   }
 
-  public static boolean isSepaEnabled() {
-    return isEnabledE164Start(RemoteConfig.sepaEnabledRegions());
+  /**
+   * @param currency The currency the user selected for the payment, or null if none has been selected yet.
+   * @return Whether SEPA Debit is enabled in this region. Numberless accounts fall back to locale and currency.
+   */
+  public static boolean isSepaEnabled(@Nullable Currency currency) {
+    return isEnabledE164StartOrNumberlessRegion(RemoteConfig.sepaEnabledRegions(), currency);
   }
 
   public static boolean isDelayedNotificationPromptEnabled() {
@@ -99,12 +109,38 @@ public final class LocaleRemoteConfig {
     return isEnabledE164Start(serialized, Recipient.self().getE164().orElse(NUMBERLESS_MARKER));
   }
 
+  /**
+   * Like {@link #isEnabledE164Start(String)}, but when the account has no phone number and the list does not
+   * explicitly include numberless accounts, falls back to matching the device locale and the selected currency
+   * against the regions in the list. See {@link NumberlessRegionMatcher}.
+   */
+  private static boolean isEnabledE164StartOrNumberlessRegion(@NonNull String serialized, @Nullable Currency currency) {
+    List<String>     countryAndAreaCodes = parseCountryAndAreaCodes(serialized);
+    Optional<String> e164                = Recipient.self().getE164();
+
+    if (e164.isPresent()) {
+      return isEnabledE164Start(countryAndAreaCodes, e164.get());
+    }
+
+    return isEnabledE164Start(countryAndAreaCodes, NUMBERLESS_MARKER) || NumberlessRegionMatcher.matches(countryAndAreaCodes, currency);
+  }
+
   @VisibleForTesting
   static boolean isEnabledE164Start(@NonNull String serialized, @NonNull String e164) {
-    List<String> countryAndAreaCodes = Arrays.stream(serialized.split(",")).map(s -> s.trim().replaceAll("\\s", "")).collect(Collectors.toList());
-    String       e164Numbers         = e164.replaceAll("\\D", "");
+    return isEnabledE164Start(parseCountryAndAreaCodes(serialized), e164);
+  }
+
+  private static boolean isEnabledE164Start(@NonNull List<String> countryAndAreaCodes, @NonNull String e164) {
+    String e164Numbers = e164.replaceAll("\\D", "");
 
     return countryAndAreaCodes.stream().anyMatch(e164Numbers::startsWith);
+  }
+
+  /**
+   * Parses a comma-separated list of country codes and area codes, e.g. "33, 1 555" becomes ["33", "1555"].
+   */
+  private static @NonNull List<String> parseCountryAndAreaCodes(@NonNull String serialized) {
+    return Arrays.stream(serialized.split(",")).map(s -> s.trim().replaceAll("\\s", "")).collect(Collectors.toList());
   }
 
   private static long getPartsPerMillion(@NonNull String serialized) {
