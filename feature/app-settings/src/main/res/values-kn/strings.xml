@@ -3,7 +3,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್ ಆನ್‌ ಮಾಡುವುದೇ?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್‌ ಆಫ್‌ ಮಾಡುವುದೇ?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸುವಾಗ ನಿಮ್ಮ Signal Signal ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು 7 ದಿನಗಳವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸುವಾಗ ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು 7 ದಿನಗಳವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
     <string name="RegistrationLockV2Dialog_turn_on">ಆನ್‌ ಮಾಡಿ</string>
     <string name="RegistrationLockV2Dialog_turn_off">ಆಫ್ ಮಾಡಿ</string>
     <string name="preferences__advanced_pin_settings">ಸುಧಾರಿತ ಪಿನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
@@ -18,7 +18,7 @@
     <string name="preferences_app_protection__pin_reminders">ಪಿನ್ ರಿಮೈಂಡರ್‌ಗಳು</string>
     <string name="preferences_app_protection__turn_off">ಆಫ್ ಮಾಡಿ</string>
     <string name="preferences_app_protection__confirm_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ದೃಢಪಡಿಸಿ</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಮರುಪಡೆಯಲು ಸಾಧ್ಯವಾಗದ ಕಾರಣ ನೀವು ಅದನ್ನು ನೆನಪಿನಲ್ಲಿಟ್ಟುಕೊಂಡಿದ್ದೀರಿ ಅಥವಾ ಸುರಕ್ಷಿತವಾಗಿ ಸಂಗ್ರಹಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ಮರು ನೋಂದಾಯಿಸುವಾಗ ನೀವು ಡೇಟಾವನ್ನು ಕಳೆದುಕೊಳ್ಳಬಹುದು.</string>
     <string name="preferences_app_protection__incorrect_pin_try_again">ತಪ್ಪು ಪಿನ್. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="preferences_app_protection__registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">ಪಾಸ್‌ಕೀ ಅನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ಸೇರಿಸಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">ಈ ವಿಧಾನವನ್ನು ಸೇರಿಸಲು, ಇದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ಎರಡು-ಅಂಶದ ವಿಧಾನವನ್ನು ತೆಗೆದುಹಾಕಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">ಪಾಸ್‌ಕೀ ಸೆಟಪ್ ಮಾಡಿ</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">ಪಾಸ್‌ಕೀ ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">ನೀವು %1$d ಕ್ಕಿಂತ ಹೆಚ್ಚು ಎರಡು-ಹಂತದ ಅಥೆಂಟಿಕೇಶನ್ ವಿಧಾನಗಳನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಮೊದಲಿಗೆ, ಒಂದು ಆ್ಯಪ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ.</string>
 

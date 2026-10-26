@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Pääsyavaimen luominen epäonnistui. Yritä uudelleen.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Avaa lukitus lisätäksesi kaksivaiheisen kirjautumisen</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Voit lisätä kirjautumistavan varmistamalla ensin henkilöllisyytesi</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Avaa lukitus poistaaksesi kaksivaiheisen kirjautumisen</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -140,7 +140,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Tilitietosi</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Vie raportti Signal-tilisi tiedoista. Tämä raportti ei sisällä viestejä tai mediasisältöä. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Vie raportti Signal-tilin tiedoista. Raportti ei sisällä viestejä tai mediasisältöä. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Lue lisää</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -168,14 +168,14 @@
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Viedäänkö tiedot?</string>
     <!-- Message for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation_message">Jaa Signal-tilisi tiedot vain niiden henkilöiden ja sovellusten kanssa, joihin luotat.</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation_message">Jaa Signal-tilin tiedot vain niille henkilöille ja sovelluksille, joihin luotat.</string>
     <!-- Action to export in for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_action">Vie</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Luodaan raporttia…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raportti luodaan vain viennin yhteydessä, eikä Signal tallenna sitä laitteellesi.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Raportti luodaan vain viennin yhteydessä, eikä Signal tallenna sitä laitteelle.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -217,19 +217,19 @@
     <!-- Title of the screen that explains passkeys before the user sets one up -->
     <string name="PasskeySetupScreen__passkeys">Todentamisavaimet</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Todentamisavaimen avulla voit helposti lisätä toisen autentikointitavan tilillesi. Todentamisavain voi käyttää laitteesi biometrista tunnistamista tai yhteensopivaa FIDO2-turva-avainta.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Todentamisavaimen avulla voit helposti lisätä tilillesi toisen autentikointitavan. Todentamisavain voi käyttää laitteen biometrista tunnistamista tai yhteensopivaa FIDO2-turva-avainta.</string>
     <!-- Link that opens a support article about passkeys -->
     <string name="PasskeySetupScreen__learn_more">Lue lisää</string>
     <!-- Bullet point explaining that the user can name their passkey -->
     <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Anna todentamisavaimelle nimi, jonka tunnistat</string>
     <!-- Bullet point explaining where the passkey is stored -->
-    <string name="PasskeySetupScreen__use_your_devices_biometrics">Käytä laitteesi biometrista tunnistamista tai yhteensopivaa FIDO2-turva-avainta todentamisavaimen tallentamiseksi</string>
+    <string name="PasskeySetupScreen__use_your_devices_biometrics">Käytä laitteen biometrista tunnistamista tai yhteensopivaa FIDO2-turva-avainta todentamisavaimen tallentamiseksi</string>
     <!-- Bullet point explaining that passkeys can be managed later -->
     <string name="PasskeySetupScreen__add_or_remove_passkeys_at_any_time">Voit lisätä tai poistaa todentamisavaimet milloin tahansa.</string>
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Määritä todentamisavain</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Salausavaimen lisääminen epäonnistui</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Voit lisätä enintään %1$d autentikointimenetelmää. Poista ensin joku aiemmista.</string>
 
@@ -443,19 +443,19 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Kuka voi nähdä numeroni</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Puhelinnumerosi näkyy ihmisille ja ryhmille, joille lähetät viestejä.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Numerosi näkyy ihmisille ja ryhmille, joille lähetät viestejä.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Puhelinnumerosi ei näy kenellekään, ellei hän ole tallentanut sitä puhelimensa yhteystietoihin.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Numerosi ei näy kenellekään, joka ei ole tallentanut sitä puhelimensa yhteystietoihin.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Puhelinnumerosi ei näy kenellekään.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Numerosi ei näy kenellekään.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kuka voi löytää minut puhelinnumerolla</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Kuka tahansa, jolla on puhelinnumerosi, näkee, että olet Signalissa, ja voi aloittaa keskustelut kanssasi.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Kuka tahansa, jolla on numerosi, näkee, että olet Signalissa, ja voi aloittaa keskustelun kanssasi.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Kukaan ei näe, että olet Signalissa, ellet lähetä heille viestiä tai keskustele heidän kanssaan.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Kukaan ei näe, että olet Signalissa, ellet lähetä jollekulle viestiä tai juttele jonkun kanssa.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Jos haluat muuttaa tätä asetusta, määritä Kuka näkee numeroni -asetukseksi Ei kukaan."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Jos haluat muuttaa asetusta, määritä Kuka näkee numeroni -asetukseksi Ei kukaan."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Oletko varma?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->

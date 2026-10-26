@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">پاس کیی تخلیق نہیں کی جا سکی۔ دوبارہ کوشش کریں۔</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">دو مرحلہ جاتی طریقہ شامل کرنے کے لیے ان لاک کریں</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">اس طریقے کو شامل کرنے کے لیے، تصدیق کریں کہ یہ آپ ہی ہیں</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">دو مرحلہ جاتی طریقے کو ہٹانے کے لیے ان لاک کریں</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">ایک پاس کیی ترتیب دیں</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">پاس کیی شامل نہیں کی جا سکتی</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">آپ %1$d سے زیادہ دو مرحلہ جاتی توثیق کے طریقے شامل نہیں کر سکتے۔ پہلے ایک کو ہٹانے کی کوشش کریں۔</string>
 

@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">கடவுக்குறியீட்டை உருவாக்க முடியவில்லை. மீண்டும் முயலவும்.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">இரு-படி அங்கீகார முறையைச் சேர்க்க, திறக்கவும்</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">இந்த முறையைச் சேர்க்க, இது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">இரு-படி அங்கீகார முறையை அகற்ற, தடைநீக்கவும்</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">கடவுக்குறியீட்டை அமைக்கவும்</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">கடவுக்குறியீட்டைச் சேர்க்க முடியவில்லை</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">உங்களால் %1$d-க்கும் மேற்பட்ட இரு-படி அங்கீகார முறையைச் சேர்க்க முடியாது. முதலில் ஒன்றை அகற்றிவிட்டு முயலவும்.</string>
 

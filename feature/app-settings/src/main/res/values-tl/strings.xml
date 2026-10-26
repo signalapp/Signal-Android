@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Hindi magawa ang passkey. Subukan ulit.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">I-unlock para ma-add ang two-factor method</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Para i-add ang method na ito, kumpirmahing ikaw ito</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">I-unlock para alisin ang two-factor method</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -140,7 +140,7 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Ang iyong account data</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">I-export ang report ng iyong Signal account data. Hindi kasama ang anumang messages o media sa report na ito. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Mag-export ng report ng iyong Signal account data. Hindi kasama ang anumang messages o media sa report na ito. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Matuto pa</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
@@ -149,7 +149,7 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">I-export bilang TXT</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Madaling basahing text file</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">Madaling-basahing text file</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">I-export bilang JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
@@ -166,7 +166,7 @@
     <string name="ExportAccountDataFragment__check_network">I-check ang iyong connection at subukan ulit.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Gusto mo bang i-export ang data?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">I-export ang data?</string>
     <!-- Message for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation_message">I-share lang ang iyong Signal account data sa mga tao o apps na pinagkakatiwalaan mo.</string>
     <!-- Action to export in for export confirmation dialog -->
@@ -175,7 +175,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Gine-generate ang report…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ang iyong report ay ginagawa lamang sa oras ng pag-export at hindi ito nilalagay ng Signal sa device mo.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Ginagawa lang ang iyong report sa oras ng pag-export nito at hindi ito nilalagay ng Signal sa device mo.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Mag-set up ng passkey</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Hindi ma-add ang passkey</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Hindi ka maaaring maglagay ng higit sa %1$d two-factor authentication methods. Subukan munang magtanggal ng isa.</string>
 
@@ -431,11 +431,11 @@
     <string name="arrays__large">Malaki</string>
     <string name="arrays__extra_large">Mas malaki</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
-    <string name="preferences_navigation_bar_size">Size ng navigation bar</string>
+    <string name="preferences_navigation_bar_size">Laki ng navigation bar</string>
     <!-- Preference summary for normal navigation bar size -->
     <string name="preferences_normal">Normal</string>
     <!-- Preference summary for compact navigation bar size -->
-    <string name="preferences_compact">Compact</string>
+    <string name="preferences_compact">Maliit</string>
     <!-- Dialog message body explaining that we have to restart the app in order to apply the user\'s new language setting.  -->
     <string name="preferences_language_change_confirmation_message">Magre-restart ang app para i-apply ang bagong language setting.</string>
     <!-- Phone number heading displayed as a screen title -->
@@ -445,9 +445,9 @@
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Makikita ng lahat ng tao at groups na mine-message mo ang iyong phone number.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Hindi magiging visible sa kahit na sino ang phone number mo maliban na lamang kung naka-save ito sa kanilang phone contacts.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Hindi makikita ng kahit na sino ang phone number mo maliban na lamang kung naka-save ito sa kanilang phone contacts.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Hindi magiging visible sa sinuman ang phone number mo.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Hindi makikita ng sinuman ang phone number mo.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Sinong makakahanap sa \'kin gamit ang number ko</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -455,7 +455,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Walang makakakita na nasa Signal ka maliban sa mga taong minessage o naka-chat mo.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Para baguhin ang setting na ito, i-set sa \"Nobody\" ang \"Who can see my number\"."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Para baguhin ang setting na ito, i-set sa \"Wala\" ang \"Sinong makakakita ng number ko\"."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Sigurado ka na ba?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -477,7 +477,7 @@
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Hindi kailanman</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi at mobile data</string>
-    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Mobile data lang</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ang paggamit ng mas kaunting data ay maaaring makatulong sa quality ng tawag kapag hindi maganda ang signal.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Gumamit ng proxy</string>
@@ -487,7 +487,7 @@
     <string name="DataAndStorageSettingsFragment__calculating">Kinakalkula…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Ang pag-send ng high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Gagamit ng mas maraming data ang pag-send ng high quality media.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Ang voice messages at stickers (sa ilalim ng %1$s) ay palaging naka-auto-download.</string>
     <string name="DataAndStorageSettingsFragment__calls">Mga Tawag</string>

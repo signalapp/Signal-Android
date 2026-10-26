@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">\'ফেভারিটস\' থেকে মুছে ফেলবেন?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">আপনার কাছে যদি প্যাকটি ইনস্টল করা না থাকে, অথবা কোনো লিংক বা স্টিকার মেসেজ না থাকে, তবে আপনি এটি পুনরায় পাঠাতে বা ফেভারিটস-এ যোগ করতে পারবেন না।</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">সরিয়ে ফেলুন</string>
     <!-- Text shown when no preference label has been selected -->
@@ -105,7 +105,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">টেক্সট ইনপুটে স্যুইচ করুন</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">ঘড়ির আইকনে স্যুইচ করুন</string>
 </resources>

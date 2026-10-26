@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">ਕੀ ਮਨਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">ਤੁਸੀਂ ਉਦੋਂ ਤੱਕ ਪੈਕ ਦੁਬਾਰਾ ਨਹੀਂ ਭੇਜ ਸਕਦੇ ਜਾਂ \'ਮਨਪਸੰਦ\' ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਸ ਪੈਕ ਨੂੰ ਇੰਸਟਾਲ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਜਾਂ ਤੁਹਾਡੇ ਕੋਲ ਉਸਦਾ ਲਿੰਕ ਜਾਂ ਸਟਿੱਕਰ ਸੁਨੇਹਾ ਉਪਲਬਧ ਨਹੀਂ ਹੁੰਦਾ।</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ਹਟਾਓ</string>
     <!-- Text shown when no preference label has been selected -->
@@ -67,35 +67,35 @@
         <item quantity="other">%1$d ਸਕਿੰਟ</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d ਸਕਿੰ</string>
 
     <plurals name="expiration_minutes">
         <item quantity="one">%1$dਮਿੰਟ</item>
         <item quantity="other">%1$d ਮਿੰਟ</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d ਮਿੰ</string>
 
     <plurals name="expiration_hours">
         <item quantity="one">%1$d ਘੰਟੇ</item>
         <item quantity="other">%1$d ਘੰਟੇ</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d ਘੰ</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d ਦਿਨ</item>
         <item quantity="other">%1$d ਦਿਨ</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d ਦਿ</string>
 
     <plurals name="expiration_weeks">
         <item quantity="one">%1$d ਹਫ਼ਤੇ</item>
         <item quantity="other">%1$d ਹਫ਼ਤੇ</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$d ਹਫ਼</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
@@ -105,7 +105,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">ਟੈਕਸਟ ਇਨਪੁੱਟ \'ਤੇ ਬਦਲੋ</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">ਘੜੀ \'ਤੇ ਬਦਲੋ</string>
 </resources>

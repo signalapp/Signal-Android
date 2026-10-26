@@ -46,19 +46,19 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Odstrániť z Obľúbených?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Nemôžete ju znova odoslať ani pridať do Obľúbených, pokiaľ nemáte nainštalovaný balíček, odkaz alebo správu s nálepkou.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Odstrániť</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Žiadna</string>
+    <string name="preferences__none">Žiadne</string>
     <string name="preferences_off">Vypnuté</string>
     <string name="preferences_on">Zapnuté</string>
     <string name="ExpireTimerSettingsFragment__set">Nastaviť</string>
-    <string name="CustomExpireTimerSelectorView__seconds">sekúnd</string>
+    <string name="CustomExpireTimerSelectorView__seconds">sekundy</string>
     <string name="CustomExpireTimerSelectorView__minutes">minúty</string>
     <string name="CustomExpireTimerSelectorView__hours">hodiny</string>
-    <string name="CustomExpireTimerSelectorView__days">dní</string>
-    <string name="CustomExpireTimerSelectorView__weeks">týždňov</string>
+    <string name="CustomExpireTimerSelectorView__days">dni</string>
+    <string name="CustomExpireTimerSelectorView__weeks">týždne</string>
     <!-- expiration -->
     <string name="expiration_off">Vypnuté</string>
 
@@ -109,13 +109,13 @@
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Dozvedieť sa viac</string>
+    <string name="LearnMoreTextView_learn_more">Zistiť viac</string>
 
-    <string name="SpanUtil__read_more">Čítaj viac</string>
+    <string name="SpanUtil__read_more">Prečítať viac</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Prepnúť na zadávanie textu</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Prepnúť na hodiny</string>
 </resources>

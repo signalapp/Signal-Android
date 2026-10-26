@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">មិនអាចបង្កើតសោសម្ងាត់បានទេ។ ព្យាយាមម្តងទៀត។</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">ដោះសោដើម្បីបញ្ចូលវិធីផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">ដើម្បីបញ្ចូលវិធីនេះ សូមបញ្ជាក់ថានេះពិតជាអ្នកមែន</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ដោះសោដើម្បីលុបវិធីផ្ទៀងផ្ទាត់ពីរជំហាន</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -147,7 +147,7 @@
     <string name="ExportAccountDataFragment__export_report">នាំចេញរបាយការណ៍</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">នាំចេញជាឯកសារអត្ថបទ</string>
+    <string name="ExportAccountDataFragment__export_as_txt">នាំចេញជា TXT</string>
     <!-- Label for the text file option -->
     <string name="ExportAccountDataFragment__export_as_txt_label">ឯកសារអត្ថបទងាយស្រួលអាន</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">រៀបចំសោសម្ងាត់</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">មិនអាចបញ្ចូលសោសម្ងាត់ទេ</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">អ្នកមិនអាចបញ្ចូលវិធីផ្ទៀងផ្ទាត់ពីរជំហានលើសពី %1$d បានទេ។ សាកល្បងលុបមួយចេញសិន។</string>
 
@@ -417,18 +417,18 @@
     <!-- AppearanceSettingsScreen -->
     <string name="preferences__appearance">រូបរាង</string>
     <string name="preferences__language">ភាសា</string>
-    <string name="preferences__theme">ប្តូរទម្រង់រូបរាង</string>
-    <string name="preferences__system_default">លំដើមប្រព័ន្ធ</string>
+    <string name="preferences__theme">ផ្ទៃពណ៌</string>
+    <string name="preferences__system_default">លំនាំដើមប្រព័ន្ធ</string>
     <string name="preferences__light_theme">ភ្លឺ</string>
     <string name="preferences__dark_theme">ងងឹត</string>
-    <string name="preferences__chat_color_and_wallpaper">ពណ៌ការជជែក &amp; រូបភាពផ្ទៃក្រោយ</string>
+    <string name="preferences__chat_color_and_wallpaper">ពណ៌ការជជែក និងផ្ទាំងរូបភាព</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">រូបកម្មវិធី</string>
     <string name="preferences_chats__message_text_size">ទំហំអក្សរសារ</string>
     <string name="arrays__small">តូច</string>
     <string name="arrays__normal">ធម្មតា</string>
     <string name="arrays__large">ធំ</string>
-    <string name="arrays__extra_large">ធំបំផុត</string>
+    <string name="arrays__extra_large">ធំខ្លាំង</string>
     <!-- Preference title for changing navigation (bottom) bar size -->
     <string name="preferences_navigation_bar_size">ទំហំរបាររុករក</string>
     <!-- Preference summary for normal navigation bar size -->
@@ -440,7 +440,7 @@
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">លេខទូរសព្ទ</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">អ្នកដែលអាចមើលឃើញលេខរបស់ខ្ញុំ</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">នរណាខ្លះអាចមើលឃើញលេខរបស់ខ្ញុំ</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">លេខទូរសព្ទរបស់អ្នកនឹងអាចមើលឃើញដោយមនុស្ស និងក្រុមដែលអ្នកផ្ញើសារ។</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
@@ -448,17 +448,17 @@
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">លេខទូរសព្ទរបស់អ្នកនឹងមិនអាចមើលឃើញដោយនរណាម្នាក់ឡើយ។</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">អ្នកដែលអាចរកខ្ញុំឃើញតាមលេខរបស់ខ្ញុំ</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">នរណាខ្លះអាចរកខ្ញុំឃើញតាមលេខរបស់ខ្ញុំ</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">នរណាក៏ដោយដែលមានលេខទូរសព្ទរបស់អ្នកនឹងមើលឃើញអ្នកនៅលើ Signal ហើយអាចចាប់ផ្តើមជជែកជាមួយអ្នកបាន។</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">គ្មាននរណាម្នាក់អាចមើលឃើញអ្នកនៅលើ Signal ទេ លើកលែងតែអ្នកផ្ញើសារទៅពួកគេ ឬមានការជជែកដែលមានស្រាប់ជាមួយពួកគេ។</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ដើម្បីផ្លាស់ប្តូរការកំណត់នេះ សូមកំណត់ \"អ្នកដែលអាចឃើញលេខរបស់ខ្ញុំ\" ទៅជា \"គ្មាននរណាម្នាក់\"។"</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ដើម្បីផ្លាស់ប្តូរការកំណត់នេះ សូមកំណត់ \"នរណាខ្លះអាចមើលឃើញលេខរបស់ខ្ញុំ\" ទៅជា \"គ្មាននរណាម្នាក់\"។"</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">តើអ្នកប្រាកដឬទេ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">ការកំណត់ \"នរណាខ្លះអាចរកខ្ញុំបានតាមលេខទូរសព្ទ\" ទៅជា \"គ្មាននរណាម្នាក់\" នឹងធ្វើឱ្យអ្នកផ្សេងកាន់តែពិបាកស្វែងរកអ្នកនៅលើ Signal។</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">ការកំណត់ \"នរណាខ្លះអាចរកខ្ញុំឃើញតាមលេខទូរសព្ទ\" ទៅជា \"គ្មាននរណាម្នាក់\" នឹងធ្វើឱ្យអ្នកផ្សេងកាន់តែពិបាកស្វែងរកអ្នកនៅលើ Signal។</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">បោះបង់</string>
     <string name="PhoneNumberPrivacy_everyone">អ្នករាល់គ្នា</string>
@@ -467,26 +467,26 @@
     <string name="arrays__audio">សំឡេង</string>
     <string name="arrays__video">វីដេអូ</string>
     <string name="arrays__documents">ឯកសារ</string>
-    <string name="preferences__data_and_storage">ទិន្នន័យ និងការរក្សាទុក</string>
-    <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
-    <string name="preferences_chats__when_using_wifi">នៅពេលប្រើប្រាស់Wi-Fi</string>
+    <string name="preferences__data_and_storage">ទិន្នន័យ និងទំហំផ្ទុក</string>
+    <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យចល័ត</string>
+    <string name="preferences_chats__when_using_wifi">នៅពេលប្រើប្រាស់ Wi-Fi</string>
     <string name="preferences_chats__when_roaming">នៅពេលរ៉ូមីង</string>
-    <string name="preferences_chats__media_auto_download">ឯកសារទាញយកដោយស្វ័យប្រវត្តិ</string>
-    <string name="preferences_data_and_storage__manage_storage">គ្រប់គ្រងការរក្សាទុក</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ប្រើប្រាស់ទិន្នន័យតិចសម្រាប់ការហៅចេញ</string>
+    <string name="preferences_chats__media_auto_download">ការទាញយកមេឌៀដោយស្វ័យប្រវត្តិ</string>
+    <string name="preferences_data_and_storage__manage_storage">គ្រប់គ្រងទំហំផ្ទុក</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">ប្រើប្រាស់ទិន្នន័យតិចសម្រាប់ការហៅទូរសព្ទ</string>
     <string name="preferences_data_and_storage__never">មិនធ្លាប់</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi និង ទិន្នន័យទូរស័ព្ទ</string>
-    <string name="preferences_data_and_storage__mobile_data_only">ទិន្នន័យទូរស័ព្ទតែប៉ុណ្ណោះ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi និងទិន្នន័យចល័ត</string>
+    <string name="preferences_data_and_storage__mobile_data_only">ទិន្នន័យចល័តតែប៉ុណ្ណោះ</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ការប្រើប្រាស់ទិន្នន័យតិចអាចធ្វើឱ្យការហៅល្អប្រសើរឡើងនៅលើបណ្តាញដែលមិនល្អ។</string>
     <string name="preferences_proxy">ប្រូកស៊ី</string>
-    <string name="preferences_use_proxy">ប្រើប្រាស់ ប្រូកស៊ី</string>
+    <string name="preferences_use_proxy">ប្រើប្រាស់ប្រូកស៊ី</string>
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">គុណភាពមេឌៀ</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
     <string name="DataAndStorageSettingsFragment__calculating">កំពុងគណនា…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">មេឌៀគុណភាពល្អត្រូវបានផ្ញើចេញ</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ការផ្ញើឯកសារមេឌៀដែលមានគុណភាពខ្ពស់នឹងអស់ទិន្នន័យអុីនធឺណិតច្រើន</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ការផ្ញើឯកសារមេឌៀដែលមានគុណភាពខ្ពស់នឹងប្រើទិន្នន័យអុីនធឺណិតកាន់តែច្រើន។</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">សារជាសំឡេង និងស្ទីកគ័រ (ក្រោម %1$s) តែងតែត្រូវបានទាញយកដោយស្វ័យប្រវត្តិ។</string>
     <string name="DataAndStorageSettingsFragment__calls">ការហៅ</string>
@@ -522,16 +522,16 @@
 
     <!-- HelpSettingsFragment -->
     <string name="preferences__help">ជំនួយ</string>
-    <string name="HelpSettingsFragment__support_center">មណ្ឌលគាំទ្រ</string>
+    <string name="HelpSettingsFragment__support_center">មជ្ឈមណ្ឌលជំនួយ</string>
     <string name="HelpSettingsFragment__contact_us">ទាក់ទងយើង</string>
-    <string name="HelpSettingsFragment__version">ជំនាន់</string>
+    <string name="HelpSettingsFragment__version">កំណែ</string>
     <!-- Displayed when copying help screen text to the clipboard -->
     <string name="HelpSettingsFragment__copied_to_clipboard">បានចម្លងទៅឃ្លីបបត</string>
     <string name="HelpSettingsFragment__debug_log">កំណត់ត្រាបញ្ហា</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">អាជ្ញាបណ្ណ</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">លក្ខខណ្ឌ &amp; គោលនយោបាយឯកជនភាព</string>
-    <string name="HelpFragment__copyright_signal_messenger">កម្មសិទ្ធបញ្ញា Signal Messenger</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">លក្ខខណ្ឌ និងគោលការណ៍ឯកជនភាព</string>
+    <string name="HelpFragment__copyright_signal_messenger">Signal Messenger ក្រោមការរក្សាសិទ្ធិ</string>
     <string name="HelpFragment__licenced_under_the_agplv3">មានអាជ្ញាបណ្ណក្រោម GNU AGPLv3</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
     <string name="HelpSettingsFragment__signal_is_a_501c3">Signal គឺជាអង្គការមិនស្វែងរកប្រាក់ចំណេញ 501c3</string>
@@ -582,9 +582,9 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">បញ្ចប់</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">អ្នកអាចបើក ឬបិទគណនីអ្នកដោយផ្ទាល់តាមរយៈបញ្ជីនៅក្នុងតារាងឈែត</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">អ្នកអាចបើក ឬបិទប្រូហ្វាល់របស់អ្នកដោយផ្ទាល់តាមរយៈម៉ឺនុយនៅលើបញ្ជីជជែក។</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">កំណត់កាលវិភាគសម្រាប់គណនីអ្នកដោយស្វ័យប្រវត្តិនៅក្នុងការកំណត់</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">ដាក់កាលវិភាគនៅក្នុងការកំណត់ដើម្បីធ្វើស្វ័យប្រវត្តិកម្មលើប្រូហ្វាល់របស់អ្នក។</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">គណនីរបស់អ្នកនឹងបើក បិទដោយស្វ័យប្រវត្តិទៅតាមកាលវិភាគដែលអ្នកបានកំណត់។</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">ប្រូហ្វាល់អ្នកនឹងបើកបិទដោយស្វ័យប្រវត្តិទៅតាមកាលវិភាគរបស់អ្នក។</string>
 </resources>

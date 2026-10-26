@@ -46,12 +46,12 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">要从收藏夹中移除吗？</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">除非您已安装该贴纸包，或有包含该贴纸包的链接或消息，否则您无法重新发送该贴纸包，也无法将其添加到收藏夹中。</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">移除</string>
     <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">无</string>
-    <string name="preferences_off">关</string>
+    <string name="preferences_off">关闭</string>
     <string name="preferences_on">开启</string>
     <string name="ExpireTimerSettingsFragment__set">设置</string>
     <string name="CustomExpireTimerSelectorView__seconds">秒</string>
@@ -60,7 +60,7 @@
     <string name="CustomExpireTimerSelectorView__days">天</string>
     <string name="CustomExpireTimerSelectorView__weeks">周</string>
     <!-- expiration -->
-    <string name="expiration_off">关</string>
+    <string name="expiration_off">关闭</string>
 
     <plurals name="expiration_seconds">
         <item quantity="other">%1$d 秒</item>
@@ -100,7 +100,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">切换为文本输入</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">切换为时钟</string>
 </resources>

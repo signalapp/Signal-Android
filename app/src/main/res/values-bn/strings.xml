@@ -489,7 +489,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">এই ব্যক্তি আর Signal ব্যবহার করছেন না। এখানে কথোপকথন করতে তাদেরকে Signal-এ আমন্ত্রণ জানান।</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">এই ব্যক্তি Signal ব্যবহার করছেন না। তাদের আমন্ত্রণ জানান যাতে এখানেই কথা বলা যায়।</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal এ আমন্ত্রন জানান</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -509,7 +509,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">ফিরে যান</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">প্যাক ম্যানেজ করুন</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2782,7 +2782,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">প্যাক দেখুন</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">স্টিকার পাঠান</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">স্টিকারটি ফেভারিটস-এ যোগ করা হয়েছে</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3239,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">\'ব্যবহারকারীর নাম\' বেছে নিন</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">সেট আপ করুন</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -5938,9 +5938,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">অবশ্যই একটি নাম আছে</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">ইমোজি বেছে নিন</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">নাম ও ইমোজি মুছে ফেলুন</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">অনুমোদিত নোটিফিকেশন</string>
@@ -8092,9 +8092,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">ব্যাকআপ মুছে ফেলার কাজ চলছে।</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">নিরাপদ ব্যাকআপ চালু করতে আনলক করুন</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">নিরাপদ ব্যাকআপ চালু করতে আপনার পরিচয় নিশ্চিত করুন।</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">প্রমাণীকরণ প্রয়োজন</string>
 

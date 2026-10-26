@@ -40,13 +40,13 @@
     <string name="DefaultTopAppBar__navigate_up_content_description">Перайсці ўперад</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">Дадаць у абраныя</string>
+    <string name="StickerFavorites__add_to_favorites">Дадаць у Абраныя</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">Выдаліць з абраных</string>
+    <string name="StickerFavorites__remove_from_favorites">Выдаліць з Абраных</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites_question">Выдаліць з абраных?</string>
+    <string name="StickerFavorites__remove_from_favorites_question">Выдаліць з Абраных?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Вы не зможаце адправіць яго або зноў дадаць у Абраныя, пакуль у вас не будзе спасылкі, паведамлення са стыкерам або ўсталяванага набору стыкераў.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Выдаліць</string>
     <!-- Text shown when no preference label has been selected -->
@@ -115,7 +115,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Пераключыцца на ўвод тэксту</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Пераключыцца на гадзіннік</string>
 </resources>

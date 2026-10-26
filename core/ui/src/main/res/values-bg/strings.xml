@@ -46,21 +46,21 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Премахване от „Любими“?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Не можете да го изпратите или да го добавите в „Любими“ отново, освен ако пакетът не е инсталиран, имате линк или съобщение със стикер.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Премахване</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Нищо</string>
-    <string name="preferences_off">Деактивирано</string>
-    <string name="preferences_on">Активирано</string>
-    <string name="ExpireTimerSettingsFragment__set">Задай</string>
+    <string name="preferences__none">Няма</string>
+    <string name="preferences_off">Изключено</string>
+    <string name="preferences_on">Включено</string>
+    <string name="ExpireTimerSettingsFragment__set">Задаване</string>
     <string name="CustomExpireTimerSelectorView__seconds">секунди</string>
     <string name="CustomExpireTimerSelectorView__minutes">минути</string>
     <string name="CustomExpireTimerSelectorView__hours">часове</string>
     <string name="CustomExpireTimerSelectorView__days">дни</string>
     <string name="CustomExpireTimerSelectorView__weeks">седмици</string>
     <!-- expiration -->
-    <string name="expiration_off">Деактивирани</string>
+    <string name="expiration_off">Изключено</string>
 
     <plurals name="expiration_seconds">
         <item quantity="one">%1$d секунда</item>
@@ -85,7 +85,7 @@
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d ден</item>
-        <item quantity="other">%1$d дена</item>
+        <item quantity="other">%1$d дни</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$dдн.</string>
@@ -99,13 +99,13 @@
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Научи повече</string>
+    <string name="LearnMoreTextView_learn_more">Научете повече</string>
 
-    <string name="SpanUtil__read_more">Прочети повече</string>
+    <string name="SpanUtil__read_more">Прочетете повече</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Превключване на въвеждане на текст</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Превключване на часовник</string>
 </resources>

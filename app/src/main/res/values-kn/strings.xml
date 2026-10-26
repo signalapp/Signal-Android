@@ -489,7 +489,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">ಪ್ರಸ್ತುತವಾಗಿ ಈ ವ್ಯಕ್ತಿಯು Signal ಅನ್ನು ಬಳಸುತ್ತಿಲ್ಲ. ಸಂಭಾಷಣೆಯನ್ನು ಇಲ್ಲಿ ಶುರುಹಚ್ಚಿಕೊಳ್ಳಲು ಅವರನ್ನು Signal ಗೆ ಆಹ್ವಾನಿಸಿ.</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">ಈ ವ್ಯಕ್ತಿಯು Signal ಅನ್ನು ಬಳಸುತ್ತಿಲ್ಲ. ಸಂಭಾಷಣೆಯನ್ನು ಮುಂದುವರಿಸಲು ಅವರನ್ನು ಇಲ್ಲಿಗೇ ಆಹ್ವಾನಿಸಿ.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal ಗೆ ಆಮಂತ್ರಿಸಿ</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -509,7 +509,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">ಹಿಂದಕ್ಕೆ ಹೋಗಿ</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">ಪ್ಯಾಕ್ ನಿರ್ವಹಿಸಿ</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2782,7 +2782,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">ಪ್ಯಾಕ್ ವೀಕ್ಷಿಸಿ</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">ಸ್ಟಿಕ್ಕರ್ ಕಳುಹಿಸಿ</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">ಸ್ಟಿಕ್ಕರ್ ಅನ್ನು ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3239,7 +3239,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">ಯೂಸರ್‌ನೇಮ್ ಆರಿಸಿ</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">ಸೆಟ್ ಅಪ್</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -5938,9 +5938,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">ಹೆಸರು ಹೊಂದಿರಬೇಕು</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">ಎಮೋಜಿಯನ್ನು ಆರಿಸಿ</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">ಹೆಸರು ಮತ್ತು ಎಮೋಜಿಯನ್ನು ತೆರವುಗೊಳಿಸಿ</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಲಾಗಿದೆ</string>
@@ -8092,9 +8092,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">ಬ್ಯಾಕಪ್ ಅಳಿಸುವಿಕೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ.</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸೆಟಪ್ ಮಾಡಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸೆಟಪ್ ಮಾಡಲು, ಇದು ನೀವೇ ಎಂಬುದನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">ದೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ</string>
 

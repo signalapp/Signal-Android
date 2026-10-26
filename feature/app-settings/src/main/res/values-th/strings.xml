@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">ไม่สามารถสร้างพาสคีย์ได้ โปรดลองอีกครั้ง</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">ปลดล็อกเพื่อเพิ่มวิธียืนยันแบบสองขั้นตอน</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">โปรดยืนยันตัวตนเพื่อเพิ่มวิธีนี้</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ปลดล็อกเพื่อลบวิธียืนยันแบบสองขั้นตอน</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">ตั้งค่าพาสคีย์</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">ไม่สามารถเพิ่มพาสคีย์ได้</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">ไม่สามารถเพิ่มวิธียืนยันตัวตนแบบสองขั้นตอนเกิน %1$d วิธี โปรดลองลบออกหนึ่งวิธี</string>
 
@@ -418,12 +418,12 @@
     <string name="preferences__appearance">ลักษณะ</string>
     <string name="preferences__language">ภาษา</string>
     <string name="preferences__theme">ธีม</string>
-    <string name="preferences__system_default">ค่าปริยายของระบบ</string>
+    <string name="preferences__system_default">ค่าเริ่มต้นของระบบ</string>
     <string name="preferences__light_theme">สว่าง</string>
     <string name="preferences__dark_theme">มืด</string>
     <string name="preferences__chat_color_and_wallpaper">สีและภาพพื้นหลังแชท</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
-    <string name="preferences__app_icon">ไอคอนแอป</string>
+    <string name="preferences__app_icon">ไอคอนของแอป</string>
     <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
     <string name="arrays__small">เล็ก</string>
     <string name="arrays__normal">ปกติ</string>
@@ -468,15 +468,15 @@
     <string name="arrays__video">วิดีโอ</string>
     <string name="arrays__documents">เอกสาร</string>
     <string name="preferences__data_and_storage">ข้อมูลและที่เก็บ</string>
-    <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
+    <string name="preferences_chats__when_using_mobile_data">เมื่อใช้อินเทอร์เน็ตมือถือ</string>
     <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
     <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามแดนอัตโนมัติ (โรมมิ่ง)</string>
     <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
     <string name="preferences_data_and_storage__manage_storage">จัดการพื้นที่จัดเก็บ</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้อินเทอร์เน็ตน้อยลงในการโทร</string>
     <string name="preferences_data_and_storage__never">ไม่เลย</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
-    <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และอินเทอร์เน็ตมือถือ</string>
+    <string name="preferences_data_and_storage__mobile_data_only">อินเทอร์เน็ตมือถือเท่านั้น</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้อินเทอร์เน็ตมือถือน้อยลงอาจช่วยปรับปรุงการโทรบนเครือข่ายที่ไม่เสถียร</string>
     <string name="preferences_proxy">พร็อกซี</string>
     <string name="preferences_use_proxy">ใช้พร็อกซี</string>

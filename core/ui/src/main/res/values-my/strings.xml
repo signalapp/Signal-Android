@@ -2,7 +2,7 @@
 <resources>
     <!-- Permissions -->
     <!-- Button label to confirm and proceed with a permission request -->
-    <string name="Permissions_continue">ရှေ့ဆက်ပါ</string>
+    <string name="Permissions_continue">ရှေ့ဆက်ရန်</string>
     <!-- Button label to dismiss or defer a permission request -->
     <string name="Permissions_not_now">အခုမဟုတ်သေးပါ</string>
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
@@ -35,25 +35,25 @@
     <string name="LinkDeviceFragment__continue">ဆက်လုပ်ရန်</string>
 
     <!-- Accessibility label for a close (X) icon button that dismisses the current screen, dialog, banner, or menu -->
-    <string name="CloseButton__content_description">ပိတ်မည်</string>
+    <string name="CloseButton__content_description">ပိတ်ရန်</string>
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
     <string name="DefaultTopAppBar__navigate_up_content_description">အပေါ်သို့ သွားရန်</string>
 
     <!-- Menu option that adds a sticker to the user\'s favorite stickers. -->
-    <string name="StickerFavorites__add_to_favorites">အကြိုက်ဆုံးများထဲသို့ ထည့်ပါ</string>
+    <string name="StickerFavorites__add_to_favorites">အကြိုက်ဆုံးများထဲသို့ ထည့်ရန်</string>
     <!-- Menu option that removes a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__remove_from_favorites">အကြိုက်ဆုံးများထဲမှ ဖယ်ရှားပါ</string>
+    <string name="StickerFavorites__remove_from_favorites">အကြိုက်ဆုံးများထဲမှ ဖယ်ရှားရန်</string>
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">အကြိုက်ဆုံးများထဲမှ ဖယ်ရှားမလား။</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">စတစ်ကာတွဲကို ထည့်သွင်းထားခြင်းနှင့် လင့်ခ် သို့မဟုတ် စတစ်ကာမက်ဆေ့ချ်တစ်ခုခု မရှိပါက ၎င်းကို ထပ်မံပို့၍မရသလို ကြိုက်ဆုံးများထဲသို့လည်း ထည့်၍မရပါ။</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ဖယ်ရှားရန်</string>
     <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">မည်သည့်အရာမှ မဟုတ်သော</string>
-    <string name="preferences_off">ပိတ်ထားမယ်</string>
-    <string name="preferences_on">ဖွင့်ထားမယ်</string>
-    <string name="ExpireTimerSettingsFragment__set">တပ်ဆင်မယ်</string>
+    <string name="preferences_off">ပိတ်ရန်</string>
+    <string name="preferences_on">ဖွင့်ရန်</string>
+    <string name="ExpireTimerSettingsFragment__set">သတ်မှတ်ရန်</string>
     <string name="CustomExpireTimerSelectorView__seconds">စက္ကန့်</string>
     <string name="CustomExpireTimerSelectorView__minutes">မိနစ်</string>
     <string name="CustomExpireTimerSelectorView__hours">နာရီ</string>
@@ -66,31 +66,31 @@
         <item quantity="other">%1$d စက္ကန့်</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$dစက္ကန့်</string>
+    <string name="expiration_seconds_abbreviated">%1$d စက္ကန့်</string>
 
     <plurals name="expiration_minutes">
         <item quantity="other">%1$d မိနစ်</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dမိနစ်</string>
+    <string name="expiration_minutes_abbreviated">%1$d မိနစ်</string>
 
     <plurals name="expiration_hours">
         <item quantity="other">%1$d နာရီ</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dနာရီ</string>
+    <string name="expiration_hours_abbreviated">%1$d နာရီ</string>
 
     <plurals name="expiration_days">
-        <item quantity="other">%1$dရက်</item>
+        <item quantity="other">%1$d ရက်</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dရက်</string>
+    <string name="expiration_days_abbreviated">%1$d ရက်</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="other">%1$dပတ်</item>
+        <item quantity="other">%1$d ပတ်</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dပတ်</string>
+    <string name="expiration_weeks_abbreviated">%1$d ပတ်</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
@@ -100,7 +100,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">စာသားရိုက်ထည့်ရန် ပြောင်းပါ</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">နာရီသို့ ပြောင်းပါ</string>
 </resources>

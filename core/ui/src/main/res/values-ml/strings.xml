@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">പ്രിയപ്പെട്ടവയിൽ നിന്ന് നീക്കംചെയ്യണോ?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">ഈ പാക്ക് ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ലെങ്കിലോ, ലിങ്കോ സ്റ്റിക്കർ സന്ദേശമോ ലഭ്യമല്ലെങ്കിലോ നിങ്ങൾക്കിത് വീണ്ടും അയയ്ക്കാനോ പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കാനോ കഴിയില്ല.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">നീക്കം ചെയ്യൂ</string>
     <!-- Text shown when no preference label has been selected -->
@@ -105,7 +105,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">ടെക്സ്റ്റ് ഇൻപുട്ടിലേക്ക് മാറുക</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">ക്ലോക്കിലേക്ക് മാറുക</string>
 </resources>

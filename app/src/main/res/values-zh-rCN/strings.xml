@@ -485,7 +485,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">此人已不再使用 Signal。您可以邀请对方加入 Signal，在平台内进行对话。</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">此人未使用 Signal。邀请对方加入 Signal，在此继续对话。</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">邀请使用 Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -504,7 +504,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">返回</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">管理贴纸包</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -2643,7 +2643,7 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">通过 Signal 发送</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">链接</string>
+    <string name="StickerManagement_menu_link_pack">显示链接</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">分享</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
@@ -2686,7 +2686,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">查看贴纸包</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">发送贴纸</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">贴纸已添加到收藏夹中</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3136,7 +3136,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">选择用户名</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">设置</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -5790,9 +5790,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">必须要有名字</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">选择表情符号</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">清除昵称和表情符号</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">允许通知</string>
@@ -7906,9 +7906,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">正在删除备份。</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">解锁以设置安全备份</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">要设置安全备份，请确认您的身份</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">需要验证</string>
 

@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">建立唔到通行密鑰。再試多次。</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">解鎖嚟加雙重驗證方式</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">如果想加呢個方法，請確認係你本人</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">解鎖嚟移除雙重驗證方式</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -173,7 +173,7 @@
     <string name="ExportAccountDataFragment__export_report_action">匯出</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">建立緊報告…</string>
+    <string name="ExportAccountDataFragment__download_progress">建立緊報告……</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">你份報告只會喺匯出時建立，Signal 唔會將報告儲存喺裝置入面。</string>
 
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">設定通行密鑰</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">加唔到通行密鑰</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">你冇得加超過 %1$d 個雙重驗證方法。試下先移除一個。</string>
 

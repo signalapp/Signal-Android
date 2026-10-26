@@ -88,14 +88,14 @@
         <item quantity="other">%1$d giorni</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$dgg</string>
 
     <plurals name="expiration_weeks">
         <item quantity="one">%1$d settimana</item>
         <item quantity="other">%1$d settimane</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dset</string>
+    <string name="expiration_weeks_abbreviated">%1$dsett</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->

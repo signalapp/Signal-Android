@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Geçiş anahtarı oluşturulamadı. Tekrar dene.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">İki faktörlü yöntemi eklemek için kilidi aç</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Bu yöntemi eklemek için sen olduğunu onayla</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">İki faktörlü yöntemi kaldırmak için kilidi aç</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Bir güvenlik anahtarı ayarla</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Geçiş anahtarı eklenemiyor</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">%1$d iki faktörlü kimlik doğrulama yönteminden fazlasını ekleyemezsin. Önce bir tanesini kaldırmayı dene.</string>
 
@@ -451,9 +451,9 @@
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Kimler beni numaram ile bulabilir?</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Telefon numaranı bilen herkes Signal\'de olduğunu görecek ve seninle sohbet başlatabilecektir.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Telefon numaranı bilen herkes Signal\'da olduğunu görecek ve seninle sohbet başlatabilecektir.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ona mesaj göndermediğin veya mevcut bir sohbetin olmadığı sürece kimse Signal\'de olduğunu göremez.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Ona mesaj göndermediğin veya mevcut bir sohbetin olmadığı sürece kimse Signal\'da olduğunu göremez.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Bu ayarı değiştirmek için Numaramı kimler görebilir seçeneğini Hiç kimse olarak ayarla."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -505,7 +505,7 @@
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">Ekran kilidi kullan</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Uygulamalardan ayrıldığında veya uygulama değiştirdiğinde, Signal\'in kilidini açmak için Android cihazının kilit ayarları gerekecektir. Kilitlendiğinde, bildirim ön izlemeleri mesaj içeriğini göstermez.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">Uygulamadan ayrıldığında veya uygulama değiştirdiğinde, Signal\'ın kilidini açmak için Android cihazının kilit ayarları gerekecektir. Kilitlendiğinde, bildirim ön izlemeleri mesaj içeriğini göstermez.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">Ekran kilidini başlat</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->

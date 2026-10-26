@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Kunne ikke lage passnøkkelen. Prøv på nytt.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Lås opp for å legge til en autentiseringsmetode</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Bekreft at du er deg for å legge til denne metoden</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Lås opp for å fjerne tofaktormetoden</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -142,7 +142,7 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Eksporter en rapport med brukerdataene dine fra Signal. Rapporten inneholder ikke meldinger og medier. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Les mer</string>
+    <string name="ExportAccountDataFragment__learn_more">Finn ut mer</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
     <string name="ExportAccountDataFragment__export_report">Eksporter rapport</string>
 
@@ -163,7 +163,7 @@
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">Kunne ikke opprette rapport</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Sjekk internettilkoblingen og prøv igjen.</string>
+    <string name="ExportAccountDataFragment__check_network">Sjekk internettilkoblingen, og prøv på nytt.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Vil du eksportere data?</string>
@@ -219,7 +219,7 @@
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
     <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">Med passnøkler kan du enkelt legge til en ekstra autentiseringsmetode i kontoen din. Passnøklene kan bruke biometrien på enheten din eller en kompatibel FIDO2-sikkerhetsnøkkel.</string>
     <!-- Link that opens a support article about passkeys -->
-    <string name="PasskeySetupScreen__learn_more">Les mer</string>
+    <string name="PasskeySetupScreen__learn_more">Finn ut mer</string>
     <!-- Bullet point explaining that the user can name their passkey -->
     <string name="PasskeySetupScreen__give_your_passkey_a_friendly_name">Gi passnøkkelen et enkelt navn for å finne den igjen</string>
     <!-- Bullet point explaining where the passkey is stored -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Konfigurer en passnøkkel</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Kunne ikke legge til passnøkkelen</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Du kan legge til maks %1$d autentiseringsmetoder. Fjern en for å legge til en ny.</string>
 
@@ -416,13 +416,13 @@
     <string name="preferences_app_updates__title">Oppdateringer</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Utseende</string>
+    <string name="preferences__appearance">Design</string>
     <string name="preferences__language">Språk</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__system_default">System standard</string>
+    <string name="preferences__system_default">Systemstandard</string>
     <string name="preferences__light_theme">Lys</string>
     <string name="preferences__dark_theme">Mørk</string>
-    <string name="preferences__chat_color_and_wallpaper">Samtalefarge &amp; -bakgrunn</string>
+    <string name="preferences__chat_color_and_wallpaper">Samtalefarge og -bakgrunn</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">App-ikon</string>
     <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
@@ -473,10 +473,10 @@
     <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Ved bruk av dataroaming</string>
     <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
-    <string name="preferences_data_and_storage__manage_storage">Håndter lagring</string>
+    <string name="preferences_data_and_storage__manage_storage">Administrer lagring</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
     <string name="preferences_data_and_storage__never">Aldri</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi og mobildata</string>
     <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan gi bedre kvalitet i telefonsamtaler på dårlige nettverk.</string>
     <string name="preferences_proxy">Proxy</string>
@@ -486,8 +486,8 @@
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
     <string name="DataAndStorageSettingsFragment__calculating">Beregner …</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sendt mediekvalitet</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Å sende høykvalitetsmedier vil bruke mer data.</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sendte mediekvalitet</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending av høykvalitetsmedier bruker mer data.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">Talemeldinger og klistremerker (under %1$s) lastes alltid ned automatisk.</string>
     <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>

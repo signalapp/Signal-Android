@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Přístupový klíč se nepodařilo vytvořit. Zkuste to znovu.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Odemknout a přidat metodu dvoufázového ověření</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Pro přidání této metody potvrďte svou identitu</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odemknout a odebrat metodu dvoufázového ověření</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -175,7 +175,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generování přehledu…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš přehled se generuje v okamžiku exportu a služba Signal jej neukládá do vašeho zařízení.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Váš přehled se generuje v okamžiku exportu a Signal jej neukládá do vašeho zařízení.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Nastavit přístupový klíč</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Nelze přidat přístupový klíč</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Nelze přidat více než %1$d metody dvoufázového ověření. Zkuste nejprve jednu odstranit.</string>
 
@@ -421,7 +421,7 @@
     <string name="preferences__appearance">Vzhled</string>
     <string name="preferences__language">Jazyk</string>
     <string name="preferences__theme">Motiv</string>
-    <string name="preferences__system_default">Podle systému</string>
+    <string name="preferences__system_default">Výchozí nastavení</string>
     <string name="preferences__light_theme">Světlý</string>
     <string name="preferences__dark_theme">Tmavý</string>
     <string name="preferences__chat_color_and_wallpaper">Barva chatu a tapeta</string>
@@ -471,7 +471,7 @@
     <string name="arrays__video">Video</string>
     <string name="arrays__documents">Dokumenty</string>
     <string name="preferences__data_and_storage">Data a úložiště</string>
-    <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
+    <string name="preferences_chats__when_using_mobile_data">Při použití mobilních dat</string>
     <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
     <string name="preferences_chats__when_roaming">Při roamingu</string>
     <string name="preferences_chats__media_auto_download">Automatické stahování multimédií</string>

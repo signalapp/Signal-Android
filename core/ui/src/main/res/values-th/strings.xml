@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">ลบออกจากรายการโปรดใช่หรือไม่</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">คุณจะไม่สามารถส่งหรือเพิ่มสติกเกอร์เป็นรายการโปรดได้อีก เว้นแต่ว่าคุณจะติดตั้งชุดสติกเกอร์นี้ไว้แล้ว หรือมีลิงก์หรือข้อความสติกเกอร์</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">ลบ</string>
     <!-- Text shown when no preference label has been selected -->
@@ -66,31 +66,31 @@
         <item quantity="other">%1$d วินาที</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d วินาที</string>
 
     <plurals name="expiration_minutes">
         <item quantity="other">%1$d นาที</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d นาที</string>
 
     <plurals name="expiration_hours">
         <item quantity="other">%1$d ชั่วโมง</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d ชั่วโมง</string>
 
     <plurals name="expiration_days">
         <item quantity="other">%1$d วัน</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d วัน</string>
 
     <plurals name="expiration_weeks">
         <item quantity="other">%1$d สัปดาห์</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$d สัปดาห์</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
@@ -100,7 +100,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">สลับเป็นหน้าใส่ตัวเลข</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">สลับเป็นหน้าปัดนาฬิกา</string>
 </resources>

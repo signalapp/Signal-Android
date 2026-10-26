@@ -46,9 +46,9 @@
 
     <!-- Do not share warning sheet, shown before the user copies or saves their Signal Login -->
     <!-- Title of the sheet warning the user not to share their Signal Login. -->
-    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">Do not share your Signal Login</string>
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">Не споделяйте своя Signal Login</string>
     <!-- Body of the warning sheet. The text inside the <b> tags is shown in bold; keep the tags around the equivalent phrase. -->
-    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">Do not share your Signal Login with anyone. This will let them take over your account. <b>Signal will never message you</b> for your account ID or recovery key. Never respond to a chat pretending to be Signal.</string>
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">Не споделяйте своя Signal Login с никого. Това ще позволи на други хора да откраднат акаунта ви. <b>Signal никога няма да ви изпраща съобщения</b>, за да иска вашия идентификатор на акаунт или ключ за възстановяване. Никога не отговаряйте на чатове, в които някой се преструва за Signal.</string>
     <!-- Button acknowledging the warning and continuing with the copy or save the user started. -->
     <string name="DoNotShareLoginBottomSheet__got_it">Ясно</string>
     <!-- Button opening a help article with more information about keeping the Signal Login safe. -->

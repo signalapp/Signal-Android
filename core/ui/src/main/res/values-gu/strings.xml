@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">મનપસંદમાંથી દૂર કરવું છે?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">જ્યાં સુધી તમારી પાસે પેક ઇન્સ્ટોલ કરેલું ન હોય અથવા તમારી પાસે લિંક કે સ્ટીકર મેસેજ ન હોય, ત્યાં સુધી તમે તેને ફરીથી મોકલી શકતા નથી કે મનપસંદમાં ઉમેરી શકતા નથી.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">દૂર કરો</string>
     <!-- Text shown when no preference label has been selected -->
@@ -54,10 +54,10 @@
     <string name="preferences_off">બંધ</string>
     <string name="preferences_on">ચાલુ</string>
     <string name="ExpireTimerSettingsFragment__set">સેટ</string>
-    <string name="CustomExpireTimerSelectorView__seconds">સેકંડ્સ</string>
-    <string name="CustomExpireTimerSelectorView__minutes">મિનિટ્સ</string>
-    <string name="CustomExpireTimerSelectorView__hours">કલાકો</string>
-    <string name="CustomExpireTimerSelectorView__days">દિવસો</string>
+    <string name="CustomExpireTimerSelectorView__seconds">સેકન્ડ</string>
+    <string name="CustomExpireTimerSelectorView__minutes">મિનિટ</string>
+    <string name="CustomExpireTimerSelectorView__hours">કલાક</string>
+    <string name="CustomExpireTimerSelectorView__days">દિવસ</string>
     <string name="CustomExpireTimerSelectorView__weeks">અઠવાડિયા</string>
     <!-- expiration -->
     <string name="expiration_off">બંધ</string>
@@ -105,7 +105,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">ટેક્સ્ટ ઇનપુટ પર સ્વિચ કરો</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">ઘડિયાળ પર સ્વિચ કરો</string>
 </resources>

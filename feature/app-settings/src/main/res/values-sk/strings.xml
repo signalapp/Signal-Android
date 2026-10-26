@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Nepodarilo sa vytvoriť prístupový kľúč. Skúste to znova.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Odomknite a pridajte dvojfaktorovú metódu</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Ak chcete pridať túto metódu, potvrďte, že ste to vy</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Odomknite pre odstránenie dvojfaktorovej metódy</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Nastaviť prístupový kľúč</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Nie je možné pridať prístupový kľúč</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Nemôžete pridať viac ako %1$d metódy dvojfaktorovej autentifikácie. Skúste najprv jednu odstrániť.</string>
 
@@ -421,7 +421,7 @@
     <string name="preferences__appearance">Vzhľad</string>
     <string name="preferences__language">Jazyk</string>
     <string name="preferences__theme">Motív</string>
-    <string name="preferences__system_default">Predvolené nastavenie</string>
+    <string name="preferences__system_default">Systémové nastavenie</string>
     <string name="preferences__light_theme">Svetlý</string>
     <string name="preferences__dark_theme">Tmavý</string>
     <string name="preferences__chat_color_and_wallpaper">Farba četu a pozadie</string>
@@ -455,7 +455,7 @@
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Každý, kto má vaše telefónne číslo, vás v aplikácii Signal uvidí a môže s vami začať četovať.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nikto vás v aplikácii Signal neuvidí, pokiaľ mu nenapíšete správu alebo s ním nebudete četovať.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Nikto vás v aplikácii Signal neuvidí, pokiaľ mu nenapíšete správu alebo s ním nemáte už existujúci čet.</string>
     <!-- Snackbar text when pressing invalid radio item -->
     <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"Ak chcete toto nastavenie zmeniť, v časti Kto môže vidieť moje telefónne číslo zvoľte „Nikto“."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
@@ -474,13 +474,13 @@
     <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
     <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Pri roamingu</string>
-    <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
+    <string name="preferences_chats__media_auto_download">Automatické sťahovanie médií</string>
     <string name="preferences_data_and_storage__manage_storage">Spravovať úložisko</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Využívať menej dát na hovory</string>
     <string name="preferences_data_and_storage__never">Nikdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilné dáta</string>
     <string name="preferences_data_and_storage__mobile_data_only">Iba mobilné dáta</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Využitie menšieho množstva dát môže zlepšiť hovory v zlých sieťach.</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Využitie menšieho množstva dát môže zlepšiť hovory na zlých sieťach.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Použiť proxy</string>
     <!-- DataAndStorageSettingsFragment -->
@@ -530,7 +530,7 @@
     <string name="HelpSettingsFragment__version">Verzia</string>
     <!-- Displayed when copying help screen text to the clipboard -->
     <string name="HelpSettingsFragment__copied_to_clipboard">Skopírované do schránky</string>
-    <string name="HelpSettingsFragment__debug_log">Ladiaci log</string>
+    <string name="HelpSettingsFragment__debug_log">Protokol ladenia</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencie</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Podmienky a Zásady ochrany osobných údajov</string>

@@ -149,7 +149,7 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">Esporta in formato .txt</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">File di facile lettura</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">File di testo di facile lettura</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Esporta in formato JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
@@ -159,7 +159,7 @@
     <string name="ExportAccountDataFragment__cancel_action">Annulla</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">Ok</string>
+    <string name="ExportAccountDataFragment__ok_action">OK</string>
     <!-- Title of dialog shown when report fails to generate -->
     <string name="ExportAccountDataFragment__report_generation_failed">Non è stato possibile generare un report</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
@@ -419,7 +419,7 @@
     <string name="preferences__appearance">Aspetto</string>
     <string name="preferences__language">Lingua</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__system_default">Predefinito di sistema</string>
+    <string name="preferences__system_default">Impostazione predefinita di sistema</string>
     <string name="preferences__light_theme">Chiaro</string>
     <string name="preferences__dark_theme">Scuro</string>
     <string name="preferences__chat_color_and_wallpaper">Colore chat e sfondo</string>
@@ -447,7 +447,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Il tuo numero di telefono non sarà visibile a nessuno, a meno che qualcuno non lo abbia già tra i contatti del proprio telefono.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Nessuna persona potrà vedere il tuo numero di telefono.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Il tuo numero di telefono non sarà visibile a chiunque.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Chi può trovarmi tramite il mio numero</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
@@ -463,7 +463,7 @@
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Annulla</string>
     <string name="PhoneNumberPrivacy_everyone">Chiunque</string>
-    <string name="PhoneNumberPrivacy_nobody">Nessuno</string>
+    <string name="PhoneNumberPrivacy_nobody">Nessuna persona</string>
     <string name="arrays__images">Immagini</string>
     <string name="arrays__audio">Audio</string>
     <string name="arrays__video">Video</string>
@@ -487,7 +487,7 @@
     <string name="DataAndStorageSettingsFragment__calculating">Calcolo in corso…</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualità media inviati</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L\'invio di media in alta qualità utilizzerà più dati.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L\'invio di media in alta qualità comporterà l\'utilizzo di più dati.</string>
     <!-- Disclaimer shown under the media auto-download settings. Placeholder is a formatted size like "100 KB". -->
     <string name="DataAndStorageSettingsFragment__voice_messages_and_stickers_under_size_are_always_auto_downloaded">I messaggi vocali e gli sticker (sotto i %1$s) vengono sempre scaricati automaticamente.</string>
     <string name="DataAndStorageSettingsFragment__calls">Chiamate</string>

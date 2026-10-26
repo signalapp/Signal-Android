@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Неуспешно създаване на ключ за достъп. Опитайте отново.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Отключете за добавяне на двуфакторния метод</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">За да добавите този метод, потвърдете самоличността си</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Отключете за премахване на двуфакторния метод</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -140,18 +140,18 @@
     <!-- Part of requesting account data flow, this is the section title for requesting that account data -->
     <string name="ExportAccountDataFragment__your_account_data">Данните за вашия акаунт</string>
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
-    <string name="ExportAccountDataFragment__export_explanation">Експортиране на доклад за данните от акаунта ви в Signal. Този доклад не включва никакви съобщения или мултимедия. %1$s</string>
+    <string name="ExportAccountDataFragment__export_explanation">Експорт на доклад за данните от акаунта ви в Signal. Този доклад не включва никакви съобщения или мултимедия. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
     <string name="ExportAccountDataFragment__learn_more">Научете повече</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
-    <string name="ExportAccountDataFragment__export_report">Експортиране на доклад</string>
+    <string name="ExportAccountDataFragment__export_report">Експорт на доклад</string>
 
     <!-- Radio option to export the data as a text file .txt -->
-    <string name="ExportAccountDataFragment__export_as_txt">Експортиране като TXT</string>
+    <string name="ExportAccountDataFragment__export_as_txt">Експорт като TXT</string>
     <!-- Label for the text file option -->
     <string name="ExportAccountDataFragment__export_as_txt_label">Лесен за четене текстов файл</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
-    <string name="ExportAccountDataFragment__export_as_json">Експортиране като JSON</string>
+    <string name="ExportAccountDataFragment__export_as_json">Експорт като JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
     <string name="ExportAccountDataFragment__export_as_json_label">Машинно четим файл</string>
 
@@ -166,16 +166,16 @@
     <string name="ExportAccountDataFragment__check_network">Проверете връзката си и опитайте отново.</string>
 
     <!-- Title for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_confirmation">Експортиране на данни?</string>
+    <string name="ExportAccountDataFragment__export_report_confirmation">Експорт на данни?</string>
     <!-- Message for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation_message">Споделяйте данни от акаунта си в Signal само с хора или приложения, на които имате доверие.</string>
     <!-- Action to export in for export confirmation dialog -->
-    <string name="ExportAccountDataFragment__export_report_action">Експортиране</string>
+    <string name="ExportAccountDataFragment__export_report_action">Експорт</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Генериране на доклад…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Докладът ви се генерира само в момента на експортиране и не се съхранява от Signal на вашето устройство.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Докладът ви се генерира само в момента на експорт и не се съхранява от Signal на вашето устройство.</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -217,7 +217,7 @@
     <!-- Title of the screen that explains passkeys before the user sets one up -->
     <string name="PasskeySetupScreen__passkeys">Ключове за достъп</string>
     <!-- Explanation of what passkeys are, shown above a "Learn more" link -->
-    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">С ключовете за достъп можете лесно на добавите сигурен втори начин на автентикация към акаунта си. Ключовете за достъп могат да използват биометричните функции на вашето устройство или със съвместим ключ за сигурност FIDO2.</string>
+    <string name="PasskeySetupScreen__with_passkeys_you_can_easily_add">С ключовете за достъп можете лесно на добавите сигурен втори начин на автентикация към акаунта си. Ключовете за достъп могат да използват биометричните функции на вашето устройство или на съвместим ключ за сигурност FIDO2.</string>
     <!-- Link that opens a support article about passkeys -->
     <string name="PasskeySetupScreen__learn_more">Научете повече</string>
     <!-- Bullet point explaining that the user can name their passkey -->
@@ -229,9 +229,9 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Настройване на ключ за достъп</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Не можете да добавите ключа за достъп</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Не можете да добавите повече от %1$d метода за двуфакторна автентикация. Опитайте първо да премахнете някое.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Не можете да добавите повече от %1$d метода за двуфакторна автентикация. Опитайте първо да премахнете някой.</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -416,7 +416,7 @@
     <string name="preferences_app_updates__title">Актуализации на приложението</string>
 
     <!-- AppearanceSettingsScreen -->
-    <string name="preferences__appearance">Облик</string>
+    <string name="preferences__appearance">Външен вид</string>
     <string name="preferences__language">Език</string>
     <string name="preferences__theme">Тема</string>
     <string name="preferences__system_default">Системни настройки по подразбиране</string>
@@ -480,7 +480,7 @@
     <string name="preferences_data_and_storage__mobile_data_only">Само мобилни данни</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Използването на по-малко данни може да подобри обажданията при по-слаби мрежи.</string>
     <string name="preferences_proxy">Прокси</string>
-    <string name="preferences_use_proxy">Използвай прокси</string>
+    <string name="preferences_use_proxy">Използвайте прокси</string>
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Качество на мултимедията</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
@@ -528,7 +528,7 @@
     <string name="HelpSettingsFragment__version">Версия</string>
     <!-- Displayed when copying help screen text to the clipboard -->
     <string name="HelpSettingsFragment__copied_to_clipboard">Копирано</string>
-    <string name="HelpSettingsFragment__debug_log">Отчет за грешки</string>
+    <string name="HelpSettingsFragment__debug_log">Доклад за дебъг</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Лицензи</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">Условия и Политика за поверителност</string>

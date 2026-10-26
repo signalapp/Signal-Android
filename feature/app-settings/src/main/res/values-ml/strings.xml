@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">പാസ്‌കീ നിർമ്മിക്കാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">ടൂ-ഫാക്ടർ രീതി ചേർക്കാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">ഈ രീതി ചേർക്കാൻ, ഇത് നിങ്ങൾ തന്നെയാണെന്ന് സ്ഥിരീകരിക്കുക</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">ടു-ഫാക്ടർ രീതി നീക്കംചെയ്യാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,9 +229,9 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">ഒരു പാസ്‌കീ സജ്ജീകരിക്കുക</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">പാസ്കീ ചേർക്കാൻ കഴിയുന്നില്ല</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
-    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">നിങ്ങൾക്ക് %1$d-ൽ കൂടുതൽ ടു-ഫാക്ടർ ഓതന്റിക്കേഷൻ രീതികൾ ചേർക്കാൻ കഴിയില്ല. ആദ്യം ഒരെണ്ണം നീക്കം ചെയ്യാൻ ശ്രമിക്കുക.</string>
+    <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">നിങ്ങൾക്ക് %1$d-ൽ കൂടുതൽ ടൂ-ഫാക്ടർ ഓതന്റിക്കേഷൻ രീതികൾ ചേർക്കാൻ കഴിയില്ല. ആദ്യം ഒരെണ്ണം നീക്കം ചെയ്യാൻ ശ്രമിക്കുക.</string>
 
     <!-- TotpCodeEntryScreen -->
     <!-- Title of the screen where the user enters the code from their authenticator app -->
@@ -455,14 +455,14 @@
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുകയോ മുമ്പ് ചാറ്റ് ചെയ്തിട്ടുണ്ടെങ്കിലോ മാത്രമേ നിങ്ങൾ Signal-ൽ ഉണ്ടെന്ന് കാണാനാകൂ.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ഈ ക്രമീകരണം മാറ്റാൻ, \'ആർക്കൊക്കെ എന്റെ നമ്പർ കാണാൻ കഴിയും\' എന്നത് \'ആരും കാണണ്ട\' എന്ന് സജ്ജീകരിക്കുക."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"ഈ ക്രമീകരണം മാറ്റാൻ, \'ആർക്കൊക്കെ എന്റെ നമ്പർ കാണാൻ കഴിയും\' എന്നത് \'ആർക്കുമില്ല\' എന്ന് സജ്ജീകരിക്കുക."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">ഉറപ്പാണോ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">\"നമ്പർ പ്രകാരം ആർക്കൊക്കെ എന്നെ കണ്ടെത്താനാകും\" എന്നത് \"ആർക്കുമില്ല\" എന്ന് ക്രമീകരിക്കുന്നത് ആളുകൾക്ക് നിങ്ങളെ Signal-ൽ കണ്ടെത്തുന്നത് ബുദ്ധിമുട്ടാക്കും.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">റദ്ദാക്കുക</string>
-    <string name="PhoneNumberPrivacy_everyone">എല്ലാവരും</string>
+    <string name="PhoneNumberPrivacy_everyone">എല്ലാവർക്കും</string>
     <string name="PhoneNumberPrivacy_nobody">ആർക്കുമില്ല</string>
     <string name="arrays__images">ചിത്രങ്ങൾ</string>
     <string name="arrays__audio">ഓഡിയോ</string>
@@ -472,11 +472,11 @@
     <string name="preferences_chats__when_using_mobile_data">മൊബൈൽ ഡാറ്റ ഉപയോഗിക്കുമ്പോൾ</string>
     <string name="preferences_chats__when_using_wifi">Wi-Fi ഉപയോഗിക്കുമ്പോൾ</string>
     <string name="preferences_chats__when_roaming">റോമിംഗ് ചെയ്യുമ്പോൾ</string>
-    <string name="preferences_chats__media_auto_download">മീഡിയ യാന്ത്രിക-ഡൗൺലോഡ്</string>
+    <string name="preferences_chats__media_auto_download">മീഡിയ സ്വയം-ഡൗൺലോഡ്</string>
     <string name="preferences_data_and_storage__manage_storage">സ്റ്റോറേജ് ക്രമീകരിക്കുക</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
     <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">വൈഫൈ, മൊബൈൽ ഡാറ്റ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi, മൊബൈൽ ഡാറ്റ</string>
     <string name="preferences_data_and_storage__mobile_data_only">മൊബൈൽ ഡാറ്റ മാത്രം</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് മോശം നെറ്റ്‌വർക്കുകളിലും കോളുകൾ മെച്ചപ്പെടുത്താൻ സഹായിച്ചേക്കാം.</string>
     <string name="preferences_proxy">പ്രോക്സി</string>
@@ -532,7 +532,7 @@
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">ലൈസൻസുകൾ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
-    <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal സന്ദേശകന്‍</string>
+    <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3-യ്ക്ക് കീഴിൽ ലൈസൻസ് ചെയ്‌തത്</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
     <string name="HelpSettingsFragment__signal_is_a_501c3">Signal ഒരു ലാഭേച്ഛയില്ലാത്ത സ്ഥാപനമാണ്</string>
@@ -583,9 +583,9 @@
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">ചെയ്‌തു</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ചാറ്റ് ലിസ്റ്റിലെ മെനു വഴി നിങ്ങളുടെ പ്രൊഫൈൽ സ്വമേധയാ ഓണാക്കുകയോ ഓഫാക്കുകയോ ചെയ്യാം.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ചാറ്റ് ലിസ്റ്റിലെ മെനു വഴി നിങ്ങളുടെ പ്രൊഫൈൽ നേരിട്ട് ഓണാക്കുകയോ ഓഫാക്കുകയോ ചെയ്യാം.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
     <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">നിങ്ങളുടെ രൂപരേഖ യാന്ത്രികമാക്കാൻ ക്രമീകരണങ്ങളിൽ ഒരു സമയക്രമം ചേർക്കുക.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">നിങ്ങളുടെ സമയക്രമം അനുസരിച്ച് നിങ്ങളുടെ രൂപരേഖ സ്വയമേവ ഓണും ഓഫും ആകും.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">നിങ്ങളുടെ സമയക്രമം അനുസരിച്ച് നിങ്ങളുടെ രൂപരേഖ ഓട്ടോമാറ്റിക്കായി ഓണും ഓഫും ആകും.</string>
 </resources>

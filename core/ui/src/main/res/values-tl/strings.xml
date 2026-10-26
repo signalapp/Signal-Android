@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Alisin sa Favorites?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Hindi mo ito maaaring i-send o ilagay ulit sa Favorites maliban na lang kung naka-install sa \'yo ang pack, may link ka, o may sticker message ka.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Tanggalin</string>
     <!-- Text shown when no preference label has been selected -->
@@ -54,11 +54,11 @@
     <string name="preferences_off">Off</string>
     <string name="preferences_on">On</string>
     <string name="ExpireTimerSettingsFragment__set">Set</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
-    <string name="CustomExpireTimerSelectorView__hours">hours</string>
-    <string name="CustomExpireTimerSelectorView__days">days</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="CustomExpireTimerSelectorView__seconds">segundo</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minuto</string>
+    <string name="CustomExpireTimerSelectorView__hours">oras</string>
+    <string name="CustomExpireTimerSelectorView__days">araw</string>
+    <string name="CustomExpireTimerSelectorView__weeks">linggo</string>
     <!-- expiration -->
     <string name="expiration_off">Off</string>
 
@@ -105,7 +105,7 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Mag-switch sa text input</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Mag-switch sa clock</string>
 </resources>

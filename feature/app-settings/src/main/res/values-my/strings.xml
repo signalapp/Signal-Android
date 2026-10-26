@@ -5,7 +5,7 @@
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">မှတ်ပုံတင်ခြင်း လော့ခ်ကို ပိတ်မည်လား။</string>
     <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">အကယ်၍ Signal ကို နောက်တစ်ကြိမ် မှတ်ပုံတင်သည့်အခါတွင် သင်၏ Signal PIN ကို မေ့နေပါက သင်၏ အကောင့်ကို 7 ရက် အသုံးပြုနိုင်မည်မဟုတ်ပါ။</string>
     <string name="RegistrationLockV2Dialog_turn_on">ဖွင့်မည်</string>
-    <string name="RegistrationLockV2Dialog_turn_off">ပိတ်မည်</string>
+    <string name="RegistrationLockV2Dialog_turn_off">ပိတ်ရန်</string>
     <string name="preferences__advanced_pin_settings">အဆင့်မြင့် PIN ဆက်တင်များ</string>
     <string name="preferences__delete_account">အကောင့်ကို ဖျက်ရန်</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -16,7 +16,7 @@
     <string name="preferences_app_protection__create_a_pin">PIN တစ်ခု ဖန်တီးမည်</string>
     <string name="preferences_app_protection__change_your_pin">သင်၏ PIN ကို ပြောင်းပါ</string>
     <string name="preferences_app_protection__pin_reminders">PIN သတိပေးချက်များ</string>
-    <string name="preferences_app_protection__turn_off">ပိတ်မည်</string>
+    <string name="preferences_app_protection__turn_off">ပိတ်ရန်</string>
     <string name="preferences_app_protection__confirm_pin">PIN အတည်ပြုမည်</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">သင်၏ Signal PIN ကို အတည်ပြုပါ</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">သင်၏ PIN ကို ပြန်လည် မရယူနိုင်သောကြောင့် မှတ်ထားပါ သို့မဟုတ် သေချာစွာသိမ်းထားပါ။ သင်၏ PIN ကို သင်မေ့သွားပါက သင်၏ Signal အကောင့်ကို ပြန်လည်မှတ်ပုံတင်သောအခါ ဒေတာဆုံးရှုံးနိုင်သည်။</string>
@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Passkey ဖန်တီး၍ မရပါ။ ထပ်မံကြိုးစားပါ။</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းလမ်း ထည့်ရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">ဤနည်းလမ်းကို ထည့်သွင်းရန် သင်ကိုယ်တိုင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">နှစ်ဆင့်အတည်ပြုနည်းလမ်းကို ဖယ်ရှားရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -175,7 +175,7 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">အစီရင်ခံစာ ထုတ်နေဆဲ…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">သင့်အစီရင်ခံစာကို ထုတ်သိမ်းသည့်အချိန်တွင်သာ ထုတ်ယူထားပြီး သင့်စက်တွင် Signal က မသိမ်းထားပါ။</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">သင့်အစီရင်ခံစာကို ထုတ်သိမ်းသည့်အချိန်တွင်သာ ထုတ်ယူထားပြီး Signal က သင့်စက်တွင် မသိမ်းထားပါ။</string>
 
     <!-- TotpSetupScreen -->
     <!-- Title of the screen that walks the user through setting up an authenticator app -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Passkey တစ်ခုကို သတ်မှတ်ပါ</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Passkey ထည့်၍မရပါ</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">နှစ်ဆင့် အတည်ပြုနည်းလမ်း %1$d ခုထက်ပို၍ ထည့်သွင်း၍မရပါ။ တစ်ခုကို အရင်ဆုံး ဖယ်ရှားကြည့်ပါ။</string>
 
@@ -471,15 +471,15 @@
     <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ</string>
     <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ</string>
     <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>
-    <string name="preferences_chats__media_auto_download">ရုပ်/သံ/ပုံကို အလိုအလျောက် ဒေါင်းလုတ်လုပ်ပါ</string>
+    <string name="preferences_chats__media_auto_download">မီဒီယာ အော်တို ဒေါင်းလုဒ်</string>
     <string name="preferences_data_and_storage__manage_storage">သိုလှောင်မှုကိုစီမံပါ</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
-    <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် အင်တာနက်</string>
-    <string name="preferences_data_and_storage__mobile_data_only">အင်တာနက်</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးရန်</string>
+    <string name="preferences_data_and_storage__never">မည်သည့်အခါမျှ</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">ဝိုင်ဖိုင် နှင့် မိုဘိုင်းဒေတာ</string>
+    <string name="preferences_data_and_storage__mobile_data_only">မိုဘိုင်းဒေတာ ဖြင့်သာ</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ဒေတာလျှော့သုံးခြင်းဖြင့် လိုင်းမကောင်းသော ကွန်ရက်များပေါ်တွင် ဖုန်းခေါ်ဆိုမှု အရည်အသွေးကို ပိုမိုကောင်းမွန်စေနိုင်ပါသည်။</string>
     <string name="preferences_proxy">ကြားခံ</string>
-    <string name="preferences_use_proxy">ကြားခံ ကိုသုံးမယ်</string>
+    <string name="preferences_use_proxy">ကြားခံ သုံးရန်</string>
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">ဓာတ်ပုံ အရည်အသွေး</string>
     <!-- Label shown on the manage storage row while total storage usage is still being computed -->
@@ -495,30 +495,30 @@
     <!-- Body of a confirmation dialog shown when a user tries to enable the "Stay connected in background" setting -->
     <string name="DataAndStorageSettingsFragment__staying_connected_while_in_the_background_will_likely_result_in_increased_battery_usage">နောက်ခံတွင် ရှိနေစဉ် ချိတ်ဆက်နေခြင်းသည် ဘက်ထရီအသုံးပြုမှုကို မြင့်တက်စေနိုင်သည်။ ၎င်းသည် စက်အများစုအတွက် မလိုအပ်ပါ။ အသိပေးချက် ပြဿနာများ ကြုံတွေ့နေရမှသာ ၎င်းကိုဖွင့်ပါ။</string>
     <!-- Button label that enables the "Stay connected in background" setting from a confirmation dialog -->
-    <string name="DataAndStorageSettingsFragment__enable">ဖွင့်မည်</string>
+    <string name="DataAndStorageSettingsFragment__enable">ဖွင့်ရန်</string>
   <!-- Setting option that can be selected to default media to be sent as high quality by default -->
   <string name="SentMediaQuality__high">မြင့်သော</string>
   <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
   <string name="SentMediaQuality__standard">အသင့်အတင့်</string>
-    <string name="preferences_app_protection__screen_lock">စကင်ရင် ပိတ်ထားခြင်း</string>
+    <string name="preferences_app_protection__screen_lock">စခရင် လော့ခ်</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
-    <string name="ScreenLockSettingsFragment__use_screen_lock">မျက်နှာပြင်လော့ခ်ကိုသုံးပါ</string>
+    <string name="ScreenLockSettingsFragment__use_screen_lock">စခရင် လော့ခ်ကို သုံးပါ</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
     <string name="ScreenLockSettingsFragment__your_android_device">သင်ထွက်ခွာသည့်အခါ သို့မဟုတ် အက်ပ်များကို ပြောင်းသည့်အခါ သင့် Android စက်၏ လော့ခ်ဆက်တင်များ လိုအပ်ပါမည်။ လော့ခ်ချထားသောအခါ အသိပေးချက် ကြိုတင်ကြည့်ရှုမှုများသည် မက်ဆေ့ချ်အကြောင်းအရာကို ပြသမည်မဟုတ်ပါ။</string>
     <!-- Title text explaining when users should start the screen lock -->
-    <string name="ScreenLockSettingsFragment__start_screen_lock">မျက်နှာပြင်လော့ခ်ကိုစတင်ပါ</string>
+    <string name="ScreenLockSettingsFragment__start_screen_lock">စခရင်လော့ခ် စတင်ရန်</string>
     <!-- Option text explaining that screen lock should start after 1 minute of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_1_min">၁ မိနစ်ပြီးနောက်</string>
+    <string name="ScreenLockSettingsFragment__after_1_min">1 မိနစ်ပြီးနောက်</string>
     <!-- Option text explaining that screen lock should start after 5 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_5_min">၅ မိနစ်ပြီးနောက်</string>
+    <string name="ScreenLockSettingsFragment__after_5_min">5 မိနစ်ပြီးနောက်</string>
     <!-- Option text explaining that screen lock should start after 30 minutes of inactivity -->
-    <string name="ScreenLockSettingsFragment__after_30_min">၃၀ မိနစ်ပြီးနောက်</string>
+    <string name="ScreenLockSettingsFragment__after_30_min">မိနစ် 30 ပြီးနောက်</string>
     <!-- Option text explaining that screen lock should start at a custom time set by the user -->
     <string name="ScreenLockSettingsFragment__custom_time">စိတ်ကြိုက် အချိန်</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn on screen lock -->
-    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal မျက်နှာပြင်လော့ခ်ကို သုံးပါ</string>
+    <string name="ScreenLockSettingsFragment__use_signal_screen_lock">Signal စခရင် လော့ခ်ကို သုံးပါ</string>
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
-    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal မျက်နှာပြင်လော့ခ်ကို ပိတ်ပါ</string>
+    <string name="ScreenLockSettingsFragment__turn_off_signal_lock">Signal စခရင် လော့ခ်ကို ပိတ်ပါ</string>
 
     <!-- HelpSettingsFragment -->
     <string name="preferences__help">အကူအညီ</string>
@@ -532,13 +532,13 @@
     <string name="HelpSettingsFragment__licenses">လိုင်စင်များ</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">လိုက်နာဆောင်ရွက်ရမည့် အချက်များ</string>
     <string name="HelpFragment__copyright_signal_messenger">မူပိုင်ခွင့် Signal Messenger</string>
-    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 အတိုင်း ခွင့်ပြုထားသည်</string>
+    <string name="HelpFragment__licenced_under_the_agplv3">GNU AGPLv3 အရ ခွင့်ပြုထားသည်</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->
     <string name="HelpSettingsFragment__signal_is_a_501c3">Signal သည် အကျိုးအမြတ်မယူပါ</string>
 
     <!-- AppIconTutorialScreen -->
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">အက်ပ်အိုင်ကွန်များနှင့် အမည်များကို ပင်မမျက်နှာပြင်နှင့် အက်ပ်အံဆွဲတွင် မြင်တွေ့နိုင်ပါသည်။</string>
+    <string name="preferences__app_icon_warning">အက်ပ်အိုင်ကွန်များနှင့် အမည်များကို ပင်မမျက်နှာပြင်နှင့် အက်ပ်စုစည်းမှုတွင် မြင်တွေ့နိုင်ပါသည်။</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
     <string name="preferences__app_icon_notification_warning">အသိပေးချက်များတွင် ပုံသေ Signal အိုင်ကွန်နှင့် အမည်ကိုသာ အမြဲတမ်းပြသပါမည်။</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
@@ -558,7 +558,7 @@
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">မလုပ်တော့ပါ</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">အက်ပ်အိုင်ကွန်နှင့် အမည်ကို \"%1$s\" ဟု ပြောင်းခြင်း</string>
+    <string name="preferences__app_icon_dialog_title">အက်ပ်အိုင်ကွန်နှင့် အမည်ကို \"%1$s\" ဟု ပြောင်းရန်</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
     <string name="preferences__app_icon_dialog_description">အက်ပ်အိုင်ကွန်နှင့် အမည်ကို ပြောင်းရန်အတွက် Signal ကို ပိတ်ရန် လိုအပ်ပါသည်။ အသိပေးချက်များတွင် ပုံသေ Signal အိုင်ကွန်နှင့် အမည်ကိုသာ အမြဲတမ်းပြသပါမည်။</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->

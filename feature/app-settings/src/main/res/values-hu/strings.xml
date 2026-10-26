@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Nem sikerült létrehozni a hozzáférési kulcsot. Próbáld újra!</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Feloldás a kétfaktoros módszer hozzáadásához</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">A módszer hozzáadásához erősítsd meg a személyazonosságodat</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Feloldás a kétfaktoros módszer eltávolításához</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Állíts be egy hozzáférési kulcsot</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Hozzáférési kulcs hozzáadása sikertelen</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Maximálisan %1$d kétfaktoros hitelesítési módszert adhatsz hozzá. Először próbálj egyet eltávolítani.</string>
 
@@ -470,13 +470,13 @@
     <string name="arrays__documents">Dokumentumok</string>
     <string name="preferences__data_and_storage">Adat és tárhely</string>
     <string name="preferences_chats__when_using_mobile_data">Mobilinternet használata során</string>
-    <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
+    <string name="preferences_chats__when_using_wifi">Wifi használata során</string>
     <string name="preferences_chats__when_roaming">Barangoláskor</string>
     <string name="preferences_chats__media_auto_download">Médiafájlok automatikus letöltése</string>
     <string name="preferences_data_and_storage__manage_storage">Tárhely kezelése</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Kevesebb adat használata hívásokhoz</string>
     <string name="preferences_data_and_storage__never">Soha</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi és mobil adat</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifi és mobil adat</string>
     <string name="preferences_data_and_storage__mobile_data_only">Csak mobil adat</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mérsékeltebb adathasználat javíthatja a hívások minőségét gyenge hálózatokon.</string>
     <string name="preferences_proxy">Proxy</string>
@@ -531,7 +531,7 @@
     <string name="HelpSettingsFragment__debug_log">Hibakeresési napló</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencek</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi irányelvek</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Feltételek &amp; Adatvédelmi szabályzat</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Licenc: GNU AGPLv3</string>
     <!-- Non-English translations should use "Signal is a nonprofit." instead, dropping the 501c3 reference. -->

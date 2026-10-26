@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">पासकी नहीं बन पाई। फिर से कोशिश करें।</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">टू-फ़ैक्टर तरीका जोड़ने के लिए अनलॉक करें</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">यह तरीका जोड़ने के लिए, पहले यह पुष्टि करें कि यह आप ही हैं</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">टू-फ़ैक्टर तरीका हटाने के लिए अनलॉक करें</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">पासकी सेटअप करें</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">पासकी जोड़ना मुमकिन नहीं है</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">%1$d से ज़्यादा टू-फ़ैक्टर ऑथेंटिकेशन तरीके जोड़ना संभव नहीं है। पहले एक को हटाकर देखें।</string>
 
@@ -422,7 +422,7 @@
     <string name="preferences__system_default">डिफ़ॉल्ट सिस्टम</string>
     <string name="preferences__light_theme">हल्का</string>
     <string name="preferences__dark_theme">गहरा</string>
-    <string name="preferences__chat_color_and_wallpaper">संदेश का रंग &amp; वॉलपेपर</string>
+    <string name="preferences__chat_color_and_wallpaper">चैट का रंग और वॉलपेपर</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">ऐप का आइकन</string>
     <string name="preferences_chats__message_text_size">मैसेज का फ़ॉन्ट साइज़</string>

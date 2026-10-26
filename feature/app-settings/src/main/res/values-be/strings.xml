@@ -101,9 +101,9 @@
     <!-- Toast shown when creating a passkey didn\'t work -->
     <string name="AccountSettingsFragment__couldnt_create_passkey">Не атрымалася стварыць ключ доступу. Паўтарыце спробу.</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Unlock to add two-factor method</string>
+    <string name="AccountSettingsFragment__unlock_to_add_two_factor_method">Разблакуйце, каб дадаць двухфактарны метад</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be added -->
-    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">To add this method, confirm it\'s you</string>
+    <string name="AccountSettingsFragment__to_add_this_method_confirm_its_you">Каб дадаць гэты метад, трэба пацвердзіць сваю асобу</string>
     <!-- Title of the device screen lock prompt shown before a two-factor authentication method can be removed -->
     <string name="AccountSettingsFragment__unlock_to_remove_two_factor_method">Разблакуйце, каб выдаліць двухфактарны метад</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a two-factor authentication method can be removed -->
@@ -153,7 +153,7 @@
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Экспартаваць у фармаце JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">Файл для чытання машынай</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">Файл, які счытвае электронная прылада</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">Скасаваць</string>
@@ -229,7 +229,7 @@
     <!-- Button that starts creating a passkey -->
     <string name="PasskeySetupScreen__set_up_a_passkey">Наладзіць ключ доступу</string>
     <!-- Title of the dialog shown when the account already has as many two-factor methods as it\'s allowed -->
-    <string name="PasskeySetupScreen__cant_add_passkey">Can\'t add passkey</string>
+    <string name="PasskeySetupScreen__cant_add_passkey">Немагчыма дадаць ключ доступу</string>
     <!-- Body of the dialog shown when the account already has as many two-factor methods as it\'s allowed. %1$d is the limit. -->
     <string name="PasskeySetupScreen__you_cant_add_more_than_d_two_factor_methods">Вы не можаце дадаць больш за %1$d метады двухфактарнай аўтэнтыфікацыі. Паспрабуйце спачатку выдаліць адзін.</string>
 

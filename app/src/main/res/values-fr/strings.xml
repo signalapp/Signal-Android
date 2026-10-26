@@ -2739,7 +2739,7 @@
     <!-- Sticker pack button for forwarding a sticker link. -->
     <string name="StickerManagement_menu_send_signal_pack">Envoyer via Signal</string>
     <!-- Sticker pack button that opens a bottom sheet with more share options. -->
-    <string name="StickerManagement_menu_link_pack">Lien</string>
+    <string name="StickerManagement_menu_link_pack">Partager le lien</string>
     <!-- Sticker pack sheet option for sharing a sticker pack link using the system share sheet. -->
     <string name="StickerManagement_menu_share_pack">Partager</string>
     <!-- Bottom sheet description for the share sticker sheet. -->
