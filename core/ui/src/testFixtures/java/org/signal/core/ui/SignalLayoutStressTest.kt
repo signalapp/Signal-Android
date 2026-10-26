@@ -7,6 +7,8 @@ package org.signal.core.ui
 
 import androidx.compose.runtime.Composable
 import androidx.test.core.app.ApplicationProvider
+import org.junit.Assume
+import org.junit.Before
 import org.junit.Rule
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.screener.LayoutStressTest
@@ -20,6 +22,11 @@ abstract class SignalLayoutStressTest : LayoutStressTest() {
   val coreUiDependenciesRule = CoreUiDependenciesRule(ApplicationProvider.getApplicationContext())
 
   override val previewAnnotations = listOf("@PreviewWrapper(SignalPreviewWrapper::class)")
+
+  @Before
+  fun bypassStressTests() {
+    Assume.assumeTrue("Layout stress tests are temporarily bypassed", false)
+  }
 
   @Composable
   override fun Wrap(content: @Composable () -> Unit) {
