@@ -15,10 +15,12 @@ import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
@@ -120,6 +122,7 @@ class MediaSendV3Activity :
 
       CompositionLocalProvider(
         LocalAddAMessageRowTextField provides { message, modifier ->
+          val textColor = MaterialTheme.colorScheme.onSurfaceVariant.toArgb()
           AndroidView(
             factory = {
               EmojiTextView(it).apply {
@@ -131,6 +134,7 @@ class MediaSendV3Activity :
             },
             update = { view ->
               view.text = message
+              view.setTextColor(textColor)
             },
             modifier = modifier
           )

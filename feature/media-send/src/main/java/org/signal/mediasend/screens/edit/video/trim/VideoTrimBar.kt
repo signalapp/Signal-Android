@@ -43,15 +43,20 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.CanvasDrawScope
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.graphics.shadow.DropShadowPainter
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.input.pointer.changedToUp
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalGraphicsContext
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
@@ -98,9 +103,13 @@ fun VideoTrimBar(
     trimmedTimestamp = MaterialTheme.colorScheme.primary,
     onTimestamp = MaterialTheme.colorScheme.onSecondary,
     onTrimmedTimestamp = MaterialTheme.colorScheme.onPrimary,
-    playhead = MaterialTheme.colorScheme.secondary,
-    trimmedPlayhead = MaterialTheme.colorScheme.onSurface
+    playhead = Color.White
   )
+
+  val graphicsContext = LocalGraphicsContext.current
+  val playheadShadow = remember(graphicsContext) {
+    graphicsContext.shadowContext.createDropShadowPainter(RoundedCornerShape(VideoTrimBarGeometry.PlayheadRadius), Shadow(radius = 2.dp, offset = DpOffset(x = 0.dp, y = 1.dp), alpha = 0.25f))
+  }
 
   val trimmedFraction = animateFloatAsState(
     targetValue = if (state.isTrimmed) 1f else 0f,
@@ -179,7 +188,7 @@ fun VideoTrimBar(
           }
         }
     ) {
-      drawTrimBar(state, thumbnailAlphas, VideoTrimBarGeometry(size.width, this), colors, trimmedFraction.value)
+      drawTrimBar(state, thumbnailAlphas, VideoTrimBarGeometry(size.width, this), colors, playheadShadow, trimmedFraction.value)
     }
 
     TrimHandleTimestamp(state, colors, trimmedFraction)
@@ -257,8 +266,7 @@ private data class VideoTrimBarColors(
   val trimmedTimestamp: Color,
   val onTimestamp: Color,
   val onTrimmedTimestamp: Color,
-  val playhead: Color,
-  val trimmedPlayhead: Color
+  val playhead: Color
 ) {
   /** [trimmedFraction] runs from 0 for an untrimmed bar to 1 for a trimmed one. */
   fun handleAt(trimmedFraction: Float): Color = lerp(handle, trimmedHandle, trimmedFraction)
@@ -266,11 +274,9 @@ private data class VideoTrimBarColors(
   fun timestampAt(trimmedFraction: Float): Color = lerp(timestamp, trimmedTimestamp, trimmedFraction)
 
   fun onTimestampAt(trimmedFraction: Float): Color = lerp(onTimestamp, onTrimmedTimestamp, trimmedFraction)
-
-  fun playheadAt(trimmedFraction: Float): Color = lerp(playhead, trimmedPlayhead, trimmedFraction)
 }
 
-private fun DrawScope.drawTrimBar(state: VideoTrimBarState, thumbnailAlphas: List<Animatable<Float, AnimationVector1D>>, geometry: VideoTrimBarGeometry, colors: VideoTrimBarColors, trimmedFraction: Float) {
+private fun DrawScope.drawTrimBar(state: VideoTrimBarState, thumbnailAlphas: List<Animatable<Float, AnimationVector1D>>, geometry: VideoTrimBarGeometry, colors: VideoTrimBarColors, playheadShadow: DropShadowPainter, trimmedFraction: Float) {
   val strip = geometry.strip
   val stripPath = Path().apply { addRoundRect(RoundRect(strip, CornerRadius(geometry.stripRadius))) }
 
@@ -319,10 +325,14 @@ private fun DrawScope.drawTrimBar(state: VideoTrimBarState, thumbnailAlphas: Lis
   if (durationUs > 0 && !isHandleDragging && state.playheadUs in state.startUs..state.endUs) {
     val playheadX = geometry.xFor(state.playheadUs, durationUs)
     val left = (playheadX - geometry.playheadWidth / 2).coerceIn(startX, (endX - geometry.playheadWidth).coerceAtLeast(startX))
+    val playheadSize = Size(geometry.playheadWidth, size.height)
+    translate(left = left) {
+      with(playheadShadow) { draw(playheadSize) }
+    }
     drawRoundRect(
-      color = colors.playheadAt(trimmedFraction),
+      color = colors.playhead,
       topLeft = Offset(left, 0f),
-      size = Size(geometry.playheadWidth, size.height),
+      size = playheadSize,
       cornerRadius = CornerRadius(geometry.playheadRadius)
     )
   }
