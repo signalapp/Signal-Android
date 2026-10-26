@@ -6,8 +6,6 @@
 package org.signal.appsettings.updates
 
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -15,6 +13,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Rows
@@ -54,10 +53,9 @@ fun AppUpdatesSettingsScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     modifier = modifier
   ) { paddingValues ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(paddingValues)
-        .testTag(AppUpdatesSettingsTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
+      modifier = Modifier.testTag(AppUpdatesSettingsTestTags.SCROLLER)
     ) {
       if (state.isAutoUpdateSupported) {
         item {

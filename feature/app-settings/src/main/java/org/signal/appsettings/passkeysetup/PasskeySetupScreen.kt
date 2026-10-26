@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -75,6 +76,7 @@ fun PasskeySetupScreen(
         modifier = Modifier
           .weight(1f)
           .verticalScroll(rememberScrollState())
+          .appSettingsScreen()
           .testTag(PasskeySetupTestTags.SCROLLER)
       ) {
         Image(
@@ -118,7 +120,7 @@ fun PasskeySetupScreen(
           contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         modifier = Modifier
-          .fillMaxWidth()
+          .appSettingsScreen()
           .padding(horizontal = 40.dp, vertical = 16.dp)
           .testTag(PasskeySetupTestTags.BUTTON_SET_UP)
       ) {

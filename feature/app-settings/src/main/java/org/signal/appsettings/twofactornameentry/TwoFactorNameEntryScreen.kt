@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -72,7 +73,8 @@ fun TwoFactorNameEntryScreen(
       modifier = Modifier
         .fillMaxSize()
         .padding(contentPadding)
-        .imePadding(),
+        .imePadding()
+        .appSettingsScreen(),
       horizontalAlignment = Alignment.End
     ) {
       Text(

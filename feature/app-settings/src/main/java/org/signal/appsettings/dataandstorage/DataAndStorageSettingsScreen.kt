@@ -7,8 +7,6 @@ package org.signal.appsettings.dataandstorage
 
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.media.SentMediaQuality
@@ -60,10 +59,9 @@ fun DataAndStorageSettingsScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     modifier = modifier
   ) { paddingValues ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(paddingValues)
-        .testTag(DataAndStorageSettingsTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
+      modifier = Modifier.testTag(DataAndStorageSettingsTestTags.SCROLLER)
     ) {
       item {
         Rows.TextRow(

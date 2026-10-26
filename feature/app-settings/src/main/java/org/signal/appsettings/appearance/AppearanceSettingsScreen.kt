@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -76,10 +76,9 @@ fun AppearanceSettingsScreen(
     modifier = modifier,
     collapseTopBarInSplitPane = true
   ) { paddingValues ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(paddingValues)
-        .testTag(AppearanceSettingsTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
+      modifier = Modifier.testTag(AppearanceSettingsTestTags.SCROLLER)
     ) {
       item {
         Rows.RadioListRow(

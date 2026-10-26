@@ -43,6 +43,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
@@ -82,6 +83,7 @@ fun AppIconSelectionScreen(
       modifier = Modifier
         .padding(contentPadding)
         .verticalScroll(rememberScrollState())
+        .appSettingsScreen()
         .testTag(AppIconSelectionTestTags.SCROLLER)
     ) {
       Spacer(modifier = Modifier.size(12.dp))

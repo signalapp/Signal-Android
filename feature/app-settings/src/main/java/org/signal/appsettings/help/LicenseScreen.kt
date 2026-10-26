@@ -6,8 +6,7 @@
 package org.signal.appsettings.help
 
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,6 +16,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Scaffolds
@@ -45,11 +45,10 @@ fun LicenseScreen(
     navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
     modifier = modifier
   ) { contentPadding ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(contentPadding)
-        .padding(horizontal = 4.dp)
-        .testTag(LicenseTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = contentPadding,
+      contentPadding = PaddingValues(horizontal = 4.dp),
+      modifier = Modifier.testTag(LicenseTestTags.SCROLLER)
     ) {
       items(state.licenseLines) { line ->
         Text(

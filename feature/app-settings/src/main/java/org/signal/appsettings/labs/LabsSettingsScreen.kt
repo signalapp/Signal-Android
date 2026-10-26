@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +21,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
@@ -58,7 +58,7 @@ fun LabsSettingsScreen(
     onNavigationClick = { onEvent(LabsSettingsEvent.NavigateBackClicked) },
     modifier = modifier
   ) { contentPadding ->
-    LazyColumn(
+    AppSettingsLazyColumn(
       contentPadding = contentPadding,
       modifier = Modifier.testTag(LabsSettingsTestTags.SCROLLER)
     ) {

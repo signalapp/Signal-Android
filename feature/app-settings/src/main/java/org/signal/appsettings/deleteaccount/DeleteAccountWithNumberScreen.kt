@@ -49,6 +49,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.appsettings.deleteaccount.DeleteAccountState.Dialog
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -78,6 +79,7 @@ fun DeleteAccountWithNumberScreen(
         .padding(contentPadding)
         .imePadding()
         .verticalScroll(rememberScrollState())
+        .appSettingsScreen()
         .testTag(DeleteAccountTestTags.SCROLLER)
     ) {
       Icon(

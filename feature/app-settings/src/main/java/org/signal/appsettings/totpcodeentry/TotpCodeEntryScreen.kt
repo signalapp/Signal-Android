@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
@@ -54,7 +55,8 @@ fun TotpCodeEntryScreen(
       modifier = Modifier
         .fillMaxSize()
         .padding(contentPadding)
-        .imePadding(),
+        .imePadding()
+        .appSettingsScreen(),
       horizontalAlignment = Alignment.End
     ) {
       Text(

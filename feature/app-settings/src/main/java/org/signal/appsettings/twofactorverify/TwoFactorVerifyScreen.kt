@@ -40,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.appsettings.twofactorverify.TwoFactorVerifyState.CodeError
 import org.signal.appsettings.twofactorverify.TwoFactorVerifyState.Dialog
 import org.signal.appsettings.twofactorverify.TwoFactorVerifyState.Step
@@ -165,6 +166,7 @@ private fun ChooseMethod(
     modifier = modifier
       .fillMaxSize()
       .verticalScroll(rememberScrollState())
+      .appSettingsScreen()
       .padding(horizontal = 24.dp)
   ) {
     Spacer(modifier = Modifier.height(40.dp))
@@ -255,6 +257,7 @@ private fun EnterCode(
     modifier = modifier
       .fillMaxSize()
       .verticalScroll(rememberScrollState())
+      .appSettingsScreen()
       .padding(horizontal = 24.dp)
   ) {
     Spacer(modifier = Modifier.height(40.dp))

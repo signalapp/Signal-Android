@@ -9,11 +9,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.appsettings.exportaccountdata.ExportAccountDataState.Dialog
 import org.signal.core.ui.compose.Buttons
@@ -58,55 +56,48 @@ fun ExportAccountDataScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
   ) { contentPadding ->
-    Surface(
-      modifier = Modifier
-        .padding(contentPadding)
-        .wrapContentSize()
+    AppSettingsLazyColumn(
+      scaffoldPadding = contentPadding,
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = Modifier.testTag(ExportAccountDataTestTags.SCROLLER)
     ) {
-      LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-          .fillMaxWidth()
-          .testTag(ExportAccountDataTestTags.SCROLLER)
-      ) {
-        item {
-          Image(
-            painter = painterResource(id = R.drawable.export_account_data),
-            contentDescription = stringResource(R.string.ExportAccountDataFragment__your_account_data),
-            modifier = Modifier.padding(top = 47.dp)
-          )
-        }
-
-        item {
-          Text(
-            text = stringResource(id = R.string.ExportAccountDataFragment__your_account_data),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(top = 16.dp)
-          )
-        }
-
-        item {
-          val learnMore = stringResource(R.string.ExportAccountDataFragment__learn_more)
-          val explanation = stringResource(R.string.ExportAccountDataFragment__export_explanation, learnMore)
-          Texts.LinkifiedText(
-            textWithUrlSpans = SpanUtil.urlSubsequence(explanation, learnMore, stringResource(R.string.export_account_data_url)),
-            onUrlClick = { url -> onEvent(ExportAccountDataEvent.LearnMoreClicked(url)) },
-            modifier = Modifier.padding(top = 12.dp, start = 32.dp, end = 32.dp, bottom = 20.dp),
-            style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.onSurface, textAlign = TextAlign.Center)
-          )
-        }
-
-        item {
-          ExportReportOptions(state.format, onEvent)
-        }
+      item {
+        Image(
+          painter = painterResource(id = R.drawable.export_account_data),
+          contentDescription = stringResource(R.string.ExportAccountDataFragment__your_account_data),
+          modifier = Modifier.padding(top = 47.dp)
+        )
       }
 
-      when (state.dialog) {
-        ExportAccountDataState.Dialog.None -> Unit
-        ExportAccountDataState.Dialog.ConfirmExport -> ExportReportConfirmationDialog(onEvent)
-        ExportAccountDataState.Dialog.GeneratingReport -> DownloadProgressDialog()
-        ExportAccountDataState.Dialog.ReportGenerationFailed -> DownloadFailedDialog(onEvent)
+      item {
+        Text(
+          text = stringResource(id = R.string.ExportAccountDataFragment__your_account_data),
+          style = MaterialTheme.typography.headlineMedium,
+          modifier = Modifier.padding(top = 16.dp)
+        )
       }
+
+      item {
+        val learnMore = stringResource(R.string.ExportAccountDataFragment__learn_more)
+        val explanation = stringResource(R.string.ExportAccountDataFragment__export_explanation, learnMore)
+        Texts.LinkifiedText(
+          textWithUrlSpans = SpanUtil.urlSubsequence(explanation, learnMore, stringResource(R.string.export_account_data_url)),
+          onUrlClick = { url -> onEvent(ExportAccountDataEvent.LearnMoreClicked(url)) },
+          modifier = Modifier.padding(top = 12.dp, start = 32.dp, end = 32.dp, bottom = 20.dp),
+          style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.onSurface, textAlign = TextAlign.Center)
+        )
+      }
+
+      item {
+        ExportReportOptions(state.format, onEvent)
+      }
+    }
+
+    when (state.dialog) {
+      ExportAccountDataState.Dialog.None -> Unit
+      ExportAccountDataState.Dialog.ConfirmExport -> ExportReportConfirmationDialog(onEvent)
+      ExportAccountDataState.Dialog.GeneratingReport -> DownloadProgressDialog()
+      ExportAccountDataState.Dialog.ReportGenerationFailed -> DownloadFailedDialog(onEvent)
     }
   }
 }

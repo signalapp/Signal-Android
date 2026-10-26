@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -37,7 +36,9 @@ import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LifecycleResumeEffect
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
@@ -123,9 +124,11 @@ fun AppSettingsScreen(
     Column(
       modifier = Modifier.padding(contentPadding)
     ) {
-      banner()
+      Box(modifier = Modifier.appSettingsScreen()) {
+        banner()
+      }
 
-      LazyColumn(
+      AppSettingsLazyColumn(
         modifier = Modifier.testTag(AppSettingsTestTags.SCROLLER)
       ) {
         if (state.profile != null) {

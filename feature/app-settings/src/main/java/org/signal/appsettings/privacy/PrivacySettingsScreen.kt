@@ -9,7 +9,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -37,6 +36,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import kotlinx.coroutines.flow.first
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.DayNightPreviews
@@ -117,11 +117,10 @@ fun PrivacySettingsScreen(
     modifier = modifier,
     collapseTopBarInSplitPane = true
   ) { paddingValues ->
-    LazyColumn(
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
       state = listState,
-      modifier = Modifier
-        .padding(paddingValues)
-        .testTag(PrivacySettingsTestTags.SCROLLER)
+      modifier = Modifier.testTag(PrivacySettingsTestTags.SCROLLER)
     ) {
       if (state.hasPhoneNumber) {
         item {

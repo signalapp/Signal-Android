@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.SignalIcons
@@ -81,6 +82,7 @@ fun NotificationProfileCreatedScreen(
       modifier = Modifier
         .padding(contentPadding)
         .verticalScroll(rememberScrollState())
+        .appSettingsScreen()
         .testTag(NotificationProfileCreatedTestTags.SCROLLER)
     ) {
       Spacer(modifier = Modifier.height(176.dp))

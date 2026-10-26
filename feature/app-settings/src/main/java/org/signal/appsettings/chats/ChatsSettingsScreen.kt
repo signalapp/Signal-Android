@@ -6,8 +6,6 @@
 package org.signal.appsettings.chats
 
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -19,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import kotlinx.coroutines.launch
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.appsettings.backups.BackupCreationProgress
 import org.signal.appsettings.backups.BackupCreationProgressRow
@@ -80,10 +79,9 @@ fun ChatsSettingsScreen(
     },
     collapseTopBarInSplitPane = true
   ) { paddingValues ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(paddingValues)
-        .testTag(ChatsSettingsTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
+      modifier = Modifier.testTag(ChatsSettingsTestTags.SCROLLER)
     ) {
       item {
         Rows.ToggleRow(

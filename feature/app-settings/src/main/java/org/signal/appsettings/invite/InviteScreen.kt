@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
@@ -66,6 +67,7 @@ fun InviteScreen(
     Column(
       modifier = Modifier
         .padding(paddingValues)
+        .appSettingsScreen()
         .padding(16.dp)
         .fillMaxHeight()
     ) {

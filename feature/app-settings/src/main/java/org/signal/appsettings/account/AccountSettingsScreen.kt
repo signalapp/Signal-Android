@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -53,6 +52,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.appsettings.account.AccountSettingsState.Dialog
 import org.signal.appsettings.account.AccountSettingsState.LoadState
@@ -117,10 +117,9 @@ fun AccountSettingsScreen(
     onNavigationClick = { onEvent(AccountSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector
   ) { contentPadding ->
-    LazyColumn(
-      modifier = Modifier
-        .padding(contentPadding)
-        .testTag(AccountSettingsTestTags.SCROLLER)
+    AppSettingsLazyColumn(
+      scaffoldPadding = contentPadding,
+      modifier = Modifier.testTag(AccountSettingsTestTags.SCROLLER)
     ) {
       if (state.signalLogin != null) {
         item {

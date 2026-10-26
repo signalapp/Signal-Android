@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
@@ -63,6 +64,7 @@ fun AppIconTutorialScreen(
           .padding(horizontal = 24.dp)
           .align(Alignment.Center)
           .verticalScroll(rememberScrollState())
+          .appSettingsScreen()
           .testTag(AppIconTutorialTestTags.SCROLLER),
         horizontalAlignment = Alignment.CenterHorizontally
       ) {

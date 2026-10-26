@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.appsettings.usernamelinks.QrCodeBadge
 import org.signal.appsettings.usernamelinks.QrCodeState
 import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
@@ -76,6 +77,7 @@ fun UsernameLinkQrColorPickerScreen(
       modifier = Modifier
         .padding(contentPadding)
         .verticalScroll(rememberScrollState())
+        .appSettingsScreen()
         .fillMaxWidth()
         .fillMaxHeight()
         .testTag(UsernameLinkQrColorPickerTestTags.SCROLLER),
