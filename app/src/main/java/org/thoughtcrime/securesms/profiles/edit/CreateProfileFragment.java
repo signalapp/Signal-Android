@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import org.signal.core.models.media.Media;
 import org.signal.core.ui.logging.LoggingFragment;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -37,7 +39,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanFindMeByPhoneNumberFragment;
-import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter;
@@ -63,6 +65,7 @@ public class CreateProfileFragment extends LoggingFragment {
   private static final String TAG                    = Log.tag(CreateProfileFragment.class);
   private static final int    MAX_DESCRIPTION_GLYPHS = 480;
   private static final int    MAX_DESCRIPTION_BYTES  = 8192;
+  private static final int    NAME_MAX_GLYPHS        = 26;
 
   private Intent nextIntent;
 
@@ -183,7 +186,7 @@ public class CreateProfileFragment extends LoggingFragment {
       if (groupId.isV2()) {
         EditTextUtil.addGraphemeClusterLimitFilter(binding.familyName, MAX_DESCRIPTION_GLYPHS);
         binding.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-          EditProfileNameFragment.trimFieldToMaxByteLength(s, MAX_DESCRIPTION_BYTES);
+          trimFieldToMaxByteLength(s, MAX_DESCRIPTION_BYTES);
           viewModel.setFamilyName(s.toString());
         }));
         binding.familyNameWrapper.setHint(R.string.EditProfileFragment__group_description);
@@ -202,14 +205,14 @@ public class CreateProfileFragment extends LoggingFragment {
       }
       binding.avatarPlaceholder.setImageResource(R.drawable.ic_group_outline_40);
     } else {
-      EditTextUtil.addGraphemeClusterLimitFilter(binding.givenName, EditProfileNameFragment.NAME_MAX_GLYPHS);
-      EditTextUtil.addGraphemeClusterLimitFilter(binding.familyName, EditProfileNameFragment.NAME_MAX_GLYPHS);
+      EditTextUtil.addGraphemeClusterLimitFilter(binding.givenName, NAME_MAX_GLYPHS);
+      EditTextUtil.addGraphemeClusterLimitFilter(binding.familyName, NAME_MAX_GLYPHS);
       binding.givenName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                        EditProfileNameFragment.trimFieldToMaxByteLength(s);
+                                                                        trimFieldToMaxByteLength(s, ProfileName.MAX_PART_LENGTH);
                                                                         viewModel.setGivenName(s.toString());
                                                                       }));
       binding.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                         EditProfileNameFragment.trimFieldToMaxByteLength(s);
+                                                                         trimFieldToMaxByteLength(s, ProfileName.MAX_PART_LENGTH);
                                                                          viewModel.setFamilyName(s.toString());
                                                                        }));
       binding.groupDescriptionText.setVisibility(View.GONE);
@@ -386,5 +389,13 @@ public class CreateProfileFragment extends LoggingFragment {
 
   public interface Controller {
     void onProfileNameUploadCompleted();
+  }
+
+  private static void trimFieldToMaxByteLength(@NonNull Editable s, int length) {
+    int trimmedLength = StringUtil.trimToFit(s.toString(), length).length();
+
+    if (s.length() > trimmedLength) {
+      s.delete(trimmedLength, s.length());
+    }
   }
 }

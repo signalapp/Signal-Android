@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.whispersystems.signalservice.api.util.StreamDetails;
@@ -23,21 +22,6 @@ import java.io.IOException;
 final class EditProfileRepository {
 
   private static final String TAG = Log.tag(EditProfileRepository.class);
-
-  public void setName(@NonNull Context context, @NonNull ProfileName profileName, @NonNull Consumer<Result> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        ProfileUtil.uploadProfileWithName(context, profileName);
-        SignalDatabase.recipients().setProfileName(Recipient.self().getId(), profileName);
-        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-
-        callback.accept(Result.SUCCESS);
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to upload profile during name change.", e);
-        callback.accept(Result.FAILURE_NETWORK);
-      }
-    });
-  }
 
   public void setAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji, @NonNull Consumer<Result> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {

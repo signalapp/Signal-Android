@@ -3622,9 +3622,6 @@
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
-    <string name="EditProfileNameFragment_first_name">First name</string>
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
     <string name="EditProfileNameFragment_save">Save</string>
     <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
 
