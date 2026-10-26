@@ -16,7 +16,6 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
-import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 
@@ -25,6 +24,8 @@ import java.util.Objects;
 /**
  * ViewModel which drives GiphyMp4Fragment. This is to be bound to the activity,
  * and used as both a data provider and controller.
+ *
+ * Paging starts on first access to the paged data.
  */
 public final class GiphyMp4ViewModel extends ViewModel {
 
@@ -40,7 +41,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
   private GiphyMp4ViewModel(boolean isForMms) {
     this.isForMms         = isForMms;
     this.repository       = new GiphyMp4Repository();
-    this.pagedData        = new DefaultValueLiveData<>(getGiphyImagePagedData(null));
+    this.pagedData        = new MutableLiveData<>();
     this.saveResultEvents = new SingleLiveEvent<>();
     this.pagingController = Transformations.map(pagedData, PagedData::getController);
     this.images           = Transformations.switchMap(pagedData, pagedData -> Transformations.map(pagedData.getData(),
@@ -53,6 +54,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
   }
 
   LiveData<LivePagedData<String, GiphyImage>> getPagedData() {
+    ensurePagedDataLoaded();
     return pagedData;
   }
 
@@ -74,11 +76,19 @@ public final class GiphyMp4ViewModel extends ViewModel {
   }
 
   public @NonNull LiveData<MappingModelList> getImages() {
+    ensurePagedDataLoaded();
     return images;
   }
 
   public @NonNull LiveData<PagingController<String>> getPagingController() {
+    ensurePagedDataLoaded();
     return pagingController;
+  }
+
+  private void ensurePagedDataLoaded() {
+    if (pagedData.getValue() == null) {
+      pagedData.setValue(getGiphyImagePagedData(query));
+    }
   }
 
   private LivePagedData<String, GiphyImage> getGiphyImagePagedData(@Nullable String query) {
