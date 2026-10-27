@@ -35,6 +35,7 @@ import java.util.Optional;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 class EditProfileViewModel extends ViewModel {
 
@@ -102,7 +103,9 @@ class EditProfileViewModel extends ViewModel {
   }
 
   public Single<UsernameRepository.UsernameDeleteResult> deleteUsername() {
-    return UsernameRepository.deleteUsernameAndLink().observeOn(AndroidSchedulers.mainThread());
+    return Single.fromCallable(UsernameRepository::deleteUsernameAndLinkSync)
+                 .subscribeOn(Schedulers.io())
+                 .observeOn(AndroidSchedulers.mainThread());
   }
 
   public boolean isRegisteredAndUpToDate() {

@@ -3,14 +3,14 @@ package org.thoughtcrime.securesms.profiles.manage
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.rx3.rxSingle
+import kotlinx.coroutines.withContext
 import org.signal.core.models.ServiceId.ACI
 import org.signal.core.util.Base64
 import org.signal.core.util.Result
 import org.signal.core.util.Result.Companion.failure
 import org.signal.core.util.Result.Companion.success
 import org.signal.core.util.UuidUtil
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toByteArray
 import org.signal.libsignal.net.RequestResult
@@ -98,8 +98,8 @@ object UsernameRepository {
   /**
    * Given a nickname, this will temporarily reserve a matching discriminator that can later be confirmed via [confirmUsernameAndCreateNewLink].
    */
-  fun reserveUsername(nickname: String, discriminator: String?): Single<Result<UsernameState.Reserved, UsernameSetResult>> {
-    return rxSingle(Dispatchers.IO) { reserveUsernameInternal(nickname, discriminator) }
+  suspend fun reserveUsername(nickname: String, discriminator: String?): Result<UsernameState.Reserved, UsernameSetResult> {
+    return withContext(SignalDispatchers.IO) { reserveUsernameInternal(nickname, discriminator) }
   }
 
   /**
@@ -107,10 +107,8 @@ object UsernameRepository {
    * The intent of this is to allow users to change the casing of their username without changing the link,
    * since usernames are case-insensitive.
    */
-  fun updateUsernameDisplayForCurrentLink(updatedUsername: Username): Single<UsernameSetResult> {
-    return Single
-      .fromCallable { updateUsernameDisplayForCurrentLinkInternal(updatedUsername) }
-      .subscribeOn(Schedulers.io())
+  suspend fun updateUsernameDisplayForCurrentLink(updatedUsername: Username): UsernameSetResult {
+    return withContext(SignalDispatchers.IO) { updateUsernameDisplayForCurrentLinkInternal(updatedUsername) }
   }
 
   /**
@@ -118,8 +116,8 @@ object UsernameRepository {
    * It will also create a new username link. Therefore, be sure to call [updateUsernameDisplayForCurrentLink] instead if all that has changed is the
    * casing, and you want to keep the link the same.
    */
-  fun confirmUsernameAndCreateNewLink(username: Username): Single<UsernameSetResult> {
-    return rxSingle(Dispatchers.IO) { confirmUsernameAndCreateNewLinkInternal(username) }
+  suspend fun confirmUsernameAndCreateNewLink(username: Username): UsernameSetResult {
+    return withContext(SignalDispatchers.IO) { confirmUsernameAndCreateNewLinkInternal(username) }
   }
 
   /**
@@ -170,11 +168,17 @@ object UsernameRepository {
   /**
    * Deletes the username from the local user's account
    */
+  suspend fun deleteUsernameAndLink(): UsernameDeleteResult {
+    return withContext(SignalDispatchers.IO) { deleteUsernameAndLinkSync() }
+  }
+
+  /**
+   * Blocking version of [deleteUsernameAndLink], for callers that can't suspend.
+   */
+  @WorkerThread
   @JvmStatic
-  fun deleteUsernameAndLink(): Single<UsernameDeleteResult> {
-    return Single
-      .fromCallable { deleteUsernameInternal() }
-      .subscribeOn(Schedulers.io())
+  fun deleteUsernameAndLinkSync(): UsernameDeleteResult {
+    return deleteUsernameInternal()
   }
 
   /**

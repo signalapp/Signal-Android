@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.focus.FocusDirection
@@ -89,15 +88,6 @@ class EmojiTextInputParams(
  * View-backed input that can.
  */
 val LocalEmojiTextInput = staticCompositionLocalOf { EmojiTextInput.Default }
-
-/**
- * Focuses the [EmojiTextField] this was given to. A request made as the field is first composed would be dropped,
- * because its input's focus target isn't attached until after the first frame, so this waits for that frame first.
- */
-suspend fun FocusRequester.requestFocusWhenReady() {
-  withFrameNanos { }
-  requestFocus()
-}
 
 /**
  * A Material filled text field whose text is drawn by [LocalEmojiTextInput], so it shows Signal emoji when the app

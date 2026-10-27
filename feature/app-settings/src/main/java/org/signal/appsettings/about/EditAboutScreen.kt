@@ -45,11 +45,11 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.requestFocusWhenReady
 import org.signal.emoji.EmojiButton
 import org.signal.emoji.EmojiPickerSheet
 import org.signal.emoji.EmojiText
 import org.signal.emoji.EmojiTextField
-import org.signal.emoji.requestFocusWhenReady
 
 @VisibleForTesting
 object EditAboutTestTags {

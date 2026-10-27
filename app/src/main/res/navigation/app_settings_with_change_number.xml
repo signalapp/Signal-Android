@@ -1377,8 +1377,7 @@
 
     <fragment
         android:id="@+id/createUsernameFragment"
-        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
-        tools:layout="@layout/username_edit_fragment">
+        android:name="org.thoughtcrime.securesms.profiles.manage.username.UsernameEditFragment">
 
         <argument
             android:name="mode"

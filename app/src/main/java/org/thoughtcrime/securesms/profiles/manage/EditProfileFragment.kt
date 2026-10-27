@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.EditProfileViewModel.AvatarState
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.UsernameDeleteResult
+import org.thoughtcrime.securesms.profiles.manage.username.UsernameEditFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 import org.thoughtcrime.securesms.util.NameUtil.getAbbreviation

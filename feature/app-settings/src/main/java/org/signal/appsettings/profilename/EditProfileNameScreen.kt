@@ -38,8 +38,8 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields
+import org.signal.core.ui.compose.requestFocusWhenReady
 import org.signal.emoji.EmojiTextField
-import org.signal.emoji.requestFocusWhenReady
 
 @VisibleForTesting
 object EditProfileNameTestTags {
