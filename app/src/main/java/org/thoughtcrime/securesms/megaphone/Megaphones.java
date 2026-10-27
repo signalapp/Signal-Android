@@ -681,7 +681,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowUseNewOnDeviceBackupsMegaphone() {
-    return SignalStore.account().isPrimaryDevice() && Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && (RemoteConfig.upgradeBackupsMegaphone() || RemoteConfig.internalUser());
+    return SignalStore.account().isPrimaryDevice() && Environment.Backups.isNewFormatSupportedForLocalBackup() && SignalStore.settings().isBackupEnabled() && RemoteConfig.upgradeToNewLocalBackupsMegaphone();
   }
 
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {

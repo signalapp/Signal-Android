@@ -1431,9 +1431,9 @@ object RemoteConfig {
    * Whether the backups upgrade megaphone can be displayed
    */
   @JvmStatic
-  @get:JvmName("upgradeBackupsMegaphone")
-  val upgradeBackupsMegaphone: Boolean by remoteBoolean(
-    key = "android.upgradeBackupsMegaphone",
+  @get:JvmName("upgradeToNewLocalBackupsMegaphone")
+  val upgradeToNewLocalBackupsMegaphone: Boolean by remoteBoolean(
+    key = "android.upgradeToNewLocalBackupsMegaphone",
     defaultValue = false,
     hotSwappable = false
   )
