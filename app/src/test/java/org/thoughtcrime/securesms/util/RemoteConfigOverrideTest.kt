@@ -30,7 +30,7 @@ class RemoteConfigOverrideTest {
 
   companion object {
     private const val INTERNAL_USER = "android.internalUser"
-    private const val BOOLEAN_FLAG = "android.contactSharingV2"
+    private const val BOOLEAN_FLAG = "android.contactSharingV2.2"
     private const val INT_FLAG = "global.pinnedChatLimit"
   }
 

@@ -675,7 +675,7 @@ object RemoteConfig {
    */
   @JvmStatic
   val contactSharingV2: Boolean by remoteBoolean(
-    key = "android.contactSharingV2",
+    key = "android.contactSharingV2.2",
     defaultValue = false,
     hotSwappable = true
   )
