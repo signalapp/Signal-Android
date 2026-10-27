@@ -36,7 +36,7 @@ class AssistantScreenSecurityObserver : Application.ActivityLifecycleCallbacks {
   }
 
   override fun onActivityResumed(activity: Activity) {
-    if (!RemoteConfig.internalUser || activity !is FragmentActivity) {
+    if (!RemoteConfig.automaticScreenSecurity || activity !is FragmentActivity) {
       return
     }
 

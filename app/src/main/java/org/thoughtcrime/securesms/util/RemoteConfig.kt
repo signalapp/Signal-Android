@@ -1591,6 +1591,13 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether to automatically turn on screen security when an assistant app requests the contents of the screen. */
+  val automaticScreenSecurity: Boolean by remoteBoolean(
+    key = "android.automaticScreenSecurity",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation"
 
   /** Whether to host app settings in [AppSettingsNavigationActivity] in place of the fragment nav graph. */
