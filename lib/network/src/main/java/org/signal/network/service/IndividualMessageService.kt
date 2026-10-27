@@ -14,7 +14,6 @@ import org.jetbrains.annotations.VisibleForTesting
 import org.signal.core.models.ServiceId
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.net.MismatchedDeviceException
 import org.signal.libsignal.net.RateLimitChallengeException
 import org.signal.libsignal.net.RequestResult
@@ -40,6 +39,8 @@ import org.signal.libsignal.protocol.message.SignalMessage
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.network.api.KeysApiV2
 import org.signal.network.api.MessageApiV2
+import org.signal.network.service.MessageService.SendError
+import org.signal.network.service.MessageService.SendSuccess
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
@@ -49,8 +50,6 @@ import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
-import java.io.IOException
-import kotlin.time.Duration
 import kotlin.time.toKotlinDuration
 
 /**
@@ -580,19 +579,6 @@ open class IndividualMessageService(
     }
   }
 
-  /**
-   * Send completed successfully.
-   *
-   * [devices] is the set of recipient devices the encrypted payload was delivered to. Callers persisting
-   * a [org.thoughtcrime.securesms.database.MessageSendLogTables] entry (or a pending PNI signature record)
-   * need this to know which sessions the recipient may later reference in a retry receipt.
-   */
-  data class SendSuccess(
-    val envelopeContent: EnvelopeContent,
-    val sentSealedSender: Boolean,
-    val devices: List<Int>
-  )
-
   /** Result of [sendSealedWithDeviceRecovery]. */
   private sealed interface SealedSendOutcome {
     data class Sent(val success: SendSuccess) : SealedSendOutcome
@@ -634,49 +620,5 @@ open class IndividualMessageService(
 
     /** A prekey fetch for a missing session was rejected. See [SessionInitResult.InvalidAccessKeyForPreKeyFetch]. */
     data object InvalidAccessKeyForPreKeyFetch : EncryptResult
-  }
-
-  sealed class SendError : Exception() {
-    /** You discovered a safety number change during sending. */
-    data class IdentityMismatch(val serviceId: ServiceId, val exception: UntrustedIdentityException) : SendError()
-
-    /** The recipient is no longer registered. */
-    class NotRegistered : SendError()
-
-    /** Invalid credentials. You are likely no longer registered. */
-    class Unauthorized : SendError()
-
-    /**
-     * The server wants you to complete a push challenge/captcha before continuing.
-     * [token] is the challenge token; [options] enumerates the supported challenge mechanisms
-     * (e.g. "captcha", "pushChallenge"). [retryAfter] is the Retry-After hint, if provided.
-     */
-    data class ChallengeRequired(val token: String, val options: Set<ChallengeOption>, val retryAfter: Duration?) : SendError() {
-      override fun toString(): String = "ChallengeRequired(options=$options, retryAfter=$retryAfter)"
-    }
-
-    /**
-     * The encoded content exceeded the configured size cap. Permanent failure for this message —
-     * retrying with the same content won't help.
-     */
-    data class ContentTooLarge(val size: Long, val maxAllowed: Long) : SendError()
-
-    /**
-     * Each send attempt may result in us having to establish sessions with linked devices and such. This indicates that we hit our max attempt count while
-     * trying to handle these situations. It should be safe to retry with normal backoff.
-     */
-    class SessionAttemptsExhausted : SendError()
-
-    /** We needed to establish a session, but the server was missing either a signed or kyber prekey for the user. */
-    data class PreKeyUnavailable(val reason: String) : SendError()
-
-    /** You're rate-limited. Use the [retryAfter] for your backoff. */
-    data class RateLimited(val retryAfter: Duration?) : SendError()
-
-    /** A generic, retryable network error. */
-    data class NetworkError(val exception: IOException) : SendError()
-
-    /** An unexpected error. You should likely crash. */
-    data class ApplicationError(val exception: Throwable) : SendError()
   }
 }

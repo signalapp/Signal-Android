@@ -42,7 +42,7 @@ import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.UntrustedIdentityException
-import org.signal.network.service.IndividualMessageService
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -86,11 +86,11 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Unit tests for [IndividualSendJobV2]. Drives the job's [doRun] via [Job.run] (which delegates to the
  * coroutine entry point) with all of its collaborators mocked: [SignalStore], [SignalDatabase] tables,
- * [AppDependencies] (including [IndividualMessageService]), [Recipient] statics, and the various static helpers
+ * [AppDependencies] (including [MessageService]), [Recipient] statics, and the various static helpers
  * the job depends on ([SealedSenderAccessUtil], [RecipientUtil], [PushSendJob], etc.).
  *
  * Tests verify both the [Job.Result] returned and the side effects on the database / job manager,
- * including for every [IndividualMessageService.SendError] variant.
+ * including for every [MessageService.SendError] variant.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -127,7 +127,7 @@ class IndividualSendJobV2Test {
   private lateinit var pendingPniSignatureMessages: PendingPniSignatureMessageTable
 
   private lateinit var expiringMessageManager: ExpiringMessageManager
-  private lateinit var messageService: IndividualMessageService
+  private lateinit var messageService: MessageService
 
   @Before
   fun setUp() {
@@ -380,7 +380,7 @@ class IndividualSendJobV2Test {
         urgent = any(),
         onEncrypted = any()
       )
-    } returns IndividualMessageService.SendSuccess(
+    } returns MessageService.SendSuccess(
       envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()),
       sentSealedSender = false,
       devices = listOf(1)
@@ -485,10 +485,10 @@ class IndividualSendJobV2Test {
     val primaryContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty())
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendSuccess(envelopeContent = primaryContent, sentSealedSender = false, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = primaryContent, sentSealedSender = false, devices = listOf(1)).right()
     coEvery {
       messageService.sendSyncMessage(timestamp = any(), envelopeContent = capture(syncSlot), urgent = any(), onEncrypted = any())
-    } returns IndividualMessageService.SendSuccess(envelopeContent = primaryContent, sentSealedSender = false, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = primaryContent, sentSealedSender = false, devices = listOf(1)).right()
 
     createAndRunJob()
 
@@ -503,10 +503,10 @@ class IndividualSendJobV2Test {
     val syncSlot = slot<EnvelopeContent>()
     coEvery {
       messageService.sendSyncMessage(timestamp = any(), envelopeContent = capture(syncSlot), urgent = any(), onEncrypted = any())
-    } returns IndividualMessageService.SendSuccess(envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()), sentSealedSender = false, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()), sentSealedSender = false, devices = listOf(1)).right()
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendSuccess(envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()), sentSealedSender = false, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()), sentSealedSender = false, devices = listOf(1)).right()
 
     createAndRunJob()
 
@@ -584,7 +584,7 @@ class IndividualSendJobV2Test {
         urgent = any(),
         onEncrypted = any()
       )
-    } returns IndividualMessageService.SendSuccess(
+    } returns MessageService.SendSuccess(
       envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty()),
       sentSealedSender = false,
       devices = listOf(1)
@@ -632,7 +632,7 @@ class IndividualSendJobV2Test {
 
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.IdentityMismatch(
+    } returns MessageService.SendError.IdentityMismatch(
       serviceId = recipientAci,
       exception = untrusted
     ).left()
@@ -648,7 +648,7 @@ class IndividualSendJobV2Test {
   fun `Given NotRegistered, when run, then mark failed and enqueue DirectoryRefreshJob, return success`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.NotRegistered().left()
+    } returns MessageService.SendError.NotRegistered().left()
 
     val result = createAndRunJob()
 
@@ -661,7 +661,7 @@ class IndividualSendJobV2Test {
   fun `Given Unauthorized, when run, then return failure`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.Unauthorized().left()
+    } returns MessageService.SendError.Unauthorized().left()
 
     val result = createAndRunJob()
 
@@ -672,7 +672,7 @@ class IndividualSendJobV2Test {
   fun `Given ChallengeRequired and handler says retry now, when run, then retry with zero backoff`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.ChallengeRequired(
+    } returns MessageService.SendError.ChallengeRequired(
       token = "tok",
       options = setOf(ChallengeOption.CAPTCHA),
       retryAfter = 1.seconds
@@ -691,7 +691,7 @@ class IndividualSendJobV2Test {
   fun `Given ChallengeRequired and handler says retry later, when run, then retry with backoff`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.ChallengeRequired(
+    } returns MessageService.SendError.ChallengeRequired(
       token = "tok",
       options = emptySet(),
       retryAfter = null
@@ -710,7 +710,7 @@ class IndividualSendJobV2Test {
   fun `Given ContentTooLarge, when run, then return failure`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.ContentTooLarge(size = 9_999L, maxAllowed = 256L).left()
+    } returns MessageService.SendError.ContentTooLarge(size = 9_999L, maxAllowed = 256L).left()
 
     val result = createAndRunJob()
 
@@ -721,7 +721,7 @@ class IndividualSendJobV2Test {
   fun `Given SessionAttemptsExhausted, when run, then return retry`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.SessionAttemptsExhausted().left()
+    } returns MessageService.SendError.SessionAttemptsExhausted().left()
 
     val result = createAndRunJob()
 
@@ -732,7 +732,7 @@ class IndividualSendJobV2Test {
   fun `Given PreKeyUnavailable, when run, then return retry`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.PreKeyUnavailable("no signed prekey").left()
+    } returns MessageService.SendError.PreKeyUnavailable("no signed prekey").left()
 
     val result = createAndRunJob()
 
@@ -743,7 +743,7 @@ class IndividualSendJobV2Test {
   fun `Given RateLimited, when run, then return retry`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.RateLimited(retryAfter = 600.seconds).left()
+    } returns MessageService.SendError.RateLimited(retryAfter = 600.seconds).left()
 
     val result = createAndRunJob()
 
@@ -754,7 +754,7 @@ class IndividualSendJobV2Test {
   fun `Given NetworkError, when run, then return retry`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.NetworkError(IOException("boom")).left()
+    } returns MessageService.SendError.NetworkError(IOException("boom")).left()
 
     val result = createAndRunJob()
 
@@ -765,7 +765,7 @@ class IndividualSendJobV2Test {
   fun `Given ApplicationError with a RuntimeException, when run, then return fatal failure`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.ApplicationError(IllegalStateException("nope")).left()
+    } returns MessageService.SendError.ApplicationError(IllegalStateException("nope")).left()
 
     val result = createAndRunJob()
 
@@ -776,7 +776,7 @@ class IndividualSendJobV2Test {
   fun `Given ApplicationError with a non-RuntimeException, when run, then return retry`() {
     coEvery {
       messageService.sendMessage(any(), any(), any(), any(), any(), any(), any(), any())
-    } returns IndividualMessageService.SendError.ApplicationError(Exception("eventually retryable")).left()
+    } returns MessageService.SendError.ApplicationError(Exception("eventually retryable")).left()
 
     val result = createAndRunJob()
 
@@ -806,7 +806,7 @@ class IndividualSendJobV2Test {
         urgent = any(),
         onEncrypted = any()
       )
-    } returns IndividualMessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = sentSealedSender, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = sentSealedSender, devices = listOf(1)).right()
 
     coEvery {
       messageService.sendSyncMessage(
@@ -815,7 +815,7 @@ class IndividualSendJobV2Test {
         urgent = any(),
         onEncrypted = any()
       )
-    } returns IndividualMessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = sentSealedSender, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = sentSealedSender, devices = listOf(1)).right()
   }
 
   private fun stubSuccessfulSendCapturingSync(): CapturingSlot<EnvelopeContent> {
@@ -824,7 +824,7 @@ class IndividualSendJobV2Test {
     val envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty())
     coEvery {
       messageService.sendSyncMessage(timestamp = any(), envelopeContent = capture(syncSlot), urgent = any(), onEncrypted = any())
-    } returns IndividualMessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = listOf(1)).right()
+    } returns MessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = listOf(1)).right()
     return syncSlot
   }
 

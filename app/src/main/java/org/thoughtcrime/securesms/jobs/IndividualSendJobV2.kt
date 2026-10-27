@@ -20,7 +20,7 @@ import org.signal.core.util.orNull
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.network.service.IndividualMessageService
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -65,7 +65,7 @@ import kotlin.jvm.optionals.getOrNull
 /**
  * Alternate implementation of [IndividualSendJob] that:
  * - Extends [Job] directly rather than going through [BaseJob]/[PushSendJob].
- * - Routes the actual send through the new [IndividualMessageService] (which encapsulates device resolution,
+ * - Routes the actual send through the new [MessageService] (which encapsulates device resolution,
  *   prekey fetching, session building, encryption, and sync-transcript delivery).
  *
  * Behavior should match [IndividualSendJob] exactly for observable state changes (marking sent,
@@ -271,7 +271,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       },
       ifLeft = { error ->
         when (error) {
-          is IndividualMessageService.SendError.IdentityMismatch -> {
+          is MessageService.SendError.IdentityMismatch -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Identity mismatch for ${error.serviceId}", error.exception)
             val externalRecipient = Recipient.external(error.serviceId.toString())
             if (externalRecipient == null) {
@@ -284,7 +284,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             Result.success()
           }
 
-          is IndividualMessageService.SendError.NotRegistered -> {
+          is MessageService.SendError.NotRegistered -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Recipient not registered", error)
             SignalDatabase.messages.markAsSentFailed(messageId)
             PushSendJob.notifyMediaMessageDeliveryFailed(context, messageId)
@@ -292,12 +292,12 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             Result.success()
           }
 
-          is IndividualMessageService.SendError.Unauthorized -> {
+          is MessageService.SendError.Unauthorized -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Unauthorized send", error)
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.ChallengeRequired -> {
+          is MessageService.SendError.ChallengeRequired -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Challenge required (options=${error.options})", error)
             val proofResponse = ProofRequiredResponse(
               token = error.token,
@@ -323,22 +323,22 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             }
           }
 
-          is IndividualMessageService.SendError.ContentTooLarge -> {
+          is MessageService.SendError.ContentTooLarge -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Content too large (${error.size} > ${error.maxAllowed} bytes). Failing.", error)
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.SessionAttemptsExhausted -> {
+          is MessageService.SendError.SessionAttemptsExhausted -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Exhausted device-resolution attempts. Retrying", error)
             Result.retry(nextRunAttemptBackoff(runAttempt + 1))
           }
 
-          is IndividualMessageService.SendError.PreKeyUnavailable -> {
+          is MessageService.SendError.PreKeyUnavailable -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Prekey unavailable: ${error.reason}", error)
             Result.retry(nextRunAttemptBackoff(runAttempt + 1))
           }
 
-          is IndividualMessageService.SendError.RateLimited -> {
+          is MessageService.SendError.RateLimited -> {
             val defaultBackoff = nextRunAttemptBackoff(runAttempt + 1)
             val serverBackoff = error.retryAfter?.inWholeMilliseconds ?: 0L
             val backoff = maxOf(defaultBackoff, serverBackoff)
@@ -346,12 +346,12 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
             Result.retry(backoff)
           }
 
-          is IndividualMessageService.SendError.NetworkError -> {
+          is MessageService.SendError.NetworkError -> {
             Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Network error", error.exception)
             Result.retry(nextRunAttemptBackoff(runAttempt + 1))
           }
 
-          is IndividualMessageService.SendError.ApplicationError -> when (val cause = error.exception) {
+          is MessageService.SendError.ApplicationError -> when (val cause = error.exception) {
             // InvalidSessionException is a RuntimeException, must check before fatal runtime check
             is InvalidSessionException -> {
               Log.w(TAG, "${logPrefix(message.sentTimeMillis)} Session was invalidated mid-send. Retrying.", cause)
@@ -373,7 +373,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     )
   }
 
-  private suspend fun sendMessage(recipient: Recipient, dataMessage: DataMessage, editMessageTarget: Long?): Either<IndividualMessageService.SendError, IndividualMessageService.SendSuccess> = either {
+  private suspend fun sendMessage(recipient: Recipient, dataMessage: DataMessage, editMessageTarget: Long?): Either<MessageService.SendError, MessageService.SendSuccess> = either {
     val primaryResult = sendPrimaryMessage(
       recipient = recipient,
       dataMessage = dataMessage,
@@ -391,7 +391,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     primaryResult
   }
 
-  private suspend fun Raise<IndividualMessageService.SendError>.sendPrimaryMessage(recipient: Recipient, dataMessage: DataMessage, editMessageTarget: Long?): IndividualMessageService.SendSuccess {
+  private suspend fun Raise<MessageService.SendError>.sendPrimaryMessage(recipient: Recipient, dataMessage: DataMessage, editMessageTarget: Long?): MessageService.SendSuccess {
     val content: Content = if (editMessageTarget != null) {
       Content(
         editMessage = EditMessage(
@@ -419,7 +419,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     // If this is a note to self message, don't actually send it. Instead, craft a result of what we *would* send. Then it'll be sent via sync message if appropriate.
     if (SignalStore.account.aci == recipient.serviceId.getOrNull()) {
       Log.i(TAG, "${logPrefix(dataMessage.timestamp)} Note to self. Skipping primary send.")
-      return IndividualMessageService.SendSuccess(envelopeContent, true, listOf(SignalServiceAddress.DEFAULT_DEVICE_ID))
+      return MessageService.SendSuccess(envelopeContent, true, listOf(SignalServiceAddress.DEFAULT_DEVICE_ID))
     }
 
     return SignalNetwork.messageService.sendMessage(
@@ -434,10 +434,10 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
     ).bind()
   }
 
-  private suspend fun Raise<IndividualMessageService.SendError>.sendSyncMessage(targetRecipient: Recipient, primaryResult: IndividualMessageService.SendSuccess): IndividualMessageService.SendSuccess {
+  private suspend fun Raise<MessageService.SendError>.sendSyncMessage(targetRecipient: Recipient, primaryResult: MessageService.SendSuccess): MessageService.SendSuccess {
     val dataMessage = primaryResult.envelopeContent.content.get().dataMessage?.let { if (it.isViewOnce == true) it.copy(attachments = emptyList()) else it }
     val editMessage = primaryResult.envelopeContent.content.get().editMessage
-    val timestamp = dataMessage?.timestamp ?: editMessage?.dataMessage?.timestamp ?: raise(IndividualMessageService.SendError.ApplicationError(IllegalStateException("No timestamp on primary message send!")))
+    val timestamp = dataMessage?.timestamp ?: editMessage?.dataMessage?.timestamp ?: raise(MessageService.SendError.ApplicationError(IllegalStateException("No timestamp on primary message send!")))
 
     val recipientServiceId = targetRecipient.requireServiceId()
     val pniIdentityKey: ByteString? = if (recipientServiceId is ServiceId.PNI) {

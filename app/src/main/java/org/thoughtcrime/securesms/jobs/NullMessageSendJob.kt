@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.signal.network.service.IndividualMessageService
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -118,25 +118,25 @@ class NullMessageSendJob private constructor(
       },
       ifLeft = { error ->
         when (error) {
-          is IndividualMessageService.SendError.IdentityMismatch -> {
+          is MessageService.SendError.IdentityMismatch -> {
             Log.w(TAG, "Unable to send null message due to an identity mismatch.")
             markSessionReset()
             Result.success()
           }
 
-          is IndividualMessageService.SendError.NotRegistered,
-          is IndividualMessageService.SendError.Unauthorized,
-          is IndividualMessageService.SendError.ChallengeRequired,
-          is IndividualMessageService.SendError.ContentTooLarge -> {
+          is MessageService.SendError.NotRegistered,
+          is MessageService.SendError.Unauthorized,
+          is MessageService.SendError.ChallengeRequired,
+          is MessageService.SendError.ContentTooLarge -> {
             Log.w(TAG, "Failed to send null message.", error)
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.ApplicationError -> error.toJobResult(TAG, "null message", defaultBackoff())
+          is MessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.ApplicationError -> error.toJobResult(TAG, "null message", defaultBackoff())
         }
       }
     )

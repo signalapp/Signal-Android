@@ -6,7 +6,7 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.PlaintextContent
-import org.signal.network.service.IndividualMessageService
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -110,20 +110,20 @@ class SendRetryReceiptJob private constructor(
       ifRight = { Result.success() },
       ifLeft = { error ->
         when (error) {
-          is IndividualMessageService.SendError.IdentityMismatch,
-          is IndividualMessageService.SendError.NotRegistered,
-          is IndividualMessageService.SendError.Unauthorized,
-          is IndividualMessageService.SendError.ChallengeRequired,
-          is IndividualMessageService.SendError.ContentTooLarge,
-          is IndividualMessageService.SendError.PreKeyUnavailable -> {
+          is MessageService.SendError.IdentityMismatch,
+          is MessageService.SendError.NotRegistered,
+          is MessageService.SendError.Unauthorized,
+          is MessageService.SendError.ChallengeRequired,
+          is MessageService.SendError.ContentTooLarge,
+          is MessageService.SendError.PreKeyUnavailable -> {
             Log.w(TAG, "Failed to send retry receipt.", error)
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.ApplicationError -> error.toJobResult(TAG, "retry receipt", defaultBackoff())
+          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.ApplicationError -> error.toJobResult(TAG, "retry receipt", defaultBackoff())
         }
       }
     )

@@ -7,7 +7,7 @@ import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.NoSessionException
-import org.signal.network.service.IndividualMessageService
+import org.signal.network.service.MessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -181,29 +181,29 @@ class ResendMessageJob private constructor(
       },
       ifLeft = { error ->
         when (error) {
-          is IndividualMessageService.SendError.IdentityMismatch -> {
+          is MessageService.SendError.IdentityMismatch -> {
             Log.w(TAG, "[$sentTimestamp] Identity mismatch for $recipientId, not resending.")
             Result.success()
           }
 
-          is IndividualMessageService.SendError.NotRegistered,
-          is IndividualMessageService.SendError.Unauthorized,
-          is IndividualMessageService.SendError.ContentTooLarge,
-          is IndividualMessageService.SendError.PreKeyUnavailable -> {
+          is MessageService.SendError.NotRegistered,
+          is MessageService.SendError.Unauthorized,
+          is MessageService.SendError.ContentTooLarge,
+          is MessageService.SendError.PreKeyUnavailable -> {
             Log.w(TAG, "[$sentTimestamp] Failed to resend message.", error)
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.ChallengeRequired -> error.tryPushChallengeAndToJobResult(TAG, defaultBackoff = null)
+          is MessageService.SendError.ChallengeRequired -> error.tryPushChallengeAndToJobResult(TAG, defaultBackoff = null)
 
-          is IndividualMessageService.SendError.RateLimited -> {
+          is MessageService.SendError.RateLimited -> {
             Log.w(TAG, "[$sentTimestamp] Rate limited, retryAfter=${error.retryAfter}. Not resending.")
             Result.failure()
           }
 
-          is IndividualMessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
-          is IndividualMessageService.SendError.ApplicationError -> {
+          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is MessageService.SendError.ApplicationError -> {
             if (error.exception is NoSessionException || error.exception is InvalidSessionException) {
               resetSessions(serviceId)
             }

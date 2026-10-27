@@ -133,7 +133,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     protocolStore: SignalServiceDataStore,
     messageApiV2: org.signal.network.api.MessageApiV2,
     keysApiV2: org.signal.network.api.KeysApiV2
-  ): org.signal.network.service.IndividualMessageService {
+  ): org.signal.network.service.MessageService {
     return mockk(relaxed = true)
   }
 

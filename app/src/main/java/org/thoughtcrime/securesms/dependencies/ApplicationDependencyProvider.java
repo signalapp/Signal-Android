@@ -55,6 +55,7 @@ import org.signal.network.util.Tls12SocketFactory;
 import org.signal.network.service.ArchiveService;
 import org.signal.network.service.CdnService;
 import org.signal.network.service.IndividualMessageService;
+import org.signal.network.service.MessageService;
 import org.signal.network.service.StorageServiceService;
 import org.signal.network.service.TwoFactorMethodService;
 import org.signal.network.service.UsernameService;
@@ -249,7 +250,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull IndividualMessageService provideMessageService(@NonNull SignalServiceDataStore protocolStore,
+  public @NonNull MessageService provideMessageService(@NonNull SignalServiceDataStore protocolStore,
                                                        @NonNull MessageApiV2 messageApiV2,
                                                        @NonNull KeysApiV2 keysApiV2) {
     SignalServiceAddress          localAddress  = new SignalServiceAddress(SignalStore.account().requireAci(), SignalStore.account().getE164());
@@ -257,7 +258,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalServiceAccountDataStore aciStore      = protocolStore.aci();
     SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, localDeviceId, aciStore, ReentrantSessionLock.INSTANCE, null);
 
-    return new IndividualMessageService(localAddress, localDeviceId, messageApiV2, keysApiV2, aciStore, ReentrantSessionLock.INSTANCE, cipher, RemoteConfig.maxEnvelopeSizeBytes());
+    return new MessageService(new IndividualMessageService(localAddress, localDeviceId, messageApiV2, keysApiV2, aciStore, ReentrantSessionLock.INSTANCE, cipher, RemoteConfig.maxEnvelopeSizeBytes()));
   }
 
   @Override
