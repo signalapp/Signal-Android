@@ -20,7 +20,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -40,6 +39,7 @@ import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields
 import org.signal.emoji.EmojiTextField
+import org.signal.emoji.requestFocusWhenReady
 
 @VisibleForTesting
 object EditProfileNameTestTags {
@@ -61,9 +61,7 @@ fun EditProfileNameScreen(
   val focusRequester = remember { FocusRequester() }
 
   LaunchedEffect(Unit) {
-    // The field's focus target isn't attached until after the first frame, and a request before then is dropped.
-    withFrameNanos { }
-    focusRequester.requestFocus()
+    focusRequester.requestFocusWhenReady()
   }
 
   Scaffolds.Settings(

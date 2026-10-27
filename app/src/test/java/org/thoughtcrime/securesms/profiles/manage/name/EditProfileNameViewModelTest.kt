@@ -48,7 +48,7 @@ class EditProfileNameViewModelTest {
     mockkObject(EditProfileNameRepository)
 
     every { EditProfileNameRepository.getProfileName() } returns ProfileName.fromParts("Alex", "Hart")
-    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.Result.SUCCESS
+    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.SaveResult.SUCCESS
   }
 
   @After
@@ -120,7 +120,7 @@ class EditProfileNameViewModelTest {
 
   @Test
   fun `a network failure stays on the screen and shows a snackbar`() = runTest(testDispatcher) {
-    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.Result.NETWORK_FAILURE
+    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.SaveResult.NETWORK_FAILURE
     val viewModel = createViewModel()
 
     viewModel.onEvent(EditProfileNameEvent.SaveClicked)
@@ -132,7 +132,7 @@ class EditProfileNameViewModelTest {
 
   @Test
   fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
-    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.Result.NETWORK_FAILURE
+    coEvery { EditProfileNameRepository.setProfileName(any()) } returns EditProfileNameRepository.SaveResult.NETWORK_FAILURE
     val viewModel = createViewModel()
 
     viewModel.onEvent(EditProfileNameEvent.SaveClicked)

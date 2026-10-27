@@ -90,9 +90,8 @@
 
     <fragment
         android:id="@+id/aboutManageFragment"
-        android:name="org.thoughtcrime.securesms.profiles.manage.EditAboutFragment"
-        android:label="fragment_manage_about"
-        tools:layout="@layout/edit_about_fragment" />
+        android:name="org.thoughtcrime.securesms.profiles.manage.about.EditAboutFragment"
+        android:label="fragment_manage_about" />
 
     <include app:graph="@navigation/manage_badges" />
 

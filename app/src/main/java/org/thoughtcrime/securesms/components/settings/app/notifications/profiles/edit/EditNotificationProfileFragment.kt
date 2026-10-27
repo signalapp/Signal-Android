@@ -6,22 +6,14 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.compose.rememberViewModelStoreOwner
 import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.viewModel
-import org.signal.mediakeyboard.screens.emojisheet.EmojiSheet
-import org.signal.mediakeyboard.screens.emojisheet.EmojiSheetAction
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
-import org.thoughtcrime.securesms.mediakeyboard.SignalEmojiSheetRepository
+import org.thoughtcrime.securesms.mediakeyboard.SignalEmojiPicker
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -43,26 +35,8 @@ class EditNotificationProfileFragment : ComposeFragment() {
     EditNotificationProfileScreen(
       state = state,
       onEvent = viewModel::onEvent,
-      emojiPicker = { onEmojiSelected -> EmojiPicker(onEmojiSelected) }
+      emojiPicker = { onEmojiSelected -> SignalEmojiPicker(onEmojiSelected) }
     )
-  }
-
-  @Composable
-  private fun EmojiPicker(onEmojiSelected: (String) -> Unit) {
-    val context = LocalContext.current
-    val repository = remember(context) { SignalEmojiSheetRepository(context.applicationContext, RecentEmojiPageModel.RECENT_STORAGE_KEY, messageId = null) }
-
-    // A fresh picker each time the sheet opens, rather than one left mid-search from the last time.
-    CompositionLocalProvider(LocalViewModelStoreOwner provides rememberViewModelStoreOwner()) {
-      EmojiSheet(
-        repository = repository,
-        onAction = { action ->
-          if (action is EmojiSheetAction.EmojiSelected) {
-            onEmojiSelected(action.emoji)
-          }
-        }
-      )
-    }
   }
 
   private fun handleAction(action: EditNotificationProfileAction) {

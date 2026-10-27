@@ -7,7 +7,6 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -22,21 +21,6 @@ import java.io.IOException;
 final class EditProfileRepository {
 
   private static final String TAG = Log.tag(EditProfileRepository.class);
-
-  public void setAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji, @NonNull Consumer<Result> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        ProfileUtil.uploadProfileWithAbout(context, about, emoji);
-        SignalDatabase.recipients().setAbout(Recipient.self().getId(), about, emoji);
-        AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-
-        callback.accept(Result.SUCCESS);
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to upload profile during about change.", e);
-        callback.accept(Result.FAILURE_NETWORK);
-      }
-    });
-  }
 
   public void setAvatar(@NonNull Context context, @NonNull byte[] data, @NonNull String contentType, @NonNull Consumer<Result> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {

@@ -745,4 +745,34 @@
     <string name="EditProfileNameScreen__save">Save</string>
     <!-- Snackbar shown when your profile name couldn't be saved because of a network problem -->
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+
+    <!-- EditAboutScreen -->
+    <!-- Title of the screen for editing the about text on your profile -->
+    <string name="EditAboutFragment_about">About</string>
+    <!-- Placeholder in the about field when it is empty -->
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <!-- Preset about text -->
+    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <!-- Button that saves your edited about text -->
+    <string name="EditAboutScreen__save">Save</string>
+    <!-- Content description for the button that clears both the about text and its emoji -->
+    <string name="EditAboutScreen__clear">Clear</string>
+    <!-- Content description for the button that opens the emoji picker for the about text -->
+    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <!-- Snackbar shown when your about text couldn't be saved because of a network problem -->
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
 </resources>

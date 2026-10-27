@@ -23,21 +23,21 @@ object EditProfileNameRepository {
   fun getProfileName(): ProfileName = Recipient.self().profileName
 
   /** Uploads [profileName] and, once the service has it, saves it locally and syncs it to linked devices. */
-  suspend fun setProfileName(profileName: ProfileName): Result {
+  suspend fun setProfileName(profileName: ProfileName): SaveResult {
     return withContext(SignalDispatchers.IO) {
       try {
         ProfileUtil.uploadProfileWithName(AppDependencies.application, profileName)
         SignalDatabase.recipients.setProfileName(Recipient.self().id, profileName)
         AppDependencies.jobManager.add(MultiDeviceProfileContentUpdateJob())
-        Result.SUCCESS
+        SaveResult.SUCCESS
       } catch (e: IOException) {
         Log.w(TAG, "Failed to upload profile during name change.", e)
-        Result.NETWORK_FAILURE
+        SaveResult.NETWORK_FAILURE
       }
     }
   }
 
-  enum class Result {
+  enum class SaveResult {
     SUCCESS,
     NETWORK_FAILURE
   }

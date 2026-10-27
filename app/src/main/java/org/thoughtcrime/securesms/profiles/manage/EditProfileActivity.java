@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.NavGraph;
@@ -13,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -21,7 +19,7 @@ import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 /**
  * Activity for editing your profile after you're already registered.
  */
-public class EditProfileActivity extends PassphraseRequiredActivity implements ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
+public class EditProfileActivity extends PassphraseRequiredActivity {
 
   public static final int RESULT_BECOME_A_SUSTAINER = 12382;
 
@@ -78,23 +76,5 @@ public class EditProfileActivity extends PassphraseRequiredActivity implements R
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-  }
-
-  @Override
-  public void onReactWithAnyEmojiDialogDismissed() {
-  }
-
-  @Override
-  public void onReactWithAnyEmojiSelected(@NonNull String emoji) {
-    NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().getPrimaryNavigationFragment();
-    Fragment        activeFragment  = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
-
-    if (activeFragment instanceof EmojiController) {
-      ((EmojiController) activeFragment).onEmojiSelected(emoji);
-    }
-  }
-
-  interface EmojiController {
-    void onEmojiSelected(@NonNull String emoji);
   }
 }

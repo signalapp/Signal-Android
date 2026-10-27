@@ -18,7 +18,6 @@ import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryEvent
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryState
 import org.signal.core.models.MasterKey
 import org.signal.core.ui.compose.EventDrivenViewModel
-import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
@@ -48,11 +47,9 @@ class TwoFactorNameEntryViewModel(
     const val MAX_NAME_LENGTH_GRAPHEMES = 30
   }
 
-  private val breakIterator = BreakIteratorCompat.getInstance()
-
   private val _state = MutableStateFlow(
     TwoFactorNameEntryState(
-      name = renamedMethod?.name?.trimNameToLengthLimits() ?: "",
+      name = StringUtil.trimToFit(renamedMethod?.name, MAX_NAME_LENGTH_GRAPHEMES, TwoFactorMethodService.MAX_NAME_LENGTH_BYTES),
       kind = kind,
       renaming = renamedMethod != null
     )
@@ -68,7 +65,7 @@ class TwoFactorNameEntryViewModel(
         _actions.send(TwoFactorNameEntryAction.NavigateBack)
       }
       is TwoFactorNameEntryEvent.NameChanged -> {
-        _state.update { it.copy(name = event.name.trimNameToLengthLimits()) }
+        _state.update { it.copy(name = StringUtil.trimToFit(event.name, MAX_NAME_LENGTH_GRAPHEMES, TwoFactorMethodService.MAX_NAME_LENGTH_BYTES)) }
       }
       TwoFactorNameEntryEvent.NextClicked -> {
         applyNextClicked(
@@ -119,16 +116,5 @@ class TwoFactorNameEntryViewModel(
         actionEmitter(TwoFactorNameEntryAction.ShowNameNotSaved)
       }
     }
-  }
-
-  /** Keeps the name within the length limits the service puts on metadata. */
-  private fun String.trimNameToLengthLimits(): String {
-    val input = this
-    val graphemeTruncated = breakIterator
-      .apply { setText(input) }
-      .take(MAX_NAME_LENGTH_GRAPHEMES)
-      .toString()
-
-    return StringUtil.trimToFit(graphemeTruncated, TwoFactorMethodService.MAX_NAME_LENGTH_BYTES)
   }
 }

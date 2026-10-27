@@ -15,7 +15,6 @@ import org.signal.appsettings.profilename.EditProfileNameState
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.EventDrivenViewModel
-import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -39,13 +38,11 @@ class EditProfileNameViewModel(
     private const val KEY_FAMILY_NAME = "family_name"
   }
 
-  private val breakIterator = BreakIteratorCompat.getInstance()
-
   private val _state = MutableStateFlow(
     EditProfileNameRepository.getProfileName().let {
       EditProfileNameState(
-        givenName = savedStateHandle[KEY_GIVEN_NAME] ?: it.givenName.trimToNameLimits(),
-        familyName = savedStateHandle[KEY_FAMILY_NAME] ?: it.familyName.trimToNameLimits()
+        givenName = savedStateHandle[KEY_GIVEN_NAME] ?: StringUtil.trimToFit(it.givenName, NAME_MAX_GRAPHEMES, ProfileName.MAX_PART_LENGTH),
+        familyName = savedStateHandle[KEY_FAMILY_NAME] ?: StringUtil.trimToFit(it.familyName, NAME_MAX_GRAPHEMES, ProfileName.MAX_PART_LENGTH)
       )
     }
   )
@@ -56,12 +53,12 @@ class EditProfileNameViewModel(
     when (event) {
       EditProfileNameEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       is EditProfileNameEvent.GivenNameChanged -> {
-        val givenName = event.name.trimToNameLimits()
+        val givenName = StringUtil.trimToFit(event.name, NAME_MAX_GRAPHEMES, ProfileName.MAX_PART_LENGTH)
         savedStateHandle[KEY_GIVEN_NAME] = givenName
         _state.update { it.copy(givenName = givenName) }
       }
       is EditProfileNameEvent.FamilyNameChanged -> {
-        val familyName = event.name.trimToNameLimits()
+        val familyName = StringUtil.trimToFit(event.name, NAME_MAX_GRAPHEMES, ProfileName.MAX_PART_LENGTH)
         savedStateHandle[KEY_FAMILY_NAME] = familyName
         _state.update { it.copy(familyName = familyName) }
       }
@@ -79,18 +76,8 @@ class EditProfileNameViewModel(
     _state.update { it.copy(saving = true) }
 
     when (EditProfileNameRepository.setProfileName(ProfileName.fromParts(state.givenName, state.familyName))) {
-      EditProfileNameRepository.Result.SUCCESS -> parentEventEmitter.navigateBack()
-      EditProfileNameRepository.Result.NETWORK_FAILURE -> _state.update { it.copy(saving = false, snackbar = EditProfileNameState.Snackbar.NetworkFailure) }
+      EditProfileNameRepository.SaveResult.SUCCESS -> parentEventEmitter.navigateBack()
+      EditProfileNameRepository.SaveResult.NETWORK_FAILURE -> _state.update { it.copy(saving = false, snackbar = EditProfileNameState.Snackbar.NetworkFailure) }
     }
-  }
-
-  private fun String.trimToNameLimits(): String {
-    val input = this
-    val graphemeTruncated = breakIterator
-      .apply { setText(input) }
-      .take(NAME_MAX_GRAPHEMES)
-      .toString()
-
-    return StringUtil.trimToFit(graphemeTruncated, ProfileName.MAX_PART_LENGTH)
   }
 }

@@ -40,11 +40,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
@@ -333,7 +331,7 @@ private fun EmojiPickerButton(
       }
     } else {
       Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_emoji_plus_24),
+        imageVector = SignalIcons.EmojiPlus.imageVector,
         contentDescription = stringResource(R.string.GroupMemberLabel__accessibility_select_emoji),
         tint = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier.size(24.dp)

@@ -66,6 +66,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Draw(icon(R.drawable.symbol_draw_24)),
   Edit(icon(R.drawable.symbol_edit_24)),
   Emoji(icon(R.drawable.symbol_emoji_24)),
+  EmojiPlus(icon(R.drawable.symbol_emoji_plus_24)),
   EmojiActivity(icon(R.drawable.ic_emoji_activity_20)),
   EmojiAnimal(icon(R.drawable.ic_emoji_animal_20)),
   EmojiEmoticon(icon(R.drawable.ic_emoji_emoticon_20)),

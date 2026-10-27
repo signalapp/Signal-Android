@@ -10,31 +10,23 @@ package org.thoughtcrime.securesms.components.settings.app.notifications.profile
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -44,18 +36,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -64,7 +51,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.DayNightPreviews
@@ -74,8 +60,9 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.horizontalGutters
-import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.emoji.Emojifier
+import org.signal.emoji.EmojiButton
+import org.signal.emoji.EmojiPickerSheet
+import org.signal.emoji.EmojiText
 import org.thoughtcrime.securesms.R
 
 @VisibleForTesting
@@ -188,7 +175,7 @@ fun EditNotificationProfileScreen(
               Text(text = name, style = MaterialTheme.typography.bodyLarge)
             },
             icon = {
-              EmojiText(emoji = preset.emoji)
+              EmojiText(text = preset.emoji, style = MaterialTheme.typography.bodyLarge.copy(fontSize = 20.sp))
             },
             onClick = { onEvent(EditNotificationProfileEvent.PresetClicked(name = name, emoji = preset.emoji)) },
             modifier = Modifier.testTag(EditNotificationProfileTestTags.preset(index))
@@ -214,13 +201,7 @@ fun EditNotificationProfileScreen(
   }
 
   if (state.showEmojiPicker) {
-    BottomSheets.BottomSheet(
-      onDismissRequest = { onEvent(EditNotificationProfileEvent.EmojiPickerDismissed) },
-      dragHandle = null,
-      containerColor = SignalTheme.colors.colorSurface1,
-      // The picker keeps itself clear of the navigation bar and keyboard at the bottom.
-      contentWindowInsets = { WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal) }
-    ) {
+    EmojiPickerSheet(onDismissRequest = { onEvent(EditNotificationProfileEvent.EmojiPickerDismissed) }) {
       emojiPicker { emoji -> onEvent(EditNotificationProfileEvent.EmojiSelected(emoji)) }
     }
   }
@@ -241,11 +222,14 @@ private fun NameField(
   ) {
     EmojiButton(
       emoji = state.emoji,
+      contentDescription = stringResource(R.string.EditNotificationProfileFragment__choose_emoji),
       onClick = {
         systemKeyboard?.hide()
         onEvent(EditNotificationProfileEvent.EmojiButtonClicked)
       },
-      modifier = Modifier.padding(top = 4.dp)
+      modifier = Modifier
+        .padding(top = 4.dp)
+        .testTag(EditNotificationProfileTestTags.BUTTON_EMOJI)
     )
 
     NameTextField(
@@ -256,36 +240,6 @@ private fun NameField(
         .padding(start = 4.dp)
         .focusRequester(focusRequester)
     )
-  }
-}
-
-@Composable
-private fun EmojiButton(
-  emoji: String,
-  onClick: () -> Unit,
-  modifier: Modifier = Modifier
-) {
-  val chooseEmoji = stringResource(R.string.EditNotificationProfileFragment__choose_emoji)
-
-  Box(
-    contentAlignment = Alignment.Center,
-    modifier = modifier
-      .defaultMinSize(minWidth = 48.dp, minHeight = 48.dp)
-      .clip(CircleShape)
-      .clickable(onClick = onClick, role = Role.Button)
-      .semantics { contentDescription = chooseEmoji }
-      .padding(8.dp)
-      .testTag(EditNotificationProfileTestTags.BUTTON_EMOJI)
-  ) {
-    if (emoji.isNotEmpty()) {
-      EmojiText(emoji = emoji)
-    } else {
-      Icon(
-        imageVector = ImageVector.vectorResource(R.drawable.symbol_emoji_plus_24),
-        contentDescription = null,
-        tint = MaterialTheme.colorScheme.onSurfaceVariant
-      )
-    }
   }
 }
 
@@ -333,15 +287,6 @@ private fun NameTextField(
       .fillMaxWidth()
       .testTag(EditNotificationProfileTestTags.NAME_FIELD)
   )
-}
-
-@Composable
-private fun EmojiText(emoji: String) {
-  ProvideTextStyle(MaterialTheme.typography.bodyLarge.copy(fontSize = 20.sp)) {
-    Emojifier(text = emoji) { annotatedText, inlineContent ->
-      Text(text = annotatedText, inlineContent = inlineContent)
-    }
-  }
 }
 
 @PreviewWrapper(SignalPreviewWrapper::class)
