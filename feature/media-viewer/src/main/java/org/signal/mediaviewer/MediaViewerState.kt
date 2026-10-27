@@ -6,6 +6,7 @@
 package org.signal.mediaviewer
 
 import android.net.Uri
+import org.signal.core.models.database.AttachmentId
 import org.signal.uicomponents.styledtext.StyledString
 
 /**
@@ -26,13 +27,18 @@ data class MediaViewerState(
   /** Resolved message bodies by message id, used as the caption fallback. */
   val messageBodies: Map<Long, StyledString> = emptyMap(),
   val isInSharedAnimation: Boolean = true,
+  val sharedElementAttachmentId: AttachmentId? = null,
   val hdrCapableUris: Set<Uri> = emptySet(),
+  val zoomedInAttachmentIds: Set<AttachmentId> = emptySet(),
   val chromeVisible: Boolean = true,
   val dialog: Dialog = Dialog.None
 ) {
   val currentItem: MediaViewerItem? get() = items.getOrNull(position)
 
   val currentMediaUri: Uri? get() = currentItem?.uri
+
+  val canDismissToSharedElement: Boolean get() = sharedElementAttachmentId != null && currentItem?.attachmentId == sharedElementAttachmentId
+  val isCurrentMediaZoomedIn: Boolean get() = currentItem?.attachmentId in zoomedInAttachmentIds
   val shouldRenderHdr: Boolean get() = !isInSharedAnimation && currentMediaUri?.let { it in hdrCapableUris } == true
 
   /** Attachment caption if present, otherwise the message body. */

@@ -36,12 +36,12 @@ internal fun MediaViewerImagePage(
   }
 
   val reportMediaReady by rememberUpdatedState(isActive)
-
   AndroidView(
     factory = { context -> ZoomingImageView(context) },
     update = { view ->
       view.setOnClickListener { onEvent(MediaViewerEvent.MediaTapped) }
       view.setOnGainmapDetectedListener { onEvent(MediaViewerEvent.HdrDetected(item.uri)) }
+      view.setOnZoomStateChangedListener { onEvent(MediaViewerEvent.ImageZoomChanged(item.attachmentId, it)) }
 
       if (view.tag != item.uri) {
         view.tag = item.uri

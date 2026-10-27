@@ -34,6 +34,9 @@ sealed interface MediaViewerEvent {
   /** The activity's shared element transition started or ended. */
   data class SharedAnimationChanged(val running: Boolean) : MediaViewerEvent
 
+  /** An image page was zoomed in past its minimum scale, or back out of it. */
+  data class ImageZoomChanged(val attachmentId: AttachmentId, val isZoomedIn: Boolean) : MediaViewerEvent
+
   /** An UltraHDR gainmap was detected in the image at [uri]. */
   data class HdrDetected(val uri: Uri) : MediaViewerEvent
 
@@ -48,6 +51,9 @@ sealed interface MediaViewerEvent {
 
   /** The user tapped the toolbar back arrow or pressed back. */
   data object BackClicked : MediaViewerEvent
+
+  /** The user dragged the media far enough to dismiss the viewer. */
+  data class DragDismissed(val toSharedElement: Boolean) : MediaViewerEvent
 
   /** The user tapped the toolbar title, requesting a jump to the message in its chat. */
   data object ToolbarTitleClicked : MediaViewerEvent

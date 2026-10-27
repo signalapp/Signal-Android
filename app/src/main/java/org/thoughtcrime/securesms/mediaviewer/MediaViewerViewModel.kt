@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
  */
 class MediaViewerViewModel(
   private val args: MediaIntentFactory.MediaPreviewArgs,
+  private val hasSharedElementTransition: Boolean = false,
   private val context: Context = AppDependencies.application,
   private val repository: MediaViewerRepository = MediaViewerRepository,
   private val dataSourceFactory: () -> MediaViewerPagedDataSource = {
@@ -105,6 +106,10 @@ class MediaViewerViewModel(
   private val requestedBodyMessageIds = mutableSetOf<Long>()
 
   init {
+    if (hasSharedElementTransition) {
+      _state.update { it.copy(sharedElementAttachmentId = startingAttachmentId) }
+    }
+
     databaseObserver.registerAttachmentUpdatedObserver(invalidationObserver)
     databaseObserver.registerAttachmentDeletedObserver(invalidationObserver)
 
@@ -118,10 +123,7 @@ class MediaViewerViewModel(
   }
 
   /** Whether the shared element exit transition should run: the user is still on the media they entered on. */
-  fun shouldFinishAfterTransition(): Boolean {
-    val startingId = startingAttachmentId ?: return false
-    return _state.value.currentItem?.attachmentId == startingId
-  }
+  fun shouldFinishAfterTransition(): Boolean = _state.value.canDismissToSharedElement
 
   override suspend fun processEvent(event: MediaViewerEvent) {
     when (event) {
@@ -133,11 +135,13 @@ class MediaViewerViewModel(
       is MediaViewerEvent.MediaTapped -> applyMediaTapped()
       is MediaViewerEvent.SharedAnimationChanged -> applySharedAnimationChanged(event)
       is MediaViewerEvent.HdrDetected -> applyHdrDetected(event)
+      is MediaViewerEvent.ImageZoomChanged -> applyImageZoomChanged(event)
       is MediaViewerEvent.VideoPlaybackStarted -> applyVideoPlaybackStarted()
       is MediaViewerEvent.VideoPlaybackStopped -> applyVideoPlaybackStopped()
       is MediaViewerEvent.VideoPlaybackError -> applyVideoPlaybackError(event)
       is MediaViewerEvent.ChromeAutoHideElapsed -> applyChromeAutoHideElapsed()
       is MediaViewerEvent.BackClicked -> applyBackClicked()
+      is MediaViewerEvent.DragDismissed -> applyDragDismissed(event)
       is MediaViewerEvent.ToolbarTitleClicked -> applyToolbarTitleClicked()
       is MediaViewerEvent.ShareClicked -> applyShareClicked()
       is MediaViewerEvent.ForwardClicked -> applyForwardClicked()
@@ -235,12 +239,27 @@ class MediaViewerViewModel(
     _actions.send(MediaViewerAction.Finish)
   }
 
+  private fun applyImageZoomChanged(event: MediaViewerEvent.ImageZoomChanged) {
+    _state.update { state ->
+      val zoomedIn = if (event.isZoomedIn) state.zoomedInAttachmentIds + event.attachmentId else state.zoomedInAttachmentIds - event.attachmentId
+      state.copy(zoomedInAttachmentIds = zoomedIn)
+    }
+  }
+
   private fun applyChromeAutoHideElapsed() {
     _state.update { it.copy(chromeVisible = false) }
   }
 
   private suspend fun applyBackClicked() {
     _actions.send(MediaViewerAction.FinishAfterTransition)
+  }
+
+  private suspend fun applyDragDismissed(event: MediaViewerEvent.DragDismissed) {
+    if (event.toSharedElement) {
+      _actions.send(MediaViewerAction.FinishAfterTransition)
+    } else {
+      _actions.send(MediaViewerAction.FinishAfterDragDismiss)
+    }
   }
 
   private fun applyToolbarTitleClicked() {
@@ -558,10 +577,10 @@ class MediaViewerViewModel(
     super.onCleared()
   }
 
-  class Factory(private val args: MediaIntentFactory.MediaPreviewArgs) : ViewModelProvider.Factory {
+  class Factory(private val args: MediaIntentFactory.MediaPreviewArgs, private val hasSharedElementTransition: Boolean) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       @Suppress("UNCHECKED_CAST")
-      return MediaViewerViewModel(args) as T
+      return MediaViewerViewModel(args, hasSharedElementTransition) as T
     }
   }
 }

@@ -24,6 +24,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ShareCompat
 import androidx.core.transition.addListener
@@ -43,6 +44,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
+import org.signal.mediaviewer.DragToDismissState
 import org.signal.mediaviewer.MediaViewerAction
 import org.signal.mediaviewer.MediaViewerEvent
 import org.signal.mediaviewer.MediaViewerScreen
@@ -76,15 +78,20 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
   private val args by lazy { MediaIntentFactory.requireArguments(intent.extras!!) }
-  private val viewModel: MediaViewerViewModel by viewModels { MediaViewerViewModel.Factory(args) }
+  private val viewModel: MediaViewerViewModel by viewModels { MediaViewerViewModel.Factory(args, hasSharedElementTransition) }
+  private val dismissState = DragToDismissState()
 
   private lateinit var transitionImageView: ImageView
+  private lateinit var backgroundScrim: View
+
+  private var hasSharedElementTransition = false
 
   private var hdrHeadroomAnimator: ValueAnimator? = null
   private var currentHdrHeadroom: Float = SDR_HDR_HEADROOM
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    if (MediaPreviewCache.drawable != null && !args.skipSharedElementTransition) {
+    hasSharedElementTransition = MediaPreviewCache.drawable != null && !args.skipSharedElementTransition
+    if (hasSharedElementTransition) {
       val originalCorners = ShapeAppearanceModel.Builder()
         .setTopLeftCornerSize(args.sharedElementArgs.topLeft)
         .setTopRightCornerSize(args.sharedElementArgs.topRight)
@@ -115,6 +122,7 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     }
 
     transitionImageView = findViewById(R.id.transition_image_view)
+    backgroundScrim = findViewById(R.id.background_scrim)
     initializeTransitionImage()
 
     if (Build.VERSION.SDK_INT >= 35) {
@@ -143,9 +151,14 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
           }
         }
 
+        LaunchedEffect(Unit) {
+          snapshotFlow { dismissState.progress }.collect { backgroundScrim.alpha = 1f - it }
+        }
+
         MediaViewerScreen(
           state = state,
-          onEvent = viewModel::onEvent
+          onEvent = viewModel::onEvent,
+          dismissState = dismissState
         )
       }
     }
@@ -275,7 +288,12 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         finish()
       }
       MediaViewerAction.FinishAfterTransition -> {
+        transitionImageView.translationY = dismissState.offsetY
         onBackPressedDispatcher.onBackPressed()
+      }
+      MediaViewerAction.FinishAfterDragDismiss -> {
+        finish()
+        overridePendingTransition(0, 0)
       }
       is MediaViewerAction.ShowToast -> {
         Toast.makeText(this, action.messageResId, Toast.LENGTH_LONG).show()

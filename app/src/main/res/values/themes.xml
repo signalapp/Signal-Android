@@ -15,6 +15,12 @@
 
     <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar"></style>
 
+    <!-- The media viewer paints its own backdrop, and fades it to reveal the chat beneath during drag-to-dismiss. -->
+    <style name="Signal.DayNight.NoActionBar.MediaViewer" parent="Signal.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.BaseLightNoActionBar">
         <!-- leave empty to allow overriding -->
     </style>

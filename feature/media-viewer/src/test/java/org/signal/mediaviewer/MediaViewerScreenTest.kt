@@ -19,11 +19,15 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipeDown
+import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.unit.dp
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.test.core.app.ApplicationProvider
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before
@@ -98,6 +102,68 @@ class MediaViewerScreenTest {
     composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.BACK_BUTTON).performClick()
 
     assertThat(events).contains(MediaViewerEvent.BackClicked)
+  }
+
+  @Test
+  fun `dragging the media down with no shared element flies it away and dismisses`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeDown(startY = centerY, endY = bottom) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events).contains(MediaViewerEvent.DragDismissed(toSharedElement = false))
+  }
+
+  @Test
+  fun `dragging the media up with no shared element flies it away and dismisses`() {
+    setContent(createState())
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeUp(startY = centerY, endY = top) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events).contains(MediaViewerEvent.DragDismissed(toSharedElement = false))
+  }
+
+  @Test
+  fun `dragging the shared element item down dismisses to the shared element`() {
+    setContent(createState(sharedElementAttachmentId = AttachmentId(1)))
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeDown(startY = centerY, endY = bottom) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events).contains(MediaViewerEvent.DragDismissed(toSharedElement = true))
+  }
+
+  @Test
+  fun `releasing a short drag springs the media back`() {
+    val dismissState = DragToDismissState()
+    setContent(createState(), dismissState = dismissState)
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeDown(startY = centerY, endY = centerY + 40.dp.toPx(), durationMillis = 1_000) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events.filterIsInstance<MediaViewerEvent.DragDismissed>()).isEmpty()
+    assertThat(dismissState.offsetY).isEqualTo(0f)
+  }
+
+  @Test
+  fun `dragging a zoomed in image down does not dismiss`() {
+    setContent(createState().copy(zoomedInAttachmentIds = setOf(AttachmentId(1))))
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeDown(startY = centerY, endY = bottom) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events.filterIsInstance<MediaViewerEvent.DragDismissed>()).isEmpty()
+  }
+
+  @Test
+  fun `dragging down while the shared animation is running does not dismiss`() {
+    setContent(createState().copy(isInSharedAnimation = true))
+
+    composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.PAGER).performTouchInput { swipeDown(startY = centerY, endY = bottom) }
+    composeTestRule.waitForIdle()
+
+    assertThat(events.filterIsInstance<MediaViewerEvent.DragDismissed>()).isEmpty()
   }
 
   @Test
@@ -306,13 +372,15 @@ class MediaViewerScreenTest {
 
   private fun setContent(
     state: MediaViewerState,
-    playbackController: MediaViewerPlaybackController = MediaViewerPlaybackController()
+    playbackController: MediaViewerPlaybackController = MediaViewerPlaybackController(),
+    dismissState: DragToDismissState = DragToDismissState()
   ) {
     composeTestRule.setContent {
       MediaViewerScreen(
         state = state,
         onEvent = { events += it },
-        playbackController = playbackController
+        playbackController = playbackController,
+        dismissState = dismissState
       )
     }
   }
@@ -322,7 +390,8 @@ class MediaViewerScreenTest {
     isDraft: Boolean = false,
     chromeVisible: Boolean = true,
     dialog: MediaViewerState.Dialog = MediaViewerState.Dialog.None,
-    messageBodies: Map<Long, StyledString> = emptyMap()
+    messageBodies: Map<Long, StyledString> = emptyMap(),
+    sharedElementAttachmentId: AttachmentId? = null
   ): MediaViewerState {
     return MediaViewerState(
       loadState = MediaViewerState.LoadState.MEDIA_READY,
@@ -332,7 +401,8 @@ class MediaViewerScreenTest {
       chromeVisible = chromeVisible,
       isInSharedAnimation = false,
       dialog = dialog,
-      messageBodies = messageBodies
+      messageBodies = messageBodies,
+      sharedElementAttachmentId = sharedElementAttachmentId
     )
   }
 

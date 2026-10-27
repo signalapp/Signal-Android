@@ -542,6 +542,70 @@ class MediaViewerViewModelTest {
   }
 
   @Test
+  fun `dragging to dismiss toward the shared element finishes with the exit transition`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(MediaViewerEvent.DragDismissed(toSharedElement = true))
+
+    assertThat(actions.last()).isEqualTo(MediaViewerAction.FinishAfterTransition)
+  }
+
+  @Test
+  fun `dragging to dismiss away from the shared element finishes after the drag`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(MediaViewerEvent.DragDismissed(toSharedElement = false))
+
+    assertThat(actions.last()).isEqualTo(MediaViewerAction.FinishAfterDragDismiss)
+  }
+
+  @Test
+  fun `back and drag only return to the shared element from the starting attachment`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(hasSharedElementTransition = true)
+    pagedFlow.value = listOf(createItem(10), createItem(11))
+
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+    assertThat(viewModel.state.value.canDismissToSharedElement).isTrue()
+    assertThat(viewModel.shouldFinishAfterTransition()).isTrue()
+
+    viewModel.onEvent(MediaViewerEvent.PageSettled(1))
+    assertThat(viewModel.state.value.canDismissToSharedElement).isFalse()
+    assertThat(viewModel.shouldFinishAfterTransition()).isFalse()
+  }
+
+  @Test
+  fun `back and drag never return to a shared element when there was no shared element transition`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(hasSharedElementTransition = false)
+    pagedFlow.value = listOf(createItem(10))
+
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+
+    assertThat(viewModel.state.value.canDismissToSharedElement).isFalse()
+    assertThat(viewModel.shouldFinishAfterTransition()).isFalse()
+  }
+
+  @Test
+  fun `the current media is zoomed in only while its page reports being zoomed`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    pagedFlow.value = listOf(createItem(10), createItem(11))
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+
+    viewModel.onEvent(MediaViewerEvent.ImageZoomChanged(AttachmentId(10), isZoomedIn = true))
+    assertThat(viewModel.state.value.isCurrentMediaZoomedIn).isTrue()
+
+    viewModel.onEvent(MediaViewerEvent.PageSettled(1))
+    assertThat(viewModel.state.value.isCurrentMediaZoomedIn).isFalse()
+
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+    assertThat(viewModel.state.value.isCurrentMediaZoomedIn).isTrue()
+
+    viewModel.onEvent(MediaViewerEvent.ImageZoomChanged(AttachmentId(10), isZoomedIn = false))
+    assertThat(viewModel.state.value.isCurrentMediaZoomedIn).isFalse()
+  }
+
+  @Test
   fun `hdr renders only when detected on the current item outside the shared animation`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val item = createItem(10)
@@ -627,9 +691,10 @@ class MediaViewerViewModelTest {
     return collected
   }
 
-  private fun createViewModel(args: MediaIntentFactory.MediaPreviewArgs = createArgs()): MediaViewerViewModel {
+  private fun createViewModel(args: MediaIntentFactory.MediaPreviewArgs = createArgs(), hasSharedElementTransition: Boolean = false): MediaViewerViewModel {
     return MediaViewerViewModel(
       args = args,
+      hasSharedElementTransition = hasSharedElementTransition,
       context = ApplicationProvider.getApplicationContext(),
       repository = repository,
       dataSourceFactory = { dataSource },

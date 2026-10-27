@@ -52,10 +52,15 @@ public class ZoomingImageView extends FrameLayout {
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
   private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
 
+  private static final float ZOOM_EPSILON = 0.01f;
+
   private final PhotoView                 gifView;
   private final SubsamplingScaleImageView subsamplingImageView;
 
-  private @Nullable OnGainmapDetectedListener gainmapDetectedListener;
+  private @Nullable OnGainmapDetectedListener  gainmapDetectedListener;
+  private @Nullable OnZoomStateChangedListener zoomStateChangedListener;
+
+  private boolean lastReportedZoomedIn;
 
   public ZoomingImageView(Context context) {
     this(context, null);
@@ -84,6 +89,15 @@ public class ZoomingImageView extends FrameLayout {
 
     this.gifView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+
+    // PhotoView reports a scale change before applying it, so the zoom check is deferred until it has.
+    this.gifView.setOnScaleChangeListener((scaleFactor, focusX, focusY) -> post(this::notifyZoomStateChanged));
+    this.subsamplingImageView.setOnStateChangedListener(new SubsamplingScaleImageView.DefaultOnStateChangedListener() {
+      @Override
+      public void onScaleChanged(float newScale, int origin) {
+        notifyZoomStateChanged();
+      }
+    });
   }
 
   @Override
@@ -100,6 +114,16 @@ public class ZoomingImageView extends FrameLayout {
   public interface OnGainmapDetectedListener {
     @MainThread
     void onGainmapDetected();
+  }
+
+  /** Fired whenever the visible image becomes zoomed in past its minimum scale, or returns to it. */
+  public void setOnZoomStateChangedListener(@Nullable OnZoomStateChangedListener listener) {
+    this.zoomStateChangedListener = listener;
+  }
+
+  public interface OnZoomStateChangedListener {
+    @MainThread
+    void onZoomStateChanged(boolean isZoomedIn);
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -121,7 +145,10 @@ public class ZoomingImageView extends FrameLayout {
                  .diskCacheStrategy(DiskCacheStrategy.NONE)
                  .dontTransform()
                  .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                 .addListener(ActionRequestListener.onEither(onMediaReady))
+                 .addListener(ActionRequestListener.onEither(() -> {
+                   post(this::notifyZoomStateChanged);
+                   onMediaReady.run();
+                 }))
                  .into(gifView);
   }
 
@@ -176,11 +203,25 @@ public class ZoomingImageView extends FrameLayout {
     });
 
     subsamplingImageView.setImage(ImageSource.uri(uri));
+    notifyZoomStateChanged();
   }
 
   public void cleanup() {
     gifView.setImageDrawable(null);
     subsamplingImageView.recycle();
+    notifyZoomStateChanged();
+  }
+
+  @MainThread
+  private void notifyZoomStateChanged() {
+    boolean zoomedIn = isZoomedIn();
+    if (zoomedIn == lastReportedZoomedIn) {
+      return;
+    }
+    lastReportedZoomedIn = zoomedIn;
+    if (zoomStateChangedListener != null) {
+      zoomStateChangedListener.onZoomStateChanged(zoomedIn);
+    }
   }
 
   @MainThread
@@ -230,6 +271,15 @@ public class ZoomingImageView extends FrameLayout {
     @Override
     public AttachmentRegionDecoder make() throws IllegalAccessException, InstantiationException {
       return new AttachmentRegionDecoder(reporter);
+    }
+  }
+
+  /** Whether the visible image is zoomed in past its minimum scale. */
+  public boolean isZoomedIn() {
+    if (gifView.getVisibility() == View.VISIBLE) {
+      return gifView.getScale() > gifView.getMinimumScale() + ZOOM_EPSILON;
+    } else {
+      return subsamplingImageView.isReady() && subsamplingImageView.getScale() > subsamplingImageView.getMinScale() + ZOOM_EPSILON;
     }
   }
 

@@ -19,6 +19,9 @@ sealed interface MediaViewerAction {
   /** Finish, running the shared element exit transition when still on the entry page. */
   data object FinishAfterTransition : MediaViewerAction
 
+  /** Finish after a drag-to-dismiss has already moved the media off screen. */
+  data object FinishAfterDragDismiss : MediaViewerAction
+
   data class ShowToast(@StringRes val messageResId: Int) : MediaViewerAction
 
   data class ShareMedia(val uri: Uri, val contentType: String?) : MediaViewerAction
