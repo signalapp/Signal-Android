@@ -435,7 +435,7 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
   }
 
   private suspend fun Raise<MessageService.SendError>.sendSyncMessage(targetRecipient: Recipient, primaryResult: MessageService.SendSuccess): MessageService.SendSuccess {
-    val dataMessage = primaryResult.envelopeContent.content.get().dataMessage
+    val dataMessage = primaryResult.envelopeContent.content.get().dataMessage?.let { if (it.isViewOnce == true) it.copy(attachments = emptyList()) else it }
     val editMessage = primaryResult.envelopeContent.content.get().editMessage
     val timestamp = dataMessage?.timestamp ?: editMessage?.dataMessage?.timestamp ?: raise(MessageService.SendError.ApplicationError(IllegalStateException("No timestamp on primary message send!")))
 
@@ -450,25 +450,22 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
       null
     }
 
-    val syncContent = Content(
-      syncMessage = SyncMessage(
-        sent = SyncMessage.Sent(
-          destinationServiceId = targetRecipient.serviceId.get().toString(),
-          timestamp = timestamp,
-          message = dataMessage,
-          editMessage = editMessage,
-          expirationStartTimestamp = if ((dataMessage?.expireTimer ?: 0) > 0) System.currentTimeMillis() else null,
-          unidentifiedStatus = listOf(
-            SyncMessage.Sent.UnidentifiedDeliveryStatus(
-              destinationServiceIdBinary = recipientServiceId.toByteString(),
-              unidentified = primaryResult.sentSealedSender,
-              destinationPniIdentityKey = pniIdentityKey
-            )
+    val syncEnvelope = OutgoingContent.syncSent(
+      SyncMessage.Sent(
+        destinationServiceIdBinary = recipientServiceId.toByteString(),
+        timestamp = timestamp,
+        message = dataMessage,
+        editMessage = editMessage,
+        expirationStartTimestamp = if ((dataMessage?.expireTimer ?: 0) > 0) System.currentTimeMillis() else null,
+        unidentifiedStatus = listOf(
+          SyncMessage.Sent.UnidentifiedDeliveryStatus(
+            destinationServiceIdBinary = recipientServiceId.toByteString(),
+            unidentified = primaryResult.sentSealedSender,
+            destinationPniIdentityKey = pniIdentityKey
           )
         )
       )
     )
-    val syncEnvelope = EnvelopeContent.encrypted(syncContent, ContentHint.IMPLICIT, Optional.empty())
 
     return SignalNetwork.messageService.sendSyncMessage(
       envelopeContent = syncEnvelope,

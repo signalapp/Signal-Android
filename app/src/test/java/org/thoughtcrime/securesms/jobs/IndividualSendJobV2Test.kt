@@ -10,11 +10,13 @@ import androidx.test.core.app.ApplicationProvider
 import arrow.core.left
 import arrow.core.right
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isGreaterThan
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import assertk.assertions.isTrue
+import io.mockk.CapturingSlot
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -73,6 +75,7 @@ import org.thoughtcrime.securesms.util.toDataMessage
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import org.whispersystems.signalservice.api.messages.SignalServiceMessageLimits
+import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.io.IOException
@@ -512,6 +515,48 @@ class IndividualSendJobV2Test {
   }
 
   @Test
+  fun `Given multi-device and a view-once message, when send succeeds, then sync transcript omits attachments`() {
+    every { signalStore.account.isMultiDevice } returns true
+    dataMessage = DataMessage(
+      timestamp = sentTime,
+      isViewOnce = true,
+      attachments = listOf(AttachmentPointer(cdnKey = "cdn-key", key = ByteArray(64).toByteString()))
+    )
+    every { outgoingMessage.toDataMessage() } returns dataMessage.right()
+    val syncSlot = stubSuccessfulSendCapturingSync()
+
+    createAndRunJob()
+
+    val sent = syncSlot.captured.content.get().syncMessage!!.sent!!
+    assertThat(sent.message!!.isViewOnce).isEqualTo(true)
+    assertThat(sent.message!!.attachments).isEmpty()
+  }
+
+  @Test
+  fun `Given multi-device, when send succeeds, then sync transcript is padded`() {
+    every { signalStore.account.isMultiDevice } returns true
+    val syncSlot = stubSuccessfulSendCapturingSync()
+
+    createAndRunJob()
+
+    val syncMessage = syncSlot.captured.content.get().syncMessage!!
+    assertThat(syncMessage.padding).isNotNull()
+    assertThat(syncMessage.padding!!.size).isGreaterThan(0)
+  }
+
+  @Test
+  fun `Given multi-device, when send succeeds, then sync transcript sets the binary destination`() {
+    every { signalStore.account.isMultiDevice } returns true
+    val syncSlot = stubSuccessfulSendCapturingSync()
+
+    createAndRunJob()
+
+    val sent = syncSlot.captured.content.get().syncMessage!!.sent!!
+    assertThat(sent.destinationServiceIdBinary).isEqualTo(recipientAci.toByteString())
+    assertThat(sent.destinationServiceId).isNull()
+  }
+
+  @Test
   fun `Given an edit of an already-edited message, when run, then target the edited revision's dateSent`() {
     val editTargetMessageId = messageId + 1
     val editRevisionSentTime = sentTime + 10_000L
@@ -771,6 +816,16 @@ class IndividualSendJobV2Test {
         onEncrypted = any()
       )
     } returns MessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = sentSealedSender, devices = listOf(1)).right()
+  }
+
+  private fun stubSuccessfulSendCapturingSync(): CapturingSlot<EnvelopeContent> {
+    stubSuccessfulSend()
+    val syncSlot = slot<EnvelopeContent>()
+    val envelopeContent = EnvelopeContent.encrypted(Content(dataMessage = dataMessage), ContentHint.RESENDABLE, Optional.empty())
+    coEvery {
+      messageService.sendSyncMessage(timestamp = any(), envelopeContent = capture(syncSlot), urgent = any(), onEncrypted = any())
+    } returns MessageService.SendSuccess(envelopeContent = envelopeContent, sentSealedSender = false, devices = listOf(1)).right()
+    return syncSlot
   }
 
   /**
