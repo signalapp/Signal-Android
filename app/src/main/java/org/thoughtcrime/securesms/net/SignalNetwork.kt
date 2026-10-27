@@ -20,7 +20,7 @@ import org.signal.network.api.SvrBApi
 import org.signal.network.api.UsernameApi
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.CdnService
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
@@ -107,7 +107,7 @@ open class SignalNetwork {
   open val donationsService: DonationsService
     get() = AppDependencies.donationsService
 
-  open val messageService: MessageService
+  open val messageService: IndividualMessageService
     get() = AppDependencies.messageService
 
   open val profileService: ProfileService
@@ -247,7 +247,7 @@ open class SignalNetwork {
 
     @JvmStatic
     @get:JvmName("messageService")
-    val messageService: MessageService
+    val messageService: IndividualMessageService
       get() = instance.messageService
 
     @JvmStatic

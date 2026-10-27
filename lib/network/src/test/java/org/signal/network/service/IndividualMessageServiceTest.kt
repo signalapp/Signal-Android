@@ -63,7 +63,7 @@ import java.time.Duration
 import java.util.UUID
 import kotlin.time.Duration.Companion.seconds
 
-class MessageServiceTest {
+class IndividualMessageServiceTest {
 
   private val messageApi: MessageApiV2 = mockk()
   private val keysApi: KeysApiV2 = mockk()
@@ -353,7 +353,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = individualUnidentifiedAccessFirst(ByteArray(16) { 1 }), story = false, isOnline = false)
 
-    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    val error = (result as Either.Left).value as IndividualMessageService.SendError.ApplicationError
     assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
     verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
     coVerify(exactly = 0) { messageApi.sendSealedSenderMessage(any(), any(), any(), any(), any(), any()) }
@@ -366,7 +366,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(localAci, envelopeContent, timestamp, sealedSenderAccess = null, story = false, isOnline = false)
 
-    val error = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    val error = (result as Either.Left).value as IndividualMessageService.SendError.ApplicationError
     assertThat(error.exception).isInstanceOf(IllegalArgumentException::class)
     verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
     coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
@@ -383,7 +383,7 @@ class MessageServiceTest {
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
     val left = (result as Either.Left).value
-    assertThat(left).isInstanceOf(MessageService.SendError.NotRegistered::class)
+    assertThat(left).isInstanceOf(IndividualMessageService.SendError.NotRegistered::class)
   }
 
   @Test
@@ -397,7 +397,7 @@ class MessageServiceTest {
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
     val left = (result as Either.Left).value
-    assertThat(left).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    assertThat(left).isInstanceOf(IndividualMessageService.SendError.Unauthorized::class)
     coVerify(exactly = 1) { messageApi.sendStoryMessage(eq(recipientAci), any(), any(), any(), any()) }
   }
 
@@ -434,7 +434,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    val network = (result as Either.Left).value as MessageService.SendError.NetworkError
+    val network = (result as Either.Left).value as IndividualMessageService.SendError.NetworkError
     assertThat(network.exception).isEqualTo(ioError)
   }
 
@@ -448,7 +448,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 30.seconds)))
+    assertThat(result).isEqualTo(Either.Left(IndividualMessageService.SendError.RateLimited(retryAfter = 30.seconds)))
   }
 
   @Test
@@ -462,7 +462,7 @@ class MessageServiceTest {
 
     val result = service.sendSyncMessage(timestamp, envelopeContent, urgent = true, onEncrypted = null)
 
-    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 45.seconds)))
+    assertThat(result).isEqualTo(Either.Left(IndividualMessageService.SendError.RateLimited(retryAfter = 45.seconds)))
   }
 
   @Test
@@ -476,7 +476,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    val app = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    val app = (result as Either.Left).value as IndividualMessageService.SendError.ApplicationError
     assertThat(app.exception).isEqualTo(cause)
   }
 
@@ -489,7 +489,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    val mismatch = (result as Either.Left).value as MessageService.SendError.IdentityMismatch
+    val mismatch = (result as Either.Left).value as IndividualMessageService.SendError.IdentityMismatch
     assertThat(mismatch.exception).isEqualTo(untrusted)
   }
 
@@ -503,7 +503,7 @@ class MessageServiceTest {
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
     verify { protocolStore.archiveSession(SignalProtocolAddress(recipientAci.libSignalServiceId, SignalServiceAddress.DEFAULT_DEVICE_ID)) }
-    val app = (result as Either.Left).value as MessageService.SendError.ApplicationError
+    val app = (result as Either.Left).value as IndividualMessageService.SendError.ApplicationError
     assertThat(app.exception).isEqualTo(noSession)
     coVerify(exactly = 0) { messageApi.sendStoryMessage(any(), any(), any(), any(), any()) }
   }
@@ -517,7 +517,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, largeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    val tooLarge = (result as Either.Left).value as MessageService.SendError.ContentTooLarge
+    val tooLarge = (result as Either.Left).value as IndividualMessageService.SendError.ContentTooLarge
     assertThat(tooLarge.size).isEqualTo(1024)
     assertThat(tooLarge.maxAllowed).isEqualTo(100)
     verify(exactly = 0) { cipher.encrypt(any(), any(), any()) }
@@ -537,7 +537,7 @@ class MessageServiceTest {
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
     val left = (result as Either.Left).value
-    assertThat(left).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+    assertThat(left).isInstanceOf(IndividualMessageService.SendError.PreKeyUnavailable::class)
   }
 
   @Test
@@ -553,7 +553,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = true, isOnline = false)
 
-    assertThat(result).isEqualTo(Either.Left(MessageService.SendError.RateLimited(retryAfter = 60.seconds)))
+    assertThat(result).isEqualTo(Either.Left(IndividualMessageService.SendError.RateLimited(retryAfter = 60.seconds)))
   }
 
   @Test
@@ -623,7 +623,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = sealed, story = true, isOnline = false)
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.Unauthorized::class)
     coVerify(exactly = 1) { keysApi.getPreKey(any(), any(), any()) }
     coVerify(exactly = 0) { messageApi.sendUnsealedSenderMessage(any(), any(), any(), any(), any()) }
   }
@@ -638,7 +638,7 @@ class MessageServiceTest {
 
     val result = service.sendMessage(recipientAci, envelopeContent, timestamp, sealedSenderAccess = null, story = false, isOnline = false)
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.Unauthorized::class)
     coVerify(exactly = 1) { keysApi.getPreKey(any(), any(), isNull()) }
   }
 
@@ -650,7 +650,7 @@ class MessageServiceTest {
     val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
     val result = either { with(service) { initializeSession(recipientAci, recipientDevice(1), sealed) } }
 
-    assertThat(result).isEqualTo(Either.Right(MessageService.SessionInitResult.InvalidAccessKeyForPreKeyFetch))
+    assertThat(result).isEqualTo(Either.Right(IndividualMessageService.SessionInitResult.InvalidAccessKeyForPreKeyFetch))
   }
 
   @Test
@@ -660,7 +660,7 @@ class MessageServiceTest {
 
     val result = either { with(service) { initializeSession(recipientAci, recipientDevice(1), null) } }
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.Unauthorized::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.Unauthorized::class)
   }
 
   @Test
@@ -670,7 +670,7 @@ class MessageServiceTest {
 
     val result = either { with(service) { initializeSession(recipientAci, recipientDevice(1), null) } }
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.NotRegistered::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.NotRegistered::class)
   }
 
   @Test
@@ -680,7 +680,7 @@ class MessageServiceTest {
 
     val result = either { with(service) { initializeSession(recipientAci, recipientDevice(2), null) } }
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.PreKeyUnavailable::class)
   }
 
   @Test
@@ -691,7 +691,7 @@ class MessageServiceTest {
     val sealed = individualUnidentifiedAccessFirst(ByteArray(16) { 1 })
     val result = either { with(service) { initializeSession(recipientAci, recipientDevice(1), sealed) } }
 
-    assertThat((result as Either.Left).value).isInstanceOf(MessageService.SendError.PreKeyUnavailable::class)
+    assertThat((result as Either.Left).value).isInstanceOf(IndividualMessageService.SendError.PreKeyUnavailable::class)
   }
 
   private fun recipientDevice(deviceId: Int): SignalProtocolAddress = SignalProtocolAddress(recipientAci.libSignalServiceId, deviceId)
@@ -781,8 +781,8 @@ class MessageServiceTest {
     )
   }
 
-  private fun newUnspiedService(): MessageService {
-    return MessageService(
+  private fun newUnspiedService(): IndividualMessageService {
+    return IndividualMessageService(
       localAddress = localAddress,
       localDeviceId = 1,
       messageApi = messageApi,
@@ -797,11 +797,11 @@ class MessageServiceTest {
    * Spy with `createSessionFromPreKeys` stubbed so tests don't exercise real crypto / native session building.
    * Prekey fetches and their error mapping run for real.
    */
-  private fun newService(maxContentSizeBytes: Long = 0L): MessageService {
+  private fun newService(maxContentSizeBytes: Long = 0L): IndividualMessageService {
     every { protocolStore.containsSession(any()) } returns true
 
-    val spy: MessageService = spyk(
-      MessageService(
+    val spy: IndividualMessageService = spyk(
+      IndividualMessageService(
         localAddress = localAddress,
         localDeviceId = 1,
         messageApi = messageApi,
@@ -814,7 +814,7 @@ class MessageServiceTest {
     )
     every {
       with(spy) {
-        any<Raise<MessageService.SendError>>().createSessionFromPreKeys(any(), any(), any())
+        any<Raise<IndividualMessageService.SendError>>().createSessionFromPreKeys(any(), any(), any())
       }
     } just Runs
     return spy
@@ -822,7 +822,7 @@ class MessageServiceTest {
 
   @Test
   fun `ChallengeRequired toString leaves out the token`() {
-    val error = MessageService.SendError.ChallengeRequired(token = "secret-token-123", options = setOf(ChallengeOption.PUSH_CHALLENGE), retryAfter = 5.seconds)
+    val error = IndividualMessageService.SendError.ChallengeRequired(token = "secret-token-123", options = setOf(ChallengeOption.PUSH_CHALLENGE), retryAfter = 5.seconds)
 
     assertThat(error.toString()).doesNotContain("secret-token-123")
   }

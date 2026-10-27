@@ -68,7 +68,7 @@ import kotlin.time.toKotlinDuration
  * Sync transcripts are the caller's responsibility — issue a second [sendMessage] to the local address
  * with a SyncMessage.Sent payload after a successful primary send.
  */
-open class MessageService(
+open class IndividualMessageService(
   private val localAddress: SignalServiceAddress,
   private val localDeviceId: Int,
   private val messageApi: MessageApiV2,
@@ -80,7 +80,7 @@ open class MessageService(
 ) {
 
   companion object {
-    private val TAG = Log.tag(MessageService::class)
+    private val TAG = Log.tag(IndividualMessageService::class)
 
     private const val MAX_DEVICE_RECOVERY_ATTEMPTS = 3
   }

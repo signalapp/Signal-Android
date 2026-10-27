@@ -4,7 +4,7 @@ import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -128,20 +128,20 @@ class SendDeliveryReceiptJob private constructor(
       },
       ifLeft = { error ->
         when (error) {
-          is MessageService.SendError.IdentityMismatch,
-          is MessageService.SendError.NotRegistered,
-          is MessageService.SendError.Unauthorized,
-          is MessageService.SendError.ContentTooLarge -> {
+          is IndividualMessageService.SendError.IdentityMismatch,
+          is IndividualMessageService.SendError.NotRegistered,
+          is IndividualMessageService.SendError.Unauthorized,
+          is IndividualMessageService.SendError.ContentTooLarge -> {
             Log.w(TAG, "Failed to send delivery receipt.", error)
             Result.failure()
           }
 
-          is MessageService.SendError.ChallengeRequired -> error.tryPushChallengeAndToJobResult(TAG, defaultBackoff())
-          is MessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
-          is MessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
-          is MessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
-          is MessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
-          is MessageService.SendError.ApplicationError -> error.toJobResult(TAG, "delivery receipt", defaultBackoff())
+          is IndividualMessageService.SendError.ChallengeRequired -> error.tryPushChallengeAndToJobResult(TAG, defaultBackoff())
+          is IndividualMessageService.SendError.PreKeyUnavailable -> error.toJobResult(TAG, defaultBackoff())
+          is IndividualMessageService.SendError.SessionAttemptsExhausted -> error.toJobResult(TAG, defaultBackoff())
+          is IndividualMessageService.SendError.RateLimited -> error.toJobResult(TAG, defaultBackoff())
+          is IndividualMessageService.SendError.NetworkError -> error.toJobResult(TAG, defaultBackoff())
+          is IndividualMessageService.SendError.ApplicationError -> error.toJobResult(TAG, "delivery receipt", defaultBackoff())
         }
       }
     )

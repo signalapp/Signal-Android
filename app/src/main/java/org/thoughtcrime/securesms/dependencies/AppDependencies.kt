@@ -44,7 +44,7 @@ import org.signal.network.config.SignalServiceConfiguration
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.CdnService
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
@@ -335,7 +335,7 @@ object AppDependencies {
     get() = networkModule.signalServiceMessageSender
 
   @JvmStatic
-  val messageService: MessageService
+  val messageService: IndividualMessageService
     get() = networkModule.messageService
 
   @JvmStatic
@@ -515,7 +515,7 @@ object AppDependencies {
     fun provideGroupsV2Operations(signalServiceConfiguration: SignalServiceConfiguration): GroupsV2Operations
     fun provideSignalServiceAccountManager(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, accountApi: AccountApi, pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager
     fun provideSignalServiceMessageSender(protocolStore: SignalServiceDataStore, pushServiceSocket: PushServiceSocket, messageApi: MessageApi, keysApi: KeysApi, attachmentUploader: AttachmentUploader): SignalServiceMessageSender
-    fun provideMessageService(protocolStore: SignalServiceDataStore, messageApiV2: MessageApiV2, keysApiV2: KeysApiV2): MessageService
+    fun provideMessageService(protocolStore: SignalServiceDataStore, messageApiV2: MessageApiV2, keysApiV2: KeysApiV2): IndividualMessageService
     fun provideArchiveApiV2(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, signalServiceConfiguration: SignalServiceConfiguration): ArchiveApiV2
     fun provideArchiveService(archiveApi: ArchiveApiV2): ArchiveService
     fun provideCdnService(cdnApi: CdnApi, attachmentApi: AttachmentApi): CdnService

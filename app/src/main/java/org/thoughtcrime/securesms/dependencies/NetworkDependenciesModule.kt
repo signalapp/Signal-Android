@@ -35,7 +35,7 @@ import org.signal.network.config.TrustStore
 import org.signal.network.rest.SignalRestClient
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.CdnService
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.signal.network.service.StorageServiceService
 import org.signal.network.service.TwoFactorMethodService
 import org.signal.network.service.UsernameService
@@ -107,7 +107,7 @@ class NetworkDependenciesModule(
 
   val keysApiV2: KeysApiV2 by lazy { KeysApiV2(authWebSocket, unauthWebSocket) }
 
-  val messageService: MessageService by lazy { provider.provideMessageService(protocolStore, messageApiV2, keysApiV2) }
+  val messageService: IndividualMessageService by lazy { provider.provideMessageService(protocolStore, messageApiV2, keysApiV2) }
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
     provider.provideIncomingMessageObserver(authWebSocket, unauthWebSocket)

@@ -19,7 +19,7 @@ import org.signal.core.util.UuidUtil
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -457,7 +457,7 @@ private fun List<AttachmentPointer>.capIncrementalMacs(max: Int): List<Attachmen
   }
 }
 
-fun MessageService.SendSuccess.toSendMessageResult(serviceId: ServiceId): SendMessageResult {
+fun IndividualMessageService.SendSuccess.toSendMessageResult(serviceId: ServiceId): SendMessageResult {
   return SendMessageResult.success(SignalServiceAddress(serviceId), devices, sentSealedSender, false, 0L, envelopeContent.content)
 }
 

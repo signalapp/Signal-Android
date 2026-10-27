@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
-import org.signal.network.service.MessageService
+import org.signal.network.service.IndividualMessageService
 import org.signal.ringrtc.CallId
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -167,21 +167,21 @@ class CallSyncEventJob private constructor(
       ifRight = { EventResult.Done },
       ifLeft = { error ->
         when (error) {
-          is MessageService.SendError.IdentityMismatch,
-          is MessageService.SendError.NotRegistered,
-          is MessageService.SendError.Unauthorized,
-          is MessageService.SendError.ContentTooLarge -> {
+          is IndividualMessageService.SendError.IdentityMismatch,
+          is IndividualMessageService.SendError.NotRegistered,
+          is IndividualMessageService.SendError.Unauthorized,
+          is IndividualMessageService.SendError.ContentTooLarge -> {
             Log.w(TAG, "Failed to send call event sync message for ${callSyncEvent.callId}. Dropping.", error)
             EventResult.Done
           }
 
-          is MessageService.SendError.ChallengeRequired -> EventResult.StopAndRetry(error.tryPushChallengeAndToJobResult(TAG, defaultBackoff()))
-          is MessageService.SendError.RateLimited -> EventResult.StopAndRetry(error.toJobResult(TAG, defaultBackoff()))
+          is IndividualMessageService.SendError.ChallengeRequired -> EventResult.StopAndRetry(error.tryPushChallengeAndToJobResult(TAG, defaultBackoff()))
+          is IndividualMessageService.SendError.RateLimited -> EventResult.StopAndRetry(error.toJobResult(TAG, defaultBackoff()))
 
-          is MessageService.SendError.PreKeyUnavailable,
-          is MessageService.SendError.SessionAttemptsExhausted,
-          is MessageService.SendError.NetworkError,
-          is MessageService.SendError.ApplicationError -> {
+          is IndividualMessageService.SendError.PreKeyUnavailable,
+          is IndividualMessageService.SendError.SessionAttemptsExhausted,
+          is IndividualMessageService.SendError.NetworkError,
+          is IndividualMessageService.SendError.ApplicationError -> {
             Log.w(TAG, "Unable to send call event sync message for ${callSyncEvent.callId}", error)
             EventResult.Retry
           }
