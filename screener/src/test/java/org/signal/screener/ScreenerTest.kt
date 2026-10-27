@@ -242,6 +242,30 @@ class ScreenerTest : LayoutStressTest() {
   }
 
   @Test
+  fun `a pseudo-language config renders the generated translations`() {
+    val problems = composeTestRule.findLayoutProblems(
+      configs = listOf(StressConfig.Baseline, StressConfig(name = "pseudo-expansive", locale = PseudoLanguage.EXPANSIVE.locale)),
+      checks = setOf(LayoutCheck.TEXT_OVERFLOW)
+    ) {
+      Text(text = stringResource(org.signal.core.ui.R.string.Permissions_continue), maxLines = 1, modifier = Modifier.width(80.dp))
+    }
+
+    assertThat(problems.map { it.config.name }).containsExactly("pseudo-expansive")
+  }
+
+  @Test
+  fun `a pseudo-language written in arabic script still renders its translations`() {
+    val problems = composeTestRule.findLayoutProblems(
+      configs = listOf(StressConfig(name = "pseudo-compound + Arab", locale = "${PseudoLanguage.COMPOUND.locale}-Arab")),
+      checks = setOf(LayoutCheck.TEXT_OVERFLOW)
+    ) {
+      Text(text = stringResource(org.signal.core.ui.R.string.Permissions_continue), maxLines = 1, modifier = Modifier.width(80.dp))
+    }
+
+    assertThat(problems.map { it.config.name }).containsExactly("pseudo-compound + Arab")
+  }
+
+  @Test
   fun `content off the top is fine when something on screen can scroll up`() {
     val problems = composeTestRule.findLayoutProblems(configs = listOf(StressConfig.Baseline)) {
       ScrolledPastTopBar(initialScroll = 50)

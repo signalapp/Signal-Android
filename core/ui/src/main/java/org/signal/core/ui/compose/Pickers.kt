@@ -10,20 +10,24 @@ import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -37,13 +41,18 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import org.signal.core.ui.R
@@ -71,6 +80,8 @@ object Pickers {
   const val TEST_TAG_DURATION_UNIT_WHEEL = "duration-unit-wheel"
 
   private val WheelItemHeight = 48.dp
+  private val WheelItemPadding = 8.dp
+  private val MinWheelWidth = 48.dp
 
   /**
    * A scrolling wheel that snaps to one of [items], the Compose counterpart to a framework `NumberPicker`. The selected
@@ -108,7 +119,7 @@ object Pickers {
     Box(
       contentAlignment = Alignment.Center,
       modifier = modifier
-        .widthIn(min = 64.dp)
+        .widthIn(min = MinWheelWidth)
         .height(WheelItemHeight * 3)
     ) {
       LazyColumn(
@@ -136,7 +147,14 @@ object Pickers {
               style = MaterialTheme.typography.titleMedium,
               fontWeight = if (isSelected) FontWeight.Medium else FontWeight.Normal,
               color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
-              modifier = Modifier.padding(horizontal = 8.dp)
+              maxLines = 1,
+              softWrap = false,
+              overflow = TextOverflow.Ellipsis,
+              autoSize = TextAutoSize.StepBased(
+                minFontSize = 12.sp,
+                maxFontSize = MaterialTheme.typography.titleMedium.fontSize
+              ),
+              modifier = Modifier.padding(horizontal = WheelItemPadding)
             )
           }
         }
@@ -216,31 +234,54 @@ object Pickers {
   ) {
     val unit = units[unitIndex]
     val values = (unit.minValue..unit.maxValue).toList()
+    val labels = units.map { stringResource(it.label) }
+    val labelWidth = widestWheelItem(labels)
 
-    Row(
-      horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-      verticalAlignment = Alignment.CenterVertically,
+    BoxWithConstraints(
       modifier = modifier
         .fillMaxWidth()
         .heightIn(min = WheelItemHeight * 3)
     ) {
-      Wheel(
-        items = values.map { it.toString() },
-        selectedIndex = values.indexOf(value),
-        onSelectedIndexChange = { onValueChange(values[it]) },
-        modifier = Modifier
-          .weight(1f)
-          .testTag(TEST_TAG_DURATION_VALUE_WHEEL)
-      )
+      val spacing = 16.dp
+      val available = maxWidth - spacing
+      val unitWidth = maxOf(available / 2, minOf(labelWidth, available - MinWheelWidth))
 
-      Wheel(
-        items = units.map { stringResource(it.label) },
-        selectedIndex = unitIndex,
-        onSelectedIndexChange = onUnitIndexChange,
-        modifier = Modifier
-          .weight(1f)
-          .testTag(TEST_TAG_DURATION_UNIT_WHEEL)
-      )
+      Row(
+        horizontalArrangement = Arrangement.spacedBy(spacing, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        Wheel(
+          items = values.map { it.toString() },
+          selectedIndex = values.indexOf(value),
+          onSelectedIndexChange = { onValueChange(values[it]) },
+          modifier = Modifier
+            .width(available - unitWidth)
+            .testTag(TEST_TAG_DURATION_VALUE_WHEEL)
+        )
+
+        Wheel(
+          items = labels,
+          selectedIndex = unitIndex,
+          onSelectedIndexChange = onUnitIndexChange,
+          modifier = Modifier
+            .width(unitWidth)
+            .testTag(TEST_TAG_DURATION_UNIT_WHEEL)
+        )
+      }
+    }
+  }
+
+  /** How wide a [Wheel] has to be to show the widest of [items] at full size. */
+  @Composable
+  private fun widestWheelItem(items: List<String>): Dp {
+    val textMeasurer = rememberTextMeasurer()
+    val style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium)
+    val density = LocalDensity.current
+
+    return remember(items, style, density) {
+      val widestPx = items.maxOfOrNull { textMeasurer.measure(it, style, maxLines = 1, softWrap = false).size.width } ?: 0
+      with(density) { widestPx.toDp() } + WheelItemPadding * 2
     }
   }
 
@@ -268,12 +309,14 @@ object Pickers {
 @PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
-private fun DurationDialogPreview() {
-  Pickers.DurationDialog(
-    title = "Custom time",
-    initialDuration = 3.hours,
-    units = listOf(DurationPickerUnit.MINUTES, DurationPickerUnit.HOURS, DurationPickerUnit.DAYS),
-    onConfirm = {},
-    onDismiss = {}
-  )
+private fun DurationWheelsPreview() {
+  Surface {
+    Pickers.DurationWheels(
+      units = listOf(DurationPickerUnit.MINUTES, DurationPickerUnit.HOURS, DurationPickerUnit.DAYS),
+      unitIndex = 1,
+      value = 3,
+      onUnitIndexChange = {},
+      onValueChange = {}
+    )
+  }
 }

@@ -13,6 +13,7 @@ plugins {
   // Instead, plugin versions are controlled through the dependencies block in the build.gradle.kts.
   id("com.android.library")
   id("ktlint")
+  id("pseudo-locales")
 }
 
 android {

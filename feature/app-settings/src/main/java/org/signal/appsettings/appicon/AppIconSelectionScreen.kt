@@ -13,6 +13,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,19 +29,24 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.appSettingsScreen
@@ -50,7 +56,10 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.R as CoreUiR
 
-private const val COLUMN_COUNT = 4
+private const val MAX_COLUMN_COUNT = 4
+private const val MIN_COLUMN_COUNT = 2
+private val IconSize = 64.dp
+private val LabelPadding = 4.dp
 
 @VisibleForTesting
 object AppIconSelectionTestTags {
@@ -92,20 +101,13 @@ fun AppIconSelectionScreen(
         modifier = Modifier.padding(horizontal = 24.dp)
       )
       Spacer(modifier = Modifier.size(12.dp))
-      Column(
+      IconGrid(
+        selectedIcon = state.selectedIcon,
+        onEvent = onEvent,
         modifier = Modifier
           .fillMaxWidth()
-          .padding(horizontal = 18.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-      ) {
-        AppIconPreset.entries.chunked(COLUMN_COUNT).forEach { presets ->
-          IconRow(
-            presets = presets,
-            selectedIcon = state.selectedIcon,
-            onEvent = onEvent
-          )
-        }
-      }
+          .padding(horizontal = 18.dp)
+      )
     }
   }
 
@@ -156,10 +158,53 @@ private fun ChangeIconDialog(pendingIcon: AppIconPreset, onEvent: (AppIconSelect
 }
 
 /**
- * One row of icons that the user may choose from.
+ * The icons to choose from, in as many columns (up to [MAX_COLUMN_COUNT]) as leave room for the longest word of any
+ * label at the user's font size, so labels wrap between words rather than inside them. Fewer columns reflow the grid
+ * rather than shrinking the labels.
  */
 @Composable
-private fun IconRow(presets: List<AppIconPreset>, selectedIcon: AppIconPreset, onEvent: (AppIconSelectionEvent) -> Unit) {
+private fun IconGrid(selectedIcon: AppIconPreset, onEvent: (AppIconSelectionEvent) -> Unit, modifier: Modifier = Modifier) {
+  val labelWidth = widestWord(AppIconPreset.entries.map { presetLabel(it) })
+
+  BoxWithConstraints(modifier = modifier) {
+    val cellWidth = maxOf(IconSize, labelWidth + LabelPadding * 2)
+    val columnCount = (maxWidth / cellWidth).toInt().coerceIn(MIN_COLUMN_COUNT, MAX_COLUMN_COUNT)
+
+    Column(
+      modifier = Modifier.fillMaxWidth(),
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      AppIconPreset.entries.chunked(columnCount).forEach { presets ->
+        IconRow(
+          presets = presets,
+          columnCount = columnCount,
+          selectedIcon = selectedIcon,
+          onEvent = onEvent
+        )
+      }
+    }
+  }
+}
+
+@Composable
+private fun widestWord(labels: List<String>): Dp {
+  val textMeasurer = rememberTextMeasurer()
+  val style = MaterialTheme.typography.bodySmall
+  val density = LocalDensity.current
+
+  return remember(labels, style, density) {
+    val words = labels.flatMap { it.split(' ') }
+    val widestPx = words.maxOfOrNull { textMeasurer.measure(it, style, maxLines = 1, softWrap = false).size.width } ?: 0
+    with(density) { widestPx.toDp() }
+  }
+}
+
+/**
+ * One row of icons that the user may choose from. A short last row keeps its icons in the same columns as the rows
+ * above it.
+ */
+@Composable
+private fun IconRow(presets: List<AppIconPreset>, columnCount: Int, selectedIcon: AppIconPreset, onEvent: (AppIconSelectionEvent) -> Unit) {
   Row(modifier = Modifier.fillMaxWidth()) {
     presets.forEach { preset ->
       IconGridElement(
@@ -171,6 +216,10 @@ private fun IconRow(presets: List<AppIconPreset>, selectedIcon: AppIconPreset, o
           .weight(1f)
           .testTag(AppIconSelectionTestTags.icon(preset))
       )
+    }
+
+    repeat(columnCount - presets.size) {
+      Spacer(modifier = Modifier.weight(1f))
     }
   }
 }
@@ -184,7 +233,7 @@ private fun IconGridElement(preset: AppIconPreset, isSelected: Boolean, onClick:
     modifier = modifier,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
-    val boxModifier = Modifier.size(64.dp)
+    val boxModifier = Modifier.size(IconSize)
     Box(
       modifier = if (isSelected) boxModifier.border(3.dp, MaterialTheme.colorScheme.onBackground, CircleShape) else boxModifier
     ) {
@@ -195,7 +244,8 @@ private fun IconGridElement(preset: AppIconPreset, isSelected: Boolean, onClick:
       text = presetLabel(preset),
       textAlign = TextAlign.Center,
       style = MaterialTheme.typography.bodySmall.copy(hyphens = Hyphens.Auto),
-      color = MaterialTheme.colorScheme.onSurfaceVariant
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(horizontal = LabelPadding)
     )
   }
 }
@@ -258,6 +308,10 @@ private fun CaveatWarning(onClick: () -> Unit, modifier: Modifier = Modifier) {
 
 @Composable
 private fun presetLabel(preset: AppIconPreset): String {
+  if (preset.labelResId == null && LocalInspectionMode.current) {
+    return "Signal"
+  }
+
   return stringResource(preset.labelResId ?: LocalContext.current.applicationInfo.labelRes)
 }
 

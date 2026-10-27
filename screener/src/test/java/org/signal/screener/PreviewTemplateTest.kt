@@ -50,8 +50,12 @@ class PreviewTemplateTest {
   fun `template lists the failing configs above its function`() {
     val template = PreviewTemplate(functionName = "MyScreenPreview", annotations = listOf("@PreviewWrapper(SignalPreviewWrapper::class)"), contentHint = "MyScreen()")
 
-    assertThat(template.render(listOf(StressConfig.Baseline, StressConfig.LargestFontLandscape))).isEqualTo(
+    val configs = listOf(StressConfig.Baseline, StressConfig.LargestFontLandscape)
+
+    assertThat(template.render(failingConfigs = configs, allConfigs = configs)).isEqualTo(
       """
+      Reproduce in the IDE with a preview like this:
+
       @Preview(name = "baseline", device = "spec:width=360dp,height=780dp")
       @Preview(name = "font 2x + landscape", device = "spec:width=780dp,height=360dp", fontScale = 2f)
       @PreviewWrapper(SignalPreviewWrapper::class)
@@ -61,5 +65,38 @@ class PreviewTemplateTest {
       }
       """.trimIndent()
     )
+  }
+
+  @Test
+  fun `template for the default configs uses StressTestPreview and names the failing previews`() {
+    val template = PreviewTemplate(functionName = "MyScreenPreview", annotations = listOf("@PreviewWrapper(SignalPreviewWrapper::class)"), contentHint = "MyScreen()")
+    val failing = StressConfig.Default.take(2)
+
+    assertThat(template.render(failingConfigs = failing, allConfigs = StressConfig.Default)).isEqualTo(
+      """
+      Reproduce in the IDE with this preview, and look at its "${failing[0].name}", "${failing[1].name}" previews:
+
+      @StressTestPreview
+      @PreviewWrapper(SignalPreviewWrapper::class)
+      @Composable
+      private fun MyScreenPreview() {
+        // MyScreen()
+      }
+      """.trimIndent()
+    )
+  }
+
+  @Test
+  fun `group is added last`() {
+    assertThat(StressConfig.Baseline.toPreviewAnnotation(group = "stress test"))
+      .isEqualTo("""@Preview(name = "baseline", device = "spec:width=360dp,height=780dp", group = "stress test")""")
+  }
+
+  @Test
+  fun `pseudo-languages become bcp-47 qualifiers`() {
+    val config = StressConfig(name = "pseudo-compound + RTL", layoutDirection = LayoutDirection.Rtl, locale = PseudoLanguage.COMPOUND.locale)
+
+    assertThat(config.toPreviewAnnotation())
+      .isEqualTo("""@Preview(name = "pseudo-compound + RTL", device = "spec:width=360dp,height=780dp", locale = "b+qab+Arab")""")
   }
 }

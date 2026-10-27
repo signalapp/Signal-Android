@@ -12,14 +12,14 @@ private const val DEVICE = 0
 private const val DISPLAY_SIZE = 1
 private const val FONT_SCALE = 2
 private const val LAYOUT_DIRECTION = 3
-private const val LOCALE = 4
+private const val LANGUAGE = 4
 
 /**
  * The dimensions a layout should pass its checks under, combined into [StressConfig]s.
  *
  * [displaySizes] are the system "Display size" setting's scale factors, which shrink a device's window in dp.
- * The default [locales] are German, which has the longest unbreakable words of our Latin-script translations, and
- * French, which has the longest short UI strings. The first value of each dimension is its everyday default.
+ * The default [languages] are generated from the English strings, so they don't change when translations land.
+ * The first value of each dimension is its everyday default, and a null language is English.
  */
 data class StressMatrix(
   val devices: Map<String, DpSize> = mapOf(
@@ -30,7 +30,7 @@ data class StressMatrix(
   val displaySizes: List<Float> = listOf(1f, LARGEST_DISPLAY_SIZE),
   val fontScales: List<Float> = listOf(1f, 2f),
   val layoutDirections: List<LayoutDirection> = listOf(LayoutDirection.Ltr, LayoutDirection.Rtl),
-  val locales: List<String?> = listOf(null, "de", "fr")
+  val languages: List<StressLanguage?> = listOf(null, PseudoLanguage.EXPANSIVE, PseudoLanguage.COMPOUND)
 ) {
 
   companion object {
@@ -39,7 +39,7 @@ data class StressMatrix(
   }
 
   private val dimensions: List<Int>
-    get() = listOf(devices.size, displaySizes.size, fontScales.size, layoutDirections.size, locales.size)
+    get() = listOf(devices.size, displaySizes.size, fontScales.size, layoutDirections.size, languages.size)
 
   /** Every combination of every dimension. */
   fun exhaustive(): List<StressConfig> {
@@ -95,14 +95,14 @@ data class StressMatrix(
     val displaySize = displaySizes[this[DISPLAY_SIZE]]
     val fontScale = fontScales[this[FONT_SCALE]]
     val layoutDirection = layoutDirections[this[LAYOUT_DIRECTION]]
-    val locale = locales[this[LOCALE]]
+    val language = languages[this[LANGUAGE]]
 
     val name = buildList {
       add(deviceName)
       if (displaySize != 1f) add("display ${StressConfig.formatScale(displaySize)}x")
       if (fontScale != 1f) add("font ${StressConfig.formatScale(fontScale)}x")
       if (layoutDirection == LayoutDirection.Rtl) add("RTL")
-      if (locale != null) add(locale)
+      if (language != null) add(language.label)
     }.joinToString(" + ")
 
     return StressConfig(
@@ -110,7 +110,7 @@ data class StressMatrix(
       windowSize = StressConfig.WindowSizes.atDisplaySize(deviceSize, displaySize),
       fontScale = fontScale,
       layoutDirection = layoutDirection,
-      locale = locale
+      locale = language?.locale
     )
   }
 }

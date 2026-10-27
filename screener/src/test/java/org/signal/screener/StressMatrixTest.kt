@@ -49,7 +49,7 @@ class StressMatrixTest {
   fun `names list every value that is not the everyday default`() {
     val config = matrix.exhaustive().last()
 
-    assertThat(config.name).isEqualTo("tablet + display 1.3x + font 2x + RTL + fr")
+    assertThat(config.name).isEqualTo("tablet + display 1.3x + font 2x + RTL + pseudo-compound")
     assertThat(config.layoutDirection).isEqualTo(LayoutDirection.Rtl)
   }
 

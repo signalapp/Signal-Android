@@ -49,7 +49,6 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
@@ -117,8 +116,6 @@ fun AddGroupDetailsScreen(
   }
 }
 
-private val MIN_HEIGHT_FOR_STICKY_HEADER = 480.dp
-
 @Composable
 private fun AddGroupDetailsContent(
   state: AddGroupDetailsState,
@@ -132,8 +129,6 @@ private fun AddGroupDetailsContent(
       focusRequester.requestFocus()
     }
   }
-
-  val isHeaderSticky = LocalConfiguration.current.screenHeightDp.dp >= MIN_HEIGHT_FOR_STICKY_HEADER
 
   val header: @Composable () -> Unit = {
     Column {
@@ -151,22 +146,15 @@ private fun AddGroupDetailsContent(
     }
   }
 
-  if (isHeaderSticky) {
-    Column(modifier = Modifier.fillMaxSize()) {
-      header()
-      MemberList(state = state, onEvent = onEvent, modifier = Modifier.weight(1f))
-    }
-  } else {
-    MemberList(state = state, onEvent = onEvent, header = header, modifier = Modifier.fillMaxSize())
-  }
+  MemberList(state = state, onEvent = onEvent, header = header, modifier = Modifier.fillMaxSize())
 }
 
 @Composable
 private fun MemberList(
   state: AddGroupDetailsState,
   onEvent: (AddGroupDetailsEvent) -> Unit,
-  modifier: Modifier = Modifier,
-  header: (@Composable () -> Unit)? = null
+  header: @Composable () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   LazyColumn(
     contentPadding = PaddingValues(bottom = 96.dp),
@@ -176,10 +164,8 @@ private fun MemberList(
       .imePadding()
       .testTag(AddGroupDetailsTestTags.SCROLLER)
   ) {
-    if (header != null) {
-      item(key = "header") {
-        header()
-      }
+    item(key = "header") {
+      header()
     }
 
     if (state.members.isEmpty()) {

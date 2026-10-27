@@ -82,9 +82,9 @@ data class StressConfig(
 
   /**
    * `@Preview` has no layout direction, so RTL is expressed the way `@RtlPreview` does it: as the locale written in
-   * Arabic script.
+   * Arabic script. Three-letter languages, like the pseudo-languages, can only be written as BCP-47 qualifiers.
    */
-  internal fun toPreviewAnnotation(): String {
+  internal fun toPreviewAnnotation(group: String? = null): String {
     val args = mutableListOf(
       "name = \"$name\"",
       "device = \"spec:width=${windowSize.width.value.toInt()}dp,height=${windowSize.height.value.toInt()}dp\""
@@ -99,12 +99,16 @@ data class StressConfig(
       args += "locale = \"$previewLocale\""
     }
 
+    if (group != null) {
+      args += "group = \"$group\""
+    }
+
     return "@Preview(${args.joinToString()})"
   }
 
   private fun previewLocale(): String? {
     val parts = (locale ?: if (layoutDirection == LayoutDirection.Rtl) "en" else return null).split("-")
     val subtags = if (layoutDirection == LayoutDirection.Rtl) listOf(parts.first(), "Arab") + parts.drop(1) else parts
-    return if (subtags.size == 1) subtags.single() else "b+" + subtags.joinToString("+")
+    return if (subtags.size == 1 && subtags.single().length == 2) subtags.single() else "b+" + subtags.joinToString("+")
   }
 }

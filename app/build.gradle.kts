@@ -25,6 +25,7 @@ plugins {
   id("com.squareup.wire")
   id("translations")
   id("licenses")
+  id("pseudo-locales")
 }
 
 val staticIps = Properties().apply { file("static-ips.properties").reader().use { load(it) } }

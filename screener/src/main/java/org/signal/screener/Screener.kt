@@ -124,9 +124,7 @@ private fun failureMessage(problems: List<LayoutProblem>, configs: List<StressCo
     appendLine("Layout checks failed, ${grouped.size} problem(s):")
     grouped.forEach { appendLine("  - $it") }
     appendLine()
-    appendLine("Reproduce in the IDE with a preview like this:")
-    appendLine()
-    append(previewTemplate.render(failingConfigs))
+    append(previewTemplate.render(failingConfigs, configs))
   }
 }
 
