@@ -6,15 +6,11 @@
 package org.thoughtcrime.securesms.badges.self.overview
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.signal.appsettings.badges.BadgesOverviewAction
 import org.signal.appsettings.badges.BadgesOverviewEvent
 import org.signal.appsettings.badges.BadgesOverviewState
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
@@ -37,10 +33,8 @@ class BadgesOverviewViewModel(
   }
 
   private val _state = MutableStateFlow(BadgesOverviewState())
-  private val _actions = Channel<BadgesOverviewAction>(Channel.BUFFERED)
 
   val state: StateFlow<BadgesOverviewState> = _state.asStateFlow()
-  val actions: Flow<BadgesOverviewAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
@@ -76,13 +70,14 @@ class BadgesOverviewViewModel(
       is BadgesOverviewEvent.DisplayBadgesOnProfileToggled -> setDisplayBadgesOnProfile(event.enabled)
       BadgesOverviewEvent.FeaturedBadgeClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Featured)
       BadgesOverviewEvent.BadgeSheetDismissed -> _state.update { it.copy(viewedBadge = null) }
+      BadgesOverviewEvent.ExpiredBadgeSheetDismissed -> _state.update { it.copy(expiredBadge = null) }
       BadgesOverviewEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = BadgesOverviewState.Snackbar.None) }
     }
   }
 
-  private suspend fun onBadgeClicked(badge: Badge) {
+  private fun onBadgeClicked(badge: Badge) {
     if (badge.isExpired() || badge.id == _state.value.fadedBadgeId) {
-      _actions.send(BadgesOverviewAction.ShowExpiredBadge(badge))
+      _state.update { it.copy(expiredBadge = badge) }
     } else {
       _state.update { it.copy(viewedBadge = badge) }
     }

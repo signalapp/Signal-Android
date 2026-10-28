@@ -21,26 +21,4 @@
         android:id="@+id/featuredBadgeFragment"
         android:name="org.thoughtcrime.securesms.badges.self.featured.SelectFeaturedBadgeFragment"
         android:label="fragment_featured_badge" />
-
-    <dialog
-        android:id="@+id/expiredBadgeDialog"
-        android:name="org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment"
-        android:label="dialog_expired_badge">
-
-        <argument
-            android:name="badge"
-            app:argType="org.signal.core.models.badges.Badge"
-            app:nullable="false" />
-
-        <argument
-            android:name="cancelation_reason"
-            app:argType="string"
-            app:nullable="true" />
-
-        <argument
-            android:name="charge_failure"
-            app:argType="string"
-            app:nullable="true" />
-
-    </dialog>
 </navigation>

@@ -590,12 +590,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       SignalStore.inAppPayments().setExpiredBadge(null);
 
       Log.w(TAG, "Displaying bottom sheet for an expired badge", true);
-      ExpiredOneTimeBadgeBottomSheetDialogFragment.show(
-          expiredBadge,
-          unexpectedSubscriptionCancellation,
-          SignalStore.inAppPayments().getUnexpectedSubscriptionCancelationChargeFailure(),
-          getParentFragmentManager()
-      );
+      ExpiredOneTimeBadgeBottomSheetDialogFragment.show(expiredBadge, getParentFragmentManager());
     }
 
     if (this.bannerManager != null) {

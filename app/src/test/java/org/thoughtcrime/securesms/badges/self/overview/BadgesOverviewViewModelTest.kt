@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.badges.self.overview
 import android.net.Uri
 import assertk.assertThat
 import assertk.assertions.containsExactly
-import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isNull
@@ -22,11 +21,7 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -35,7 +30,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.appsettings.badges.BadgesOverviewAction
 import org.signal.appsettings.badges.BadgesOverviewEvent
 import org.signal.appsettings.badges.BadgesOverviewState
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
@@ -120,12 +114,11 @@ class BadgesOverviewViewModelTest {
   @Test
   fun `clicking an active badge opens its sheet until it's dismissed`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(BadgesOverviewEvent.BadgeClicked(activeBadge))
 
     assertThat(viewModel.state.value.viewedBadge).isEqualTo(activeBadge)
-    assertThat(actions).isEmpty()
+    assertThat(viewModel.state.value.expiredBadge).isNull()
 
     viewModel.onEvent(BadgesOverviewEvent.BadgeSheetDismissed)
 
@@ -133,24 +126,27 @@ class BadgesOverviewViewModelTest {
   }
 
   @Test
-  fun `clicking an expired badge explains that it expired`() = runTest(testDispatcher) {
+  fun `clicking an expired badge explains that it expired until the sheet is dismissed`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(BadgesOverviewEvent.BadgeClicked(expiredBadge))
 
-    assertThat(actions).containsExactly(BadgesOverviewAction.ShowExpiredBadge(expiredBadge))
+    assertThat(viewModel.state.value.expiredBadge).isEqualTo(expiredBadge)
+    assertThat(viewModel.state.value.viewedBadge).isNull()
+
+    viewModel.onEvent(BadgesOverviewEvent.ExpiredBadgeSheetDismissed)
+
+    assertThat(viewModel.state.value.expiredBadge).isNull()
   }
 
   @Test
   fun `clicking a faded badge explains that it will expire`() = runTest(testDispatcher) {
     coEvery { BadgesOverviewRepository.getFadedBadgeId() } returns activeBadge.id
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(BadgesOverviewEvent.BadgeClicked(activeBadge))
 
-    assertThat(actions).containsExactly(BadgesOverviewAction.ShowExpiredBadge(activeBadge))
+    assertThat(viewModel.state.value.expiredBadge).isEqualTo(activeBadge)
   }
 
   @Test
@@ -234,11 +230,5 @@ class BadgesOverviewViewModelTest {
       every { this@mockk.badges } returns badges
       every { this@mockk.featuredBadge } returns featuredBadge
     }
-  }
-
-  private fun TestScope.collectActions(actions: Flow<BadgesOverviewAction>): List<BadgesOverviewAction> {
-    val collected = mutableListOf<BadgesOverviewAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
   }
 }

@@ -1,121 +1,46 @@
 package org.thoughtcrime.securesms.badges.self.expired
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.BottomSheetUtil
-import org.signal.core.util.DimensionUnit
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.models.ExpiredBadge
-import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
-import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
-import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
-import org.thoughtcrime.securesms.components.settings.configure
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
+import org.signal.core.util.getParcelableCompat
 
 /**
- * Bottom sheet displaying a fading badge with a notice and action for becoming a subscriber again.
+ * Fragment host for [ExpiredBadgeSheetEntry], for screens that show sheets as dialog fragments. Composable screens use
+ * [ExpiredBadgeBottomSheet] instead.
  */
-class ExpiredOneTimeBadgeBottomSheetDialogFragment : DSLSettingsBottomSheetFragment(
-  peekHeightPercentage = 1f
-) {
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    ExpiredBadge.register(adapter)
+class ExpiredOneTimeBadgeBottomSheetDialogFragment : ComposeBottomSheetDialogFragment() {
 
-    adapter.submitList(getConfiguration().toMappingModelList())
-  }
+  override val peekHeightPercentage: Float = 1f
 
-  private fun getConfiguration(): DSLConfiguration {
-    val args = ExpiredOneTimeBadgeBottomSheetDialogFragmentArgs.fromBundle(requireArguments())
-    val badge: Badge = args.badge
-    val isLikelyASustainer = InAppPaymentsRepository.isLikelyASustainer()
+  override val hasScrollingContent: Boolean = true
 
-    Log.d(TAG, "Displaying Expired Badge Fragment with bundle: ${requireArguments()}", true)
-
-    return configure {
-      customPref(ExpiredBadge.Model(badge))
-
-      sectionHeaderPref(
-        DSLSettingsText.from(
-          if (badge.isBoost()) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired
-          } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled
-          },
-          DSLSettingsText.CenterModifier
-        )
-      )
-
-      space(DimensionUnit.DP.toPixels(4f).toInt())
-
-      noPadTextPref(
-        DSLSettingsText.from(
-          getString(R.string.ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and),
-          DSLSettingsText.CenterModifier
-        )
-      )
-
-      space(DimensionUnit.DP.toPixels(16f).toInt())
-
-      noPadTextPref(
-        DSLSettingsText.from(
-          if (isLikelyASustainer) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate
-          } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__you_can_keep
-          },
-          DSLSettingsText.CenterModifier
-        )
-      )
-
-      space(DimensionUnit.DP.toPixels(92f).toInt())
-
-      primaryButton(
-        text = DSLSettingsText.from(
-          if (isLikelyASustainer) {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__add_a_boost
-          } else {
-            R.string.ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer
-          }
-        ),
-        onClick = {
-          dismiss()
-          if (isLikelyASustainer) {
-            requireActivity().startActivity(AppSettingsActivity.boost(requireContext()))
-          } else {
-            requireActivity().startActivity(AppSettingsActivity.subscriptions(requireContext()))
-          }
-        }
-      )
-
-      secondaryButtonNoOutline(
-        text = DSLSettingsText.from(R.string.ExpiredBadgeBottomSheetDialogFragment__not_now),
-        onClick = {
-          dismiss()
-        }
+  @Composable
+  override fun SheetContent() {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+      BottomSheets.Handle()
+      ExpiredBadgeSheetEntry(
+        badge = requireNotNull(requireArguments().getParcelableCompat(ARG_BADGE, Badge::class.java)),
+        onDismiss = ::dismissAllowingStateLoss
       )
     }
   }
 
   companion object {
-    private val TAG = Log.tag(ExpiredOneTimeBadgeBottomSheetDialogFragment::class.java)
+    private const val ARG_BADGE = "badge"
 
     @JvmStatic
-    fun show(
-      badge: Badge,
-      cancellationReason: UnexpectedSubscriptionCancellation?,
-      chargeFailure: ActiveSubscription.ChargeFailure?,
-      fragmentManager: FragmentManager
-    ) {
-      val args = ExpiredOneTimeBadgeBottomSheetDialogFragmentArgs.Builder(badge, cancellationReason?.status, chargeFailure?.code).build()
-      val fragment = ExpiredOneTimeBadgeBottomSheetDialogFragment()
-      fragment.arguments = args.toBundle()
-
-      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    fun show(badge: Badge, fragmentManager: FragmentManager) {
+      ExpiredOneTimeBadgeBottomSheetDialogFragment().apply {
+        arguments = bundleOf(ARG_BADGE to badge)
+        show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      }
     }
   }
 }

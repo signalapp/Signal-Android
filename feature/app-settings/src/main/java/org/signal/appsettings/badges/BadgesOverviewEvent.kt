@@ -29,6 +29,9 @@ sealed interface BadgesOverviewEvent {
   /** The sheet showing [BadgesOverviewState.viewedBadge] was closed. */
   data object BadgeSheetDismissed : BadgesOverviewEvent
 
+  /** The sheet showing [BadgesOverviewState.expiredBadge] was closed. */
+  data object ExpiredBadgeSheetDismissed : BadgesOverviewEvent
+
   /** Whatever was in [BadgesOverviewState.snackbar] has gone. */
   data object SnackbarDismissed : BadgesOverviewEvent
 }
