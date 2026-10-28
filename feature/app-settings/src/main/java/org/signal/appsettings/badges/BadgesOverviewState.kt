@@ -17,6 +17,8 @@ data class BadgesOverviewState(
   val fadedBadgeId: String? = null,
   val hasUnexpiredBadges: Boolean = false,
   val hasInternet: Boolean = false,
+  /** The badge open in the sheet describing it, or null while the sheet is closed. */
+  val viewedBadge: Badge? = null,
   val snackbar: Snackbar = Snackbar.None
 ) {
 
@@ -24,7 +26,7 @@ data class BadgesOverviewState(
     get() = stage == Stage.READY && hasUnexpiredBadges && hasInternet
 
   override fun toString(): String {
-    return "BadgesOverviewState(stage=$stage, badgeCount=${badges.size}, featuredBadge=${featuredBadge?.id}, displayBadgesOnProfile=$displayBadgesOnProfile, fadedBadgeId=$fadedBadgeId, hasUnexpiredBadges=$hasUnexpiredBadges, hasInternet=$hasInternet, snackbar=$snackbar)"
+    return "BadgesOverviewState(stage=$stage, badgeCount=${badges.size}, featuredBadge=${featuredBadge?.id}, displayBadgesOnProfile=$displayBadgesOnProfile, fadedBadgeId=$fadedBadgeId, hasUnexpiredBadges=$hasUnexpiredBadges, hasInternet=$hasInternet, viewedBadge=${viewedBadge?.id}, snackbar=$snackbar)"
   }
 
   enum class Stage {

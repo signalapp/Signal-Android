@@ -75,6 +75,7 @@ class BadgesOverviewViewModel(
       is BadgesOverviewEvent.BadgeClicked -> onBadgeClicked(event.badge)
       is BadgesOverviewEvent.DisplayBadgesOnProfileToggled -> setDisplayBadgesOnProfile(event.enabled)
       BadgesOverviewEvent.FeaturedBadgeClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Featured)
+      BadgesOverviewEvent.BadgeSheetDismissed -> _state.update { it.copy(viewedBadge = null) }
       BadgesOverviewEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = BadgesOverviewState.Snackbar.None) }
     }
   }
@@ -83,7 +84,7 @@ class BadgesOverviewViewModel(
     if (badge.isExpired() || badge.id == _state.value.fadedBadgeId) {
       _actions.send(BadgesOverviewAction.ShowExpiredBadge(badge))
     } else {
-      _actions.send(BadgesOverviewAction.ShowBadge(badge))
+      _state.update { it.copy(viewedBadge = badge) }
     }
   }
 

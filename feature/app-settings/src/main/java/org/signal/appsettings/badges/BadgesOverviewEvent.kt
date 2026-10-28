@@ -26,6 +26,9 @@ sealed interface BadgesOverviewEvent {
   /** The user tapped the featured badge row. */
   data object FeaturedBadgeClicked : BadgesOverviewEvent
 
+  /** The sheet showing [BadgesOverviewState.viewedBadge] was closed. */
+  data object BadgeSheetDismissed : BadgesOverviewEvent
+
   /** Whatever was in [BadgesOverviewState.snackbar] has gone. */
   data object SnackbarDismissed : BadgesOverviewEvent
 }

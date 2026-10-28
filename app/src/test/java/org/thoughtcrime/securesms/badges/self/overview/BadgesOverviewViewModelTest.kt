@@ -8,8 +8,10 @@ package org.thoughtcrime.securesms.badges.self.overview
 import android.net.Uri
 import assertk.assertThat
 import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -116,13 +118,18 @@ class BadgesOverviewViewModelTest {
   }
 
   @Test
-  fun `clicking an active badge shows it`() = runTest(testDispatcher) {
+  fun `clicking an active badge opens its sheet until it's dismissed`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
     val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(BadgesOverviewEvent.BadgeClicked(activeBadge))
 
-    assertThat(actions).containsExactly(BadgesOverviewAction.ShowBadge(activeBadge))
+    assertThat(viewModel.state.value.viewedBadge).isEqualTo(activeBadge)
+    assertThat(actions).isEmpty()
+
+    viewModel.onEvent(BadgesOverviewEvent.BadgeSheetDismissed)
+
+    assertThat(viewModel.state.value.viewedBadge).isNull()
   }
 
   @Test

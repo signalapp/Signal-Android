@@ -50,6 +50,14 @@ fun BadgeImageLarge(
   BadgeImage(badge, BadgeImageSize.LARGE, modifier)
 }
 
+@Composable
+fun BadgeImageXLarge(
+  badge: Badge?,
+  modifier: Modifier = Modifier
+) {
+  BadgeImage(badge, BadgeImageSize.X_LARGE, modifier)
+}
+
 /** Skips Glide's disk cache, as the badge grid always has. */
 @Composable
 fun BadgeImage64(
