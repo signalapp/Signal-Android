@@ -902,4 +902,14 @@
     <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn't be saved -->
     <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+
+    <!-- SelectFeaturedBadgeScreen -->
+    <!-- Title of the screen for choosing which of your badges shows on your profile -->
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <!-- Section header above the grid of badges you can choose to feature on your profile -->
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <!-- Button that saves the badge you chose to feature on your profile -->
+    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <!-- Snackbar shown when the badge you chose to feature couldn't be saved to your profile -->
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 </resources>

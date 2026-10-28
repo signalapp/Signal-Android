@@ -7,6 +7,8 @@ package org.signal.appsettings.badges
 
 import android.app.Application
 import android.net.Uri
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasTestTag
@@ -52,6 +54,13 @@ class BadgesOverviewScreenTest {
     composeTestRule.onNodeWithTag(BadgeGridTestTags.badge(planet)).performClick()
 
     assertThat(events).containsExactly(BadgesOverviewEvent.BadgeClicked(planet))
+  }
+
+  @Test
+  fun whenIDisplayScreen_thenIExpectBadgesNotToBeSelectable() {
+    setContent(ready)
+
+    composeTestRule.onNodeWithTag(BadgeGridTestTags.badge(star)).assert(SemanticsMatcher.keyNotDefined(SemanticsProperties.Selected))
   }
 
   @Test
