@@ -476,6 +476,13 @@ object InAppPaymentsRepository {
   }
 
   /**
+   * Like [org.thoughtcrime.securesms.keyvalue.InAppPaymentValues.isLikelyASustainer], but also true if there's an active subscription badge.
+   */
+  fun isLikelyASustainer(): Boolean {
+    return SignalStore.inAppPayments.isLikelyASustainer() || Recipient.self().badges.any { it.isSubscription() && !it.isExpired() }
+  }
+
+  /**
    * Returns the last end of period stored in the key-value store for donations, 0 for backups, used by the keep-alive job.
    *
    * This is safe because, at worse, we'll end up getting a 409 and skipping redemption for a badge or backups.

@@ -5,8 +5,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
@@ -43,7 +43,7 @@ object ExpiredGiftSheetConfiguration {
       )
     )
 
-    if (SignalStore.inAppPayments.isLikelyASustainer()) {
+    if (InAppPaymentsRepository.isLikelyASustainer()) {
       primaryButton(
         text = DSLSettingsText.from(
           stringId = android.R.string.ok
