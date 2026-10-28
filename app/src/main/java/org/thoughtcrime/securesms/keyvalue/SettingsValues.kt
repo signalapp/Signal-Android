@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.media.SentMediaQuality
+import org.signal.core.models.storage.KeepMessagesDuration
 import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R

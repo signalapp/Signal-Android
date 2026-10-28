@@ -107,14 +107,6 @@
 
     <!-- RedPhone -->
 
-    <integer-array name="conversation_length_limit">
-        <item>0</item>
-        <item>5000</item>
-        <item>1000</item>
-        <item>500</item>
-        <item>100</item>
-    </integer-array>
-
     <integer-array name="pref_message_font_quote_size_values">
         <item>12</item>
         <item>14</item>

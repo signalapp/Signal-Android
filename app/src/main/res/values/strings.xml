@@ -3765,10 +3765,7 @@
     <string name="preferences__donate_to_signal">Donate to Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
-    <string name="preferences__storage">Storage</string>
     <string name="preferences__payments">Payments</string>
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
-    <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__linked_devices">Linked devices</string>
     <string name="preferences__disable_pin">Disable PIN</string>
     <string name="preferences__enable_pin">Enable PIN</string>
@@ -3777,50 +3774,7 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="other">%1$s messages</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Custom</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
@@ -7491,34 +7445,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Learn more</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.storage
+package org.signal.appsettings.managestorage
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.RepeatMode
@@ -35,20 +35,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.R
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.util.bytes
-import org.thoughtcrime.securesms.R
 
 /**
  * Total on-device usage, a proportional bar of each [StorageUsage] category, and a legend.
  */
 @Composable
-fun StorageUsageOverview(
+internal fun StorageUsageOverview(
   usage: StorageUsage?,
   onReviewStorage: () -> Unit,
   modifier: Modifier = Modifier
@@ -93,6 +95,7 @@ fun StorageUsageOverview(
       modifier = Modifier
         .align(Alignment.CenterHorizontally)
         .padding(top = 16.dp)
+        .testTag(ManageStorageSettingsTestTags.BUTTON_REVIEW_STORAGE)
     ) {
       Text(text = stringResource(id = R.string.preferences_storage__review_storage))
     }
@@ -205,32 +208,30 @@ private data class StorageUsageEntry(
   val size: Long
 )
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun StorageUsageOverviewPreview() {
-  Previews.Preview {
-    StorageUsageOverview(
-      usage = StorageUsage(
-        photos = 1_200_000_000,
-        videos = 3_400_000_000,
-        files = 150_000_000,
-        audio = 80_000_000,
-        messages = 2_100_000_000,
-        stickers = 120_000_000,
-        other = 900_000_000
-      ),
-      onReviewStorage = {}
-    )
-  }
+  StorageUsageOverview(
+    usage = StorageUsage(
+      photos = 1_200_000_000,
+      videos = 3_400_000_000,
+      files = 150_000_000,
+      audio = 80_000_000,
+      messages = 2_100_000_000,
+      stickers = 120_000_000,
+      other = 900_000_000
+    ),
+    onReviewStorage = {}
+  )
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun StorageUsageOverviewEmptyPreview() {
-  Previews.Preview {
-    StorageUsageOverview(
-      usage = null,
-      onReviewStorage = {}
-    )
-  }
+  StorageUsageOverview(
+    usage = null,
+    onReviewStorage = {}
+  )
 }

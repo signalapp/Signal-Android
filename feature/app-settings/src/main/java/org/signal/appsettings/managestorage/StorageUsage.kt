@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.storage
+package org.signal.appsettings.managestorage
 
 import androidx.compose.runtime.Immutable
 

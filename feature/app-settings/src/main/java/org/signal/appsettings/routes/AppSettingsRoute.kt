@@ -327,6 +327,12 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
 
     @Serializable
     data object Proxy : DataAndStorageRoute
+
+    @Serializable
+    data object KeepMessages : DataAndStorageRoute
+
+    @Serializable
+    data object ChatLengthLimit : DataAndStorageRoute
   }
 
   @Serializable

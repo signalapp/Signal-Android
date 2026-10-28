@@ -690,7 +690,32 @@
     <fragment
         android:id="@+id/storagePreferenceFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.storage.ManageStorageSettingsFragment"
-        android:label="storage_preference_fragment" />
+        android:label="storage_preference_fragment">
+        <action
+            android:id="@+id/action_storagePreferenceFragment_to_keepMessagesSettingsFragment"
+            app:destination="@id/keepMessagesSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_storagePreferenceFragment_to_chatLengthLimitSettingsFragment"
+            app:destination="@id/chatLengthLimitSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/keepMessagesSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.storage.KeepMessagesSettingsFragment"
+        android:label="keep_messages_settings_fragment" />
+
+    <fragment
+        android:id="@+id/chatLengthLimitSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.storage.ChatLengthLimitSettingsFragment"
+        android:label="chat_length_limit_settings_fragment" />
 
     <include app:graph="@navigation/edit_proxy" />
 
