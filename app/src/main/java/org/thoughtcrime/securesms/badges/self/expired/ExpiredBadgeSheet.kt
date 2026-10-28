@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.LocalBottomSheetHostState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -29,26 +30,24 @@ fun ExpiredBadgeBottomSheet(
     onDismissRequest = onDismissRequest,
     containerColor = SignalTheme.colors.colorSurface1
   ) {
-    ExpiredBadgeSheetEntry(badge = badge, onDismiss = onDismissRequest)
+    ExpiredBadgeSheetEntry(badge = badge)
   }
 }
 
 /**
- * Hosts [ExpiredBadgeSheetContent] for [badge] and carries out its events, calling [onDismiss] once the user has
+ * Hosts [ExpiredBadgeSheetContent] for [badge] and carries out its events, closing the sheet it's in once the user has
  * chosen.
  */
 @Composable
-fun ExpiredBadgeSheetEntry(
-  badge: Badge,
-  onDismiss: () -> Unit
-) {
+fun ExpiredBadgeSheetEntry(badge: Badge) {
   val context = LocalContext.current
+  val sheet = LocalBottomSheetHostState.current
   val isLikelyASustainer = remember { InAppPaymentsRepository.isLikelyASustainer() }
 
   ExpiredBadgeSheetContent(
     state = ExpiredBadgeSheetState(badge = badge, isLikelyASustainer = isLikelyASustainer),
     onEvent = { event ->
-      onDismiss()
+      sheet.dismiss()
       when (event) {
         ExpiredBadgeSheetEvent.DonateClicked -> {
           if (isLikelyASustainer) {

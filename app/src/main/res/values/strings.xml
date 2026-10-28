@@ -7064,12 +7064,6 @@
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
     <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->

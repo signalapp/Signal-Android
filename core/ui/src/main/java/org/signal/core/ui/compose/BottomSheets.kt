@@ -26,8 +26,10 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -40,7 +42,8 @@ object BottomSheets {
 
   /**
    * A modal bottom sheet. Provides [LocalBottomSheetHostState] to [content], so content written for
-   * [ComposeBottomSheetDialogFragment] can follow and expand this sheet too.
+   * [ComposeBottomSheetDialogFragment] can follow, expand and dismiss this sheet too. [BottomSheetHostState.dismiss]
+   * slides the sheet down before calling [onDismissRequest].
    */
   @Composable
   fun BottomSheet(
@@ -53,7 +56,19 @@ object BottomSheets {
     content: @Composable ColumnScope.() -> Unit
   ) {
     val scope = rememberCoroutineScope()
-    val hostState = remember(sheetState) { BottomSheetHostState(onExpand = { scope.launch { sheetState.expand() } }) }
+    val currentOnDismissRequest by rememberUpdatedState(onDismissRequest)
+    val hostState = remember(sheetState) {
+      BottomSheetHostState(
+        onExpand = { scope.launch { sheetState.expand() } },
+        onDismiss = {
+          scope.launch { sheetState.hide() }.invokeOnCompletion {
+            if (!sheetState.isVisible) {
+              currentOnDismissRequest()
+            }
+          }
+        }
+      )
+    }
 
     val isExpanded = sheetState.currentValue == SheetValue.Expanded
     SideEffect {

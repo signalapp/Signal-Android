@@ -912,4 +912,12 @@
     <string name="SelectFeaturedBadgeScreen__save">Save</string>
     <!-- Snackbar shown when the badge you chose to feature couldn't be saved to your profile -->
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+
+    <!-- UsernameLinkShareSheet -->
+    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
+    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
+    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
+    <string name="UsernameLinkShareBottomSheet_share">Share</string>
 </resources>

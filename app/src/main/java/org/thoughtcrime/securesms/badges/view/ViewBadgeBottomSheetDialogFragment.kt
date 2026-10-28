@@ -26,11 +26,7 @@ class ViewBadgeBottomSheetDialogFragment : ComposeBottomSheetDialogFragment() {
   override fun SheetContent() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
       BottomSheets.Handle()
-      ViewBadgeSheetEntry(
-        recipientId = getRecipientId(),
-        startBadge = getStartBadge(),
-        onDismiss = ::dismissAllowingStateLoss
-      )
+      ViewBadgeSheetEntry(recipientId = getRecipientId(), startBadge = getStartBadge())
     }
   }
 

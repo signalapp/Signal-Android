@@ -97,6 +97,14 @@ class UsernameLinkSettingsViewModel : ViewModel() {
     )
   }
 
+  fun onShareLinkClicked() {
+    _state.value = _state.value.copy(showShareSheet = true)
+  }
+
+  fun onShareSheetDismissed() {
+    _state.value = _state.value.copy(showShareSheet = false)
+  }
+
   fun onTabSelected(tab: ActiveTab) {
     _state.value = _state.value.copy(
       activeTab = tab

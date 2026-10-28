@@ -25,10 +25,7 @@ class ExpiredOneTimeBadgeBottomSheetDialogFragment : ComposeBottomSheetDialogFra
   override fun SheetContent() {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
       BottomSheets.Handle()
-      ExpiredBadgeSheetEntry(
-        badge = requireNotNull(requireArguments().getParcelableCompat(ARG_BADGE, Badge::class.java)),
-        onDismiss = ::dismissAllowingStateLoss
-      )
+      ExpiredBadgeSheetEntry(badge = requireNotNull(requireArguments().getParcelableCompat(ARG_BADGE, Badge::class.java)))
     }
   }
 

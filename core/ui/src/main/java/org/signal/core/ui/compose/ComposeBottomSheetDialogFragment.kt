@@ -58,7 +58,8 @@ import kotlin.math.roundToInt
 abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   private val sheetState = BottomSheetHostState(
-    onExpand = { (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED }
+    onExpand = { (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED },
+    onDismiss = ::dismissWithAnimation
   )
   private val bottomSheet: View?
     get() = view?.parent as? View
@@ -111,6 +112,16 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
     }
   }
 
+  /** Slides the sheet down, which closes the dialog once it's hidden, rather than removing it at once. */
+  private fun dismissWithAnimation() {
+    val behavior = (dialog as? BottomSheetDialog)?.behavior
+    if (behavior != null && behavior.isHideable) {
+      behavior.state = BottomSheetBehavior.STATE_HIDDEN
+    } else {
+      dismissAllowingStateLoss()
+    }
+  }
+
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
@@ -147,9 +158,13 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
  * by [BottomSheets.BottomSheet].
  *
  * @param onExpand Takes the sheet to full height.
+ * @param onDismiss Animates the sheet away and closes it.
  */
 @Stable
-class BottomSheetHostState(private val onExpand: () -> Unit = {}) {
+class BottomSheetHostState(
+  private val onExpand: () -> Unit = {},
+  private val onDismiss: () -> Unit = {}
+) {
 
   /** How far the sheet extends below its window, which it does when not fully expanded. */
   var overflowBottomPx by mutableIntStateOf(0)
@@ -160,6 +175,9 @@ class BottomSheetHostState(private val onExpand: () -> Unit = {}) {
     internal set
 
   fun expand() = onExpand()
+
+  /** Closes the sheet with its slide-down animation, for content that ends the sheet itself, such as from a button. */
+  fun dismiss() = onDismiss()
 
   internal fun updateOverflow(bottomSheet: View) {
     val windowHeight = (bottomSheet.parent as? View)?.height ?: return

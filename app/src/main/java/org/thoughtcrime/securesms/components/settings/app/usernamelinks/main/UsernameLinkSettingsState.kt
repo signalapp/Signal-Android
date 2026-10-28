@@ -14,7 +14,9 @@ data class UsernameLinkSettingsState(
   val qrCodeColorScheme: UsernameQrCodeColorScheme,
   val qrScanResult: QrScanResult? = null,
   val usernameLinkResetResult: UsernameLinkResetResult? = null,
-  val indeterminateProgress: Boolean = false
+  val indeterminateProgress: Boolean = false,
+  /** Whether the sheet for copying or sharing the link is open. */
+  val showShareSheet: Boolean = false
 ) {
   enum class ActiveTab {
     Code,

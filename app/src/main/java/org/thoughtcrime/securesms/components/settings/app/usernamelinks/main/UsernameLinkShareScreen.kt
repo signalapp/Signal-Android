@@ -60,6 +60,7 @@ fun UsernameLinkShareScreen(
   scope: CoroutineScope,
   navController: NavController?,
   onShareBadge: () -> Unit,
+  onLinkClicked: () -> Unit,
   modifier: Modifier = Modifier,
   onResetClicked: () -> Unit
 ) {
@@ -108,9 +109,7 @@ fun UsernameLinkShareScreen(
     ButtonBar(
       onShareClicked = onShareBadge,
       onColorClicked = { navController?.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkQrColorPickerFragment()) },
-      onLinkClicked = {
-        navController?.safeNavigate(UsernameLinkSettingsFragmentDirections.actionUsernameLinkSettingsFragmentToUsernameLinkShareBottomSheet())
-      },
+      onLinkClicked = onLinkClicked,
       linkState = state.usernameLinkState
     )
 
@@ -229,6 +228,7 @@ private fun ScreenPreview() {
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
+        onLinkClicked = {},
         onShareBadge = {},
         onResetClicked = {},
         onLinkResultHandled = {}
@@ -248,6 +248,7 @@ private fun ScreenPreviewResetSuccess() {
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
+        onLinkClicked = {},
         onShareBadge = {},
         onResetClicked = {},
         onLinkResultHandled = {}
@@ -267,6 +268,7 @@ private fun ScreenPreviewResetNetworkError() {
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
+        onLinkClicked = {},
         onShareBadge = {},
         onResetClicked = {},
         onLinkResultHandled = {}
@@ -286,6 +288,7 @@ private fun ScreenPreviewResetNetworkUnavailable() {
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
+        onLinkClicked = {},
         onShareBadge = {},
         onResetClicked = {},
         onLinkResultHandled = {}
@@ -305,6 +308,7 @@ private fun ScreenPreviewResetUnexpectedError() {
         snackbarHostState = SnackbarHostState(),
         scope = rememberCoroutineScope(),
         navController = NavController(LocalContext.current),
+        onLinkClicked = {},
         onShareBadge = {},
         onResetClicked = {},
         onLinkResultHandled = {}

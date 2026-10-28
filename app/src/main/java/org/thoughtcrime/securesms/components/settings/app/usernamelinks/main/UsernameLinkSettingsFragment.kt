@@ -45,7 +45,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -96,15 +95,6 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
     }
   }
 
-  override fun onStart() {
-    super.onStart()
-    setFragmentResultListener(UsernameLinkShareBottomSheet.REQUEST_KEY) { key, bundle ->
-      if (bundle.getBoolean(UsernameLinkShareBottomSheet.KEY_COPY)) {
-        viewModel.onLinkCopied()
-      }
-    }
-  }
-
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state
@@ -139,9 +129,19 @@ class UsernameLinkSettingsFragment : ComposeFragment() {
       onOpenCameraClicked = { askCameraPermissions() },
       onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
       onLinkReset = { viewModel.onUsernameLinkReset() },
+      onShareLinkClicked = { viewModel.onShareLinkClicked() },
       onBackNavigationPressed = { requireActivity().onBackPressed() },
       linkCopiedEvent = linkCopiedEvent
     )
+
+    val linkState = state.usernameLinkState
+    if (state.showShareSheet && linkState is UsernameLinkState.Present) {
+      UsernameLinkShareSheet(
+        usernameLink = linkState.link,
+        onLinkCopied = { viewModel.onLinkCopied() },
+        onDismissRequest = { viewModel.onShareSheetDismissed() }
+      )
+    }
   }
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -179,6 +179,7 @@ private fun MainScreen(
   onOpenCameraClicked: () -> Unit = {},
   onOpenGalleryClicked: () -> Unit = {},
   onLinkReset: () -> Unit = {},
+  onShareLinkClicked: () -> Unit = {},
   onBackNavigationPressed: () -> Unit = {},
   linkCopiedEvent: UUID? = null
 ) {
@@ -227,6 +228,7 @@ private fun MainScreen(
         modifier = Modifier.padding(contentPadding),
         navController = navController,
         onShareBadge = onShareBadge,
+        onLinkClicked = onShareLinkClicked,
         onResetClicked = { showResetDialog = true },
         onLinkResultHandled = onUsernameLinkResetResultHandled
       )

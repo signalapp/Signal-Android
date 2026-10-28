@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.LocalBottomSheetHostState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
@@ -36,25 +36,23 @@ fun ViewBadgeBottomSheet(
   onDismissRequest: () -> Unit
 ) {
   BottomSheets.BottomSheet(onDismissRequest = onDismissRequest) {
-    ViewBadgeSheetEntry(recipientId = recipientId, startBadge = startBadge, onDismiss = onDismissRequest)
+    ViewBadgeSheetEntry(recipientId = recipientId, startBadge = startBadge)
   }
 }
 
 /**
- * Hosts [ViewBadgeSheetContent] for [recipientId], following changes to their badges, and carries out its events.
- *
- * @param onDismiss called when the recipient turns out to have no badges to show.
+ * Hosts [ViewBadgeSheetContent] for [recipientId], following changes to their badges, and carries out its events. Closes
+ * the sheet it's in if the recipient turns out to have no badges to show.
  */
 @Composable
 fun ViewBadgeSheetEntry(
   recipientId: RecipientId,
   startBadge: Badge?,
-  onDismiss: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   val context = LocalContext.current
   val recipient by rememberRecipientField(recipientId) { this }
-  val currentOnDismiss by rememberUpdatedState(onDismiss)
+  val sheet = LocalBottomSheetHostState.current
   val canDonateInApp = remember { InAppDonations.hasAtLeastOnePaymentMethodAvailable() }
   val donateUrl = stringResource(R.string.donate_url)
 
@@ -63,7 +61,7 @@ fun ViewBadgeSheetEntry(
   }
 
   if (recipient.badges.isEmpty()) {
-    LaunchedEffect(Unit) { currentOnDismiss() }
+    LaunchedEffect(Unit) { sheet.dismiss() }
     return
   }
 
