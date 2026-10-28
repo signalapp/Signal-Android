@@ -27,6 +27,8 @@ data class MediaViewerState(
   /** Resolved message bodies by message id, used as the caption fallback. */
   val messageBodies: Map<Long, StyledString> = emptyMap(),
   val isInSharedAnimation: Boolean = true,
+  /** Set once the viewer has committed to returning to the shared element. */
+  val isReturningToSharedElement: Boolean = false,
   val sharedElementAttachmentId: AttachmentId? = null,
   val hdrCapableUris: Set<Uri> = emptySet(),
   val zoomedInAttachmentIds: Set<AttachmentId> = emptySet(),

@@ -32,6 +32,7 @@ import org.signal.mediaviewer.playback.MediaViewerPlaybackController
 internal fun MediaViewerPage(
   item: MediaViewerItem?,
   isActive: Boolean,
+  isReturningToSharedElement: Boolean,
   playbackController: MediaViewerPlaybackController,
   onEvent: (MediaViewerEvent) -> Unit,
   modifier: Modifier = Modifier
@@ -44,6 +45,7 @@ internal fun MediaViewerPage(
       MediaViewerVideoPage(
         item = item,
         isActive = isActive,
+        isReturningToSharedElement = isReturningToSharedElement,
         playbackController = playbackController,
         onEvent = onEvent,
         modifier = modifier

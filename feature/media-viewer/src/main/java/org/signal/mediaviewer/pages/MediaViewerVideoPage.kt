@@ -47,11 +47,16 @@ import org.signal.core.ui.R as CoreUiR
 /**
  * A video page. Only the settled page holds a pooled player; inactive pages render a first-frame
  * thumbnail so that at most one ExoPlayer is ever reserved by the viewer.
+ *
+ * While [isReturningToSharedElement], the thumbnail is laid back over the player and the player is
+ * released once the thumbnail has pixels, so the shared element return never has a SurfaceView
+ * punching through it.
  */
 @Composable
 internal fun MediaViewerVideoPage(
   item: MediaViewerItem,
   isActive: Boolean,
+  isReturningToSharedElement: Boolean,
   playbackController: MediaViewerPlaybackController,
   onEvent: (MediaViewerEvent) -> Unit,
   modifier: Modifier = Modifier
@@ -64,13 +69,17 @@ internal fun MediaViewerVideoPage(
       .testTag(MediaViewerScreenTestTags.PAGE_VIDEO)
   ) {
     var firstFrameRendered by remember(isActive) { mutableStateOf(false) }
-    var thumbnailLoaded by remember { mutableStateOf(false) }
+    var thumbnailEverLoaded by remember { mutableStateOf(false) }
+    val showThumbnail = !isActive || !firstFrameRendered || isReturningToSharedElement
+    var thumbnailLoaded by remember(showThumbnail) { mutableStateOf(false) }
 
-    // The player must not exist until the thumbnail has pixels: attaching its SurfaceView punches
-    // a transparent hole through everything else the window has drawn (the host's transition
-    // image included), and that hole is exposed until both the thumbnail above it has rendered
-    // and the video has produced a frame.
-    if (isActive && thumbnailLoaded) {
+    // The player must only exist while the thumbnail above it has pixels: attaching its SurfaceView
+    // punches a transparent hole through everything else the window has drawn (the host's
+    // transition image included), and that hole is exposed until both the thumbnail above it has
+    // rendered and the video has produced a frame. Likewise on the way out, the player stays until
+    // the thumbnail covering it has rendered.
+    val showPlayer = isActive && thumbnailEverLoaded && !(isReturningToSharedElement && thumbnailLoaded)
+    if (showPlayer) {
       ActiveVideoPlayer(
         item = item,
         playbackController = playbackController,
@@ -80,11 +89,14 @@ internal fun MediaViewerVideoPage(
       )
     }
 
-    if (!isActive || !firstFrameRendered) {
+    if (showThumbnail) {
       VideoThumbnail(
         item = item,
         onEvent = onEvent,
-        onLoadCompleted = { thumbnailLoaded = true },
+        onLoadCompleted = {
+          thumbnailLoaded = true
+          thumbnailEverLoaded = true
+        },
         modifier = Modifier.fillMaxSize()
       )
     }
@@ -213,6 +225,7 @@ private fun MediaViewerVideoPagePreview() {
     MediaViewerVideoPage(
       item = MediaViewerPreviewFixtures.previewItem(contentType = "video/mp4"),
       isActive = false,
+      isReturningToSharedElement = false,
       playbackController = MediaViewerPlaybackController(),
       onEvent = {},
       modifier = Modifier.fillMaxSize()

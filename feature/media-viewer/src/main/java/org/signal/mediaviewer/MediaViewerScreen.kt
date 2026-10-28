@@ -243,7 +243,7 @@ private fun MediaPager(
       modifier = modifier
         .dragToDismiss(
           state = dismissState,
-          canStart = { !currentState.isInSharedAnimation && !pagerState.isScrollInProgress && !currentState.isCurrentMediaZoomedIn },
+          canStart = { !currentState.isInSharedAnimation && !currentState.isReturningToSharedElement && !pagerState.isScrollInProgress && !currentState.isCurrentMediaZoomedIn },
           canDismissToSharedElement = { currentState.canDismissToSharedElement },
           onDismissed = { toSharedElement -> currentOnEvent(MediaViewerEvent.DragDismissed(toSharedElement)) }
         )
@@ -259,6 +259,7 @@ private fun MediaPager(
       MediaViewerPage(
         item = state.items.getOrNull(page),
         isActive = pagerState.settledPage == page,
+        isReturningToSharedElement = state.isReturningToSharedElement,
         playbackController = playbackController,
         onEvent = onEvent
       )

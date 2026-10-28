@@ -562,6 +562,29 @@ class MediaViewerViewModelTest {
   }
 
   @Test
+  fun `finishing toward the shared element marks the state as returning to it`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(hasSharedElementTransition = true)
+    pagedFlow.value = listOf(createItem(10))
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+
+    viewModel.onEvent(MediaViewerEvent.BackClicked)
+
+    assertThat(viewModel.state.value.isReturningToSharedElement).isTrue()
+  }
+
+  @Test
+  fun `finishing from another page does not mark the state as returning to the shared element`() = runTest(testDispatcher) {
+    val viewModel = createViewModel(hasSharedElementTransition = true)
+    pagedFlow.value = listOf(createItem(10), createItem(11))
+    viewModel.onEvent(MediaViewerEvent.PageSettled(0))
+    viewModel.onEvent(MediaViewerEvent.PageSettled(1))
+
+    viewModel.onEvent(MediaViewerEvent.BackClicked)
+
+    assertThat(viewModel.state.value.isReturningToSharedElement).isFalse()
+  }
+
+  @Test
   fun `back and drag only return to the shared element from the starting attachment`() = runTest(testDispatcher) {
     val viewModel = createViewModel(hasSharedElementTransition = true)
     pagedFlow.value = listOf(createItem(10), createItem(11))

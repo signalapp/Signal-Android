@@ -251,15 +251,22 @@ class MediaViewerViewModel(
   }
 
   private suspend fun applyBackClicked() {
-    _actions.send(MediaViewerAction.FinishAfterTransition)
+    finishAfterTransition()
   }
 
   private suspend fun applyDragDismissed(event: MediaViewerEvent.DragDismissed) {
     if (event.toSharedElement) {
-      _actions.send(MediaViewerAction.FinishAfterTransition)
+      finishAfterTransition()
     } else {
       _actions.send(MediaViewerAction.FinishAfterDragDismiss)
     }
+  }
+
+  private suspend fun finishAfterTransition() {
+    if (_state.value.canDismissToSharedElement) {
+      _state.update { it.copy(isReturningToSharedElement = true) }
+    }
+    _actions.send(MediaViewerAction.FinishAfterTransition)
   }
 
   private fun applyToolbarTitleClicked() {
