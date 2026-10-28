@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
@@ -26,6 +28,7 @@ import org.thoughtcrime.securesms.stories.viewer.first.StoryFirstTimeNavigationF
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
+import java.util.concurrent.TimeUnit
 
 /**
  * Fragment which manages a vertical pager fragment of stories.
@@ -52,6 +55,9 @@ class StoryViewerFragment :
   private lateinit var storyCrossfader: StoriesSharedElementCrossFaderView
 
   private var pagerOnPageSelectedLock: Boolean = false
+
+  private var isEnterTransitionStarted: Boolean = false
+  private var enterTransitionFallback: Disposable? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyCrossfader = view.findViewById(R.id.story_content_crossfader)
@@ -114,8 +120,12 @@ class StoryViewerFragment :
       }
 
       if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.Record) {
-        storyCrossfader.setTargetView(state.crossfadeTarget.messageRecord)
-        requireActivity().supportStartPostponedEnterTransition()
+        val hasTarget = storyCrossfader.setTargetView(state.crossfadeTarget.messageRecord)
+        if (hasTarget && !state.skipCrossfade && state.crossfadeSource !is StoryViewerState.CrossfadeSource.None) {
+          startEnterTransitionWhenCrossfaderReady()
+        } else {
+          startActivityEnterTransition()
+        }
       }
 
       if (state.skipCrossfade) {
@@ -125,8 +135,8 @@ class StoryViewerFragment :
 
     lifecycleDisposable += viewModel.loadState.subscribe {
       if (it.isReady()) {
-        Log.d(TAG, "Content is ready, clearing crossfader.")
-        storyCrossfader.alpha = 0f
+        Log.d(TAG, "Content is ready, fading out crossfader.")
+        storyCrossfader.animate().alpha(0f).setDuration(CROSSFADER_FADE_OUT_DURATION_MS)
       }
     }
 
@@ -159,6 +169,30 @@ class StoryViewerFragment :
         }
       }
     )
+  }
+
+  private fun startEnterTransitionWhenCrossfaderReady() {
+    if (isEnterTransitionStarted || enterTransitionFallback != null) {
+      return
+    }
+
+    enterTransitionFallback = Completable
+      .timer(CROSSFADER_READY_TIMEOUT_MS, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+      .subscribe {
+        Log.w(TAG, "Crossfader was not ready in time. Starting enter transition anyway.")
+        startActivityEnterTransition()
+      }
+      .also { lifecycleDisposable += it }
+  }
+
+  private fun startActivityEnterTransition() {
+    if (isEnterTransitionStarted) {
+      return
+    }
+
+    isEnterTransitionStarted = true
+    enterTransitionFallback?.dispose()
+    requireActivity().supportStartPostponedEnterTransition()
   }
 
   private fun onBackPressed(currentId: RecipientId?) {
@@ -203,6 +237,7 @@ class StoryViewerFragment :
   }
 
   override fun onReadyToAnimate() {
+    startActivityEnterTransition()
   }
 
   override fun onAnimationStarted() {
@@ -233,6 +268,8 @@ class StoryViewerFragment :
 
     private const val ARGS = "args"
     private const val HIDDEN = "hidden"
+    private const val CROSSFADER_FADE_OUT_DURATION_MS = 200L
+    private const val CROSSFADER_READY_TIMEOUT_MS = 300L
 
     fun create(storyViewerArgs: StoryViewerArgs): Fragment {
       return StoryViewerFragment().apply {

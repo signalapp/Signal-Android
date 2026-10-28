@@ -39,15 +39,18 @@ class StoryImageLoader(
 
   companion object {
     private val TAG = Log.tag(StoryImageLoader::class.java)
+    private const val FADE_IN_DURATION_MS = 200L
   }
 
   private var blurState: LoadState = LoadState.INIT
   private var imageState: LoadState = LoadState.INIT
+  private var isLoadingSynchronously: Boolean = false
 
   private val imageListener = object : StoryCache.Listener {
     override fun onResourceReady(resource: Drawable) {
       Log.d(TAG, "Loaded cached resource of size w${resource.intrinsicWidth} x h${resource.intrinsicHeight}")
       postImage.setImageDrawable(resource)
+      showImage()
       imageState = LoadState.READY
       notifyListeners()
     }
@@ -59,22 +62,39 @@ class StoryImageLoader(
   }
 
   fun load() {
+    postImage.alpha = 0f
+
+    isLoadingSynchronously = true
     val cacheValue = storyCache.getFromCache(imagePost.imageUri)
     if (cacheValue?.imageTarget != null) {
       loadViaCache(cacheValue.imageTarget)
     } else {
       loadViaGlide(storySize)
     }
+    isLoadingSynchronously = false
 
     blurLoader.load()
   }
 
   fun clear() {
+    postImage.animate().cancel()
     Glide.with(postImage).clear(postImage)
 
     postImage.setImageDrawable(null)
+    postImage.alpha = 1f
 
     blurLoader.clear()
+  }
+
+  /**
+   * Fades the image in over the blur, unless it was available immediately or is not currently on screen.
+   */
+  private fun showImage() {
+    if (isLoadingSynchronously || !postImage.isShown) {
+      postImage.alpha = 1f
+    } else {
+      postImage.animate().alpha(1f).setDuration(FADE_IN_DURATION_MS)
+    }
   }
 
   private fun loadViaCache(imageTarget: StoryCache.StoryCacheTarget) {
@@ -98,6 +118,7 @@ class StoryImageLoader(
         }
 
         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+          showImage()
           imageState = LoadState.READY
           notifyListeners()
           return false
