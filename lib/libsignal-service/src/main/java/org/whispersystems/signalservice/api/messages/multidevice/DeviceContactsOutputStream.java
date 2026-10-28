@@ -61,6 +61,10 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
       contactDetails.expireTimer(contact.getExpirationTimer().get());
     }
 
+    if (contact.getExpirationTimerVersion().isPresent()) {
+      contactDetails.expireTimerVersion(contact.getExpirationTimerVersion().get());
+    }
+
     if (contact.getInboxPosition().isPresent()) {
       contactDetails.inboxPosition(contact.getInboxPosition().get());
     }

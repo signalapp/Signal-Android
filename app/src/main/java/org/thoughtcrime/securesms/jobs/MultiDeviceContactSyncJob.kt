@@ -95,7 +95,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
       }
 
       if (contact.expirationTimer.isPresent) {
-        if (contact.expirationTimerVersion.isPresent && contact.expirationTimerVersion.get() > recipient.expireTimerVersion) {
+        if (contact.expirationTimerVersion.isPresent && contact.expirationTimerVersion.get() >= recipient.expireTimerVersion) {
           recipients.setExpireMessages(recipient.id, contact.expirationTimer.get(), contact.expirationTimerVersion.orElse(1))
         } else if (contact.expirationTimerVersion.isAbsent()) {
           // TODO [expireVersion] After unsupported builds expire, we can remove this branch
