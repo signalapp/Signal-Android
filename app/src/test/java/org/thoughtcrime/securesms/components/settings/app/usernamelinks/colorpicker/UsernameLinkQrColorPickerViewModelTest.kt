@@ -19,10 +19,6 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -31,7 +27,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerAction
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerEvent
 import org.signal.appsettings.usernamecolorpicker.UsernameLinkQrColorPickerState
 import org.signal.appsettings.usernamelinks.QrCodeState
@@ -48,6 +44,7 @@ class UsernameLinkQrColorPickerViewModelTest {
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
   private val qrCodeData = mockk<QrCodeData>()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -68,7 +65,7 @@ class UsernameLinkQrColorPickerViewModelTest {
 
   @Test
   fun `initial state holds the username, saved color, and generated QR code`() = runTest(testDispatcher) {
-    val viewModel = UsernameLinkQrColorPickerViewModel()
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
 
     assertThat(viewModel.state.value).isEqualTo(
       UsernameLinkQrColorPickerState(
@@ -84,7 +81,7 @@ class UsernameLinkQrColorPickerViewModelTest {
     val generated = CompletableDeferred<QrCodeData?>()
     coEvery { UsernameLinkQrColorPickerRepository.getQrCodeData() } coAnswers { generated.await() }
 
-    val viewModel = UsernameLinkQrColorPickerViewModel()
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
     assertThat(viewModel.state.value.qrCodeData).isEqualTo(QrCodeState.Loading)
 
     generated.complete(qrCodeData)
@@ -95,14 +92,14 @@ class UsernameLinkQrColorPickerViewModelTest {
   fun `the QR code is not set when the user has no username link`() = runTest(testDispatcher) {
     coEvery { UsernameLinkQrColorPickerRepository.getQrCodeData() } returns null
 
-    val viewModel = UsernameLinkQrColorPickerViewModel()
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
 
     assertThat(viewModel.state.value.qrCodeData).isEqualTo(QrCodeState.NotSet)
   }
 
   @Test
   fun `ColorSelected updates the preview and saves the color`() = runTest(testDispatcher) {
-    val viewModel = UsernameLinkQrColorPickerViewModel()
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(UsernameLinkQrColorPickerEvent.ColorSelected(UsernameQrCodeColorScheme.Orange))
 
@@ -112,27 +109,19 @@ class UsernameLinkQrColorPickerViewModelTest {
 
   @Test
   fun `DoneClicked navigates back`() = runTest(testDispatcher) {
-    val viewModel = UsernameLinkQrColorPickerViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(UsernameLinkQrColorPickerEvent.DoneClicked)
 
-    assertThat(actions).containsExactly(UsernameLinkQrColorPickerAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
   }
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
-    val viewModel = UsernameLinkQrColorPickerViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = UsernameLinkQrColorPickerViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(UsernameLinkQrColorPickerEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(UsernameLinkQrColorPickerAction.NavigateBack)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<UsernameLinkQrColorPickerAction>): List<UsernameLinkQrColorPickerAction> {
-    val collected = mutableListOf<UsernameLinkQrColorPickerAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
   }
 }
