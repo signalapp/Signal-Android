@@ -39,11 +39,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import org.signal.core.ui.compose.theme.SignalTheme
 
 object Buttons {
@@ -243,13 +246,23 @@ object Buttons {
         enabled = enabled,
         content = imageContent
       )
+      val style = MaterialTheme.typography.bodyMedium
+      val textMeasurer = rememberTextMeasurer()
+      val density = LocalDensity.current
+
+      // Widens past 88dp rather than split a single long word.
+      val longestWord = remember(label, style, density) {
+        val widest = label.split(' ').maxOfOrNull { textMeasurer.measure(it, style).size.width } ?: 0
+        with(density) { widest.toDp() }
+      }
+
       Text(
         text = label,
         textAlign = TextAlign.Center,
         modifier = Modifier
           .padding(top = 12.dp)
-          .widthIn(max = 88.dp),
-        style = MaterialTheme.typography.bodyMedium
+          .widthIn(max = max(88.dp, longestWord)),
+        style = style
       )
     }
   }

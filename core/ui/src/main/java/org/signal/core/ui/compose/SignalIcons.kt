@@ -32,6 +32,7 @@ import org.signal.core.ui.R
  */
 enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   AddToStory(icon(R.drawable.add_to_story_24)),
+  Album(icon(R.drawable.symbol_album_24)),
   AlbumPlus(icon(R.drawable.symbol_album_plus_24)),
   AlbumPlusFill(icon(R.drawable.symbol_album_plus_fill_24)),
   Appearance(icon(R.drawable.symbol_appearance_24)),
@@ -56,6 +57,7 @@ enum class SignalIcons(private val icon: SignalIcon) : SignalIcon by icon {
   Check(icon(R.drawable.symbol_check_24)),
   CheckCircle(icon(R.drawable.symbol_check_circle_24)),
   ChevronRight(icon(R.drawable.symbol_chevron_right_24)),
+  Color(icon(R.drawable.symbol_color_24)),
   Copy(icon(R.drawable.symbol_copy_android_24)),
   CropLock(icon(R.drawable.symbol_crop_lock_24)),
   CropRotate(icon(R.drawable.symbol_crop_rotate_24)),

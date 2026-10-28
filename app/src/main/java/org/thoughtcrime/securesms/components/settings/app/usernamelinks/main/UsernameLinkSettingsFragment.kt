@@ -1,421 +1,52 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
+import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionState
-import com.google.accompanist.permissions.PermissionStatus
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
-import kotlinx.coroutines.CoroutineScope
-import org.signal.appsettings.usernamelinks.QrCodeState
-import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
-import org.signal.camera.CameraScreenEvents
-import org.signal.camera.CameraScreenState
-import org.signal.camera.CameraScreenViewModel
-import org.signal.core.ui.compose.Buttons
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.QrCodeData
-import org.signal.core.ui.compose.SignalIcons
-import org.signal.core.ui.compose.Snackbars
-import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.ui.permissions.Permissions
+import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.CommunicationActions
-import java.io.ByteArrayOutputStream
-import java.util.UUID
-import org.signal.mediasend.R as MediaSendR
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-@OptIn(ExperimentalPermissionsApi::class)
+/**
+ * Fragment host for [UsernameLinkSettingsEntry] until the username link moves to Nav3. Only translates routes into the
+ * nav graph.
+ */
 class UsernameLinkSettingsFragment : ComposeFragment() {
 
-  private val viewModel: UsernameLinkSettingsViewModel by viewModels()
+  private val appSettingsRouter by viewModels<AppSettingsRouter>()
 
-  private lateinit var galleryLauncher: ActivityResultLauncher<Unit>
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    galleryLauncher = registerForActivityResult(QrImageSelectionActivity.Contract()) { uri ->
-      if (uri != null) {
-        viewModel.scanImage(requireContext(), uri)
+    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
+      when (event) {
+        AppSettingsNavigationEvent.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
+        is AppSettingsNavigationEvent.NavigateToScreen -> navigateToScreen(event.route)
       }
+    }
+  }
+
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.UsernameLinkRoute.QRColorPicker -> findNavController().safeNavigate(R.id.action_usernameLinkSettingsFragment_to_usernameLinkQrColorPickerFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
-    val navController: NavController by remember { mutableStateOf(findNavController()) }
-    val linkCopiedEvent: UUID? by viewModel.linkCopiedEvent
-    val helpText = stringResource(id = R.string.UsernameLinkSettings_scan_this_qr_code)
-
-    val cameraViewModel: CameraScreenViewModel = viewModel { CameraScreenViewModel() }
-    val cameraState by cameraViewModel.state
-
-    val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA) {
-      viewModel.onTabSelected(ActiveTab.Scan)
-    }
-
-    LaunchedEffect(cameraViewModel) {
-      cameraViewModel.qrCodeDetected.collect { data ->
-        viewModel.onQrCodeScanned(data)
-      }
-    }
-
-    MainScreen(
-      state = state,
-      navController = navController,
-      cameraState = cameraState,
-      cameraEmitter = cameraViewModel::onEvent,
-      cameraPermissionState = cameraPermissionState,
-      onCodeTabSelected = { viewModel.onTabSelected(ActiveTab.Code) },
-      onScanTabSelected = { viewModel.onTabSelected(ActiveTab.Scan) },
-      onUsernameLinkResetResultHandled = { viewModel.onUsernameLinkResetResultHandled() },
-      onShareBadge = { shareQrBadge(requireActivity(), viewModel.generateQrCodeImage(helpText)) },
-      onQrResultHandled = { viewModel.onQrResultHandled() },
-      onOpenCameraClicked = { askCameraPermissions() },
-      onOpenGalleryClicked = { galleryLauncher.launch(Unit) },
-      onLinkReset = { viewModel.onUsernameLinkReset() },
-      onShareLinkClicked = { viewModel.onShareLinkClicked() },
-      onBackNavigationPressed = { requireActivity().onBackPressed() },
-      linkCopiedEvent = linkCopiedEvent
-    )
-
-    val linkState = state.usernameLinkState
-    if (state.showShareSheet && linkState is UsernameLinkState.Present) {
-      UsernameLinkShareSheet(
-        usernameLink = linkState.link,
-        onLinkCopied = { viewModel.onLinkCopied() },
-        onDismissRequest = { viewModel.onShareSheetDismissed() }
-      )
-    }
-  }
-
-  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-  }
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.onResume()
-  }
-
-  private fun askCameraPermissions() {
-    Permissions.with(this)
-      .request(Manifest.permission.CAMERA)
-      .ifNecessary()
-      .withPermanentDenialDialog(getString(MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code), null, MediaSendR.string.CameraXFragment_allow_access_camera, MediaSendR.string.CameraXFragment_to_scan_qr_codes, parentFragmentManager)
-      .onAnyDenied { Toast.makeText(requireContext(), MediaSendR.string.CameraXFragment_signal_needs_camera_access_scan_qr_code, Toast.LENGTH_LONG).show() }
-      .execute()
-  }
-}
-
-@OptIn(ExperimentalPermissionsApi::class)
-@Composable
-private fun MainScreen(
-  state: UsernameLinkSettingsState,
-  navController: NavController? = null,
-  cameraState: CameraScreenState = CameraScreenState(),
-  cameraEmitter: (CameraScreenEvents) -> Unit = {},
-  cameraPermissionState: PermissionState = previewPermissionState(),
-  onCodeTabSelected: () -> Unit = {},
-  onScanTabSelected: () -> Unit = {},
-  onUsernameLinkResetResultHandled: () -> Unit = {},
-  onShareBadge: () -> Unit = {},
-  onQrResultHandled: () -> Unit = {},
-  onOpenCameraClicked: () -> Unit = {},
-  onOpenGalleryClicked: () -> Unit = {},
-  onLinkReset: () -> Unit = {},
-  onShareLinkClicked: () -> Unit = {},
-  onBackNavigationPressed: () -> Unit = {},
-  linkCopiedEvent: UUID? = null
-) {
-  val context = LocalContext.current
-
-  val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
-  val scope: CoroutineScope = rememberCoroutineScope()
-  var showResetDialog: Boolean by remember { mutableStateOf(false) }
-  val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-
-  val linkCopiedString = stringResource(R.string.UsernameLinkSettings_link_copied_toast)
-
-  LaunchedEffect(linkCopiedEvent) {
-    if (linkCopiedEvent != null) {
-      snackbarHostState.showSnackbar(linkCopiedString)
-    }
-  }
-
-  Scaffold(
-    snackbarHost = { Snackbars.Host(snackbarHostState) },
-    topBar = {
-      TopAppBarContent(
-        activeTab = state.activeTab,
-        scrollBehavior = scrollBehavior,
-        onCodeTabSelected = onCodeTabSelected,
-        onScanTabSelected = onScanTabSelected,
-        onBackNavigationPressed = onBackNavigationPressed
-      )
-    },
-    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
-  ) { contentPadding ->
-
-    if (state.indeterminateProgress) {
-      Dialogs.IndeterminateProgressDialog()
-    }
-
-    AnimatedVisibility(
-      visible = state.activeTab == ActiveTab.Code,
-      enter = slideInHorizontally(initialOffsetX = { fullWidth -> -fullWidth }),
-      exit = slideOutHorizontally(targetOffsetX = { fullWidth -> -fullWidth })
-    ) {
-      UsernameLinkShareScreen(
-        state = state,
-        snackbarHostState = snackbarHostState,
-        scope = scope,
-        modifier = Modifier.padding(contentPadding),
-        navController = navController,
-        onShareBadge = onShareBadge,
-        onLinkClicked = onShareLinkClicked,
-        onResetClicked = { showResetDialog = true },
-        onLinkResultHandled = onUsernameLinkResetResultHandled
-      )
-    }
-
-    AnimatedVisibility(
-      visible = state.activeTab == ActiveTab.Scan,
-      enter = slideInHorizontally(initialOffsetX = { fullWidth -> fullWidth }),
-      exit = slideOutHorizontally(targetOffsetX = { fullWidth -> fullWidth })
-    ) {
-      UsernameQrScanScreen(
-        qrScanResult = state.qrScanResult,
-        cameraState = cameraState,
-        cameraEmitter = cameraEmitter,
-        onQrResultHandled = onQrResultHandled,
-        onOpenCameraClicked = onOpenCameraClicked,
-        onOpenGalleryClicked = onOpenGalleryClicked,
-        hasCameraPermission = cameraPermissionState.status.isGranted,
-        modifier = Modifier.padding(contentPadding),
-        onRecipientFound = { recipient ->
-          CommunicationActions.startConversation(context, recipient, null)
-        }
-      )
-    }
-  }
-
-  if (showResetDialog) {
-    ResetDialog(
-      onConfirm = {
-        onLinkReset()
-        showResetDialog = false
-      },
-      onDismiss = { showResetDialog = false }
-    )
-  }
-}
-
-@Composable
-private fun TopAppBarContent(
-  activeTab: ActiveTab,
-  scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
-  onCodeTabSelected: () -> Unit = {},
-  onScanTabSelected: () -> Unit = {},
-  onBackNavigationPressed: () -> Unit = {}
-) {
-  CenterAlignedTopAppBar(
-    modifier = Modifier
-      .fillMaxWidth(),
-    title = {
-      Row(
-        modifier = Modifier
-          .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-      ) {
-        TabButton(
-          label = stringResource(R.string.UsernameLinkSettings_code_tab_name),
-          active = activeTab == ActiveTab.Code,
-          onClick = onCodeTabSelected,
-          modifier = Modifier.padding(end = 8.dp)
-        )
-        TabButton(
-          label = stringResource(R.string.UsernameLinkSettings_scan_tab_name),
-          active = activeTab == ActiveTab.Scan,
-          onClick = { onScanTabSelected() },
-          modifier = Modifier.padding(end = 8.dp)
-        )
-      }
-    },
-    navigationIcon = {
-      IconButton(
-        onClick = onBackNavigationPressed
-      ) {
-        Icon(
-          painter = SignalIcons.X.painter,
-          contentDescription = stringResource(android.R.string.cancel)
-        )
-      }
-    },
-    scrollBehavior = scrollBehavior
-  )
-}
-
-@Composable
-private fun TabButton(label: String, active: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
-  val colors = if (active) {
-    ButtonDefaults.filledTonalButtonColors()
-  } else {
-    ButtonDefaults.buttonColors(
-      containerColor = SignalTheme.colors.colorSurface2,
-      contentColor = MaterialTheme.colorScheme.onSurface
-    )
-  }
-  Buttons.Small(
-    onClick = onClick,
-    modifier = modifier.defaultMinSize(minWidth = 100.dp),
-    shape = RoundedCornerShape(12.dp),
-    colors = colors
-  ) {
-    Text(label)
-  }
-}
-
-@Composable
-private fun ResetDialog(onConfirm: () -> Unit, onDismiss: () -> Unit) {
-  Dialogs.SimpleAlertDialog(
-    title = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_title),
-    body = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_body),
-    confirm = stringResource(id = R.string.UsernameLinkSettings_reset_link_dialog_confirm_button),
-    dismiss = stringResource(id = android.R.string.cancel),
-    onConfirm = onConfirm,
-    onDismiss = onDismiss
-  )
-}
-
-@DayNightPreviews
-@Composable
-private fun AppBarPreview() {
-  Previews.Preview {
-    Surface {
-      Column {
-        TopAppBarContent(activeTab = ActiveTab.Code)
-        TopAppBarContent(activeTab = ActiveTab.Scan)
-      }
-    }
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun MainScreenPreview() {
-  Previews.Preview {
-    MainScreen(
-      state = UsernameLinkSettingsState(
-        activeTab = ActiveTab.Code,
-        username = "PeterParker.42",
-        usernameLinkState = UsernameLinkState.Present("https://signal.org"),
-        qrCodeState = QrCodeState.Present(QrCodeData.forData("PeterParker.42")),
-        qrCodeColorScheme = UsernameQrCodeColorScheme.Orange
-      )
-    )
-  }
-}
-
-@DayNightPreviews
-@Composable
-private fun ResetDialogPreview() {
-  Previews.Preview {
-    Surface {
-      ResetDialog(onConfirm = {}, onDismiss = {})
-    }
-  }
-}
-
-private fun previewPermissionState(): PermissionState {
-  return object : PermissionState {
-    override val permission: String = ""
-    override val status: PermissionStatus = PermissionStatus.Granted
-    override fun launchPermissionRequest() = Unit
-  }
-}
-
-private fun shareQrBadge(activity: Activity, badge: Bitmap?) {
-  if (badge == null) {
-    return
-  }
-
-  try {
-    ByteArrayOutputStream().use { byteArrayOutputStream ->
-      badge.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-      byteArrayOutputStream.flush()
-      val bytes = byteArrayOutputStream.toByteArray()
-      val shareUri = AppDependencies.blobs
-        .forData(bytes)
-        .withMimeType("image/png")
-        .withFileName("SignalUsernameQr.png")
-        .createForSingleSessionInMemory()
-
-      val intent = ShareCompat.IntentBuilder(activity)
-        .setType("image/png")
-        .setStream(shareUri)
-        .createChooserIntent()
-        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-      activity.startActivity(intent)
-    }
-  } finally {
-    badge.recycle()
+    UsernameLinkSettingsEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
 }

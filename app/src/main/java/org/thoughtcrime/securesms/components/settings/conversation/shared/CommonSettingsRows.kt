@@ -55,7 +55,7 @@ fun ChatColorAndWallpaperRow(
 ) {
   Rows.TextRow(
     text = stringResource(AppSettingsR.string.preferences__chat_color_and_wallpaper),
-    icon = painterResource(R.drawable.symbol_color_24),
+    icon = painterResource(CoreUiR.drawable.symbol_color_24),
     onClick = onClick,
     modifier = modifier
   )

@@ -1,372 +1,198 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import android.graphics.Rect
-import android.graphics.RectF
-import android.graphics.Typeface
+import android.Manifest
 import android.net.Uri
-import android.os.Build
-import android.text.Layout
-import android.text.StaticLayout
-import android.text.TextPaint
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Canvas
-import androidx.compose.ui.graphics.drawscope.CanvasDrawScope
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.graphics.withSave
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.core.graphics.withTranslation
-import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subjects.BehaviorSubject
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.appsettings.usernamelinks.QrCodeState
-import org.signal.core.ui.compose.QrCodeData
-import org.signal.core.ui.compose.drawQr
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsAction
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsEvent
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState.Dialog
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState.LinkState
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState.ResetOutcome
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState.Snackbar
+import org.signal.appsettings.usernamelinks.UsernameLinkSettingsState.Tab
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.ui.compose.PermissionController
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkSettingsState.ActiveTab
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
-import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.toLink
-import org.thoughtcrime.securesms.util.NetworkUtil
-import org.whispersystems.signalservice.api.push.UsernameLinkComponents
-import java.util.Optional
-import java.util.UUID
-import org.signal.core.ui.R as CoreUiR
+import org.signal.appsettings.R as AppSettingsR
 
-class UsernameLinkSettingsViewModel : ViewModel() {
+/**
+ * Drives the user's username QR code and link, and the scanner for other people's codes.
+ */
+class UsernameLinkSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<UsernameLinkSettingsEvent>(TAG) {
 
-  private val TAG = Log.tag(UsernameLinkSettingsViewModel::class.java)
+  companion object {
+    private val TAG = Log.tag(UsernameLinkSettingsViewModel::class)
+  }
 
-  private val _state = mutableStateOf(
+  /** The host renders its [PermissionController.Content]. */
+  val cameraPermission = PermissionController(Manifest.permission.CAMERA, permanentDenialMessage = AppSettingsR.string.UsernameLinkSettingsScreen__camera_needed)
+
+  private val _state = MutableStateFlow(
     UsernameLinkSettingsState(
-      activeTab = ActiveTab.Code,
-      username = SignalStore.account.username!!,
-      usernameLinkState = SignalStore.account.usernameLink?.let { UsernameLinkState.Present(it.toLink()) } ?: UsernameLinkState.NotSet,
-      qrCodeState = QrCodeState.Loading,
-      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
+      username = UsernameLinkSettingsRepository.getUsername(),
+      linkState = UsernameLinkSettingsRepository.getUsernameLink()?.let { LinkState.Present(it) } ?: LinkState.NotSet,
+      colorScheme = UsernameLinkSettingsRepository.getColorScheme(),
+      hasCameraPermission = UsernameLinkSettingsRepository.hasCameraPermission()
     )
   )
-  val state: State<UsernameLinkSettingsState> = _state
+  private val _actions = Channel<UsernameLinkSettingsAction>(Channel.BUFFERED)
 
-  private val disposable: CompositeDisposable = CompositeDisposable()
-  private val usernameLink: BehaviorSubject<Optional<UsernameLinkComponents>> = BehaviorSubject.createDefault(Optional.ofNullable(SignalStore.account.usernameLink))
+  private var chatOpenedFromScan = false
 
-  private val _linkCopiedEvent: MutableState<UUID?> = mutableStateOf(null)
-  val linkCopiedEvent: State<UUID?> get() = _linkCopiedEvent
+  val state: StateFlow<UsernameLinkSettingsState> = _state.asStateFlow()
+  val actions: Flow<UsernameLinkSettingsAction> = _actions.receiveAsFlow()
 
   init {
-    disposable += usernameLink
-      .observeOn(Schedulers.io())
-      .map { link -> link.map { it.toLink() } }
-      .flatMapSingle { generateQrCodeData(it) }
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { qrData ->
-        _state.value = _state.value.copy(
-          qrCodeState = if (qrData.isPresent) QrCodeState.Present(qrData.get()) else QrCodeState.NotSet
-        )
+    val link = UsernameLinkSettingsRepository.getUsernameLink()
+    viewModelScope.launch {
+      if (link != null) {
+        val qrCodeData = UsernameLinkSettingsRepository.createQrCodeData(link)
+        _state.update { it.copy(qrCodeState = QrCodeState.Present(qrCodeData)) }
+      } else {
+        resetLink()
       }
-
-    if (SignalStore.account.usernameLink == null) {
-      onUsernameLinkReset()
     }
   }
 
-  override fun onCleared() {
-    disposable.clear()
+  override suspend fun processEvent(event: UsernameLinkSettingsEvent) {
+    when (event) {
+      UsernameLinkSettingsEvent.ScreenResumed -> {
+        chatOpenedFromScan = false
+        _state.update {
+          it.copy(colorScheme = UsernameLinkSettingsRepository.getColorScheme(), hasCameraPermission = UsernameLinkSettingsRepository.hasCameraPermission())
+        }
+      }
+      UsernameLinkSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      UsernameLinkSettingsEvent.CodeTabSelected -> _state.update { it.copy(activeTab = Tab.CODE) }
+      UsernameLinkSettingsEvent.ScanTabSelected -> _state.update { it.copy(activeTab = Tab.SCAN) }
+      UsernameLinkSettingsEvent.UsernameClicked -> {
+        _actions.send(UsernameLinkSettingsAction.CopyToClipboard(_state.value.username))
+        _state.update { it.copy(snackbar = Snackbar.UsernameCopied) }
+      }
+      UsernameLinkSettingsEvent.LinkClicked -> _state.update { it.copy(showShareSheet = it.linkState is LinkState.Present) }
+      UsernameLinkSettingsEvent.LinkCopied -> _state.update { it.copy(snackbar = Snackbar.LinkCopied) }
+      UsernameLinkSettingsEvent.ShareSheetDismissed -> _state.update { it.copy(showShareSheet = false) }
+      UsernameLinkSettingsEvent.ShareQrCodeClicked -> shareQrCode()
+      UsernameLinkSettingsEvent.ColorClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.UsernameLinkRoute.QRColorPicker)
+      UsernameLinkSettingsEvent.ResetClicked -> _state.update { it.copy(dialog = Dialog.ConfirmReset) }
+      UsernameLinkSettingsEvent.ResetConfirmed -> {
+        _state.update { it.copy(dialog = Dialog.None) }
+        resetLink()
+      }
+      UsernameLinkSettingsEvent.AllowCameraClicked -> requestCamera()
+      UsernameLinkSettingsEvent.OpenGalleryClicked -> _actions.send(UsernameLinkSettingsAction.OpenGallery)
+      is UsernameLinkSettingsEvent.QrCodeScanned -> onQrCodeScanned(event.url)
+      is UsernameLinkSettingsEvent.ImageSelected -> onImageSelected(event.uri)
+      UsernameLinkSettingsEvent.DialogDismissed -> _state.update { it.copy(dialog = Dialog.None) }
+      UsernameLinkSettingsEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = Snackbar.None) }
+    }
   }
 
-  fun onResume() {
-    _state.value = _state.value.copy(
-      qrCodeColorScheme = SignalStore.misc.usernameQrCodeColorScheme
-    )
-  }
-
-  fun onShareLinkClicked() {
-    _state.value = _state.value.copy(showShareSheet = true)
-  }
-
-  fun onShareSheetDismissed() {
-    _state.value = _state.value.copy(showShareSheet = false)
-  }
-
-  fun onTabSelected(tab: ActiveTab) {
-    _state.value = _state.value.copy(
-      activeTab = tab
-    )
-  }
-
-  fun onUsernameLinkReset() {
-    if (!NetworkUtil.isConnected(AppDependencies.application)) {
-      _state.value = _state.value.copy(
-        usernameLinkResetResult = UsernameLinkResetResult.NetworkUnavailable
-      )
+  private suspend fun shareQrCode() {
+    val qrCodeState = _state.value.qrCodeState
+    if (qrCodeState !is QrCodeState.Present) {
+      Log.w(TAG, "No QR code to share yet. ${qrCodeState.javaClass.simpleName}")
       return
     }
 
-    val currentValue = _state.value
-    val previousQrValue: QrCodeData? = if (currentValue.qrCodeState is QrCodeState.Present) {
-      currentValue.qrCodeState.data
-    } else {
-      null
-    }
-
-    _state.value = _state.value.copy(
-      usernameLinkState = UsernameLinkState.Resetting,
-      qrCodeState = QrCodeState.Loading
-    )
-
-    disposable += UsernameRepository.createOrResetUsernameLink()
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { result ->
-        val components: Optional<UsernameLinkComponents> = when (result) {
-          is UsernameLinkResetResult.Success -> Optional.of(result.components)
-          is UsernameLinkResetResult.NetworkError -> Optional.empty()
-          else -> {
-            usernameLink.value ?: Optional.empty()
-          }
-        }
-
-        _state.value = _state.value.copy(
-          usernameLinkState = if (components.isPresent) {
-            val link = components.get().toLink()
-            UsernameLinkState.Present(link)
-          } else {
-            UsernameLinkState.NotSet
-          },
-          usernameLinkResetResult = result,
-          qrCodeState = if (!components.isPresent && previousQrValue != null) {
-            QrCodeState.Present(previousQrValue)
-          } else {
-            QrCodeState.NotSet
-          }
-        )
-
-        if (components.isPresent) {
-          usernameLink.onNext(components)
-        }
-      }
-  }
-
-  fun onUsernameLinkResetResultHandled() {
-    _state.value = _state.value.copy(
-      usernameLinkResetResult = null
-    )
-  }
-
-  fun onQrCodeScanned(url: String) {
-    _state.value = _state.value.copy(
-      indeterminateProgress = true
-    )
-
-    disposable += UsernameQrScanRepository.lookupUsernameUrl(url)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { result ->
-        _state.value = _state.value.copy(
-          qrScanResult = result,
-          indeterminateProgress = false
-        )
-      }
-  }
-
-  fun onQrResultHandled() {
-    _state.value = _state.value.copy(
-      qrScanResult = null
-    )
-  }
-
-  fun onLinkCopied() {
-    _linkCopiedEvent.value = UUID.randomUUID()
-  }
-
-  fun scanImage(context: Context, uri: Uri) {
-    _state.value = _state.value.copy(
-      indeterminateProgress = true
-    )
-
-    disposable += UsernameQrScanRepository.scanImageUriForQrCode(context, uri)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy { result ->
-        _state.value = _state.value.copy(
-          qrScanResult = result,
-          indeterminateProgress = false
-        )
-      }
-  }
-
-  private fun generateQrCodeData(url: Optional<String>): Single<Optional<QrCodeData>> {
-    return Single.fromCallable {
-      url.map { QrCodeData.forData(it) }
-    }
+    val uri = UsernameLinkSettingsRepository.createQrCodeShareImage(qrCodeState.data, _state.value.colorScheme, _state.value.username)
+    _actions.send(UsernameLinkSettingsAction.ShareQrCodeImage(uri))
   }
 
   /**
-   * Fun fact: there's no way to draw a composable to a bitmap. You'd think there would be, but there isn't. You can "screenshot" it if it's 100% on-screen,
-   * but if it's partially offscreen you're SOL. So, we get to go through the fun process of re-drawing the QR badge to an image for sharing ourselves.
-   *
-   * Sizes were picked arbitrarily.
-   *
-   * I hate this as much as you do.
+   * Replaces the link and redraws the QR code for it. When the service can't be reached the old link stays, and so
+   * does its QR code.
    */
-  fun generateQrCodeImage(helpText: String): Bitmap? {
-    val state: UsernameLinkSettingsState = _state.value
+  private suspend fun resetLink() {
+    val previousQrCode = _state.value.qrCodeState as? QrCodeState.Present
+    _state.update { it.copy(linkState = LinkState.Resetting, qrCodeState = QrCodeState.Loading) }
 
-    if (state.qrCodeState !is QrCodeState.Present) {
-      Log.w(TAG, "Invalid state to generate QR code! ${state.qrCodeState.javaClass.simpleName}")
-      return null
+    val result = UsernameLinkSettingsRepository.resetUsernameLink()
+    val link = when (result) {
+      is UsernameLinkResetResult.Success -> UsernameLinkSettingsRepository.toLink(result.components)
+      UsernameLinkResetResult.NetworkError -> null
+      else -> UsernameLinkSettingsRepository.getUsernameLink()
     }
 
-    val qrCodeData: QrCodeData = state.qrCodeState.data
-
-    val scaleFactor = 2
-    val width = 424 * scaleFactor
-    val height = 576 * scaleFactor
-    val backgroundPadHorizontal = 64f * scaleFactor
-    val backgroundPadVertical = 80f * scaleFactor
-    val qrBorderWidth = width - (backgroundPadHorizontal * 2)
-    val qrBorderHeight = 324f * scaleFactor
-    val qrBorderRadius = 30f * scaleFactor
-    val qrSize = 184f * scaleFactor
-    val qrPadding = 16f * scaleFactor
-    val borderSizeX = 40f * scaleFactor
-    val borderSizeY = 32f * scaleFactor
-    val helpTextHorizontalPad = 72 * scaleFactor
-    val helpTextVerticalPad = 444f * scaleFactor
-    val helpTextSize = 14f * scaleFactor
-    val usernameVerticalPad = 348f * scaleFactor
-    val usernameTextSize = 20f * scaleFactor
-
-    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).apply {
-      eraseColor(Color.TRANSPARENT)
+    val qrCodeState = when {
+      link != null -> QrCodeState.Present(UsernameLinkSettingsRepository.createQrCodeData(link))
+      previousQrCode != null -> previousQrCode
+      else -> QrCodeState.NotSet
     }
 
-    val androidCanvas = android.graphics.Canvas(bitmap)
-    val composeCanvas = Canvas(androidCanvas)
-    val canvasDrawScope = CanvasDrawScope()
-
-    // Background
-    androidCanvas.drawColor(state.qrCodeColorScheme.backgroundColor.toArgb())
-
-    // QR Border
-    androidCanvas.withTranslation(x = backgroundPadHorizontal, y = backgroundPadVertical) {
-      drawRoundRect(0f, 0f, qrBorderWidth, qrBorderHeight, qrBorderRadius, qrBorderRadius, Paint().apply { color = state.qrCodeColorScheme.borderColor.toArgb() })
-
-      drawRoundRect(borderSizeX, borderSizeY, borderSizeX + qrSize + qrPadding * 2, borderSizeY + qrSize + qrPadding * 2, 15f, 15f, Paint().apply { color = Color.WHITE })
-      drawRoundRect(
-        borderSizeX,
-        borderSizeY,
-        borderSizeX + qrSize + qrPadding * 2,
-        borderSizeY + qrSize + qrPadding * 2,
-        15f * scaleFactor,
-        15f * scaleFactor,
-        Paint().apply {
-          color = state.qrCodeColorScheme.outlineColor.toArgb()
-          style = Paint.Style.STROKE
-          strokeWidth = 4f
-        }
+    _state.update {
+      it.copy(
+        linkState = link?.let { LinkState.Present(it) } ?: LinkState.NotSet,
+        qrCodeState = qrCodeState,
+        dialog = Dialog.ResetResult(result.toOutcome())
       )
+    }
+  }
 
-      // Draw the QR code
-      composeCanvas.withSave {
-        composeCanvas.translate((qrBorderWidth / 2) - (qrSize / 2), borderSizeY + qrPadding)
-
-        canvasDrawScope.draw(
-          density = object : Density {
-            override val density: Float = 1f
-            override val fontScale: Float = 1f
-          },
-          layoutDirection = LayoutDirection.Ltr,
-          canvas = composeCanvas,
-          size = Size(qrSize, qrSize)
-        ) {
-          drawQr(
-            data = qrCodeData,
-            foregroundColor = state.qrCodeColorScheme.foregroundColor,
-            backgroundColor = state.qrCodeColorScheme.borderColor,
-            deadzonePercent = 0.35f,
-            logo = null
-          )
-        }
+  private fun requestCamera() {
+    viewModelScope.launch {
+      val granted = cameraPermission.request()
+      _state.update {
+        it.copy(
+          hasCameraPermission = granted,
+          snackbar = if (granted || cameraPermission.isPermanentlyDenied) it.snackbar else Snackbar.CameraPermissionDenied
+        )
       }
     }
+  }
 
-    // Draw the signal logo -- unfortunately can't have the normal QR code drawing handle it because it requires a composable ImageBitmap
-    BitmapFactory.decodeResource(AppDependencies.application.resources, CoreUiR.drawable.qrcode_logo).also { logoBitmap ->
-      val tintedPaint = Paint().apply {
-        colorFilter = PorterDuffColorFilter(state.qrCodeColorScheme.foregroundColor.toArgb(), PorterDuff.Mode.SRC_IN)
-      }
-      val sourceRect = Rect(0, 0, logoBitmap.width, logoBitmap.height)
-
-      val logoSize = 36f * scaleFactor
-      val destLeft = (width / 2f) - (logoSize / 2f)
-      val destTop = destLeft - (10f * scaleFactor) + (logoSize / 2f)
-      val destRect = RectF(destLeft, destTop, destLeft + logoSize, destTop + logoSize)
-      androidCanvas.drawBitmap(logoBitmap, sourceRect, destRect, tintedPaint)
+  /** The camera reports a code on every frame it's in view, so only the first is looked up until that's resolved. */
+  private suspend fun onQrCodeScanned(url: String) {
+    if (chatOpenedFromScan || _state.value.busy || _state.value.dialog != Dialog.None) {
+      return
     }
 
-    // Draw the username
-    val usernamePaint = TextPaint().apply {
-      color = state.qrCodeColorScheme.textColor.toArgb()
-      textSize = usernameTextSize
-      typeface = if (Build.VERSION.SDK_INT < 26) {
-        Typeface.DEFAULT_BOLD
-      } else {
-        Typeface.Builder("")
-          .setFallback("sans-serif")
-          .setWeight(600)
-          .build()
-      }
+    _state.update { it.copy(busy = true) }
+    onScanResult(UsernameLinkSettingsRepository.lookUpUsernameLink(url))
+  }
+
+  private suspend fun onImageSelected(uri: Uri) {
+    _state.update { it.copy(busy = true) }
+    onScanResult(UsernameLinkSettingsRepository.scanImage(uri))
+  }
+
+  private suspend fun onScanResult(result: QrScanResult) {
+    val problem = result.toProblem()
+    _state.update { it.copy(busy = false, dialog = problem?.let { Dialog.ScanFailed(it) } ?: it.dialog) }
+
+    if (result is QrScanResult.Success) {
+      chatOpenedFromScan = true
+      _actions.send(UsernameLinkSettingsAction.StartConversation(result.recipient.id))
     }
+  }
 
-    val usernameMaxWidth = qrBorderWidth - borderSizeX * 2f
-    val usernameLayout = StaticLayout(state.username, usernamePaint, usernameMaxWidth.toInt(), Layout.Alignment.ALIGN_CENTER, 1f, 0f, true)
-    val usernameVerticalOffset = when (usernameLayout.lineCount) {
-      1 -> 0f
-      2 -> usernameTextSize / 2f
-      else -> usernameTextSize
+  private fun UsernameLinkResetResult.toOutcome(): ResetOutcome {
+    return when (this) {
+      is UsernameLinkResetResult.Success -> ResetOutcome.SUCCESS
+      UsernameLinkResetResult.NetworkError -> ResetOutcome.NETWORK_ERROR
+      UsernameLinkResetResult.NetworkUnavailable -> ResetOutcome.NETWORK_UNAVAILABLE
+      UsernameLinkResetResult.UnexpectedError -> ResetOutcome.UNEXPECTED_ERROR
     }
-
-    androidCanvas.withTranslation(x = backgroundPadHorizontal + borderSizeX, y = usernameVerticalPad - usernameVerticalOffset) {
-      usernameLayout.draw(this)
-    }
-
-    // Draw the help text
-    val helpTextPaint = TextPaint().apply {
-      isAntiAlias = true
-      color = 0xFF3C3C43.toInt()
-      textSize = helpTextSize
-      typeface = if (Build.VERSION.SDK_INT < 26) {
-        Typeface.DEFAULT
-      } else {
-        Typeface.Builder("")
-          .setFallback("sans-serif")
-          .setWeight(400)
-          .build()
-      }
-    }
-
-    val maxWidth = width - helpTextHorizontalPad * 2
-    val helpTextLayout = StaticLayout(helpText, helpTextPaint, maxWidth, Layout.Alignment.ALIGN_CENTER, 1f, 0f, true)
-
-    androidCanvas.withTranslation(x = helpTextHorizontalPad.toFloat(), y = helpTextVerticalPad) {
-      helpTextLayout.draw(androidCanvas)
-    }
-
-    return bitmap
   }
 }

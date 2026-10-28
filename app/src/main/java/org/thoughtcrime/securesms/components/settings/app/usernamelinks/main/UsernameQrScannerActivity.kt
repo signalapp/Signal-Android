@@ -36,6 +36,8 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
+import org.signal.appsettings.usernamelinks.QrScanProblemDialog
+import org.signal.appsettings.usernamelinks.UsernameQrScanTab
 import org.signal.camera.CameraScreenEvents
 import org.signal.camera.CameraScreenState
 import org.signal.camera.CameraScreenViewModel
@@ -182,17 +184,21 @@ fun Content(
       )
     }
   ) { contentPadding ->
-    UsernameQrScanScreen(
-      qrScanResult = state.qrScanResult,
-      cameraState = cameraState,
-      cameraEmitter = cameraEmitter,
-      onQrResultHandled = onQrResultHandled,
-      onOpenCameraClicked = onOpenCameraClicked,
-      onOpenGalleryClicked = onOpenGalleryClicked,
-      onRecipientFound = onRecipientFound,
+    UsernameQrScanTab(
       hasCameraPermission = cameraPermissionState.status.isGranted,
+      onAllowCameraClicked = onOpenCameraClicked,
+      onOpenGalleryClicked = onOpenGalleryClicked,
+      cameraPreview = { modifier ->
+        UsernameQrCameraPreview(cameraState = cameraState, cameraEmitter = cameraEmitter, modifier = modifier)
+      },
       modifier = Modifier.padding(contentPadding)
     )
+
+    when (val result = state.qrScanResult) {
+      null -> Unit
+      is QrScanResult.Success -> LaunchedEffect(result) { onRecipientFound(result.recipient) }
+      else -> result.toProblem()?.let { problem -> QrScanProblemDialog(problem = problem, onDismiss = onQrResultHandled) }
+    }
 
     if (state.indeterminateProgress) {
       Dialogs.IndeterminateProgressDialog()
