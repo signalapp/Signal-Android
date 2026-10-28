@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageLarge
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 
@@ -51,7 +52,8 @@ fun EditProfileEntry(
 ) {
   val viewModel: EditProfileViewModel = viewModel { EditProfileViewModel(parentEventEmitter) }
   val state by viewModel.state.collectAsStateWithLifecycle()
-  val self by remember { EditProfileRepository.observeSelf() }.collectAsStateWithLifecycle(initialValue = Recipient.self())
+  val self = remember { Recipient.self() }
+  val featuredBadge by rememberRecipientField(self) { featuredBadge?.takeIf { it.visible && !it.isExpired() } }
   val context = LocalContext.current
   val activity = LocalActivity.current
 
@@ -74,7 +76,7 @@ fun EditProfileEntry(
   EditProfileScreen(
     state = state,
     onEvent = viewModel::onEvent,
-    avatar = { SelfAvatar(self = self, badge = self.featuredBadge?.takeIf { it.visible && !it.isExpired() }, badgeSize = 36.dp, badgeOffsetY = 8.dp) },
+    avatar = { SelfAvatar(self = self, badge = featuredBadge, badgeSize = 36.dp, badgeOffsetY = 8.dp) },
     sustainerBadgePreview = { SelfAvatar(self = self, badge = state.sustainerBadge, badgeSize = 32.dp) }
   )
 }

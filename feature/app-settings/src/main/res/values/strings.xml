@@ -890,4 +890,16 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
     <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+
+    <!-- BadgesOverviewScreen -->
+    <!-- Title of the screen listing the badges you've unlocked -->
+    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <!-- Section header above the grid of badges you've unlocked -->
+    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <!-- Toggle for whether your badges are shown on your profile -->
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge's name is shown beneath it -->
+    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn't be saved -->
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
 </resources>

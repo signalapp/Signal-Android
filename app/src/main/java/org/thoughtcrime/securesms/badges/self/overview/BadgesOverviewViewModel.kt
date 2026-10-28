@@ -1,91 +1,104 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.badges.self.overview
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx3.asFlow
-import kotlinx.coroutines.rx3.await
+import org.signal.appsettings.badges.BadgesOverviewAction
+import org.signal.appsettings.badges.BadgesOverviewEvent
+import org.signal.appsettings.badges.BadgesOverviewState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.models.badges.Badge
+import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
-import org.thoughtcrime.securesms.badges.BadgeRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.InternetConnectionObserver
 
-private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
+/**
+ * Drives the list of the user's badges and the settings for showing them on their profile.
+ */
+class BadgesOverviewViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<BadgesOverviewEvent>(TAG) {
 
-class BadgesOverviewViewModel : ViewModel() {
-  private val internalState = MutableStateFlow(BadgesOverviewState())
-  private val internalEvents = Channel<BadgesOverviewEvent>(Channel.BUFFERED)
+  companion object {
+    private val TAG = Log.tag(BadgesOverviewViewModel::class)
+  }
 
-  val state: StateFlow<BadgesOverviewState> = internalState
-  val events: Flow<BadgesOverviewEvent> = internalEvents.receiveAsFlow()
+  private val _state = MutableStateFlow(BadgesOverviewState())
+  private val _actions = Channel<BadgesOverviewAction>(Channel.BUFFERED)
+
+  val state: StateFlow<BadgesOverviewState> = _state.asStateFlow()
+  val actions: Flow<BadgesOverviewAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
-      Recipient.observable(Recipient.self().id).asFlow().filterNot { it.isResolving }.collect { recipient ->
-        internalState.update { state ->
-          state.copy(
-            stage = if (state.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else state.stage,
-            allUnlockedBadges = recipient.badges,
-            displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile(),
-            featuredBadge = recipient.featuredBadge
+      BadgesOverviewRepository.observeSelf().collect { self ->
+        _state.update {
+          it.copy(
+            stage = if (it.stage == BadgesOverviewState.Stage.INIT) BadgesOverviewState.Stage.READY else it.stage,
+            badges = self.badges,
+            featuredBadge = self.featuredBadge,
+            displayBadgesOnProfile = BadgesOverviewRepository.getDisplayBadgesOnProfile(),
+            hasUnexpiredBadges = self.badges.any { badge -> badge.expirationTimestamp > System.currentTimeMillis() }
           )
         }
       }
     }
 
     viewModelScope.launch {
-      InternetConnectionObserver.observe().asFlow().distinctUntilChanged().collect { isConnected ->
-        internalState.update { it.copy(hasInternet = isConnected) }
+      BadgesOverviewRepository.observeInternetConnection().collect { isConnected ->
+        _state.update { it.copy(hasInternet = isConnected) }
       }
     }
 
     viewModelScope.launch {
-      try {
-        val (active, all) = coroutineScope {
-          val activeRequest = async { RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION).await() }
-          val allRequest = async { RecurringInAppPaymentRepository.getSubscriptions().await() }
-          activeRequest.await() to allRequest.await()
-        }
-
-        val fadedBadgeId = if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd == true) {
-          all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id
-        } else {
-          null
-        }
-
-        internalState.update { it.copy(fadedBadgeId = fadedBadgeId) }
-      } catch (e: CancellationException) {
-        throw e
-      } catch (e: Exception) {
-        Log.w(TAG, "Could not retrieve data from server", e)
-      }
+      val fadedBadgeId = BadgesOverviewRepository.getFadedBadgeId()
+      _state.update { it.copy(fadedBadgeId = fadedBadgeId) }
     }
   }
 
-  fun setDisplayBadgesOnProfile(displayBadgesOnProfile: Boolean) {
-    internalState.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
+  override suspend fun processEvent(event: BadgesOverviewEvent) {
+    when (event) {
+      BadgesOverviewEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      is BadgesOverviewEvent.BadgeClicked -> onBadgeClicked(event.badge)
+      is BadgesOverviewEvent.DisplayBadgesOnProfileToggled -> setDisplayBadgesOnProfile(event.enabled)
+      BadgesOverviewEvent.FeaturedBadgeClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Featured)
+      BadgesOverviewEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = BadgesOverviewState.Snackbar.None) }
+    }
+  }
+
+  private suspend fun onBadgeClicked(badge: Badge) {
+    if (badge.isExpired() || badge.id == _state.value.fadedBadgeId) {
+      _actions.send(BadgesOverviewAction.ShowExpiredBadge(badge))
+    } else {
+      _actions.send(BadgesOverviewAction.ShowBadge(badge))
+    }
+  }
+
+  /** Saved off the event queue, so the user can still leave the screen while the service is slow to answer. */
+  private fun setDisplayBadgesOnProfile(enabled: Boolean) {
+    _state.update { it.copy(stage = BadgesOverviewState.Stage.UPDATING_BADGE_DISPLAY_STATE) }
+
     viewModelScope.launch {
-      val result = BadgeRepository.setVisibilityForAllBadges(displayBadgesOnProfile)
-      if (result !is NetworkResult.Success) {
-        Log.e(TAG, "Failed to update visibility.", result.getCause())
-        internalEvents.send(BadgesOverviewEvent.FAILED_TO_UPDATE_PROFILE)
+      val saved = BadgesOverviewRepository.setDisplayBadgesOnProfile(enabled)
+      _state.update {
+        it.copy(
+          stage = BadgesOverviewState.Stage.READY,
+          snackbar = if (saved) it.snackbar else BadgesOverviewState.Snackbar.FailedToUpdateProfile
+        )
       }
-      internalState.update { it.copy(stage = BadgesOverviewState.Stage.READY) }
     }
   }
 }

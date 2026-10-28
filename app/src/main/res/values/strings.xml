@@ -5475,10 +5475,7 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Discard changes?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
     <string name="BadgesOverviewFragment__featured_badge">Featured badge</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>

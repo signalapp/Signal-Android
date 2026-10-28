@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageMedium
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 import org.thoughtcrime.securesms.util.CommunicationActions
 
 /**
@@ -79,10 +80,10 @@ private fun SelfAvatar(self: Recipient) {
       modifier = Modifier.fillMaxSize()
     )
 
-    val featuredBadge = self.featuredBadge
-    if (featuredBadge != null) {
+    val featuredBadge by rememberRecipientField(self) { featuredBadge }
+    featuredBadge?.let { badge ->
       BadgeImageMedium(
-        badge = featuredBadge,
+        badge = badge,
         modifier = Modifier
           .size(24.dp)
           .align(Alignment.BottomEnd)

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.util.ThemeUtil
@@ -23,6 +24,8 @@ class BadgeImageView @JvmOverloads constructor(
 ) : AppCompatImageView(context, attrs) {
 
   private var badgeSize: Int = 0
+
+  var diskCacheStrategy: DiskCacheStrategy = DiskCacheStrategy.AUTOMATIC
 
   init {
     context.obtainStyledAttributes(attrs, R.styleable.BadgeImageView).use {
@@ -74,6 +77,7 @@ class BadgeImageView @JvmOverloads constructor(
       requestManager
         .load(badge)
         .downsample(DownsampleStrategy.NONE)
+        .diskCacheStrategy(diskCacheStrategy)
         .transform(BadgeSpriteTransformation(BadgeSpriteTransformation.Size.fromInteger(badgeSize), badge.imageDensity, ThemeUtil.isDarkTheme(context)))
         .into(this)
 
