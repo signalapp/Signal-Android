@@ -105,7 +105,7 @@ class NetworkDependenciesModule(
 
   val messageApiV2: MessageApiV2 by lazy { MessageApiV2(authWebSocket, unauthWebSocket) }
 
-  val keysApiV2: KeysApiV2 by lazy { KeysApiV2(authWebSocket, unauthWebSocket) }
+  val keysApiV2: KeysApiV2 by lazy { provider.provideKeysApiV2(authWebSocket, unauthWebSocket) }
 
   val messageService: MessageService by lazy { provider.provideMessageService(protocolStore, messageApiV2, keysApiV2) }
 

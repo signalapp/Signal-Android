@@ -11,6 +11,7 @@ import org.signal.network.api.AttachmentApi
 import org.signal.network.api.CallingApi
 import org.signal.network.api.CdsApi
 import org.signal.network.api.CertificateApi
+import org.signal.network.api.KeysApiV2
 import org.signal.network.api.LinkDeviceApi
 import org.signal.network.api.PaymentsApi
 import org.signal.network.api.ProvisioningApi
@@ -64,6 +65,9 @@ open class SignalNetwork {
 
   open val keysApi: KeysApi
     get() = AppDependencies.keysApi
+
+  open val keysApiV2: KeysApiV2
+    get() = AppDependencies.keysApiV2
 
   open val keyTransparencyApi: KeyTransparencyApi
     get() = AppDependencies.keyTransparencyApi
@@ -174,6 +178,11 @@ open class SignalNetwork {
     @get:JvmName("keysApi")
     val keysApi: KeysApi
       get() = instance.keysApi
+
+    @JvmStatic
+    @get:JvmName("keysApiV2")
+    val keysApiV2: KeysApiV2
+      get() = instance.keysApiV2
 
     @JvmStatic
     @get:JvmName("keyTransparencyApi")

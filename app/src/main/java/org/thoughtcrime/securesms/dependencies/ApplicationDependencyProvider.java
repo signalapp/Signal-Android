@@ -633,6 +633,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
+  public @NonNull KeysApiV2 provideKeysApiV2(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new KeysApiV2(authWebSocket, unauthWebSocket);
+  }
+
+  @Override
   public @NonNull AttachmentApi provideAttachmentApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
     return new AttachmentApi(authWebSocket);
   }

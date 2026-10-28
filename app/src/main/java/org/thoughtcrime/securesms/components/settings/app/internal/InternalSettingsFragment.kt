@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.jobs.CheckKeyTransparencyJob
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -419,6 +420,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
         onClick = {
           logPreKeyIds()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Force prekey rotation"),
+        summary = DSLSettingsText.from("Clears the last forced refresh time and enqueues a forced PreKeysSyncJob, rotating all ACI and PNI prekeys."),
+        onClick = {
+          SignalStore.misc.lastForcedPreKeyRefresh = 0
+          AppDependencies.jobManager.add(PreKeysSyncJob.create(forceRotationRequested = true))
+          Toast.makeText(requireContext(), "Enqueued forced prekey rotation", Toast.LENGTH_SHORT).show()
         }
       )
 

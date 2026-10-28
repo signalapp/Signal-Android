@@ -6,8 +6,6 @@
 package org.whispersystems.signalservice.api.keys
 
 import org.signal.core.util.logging.Log
-import org.signal.core.util.toByteArray
-import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
@@ -17,23 +15,19 @@ import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.network.NetworkResult
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.get
-import org.signal.network.websocket.post
 import org.signal.network.websocket.put
 import org.whispersystems.signalservice.api.InvalidPreKeyException
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.fromWebSocketRequest
-import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
-import org.whispersystems.signalservice.internal.push.CheckRepeatedUsedPreKeysRequest
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.PreKeyEntity
 import org.whispersystems.signalservice.internal.push.PreKeyResponse
 import org.whispersystems.signalservice.internal.push.PreKeyState
-import java.security.MessageDigest
 import java.util.LinkedList
 
 /**
@@ -46,47 +40,6 @@ class KeysApi(
 
   companion object {
     private val TAG = Log.tag(KeysApi::class)
-  }
-
-  /**
-   * Checks to see if our local view of our repeated-use prekeys matches the server's view. It's an all-or-nothing match, and no details can be given beyond
-   * whether or not everything perfectly matches or not.
-   *
-   * Status codes:
-   * - 200: Everything matches
-   * - 409: Something doesn't match
-   */
-  fun checkRepeatedUseKeysSync(
-    serviceIdType: ServiceIdType,
-    identityKey: IdentityKey,
-    signedPreKeyId: Int,
-    signedPreKey: ECPublicKey,
-    lastResortKyberKeyId: Int,
-    lastResortKyberKey: KEMPublicKey
-  ): NetworkResult<Unit> {
-    val digest: MessageDigest = MessageDigest.getInstance("SHA-256").apply {
-      update(identityKey.serialize())
-      update(signedPreKeyId.toLong().toByteArray())
-      update(signedPreKey.serialize())
-      update(lastResortKyberKeyId.toLong().toByteArray())
-      update(lastResortKyberKey.serialize())
-    }
-
-    val body = CheckRepeatedUsedPreKeysRequest(serviceIdType.toString(), digest.digest())
-
-    val request = WebSocketRequestMessage.post("/v2/keys/check", body)
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
-  }
-
-  /**
-   * The server's count of currently available (eg. unused) prekeys for this user.
-   *
-   * GET /v2/keys?identity=[serviceIdType]
-   * - 200: Success
-   */
-  fun getAvailablePreKeyCountsSync(serviceIdType: ServiceIdType): NetworkResult<OneTimePreKeyCounts> {
-    val request = WebSocketRequestMessage.get("/v2/keys?identity=${serviceIdType.queryParam()}")
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request, OneTimePreKeyCounts::class)
   }
 
   /**

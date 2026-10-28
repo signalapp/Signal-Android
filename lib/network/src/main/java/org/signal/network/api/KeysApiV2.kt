@@ -6,15 +6,31 @@
 package org.signal.network.api
 
 import kotlinx.serialization.Serializable
+import org.signal.core.util.serialization.ByteArrayToBase64NoPaddingSerializer
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
 import org.signal.core.util.serialization.SignalJson
+import org.signal.core.util.toByteArray
+import org.signal.libsignal.net.AuthKeysService
 import org.signal.libsignal.net.BadRequestError
+import org.signal.libsignal.net.PreKeyCounts
+import org.signal.libsignal.net.PublicEcPreKey
+import org.signal.libsignal.net.PublicKemPreKey
+import org.signal.libsignal.net.PublicSignedEcPreKey
 import org.signal.libsignal.net.RequestResult
+import org.signal.libsignal.protocol.IdentityKey
+import org.signal.libsignal.protocol.ServiceId
+import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.libsignal.protocol.kem.KEMPublicKey
+import org.signal.libsignal.protocol.state.KyberPreKeyRecord
+import org.signal.libsignal.protocol.state.PreKeyRecord
+import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.get
+import org.signal.network.websocket.post
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import java.io.IOException
+import java.security.MessageDigest
 import kotlin.time.Duration
 
 /**
@@ -51,6 +67,94 @@ class KeysApiV2(
     sealedSenderAccess: SealedSenderAccess?
   ): RequestResult<PreKeyResponse, GetPreKeysError> {
     return getPreKeysBySpecifier(identifier, "*", sealedSenderAccess)
+  }
+
+  /**
+   * Fetches the approximate number of unused one-time prekeys the service is storing for this device, broken down by identity and key kind.
+   */
+  suspend fun getPreKeyCounts(): RequestResult<PreKeyCounts, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthKeysService(connection).getPreKeyCount()
+    }
+  }
+
+  /**
+   * Checks whether the service's view of our repeated-use prekeys matches ours. It's all-or-nothing: the service can't say what differs.
+   *
+   * POST /v2/keys/check
+   * - 200: Everything matches
+   * - 400: Bad request
+   * - 401: Auth failure
+   * - 409: Something doesn't match
+   */
+  suspend fun checkRepeatedUseKeysConsistency(
+    serviceIdType: ServiceId.Kind,
+    identityKey: IdentityKey,
+    signedPreKeyId: Int,
+    signedPreKey: ECPublicKey,
+    lastResortKyberKeyId: Int,
+    lastResortKyberKey: KEMPublicKey
+  ): RequestResult<Unit, CheckRepeatedUseKeysError> {
+    val digest: ByteArray = MessageDigest.getInstance("SHA-256").run {
+      update(identityKey.serialize())
+      update(signedPreKeyId.toLong().toByteArray())
+      update(signedPreKey.serialize())
+      update(lastResortKyberKeyId.toLong().toByteArray())
+      update(lastResortKyberKey.serialize())
+      digest()
+    }
+
+    val identityType = when (serviceIdType) {
+      ServiceId.Kind.ACI -> "ACI"
+      ServiceId.Kind.PNI -> "PNI"
+    }
+
+    return authWebSocket.requestResult(
+      request = WebSocketRequestMessage.post("/v2/keys/check", CheckRepeatedUseKeysRequest(identityType, digest), CheckRepeatedUseKeysRequest.serializer()),
+      parseSuccess = { },
+      mapError = { response ->
+        when (response.status) {
+          409 -> CheckRepeatedUseKeysError.Mismatch
+          else -> CheckRepeatedUseKeysError.UnknownError(response.status)
+        }
+      }
+    )
+  }
+
+  /**
+   * Replaces this device's one-time EC prekeys for [serviceIdType] with [preKeys], which must contain between 1 and 100 keys.
+   */
+  suspend fun setOneTimeEcPreKeys(serviceIdType: ServiceId.Kind, preKeys: List<PreKeyRecord>): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthKeysService(connection).setOneTimeEcPreKeys(serviceIdType, preKeys.map { PublicEcPreKey(it) })
+    }
+  }
+
+  /**
+   * Replaces this device's one-time KEM prekeys for [serviceIdType] with [preKeys], which must contain between 1 and 100 keys.
+   */
+  suspend fun setOneTimeKemPreKeys(serviceIdType: ServiceId.Kind, preKeys: List<KyberPreKeyRecord>): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthKeysService(connection).setOneTimeKemPreKeys(serviceIdType, preKeys.map { PublicKemPreKey(it) })
+    }
+  }
+
+  /**
+   * Replaces this device's signed EC prekey for [serviceIdType].
+   */
+  suspend fun setSignedEcPreKey(serviceIdType: ServiceId.Kind, preKey: SignedPreKeyRecord): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthKeysService(connection).setSignedEcPreKey(serviceIdType, PublicSignedEcPreKey(preKey))
+    }
+  }
+
+  /**
+   * Replaces this device's last-resort KEM prekey for [serviceIdType].
+   */
+  suspend fun setLastResortKemPreKey(serviceIdType: ServiceId.Kind, preKey: KyberPreKeyRecord): RequestResult<Unit, Nothing> {
+    return authWebSocket.runCatchingWithChatConnection { connection ->
+      AuthKeysService(connection).setLastResortKemPreKey(serviceIdType, PublicKemPreKey(preKey))
+    }
   }
 
   private suspend fun getPreKeysBySpecifier(
@@ -128,6 +232,18 @@ class KeysApiV2(
     @Serializable(with = ByteArrayToBase64Serializer::class)
     val signature: ByteArray
   )
+
+  @Serializable
+  class CheckRepeatedUseKeysRequest(
+    val identityType: String,
+    @Serializable(with = ByteArrayToBase64NoPaddingSerializer::class)
+    val digest: ByteArray
+  )
+
+  sealed interface CheckRepeatedUseKeysError : BadRequestError {
+    data object Mismatch : CheckRepeatedUseKeysError
+    data class UnknownError(val statusCode: Int) : CheckRepeatedUseKeysError
+  }
 
   sealed interface GetPreKeysError : BadRequestError {
     data object Unauthorized : GetPreKeysError

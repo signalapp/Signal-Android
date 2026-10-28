@@ -21,7 +21,6 @@ import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.network.util.JsonUtil
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.donations.ReceiptCredentialResponseJson
-import org.whispersystems.signalservice.api.keys.OneTimePreKeyCounts
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret
@@ -95,14 +94,6 @@ class ConvertedModelJsonTest {
     assertThat(device.preKey?.publicKey).isEqualTo(ecKeyPair.publicKey)
     assertThat(device.signedPreKey?.signature?.toList()).isEqualTo(signature.toList())
     assertThat(device.kyberPreKey?.publicKey).isEqualTo(kemKeyPair.publicKey)
-  }
-
-  @Test
-  fun oneTimePreKeyCounts() {
-    val decoded = JsonUtil.fromJson("""{"count":5,"pqCount":7}""", OneTimePreKeyCounts::class.java)
-
-    assertThat(decoded.ecCount).isEqualTo(5)
-    assertThat(decoded.kyberCount).isEqualTo(7)
   }
 
   @Test
