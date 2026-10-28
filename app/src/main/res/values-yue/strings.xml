@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal 更新緊…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">你仲未設定密碼喎！</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">係咪要停用密碼？</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">咁樣以後 Signal 同埋訊息通知就唔會再上鎖㗎喇。</string>
-    <string name="ApplicationPreferencesActivity_disable">停用</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">連唔到伺服器！</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">註冊鎖需要用到 PIN 碼。想停用 PIN 碼嘅話，就要先停用註冊鎖。</string>
     <string name="ApplicationPreferencesActivity_pin_created">整好咗 PIN 碼。</string>
@@ -815,7 +811,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料相嘅時候發生問題</string>
     <string name="CreateProfileActivity_problem_setting_profile">設定個人資料嘅時候發生問題</string>
     <string name="CreateProfileActivity_set_up_your_profile">設定您嘅個人資料</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">同你通訊嘅人、聯絡人同群組將會睇到你嘅個人檔案同埋相關更改。</string>
     <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
 
     <!-- ProfileCreateFragment -->
@@ -1303,17 +1298,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">幫個谷起個名</string>
-    <string name="AddGroupDetailsFragment__create_group">開個新谷</string>
     <string name="AddGroupDetailsFragment__create">建立</string>
     <string name="AddGroupDetailsFragment__members">成員</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">開咗呢個新谷之後，您可以加人或者邀請好友。</string>
     <string name="AddGroupDetailsFragment__group_name_required">谷名 (必填)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">谷名 (選填)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">呢欄一定要填。</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">開唔到新谷。</string>
     <string name="AddGroupDetailsFragment__try_again_later">陣間再試下啦。</string>
     <string name="AddGroupDetailsFragment__remove">移除</string>
-    <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">係咪喺群組度移除 %1$s？</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">係咪唔要呢個谷？</string>
@@ -1321,8 +1312,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">如果你繼續去「%1$s」谷，系統就唔會儲存你改過嘅嘢。</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">掉咗佢</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">你揀選嘅聯絡人用唔到 Signal 群組，所以呢個群組會用多媒體訊息。只有你可以睇到自訂多媒體訊息群組嘅名同相。系統即將停止支援多媒體訊息群組，專注提供加密通訊服務。</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">邊個可以加啲新成員入嚟？</string>
@@ -1354,34 +1343,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">你嘅用戶名稱、二維碼同連結唔會喺個人檔案度顯示。記得淨係好同你信任嘅人分享你嘅用戶名稱呀。</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">其他人而家可以唔使知你個電話冧把，直接搵選填嘅用戶名稱嚟傳送訊息俾你。每個用戶名稱都有專屬嘅二維碼同埋連結，方便你分享俾朋友。</string>
-    <string name="ManageProfileFragment_profile_name">個人檔名</string>
-    <string name="ManageProfileFragment_username">用戶名稱</string>
-    <string name="ManageProfileFragment_about">關於</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
     <string name="ManageProfileFragment_badges">襟章</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">二維碼或連結</string>
-    <string name="ManageProfileFragment__edit_photo">改過幅相</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">分享你嘅用戶名稱</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">分享你嘅專屬二維碼或者連結，其他人就可以同你開始聊天。</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">建立咗用戶名稱</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">複製咗用戶名稱</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">刪除唔到用戶名稱。請你遲啲再試過啦。</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">刪除咗用戶名稱</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">係咪刪除用戶名稱呀？</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"咁做嘅話，系統會移除你嘅用戶名稱，同埋停用你嘅二維碼同連結。 其他用戶就可以攞「%1$s」呢個名嚟用㗎喇。 你係咪確定？"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2824,51 +2786,13 @@
     <string name="UnverifiedSendDialog_send">傳送</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">選擇你嘅用戶名稱</string>
-    <string name="UsernameEditFragment_username">用戶名稱</string>
-    <string name="UsernameEditFragment_delete">刪除</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">成功移除咗用戶名稱。</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">網絡有問題。</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">嘗試次數過多，請你遲啲再試過啦。</string>
-    <string name="UsernameEditFragment_this_username_is_taken">呢個用戶名稱已經畀人用咗喇。</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">用戶名稱只可以用 a–Z、0–9 同底線符號。</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用戶名稱冇得用數目字開頭。</string>
-    <string name="UsernameEditFragment_username_is_invalid">用戶名稱無效。</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用戶名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">其他人而家可以唔使知你個電話冧把，直接搵你選填嘅用戶名稱嚟傳送訊息俾你。用戶名稱一定會配對一組數字。</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">飛過</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">搞掂</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">呢個用戶名稱唔用得，試吓其他號碼啦。</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">用戶名稱無效，請輸入至少 %1$d 位數字。</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">用戶名稱無效，請輸入最多 %1$d 位數字。</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">呢個數字唔可以係 00。請輸入 1–9 之間嘅數字</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">超過 2 位數嘅數字唔可以用 0 開頭</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">恢復用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">更改用戶名稱會將你宜家用緊嘅二維碼同連結重設。你係咪確定？</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">繼續</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d 位聯絡人開咗 Signal 喇！</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">複製或者分享用戶名稱連結</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描嘅二維碼唔係正確格式嘅安全碼驗證碼。請試下再掃一次啦。</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">將安全碼分享去…</string>
@@ -3487,42 +3411,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自訂嘅多媒體短訊谷名同相淨係得您自己睇到。</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">呢個谷嘅成員，以及獲邀加入嘅人，會睇到個谷嘅描述。</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">關於</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">我鏡裡看見了新生…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">從不想作假 只活這☝️次</string>
-    <string name="EditAboutFragment_encrypted">誰人如常 問我今天驚心度</string>
-    <string name="EditAboutFragment_be_kind">有一天相約 我們找烏托邦</string>
-    <string name="EditAboutFragment_coffee_lover">茶杯未滿 仍然裝著大半</string>
-    <string name="EditAboutFragment_free_to_chat">以咪高風大預言一個十年</string>
-    <string name="EditAboutFragment_taking_a_break">不必搜索物證 想一想 神話的要點</string>
-    <string name="EditAboutFragment_working_on_something_new">顛覆角度 哪懼無路</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">編輯個谷</string>
     <string name="EditProfileFragment__group_name">個谷嘅名</string>
     <string name="EditProfileFragment__group_description">個谷嘅描述</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">更新 Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">呢個 Signal 版本已經過咗期。即刻更新嚟繼續用 Signal 啦。</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">更新</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">部機未註冊</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">呢部裝置嘅註冊已經失效。重新註冊就可以修改帳戶資料。</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">重新註冊</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">您嘅名稱</string>
-    <string name="EditProfileNameFragment_first_name">名</string>
-    <string name="EditProfileNameFragment_last_name_optional">姓 (選填)</string>
     <string name="EditProfileNameFragment_save">儲存</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">因為網絡有問題，儲存唔到。陣間再試下啦。</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">已分享嘅多媒體</string>
@@ -3702,12 +3598,6 @@
         <item quantity="other">%1$d 個鐘之前</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">更改密碼</string>
-    <string name="preferences__change_your_passphrase">更改您個密碼</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">啟用密碼畫面鎖</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">用密碼將畫面同通知上鎖</string>
-    <string name="preferences__screen_security">畫面要遮掩</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3722,11 +3612,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">關閉</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">遮掩畫面功能已經閂咗</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定嘅閒置時間過後自動將 Signal 上鎖</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">閒置逾時密碼</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">隔幾耐謂之閒置逾時</string>
     <string name="preferences__notifications">通知</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">啟用通知</string>
@@ -3762,14 +3647,10 @@
     <string name="preferences__slow">慢</string>
     <string name="preferences__advanced">進階</string>
     <string name="preferences__donate_to_signal">課金 Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">私隱</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">限時動態</string>
     <string name="preferences__storage">儲存空間</string>
     <string name="preferences__payments">付款</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">付款鎖定</string>
     <string name="preferences__conversation_length_limit">聊天訊息量上限</string>
     <string name="preferences__keep_messages">保留訊息</string>
     <string name="preferences__linked_devices">連結咗嘅機</string>
@@ -3780,14 +3661,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">進階 PIN 碼設定</string>
     <string name="preferences__submit_debug_log">提交除錯記錄檔</string>
-    <string name="preferences__incognito_keyboard">無痕式鍵盤</string>
-    <string name="preferences__read_receipts">睇咗扱個印</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">若然您停用睇咗扱個印，人哋睇咗扱個印，您都唔會睇到。</string>
-    <string name="preferences__typing_indicators">示意打緊字</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">若然您停用示意打緊字，人哋示意打緊字，您都唔會睇到。</string>
-    <string name="preferences__request_keyboard_to_disable">要求鍵盤停用個人化學習。</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">呢個設定唔係寫包單嘅，您嘅鍵盤亦可能話之得佢。</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">儲存空間用量</string>
     <string name="preferences_storage__photos">相片</string>
     <string name="preferences_storage__videos">影片</string>
@@ -3832,8 +3705,6 @@
     <string name="preferences_storage__custom">自訂</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">將所有通話中轉 Signal 伺服器，以避免向您嘅聯絡人透露您嘅 IP 位址。啟用嘅時候會犧牲通話質素。</string>
     <string name="preferences_advanced__always_relay_calls">一律轉駁通話</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">付款</string>
     <string name="preferences_notifications__in_chat_sounds">開住傾偈嘅時候照響聲</string>
     <string name="preferences_notifications__show">顯示</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4433,10 +4304,6 @@
     <string name="BackupUtil_never">唔使喇</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">未知</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">選擇邊個可以睇到你嘅電話冧把，同埋喺 Signal 度用手機號碼聯絡你。</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">如果你想用螢幕鎖定，請喺呢部機度設定 PIN 碼、圖案或者密碼。</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">啟用唔到註冊鎖。</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">停用唔到註冊鎖。</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">您務必輸入您嘅註冊鎖 PIN 碼</string>
@@ -4459,8 +4326,6 @@
     <string name="prompt_passphrase_activity__try_again">再試多次</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">閂咗</string>
 
     <string name="Recipient_unknown">未知</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -4909,20 +4774,8 @@
     <string name="GroupDescriptionDialog__group_description">個谷嘅描述</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">為你嘅「Signal 安全備份」課金計劃續期</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">完成唔到備份</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">換領唔到備份課金計劃</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">備份儲存空間頂晒櫳喇</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">邀請您嘅好友</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">複製咗定期捐款訂閱者 ID 去剪貼簿</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">複製咗備份訂閱者 ID 去剪貼簿</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">您可以喺度將您而家用緊嗰個電話冧把，轉做一個新嘅電話冧把。喺度一轉咗就冇得返轉頭㗎喇。\n\n喺繼續之前，請先確定您個新冧把，而家可以收到短訊或者接到電話。</string>
@@ -5162,27 +5015,7 @@
     <string name="NotificationProfilesFragment__create_profile">搞搞新揀單</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">封鎖咗</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d 個聯絡人或者群組</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">發訊息</string>
     <string name="PrivacySettingsFragment__disappearing_messages">過眼雲煙訊息</string>
-    <string name="PrivacySettingsFragment__app_security">App 保安措施</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖最近清單同埋應用程式入面嘅螢幕截圖</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息同通話、一律轉駁通話同封密發送人</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">為新嘅傾偈預設倒數限期</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">幫您發起嘅所有新對話，都預先設定一個過眼雲煙訊息倒數限期。</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">一定要用 Android 螢幕鎖定或者指紋辨識功能嚟進行滙款</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">啟用唔到付款鎖定</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">如果要用付款鎖定，就一定要先喺手機設定啟用螢幕鎖定或者指紋 ID。</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">瀏覽唔到系統設定</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5492,14 +5325,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">改過嗰啲嘢係咪掉咗佢？</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">呢幅相執過嘅嘢，統統都冇得留低個囉噃。</string>
 
-    <string name="BadgesOverviewFragment__my_badges">我嘅襟章</string>
     <string name="BadgesOverviewFragment__featured_badge">賣飛佛襟章</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">喺個人資料度展示襟章</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">更新唔到個人資料</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">揀個襟章</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新唔到個人資料</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">課金</string>
@@ -5547,9 +5375,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">揀選為賣飛佛襟章</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">繼續</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有唔止一枚襟章，您可揀一枚做賣飛佛襟章，掛上去個人資料度畀其他人睇到。</string>
-
-    <string name="BecomeASustainerFragment__get_badges">擔當 Signal 後援，為您嘅個人資料添一枚襟章。</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 係非牟利組織，背後冇廣告商或投資者大條水喉照住，卻有位位「您」做團伙照耀，「燃亮最光的星斗」，至能夠廢鉄到足金。</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">捐款俾 Signal</string>
@@ -5860,20 +5685,6 @@
     <string name="EditNotificationProfileSchedule__start">開始</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">結束</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">日</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">一</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">二</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">三</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">四</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">五</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">六</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">設定開始時間</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6320,6 +6131,8 @@
     <string name="GiftFlowStartFragment__next">下一步</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">選擇接收者</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">確認捐款</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6795,11 +6608,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">清除格式</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">編輯用戶名稱</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">刪除用戶名稱</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7001,12 +6809,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">通話名稱</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">導航欄大小</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">細</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">編輯紀錄</string>
@@ -7035,63 +6837,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">呢個連結將會失效，任何人都唔會再用到。</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">連結</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">分享</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">顏色</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">記得淨係好同你信任嘅人分享你嘅二維碼同連結呀。分享出去之後，其他人會睇到你嘅用戶名稱，同埋可以同你開始聊天。</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">複製咗用戶名稱</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">複製咗連結</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">重設緊連結…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">係咪要重設二維碼？</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">如果你重設二維碼，你而家用緊嘅二維碼同連結就會失效。</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">重設</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">重設</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">二維碼</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">掃描</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">請你掃描聯絡人部機上面嘅二維碼。</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">二維碼無效。</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">揾唔到用戶名稱叫「 %1$s 」嘅用戶。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">搵唔到呢個用戶。</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">網絡出現問題，請你再試多次啦。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">冇網路連線。你嘅連結仲未重設到。請你遲啲再試過啦。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">嘗試重設連結時，網路發生錯誤。請你遲啲再試過啦。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">嘗試重設連結時，發生咗無法預計嘅錯誤。請你遲啲再試過啦。</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">你嘅二維碼同連結已經重設，系統建立咗一個新嘅二維碼同連結。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">用電話掃描呢個二維碼，就開始喺 Signal 同我聊天喇。</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">搵唔到二維碼</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">試吓掃描第二張有 Signal 二維碼嘅圖片。</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">任何擁有呢條連結嘅人都可以睇到你嘅用戶名稱，同埋開始同你傾計。記得淨係好同你信任嘅人分享呀。</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">複製連結</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">分享</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7219,6 +6969,30 @@
     <string name="VerifyBackupKey__backup_key_correct">恢復金鑰正確。好好保存你嘅金鑰。</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">我哋過一個禮拜會再問你。</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">係咪要開啟全螢幕通知？</string>
@@ -7608,11 +7382,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">再試多次</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s解散咗個谷</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">個谷已經解散咗。</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">你唔會再收發到呢個谷嘅訊息或者通話。</string>
 
     <!-- NoManualBackupBottomSheet -->

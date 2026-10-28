@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Тандалгандардан өчүрөсүзбү?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Эгер сизде топтом орнотулбаса, шилтеме же стикер билдирүүсү болбосо, аны жөнөтө же Тандалгандарга кайра кошо албайсыз.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Алып салуу</string>
     <!-- Text shown when no preference label has been selected -->
@@ -63,36 +63,36 @@
     <string name="expiration_off">Өчүк</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d second</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="one">%1$d секунд</item>
+        <item quantity="other">%1$d секунд</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$dсек</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d мүнөт</item>
+        <item quantity="other">%1$d мүнөт</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$dмүн</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="one">%1$d саат</item>
+        <item quantity="other">%1$d саат</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$dс</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">%1$d day</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="one">%1$d күн</item>
+        <item quantity="other">%1$d күн</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$dк</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="one">%1$d апта</item>
+        <item quantity="other">%1$d апта</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$dа</string>
@@ -105,7 +105,11 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Текст киргизүү</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Саатка өтүү</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Remove %1$s</string>
 </resources>

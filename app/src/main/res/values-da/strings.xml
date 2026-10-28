@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal opdaterer …</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har endnu ikke indtastet en adgangssætning!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiver adgangssætning?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser permanent op for Signal og besked-notifikationer.</string>
-    <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Pinkoder er påkrævet for registreringslås. For at deaktivere pinkoder skal registreringslås først deaktiveres.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Pinkode oprettet.</string>
@@ -839,7 +835,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Fejl opstået ved oprettelse af profilbilledet</string>
     <string name="CreateProfileActivity_problem_setting_profile">Fejl opstod ved oprettelse af profil</string>
     <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil og ændringerne vil være synlige for folk, du skriver til, dine kontakter og dine grupper.</string>
     <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
 
     <!-- ProfileCreateFragment -->
@@ -1345,17 +1340,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Navngiv gruppen</string>
-    <string name="AddGroupDetailsFragment__create_group">Opret gruppe</string>
     <string name="AddGroupDetailsFragment__create">Opret</string>
     <string name="AddGroupDetailsFragment__members">Medlemmer</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Efter oprettelse af denne gruppe kan du tilføje eller invitere venner.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Gruppenavn (påkrævet)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Gruppenavn (valgfrit)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Dette felt er påkrævet.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Oprettelse af gruppe mislykkedes</string>
     <string name="AddGroupDetailsFragment__try_again_later">Prøv igen senere.</string>
     <string name="AddGroupDetailsFragment__remove">Fjern</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s fra gruppen?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">Vil du kassere gruppen?</string>
@@ -1363,8 +1354,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Hvis du fortsætter til gruppen \"%1$s\", vil dine ændringer ikke blive gemt.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Kassér</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Du har valgt en kontakt, der ikke understøtter Signal-grupper, så denne gruppe vil være mms. Tilpassede mms-gruppenavne og -billeder vil kun være synlige for dig. Understøttelse af mms-grupper fjernes snart for at fokusere på krypterede meddelelser.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Hvem kan tilføje nye medlemmer?</string>
@@ -1397,34 +1386,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Dit brugernavn, din QR-kode og dit link er ikke synlige på din profil. Del kun dit brugernavn med folk, du stoler på.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Folk kan sende dig beskeder via et valgfrit brugernavn i stedet for et telefonnummer. Brugernavne har en unik QR-kode og et link, som du kan dele med dine venner.</string>
-    <string name="ManageProfileFragment_profile_name">Profilnavn</string>
-    <string name="ManageProfileFragment_username">Brugernavn</string>
-    <string name="ManageProfileFragment_about">Om</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
     <string name="ManageProfileFragment_badges">Badges</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR-kode eller link</string>
-    <string name="ManageProfileFragment__edit_photo">Rediger billede</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Del dit brugernavn</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Lad andre starte en chat med dig ved at dele din unikke QR-kode eller dit link.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Brugernavn oprettet</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Brugernavn kopieret</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Kunne ikke slette brugernavn. Prøv igen senere.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Brugernavn slettet</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Slet brugernavn?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Dette vil fjerne dit brugernavn og deaktivere din QR-kode og dit link. Andre vil dermed have mulighed for at bruge %1$s. Er du sikker?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2920,52 +2882,14 @@
     <string name="UnverifiedSendDialog_send">Send</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Vælg dit brugernavn</string>
-    <string name="UsernameEditFragment_username">Brugernavn</string>
-    <string name="UsernameEditFragment_delete">Slet</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">Brugernavn slettet.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">Registreret en netværksfejl</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">For mange forsøg – prøv igen senere</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Brugernavnet er optaget.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Brugernavne må kun indeholde a-Z, 0-9 og underscores.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brugernavne kan ikke starte med et tal.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Brugernavn er ugyldigt.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brugernavne skal være på mellem %1$d og %2$d tegn.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Andre kan sende dig beskeder via dit valgfrie brugernavn i stedet for dit telefonnummer. Brugernavne er altid parret med en række tal.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">Spring over</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">Udført</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Dette brugernavn er ikke ledigt, prøv et andet nummer.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ugyldigt brugernavn, angiv min. %1$d cifre.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ugyldigt brugernavn, angiv maks. %1$d cifre.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">Dette nummer må ikke være 00. Angiv et tal mellem 1-9</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Tal med mere end to cifre må ikke starte med 0</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Hvis du gendanner dit brugernavn, nulstilles din eksisterende QR-kode og dit link. Er du sikker?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Hvis du ændrer dit brugernavn, nulstilles din eksisterende QR-kode og dit link. Er du sikker?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Fortsæt</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontakt anvender Signal!</item>
         <item quantity="other">%1$d kontakter anvender Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopiér eller del brugernavn-link</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den scannede QR-kode er ikke korrekt formateret som verifikationskode for sikkerhedsnummer. Prøv at scanne igen.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhedsnummer via…</string>
@@ -3598,42 +3522,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og billeder vil kun være synlige for dig.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppebeskrivelser vil være synlige for medlemmer af denne gruppe og personer, der er blevet inviteret.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">Om</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">Tal frit</string>
-    <string name="EditAboutFragment_encrypted">Krypteret</string>
-    <string name="EditAboutFragment_be_kind">Vær venlig</string>
-    <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
-    <string name="EditAboutFragment_free_to_chat">Klar til en chat</string>
-    <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
-    <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Redigér gruppe</string>
     <string name="EditProfileFragment__group_name">Gruppenavn</string>
     <string name="EditProfileFragment__group_description">Gruppebeskrivelse</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Opdater Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Denne version af Signal er udløbet. Opdatér nu for at fortsætte med at bruge Signal.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Opdatér</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Enheden er ikke registreret</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">Denne enhed er ikke længere registreret. Registrer den igen for at foretage ændringer på din konto.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Genregistrering</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Dit navn</string>
-    <string name="EditProfileNameFragment_first_name">Fornavn</string>
-    <string name="EditProfileNameFragment_last_name_optional">Efternavn (valgfrit)</string>
     <string name="EditProfileNameFragment_save">Gem</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Det lykkedes ikke at gemme pga. netværksproblemer. Prøv igen senere.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Delte mediefiler</string>
@@ -3815,12 +3711,6 @@
         <item quantity="other">%1$dt</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">Skift adgangssætning</string>
-    <string name="preferences__change_your_passphrase">Skift din adgangssætning</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Aktiver skærmlås med adgangssætning</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skærm og notifikationer med adgangssætning</string>
-    <string name="preferences__screen_security">Skærmsikkerhed</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3835,11 +3725,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Deaktiver</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Skærmsikkerhed slået fra</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et bestemt tidsrum med inaktivitet</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Adgangssætning for timeout ved inaktivitet</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Timeout-interval for inaktivitet</string>
     <string name="preferences__notifications">Notifikationer</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Aktiver notifikationer</string>
@@ -3875,14 +3760,10 @@
     <string name="preferences__slow">Langsom</string>
     <string name="preferences__advanced">Avanceret</string>
     <string name="preferences__donate_to_signal">Donér til Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Privatliv</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Historier</string>
     <string name="preferences__storage">Lagerplads</string>
     <string name="preferences__payments">Betalinger</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Betalingslås</string>
     <string name="preferences__conversation_length_limit">Grænse for chatlængde</string>
     <string name="preferences__keep_messages">Bevar beskeder</string>
     <string name="preferences__linked_devices">Forbundne enheder</string>
@@ -3893,14 +3774,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avancerede pinkode-indstillinger</string>
     <string name="preferences__submit_debug_log">Indsend fejlsøgningslog</string>
-    <string name="preferences__incognito_keyboard">Inkognito-tastatur</string>
-    <string name="preferences__read_receipts">Læsekvitteringer</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læsekvitteringer er deaktiveret, vil du heller ikke kunne se læsekvitteringer fra andre.</string>
-    <string name="preferences__typing_indicators">Skriveindikatorer</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktiveret, vil du heller ikke kunne se når andre skriver.</string>
-    <string name="preferences__request_keyboard_to_disable">Anmod tastatur om at deaktivere personlig læring.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">Denne indstilling er ikke en garanti, og dit tastatur ignorerer den muligvis.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">Brug af lagerplads</string>
     <string name="preferences_storage__photos">Billeder</string>
     <string name="preferences_storage__videos">Videoer</string>
@@ -3947,8 +3820,6 @@
     <string name="preferences_storage__custom">Tilpasset</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal-serveren, for at undgå at afsløre din IP-adresse overfor din kontakt. Opkaldskvaliteten vil blive forringet.</string>
     <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Betalinger</string>
     <string name="preferences_notifications__in_chat_sounds">Chatlyde</string>
     <string name="preferences_notifications__show">Vis</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4557,10 +4428,6 @@
     <string name="BackupUtil_never">Aldrig</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ukendt</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Vælg, hvem der kan se dit telefonnummer, og hvem der kan kontakte dig på Signal med det.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Hvis du vil bruge skærmlås, skal du angive en pinkode, et mønster eller en adgangskode på denne enhed.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringslås-pinkode</string>
@@ -4583,8 +4450,6 @@
     <string name="prompt_passphrase_activity__try_again">Prøv igen</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Deaktiveret</string>
 
     <string name="Recipient_unknown">Ukendt</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5041,20 +4906,8 @@
     <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Forny dit abonnement på sikre Signal-sikkerhedskopier</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Kunne ikke gennemføre sikkerhedskopieringen</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Dit sikkerhedskopieringsabonnement kunne ikke indløses</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Din sikkerhedskopieringslagerplads er fuld</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Inviter dine venner</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Kopierede donorabonnent-id til udklipsholder</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopierede sikkerhedskopieringsabonnent-id til udklipsholder</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Brug dette til at ændre dit nuværende telefonnummer til et nyt telefonnummer. Du kan ikke fortryde denne ændring.\n\nFør du fortsætter, skal du sikre dig, at dit nye nummer kan modtage SMS\'er eller opkald.</string>
@@ -5301,28 +5154,7 @@
     <string name="NotificationProfilesFragment__create_profile">Opret profil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Blokeret</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d kontakt eller gruppe</item>
-        <item quantity="other">%1$d kontakter eller gruppe</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">Beskeder</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Forsvindende beskeder</string>
-    <string name="PrivacySettingsFragment__app_security">App-sikkerhed</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloker muligheden for skærmbilleder i oversigten over senest anvendte apps og i Signal-appen</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender.</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye chats</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye chats startet af dig.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Bed Android om at kræve skærmlås eller fingeraftryk for at overføre penge</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Kunne ikke slå betalingslås til</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">For at bruge betalingslås skal du først slå skærmlås eller fingeraftryk til under din telefons indstillinger.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kunne ikke gå til systemindstillinger</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5640,14 +5472,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Kassér ændringer?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Du mister alle ændringer, du har lavet for dette billede.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Mine badges</string>
     <string name="BadgesOverviewFragment__featured_badge">Fremhævet badge</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Vis badges på profil</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Vælg et badge</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Opdatering af profil mislykkedes</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donér</string>
@@ -5695,9 +5522,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gør til fremhævet badge</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Fortsæt</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mere end ét badge, kan du udvælge et af dem, som skal vises på din profil.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Få badges til din profil ved at støtte Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en nonprofitorganisation uden annoncører eller investorer, der kun støttes af folk som dig.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Donér til Signal</string>
@@ -6008,20 +5832,6 @@
     <string name="EditNotificationProfileSchedule__start">Start</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Afslut</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">O</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">L</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">Angiv starttid</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6479,6 +6289,8 @@
     <string name="GiftFlowStartFragment__next">Næste</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Vælg modtager</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Bekræft donation</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6966,11 +6778,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Slet formatering</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Rediger brugernavn</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Slet brugernavn</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7175,12 +6982,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">Opkaldsnavn</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Størrelse på navigationslinjen</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Kompakt</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redigeringshistorik</string>
@@ -7209,63 +7010,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Dette link vil ikke længere fungere for dem, der har det.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Del</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Farve</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Del kun din QR-kode og dit link med personer, du stoler på. Når de deles, kan andre se dit brugernavn og starte en chat med dig.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Brugernavn kopieret</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link kopieret</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Nulstiller link…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Nulstil QR-kode?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Hvis du nulstiller din QR-kode, vil din eksisterende QR-kode og dit link ikke længere fungere.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Nulstil</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Nulstil</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Kode</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan QR-koden på din kontakts enhed.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">QR-koden var ugyldig.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">En bruger med brugernavnet %1$s kunne ikke findes.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Denne bruger kunne ikke findes.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Oplevede en netværksfejl. Prøv igen.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du har ikke adgang til netværket. Dit link blev ikke nulstillet. Prøv igen senere.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Der opstod en netværksfejl under forsøget på at nulstille dit link. Prøv igen senere.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Der opstod en uventet fejl under forsøget på at nulstille dit link. Prøv igen senere.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Din QR-kode og dit link er blevet nulstillet, og der er oprettet en ny QR-kode og et nyt link.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scan QR-koden med din mobil for at snakke med mig på Signal.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR-koden blev ikke fundet</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Prøv at scanne et andet billede, der indeholder en Signal QR-kode.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Alle med dette link kan se dit brugernavn og starte en chat med dig. Del det kun med personer, du stoler på.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Kopiér link</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Del</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7395,6 +7144,30 @@
     <string name="VerifyBackupKey__backup_key_correct">Gendannelsesnøglen er korrekt. Opbevar din nøgle sikkert.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Vi spørger dig igen om en uge.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Slå notifikationer på fuld skærm til?</string>
@@ -7788,11 +7561,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Prøv igen</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s har afsluttet gruppen</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Gruppen er afsluttet.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Du kan ikke længere sende eller modtage beskeder eller opkald i denne gruppe.</string>
 
     <!-- NoManualBackupBottomSheet -->

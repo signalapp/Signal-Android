@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Ідзе абнаўленне Signal…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы яшчэ не задалі парольную фразу!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Адключыць парольную фразу?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Пасля гэтага праграма Signal і яе апавяшчэння заўсёды будуць бачныя без уводу пароля.</string>
-    <string name="ApplicationPreferencesActivity_disable">Адключыць</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Памылка падключэння да сервера!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Для блакіроўкі рэгістрацыі патрэбны PIN-коды. Каб адключыць PIN-коды, спачатку адключыце блакіроўку рэгістрацыі.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN-код створаны.</string>
@@ -887,7 +883,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Памылка падчас устаноўкі фота профілю</string>
     <string name="CreateProfileActivity_problem_setting_profile">Праблема падчас устаноўкі профілю</string>
     <string name="CreateProfileActivity_set_up_your_profile">Наладзьце свой профіль</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профіль і змяненні ў ім будуць бачныя людзям, якім вы адпраўляеце паведамленні, вашым кантактам і групам.</string>
     <string name="CreateProfileActivity_set_avatar_description">Усталяваць аватар</string>
 
     <!-- ProfileCreateFragment -->
@@ -1429,17 +1424,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Даць назву гэтай групе</string>
-    <string name="AddGroupDetailsFragment__create_group">Стварыць групу</string>
     <string name="AddGroupDetailsFragment__create">Стварыць</string>
     <string name="AddGroupDetailsFragment__members">Удзельнікі</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Вы можаце дадаць або запрасіць сяброў пасля стварэння гэтай групы.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Назва групы (абавязкова)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Назва групы (неабавязкова)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Гэта поле абавязковае.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Не атрымалася стварыць групу.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Паўтарыце спробу пазней.</string>
     <string name="AddGroupDetailsFragment__remove">Выдаліць</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS-кантакт</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Выдаліць %1$s з гэтай групы?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">Скінуць групу?</string>
@@ -1447,8 +1438,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Калі вы пяройдзеце ў групу «%1$s», вашы змены не будуць захаваны.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Скінуць</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Вы выбралі кантакт, які не падтрымлівае групы Signal, гэтая група будзе MMS. Карыстальніцкія назвы груп MMS і фатаграфіі будуць бачныя толькі вам. Падтрымка груп MMS неўзабаве будзе спынена, бо мы засяродзім больш увагі на зашыфраваным абмене паведамленнямі.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Хто можа дадаваць новых удзельнікаў?</string>
@@ -1483,34 +1472,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Ваша імя карыстальніка, QR-код і спасылка не бачныя ў вашым профілі. Паведамляйце пра сваё імя карыстальніка толькі тым, да каго маеце давер.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Цяпер вам могуць адпраўляць паведамленні на дадатковае імя карыстальніка, а даваць свой нумар тэлефона вам не патрэбна. Імёны карыстальнікаў маюць унікальны QR-код і спасылку, якія вы можаце абагуліць з сябрамі.</string>
-    <string name="ManageProfileFragment_profile_name">Назва профілю</string>
-    <string name="ManageProfileFragment_username">Імя карыстальніка</string>
-    <string name="ManageProfileFragment_about">Аб кантакце</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Не атрымалася ўсталяваць аватар</string>
     <string name="ManageProfileFragment_badges">Значкі</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR-код або спасылка</string>
-    <string name="ManageProfileFragment__edit_photo">Рэдагаваць фота</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Абагульце сваё імя карыстальніка</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Абагульце свой унікальны QR-код або спасылку, каб іншыя змаглі распачаць з вамі чат.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Імя карыстальніка створана</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Імя карыстальніка скапіравана</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Не атрымалася выдаліць імя карыстальніка. Паўтарыце спробу пазней.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Імя карыстальніка выдаленае</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Выдаліць імя карыстальніка?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Гэта прывядзе да выдалення вашага імя карыстальніка і адключэння вашага QR-кода і спасылкі. Імя карыстальніка %1$s будзе даступнае для іншых жадаючых. Вы ўпэўнены?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -3112,43 +3074,8 @@
     <string name="UnverifiedSendDialog_send">Адправіць</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Выберыце для сябе імя карыстальніка</string>
-    <string name="UsernameEditFragment_username">Імя карыстальніка</string>
-    <string name="UsernameEditFragment_delete">Выдаліць</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">Імя карыстальніка паспяхова выдалена.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">Адбылася памылка сеткі.</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Занадта шмат спроб. Калі ласка, паўтарыце спробу пазней.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Гэта імя карыстальніка занята.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Імёны карыстальнікаў могуць уключаць толькі a–Z, 0–9 і знакі падкрэслення.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Імёны карыстальнікаў не могуць пачынацца з лічбы.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Несапраўднае імя карыстальніка.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Імя карыстальніка мусіць складаць ад %1$d да %2$d сімвалаў.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Цяпер вам могуць адпраўляць паведамленні на ваша дадатковае імя карыстальніка, а даваць свой нумар тэлефона вам не патрэбна. Імёны карыстальнікаў заўсёды маюць набор лічбаў.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">Прапусціць</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">Гатова</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Гэта імя карыстальніка недаступнае, паспрабуйце іншы нумар.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Несапраўднае імя карыстальніка, трэба ўвесці мінімум %1$d лічбаў.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Несапраўднае імя карыстальніка, трэба ўвесці максімум %1$d лічбаў.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">Гэты лік не можа быць 00. Увядзіце лічбу ад 1 да 9</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Лікі, што складаюцца з больш чым 2 лічбаў, не могуць пачынацца з 0</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Калі вы аднаўляеце сваё імя карыстальніка, вашы існуючыя QR-код і спасылкі будуць скінуты. Вы ўпэўнены?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Калi вы мяняеце сваё імя карыстальніка, вашы існуючыя QR-код і спасылкі будуць скінуты. Вы ўпэўнены?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Працягнуць</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d кантакт у Signal!</item>
@@ -3157,9 +3084,6 @@
         <item quantity="other">%1$d кантактаў у Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Скапіраваць або абагуліць спасылку на імя карыстальніка</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Прасканаваны QR-код не з\'яўляецца кодам бяспекі, бо ён няправільна адфармаціраваны. Паспрабуйце прасканаваць яшчэ раз.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Абагульце код бяспекі праз…</string>
@@ -3820,42 +3744,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Карыстальніцкія назвы груп MMS і фатаграфіі будуць бачныя толькі вам.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Апісанне групы будзе бачным удзельнікам гэтай групы і асобам, якія былі запрошаны.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">Аб кантакце</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Напішыце некалькі слоў пра сябе…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">Размаўляйце свабодна</string>
-    <string name="EditAboutFragment_encrypted">Зашыфраваны</string>
-    <string name="EditAboutFragment_be_kind">Будзьце ветлівымі</string>
-    <string name="EditAboutFragment_coffee_lover">Аматар кавы</string>
-    <string name="EditAboutFragment_free_to_chat">Ёсць час паразмаўляць</string>
-    <string name="EditAboutFragment_taking_a_break">Калі ёсць перапынак</string>
-    <string name="EditAboutFragment_working_on_something_new">Калі працуеш над нечым новым</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Рэдагаваць інф. аб групе</string>
     <string name="EditProfileFragment__group_name">Назва групы</string>
     <string name="EditProfileFragment__group_description">Апісанне групы</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Абнавіць Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Тэрмін дзеяння гэтай версіі Signal скончаны. Абнавіце яе зараз, каб працягнуць выкарыстоўваць Signal.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Абнавіць</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Прылада не зарэгістраваная</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">Гэтая прылада больш не зарэгістраваная. Зарэгіструйцеся паўторна, каб унесці змены ў свой уліковы запіс.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Зарэгістравацца паўторна</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Ваша імя</string>
-    <string name="EditProfileNameFragment_first_name">Імя</string>
-    <string name="EditProfileNameFragment_last_name_optional">Прозвішча (неабавязкова)</string>
     <string name="EditProfileNameFragment_save">Захаваць</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Не атрымалася захаваць праз праблемы з сеткай. Паўтарыце спробу пазней.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Абагуленыя медыяфайлы</string>
@@ -4041,12 +3937,6 @@
         <item quantity="other">%1$d г</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">Змяніць парольную фразу</string>
-    <string name="preferences__change_your_passphrase">Змяніць сваю парольную фразу</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Уключыць блакіроўку экрана парольнай фразай</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блакаваць экран і апавяшчэнні парольнай фразай</string>
-    <string name="preferences__screen_security">Бяспека экрана</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -4061,11 +3951,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Адключыць</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Бяспека экрана адключана</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аўтаматычна блакаваць Signal пасля пазначанага перыяду бяздзейнасці</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Парольная фраза для перыяду бяздзейнасці</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Перыяд бяздзейнасці</string>
     <string name="preferences__notifications">Апавяшчэнні</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Уключыць апавяшчэнні</string>
@@ -4101,14 +3986,10 @@
     <string name="preferences__slow">Павольна</string>
     <string name="preferences__advanced">Пашыраныя</string>
     <string name="preferences__donate_to_signal">Ахвяраваць для Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Канфідэнцыйнасць</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Гісторыі</string>
     <string name="preferences__storage">Сховішча</string>
     <string name="preferences__payments">Плацяжы</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Блакіроўка плацяжоў</string>
     <string name="preferences__conversation_length_limit">Ліміт даўжыні чата</string>
     <string name="preferences__keep_messages">Захоўваць паведамленні</string>
     <string name="preferences__linked_devices">Звязаныя прылады</string>
@@ -4119,14 +4000,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Пашыраныя налады PIN-кода</string>
     <string name="preferences__submit_debug_log">Адправіць журнал адладкі</string>
-    <string name="preferences__incognito_keyboard">Інкогніта-клавіятура</string>
-    <string name="preferences__read_receipts">Апавяшчэнні аб прачытаным</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Калі апавяшчэнні аб прачытаным адключаны, вы не зможаце бачыць апавяшчэнні аб прачытаным ад іншых людзей.</string>
-    <string name="preferences__typing_indicators">Індыкатары набору тэксту</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Калі індыкатары набору тэксту адключаны, вы не зможаце бачыць індыкатары набору тэксту ад іншых людзей.</string>
-    <string name="preferences__request_keyboard_to_disable">Запытаць адключэнне персаналізаванага навучання клавіятуры.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">Гэтая налада не з\'яўляецца гарантыяй, і ваша клавіятура можа яе ігнараваць.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">Выкарыстанне сховішча</string>
     <string name="preferences_storage__photos">Фота</string>
     <string name="preferences_storage__videos">Відэа</string>
@@ -4177,8 +4050,6 @@
     <string name="preferences_storage__custom">Карыстальніцкі</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прапускаць усе званкі праз сервер Signal, каб не раскрываць ваш IP-адрас кантакту. Якасць званка пагоршыцца.</string>
     <string name="preferences_advanced__always_relay_calls">Заўсёды рэтрансляваць званкі</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Плацяжы</string>
     <string name="preferences_notifications__in_chat_sounds">Гукі ўнутры чата</string>
     <string name="preferences_notifications__show">Паказаць</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4805,10 +4676,6 @@
     <string name="BackupUtil_never">Ніколі</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Невядома</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Выберыце тых, хто можа бачыць ваш нумар тэлефона і хто можа па ім звязвацца з вамі праз Signal.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Каб выкарыстоўваць блакіроўку экрана, усталюйце на гэтай прыладзе PIN-код, графічны ключ або пароль.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Не атрымалася ўключыць блакіроўку рэгістрацыі.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Не атрымалася адключыць блакіроўку рэгістрацыі.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Вам патрэбна ўвесьці свой PIN-код блакіроўкі рэгістрацыі</string>
@@ -4831,8 +4698,6 @@
     <string name="prompt_passphrase_activity__try_again">Паўтарыць спробу</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Адкл.</string>
 
     <string name="Recipient_unknown">Невядома</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5305,20 +5170,8 @@
     <string name="GroupDescriptionDialog__group_description">Апісанне групы</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Аднавіць падпіску на бяспечнае рэзервовае капіраванне Signal</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Не атрымалася выканаць рэзервовае капіраванне</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Не атрымалася актываваць вашу падпіску на рэзервовае капіраванне</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Дасягнуты ліміт захоўвання рэзервовых копій</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Запрасіць сваіх сяброў</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Ідэнтыфікатар спонсара-падпісчыка скапіраваны ў буфер абмену</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Ідэнтыфікатар падпісчыка на рэзервовае капіраванне скапіраваны ў буфер абмену</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Гэтая функцыя дапаможа вам змяніць свой бягучы нумар тэлефона на новы. Гэта змяненне немагчыма адмяніць.\n\nПерш чым працягнуць, праверце, каб ваш новы нумар змог прымаць SMS або званкі.</string>
@@ -5579,30 +5432,7 @@
     <string name="NotificationProfilesFragment__create_profile">Стварыць профіль</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Заблакаваны</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d кантакт або група</item>
-        <item quantity="few">%1$d кантакты або групы</item>
-        <item quantity="many">%1$d кантактаў або груп</item>
-        <item quantity="other">%1$d кантактаў або груп</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">Абмен паведамленнямі</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Знікаючыя паведамленні</string>
-    <string name="PrivacySettingsFragment__app_security">Бяспека праграмы</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блакаваць скрыншоты ў спісе нядаўніх праграм i ўнутры праграмы</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Званкі і паведамленні Signal, рэтрансляцыя званкоў і прыхаваны адпраўнік</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер па змоўчванні для новых чатаў</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Наладзьце таймер для знікнення паведамленняў па змоўчванні для ўсіх новых чатаў, што вы раней распачалі.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Уключыць блакіроўку экрана Android або адбітак пальца для пераводу грошавых сродкаў</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Немагчыма ўключыць блакіроўку плацяжоў</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Каб выкарыстоўваць блакіроўку плацяжоў, вам трэба спачатку ўключыць блакіроўку экрана або ідэнтыфікатар адбітка пальца ў наладах вашага тэлефона.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Не атрымалася перайсці да сістэмных наладаў</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5936,14 +5766,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Скінуць змяненні?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Вы страціце ўсе змяненні, што вы зрабілі ў гэтай фатаграфіі.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Мае значкі</string>
     <string name="BadgesOverviewFragment__featured_badge">Асаблівы значок</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Паказаць значкі ў профілі</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Не атрымалася абнавіць профіль</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Выбраць значок</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не атрымалася абнавіць профіль</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Ахвяраваць</string>
@@ -5991,9 +5816,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Выбраць асаблівы значок</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Працягнуць</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Калі вы маеце некалькі значкоў, вы можаце выбраць асаблівы значок, каб іншыя змаглі бачыць яго ў вашым профілі.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Падтрымлівайце Signal і атрымлівайце значкі для свайго профілю.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal - гэта некамерцыйная арганізацыя без рэкламадаўцаў і інвестараў, якую падтрымліваюць толькі такія людзі, як вы.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Ахвяраваць для Signal</string>
@@ -6304,20 +6126,6 @@
     <string name="EditNotificationProfileSchedule__start">Пачатак</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Сканчэнне</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">Ндз</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">Пн</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">Аўт</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">Ср</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">Чц</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">Пт</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">Сб</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">Задаць час пачатку</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6797,6 +6605,8 @@
     <string name="GiftFlowStartFragment__next">Далей</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Выбраць атрымальніка</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Пацвердзіць ахвяраванне</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -7308,11 +7118,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Ачысціць фармаціраванне</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Рэдагаваць імя карыстальніка</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Выдаліць імя карыстальніка</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7523,12 +7328,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">Назва званка</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Памер панэлі навігацыі</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Звычайны</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Кампактны</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Рэдагаваць гісторыю</string>
@@ -7557,63 +7356,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Гэта спасылка больш не будзе дзейнічаць для таго, хто мае яе.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Спасылка</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Абагуліць</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Колер</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Абагульвайце свой QR-код і далучайцеся толькі да тых, да каго маеце давер. Калі вы абагулiлi, іншыя карыстальнікі змогуць убачыць ваша імя карыстальніка і распачаць з вамі чат.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Імя карыстальніка скапіравана</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Спасылка скапіравана</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Скіданне спасылкі…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Скінуць QR-код?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Калі вы скідаеце свой QR-код, то існуючы QR-код і спасылка больш не будуць дзейнічаць.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Скінуць</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Скінуць</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Код</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Сканаваць</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Сканаваць QR-код на прыладзе вашага кантакту.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">QR-код несапраўдны.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Не атрымалася знайсці карыстальніка з імем карыстальніка %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Не атрымалася знайсці гэтага карыстальніка.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Адбылася памылка сеткі. Паўтарыце спробу.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Вы не маеце доступу да сеткі. Ваша спасылка не была скінута. Паўтарыце спробу пазней.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Адбылася памылка сеткі пры спробе скінуць спасылку. Паўтарыце спробу пазней.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Адбылася непрадбачаная памылка пры спробе скінуць спасылку. Паўтарыце спробу пазней.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Вашы QR-код і спасылка былі скінуты, і былі створаны новыя QR-код і спасылка.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Праскануйце гэты QR-код з дапамогай свайго тэлефона, каб размаўляць са мной у Signal.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR-код не знойдзены</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Паспрабуйце прасканаваць іншую выяву, што мае QR-код Signal.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Любы, хто мае гэтую спасылку, зможа прагледзець ваша імя карыстальніка і распачаць з вамі чат. Абагульвайце яе толькі з тымі людзьмі, да якіх маеце давер.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Скапіраваць спасылку</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Абагуліць</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7747,6 +7494,30 @@
     <string name="VerifyBackupKey__backup_key_correct">Код для аднаўлення правільны. Захоўвайце свой код у бяспецы.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Мы запытаем у вас яшчэ раз праз тыдзень.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Уключыць апавяшчэнні на ўвесь экран?</string>
@@ -8148,11 +7919,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Паўтарыць спробу</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s спыніў(-ла) групу</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Гэта група была спынена.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Вы больш не зможаце пісаць і тэлефанаваць у гэтай групе.</string>
 
     <!-- NoManualBackupBottomSheet -->

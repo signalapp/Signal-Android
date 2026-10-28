@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデートしています…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスフレーズが設定されていません！</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">パスフレーズを無効にしますか？</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">これにより、Signalとメッセージ通知のロックが完全に解除されます。</string>
-    <string name="ApplicationPreferencesActivity_disable">無効</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバ接続中にエラーが発生しました！</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">登録ロックを使うにはPINが必要です。PINを無効にするには、まず登録ロックを無効にしてください。</string>
     <string name="ApplicationPreferencesActivity_pin_created">PINを作成しました。</string>
@@ -815,7 +811,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定中にエラーが発生しました</string>
     <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定中に問題が発生しました</string>
     <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィールとその更新情報は、メッセージの相手、連絡先、グループに表示されます。</string>
     <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
 
     <!-- ProfileCreateFragment -->
@@ -1303,17 +1298,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">このグループに名前を付ける</string>
-    <string name="AddGroupDetailsFragment__create_group">グループ作成</string>
     <string name="AddGroupDetailsFragment__create">作成</string>
     <string name="AddGroupDetailsFragment__members">メンバー</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">このグループを作成した後に、友達を追加したり招待することができます。</string>
     <string name="AddGroupDetailsFragment__group_name_required">グループ名 (必須)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">グループ名 (任意)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">この項目の入力は必須です。</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">グループの作成に失敗しました</string>
     <string name="AddGroupDetailsFragment__try_again_later">あとで再度試してください。</string>
     <string name="AddGroupDetailsFragment__remove">削除</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS連絡先</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">このグループから %1$s を削除しますか？</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">グループを破棄しますか？</string>
@@ -1321,8 +1312,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">「%1$s」グループに移動すると、変更内容は保存されません。</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">破棄する</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signalグループがサポートしていない連絡先を選択したため、このグループはMMSとなります。MMSグループの名前と写真はあなただけに表示されます。暗号化されたメッセージ送受信にフォーカスするため、MMSのサポートはまもなく終了する予定です。</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">メンバーを追加できるユーザーは？</string>
@@ -1354,34 +1343,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">ユーザーネーム、QRコード、リンクはプロフィールに表示されません。ユーザーネームは信頼できる人とのみ共有してください。</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">ユーザーは、電話番号の代わりにユーザーネームでメッセージを送れます。各ユーザーネームには固有のQRコードとリンクがあり、友達と共有できます。</string>
-    <string name="ManageProfileFragment_profile_name">プロフィールネーム</string>
-    <string name="ManageProfileFragment_username">ユーザーネーム</string>
-    <string name="ManageProfileFragment_about">自己紹介</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
     <string name="ManageProfileFragment_badges">バッジ</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR コードもしくはリンク</string>
-    <string name="ManageProfileFragment__edit_photo">画像を編集</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">ユーザーネームを共有</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">QRコードかリンクを共有すると、相手はあなたとチャットを開始できます。</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">ユーザーネームを作成しました</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">ユーザーネームをコピーしました</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">ユーザーネームを削除できませんでした。あとで再度試してください。</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">ユーザーネームを削除しました</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">ユーザーネームを消去しますか？</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"これにより、ユーザーネームが削除され、QRコードとリンクが無効になります。「%1$s」は他のユーザーに使用可能となります。本当に消去しますか？"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2824,51 +2786,13 @@
     <string name="UnverifiedSendDialog_send">送信する</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">ユーザーネームを選択してください</string>
-    <string name="UsernameEditFragment_username">ユーザーネーム</string>
-    <string name="UsernameEditFragment_delete">消去する</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">ユーザーネームを削除しました。</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">試行回数が多すぎます。しばらくしてから、もう一度お試しください。</string>
-    <string name="UsernameEditFragment_this_username_is_taken">このユーザーネームは既に使用されています。</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ユーザーネームには半角の英数字とアンダーバーのみ使用できます。</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザーネームの先頭に数字は使用できません。</string>
-    <string name="UsernameEditFragment_username_is_invalid">無効なユーザーネームです。</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザーネームは%1$dから%2$d文字にしてください。</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">ユーザーは、電話番号の代わりに任意のユーザーネームでメッセージを送れます。ユーザーネームは、常に一組の数字とペアになっています。</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">スキップ</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">完了</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">このユーザーネームは使用できません。別の数字をお試し下さい。</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ユーザーネームが無効です。数字は%1$d以上入力してください。</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ユーザーネームが無効です。入力できる数字は、最大で%1$d桁までです。</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">この数字を00にすることはできません。1–9の数字を入力してください</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">2桁以上の数字が0から始まることはありません</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">ユーザーネームを復元すると、これまでのQRコードとリンクがリセットされます。本当に復元しますか？</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">ユーザーネームを変更すると、これまでのQRコードとリンクがリセットされます。本当に変更しますか？</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">続行</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">%1$d件の連絡先がSignalを使用しています！</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザーネームのリンクをコピーまたは共有する</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは正しい形式の安全番号認証コードではありません。もう一度読み取って下さい。</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">次の方法で安全番号を共有する…</string>
@@ -3487,42 +3411,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前とアイコンはあなただけに表示されます。</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">グループの説明は、メンバーとグループに招待された人に表示されます。</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">自己紹介</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">気軽に話しかけて</string>
-    <string name="EditAboutFragment_encrypted">暗号化済み</string>
-    <string name="EditAboutFragment_be_kind">優しくしてね</string>
-    <string name="EditAboutFragment_coffee_lover">コーヒー大好き</string>
-    <string name="EditAboutFragment_free_to_chat">チャット歓迎</string>
-    <string name="EditAboutFragment_taking_a_break">休憩中</string>
-    <string name="EditAboutFragment_working_on_something_new">新しいことをしています</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">グループを編集</string>
     <string name="EditProfileFragment__group_name">グループ名</string>
     <string name="EditProfileFragment__group_description">グループの説明</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Signalをアップデートしてください</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">このバージョンの Signal は期限が切れています。引き続きご利用いただくために、Signal をアップデートしてください。</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">アップデートする</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">端末が登録されていません</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">この端末は登録されていません。アカウントに変更を追加する場合は再登録をしてください。</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">再登録する</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">あなたの名前</string>
-    <string name="EditProfileNameFragment_first_name">名</string>
-    <string name="EditProfileNameFragment_last_name_optional">姓 (任意)</string>
     <string name="EditProfileNameFragment_save">保存</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ネットワークエラーのため保存に失敗しました。あとで再度試してください。</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
@@ -3702,12 +3598,6 @@
         <item quantity="other">%1$d時間</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">パスフレーズを変更</string>
-    <string name="preferences__change_your_passphrase">パスフレーズを変更します</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックします</string>
-    <string name="preferences__screen_security">画面のセキュリティ</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3722,11 +3612,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">無効化する</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">画面のセキュリティは無効化されています</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定した無操作時間経過後にSignalを自動でロックします。</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">無操作タイムアウトのパスフレーズ</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">無操作タイムアウトの間隔</string>
     <string name="preferences__notifications">通知</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">通知を有効にする</string>
@@ -3762,14 +3647,10 @@
     <string name="preferences__slow">遅い</string>
     <string name="preferences__advanced">詳細設定</string>
     <string name="preferences__donate_to_signal">Signalへの寄付</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">プライバシー</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">ストーリー</string>
     <string name="preferences__storage">ストレージ</string>
     <string name="preferences__payments">決済機能</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">支払いのロック</string>
     <string name="preferences__conversation_length_limit">チャットの最大メッセージ件数</string>
     <string name="preferences__keep_messages">メッセージの保存期間</string>
     <string name="preferences__linked_devices">リンク済み端末</string>
@@ -3780,14 +3661,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">PINの詳細設定</string>
     <string name="preferences__submit_debug_log">デバッグログの提出</string>
-    <string name="preferences__incognito_keyboard">シークレットキーボード</string>
-    <string name="preferences__read_receipts">既読通知</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
-    <string name="preferences__typing_indicators">入力中アイコン</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
-    <string name="preferences__request_keyboard_to_disable">キーボードに自動学習の停止を要求します。</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">この設定はキーボードに無視される可能性があり、保証されません。</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">ストレージ使用量</string>
     <string name="preferences_storage__photos">写真</string>
     <string name="preferences_storage__videos">動画</string>
@@ -3832,8 +3705,6 @@
     <string name="preferences_storage__custom">カスタム</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし通話の品質は下がります。</string>
     <string name="preferences_advanced__always_relay_calls">通話を常に中継する</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">決済機能</string>
     <string name="preferences_notifications__in_chat_sounds">チャット中の着信音</string>
     <string name="preferences_notifications__show">表示</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4433,10 +4304,6 @@
     <string name="BackupUtil_never">なし</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">不明</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">あなたの電話番号を見ることができる人と、Signalであなたに連絡できる人を選択してください。</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">画面ロックを使用するには、この端末でPIN、パターン、またはパスワードを設定します。</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">登録ロックPINの入力が必要です</string>
@@ -4459,8 +4326,6 @@
     <string name="prompt_passphrase_activity__try_again">もう一度試す</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">オフ</string>
 
     <string name="Recipient_unknown">不明</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -4909,20 +4774,8 @@
     <string name="GroupDescriptionDialog__group_description">グループの説明</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signalセキュアバックアップのサブスクリプションを更新してください</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">バックアップが完了していません</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">バックアップのサブスクリプションを有効化することができませんでした</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">バックアップストレージがいっぱいです</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">友達を招待</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">寄付者のサブスクリプションIDをクリップボードにコピーしました</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">バックアップされているサブスクリプションIDをクリップボードにコピーしました</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">現在使用している電話番号を、新しい電話番号に変更する際に使用してください。この変更を元に戻すことはできません。続ける前に、新しい電話番号がSMSや通話を受信できることを確認してください。</string>
@@ -5162,27 +5015,7 @@
     <string name="NotificationProfilesFragment__create_profile">プロファイルを作成</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">ブロック済</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d 連絡先またはグループ</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">メッセージ送受信</string>
     <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
-    <string name="PrivacySettingsFragment__app_security">アプリのセキュリティ</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします。</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話、通話を常に中継、送信者の秘匿化</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">今後新しく始めるチャットについて、消えるメッセージのタイマーの既定値を設定します。</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">送金の際にAndroidの画面ロックまたは指紋認証を要求する</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">決済機能のロックを有効化できません</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">支払いのロックを利用するには、まず端末の設定で画面ロックまたは指紋認証機能を有効にする必要があります。</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">システム設定に移動できませんでした</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5492,14 +5325,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">変更を破棄しますか？</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
 
-    <string name="BadgesOverviewFragment__my_badges">マイバッジ</string>
     <string name="BadgesOverviewFragment__featured_badge">表示するバッジ</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">バッジをプロフィールに表示する</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジを選択してください</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">寄付する</string>
@@ -5547,9 +5375,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">このバッジを表示する</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">続ける</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Signalをサポートして、プロフィールにバッジをつけましょう。</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signalは広告主や投資家を持たない非営利団体で、ユーザーの皆様によって支えられています。</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Signalへの寄付</string>
@@ -5860,20 +5685,6 @@
     <string name="EditNotificationProfileSchedule__start">開始</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">終了</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">日</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">月</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">火</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">水</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">木</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">金</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">土</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">開始時刻の設定</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6320,6 +6131,8 @@
     <string name="GiftFlowStartFragment__next">次へ</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">送信先の選択</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">寄付の確認</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6795,11 +6608,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">書式設定のクリア</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">ユーザーネームの編集</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">ユーザーネームの消去</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7001,12 +6809,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">通話名</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">ナビゲーションバーの大きさ</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">普通</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">小</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">編集履歴</string>
@@ -7035,63 +6837,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">リンクを消去すると、他のメンバーもこのリンクを使えなくなります。</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">リンク</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">共有</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">色</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">QR コードとリンクは、信頼できる人とのみ共有してください。共有すると、相手はお客様のユーザーネームを見たりチャットしたりできるようになります。</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">ユーザーネームをコピーしました</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">リンクをコピーしました</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">リンクをリセットしています…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">QRコードをリセットしますか？</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">QRコードをリセットすると、これまでのQRコードとリンクは無効になります。</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">リセットする</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">リセット</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">コード</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">スキャン</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">連絡先の端末の QR コードをスキャンしてください。</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">QRコードが無効です。</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">ユーザーネーム「%1$s」を持つユーザーは見つかりませんでした。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">このユーザーは見つかりませんでした。</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">ネットワークエラーが発生しました。あとで再度試してください。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ネットワークに接続できません。リンクはリセットされませんでした。あとで再度試してください。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">リンクのリセット中にネットワークエラーが発生しました。あとで再度試してください。</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">リンクをリセット中に予期しないエラーが発生しました。あとで再度試してください。</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">QRコードとリンクがリセットされ、新しいQRコードとリンクが作成されました。</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">このQRコードをお使いの携帯電話でスキャンして、Signalで私とチャットしましょう。</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QRコードが見つかりません</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QRコードの別の画像をスキャンしてみてください。</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">このリンクからは、誰でもあなたのユーザーネームを閲覧したりチャットを始めることができますので、信頼できる人とのみ共有してください</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">リンクをコピーする</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">共有</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7219,6 +6969,30 @@
     <string name="VerifyBackupKey__backup_key_correct">リカバリーキーが確認されました。キーの取り扱いは厳重にしてください。</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">1週間後に、再度リマインドします。</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">全画面通知をオンにしますか？</string>
@@ -7608,11 +7382,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">もう一度試す</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$sがグループを閉じました</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">このグループは閉じられました。</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">このグループ内では、メッセージの送受信や通話の受発信ができなくなりました。</string>
 
     <!-- NoManualBackupBottomSheet -->

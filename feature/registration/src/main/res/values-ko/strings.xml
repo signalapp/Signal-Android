@@ -373,7 +373,7 @@
     <!-- PIN creation screen title. -->
     <string name="PinCreationScreen__create_your_pin">PIN을 생성하세요</string>
     <!-- PIN creation screen title when confirming the new Signal PIN. -->
-    <string name="PinCreationScreen__confirm_your_pin">PIN 확인</string>
+    <string name="PinCreationScreen__confirm_your_pin">PIN을 확인해 주세요</string>
     <!-- Describes how to confirm the new Signal PIN. -->
     <string name="PinCreationScreen__reenter_pin_description">방금 생성한 PIN을 다시 입력하세요.</string>
     <!-- Describes the purpose of creating a Signal PIN. -->
@@ -418,7 +418,7 @@
     <!-- PIN entry screen title when registration lock is active. -->
     <string name="PinEntryScreen__registration_lock">등록 잠금</string>
     <!-- PIN entry screen title when restoring an account. -->
-    <string name="PinEntryScreen__enter_your_pin">PIN 입력</string>
+    <string name="PinEntryScreen__enter_your_pin">PIN을 입력하세요</string>
     <!-- Describes the PIN that needs to be entered. -->
     <string name="PinEntryScreen__enter_the_pin_you_created">Signal을 처음 설치했을 때 만든 PIN을 입력해 주세요.</string>
     <!-- Error shown when the user enters the code used to verify their phone number instead of their PIN, and it was not their actual PIN. -->
@@ -734,6 +734,8 @@
     <string name="SignalLoginCredentialEntryScreen__show_login_info_again">로그인 정보 다시 표시하기</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">화면에 표시됐던 Signal Login 정보와 일치하지 않습니다.</string>
+    <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -818,4 +820,16 @@
     <string name="TwoFactorSelectionScreen__cancel">취소</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
     <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">패스키에 오류가 발생했습니다. 다시 시도하거나 다른 방법을 선택해 주세요.</string>
+
+    <!-- PasskeyVerificationScreen -->
+    <!-- Title of the screen asking the user to verify their account with their passkey -->
+    <string name="PasskeyVerificationScreen__two_factor_authentication">Two-factor authentication</string>
+    <!-- Subtitle telling the user to verify their account with their passkey -->
+    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
+    <!-- Button text to start verifying with a passkey -->
+    <string name="PasskeyVerificationScreen__continue">Continue</string>
+    <!-- Button text to cancel two-factor authentication -->
+    <string name="PasskeyVerificationScreen__cancel">Cancel</string>
+    <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
+    <string name="PasskeyVerificationScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again.</string>
 </resources>

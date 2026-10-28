@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal is tans besig met bywerking…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Jy het nog nie \'n wagwoord gespesifiseer nie!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiveer wagwoord?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hierdie sal Signal- en boodskapkennisgewings permanent ontsluit</string>
-    <string name="ApplicationPreferencesActivity_disable">Deaktiveer</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kon nie aan die bediener konnekteer nie!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN’s word vereis vir registrasieslot. Om PIN’s te deaktiveer, deaktiveer eers die registrasieslot.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN geskep.</string>
@@ -489,7 +485,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Hierdie persoon gebruik nie meer Signal nie. Nooi hulle na Signal om die gesprek hier te hou.</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">Hierdie persoon gebruik nie Signal nie. Nooi hulle om die gesprek hier te hou.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Nooi na Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -509,7 +505,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Gaan terug</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">Bestuur pakket</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -839,7 +835,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Fout met die opstel van profielfoto</string>
     <string name="CreateProfileActivity_problem_setting_profile">Probleem met die opstel van profiel</string>
     <string name="CreateProfileActivity_set_up_your_profile">Stel jou profiel op</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jou profiel en veranderinge sal sigbaar wees vir mense aan wie jy boodskappe stuur, vir jou kontakte en vir groepe.</string>
     <string name="CreateProfileActivity_set_avatar_description">Stel foto op</string>
 
     <!-- ProfileCreateFragment -->
@@ -1345,17 +1340,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Gee hierdie groep \'n naam</string>
-    <string name="AddGroupDetailsFragment__create_group">Skep groep</string>
     <string name="AddGroupDetailsFragment__create">Skep</string>
     <string name="AddGroupDetailsFragment__members">Lede</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Jy kan vriende toevoeg of uitnooi nadat hierdie groep geskep is.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Groepnaam (vereis)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Groepnaam (opsioneel)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Hierdie veld word vereis.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Groepskepping misluk.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Probeer later weer.</string>
     <string name="AddGroupDetailsFragment__remove">Verwyder</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS-kontak</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Verwyder %1$s uit die groep?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">Verwerp groep?</string>
@@ -1363,8 +1354,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">As jy voortgaan met die groep \"%1$s\" sal jou veranderinge nie gestoor word nie.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Wys af</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Jy het \'n kontak gekies wat nie Signal-groepe ondersteun nie, dus sal hierdie groep \'n MMS-groep wees. Pasgemaakte MMS-groepname en -foto\'s sal slegs vir jou sigbaar wees. Ondersteuning vir MMS-groepe sal binnekort verwyder word om op geënkripteerde boodskappe te fokus.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Wie kan nuwe lede toevoeg?</string>
@@ -1397,34 +1386,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Jou gebruikersnaam, QR-kode en skakel is nie op jou profiel sigbaar nie. Deel net jou gebruikersnaam met mense wat jy vertrou.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Mense kan aan jou \'n boodskap stuur deur \'n opsionele gebruikersnaam in plaas van \'n telefoonnommer te gebruik. Gebruikersname het \'n unieke QR-kode en skakel wat jy met vriende kan deel.</string>
-    <string name="ManageProfileFragment_profile_name">Profielnaam</string>
-    <string name="ManageProfileFragment_username">Gebruikersnaam</string>
-    <string name="ManageProfileFragment_about">Meer oor</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Kon nie avatar stel nie</string>
     <string name="ManageProfileFragment_badges">Wapens</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR-kode of skakel</string>
-    <string name="ManageProfileFragment__edit_photo">Wysig foto</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Deel jou gebruikersnaam</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Laat ander mense \'n klets met jou begin deur jou unieke QR-kode of skakel te deel.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Gebruikersnaam geskep</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieer</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Kon nie gebruikersnaam skrap nie. Probeer later weer.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Gebruikersnaam geskrap</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Skrap gebruikernaam?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Dit sal jou gebruikersnaam verwyder en jou QR-kode en skakel deaktiveer. %1$s sal beskikbaar wees vir ander mense om dit oor te neem. Is jy seker?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2782,7 +2744,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Besigtig pakket</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">Stuur plakker</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Plakker by Gunstelinge gevoeg</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -2920,52 +2882,14 @@
     <string name="UnverifiedSendDialog_send">Stuur</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Kies jou gebruikersnaam</string>
-    <string name="UsernameEditFragment_username">Gebruikersnaam</string>
-    <string name="UsernameEditFragment_delete">Skrap</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam suksesvol verwyder.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">Netwerkfout teëgekom.</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Te veel pogings, probeer asseblief later weer.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Hierdie gebruikersnaam is reeds in gebruik.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersname kan slegs a–Z, 0–9 en onderstrepings bevat.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersname kan nie met \'n syfer begin nie.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Ongeldige gebruikersnaam.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersname moet tussen %1$d en %2$d karakters lank wees.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Mense kan aan jou \'n boodskap stuur deur jou opsionele gebruikersnaam in plaas van \'n telefoonnommer te gebruik. Gebruikersname gaan altyd met \'n stel syfers gepaard.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">Slaan oor</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">Klaar</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Hierdie gebruikersnaam is nie beskikbaar nie, probeer \'n ander nommer.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ongeldige gebruikernaam, voer \'n minimum van %1$d syfers in.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ongeldige gebruikersnaam, voer \'n maksimum van %1$d syfers in.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">Hierdie nommer kan nie 00 wees nie. Voer \'n syfer tussen 1 en 9 in</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Getalle met meer as 2 syfers kan nie met 0 begin nie</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">As jy jou gebruikersnaam herwin, sal dit jou bestaande QR-kode en skakel terugstel. Is jy seker?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">As jy jou gebruikersnaam verander, sal dit jou bestaande QR-kode en skakel terugstel. Is jy seker?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Gaan voort</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d kontak is op Signal!</item>
         <item quantity="other">%1$d kontakte is op Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopieer of deel \'n gebruikersnaamskakel</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Die geskandeerde QR-kode is nie \'n korrek geformateerde veilgheidsnommer-verifiëringskode nie. Probeer dit weer skandeer.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Deel veiligheidsnommer via…</string>
@@ -3239,7 +3163,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Kies \'n gebruikersnaam</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Stel op</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3598,42 +3522,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Pasgemaakte MMS groepsname en fotos sal slegs aan jou beskikbaar wees.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Groepbeskrywings sal sigbaar wees vir lede van hierdie groep en mense wat uitgenooi is.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">Meer oor</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Skryf ’n paar woorde oor jouself…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">Sê gerus jou sê</string>
-    <string name="EditAboutFragment_encrypted">Geënkripteer</string>
-    <string name="EditAboutFragment_be_kind">Wees gaaf</string>
-    <string name="EditAboutFragment_coffee_lover">Koffiedrinker</string>
-    <string name="EditAboutFragment_free_to_chat">Kan nou klets</string>
-    <string name="EditAboutFragment_taking_a_break">Ek rus tans</string>
-    <string name="EditAboutFragment_working_on_something_new">Werk tans aan iets nuuts</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Redigeer groep</string>
     <string name="EditProfileFragment__group_name">Groepnaam</string>
     <string name="EditProfileFragment__group_description">Groepbeskrywing</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Werk Signal by</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Hierdie weergawe van Signal het verval. Doen nou opdatering om voort te gaan om Signal te gebruik.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Werk by</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Toestel nie geregistreer nie</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">Hierdie toestel is nie meer geregistreer nie. Herregistreer om veranderinge aan jou rekening aan te bring.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Herregistreer</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Jou naam</string>
-    <string name="EditProfileNameFragment_first_name">Voornaam</string>
-    <string name="EditProfileNameFragment_last_name_optional">Van (opsioneel)</string>
     <string name="EditProfileNameFragment_save">Stoor</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Kon nie stoor nie a.g.v. netwerkprobleme. Probeer later weer.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
@@ -3815,12 +3711,6 @@
         <item quantity="other">%1$dh</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">Verander wagwoordfrase</string>
-    <string name="preferences__change_your_passphrase">Verander jou wagwoordfrase</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Aktiveer wagwoordfrase-skermslot</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Sluit skerm en kennisgewings met \'n wagwoordfrase</string>
-    <string name="preferences__screen_security">Skermsekuriteit</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3835,11 +3725,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Skakel af</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Skermsekuriteit is afgeskakel</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Outosluit Signal ná \'n gespesifiseerde tydperk van onaktiwiteit</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Wagwoordfrase vir sluiting a.g.v. onaktiwiteit</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Tydperk voor sluiting a.g.v. onaktiwiteit</string>
     <string name="preferences__notifications">Kennisgewings</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Aktiveer kennisgewings</string>
@@ -3875,14 +3760,10 @@
     <string name="preferences__slow">Stadig</string>
     <string name="preferences__advanced">Gevorderd</string>
     <string name="preferences__donate_to_signal">Skenk aan Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Privaatheid</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stories</string>
     <string name="preferences__storage">Berging</string>
     <string name="preferences__payments">Betalings</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Betalingsluiting</string>
     <string name="preferences__conversation_length_limit">Kletslengtebeperking</string>
     <string name="preferences__keep_messages">Hou boodskappe</string>
     <string name="preferences__linked_devices">Gekoppelde toestelle</string>
@@ -3893,14 +3774,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Gevorderde PIN-instellings</string>
     <string name="preferences__submit_debug_log">Dien ontfout-log in</string>
-    <string name="preferences__incognito_keyboard">Incognito-toetsbord</string>
-    <string name="preferences__read_receipts">Leesbewyse</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Indien leesbewyse gedeaktiveer is, sal jy nie leesbewyse van andere kan sien nie.</string>
-    <string name="preferences__typing_indicators">Tikaanduiders</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Indien tikaanduiders gedeaktiveer is, sal jy nie tikaanduiders van andere kan sien nie.</string>
-    <string name="preferences__request_keyboard_to_disable">Versoek toetsbord om verpersoonlikte lêer te deaktiveer.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">Hierdie instelling is nie \'n waarborg nie en jou sleutelbord kan dit moontlik ignoreer.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">Bergingsverbruik</string>
     <string name="preferences_storage__photos">Foto\'s</string>
     <string name="preferences_storage__videos">Videos</string>
@@ -3947,8 +3820,6 @@
     <string name="preferences_storage__custom">Pasgemaak</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Herlei alle oproepe deur die Signal-bediener om te verhoed dat jou IP-adres aan jou kontak bekend gemaak word. Aktivering sal oproepgehalte verlaag.</string>
     <string name="preferences_advanced__always_relay_calls">Herlei altyd oproepe</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Betalings</string>
     <string name="preferences_notifications__in_chat_sounds">Klanke tydens klets</string>
     <string name="preferences_notifications__show">Vertoon</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4557,10 +4428,6 @@
     <string name="BackupUtil_never">Nooit</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Onbekend</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Kies wie jou telefoonnommer kan sien en wie jou daarmee op Signal kan kontak.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Om skermslot te gebruik, stel \'n PIN, patroon of wagwoord op hierdie toestel op.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Kon nie registrasieslot aktiveer nie.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Kon nie registrasieslot deaktiveer nie.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Jy moet jou registrasieslot-PIN invoer</string>
@@ -4583,8 +4450,6 @@
     <string name="prompt_passphrase_activity__try_again">Probeer weer</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Af</string>
 
     <string name="Recipient_unknown">Onbekend</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5041,20 +4906,8 @@
     <string name="GroupDescriptionDialog__group_description">Groepbeskrywing</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Hernu jou intekening op Signal se Veilige Rugsteun</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Kon nie rugsteun voltooi nie</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Kon nie jou rugsteunintekening aflos nie</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Limiet vir rugsteun-stoorruimte bereik</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Nooi jou vriende uit</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Skenker-intekenaar se ID na knipbord gekopieer</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Rugsteun-intekenaar se ID na knipbord gekopieer</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit om jou huidige telefoonnommer na ’n nuwe een te verander. Jy kan hierdie verandering nie ongedaan maak nie.\n\nMaak seker jou nuwe nommer kan SMS’e of oproepe ontvang voor jy voortgaan.</string>
@@ -5301,28 +5154,7 @@
     <string name="NotificationProfilesFragment__create_profile">Skep profiel</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Versper</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d kontak of groep</item>
-        <item quantity="other">%1$d kontakte of groepe</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">Boodskappe</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Verdwynboodskappe</string>
-    <string name="PrivacySettingsFragment__app_security">Toepassingveiligheid</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Versper skermgrepe in die onlangs-lys en binne-in die toepassing</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-boodskappe en oproepe, herlei oproepe altyd, en verseëlde afsender</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Verstek-tydhouer vir nuwe kletse</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel ’n verstek-verdwynboodskap-tydhouer in vir alle kletse wat jy begin.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Vereis gebruik van Android-skermslot of vingerafdruk om fondse oor te plaas</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Kan nie betalingsluiting aktiveer nie</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Om Betalingsluiting te gebruik moet jy eers \'n skermslot of vingerafdruk-ID in jou foon se instellings aktiveer.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kon nie na stelselinstellings navigeer nie</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5640,14 +5472,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Wys veranderinge af?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Jy sal veranderinge aan hierdie foto verloor.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">My wapens</string>
     <string name="BadgesOverviewFragment__featured_badge">Vertoonwapen</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Vertoon wapens op profiel</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Kon nie profiel bywerk nie</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies ’n wapen</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Kon nie profiel bywerk nie</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Skenk</string>
@@ -5695,9 +5522,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Maak vertoonwapen</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Gaan voort</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wanneer jy meer as een wapen het, kan jy een kies om te vertoon sodat ander dit op jou profiel kan sien.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Kry wapens vir jou profiel deur Signal te ondersteun.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is ’n niewinsgewende organisasie sonder adverteerders of beleggers en word slegs deur mense soos jy ondersteun.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Skenk aan Signal</string>
@@ -5938,9 +5762,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Moet ’n naam hê</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">Kies emoji</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Verwyder naam en emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Toegelate kennisgewings</string>
@@ -6008,20 +5832,6 @@
     <string name="EditNotificationProfileSchedule__start">Begin</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Einde</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">D</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">W</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">D</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">V</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">Stel begintyd</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6479,6 +6289,8 @@
     <string name="GiftFlowStartFragment__next">Volgende</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Kies ontvanger</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Bevestig skenking</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6966,11 +6778,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Verwyder formatering</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Wysig gebruikersnaam</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Skrap gebruikersnaam</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7175,12 +6982,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">Oproepnaam</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigasiebalkgrootte</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normaal</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Kompak</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Wysigingsgeskiedenis</string>
@@ -7209,63 +7010,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Hierdie skakel sal nie meer werk vir enigiemand wat dit het nie.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Skakel</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Deel</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Kleur</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Deel jou QR-kode en skakel slegs met mense wat jy vertrou. Wanneer dit gedeel word, sal ander mense jou gebruikersnaam kan sien en \'n klets met jou begin.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Gebruikersnaam gekopieer</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Skakel gekopieer</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Besig om skakel terug te stel…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Stel QR-kode terug?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">As jy jou QR-kode terugstel, sal jou bestaande QR-kode en -skakel nie meer werk nie.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Stel terug</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Stel terug</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Kode</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Skandeer</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Skandeer die QR-kode op jou kontak se toestel.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">Die QR-kode was ongeldig.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">\'n Gebruiker met gebruikersnaam %1$s kon nie gevind word nie.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Hierdie gebruiker kon nie gevind word nie.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Daar was \'n netwerkfout. Probeer weer.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Jy het nie netwerktoegang nie. Jou skakel is nie teruggestel nie. Probeer later weer.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">\'n Netwerkfout het voorgekom terwyl jy probeer het om jou skakel terug te stel. Probeer later weer.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">\'n Onverwagte fout het voorgekom terwyl jy probeer het om jou skakel terug te stel. Probeer later weer.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Jou QR-kode en -skakel is teruggestel en \'n nuwe QR-kode en -skakel is geskep.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Skandeer hierdie QR-kode met jou foon om met my op Signal te klets.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR-kode nie gevind nie</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Probeer om \'n ander beeld te skandeer wat \'n Signal-QR-kode bevat.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Enigeen met hierdie skakel kan jou gebruikersnaam sien en \'n gesprek met jou begin. Deel dit slegs met mense wie jy vertrou.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Kopieer skakel</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Deel</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7395,6 +7144,30 @@
     <string name="VerifyBackupKey__backup_key_correct">Herwinsleutel korrek. Hou jou sleutel veilig.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Ons sal jou weer oor \'n week vra.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Skakel volskerm-kennisgewings aan?</string>
@@ -7788,11 +7561,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Probeer weer</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s het die Groep beëindig</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Die groep is beëindig.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Jy kan nie meer boodskappe of oproepe in hierdie groep stuur en ontvang nie.</string>
 
     <!-- NoManualBackupBottomSheet -->
@@ -8092,9 +7865,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Rugsteunskrapping is tans aan die gang.</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Ontsluit om veilige rugsteun op te stel</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">Om veilige rugsteun op te stel, bevestig dat dit jy is</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">Bevestiging word vereis</string>
 

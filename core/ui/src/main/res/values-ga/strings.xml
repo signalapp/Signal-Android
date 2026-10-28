@@ -46,19 +46,19 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Bain de na Ceanáin?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Ní bheidh tú in ann é a sheoladh ná a chur le Ceanáin arís ach amháin má tá an beart suiteáilte agat, nó má tá nasc nó teachtaireacht ghreamáin agat.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Bain</string>
     <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Dada</string>
     <string name="preferences_off">As</string>
-    <string name="preferences_on">Ar siúl</string>
+    <string name="preferences_on">Air</string>
     <string name="ExpireTimerSettingsFragment__set">Socraigh</string>
-    <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
-    <string name="CustomExpireTimerSelectorView__minutes">nóiméid</string>
+    <string name="CustomExpireTimerSelectorView__seconds">soicind</string>
+    <string name="CustomExpireTimerSelectorView__minutes">nóiméad</string>
     <string name="CustomExpireTimerSelectorView__hours">uair an chloig</string>
     <string name="CustomExpireTimerSelectorView__days">lá</string>
-    <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
+    <string name="CustomExpireTimerSelectorView__weeks">seachtain</string>
     <!-- expiration -->
     <string name="expiration_off">As</string>
 
@@ -73,14 +73,14 @@
     <string name="expiration_seconds_abbreviated">%1$ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$dnóiméad amháin</item>
-        <item quantity="two">%1$d nóiméad </item>
-        <item quantity="few">%1$dnóiméad</item>
-        <item quantity="many">%1$dnóiméid</item>
+        <item quantity="one">%1$d nóiméad amháin</item>
+        <item quantity="two">%1$d nóiméad</item>
+        <item quantity="few">%1$d nóiméad</item>
+        <item quantity="many">%1$d nóiméad</item>
         <item quantity="other">%1$d nóiméad</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$dn</string>
 
     <plurals name="expiration_hours">
         <item quantity="one">%1$d uair an chloig</item>
@@ -110,17 +110,21 @@
         <item quantity="other">%1$d seachtain</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$ds</string>
+    <string name="expiration_weeks_abbreviated">%1$d seach</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Foghlaim tuilleadh</string>
+    <string name="LearnMoreTextView_learn_more">Tuilleadh faisnéise</string>
 
     <string name="SpanUtil__read_more">Léigh a thuilleadh</string>
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Aistrigh go hionchur téacs</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Aistrigh go clog</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Remove %1$s</string>
 </resources>

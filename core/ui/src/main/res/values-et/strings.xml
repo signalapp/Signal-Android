@@ -46,7 +46,7 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Kas eemaldada lemmikute hulgast?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Sa ei saa seda saata ega uuesti lemmikute alla lisada ilma paigaldatud komplekti, lingi või kleebise sõnumita.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Eemalda</string>
     <!-- Text shown when no preference label has been selected -->
@@ -54,11 +54,11 @@
     <string name="preferences_off">Väljas</string>
     <string name="preferences_on">Sees</string>
     <string name="ExpireTimerSettingsFragment__set">Määra</string>
-    <string name="CustomExpireTimerSelectorView__seconds">sekundit</string>
-    <string name="CustomExpireTimerSelectorView__minutes">minutit</string>
-    <string name="CustomExpireTimerSelectorView__hours">tundi</string>
-    <string name="CustomExpireTimerSelectorView__days">päeva</string>
-    <string name="CustomExpireTimerSelectorView__weeks">nädalat</string>
+    <string name="CustomExpireTimerSelectorView__seconds">sekundid</string>
+    <string name="CustomExpireTimerSelectorView__minutes">minutid</string>
+    <string name="CustomExpireTimerSelectorView__hours">tunnid</string>
+    <string name="CustomExpireTimerSelectorView__days">päevad</string>
+    <string name="CustomExpireTimerSelectorView__weeks">nädalad</string>
     <!-- expiration -->
     <string name="expiration_off">Väljas</string>
 
@@ -81,21 +81,21 @@
         <item quantity="other">%1$d tundi</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$dt</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d päev</item>
         <item quantity="other">%1$d päeva</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$dp</string>
 
     <plurals name="expiration_weeks">
         <item quantity="one">%1$d nädal</item>
         <item quantity="other">%1$d nädalat</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dw</string>
+    <string name="expiration_weeks_abbreviated">%1$dn</string>
     <string name="expiration_combined">%1$s %2$s</string>
 
     <!-- LearnMoreTextView -->
@@ -105,7 +105,11 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Lülitu teksti sisestamisele</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Lülitu kellale</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Remove %1$s</string>
 </resources>

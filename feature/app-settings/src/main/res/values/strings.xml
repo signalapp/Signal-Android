@@ -317,7 +317,7 @@
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">Delete your account info and profile photo including your username \"%1$s\"</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
     <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key.</string>
-    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can't be registered again or restored afterwards -->
+    <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
     <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">You won\'t be able to re-register or restore your account.</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">This action can not be undone</string>
@@ -682,7 +682,7 @@
     <string name="AppSettingsScreen__settings">Settings</string>
     <!-- Content description for the back button on the top level app settings screen -->
     <string name="AppSettingsScreen__go_back">Go back</string>
-    <!-- Warning row in app settings shown when the user's backups subscription was already redeemed -->
+    <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
     <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- App settings row that opens donations -->
     <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
@@ -743,7 +743,7 @@
     <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
     <!-- Button that saves your edited profile name -->
     <string name="EditProfileNameScreen__save">Save</string>
-    <!-- Snackbar shown when your profile name couldn't be saved because of a network problem -->
+    <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
 
     <!-- EditAboutScreen -->
@@ -773,7 +773,7 @@
     <string name="EditAboutScreen__clear">Clear</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
     <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
-    <!-- Snackbar shown when your about text couldn't be saved because of a network problem -->
+    <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
     <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
 
     <!-- UsernameEditScreen -->
@@ -791,7 +791,7 @@
     <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
     <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
-    <!-- Shown when a username has characters that usernames can't have -->
+    <!-- Shown when a username has characters that usernames can\'t have -->
     <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
     <!-- Shown when a username starts with a digit -->
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
@@ -838,7 +838,7 @@
     <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
-    <!-- Snackbar shown when your new avatar couldn't be saved because of a network problem -->
+    <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
     <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
@@ -860,15 +860,15 @@
     <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
-    <!-- Row on the profile screen that opens your about, shown when you haven't set one -->
+    <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
     <string name="ManageProfileFragment_about">About</string>
-    <!-- Snackbar shown when the photo you chose for your avatar couldn't be read -->
+    <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
-    <!-- Row on the profile screen that opens your name, shown when you haven't set one -->
+    <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
     <string name="ManageProfileFragment_profile_name">Profile name</string>
-    <!-- Row on the profile screen that opens your username, shown when you don't have one -->
+    <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
     <string name="ManageProfileFragment_username">Username</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__edit_username">Edit username</string>
@@ -892,15 +892,15 @@
     <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
 
     <!-- BadgesOverviewScreen -->
-    <!-- Title of the screen listing the badges you've unlocked -->
+    <!-- Title of the screen listing the badges you\'ve unlocked -->
     <string name="BadgesOverviewScreen__badges">Badges</string>
-    <!-- Section header above the grid of badges you've unlocked -->
+    <!-- Section header above the grid of badges you\'ve unlocked -->
     <string name="BadgesOverviewFragment__my_badges">My badges</string>
     <!-- Toggle for whether your badges are shown on your profile -->
     <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
-    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge's name is shown beneath it -->
+    <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
     <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
-    <!-- Snackbar shown when showing or hiding your badges on your profile couldn't be saved -->
+    <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
     <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
 
     <!-- SelectFeaturedBadgeScreen -->
@@ -910,7 +910,7 @@
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
     <string name="SelectFeaturedBadgeScreen__save">Save</string>
-    <!-- Snackbar shown when the badge you chose to feature couldn't be saved to your profile -->
+    <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 
     <!-- UsernameLinkShareSheet -->
@@ -968,10 +968,10 @@
     <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
     <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
-    <!-- Shown in place of the camera on the scan tab when the camera permission hasn't been granted -->
+    <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
     <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
     <!-- Button on the scan tab that asks for the camera permission -->
     <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
-    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can't be scanned -->
+    <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
     <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
 </resources>

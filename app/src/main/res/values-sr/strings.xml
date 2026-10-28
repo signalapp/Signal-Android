@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal се ажурира…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још увек нисте подесили приступну фразу!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Желите ли да искључите приступну фразу?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Овим ћете трајно откључати Signal и обавештења о порукама.</string>
-    <string name="ApplicationPreferencesActivity_disable">Искључи</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка приликом повезивања на сервер!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN је неопходан за закључавање регистрације. Да бисте искључили PIN, прво морате да искључите закључавање регистрације.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN је креиран.</string>
@@ -489,7 +485,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ова особа више не користи Signal. Позовите је на Signal да бисте наставили разговор овде.</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">Ова особа не користи Signal. Позовите је да бисте наставили разговор овде.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Позивница за Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -509,7 +505,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Иди назад</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">Управљање пакетом</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -839,7 +835,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Грешка приликом постављања профилне слике</string>
     <string name="CreateProfileActivity_problem_setting_profile">Проблем са подешавањем профила</string>
     <string name="CreateProfileActivity_set_up_your_profile">Подесите профил</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профил и промене профила биће видљиви људима којима шаљете поруке, контактима и групама.</string>
     <string name="CreateProfileActivity_set_avatar_description">Подесите аватар</string>
 
     <!-- ProfileCreateFragment -->
@@ -1345,17 +1340,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Дајте назив групи</string>
-    <string name="AddGroupDetailsFragment__create_group">Креирај групу</string>
     <string name="AddGroupDetailsFragment__create">Креирај</string>
     <string name="AddGroupDetailsFragment__members">Чланови</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Можете додати или позвати пријатеље након што креирате групу.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Назив групе (обавезно)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Назив групе (опционо)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Ово поље је обавезно.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Креирање групе није успело.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Пробајте поново касније.</string>
     <string name="AddGroupDetailsFragment__remove">Уклони</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Желите да уклоните %1$s из ове групе?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">Желите ли да одбаците групу?</string>
@@ -1363,8 +1354,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Ако желите да наставите у групу „%1$s“, измене које сте унели неће бити сачуване.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Одбаци</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Изабрали сте контакт који не подржава Signal групе, тако да ће ова група бити MMS. Прилагођени називи и слике MMS група биће видљиви само вама. Подршка за MMS групе ће ускоро бити укинута како бисмо се фокусирали на шифроване поруке.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Ко може додати нове чланове?</string>
@@ -1397,34 +1386,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Ваше корисничко име, QR код и линк нису видљиви на вашем профилу. Корисничко име дајте само са људима којима верујете.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Људи вам могу слати поруке на одабрано корисничко име уместо на број телефона. Корисничка имена имају јединствени QR код и линк који можете да поделите са пријатељима.</string>
-    <string name="ManageProfileFragment_profile_name">Име на профилу</string>
-    <string name="ManageProfileFragment_username">Корисничко име</string>
-    <string name="ManageProfileFragment_about">О контакту</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Постављање аватара није успело</string>
     <string name="ManageProfileFragment_badges">Значке</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR кôд или линк</string>
-    <string name="ManageProfileFragment__edit_photo">Измените слику</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Поделите своје корисничко име</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Како би неко други могао да започне ћаскање, поделите свој јединствени QR кôд или линк.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Корисничко име је креирано</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Корисничко име је копирано</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Нисмо успели да избришемо корисничко име. Пробајте поново касније.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Корисничко име је избрисано</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Желите ли да избришете корисничко име?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Овим ћете уклонити корисничко име и онемогућити свој QR код и линк. Корисничко име %1$s ће моћи да преузме неко други. Да ли сте сигурни?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2782,7 +2744,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Прикажи пакет</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">Пошаљи налепницу</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Налепница је додата у колекцију „Омиљено“</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -2920,52 +2882,14 @@
     <string name="UnverifiedSendDialog_send">Пошаљи</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Изаберите корисничко име</string>
-    <string name="UsernameEditFragment_username">Корисничко име</string>
-    <string name="UsernameEditFragment_delete">Избриши</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">Корисничко име је уклоњено.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">Дошло је до грешке са мрежом.</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Имали сте превише покушаја. Пробајте поново касније.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Ово корисничко име је заузето.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Корисничко име може да садржи a–Z, 0–9 и доњу црту.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничко име не може да почиње бројем.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Корисничко име је неважеће.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Број знакова које корисничко име мора садржати је између %1$d и %2$d.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Људи вам могу слати поруке на одабрано корисничко име уместо на број телефона. Корисничка имена су увек упарена са скупом бројева.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">Прескочи</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">Готово</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Ово корисничко име није доступно, покушајте са другим бројем.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Неважеће корисничко име – унесите најмање %1$d цифре.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Неважеће корисничко име – унесите највише %1$d цифара.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">Овај број не може бити 00. Унесите цифру од 1 до 9</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Бројеви са више од 2 цифре не могу да почињу са 0</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Ако вратите корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Ако промените корисничко име, ресетоваће вам се постојећи QR код и линк. Да ли сте сигурни?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Настави</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d контакт је на Signal-у!</item>
         <item quantity="other">Њих %1$d је на Signal-у!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копирање или дељење линка корисничког имена</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенирани QR код није исправно форматиран код за верификацију сигурносног броја. Пробајте поново да скенирате.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Поделите сигурносни број преко…</string>
@@ -3239,7 +3163,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Изаберите корисничко име</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Подесите</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3598,42 +3522,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и слике из прилагођене MMS групе биће видљиви само вама.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описи групе ће бити видљиви члановима ове групе и људима који су позвани.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">О контакту</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите неколико речи о себи…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">Говори слободно</string>
-    <string name="EditAboutFragment_encrypted">Шифровано</string>
-    <string name="EditAboutFragment_be_kind">Треба бити добар према другима</string>
-    <string name="EditAboutFragment_coffee_lover">Љубитељ кафе</string>
-    <string name="EditAboutFragment_free_to_chat">Можемо да ћаскамо</string>
-    <string name="EditAboutFragment_taking_a_break">Правим паузу</string>
-    <string name="EditAboutFragment_working_on_something_new">Радим на нечему новом</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Уређивање групе</string>
     <string name="EditProfileFragment__group_name">Назив групе</string>
     <string name="EditProfileFragment__group_description">Опис групе</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Ажурирајте Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Ова верзија Signal-а је истекла. Ажурирајте апликацију сада да наставите да користите Signal.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Ажурирај</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Уређај није регистрован</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">Овај уређај више није регистрован. Региструјте га поново да бисте унели измене на налогу.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Поново региструј</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Ваше име</string>
-    <string name="EditProfileNameFragment_first_name">Име</string>
-    <string name="EditProfileNameFragment_last_name_optional">Презиме (опционо)</string>
     <string name="EditProfileNameFragment_save">Сачувај</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Чување није успело због проблема са мрежом. Пробајте поново касније.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Подељени медији</string>
@@ -3815,12 +3711,6 @@
         <item quantity="other">%1$d h</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">Промените приступну фразу</string>
-    <string name="preferences__change_your_passphrase">Промените приступну фразу</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Укључи приступну фразу за закључавање екрана</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Закључај екран и обавештења приступном фразом</string>
-    <string name="preferences__screen_security">Безбедност екрана</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3835,11 +3725,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Искључи</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Безбедност екрана је искључена</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Аутоматски закључај Signal након одређеног времена неактивности</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Приступна фраза за време неактивности</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Интервал времена неактивности</string>
     <string name="preferences__notifications">Обавештења</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Укључи обавештења</string>
@@ -3875,14 +3760,10 @@
     <string name="preferences__slow">Споро</string>
     <string name="preferences__advanced">Напредно</string>
     <string name="preferences__donate_to_signal">Донирајте Signal-у</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Приватност</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Приче</string>
     <string name="preferences__storage">Меморијски простор</string>
     <string name="preferences__payments">Плаћања</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Закључавање плаћања</string>
     <string name="preferences__conversation_length_limit">Максималан број порука у ћаскању</string>
     <string name="preferences__keep_messages">Задржи поруке</string>
     <string name="preferences__linked_devices">Повезани уређаји</string>
@@ -3893,14 +3774,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Напредна подешавања PIN-а</string>
     <string name="preferences__submit_debug_log">Пошаљи извештај о грешкама</string>
-    <string name="preferences__incognito_keyboard">Инкогнито тастатура</string>
-    <string name="preferences__read_receipts">Потврде о читању</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако су потврде о читању искључене, нећете видети потврде о читању од других.</string>
-    <string name="preferences__typing_indicators">Индикатори куцања</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако су индикатори куцања искључени, нећете видети индикаторе куцања од других.</string>
-    <string name="preferences__request_keyboard_to_disable">Затражи да тастатура деактивира персонализовано учење.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">Ово подешавање није гаранција и ваша тастатура га може занемарити.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">Коришћење меморијског простора</string>
     <string name="preferences_storage__photos">Слике</string>
     <string name="preferences_storage__videos">Видео записи</string>
@@ -3947,8 +3820,6 @@
     <string name="preferences_storage__custom">Прилагођен</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Преусмерава све позиве преко Signal-овог сервера да би се избегло откривање ваше IP адресе вашем контакту. Умањује квалитет позива.</string>
     <string name="preferences_advanced__always_relay_calls">Увек преусмеравај позиве</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Плаћања</string>
     <string name="preferences_notifications__in_chat_sounds">Звуци ћаскања</string>
     <string name="preferences_notifications__show">Прикажи</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4557,10 +4428,6 @@
     <string name="BackupUtil_never">Никад</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Непознато</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Одаберите ко може да види ваш број телефона и ко може да вам се обрати у Signal-у преко њега.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Да бисте користили закључавање екрана, подесите PIN, шаблон или лозинку на овом уређају.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Догодила се грешка приликом укључивања закључавања регистрације.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Догодила се грешка приликом искључивања закључавања регистрације.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Морате унети PIN за закључавање регистрације</string>
@@ -4583,8 +4450,6 @@
     <string name="prompt_passphrase_activity__try_again">Пробајте поново</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Искључено</string>
 
     <string name="Recipient_unknown">Непознато</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5041,20 +4906,8 @@
     <string name="GroupDescriptionDialog__group_description">Опис групе</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Обновите претплату на безбедне резервне копије Signal-а</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Прављење резервне копије није успело</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Нисмо успели да вратимо вашу претплату на резервне копије</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Достигнуто је ограничење меморијског простора за резервну копију</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Позовите пријатеље</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Копиран је идентификациони број претплатника донатора</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Копиран је идентификациони број претплатника на резервне копије</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ову опцију да промените тренутни број телефона на нови број телефона. Не можете опозвати ту промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима SMS поруке или позиве.</string>
@@ -5301,28 +5154,7 @@
     <string name="NotificationProfilesFragment__create_profile">Креирај профил</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Корисник је блокиран</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">Контаката или група: %1$d</item>
-        <item quantity="other">Контаката или група: %1$d</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">Поруке</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Нестајуће поруке</string>
-    <string name="PrivacySettingsFragment__app_security">Безбедност апликације</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирајте снимке екрана у листи недавних апликација и унутар апликације</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Поруке и позиви преко Signal-а, увек преузмеравај позиве, запечаћени пошиљалац</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Подразумевани тајмер за нова ћаскања</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевано време нестајућих порука за сва нова ћаскања која започнете.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">За плаћања захтевајте закључавање екрана или отисак прста на Android уређају</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Активирање закључавања плаћања није успело</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Да бисте користили закључавање плаћања, морате прво да активирате закључавање екрана или идентификацију помоћу отиска прста у подешавањима телефона.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Нисмо успели да дођемо до системских подешавања</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5640,14 +5472,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Желите ли да одбаците промене?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Изгубићете све промене које сте направили на овој слици.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Моје значке</string>
     <string name="BadgesOverviewFragment__featured_badge">Истакнута значка</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Прикажите значке на профилу</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Ажурирање профила није успело</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Одаберите значку</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ажурирање профила није успело</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Донирајте</string>
@@ -5695,9 +5522,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставите као истакнуту значку</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Nastavi</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Када имате више од једне значке, можете да изаберете једну коју ћете поставити као истакнуту и коју ће други видети на вашем профилу.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Добијте значке за профил тако што ћете подржати Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal је непрофитна организација без оглашивача и инвеститора, коју подржавају само људи попут вас.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Донирајте Signal-у</string>
@@ -5938,9 +5762,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Мора имати назив</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">Изабери емоџи</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Обриши име и емоџи</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Дозвољена обавештења</string>
@@ -6008,20 +5832,6 @@
     <string name="EditNotificationProfileSchedule__start">Почетак</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Завршетак</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">Н</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">П</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">У</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">С</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">Ч</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">П</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">С</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">Подесите време почетка</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6479,6 +6289,8 @@
     <string name="GiftFlowStartFragment__next">Следеће</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Изаберите примаоца</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Потврдите донацију</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6966,11 +6778,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Избриши форматирање</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Измените корисничко име</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Избришите корисничко име</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7175,12 +6982,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">Назив позива</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Величина траке за навигацију</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Нормално</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Компактно</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Историја измена</string>
@@ -7209,63 +7010,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Овај линк више неће радити никоме ко га има.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Линк</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Поделите</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Боја</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Делите свој QR код и линк само са људима којима верујете. Ако их поделите са другима, они ће моћи да виде ваше корисничко име и започну ћаскање са вама.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Корисничко име је копирано</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Линк је копиран</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Ресетујемо линк…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Желите ли да ресетујете QR код?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Ако ресетујете QR код, ваши постојећи QR код и линк више неће радити.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Ресетуј</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Ресетуј</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Код</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Скенирај</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Скенирајте QR код приказан на уређају вашег контакта.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">QR није важећи.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Није пронађен корисник са корисничким именом %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Овај корисник није пронађен.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Дошло је до грешке са мрежом. Пробајте поново.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Немате приступ мрежи. Линк није ресетован. Пробајте поново касније.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Дошло је до грешке са мрежом приликом покушаја ресетовања линка. Пробајте поново касније.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Дошло је до неочекиване грешке приликом ресетовања линка. Пробајте поново касније.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Ваш QR код и линк су ресетовани и креирани су нови QR код и линк.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Скенирај овај QR код телефоном да ћаскаш са мном на Signal-у.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR код није пронађен</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Пробајте да скенирате другу слику која садржи QR код за Signal.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Свако ко има овај линк може видети ваше корисничко име и започети ћаскање с вама. Делите га само с људима којима верујете.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Копирај линк</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Поделите</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7395,6 +7144,30 @@
     <string name="VerifyBackupKey__backup_key_correct">Кључ за опоравак је исправан. Чувајте кључ на сигурном.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Питаћемо вас поново за недељу дана.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Желите ли да укључите обавештења преко целог екрана?</string>
@@ -7788,11 +7561,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Пробајте поново</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">Члан %1$s је угасио групу</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Ова група је угашена.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Више не можете да шаљете нити примате поруке или позиве у овој групи.</string>
 
     <!-- NoManualBackupBottomSheet -->
@@ -8092,9 +7865,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Брисање резервне копије је у току.</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Откључајте да поставите безбедне резервне копије</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">Потврдите идентитет да поставите безбедне резервне копије</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">Потребна је потврда идентитета</string>
 

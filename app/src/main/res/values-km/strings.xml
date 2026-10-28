@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal កំពុងធ្វើបច្ចុប្បន្នភាព…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់បានកំណត់ឃ្លាសម្ងាត់ទេ!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">បិទឃ្លាសម្ងាត់?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">វានឹងដោះសោ Signal និងសារជូនដំណឹងជាអចិន្ត្រៃយ៍។</string>
-    <string name="ApplicationPreferencesActivity_disable">បិទចោល</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">បញ្ហាភ្ជាប់ទៅម៉ាស៊ីនមេ!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN ត្រូវបានទាមទារសម្រាប់ការចុះឈ្មោះចាក់សោ។ ដើម្បីបិទកូដ PIN សូមបិទការចុះឈ្មោះចាក់សោ។</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN ត្រូវបានបង្កើត។</string>
@@ -815,7 +811,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">ការកំណត់រូបថតប្រវត្តរូបមានបញ្ហា</string>
     <string name="CreateProfileActivity_problem_setting_profile">បញ្ហាក្នុងការកំណត់ប្រវត្តិរូប</string>
     <string name="CreateProfileActivity_set_up_your_profile">បង្កើតប្រវត្តិរូបរបស់អ្នក</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រូហ្វាល់ និងការផ្លាស់ប្តូររបស់អ្នកនឹងមើលឃើញដោយមនុស្សដែលអ្នកផ្ញើសារ បញ្ជីទំនាក់ទំនង និងក្រុម។</string>
     <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
 
     <!-- ProfileCreateFragment -->
@@ -1303,17 +1298,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">ដាក់ឈ្មោះក្រុមនេះ</string>
-    <string name="AddGroupDetailsFragment__create_group">បង្កើតក្រុម</string>
     <string name="AddGroupDetailsFragment__create">បង្កើត</string>
     <string name="AddGroupDetailsFragment__members">សមាជិក</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">អ្នកអាចបន្ថែម ឬអញ្ជើញមិត្តភក្តិ បន្ទាប់ពីបង្កើតក្រុមនេះ។</string>
     <string name="AddGroupDetailsFragment__group_name_required">ឈ្មោះក្រុម (ចាំបាច់)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">ឈ្មោះក្រុម (ជម្រើស)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">វាលនេះ គឺចាំបាច់។</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">ការបង្កើតក្រុមបរាជ័យ។</string>
     <string name="AddGroupDetailsFragment__try_again_later">ព្យាយាមម្តងទៀតពេលក្រោយ។</string>
     <string name="AddGroupDetailsFragment__remove">ដកចេញ</string>
-    <string name="AddGroupDetailsFragment__sms_contact">បញ្ជីទំនាក់ទំនង SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">ដក %1$s ចេញពីក្រុមនេះ?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">បោះបង់ក្រុម?</string>
@@ -1321,8 +1312,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">ប្រសិនបើអ្នកបន្តទៅក្រុម \"%1$s\" ការផ្លាស់ប្តូររបស់អ្នកនឹងមិនត្រូវបានរក្សាទុកទេ។</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">បោះបង់</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">អ្នកបានជ្រើសរើសឈ្មោះទំនាក់ទំនងមួយដែលមិនអាចប្រើបានជាមួយក្រុម Signal ដូចនេះក្រុមនេះនឹងទៅជាសារពហុមេឌៀ។ មានតែអ្នកប៉ុណ្ណោះដែលនឹងមើលឃើញរូបថត និងឈ្មោះក្រុមសារពហុមេឌៀដែលបានកំណត់ផ្ទាល់ខ្លួន។ ការគាំទ្រចំពោះក្រុមសារពហុមេឌៀនឹងត្រូវបានដកចេញក្នុងពេលឆាប់ៗនេះ ដើម្បីផ្តោតលើការផ្ញើសារដែលបានអ៊ីនគ្រីប។</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីបាន?</string>
@@ -1354,34 +1343,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">អ្នកផ្សេងអាចផ្ញើសារមកអ្នកដោយប្រើប្រាស់ឈ្មោះអ្នកប្រើតាមជម្រើសរបស់អ្នក ជំនួសឱ្យលេខទូរសព្ទ។ ឈ្មោះអ្នកប្រើមានកូដ QR និងតំណតែមួយគត់ដែលអ្នកអាចចែករំលែកជាមួយមិត្តភក្តិបាន។</string>
-    <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រវត្តិរូប</string>
-    <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើ</string>
-    <string name="ManageProfileFragment_about">អំពី</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
     <string name="ManageProfileFragment_badges">ស្លាក</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">កូដ QR ឬតំណ</string>
-    <string name="ManageProfileFragment__edit_photo">កែប្រែរូបភាព</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">ចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នក</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">អនុញ្ញាតឲ្យអ្នកដទៃចាប់ផ្តើមជជែកជាមួយអ្នកបាន ដោយចែករំលែកកូដ QR ឬតំណតែមួយគត់របស់អ្នក។</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">បានបង្កើតឈ្មោះអ្នកប្រើ</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">បានចម្លងឈ្មោះអ្នកប្រើ</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">មិនអាចលុបឈ្មោះអ្នកប្រើបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">ឈ្មោះអ្នកប្រើត្រូវបានលុប</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">លុបឈ្មោះអ្នកប្រើឬ?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"ការធ្វើបែបនេះនឹងលុបឈ្មោះអ្នកប្រើរបស់អ្នកចេញ ហើយបិទកូដ QR និងតំណរបស់អ្នក។ អ្នកផ្សេងទៀតនឹងអាចទាមទារយក %1$s ទៅប្រើបាន។ តើអ្នកប្រាកដឬទេ?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2824,51 +2786,13 @@
     <string name="UnverifiedSendDialog_send">ផ្ញើ</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">ជ្រើសរើសឈ្មោះអ្នកប្រើរបស់អ្នក</string>
-    <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើ</string>
-    <string name="UsernameEditFragment_delete">លុប</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">លុបឈ្មោះអ្នកប្រើបានជោគជ័យ។</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">បានធ្វើការព្យាយាមច្រើនដងពេក។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <string name="UsernameEditFragment_this_username_is_taken">ឈ្មោះអ្នកប្រើនេះត្រូវបានយកហើយ។</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">ឈ្មោះអ្នកប្រើអាចរួមបញ្ចូលតែ a–Z, 0–9, និងបន្ទាត់ពីក្រោមប៉ុណ្ណោះ។</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើមិនអាចចាប់ផ្តើមដោយលេខបានទេ។</string>
-    <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវទេ។</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើត្រូវតែនៅចន្លោះតួអក្សរ %1$d និង %2$d។</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">អ្នកផ្សេងអាចផ្ញើសារមកអ្នកដោយប្រើប្រាស់ឈ្មោះអ្នកប្រើតាមជម្រើសរបស់អ្នក ជំនួសឱ្យលេខទូរសព្ទ។ ឈ្មោះអ្នកប្រើតែងតែត្រូវបានផ្គូផ្គងជាមួយលេខប៉ុន្មានខ្ទង់។</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">រំលង</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">បញ្ចប់</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ឈ្មោះអ្នកប្រើនេះមិនអាចប្រើបានទេ។ សូមសាកល្បងលេខផ្សេងទៀត។</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខយ៉ាងតិចបំផុត %1$d ខ្ទង់។</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវ។ សូមបញ្ចូលលេខយ៉ាងច្រើនបំផុត %1$d ខ្ទង់។</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">លេខនេះមិនអាចជា 00 ទេ។ បញ្ចូលលេខមួយខ្ទង់ចន្លោះពី 1–9</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">លេខដែលមានច្រើនជាង 2 ខ្ទង់មិនអាចចាប់ផ្តើមដោយ 0 ទេ</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">ការស្តារយកឈ្មោះអ្នកប្រើរបស់អ្នកមកវិញនឹងកំណត់ឡើងវិញនូវកូដ QR និងតំណដែលមានស្រាប់របស់អ្នក។ តើអ្នកប្រាកដឬទេ?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">ការផ្លាស់ប្តូរឈ្មោះអ្នកប្រើរបស់អ្នកនឹងកំណត់កូដ QR និងតំណដែលមានស្រាប់របស់អ្នកឡើងវិញ។ តើអ្នកប្រាកដឬទេ?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">បន្ត</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="other">លេខទំនាក់ទំនង%1$dនៅលើ Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ចម្លង ឬចែករំលែកតំណឈ្មោះអ្នកប្រើ</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">កូដQR ដែលស្កែន គឺមិនត្រូវតាមទម្រង់លេខកូដផ្ទៀងផ្ទាត់សុវត្ថិភាពទេ។ សូមព្យាយាមស្កែនម្តងទៀត។</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">ចែករំលែកលេខសុវត្ថិភាពតាម…</string>
@@ -3487,42 +3411,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ឈ្មោះក្រុម MMS ដែលប្តូរ និងរូបភាព នឹងបង្ហាញទៅអ្នកតែប៉ុណ្ណោះ។</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ការពណ៌នាក្រុម នឹងត្រូវបង្ហាញទៅសមាជិកនៃក្រុមនេះ និងមនុស្សដែលត្រូវបានអញ្ជើញ។</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">អំពី</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">សរសេរពាក្យមួយចំនួនអំពីខ្លួនអ្នក…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">និយាយដោយសេរី</string>
-    <string name="EditAboutFragment_encrypted">បានធ្វើកូដនីយកម្ម</string>
-    <string name="EditAboutFragment_be_kind">មានចិត្តល្អ</string>
-    <string name="EditAboutFragment_coffee_lover">អ្នកស្រលាញ់កាហ្វេ</string>
-    <string name="EditAboutFragment_free_to_chat">ឥតគិតថ្លៃសម្រាប់ការឈែត</string>
-    <string name="EditAboutFragment_taking_a_break">សម្រាកបន្ថិច</string>
-    <string name="EditAboutFragment_working_on_something_new">ធ្វើការលើអ្វីដែលថ្មី</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">កែប្រែក្រុម</string>
     <string name="EditProfileFragment__group_name">ឈ្មោះក្រុម</string>
     <string name="EditProfileFragment__group_description">ការពិពណ៌នាពីក្រុម</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">ដំឡើង Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">កំណែ Signal នេះបានផុតកំណត់ហើយ។ ដំឡើងកំណែឥឡូវនេះដើម្បីបន្តប្រើប្រាស់ Signal។</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">បច្ចុប្បន្នភាព</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">ឧបករណ៍មិនបានចុះឈ្មោះទេ</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះទៀតទេ។ ចុះឈ្មោះឡើងវិញដើម្បីធ្វើការកែប្រែទៅលើគណនីរបស់អ្នក។</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ចុះឈ្មោះម្តងទៀត</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">ឈ្មោះរបស់អ្នក</string>
-    <string name="EditProfileNameFragment_first_name">ឈ្មោះ</string>
-    <string name="EditProfileNameFragment_last_name_optional">ត្រកូល (ជម្រើស)</string>
     <string name="EditProfileNameFragment_save">រក្សាទុក</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">បរាជ័យក្នុងការរក្សាទុកដោយសារបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
@@ -3702,12 +3598,6 @@
         <item quantity="other">%1$dម៉</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
-    <string name="preferences__change_your_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់របស់អ្នក</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">បើកឃ្លាសម្ងាត់ចាក់សោរអេក្រង់</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោរអេក្រង់ និងការជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
-    <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3722,11 +3612,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">បិទ</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">សុវត្ថិភាពអេក្រង់ត្រូវបានបិទ</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោSignalដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">ឃ្លាសម្ងាត់ពេលអសកម្ម</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">ចន្លោះពេលអសកម្ម</string>
     <string name="preferences__notifications">សារជូនដំណឹង</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">បើកការជូនដំណឹង</string>
@@ -3762,14 +3647,10 @@
     <string name="preferences__slow">យឺត</string>
     <string name="preferences__advanced">កម្រិតខ្ពស់</string>
     <string name="preferences__donate_to_signal">បរិច្ចាគទៅ Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">ឯកជនភាព</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">រឿងរ៉ាវ</string>
     <string name="preferences__storage">ឧបករណ៍ផ្ទុក</string>
     <string name="preferences__payments">ការទូទាត់</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">មុខងារចាក់សោការបង់ប្រាក់</string>
     <string name="preferences__conversation_length_limit">ដែនកំណត់ការជជែក</string>
     <string name="preferences__keep_messages">រក្សាសារ</string>
     <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>
@@ -3780,14 +3661,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">ការកំណត់លេខកូដ PIN ជាន់ខ្ពស់</string>
     <string name="preferences__submit_debug_log">បញ្ជូនកំណត់ហេតុបញ្ហា</string>
-    <string name="preferences__incognito_keyboard">ក្តារចុចអនាមឹក</string>
-    <string name="preferences__read_receipts">ទទួលបានការអាន</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>
-    <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
-    <string name="preferences__request_keyboard_to_disable">ស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាបុគ្គល។</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">ការកំណត់នេះ មិនធានាទេ ហើយក្តារចុចរបស់អ្នកប្រហែលជាមិនអើពើវា។</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">ការប្រើប្រាស់ឧបករណ៍ផ្ទុក</string>
     <string name="preferences_storage__photos">រូបភាព</string>
     <string name="preferences_storage__videos">វីដេអូ</string>
@@ -3832,8 +3705,6 @@
     <string name="preferences_storage__custom">ធ្វើផ្សេង</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
     <string name="preferences_advanced__always_relay_calls">តែងតែបញ្ជូនការហៅចេញ</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">ការទូទាត់</string>
     <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
     <string name="preferences_notifications__show">បង្ហាញ</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4433,10 +4304,6 @@
     <string name="BackupUtil_never">មិនធ្លាប់</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">មិនស្គាល់</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">ជ្រើសរើសអ្នកដែលអាចមើលឃើញលេខទូរសព្ទរបស់អ្នក និងអ្នកណាដែលអាចប្រើវាទាក់ទងអ្នកបាននៅលើ Signal។</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">ដើម្បីប្រើការចាក់សោអេក្រង់ សូមកំណត់លេខកូដសម្ងាត់ លំនាំគំនូស ឬពាក្យសម្ងាត់នៅលើឧបករណ៍នេះ។</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">មិនអាចបើកការចាក់សោរចុះឈ្មោះ។</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">មិនអាចបិទការចាក់សោរចុះឈ្មោះ។</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">អ្នកត្រូវបញ្ចូលលេខ PIN សម្រាប់ចាក់សោរការចុះឈ្មោះរបស់អ្នក</string>
@@ -4459,8 +4326,6 @@
     <string name="prompt_passphrase_activity__try_again">ព្យាយាមម្តងទៀត</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">បិទ</string>
 
     <string name="Recipient_unknown">មិនស្គាល់</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -4909,20 +4774,8 @@
     <string name="GroupDescriptionDialog__group_description">ការពិពណ៌នាពីក្រុម</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">បន្តការជាវការបម្រុងទុកសុវត្ថិភាព Signal របស់អ្នក</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">មិនអាចបញ្ចប់ការបម្រុងទុកបានទេ</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">មិនអាចប្ដូរនូវការជាវការបម្រុងទុករបស់អ្នកបានទេ</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">ទំហំផ្ទុកការបម្រុងទុកបានដល់ចំនួនកំណត់ហើយ</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">អញ្ជើញមិត្តភក្តិអ្នក</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវជាម្ចាស់ជំនួយ ដាក់ទៅឃ្លីបបត</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវបម្រុងទុក ដាក់ទៅឃ្លីបបត</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">ប្រើការផ្លាស់ប្ដូរនេះ ដើម្បីប្ដូរលេខទូរស័ព្ទបច្ចុប្បន្នទៅលេខទូរស័ព្ទថ្មី។ អ្នកមិនអាចត្រឡប់ការប្ដូរនេះបានទេ។\n\nមុនពេលបន្ត អ្នកត្រូវប្រាកដថាលេខទូរស័ព្ទថ្មីរបស់អ្នកអាចទទួលសារ និងការហៅចូលបាន។</string>
@@ -5162,27 +5015,7 @@
     <string name="NotificationProfilesFragment__create_profile">បង្កើត​គណនី</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">បានទប់ស្កាត់</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d ទំនាក់ទំនង ឬក្រុម</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">ការផ្ញើសារ</string>
     <string name="PrivacySettingsFragment__disappearing_messages">សារដែលបាត់ទៅវិញ</string>
-    <string name="PrivacySettingsFragment__app_security">សន្តិសុខកម្មវិធី</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ទប់ស្កាត់រូបថតអេក្រង់នៅក្នុងបញ្ជីថ្មីៗនេះ និងក្នុងកម្មវិធី</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅ Signal តែងតែបញ្ជូនការហៅទូរសព្ទ និងអ្នកផ្ញើដែលបិទជិត</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ពេលវេលាតាមលំនាំដើមសម្រាប់ការសន្ទនាថ្មីៗ</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">តម្រូវឲ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">មិនអាចបើកមុខងារចាក់សោការបង់ប្រាក់បាន</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">ដើម្បីប្រើមុខងារចាក់សោការបង់ប្រាក់ អ្នកត្រូវតែបើកការចាក់សោអេក្រង់ ឬលេខសម្គាល់ស្នាមម្រាមដៃនៅក្នុងការកំណត់ទូរសព្ទរបស់អ្នកជាមុនសិន។</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">មិនអាចរុករកទៅការកំណត់ប្រព័ន្ធ</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5492,14 +5325,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">បោះបង់ការផ្លាស់ប្ដូរ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">អ្នកនឹងបាត់បង់ការផ្លាស់ប្ដូរទាំងអស់ដែលអ្នកបានធ្វើលើរូបភាពនេះ</string>
 
-    <string name="BadgesOverviewFragment__my_badges">ស្លាករបស់ខ្ញុំ</string>
     <string name="BadgesOverviewFragment__featured_badge">ស្លាកពិសេស</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">បង្ហាញស្លាកលើប្រូហ្វាល់</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">ជ្រើសរើសស្លាកមួយ</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">បរិច្ចាគ</string>
@@ -5547,9 +5375,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">បង្កើតស្លាកពិសេស</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">បន្ត</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">នៅពេលអ្នកមានស្លាកលើសពីមួយ អ្នកអាចជ្រើសរើសស្លាកមួយដើម្បីបង្ហាញឲ្យអ្នកផ្សេងទៀតបានឃើញនៅលើប្រូហ្វាល់របស់អ្នក។</string>
-
-    <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្រាប់ប្រូហ្វាល់របស់អ្នកតាមរយៈការគាំទ្រដល់ Signal។</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាកម្មវិធីដែលមិនរកប្រាក់ចំនូល មិនអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែជាកម្មវិធីដែលគាំទ្រដោយមនុស្សដូចជាអ្នក</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">បរិច្ចាគទៅ Signal</string>
@@ -5860,20 +5685,6 @@
     <string name="EditNotificationProfileSchedule__start">ចាប់ផ្ដើម</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">បញ្ចប់</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">អាទិត្យ</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">ចន្ទ</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">អង្គារ</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">ពុធ</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">ព្រហស្បតិ៍</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">សុក្រ</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">សៅរ៍</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">កំណត់ម៉ោងចាប់ផ្ដើម</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6320,6 +6131,8 @@
     <string name="GiftFlowStartFragment__next">បន្ទាប់</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">ជ្រើសរើសអ្នកទទួល</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">បញ្ជាក់ការបរិច្ចាគ</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6795,11 +6608,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">លុបទម្រង់អត្ថបទ</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">កែឈ្មោះអ្នកប្រើ</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">លុបឈ្មោះអ្នកប្រើ</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7001,12 +6809,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">ឈ្មោះសម្រាប់ការហៅ</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">ទំហំរបាររុករក</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">ធម្មតា</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">បង្រួម</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">ប្រវត្តិកែ</string>
@@ -7035,63 +6837,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">តំណនេះនឹងលែងដំណើរការសម្រាប់នរណាដែលមានវាទៀតហើយ។</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">តំណ</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">ចែករំលែក</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">ពណ៌</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">ចែករំលែកកូដ QR និងតំណរបស់អ្នកតែជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។ នៅពេលបានចែករំលែក អ្នកផ្សេងទៀតនឹងអាចមើលឃើញឈ្មោះអ្នកប្រើរបស់អ្នក និងចាប់ផ្តើមជជែកជាមួយអ្នកបាន។</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">បានចម្លងឈ្មោះអ្នកប្រើ</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">បានចម្លងតំណ</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">កំណត់តំណឡើងវិញ…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">កំណត់កូដ QR ឡើងវិញឬ?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">ប្រសិនបើអ្នកកំណត់កូដ QR របស់អ្នកឡើងវិញ កូដ QR និងតំណដែលមានស្រាប់របស់អ្នកនឹងមិនដំណើរការទៀតទេ។</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">កំណត់ឡើងវិញ</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">កំណត់ឡើងវិញ</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">កូដ</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">ស្គែន</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">ស្គែនកូដ QR លើឧបករណ៍នៃឈ្មោះទំនាក់ទំនងរបស់អ្នក។</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">កូដ QR មិនត្រឹមត្រូវទេ។</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">រកមិនឃើញអ្នកប្រើដែលមានឈ្មោះ %1$s ទេ។</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">រកមិនឃើញអ្នកប្រើនេះទេ។</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">បានជួបប្រទះបញ្ហាបណ្តាញ។ សូមព្យាយាមម្តងទៀត។</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">អ្នកមិនមានសិទ្ធិចូលប្រើបណ្តាញទេ។ តំណរបស់អ្នកមិនត្រូវបានកំណត់ឡើងវិញទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">បញ្ហាបណ្តាញមួយបានកើតឡើង ខណៈពេលព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">បញ្ហាមួយដែលមិនបានរំពឹងទុកបានកើតឡើង ពេលកំពុងព្យាយាមកំណត់តំណរបស់អ្នកឡើងវិញ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">កូដ QR និងតំណរបស់អ្នកត្រូវបានកំណត់ឡើងវិញ ហើយកូដ QR និងតំណថ្មីត្រូវបានបង្កើតឡើង។</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">ស្គែនកូដ QR នេះដោយប្រើទូរសព្ទរបស់អ្នក ដើម្បីជជែកជាមួយខ្ញុំនៅលើ Signal។</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">រកមិនឃើញកូដ QR</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">សាកល្បងស្គែនរូបភាពផ្សេងទៀតដែលមានកូដ QR របស់ Signal។</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">អ្នកដែលមានតំណនេះអាចមើលឈ្មោះអ្នកប្រើរបស់អ្នក និងចាប់ផ្តើមការជជែកជាមួយអ្នកបាន។ សូមចែករំលែកវាជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">ចម្លងតំណ</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">ចែករំលែក</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7219,6 +6969,30 @@
     <string name="VerifyBackupKey__backup_key_correct">សោស្តារត្រឹមត្រូវ។ រក្សាទុកសោរបស់អ្នកឱ្យមានសុវត្ថិភាព។</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">យើងនឹងសួរអ្នកម្តងទៀតក្នុងមួយសប្តាហ៍។</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">បើកការជូនដំណឹងពេញអេក្រង់ឬ?</string>
@@ -7608,11 +7382,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">ព្យាយាមម្តងទៀត</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s បានបញ្ចប់ក្រុម</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">ក្រុមនេះបានបញ្ចប់ហើយ។</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">អ្នកលែងអាចផ្ញើ និងទទួលសារ ឬការហៅទូរសព្ទនៅក្នុងក្រុមនេះទៀតហើយ។</string>
 
     <!-- NoManualBackupBottomSheet -->

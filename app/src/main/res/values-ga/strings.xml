@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Tá Signal ag nuashonrú…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Níl nath faire socraithe agat fós!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Díchumasaigh an nath faire?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Baineann sé seo glas de Signal agus de fógraí teachtaireachta go deo.</string>
-    <string name="ApplicationPreferencesActivity_disable">Díchumasaigh</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Tharla botún ag déanamh teagmháil leis an bhfreastalaí!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas clárúcháin a úsáid. Caithfidh tú an glas clárúcháin a dhíchumasú sula mbeidh tú in ann an UAP a dhíchumasú.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Cruthaíodh an UAP.</string>
@@ -501,7 +497,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Níl Signal á úsáid ag an duine seo a thuilleadh. Tabhair cuireadh chun Signal don duine leis an gcomhrá a choinneáil anseo.</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">Níl Signal á úsáid ag an duine seo. Tabhair cuireadh don duine leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -524,7 +520,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">Siar</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">Bainistigh beart</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -911,7 +907,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Tharla botún ag athrú do ghrianghraf próifíle</string>
     <string name="CreateProfileActivity_problem_setting_profile">Fadhb ag athrú do phróifíl</string>
     <string name="CreateProfileActivity_set_up_your_profile">Cumraigh do phroifíl</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Beidh do phróifíl agus athruithe ar do phróifíl infheicthe ag daoine a fhaigheann teachtaireachtaí uait, ag do theagmhálaithe agus ag do ghrúpaí.</string>
     <string name="CreateProfileActivity_set_avatar_description">Roghnaigh abhatár</string>
 
     <!-- ProfileCreateFragment -->
@@ -1471,17 +1466,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Ainmnigh an grúpa seo</string>
-    <string name="AddGroupDetailsFragment__create_group">Cruthaigh baicle</string>
     <string name="AddGroupDetailsFragment__create">Cruthaigh</string>
     <string name="AddGroupDetailsFragment__members">Baill</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">You can add or invite friends after creating this group.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Ainm an ghrúpa (riachtanach)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Ainm an ghrúpa (roghnach)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Ní mór an réimse sin a líonadh.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Theip ar bhunú na baicle.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Déan arís é ar ball.</string>
     <string name="AddGroupDetailsFragment__remove">Bain</string>
-    <string name="AddGroupDetailsFragment__sms_contact">Teagmhálaí SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Bain %1$s den ghrúpa seo?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">Cuileáil grúpa?</string>
@@ -1489,8 +1480,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">Má leanann tú ar aghaidh chuig an ngrúpa \"%1$s\" ní shábhálfar d\'athruithe.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">Cuileáil</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheidh sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpa MMS saincheaptha infheicthe agatsa amháin. Bainfear tacaíocht do ghrúpaí SMS go luath chun díriú ar chur teachtaireachtaí criptithe.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Cé ar féidir leis baill nua a chur leis?</string>
@@ -1526,34 +1515,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Níl d\'ainm úsáideora, cód QR ná nasc infheicthe ar do phróifíl. Ná comhroinn d\'ainm úsáideora ach amháin le daoine a bhfuil muinín agat iontu.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Beidh daoine in ann teachtaireacht a chur chugat ag úsáid ainm úsáideora roghnach in ionad uimhir ghutháin. Tá cód QR agus nasc uathúil ag ainmneacha úsáideora ar féidir leat iad a chomhroinnt le cairde.</string>
-    <string name="ManageProfileFragment_profile_name">Ainm Próifíle</string>
-    <string name="ManageProfileFragment_username">Ainm úsáideora</string>
-    <string name="ManageProfileFragment_about">Maidir leis</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Theip ar shocrú an abhatár</string>
     <string name="ManageProfileFragment_badges">Suaitheantais</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">Cód QR nó Nasc</string>
-    <string name="ManageProfileFragment__edit_photo">Edit Photo</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Comhroinn d\'Ainm Úsáideora</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Lig do dhaoine eile tosú ar chomhrá leat trí do chód QR uathúil nó do nasc a chomhroinnt.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Cruthaíodh ainm úsáideora</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Cóipeáladh ainm úsáideora</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Níorbh fhéidir an t-ainm úsáideora a scriosadh. Triail arís níos déanaí.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Ainm úsáideora scriosta</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Scrios ainm úsáideora?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Bainfear d\'ainm úsáideora agus díchumasófar do chód QR agus nasc leis sin. Beidh daoine eile in ann %1$s a éileamh. An bhfuil tú cinnte?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -3070,7 +3032,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">Féach ar an mbeart</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">Seol greamán</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">Greamán curtha leis na Ceanáin</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -3208,43 +3170,8 @@
     <string name="UnverifiedSendDialog_send">Seol</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Roghnaigh d\'ainm úsáideora</string>
-    <string name="UsernameEditFragment_username">Ainm úsáideora</string>
-    <string name="UsernameEditFragment_delete">Scrios</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh le hainm úsáideora a bhaint.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">Tharla earráid líonra</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">An iomarca iarrachtaí déanta, triail arís ar ball é.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">Tá an t-ainm úsáideora sin gafa cheana.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">Ní cheadaítear ach a-Z, 0-9, agus fostríoca in ainmneacha úsáideora.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ní cheadaítear uimhir ag tús ainm úsáideora.</string>
-    <string name="UsernameEditFragment_username_is_invalid">Níl an t-ainm úsáideora bailí.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ní mór go mbeidh an líon carachtar idir %1$d agus %2$d in ainmneacha úsáideora.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">Beidh daoine in ann teachtaireacht a chur chugat ag úsáid d\'ainm úsáideora roghnach in ionad uimhir ghutháin. Déantar ainmneacha úsáideora a phéireáil le tacar uimhreacha i gcónaí.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">Léim thar seo</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">Déanta</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Níl an t-ainm úsáideora seo ar fáil, triail uimhir eile.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ainm úsáideora neamhbhailí, cuir isteach íoslíon de %1$d dhigit.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ainm úsáideora neamhbhailí, cuir isteach uaslíon de %1$d dhigit.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">Ní féidir 00 a bheith san uimhir seo. Cuir isteach digit idir 1 agus 9</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Ní féidir le huimhreacha a bhfuil níos mó ná 2 dhigit iontu tosú le 0</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Athshocrófar do chód QR agus nasc reatha le hathshlánú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Athshocrófar an cód QR agus an nasc atá agat cheana féin má athraíonn tú d\'ainm úsáideora. An bhfuil tú cinnte?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Ar aghaidh</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">Tá %1$d teagmhálaí ar Signal!</item>
@@ -3254,9 +3181,6 @@
         <item quantity="other">Tá %1$d teagmhálaí ar Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Cóipeáil nó comhroinn nasc ainm úsáideora</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Ní uimhir shábhála bailí é an QR code. Le do thoil, bain triail as an QR code a scanadh arís.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Comhroinn do uimhir shábhála le …</string>
@@ -3548,7 +3472,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">Roghnaigh ainm úsáideora</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">Socraigh</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3931,42 +3855,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Beidh ainmneacha agus grianghraif ag grúpaí MMS saincheaptha infheicthe agatsa amháin.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Group descriptions will be visible to members of this group and people who have been invited.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">Maidir leis</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
-    <string name="EditAboutFragment_count">%1$d / %2$d</string>
-    <string name="EditAboutFragment_speak_freely">Speak Freely</string>
-    <string name="EditAboutFragment_encrypted">Criptithe</string>
-    <string name="EditAboutFragment_be_kind">Bí cneasta</string>
-    <string name="EditAboutFragment_coffee_lover">Is breá liom caife</string>
-    <string name="EditAboutFragment_free_to_chat">Tá le fáil chun comhrá a bheith agam</string>
-    <string name="EditAboutFragment_taking_a_break">Ag glacadh sosa</string>
-    <string name="EditAboutFragment_working_on_something_new">Táim ag obair ar rud nua</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Cuir an Grúpa in Eagar</string>
     <string name="EditProfileFragment__group_name">Ainm an Ghrúpa</string>
     <string name="EditProfileFragment__group_description">Group Description</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Nuashonraigh Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Tá an leagan seo de Signal imithe as feidhm. Nuashonraigh anois le leanúint le húsáid Signal.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Nuashonraigh</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Níl an gléas cláraithe</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">Níl an gléas seo cláraithe a thuilleadh. Athchláraigh chun athruithe a dhéanamh ar do chuntas.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Athchláraigh</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">Your Name</string>
-    <string name="EditProfileNameFragment_first_name">Ainm</string>
-    <string name="EditProfileNameFragment_last_name_optional">Last Name (Optional)</string>
     <string name="EditProfileNameFragment_save">Sábháil</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Theip ar shábháil de dheasca fadhbanna líonra. Triail arís níos déanaí.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Méain comhroinnte</string>
@@ -4154,12 +4050,6 @@
         <item quantity="other">%1$du</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">Athraigh an nath faire</string>
-    <string name="preferences__change_your_passphrase">Athraigh do nath faire</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Cumasaigh pasfhrása don ghlas scáileáin</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Cuir glas ar an scáileán agus ar fhógraí le nath</string>
-    <string name="preferences__screen_security">Slándáil an scáileáin</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -4174,11 +4064,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">Múch</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Tá slándáil scáileáin as</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Uathghlasáil Signal tar éis eatramh ama sonraithe neamhghníomhaíochta</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Nath faire teorainn ama neamhghníomhaíochta</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Am teorainn ama neamhghníomhaíochta</string>
     <string name="preferences__notifications">Fógraí</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">Cumasaigh fógraí</string>
@@ -4214,14 +4099,10 @@
     <string name="preferences__slow">Mall</string>
     <string name="preferences__advanced">Ardroghanna</string>
     <string name="preferences__donate_to_signal">Tabhair airgead do Signal</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">Príobháideachas</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Scéalta</string>
     <string name="preferences__storage">Stóras</string>
     <string name="preferences__payments">Íocaíochtaí</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Glas íocaíochtaí</string>
     <string name="preferences__conversation_length_limit">Teorainn an chomhrá</string>
     <string name="preferences__keep_messages">Coinnigh teachtaireachtaí</string>
     <string name="preferences__linked_devices">Gléasanna nasctha</string>
@@ -4232,14 +4113,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Ardroghanna UAP</string>
     <string name="preferences__submit_debug_log">Seol an Logchomhad Dífhabhtaithe</string>
-    <string name="preferences__incognito_keyboard">Méarchlár faoi cheilt</string>
-    <string name="preferences__read_receipts">Adhmálacha léamh</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Má tá adhmálacha léamh díchumasaithe, ní féidir leat adhmálacha léamh ó dhaoine else a fheiceáil.</string>
-    <string name="preferences__typing_indicators">Leideoirí clóscríobh</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Má múchtar leideoirí clóscríobh, ní bheifear in ann leideoirí clóscríobh ó daoine eile a fheiscint.</string>
-    <string name="preferences__request_keyboard_to_disable">Iarr ar mhéarchlár foghlaim phearsantaithe a dhíchumasú.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">Ní ráthaíocht é an socrú seo, agus seans go ndéanfaidh do mhéarchlár neamhaird air.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">Úsáid stórais</string>
     <string name="preferences_storage__photos">Grianghraif</string>
     <string name="preferences_storage__videos">Físeáin</string>
@@ -4292,8 +4165,6 @@
     <string name="preferences_storage__custom">Saincheaptha</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Seol gach glao trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
     <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Íocaíochtaí</string>
     <string name="preferences_notifications__in_chat_sounds">Fuaimeanna sna comhráite</string>
     <string name="preferences_notifications__show">Taispeáin</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4929,10 +4800,6 @@
     <string name="BackupUtil_never">Choíche</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Anaithnid</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Roghnaigh na daoine atá in ann d\'uimhir ghutháin a fheiceáil agus teagmháil a dhéanamh leat ar Signal léi.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">Socraigh UAP, patrún nó pasfhocal ar an ngléas seo le glas scáileáin a úsáid.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Níorbh fhéidir an glas clárúcháin a chumasú.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Níorbh fhéidir an glas clárúcháin a dhíchumasú.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ní mór duit an UAP don Ghlas Clárúcháin a chur isteach</string>
@@ -4955,8 +4822,6 @@
     <string name="prompt_passphrase_activity__try_again">Triail arís í</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">As</string>
 
     <string name="Recipient_unknown">Anaithnid</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5437,20 +5302,8 @@
     <string name="GroupDescriptionDialog__group_description">Group Description</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Athnuaigh do shíntiús Cúltacaí Slána Signal</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Níorbh fhéidir an cúltaca a chur i gcrích</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Níorbh fhéidir do shíntiús cúltacaí a fhuascailt</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Teorainn le stóráil chúltaca bainte amach</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Tabhair Cuireadh do Chairde</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Aitheantas an tsíntiúsóra deontóra cóipeáilte chuig an ngearrthaisce</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Aitheantas an tsíntiúsóra cúltacaí cóipeáilte chuig an ngearrthaisce</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>
@@ -5718,31 +5571,7 @@
     <string name="NotificationProfilesFragment__create_profile">Cruthaigh próifíl</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Bac curtha</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d teagmhálaí nó ghrúpa</item>
-        <item quantity="two">%1$d theagmhálaí nó ghrúpa</item>
-        <item quantity="few">%1$d theagmhálaí nó ghrúpa</item>
-        <item quantity="many">%1$d dteagmhálaí nó ngrúpa</item>
-        <item quantity="other">%1$d teagmhálaí nó grúpa</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">Ag seoladh teachtaireachtaí</string>
     <string name="PrivacySettingsFragment__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
-    <string name="PrivacySettingsFragment__app_security">App Security</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Cuir bac ar ghabhálacha scáileáin sa liosta le déanaí agus laistigh den aip</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Teachtaireachtaí agus glaonna Signal, atreoraigh glaonna i gcónaí, agus seoltóir séalaithe</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Amadóir réamhshocraithe ar chomhráite nua</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Éiligh glas scáileáin Android nó méarlorg chun cistí a aistriú</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Ní féidir an glas íocaíochtaí a chumasú</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Ionas gur féidir leat an Glas Íocaíochtaí a úsáid, ní mór duit glas scáileáin nó aitheantas méarloirg a chumasú ar dtús i socruithe do ghutháin.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Theip ar nascleanúint chuig socruithe an chórais</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -6084,14 +5913,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Cuileáil Athruithe?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Caillfidh tú aon athruithe a rinne tú ar an ngrianghraf seo.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Mo shuaitheantais</string>
     <string name="BadgesOverviewFragment__featured_badge">Suaitheantas faoi thrácht</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Taispeáin suaitheantais ar an bpróifíl</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Theip ar nuashonrú na próifíle</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Roghnaigh suaitheantas</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Theip ar nuashonrú na próifíle</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Tabhair airgead</string>
@@ -6139,9 +5963,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Déan suaitheantas faoi thrácht de</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Ar Aghaidh</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Nuair a bhíonn níos mó ná suaitheantas amháin agat, is féidir leat ceann a roghnú le cur faoi thrácht, infheicthe ar do phróifíl.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Faigh suaitheantais do do phróifíl trí thacú le Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Cuideachta neamhbhrabúis is ea Signal nach bhfuil aon fhógróirí ná infheisteoirí aici, lena dtacaíonn daoine mar a dhéanann tusa.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Tabhair airgead do Signal</string>
@@ -6382,9 +6203,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">Ní mór ainm a bheith uirthi</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">Roghnaigh emoji</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Glan an t-ainm agus emoji</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Fógraí ceadaithe</string>
@@ -6452,20 +6273,6 @@
     <string name="EditNotificationProfileSchedule__start">Tús</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Deireadh</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">L</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">M</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">C</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">D</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">A</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">Socraigh am tosaithe</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6956,6 +6763,8 @@
     <string name="GiftFlowStartFragment__next">Ar Aghaidh</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Choose Recipient</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Deimhnigh an tabhartas</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -7479,11 +7288,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Glan formáidiú</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Cuir ainm úsáideora in eagar</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Scrios ainm úsáideora</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7697,12 +7501,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">Ainm an ghlao</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Méid an bharra nascleanúna</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normálta</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Dlúth</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Stair eagarthóireachta</string>
@@ -7731,63 +7529,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Ní oibreoidh an nasc seo a thuilleadh do dhuine ar bith ag a bhfuil sé.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Nasc</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Comhroinn</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Dath</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Ná comhroinn do chód QR ná nasc ach le daoine a bhfuil muinín agat iontu. Agus iad comhroinnte, beidh daoine eile in ann d\'ainm úsáideora a fheiceáil agus tosú ar chomhrá leat.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Cóipeáladh ainm úsáideora</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Nasc cóipeáilte</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Nasc á athshocrú…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Athshocraigh cód QR?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">Má athshocraíonn tú do chód QR, ní oibreoidh an cód QR ná an nasc atá agat cheana féin a thuilleadh.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Athshocraigh</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Athshocraigh</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Cód</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan an Cód QR ar ghléas do theagmhálaí.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">Bhí an cód QR neamhbhailí.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Níorbh fhéidir úsáideoir leis an ainm úsáideora %1$s a aimsiú.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">Níorbh fhéidir an t-úsáideoir seo a aimsiú.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Tharla earráid líonra. Triail arís.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Níl rochtain líonra agat. Níor athshocraíodh do nasc. Triail arís níos déanaí.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Tharla earráid líonra agus do nasc á athshocrú. Triail arís níos déanaí.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Tharla earráid gan choinne agus do nasc á athshocrú. Triail arís níos déanaí.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Athshocraíodh do chód QR agus nasc agus cruthaíodh cód QR agus nasc nua.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Scan an cód QR seo le do ghuthán chun comhrá a dhéanamh liom ar Signal.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">Níor aimsíodh cód QR</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Triail íomhá eile ina bhfuil cód QR Signal a scanadh.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Aon duine a bhfuil an nasc sin acu, beidh siad in ann féachaint ar d\'ainm úsáideora agus tús a chur le comhrá leat. Ná comhroinn é ach le daoine a bhfuil muinín agat iontu.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Cóipeáil an nasc</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Comhroinn</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7923,6 +7669,30 @@
     <string name="VerifyBackupKey__backup_key_correct">Eochair athshlánaithe cheart. Coinnigh d\'eochair slán sábháilte.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Iarrfaimid ort arís i gceann seachtaine.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Cas air fógraí lánscáileáin?</string>
@@ -8328,11 +8098,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">Triail arís</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">Chuir %1$s Deireadh leis an nGrúpa</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">Tá deireadh curtha leis an ngrúpa.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">Ní féidir leat teachtaireachtaí ná glaonna a sheoladh ná a fháil sa ghrúpa seo a thuilleadh.</string>
 
     <!-- NoManualBackupBottomSheet -->
@@ -8650,9 +8420,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Tá scriosadh cúltaca ar bun.</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Díghlasáil chun Cúltacaí Slána a shocrú</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">Le Cúltacaí Slána a shocrú, deimhnigh gur tusa atá ann</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">Fíordheimhniú de dhíth</string>
 

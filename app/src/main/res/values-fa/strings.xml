@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">سیگنال در حال به‌روزرسانی است…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز گذرواژه‌ای تنظیم نکرده‌اید!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">غیرفعال کردن گذرواژه؟</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
-    <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
     <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
@@ -489,7 +485,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">این شخص دیگر از سیگنال استفاده نمی‌کند. برای ادامۀ مکالمه در اینجا، او را به سیگنال دعوت کنید.</string>
     <!-- Message shown when opening a conversation with an unregistered user who is not on Signal -->
-    <string name="ConversationActivity__this_person_is_not_using_signal">This person is not using Signal. Invite them to keep the conversation here.</string>
+    <string name="ConversationActivity__this_person_is_not_using_signal">این فرد از سیگنال استفاده نمی‌کند. برای ادامه مکالمه در اینجا، او را دعوت کنید.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">دعوت به سیگنال</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
@@ -509,7 +505,7 @@
     <!-- Content description for the button that closes the sticker confirmation without sending -->
     <string name="ChatStickerConfirmation__go_back">رفتن به عقب</string>
     <!-- Content description for the button that opens the sticker\'s pack, where it can be managed -->
-    <string name="ChatStickerConfirmation__manage_pack">Manage pack</string>
+    <string name="ChatStickerConfirmation__manage_pack">مدیریت بسته</string>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
@@ -839,7 +835,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">خطا در ثبت عکس پروفایل</string>
     <string name="CreateProfileActivity_problem_setting_profile">مشکل در ثبت پروفایل</string>
     <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما و تغییرات آن برای افراد، مخاطبان و گروه‌هایی که به آن‌ها پیام می‌فرستید قابل مشاهده خواهد بود.</string>
     <string name="CreateProfileActivity_set_avatar_description">تنظیم آواتار</string>
 
     <!-- ProfileCreateFragment -->
@@ -1345,17 +1340,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">نامی برای گروه انتخاب کنید</string>
-    <string name="AddGroupDetailsFragment__create_group">ایجاد گروه</string>
     <string name="AddGroupDetailsFragment__create">ایجاد</string>
     <string name="AddGroupDetailsFragment__members">اعضا</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">می‌توانید دوستان را بعد از ایجاد این گروه دعوت یا اضافه کنید.</string>
     <string name="AddGroupDetailsFragment__group_name_required">نام گروه (الزامی)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">نام گروه (اختیاری)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">ایجاد گروه موفق نبود.</string>
     <string name="AddGroupDetailsFragment__try_again_later">بعداً دوباره امتحان کنید.</string>
     <string name="AddGroupDetailsFragment__remove">حذف</string>
-    <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">از گروه صرف‌نظر شود؟</string>
@@ -1363,8 +1354,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">اگر به گروه «%1$s» بروید، تغییرات شما ذخیره نخواهد شد.</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">دور انداختن</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه پیام چندرسانه‌ای (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه پیام چندرسانه‌ای فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های پیام چندرسانه‌ای به‌زودی متوقف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">چه کسی می‌تواند اعضای جدید اضافه کند؟</string>
@@ -1397,34 +1386,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">افراد می‌توانند به‌جای شماره تلفن، با استفاده از یک نام کاربری اختیاری به شما پیام دهند. نام‌های کاربری دارای کد QR و لینک منحصر‌به‌فردی هستند که می‌توانید آن‌ها را با دوستان خود به اشتراک بگذارید.</string>
-    <string name="ManageProfileFragment_profile_name">نام نمایه</string>
-    <string name="ManageProfileFragment_username">نام کاربری</string>
-    <string name="ManageProfileFragment_about">درباره</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم آواتار ناموفق بود</string>
     <string name="ManageProfileFragment_badges">نشان‌ها</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">پیوند یا کد QR</string>
-    <string name="ManageProfileFragment__edit_photo">ویرایش عکس</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">هم‌رسانی نام کاربری‌تان</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">با هم‌رسانی پیوند یا کد QR منحصربه‌فرد خود، اجازه دهید دیگران گفتگویی را با شما شروع کنند.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">نام کاربری ایجاد شد</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">نام کاربری کپی شد</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">پاک کردن نام کاربری انجام نشد. بعداً دوباره امتحان کنید.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">نام کاربری پاک شد</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">نام کاربری پاک شود؟</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"این کار موجب پاک شدن نام کاربری و غیرفعال شدن کد و پیوند QR شما می‌شود. ‏«%1$s» در دسترس دیگران قرار خواهد گرفت و می‌توانند آن را تصاحب کنند. مطمئن هستید؟"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2782,7 +2744,7 @@
     <!-- Bottom sheet option that opens the pack the sticker belongs to -->
     <string name="StickerPreviewBottomSheet__view_pack">مشاهده بسته</string>
     <!-- Bottom sheet label for sending a sticker. -->
-    <string name="StickerPreviewBottomSheet__send_sticker">Send sticker</string>
+    <string name="StickerPreviewBottomSheet__send_sticker">ارسال استیکر</string>
     <!-- Snackbar shown after a sticker was successfully added to the user\'s favorite stickers -->
     <string name="StickerFavorites__added_to_favorites">استیکر به علاقه‌مندی‌ها افزوده شد</string>
     <!-- Snackbar shown when the user tries to favorite a sticker but already has the maximum number of favorite stickers. Placeholder is 500. -->
@@ -2920,52 +2882,14 @@
     <string name="UnverifiedSendDialog_send">ارسال</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
-    <string name="UsernameEditFragment_username">نام کاربری</string>
-    <string name="UsernameEditFragment_delete">پاک کردن</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ لطفاً بعداً دوباره امتحان کنید.</string>
-    <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
-    <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">افراد می‌توانند به‌جای شماره تلفن، با استفاده از نام‌های کاربری اختیاری‌تان به شما پیام دهند. نام‌های کاربری همیشه با مجموعه‌ای از اعداد همراه هستند.</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">رد کردن</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">تمام</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">این نام کاربری دردسترس نیست، شمارۀ دیگری را امتحان کنید.</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">نام کاربری نامعتبر است، حداقل %1$d رقم وارد کنید.</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">نام کاربری نامعتبر است، حداکثر %1$d رقم وارد کنید.</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">این عدد نمی‌تواند ۰۰ باشد. رقمی بین ۱ تا ۹ انتخاب کنید</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">اعداد دارای بیش از ۲ رقم نمی‌توانند با ۰ شروع شوند</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">تغییر نام کاربری‌تان موجب بازنشانی کد و پیوند QR فعلی شما می‌شود. مطمئن هستید؟</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">ادامه</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d مخاطب در سیگنال هست!</item>
         <item quantity="other">%1$d مخاطب در سیگنال هستند!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">کپی یا اشتراک‌گذاری پیوند نام کاربری</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد وارسی شمارهٔ ایمنی است که بدرستی قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">اشتراک‌گذاری شمارهٔ ایمنی از طریق…</string>
@@ -3239,7 +3163,7 @@
 
     <!-- SetUpUsernameBanner -->
     <!-- Body of a banner on the new message screen prompting the user to create a username -->
-    <string name="SetUpUsernameBanner__choose_a_username">Choose a username</string>
+    <string name="SetUpUsernameBanner__choose_a_username">یک نام کاربری انتخاب کنید</string>
     <!-- Button label that takes the user to the username creation screen -->
     <string name="SetUpUsernameBanner__set_up">راه‌اندازی</string>
     <!-- Accessibility label for the button that permanently dismisses the banner -->
@@ -3598,42 +3522,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه پیام چندرسانه‌ای فقط برای شما قابل دیدن هستند.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">توضیحات گروه برای اعضای این گروه و کسانی که دعوت شده‌اند قابل رؤیت خواهد بود.</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">درباره</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">آزادانه صحبت کنید</string>
-    <string name="EditAboutFragment_encrypted">رمزگذاری شده</string>
-    <string name="EditAboutFragment_be_kind">مهربان باش</string>
-    <string name="EditAboutFragment_coffee_lover">عاشق قهوه</string>
-    <string name="EditAboutFragment_free_to_chat">آمادهٔ گفتگو</string>
-    <string name="EditAboutFragment_taking_a_break">در حال استراحت</string>
-    <string name="EditAboutFragment_working_on_something_new">در حال کار روی یک چیز جدید</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ویرایش گروه</string>
     <string name="EditProfileFragment__group_name">نام گروه</string>
     <string name="EditProfileFragment__group_description">توضیحات گروه</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">به‌روزرسانی سیگنال</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">این نسخه سیگنال منقضی شده است. برای ادامه استفاده از سیگنال، همین حالا به‌روزرسانی کنید.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">به‌روزرسانی</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">دستگاه ثبت نشده است</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">این دستگاه دیگر ثبت‌شده نیست. برای ایجاد تغییرات در حسابتان، دوباره آن را ثبت کنید.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ثبت نام دوباره</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">نام شما</string>
-    <string name="EditProfileNameFragment_first_name">نام کوچک</string>
-    <string name="EditProfileNameFragment_last_name_optional">نام خانوادگی (اختیاری)</string>
     <string name="EditProfileNameFragment_save">ذخیره‌</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ذخیره‌سازی به علت مشکلات شبکه موفق نبود. بعداً تلاش کنید.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">رسانه‌های اشتراک‌گذاری شده</string>
@@ -3815,12 +3711,6 @@
         <item quantity="other">%1$d ساعت</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">تغییر گذرواژه</string>
-    <string name="preferences__change_your_passphrase">گذرواژهٔ خود را تغییر دهید</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه و اعلان‌ها را با یک گذرواژه قفل کنید</string>
-    <string name="preferences__screen_security">امنیت صفحه‌نمایش</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3835,11 +3725,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">خاموش</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">امنیت صفحه‌نمایش خاموش است</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال بعد از یک بازهٔ زمانی تعیین شدهٔ عدم فعالیت</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">گذرواژهٔ پایان مهلت عدم فعالیت</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
     <string name="preferences__notifications">اعلان‌ها</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">فعال کردن اعلان‌ها</string>
@@ -3875,14 +3760,10 @@
     <string name="preferences__slow">آهسته</string>
     <string name="preferences__advanced">پیشرفته</string>
     <string name="preferences__donate_to_signal">اهدای کمک مالی به سیگنال</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">حریم خصوصی</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">استوری‌ها</string>
     <string name="preferences__storage">حافظه</string>
     <string name="preferences__payments">پرداخت‌ها</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">قفل پرداخت</string>
     <string name="preferences__conversation_length_limit">محدودیت طول گفتگو</string>
     <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
     <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
@@ -3893,14 +3774,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">تنظیمات پیشرفتهٔ پین</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
-    <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
-    <string name="preferences__read_receipts">رسیدهای خوانده شدن</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
-    <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
-    <string name="preferences__request_keyboard_to_disable">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">اعمال این تنظیم ضمانت شده نیست و ممکن است صفحه‌کلید شما آن را نادیده بگیرد.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">حافظهٔ مورد استفاده</string>
     <string name="preferences_storage__photos">تصاویر</string>
     <string name="preferences_storage__videos">ویدئو‌ها</string>
@@ -3947,8 +3820,6 @@
     <string name="preferences_storage__custom">سفارشی</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبین‌تان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
     <string name="preferences_advanced__always_relay_calls">عبور همیشگی تماس‌ها</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">پرداخت‌ها</string>
     <string name="preferences_notifications__in_chat_sounds">صداها در حین گفتگو</string>
     <string name="preferences_notifications__show">نمایش</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4557,10 +4428,6 @@
     <string name="BackupUtil_never">هرگز</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">ناشناخته</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">انتخاب کنید که چه‌کسی بتواند شماره تلفن شما را ببیند و از طریق شماره تلفن‌تان در سیگنال با شما تماس بگیرد.</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">برای استفاده از قفل صفحه، یک پین، الگو یا رمز عبور را در این دستگاه تنظیم کنید.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
@@ -4583,8 +4450,6 @@
     <string name="prompt_passphrase_activity__try_again">دوباره امتحان کنید</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">خاموش</string>
 
     <string name="Recipient_unknown">ناشناخته</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5041,20 +4906,8 @@
     <string name="GroupDescriptionDialog__group_description">توضیحات گروه</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">اشتراک پشتیبان‌های امن سیگنال خود را تمدید کنید</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">پشتیبان‌گیری انجام نشد</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">اشتراک نسخه‌های پشتیبان شما آزادسازی نشد</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">فضای ذخیره‌سازی نسخه پشتیبان به انتها رسید</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">دوستان خود را دعوت کنید</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">شناسه اشتراک اهداکننده در کلیپ‌بورد کپی شد</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">شناسه اشتراک پشتیبان در کلیپ‌بورد کپی شد</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
@@ -5301,28 +5154,7 @@
     <string name="NotificationProfilesFragment__create_profile">ایجاد پروفایل</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">مسدودشده</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d مخاطب یا گروه</item>
-        <item quantity="other">%1$d مخاطب یا گروه</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">‌پیام‌رسانی</string>
     <string name="PrivacySettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
-    <string name="PrivacySettingsFragment__app_security">امنیت برنامه</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست موارد اخیر و در برنامه</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور همیشگی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">برای انتقال پول، قفل صفحه اندروید یا اثر انگشت را الزامی کنید</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">فعال کردن قفل پرداخت امکان‌پذیر نیست</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">برای استفاده از قفل پرداخت، باید ابتدا قفل صفحه یا شناسه اثرانگشت را در تنظیمات تلفن خود فعال کنید.</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">پیمایش به تنظیمات سیستم انجام نشد</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5640,14 +5472,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
 
-    <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
     <string name="BadgesOverviewFragment__featured_badge">نشان ویژه</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">نمایش نشان‌ها روی نمایه</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">انتخاب یک نشان</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">اهدای کمک مالی</string>
@@ -5695,9 +5522,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">تبدیل به نشان ویژه</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">ادامه</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">وقتی بیش از یک نشان دارید، می‌توانید یکی را برای نمایش روی نمایه‌تان انتخاب کنید تا دیگران ببینند.</string>
-
-    <string name="BecomeASustainerFragment__get_badges">با حمایت از سیگنال، نشان‌هایی برای نمایه‌تان دریافت کنید.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است که از سوی افرادی مانند شما حمایت می‌شود.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">اهدای کمک مالی به سیگنال</string>
@@ -5938,9 +5762,9 @@
     <!-- Error message shown when attempting to next/save without a profile name -->
     <string name="EditNotificationProfileFragment__profile_must_have_a_name">باید یک نام داشته باشید</string>
     <!-- Accessibility label for the button beside the profile name that opens the emoji picker to choose the profile\'s emoji -->
-    <string name="EditNotificationProfileFragment__choose_emoji">Choose emoji</string>
+    <string name="EditNotificationProfileFragment__choose_emoji">انتخاب ایموجی</string>
     <!-- Accessibility label for the button that clears both the profile name and its emoji -->
-    <string name="EditNotificationProfileFragment__clear_name_and_emoji">Clear name and emoji</string>
+    <string name="EditNotificationProfileFragment__clear_name_and_emoji">پاک کردن نام و ایموجی</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">اعلان‌ها‌ی مجاز</string>
@@ -6008,20 +5832,6 @@
     <string name="EditNotificationProfileSchedule__start">شروع</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">قطع</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">ی</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">د</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">س</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">چ</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">پ</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">ج</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">ش</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">تنظیم زمان آغاز</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6479,6 +6289,8 @@
     <string name="GiftFlowStartFragment__next">بعدی</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">انتخاب گیرنده</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">تایید اهدای کمک مالی</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6966,11 +6778,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">پاک کردن قالب‌بندی</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">ویرایش نام کاربری</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">پاک کردن نام کاربری</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7175,12 +6982,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">نام تماس</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">اندازه نوار پیمایش</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">عادی</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">فشرده</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">تاریخچه ویرایش</string>
@@ -7209,63 +7010,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">این پیوند دیگر برای کسانی که آن را دارند کار نمی‌کند.</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">پیوند</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">اشتراک‌گذاری</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">رنگ</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">کد QR و پیوند خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید. با اشتراک‌گذاری آن‌ها، دیگران می‌توانند نام کاربری‌تان را ببینند و گفتگویی را با شما شروع کنند.</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">نام کاربری کپی شد</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">پیوند کپی شد</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">در حال بازنشانی پیوند…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">کد QR بازنشانی شود؟</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">اگر کد QR خود را بازنشانی کنید، کد و پیوند QR فعلی‌تان دیگر کار نخواهد کرد.</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">بازنشانی</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">بازنشانی</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">کد</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">اسکن</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">کد QR را از دستگاه مخاطب خود اسکن کنید.</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">کد QR نامعتبر بود.</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">کاربری با نام کاربری %1$s پیدا نشد.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">این کاربر پیدا نشد.</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">یک خطای شبکه رخ داد. لطفاً دوباره امتحان کنید.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">به شبکه دسترسی ندارید. پیوند شما بازنشانی نشد. بعداً دوباره امتحان کنید.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">هنگام بازنشانی پیوند شما یک خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">هنگام بازنشانی پیوند شما، خطای غیرمنتظره‌ای رخ داد. بعداً دوباره امتحان کنید.</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">برای گفتگو با من در سیگنال، این کد QR را با تلفن خود اسکن کنید.</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">کد QR پیدا نشد</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">تصویر دیگری حاوی یک کد QR سیگنال را اسکن کنید.</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">هر کسی که این لینک را داشته باشند می‌تواند نام کاربری شما را مشاهده کند و گفتگویی را با شما آغاز کند. آن را فقط با کسانی به اشتراک بگذارید که به آن‌ها اعتماد دارید.</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">کپی کردن پیوند</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">اشتراک‌گذاری</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7395,6 +7144,30 @@
     <string name="VerifyBackupKey__backup_key_correct">رمز بازیابی صحیح است. رمزتان را امن نگه دارید.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">یک هفته بعد دوباره از شما می‌پرسیم.</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">اعلان‌های تمام‌صفحه روشن شود؟</string>
@@ -7788,11 +7561,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">دوباره امتحان کنید</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">‏%1$s به گروه پایان داد</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">این گروه پایان یافته است.</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">دیگر نمی‌توانید پیام یا تماسی در این گروه دریافت یا ارسال کنید.</string>
 
     <!-- NoManualBackupBottomSheet -->
@@ -8092,9 +7865,9 @@
     <!-- Toast message if this fragment encounters an in progress deletion -->
     <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">حذف نسخه پشتیبان در حال انجام است.</string>
     <!-- Title of the device screen lock prompt shown before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">Unlock to set up Secure Backups</string>
+    <string name="MessageBackupsFlowFragment__unlock_to_set_up_secure_backups">برای راه‌اندازی «پشتیبان‌گیری امن»، قفل را باز کنید</string>
     <!-- Title of the sheet explaining that the device screen lock is needed before a user without a phone number can start setting up backups -->
-    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">To set up Secure Backups, confirm it\'s you</string>
+    <string name="MessageBackupsFlowFragment__to_set_up_secure_backups_confirm_its_you">برای راه‌اندازی «پشتیبان‌گیری امن»، هویت خود را تأیید کنید</string>
     <!-- Toast shown when the device screen lock wasn\'t confirmed, so backup setup didn\'t continue -->
     <string name="MessageBackupsFlowFragment__authentication_required">احراز هویت لازم است</string>
 

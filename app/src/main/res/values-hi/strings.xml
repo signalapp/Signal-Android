@@ -37,10 +37,6 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal अपडेट हो रहा है…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अब तक पासफ़्रेज सेट नहीं किया है!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">पासफ़्रेज़ हटाना है?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">इससे Signal और मैसेज के नोटिफ़िकेशन अनलॉक हो जाएंगे।</string>
-    <string name="ApplicationPreferencesActivity_disable">हटाएं</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">सर्वर से कनेक्ट करने में कोई गड़बड़ी हुई!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">रजिस्ट्रेशन लॉक के लिए पिन ज़रूरी है। पिन हटाने के लिए, आपको पहले रजिस्ट्रेशन लॉक हटाना होगा।</string>
     <string name="ApplicationPreferencesActivity_pin_created">पिन बन गया है।</string>
@@ -839,7 +835,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफ़ाइल फ़ोटो सेट करने में कोई गड़बड़ी हुई</string>
     <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में कोई समस्या हुई</string>
     <string name="CreateProfileActivity_set_up_your_profile">अपनी प्रोफ़ाइल सेट करें</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपकी प्रोफ़ाइल और उसमें किए गए बदलाव आपके कॉन्टैक्ट, ग्रुप, और उन लोगों को दिखेंगे जिन्हें आपने मैसेज किया है।</string>
     <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करें</string>
 
     <!-- ProfileCreateFragment -->
@@ -1345,17 +1340,13 @@
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">इस ग्रुप का नाम रखें</string>
-    <string name="AddGroupDetailsFragment__create_group">ग्रुप बनाएं</string>
     <string name="AddGroupDetailsFragment__create">बनाएं</string>
     <string name="AddGroupDetailsFragment__members">सदस्य</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ग्रुप बनाने के बाद दोस्तों को जोड़ें या उन्हें इनवाइट भेजें।</string>
     <string name="AddGroupDetailsFragment__group_name_required">ग्रुप का नाम (ज़रूरी है)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">ग्रुप का नाम (वैकल्पिक)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">यह फ़ील्ड भरना ज़रूरी है।</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">ग्रुप नहीं बन सका।</string>
     <string name="AddGroupDetailsFragment__try_again_later">बाद में फिर से कोशिश करें।</string>
     <string name="AddGroupDetailsFragment__remove">हटा दें</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS कॉन्टैक्ट</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$sको इस समूह से निकालें?</string>
     <!-- Title of the dialog shown when tapping an existing group while creating a new group, confirming the user wants to leave and discard their in-progress group -->
     <string name="AddGroupDetailsFragment__discard_group">ग्रुप रद्द करना है?</string>
@@ -1363,8 +1354,6 @@
     <string name="AddGroupDetailsFragment__if_you_continue_to_the_group_s_your_changes_wont_be_saved">\'%1$s\' ग्रुप पर आगे की प्रक्रिया जारी रखने पर, आपके ये बदलाव सेव नहीं होंगे।</string>
     <!-- Label for the button that confirms discarding the in-progress group and navigating to an existing group -->
     <string name="AddGroupDetailsFragment__discard">रद्द करें</string>
-    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपने कोई ऐसा कॉन्टैक्ट चुना है जो Signal ग्रुप का हिस्सा नहीं बन सकता, इसलिए यह ग्रुप MMS के रूप में काम करेगा। कस्टम MMS ग्रुप के नाम और फ़ोटो सिर्फ़ आपको दिखेंगे। एनक्रिप्टेड मैसेजिंग सेवा पर पूरा ध्यान देने के लिए जल्द ही MMS ग्रुप की सुविधा बंद कर दी जाएगी।</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">नए सदस्य जोड़ने की अनुमति किनके पास है?</string>
@@ -1397,34 +1386,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">आपका यूज़रनेम, QR कोड और लिंक आपकी प्रोफ़ाइल पर नहीं दिखते। अपना यूज़रनेम सिर्फ़ भरोसेमंद लोगों के साथ शेयर करें।</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">लोग फ़ोन नंबर के बजाय वैकल्पिक यूज़रनेम इस्तेमाल करके आपको मैसेज कर सकते हैं। यूज़रनेम का अपना एक यूनीक QR कोड और लिंक होता है, जिसे दोस्तों के साथ शेयर किया जा सकता है।</string>
-    <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नेम</string>
-    <string name="ManageProfileFragment_username">यूज़रनेम</string>
-    <string name="ManageProfileFragment_about">हमारे बारे में</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट नहीं हो सका</string>
     <string name="ManageProfileFragment_badges">बैज</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR कोड या लिंक</string>
-    <string name="ManageProfileFragment__edit_photo">फ़ोटो एडिट करें</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">अपना यूज़रनेम शेयर करें</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">अपना यूनिक QR कोड या लिंक शेयर करें, ताकि लोग आपसे चैट कर सकें।</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">यूज़रनेम बनाया गया</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">यूज़रनेम कॉपी किया गया</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">यूज़रनेम डिलीट नहीं हो सका। बाद में फिर से कोशिश करें।</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">यूज़रनेम डिलीट किया गया</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">यूज़रनेम डिलीट करना है?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"ऐसा करने से आपका यूज़रनेम हट जाएगा और आपका QR कोड और लिंक डिसेबल हो जाएगा। %1$s अब दूसरे लोगों के लिए उपलब्ध हो जाएगा। क्या आपको वाकई ऐसा करना है?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2920,52 +2882,14 @@
     <string name="UnverifiedSendDialog_send">भेजें</string>
 
     <!-- UsernameEditFragment -->
-    <!-- Placeholder text for custom discriminator -->
-    <string name="UsernameEditFragment__00">00</string>
-    <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
-    <string name="UsernameEditFragment_username">यूज़रनेम</string>
-    <string name="UsernameEditFragment_delete">डिलीट करें</string>
+    <!-- Toast shown after your username is deleted -->
     <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक यूज़रनेम हटा दिया गया।</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">नेटवर्क में कोई गड़बड़ी हुई।</string>
-    <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">आपने तय सीमा से ज़्यादा कोशिश कर ली है, कृपया बाद में फिर से कोशिश करें।</string>
-    <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम पहले से इस्तेमाल में है।</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में सिर्फ़ a–Z, 0–9, और अंडरस्कोर का इस्तेमाल किया जा सकता है।</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">यूज़रनेम किसी संख्या के साथ शुरू नहीं हो सकता।</string>
-    <string name="UsernameEditFragment_username_is_invalid">यूज़रनेम सही नहीं है।</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">यूज़रनेम %1$d और %2$d कैरेक्टर के बीच होना चाहिए।</string>
-    <!-- Explanation about what usernames provide -->
-    <string name="UsernameEditFragment__usernames_let_others_message">लोग फ़ोन नंबर के बजाय आपका वैकल्पिक यूज़रनेम इस्तेमाल करके आपको मैसेज कर सकते हैं। यूज़रनेम के साथ कुछ नंबर अपने-आप जुड़ जाते हैं।</string>
-    <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">छोड़ें</string>
-    <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">हो गया</string>
-    <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">यह यूज़रनेम उपलब्ध नहीं है, कोई दूसरा नंबर आज़माकर देखें।</string>
-    <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">यूज़रनेम सही नहीं है, कम से कम %1$d डिजिट होने चाहिए।</string>
-    <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">यूज़रनेम सही नहीं है, ज़्यादा से ज़्यादा %1$d डिजिट होने चाहिए।</string>
-    <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">यह संख्या 00 नहीं हो सकती। 1-9 के बीच का कोई डिजिट डालें</string>
-    <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 से ज़्यादा डिजिट वाली संख्या 0 से शुरू नहीं हो सकती</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">यूज़रनेम को रिकवर करने पर, आपका मौजूदा QR कोड और लिंक रीसेट हो जाएगा। क्या आपको वाकई ऐसा करना है?</string>
-    <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">यूज़रनेम बदलने पर आपका मौजूदा QR कोड और लिंक रीसेट हो जाएगा। क्या आपको वाकई ऐसा करना है?</string>
-    <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">जारी रखें</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%1$d कॉन्टैक्ट Signal पर मौजूद है!</item>
         <item quantity="other">%1$d कॉन्टैक्ट Signal पर मौजूद हैं!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">यूज़र का प्रोफ़ाइल लिंक कॉपी या शेयर करें</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">स्कैन किया गया QR कोड, सही फ़ॉर्मैट में सेफ़्टी नंबर वेरिफ़िकेशन कोड नहीं है। कृपया दोबारा स्कैन करें।</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">…के ज़रिए सेफ़्टी नंबर शेयर करें</string>
@@ -3598,42 +3522,14 @@
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMS ग्रुप के कस्टम नाम और फ़ोटो सिर्फ़ आपको दिखेंगी।</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ग्रुप के बारे में जानकारी, इस ग्रुप के सदस्यों और इनवाइट किए गए लोगों को दिखेगी।</string>
 
-    <!-- EditAboutFragment -->
-    <string name="EditAboutFragment_about">हमारे बारे में</string>
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">थोड़ा अपने बारे में बताएं…</string>
-    <string name="EditAboutFragment_count">%1$d/%2$d</string>
-    <string name="EditAboutFragment_speak_freely">खुलकर बोलें</string>
-    <string name="EditAboutFragment_encrypted">एन्क्रिप्टेड</string>
-    <string name="EditAboutFragment_be_kind">विनम्र रहें</string>
-    <string name="EditAboutFragment_coffee_lover">कॉफ़ी पसंद है</string>
-    <string name="EditAboutFragment_free_to_chat">चैट करने के लिए हाज़िर</string>
-    <string name="EditAboutFragment_taking_a_break">ब्रेक पर हैं</string>
-    <string name="EditAboutFragment_working_on_something_new">किसी नई चीज़ पर काम कर रहे हैं</string>
-
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">ग्रुप एडिट करें</string>
     <string name="EditProfileFragment__group_name">ग्रुप का नाम</string>
     <string name="EditProfileFragment__group_description">ग्रुप के बारे में जानकारी</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Signal अपडेट करें</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">Signal का यह वर्ज़न पुराना हो गया है। Signal का इस्तेमाल जारी रखने के लिए इसे अभी अपडेट करें।</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">अपडेट करें</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">डिवाइस रजिस्टर नहीं है</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">यह डिवाइस अब रजिस्टर नहीं है। अपने अकाउंट में बदलाव करने के लिए दोबारा रजिस्टर करें।</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">दोबारा रजिस्टर करें</string>
 
     <!-- EditProfileNameFragment -->
-    <string name="EditProfileNameFragment_your_name">आपका नाम</string>
-    <string name="EditProfileNameFragment_first_name">मूल नाम</string>
-    <string name="EditProfileNameFragment_last_name_optional">अंतिम नाम (वैकल्पिक)</string>
     <string name="EditProfileNameFragment_save">सेव करें</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">नेटवर्क से जुड़ी गड़बड़ी की वजह से सेव नहीं हो सका। थोड़ी देर बाद फिर से कोशिश करें।</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">शेयर किया गया मीडिया</string>
@@ -3815,12 +3711,6 @@
         <item quantity="other">%1$d घंटे</item>
     </plurals>
 
-    <string name="preferences__change_passphrase">पासफ़्रेज़ बदलें</string>
-    <string name="preferences__change_your_passphrase">अपना पासफ़्रेज़ बदलें</string>
-    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">स्क्रीन लॉक करने के लिए पासफ़्रेज़ चालू करें</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">पासफ़्रेज़ की मदद से स्क्रीन और नोटिफ़िकेशन लॉक करें</string>
-    <string name="preferences__screen_security">स्क्रीन की सिक्योरिटी</string>
     <!-- Bottom sheet message shown after an assistant app requested the contents of the screen, explaining that screenshots were automatically disabled -->
   <!-- Removed by excludeNonTranslatables <string name="AssistantScreenSecurityBottomSheet__body" translatable="false">Screenshots have been disabled</string> -->
     <!-- Bottom sheet title shown after an assistant app requested the contents of the screen and screen security was automatically turned on -->
@@ -3835,11 +3725,6 @@
     <string name="AssistantScreenSecurityTurnOffDialog__turn_off">बंद करें</string>
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">स्क्रीन सिक्योरिटी बंद है</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">खास समय तक इस्तेमाल नहीं होने पर Signal को अपने-आप लॉक होने दें</string>
-    <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">इस्तेमाल नहीं होने पर डाले जाने वाला पासफ़्रेज़</string>
-    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">इस्तेमाल नहीं होने पर टाइम आउट की अवधि</string>
     <string name="preferences__notifications">नोटिफ़िकेशन</string>
     <!-- Preference item menu to enable notifications -->
     <string name="preferences__enable_notifications">नोटिफ़िकेशन चालू करें</string>
@@ -3875,14 +3760,10 @@
     <string name="preferences__slow">धीमा</string>
     <string name="preferences__advanced">ऐडवांस</string>
     <string name="preferences__donate_to_signal">Signal को दान करें</string>
-    <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__privacy">प्राइवेसी</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">स्टोरीज़</string>
     <string name="preferences__storage">स्टोरेज</string>
     <string name="preferences__payments">पेमेंट</string>
-    <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">पेमेंट लॉक</string>
     <string name="preferences__conversation_length_limit">चैट में अधिकतम मैसेज की सीमा</string>
     <string name="preferences__keep_messages">मैसेज रखें</string>
     <string name="preferences__linked_devices">लिंक डिवाइस</string>
@@ -3893,14 +3774,6 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">एडवांस पिन सेटिंग</string>
     <string name="preferences__submit_debug_log">डीबग लॉग सबमिट करें</string>
-    <string name="preferences__incognito_keyboard">गुप्त कीबोर्ड</string>
-    <string name="preferences__read_receipts">मैसेज पढ़े जाने की सूचना</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">अगर \'मैसेज पढ़े जाने की सूचना\' बंद है, तो आपको भी पता नहीं चल पाएगा कि दूसरे लोगों ने आपके मैसेज पढ़े हैं या नहीं।</string>
-    <string name="preferences__typing_indicators">टाइप किए जाने की सूचना</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">अगर \'टाइप किए जाने की सूचना\' बंद है, तो आपको भी पता नहीं चल पाएगा कि दूसरे लोग टाइप कर रहे हैं या नहीं।</string>
-    <string name="preferences__request_keyboard_to_disable">कीबोर्ड से पर्सनलाइज़ लर्निंग की सुविधा बंद करने का अनुरोध करें।</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">ज़रूरी नहीं है कि यह सेटिंग पूरी तरह कारगर हो। आपका कीबोर्ड इस अनुरोध को अनसुना कर सकता है।</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_storage__storage_usage">स्टोरेज का इस्तेमाल</string>
     <string name="preferences_storage__photos">फ़ोटो</string>
     <string name="preferences_storage__videos">वीडियो</string>
@@ -3947,8 +3820,6 @@
     <string name="preferences_storage__custom">कस्टम</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">सभी कॉल Signal सर्वर के ज़रिए करें, ताकि आपके कॉन्टैक्ट को आपके IP ऐड्रेस का पता न चल सके। हालांकि, इससे कॉल की क्वालिटी कम हो सकती है।</string>
     <string name="preferences_advanced__always_relay_calls">हमेशा इसी तरह कॉल करें</string>
-    <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">पेमेंट</string>
     <string name="preferences_notifications__in_chat_sounds">चैट में आवाज</string>
     <string name="preferences_notifications__show">दिखाएं</string>
     <!-- Preference item to set notification settings when chats are muted -->
@@ -4557,10 +4428,6 @@
     <string name="BackupUtil_never">कभी नहीं</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">अनजान</string>
-    <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">चुनें कि कौन आपका फ़ोन नंबर देख सकता है और कौन इसके ज़रिए आपसे Signal पर संपर्क कर सकता है।</string>
-    <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">स्क्रीन लॉक का इस्तेमाल करने के लिए, इस डिवाइस पर पिन, पैटर्न या पासवर्ड सेट करें।</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">रजिस्ट्रेशन लॉक चालू नहीं हो सका।</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">रजिस्ट्रेशन लॉक बंद नहीं हो सका।</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">आपको अपना रजिस्ट्रेशन लॉक पिन डालना होगा</string>
@@ -4583,8 +4450,6 @@
     <string name="prompt_passphrase_activity__try_again">फिर से कोशिश करें</string>
 
     <!-- ScreenLockSettingsFragment -->
-    <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">बंद करें</string>
 
     <string name="Recipient_unknown">अनजान</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
@@ -5041,20 +4906,8 @@
     <string name="GroupDescriptionDialog__group_description">ग्रुप का ब्योरा</string>
 
     <!-- AppSettingsFragment -->
-    <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">अपना Signal सिक्योर बैकअप सब्सक्रिप्शन रिन्यू करें</string>
-    <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">बैकअप पूरा नहीं हो पाया</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">आपका बैकअप सब्सक्रिप्शन रिडीम नहीं किया जा सका</string>
-    <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">बैकअप स्टोरज की सीमा पूरी हो गई है</string>
-    <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">अपने दोस्तों को इनवाइट करें</string>
-    <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">डोनर सब्सक्राइबर id को क्लिपबोर्ड पर कॉपी किया गया</string>
-    <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">बैकअप सब्सक्राइबर id को क्लिपबोर्ड पर कॉपी किया गया</string>
 
     <!-- ChangeNumberFragment -->
     <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">अपने मौजूदा फ़ोन नंबर को नए फ़ोन नंबर से बदलने के लिए इसका इस्तेमाल करें। बदलाव होने के बाद इसे पहले जैसा नहीं किया जा सकता।\n\nआगे बढ़ने से पहले, पक्का कर लें कि आपके नए नंबर पर SMS या कॉल आने की सुविधा मौजूद है।</string>
@@ -5301,28 +5154,7 @@
     <string name="NotificationProfilesFragment__create_profile">प्रोफ़ाइल बनाएं</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">ब्लॉक किया गया</string>
-    <!-- Settings label that shows the number blocked contacts -->
-    <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d कॉन्टैक्ट या ग्रुप</item>
-        <item quantity="other">%1$d कॉन्टैक्ट या ग्रुप</item>
-    </plurals>
-    <string name="PrivacySettingsFragment__messaging">मैसेज भेजना</string>
     <string name="PrivacySettingsFragment__disappearing_messages">गायब होने वाले मैसेज</string>
-    <string name="PrivacySettingsFragment__app_security">ऐप की सुरक्षा</string>
-    <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">रीसेंट सूची में और ऐप के अंदर स्क्रीनशॉट ब्लॉक करें</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal मैसेज और कॉल, हमेशा रिले होने वाले कॉल और सील्ड सेंडर की सुरक्षा</string>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">नई चैट के लिए डिफ़ॉल्ट टाइमर</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपकी ओर से शुरू की जाने वाली हर चैट के लिए, मैसेज के अपने-आप गायब होने का डिफ़ॉल्ट समय सेट कर लें।</string>
-    <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">फ़ंड भेजने के लिए Android स्क्रीन लॉक या फ़िंगरप्रिंट चाहिए</string>
-    <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">पेमेंट लॉक चालू नहीं किया जा सकता</string>
-    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">पेमेंट लॉक का इस्तेमाल करने के लिए, आपको सबसे पहले अपनी फ़ोन सेटिंग में जाकर स्क्रीन लॉक या फ़िंगरप्रिंट ID चालू करनी होगी।</string>
-    <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">सिस्टम सेटिंग तक नहीं पहुंचा जा सका</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5640,14 +5472,9 @@
     <string name="MediaReviewImagePageFragment__discard_changes">बदलाव रद्द करने हैं?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">इस फ़ोटे में अब तक किए गए सभी बदलाव रद्द हो जाएंगे।</string>
 
-    <string name="BadgesOverviewFragment__my_badges">मेरे बैज</string>
     <string name="BadgesOverviewFragment__featured_badge">फ़ीचर किया गया बैज</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">प्रोफ़ाइल पर बैज प्रदर्शित करें</string>
-    <string name="BadgesOverviewFragment__failed_to_update_profile">प्रोफ़ाइल अपडेट नहीं हो सकी</string>
 
 
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">एक बैज चुनें</string>
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफ़ाइल अपडेट नहीं हो सकी</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">डोनेट करें</string>
@@ -5695,9 +5522,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">फ़ीचर किया हुआ बैज बनाएं</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">जारी रखें</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जब आपके पास एक से ज़्यादा बैज हों तब आप अपनी प्रोफ़ाइल पर दूसरों को प्रमुखता से दिखाने के लिए कोई एक चुन सकते हैं।</string>
-
-    <string name="BecomeASustainerFragment__get_badges">Signal का समर्थन करके अपनी प्रोफ़ाइल के लिए बैज पाएँ।</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal एक गैर-लाभकारी संस्था है। इसका न कोई विज्ञापनदाता है और न कोई निवेशक। यह सिर्फ़ आप जैसे लोगों के सहयोग से चल रहा है।</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Signal को डोनेट करें</string>
@@ -6008,20 +5832,6 @@
     <string name="EditNotificationProfileSchedule__start">चालू होने का समय</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">बंद होने का समय</string>
-    <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">रवि</string>
-    <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">सोम</string>
-    <!-- First letter of Tuesday -->
-    <string name="EditNotificationProfileSchedule__tuesday_first_letter">मंगल</string>
-    <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">बुध</string>
-    <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">गुरु</string>
-    <!-- First letter of Friday -->
-    <string name="EditNotificationProfileSchedule__friday_first_letter">शुक्र</string>
-    <!-- First letter of Saturday -->
-    <string name="EditNotificationProfileSchedule__saturday_first_letter">शनि</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
     <string name="EditNotificationProfileSchedule__set_start_time">चालू होने का समय सेट करें</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
@@ -6479,6 +6289,8 @@
     <string name="GiftFlowStartFragment__next">आगे बढ़ें</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">जिनको भेजना है उनके नाम चुनें</string>
+    <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
+    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">डोनेशन की पुष्टि करें</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -6966,11 +6778,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">फ़ॉर्मैटिंग हटाएं</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">यूज़रनेम एडिट करें</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">यूज़रनेम डिलीट करें</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->
@@ -7175,12 +6982,6 @@
     <string name="EditCallLinkNameDialogFragment__call_name">कॉल का नाम</string>
 
     <!-- ChooseNavigationBarStyleFragment -->
-    <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">नेविगेशन बार का साइज़</string>
-    <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">सामान्य</string>
-    <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">कॉम्पैक्ट</string>
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">पिछले एडिट</string>
@@ -7209,63 +7010,11 @@
     <!-- Displayed as body in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">यह लिंक अब काम नहीं करेगा, भले ही यह पहले से किसी के पास मौजूद हो।</string>
 
-    <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">लिंक</string>
-    <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">शेयर करें</string>
-    <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">रंग</string>
-    <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">अपना QR कोड और लिंक सिर्फ़ भरोसेमंद लोगों के साथ शेयर करें। शेयर किए जाने के बाद लोग आपका यूज़रनेम देख सकते हैं और आपके साथ चैट शुरू कर सकते हैं।</string>
-    <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">यूज़रनेम कॉपी किया गया</string>
-    <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">लिंक कॉपी किया गया</string>
-    <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">लिंक रीसेट किया जा रहा है…</string>
-    <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">QR कोड रीसेट करना है?</string>
-    <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">अपना QR कोड रीसेट करने पर, आपका मौजूदा QR कोड और लिंक काम नहीं करेगा।</string>
-    <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">रीसेट करें</string>
-    <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">रीसेट करें</string>
-    <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">कोड</string>
-    <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">स्कैन करें</string>
-    <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">अपने कॉन्टैक्ट के डिवाइस पर QR कोड स्कैन करें।</string>
-    <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">QR कोड सही नहीं था।</string>
-    <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">%1$s यूज़रनेम वाला कोई यूज़र नहीं मिला।</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
     <string name="UsernameLinkSettings_qr_result_not_found_no_username">यह यूज़र नहीं मिला।</string>
-    <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">इंटरनेट से जुड़ी कोई समस्या आई। दोबारा कोशिश करें।</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">आपके पास इंटरनेट सुविधा मौजूद नहीं है। आपका लिंक रीसेट नहीं हो पाया। बाद में दोबारा कोशिश करें।</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">इंटरनेट में मौजूद किसी गड़बड़ी की वजह से आपका लिंक रीसेट नहीं हो सका। बाद में दोबारा कोशिश करें।</string>
-    <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">आपके लिंक को रीसेट करने के दौरान कोई अनचाही गड़बड़ी हुई। बाद में दोबारा कोशिश करें।</string>
-    <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">आपके QR कोड और लिंक को रीसेट किया गया है। साथ ही, नया QR कोड और लिंक बनाया गया है।</string>
     <!-- Shown on the generated username qr code image to explain how to use it. -->
     <string name="UsernameLinkSettings_scan_this_qr_code">Signal पर मुझसे चैट करने के लिए इस QR कोड को अपने फ़ोन पर स्कैन करें।</string>
-    <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR कोड नहीं मिला</string>
-    <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QR कोड वाली अन्य इमेज स्कैन करने की कोशिश करें।</string>
 
-    <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">यह लिंक जिनके पास है, वे आपका यूज़रनेम देख सकते हैं और आपसे चैट शुरू कर सकते हैं। इसे सिर्फ़ भरोसेमंद लोगों के साथ शेयर करें।</string>
-    <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">लिंक कॉपी करें</string>
-    <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">शेयर करें</string>
 
     <!-- PendingParticipantsView -->
     <!-- Displayed in the popup card when a remote user attempts to join a call link -->
@@ -7395,6 +7144,30 @@
     <string name="VerifyBackupKey__backup_key_correct">\'रिकवरी की\' सही है। अपनी \'की\' सुरक्षित रखें।</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">हम आपसे एक हफ़्ते बाद दोबारा पूछेंगे।</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
+    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <!-- Snackbar text shown after the user verified their passkey from the reminder -->
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+
+    <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
+    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
+    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">फ़ुल स्क्रीन नोटिफ़िकेशन चालू करना है?</string>
@@ -7788,11 +7561,11 @@
     <!-- Retry button shown when ending a group fails -->
     <string name="EndGroupDialog__try_again">फिर से कोशिश करें</string>
 
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, with admin name. %1$s is the admin\'s display name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, with admin name. %1$s is the admin\'s display name -->
     <string name="TerminatedGroupBottomSheet__s_ended_the_group">%1$s ने यह ग्रुप बंद कर दिया है</string>
-    <!-- Title of bottom sheet shown when opening a terminated group for the first time, without admin name -->
+    <!-- Title of bottom sheet shown when a group is ended while the user has the conversation open, without admin name -->
     <string name="TerminatedGroupBottomSheet__the_group_has_been_ended">यह ग्रुप बंद कर दिया गया है।</string>
-    <!-- Body of bottom sheet shown when opening a terminated group -->
+    <!-- Body of bottom sheet shown when a group is ended while the user has the conversation open -->
     <string name="TerminatedGroupBottomSheet__you_can_no_longer_send_and_receive">अब आपके लिए इस ग्रुप में कॉल करना या कॉल रिसीव करना और मैसेज भेजना या रिसीव करना मुमकिन नहीं है।</string>
 
     <!-- NoManualBackupBottomSheet -->

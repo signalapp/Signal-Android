@@ -46,11 +46,11 @@
     <!-- Title of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
     <string name="StickerFavorites__remove_from_favorites_question">Remover dos favoritos?</string>
     <!-- Body of the confirmation dialog shown before removing a sticker from the user\'s favorite stickers. -->
-    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">You can\'t send it or add it to Favorites again unless you have the pack installed, a link, or sticker message.</string>
+    <string name="StickerFavorites__you_cant_send_it_or_add_it_to_favorites_again">Não é possível enviá-lo nem adicioná-lo novamente aos favoritos a não ser que tenha o pacote instalado, um link, ou uma mensagem de autocolante.</string>
     <!-- Button in the confirmation dialog that removes a sticker from the user\'s favorite stickers. Verb, imperative. -->
     <string name="StickerFavorites__remove">Remover</string>
     <!-- Text shown when no preference label has been selected -->
-    <string name="preferences__none">Nenhuma</string>
+    <string name="preferences__none">Nada</string>
     <string name="preferences_off">Off</string>
     <string name="preferences_on">On</string>
     <string name="ExpireTimerSettingsFragment__set">Definir</string>
@@ -60,42 +60,42 @@
     <string name="CustomExpireTimerSelectorView__days">dias</string>
     <string name="CustomExpireTimerSelectorView__weeks">semanas</string>
     <!-- expiration -->
-    <string name="expiration_off">Desligada</string>
+    <string name="expiration_off">Off</string>
 
     <plurals name="expiration_seconds">
         <item quantity="one">%1$d segundo</item>
         <item quantity="other">%1$d segundos</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%1$ds</string>
+    <string name="expiration_seconds_abbreviated">%1$d seg</string>
 
     <plurals name="expiration_minutes">
         <item quantity="one">%1$d minuto</item>
         <item quantity="other">%1$d minutos</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%1$dm</string>
+    <string name="expiration_minutes_abbreviated">%1$d min</string>
 
     <plurals name="expiration_hours">
         <item quantity="one">%1$d hora</item>
         <item quantity="other">%1$d horas</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%1$dh</string>
+    <string name="expiration_hours_abbreviated">%1$d h</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%1$d dia</item>
         <item quantity="other">%1$d dias</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%1$dd</string>
+    <string name="expiration_days_abbreviated">%1$d d</string>
 
     <plurals name="expiration_weeks">
         <item quantity="one">%1$d semana</item>
         <item quantity="other">%1$d semanas</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%1$dsem.</string>
+    <string name="expiration_weeks_abbreviated">%1$d sem</string>
     <string name="expiration_combined">%1$s%2$s</string>
 
     <!-- LearnMoreTextView -->
@@ -105,7 +105,11 @@
 
     <!-- Dialogs -->
     <!-- Content description for the button in a time picker dialog that switches from the clock face to typing the time -->
-    <string name="Dialogs__switch_to_text_input">Switch to text input</string>
+    <string name="Dialogs__switch_to_text_input">Passar para texto</string>
     <!-- Content description for the button in a time picker dialog that switches from typing the time back to the clock face -->
-    <string name="Dialogs__switch_to_clock">Switch to clock</string>
+    <string name="Dialogs__switch_to_clock">Passar para relógio</string>
+
+    <!-- Chips -->
+    <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
+    <string name="Chips__remove_s">Remove %1$s</string>
 </resources>

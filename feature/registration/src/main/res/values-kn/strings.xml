@@ -736,6 +736,8 @@
     <string name="SignalLoginCredentialEntryScreen__show_login_info_again">ಲಾಗಿನ್ ಮಾಹಿತಿಯನ್ನು ಮತ್ತೊಮ್ಮೆ ತೋರಿಸಿ</string>
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">ಅದು ನಿಮಗೆ ತೋರಿಸಲಾದ Signal Login ಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ</string>
+    <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -820,4 +822,16 @@
     <string name="TwoFactorSelectionScreen__cancel">ರದ್ದುಮಾಡಿ</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
     <string name="TwoFactorSelectionScreen__something_went_wrong_with_your_passkey">ನಿಮ್ಮ ಪಾಸ್‌ಕೀಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ಬೇರೆ ವಿಧಾನವನ್ನು ಆರಿಸಿ.</string>
+
+    <!-- PasskeyVerificationScreen -->
+    <!-- Title of the screen asking the user to verify their account with their passkey -->
+    <string name="PasskeyVerificationScreen__two_factor_authentication">Two-factor authentication</string>
+    <!-- Subtitle telling the user to verify their account with their passkey -->
+    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
+    <!-- Button text to start verifying with a passkey -->
+    <string name="PasskeyVerificationScreen__continue">Continue</string>
+    <!-- Button text to cancel two-factor authentication -->
+    <string name="PasskeyVerificationScreen__cancel">Cancel</string>
+    <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
+    <string name="PasskeyVerificationScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again.</string>
 </resources>
