@@ -8,8 +8,7 @@ package org.thoughtcrime.securesms.service
 import android.content.Context
 import org.thoughtcrime.securesms.jobs.ArchiveCredentialRefreshJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import java.security.SecureRandom
-import kotlin.random.asKotlinRandom
+import kotlin.random.Random
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -50,7 +49,7 @@ class ArchiveCredentialRefreshListener : PersistentAlarmManagerListener() {
   }
 
   private fun getNextTime(now: Long): Long {
-    val jitter = SecureRandom().asKotlinRandom().nextLong((MAX_INTERVAL - MIN_INTERVAL).inWholeMilliseconds).milliseconds
+    val jitter = Random.nextLong((MAX_INTERVAL - MIN_INTERVAL).inWholeMilliseconds).milliseconds
     return now + (MIN_INTERVAL + jitter).inWholeMilliseconds
   }
 }
