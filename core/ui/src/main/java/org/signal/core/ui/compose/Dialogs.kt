@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -100,6 +101,11 @@ object Dialogs {
   const val TEST_TAG_RADIO_LIST_DIALOG_DISMISS_BUTTON = "dialog-radio-list-dismiss-button"
 
   fun testTagRadioListDialogOption(index: Int) = "$TEST_TAG_RADIO_LIST_DIALOG_OPTION:$index"
+
+  /** Suffixed with the index of the option the row renders. */
+  const val TEST_TAG_LIST_DIALOG_OPTION = "dialog-list-option"
+
+  fun testTagListDialogOption(index: Int) = "$TEST_TAG_LIST_DIALOG_OPTION:$index"
 
   const val TEST_TAG_TIME_PICKER_CONFIRM = "time-picker-confirm"
   const val TEST_TAG_TIME_PICKER_DIAL = "time-picker-dial"
@@ -563,6 +569,49 @@ object Dialogs {
             TextButton(onClick = onConfirm) {
               Text(text = confirm)
             }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * A plain list of [options] with no buttons, where tapping one is the choice. The dialog doesn't close itself, so
+   * [onOptionClick] decides what's shown next.
+   */
+  @Composable
+  fun ListDialog(
+    options: List<String>,
+    onOptionClick: (Int) -> Unit,
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties()
+  ) {
+    Dialog(
+      onDismissRequest = onDismissRequest,
+      properties = properties
+    ) {
+      Surface(
+        modifier = Modifier
+          .heightIn(min = 0.dp, max = getScreenHeight() - 200.dp)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        LazyColumn(modifier = Modifier.padding(vertical = 8.dp)) {
+          items(count = options.size) { index ->
+            Text(
+              text = options[index],
+              style = MaterialTheme.typography.bodyLarge,
+              modifier = Modifier
+                .fillMaxWidth()
+                .defaultMinSize(minHeight = 48.dp)
+                .clickable { onOptionClick(index) }
+                .horizontalGutters()
+                .wrapContentHeight(Alignment.CenterVertically)
+                .testTag(testTagListDialogOption(index))
+            )
           }
         }
       }
@@ -1099,6 +1148,17 @@ private fun ProgressDialogDeterminatePreview() {
   Previews.Preview {
     Dialogs.ProgressDialog("Exporting...", "Do not close app", "Cancel", {}, indeterminate = false, progress = { 0.6f })
   }
+}
+
+@PreviewWrapper(SignalPreviewWrapper::class)
+@DayNightPreviews
+@Composable
+private fun ListDialogPreview() {
+  Dialogs.ListDialog(
+    options = listOf("Edit", "Delete"),
+    onOptionClick = {},
+    onDismissRequest = {}
+  )
 }
 
 @DayNightPreviews

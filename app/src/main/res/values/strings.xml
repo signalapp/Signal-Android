@@ -837,7 +837,6 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
     <!-- ProfileCreateFragment -->
@@ -1389,34 +1388,7 @@
     <!-- RemoteRestoreActivity -->
 
     <!-- ManageProfileFragment -->
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
-    <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
-    <string name="ManageProfileFragment_username">Username</string>
-    <string name="ManageProfileFragment_about">About</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <string name="ManageProfileFragment_badges">Badges</string>
-    <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
-    <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
-    <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
-    <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
-    <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Username copied</string>
-    <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
-    <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
-    <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
-    <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">This will remove your username and disable your QR code and link. "%1$s" will be available for others to claim. Are you sure?</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -2921,9 +2893,6 @@
         <item quantity="other">%d contacts are on Signal!</item>
     </plurals>
 
-    <!-- UsernameShareBottomSheet -->
-    <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copy or share a username link</string>
 
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Share safety number via…</string>
@@ -3561,22 +3530,9 @@
     <string name="EditProfileFragment__group_name">Group name</string>
     <string name="EditProfileFragment__group_description">Group description</string>
     <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
-    <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
-    <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
-    <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
-    <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
-    <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
-    <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_save">Save</string>
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Shared media</string>
@@ -5575,9 +5531,6 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">When you have more than one badge, you can choose one to feature for others to see on your profile.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
-
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Donate to Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
@@ -6833,11 +6786,6 @@
     <!-- Popup menu label for clearing applied formatting -->
     <string name="TextFormatting_clear_formatting">Clear formatting</string>
 
-    <!-- Username edit dialog -->
-    <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
-    <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
 
     <!-- Time duration picker -->
     <!-- Shown in a time duration picker for selecting duration in hours and minutes, label shown after the user input value for hour, e.g., 12h -->

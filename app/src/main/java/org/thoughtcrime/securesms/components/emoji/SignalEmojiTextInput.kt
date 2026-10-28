@@ -9,16 +9,17 @@ import android.text.InputType
 import android.util.TypedValue
 import android.view.inputmethod.EditorInfo
 import androidx.compose.foundation.interaction.FocusInteraction
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.focusTarget
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -39,26 +40,33 @@ object SignalEmojiTextInput : EmojiTextInput {
   @Composable
   override fun Content(params: EmojiTextInputParams, modifier: Modifier) {
     val currentParams by rememberUpdatedState(params)
-    val editTextHolder = remember { arrayOfNulls<EmojiEditText>(1) }
+    var focused by remember { mutableStateOf(false) }
 
-    // Compose focus doesn't reliably carry into an embedded view, so the field takes it here and hands it on.
-    Box(
+    // Emitted once composition settles, since the view can take focus before the label is collecting interactions.
+    LaunchedEffect(params.interactionSource) {
+      var focus: FocusInteraction.Focus? = null
+      snapshotFlow { focused }.collect { hasFocus ->
+        if (hasFocus && focus == null) {
+          focus = FocusInteraction.Focus().also { params.interactionSource.emit(it) }
+        } else if (!hasFocus) {
+          focus?.let { params.interactionSource.emit(FocusInteraction.Unfocus(it)) }
+          focus = null
+        }
+      }
+    }
+
+    EditText(
+      params = params,
+      currentParams = { currentParams },
+      onFocusChanged = { focused = it },
       modifier = modifier
         .fillMaxWidth()
         .then(params.focusRequester?.let { Modifier.focusRequester(it) } ?: Modifier)
-        .onFocusChanged { state ->
-          if (state.isFocused) {
-            editTextHolder[0]?.let { editText -> editText.post { ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(editText) } }
-          }
-        }
-        .focusTarget()
-    ) {
-      EditText(params = params, currentParams = { currentParams }, onCreated = { editTextHolder[0] = it })
-    }
+    )
   }
 
   @Composable
-  private fun EditText(params: EmojiTextInputParams, currentParams: () -> EmojiTextInputParams, onCreated: (EmojiEditText) -> Unit) {
+  private fun EditText(params: EmojiTextInputParams, currentParams: () -> EmojiTextInputParams, onFocusChanged: (Boolean) -> Unit, modifier: Modifier) {
     AndroidView(
       factory = { context ->
         EmojiEditText(context).apply {
@@ -72,14 +80,10 @@ object SignalEmojiTextInput : EmojiTextInput {
             }
           }
 
-          var focus: FocusInteraction.Focus? = null
-          addOnFocusChangeListener { view, hasFocus ->
+          addOnFocusChangeListener { _, hasFocus ->
+            onFocusChanged(hasFocus)
             if (hasFocus) {
-              focus = FocusInteraction.Focus().also { currentParams().interactionSource.tryEmit(it) }
-              ViewUtil.focusAndShowKeyboard(view)
-            } else {
-              focus?.let { currentParams().interactionSource.tryEmit(FocusInteraction.Unfocus(it)) }
-              focus = null
+              ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this)
             }
           }
 
@@ -91,7 +95,7 @@ object SignalEmojiTextInput : EmojiTextInput {
               false
             }
           }
-        }.also(onCreated)
+        }
       },
       update = { view ->
         if (view.text.toString() != params.value) {
@@ -117,7 +121,7 @@ object SignalEmojiTextInput : EmojiTextInput {
         view.setTextColor(params.textStyle.color.toArgb())
         EditTextUtil.setCursorColor(view, params.cursorColor.toArgb())
       },
-      modifier = Modifier.fillMaxWidth()
+      modifier = modifier
     )
   }
 

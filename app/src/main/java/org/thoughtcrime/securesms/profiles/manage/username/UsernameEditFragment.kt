@@ -8,8 +8,6 @@ package org.thoughtcrime.securesms.profiles.manage.username
 import android.os.Bundle
 import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
@@ -17,7 +15,6 @@ import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.appsettings.routes.UsernameEditMode
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.util.collectFlowOnViewLifecycle
-import org.thoughtcrime.securesms.util.FragmentResultContract
 
 /**
  * Fragment host for [UsernameEditEntry] until edit profile moves to Nav3.
@@ -50,21 +47,7 @@ class UsernameEditFragment : ComposeFragment() {
   override fun FragmentContent() {
     UsernameEditEntry(
       mode = mode,
-      parentEventEmitter = appSettingsRouter::onEvent,
-      onUsernameSaved = { ResultContract.setUsernameCreated(parentFragmentManager) }
+      parentEventEmitter = appSettingsRouter::onEvent
     )
-  }
-
-  /** Tells the fragment beneath that a username was created. */
-  class ResultContract : FragmentResultContract<Boolean>(REQUEST_KEY) {
-    companion object {
-      private const val REQUEST_KEY = "username_created"
-
-      fun setUsernameCreated(fragmentManager: FragmentManager) {
-        fragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to true))
-      }
-    }
-
-    override fun getResult(bundle: Bundle): Boolean = bundle.getBoolean(REQUEST_KEY, false)
   }
 }

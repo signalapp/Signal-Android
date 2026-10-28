@@ -169,16 +169,7 @@ object UsernameRepository {
    * Deletes the username from the local user's account
    */
   suspend fun deleteUsernameAndLink(): UsernameDeleteResult {
-    return withContext(SignalDispatchers.IO) { deleteUsernameAndLinkSync() }
-  }
-
-  /**
-   * Blocking version of [deleteUsernameAndLink], for callers that can't suspend.
-   */
-  @WorkerThread
-  @JvmStatic
-  fun deleteUsernameAndLinkSync(): UsernameDeleteResult {
-    return deleteUsernameInternal()
+    return withContext(SignalDispatchers.IO) { deleteUsernameInternal() }
   }
 
   /**

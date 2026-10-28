@@ -241,7 +241,7 @@ private fun Content(
     )
 
     AboutRow(
-      startIcon = ImageVector.vectorResource(R.drawable.symbol_person_24),
+      startIcon = ImageVector.vectorResource(CoreUiR.drawable.symbol_person_24),
       text = if (!model.isSelf && model.displayName.isNotBlank() && model.profileName.isNotBlank() && model.displayName != model.profileName) {
         stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
       } else {
@@ -743,7 +743,7 @@ private fun AboutRowPreview() {
   Previews.Preview {
     Surface {
       AboutRow(
-        startIcon = ImageVector.vectorResource(R.drawable.symbol_person_24),
+        startIcon = ImageVector.vectorResource(CoreUiR.drawable.symbol_person_24),
         text = "Maya Johnson",
         endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
       )

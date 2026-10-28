@@ -75,6 +75,15 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     data object ManageProfile : AccountRoute
 
     @Serializable
+    data object ProfileName : AccountRoute
+
+    @Serializable
+    data object About : AccountRoute
+
+    @Serializable
+    data object AvatarPicker : AccountRoute
+
+    @Serializable
     data object AdvancedPinSettings : AccountRoute
 
     @Serializable

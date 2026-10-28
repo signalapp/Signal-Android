@@ -494,9 +494,10 @@ private fun TooltipOverflowButton(
   onDismiss: () -> Unit,
   isTooltipVisible: Boolean
 ) {
-  Tooltips.PlainBelowAnchor(
+  Tooltips.Popup(
     onDismiss = onDismiss,
     isTooltipVisible = isTooltipVisible,
+    position = Tooltips.Position.Below,
     tooltipContent = {
       Text(text = stringResource(R.string.ConversationListFragment__turn_your_notification_profile_on_or_off_here))
     },

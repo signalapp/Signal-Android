@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsIgnoringVisibility
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewWrapper
@@ -31,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
 import org.signal.core.ui.compose.spaceBetweenUpTo
@@ -40,6 +43,7 @@ import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Renders the button strip / start call button in the call screen
@@ -81,10 +85,14 @@ fun CallControls(
 
       val hasCameraPermission = ContextCompat.checkSelfPermission(LocalContext.current, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
       if (callControlsState.displayVideoToggle && !callControlsState.isLocalScreenSharing) {
-        CallScreenTooltipBox(
-          text = stringResource(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video),
-          displayTooltip = displayVideoTooltip,
-          onTooltipDismissed = callScreenSheetDisplayListener::onVideoTooltipDismissed
+        Tooltips.Popup(
+          isTooltipVisible = displayVideoTooltip,
+          onDismiss = callScreenSheetDisplayListener::onVideoTooltipDismissed,
+          tooltipContent = { Text(text = stringResource(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video)) },
+          isPersistent = false,
+          enableUserInput = true,
+          containerColor = colorResource(CoreUiR.color.signal_light_colorPrimary),
+          contentColor = colorResource(CoreUiR.color.signal_light_colorOnPrimary)
         ) {
           ToggleVideoButton(
             isVideoEnabled = callControlsState.isVideoEnabled && hasCameraPermission,

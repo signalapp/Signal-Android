@@ -140,7 +140,7 @@ private fun AnimatedInfoPillsRow(
         icon = ImageVector.vectorResource(
           when (type) {
             InfoPillType.HAND_RAISE -> R.drawable.symbol_raise_hand_24
-            InfoPillType.PENDING_PARTICIPANTS -> R.drawable.symbol_person_24
+            InfoPillType.PENDING_PARTICIPANTS -> CoreUiR.drawable.symbol_person_24
           }
         ),
         count = count,
@@ -364,7 +364,7 @@ private fun PictureInPictureCallScreenVideoErrorPreview() {
 private fun InfoPillPreview() {
   Previews.Preview {
     InfoPill(
-      icon = ImageVector.vectorResource(id = R.drawable.symbol_person_24),
+      icon = ImageVector.vectorResource(id = CoreUiR.drawable.symbol_person_24),
       count = 5
     )
   }

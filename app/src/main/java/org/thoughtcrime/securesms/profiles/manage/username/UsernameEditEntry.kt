@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.createSavedStateHandle
@@ -26,28 +25,21 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 /**
  * Hosts [UsernameEditScreen] and carries out its [UsernameEditAction]s. The view model navigates by sending events to
  * [parentEventEmitter], so this works from whichever host owns the back stack.
- *
- * @param onUsernameSaved called once a username is saved, for a host that wants to tell the screen beneath.
  */
 @Composable
 fun UsernameEditEntry(
   mode: UsernameEditMode,
-  parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
-  onUsernameSaved: () -> Unit = {}
+  parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) {
   val viewModel: UsernameEditViewModel = viewModel { UsernameEditViewModel(mode, parentEventEmitter, createSavedStateHandle()) }
   val state by viewModel.state.collectAsStateWithLifecycle()
   val context = LocalContext.current
   val activity = LocalActivity.current
-  val currentOnUsernameSaved by rememberUpdatedState(onUsernameSaved)
 
   CollectActions(viewModel.actions) { action ->
     when (action) {
       is UsernameEditAction.OpenBrowserLink -> CommunicationActions.openBrowserLink(context, action.url)
-      UsernameEditAction.UsernameSaved -> {
-        activity?.setResult(Activity.RESULT_OK)
-        currentOnUsernameSaved()
-      }
+      UsernameEditAction.UsernameSaved -> activity?.setResult(Activity.RESULT_OK)
       UsernameEditAction.UsernameDeleted -> Toast.makeText(context, R.string.UsernameEditFragment_successfully_removed_username, Toast.LENGTH_SHORT).show()
       UsernameEditAction.Finish -> activity?.finish()
     }

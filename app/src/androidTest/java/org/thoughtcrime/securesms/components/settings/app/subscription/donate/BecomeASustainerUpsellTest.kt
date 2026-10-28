@@ -11,33 +11,30 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.junit4.createEmptyComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollToNode
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
-import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
-import assertk.assertions.isNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.appsettings.editprofile.EditProfileTestTags
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.models.badges.Badge
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment
 import org.thoughtcrime.securesms.badges.self.overview.BadgesOverviewFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -50,9 +47,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Entry-path coverage for the "become a subscriber" upsell.
  *
- * The upsell surface is [BecomeASustainerFragment], reached from the profile screen's badges row. The
+ * The upsell surface is the profile screen's become-a-sustainer sheet, reached from its badges row. The
  * handoff test asserts the sheet's button launches the recurring-donation checkout route; the gating
- * tests assert the "user might be a sustainer" rule in [org.thoughtcrime.securesms.profiles.manage.EditProfileFragment]:
+ * tests assert the "user might be a sustainer" rule in [org.thoughtcrime.securesms.profiles.manage.editprofile.EditProfileViewModel]:
  * a non-donor sees the upsell, an existing donor is routed to badge management instead.
  */
 @RunWith(AndroidJUnit4::class)
@@ -64,6 +61,9 @@ class BecomeASustainerUpsellTest {
   @get:Rule
   val iapRule = InAppPaymentsRule()
 
+  @get:Rule
+  val composeTestRule = createEmptyComposeRule()
+
   private val context: Context get() = InstrumentationRegistry.getInstrumentation().targetContext
 
   @Before
@@ -73,24 +73,21 @@ class BecomeASustainerUpsellTest {
 
   @Test
   fun nonDonor_badgeTap_showsUpsellSheet() {
-    ActivityScenario.launch(EditProfileActivity::class.java).use { scenario ->
-      onView(withId(R.id.manage_profile_badges_container)).perform(scrollTo(), click())
+    ActivityScenario.launch(EditProfileActivity::class.java).use {
+      tapBadgesRow()
 
-      val sheet = awaitNavHostFragment(scenario) { it.filterIsInstance<BecomeASustainerFragment>().firstOrNull() }
-      assertThat(sheet).isNotNull()
+      awaitUpsellSheet()
     }
   }
 
   @Test
   fun becomeASustainer_launchesRecurringCheckoutRoute() {
     LaunchedActivityRecorder(AppSettingsActivity::class.java).use { recorder ->
-      ActivityScenario.launch(EditProfileActivity::class.java).use { scenario ->
-        onView(withId(R.id.manage_profile_badges_container)).perform(scrollTo(), click())
-        awaitNavHostFragment(scenario) { it.filterIsInstance<BecomeASustainerFragment>().firstOrNull() }
+      ActivityScenario.launch(EditProfileActivity::class.java).use {
+        tapBadgesRow()
+        awaitUpsellSheet()
 
-        val becomeASustainer = withText(R.string.BecomeASustainerMegaphone__become_a_sustainer)
-        onView(withId(R.id.recycler)).perform(RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(hasDescendant(becomeASustainer)))
-        onView(becomeASustainer).perform(click())
+        composeTestRule.onNodeWithTag(EditProfileTestTags.BUTTON_BECOME_A_SUSTAINER).performClick()
 
         val intent = recorder.awaitLaunch()
         val route = intent.extras!!.keySet().firstNotNullOfOrNull { intent.getParcelableExtraCompat(it, AppSettingsRoute::class.java) }
@@ -104,14 +101,24 @@ class BecomeASustainerUpsellTest {
     setSelfBadges(listOf(donorBadge()))
 
     ActivityScenario.launch(EditProfileActivity::class.java).use { scenario ->
-      onView(withId(R.id.manage_profile_badges_container)).perform(scrollTo(), click())
+      tapBadgesRow()
 
       val badgeManagement = awaitNavHostFragment(scenario) { it.filterIsInstance<BadgesOverviewFragment>().firstOrNull() }
       assertThat(badgeManagement).isNotNull()
 
-      val upsell = navHostFragments(scenario).filterIsInstance<BecomeASustainerFragment>().firstOrNull()
-      assertThat(upsell).isNull()
+      composeTestRule.onNodeWithTag(EditProfileTestTags.BECOME_A_SUSTAINER_SHEET).assertDoesNotExist()
     }
+  }
+
+  private fun awaitUpsellSheet() {
+    composeTestRule.waitUntil(timeoutMillis = 5_000) {
+      composeTestRule.onAllNodesWithTag(EditProfileTestTags.BECOME_A_SUSTAINER_SHEET).fetchSemanticsNodes().isNotEmpty()
+    }
+  }
+
+  private fun tapBadgesRow() {
+    composeTestRule.onNodeWithTag(EditProfileTestTags.LIST).performScrollToNode(hasTestTag(EditProfileTestTags.ROW_BADGES))
+    composeTestRule.onNodeWithTag(EditProfileTestTags.ROW_BADGES).performClick()
   }
 
   private fun awaitNavHostFragment(scenario: ActivityScenario<EditProfileActivity>, selector: (List<Fragment>) -> Fragment?): Fragment {

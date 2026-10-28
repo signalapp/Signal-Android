@@ -66,7 +66,7 @@ sealed interface FallbackAvatar {
       override fun getIconBySize(size: Size): Int {
         return when (size) {
           Size.SMALL -> R.drawable.symbol_person_compact_16
-          Size.MEDIUM -> R.drawable.symbol_person_24
+          Size.MEDIUM -> CoreUiR.drawable.symbol_person_24
           Size.LARGE -> R.drawable.symbol_person_display_bold_40
         }
       }

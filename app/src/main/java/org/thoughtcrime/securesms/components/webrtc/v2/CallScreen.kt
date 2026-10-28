@@ -92,6 +92,7 @@ import kotlin.math.max
 import kotlin.math.round
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 private const val DRAG_HANDLE_HEIGHT = 22
 private const val SHEET_TOP_PADDING = 9
@@ -671,7 +672,7 @@ private fun ParticipantContextMenu(
 
     DropdownMenuItem(
       text = { Text(stringResource(R.string.CallParticipantSheet__contact_details)) },
-      leadingIcon = { Icon(painter = painterResource(R.drawable.symbol_person_24), contentDescription = null) },
+      leadingIcon = { Icon(painter = painterResource(CoreUiR.drawable.symbol_person_24), contentDescription = null) },
       onClick = {
         onContactDetails(resolved)
         onDismiss()

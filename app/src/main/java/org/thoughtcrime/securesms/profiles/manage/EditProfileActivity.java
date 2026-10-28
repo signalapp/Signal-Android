@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.profiles.manage.editprofile.EditProfileFragmentDirections;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;

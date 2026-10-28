@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.SignalE164Util
+import org.signal.core.ui.R as CoreUiR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -132,7 +133,7 @@ private fun ParticipantActionsSheetContent(
 
   Rows.TextRow(
     text = stringResource(id = R.string.CallParticipantSheet__contact_details),
-    icon = painterResource(id = R.drawable.symbol_person_24),
+    icon = painterResource(id = CoreUiR.drawable.symbol_person_24),
     onClick = {
       onContactDetails(callParticipant)
       onDismiss()
