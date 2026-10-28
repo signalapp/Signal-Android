@@ -219,7 +219,7 @@ object SignalPasskeyManager {
       val response = SignalJson.json.decodeFromString<RegistrationResponseJson>(registrationResponseJson).response
 
       PasskeyCreationResult.Success(
-        attestationObject = Base64.decode(response.attestationObject),
+        attestationObject = withoutAttestation(Base64.decode(response.attestationObject)),
         collectedClientDataJson = Base64.decode(response.clientDataJson).decodeToString()
       )
     } catch (e: SerializationException) {
@@ -231,6 +231,28 @@ object SignalPasskeyManager {
     } catch (e: IOException) {
       Log.w(TAG, "The passkey provider returned a registration response we couldn't read.", e)
       PasskeyCreationResult.CeremonyFailed
+    }
+  }
+
+  /**
+   * The service only accepts the `none` attestation format. Most providers honor our request for it, but some pass the
+   * authenticator's own attestation straight through, so we strip it here.
+   */
+  private fun withoutAttestation(attestationObject: ByteArray): ByteArray {
+    val parsed = AttestationObject.parse(attestationObject)
+
+    return when {
+      parsed == null -> {
+        Log.w(TAG, "Couldn't read the attestation object. Sending it as-is.")
+        attestationObject
+      }
+      parsed.format == "none" -> {
+        attestationObject
+      }
+      else -> {
+        Log.i(TAG, "The provider returned a '${parsed.format}' attestation. Replacing it with 'none'.")
+        AttestationObject.encodeWithoutAttestation(parsed.authData)
+      }
     }
   }
 

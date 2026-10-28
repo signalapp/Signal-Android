@@ -21,6 +21,7 @@ dependencies {
 
   implementation(libs.androidx.credentials)
   implementation(libs.androidx.credentials.compat)
+  implementation(libs.kotlinx.serialization.cbor)
   implementation(libs.kotlinx.serialization.json)
 
   implementation(platform(libs.androidx.compose.bom))
