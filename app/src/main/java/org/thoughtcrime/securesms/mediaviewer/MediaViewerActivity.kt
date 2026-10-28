@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.WindowUtil
+import kotlin.math.roundToInt
 
 /**
  * Compose re-implementation of [MediaPreviewActivity], gated by [RemoteConfig.useNewMediaViewer]. Hosts
@@ -288,6 +289,11 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         finish()
       }
       MediaViewerAction.FinishAfterTransition -> {
+        transitionImageView.updateLayoutParams<LayoutParams> {
+          width = (transitionImageView.width * dismissState.scale).roundToInt()
+          height = (transitionImageView.height * dismissState.scale).roundToInt()
+        }
+        transitionImageView.translationX = dismissState.offsetX
         transitionImageView.translationY = dismissState.offsetY
         onBackPressedDispatcher.onBackPressed()
       }

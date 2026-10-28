@@ -8,12 +8,13 @@ package org.signal.mediaviewer
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.awaitVerticalTouchSlopOrCancellation
-import androidx.compose.foundation.gestures.verticalDrag
+import androidx.compose.foundation.gestures.drag
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -22,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.pointer.AwaitPointerEventScope
 import androidx.compose.ui.input.pointer.PointerId
 import androidx.compose.ui.input.pointer.PointerInputChange
@@ -30,17 +32,19 @@ import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.input.pointer.util.VelocityTracker
 import androidx.compose.ui.input.pointer.util.addPointerInputChange
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlin.math.abs
-import kotlin.math.sign
+import kotlin.math.max
 
-/** Fraction of the screen height the media must be dragged before a release dismisses. */
+/** Fraction of the screen height the media must be dragged from center before a release dismisses. */
 private const val DISMISS_FRACTION = 0.15f
 
-/** Fraction of the screen height at which the backdrop has fully faded. */
+/** Fraction of the screen height the media must be dragged from center for the backdrop to fully fade and the media to fully scale down. */
 private const val FULL_FADE_FRACTION = 0.5f
+
+internal const val MIN_SCALE = 0.7f
 
 private const val FLY_AWAY_DURATION_MS = 200
 
@@ -51,20 +55,32 @@ private val FLING_VELOCITY_THRESHOLD = 1000.dp
  */
 @Stable
 class DragToDismissState {
-  internal val offset = Animatable(0f)
+  internal val offset = Animatable(Offset.Zero, Offset.VectorConverter)
 
+  internal var width by mutableIntStateOf(0)
   internal var height by mutableIntStateOf(0)
 
   /** Set once a drag has committed to dismissing the viewer. No further drags are accepted. */
   var isDismissing by mutableStateOf(false)
     internal set
 
-  /** Vertical offset of the media in px. Negative when dragged up. */
-  val offsetY: Float get() = offset.value
+  /** Horizontal offset of the media in px. */
+  val offsetX: Float get() = offset.value.x
 
-  /** 0 at rest, rising to 1 as the media is dragged far enough to fully reveal what is beneath the viewer. */
+  /** Vertical offset of the media in px. Negative when dragged up. */
+  val offsetY: Float get() = offset.value.y
+
+  /** 0 at rest, rising to 1 as the media is dragged far enough from center to fully reveal what is beneath the viewer. */
   val progress: Float
-    get() = if (height == 0) 0f else (abs(offsetY) / (height * FULL_FADE_FRACTION)).coerceIn(0f, 1f)
+    get() = fractionOfFullFade(offset.value.getDistance())
+
+  /** 1 at rest, shrinking to [MIN_SCALE] as the media is dragged away from center. */
+  val scale: Float
+    get() = 1f - (1f - MIN_SCALE) * fractionOfFullFade(offset.value.getDistance())
+
+  private fun fractionOfFullFade(distance: Float): Float {
+    return if (height == 0) 0f else (distance / (height * FULL_FADE_FRACTION)).coerceIn(0f, 1f)
+  }
 }
 
 @Composable
@@ -73,8 +89,9 @@ fun rememberDragToDismissState(): DragToDismissState {
 }
 
 /**
- * Vertical drag-to-dismiss. Claims only vertical drags, so horizontal swipes still page, and
- * only starts when [canStart] at touch down (to allow conditional dismissal).
+ * Drag-to-dismiss. Claims only vertical drags, so horizontal swipes still page, and only starts
+ * when [canStart] at touch down (to allow conditional dismissal). Once claimed, the media follows
+ * the finger in any direction, and a release far enough from center dismisses.
  */
 internal fun Modifier.dragToDismiss(
   state: DragToDismissState,
@@ -83,7 +100,10 @@ internal fun Modifier.dragToDismiss(
   onDismissed: (toSharedElement: Boolean) -> Unit
 ): Modifier {
   return this
-    .onSizeChanged { state.height = it.height }
+    .onSizeChanged {
+      state.width = it.width
+      state.height = it.height
+    }
     .pointerInput(state) {
       val flingThreshold = FLING_VELOCITY_THRESHOLD.toPx()
       coroutineScope {
@@ -103,20 +123,20 @@ internal fun Modifier.dragToDismiss(
           } ?: return@awaitEachGesture
 
           velocityTracker.addPointerInputChange(dragStart)
-          launch { state.dragBy(overSlop) }
+          launch { state.dragBy(Offset(0f, overSlop)) }
 
-          val completed = verticalDrag(dragStart.id) { change ->
+          val completed = drag(dragStart.id) { change ->
             velocityTracker.addPointerInputChange(change)
-            val delta = change.positionChange().y
+            val delta = change.positionChange()
             change.consume()
             launch { state.dragBy(delta) }
           }
 
           if (completed) {
-            val velocityY = velocityTracker.calculateVelocity().y
-            launch { state.release(velocityY, flingThreshold, canDismissToSharedElement(), onDismissed) }
+            val velocity = velocityTracker.calculateVelocity()
+            launch { state.release(velocity, flingThreshold, canDismissToSharedElement(), onDismissed) }
           } else {
-            launch { state.springBack(velocityY = 0f) }
+            launch { state.springBack(velocity = Velocity.Zero) }
           }
         }
       }
@@ -144,36 +164,41 @@ private suspend fun AwaitPointerEventScope.awaitVerticalDragStart(
   }
 }
 
-private suspend fun DragToDismissState.dragBy(delta: Float) {
+private suspend fun DragToDismissState.dragBy(delta: Offset) {
   offset.snapTo(offset.value + delta)
 }
 
 /**
  * Ends a drag. Past the dismiss threshold (or flung away from rest) the viewer is dismissed:
  * toward the shared element when [canDismissToSharedElement], otherwise by first flying the
- * media off the edge it was dragged toward. Short of that, the media springs back.
+ * media off screen in the direction it was dragged. Short of that, the media springs back.
  */
-private suspend fun DragToDismissState.release(velocityY: Float, flingThreshold: Float, canDismissToSharedElement: Boolean, onDismissed: (toSharedElement: Boolean) -> Unit) {
+private suspend fun DragToDismissState.release(velocity: Velocity, flingThreshold: Float, canDismissToSharedElement: Boolean, onDismissed: (toSharedElement: Boolean) -> Unit) {
   val current = offset.value
-  val flungAway = abs(velocityY) > flingThreshold && sign(velocityY) == sign(current)
-  if (current != 0f && (abs(current) > height * DISMISS_FRACTION || flungAway)) {
+  val distance = current.getDistance()
+  val velocityOffset = velocity.toOffset()
+  val movingAway = velocityOffset.x * current.x + velocityOffset.y * current.y > 0f
+  val flungAway = velocityOffset.getDistance() > flingThreshold && movingAway
+  if (distance > 0f && (distance > height * DISMISS_FRACTION || flungAway)) {
     isDismissing = true
     if (!canDismissToSharedElement) {
       offset.animateTo(
-        targetValue = sign(current) * height,
+        targetValue = current / distance * max(width, height).toFloat(),
         animationSpec = tween(durationMillis = FLY_AWAY_DURATION_MS, easing = FastOutLinearInEasing)
       )
     }
     onDismissed(canDismissToSharedElement)
   } else {
-    springBack(velocityY)
+    springBack(velocity)
   }
 }
 
-private suspend fun DragToDismissState.springBack(velocityY: Float) {
+private suspend fun DragToDismissState.springBack(velocity: Velocity) {
   offset.animateTo(
-    targetValue = 0f,
+    targetValue = Offset.Zero,
     animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-    initialVelocity = velocityY
+    initialVelocity = velocity.toOffset()
   )
 }
+
+private fun Velocity.toOffset(): Offset = Offset(x, y)

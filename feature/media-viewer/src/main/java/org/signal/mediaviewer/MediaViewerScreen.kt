@@ -249,7 +249,10 @@ private fun MediaPager(
         )
         .graphicsLayer {
           alpha = if (state.isInSharedAnimation) 0f else 1f
+          translationX = dismissState.offsetX
           translationY = dismissState.offsetY
+          scaleX = dismissState.scale
+          scaleY = dismissState.scale
         }
         .testTag(MediaViewerScreenTestTags.PAGER)
     ) { page ->
