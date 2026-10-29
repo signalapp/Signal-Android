@@ -2109,9 +2109,10 @@ class AttachmentTable(
           values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
           values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
         } else {
-          // Clear archive cdn and transfer state so it can be re-archived with the new remote key/mediaName
+          // Clear archive cdn and transfer states so the data and thumbnail can be re-archived with the new remote key/mediaName
           values.putNull(ARCHIVE_CDN)
           values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.NONE.value)
+          values.put(ARCHIVE_THUMBNAIL_TRANSFER_STATE, ArchiveTransferState.NONE.value)
         }
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
@@ -2299,7 +2300,8 @@ class AttachmentTable(
       UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp,
       BLUR_HASH to (uploadResult.blurHash ?: uploadResult.audioHash),
       ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
-      ARCHIVE_CDN to null
+      ARCHIVE_CDN to null,
+      ARCHIVE_THUMBNAIL_TRANSFER_STATE to ArchiveTransferState.NONE.value
     )
 
     val dataFilePath = getDataFilePath(id) ?: throw IOException("No data file found for attachment!")
