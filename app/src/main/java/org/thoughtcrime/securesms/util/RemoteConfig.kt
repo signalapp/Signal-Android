@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util
 
 import androidx.annotation.GuardedBy
 import androidx.annotation.VisibleForTesting
-import androidx.annotation.WorkerThread
 import org.json.JSONException
 import org.json.JSONObject
 import org.signal.core.util.ByteSize
@@ -12,6 +11,9 @@ import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.serialization.SignalJson
+import org.signal.libsignal.net.RequestResult
+import org.signal.network.api.RemoteConfigApi.GetRemoteConfigError
+import org.signal.network.api.RemoteConfigApi.RemoteConfigResult
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -27,8 +29,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
 import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCount
 import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCountResetAge
-import org.whispersystems.signalservice.api.NetworkResultUtil
-import java.io.IOException
 import java.util.TreeMap
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -128,12 +128,12 @@ object RemoteConfig {
     }
   }
 
-  @JvmStatic
-  @WorkerThread
-  @Throws(IOException::class)
-  fun refreshSync() {
-    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfigApi.getRemoteConfig())
-    update(result.config)
+  suspend fun refresh(): RequestResult<Unit, GetRemoteConfigError> {
+    return SignalNetwork.remoteConfigApi.getRemoteConfig().map { result ->
+      if (result is RemoteConfigResult.Updated) {
+        update(result.config)
+      }
+    }
   }
 
   @JvmStatic

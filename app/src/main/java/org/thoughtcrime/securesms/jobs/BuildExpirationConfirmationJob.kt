@@ -7,20 +7,20 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
-import org.signal.network.NetworkResult
+import org.signal.libsignal.net.RequestResult
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResult
 import kotlin.time.Duration.Companion.days
 
 /**
  * If we have reason to believe a build is expired, we run this job to double-check by fetching the server time. This prevents false positives from people
  * moving their clock forward in time.
  */
-class BuildExpirationConfirmationJob private constructor(params: Parameters) : Job(params) {
+class BuildExpirationConfirmationJob private constructor(params: Parameters) : CoroutineJob(params) {
   companion object {
     const val KEY = "BuildExpirationConfirmationJob"
     private val TAG = Log.tag(BuildExpirationConfirmationJob::class.java)
@@ -39,7 +39,7 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
 
   override fun getFactoryKey(): String = KEY
 
-  override fun run(): Result {
+  override suspend fun doRun(): Result {
     if (Util.getTimeUntilBuildExpiry(SignalStore.misc.estimatedServerTime) > 0) {
       Log.i(TAG, "Build not expired.", true)
       return Result.success()
@@ -56,8 +56,8 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
       return Result.success()
     }
 
-    return when (val result: NetworkResult<RemoteConfigResult> = SignalNetwork.remoteConfigApi.getRemoteConfig()) {
-      is NetworkResult.Success -> {
+    return when (val result = SignalNetwork.remoteConfigApi.getRemoteConfig()) {
+      is RequestResult.Success -> {
         val serverTimeMs = result.result.serverEpochTimeMilliseconds
         SignalStore.misc.setLastKnownServerTime(serverTimeMs, System.currentTimeMillis())
 
@@ -69,9 +69,15 @@ class BuildExpirationConfirmationJob private constructor(params: Parameters) : J
         }
         Result.success()
       }
-      is NetworkResult.ApplicationError -> Result.retry(defaultBackoff())
-      is NetworkResult.NetworkError -> Result.retry(defaultBackoff())
-      is NetworkResult.StatusCodeError -> if (result.code < 500) Result.retry(defaultBackoff()) else Result.success()
+      is RequestResult.NonSuccess -> {
+        Result.retry(defaultBackoff())
+      }
+      is RequestResult.RetryableNetworkError -> {
+        Result.retry(result.retryAfter?.toMillis() ?: defaultBackoff())
+      }
+      is RequestResult.ApplicationError -> {
+        Result.retry(defaultBackoff())
+      }
     }
   }
 

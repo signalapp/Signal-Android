@@ -781,10 +781,9 @@ class AppRegistrationNetworkController(
   }
 
   override suspend fun onLinkedDeviceRegistered() = withContext(Dispatchers.IO) {
-    try {
-      RemoteConfig.refreshSync()
-    } catch (e: IOException) {
-      Log.w(TAG, "[onLinkedDeviceRegistered] Failed to refresh remote config.", e)
+    val remoteConfigResult = RemoteConfig.refresh()
+    if (remoteConfigResult !is RequestResult.Success) {
+      Log.w(TAG, "[onLinkedDeviceRegistered] Failed to refresh remote config. Result: $remoteConfigResult")
     }
 
     for (type in SyncMessage.Request.Type.entries) {

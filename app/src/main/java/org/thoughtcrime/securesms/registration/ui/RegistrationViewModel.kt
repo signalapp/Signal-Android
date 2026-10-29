@@ -31,6 +31,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Util
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
@@ -1257,11 +1258,9 @@ class RegistrationViewModel : ViewModel() {
 
     private suspend fun refreshRemoteConfig() = withContext(Dispatchers.IO) {
       val startTime = System.currentTimeMillis()
-      try {
-        RemoteConfig.refreshSync()
-        Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.")
-      } catch (e: IOException) {
-        Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e)
+      when (val result = RemoteConfig.refresh()) {
+        is RequestResult.Success -> Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.")
+        else -> Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms. Result: $result")
       }
     }
 
