@@ -39,12 +39,12 @@ import org.signal.libsignal.protocol.message.SignalMessage
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.network.api.KeysApiV2
 import org.signal.network.api.MessageApiV2
+import org.signal.network.crypto.SealedSenderAccess
 import org.signal.network.service.MessageService.SendError
 import org.signal.network.service.MessageService.SendSuccess
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.SignalSessionLock
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher
 import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder
 import org.whispersystems.signalservice.api.push.SignalServiceAddress

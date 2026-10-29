@@ -19,7 +19,7 @@ import org.signal.libsignal.net.UnauthMessagesService
 import org.signal.libsignal.net.UnsealedSendFailure
 import org.signal.libsignal.net.UserBasedAuthorization
 import org.signal.libsignal.net.UserBasedSendAuthorization
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
+import org.signal.network.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 
 /**

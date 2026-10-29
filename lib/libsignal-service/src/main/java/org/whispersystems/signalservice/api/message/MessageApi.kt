@@ -13,11 +13,11 @@ import org.signal.libsignal.net.MultiRecipientSendFailure
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.UnauthMessagesService
 import org.signal.network.NetworkResult
+import org.signal.network.crypto.SealedSenderAccess
 import org.signal.network.websocket.WebSocketRequestMessage
 import org.signal.network.websocket.WebsocketResponse
 import org.signal.network.websocket.post
 import org.signal.network.websocket.put
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.fromWebSocketRequest
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList

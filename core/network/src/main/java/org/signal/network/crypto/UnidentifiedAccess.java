@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.crypto;
+package org.signal.network.crypto;
 
 
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;

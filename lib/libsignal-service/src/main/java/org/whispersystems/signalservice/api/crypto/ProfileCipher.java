@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.crypto;
 
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.signal.network.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;

@@ -83,5 +83,6 @@ dependencies {
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)
+  testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testFixtures(project(":core:serialization")))
 }

@@ -9,8 +9,8 @@ import arrow.core.Either
 import org.signal.core.models.ServiceId
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.UntrustedIdentityException
+import org.signal.network.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import java.io.IOException
 import kotlin.time.Duration
 

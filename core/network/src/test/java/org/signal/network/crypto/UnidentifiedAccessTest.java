@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.crypto;
+package org.signal.network.crypto;
 
 import org.conscrypt.OpenSSLProvider;
 import org.junit.Test;

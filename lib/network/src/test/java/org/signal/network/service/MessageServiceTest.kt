@@ -14,8 +14,8 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.signal.core.models.ServiceId
+import org.signal.network.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import java.util.UUID
 
 class MessageServiceTest {

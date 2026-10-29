@@ -22,8 +22,8 @@ import org.signal.libsignal.net.SealedSendFailure
 import org.signal.libsignal.net.UserBasedAuthorization
 import org.signal.libsignal.net.UserBasedSendAuthorization
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
+import org.signal.network.crypto.SealedSenderAccess
+import org.signal.network.crypto.UnidentifiedAccess
 import java.util.UUID
 
 class MessageApiV2Test {

@@ -15,6 +15,8 @@ import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.signal.network.crypto.SealedSenderAccess;
+import org.signal.network.crypto.UnidentifiedAccess;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
@@ -22,8 +24,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 
 import java.io.IOException;
 import java.util.ArrayList;
