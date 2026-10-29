@@ -594,384 +594,384 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">உங்கள் அட்டவணையின்படி உங்கள் சுயவிவரம் தானாகவே ஆன் மற்றும் ஆஃப் செய்யப்படும்.</string>
 
     <!-- PrivacySettingsScreen -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
-    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
+    <string name="ApplicationPreferencesActivity_disable">முடக்கு</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">கடவுச்சொல்லை முடக்கு?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">இது நிரந்தரமாக Signal செய்தி அறிவிப்புகளைத் திறக்கும்.</string>
+    <string name="PrivacySettingsFragment__app_security">பயன்பாட்டு பாதுகாப்பு</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
-    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">சமீபத்தியவை பட்டியல் மற்றும் செயலிக்கு உள்ளே ஸ்கிரீன்ஷாட் எடுப்பதைத் தடுக்கவும்</string>
+    <string name="PrivacySettingsFragment__blocked">தடைசெய்யப்பட்டார்</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">கட்டண பூட்டைப் பயன்படுத்த, முதலில் உங்கள் மொபைலின் அமைப்புகளில் திரைப் பூட்டு அல்லது கைரேகை ஐ.டி.-யை இயக்க வேண்டும்.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">கட்டண பூட்டைச் செயல்படுத்த முடியவில்லை</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact or group</item>
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="one">%1$dதொடர்பு அல்லது குழு</item>
+        <item quantity="other">%1$dதொடர்புகள் அல்லது குழுக்கள்</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">புதிய சாட்களுக்கு இயல்புநிலை டைமர்</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Failed to navigate to system settings</string>
-    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">சிஸ்டம் அமைப்புகளுக்குச் செல்ல முடியவில்லை</string>
+    <string name="PrivacySettingsFragment__messaging">செய்தி அனுப்புதல்</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">நிதியை மாற்ற ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவை</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய சாட்களுக்கும் இயல்புநிலை மறைந்து போகும் மெசேஜ்கள் டைமரை அமைக்கவும்.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal செய்திகள் மற்றும் அழைப்புகள், எப்போதும் ரிலே அழைப்புகள் மற்றும் சீல் அனுப்பியவர்</string>
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <string name="ScreenLockSettingsFragment__off">ஆஃப்</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">செயலற்ற ஒரு குறிப்பிட்ட நேர இடைவெளிக்குப் பிறகு தானாக Signal ஐ பூட்டு</string>
+    <string name="preferences__change_passphrase">கடவுச்சொல்லை மாற்று</string>
+    <string name="preferences__change_your_passphrase">உன்னுடய கடவுச்சொல்லை மாற்று</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__enable_passphrase">கடவுச்சொல் திரை பூட்டை இயக்கவும்</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் காண முடியாது.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">தட்டச்சு குறிகாட்டிகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து தட்டச்சு குறிகாட்டிகளை நீங்கள் பார்க்க முடியாது.</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
+    <string name="preferences__inactivity_timeout_interval">செயலற்ற காலக்கெடு இடைவெளி</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
-    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__inactivity_timeout_passphrase">செயலற்ற நேரம் முடிந்தது கடவுச்சொல்</string>
+    <string name="preferences__incognito_keyboard">மறைநிலை விசைப்பலகை</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">கடவுச்சொல் மூலம் திரை மற்றும் அறிவிப்புகளைப் பூட்டு</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
-    <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
-    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__payment_lock">கட்டண பூட்டு</string>
+    <string name="preferences__read_receipts">ரசீதுகளைப் படியுங்கள்</string>
+    <string name="preferences__request_keyboard_to_disable">கோரிக்கை விசைப்பலகை க்கு முடக்கு தனிப்பயனாக்கப்பட்ட கற்றல்.</string>
+    <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">இந்த அமைப்பு ஒரு உத்தரவாதம் அல்ல, உங்களுடையது விசைப்பலகை அதை புறக்கணிக்கலாம்.</string>
+    <string name="preferences__typing_indicators">தட்டச்சு குறிகாட்டிகள்</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">உங்கள் தொலைபேசி எண்ணை யார் பார்க்கலாம் மற்றும் யார் உங்களை சிக்னலில் தொடர்பு கொள்ளலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Payments</string>
+    <string name="preferences_app_protection__payments">பணம் செலுத்தல்</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">இந்தச் டிவைஸில் திரைப் பூட்டைப் பயன்படுத்த, பின், வடிவம் அல்லது கடவுச்சொல்லை அமைக்கவும்.</string>
     <!-- Title of the privacy settings screen -->
-    <string name="PrivacySettingsScreen__privacy">Privacy</string>
+    <string name="PrivacySettingsScreen__privacy">தனியுரிமை</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
-    <string name="PrivacySettingsScreen__advanced">Advanced</string>
+    <string name="PrivacySettingsScreen__advanced">மேம்பட்ட</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
-    <string name="PrivacySettingsScreen__turn_on">Turn On</string>
+    <string name="PrivacySettingsScreen__turn_on">இயக்கவும்</string>
     <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
-    <string name="PrivacySettingsScreen__not_now">Not Now</string>
+    <string name="PrivacySettingsScreen__not_now">இப்போது வேண்டாம்</string>
     <!-- Title of the authentication prompt shown when turning off payment lock -->
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
-    <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <string name="PrivacySettingsScreen__learn_more">மேலும் அறிக</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">காப்புப்பிரதி சேமிப்பகத்தின் வரம்பு அடையப்பட்டது</string>
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">காப்புப்பிரதிகள் சந்தாதாரர் ஐ.டி கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">நன்கொடை சந்தாதாரர் ஐ.டி கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">உங்கள் சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளின் சந்தாவை புதுப்பிக்கவும்</string>
     <!-- App settings row that opens privacy settings -->
-    <string name="preferences__privacy">Privacy</string>
+    <string name="preferences__privacy">தனியுரிமை</string>
     <!-- Title of the top level app settings screen -->
-    <string name="AppSettingsScreen__settings">Settings</string>
+    <string name="AppSettingsScreen__settings">அமைப்புகள்</string>
     <!-- Content description for the back button on the top level app settings screen -->
-    <string name="AppSettingsScreen__go_back">Go back</string>
+    <string name="AppSettingsScreen__go_back">திரும்பிச் செல்லுங்கள்</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">உங்களின் காப்புப்பிரதிகளின் சந்தாவை மீட்டெடுக்க முடியவில்லை</string>
     <!-- App settings row that opens donations -->
-    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <string name="AppSettingsScreen__donate_to_signal">Signalக்கு நன்கொடை அளிக்கவும்</string>
     <!-- App settings row that opens internal-only preferences -->
     <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <string name="AppSettingsScreen__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
     <!-- App settings row that opens notification settings -->
-    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <string name="AppSettingsScreen__notifications">அறிவிப்புகள்</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">Payments</string>
+    <string name="AppSettingsScreen__payments">பணம் செலுத்தல்</string>
     <!-- App settings row that opens story settings -->
-    <string name="AppSettingsScreen__stories">Stories</string>
+    <string name="AppSettingsScreen__stories">ஸ்டோரீஸ்</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">Backups</string>
+    <string name="AppSettingsScreen__backups">காப்புப் பிரதிகள்</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">வழிசெலுத்தல் பார் அளவு</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">சாதாரண அளவு</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">பொருந்திய அளவு</string>
 
     <!-- Content description for the back button on the chats settings screen -->
-    <string name="ChatsSettingsScreen__go_back">Go back</string>
+    <string name="ChatsSettingsScreen__go_back">திரும்பிச் செல்லுங்கள்</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
-    <string name="TwoFactorVerifyScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">இரு படிநிலை அங்கீகரிப்பு</string>
     <!-- Instructions shown above the list of two-factor methods the user can verify with -->
-    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Choose a method below to verify your account.</string>
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">அங்கீகரிப்புச் செயலியை அகற்ற முடியவில்லை.</string>
     <!-- Title of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
+    <string name="TwoFactorVerifyScreen__passkey">கடவுக்குறியீடு</string>
     <!-- Description of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">உங்கள் சாதனத்தின் பயோமெட்ரிக்ஸ் அல்லது FIDO2 கடவுக்குறியீட்டைப் பயன்படுத்த, தட்டவும்</string>
     <!-- Title of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__authenticator_app">Authenticator app</string>
+    <string name="TwoFactorVerifyScreen__authenticator_app">அங்கீகரிப்புச் செயலி</string>
     <!-- Description of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">உங்கள் அங்கீகரிப்புச் செயலியில் உருவாக்கப்பட்ட ஒருமுறைப் பயன்படுத்தும் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
-    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">தொடர, உங்கள் அங்கீகாரிப்புச் செயலியில் உள்ள 6 இலக்கக் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Button that leaves the verification flow without verifying anything -->
-    <string name="TwoFactorVerifyScreen__cancel">Cancel</string>
+    <string name="TwoFactorVerifyScreen__cancel">ரத்துசெய்</string>
     <!-- Error shown under the code field when the service rejected the code -->
-    <string name="TwoFactorVerifyScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TwoFactorVerifyScreen__incorrect_code">தவறான குறியீடு. உங்கள் அங்கீகரிப்புச் செயலியில் இப்போது காட்டப்படும் குறியீட்டை உள்ளிடவும்.</string>
     <!-- Error shown when the service could not be reached -->
-    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal-ஐத் தொடர்புகொள்ள முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
     <!-- Dialog shown when verifying with a passkey failed -->
-    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">உங்கள் கடவுக்குறியீட்டில் ஏதோ தவறு ஏற்பட்டுள்ளது. மீண்டும் முயலவும் அல்லது வேறொரு முறையைத் தேர்வுசெய்யவும்.</string>
 
     <!-- EditProfileNameScreen -->
     <!-- Title of the screen for editing your profile name -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_your_name">உங்கள் பெயர்</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_first_name">முதல் பெயர்</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_last_name_optional">குடும்பப் பெயர் (விரும்பினால்)</string>
     <!-- Button that saves your edited profile name -->
-    <string name="EditProfileNameScreen__save">Save</string>
+    <string name="EditProfileNameScreen__save">சேமி</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
-    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_about">பற்றி</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_speak_freely">சுதந்திரமாக பேசுவோம்</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_encrypted">மறைகுறியாக்கப்பட்ட</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_be_kind">கனிவான நபராக இருப்போம்</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_coffee_lover">காபி காதலன்</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_free_to_chat">சாட் செய்ய நேரம் இருக்கிறது</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_taking_a_break">ஓய்வெடுத்து கொண்டிருக்கிறேன்</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <string name="EditAboutFragment_working_on_something_new">ஒரு புதிய விஷயத்தில் ஈடுபட்டுள்ளேன்</string>
     <!-- Button that saves your edited about text -->
-    <string name="EditAboutScreen__save">Save</string>
+    <string name="EditAboutScreen__save">சேமி</string>
     <!-- Content description for the button that clears both the about text and its emoji -->
-    <string name="EditAboutScreen__clear">Clear</string>
+    <string name="EditAboutScreen__clear">அழி</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
-    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <string name="EditAboutScreen__choose_emoji">எமோஜியைத் தேர்ந்தெடு</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
+    <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர் பெயரைத் தேர்வு செய்யவும்</string>
     <!-- Title of the username screen, and the label of its field -->
-    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_username">பயனர் பெயர்</string>
     <!-- Button that deletes your username -->
-    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_delete">நீக்கு</string>
     <!-- Snackbar shown when a username change failed because of a network problem -->
-    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">பல முயற்சிகள் எடுக்கப்பட்டுவிட்டன, தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
-    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர் பெயர் எடுக்கப்பட்டது.</string>
     <!-- Shown when a username has characters that usernames can\'t have -->
-    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">பயனர் பெயர்களில் அ - ஃ, a–Z, 0–9 மற்றும் அடிக்கோடிட்டுக் காட்டலாம்.</string>
     <!-- Shown when a username starts with a digit -->
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர் பெயர் எண்ணுடன் தொடங்க முடியாது.</string>
     <!-- Shown when the service rejects a username -->
-    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_username_is_invalid">பயனர் பெயர் தவறானது.</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர் பெயர்கள் %1$d மற்றும் %2$d எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
-    <string name="UsernameEditScreen__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers. %1$s</string>
+    <string name="UsernameEditScreen__usernames_let_others_message">பயனர்கள், தொலைபேசி எண்ணிற்குப் பதிலாக உங்களின் விருப்பப் பயனர்பெயரைப் பயன்படுத்தி உங்களுக்குச் செய்தி அனுப்பலாம். பயனர் பெயர்கள் எப்போதும் எண்களின் தொகுப்புடன் இணைக்கப்படும். %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">இந்த பயனர் பெயர் கிடைக்கப்பெறவில்லை, வேறு எண்ணை முயலவும்.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">தவறான பயனர் பெயர், குறைந்தபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">தவறான பயனர் பெயர், அதிகபட்சம் %1$d இலக்கங்களை உள்ளிடவும்.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">இந்த எண் 00 ஆக இருக்கக் கூடாது. 1–9 க்கு இடையேயுள்ள ஒரு எண்ணை உள்ளிடவும்</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">2 இலக்கங்களுக்கு மேல் உள்ள எண்கள் 0 இல் தொடங்கக் கூடாது</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">உங்கள் பயனர் பெயரை மீட்டமைப்பது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">உங்கள் பயனர் பெயரை மாற்றுவது உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பை மீட்டமைக்கும். நீங்கள் உறுதியாக உள்ளீர்களா?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Continue</string>
+    <string name="UsernameEditFragment_continue">தொடர்க</string>
     <!-- Button that saves the username you typed -->
-    <string name="UsernameEditScreen__save">Save</string>
+    <string name="UsernameEditScreen__save">சேமி</string>
     <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
-    <string name="UsernameEditScreen__learn_more">Learn more</string>
+    <string name="UsernameEditScreen__learn_more">மேலும் அறிக</string>
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
 
     <!-- EditProfileScreen -->
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">உங்கள் ப்ரொஃபைல் மற்றும் அதில் செய்த மாற்றங்கள் நீங்கள் செய்தி அனுப்புபவர்களுக்கு, தொடர்புகளுக்கு மற்றும் குழுக்களுக்குத் தெரிய வரும்.</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal லைப் புதுப்பிக்கவும்</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">சிக்னலின் இந்தப் பதிப்பு காலாவதியானது. தொடர்ந்து Signalஐப் பயன்படுத்த, இப்போதே புதுப்பிக்கவும்.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">புதுப்பிக்கப்பட்டது</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">டிவைஸ் பதிவு செய்யப்படவில்லை</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது. உங்கள் கணக்கில் மாற்றங்களைச் செய்ய மீண்டும் பதிவு செய்யவும்.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">மறு பதிவு</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">பயனர் பெயரை நீக்க முடியவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">பயனர் பெயரை நீக்க வேண்டுமா?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"இது உங்கள் பயனர் பெயரை அகற்றி, உங்கள் QR குறியீடு மற்றும் இணைப்பை முடக்கும். %1$s மற்றவர்கள் கிளைம் செய்வதற்குக் கிடைக்கப்பெறும். உறுதியாக உள்ளீர்களா?"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">உங்கள் பயனர் பெயரைப் பகிரவும்</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">உங்களின் தனிப்பட்ட QR குறியீடு அல்லது இணைப்பை பகிர்வதன் மூலம் மற்றவர்கள் உங்களுடன் சாட் செய்யத் தொடங்க அனுமதிக்கவும்.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
+    <string name="ManageProfileFragment__username_created">பயனர் பெயர் உருவாக்கப்பட்டது</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">பயனர் பெயர் நீக்கப்பட்டது</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">பயனர்கள் தொலைபேசி எண்ணிற்குப் பதிலாக உங்களின் விருப்பப் பயனர்பெயரைப் பயன்படுத்தி உங்களுக்குச் செய்தி அனுப்பலாம். பயனர்பெயர்களில் தனித்துவமான QR குறியீடும் நண்பர்களுடன் நீங்கள் பகிரக்கூடிய இணைப்பும் இருக்கும்.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">உங்கள் பயனர் பெயர், QR குறியீடு மற்றும் இணைப்பு ஆகியவை உங்கள் ப்ரொஃபைலில் தெரியாது. உங்களுக்கு நம்பிக்கையானர்வர்களுடன் மட்டும் உங்கள் பயனர் பெயரைப் பகிரவும்.</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_about">பற்றி</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR குறியீடு அல்லது இணைப்பு</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_profile_name">ப்ரொஃபைல் பெயர்</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
-    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_username">பயனர் பெயர்</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">பயனர் பெயரை திருத்தவும்</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">பயனர் பெயரை அழிக்கவும்</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">Profile</string>
+    <string name="EditProfileScreen__profile">விவரம்</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
-    <string name="EditProfileScreen__set_avatar">Set avatar</string>
+    <string name="EditProfileScreen__set_avatar">சின்னம் அமைக்கவும்</string>
     <!-- Row on the profile screen that opens your badges -->
-    <string name="EditProfileScreen__badges">Badges</string>
+    <string name="EditProfileScreen__badges">பேட்ஜ்கள்</string>
     <!-- Button in the dialog confirming that you want your username deleted -->
-    <string name="EditProfileScreen__delete">Delete</string>
+    <string name="EditProfileScreen__delete">நீக்கு</string>
     <!-- Content description for the button that closes the tip about your username link -->
-    <string name="EditProfileScreen__close_tip">Close</string>
+    <string name="EditProfileScreen__close_tip">நெருக்கமான</string>
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signalஐ ஆதரித்து உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள்.</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">சிக்னல் என்பது உங்களைப் போன்றவர்களால் மட்டுமே ஆதரிக்கப்படும், விளம்பரதாரர்கள் அல்லது முதலீட்டாளர்கள் இல்லாத ஒரு இலாப நோக்கமற்ற நிறுவனமாகும்.</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+    <string name="EditProfileScreen__become_a_sustainer">ஒரு காப்பாளராக மாறவும்</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
-    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <string name="BadgesOverviewScreen__badges">பேட்ஜ்கள்</string>
     <!-- Section header above the grid of badges you\'ve unlocked -->
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__my_badges">எனது பேட்ஜ்கள்</string>
     <!-- Toggle for whether your badges are shown on your profile -->
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">சுயவிவரத்தில் பேட்ஜ்களை வெளியிடலாம்</string>
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
-    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewScreen__featured_badge">சிறப்பு பேட்ஜ்</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
-    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <string name="SelectFeaturedBadgeScreen__featured_badge">சிறப்பு பேட்ஜ்</string>
     <!-- Section header above the grid of badges you can choose to feature on your profile -->
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">பேட்ஜைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
-    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <string name="SelectFeaturedBadgeScreen__save">சேமி</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">சுயவிவரத்தைப் புதுப்பிக்க இயலவில்லை</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">இந்த இணைப்பைக் கொண்டுள்ள எவரும் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்யத் தொடங்கலாம். நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும்.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">இணைப்பை நகலெடுக்கவும்</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">பகிர்</string>
 
     <!-- UsernameLinkSettingsScreen -->
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">குறியீடு</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">ஸ்கேன்</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">இணைப்பு நகலெடுக்கப்பட்டது</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">பயனர் பெயர் நகலெடுக்கப்பட்டது</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR குறியீட்டை மீட்டமைக்க வேண்டுமா?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">உங்கள் QR குறியீட்டை மீட்டமைத்தால், உங்கள் தற்போதைய QR குறியீடு மற்றும் இணைப்பு இனி ஒருபோதும் வேலை செய்யாது.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">மீட்டமை</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">உங்களிடம் நெட்வர்க் அணுகல் இல்லை. உங்கள் இணைப்பு மீட்டமைக்கப்படவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது நெட்வர்க் பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">உங்கள் இணைப்பை மீட்டமைக்க முயலும்போது எதிர்பாராத பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">உங்கள் QR குறியீடு மற்றும் இணைப்பு மீட்டமைக்கப்பட்டு புதிய QR குறியீடு மற்றும் இணைப்பு உருவாக்கப்பட்டுள்ளது.</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">உங்கள் QR குறியீடு மற்றும் இணைப்பை நீங்கள் நம்பும் நபர்களுடன் மட்டும் பகிரவும். பகிரப்படும் போது மற்றவர்கள் உங்கள் பயனர் பெயரைப் பார்த்து உங்களுடன் சாட் செய்ய முடியும்.</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">மீட்டமைக்க</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">இணைப்பு</string>
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">பகிர்</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">நிறம்</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR குறியீடு தவறானது.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">நெட்வொர்க் பிழை ஏற்பட்டது. மீண்டும் முயலவும்.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR குறியீடு கிடைக்கவில்லை</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">சிக்னல் QR குறியீடு உள்ள மற்றொரு படத்தை ஸ்கேன் செய்ய முயற்சிக்கவும்.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">%1$s என்ற பயனர் பெயரைக் கொண்ட ஒரு பயனரைக் கண்டறிய முடியவில்லை.</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">உங்கள் தொடர்பு டிவைஸில் QR குறியீட்டை ஸ்கேன் செய்யுங்கள்.</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
-    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">இந்த பயனரைக் கண்டறிய முடியவில்லை.</string>
     <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
-    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR குறியீட்டை ஸ்கேன் செய்ய, கேமராவை அணுக சிக்னலை அனுமதிக்கவும்.</string>
     <!-- Button on the scan tab that asks for the camera permission -->
-    <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
+    <string name="UsernameLinkSettingsScreen__allow_access">அணுகலை அனுமதிக்கவும்</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
-    <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR குறியீடுகளை ஸ்கேன் செய்ய சிக்னலுக்கு கேமரா அணுகல் தேவை</string>
 </resources>

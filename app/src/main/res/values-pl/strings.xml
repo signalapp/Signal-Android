@@ -6606,7 +6606,7 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Wybierz odbiorcę</string>
     <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
-    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
+    <string name="GiftFlowRecipientSelectionFragment__search">Wyszukaj</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Potwierdź darowiznę</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -7500,9 +7500,9 @@
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
     <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
-    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <string name="TwoFactorReminderMegaphone__verify">Zweryfikuj</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
-    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <string name="TwoFactorReminderMegaphone__not_now">Nie teraz</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
     <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
@@ -7513,9 +7513,9 @@
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
     <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
-    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <string name="SignalLoginReminderMegaphone__verify">Zweryfikuj</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
-    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <string name="SignalLoginReminderMegaphone__not_now">Nie teraz</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
     <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 

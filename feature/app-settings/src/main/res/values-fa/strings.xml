@@ -594,384 +594,384 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">پروفایل شما مطابق با برنامهٔ زمانی شما به صورت خودکار روشن و خاموش خواهد شد.</string>
 
     <!-- PrivacySettingsScreen -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
-    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز گذرواژه‌ای تنظیم نکرده‌اید!</string>
+    <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">غیرفعال کردن گذرواژه؟</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
+    <string name="PrivacySettingsFragment__app_security">امنیت برنامه</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
-    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">مسدود کردن عکس از صفحه در فهرست موارد اخیر و در برنامه</string>
+    <string name="PrivacySettingsFragment__blocked">مسدودشده</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">برای استفاده از قفل پرداخت، باید ابتدا قفل صفحه یا شناسه اثرانگشت را در تنظیمات تلفن خود فعال کنید.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">فعال کردن قفل پرداخت امکان‌پذیر نیست</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact or group</item>
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="one">%1$d مخاطب یا گروه</item>
+        <item quantity="other">%1$d مخاطب یا گروه</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Failed to navigate to system settings</string>
-    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">پیمایش به تنظیمات سیستم انجام نشد</string>
+    <string name="PrivacySettingsFragment__messaging">‌پیام‌رسانی</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">برای انتقال پول، قفل صفحه اندروید یا اثر انگشت را الزامی کنید</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور همیشگی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <string name="ScreenLockSettingsFragment__off">خاموش</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال بعد از یک بازهٔ زمانی تعیین شدهٔ عدم فعالیت</string>
+    <string name="preferences__change_passphrase">تغییر گذرواژه</string>
+    <string name="preferences__change_your_passphrase">گذرواژهٔ خود را تغییر دهید</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
+    <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
-    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__inactivity_timeout_passphrase">گذرواژهٔ پایان مهلت عدم فعالیت</string>
+    <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه و اعلان‌ها را با یک گذرواژه قفل کنید</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
-    <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
-    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__payment_lock">قفل پرداخت</string>
+    <string name="preferences__read_receipts">رسیدهای خوانده شدن</string>
+    <string name="preferences__request_keyboard_to_disable">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده.</string>
+    <string name="preferences__screen_security">امنیت صفحه‌نمایش</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">اعمال این تنظیم ضمانت شده نیست و ممکن است صفحه‌کلید شما آن را نادیده بگیرد.</string>
+    <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">انتخاب کنید که چه‌کسی بتواند شماره تلفن شما را ببیند و از طریق شماره تلفن‌تان در سیگنال با شما تماس بگیرد.</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Payments</string>
+    <string name="preferences_app_protection__payments">پرداخت‌ها</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">برای استفاده از قفل صفحه، یک پین، الگو یا رمز عبور را در این دستگاه تنظیم کنید.</string>
     <!-- Title of the privacy settings screen -->
-    <string name="PrivacySettingsScreen__privacy">Privacy</string>
+    <string name="PrivacySettingsScreen__privacy">حریم خصوصی</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">پیام‌های ناپدید شونده</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
-    <string name="PrivacySettingsScreen__advanced">Advanced</string>
+    <string name="PrivacySettingsScreen__advanced">پیشرفته</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
-    <string name="PrivacySettingsScreen__turn_on">Turn On</string>
+    <string name="PrivacySettingsScreen__turn_on">فعال کردن</string>
     <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
-    <string name="PrivacySettingsScreen__not_now">Not Now</string>
+    <string name="PrivacySettingsScreen__not_now">حالا نه</string>
     <!-- Title of the authentication prompt shown when turning off payment lock -->
-    <string name="PrivacySettingsScreen__signal">Signal</string>
+    <string name="PrivacySettingsScreen__signal">سیگنال</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
-    <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <string name="PrivacySettingsScreen__learn_more">اطلاعات بیشتر</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">فضای ذخیره‌سازی نسخه پشتیبان به انتها رسید</string>
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">شناسه اشتراک پشتیبان در کلیپ‌بورد کپی شد</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">شناسه اشتراک اهداکننده در کلیپ‌بورد کپی شد</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">پشتیبان‌گیری انجام نشد</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <string name="AppSettingsFragment__invite_your_friends">دوستان خود را دعوت کنید</string>
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">اشتراک پشتیبان‌های امن سیگنال خود را تمدید کنید</string>
     <!-- App settings row that opens privacy settings -->
-    <string name="preferences__privacy">Privacy</string>
+    <string name="preferences__privacy">حریم خصوصی</string>
     <!-- Title of the top level app settings screen -->
-    <string name="AppSettingsScreen__settings">Settings</string>
+    <string name="AppSettingsScreen__settings">تنظیمات</string>
     <!-- Content description for the back button on the top level app settings screen -->
-    <string name="AppSettingsScreen__go_back">Go back</string>
+    <string name="AppSettingsScreen__go_back">رفتن به عقب</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">اشتراک نسخه‌های پشتیبان شما آزادسازی نشد</string>
     <!-- App settings row that opens donations -->
-    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <string name="AppSettingsScreen__donate_to_signal">اهدای کمک مالی به سیگنال</string>
     <!-- App settings row that opens internal-only preferences -->
     <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <string name="AppSettingsScreen__linked_devices">دستگاه‌های پیوند داده شده</string>
     <!-- App settings row that opens notification settings -->
-    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <string name="AppSettingsScreen__notifications">اعلان‌ها</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">Payments</string>
+    <string name="AppSettingsScreen__payments">پرداخت‌ها</string>
     <!-- App settings row that opens story settings -->
-    <string name="AppSettingsScreen__stories">Stories</string>
+    <string name="AppSettingsScreen__stories">استوری‌ها</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">Backups</string>
+    <string name="AppSettingsScreen__backups">نسخه‌های پشتیبان</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">اندازه نوار پیمایش</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">عادی</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">فشرده</string>
 
     <!-- Content description for the back button on the chats settings screen -->
-    <string name="ChatsSettingsScreen__go_back">Go back</string>
+    <string name="ChatsSettingsScreen__go_back">رفتن به عقب</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
-    <string name="TwoFactorVerifyScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">احراز هویت دومرحله‌ای</string>
     <!-- Instructions shown above the list of two-factor methods the user can verify with -->
-    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Choose a method below to verify your account.</string>
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">برای تأیید حساب خود، یکی از روش‌های زیر را انتخاب کنید.</string>
     <!-- Title of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
+    <string name="TwoFactorVerifyScreen__passkey">کلید عبور</string>
     <!-- Description of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">برای استفاده از اطلاعات بیومتریک دستگاه یا کلید عبور FIDO2، ضربه بزنید</string>
     <!-- Title of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__authenticator_app">Authenticator app</string>
+    <string name="TwoFactorVerifyScreen__authenticator_app">برنامه احراز هویت</string>
     <!-- Description of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">کد یکبارمصرفی را که توسط برنامه احراز هویت شما تولید شده است وارد کنید.</string>
     <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
-    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">برای ادامه، کد ۶ رقمی را از برنامه احراز هویت خود وارد کنید.</string>
     <!-- Button that leaves the verification flow without verifying anything -->
-    <string name="TwoFactorVerifyScreen__cancel">Cancel</string>
+    <string name="TwoFactorVerifyScreen__cancel">لغو</string>
     <!-- Error shown under the code field when the service rejected the code -->
-    <string name="TwoFactorVerifyScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TwoFactorVerifyScreen__incorrect_code">کد نادرست است. اکنون کد نمایش‌داده‌شده در برنامه احراز هویت خود را وارد کنید.</string>
     <!-- Error shown when the service could not be reached -->
-    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">اتصال به سیگنال برقرار نشد. اتصال خود را بررسی و دوباره تلاش کنید.</string>
     <!-- Dialog shown when verifying with a passkey failed -->
-    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">مشکلی در خصوص کلید عبور شما پیش آمد. لطفاً دوباره امتحان کنید یا روش دیگری را انتخاب کنید.</string>
 
     <!-- EditProfileNameScreen -->
     <!-- Title of the screen for editing your profile name -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_your_name">نام شما</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_first_name">نام کوچک</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_last_name_optional">نام خانوادگی (اختیاری)</string>
     <!-- Button that saves your edited profile name -->
-    <string name="EditProfileNameScreen__save">Save</string>
+    <string name="EditProfileNameScreen__save">ذخیره</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">ذخیره‌سازی به علت مشکلات شبکه موفق نبود. بعداً تلاش کنید.</string>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
-    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_about">درباره</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_speak_freely">آزادانه صحبت کنید</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_encrypted">رمزگذاری شده</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_be_kind">مهربان باش</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_coffee_lover">عاشق قهوه</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_free_to_chat">آمادهٔ گفتگو</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_taking_a_break">در حال استراحت</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <string name="EditAboutFragment_working_on_something_new">در حال کار روی یک چیز جدید</string>
     <!-- Button that saves your edited about text -->
-    <string name="EditAboutScreen__save">Save</string>
+    <string name="EditAboutScreen__save">ذخیره</string>
     <!-- Content description for the button that clears both the about text and its emoji -->
-    <string name="EditAboutScreen__clear">Clear</string>
+    <string name="EditAboutScreen__clear">پاک کردن</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
-    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <string name="EditAboutScreen__choose_emoji">انتخاب ایموجی</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">ذخیره‌سازی به علت مشکلات شبکه موفق نبود. بعداً تلاش کنید.</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
+    <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
     <!-- Title of the username screen, and the label of its field -->
-    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_username">نام کاربری</string>
     <!-- Button that deletes your username -->
-    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_delete">پاک کردن</string>
     <!-- Snackbar shown when a username change failed because of a network problem -->
-    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">تعداد تلاش‌های ناموفق بیش از حد مجاز بود؛ لطفاً بعداً دوباره امتحان کنید.</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
-    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
     <!-- Shown when a username has characters that usernames can\'t have -->
-    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند حاوی حروف A تا Z، اعداد ۰ تا ۹ و _ باشند.</string>
     <!-- Shown when a username starts with a digit -->
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
     <!-- Shown when the service rejects a username -->
-    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
-    <string name="UsernameEditScreen__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers. %1$s</string>
+    <string name="UsernameEditScreen__usernames_let_others_message">افراد می‌توانند به‌جای شماره تلفن، با استفاده از نام‌های کاربری اختیاری‌تان به شما پیام دهند. نام‌های کاربری همیشه با مجموعه‌ای از اعداد همراه هستند. %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">این نام کاربری دردسترس نیست، شمارۀ دیگری را امتحان کنید.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">نام کاربری نامعتبر است، حداقل %1$d رقم وارد کنید.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">نام کاربری نامعتبر است، حداکثر %1$d رقم وارد کنید.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">این عدد نمی‌تواند ۰۰ باشد. رقمی بین ۱ تا ۹ انتخاب کنید</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">اعداد دارای بیش از ۲ رقم نمی‌توانند با ۰ شروع شوند</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">بازیابی نام کاربری‌تان موجب بازنشانی پیوند و کد QR فعلی شما می‌شود. مطمئن هستید؟</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">تغییر نام کاربری‌تان موجب بازنشانی کد و پیوند QR فعلی شما می‌شود. مطمئن هستید؟</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Continue</string>
+    <string name="UsernameEditFragment_continue">ادامه</string>
     <!-- Button that saves the username you typed -->
-    <string name="UsernameEditScreen__save">Save</string>
+    <string name="UsernameEditScreen__save">ذخیره</string>
     <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
-    <string name="UsernameEditScreen__learn_more">Learn more</string>
+    <string name="UsernameEditScreen__learn_more">اطلاعات بیشتر</string>
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
 
     <!-- EditProfileScreen -->
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما و تغییرات آن برای افراد، مخاطبان و گروه‌هایی که به آن‌ها پیام می‌فرستید قابل مشاهده خواهد بود.</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">به‌روزرسانی سیگنال</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">این نسخه سیگنال منقضی شده است. برای ادامه استفاده از سیگنال، همین حالا به‌روزرسانی کنید.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">به‌روزرسانی</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">دستگاه ثبت نشده است</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">این دستگاه دیگر ثبت‌شده نیست. برای ایجاد تغییرات در حسابتان، دوباره آن را ثبت کنید.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ثبت نام دوباره</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ذخیره‌سازی به علت مشکلات شبکه موفق نبود. بعداً تلاش کنید.</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">پاک کردن نام کاربری انجام نشد. بعداً دوباره امتحان کنید.</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">نام کاربری پاک شود؟</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"این کار موجب پاک شدن نام کاربری و غیرفعال شدن کد و پیوند QR شما می‌شود. ‏«%1$s» در دسترس دیگران قرار خواهد گرفت و می‌توانند آن را تصاحب کنند. مطمئن هستید؟"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <string name="ManageProfileFragment__edit_photo">ویرایش عکس</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">هم‌رسانی نام کاربری‌تان</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">با هم‌رسانی پیوند یا کد QR منحصربه‌فرد خود، اجازه دهید دیگران گفتگویی را با شما شروع کنند.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
+    <string name="ManageProfileFragment__username_created">نام کاربری ایجاد شد</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">نام کاربری پاک شد</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">افراد می‌توانند به‌جای شماره تلفن، با استفاده از یک نام کاربری اختیاری به شما پیام دهند. نام‌های کاربری دارای کد QR و لینک منحصر‌به‌فردی هستند که می‌توانید آن‌ها را با دوستان خود به اشتراک بگذارید.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">نام کاربری، کد QR و پیوند شما در نمایۀ شما قابل مشاهده نیست. نام کاربری خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید.</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_about">درباره</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم آواتار ناموفق بود</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">پیوند یا کد QR</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_profile_name">نام نمایه</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
-    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_username">نام کاربری</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">ویرایش نام کاربری</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">پاک کردن نام کاربری</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">Profile</string>
+    <string name="EditProfileScreen__profile">پروفایل</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
-    <string name="EditProfileScreen__set_avatar">Set avatar</string>
+    <string name="EditProfileScreen__set_avatar">تنظیم آواتار</string>
     <!-- Row on the profile screen that opens your badges -->
-    <string name="EditProfileScreen__badges">Badges</string>
+    <string name="EditProfileScreen__badges">نشان‌ها</string>
     <!-- Button in the dialog confirming that you want your username deleted -->
-    <string name="EditProfileScreen__delete">Delete</string>
+    <string name="EditProfileScreen__delete">پاک کردن</string>
     <!-- Content description for the button that closes the tip about your username link -->
-    <string name="EditProfileScreen__close_tip">Close</string>
+    <string name="EditProfileScreen__close_tip">بستن</string>
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">با حمایت از سیگنال، نشان‌هایی برای نمایه‌تان دریافت کنید.</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است که از سوی افرادی مانند شما حمایت می‌شود.</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+    <string name="EditProfileScreen__become_a_sustainer">به یک حامی تبدیل شوید</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
-    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <string name="BadgesOverviewScreen__badges">نشان‌ها</string>
     <!-- Section header above the grid of badges you\'ve unlocked -->
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
     <!-- Toggle for whether your badges are shown on your profile -->
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">نمایش نشان‌ها روی نمایه</string>
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
-    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewScreen__featured_badge">نشان ویژه</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
-    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <string name="SelectFeaturedBadgeScreen__featured_badge">نشان ویژه</string>
     <!-- Section header above the grid of badges you can choose to feature on your profile -->
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">انتخاب یک نشان</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
-    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <string name="SelectFeaturedBadgeScreen__save">ذخیره</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">هر کسی که این لینک را داشته باشند می‌تواند نام کاربری شما را مشاهده کند و گفتگویی را با شما آغاز کند. آن را فقط با کسانی به اشتراک بگذارید که به آن‌ها اعتماد دارید.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">کپی کردن پیوند</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">اشتراک‌گذاری</string>
 
     <!-- UsernameLinkSettingsScreen -->
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">کد</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">اسکن</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">پیوند کپی شد</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">نام کاربری کپی شد</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">کد QR بازنشانی شود؟</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">اگر کد QR خود را بازنشانی کنید، کد و پیوند QR فعلی‌تان دیگر کار نخواهد کرد.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">بازنشانی</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">به شبکه دسترسی ندارید. پیوند شما بازنشانی نشد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">هنگام بازنشانی پیوند شما یک خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">هنگام بازنشانی پیوند شما، خطای غیرمنتظره‌ای رخ داد. بعداً دوباره امتحان کنید.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">پیوند و کد QR شما بازنشانی شده و پیوند و کد QR جدیدتان ایجاد شده است.</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">کد QR و پیوند خود را فقط با افراد مورد اعتمادتان به اشتراک بگذارید. با اشتراک‌گذاری آن‌ها، دیگران می‌توانند نام کاربری‌تان را ببینند و گفتگویی را با شما شروع کنند.</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">بازنشانی</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">پیوند</string>
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">اشتراک‌گذاری</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">رنگ</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">کد QR نامعتبر بود.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">یک خطای شبکه رخ داد. لطفاً دوباره امتحان کنید.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">کد QR پیدا نشد</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">تصویر دیگری حاوی یک کد QR سیگنال را اسکن کنید.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">کاربری با نام کاربری %1$s پیدا نشد.</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">کد QR را از دستگاه مخاطب خود اسکن کنید.</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
-    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">این کاربر پیدا نشد.</string>
     <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
-    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">برای اسکن کد QR، به سیگنال اجازه دهید به دوربین دسترسی داشته باشد.</string>
     <!-- Button on the scan tab that asks for the camera permission -->
-    <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
+    <string name="UsernameLinkSettingsScreen__allow_access">اجازۀ دسترسی بدهید</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
-    <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
+    <string name="UsernameLinkSettingsScreen__camera_needed">سیگنال برای اسکن کردن کدهای QR نیاز به دسترسی به دوربین دارد</string>
 </resources>

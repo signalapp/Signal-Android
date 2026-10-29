@@ -594,384 +594,384 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Din profil slås på och av automatiskt enligt ditt schema.</string>
 
     <!-- PrivacySettingsScreen -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
-    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har inte angivit ett lösenord än!</string>
+    <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Inaktivera lösenord?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Detta låser upp Signal och meddelandeaviseringar permanent.</string>
+    <string name="PrivacySettingsFragment__app_security">Appsäkerhet</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
-    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blockera skärmdumpar i senaste-listan och appen</string>
+    <string name="PrivacySettingsFragment__blocked">Blockerade</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">För att använda betalningssäkerhet måste du först aktivera ett skärmlås eller fingeravtryck i din telefons inställningar.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">Det går inte att aktivera betalningssäkerhet</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="one">%1$d contact or group</item>
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="one">%1$d kontakt eller grupp</item>
+        <item quantity="other">%1$d kontakter eller grupper</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidsgräns för nya chattar</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Failed to navigate to system settings</string>
-    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Det gick inte att navigera till systeminställningarna</string>
+    <string name="PrivacySettingsFragment__messaging">Meddelanden</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Kräv Andriod-skärmlås eller fingeravtryck för överföringar</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidsgräns för försvinnande meddelanden för alla nya chattar som du startar.</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meddelanden och -samtal, vidarebefordra samtal och dold avsändare</string>
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <string name="ScreenLockSettingsFragment__off">Av</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatiskt efter en viss tid av inaktivitet.</string>
+    <string name="preferences__change_passphrase">Ändra lösenord</string>
+    <string name="preferences__change_your_passphrase">Ändra ditt lösenord</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__enable_passphrase">Aktivera låsskärmens lösenord</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvitton är inaktiverade kommer du inte att kunna se läskvitton från andra.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Om skrivindikatorer är inaktiverade kommer du inte att kunna se skrivindikatorer från andra.</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
+    <string name="preferences__inactivity_timeout_interval">Tidsintervall för inaktivitet</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
-    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__inactivity_timeout_passphrase">Inaktivitetsperiod för lösenord</string>
+    <string name="preferences__incognito_keyboard">Inkognito-tangentbord</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skärm och aviseringar med ett lösenord</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
-    <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
-    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__payment_lock">Betalningssäkerhet</string>
+    <string name="preferences__read_receipts">Läskvitton</string>
+    <string name="preferences__request_keyboard_to_disable">Begär att tangentbordet inaktiverar personlig inlärning.</string>
+    <string name="preferences__screen_security">Skärmsäkerhet</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">Denna inställning är ingen garanti och ditt tangentbord kanske ignorerar det.</string>
+    <string name="preferences__typing_indicators">Skrivindikatorer</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">Välj vem som kan se ditt telefonnummer och vem som kan använda det för att kontakta dig på Signal.</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Payments</string>
+    <string name="preferences_app_protection__payments">Betalningar</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">Om du vill använda skärmlåset anger du en pinkod, ett mönster eller ett lösenord på den här enheten.</string>
     <!-- Title of the privacy settings screen -->
-    <string name="PrivacySettingsScreen__privacy">Privacy</string>
+    <string name="PrivacySettingsScreen__privacy">Integritet</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">Försvinnande meddelanden</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
-    <string name="PrivacySettingsScreen__advanced">Advanced</string>
+    <string name="PrivacySettingsScreen__advanced">Avancerat</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
-    <string name="PrivacySettingsScreen__turn_on">Turn On</string>
+    <string name="PrivacySettingsScreen__turn_on">Slå på</string>
     <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
-    <string name="PrivacySettingsScreen__not_now">Not Now</string>
+    <string name="PrivacySettingsScreen__not_now">Inte nu</string>
     <!-- Title of the authentication prompt shown when turning off payment lock -->
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
-    <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <string name="PrivacySettingsScreen__learn_more">Läs mer</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Lagringsgränsen för säkerhetskopiering har nåtts</string>
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Kopierade prenumerant-id för säkerhetskopior till urklipp</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Kopierade prenumerant-id för donator till urklipp</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">Det gick inte slutföra säkerhetskopieringen</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <string name="AppSettingsFragment__invite_your_friends">Bjud in dina vänner</string>
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Förnya din prenumeration på Säkerhetskopiering av Signal</string>
     <!-- App settings row that opens privacy settings -->
-    <string name="preferences__privacy">Privacy</string>
+    <string name="preferences__privacy">Integritet</string>
     <!-- Title of the top level app settings screen -->
-    <string name="AppSettingsScreen__settings">Settings</string>
+    <string name="AppSettingsScreen__settings">Inställningar</string>
     <!-- Content description for the back button on the top level app settings screen -->
-    <string name="AppSettingsScreen__go_back">Go back</string>
+    <string name="AppSettingsScreen__go_back">Gå tillbaka</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Det går inte att hämta ditt abonnemang för säkerhetskopiering</string>
     <!-- App settings row that opens donations -->
-    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <string name="AppSettingsScreen__donate_to_signal">Donera till Signal</string>
     <!-- App settings row that opens internal-only preferences -->
     <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <string name="AppSettingsScreen__linked_devices">Länkade enheter</string>
     <!-- App settings row that opens notification settings -->
-    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <string name="AppSettingsScreen__notifications">Aviseringar</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">Payments</string>
+    <string name="AppSettingsScreen__payments">Betalningar</string>
     <!-- App settings row that opens story settings -->
     <string name="AppSettingsScreen__stories">Stories</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">Backups</string>
+    <string name="AppSettingsScreen__backups">Säkerhetskopior</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Storlek på navigeringsfältet</string>
     <!-- Toggle button label for normal size -->
     <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">Kompakt</string>
 
     <!-- Content description for the back button on the chats settings screen -->
-    <string name="ChatsSettingsScreen__go_back">Go back</string>
+    <string name="ChatsSettingsScreen__go_back">Gå tillbaka</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
-    <string name="TwoFactorVerifyScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">Tvåfaktorsautentisering</string>
     <!-- Instructions shown above the list of two-factor methods the user can verify with -->
-    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Choose a method below to verify your account.</string>
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Välj en metod nedan för att verifiera ditt konto.</string>
     <!-- Title of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
+    <string name="TwoFactorVerifyScreen__passkey">Inloggningsnyckel</string>
     <!-- Description of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tryck för att använda enhetens biometri eller FIDO2-inloggningsnyckel</string>
     <!-- Title of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__authenticator_app">Authenticator app</string>
+    <string name="TwoFactorVerifyScreen__authenticator_app">Autentiseringsapp</string>
     <!-- Description of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Ange en engångskod som genereras av din autentiseringsapp.</string>
     <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
-    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">För att fortsätta anger du den 6-siffriga koden från din autentiseringsapp.</string>
     <!-- Button that leaves the verification flow without verifying anything -->
-    <string name="TwoFactorVerifyScreen__cancel">Cancel</string>
+    <string name="TwoFactorVerifyScreen__cancel">Avbryt</string>
     <!-- Error shown under the code field when the service rejected the code -->
-    <string name="TwoFactorVerifyScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TwoFactorVerifyScreen__incorrect_code">Felaktig kod. Ange koden som visas i din autentiseringsapp just nu.</string>
     <!-- Error shown when the service could not be reached -->
-    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Det gick inte att nå Signal. Kontrollera din anslutning och försök igen.</string>
     <!-- Dialog shown when verifying with a passkey failed -->
-    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Något gick fel med din inloggningsnyckel. Försök igen eller välj en annan metod.</string>
 
     <!-- EditProfileNameScreen -->
     <!-- Title of the screen for editing your profile name -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_your_name">Ditt namn</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_first_name">Förnamn</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_last_name_optional">Efternamn (valfritt)</string>
     <!-- Button that saves your edited profile name -->
-    <string name="EditProfileNameScreen__save">Save</string>
+    <string name="EditProfileNameScreen__save">Spara</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Det gick inte att spara på grund av nätverksproblem. Försök igen senare.</string>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
-    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_about">Om</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_speak_freely">Tala fritt</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_encrypted">Krypterad</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_be_kind">Var snäll</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_coffee_lover">Kaffeälskare</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_free_to_chat">Tillgänglig för att chatta</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_taking_a_break">Tar en rast</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <string name="EditAboutFragment_working_on_something_new">Arbetar på något nytt</string>
     <!-- Button that saves your edited about text -->
-    <string name="EditAboutScreen__save">Save</string>
+    <string name="EditAboutScreen__save">Spara</string>
     <!-- Content description for the button that clears both the about text and its emoji -->
-    <string name="EditAboutScreen__clear">Clear</string>
+    <string name="EditAboutScreen__clear">Rensa</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
-    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <string name="EditAboutScreen__choose_emoji">Välj emoji</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Det gick inte att spara på grund av nätverksproblem. Försök igen senare.</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
+    <string name="UsernameEditFragment__choose_your_username">Välj ditt användarnamn</string>
     <!-- Title of the username screen, and the label of its field -->
-    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_username">Användarnamn</string>
     <!-- Button that deletes your username -->
-    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_delete">Ta bort</string>
     <!-- Snackbar shown when a username change failed because of a network problem -->
-    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">För många försök har gjorts. Försök igen senare.</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
-    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">Detta användarnamn är taget.</string>
     <!-- Shown when a username has characters that usernames can\'t have -->
-    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Användarnamn kan bara innehålla a–Z, 0–9 och understreck.</string>
     <!-- Shown when a username starts with a digit -->
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med en siffra.</string>
     <!-- Shown when the service rejects a username -->
-    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
-    <string name="UsernameEditScreen__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers. %1$s</string>
+    <string name="UsernameEditScreen__usernames_let_others_message">Andra kan skicka meddelanden till dig med ditt valfria användarnamn i stället för ett telefonnummer. Användarnamn är alltid kopplade till en uppsättning siffror. %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Det här användarnamnet är inte tillgängligt. Prova ett annat nummer.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Ogiltigt användarnamn. Ange minst %1$d siffror.</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Ogiltigt användarnamn. Ange högst %1$d siffror.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">Det här numret kan inte vara 00. Ange en siffra mellan 1–9</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">Nummer med fler än 2 siffror kan inte börja med 0</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">Om du återställer ditt användarnamn återställs din befintliga QR-kod och länk. Är du säker?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">Om du ändrar ditt användarnamn återställs din befintliga QR-kod och länk. Är du säker?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Continue</string>
+    <string name="UsernameEditFragment_continue">Fortsätt</string>
     <!-- Button that saves the username you typed -->
-    <string name="UsernameEditScreen__save">Save</string>
+    <string name="UsernameEditScreen__save">Spara</string>
     <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
-    <string name="UsernameEditScreen__learn_more">Learn more</string>
+    <string name="UsernameEditScreen__learn_more">Läs mer</string>
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
 
     <!-- EditProfileScreen -->
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil och ändringar till den kommer att vara synliga för personer som du skickar ett meddelande till, samt till dina kontakter och grupper.</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">Uppdatera Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">Denna version av Signal har upphört att gälla. Uppdatera nu för att fortsätta använda Signal.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">Uppdatera</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">Enheten är inte registrerad</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">Den här enheten är inte längre registrerad. Registrera på nytt för att göra ändringar i ditt konto.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Registrera igen</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Det gick inte att spara på grund av nätverksproblem. Försök igen senare.</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">Det gick inte att ta bort användarnamn. Försök igen senare.</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">Ta bort användarnamn?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Detta tar bort ditt användarnamn och inaktiverar din QR-kod och länk. %1$s kommer att kunna väljas av andra. Är du säker?"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <string name="ManageProfileFragment__edit_photo">Ändra foto</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">Dela ditt användarnamn</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">Låt andra starta en chatt med dig genom att dela din unika QR-kod eller länk.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
+    <string name="ManageProfileFragment__username_created">Användarnamn skapat</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">Användarnamn raderat</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">Andra kan skicka meddelanden till dig med ett valfritt användarnamn i stället för ett telefonnummer. Användarnamn har en unik QR-kod och länk som du kan dela med vänner.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">Ditt användarnamn, QR-kod och länk syns inte på din profil. Dela bara ditt användarnamn med personer du litar på.</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_about">Om</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">Det gick inte att ställa in avataren</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR-kod eller länk</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_profile_name">Profilnamn</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
-    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_username">Användarnamn</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">Redigera användarnamn</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">Ta bort användarnamn</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">Profile</string>
+    <string name="EditProfileScreen__profile">Profil</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
-    <string name="EditProfileScreen__set_avatar">Set avatar</string>
+    <string name="EditProfileScreen__set_avatar">Ställ in avatar</string>
     <!-- Row on the profile screen that opens your badges -->
-    <string name="EditProfileScreen__badges">Badges</string>
+    <string name="EditProfileScreen__badges">Märken</string>
     <!-- Button in the dialog confirming that you want your username deleted -->
-    <string name="EditProfileScreen__delete">Delete</string>
+    <string name="EditProfileScreen__delete">Ta bort</string>
     <!-- Content description for the button that closes the tip about your username link -->
-    <string name="EditProfileScreen__close_tip">Close</string>
+    <string name="EditProfileScreen__close_tip">Stäng</string>
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Få märken för din profil genom att stöda Signal.</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal är en ideell organisation utan annonsörer eller investerare, som endast stöds av personer som du.</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+    <string name="EditProfileScreen__become_a_sustainer">Bli en upprätthållare</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
-    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <string name="BadgesOverviewScreen__badges">Märken</string>
     <!-- Section header above the grid of badges you\'ve unlocked -->
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__my_badges">Mina märken</string>
     <!-- Toggle for whether your badges are shown on your profile -->
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Visa märken på profilen</string>
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
-    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewScreen__featured_badge">Presenterat märke</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
-    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <string name="SelectFeaturedBadgeScreen__featured_badge">Presenterat märke</string>
     <!-- Section header above the grid of badges you can choose to feature on your profile -->
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Välj ett märke</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
-    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <string name="SelectFeaturedBadgeScreen__save">Spara</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Alla med denna länk kan se ditt användarnamn och starta en chatt med dig. Dela den bara med personer du litar på.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">Kopiera länk</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">Dela</string>
 
     <!-- UsernameLinkSettingsScreen -->
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">Kod</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Skanna</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Länken kopierades</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Användarnamn kopierat</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">Återställ QR-kod?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">Om du återställer din QR-kod kommer din befintliga QR-kod och länk inte längre att fungera.</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Återställ</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">Du har ingen nätverksåtkomst. Din länk återställdes inte. Försök igen senare.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Ett nätverksfel uppstod när du försökte återställa länken. Försök igen senare.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">Ett oväntat fel inträffade när du försökte återställa din länk. Försök igen senare.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">Din QR-kod och länk har återställts och en ny QR-kod och länk har skapats.</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">Dela bara din QR-kod och länk med personer du litar på. När de delas kommer andra att kunna se ditt användarnamn och starta en chatt med dig.</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">Återställ</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">Länk</string>
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">Dela</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">Färg</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR-koden är ogiltig.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">Stött på ett nätverksfel. Försök igen.</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR-koden hittades inte</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Försök att skanna en annan bild som innehåller en QR-kod från Signal.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">En användare med användarnamnet %1$s kunde inte hittas.</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Skanna QR-koden på din kontakts enhet.</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
-    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">Användaren kunde inte hittas.</string>
     <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
-    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">Ge Signal åtkomst till kameran för att skanna en QR-kod.</string>
     <!-- Button on the scan tab that asks for the camera permission -->
-    <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
+    <string name="UsernameLinkSettingsScreen__allow_access">Tillåt åtkomst</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
-    <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal behöver åtkomst till kameran för att skanna QR-koder</string>
 </resources>

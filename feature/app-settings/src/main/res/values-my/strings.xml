@@ -593,383 +593,383 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">သင့်အချိန်ဇယားအတိုင်း သင့်ပရိုဖိုင်သည် အော်တို အဖွင့်၊ အပိတ် လုပ်ပါမည်။</string>
 
     <!-- PrivacySettingsScreen -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
-    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
+    <string name="ApplicationPreferencesActivity_disable">ပိတ်ထားပါ</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">စကားဝှက်ပိတ်မလား?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ယင်းသည် Signal နှင့် စာတိုအသိပေးချက်များကို အမြဲဖွင့်ထားပါလိမ့်မည်။</string>
+    <string name="PrivacySettingsFragment__app_security">အက်ပ် လုံခြုံရေး</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
-    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">နောက်ဆုံး စာရင်းနှင့် အက်ပ်အတွင်း စခရင်ရှော့(တ်)များကို ပိတ်ရန်</string>
+    <string name="PrivacySettingsFragment__blocked">ဘလော့ခ်ထားပြီး</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">ငွေပေးချေမှုလော့ခ်ကို သုံးရန် ဦးစွာ သင့်ဖုန်းဆက်တင်တွင် စခရင်လော့ခ် သို့မဟုတ် လက်ဗွေ ID ကို ဖွင့်ရပါမည်။</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">ငွေပေးချေမှုလော့ခ်ကို ဖွင့်၍မရနိုင်ပါ</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="other">အဆက်အသွယ် သို့မဟုတ် အဖွဲ့ %1$d ခု</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ချက်(တ်)အသစ်များအတွက် ပုံသေတိုင်မာ</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Failed to navigate to system settings</string>
-    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">စနစ်ဆက်တင်သို့ လမ်းညွှန်ရန် မအောင်မြင်ခဲ့ပါ</string>
+    <string name="PrivacySettingsFragment__messaging">မက်ဆေ့ချ်ပေးပို့ခြင်း</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">ငွေလွှဲပြောင်းရန် Android စခရင်လော့ခ် သို့မဟုတ် လက်ဗွေ လိုအပ်ပါသည်</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">သင် စတင်ခဲ့သည့် ချက်(တ်)အသစ်များ အားလုံးအတွက် ပျောက်သွားမည့် မက်ဆေ့ချ် ပုံသေတိုင်မာကို သတ်မှတ်ပါ။</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal မက်ဆေ့ချ်များနှင့် ကောလ်များ၊ အမြဲတမ်း ထပ်ဆင့်ပို့ ကောလ်များနှင့် ချိပ်ပိတ်ပေးပို့သူ</string>
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <string name="ScreenLockSettingsFragment__off">ပိတ်ထားသည်</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">အချိန်အတိုင်းအတာတစ်ခု အကြာ လှုပ်ရှားမှုမရှိတော့သည့် ကြားချိန်တွင် Signal ကို အလိုအလျောက် ပိတ်ချပါ</string>
+    <string name="preferences__change_passphrase">စကားဝှက်ကို ပြောင်းပါ</string>
+    <string name="preferences__change_your_passphrase">သင့်ရဲ့ စကားဝှက်ကို ပြောင်းပါ</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__enable_passphrase">ဖုန်းမျက်နှာပြင်ကို စကားဝှက်ဖြင့် ပိတ်ထား၍ ရပါသည်</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">စာရိုက်ညွှန်ကိန်းများကို ပိတ်ထားပါက အခြားသူများမှ စာရိုက်ညွှန်းကိန်းများကို သင်မမြင်နိုင်ပါ။</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
+    <string name="preferences__inactivity_timeout_interval">လှုပ်ရှားမှုမရှိခြင်းကြာသွားသည့် ကြားကာလ</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
-    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__inactivity_timeout_passphrase">လှုပ်ရှားမှုမရှိခြင်းကြာသွားသည့်အတွက် စကားဝှက်</string>
+    <string name="preferences__incognito_keyboard">နောက်ယောင်ခံမှု မရှိသည့် ကီးဘုတ်</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ဖုန်းမျက်နှာပြင်နှင့် အသိပေးချက်များကို စကားဝှက်နှင့် ပိတ်ပါ</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
-    <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
-    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__payment_lock">ငွေပေးချေမှုလော့ခ်</string>
+    <string name="preferences__read_receipts">ဖတ်ပြီးပြီ</string>
+    <string name="preferences__request_keyboard_to_disable">တစ်ဦးချင်းအလိုက် ကိုက်ညီမှုရှိအောင် လေ့လာသင်ယူမှုကို ပိတ်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ။</string>
+    <string name="preferences__screen_security">အဖွင့်စာမျက်နှာ လုံခြုံရေး</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">ဤဆက်တင်သည် မသေချာသည့်အပြင် သင့်ကီးဘုတ်က ၎င်းကို လျစ်လျူရှုနိုင်ပါသည်။</string>
+    <string name="preferences__typing_indicators">စာရိုက်ညွှန်ကိန်းများ</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">သင့်ဖုန်းနံပါတ်ကို မြင်နိုင်သူများနှင့် Signal တွင် ထိုနံပါတ်ဖြင့် သင့်ထံသို့ ဆက်သွယ်နိုင်သူများကို ရွေးချယ်ပါ။</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Payments</string>
+    <string name="preferences_app_protection__payments">ငွေပေးချေမှုများ</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">မျက်နှာပြင်လော့ခ်ကို အသုံးပြုရန် ဤစက်ပေါ်တွင် ပင်နံပါတ်၊ ပုံစံ သို့မဟုတ် စကားဝှက်ကို သတ်မှတ်ပါ။</string>
     <!-- Title of the privacy settings screen -->
-    <string name="PrivacySettingsScreen__privacy">Privacy</string>
+    <string name="PrivacySettingsScreen__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
-    <string name="PrivacySettingsScreen__advanced">Advanced</string>
+    <string name="PrivacySettingsScreen__advanced">အဆင့်မြင့်</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
-    <string name="PrivacySettingsScreen__turn_on">Turn On</string>
+    <string name="PrivacySettingsScreen__turn_on">ဖွင့်ရန်</string>
     <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
-    <string name="PrivacySettingsScreen__not_now">Not Now</string>
+    <string name="PrivacySettingsScreen__not_now">ယခု မလုပ်ပါ</string>
     <!-- Title of the authentication prompt shown when turning off payment lock -->
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
-    <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <string name="PrivacySettingsScreen__learn_more">ပိုမိုလေ့လာရန်</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">ဘက်ခ်အပ်ထားသိုမှု ကန့်သတ်ချက် ပြည့်သွားပါပြီ</string>
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">ပုံမှန်လှူဒါန်းသူ၏ ဘက်ခ်အပ် ID ကို ကလစ်ဘုတ်တွင် ကူးယူထားသည်</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">ပုံမှန်လှူဒါန်းသူ၏ ID ကို ကလစ်ဘုတ်တွင် ကူးယူထားသည်</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">သင်၏ Signal လုံခြုံရေးဘက်ခ်အပ် စာရင်းသွင်းမှုကို သက်တမ်းတိုးပါ</string>
     <!-- App settings row that opens privacy settings -->
-    <string name="preferences__privacy">Privacy</string>
+    <string name="preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
     <!-- Title of the top level app settings screen -->
-    <string name="AppSettingsScreen__settings">Settings</string>
+    <string name="AppSettingsScreen__settings">ဆက်တင်</string>
     <!-- Content description for the back button on the top level app settings screen -->
-    <string name="AppSettingsScreen__go_back">Go back</string>
+    <string name="AppSettingsScreen__go_back">ပြန်သွားရန်</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">သင့် ဘက်ခ်အပ် ပုံမှန်လှူဒါန်းငွေကို ထုတ်ယူ၍မရပါ</string>
     <!-- App settings row that opens donations -->
-    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <string name="AppSettingsScreen__donate_to_signal">Signal ကို လှူဒါန်းရန်</string>
     <!-- App settings row that opens internal-only preferences -->
     <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <string name="AppSettingsScreen__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
     <!-- App settings row that opens notification settings -->
-    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <string name="AppSettingsScreen__notifications">အသိပေးချက်များ</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">Payments</string>
+    <string name="AppSettingsScreen__payments">ငွေပေးချေမှုများ</string>
     <!-- App settings row that opens story settings -->
-    <string name="AppSettingsScreen__stories">Stories</string>
+    <string name="AppSettingsScreen__stories">စတိုရီများ</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">Backups</string>
+    <string name="AppSettingsScreen__backups">အရန်သိမ်းဆည်းမှုများ</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">လမ်းညွှန် ဘား အရွယ်အစား</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">ပုံမှန်</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">ကျစ်လျစ်</string>
 
     <!-- Content description for the back button on the chats settings screen -->
-    <string name="ChatsSettingsScreen__go_back">Go back</string>
+    <string name="ChatsSettingsScreen__go_back">ပြန်သွားရန်</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
-    <string name="TwoFactorVerifyScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">နှစ်ဆင့် အတည်ပြုခြင်း</string>
     <!-- Instructions shown above the list of two-factor methods the user can verify with -->
-    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Choose a method below to verify your account.</string>
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">အောက်ပါနည်းလမ်းများထဲမှ တစ်ခုကို ရွေးပြီး သင့်အကောင့်ကို အတည်ပြုပါ။</string>
     <!-- Title of the option to verify with a passkey -->
     <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
     <!-- Description of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">သင့်စက်၏ ဇီဝအထောက်အထားစိစစ်မှု သို့မဟုတ် FIDO2 Passkey ကို အသုံးပြုရန် နှိပ်ပါ</string>
     <!-- Title of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__authenticator_app">Authenticator app</string>
+    <string name="TwoFactorVerifyScreen__authenticator_app">အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်</string>
     <!-- Description of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှ ထုတ်ပေးသော တစ်ကြိမ်သုံးကုဒ်ကို ထည့်ပါ။</string>
     <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
-    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">ဆက်လက်လုပ်ဆောင်ရန် သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှ ဂဏန်း 6 လုံးပါ ကုဒ်ကို ထည့်ပါ။</string>
     <!-- Button that leaves the verification flow without verifying anything -->
-    <string name="TwoFactorVerifyScreen__cancel">Cancel</string>
+    <string name="TwoFactorVerifyScreen__cancel">မလုပ်တော့ပါ</string>
     <!-- Error shown under the code field when the service rejected the code -->
-    <string name="TwoFactorVerifyScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TwoFactorVerifyScreen__incorrect_code">ကုဒ် မှားနေပါသည်။ ယခု သင့်အတည်ပြုကုဒ်ထုတ်ပေးသည့် အက်ပ်မှာ ပြသနေသော ကုဒ်ကို ထည့်ပါ။</string>
     <!-- Error shown when the service could not be reached -->
-    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Signal သို့ ချိတ်ဆက်၍မရပါ။ ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Dialog shown when verifying with a passkey failed -->
-    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">သင့် Passkey တစ်ခုခု မှားယွင်းနေပါသည်။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ သို့မဟုတ် အခြားနည်းလမ်းတစ်ခုကို ရွေးချယ်ပါ။</string>
 
     <!-- EditProfileNameScreen -->
     <!-- Title of the screen for editing your profile name -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_your_name">သင့်အမည်</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_first_name">အမည်အစ</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_last_name_optional">အမည်အဆုံး (ထည့်ရန် မလိုအပ်ပါ)</string>
     <!-- Button that saves your edited profile name -->
-    <string name="EditProfileNameScreen__save">Save</string>
+    <string name="EditProfileNameScreen__save">သိမ်းရန်</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">ကွန်ယက်ဆိုင်ရာ ကိစ္စများကြောင့် သိမ်းဆည်းရန် မအောင်မြင်ပါ။ နောက်မှ ပြန်ကြိုးစားပေးပါ။</string>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
-    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_about">အကြောင်း</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">သင့်အကြောင်း စကားလုံးအနည်းငယ်ကို ရေးပါ…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_speak_freely">လွတ်လပ်စွာပြောဆိုပါ</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_encrypted">ကုဒ်ဖြင့်ဝှက်ထားသည်</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_be_kind">ကြင်နာပါ</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_coffee_lover">ကော်ဖီချစ်သူ</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_free_to_chat">အခမဲ့ချက်(တ်)နိုင်သည်</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_taking_a_break">အနားယူခြင်း</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <string name="EditAboutFragment_working_on_something_new">အရာအသစ်တစ်ခု ကိုလုပ်ဆောင်နေသည်</string>
     <!-- Button that saves your edited about text -->
-    <string name="EditAboutScreen__save">Save</string>
+    <string name="EditAboutScreen__save">သိမ်းရန်</string>
     <!-- Content description for the button that clears both the about text and its emoji -->
-    <string name="EditAboutScreen__clear">Clear</string>
+    <string name="EditAboutScreen__clear">ဖယ်ရှားမည်</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
-    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <string name="EditAboutScreen__choose_emoji">အီမိုဂျီ ရွေးချယ်ရန်</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">ကွန်ယက်ဆိုင်ရာ ကိစ္စများကြောင့် သိမ်းဆည်းရန် မအောင်မြင်ပါ။ နောက်မှ ပြန်ကြိုးစားပေးပါ။</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
+    <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
     <!-- Title of the username screen, and the label of its field -->
-    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_username">သုံးစွဲသူအမည်</string>
     <!-- Button that deletes your username -->
-    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_delete">ဖျက်ရန်</string>
     <!-- Snackbar shown when a username change failed because of a network problem -->
-    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">ကွန်ယက်အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်။</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">ကြိုးစားသည့်အကြိမ်ရေ များလွန်းသည်၊ နောက်မှ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
-    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">ဤသုံးစွဲသူအမည်ကို ယူထားပြီးပါပြီ။</string>
     <!-- Shown when a username has characters that usernames can\'t have -->
-    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">သုံးစွဲသူအမည်များတွင် A–Z၊ 0-9 နှင့် \"_\" သင်္ကေတများသာ ပါဝင်နိုင်ပါသည်။</string>
     <!-- Shown when a username starts with a digit -->
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">သုံးစွဲသူအမည်များသည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>
     <!-- Shown when the service rejects a username -->
-    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_username_is_invalid">သုံးစွဲသူအမည် မမှန်ကန်ပါ</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">သုံးစွဲသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
-    <string name="UsernameEditScreen__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers. %1$s</string>
+    <string name="UsernameEditScreen__usernames_let_others_message">ဖုန်းနံပါတ်အစား ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကိုသုံးကာ အခြားသူများက သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပါသည်။ သုံးစွဲသူအမည်များကို ကိန်းဂဏန်းတွဲတစ်ခုနှင့် အမြဲတွဲဖက်ထားပါသည်။ %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">ဤသုံးစွဲသူအမည်ကို သုံး၍မရပါ၊ အခြားနံပါတ်တစ်ခုကို စမ်းကြည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အနည်းဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">သုံးစွဲသူအမည် မမှန်ကန်ပါ၊ အများဆုံး ဂဏန်း %1$d လုံး ရိုက်ထည့်ပါ။</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">ဤနံပါတ်သည် 00 ဖြစ်၍မရပါ။ 1–9 အကြား ကိန်းဂဏန်းတစ်ခု ရိုက်ထည့်ပါ</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">ဂဏန်း 2 လုံးအထက် ကိန်းဂဏန်းများသည် 0 ဖြင့် စ၍မရပါ</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">သင်၏ သုံးစွဲသူအမည်ကို ပြန်လည်ရယူပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">သင်၏ သုံးစွဲသူအမည်ကို ပြောင်းပါက သင့်မူလ QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပါမည်။ သေချာပါသလား။</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Continue</string>
+    <string name="UsernameEditFragment_continue">ဆက်လုပ်ရန်</string>
     <!-- Button that saves the username you typed -->
-    <string name="UsernameEditScreen__save">Save</string>
+    <string name="UsernameEditScreen__save">သိမ်းရန်</string>
     <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
-    <string name="UsernameEditScreen__learn_more">Learn more</string>
+    <string name="UsernameEditScreen__learn_more">ပိုမိုလေ့လာရန်</string>
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
 
     <!-- EditProfileScreen -->
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">သင့်ပရိုဖိုင်နှင့် ၎င်းရှိ ပြောင်းလဲမှုများကို သင်မက်ဆေ့ချ်ပို့ထားသူများ၊ အဆက်အသွယ်များနှင့် အဖွဲ့များက မြင်ရပါမည်။</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">ဤ Signal ဗားရှင်းသည် သက်တမ်းကုန်သွားပါပြီ။ Signal ကို ဆက်လက်သုံးစွဲရန် ယခု အပ်ဒိတ်လုပ်ပေးပါ။</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">အပ်ဒိတ်မယ်</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">စက်ကို မှတ်ပုံမတင်ထားပါ</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">ဤစက်ကို မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ။ သင့်အကောင့်ကို ပြောင်းလဲမှုများပြုလုပ်ရန် ပြန်လည်မှတ်ပုံတင်ပါ။</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">ပြန်လည်၍မှတ်ပုံတင်ခြင်းပြုလုပ်မည်</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ကွန်ယက်ဆိုင်ရာ ကိစ္စများကြောင့် သိမ်းဆည်းရန် မအောင်မြင်ပါ။ နောက်မှ ပြန်ကြိုးစားပေးပါ။</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">သုံးစွဲသူအမည်ကို ဖျက်၍ မရနိုင်ပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">သုံးစွဲသူအမည်ကို ဖျက်မည်လား။</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"သင်၏ သုံးစွဲသူအမည်ကို ဖယ်ရှားလိုက်မည်ဖြစ်ပြီး သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပိတ်လိုက်ပါမည်။ %1$s ကို အခြားသူများ အသုံးပြု၍ရသွားပါလိမ့်မည်။ သေချာပါသလား။"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <string name="ManageProfileFragment__edit_photo">ဓာတ်ပုံ ပြင်ရန်</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">သင်၏ သုံးစွဲသူအမည်ကို ဝေမျှရန်</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">သင်၏ သီးသန့် QR ကုဒ် သို့မဟုတ် လင့်ခ်ကို ဝေမျှပေးခြင်းဖြင့် အခြားသူများကို သင်နှင့် ချက်(တ်) စတင်စေလိုက်ပါ။</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
+    <string name="ManageProfileFragment__username_created">သုံးစွဲသူအမည် ဖန်တီးပြီး</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">သုံးစွဲသူအမည် ဖျက်ပစ်ပြီး</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">ဖုန်းနံပါတ်အစား ရွေးချယ်နိုင်သော သုံးစွဲသူအမည်ကိုသုံးကာ အခြားသူများက သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်ပါသည်။ သုံးစွဲသူအမည်များတွင် မိတ်ဆွေများနှင့် မျှဝေနိုင်သည့် ထူးခြားသော QR ကုဒ်နှင့် လင့်ခ် ပါဝင်သည်။</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">သင်၏ သုံးစွဲသူအမည်၊ QR ကုဒ်နှင့် လင့်ခ်တို့ကို သင့်ပရိုဖိုင်တွင် မမြင်တွေ့နိုင်ပါ။ သင့်သုံးစွဲသူအမည်ကို သင် ယုံကြည်သူများနှင့်သာ မျှဝေပေးပါ။</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_about">အကြောင်း</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">ကိုယ်စားပြုရုပ်ပုံ တင်ရန်မအောင်မြင်ပါ</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">QR ကုဒ် သို့မဟုတ် လင့်ခ်</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_profile_name">ပရိုဖိုင်း အမည်</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
-    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_username">သုံးစွဲသူအမည်</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">သုံးစွဲသူအမည်ကို တည်းဖြတ်ရန်</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">သုံးစွဲသူအမည်ကို ဖျက်ရန်</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">Profile</string>
+    <string name="EditProfileScreen__profile">ပရိုဖိုင်</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
-    <string name="EditProfileScreen__set_avatar">Set avatar</string>
+    <string name="EditProfileScreen__set_avatar">ရုပ်ပုံ သတ်မှတ်ပါ</string>
     <!-- Row on the profile screen that opens your badges -->
-    <string name="EditProfileScreen__badges">Badges</string>
+    <string name="EditProfileScreen__badges">ဘဲ့ဂျ်များ</string>
     <!-- Button in the dialog confirming that you want your username deleted -->
-    <string name="EditProfileScreen__delete">Delete</string>
+    <string name="EditProfileScreen__delete">ဖျက်ရန်</string>
     <!-- Content description for the button that closes the tip about your username link -->
-    <string name="EditProfileScreen__close_tip">Close</string>
+    <string name="EditProfileScreen__close_tip">ပိတ်ရန်</string>
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal ကို ပံ့ပိုးခြင်းဖြင့် သင့်ပရိုဖိုင်အတွက် ဘဲ့ဂျ်များကို ရယူပါ။</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ သင်ကဲ့သို့သော သူများနှင့်သာ ပံ့ပိုးလုပ်ဆောင်သည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+    <string name="EditProfileScreen__become_a_sustainer">ပါဝင်အားဖြည့်သူ ဖြစ်စေရန်</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
-    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <string name="BadgesOverviewScreen__badges">ဘဲ့ဂျ်များ</string>
     <!-- Section header above the grid of badges you\'ve unlocked -->
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__my_badges">ကျွန်ုပ်၏ ဘဲ့ဂျ်များ</string>
     <!-- Toggle for whether your badges are shown on your profile -->
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">ပရိုဖိုင်တွင် ဘဲ့ဂျ်များ ပြသရန်</string>
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
-    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewScreen__featured_badge">အသားပေးထားသည့် ဘဲ့ဂျ်</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">ပရိုဖိုင် အပ်ဒိတ်လုပ်ရန် မအောင်မြင်ခဲ့ပါ</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
-    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <string name="SelectFeaturedBadgeScreen__featured_badge">အသားပေးထားသည့် ဘဲ့ဂျ်</string>
     <!-- Section header above the grid of badges you can choose to feature on your profile -->
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">ဘဲ့ဂျ်တစ်ခု ရွေးချယ်ရန်</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
-    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <string name="SelectFeaturedBadgeScreen__save">သိမ်းရန်</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ပရိုဖိုင် အပ်ဒိတ်လုပ်ရန် မအောင်မြင်ခဲ့ပါ</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">အောက်ပါလင့်ခ်ရှိသူတိုင်းသည် သင့်သုံးစွဲသူအမည်ကို ကြည့်ရှုပြီး သင်နှင့် စတင်၍ ချက်(တ်)နိုင်ပါသည်။ ထိုလင့်ခ်ကို သင် ယုံကြည်ရသူများနှင့်သာ မျှဝေပေးပါ။/</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">လင့်ခ်ကူးရန်</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">ဝေမျှမယ်</string>
 
     <!-- UsernameLinkSettingsScreen -->
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">ကုဒ်</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">စကန်ဖတ်ရန်</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">လင့်ခ် ကူးပြီး</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">သုံးစွဲသူအမည် ကူးပြီး</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">QR ကုဒ်ကို ပြန်လည်သတ်မှတ်ပါမည်လား။</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">သင်၏ QR ကုဒ်ကို သင် ပြန်လည်သတ်မှတ်လိုက်ပါက မူလ QR ကုဒ်နှင့် လင့်ခ်မှာ အလုပ်လုပ်တော့မည်မဟုတ်ပါ။</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">ပြန်လည်သတ်မှတ်ရန်</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">သင့်တွင် ကွန်ရက်သုံးစွဲခွင့် မရှိပါ။ သင်၏ လင့်ခ်ကို ပြန်လည်သတ်မှတ်ခဲ့ခြင်းမရှိပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားစဉ် ကွန်ရက်ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">သင်၏လင့်ခ်ကို ပြန်လည်သတ်မှတ်ရန် ကြိုးစားနေစဉ် မမျှော်လင့်သော ချို့ယွင်းချက်တစ်ခု ဖြစ်သွားပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">သင့် QR ကုဒ်နှင့် လင့်ခ်ကို ပြန်လည်သတ်မှတ်လိုက်ပြီဖြစ်ပြီး QR ကုဒ်နှင့် လင့်ခ် အသစ်တစ်ခုကို ဖန်တီးလိုက်ပါပြီ။</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">သင့် QR ကုဒ်နှင့် လင့်ခ်ကို သင် ယုံကြည်သောသူများထံသို့သာ ဝေမျှပါ။ ဝေမျှထားသောအခါ အခြားသူများသည် သင့်သုံးစွဲသူအမည်ကို တွေ့မြင်နိုင်မည်ဖြစ်ပြီး သင်နှင့် ချက်(တ်) စတင်နိုင်ပါမည်။</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">ရီဆက်ချမည်</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">လင့်(ခ်)</string>
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">ဝေမျှမယ်</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">အရောင်</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">QR ကုဒ် မမှန်ကန်ပါ။</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">ကွန်ရက် အမှားအယွင်းတစ်ခု ကြုံတွေ့ခဲ့ရပါသည်။ ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">QR ကုဒ် မတွေ့ပါ</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Signal QR ကုဒ် ပါဝင်သော အခြားပုံတစ်ပုံကို စကန်ဖတ်ကြည့်ပါ။</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">သုံးစွဲသူအမည် %1$s ဖြင့် သုံးစွဲသူကို ရှာမတွေ့ပါ။</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">သင့်အဆက်အသွယ်၏ စက်ပေါ်တွင် QR ကုဒ်ကို စကန်ဖတ်ပါ။</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
-    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">ဤသုံးစွဲသူကို ရှာမတွေ့နိုင်ပါ။</string>
     <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
-    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">QR ကုဒ်ကို စကင်န်ဖတ်ရန် Signal ကို ကင်မရာ အသုံးပြုခွင့်ပေးပါ။</string>
     <!-- Button on the scan tab that asks for the camera permission -->
-    <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
+    <string name="UsernameLinkSettingsScreen__allow_access">ဝင်ရောက် သုံးစွဲခွင့်ပြုရန်</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
-    <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
+    <string name="UsernameLinkSettingsScreen__camera_needed">QR ကုဒ်များကို စကင်န်ဖတ်ရန် Signal သည် ကင်မရာအသုံးပြုခွင့် လိုအပ်ပါသည်</string>
 </resources>

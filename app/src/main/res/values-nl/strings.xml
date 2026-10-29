@@ -145,7 +145,7 @@
     <string name="FcmFetchManager__you_may_have_messages">Je hebt mogelijk nieuwe berichten</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Geblokkeerd</string>
+    <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
     <string name="BlockedUsersActivity__add_blocked_user">Persoon blokkeren</string>
     <string name="BlockedUsersActivity__cannot_block_yourself">Kan jezelf niet blokkeren</string>
     <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
@@ -2691,7 +2691,7 @@
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
     <string name="StickerManagement_menu_select_packs">Stickerpakketten selecteren</string>
     <!-- Sticker pack list dropdown menu label for sending a sticker pack. -->
-    <string name="StickerManagement_menu_send_pack">Verzenden</string>
+    <string name="StickerManagement_menu_send_pack">Versturen</string>
     <!-- Sticker pack list dropdown menu label for copying a sticker link. -->
     <string name="StickerManagement_menu_copy_pack">Link kopiëren</string>
     <!-- Hint text shown in the sticker management search field. -->
@@ -6290,7 +6290,7 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Kies een ontvanger</string>
     <!-- Hint text that shows in the recipient search bar on the choose recipient page for badge gifting -->
-    <string name="GiftFlowRecipientSelectionFragment__search">Search</string>
+    <string name="GiftFlowRecipientSelectionFragment__search">Zoeken</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Donatie bevestigen</string>
     <!-- Heading text specifying who the gift will be sent to -->
@@ -7150,9 +7150,9 @@
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
     <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
-    <string name="TwoFactorReminderMegaphone__verify">Verify</string>
+    <string name="TwoFactorReminderMegaphone__verify">Verifiëren</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
-    <string name="TwoFactorReminderMegaphone__not_now">Not now</string>
+    <string name="TwoFactorReminderMegaphone__not_now">Niet nu</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
     <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
@@ -7163,9 +7163,9 @@
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
     <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
-    <string name="SignalLoginReminderMegaphone__verify">Verify</string>
+    <string name="SignalLoginReminderMegaphone__verify">Verifiëren</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
-    <string name="SignalLoginReminderMegaphone__not_now">Not now</string>
+    <string name="SignalLoginReminderMegaphone__not_now">Niet nu</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
     <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
 
@@ -8615,7 +8615,7 @@
     <!-- Label beneath a shared note value -->
     <string name="ShareContactScreen__notes">Notities</string>
     <!-- Title of the sheet where the user picks which photo to share -->
-    <string name="ShareContactScreen__select_a_photo_to_share">Selecteer een foto om te delen</string>
+    <string name="ShareContactScreen__select_a_photo_to_share">Selecteer een profielfoto om te delen</string>
     <!-- Button that confirms the chosen photo and closes the photo picker sheet -->
     <string name="ShareContactScreen__done">Klaar</string>
     <!-- Accessibility label for the button that sends the contact card -->

@@ -593,383 +593,383 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">您的配置将会按照您的时间安排自动开启和关闭。</string>
 
     <!-- PrivacySettingsScreen -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <string name="ApplicationPreferencesActivity_disable">Disable</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
-    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
+    <string name="ApplicationPreferencesActivity_disable">禁用</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">这将永久解锁 Signal 和消息通知。</string>
+    <string name="PrivacySettingsFragment__app_security">应用安全</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
-    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
-    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">阻止在最近聊天和应用内进行截图</string>
+    <string name="PrivacySettingsFragment__blocked">已屏蔽</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">如要使用付款锁，您必须首先在您的手机设置中启用屏幕锁或指纹 ID 识别。</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
-    <string name="PrivacySettingsFragment__cant_enable_title">Can’t enable payment lock</string>
+    <string name="PrivacySettingsFragment__cant_enable_title">无法启用付款锁</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
-        <item quantity="other">%1$d contacts or groups</item>
+        <item quantity="other">%1$d 个联系人或群组</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的默认计时器</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Failed to navigate to system settings</string>
-    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">无法前往系统设置</string>
+    <string name="PrivacySettingsFragment__messaging">消息传输</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">转账时需要 Android 屏幕锁或指纹识别</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">对于您开启的全部新聊天，设置默认的限时消息计时器。</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 消息和通话，总是转发通话以及密封发送人</string>
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
-    <string name="preferences__change_passphrase">Change passphrase</string>
-    <string name="preferences__change_your_passphrase">Change your passphrase</string>
+    <string name="ScreenLockSettingsFragment__off">关</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">如果 Signal 非活动状态超过指定时间，自动锁定</string>
+    <string name="preferences__change_passphrase">修改密码</string>
+    <string name="preferences__change_your_passphrase">修改您的密码</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
+    <string name="preferences__enable_passphrase">启用屏幕锁定密码</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
-    <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
+    <string name="preferences__inactivity_timeout_interval">非活动逾时时长</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
-    <string name="preferences__incognito_keyboard">Incognito keyboard</string>
+    <string name="preferences__inactivity_timeout_passphrase">非活动逾时密码</string>
+    <string name="preferences__incognito_keyboard">隐身键盘</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码锁定屏幕和通知</string>
     <!-- Privacy settings payments section description -->
-    <string name="preferences__payment_lock">Payment lock</string>
-    <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
-    <string name="preferences__screen_security">Screen security</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
-    <string name="preferences__typing_indicators">Typing indicators</string>
+    <string name="preferences__payment_lock">付款锁</string>
+    <string name="preferences__read_receipts">已读回执</string>
+    <string name="preferences__request_keyboard_to_disable">请求键盘禁用个性化学习。</string>
+    <string name="preferences__screen_security">屏幕安全</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">该设置并非保证，您的键盘可能忽略该设置。</string>
+    <string name="preferences__typing_indicators">“正在输入”提示</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">Choose who can see your phone number and who can contact you on Signal with it.</string>
+    <string name="preferences_app_protection__choose_who_can_see">选择谁可以在 Signal 上看到您的手机号码，以及谁可以通过您的手机号码与您联系。</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">Payments</string>
+    <string name="preferences_app_protection__payments">付款</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">To use screen lock set a PIN, pattern, or password on this device.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">如要使用屏幕锁定，请在此设备上设置 PIN 码、解锁图案或密码。</string>
     <!-- Title of the privacy settings screen -->
-    <string name="PrivacySettingsScreen__privacy">Privacy</string>
+    <string name="PrivacySettingsScreen__privacy">隐私</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">限时消息</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
-    <string name="PrivacySettingsScreen__advanced">Advanced</string>
+    <string name="PrivacySettingsScreen__advanced">高级</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
-    <string name="PrivacySettingsScreen__turn_on">Turn On</string>
+    <string name="PrivacySettingsScreen__turn_on">开启</string>
     <!-- Dismiss button on the dialog explaining payment lock needs a device screen lock -->
-    <string name="PrivacySettingsScreen__not_now">Not Now</string>
+    <string name="PrivacySettingsScreen__not_now">以后再说</string>
     <!-- Title of the authentication prompt shown when turning off payment lock -->
     <string name="PrivacySettingsScreen__signal">Signal</string>
     <!-- Link after the incognito keyboard disclaimer that opens a support article -->
-    <string name="PrivacySettingsScreen__learn_more">Learn more</string>
+    <string name="PrivacySettingsScreen__learn_more">了解详情</string>
 
     <!-- AppSettingsScreen -->
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">已达到备份存储空间上限</string>
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Copied backups subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">已将备份订户 ID 复制到剪贴板</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Copied donor subscriber id to clipboard</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">已将定期捐款人 ID 复制到剪贴板</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">无法完成备份</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+    <string name="AppSettingsFragment__invite_your_friends">邀请好友</string>
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">续订您的 Signal 安全备份套餐</string>
     <!-- App settings row that opens privacy settings -->
-    <string name="preferences__privacy">Privacy</string>
+    <string name="preferences__privacy">隐私</string>
     <!-- Title of the top level app settings screen -->
-    <string name="AppSettingsScreen__settings">Settings</string>
+    <string name="AppSettingsScreen__settings">设置</string>
     <!-- Content description for the back button on the top level app settings screen -->
-    <string name="AppSettingsScreen__go_back">Go back</string>
+    <string name="AppSettingsScreen__go_back">返回</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">无法兑换您的备份套餐</string>
     <!-- App settings row that opens donations -->
-    <string name="AppSettingsScreen__donate_to_signal">Donate to Signal</string>
+    <string name="AppSettingsScreen__donate_to_signal">捐款给 Signal</string>
     <!-- App settings row that opens internal-only preferences -->
     <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">Linked devices</string>
+    <string name="AppSettingsScreen__linked_devices">已关联设备</string>
     <!-- App settings row that opens notification settings -->
-    <string name="AppSettingsScreen__notifications">Notifications</string>
+    <string name="AppSettingsScreen__notifications">通知</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">Payments</string>
+    <string name="AppSettingsScreen__payments">付款</string>
     <!-- App settings row that opens story settings -->
-    <string name="AppSettingsScreen__stories">Stories</string>
+    <string name="AppSettingsScreen__stories">动态</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">Backups</string>
+    <string name="AppSettingsScreen__backups">备份</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
-    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">Navigation bar size</string>
+    <string name="ChooseNavigationBarStyleFragment__navigation_bar_size">导航栏大小</string>
     <!-- Toggle button label for normal size -->
-    <string name="ChooseNavigationBarStyleFragment__normal">Normal</string>
+    <string name="ChooseNavigationBarStyleFragment__normal">正常</string>
     <!-- Toggle button label for compact size -->
-    <string name="ChooseNavigationBarStyleFragment__compact">Compact</string>
+    <string name="ChooseNavigationBarStyleFragment__compact">紧凑</string>
 
     <!-- Content description for the back button on the chats settings screen -->
-    <string name="ChatsSettingsScreen__go_back">Go back</string>
+    <string name="ChatsSettingsScreen__go_back">返回</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
-    <string name="TwoFactorVerifyScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="TwoFactorVerifyScreen__two_factor_authentication">双重身份验证</string>
     <!-- Instructions shown above the list of two-factor methods the user can verify with -->
-    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">Choose a method below to verify your account.</string>
+    <string name="TwoFactorVerifyScreen__choose_a_method_below_to_verify_your_account">请在下方选择一种方式来验证您的账户。</string>
     <!-- Title of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__passkey">Passkey</string>
+    <string name="TwoFactorVerifyScreen__passkey">通行密钥</string>
     <!-- Description of the option to verify with a passkey -->
-    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">Tap to use your device biometrics or FIDO2 passkey</string>
+    <string name="TwoFactorVerifyScreen__tap_to_use_your_device_biometrics_or_fido2_passkey">点击以使用您设备的生物识别或 FIDO2 通行密钥</string>
     <!-- Title of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__authenticator_app">Authenticator app</string>
+    <string name="TwoFactorVerifyScreen__authenticator_app">身份验证器应用</string>
     <!-- Description of the option to verify with an authenticator app -->
-    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">Enter a one-time code generated by your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__enter_a_one_time_code_generated_by_your_authenticator_app">输入您的身份验证器应用生成的一次性验证码。</string>
     <!-- Instructions shown above the field where the user enters the code from their authenticator app -->
-    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">To continue, enter the 6-digit code from your authenticator app.</string>
+    <string name="TwoFactorVerifyScreen__to_continue_enter_the_6_digit_code_from_your_authenticator_app">如要继续，请输入您的身份验证器应用生成的 6 位数字验证码。</string>
     <!-- Button that leaves the verification flow without verifying anything -->
-    <string name="TwoFactorVerifyScreen__cancel">Cancel</string>
+    <string name="TwoFactorVerifyScreen__cancel">取消</string>
     <!-- Error shown under the code field when the service rejected the code -->
-    <string name="TwoFactorVerifyScreen__incorrect_code">Incorrect code. Enter the code showing in your authenticator app now.</string>
+    <string name="TwoFactorVerifyScreen__incorrect_code">验证码不正确。请输入您的身份验证器应用当前显示的验证码。</string>
     <!-- Error shown when the service could not be reached -->
-    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">Couldn\'t reach Signal. Check your connection and try again.</string>
+    <string name="TwoFactorVerifyScreen__couldnt_reach_signal">无法连接 Signal。请检查您的网络连接并重试。</string>
     <!-- Dialog shown when verifying with a passkey failed -->
-    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again or choose another method.</string>
+    <string name="TwoFactorVerifyScreen__something_went_wrong_with_your_passkey">您的通行密钥出错了。请重试或选择其他方式。</string>
 
     <!-- EditProfileNameScreen -->
     <!-- Title of the screen for editing your profile name -->
-    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_your_name">你的名字</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_first_name">名</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_last_name_optional">姓氏（可选）</string>
     <!-- Button that saves your edited profile name -->
-    <string name="EditProfileNameScreen__save">Save</string>
+    <string name="EditProfileNameScreen__save">保存</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">因网络故障无法保存，请稍后再试。</string>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
-    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_about">关于</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">简单介绍下自己…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_speak_freely">畅所欲言</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_encrypted">已加密</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_be_kind">温和且无害</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_coffee_lover">咖啡爱好者</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_free_to_chat">陪聊不收费</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_taking_a_break">休息一下下</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
+    <string name="EditAboutFragment_working_on_something_new">打磨新玩意儿</string>
     <!-- Button that saves your edited about text -->
-    <string name="EditAboutScreen__save">Save</string>
+    <string name="EditAboutScreen__save">保存</string>
     <!-- Content description for the button that clears both the about text and its emoji -->
-    <string name="EditAboutScreen__clear">Clear</string>
+    <string name="EditAboutScreen__clear">清除</string>
     <!-- Content description for the button that opens the emoji picker for the about text -->
-    <string name="EditAboutScreen__choose_emoji">Choose emoji</string>
+    <string name="EditAboutScreen__choose_emoji">选择表情符号</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">Failed to save due to network issues. Try again later.</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">因网络故障无法保存，请稍后再试。</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Instructional text at the top of the username edit screen -->
-    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
+    <string name="UsernameEditFragment__choose_your_username">选择您的用户名</string>
     <!-- Title of the username screen, and the label of its field -->
-    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_username">用户名</string>
     <!-- Button that deletes your username -->
-    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_delete">删除</string>
     <!-- Snackbar shown when a username change failed because of a network problem -->
-    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">网络出错。</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">Too many attempts made, please try again later.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">尝试次数过多，请稍候再试。</string>
     <!-- Shown when the username someone typed already belongs to someone else -->
-    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">该用户名已有人使用。</string>
     <!-- Shown when a username has characters that usernames can\'t have -->
-    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a–Z, 0–9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">用户名仅能包含字母、数字和下划线。</string>
     <!-- Shown when a username starts with a digit -->
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
     <!-- Shown when the service rejects a username -->
-    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
-    <string name="UsernameEditScreen__usernames_let_others_message">People can message you using your optional username instead of a phone number. Usernames are always paired with a set of numbers. %1$s</string>
+    <string name="UsernameEditScreen__usernames_let_others_message">您可以选择一个用户名，在隐藏手机号码的情况下方便其他用户给您发消息。用户名始终搭配一组数字。 %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
-    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">This username is not available, try another number.</string>
+    <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">此用户名不可用，请尝试另一个号码。</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Invalid username, enter a minimum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">用户名无效，请至少输入 %1$d 位数。</string>
     <!-- Displayed when the chosen discriminator is too long -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Invalid username, enter a maximum of %1$d digits.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">用户名无效，请至多输入 %1$d 位数。</string>
     <!-- Displayed when the chosen discriminator is 00 -->
-    <string name="UsernameEditFragment__this_number_cant_be_00">This number can\'t be 00. Enter a digit between 1–9</string>
+    <string name="UsernameEditFragment__this_number_cant_be_00">该数字不能为 00。请输入 1 – 9 之间的数字</string>
     <!-- Displayed when the chosen discriminator starts with 0 and has a length > 2 -->
-    <string name="UsernameEditFragment__this_number_cant_start_with_0">Numbers with more than 2 digits can\'t start with 0</string>
+    <string name="UsernameEditFragment__this_number_cant_start_with_0">两位数以上的数字不能以 0 开头</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
-    <string name="UsernameEditFragment_recovery_dialog_confirmation">Recovering your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_recovery_dialog_confirmation">恢复您的用户名将会重置您现有的二维码和链接。确定要恢复吗？</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Changing your username will reset your existing QR code and link. Are you sure?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">更改用户名将会重置您现有的二维码和链接。确定吗？</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">Continue</string>
+    <string name="UsernameEditFragment_continue">继续</string>
     <!-- Button that saves the username you typed -->
-    <string name="UsernameEditScreen__save">Save</string>
+    <string name="UsernameEditScreen__save">保存</string>
     <!-- Link at the end of the explanation of usernames, which opens a support article about them -->
-    <string name="UsernameEditScreen__learn_more">Learn more</string>
+    <string name="UsernameEditScreen__learn_more">了解详情</string>
   <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/6712070553754</string> -->
 
     <!-- EditProfileScreen -->
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的个人资料以及您对其做的更改将会对您发送消息的对象、联系人及群组可见。</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">Update Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">升级 Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">This version of Signal has expired. Update now to continue using Signal.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">此 Signal 版本已过期。请立即更新以继续使用 Signal。</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">Update</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">更新</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">Device not registered</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">设备未注册</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">This device is no longer registered. Re-register to make changes to your account.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">此设备已注销。请重新注册以更改您的账户。</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">Re-register</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">重新注册</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">因网络故障无法保存，请稍后再试。</string>
     <!-- Snackbar message after network failure while trying to delete username -->
-    <string name="ManageProfileFragment__couldnt_delete_username">Couldn\'t delete username. Try again later.</string>
+    <string name="ManageProfileFragment__couldnt_delete_username">无法删除用户名，请稍后再试。</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">Delete username?</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">要删除用户名？</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"This will remove your username and disable your QR code and link. %1$s will be available for others to claim. Are you sure?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"这样做将会删除您的用户名并使您的二维码和链接失效。其他用户将可以申请使用“%1$s”这个用户名。确定要删除吗？"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <string name="ManageProfileFragment__edit_photo">编辑照片</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_title">Share your username</string>
+    <string name="ManageProfileFragment__link_tooltip_title">分享您的用户名</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">Let others start a chat with you by sharing your unique QR code or link.</string>
+    <string name="ManageProfileFragment__link_tooltip_body">分享您唯一的二维码或链接，让其他人开始与您聊天吧。</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Username created</string>
+    <string name="ManageProfileFragment__username_created">用户名已创建</string>
     <!-- Snackbar message after successful deletion of username -->
-    <string name="ManageProfileFragment__username_deleted">Username deleted</string>
+    <string name="ManageProfileFragment__username_deleted">用户名已删除</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">People can message you using an optional username instead of a phone number. Usernames have a unique QR code and link you can share with friends.</string>
+    <string name="ManageProfileFragment__username_footer_no_username">您可以选择一个用户名，在隐藏手机号码的情况下方便其他用户给您发消息。用户名有一个专属二维码和分享链接，方便您与好友分享。</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">Your username, QR code and link aren\'t visible on your profile. Only share your username with people you trust.</string>
+    <string name="ManageProfileFragment__your_username">您的用户名、二维码和链接在个人资料中不显示。请仅将您的用户名分享给您信任的人。</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_about">关于</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">设置头像失败</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
-    <string name="ManageProfileFragment_link_setting_text">QR code or link</string>
+    <string name="ManageProfileFragment_link_setting_text">二维码或链接</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_profile_name">昵称</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
-    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_username">用户名</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__edit_username">Edit username</string>
+    <string name="UsernameEditDialog__edit_username">编辑用户名</string>
     <!-- Option to delete username displayed as a list item in a dialog -->
-    <string name="UsernameEditDialog__delete_username">Delete username</string>
+    <string name="UsernameEditDialog__delete_username">删除用户名</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">Profile</string>
+    <string name="EditProfileScreen__profile">个人资料</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
-    <string name="EditProfileScreen__set_avatar">Set avatar</string>
+    <string name="EditProfileScreen__set_avatar">设置头像</string>
     <!-- Row on the profile screen that opens your badges -->
-    <string name="EditProfileScreen__badges">Badges</string>
+    <string name="EditProfileScreen__badges">徽章</string>
     <!-- Button in the dialog confirming that you want your username deleted -->
-    <string name="EditProfileScreen__delete">Delete</string>
+    <string name="EditProfileScreen__delete">删除</string>
     <!-- Content description for the button that closes the tip about your username link -->
-    <string name="EditProfileScreen__close_tip">Close</string>
+    <string name="EditProfileScreen__close_tip">关闭</string>
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">支持 Signal，为您的个人资料添加徽章吧。</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 是一个非盈利机构，没有广告商或投资方，仅凭您和千千万万的用户提供赞助。</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">Become a Sustainer</string>
+    <string name="EditProfileScreen__become_a_sustainer">成为定期捐款人</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
-    <string name="BadgesOverviewScreen__badges">Badges</string>
+    <string name="BadgesOverviewScreen__badges">徽章</string>
     <!-- Section header above the grid of badges you\'ve unlocked -->
-    <string name="BadgesOverviewFragment__my_badges">My badges</string>
+    <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
     <!-- Toggle for whether your badges are shown on your profile -->
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">在个人资料中显示徽章</string>
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
-    <string name="BadgesOverviewScreen__featured_badge">Featured badge</string>
+    <string name="BadgesOverviewScreen__featured_badge">精选徽章</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">无法更新个人资料</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
-    <string name="SelectFeaturedBadgeScreen__featured_badge">Featured badge</string>
+    <string name="SelectFeaturedBadgeScreen__featured_badge">精选徽章</string>
     <!-- Section header above the grid of badges you can choose to feature on your profile -->
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">选择一个徽章</string>
     <!-- Button that saves the badge you chose to feature on your profile -->
-    <string name="SelectFeaturedBadgeScreen__save">Save</string>
+    <string name="SelectFeaturedBadgeScreen__save">保存</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">无法更新个人资料</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Anyone with this link can view your username and start a chat with you. Only share it with people you trust.</string>
+    <string name="UsernameLinkShareBottomSheet_title">收到该链接的任何人可以查看您的用户名并与您发起聊天。请仅将其分享给您信任的人。</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
-    <string name="UsernameLinkShareBottomSheet_copy_link">Copy link</string>
+    <string name="UsernameLinkShareBottomSheet_copy_link">复制链接</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
-    <string name="UsernameLinkShareBottomSheet_share">Share</string>
+    <string name="UsernameLinkShareBottomSheet_share">分享</string>
 
     <!-- UsernameLinkSettingsScreen -->
     <!-- Label for a tab that shows a screen to view your username QR code -->
-    <string name="UsernameLinkSettings_code_tab_name">Code</string>
+    <string name="UsernameLinkSettings_code_tab_name">二维码</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">扫描</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Link copied</string>
+    <string name="UsernameLinkSettings_link_copied_toast">链接已复制</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Username copied</string>
+    <string name="UsernameLinkSettings_username_copied_toast">用户名已复制</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_title">Reset QR code?</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_title">要重置二维码吗？</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_body">If you reset your QR code, your existing QR code and link will no longer work.</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_body">如果重置二维码，您现有的二维码和链接将会失效。</string>
     <!-- Label for the confirmation button on a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
-    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">Reset</string>
+    <string name="UsernameLinkSettings_reset_link_dialog_confirm_button">重置</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">You do not have network access. Your link was not reset. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">您没有网络，链接未设置。请稍后再试。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">A network error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">尝试重置您的链接时出现网络错误。请稍后再试。</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
-    <string name="UsernameLinkSettings_reset_link_result_unknown_error">An unexpected error occurred while trying to reset your link. Try again later.</string>
+    <string name="UsernameLinkSettings_reset_link_result_unknown_error">尝试重置您的链接时出现意外错误。请稍后再试。</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
-    <string name="UsernameLinkSettings_reset_link_result_success">Your QR code and link have been reset and a new QR code and link has been created.</string>
+    <string name="UsernameLinkSettings_reset_link_result_success">您的二维码和链接已重置，新的二维码和链接已创建。</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Only share your QR code and link with people you trust. When shared others will be able to see your username and start a chat with you.</string>
+    <string name="UsernameLinkSettings_qr_description">请只将您的二维码和链接分享给信任的人。分享之后，对方将能看到您的用户名并开始与您聊天。</string>
     <!-- Button label for a button that will reset your username and give you a new link -->
-    <string name="UsernameLinkSettings_reset_button_label">Reset</string>
+    <string name="UsernameLinkSettings_reset_button_label">重置</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">Link</string>
+    <string name="UsernameLinkSettings_link_button_label">链接</string>
     <!-- Button label for the share button in the username link settings -->
-    <string name="UsernameLinkSettings_share_button_label">Share</string>
+    <string name="UsernameLinkSettings_share_button_label">分享</string>
     <!-- Button label for the color selector button in the username link settings -->
-    <string name="UsernameLinkSettings_color_button_label">Color</string>
+    <string name="UsernameLinkSettings_color_button_label">颜色</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">The QR code was invalid.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">二维码已失效。</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
-    <string name="UsernameLinkSettings_qr_result_network_error">Experienced a network error. Please try again.</string>
+    <string name="UsernameLinkSettings_qr_result_network_error">网络连接出错，请重试。</string>
     <!-- Dialog title shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_qr_code_not_found">QR code not found</string>
+    <string name="UsernameLinkSettings_qr_code_not_found">未找到二维码</string>
     <!-- Dialog message shown when scanning an image from the gallery for a username QR code and there is no qr code in the image. -->
-    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Try scanning another image containing a Signal QR code.</string>
+    <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">请尝试扫描另一张包含 Signal 二维码的图片。</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">A user with username %1$s could not be found.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">无法找到用户名为%1$s的用户。</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scan the QR Code on your contact’s device.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">请扫描您的联系人设备上的二维码。</string>
     <!-- Shown when the QR code you scanned leads to a username link that no one has -->
-    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">This user could not be found.</string>
+    <string name="UsernameLinkSettingsScreen__qr_result_not_found_no_username">找不到此用户。</string>
     <!-- Shown in place of the camera on the scan tab when the camera permission hasn\'t been granted -->
-    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">To scan a QR code, allow Signal access to the camera.</string>
+    <string name="UsernameLinkSettingsScreen__allow_camera_to_scan">如要扫描二维码，请允许 Signal 访问相机。</string>
     <!-- Button on the scan tab that asks for the camera permission -->
-    <string name="UsernameLinkSettingsScreen__allow_access">Allow access</string>
+    <string name="UsernameLinkSettingsScreen__allow_access">允许访问</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
-    <string name="UsernameLinkSettingsScreen__camera_needed">Signal needs camera access to scan QR codes</string>
+    <string name="UsernameLinkSettingsScreen__camera_needed">Signal 需要相机访问权限才能扫描二维码</string>
 </resources>

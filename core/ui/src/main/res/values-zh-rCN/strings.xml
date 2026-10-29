@@ -106,5 +106,5 @@
 
     <!-- Chips -->
     <!-- Accessibility action on a chip for something the user picked, such as a contact, that removes it. %1$s is the chip\'s label, such as the contact\'s name -->
-    <string name="Chips__remove_s">Remove %1$s</string>
+    <string name="Chips__remove_s">移除%1$s</string>
 </resources>

@@ -823,13 +823,13 @@
 
     <!-- PasskeyVerificationScreen -->
     <!-- Title of the screen asking the user to verify their account with their passkey -->
-    <string name="PasskeyVerificationScreen__two_factor_authentication">Two-factor authentication</string>
+    <string name="PasskeyVerificationScreen__two_factor_authentication">雙重驗證</string>
     <!-- Subtitle telling the user to verify their account with their passkey -->
     <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
     <!-- Button text to start verifying with a passkey -->
-    <string name="PasskeyVerificationScreen__continue">Continue</string>
+    <string name="PasskeyVerificationScreen__continue">繼續</string>
     <!-- Button text to cancel two-factor authentication -->
-    <string name="PasskeyVerificationScreen__cancel">Cancel</string>
+    <string name="PasskeyVerificationScreen__cancel">取消</string>
     <!-- Dialog message shown when a passkey verification attempt fails for a reason the user can\'t act on -->
-    <string name="PasskeyVerificationScreen__something_went_wrong_with_your_passkey">Something went wrong with your passkey. Please try again.</string>
+    <string name="PasskeyVerificationScreen__something_went_wrong_with_your_passkey">你嘅通行密鑰出現咗問題。請你再試多次。</string>
 </resources>
