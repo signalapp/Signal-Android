@@ -189,7 +189,7 @@ fun StickerPreviewSheetContent(
       sticker = sticker,
       modifier = Modifier
         .padding(vertical = 24.dp)
-        .size(144.dp)
+        .size(240.dp)
     )
 
     val packDetails = if (stickerManifest != null) {
