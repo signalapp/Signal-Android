@@ -209,6 +209,15 @@ object LinkDeviceRepository {
   }
 
   /**
+   * Accepts both standard and url-safe base64, with or without padding.
+   */
+  @VisibleForTesting
+  fun parsePublicKey(uri: Uri): ECPublicKey? {
+    val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return null
+    return ECPublicKey(Base64.decode(publicKeyEncoded))
+  }
+
+  /**
    * Adds a linked device to the account.
    *
    * @param ephemeralMessageBackupKey An ephemeral key to provide the linked device to sync existing message content. Do not set if link+sync is unsupported.
@@ -234,8 +243,7 @@ object LinkDeviceRepository {
 
     val ephemeralId: String = uri.getQueryParameter("uuid") ?: return LinkDeviceResult.BadCode
     val publicKey = try {
-      val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return LinkDeviceResult.BadCode
-      ECPublicKey(Base64.decode(publicKeyEncoded))
+      parsePublicKey(uri) ?: return LinkDeviceResult.BadCode
     } catch (e: InvalidKeyException) {
       return LinkDeviceResult.KeyError
     }

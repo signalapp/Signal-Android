@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.data
 
 import android.net.Uri
+import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -60,6 +61,15 @@ object QuickRegistrationRepository {
     return Capability.Numberless in Uri.parse(data).getCapabilities()
   }
 
+  /**
+   * Accepts both standard and url-safe base64, with or without padding.
+   */
+  @VisibleForTesting
+  fun parsePublicKey(uri: Uri): ECPublicKey? {
+    val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return null
+    return ECPublicKey(decode(publicKeyEncoded))
+  }
+
   private fun Uri.getCapabilities(): Set<Capability> {
     return this.getQueryParameter("capabilities")
       ?.split(",")
@@ -89,14 +99,12 @@ object QuickRegistrationRepository {
 
     try {
       val ephemeralId: String? = uri.getQueryParameter("uuid")
-      val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
+      val publicKey: ECPublicKey? = parsePublicKey(uri)
 
-      if (ephemeralId == null || publicKeyEncoded == null) {
-        Log.w(TAG, "Invalid link data hasId: ${ephemeralId != null} hasKey: ${publicKeyEncoded != null}")
+      if (ephemeralId == null || publicKey == null) {
+        Log.w(TAG, "Invalid link data hasId: ${ephemeralId != null} hasKey: ${publicKey != null}")
         return TransferAccountResult.FAILED
       }
-
-      val publicKey = ECPublicKey(decode(publicKeyEncoded))
 
       SignalNetwork
         .provisioningApi
