@@ -33,6 +33,7 @@ import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
 import org.signal.core.util.groups.GroupNotAMemberException
+import org.signal.core.util.logTime
 import org.signal.core.util.logging.Log
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
@@ -110,6 +111,7 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Companion.newBuilder
 import java.io.IOException
+import java.time.ZoneId
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.time.Duration
@@ -854,9 +856,13 @@ class ConversationRepository(
     AppDependencies.expiringMessageManager.scheduleDeletion(expirationInfos)
   }
 
-  fun getEarliestMessageSentDate(threadId: Long): Single<Long> {
+  fun getDaysWithMessages(threadId: Long): Single<Set<Long>> {
     return Single
-      .fromCallable { SignalDatabase.messages.getEarliestMessageSentDate(threadId) }
+      .fromCallable {
+        logTime(TAG, "days-with-messages", decimalPlaces = 1) {
+          SignalDatabase.messages.getDaysWithMessages(threadId, ZoneId.systemDefault())
+        }
+      }
       .subscribeOn(Schedulers.io())
   }
 

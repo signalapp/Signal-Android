@@ -155,6 +155,8 @@ import org.thoughtcrime.securesms.util.isStory
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.Closeable
 import java.io.IOException
+import java.time.Instant
+import java.time.ZoneId
 import java.util.LinkedList
 import java.util.Optional
 import java.util.UUID
@@ -317,6 +319,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     private const val INDEX_THREAD_DATE_RECEIVED_UNREAD = "message_thread_date_received_unread_index"
     private const val INDEX_COLLAPSED_STATE = "message_collapsed_state_index"
     private const val INDEX_DATE_SENT_FROM_TO_THREAD = "message_date_sent_from_to_thread_index"
+    private const val INDEX_THREAD_DATE_SENT = "message_thread_date_sent_index"
     private const val INDEX_THREAD_COUNT = "message_thread_count_index"
     private const val INDEX_THREAD_UNREAD_COUNT = "message_thread_unread_count_index"
     private const val INDEX_STORY_TYPE = "message_story_type_index"
@@ -364,7 +367,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       "CREATE INDEX IF NOT EXISTS message_expire_started_index ON $TABLE_NAME ($EXPIRE_STARTED) WHERE $EXPIRE_STARTED > 0",
       "CREATE INDEX IF NOT EXISTS message_view_once_index ON $TABLE_NAME ($VIEW_ONCE) WHERE $VIEW_ONCE > 0",
       "CREATE INDEX IF NOT EXISTS $INDEX_RATE_LIMITED ON $TABLE_NAME ($ID) WHERE ($TYPE & ${MessageTypes.MESSAGE_RATE_LIMITED_BIT}) != 0",
-      "CREATE INDEX IF NOT EXISTS $INDEX_SCHEDULED_NON_STORY ON $TABLE_NAME ($SCHEDULED_DATE) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1"
+      "CREATE INDEX IF NOT EXISTS $INDEX_SCHEDULED_NON_STORY ON $TABLE_NAME ($SCHEDULED_DATE) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE != -1",
+      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_DATE_SENT ON $TABLE_NAME ($THREAD_ID, $DATE_SENT) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -431,6 +435,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     private const val IS_STORY_CLAUSE = "$STORY_TYPE > 0 AND $DELETED_BY IS NULL AND $STORY_ARCHIVED = 0"
     private const val IS_ARCHIVED_STORY_CLAUSE = "$STORY_TYPE > 0 AND $DELETED_BY IS NULL AND $STORY_ARCHIVED > 0"
     private const val RAW_ID_WHERE = "$TABLE_NAME.$ID = ?"
+    private const val FIRST_SENT = "first_sent"
+    private const val LAST_SENT = "last_sent"
 
     private val SNIPPET_QUERY =
       """
@@ -5303,27 +5309,34 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return getMessagePositionInConversation(threadId, 0, receivedTimestamp)
   }
 
-  fun messageExistsOnDays(threadId: Long, dayStarts: Collection<Long>): Map<Long, Boolean> {
-    if (dayStarts.isEmpty()) {
-      return emptyMap()
-    }
-    return dayStarts.associateWith { startOfDay ->
-      readableDatabase
-        .exists(TABLE_NAME)
-        .where("$THREAD_ID = $threadId AND $DATE_SENT >= $startOfDay AND $DATE_SENT < $startOfDay + 86400000 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0")
-        .run()
-    }
+  /**
+   * Every local calendar day the thread has a message on, as epoch day numbers.
+   *
+   * We do this by grouping messages by day, getting the earliest and latest message in that day, and then converting those to epoch days. Because a day can
+   * span at most two days in another time zone, this is sufficient, and using a set automatically fixes any double-counting.
+   */
+  fun getDaysWithMessages(threadId: Long, zoneId: ZoneId): Set<Long> {
+    val days = mutableSetOf<Long>()
+
+    readableDatabase
+      .rawQuery(
+        """
+        SELECT MIN($DATE_SENT) AS $FIRST_SENT, MAX($DATE_SENT) AS $LAST_SENT
+        FROM $TABLE_NAME INDEXED BY $INDEX_THREAD_DATE_SENT
+        WHERE $THREAD_ID = $threadId AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0
+        GROUP BY $DATE_SENT / ${1.days.inWholeMilliseconds}
+        """.trimIndent()
+      )
+      .forEach { cursor ->
+        days += cursor.requireLong(FIRST_SENT).toEpochDay(zoneId)
+        days += cursor.requireLong(LAST_SENT).toEpochDay(zoneId)
+      }
+
+    return days
   }
 
-  fun getEarliestMessageSentDate(threadId: Long): Long {
-    return readableDatabase
-      .select(DATE_SENT)
-      .from(TABLE_NAME)
-      .where("$THREAD_ID = $threadId AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0")
-      .orderBy("$DATE_SENT ASC")
-      .limit(1)
-      .run()
-      .readToSingleLong(0)
+  private fun Long.toEpochDay(zoneId: ZoneId): Long {
+    return Instant.ofEpochMilli(this).atZone(zoneId).toLocalDate().toEpochDay()
   }
 
   /**

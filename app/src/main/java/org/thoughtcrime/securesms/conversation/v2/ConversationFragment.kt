@@ -4812,7 +4812,6 @@ class ConversationFragment :
           searchNav.visible = true
           searchNav.setData(0, 0)
           inputPanel.setHideForSearch(true)
-          viewModel.onChatSearchOpened()
           binding.conversationDisabledInput.visible = false
 
           (0 until menu.size()).forEach {
@@ -5748,11 +5747,12 @@ class ConversationFragment :
     }
 
     override fun onDatePickerSelected() {
-      disposables += viewModel.getEarliestMessageSentDate().subscribe { earliestDate ->
+      disposables += viewModel.getDaysWithMessages().subscribe { epochDaysWithMessages ->
         val local = LocalDateTime.now()
           .atMidnight()
           .atUTC()
           .toMillis()
+        val earliestEpochDay = epochDaysWithMessages.minOrNull() ?: local.milliseconds.inWholeDays
         val datePicker =
           MaterialDatePicker.Builder
             .datePicker()
@@ -5760,8 +5760,8 @@ class ConversationFragment :
             .setSelection(local)
             .setCalendarConstraints(
               CalendarConstraints.Builder()
-                .setValidator(viewModel.jumpToDateValidator)
-                .setStart(earliestDate)
+                .setValidator(JumpToDateValidator.from(epochDaysWithMessages))
+                .setStart(earliestEpochDay.days.inWholeMilliseconds)
                 .setEnd(local)
                 .build()
             )

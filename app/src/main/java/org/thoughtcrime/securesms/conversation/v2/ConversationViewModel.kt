@@ -220,10 +220,6 @@ class ConversationViewModel(
 
   private val startExpiration = BehaviorSubject.create<MessageTable.ExpirationInfo>()
 
-  private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator.create(threadId) }
-  val jumpToDateValidator: JumpToDateValidator
-    get() = _jumpToDateValidator
-
   private val internalBackPressedState = MutableStateFlow(BackPressedState())
   val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
 
@@ -766,14 +762,9 @@ class ConversationViewModel(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun onChatSearchOpened() {
-    // Trigger the lazy load, so we can race initialization of the validator
-    _jumpToDateValidator
-  }
-
-  fun getEarliestMessageSentDate(): Single<Long> {
+  fun getDaysWithMessages(): Single<Set<Long>> {
     return repository
-      .getEarliestMessageSentDate(threadId)
+      .getDaysWithMessages(threadId)
       .observeOn(AndroidSchedulers.mainThread())
   }
 
