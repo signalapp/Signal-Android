@@ -71,6 +71,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           boolean localVideoEnabled  = currentState.getLocalDeviceState().getCameraState().isEnabled();
           boolean remoteVideoEnabled = currentState.getCallInfoState().getRemoteCallParticipantsMap().values().stream().anyMatch(CallParticipant::isVideoEnabled);
           webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context, localVideoEnabled, remoteVideoEnabled));
+          WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled(), false);
