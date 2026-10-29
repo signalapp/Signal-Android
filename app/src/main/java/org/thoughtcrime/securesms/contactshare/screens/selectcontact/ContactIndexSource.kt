@@ -53,6 +53,9 @@ class ContactIndexSource(
       } catch (e: SecurityException) {
         Log.w(TAG, "Contacts permission went away after the index was built.", e)
         null
+      } catch (e: Exception) {
+        Log.w(TAG, "Contacts provider failed to resolve the lookup key. ${e.javaClass.simpleName}")
+        null
       }
 
       if (uri != null) {

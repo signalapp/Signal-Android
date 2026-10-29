@@ -56,27 +56,37 @@ class ContactIndexSourceTest {
    */
   @Test
   fun `losing contacts permission degrades an address book row to its signal profile`() = runTest(testDispatcher) {
-    val resolved = sourceThatLostPermission().resolve(addressBookRecord(recipientId = RecipientId.from(7)))
+    val resolved = sourceThatThrows(SecurityException("denied")).resolve(addressBookRecord(recipientId = RecipientId.from(7)))
 
     assertThat(resolved).isEqualTo(SharedContactSource.SignalContact(RecipientId.from(7)))
   }
 
   @Test
   fun `losing contacts permission on a row with no signal profile resolves to nothing`() = runTest(testDispatcher) {
-    val resolved = sourceThatLostPermission().resolve(addressBookRecord(recipientId = null))
+    val resolved = sourceThatThrows(SecurityException("denied")).resolve(addressBookRecord(recipientId = null))
 
     assertThat(resolved).isNull()
   }
 
-  /**
-   * Stubbed with a concrete context rather than `any()`, because mockk runs the real call once while it
-   * records, and the dummy it fabricates for `any()` cannot answer `getContentResolver()`.
-   */
-  private fun sourceThatLostPermission(): ContactIndexSource {
+  @Test
+  fun `a lookup key the provider rejects degrades an address book row to its signal profile`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(IllegalArgumentException("Invalid lookup id: $LOOKUP_KEY")).resolve(addressBookRecord(recipientId = RecipientId.from(7)))
+
+    assertThat(resolved).isEqualTo(SharedContactSource.SignalContact(RecipientId.from(7)))
+  }
+
+  @Test
+  fun `a lookup key the provider rejects on a row with no signal profile resolves to nothing`() = runTest(testDispatcher) {
+    val resolved = sourceThatThrows(IllegalArgumentException("Invalid lookup id: $LOOKUP_KEY")).resolve(addressBookRecord(recipientId = null))
+
+    assertThat(resolved).isNull()
+  }
+
+  private fun sourceThatThrows(error: Exception): ContactIndexSource {
     val context = RuntimeEnvironment.getApplication()
 
     mockkStatic(SystemContactsRepository::class)
-    every { SystemContactsRepository.currentContactUri(context, LOOKUP_KEY, CONTACT_ID) } throws SecurityException("denied")
+    every { SystemContactsRepository.currentContactUri(context, LOOKUP_KEY, CONTACT_ID) } throws error
 
     return ContactIndexSource(mockk(relaxed = true), context)
   }

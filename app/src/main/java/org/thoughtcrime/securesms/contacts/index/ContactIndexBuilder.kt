@@ -16,7 +16,7 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
-import org.signal.core.util.requireLong
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -69,7 +69,7 @@ class ContactIndexBuilder(private val context: Context) {
 
       Log.i(
         TAG,
-        "Indexed $count rows. signalOnly=$signalOnlyIndexed/${signalOnly.size} addressBook=${addressBook.inserted}/${addressBook.inserted + addressBook.skipped} linkedToSignal=${links.values.sumOf { it.size }}"
+        "Indexed $count rows. signalOnly=$signalOnlyIndexed/${signalOnly.size} addressBook=${addressBook.inserted}/${addressBook.inserted + addressBook.skipped + addressBook.invalidId} invalidId=${addressBook.invalidId} linkedToSignal=${links.values.sumOf { it.size }}"
       )
 
       if (hasPermission) ContactIndexBuildResult.Success(count) else ContactIndexBuildResult.SignalOnly(count)
@@ -115,12 +115,20 @@ class ContactIndexBuilder(private val context: Context) {
 
     var inserted = 0
     var skipped = 0
+    var invalidId = 0
 
     cursor.use {
       val batch = ArrayList<ContactIndexEntry>(BATCH_SIZE)
 
       while (it.moveToNext()) {
-        val entries = it.toEntries(links, sortKeys)
+        val contactId = it.requireLongOrNull(ContactsContract.Contacts._ID)
+
+        if (contactId == null || contactId <= 0) {
+          invalidId++
+          continue
+        }
+
+        val entries = it.toEntries(contactId, links, sortKeys)
 
         if (entries.isEmpty()) {
           skipped++
@@ -140,11 +148,11 @@ class ContactIndexBuilder(private val context: Context) {
       inserted += batch.size
     }
 
-    return InsertCount(inserted, skipped)
+    return InsertCount(inserted, skipped, invalidId)
   }
 
   /** Rows that made it into the index versus rows the provider gave us that had nothing to show. */
-  private data class InsertCount(val inserted: Int = 0, val skipped: Int = 0)
+  private data class InsertCount(val inserted: Int = 0, val skipped: Int = 0, val invalidId: Int = 0)
 
   private fun RecipientTable.SignalOnlyContact.toEntry(sortKeys: ContactSortKeyGenerator): ContactIndexEntry? {
     val displayName = ContactDisplayName.forSignalContact(
@@ -168,6 +176,7 @@ class ContactIndexBuilder(private val context: Context) {
 
   /** One entry per registered recipient, since two numbers on one contact are two Signal accounts. */
   private fun Cursor.toEntries(
+    contactId: Long,
     links: Map<String, List<RecipientTable.SystemContactLink>>,
     sortKeys: ContactSortKeyGenerator
   ): List<ContactIndexEntry> {
@@ -175,13 +184,14 @@ class ContactIndexBuilder(private val context: Context) {
     val matched = links[lookupKey].orEmpty()
 
     return if (matched.isEmpty()) {
-      listOfNotNull(toEntry(lookupKey, null, sortKeys))
+      listOfNotNull(toEntry(contactId, lookupKey, null, sortKeys))
     } else {
-      matched.mapNotNull { toEntry(lookupKey, it, sortKeys) }
+      matched.mapNotNull { toEntry(contactId, lookupKey, it, sortKeys) }
     }
   }
 
   private fun Cursor.toEntry(
+    contactId: Long,
     lookupKey: String,
     link: RecipientTable.SystemContactLink?,
     sortKeys: ContactSortKeyGenerator
@@ -203,7 +213,7 @@ class ContactIndexBuilder(private val context: Context) {
       searchText = ContactDisplayName.searchTextOf(providerName, link?.nickname),
       recipientId = link?.recipientId,
       lookupKey = lookupKey,
-      contactId = requireLong(ContactsContract.Contacts._ID),
+      contactId = contactId,
       hasPersonalName = hasPersonalName,
       isOrgOnly = SystemContactsRepository.isOrganizationDisplayName(displayNameSource) && link?.nickname == null,
       hasPhoto = requireString(ContactsContract.Contacts.PHOTO_URI) != null
