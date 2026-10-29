@@ -8,6 +8,7 @@ import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.model.LocalMetricsEvent
@@ -161,6 +162,11 @@ class LocalMetricsDatabase private constructor(
         0
       }
     }
+  }
+
+  /** When the most recent [limit] events named [eventName] were recorded, newest first. */
+  fun getEventTimes(eventName: String, limit: Int): List<Long> {
+    return readableDatabase.rawQuery("SELECT $CREATED_AT FROM $TABLE_NAME WHERE $EVENT_NAME = ? ORDER BY $CREATED_AT DESC LIMIT $limit", SqlUtil.buildArgs(eventName)).readToList { it.getLong(0) }
   }
 
   fun getMetrics(): List<EventMetrics> {

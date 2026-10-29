@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -131,6 +132,7 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BatterySnapshotTracker;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Environment;
+import org.thoughtcrime.securesms.util.ProcessExitReasonTracker;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
@@ -223,6 +225,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addNonBlocking(this::initializePendingRetryReceiptManager)
               .addNonBlocking(this::initializeScheduledMessageManager)
               .addNonBlocking(this::initializeFcmCheck)
+              .addNonBlocking(this::recordProcessExits)
               .addNonBlocking(PreKeysSyncJob::enqueueIfNeeded)
               .addNonBlocking(this::initializePeriodicTasks)
               .addNonBlocking(this::initializeCircumvention)
@@ -479,6 +482,12 @@ public class ApplicationContext extends Application implements AppForegroundObse
     } else if (!SignalStore.settings().getPassphraseDisabled() && VersionTracker.getDaysSinceFirstInstalled(this) < 912) {
       Log.i(TAG, "Detected a not-recent install that doesn't have passphrases disabled -- disabling now.");
       SignalStore.settings().setPassphraseDisabled(true);
+    }
+  }
+
+  private void recordProcessExits() {
+    if (Build.VERSION.SDK_INT >= 30) {
+      ProcessExitReasonTracker.recordNewExits(this);
     }
   }
 

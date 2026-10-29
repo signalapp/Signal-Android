@@ -45,6 +45,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore, context: Co
     private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
     private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
     private const val LAST_WEBSOCKET_CONNECT_TIME = "misc.last_websocket_connect_time"
+    private const val LAST_PROCESS_EXIT_TIMESTAMP_SEEN = "misc.last_process_exit_timestamp_seen"
     private const val LAST_CONNECTIVITY_WARNING_TIME = "misc.last_connectivity_warning_time"
     private const val NEW_LINKED_DEVICE_ID = "misc.new_linked_device_id"
     private const val NEW_LINKED_DEVICE_CREATED_TIME = "misc.new_linked_device_created_time"
@@ -380,6 +381,9 @@ class MiscellaneousValues internal constructor(store: KeyValueStore, context: Co
    * The last time you successfully connected to the websocket.
    */
   var lastWebSocketConnectTime: Long by longValue(LAST_WEBSOCKET_CONNECT_TIME, System.currentTimeMillis())
+
+  /** The timestamp of the newest process exit we have already logged, so each exit is only reported once. */
+  var lastProcessExitTimestampSeen: Long by longValue(LAST_PROCESS_EXIT_TIMESTAMP_SEEN, 0)
 
   /**
    * The last time we prompted the user regarding a [org.thoughtcrime.securesms.util.ConnectivityWarning].
