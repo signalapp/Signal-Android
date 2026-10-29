@@ -46,6 +46,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
@@ -57,6 +58,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.theme.NameColors
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.compose.GlideImageScaleType
 import org.signal.mediakeyboard.R
@@ -70,12 +72,19 @@ import org.signal.mediakeyboard.screens.SEARCH_FIELD_SPACING
  * @param onSearchFieldRevealedChange Reports whether the grid is scrolled far enough up to show the
  *   search field, so the top bar can drop its now-redundant search icon.
  */
-private const val GIF_COLUMN_COUNT = 2
 private val GIF_SPACING = 8.dp
 private const val GIF_FADE_IN_DURATION_MILLIS = 200
 
 /** Its own, rather than the shared grid padding, because the design insets the gifs further than the other pages. */
-private val GIF_GRID_CONTENT_PADDING = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+private val GIF_GRID_HORIZONTAL_PADDING = 16.dp
+private val GIF_GRID_CONTENT_PADDING = PaddingValues(horizontal = GIF_GRID_HORIZONTAL_PADDING, vertical = 8.dp)
+
+/** Sized so a 640dp wide grid, the default bottom sheet max width, fits exactly four columns. */
+private const val GIF_BASELINE_COLUMNS = 4
+private val GIF_MIN_CELL_WIDTH = (640.dp - GIF_GRID_HORIZONTAL_PADDING * 2 - GIF_SPACING * (GIF_BASELINE_COLUMNS - 1)) / GIF_BASELINE_COLUMNS
+
+/** Column counts the grid steps between, so a window gets the largest that fits rather than every count in between. */
+private val GIF_COLUMN_BUCKETS = listOf(2, 4, 8)
 
 @Composable
 fun GifPageScreen(
@@ -93,11 +102,8 @@ fun GifPageScreen(
     }
   }
 
-  PinnedRailLayout(
-    rail = { GifQuickSearchRail(state = state, onEvent = onEvent) },
-    modifier = modifier
-  ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+  val content: @Composable (Modifier) -> Unit = { contentModifier ->
+    Box(modifier = contentModifier.fillMaxSize()) {
       when {
         state.isLoading -> {
           CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
@@ -126,6 +132,18 @@ fun GifPageScreen(
         }
       }
     }
+  }
+
+  // Without a rail there is nothing for PinnedRailLayout to pin, and its inset handling is left to the host.
+  if (state.showQuickSearchRail) {
+    PinnedRailLayout(
+      rail = { GifQuickSearchRail(state = state, onEvent = onEvent) },
+      modifier = modifier
+    ) {
+      content(Modifier)
+    }
+  } else {
+    content(modifier)
   }
 }
 
@@ -250,19 +268,9 @@ private fun GifGrid(
     }
   }
 
-  CollapsingHeaderLayout(
-    header = {
-      MediaKeyboardSearchField(
-        hint = stringResource(R.string.MediaKeyboard__search_gifs),
-        onClick = { onEvent(GifPageScreenEvents.SearchClicked) },
-        modifier = Modifier.padding(bottom = SEARCH_FIELD_SPACING)
-      )
-    },
-    onRevealedChange = onSearchFieldRevealedChange,
-    resetKey = state.selectedQuickSearch
-  ) {
+  val grid = @Composable {
     LazyVerticalStaggeredGrid(
-      columns = StaggeredGridCells.Fixed(GIF_COLUMN_COUNT),
+      columns = GifColumns,
       state = gridState,
       verticalItemSpacing = GIF_SPACING,
       horizontalArrangement = Arrangement.spacedBy(GIF_SPACING),
@@ -295,6 +303,32 @@ private fun GifGrid(
       }
     }
   }
+
+  if (state.showSearchField) {
+    CollapsingHeaderLayout(
+      header = {
+        MediaKeyboardSearchField(
+          hint = stringResource(R.string.MediaKeyboard__search_gifs),
+          onClick = { onEvent(GifPageScreenEvents.SearchClicked) },
+          modifier = Modifier.padding(bottom = SEARCH_FIELD_SPACING)
+        )
+      },
+      onRevealedChange = onSearchFieldRevealedChange,
+      resetKey = state.selectedQuickSearch,
+      content = grid
+    )
+  } else {
+    grid()
+  }
+}
+
+private object GifColumns : StaggeredGridCells {
+  override fun Density.calculateCrossAxisCellSizes(availableSize: Int, spacing: Int): IntArray {
+    val fits = (availableSize + spacing) / (GIF_MIN_CELL_WIDTH.roundToPx() + spacing)
+    val count = GIF_COLUMN_BUCKETS.lastOrNull { it <= fits } ?: GIF_COLUMN_BUCKETS.first()
+    val cellsWidth = availableSize - spacing * (count - 1)
+    return IntArray(count) { index -> cellsWidth / count + if (index < cellsWidth % count) 1 else 0 }
+  }
 }
 
 @OptIn(UnstableApi::class)
@@ -305,12 +339,14 @@ private fun GifCell(
   onClick: () -> Unit,
   modifier: Modifier = Modifier
 ) {
+  val placeholderColor = remember(gif.id) { NameColors.forKey(gif.id) }.resolve()
+
   Box(
     modifier = modifier
       .fillMaxWidth()
       .aspectRatio(gif.aspectRatio)
       .clip(MaterialTheme.shapes.small)
-      .background(MaterialTheme.colorScheme.surfaceVariant)
+      .background(placeholderColor)
       .clickable(onClick = onClick)
   ) {
     GlideImage(

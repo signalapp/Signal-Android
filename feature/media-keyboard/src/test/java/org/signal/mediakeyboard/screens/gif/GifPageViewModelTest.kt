@@ -5,17 +5,21 @@
 
 package org.signal.mediakeyboard.screens.gif
 
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
+import androidx.compose.runtime.snapshots.Snapshot
 import assertk.assertThat
 import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -106,6 +110,67 @@ class GifPageViewModelTest {
 
     assertThat(viewModel.state.value.selectedQuickSearch).isEqualTo(GifQuickSearchOption.LOVE)
     assertThat(viewModel.state.value.gifs).hasSize(5)
+  }
+
+  @Test
+  fun `search query - takes the place of the quick search`() {
+    coEvery { repository.getGifs("cats", 0, any()) } returns Result.success(GifPage(gifs(3), hasMore = false))
+
+    val viewModel = createViewModel()
+    viewModel.onEvent(GifPageScreenEvents.SearchQueryChanged("cats"))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchQuery).isEqualTo("cats")
+    assertThat(viewModel.state.value.gifs).hasSize(3)
+  }
+
+  @Test
+  fun `search query cleared - returns to the quick search`() {
+    coEvery { repository.getGifs("cats", 0, any()) } returns Result.success(GifPage(gifs(3), hasMore = false))
+
+    val viewModel = createViewModel()
+    viewModel.onEvent(GifPageScreenEvents.SearchQueryChanged("cats"))
+    viewModel.onEvent(GifPageScreenEvents.SearchQueryChanged(""))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchQuery).isEqualTo("")
+    assertThat(viewModel.state.value.gifs).hasSize(20)
+  }
+
+  @Test
+  fun `search query - a newer query cancels the fetch for the one before it`() {
+    coEvery { repository.getGifs("ca", 0, any()) } coAnswers {
+      delay(1_000)
+      Result.success(GifPage(gifs(7), hasMore = false))
+    }
+    coEvery { repository.getGifs("cats", 0, any()) } returns Result.success(GifPage(gifs(3), hasMore = false))
+
+    val viewModel = createViewModel()
+    viewModel.onEvent(GifPageScreenEvents.SearchQueryChanged("ca"))
+    testDispatcher.scheduler.runCurrent()
+    viewModel.onEvent(GifPageScreenEvents.SearchQueryChanged("cats"))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(viewModel.state.value.searchQuery).isEqualTo("cats")
+    assertThat(viewModel.state.value.gifs).hasSize(3)
+  }
+
+  @Test
+  fun `search field - typing is debounced into a single query`() {
+    coEvery { repository.getGifs(any(), 0, any()) } returns Result.success(GifPage(gifs(3), hasMore = false))
+
+    val viewModel = createViewModel()
+    listOf("c", "ca", "cat", "cats").forEach { text ->
+      viewModel.searchFieldState.setTextAndPlaceCursorAtEnd(text)
+      Snapshot.sendApplyNotifications()
+      testDispatcher.scheduler.advanceTimeBy(100)
+    }
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    coVerify(exactly = 0) { repository.getGifs("c", any(), any()) }
+    coVerify(exactly = 0) { repository.getGifs("ca", any(), any()) }
+    coVerify(exactly = 0) { repository.getGifs("cat", any(), any()) }
+    coVerify(exactly = 1) { repository.getGifs("cats", 0, any()) }
   }
 
   @Test

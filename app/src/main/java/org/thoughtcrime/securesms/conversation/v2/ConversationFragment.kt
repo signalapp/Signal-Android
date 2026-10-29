@@ -900,7 +900,7 @@ class ConversationFragment :
   /** Turns a gif picked from the media keyboard into a blob the composer can attach. */
   private lateinit var inlineVideoController: InlineVideoController
 
-  private val giphyMp4ViewModel: GiphyMp4ViewModel by activityViewModels { GiphyMp4ViewModel.Factory(isMms()) }
+  private val giphyMp4ViewModel: GiphyMp4ViewModel by activityViewModels()
 
   private var gifProgressDialog: AlertDialog? = null
 
@@ -1444,10 +1444,6 @@ class ConversationFragment :
   override fun onStickerManagementClicked() {
     StickerManagementScreen.show(this)
     container.hideInput()
-  }
-
-  private fun isMms(): Boolean {
-    return false
   }
 
   private fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int) {

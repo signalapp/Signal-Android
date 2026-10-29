@@ -212,7 +212,6 @@ class ConversationActivityResultContracts(private val fragment: Fragment, privat
   private object GifSearch : ActivityResultContract<GifSearchInput, MediaSendActivityResult?>() {
     override fun createIntent(context: Context, input: GifSearchInput): Intent {
       return Intent(context, GiphyActivity::class.java).apply {
-        putExtra(GiphyActivity.EXTRA_IS_MMS, false)
         putExtra(GiphyActivity.EXTRA_RECIPIENT_ID, input.recipientId)
         putExtra(GiphyActivity.EXTRA_TRANSPORT, MessageSendType.SignalMessageSendType)
         putExtra(GiphyActivity.EXTRA_TEXT, input.text)

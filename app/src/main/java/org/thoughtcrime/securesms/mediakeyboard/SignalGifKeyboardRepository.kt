@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.mediakeyboard
 import android.net.Uri
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.runInterruptible
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.signal.core.util.JsonUtils
@@ -54,33 +54,32 @@ class SignalGifKeyboardRepository : GifKeyboardRepository {
   }
 
   override suspend fun getGifs(query: String, offset: Int, limit: Int): Result<GifPage, GifFetchError> {
-    return withContext(Dispatchers.IO) {
-      try {
-        val response = fetch(query.trim(), offset, limit)
-        val gifs = response.data
-          .filter { !it.gifUrl.isNullOrEmpty() && !it.mp4Url.isNullOrEmpty() && !it.mp4PreviewUrl.isNullOrEmpty() && !it.stillUrl.isNullOrEmpty() }
-          .map { image ->
-            synchronized(imagesById) {
-              imagesById[image.mp4Url] = image
-            }
-
-            KeyboardGif(
-              id = image.mp4Url,
-              still = ChunkedImageUrl(image.stillUrl),
-              mp4PreviewUri = Uri.parse(image.mp4PreviewUrl),
-              width = image.gifWidth,
-              height = image.gifHeight
-            )
+    return try {
+      // Interruptible so that a superseded search aborts its request instead of downloading results nobody will see.
+      val response = runInterruptible(Dispatchers.IO) { fetch(query.trim(), offset, limit) }
+      val gifs = response.data
+        .filter { !it.gifUrl.isNullOrEmpty() && !it.mp4Url.isNullOrEmpty() && !it.mp4PreviewUrl.isNullOrEmpty() && !it.stillUrl.isNullOrEmpty() }
+        .map { image ->
+          synchronized(imagesById) {
+            imagesById[image.mp4Url] = image
           }
 
-        Result.success(GifPage(gifs = gifs, hasMore = offset + response.data.size < response.pagination.totalCount))
-      } catch (e: IOException) {
-        Result.failure(GifFetchError.Network)
-      } catch (e: CancellationException) {
-        throw e
-      } catch (e: Exception) {
-        Result.failure(GifFetchError.Unknown(e))
-      }
+          KeyboardGif(
+            id = image.mp4Url,
+            still = ChunkedImageUrl(image.stillUrl),
+            mp4PreviewUri = Uri.parse(image.mp4PreviewUrl),
+            width = image.gifWidth,
+            height = image.gifHeight
+          )
+        }
+
+      Result.success(GifPage(gifs = gifs, hasMore = offset + response.data.size < response.pagination.totalCount))
+    } catch (e: IOException) {
+      Result.failure(GifFetchError.Network)
+    } catch (e: CancellationException) {
+      throw e
+    } catch (e: Exception) {
+      Result.failure(GifFetchError.Unknown(e))
     }
   }
 
