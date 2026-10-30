@@ -61,7 +61,7 @@ class ContactIndexDatabase private constructor(
 ) : SQLiteOpenHelper(
   application,
   indexFileName,
-  databaseSecret.asString(),
+  databaseSecret.asHex(),
   null,
   DATABASE_VERSION,
   0,
@@ -158,7 +158,7 @@ class ContactIndexDatabase private constructor(
 
       val name = "$FILE_PREFIX$RUN_ID-${instanceCounter.incrementAndGet()}$FILE_SUFFIX"
 
-      return ContactIndexDatabase(application, name, DatabaseSecret(Util.getSecretBytes(KEY_SIZE)))
+      return ContactIndexDatabase(application, name, DatabaseSecret.fromBytes(Util.getSecretBytes(KEY_SIZE)))
     }
 
     private fun deleteDatabaseFile(application: Application, databaseName: String) {

@@ -21,13 +21,14 @@ class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = listOf(
-    KEY_RELEASE_CHANNEL_RECIPIENT_ID
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      KEY_RELEASE_CHANNEL_RECIPIENT_ID
+    )
 
   val releaseChannelRecipientId: RecipientId?
     get() {
-      val id = getString(KEY_RELEASE_CHANNEL_RECIPIENT_ID, "")
+      val id = getNonNullString(KEY_RELEASE_CHANNEL_RECIPIENT_ID, "")
       return if (id.isEmpty()) {
         null
       } else {

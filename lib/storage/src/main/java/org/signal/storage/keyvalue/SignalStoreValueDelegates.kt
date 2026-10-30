@@ -151,7 +151,7 @@ private class FloatValue(private val key: String, default: Float, store: KeyValu
 
 private class BlobValue(private val key: String, default: ByteArray, store: KeyValueStore) : SignalStoreValueDelegate<ByteArray>(store, default) {
   override fun getValue(values: KeyValueStore): ByteArray {
-    return values.getBlob(key, default)
+    return values.getNonNullBlob(key, default)
   }
 
   override fun setValue(values: KeyValueStore, value: ByteArray) {
@@ -206,11 +206,7 @@ private class KeyValueProtoWithDefaultValue<M>(
   onSet: ((M) -> Unit)? = null
 ) : SignalStoreValueDelegate<M>(store, default, onSet) {
   override fun getValue(values: KeyValueStore): M {
-    return if (values.containsKey(key)) {
-      adapter.decode(values.getBlob(key, null))
-    } else {
-      default
-    }
+    return values.getBlob(key, null)?.let { adapter.decode(it) } ?: default
   }
 
   override fun setValue(values: KeyValueStore, value: M) {
@@ -228,11 +224,7 @@ private class KeyValueProtoValue<M>(
   store: KeyValueStore
 ) : SignalStoreValueDelegate<M?>(store, null) {
   override fun getValue(values: KeyValueStore): M? {
-    return if (values.containsKey(key)) {
-      adapter.decode(values.getBlob(key, null))
-    } else {
-      null
-    }
+    return values.getBlob(key, null)?.let { adapter.decode(it) }
   }
 
   override fun setValue(values: KeyValueStore, value: M?) {

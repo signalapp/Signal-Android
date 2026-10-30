@@ -138,52 +138,53 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     }
   }
 
-  public override fun getKeysToIncludeInBackup(): List<String> = listOf(
-    LINK_PREVIEWS,
-    KEEP_MESSAGES_DURATION,
-    PREFER_SYSTEM_CONTACT_PHOTOS,
-    CALL_DATA_MODE,
-    THREAD_TRIM_LENGTH,
-    THREAD_TRIM_ENABLED,
-    THEME,
-    MESSAGE_FONT_SIZE,
-    PREFER_SYSTEM_EMOJI,
-    ENTER_KEY_SENDS,
-    BACKUPS_ENABLED,
-    MESSAGE_NOTIFICATIONS_ENABLED,
-    MESSAGE_NOTIFICATION_SOUND,
-    MESSAGE_VIBRATE_ENABLED,
-    MESSAGE_LED_COLOR,
-    MESSAGE_LED_BLINK_PATTERN,
-    MESSAGE_IN_CHAT_SOUNDS_ENABLED,
-    MESSAGE_REPEAT_ALERTS,
-    MESSAGE_NOTIFICATION_PRIVACY,
-    CALL_NOTIFICATIONS_ENABLED,
-    CALL_RINGTONE,
-    CALL_VIBRATE_ENABLED,
-    NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
-    UNIVERSAL_EXPIRE_TIMER,
-    SENT_MEDIA_QUALITY,
-    KEEP_MUTED_CHATS_ARCHIVED,
-    USE_COMPACT_NAVIGATION_BAR,
-    THREAD_TRIM_SYNC_TO_LINKED_DEVICES,
-    PASSPHRASE_DISABLED,
-    PASSPHRASE_TIMEOUT_ENABLED,
-    PASSPHRASE_TIMEOUT,
-    SCREEN_LOCK_ENABLED,
-    SCREEN_LOCK_TIMEOUT,
-    SCREEN_SECURITY_ENABLED,
-    INCOGNITO_KEYBOARD_ENABLED,
-    READ_RECEIPTS_ENABLED,
-    TYPING_INDICATORS_ENABLED,
-    SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
-    UNIVERSAL_UNIDENTIFIED_ACCESS,
-    ALWAYS_RELAY_CALLS,
-    MEDIA_DOWNLOAD_MOBILE,
-    MEDIA_DOWNLOAD_WIFI,
-    MEDIA_DOWNLOAD_ROAMING,
-    AUTOPLAY_STICKERS_AND_GIFS
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      LINK_PREVIEWS,
+      KEEP_MESSAGES_DURATION,
+      PREFER_SYSTEM_CONTACT_PHOTOS,
+      CALL_DATA_MODE,
+      THREAD_TRIM_LENGTH,
+      THREAD_TRIM_ENABLED,
+      THEME,
+      MESSAGE_FONT_SIZE,
+      PREFER_SYSTEM_EMOJI,
+      ENTER_KEY_SENDS,
+      BACKUPS_ENABLED,
+      MESSAGE_NOTIFICATIONS_ENABLED,
+      MESSAGE_NOTIFICATION_SOUND,
+      MESSAGE_VIBRATE_ENABLED,
+      MESSAGE_LED_COLOR,
+      MESSAGE_LED_BLINK_PATTERN,
+      MESSAGE_IN_CHAT_SOUNDS_ENABLED,
+      MESSAGE_REPEAT_ALERTS,
+      MESSAGE_NOTIFICATION_PRIVACY,
+      CALL_NOTIFICATIONS_ENABLED,
+      CALL_RINGTONE,
+      CALL_VIBRATE_ENABLED,
+      NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
+      UNIVERSAL_EXPIRE_TIMER,
+      SENT_MEDIA_QUALITY,
+      KEEP_MUTED_CHATS_ARCHIVED,
+      USE_COMPACT_NAVIGATION_BAR,
+      THREAD_TRIM_SYNC_TO_LINKED_DEVICES,
+      PASSPHRASE_DISABLED,
+      PASSPHRASE_TIMEOUT_ENABLED,
+      PASSPHRASE_TIMEOUT,
+      SCREEN_LOCK_ENABLED,
+      SCREEN_LOCK_TIMEOUT,
+      SCREEN_SECURITY_ENABLED,
+      INCOGNITO_KEYBOARD_ENABLED,
+      READ_RECEIPTS_ENABLED,
+      TYPING_INDICATORS_ENABLED,
+      SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
+      UNIVERSAL_UNIDENTIFIED_ACCESS,
+      ALWAYS_RELAY_CALLS,
+      MEDIA_DOWNLOAD_MOBILE,
+      MEDIA_DOWNLOAD_WIFI,
+      MEDIA_DOWNLOAD_ROAMING,
+      AUTOPLAY_STICKERS_AND_GIFS
+    )
 
   val onConfigurationSettingChanged: LiveData<String>
     get() = configurationSettingChanged
@@ -237,7 +238,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     }
 
   var theme: Theme
-    get() = Theme.deserialize(getString(THEME, if (DynamicTheme.systemThemeAvailable()) "system" else "light"))
+    get() = Theme.deserialize(getNonNullString(THEME, if (DynamicTheme.systemThemeAvailable()) "system" else "light"))
     set(value) {
       putString(THEME, value.serialize())
       configurationSettingChanged.postValue(THEME)
@@ -320,7 +321,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
 
   var messageNotificationSound: Uri
     get() {
-      var result = getString(MESSAGE_NOTIFICATION_SOUND, Settings.System.DEFAULT_NOTIFICATION_URI.toString())
+      var result = getNonNullString(MESSAGE_NOTIFICATION_SOUND, Settings.System.DEFAULT_NOTIFICATION_URI.toString())
 
       if (result.startsWith("file:")) {
         result = Settings.System.DEFAULT_NOTIFICATION_URI.toString()
@@ -339,7 +340,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
   var messageLedBlinkPattern: String by stringValue(MESSAGE_LED_BLINK_PATTERN, "500,2000")
 
   val messageLedBlinkPatternCustom: String
-    get() = getString(MESSAGE_LED_BLINK_PATTERN_CUSTOM, "500,2000")
+    get() = getNonNullString(MESSAGE_LED_BLINK_PATTERN_CUSTOM, "500,2000")
 
   var isMessageNotificationsInChatSoundsEnabled: Boolean by booleanValue(MESSAGE_IN_CHAT_SOUNDS_ENABLED, true)
 
@@ -386,9 +387,9 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
 
   var callRingtone: Uri
     get() {
-      var result = getString(CALL_RINGTONE, Settings.System.DEFAULT_RINGTONE_URI.toString())
+      var result = getNonNullString(CALL_RINGTONE, Settings.System.DEFAULT_RINGTONE_URI.toString())
 
-      if (result != null && result.startsWith("file:")) {
+      if (result.startsWith("file:")) {
         result = Settings.System.DEFAULT_RINGTONE_URI.toString()
       }
 
@@ -471,7 +472,7 @@ class SettingsValues internal constructor(store: KeyValueStore, private val cont
     }
 
   var mediaKeyboardMode: MediaKeyboardMode
-    get() = MediaKeyboardMode.valueOf(getString(MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name))
+    get() = MediaKeyboardMode.valueOf(getNonNullString(MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name))
     set(value) {
       putString(MEDIA_KEYBOARD_MODE, value.name)
     }

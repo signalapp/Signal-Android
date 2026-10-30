@@ -59,7 +59,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

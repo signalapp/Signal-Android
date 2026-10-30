@@ -20,7 +20,8 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   var individualChatPlaintextExport by booleanValue(INDIVIDUAL_CHAT_PLAINTEXT_EXPORT, true).falseForExternalUsers()
 

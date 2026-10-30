@@ -67,7 +67,8 @@ class RegistrationValues internal constructor(store: KeyValueStore, context: Con
       .commit()
   }
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   @Synchronized
   fun clearRegistrationComplete() {

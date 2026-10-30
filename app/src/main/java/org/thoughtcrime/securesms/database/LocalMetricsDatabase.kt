@@ -34,7 +34,7 @@ class LocalMetricsDatabase private constructor(
   SQLiteOpenHelper(
     application,
     DATABASE_NAME,
-    databaseSecret.asString(),
+    databaseSecret.asHex(),
     null,
     DATABASE_VERSION,
     0,
@@ -122,9 +122,8 @@ class LocalMetricsDatabase private constructor(
     db.setForeignKeyConstraintsEnabled(true)
   }
 
-  override fun getSqlCipherDatabase(): SQLiteDatabase {
-    return writableDatabase
-  }
+  override val sqlCipherDatabase: SQLiteDatabase
+    get() = writableDatabase
 
   fun insert(currentTime: Long, event: LocalMetricsEvent) {
     val db = writableDatabase

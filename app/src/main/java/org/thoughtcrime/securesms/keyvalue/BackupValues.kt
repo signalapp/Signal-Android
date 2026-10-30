@@ -151,7 +151,8 @@ class BackupValues(store: KeyValueStore, context: Context) : SignalStoreValues(s
   }
 
   public override fun onFirstEverAppLaunch() = Unit
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   /**
    * The passphrase for legacy (v1) local backups. This store is already encrypted, so unlike the shared-prefs home it used to

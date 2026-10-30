@@ -28,6 +28,7 @@ wire {
 
 dependencies {
   implementation(project(":core:util"))
+  implementation(project(":core:database"))
   implementation(project(":core:util-jvm"))
 
   implementation(libs.signal.android.database.sqlcipher)
@@ -35,5 +36,6 @@ dependencies {
   implementation(libs.androidx.preference)
   implementation(libs.kotlinx.coroutines.core)
 
-  testFixturesImplementation(libs.androidx.annotation)
+  testImplementation(testLibs.assertk)
+  testImplementation(libs.androidx.sqlite.framework)
 }

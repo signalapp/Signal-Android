@@ -153,9 +153,10 @@ class MiscellaneousValues internal constructor(store: KeyValueStore, context: Co
     putBoolean(STARTED_QUOTE_THUMBNAIL_MIGRATION, true)
   }
 
-  public override fun getKeysToIncludeInBackup(): List<String> {
-    return listOf(STARTED_QUOTE_THUMBNAIL_MIGRATION)
-  }
+  override val keysToIncludeInBackup: List<String>
+    get() {
+      return listOf(STARTED_QUOTE_THUMBNAIL_MIGRATION)
+    }
 
   /**
    * Represents the last time a _full_ prekey refreshed finished. That means signed+one-time prekeys for both ACI and PNI.

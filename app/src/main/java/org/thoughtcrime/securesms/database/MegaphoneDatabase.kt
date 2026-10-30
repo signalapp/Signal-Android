@@ -35,7 +35,7 @@ open class MegaphoneDatabase(
 ) : SQLiteOpenHelper(
   application,
   DATABASE_NAME,
-  databaseSecret.asString(),
+  databaseSecret.asHex(),
   null,
   DATABASE_VERSION,
   0,
@@ -233,7 +233,6 @@ open class MegaphoneDatabase(
       .run()
   }
 
-  override fun getSqlCipherDatabase(): SQLiteDatabase {
-    return writableDatabase
-  }
+  override val sqlCipherDatabase: SQLiteDatabase
+    get() = writableDatabase
 }

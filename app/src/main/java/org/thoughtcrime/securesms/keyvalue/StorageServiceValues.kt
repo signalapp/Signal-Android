@@ -24,7 +24,8 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   val storageKey: StorageKey
     get() {

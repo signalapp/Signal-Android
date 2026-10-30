@@ -91,7 +91,7 @@ class SqlCipherErrorHandler @JvmOverloads constructor(
     try {
       SQLiteDatabase.openDatabase(
         databaseFile.absolutePath,
-        DatabaseSecretProvider.getOrCreateDatabaseSecret(context).asString(),
+        DatabaseSecretProvider.getOrCreateDatabaseSecret(context).asHex(),
         null,
         SQLiteDatabase.OPEN_READONLY,
         object : SQLiteDatabaseHook {

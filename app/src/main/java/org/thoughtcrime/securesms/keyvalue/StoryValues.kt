@@ -64,17 +64,18 @@ class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     viewedReceiptsEnabled = true
   }
 
-  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    MANUAL_FEATURE_DISABLE,
-    USER_HAS_ADDED_TO_A_STORY,
-    USER_HAS_SEEN_FIRST_NAV_VIEW,
-    HAS_DOWNLOADED_ONBOARDING_STORY,
-    USER_HAS_VIEWED_ONBOARDING_STORY,
-    STORY_VIEWED_RECEIPTS,
-    USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET,
-    ARCHIVE_ENABLED,
-    ARCHIVE_DURATION
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      MANUAL_FEATURE_DISABLE,
+      USER_HAS_ADDED_TO_A_STORY,
+      USER_HAS_SEEN_FIRST_NAV_VIEW,
+      HAS_DOWNLOADED_ONBOARDING_STORY,
+      USER_HAS_VIEWED_ONBOARDING_STORY,
+      STORY_VIEWED_RECEIPTS,
+      USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET,
+      ARCHIVE_ENABLED,
+      ARCHIVE_DURATION
+    )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
 

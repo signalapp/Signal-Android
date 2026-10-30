@@ -17,12 +17,13 @@ class ChatColorsValues internal constructor(store: KeyValueStore) : SignalStoreV
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    KEY_CHAT_COLORS,
-    KEY_CHAT_COLORS_ID,
-    KEY_CHAT_COLORS_AUTO_TOOLTIP,
-    KEY_CHAT_COLORS_GRADIENT_TOOLTIP
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      KEY_CHAT_COLORS,
+      KEY_CHAT_COLORS_ID,
+      KEY_CHAT_COLORS_AUTO_TOOLTIP,
+      KEY_CHAT_COLORS_GRADIENT_TOOLTIP
+    )
 
   var shouldShowAutoTooltip: Boolean
     get() = getBoolean(KEY_CHAT_COLORS_AUTO_TOOLTIP, true)

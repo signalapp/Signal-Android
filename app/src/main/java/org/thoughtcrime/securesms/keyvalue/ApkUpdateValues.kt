@@ -43,7 +43,8 @@ class ApkUpdateValues(store: KeyValueStore, context: Context) : SignalStoreValue
   var refreshTime: Long by longValue(REFRESH_TIME, 0)
 
   public override fun onFirstEverAppLaunch() = Unit
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 
   val downloadId: Long by longValue(DOWNLOAD_ID, -2)
   val digest: ByteArray? get() = store.getBlob(DIGEST, null)

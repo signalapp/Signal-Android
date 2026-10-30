@@ -17,7 +17,7 @@ class TestSignalDatabase(
   val supportReadableDatabase: SupportSQLiteDatabase,
   val supportWritableDatabase: SupportSQLiteDatabase,
   name: String = SignalDatabase.DATABASE_NAME
-) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret(null, null, ByteArray(32).apply { SecureRandom().nextBytes(this) }), name) {
+) : SignalDatabase(context, DatabaseSecret.fromBytes(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret(null, null, ByteArray(32).apply { SecureRandom().nextBytes(this) }), name) {
 
   constructor(context: Application, testOpenHelper: SupportSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
 
@@ -77,9 +77,8 @@ class TestSignalDatabase(
     TestSignalSQLiteDatabase(supportWritableDatabase)
   }
 
-  override fun getSqlCipherDatabase(): SQLCipherSQLiteDatabase {
-    throw UnsupportedOperationException()
-  }
+  override val sqlCipherDatabase: SQLCipherSQLiteDatabase
+    get() = throw UnsupportedOperationException()
 
   override fun markCurrent(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     throw UnsupportedOperationException()

@@ -29,5 +29,6 @@ class CallQualityValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  override val keysToIncludeInBackup: List<String>
+    get() = emptyList()
 }

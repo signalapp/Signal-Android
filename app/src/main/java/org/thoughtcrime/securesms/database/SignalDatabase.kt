@@ -23,7 +23,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   SQLiteOpenHelper(
     context,
     name,
-    databaseSecret.asString(),
+    databaseSecret.asHex(),
     null,
     SignalDatabaseMigrations.DATABASE_VERSION,
     0,
@@ -209,9 +209,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   open val signalWritableDatabase: SignalSQLiteDatabase
     get() = SignalSQLiteDatabase(super.writableDatabase)
 
-  override fun getSqlCipherDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
-    return super.writableDatabase
-  }
+  override val sqlCipherDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = super.writableDatabase
 
   open fun markCurrent(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.version = SignalDatabaseMigrations.DATABASE_VERSION

@@ -29,12 +29,13 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> {
-    return listOf(
-      SVR2_AUTH_TOKENS,
-      SVR3_AUTH_TOKENS
-    )
-  }
+  override val keysToIncludeInBackup: List<String>
+    get() {
+      return listOf(
+        SVR2_AUTH_TOKENS,
+        SVR3_AUTH_TOKENS
+      )
+    }
 
   /** Deliberately does not clear the [MASTER_KEY]. */
   @Synchronized

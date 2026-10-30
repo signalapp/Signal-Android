@@ -76,26 +76,27 @@ class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   public override fun onFirstEverAppLaunch() {}
 
-  public override fun getKeysToIncludeInBackup(): List<String> {
-    return listOf(
-      PAYMENTS_ENTROPY,
-      MOB_PAYMENTS_ENABLED,
-      MOB_LEDGER,
-      PAYMENTS_CURRENT_CURRENCY,
-      DEFAULT_CURRENCY_CODE,
-      USER_CONFIRMED_MNEMONIC,
-      USER_CONFIRMED_MNEMONIC_LARGE_BALANCE,
-      SHOW_ABOUT_MOBILE_COIN_INFO_CARD,
-      SHOW_ADDING_TO_YOUR_WALLET_INFO_CARD,
-      SHOW_CASHING_OUT_INFO_CARD,
-      SHOW_RECOVERY_PHRASE_INFO_CARD,
-      SHOW_UPDATE_PIN_INFO_CARD,
-      PAYMENT_LOCK_ENABLED,
-      PAYMENT_LOCK_TIMESTAMP,
-      PAYMENT_LOCK_SKIP_COUNT,
-      SHOW_SAVE_RECOVERY_PHRASE
-    )
-  }
+  override val keysToIncludeInBackup: List<String>
+    get() {
+      return listOf(
+        PAYMENTS_ENTROPY,
+        MOB_PAYMENTS_ENABLED,
+        MOB_LEDGER,
+        PAYMENTS_CURRENT_CURRENCY,
+        DEFAULT_CURRENCY_CODE,
+        USER_CONFIRMED_MNEMONIC,
+        USER_CONFIRMED_MNEMONIC_LARGE_BALANCE,
+        SHOW_ABOUT_MOBILE_COIN_INFO_CARD,
+        SHOW_ADDING_TO_YOUR_WALLET_INFO_CARD,
+        SHOW_CASHING_OUT_INFO_CARD,
+        SHOW_RECOVERY_PHRASE_INFO_CARD,
+        SHOW_UPDATE_PIN_INFO_CARD,
+        PAYMENT_LOCK_ENABLED,
+        PAYMENT_LOCK_TIMESTAMP,
+        PAYMENT_LOCK_SKIP_COUNT,
+        SHOW_SAVE_RECOVERY_PHRASE
+      )
+    }
 
   fun confirmMnemonic(confirmed: Boolean) {
     if (userHasLargeBalance()) {

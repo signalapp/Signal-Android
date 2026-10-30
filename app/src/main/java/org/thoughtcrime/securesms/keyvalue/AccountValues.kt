@@ -136,18 +136,19 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> {
-    return listOf(
-      KEY_ACI_IDENTITY_PUBLIC_KEY,
-      KEY_ACI_IDENTITY_PRIVATE_KEY,
-      KEY_PNI_IDENTITY_PUBLIC_KEY,
-      KEY_PNI_IDENTITY_PRIVATE_KEY,
-      KEY_USERNAME,
-      KEY_USERNAME_LINK_ENTROPY,
-      KEY_USERNAME_LINK_SERVER_ID,
-      KEY_ACCOUNT_ENTROPY_POOL
-    )
-  }
+  override val keysToIncludeInBackup: List<String>
+    get() {
+      return listOf(
+        KEY_ACI_IDENTITY_PUBLIC_KEY,
+        KEY_ACI_IDENTITY_PRIVATE_KEY,
+        KEY_PNI_IDENTITY_PUBLIC_KEY,
+        KEY_PNI_IDENTITY_PRIVATE_KEY,
+        KEY_USERNAME,
+        KEY_USERNAME_LINK_ENTROPY,
+        KEY_USERNAME_LINK_SERVER_ID,
+        KEY_ACCOUNT_ENTROPY_POOL
+      )
+    }
 
   val accountEntropyPool: AccountEntropyPool
     get() {
@@ -313,8 +314,8 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     get() {
       require(store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) { "Not yet set!" }
       return IdentityKeyPair(
-        IdentityKey(getBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, null)),
-        ECPrivateKey(getBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, null))
+        IdentityKey(getNonNullBlob(KEY_ACI_IDENTITY_PUBLIC_KEY)),
+        ECPrivateKey(getNonNullBlob(KEY_ACI_IDENTITY_PRIVATE_KEY))
       )
     }
 
@@ -323,8 +324,8 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     get() {
       require(store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)) { "Not yet set!" }
       return IdentityKeyPair(
-        IdentityKey(getBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, null)),
-        ECPrivateKey(getBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, null))
+        IdentityKey(getNonNullBlob(KEY_PNI_IDENTITY_PUBLIC_KEY)),
+        ECPrivateKey(getNonNullBlob(KEY_PNI_IDENTITY_PRIVATE_KEY))
       )
     }
 

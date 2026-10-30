@@ -35,7 +35,7 @@ class MegaphoneDatabaseTest {
     val backing: SupportSQLiteDatabase = jdbcDatabase
     db = object : MegaphoneDatabase(
       ApplicationProvider.getApplicationContext<Application>(),
-      DatabaseSecret(ByteArray(32))
+      DatabaseSecret.fromBytes(ByteArray(32))
     ) {
       override val database: SupportSQLiteDatabase = backing
     }

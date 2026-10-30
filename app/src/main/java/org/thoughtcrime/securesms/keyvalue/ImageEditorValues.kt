@@ -13,11 +13,12 @@ class ImageEditorValues internal constructor(store: KeyValueStore) : SignalStore
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): List<String> = listOf(
-    KEY_IMAGE_EDITOR_MARKER_WIDTH,
-    KEY_IMAGE_EDITOR_HIGHLIGHTER_WIDTH,
-    KEY_IMAGE_EDITOR_BLUR_WIDTH
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      KEY_IMAGE_EDITOR_MARKER_WIDTH,
+      KEY_IMAGE_EDITOR_HIGHLIGHTER_WIDTH,
+      KEY_IMAGE_EDITOR_BLUR_WIDTH
+    )
 
   fun setMarkerPercentage(markerPercentage: Int) {
     putInteger(KEY_IMAGE_EDITOR_MARKER_WIDTH, markerPercentage)

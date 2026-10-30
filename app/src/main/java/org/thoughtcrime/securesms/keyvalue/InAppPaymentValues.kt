@@ -113,17 +113,18 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
 
   public override fun onFirstEverAppLaunch() = Unit
 
-  public override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
-    KEY_CURRENCY_CODE_ONE_TIME,
-    KEY_LAST_KEEP_ALIVE_LAUNCH,
-    KEY_LAST_END_OF_PERIOD_SECONDS,
-    SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
-    SUBSCRIPTION_CANCELATION_REASON,
-    SUBSCRIPTION_CANCELATION_TIMESTAMP,
-    SUBSCRIPTION_CANCELATION_WATERMARK,
-    SHOW_CANT_PROCESS_DIALOG,
-    SUBSCRIPTION_PAYMENT_SOURCE_TYPE
-  )
+  override val keysToIncludeInBackup: List<String>
+    get() = listOf(
+      KEY_CURRENCY_CODE_ONE_TIME,
+      KEY_LAST_KEEP_ALIVE_LAUNCH,
+      KEY_LAST_END_OF_PERIOD_SECONDS,
+      SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
+      SUBSCRIPTION_CANCELATION_REASON,
+      SUBSCRIPTION_CANCELATION_TIMESTAMP,
+      SUBSCRIPTION_CANCELATION_WATERMARK,
+      SHOW_CANT_PROCESS_DIALOG,
+      SUBSCRIPTION_PAYMENT_SOURCE_TYPE
+    )
 
   private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getRecurringDonationCurrency()) }
   val observableRecurringDonationCurrency: Observable<Currency> by lazy { recurringDonationCurrencyPublisher }
@@ -234,7 +235,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
   }
 
   private fun getLevelHistory(): Set<String> {
-    return getString(KEY_LEVEL_HISTORY, "").split(",").toSet()
+    return getNonNullString(KEY_LEVEL_HISTORY, "").split(",").toSet()
   }
 
   private fun addLevelToHistory(level: String) {
