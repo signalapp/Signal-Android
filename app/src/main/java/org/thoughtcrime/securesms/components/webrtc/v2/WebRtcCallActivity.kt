@@ -948,7 +948,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     val onGranted: () -> Unit = {
       callScreen.setStatus(getString(R.string.RedPhone_answering))
       AppDependencies.signalCallManager.acceptCall(true)
-      handleSetMuteVideo(false)
+      AppDependencies.signalCallManager.setEnableVideo(true)
     }
 
     if (!hasCameraPermission() && !hasAudioPermission()) {
