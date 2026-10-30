@@ -5,7 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.util.dynamiclanguage.LanguageString;
 
 import java.util.Locale;

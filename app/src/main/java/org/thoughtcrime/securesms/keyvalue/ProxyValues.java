@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.Util;
 import org.signal.network.config.SignalProxy;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +22,11 @@ public final class ProxyValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(KEY_PROXY_ENABLED, KEY_HOST, KEY_PORT);
   }
 

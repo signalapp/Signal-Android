@@ -4,6 +4,13 @@ import android.content.Context
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.LegacySharedPrefs
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.longValue
+import org.signal.storage.keyvalue.protoValue
+import org.signal.storage.keyvalue.stringValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies

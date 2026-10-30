@@ -11,8 +11,15 @@ import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.storage.KeepMessagesDuration
 import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.LegacySharedPrefs
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.integerValue
+import org.signal.storage.keyvalue.longValue
+import org.signal.storage.keyvalue.stringValue
+import org.signal.storage.protos.SignalStoreList
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.Environment

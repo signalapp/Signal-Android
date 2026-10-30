@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,11 +23,11 @@ public final class RemoteConfigValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Collections.emptyList();
   }
 

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.keyvalue;
+package org.signal.storage.keyvalue;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,13 +6,13 @@ import androidx.preference.PreferenceDataStore;
 
 /**
  * An implementation of the {@link PreferenceDataStore} interface to let us link preference screens
- * to the {@link SignalStore}.
+ * to the key-value store.
  */
 public class SignalPreferenceDataStore extends PreferenceDataStore {
 
   private final KeyValueStore store;
 
-  SignalPreferenceDataStore(@NonNull KeyValueStore store) {
+  public SignalPreferenceDataStore(@NonNull KeyValueStore store) {
     this.store = store;
   }
 

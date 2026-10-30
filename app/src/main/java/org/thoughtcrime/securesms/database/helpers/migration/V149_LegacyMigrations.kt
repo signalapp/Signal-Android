@@ -23,12 +23,12 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireString
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.color.MaterialColor
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper
-import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations

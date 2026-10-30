@@ -1,8 +1,8 @@
-package org.thoughtcrime.securesms.keyvalue;
+package org.signal.storage.keyvalue;
 
 import androidx.annotation.NonNull;
 
-interface KeyValueReader {
+public interface KeyValueReader {
   byte[] getBlob(@NonNull String key, byte[] defaultValue);
   boolean getBoolean(@NonNull String key, boolean defaultValue);
   float getFloat(@NonNull String key, float defaultValue);

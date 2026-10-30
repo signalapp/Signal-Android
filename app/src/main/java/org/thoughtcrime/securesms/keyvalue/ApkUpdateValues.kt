@@ -7,6 +7,11 @@ package org.thoughtcrime.securesms.keyvalue
 
 import android.content.Context
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.LegacySharedPrefs
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.longValue
 
 class ApkUpdateValues(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
   companion object {

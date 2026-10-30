@@ -1,14 +1,13 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import org.thoughtcrime.securesms.BuildConfig
 
 /**
  * There are some values that you can't store in the normal encrypted [KeyValueStore].
- * Usually, it's because the value you're storing is needed to *open* the database that backs [SignalStore],
+ * Usually, it's because the value you're storing is needed to *open* the database that backs the store,
  * or is otherwise related to the state of the database itself. Regardless, this is just a normal
  * shared-prefs-backed class.
  */
@@ -25,14 +24,16 @@ object PlainTextKeyValueStore {
   private const val LANGUAGE = "pref_language"
 
   private lateinit var sharedPrefs: SharedPreferences
+  private var currentVersionCode: Int = 0
 
   /**
    * Must be called from [android.app.Application.attachBaseContext] before anything else has a chance to read from
    * this store.
    */
   @JvmStatic
-  fun init(context: Context) {
+  fun init(context: Context, currentVersionCode: Int) {
     sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+    this.currentVersionCode = currentVersionCode
   }
 
   /** Stores the ID offset that was determined during the big migration that moved all SMS messages into the MMS table. */
@@ -65,16 +66,16 @@ object PlainTextKeyValueStore {
     get() = sharedPrefs.getString(ATTACHMENT_UNENCRYPTED_SECRET, null)
     set(value) = sharedPrefs.edit(commit = true) { putString(ATTACHMENT_UNENCRYPTED_SECRET, value) }
 
-  /** The last [org.thoughtcrime.securesms.migrations.ApplicationMigrations] version that ran to completion. */
+  /** The last app migration version that ran to completion. */
   @JvmStatic
   var appMigrationVersion: Int
     get() = sharedPrefs.getInt(APP_MIGRATION_VERSION, 1)
     set(value) = sharedPrefs.edit(commit = true) { putInt(APP_MIGRATION_VERSION, value) }
 
-  /** The version code the app was last launched at. */
+  /** The version code the app was last launched at. Defaults to the version code passed to [init]. */
   @JvmStatic
   var lastVersionCode: Int
-    get() = sharedPrefs.getInt(LAST_VERSION_CODE, BuildConfig.VERSION_CODE)
+    get() = sharedPrefs.getInt(LAST_VERSION_CODE, currentVersionCode)
     set(value) = sharedPrefs.edit(commit = true) { putInt(LAST_VERSION_CODE, value) }
 
   /** The user's chosen app language, or "zz" to follow the system. */

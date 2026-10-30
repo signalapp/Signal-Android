@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.crypto;
+package org.signal.storage.database;
 
 
 import androidx.annotation.NonNull;

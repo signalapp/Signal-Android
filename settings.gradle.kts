@@ -128,6 +128,7 @@ include(":lib:archive")
 include(":lib:ui-components")
 include(":lib:signal-login")
 include(":lib:password-manager")
+include(":lib:storage")
 
 // Feature modules
 include(":feature:app-settings")

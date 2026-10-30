@@ -5,6 +5,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.LegacySharedPrefs;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.Collections;
 import java.util.List;
@@ -65,7 +68,7 @@ public class TooltipValues extends SignalStoreValues {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Collections.emptyList();
   }
 

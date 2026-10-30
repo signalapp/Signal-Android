@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalStoreValues
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import java.io.IOException

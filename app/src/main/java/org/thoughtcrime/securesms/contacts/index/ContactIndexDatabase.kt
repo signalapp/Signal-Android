@@ -25,10 +25,10 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.toInt
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.database.SqlCipherDeletingErrorHandler
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader
 import java.util.concurrent.atomic.AtomicLong
 
 /**

@@ -5,6 +5,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.LegacySharedPrefs;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -72,12 +75,12 @@ public class UiHintValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
     markHasSeenGroupSettingsMenuToast();
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(NEVER_DISPLAY_PULL_TO_FILTER_TIP, HAS_COMPLETED_USERNAME_ONBOARDING, HAS_EVER_ENABLED_REMOTE_BACKUPS);
   }
 

@@ -3,6 +3,14 @@ package org.thoughtcrime.securesms.keyvalue
 import android.content.Context
 import org.signal.appsettings.usernamelinks.UsernameQrCodeColorScheme
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.LegacySharedPrefs
+import org.signal.storage.keyvalue.SignalStoreValues
+import org.signal.storage.keyvalue.booleanValue
+import org.signal.storage.keyvalue.integerValue
+import org.signal.storage.keyvalue.longValue
+import org.signal.storage.keyvalue.nullableBlobValue
+import org.signal.storage.keyvalue.protoValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint

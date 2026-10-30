@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import android.content.Context
 import android.net.Uri
 import androidx.preference.PreferenceManager
 
 /**
- * Read-only access to the app's default [android.content.SharedPreferences] for the purpose of easing migration to [SignalStore].
+ * Read-only access to the app's default [android.content.SharedPreferences] for the purpose of easing migration to [KeyValueStore].
  */
 object LegacySharedPrefs {
 

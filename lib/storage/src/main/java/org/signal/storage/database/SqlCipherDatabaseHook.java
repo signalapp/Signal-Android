@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.signal.storage.database;
 
 import net.zetetic.database.sqlcipher.SQLiteConnection;
 import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;

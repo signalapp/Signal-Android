@@ -8,9 +8,9 @@ package org.thoughtcrime.securesms.testutil
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import org.junit.rules.ExternalResource
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
+import org.signal.storage.keyvalue.KeyValueDataSet
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.MockKeyValuePersistentStorage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**

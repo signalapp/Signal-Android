@@ -11,6 +11,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireString
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.RegistrationValues

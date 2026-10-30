@@ -7,7 +7,8 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.core.os.LocaleListCompat;
 
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
+
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 
 import java.util.Locale;
 

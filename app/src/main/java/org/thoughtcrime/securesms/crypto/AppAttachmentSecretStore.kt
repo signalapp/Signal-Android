@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.crypto
 
 import android.content.Context
 import org.signal.core.util.crypto.AttachmentSecretStore
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 
 object AppAttachmentSecretStore : AttachmentSecretStore {
   override fun getAttachmentUnencryptedSecret(context: Context): String? {

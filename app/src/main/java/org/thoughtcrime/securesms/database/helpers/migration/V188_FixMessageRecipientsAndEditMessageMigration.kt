@@ -14,7 +14,7 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 

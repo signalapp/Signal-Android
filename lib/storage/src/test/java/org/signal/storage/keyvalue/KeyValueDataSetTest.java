@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.keyvalue;
+package org.signal.storage.keyvalue;
 
 import org.junit.Test;
 

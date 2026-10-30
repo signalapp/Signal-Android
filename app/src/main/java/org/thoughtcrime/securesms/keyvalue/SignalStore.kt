@@ -3,7 +3,9 @@ package org.thoughtcrime.securesms.keyvalue
 import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceDataStore
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalPreferenceDataStore
 
 /**
  * Simple, encrypted key-value store.

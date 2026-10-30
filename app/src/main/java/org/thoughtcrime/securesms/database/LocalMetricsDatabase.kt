@@ -9,8 +9,11 @@ import org.signal.core.database.SqlUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.database.model.LocalMetricsEvent
 import java.util.concurrent.TimeUnit
 

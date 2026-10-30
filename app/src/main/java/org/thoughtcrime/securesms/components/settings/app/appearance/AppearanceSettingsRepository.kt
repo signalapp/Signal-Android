@@ -8,9 +8,9 @@ package org.thoughtcrime.securesms.components.settings.app.appearance
 import android.os.Build
 import org.signal.appsettings.appearance.AppearanceSettingsState
 import org.signal.core.util.AppUtil
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.DynamicTheme

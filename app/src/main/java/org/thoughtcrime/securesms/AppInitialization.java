@@ -4,7 +4,9 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -12,14 +14,12 @@ import org.thoughtcrime.securesms.jobs.DeleteAbandonedAttachmentsJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.QuoteThumbnailBackfillJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.migrations.QuoteThumbnailBackfillMigrationJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientIds;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
-import org.signal.core.util.Util;
 
 /**
  * Rule of thumb: if there's something you want to do on the first app launch that involves

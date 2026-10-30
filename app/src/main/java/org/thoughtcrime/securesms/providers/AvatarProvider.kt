@@ -21,12 +21,12 @@ import org.signal.core.util.contentproviders.BaseContentProvider
 import org.signal.core.util.crypto.AttachmentSecretProvider
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore

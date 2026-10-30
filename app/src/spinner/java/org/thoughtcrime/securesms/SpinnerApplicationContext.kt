@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
 import org.signal.spinner.SpinnerLogger
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.database.AttachmentTransformer
 import org.thoughtcrime.securesms.database.CollapsedStateTransformer
 import org.thoughtcrime.securesms.database.DatabaseMonitor
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.database.GV2UpdateTransformer
 import org.thoughtcrime.securesms.database.IdPopupTransformer
 import org.thoughtcrime.securesms.database.IsStoryTransformer
 import org.thoughtcrime.securesms.database.JobDatabase
-import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.KyberKeyTransformer
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.LogDatabase

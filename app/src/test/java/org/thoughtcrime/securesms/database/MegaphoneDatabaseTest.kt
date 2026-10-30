@@ -16,7 +16,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
+import org.signal.storage.database.DatabaseSecret
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.testing.JdbcSqliteDatabase
 

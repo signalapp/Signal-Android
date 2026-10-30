@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import com.squareup.wire.ProtoAdapter
 import kotlinx.coroutines.flow.Flow
@@ -8,62 +8,62 @@ import kotlin.reflect.KProperty
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.nanoseconds
 
-internal fun SignalStoreValues.longValue(key: String, default: Long): SignalStoreValueDelegate<Long> {
+fun SignalStoreValues.longValue(key: String, default: Long): SignalStoreValueDelegate<Long> {
   return LongValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.booleanValue(key: String, default: Boolean): SignalStoreValueDelegate<Boolean> {
+fun SignalStoreValues.booleanValue(key: String, default: Boolean): SignalStoreValueDelegate<Boolean> {
   return BooleanValue(key, default, this.store)
 }
 
-internal fun <T : String?> SignalStoreValues.stringValue(key: String, default: T): SignalStoreValueDelegate<T> {
+fun <T : String?> SignalStoreValues.stringValue(key: String, default: T): SignalStoreValueDelegate<T> {
   return StringValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.integerValue(key: String, default: Int): SignalStoreValueDelegate<Int> {
+fun SignalStoreValues.integerValue(key: String, default: Int): SignalStoreValueDelegate<Int> {
   return IntValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.floatValue(key: String, default: Float): SignalStoreValueDelegate<Float> {
+fun SignalStoreValues.floatValue(key: String, default: Float): SignalStoreValueDelegate<Float> {
   return FloatValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.blobValue(key: String, default: ByteArray): SignalStoreValueDelegate<ByteArray> {
+fun SignalStoreValues.blobValue(key: String, default: ByteArray): SignalStoreValueDelegate<ByteArray> {
   return BlobValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.nullableBlobValue(key: String, default: ByteArray?): SignalStoreValueDelegate<ByteArray?> {
+fun SignalStoreValues.nullableBlobValue(key: String, default: ByteArray?): SignalStoreValueDelegate<ByteArray?> {
   return NullableBlobValue(key, default, this.store)
 }
 
-internal fun <T : Any?> SignalStoreValues.enumValue(key: String, default: T, serializer: LongSerializer<T>): SignalStoreValueDelegate<T> {
+fun <T : Any?> SignalStoreValues.enumValue(key: String, default: T, serializer: LongSerializer<T>): SignalStoreValueDelegate<T> {
   return KeyValueEnumValue(key, default, serializer, this.store)
 }
 
-internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter<M>): SignalStoreValueDelegate<M?> {
+fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter<M>): SignalStoreValueDelegate<M?> {
   return KeyValueProtoValue(key, adapter, this.store)
 }
 
-internal fun <M> SignalStoreValues.protoValue(key: String, default: M, adapter: ProtoAdapter<M>, onSet: ((M) -> Unit)? = null): SignalStoreValueDelegate<M> {
+fun <M> SignalStoreValues.protoValue(key: String, default: M, adapter: ProtoAdapter<M>, onSet: ((M) -> Unit)? = null): SignalStoreValueDelegate<M> {
   return KeyValueProtoWithDefaultValue(key, default, adapter, this.store, onSet)
 }
 
-internal fun SignalStoreValues.durationValue(key: String, default: Duration?): SignalStoreValueDelegate<Duration?> {
+fun SignalStoreValues.durationValue(key: String, default: Duration?): SignalStoreValueDelegate<Duration?> {
   return DurationValue(key, default, this.store)
 }
 
-internal fun SignalStoreValues.nullableLongValue(key: String, default: Long?): SignalStoreValueDelegate<Long?> {
+fun SignalStoreValues.nullableLongValue(key: String, default: Long?): SignalStoreValueDelegate<Long?> {
   return NullableLongValue(key, default, this.store)
 }
 
-internal fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
+fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
   return PreconditionDelegate(
     delegate = this,
     precondition = precondition
   )
 }
 
-internal fun <T> SignalStoreValueDelegate<T>.map(transform: (T) -> T): SignalStoreValueDelegate<T> {
+fun <T> SignalStoreValueDelegate<T>.map(transform: (T) -> T): SignalStoreValueDelegate<T> {
   return MappingDelegate(
     delegate = this,
     transform = transform

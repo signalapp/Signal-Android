@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.keyvalue;
+package org.signal.storage.keyvalue;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
@@ -9,7 +9,6 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,7 +23,7 @@ import java.util.concurrent.Executor;
  * Implemented as a write-through cache that is safe to read and write to on the main thread.
  *
  * Writes are enqueued on a separate executor, but writes are finished up in
- * {@link SignalUncaughtExceptionHandler}, meaning all write should finish barring a native crash
+ * the uncaught exception handler, meaning all write should finish barring a native crash
  * or the system killing us unexpectedly (i.e. a force-stop).
  */
 public final class KeyValueStore implements KeyValueReader {
@@ -100,7 +99,7 @@ public final class KeyValueStore implements KeyValueReader {
    *         transaction.
    */
   @AnyThread
-  @NonNull Writer beginWrite() {
+  public @NonNull Writer beginWrite() {
     return new Writer();
   }
 
@@ -110,7 +109,7 @@ public final class KeyValueStore implements KeyValueReader {
    *         efficient to use the various get* methods instead.
    */
   @AnyThread
-  synchronized @NonNull KeyValueReader beginRead() {
+  public synchronized @NonNull KeyValueReader beginRead() {
     initializeIfNecessary();
 
     KeyValueDataSet copy = new KeyValueDataSet();
@@ -123,7 +122,7 @@ public final class KeyValueStore implements KeyValueReader {
    * Ensures that any pending writes (such as those made via {@link Writer#apply()}) are finished.
    */
   @AnyThread
-  synchronized void blockUntilAllWritesFinished() {
+  public synchronized void blockUntilAllWritesFinished() {
     CountDownLatch latch = new CountDownLatch(1);
 
     executor.execute(latch::countDown);
@@ -138,7 +137,7 @@ public final class KeyValueStore implements KeyValueReader {
   /**
    * Forces the store to re-fetch all of it's data from the database.
    */
-  synchronized void resetCache() {
+  public synchronized void resetCache() {
     dataSet = null;
     initializeIfNecessary();
   }
@@ -157,47 +156,47 @@ public final class KeyValueStore implements KeyValueReader {
     this.dataSet = storage.getDataSet();
   }
 
-  class Writer {
+  public class Writer {
     private final KeyValueDataSet dataSet = new KeyValueDataSet();
     private final Set<String>     removes = new HashSet<>();
 
-    @NonNull Writer putBlob(@NonNull String key, @Nullable byte[] value) {
+    public @NonNull Writer putBlob(@NonNull String key, @Nullable byte[] value) {
       dataSet.putBlob(key, value);
       return this;
     }
 
-    @NonNull Writer putBoolean(@NonNull String key, boolean value) {
+    public @NonNull Writer putBoolean(@NonNull String key, boolean value) {
       dataSet.putBoolean(key, value);
       return this;
     }
 
-    @NonNull Writer putFloat(@NonNull String key, float value) {
+    public @NonNull Writer putFloat(@NonNull String key, float value) {
       dataSet.putFloat(key, value);
       return this;
     }
 
-    @NonNull Writer putInteger(@NonNull String key, int value) {
+    public @NonNull Writer putInteger(@NonNull String key, int value) {
       dataSet.putInteger(key, value);
       return this;
     }
 
-    @NonNull Writer putLong(@NonNull String key, long value) {
+    public @NonNull Writer putLong(@NonNull String key, long value) {
       dataSet.putLong(key, value);
       return this;
     }
 
-    @NonNull Writer putString(@NonNull String key, String value) {
+    public @NonNull Writer putString(@NonNull String key, String value) {
       dataSet.putString(key, value);
       return this;
     }
 
-    @NonNull Writer remove(@NonNull String key) {
+    public @NonNull Writer remove(@NonNull String key) {
       removes.add(key);
       return this;
     }
 
     @AnyThread
-    void apply() {
+    public void apply() {
       for (String key : removes) {
         if (dataSet.containsKey(key)) {
           throw new IllegalStateException("Tried to remove a key while also setting it!");
@@ -208,7 +207,7 @@ public final class KeyValueStore implements KeyValueReader {
     }
 
     @WorkerThread
-    void commit() {
+    public void commit() {
       apply();
       blockUntilAllWritesFinished();
     }

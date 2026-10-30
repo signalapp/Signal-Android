@@ -18,6 +18,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.network.util.JsonUtil
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.signal.storageservice.storage.protos.groups.Member
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.storage.protos.groups.local.DecryptedMember
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.JobDatabase
-import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase

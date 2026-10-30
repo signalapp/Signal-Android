@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.crypto;
+package org.signal.storage.database;
 
 
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.crypto.KeyStoreHelper;
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore;
+import org.signal.storage.keyvalue.PlainTextKeyValueStore;
 
 import java.io.IOException;
 import java.security.SecureRandom;

@@ -4,6 +4,9 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.SignalStoreValues;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public final class OnboardingValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
     putBoolean(SHOW_NEW_GROUP, true);
     putBoolean(SHOW_INVITE_FRIENDS, true);
     putBoolean(SHOW_APPEARANCE, true);
@@ -29,7 +32,7 @@ public final class OnboardingValues extends SignalStoreValues {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Collections.emptyList();
   }
 

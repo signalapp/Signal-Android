@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database
+package org.signal.storage.database
 
 import android.app.Application
 import android.content.Context
@@ -10,15 +10,20 @@ import net.zetetic.database.sqlcipher.SQLiteDatabaseHook
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 
 /**
  * The default error handler wipes the file. This one instead prints some diagnostics and then crashes so the original corrupt file isn't lost.
+ *
+ * @param recoveryAttempt Invoked with a read-write connection before crashing, giving the owner a chance to repair state (e.g. rebuild a search index).
  */
 @Suppress("ClassName")
-class SqlCipherErrorHandler(private val application: Application, private val databaseName: String) : DatabaseErrorHandler {
+class SqlCipherErrorHandler @JvmOverloads constructor(
+  private val application: Application,
+  private val databaseName: String,
+  private val recoveryAttempt: ((SQLiteDatabase) -> Unit)? = null
+) : DatabaseErrorHandler {
   companion object {
     private val TAG = Log.tag(SqlCipherErrorHandler::class.java)
 
@@ -48,20 +53,20 @@ class SqlCipherErrorHandler(private val application: Application, private val da
             endCount++
           }
 
-          attemptToClearFullTextSearchIndex(db)
+          attemptRecovery(db)
           throw DatabaseCorruptedError_BothChecksPass(lines)
         } else if (!result.pragma1Passes && result.pragma2Passes) {
-          attemptToClearFullTextSearchIndex(db)
+          attemptRecovery(db)
           throw DatabaseCorruptedError_NormalCheckFailsCipherCheckPasses(lines)
         } else if (result.pragma1Passes && !result.pragma2Passes) {
-          attemptToClearFullTextSearchIndex(db)
+          attemptRecovery(db)
           throw DatabaseCorruptedError_NormalCheckPassesCipherCheckFails(lines)
         } else {
-          attemptToClearFullTextSearchIndex(db)
+          attemptRecovery(db)
           throw DatabaseCorruptedError_BothChecksFail(lines)
         }
       } else {
-        attemptToClearFullTextSearchIndex(db)
+        attemptRecovery(db)
         throw DatabaseCorruptedError_FailedToRunChecks(lines)
       }
     } finally {
@@ -164,16 +169,20 @@ class SqlCipherErrorHandler(private val application: Application, private val da
     }
   }
 
-  private fun attemptToClearFullTextSearchIndex(db: SQLiteDatabase) {
+  private fun attemptRecovery(db: SQLiteDatabase) {
+    if (recoveryAttempt == null) {
+      return
+    }
+
     try {
       try {
         db.reopenReadWrite()
       } catch (e: Exception) {
         Log.w(TAG, "Failed to re-open as read-write!", e)
       }
-      SignalDatabase.messageSearch.rebuildIndex(db)
+      recoveryAttempt.invoke(db)
     } catch (e: Throwable) {
-      Log.w(TAG, "Failed to rebuild the full text search index.", e)
+      Log.w(TAG, "Recovery attempt failed.", e)
     }
   }
 

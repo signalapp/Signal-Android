@@ -256,10 +256,6 @@ message GiftBadge {
     RedemptionState redemptionState = 2;
 }
 
-message SignalStoreList {
-    repeated string contents = 1;
-}
-
 message PendingChangeNumberMetadata {
     bytes  previousPni                = 1;
     bytes  pniIdentityKeyPair         = 2;

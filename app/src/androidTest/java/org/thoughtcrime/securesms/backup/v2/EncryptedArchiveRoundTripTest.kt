@@ -21,12 +21,12 @@ import org.signal.archive.stream.PlainTextBackupReader
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readFully
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.backup.v2.ArchiveImportExportTests.Companion.SELF_ACI
 import org.thoughtcrime.securesms.backup.v2.ArchiveImportExportTests.Companion.SELF_E164
 import org.thoughtcrime.securesms.backup.v2.ArchiveImportExportTests.Companion.SELF_PNI
 import org.thoughtcrime.securesms.backup.v2.ArchiveImportExportTests.Companion.SELF_PROFILE_KEY
 import org.thoughtcrime.securesms.backup.v2.ArchiveImportExportTests.Companion.TESTS_FOLDER
-import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.io.ByteArrayInputStream

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import org.signal.core.util.crypto.AttachmentSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
+import org.signal.storage.database.DatabaseSecret
 import org.thoughtcrime.securesms.database.SignalDatabase
 import java.security.SecureRandom
 import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase

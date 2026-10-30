@@ -5,8 +5,10 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.emoji.EmojiUtil;
 import org.signal.core.util.Util;
+import org.signal.emoji.EmojiUtil;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,12 +41,12 @@ public class EmojiValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
     putInteger(SEARCH_VERSION, 0);
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Collections.singletonList(REACTIONS_LIST);
   }
 

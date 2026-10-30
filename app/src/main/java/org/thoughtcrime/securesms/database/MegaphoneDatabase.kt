@@ -16,9 +16,12 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
-import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader.load
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherErrorHandler
+import org.signal.storage.database.SqlCipherLibraryLoader.load
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import kotlin.concurrent.Volatile

@@ -27,9 +27,12 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
+import org.signal.storage.database.DatabaseSecret
+import org.signal.storage.database.DatabaseSecretProvider
+import org.signal.storage.database.SignalDatabaseOpenHelper
+import org.signal.storage.database.SqlCipherDatabaseHook
+import org.signal.storage.database.SqlCipherLibraryLoader
 import org.thoughtcrime.securesms.crash.CrashConfig
-import org.thoughtcrime.securesms.crypto.DatabaseSecret
-import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.model.IssueEntry
 import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.database.model.LogEntry

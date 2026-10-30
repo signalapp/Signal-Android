@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.util
 
 import androidx.core.os.LocaleListCompat
-import org.thoughtcrime.securesms.keyvalue.PlainTextKeyValueStore
+import org.signal.storage.keyvalue.PlainTextKeyValueStore
 import org.thoughtcrime.securesms.util.dynamiclanguage.LanguageString
 import java.util.Locale
 

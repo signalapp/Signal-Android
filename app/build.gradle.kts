@@ -713,6 +713,7 @@ dependencies {
   implementation(project(":lib:qr"))
   implementation(project(":lib:signal-login"))
   implementation(project(":lib:sticky-header-grid"))
+  implementation(project(":lib:storage"))
   implementation(project(":lib:ui-components"))
   implementation(project(":lib:video"))
 
@@ -854,6 +855,7 @@ dependencies {
   testImplementation(testFixtures(project(":core:ui")))
   testImplementation(testFixtures(project(":lib:emoji")))
   testImplementation(testFixtures(project(":lib:libsignal-service")))
+  testImplementation(testFixtures(project(":lib:storage")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
   testImplementation(testLibs.sqlite.jdbc)

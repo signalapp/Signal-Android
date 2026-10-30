@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.SignalStoreValues
+
 class ImageEditorValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {

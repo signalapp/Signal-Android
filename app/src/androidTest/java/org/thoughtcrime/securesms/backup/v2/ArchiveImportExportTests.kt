@@ -22,7 +22,7 @@ import org.signal.core.util.readFully
 import org.signal.libsignal.messagebackup.ComparableBackup
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
-import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.signal.storage.keyvalue.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import java.io.ByteArrayInputStream

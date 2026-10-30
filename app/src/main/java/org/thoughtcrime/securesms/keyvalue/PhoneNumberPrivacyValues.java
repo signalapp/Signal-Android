@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.SignalStoreValues;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,14 +28,14 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
     getStore().beginWrite()
               .putInteger(DISCOVERABILITY_MODE, PhoneNumberDiscoverabilityMode.UNDECIDED.serialize())
               .apply();
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(SHARING_MODE, DISCOVERABILITY_MODE, DISCOVERABILITY_TIMESTAMP);
   }
 

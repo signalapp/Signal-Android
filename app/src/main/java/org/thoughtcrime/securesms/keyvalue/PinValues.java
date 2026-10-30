@@ -5,6 +5,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.storage.keyvalue.KeyValueStore;
+import org.signal.storage.keyvalue.LegacySharedPrefs;
+import org.signal.storage.keyvalue.SignalStoreValues;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
@@ -64,11 +67,11 @@ public final class PinValues extends SignalStoreValues {
   }
 
   @Override
-  void onFirstEverAppLaunch() {
+  public void onFirstEverAppLaunch() {
   }
 
   @Override
-  @NonNull List<String> getKeysToIncludeInBackup() {
+  public @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(PIN_REMINDERS_ENABLED, KEYBOARD_TYPE);
   }
 
