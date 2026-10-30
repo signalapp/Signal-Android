@@ -8,6 +8,8 @@ package org.signal.mediaviewer
 import android.app.Application
 import android.net.Uri
 import android.os.Looper
+import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
@@ -100,6 +102,22 @@ class MediaViewerScreenTest {
     setContent(createState())
 
     composeTestRule.onNodeWithTag(MediaViewerScreenTestTags.BACK_BUTTON).performClick()
+
+    assertThat(events).contains(MediaViewerEvent.BackClicked)
+  }
+
+  @Test
+  fun `system back emits BackClicked`() {
+    lateinit var dispatcher: OnBackPressedDispatcher
+    composeTestRule.setContent {
+      dispatcher = LocalOnBackPressedDispatcherOwner.current!!.onBackPressedDispatcher
+      MediaViewerScreen(
+        state = createState(),
+        onEvent = { events += it }
+      )
+    }
+
+    composeTestRule.runOnIdle { dispatcher.onBackPressed() }
 
     assertThat(events).contains(MediaViewerEvent.BackClicked)
   }

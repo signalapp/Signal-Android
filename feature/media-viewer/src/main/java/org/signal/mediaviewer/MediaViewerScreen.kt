@@ -5,6 +5,7 @@
 
 package org.signal.mediaviewer
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.Spring
@@ -84,6 +85,10 @@ fun MediaViewerScreen(
 ) {
   LaunchedEffect(playbackController) {
     playbackController.runPositionTicker()
+  }
+
+  BackHandler {
+    onEvent(MediaViewerEvent.BackClicked)
   }
 
   val lifecycleOwner = LocalLifecycleOwner.current

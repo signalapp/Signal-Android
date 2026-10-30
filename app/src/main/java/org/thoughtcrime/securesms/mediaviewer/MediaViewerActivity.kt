@@ -295,7 +295,7 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
         }
         transitionImageView.translationX = dismissState.offsetX
         transitionImageView.translationY = dismissState.offsetY
-        onBackPressedDispatcher.onBackPressed()
+        finishAfterTransition()
       }
       MediaViewerAction.FinishAfterDragDismiss -> {
         finish()
