@@ -54,7 +54,7 @@ class SelectContactViewModel(
     private const val MAX_SIZE = PAGE_SIZE * 6
   }
 
-  private val _state = MutableStateFlow(SelectContactState())
+  private val _state = MutableStateFlow(SelectContactState(preferSystemContactPhotos = source.preferSystemContactPhotos))
   val state: StateFlow<SelectContactState> = _state.asStateFlow()
 
   private val _actions = Channel<SelectContactAction>(Channel.BUFFERED)

@@ -3743,15 +3743,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * Every registered recipient linked to a system contact, keyed by that contact's lookup key.
+   * Every registered recipient linked to a system contact, with that contact's lookup key.
    *
    * The key comes from the uri path, not its last segment, which may be a legacy Data row id or a stale
    * contact id. Two numbers on one contact share a lookup key and are separate Signal accounts, so all of
    * them are kept.
    */
-  fun getSystemContactLinksByLookupKey(): Map<String, List<SystemContactLink>> {
+  fun getSystemContactLinks(): List<SystemContactLink> {
     return readableDatabase
-      .select(ID, SYSTEM_CONTACT_URI, NICKNAME_JOINED_NAME, NICKNAME_GIVEN_NAME)
+      .select(ID, E164, SYSTEM_CONTACT_URI, NICKNAME_JOINED_NAME, NICKNAME_GIVEN_NAME)
       .from(TABLE_NAME)
       .where(
         "$REGISTERED = ? AND $SYSTEM_CONTACT_URI NOT NULL AND $BLOCKED = 0 AND $HIDDEN = 0 AND $ID != ?",
@@ -3769,12 +3769,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           SystemContactLink(
             lookupKey = lookupKey,
             recipientId = RecipientId.from(cursor.requireLong(ID)),
+            e164 = cursor.requireString(E164),
             nickname = Util.getFirstNonEmpty(cursor.requireString(NICKNAME_JOINED_NAME), cursor.requireString(NICKNAME_GIVEN_NAME)).nullIfBlank()
           )
         }
       }
       .filterNotNull()
-      .groupBy { it.lookupKey }
   }
 
   /**
@@ -3811,8 +3811,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   data class SystemContactLink(
     val lookupKey: String,
     val recipientId: RecipientId,
+    val e164: String?,
     val nickname: String?
-  )
+  ) {
+    override fun toString(): String = "SystemContactLink(recipientId=$recipientId)"
+  }
 
   data class SignalOnlyContact(
     val recipientId: RecipientId,

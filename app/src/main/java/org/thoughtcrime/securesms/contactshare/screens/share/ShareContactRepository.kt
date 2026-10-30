@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.contactshare.labelText
 import org.thoughtcrime.securesms.contactshare.resolveSignalRecipient
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -255,41 +256,38 @@ class ShareContactRepository(
     return details
   }
 
-  /**
-   * Address book photo first per the design, Signal profile photo as the alternative, and sharing no
-   * photo as the last choice. The last one is only offered when there is a photo to decline, since a
-   * card with no photo has nothing to choose between.
-   */
+  /** The first option is the default. Sharing no photo is only offered when there is a photo to decline. */
   private fun Contact.resolvePhotoOptions(signalRecipient: RecipientId?): List<ShareContactState.PhotoOption> {
-    val options = mutableListOf<ShareContactState.PhotoOption>()
     val sharedAvatar = this.avatar
 
-    if (sharedAvatar != null && !sharedAvatar.isProfile) {
-      sharedAvatar.attachment?.uri?.let { uri ->
-        options += ShareContactState.PhotoOption(
-          id = PHOTO_ID_ADDRESS_BOOK,
-          photo = ShareContactState.ContactPhoto(uri = uri.toString(), isProfile = false)
-        )
-      }
+    val addressBookOption = sharedAvatar?.takeUnless { it.isProfile }?.attachment?.uri?.let { uri ->
+      ShareContactState.PhotoOption(
+        id = PHOTO_ID_ADDRESS_BOOK,
+        photo = ShareContactState.ContactPhoto(uri = uri.toString(), isProfile = false)
+      )
     }
 
     // A card built from a Signal profile already blobbed that photo, so blobbing again would offer
     // the same image twice.
     val alreadyBlobbed = sharedAvatar?.takeIf { it.isProfile }?.attachment?.uri?.toString()
-    val profileUri = alreadyBlobbed ?: signalRecipient?.let { profilePhotoBlobUri(it) }
-
-    if (profileUri != null) {
-      options += ShareContactState.PhotoOption(
+    val profileOption = (alreadyBlobbed ?: signalRecipient?.let { profilePhotoBlobUri(it) })?.let { uri ->
+      ShareContactState.PhotoOption(
         id = PHOTO_ID_SIGNAL_PROFILE,
-        photo = ShareContactState.ContactPhoto(uri = profileUri, isProfile = true)
+        photo = ShareContactState.ContactPhoto(uri = uri, isProfile = true)
       )
     }
 
-    if (options.isNotEmpty()) {
-      options += ShareContactState.PhotoOption(id = PHOTO_ID_NONE, photo = null)
+    val options = if (SignalStore.settings.isPreferSystemContactPhotos) {
+      listOfNotNull(addressBookOption, profileOption)
+    } else {
+      listOfNotNull(profileOption, addressBookOption)
     }
 
-    return options
+    return if (options.isNotEmpty()) {
+      options + ShareContactState.PhotoOption(id = PHOTO_ID_NONE, photo = null)
+    } else {
+      options
+    }
   }
 
   /** Blobs the stored profile avatar so it uploads as an ordinary attachment. */

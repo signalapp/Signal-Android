@@ -237,6 +237,7 @@ private fun ContactList(
         is SelectContactRow.Contact -> {
           ContactRow(
             contact = row.contact,
+            preferSystemContactPhotos = state.preferSystemContactPhotos,
             onClick = { onEvent(SelectContactEvent.ContactClicked(row.contact)) }
           )
         }
@@ -315,6 +316,7 @@ private fun SectionHeader(label: String) {
 @Composable
 private fun ContactRow(
   contact: ContactIndexRecord,
+  preferSystemContactPhotos: Boolean,
   onClick: () -> Unit
 ) {
   Row(
@@ -325,7 +327,7 @@ private fun ContactRow(
       .clickable(onClick = onClick)
       .padding(start = ROW_START_PADDING, end = 16.dp)
   ) {
-    ContactAvatar(contact = contact)
+    ContactAvatar(contact = contact, preferSystemContactPhotos = preferSystemContactPhotos)
 
     Spacer(modifier = Modifier.width(AVATAR_TO_NAME_GAP))
 
@@ -352,14 +354,18 @@ private fun ContactRow(
 }
 
 /**
- * The address book photo wins over the Signal profile photo, matching the sharing flow's preference
- * for what the user themselves filed the contact under.
+ * Without the prefer system contact photos setting, a profile photo wins. Otherwise, and as the fallback,
+ * the provider's current photo is used, matching what the share screen offers once the row is picked.
  */
 @Composable
-private fun ContactAvatar(contact: ContactIndexRecord) {
+private fun ContactAvatar(contact: ContactIndexRecord, preferSystemContactPhotos: Boolean) {
   val modifier = Modifier.size(AVATAR_SIZE)
 
   when {
+    contact.recipientId != null && !preferSystemContactPhotos && contact.hasProfilePhoto -> {
+      AvatarImage(recipientId = contact.recipientId, modifier = modifier)
+    }
+
     contact.hasPhoto && contact.contactId != null -> {
       if (LocalInspectionMode.current) {
         Image(

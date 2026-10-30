@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.contactshare.screens.selectcontact
 import android.content.Context
 import kotlinx.coroutines.withContext
 import org.signal.contacts.SystemContactsRepository
+import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -16,16 +17,23 @@ import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 
 /** Backs the picker with the real contact index, owning the dispatcher hop so the view model does not. */
 class ContactIndexSource(
   private val repository: ContactIndexRepository,
-  private val context: Context = AppDependencies.application
+  private val context: Context = AppDependencies.application,
+  private val hasProfilePhoto: (RecipientId) -> Boolean = { id -> Recipient.resolved(id).let { it.profileAvatar != null && it.profileAvatarFileDetails.hasFile() } },
+  private val preferSystemContactPhotosSetting: () -> Boolean = { SignalStore.settings.isPreferSystemContactPhotos }
 ) {
 
   companion object {
     private val TAG = Log.tag(ContactIndexSource::class)
   }
+
+  val preferSystemContactPhotos: Boolean
+    get() = preferSystemContactPhotosSetting()
 
   suspend fun build(): ContactIndexBuildResult = withContext(SignalDispatchers.IO) {
     repository.build()
@@ -33,7 +41,13 @@ class ContactIndexSource(
 
   /** A window of rows, filtered by [query] when it is not blank. */
   suspend fun page(query: String, startPosition: Long, limit: Int): List<ContactIndexRecord> = withContext(SignalDispatchers.IO) {
-    repository.search(query, startPosition, limit)
+    val rows = repository.search(query, startPosition, limit)
+
+    if (preferSystemContactPhotos) {
+      rows
+    } else {
+      rows.map { row -> if (row.recipientId != null && hasProfilePhoto(row.recipientId)) row.copy(hasProfilePhoto = true) else row }
+    }
   }
 
   /** How many rows the unfiltered index holds, which is what lets a page report its true length. */

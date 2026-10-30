@@ -14,7 +14,8 @@ data class SelectContactState(
   val isLoading: Boolean = true,
   /** Rows are paged, so emptiness is keyed off this rather than off the first loaded page. */
   val indexCount: Int = 0,
-  val showPermissionDeniedSheet: Boolean = false
+  val showPermissionDeniedSheet: Boolean = false,
+  val preferSystemContactPhotos: Boolean = true
 ) {
   val isEmpty: Boolean
     get() = !isLoading && indexCount == 0

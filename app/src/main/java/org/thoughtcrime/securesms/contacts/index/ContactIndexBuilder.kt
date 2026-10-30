@@ -20,6 +20,7 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**
  * Populates a [ContactIndexDatabase] from the two sources that make up the merged contact list.
@@ -44,7 +45,7 @@ class ContactIndexBuilder(private val context: Context) {
     return try {
       val hasPermission = Permissions.hasAll(context, Manifest.permission.READ_CONTACTS)
 
-      val links: Map<String, List<RecipientTable.SystemContactLink>> = SignalDatabase.recipients.getSystemContactLinksByLookupKey()
+      val links = SignalDatabase.recipients.getSystemContactLinks()
       val signalOnly: List<RecipientTable.SignalOnlyContact> = SignalDatabase.recipients.getSignalOnlyContactsForIndex(excludeSystemContacts = hasPermission)
       stopwatch.split("recipients")
 
@@ -69,7 +70,7 @@ class ContactIndexBuilder(private val context: Context) {
 
       Log.i(
         TAG,
-        "Indexed $count rows. signalOnly=$signalOnlyIndexed/${signalOnly.size} addressBook=${addressBook.inserted}/${addressBook.inserted + addressBook.skipped + addressBook.invalidId} invalidId=${addressBook.invalidId} linkedToSignal=${links.values.sumOf { it.size }}"
+        "Indexed $count rows. signalOnly=$signalOnlyIndexed/${signalOnly.size} addressBook=${addressBook.inserted}/${addressBook.inserted + addressBook.skipped + addressBook.invalidId} invalidId=${addressBook.invalidId} linkedToSignal=${links.size}"
       )
 
       if (hasPermission) ContactIndexBuildResult.Success(count) else ContactIndexBuildResult.SignalOnly(count)
@@ -105,7 +106,7 @@ class ContactIndexBuilder(private val context: Context) {
 
   private fun insertAddressBook(
     database: ContactIndexDatabase,
-    links: Map<String, List<RecipientTable.SystemContactLink>>,
+    systemContactLinks: List<RecipientTable.SystemContactLink>,
     sortKeys: ContactSortKeyGenerator
   ): InsertCount {
     val cursor: Cursor = SystemContactsRepository.getAllContactsForList(context) ?: run {
@@ -118,6 +119,8 @@ class ContactIndexBuilder(private val context: Context) {
     var invalidId = 0
 
     cursor.use {
+      val links = SystemContactLinks(systemContactLinks, it.currentLookupKeys())
+
       val batch = ArrayList<ContactIndexEntry>(BATCH_SIZE)
 
       while (it.moveToNext()) {
@@ -151,6 +154,18 @@ class ContactIndexBuilder(private val context: Context) {
     return InsertCount(inserted, skipped, invalidId)
   }
 
+  /** Leaves the cursor before its first row, ready for the pass that inserts. */
+  private fun Cursor.currentLookupKeys(): List<String> {
+    val keys = ArrayList<String>(count)
+
+    while (moveToNext()) {
+      requireString(ContactsContract.Contacts.LOOKUP_KEY)?.let { keys += it }
+    }
+
+    moveToPosition(-1)
+    return keys
+  }
+
   /** Rows that made it into the index versus rows the provider gave us that had nothing to show. */
   private data class InsertCount(val inserted: Int = 0, val skipped: Int = 0, val invalidId: Int = 0)
 
@@ -177,11 +192,13 @@ class ContactIndexBuilder(private val context: Context) {
   /** One entry per registered recipient, since two numbers on one contact are two Signal accounts. */
   private fun Cursor.toEntries(
     contactId: Long,
-    links: Map<String, List<RecipientTable.SystemContactLink>>,
+    links: SystemContactLinks,
     sortKeys: ContactSortKeyGenerator
   ): List<ContactIndexEntry> {
     val lookupKey = requireString(ContactsContract.Contacts.LOOKUP_KEY) ?: return emptyList()
-    val matched = links[lookupKey].orEmpty()
+    val matched = links.find(lookupKey) {
+      SystemContactsRepository.getDisplayNumbersForContact(context, contactId).mapNotNull { SignalE164Util.formatAsE164(it) }.toSet()
+    }
 
     return if (matched.isEmpty()) {
       listOfNotNull(toEntry(contactId, lookupKey, null, sortKeys))

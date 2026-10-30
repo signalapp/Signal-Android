@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.contactshare.screens.selectcontact
 
 import android.app.Application
 import assertk.assertThat
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.every
@@ -26,6 +27,7 @@ import org.robolectric.annotation.Config
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.contacts.index.ContactIndexRecord
+import org.thoughtcrime.securesms.contacts.index.ContactIndexRepository
 import org.thoughtcrime.securesms.contacts.index.ContactIndexType
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
@@ -80,6 +82,35 @@ class ContactIndexSourceTest {
     val resolved = sourceThatThrows(IllegalArgumentException("Invalid lookup id: $LOOKUP_KEY")).resolve(addressBookRecord(recipientId = null))
 
     assertThat(resolved).isNull()
+  }
+
+  @Test
+  fun `a page marks rows whose recipient has a profile photo when system photos are not preferred`() = runTest(testDispatcher) {
+    val withPhoto = addressBookRecord(recipientId = RecipientId.from(7))
+    val withoutPhoto = addressBookRecord(recipientId = RecipientId.from(8)).copy(position = 2)
+    val addressBookOnly = addressBookRecord(recipientId = null).copy(position = 3)
+
+    val page = pagingSource(rows = listOf(withPhoto, withoutPhoto, addressBookOnly), preferSystemContactPhotos = false).page("", 1, 10)
+
+    assertThat(page.map { it.hasProfilePhoto }).containsExactly(true, false, false)
+  }
+
+  @Test
+  fun `a page leaves profile photos unmarked when system photos are preferred`() = runTest(testDispatcher) {
+    val page = pagingSource(rows = listOf(addressBookRecord(recipientId = RecipientId.from(7))), preferSystemContactPhotos = true).page("", 1, 10)
+
+    assertThat(page.map { it.hasProfilePhoto }).containsExactly(false)
+  }
+
+  private fun pagingSource(rows: List<ContactIndexRecord>, preferSystemContactPhotos: Boolean): ContactIndexSource {
+    val repository: ContactIndexRepository = mockk { every { search(any(), any(), any()) } returns rows }
+
+    return ContactIndexSource(
+      repository = repository,
+      context = RuntimeEnvironment.getApplication(),
+      hasProfilePhoto = { it == RecipientId.from(7) },
+      preferSystemContactPhotosSetting = { preferSystemContactPhotos }
+    )
   }
 
   private fun sourceThatThrows(error: Exception): ContactIndexSource {

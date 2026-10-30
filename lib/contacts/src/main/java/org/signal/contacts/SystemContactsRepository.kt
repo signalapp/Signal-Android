@@ -281,6 +281,26 @@ object SystemContactsRepository {
     return if (lookupIndex >= 0 && lookupIndex + 1 < segments.size) segments[lookupIndex + 1] else null
   }
 
+  /** Every phone number on one contact, as entered rather than E164 formatted. */
+  @JvmStatic
+  fun getDisplayNumbersForContact(context: Context, contactId: Long): List<String> {
+    val results: MutableList<String> = mutableListOf()
+
+    context.contentResolver.query(
+      ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+      arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER),
+      "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} = ?",
+      arrayOf(contactId.toString()),
+      null
+    ).use { cursor ->
+      while (cursor != null && cursor.moveToNext()) {
+        cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER)?.takeIf { it.isNotEmpty() }?.let { results += it }
+      }
+    }
+
+    return results
+  }
+
   /**
    * Retrieves all unique display numbers in the system contacts. (By display, we mean not-E164-formatted)
    */

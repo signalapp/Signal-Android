@@ -59,7 +59,9 @@ data class ContactIndexRecord(
   val contactId: Long?,
   val hasPersonalName: Boolean,
   val isOrgOnly: Boolean,
-  val hasPhoto: Boolean
+  val hasPhoto: Boolean,
+  /** Not stored in the index. Filled in per page, since profile photos change independently of it. */
+  val hasProfilePhoto: Boolean = false
 ) {
   val isOnSignal: Boolean
     get() = type == ContactIndexType.SIGNAL_ONLY || type == ContactIndexType.BOTH
@@ -68,7 +70,7 @@ data class ContactIndexRecord(
     get() = type == ContactIndexType.SYSTEM_ONLY || type == ContactIndexType.BOTH
 
   override fun toString(): String {
-    return "ContactIndexRecord(position=$position, type=$type, recipientId=$recipientId, hasLookupKey=${lookupKey != null}, contactId=$contactId, hasPersonalName=$hasPersonalName, isOrgOnly=$isOrgOnly, hasPhoto=$hasPhoto)"
+    return "ContactIndexRecord(position=$position, type=$type, recipientId=$recipientId, hasLookupKey=${lookupKey != null}, contactId=$contactId, hasPersonalName=$hasPersonalName, isOrgOnly=$isOrgOnly, hasPhoto=$hasPhoto, hasProfilePhoto=$hasProfilePhoto)"
   }
 }
 

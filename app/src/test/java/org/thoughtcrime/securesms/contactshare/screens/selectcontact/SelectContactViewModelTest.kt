@@ -19,6 +19,7 @@ import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.CompletableDeferred
@@ -66,6 +67,12 @@ class SelectContactViewModelTest {
 
     assertThat(viewModel.state.value.isLoading).isFalse()
     assertThat(viewModel.state.value.indexCount).isEqualTo(2)
+  }
+
+  @Test
+  fun `the prefer system contact photos setting is published for the rows`() = runTest(testDispatcher) {
+    assertThat(SelectContactViewModel(fakeSource(preferSystemContactPhotos = true)).state.value.preferSystemContactPhotos).isTrue()
+    assertThat(SelectContactViewModel(fakeSource(preferSystemContactPhotos = false)).state.value.preferSystemContactPhotos).isFalse()
   }
 
   @Test
@@ -370,9 +377,12 @@ class SelectContactViewModelTest {
   private fun fakeSource(
     buildResult: ContactIndexBuildResult = ContactIndexBuildResult.Success(0),
     contacts: List<ContactIndexRecord> = emptyList(),
-    resolvesTo: SharedContactSource? = SharedContactSource.SignalContact(RecipientId.from(1))
+    resolvesTo: SharedContactSource? = SharedContactSource.SignalContact(RecipientId.from(1)),
+    preferSystemContactPhotos: Boolean = false
   ): ContactIndexSource {
     val source: ContactIndexSource = mockk(relaxUnitFun = true)
+
+    every { source.preferSystemContactPhotos } returns preferSystemContactPhotos
 
     coEvery { source.build() } returns buildResult
     coEvery { source.count() } returns contacts.size

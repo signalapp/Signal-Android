@@ -16,7 +16,9 @@ import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.unmockkObject
+import io.mockk.unmockkStatic
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
@@ -31,10 +33,13 @@ import org.thoughtcrime.securesms.contactshare.ContactCardReader
 import org.thoughtcrime.securesms.contactshare.SharedContactSource
 import org.thoughtcrime.securesms.contactshare.screens.editname.ContactNameParts
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
+import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
@@ -50,6 +55,9 @@ class ShareContactRepositoryTest {
 
   @get:Rule
   val signalStore = MockSignalStoreRule(relaxed = setOf(AccountValues::class, SettingsValues::class))
+
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
   private val repository = ShareContactRepository(context = ApplicationProvider.getApplicationContext())
 
@@ -86,6 +94,35 @@ class ShareContactRepositoryTest {
     val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null), avatar = Contact.Avatar(Uri.parse("content://address-book/1"), false)))
 
     assertThat(loaded.state.avatar?.isEditable).isEqualTo(true)
+  }
+
+  @Test
+  fun `the address book photo is the default when system contact photos are preferred`() = runTest {
+    every { signalStore.settings.isPreferSystemContactPhotos } returns true
+
+    val loaded = loadWithBothPhotos()
+
+    assertThat(loaded.photoOptions.map { it.id }).containsExactly("address-book", "signal-profile", "none")
+    assertThat(loaded.state.avatar?.photo?.isProfile).isEqualTo(false)
+  }
+
+  @Test
+  fun `the profile photo is the default when system contact photos are not preferred`() = runTest {
+    every { signalStore.settings.isPreferSystemContactPhotos } returns false
+
+    val loaded = loadWithBothPhotos()
+
+    assertThat(loaded.photoOptions.map { it.id }).containsExactly("signal-profile", "address-book", "none")
+    assertThat(loaded.state.avatar?.photo?.isProfile).isEqualTo(true)
+  }
+
+  @Test
+  fun `the address book photo is still offered when the contact has no profile photo`() = runTest {
+    every { signalStore.settings.isPreferSystemContactPhotos } returns false
+
+    val loaded = load(contact(name = Contact.Name("Paige", "Hall", null, null, null, null), avatar = Contact.Avatar(Uri.parse("content://address-book/1"), false)))
+
+    assertThat(loaded.photoOptions.map { it.id }).containsExactly("address-book", "none")
   }
 
   @Test
@@ -354,8 +391,26 @@ class ShareContactRepositoryTest {
     }
   }
 
+  private suspend fun loadWithBothPhotos(): LoadedContact {
+    val recipient = Recipient(id = RecipientId.from(7), isResolving = false)
+    val card = contact(name = Contact.Name("Paige", "Hall", null, null, null, null), avatar = Contact.Avatar(Uri.parse("content://address-book/1"), false))
+    mockkObject(Recipient.Companion)
+    mockkStatic(AvatarHelper::class)
+    try {
+      every { Recipient.resolved(recipient.id) } returns recipient
+      every { AvatarHelper.hasAvatar(any(), recipient.id) } returns true
+      every { AvatarHelper.getAvatarBytes(any(), recipient.id) } returns byteArrayOf(1)
+      every { AppDependencies.blobs.forData(any<ByteArray>()).createForSingleSessionOnDisk(any()) } returns Uri.parse("content://blob/1")
+
+      return load(card, source = SharedContactSource.AddressBook(Uri.EMPTY, recipient.id))
+    } finally {
+      unmockkStatic(AvatarHelper::class)
+      unmockkObject(Recipient.Companion)
+    }
+  }
+
   /** Drives the real load path with a stubbed reader, so the defaults come from buildDetails. */
-  private suspend fun load(contact: Contact): LoadedContact {
+  private suspend fun load(contact: Contact, source: SharedContactSource = SharedContactSource.AddressBook(Uri.EMPTY)): LoadedContact {
     val reader: ContactCardReader = mockk { every { readSystemContact(any()) } returns contact }
     val repository = ShareContactRepository(
       context = ApplicationProvider.getApplicationContext(),
@@ -363,7 +418,7 @@ class ShareContactRepositoryTest {
       reader = reader
     )
 
-    return repository.load(source = SharedContactSource.AddressBook(Uri.EMPTY), recipientId = null)!!
+    return repository.load(source = source, recipientId = null)!!
   }
 
   private fun selection(
