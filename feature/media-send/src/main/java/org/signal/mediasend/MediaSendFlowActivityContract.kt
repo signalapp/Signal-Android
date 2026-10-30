@@ -94,10 +94,6 @@ class MediaSendFlowActivityContract(private val clazz: Class<out Activity>) : Ac
      */
     val isForQuickRestore: Boolean = false,
     /**
-     * Maximum number of media items that can be selected.
-     */
-    val maxSelection: Int = 32,
-    /**
      * Send type identifier (app-layer enum ordinal).
      */
     val sendType: Int = 0

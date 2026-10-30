@@ -9,8 +9,10 @@ import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
-import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +23,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
+import org.signal.remoteconfig.FakeRemoteConfigDependencies
+import org.signal.remoteconfig.RemoteConfig
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MediaKeyboardViewModelTest {
@@ -35,15 +39,18 @@ class MediaKeyboardViewModelTest {
     Dispatchers.setMain(testDispatcher)
     repository = mockk()
     isEnteringText = MutableStateFlow(false)
+    RemoteConfig.initDependencies(FakeRemoteConfigDependencies())
+    mockkObject(RemoteConfig)
   }
 
   @After
   fun tearDown() {
+    unmockkObject(RemoteConfig)
     Dispatchers.resetMain()
   }
 
-  private fun createViewModel(availableTabs: Set<MediaKeyboardTab> = MediaKeyboardTab.entries.toSet()): MediaKeyboardViewModel {
-    coEvery { repository.getAvailableTabs() } returns availableTabs
+  private fun createViewModel(gifSearchAvailable: Boolean = true): MediaKeyboardViewModel {
+    every { RemoteConfig.gifSearchAvailable } returns gifSearchAvailable
     val viewModel = MediaKeyboardViewModel(repository, isEnteringText)
     testDispatcher.scheduler.advanceUntilIdle()
     return viewModel
@@ -59,8 +66,8 @@ class MediaKeyboardViewModelTest {
   }
 
   @Test
-  fun `initialize - filters unavailable tabs`() {
-    val viewModel = createViewModel(setOf(MediaKeyboardTab.EMOJI, MediaKeyboardTab.STICKER))
+  fun `initialize - hides the gif tab when gif search is unavailable`() {
+    val viewModel = createViewModel(gifSearchAvailable = false)
 
     assertThat(viewModel.state.value.availableTabs).isEqualTo(listOf(MediaKeyboardTab.EMOJI, MediaKeyboardTab.STICKER))
   }
@@ -91,8 +98,8 @@ class MediaKeyboardViewModelTest {
   }
 
   @Test
-  fun `restrict tabs - never offers a tab the repository does not have`() {
-    val viewModel = createViewModel(setOf(MediaKeyboardTab.EMOJI, MediaKeyboardTab.STICKER))
+  fun `restrict tabs - never offers a tab that is unavailable`() {
+    val viewModel = createViewModel(gifSearchAvailable = false)
 
     viewModel.restrictTabs(setOf(MediaKeyboardTab.EMOJI, MediaKeyboardTab.GIF))
 

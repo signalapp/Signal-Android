@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.mediasend.v3
 
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.provider.OpenableColumns
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +20,6 @@ import org.signal.core.models.media.Media
 import org.signal.core.models.media.MediaFolder
 import org.signal.core.models.media.SentMediaQuality
 import org.signal.core.models.recipients.RecipientId
-import org.signal.core.util.asListContains
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
@@ -42,7 +40,6 @@ import org.signal.mediasend.SendResult
 import org.signal.mediasend.StorySendRequirements
 import org.signal.mediasend.preupload.PreUploadResult
 import org.signal.mediasend.screens.edit.image.BrushWidths
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -302,10 +299,6 @@ object MediaSendV3Repository : MediaSendRepository {
 
   override fun getAttachmentStream(context: Context, uri: Uri): InputStream {
     return PartAuthority.getAttachmentStream(context, uri)
-  }
-
-  override fun isMixedModeAvailable(): Boolean {
-    return !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
   }
 
   override fun getMediaConstraints(quality: SentMediaQuality?): MediaConstraints {

@@ -5,6 +5,10 @@ plugins {
 
 android {
   namespace = "org.signal.remoteconfig"
+
+  testFixtures {
+    enable = true
+  }
 }
 
 dependencies {

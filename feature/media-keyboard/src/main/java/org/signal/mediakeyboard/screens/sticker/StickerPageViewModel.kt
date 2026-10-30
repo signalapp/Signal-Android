@@ -27,6 +27,7 @@ import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
 import org.signal.mediakeyboard.screens.MediaKeyboardPageViewModel
+import org.signal.remoteconfig.RemoteConfig
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class StickerPageViewModel(
@@ -44,7 +45,7 @@ class StickerPageViewModel(
    */
   val searchFieldState = TextFieldState()
 
-  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, favoritesEnabled = repository.favoritesEnabled))
+  private val _state = MutableStateFlow(StickerPageState(allowAnimation = repository.allowStickerAnimation, favoritesEnabled = RemoteConfig.internalUser))
   val state: StateFlow<StickerPageState> = _state.asStateFlow()
 
   init {

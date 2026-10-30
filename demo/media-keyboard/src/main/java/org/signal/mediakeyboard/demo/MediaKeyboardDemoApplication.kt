@@ -15,6 +15,9 @@ import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.MediaKeyboardDependencies
 import org.signal.mediakeyboard.demo.data.DemoMediaKeyboardRepository
+import org.signal.network.api.RemoteConfigApi
+import org.signal.remoteconfig.RemoteConfig
+import org.signal.remoteconfig.RemoteConfigDependencies
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents
 import org.thoughtcrime.securesms.mms.SignalGlideModule
@@ -39,6 +42,23 @@ class MediaKeyboardDemoApplication : Application() {
         override fun providePackageId(): String = BuildConfig.APPLICATION_ID
         override fun provideIsIncognitoKeyboardEnabled(): Boolean = false
         override fun provideIsScreenSecurityEnabled(): Boolean = false
+      }
+    )
+
+    RemoteConfig.initDependencies(
+      object : RemoteConfigDependencies {
+        override val isStagingBuild: Boolean = false
+        override val isInternalBuild: Boolean = true
+        override var currentConfig: String? = null
+        override var pendingConfig: String? = null
+        override var lastFetchTime: Long = 0
+        override val localOverrides: Map<String, String> = emptyMap()
+        override val remoteConfigApi: RemoteConfigApi
+          get() = error("Not supported in the demo")
+
+        override fun enqueueRefresh() = Unit
+        override fun onBackgroundMessageProcessIntervalChanged() = Unit
+        override fun onSvr3MigrationPhaseChanged(change: RemoteConfig.ConfigChange) = Unit
       }
     )
 

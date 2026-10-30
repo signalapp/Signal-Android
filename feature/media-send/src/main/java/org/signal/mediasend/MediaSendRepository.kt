@@ -142,8 +142,6 @@ interface MediaSendRepository {
 
   fun getAttachmentStream(context: Context, uri: Uri): InputStream
 
-  fun isMixedModeAvailable(): Boolean
-
   var isCameraFacingFront: Boolean
 
   /**

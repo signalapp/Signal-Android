@@ -30,6 +30,7 @@ dependencies {
   implementation(project(":core:ui"))
   implementation(project(":lib:glide"))
   implementation(project(":lib:video"))
+  implementation(project(":lib:remote-config"))
 
   // Compose BOM
   platform(libs.androidx.compose.bom).let { composeBom ->
@@ -61,6 +62,7 @@ dependencies {
 
   // Testing
   testImplementation(testFixtures(project(":core:ui")))
+  testImplementation(testFixtures(project(":lib:remote-config")))
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.assertk)

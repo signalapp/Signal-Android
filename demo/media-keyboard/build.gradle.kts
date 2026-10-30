@@ -43,6 +43,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":lib:glide"))
   implementation(project(":lib:video"))
+  implementation(project(":lib:remote-config"))
   implementation(libs.androidx.media3.exoplayer)
   implementation(libs.glide.glide)
 

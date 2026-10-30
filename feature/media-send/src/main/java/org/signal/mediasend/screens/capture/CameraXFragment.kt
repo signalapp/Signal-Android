@@ -92,12 +92,14 @@ import org.signal.core.ui.permissions.Permissions
 import org.signal.core.ui.rememberWindowBreakpoint
 import org.signal.core.util.EncryptedProxyFileDescriptor
 import org.signal.core.util.SeekableFileDescriptor
+import org.signal.core.util.asListContains
 import org.signal.core.util.closeQuietly
 import org.signal.core.util.logging.Log
 import org.signal.mediasend.MediaConstraints
 import org.signal.mediasend.MediaSendDependencies
 import org.signal.mediasend.R
 import org.signal.mediasend.util.VideoUtil
+import org.signal.remoteconfig.RemoteConfig
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -355,7 +357,7 @@ private fun resolveCaptureMode(context: Context, isVideoEnabled: Boolean): Camer
 
   val isMixedModeSupported = isVideoSupported &&
     CameraXUtil.isMixedModeSupported(context) &&
-    MediaSendDependencies.mediaSendRepository.isMixedModeAvailable()
+    !RemoteConfig.cameraXMixedModelBlocklist.asListContains(Build.MODEL)
 
   return when {
     isMixedModeSupported -> CameraCaptureMode.ImageAndVideoSimultaneous

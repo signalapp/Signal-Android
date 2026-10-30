@@ -22,9 +22,6 @@ interface StickerKeyboardRepository {
   val allowStickerAnimation: Boolean
     get() = true
 
-  val favoritesEnabled: Boolean
-    get() = true
-
   /**
    * The user's installed sticker packs, re-emitted whenever the underlying data changes.
    * The first pack should be a synthetic pack with id [FAVORITES_PACK_ID], preceded only by a synthetic pack with id

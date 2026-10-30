@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.update
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
+import org.signal.remoteconfig.RemoteConfig
 
 /**
  * @param isEnteringText Whether the search surface is up, from the scaffold that owns it.
@@ -60,8 +61,8 @@ class MediaKeyboardViewModel(
   ) {
     when (event) {
       is MediaKeyboardScreenEvents.Initialize -> {
-        val offered = repository.getAvailableTabs()
-        stateEmitter(state.copy(offeredTabs = MediaKeyboardTab.entries.filter { it in offered }, initialized = true))
+        val offered = MediaKeyboardTab.entries.filter { it != MediaKeyboardTab.GIF || RemoteConfig.gifSearchAvailable }
+        stateEmitter(state.copy(offeredTabs = offered, initialized = true))
       }
       is MediaKeyboardScreenEvents.TabSelected -> {
         stateEmitter(state.copy(preferredTab = event.tab, searchQuery = ""))

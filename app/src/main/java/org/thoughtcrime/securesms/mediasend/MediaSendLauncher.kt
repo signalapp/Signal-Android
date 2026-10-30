@@ -15,7 +15,6 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRecipient
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Activity
 
@@ -169,7 +168,7 @@ object MediaSendLauncher {
 
   private fun v3Intent(context: Context, args: MediaSendFlowActivityContract.Args): Intent {
     return Intent(context, MediaSendV3Activity::class.java)
-      .putExtra(MediaSendFlowActivityContract.EXTRA_ARGS, args.copy(maxSelection = RemoteConfig.maxAttachmentCount))
+      .putExtra(MediaSendFlowActivityContract.EXTRA_ARGS, args)
   }
 
   private fun RecipientId.toMediaRecipientId(): MediaRecipientId = MediaRecipientId(toLong())

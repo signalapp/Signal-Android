@@ -48,9 +48,6 @@ class SignalStickerKeyboardRepository(
 
   override val allowStickerAnimation: Boolean = true
 
-  override val favoritesEnabled: Boolean
-    get() = RemoteConfig.internalUser
-
   override fun observeStickerPacks(): Flow<List<KeyboardStickerPack>> {
     return callbackFlow {
       val observer = DatabaseObserver.Observer { trySend(Unit) }
@@ -99,7 +96,7 @@ class SignalStickerKeyboardRepository(
 
     val packs = loadInstalledPackRecords().map { it.toKeyboardStickerPack() }
 
-    val favoritesPack = if (favoritesEnabled) {
+    val favoritesPack = if (RemoteConfig.internalUser) {
       val favoriteStickers = StickerRecordReader(stickerTable.getFavoriteStickers()).use { reader -> reader.asSequence().toList() }
 
       KeyboardStickerPack(

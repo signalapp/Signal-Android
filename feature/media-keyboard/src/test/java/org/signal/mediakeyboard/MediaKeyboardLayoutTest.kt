@@ -6,8 +6,13 @@
 package org.signal.mediakeyboard
 
 import androidx.compose.runtime.CompositionLocalProvider
+import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.signal.core.ui.SignalLayoutStressTest
 import org.signal.core.ui.compose.keyboard.KeyboardSheetController
@@ -23,8 +28,23 @@ import org.signal.mediakeyboard.data.KeyboardEmoji
 import org.signal.mediakeyboard.data.KeyboardStickerPack
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
+import org.signal.remoteconfig.FakeRemoteConfigDependencies
+import org.signal.remoteconfig.RemoteConfig
 
 class MediaKeyboardLayoutTest : SignalLayoutStressTest() {
+
+  @Before
+  fun setUp() {
+    RemoteConfig.initDependencies(FakeRemoteConfigDependencies())
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.gifSearchAvailable } returns true
+    every { RemoteConfig.internalUser } returns false
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(RemoteConfig)
+  }
 
   @Test
   fun `emoji tab`() = assertPassesLayoutChecks { Keyboard(MediaKeyboardTab.EMOJI) }
@@ -57,7 +77,6 @@ class MediaKeyboardLayoutTest : SignalLayoutStressTest() {
 
     override val stickers = object : StickerKeyboardRepository {
       override val allowStickerAnimation = false
-      override val favoritesEnabled = false
       override fun observeStickerPacks(): Flow<List<KeyboardStickerPack>> = flowOf(emptyList())
     }
 

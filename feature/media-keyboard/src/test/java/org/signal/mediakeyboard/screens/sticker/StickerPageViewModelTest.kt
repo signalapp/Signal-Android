@@ -17,6 +17,8 @@ import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import io.mockk.verify
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +36,8 @@ import org.signal.mediakeyboard.MediaKeyboardAction
 import org.signal.mediakeyboard.data.KeyboardSticker
 import org.signal.mediakeyboard.data.KeyboardStickerPack
 import org.signal.mediakeyboard.data.StickerKeyboardRepository
+import org.signal.remoteconfig.FakeRemoteConfigDependencies
+import org.signal.remoteconfig.RemoteConfig
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class StickerPageViewModelTest {
@@ -59,6 +63,9 @@ class StickerPageViewModelTest {
     repository = mockk(relaxed = true)
     every { repository.allowStickerAnimation } returns true
     every { repository.observeStickerPacks() } returns packsFlow
+    RemoteConfig.initDependencies(FakeRemoteConfigDependencies())
+    mockkObject(RemoteConfig)
+    every { RemoteConfig.internalUser } returns false
 
     actions = mutableListOf()
     collectorScope = CoroutineScope(testDispatcher)
@@ -67,6 +74,7 @@ class StickerPageViewModelTest {
   @After
   fun tearDown() {
     collectorScope.cancel()
+    unmockkObject(RemoteConfig)
     Dispatchers.resetMain()
   }
 

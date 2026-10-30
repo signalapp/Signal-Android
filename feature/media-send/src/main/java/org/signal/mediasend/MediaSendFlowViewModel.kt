@@ -58,6 +58,7 @@ import org.signal.mediasend.screens.edit.image.BrushTool
 import org.signal.mediasend.screens.edit.image.BrushWidthsState
 import org.signal.mediasend.screens.edit.video.VideoTrimData
 import org.signal.mediasend.util.MeteredConnectivity
+import org.signal.remoteconfig.RemoteConfig
 import kotlin.coroutines.resume
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
@@ -91,7 +92,7 @@ class MediaSendFlowViewModel(
     isStory = args.isStory,
     isReply = args.isReply,
     isAddToGroupStoryFlow = args.isAddToGroupStoryFlow,
-    maxSelection = args.maxSelection,
+    maxSelection = RemoteConfig.maxAttachmentCount,
     message = if (args.asTextStory) null else normalizeMessageBody(args.initialMessage),
     isContactSelectionRequired = args.mode == MediaSendFlowActivityContract.Mode.ChooseAfterMediaSelection,
     sendType = args.sendType
