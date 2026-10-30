@@ -145,10 +145,10 @@ public class DocumentView extends FrameLayout {
 
     this.documentSlide = documentSlide;
 
-    // Android OS filenames are limited to 256 characters, so
-    // we don't need an additional max characters/lines constraint when
-    // [showSingleLineFilename] is false.
-    this.fileName.setSingleLine(showSingleLineFilename);
+    // Allow two lines in conversation bubbles while keeping the full
+    // filename visible in detailed mode.
+    this.fileName.setSingleLine(false);
+    this.fileName.setMaxLines(showSingleLineFilename ? 2 : Integer.MAX_VALUE);
 
     this.fileName.setText(OptionalUtil.or(documentSlide.getFileName(),
                                           documentSlide.getCaption())
