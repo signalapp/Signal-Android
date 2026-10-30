@@ -67,6 +67,8 @@ public abstract class PassphraseActivity extends BaseActivity {
             } catch (java.lang.SecurityException e) {
                 Log.w(TAG, "Access permission not passed from PassphraseActivity, retry sharing.");
             }
+        } else {
+          setResult(RESULT_OK);
         }
         finish();
       }
