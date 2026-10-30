@@ -24,13 +24,12 @@ import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactAvatar
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsWriter
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.util.Optional
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.Future
 import kotlin.time.Duration.Companion.days
@@ -108,7 +107,7 @@ class MultiDeviceContactUpdateJob private constructor(
 
     var updateUri: Uri? = null
     try {
-      val out = DeviceContactsOutputStream(writeDetails.outputStream)
+      val out = DeviceContactsWriter(writeDetails.outputStream)
       val recipient = Recipient.resolved(recipientId)
 
       if (recipient.registered == RegisteredState.NOT_REGISTERED) {
@@ -125,13 +124,13 @@ class MultiDeviceContactUpdateJob private constructor(
 
       out.write(
         DeviceContact(
-          recipient.aci,
-          recipient.e164,
-          Optional.ofNullable(if (recipient.isGroup || recipient.isSystemContact) recipient.getDisplayName(context) else null),
-          Optional.ofNullable(getSystemAvatar(recipient.contactUri)),
-          Optional.ofNullable(recipient.expiresInSeconds.takeIf { it > 0 }),
-          Optional.of(recipient.expireTimerVersion),
-          Optional.ofNullable(inboxPositions[recipientId])
+          aci = recipient.aci.orElse(null),
+          e164 = recipient.e164.orElse(null),
+          name = if (recipient.isGroup || recipient.isSystemContact) recipient.getDisplayName(context) else null,
+          avatar = getSystemAvatar(recipient.contactUri),
+          expireTimer = recipient.expiresInSeconds.takeIf { it > 0 },
+          expireTimerVersion = recipient.expireTimerVersion,
+          inboxPosition = inboxPositions[recipientId]
         )
       )
 
@@ -170,7 +169,7 @@ class MultiDeviceContactUpdateJob private constructor(
 
     var updateUri: Uri? = null
     try {
-      val out = DeviceContactsOutputStream(writeDetails.outputStream)
+      val out = DeviceContactsWriter(writeDetails.outputStream)
       val recipients = SignalDatabase.recipients.getRecipientsForMultiDeviceSync()
       val inboxPositions = SignalDatabase.threads.getInboxPositions()
 
@@ -182,13 +181,13 @@ class MultiDeviceContactUpdateJob private constructor(
 
         out.write(
           DeviceContact(
-            recipient.aci,
-            recipient.e164,
-            Optional.ofNullable(if (recipient.isSystemContact) recipient.getDisplayName(context) else recipient.getGroupName(context)),
-            Optional.ofNullable(getSystemAvatar(recipient.contactUri)),
-            Optional.ofNullable(recipient.expiresInSeconds.takeIf { it > 0 }),
-            Optional.of(recipient.expireTimerVersion),
-            Optional.ofNullable(inboxPositions[recipient.id])
+            aci = recipient.aci.orElse(null),
+            e164 = recipient.e164.orElse(null),
+            name = if (recipient.isSystemContact) recipient.getDisplayName(context) else recipient.getGroupName(context),
+            avatar = getSystemAvatar(recipient.contactUri),
+            expireTimer = recipient.expiresInSeconds.takeIf { it > 0 },
+            expireTimerVersion = recipient.expireTimerVersion,
+            inboxPosition = inboxPositions[recipient.id]
           )
         )
       }
@@ -198,13 +197,11 @@ class MultiDeviceContactUpdateJob private constructor(
       if (self.profileKey != null && (self.hasAci || self.hasE164)) {
         out.write(
           DeviceContact(
-            self.aci,
-            self.e164,
-            Optional.empty(),
-            Optional.empty(),
-            Optional.ofNullable(self.expiresInSeconds.takeIf { it > 0 }),
-            Optional.of(self.expireTimerVersion),
-            Optional.ofNullable(inboxPositions[self.id])
+            aci = self.aci.orElse(null),
+            e164 = self.e164.orElse(null),
+            expireTimer = self.expiresInSeconds.takeIf { it > 0 },
+            expireTimerVersion = self.expireTimerVersion,
+            inboxPosition = inboxPositions[self.id]
           )
         )
       }

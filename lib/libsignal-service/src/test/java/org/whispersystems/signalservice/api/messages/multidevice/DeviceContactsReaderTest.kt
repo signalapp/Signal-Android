@@ -13,7 +13,6 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
-import assertk.assertions.messageContains
 import org.junit.Test
 import org.signal.core.models.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.ContactDetails
@@ -22,25 +21,24 @@ import java.io.ByteArrayOutputStream
 import java.io.FilterInputStream
 import java.io.IOException
 import java.io.InputStream
-import java.util.Optional
 import java.util.UUID
 
-class DeviceContactsInputStreamTest {
+class DeviceContactsReaderTest {
 
-  // region Round trips through DeviceContactsOutputStream
+  // region Round trips through DeviceContactsWriter
 
   @Test
   fun `round trip - reads multiple contacts in order`() {
-    val first = deviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1404555555", name = "Teal'c")
-    val second = deviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1444555555", name = "Bra'tac")
+    val first = DeviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1404555555", name = "Teal'c")
+    val second = DeviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1444555555", name = "Bra'tac")
 
     val contacts = readAll(write(first, second))
 
     assertThat(contacts).hasSize(2)
-    assertThat(contacts[0].aci).isEqualTo(first.aci.get())
+    assertThat(contacts[0].aci).isEqualTo(first.aci)
     assertThat(contacts[0].e164).isEqualTo("+1404555555")
     assertThat(contacts[0].name).isEqualTo("Teal'c")
-    assertThat(contacts[1].aci).isEqualTo(second.aci.get())
+    assertThat(contacts[1].aci).isEqualTo(second.aci)
     assertThat(contacts[1].e164).isEqualTo("+1444555555")
     assertThat(contacts[1].name).isEqualTo("Bra'tac")
   }
@@ -49,7 +47,7 @@ class DeviceContactsInputStreamTest {
   fun `round trip - preserves every field`() {
     val aci = ACI.from(UUID.randomUUID())
     val avatarData = byteArrayOf(1, 2, 3, 4, 5)
-    val contact = deviceContact(
+    val contact = DeviceContact(
       aci = aci,
       e164 = "+1404555555",
       name = "Teal'c",
@@ -77,7 +75,7 @@ class DeviceContactsInputStreamTest {
 
   @Test
   fun `round trip - contact with only an e164`() {
-    val contacts = readAll(write(deviceContact(e164 = "+1404555555", name = "Teal'c")))
+    val contacts = readAll(write(DeviceContact(e164 = "+1404555555", name = "Teal'c")))
 
     assertThat(contacts).hasSize(1)
     assertThat(contacts[0].aci).isNull()
@@ -89,7 +87,7 @@ class DeviceContactsInputStreamTest {
   fun `round trip - contact with only an aci`() {
     val aci = ACI.from(UUID.randomUUID())
 
-    val contacts = readAll(write(deviceContact(aci = aci)))
+    val contacts = readAll(write(DeviceContact(aci = aci)))
 
     assertThat(contacts).hasSize(1)
     assertThat(contacts[0].aci).isEqualTo(aci)
@@ -103,7 +101,7 @@ class DeviceContactsInputStreamTest {
 
   @Test
   fun `round trip - zero expire timer and version read back as absent but zero inbox position is kept`() {
-    val contacts = readAll(write(deviceContact(aci = ACI.from(UUID.randomUUID()), expireTimer = 0, expireTimerVersion = 0, inboxPosition = 0)))
+    val contacts = readAll(write(DeviceContact(aci = ACI.from(UUID.randomUUID()), expireTimer = 0, expireTimerVersion = 0, inboxPosition = 0)))
 
     assertThat(contacts).hasSize(1)
     assertThat(contacts[0].expireTimer).isNull()
@@ -115,9 +113,9 @@ class DeviceContactsInputStreamTest {
   fun `round trip - avatars of differing sizes stay aligned with their contacts`() {
     val big = ByteArray(10_000) { it.toByte() }
     val small = byteArrayOf(9, 8, 7)
-    val first = deviceContact(aci = ACI.from(UUID.randomUUID()), name = "first", avatar = DeviceContactAvatar(ByteArrayInputStream(big), big.size.toLong(), "image/*"))
-    val second = deviceContact(aci = ACI.from(UUID.randomUUID()), name = "second")
-    val third = deviceContact(aci = ACI.from(UUID.randomUUID()), name = "third", avatar = DeviceContactAvatar(ByteArrayInputStream(small), small.size.toLong(), "image/*"))
+    val first = DeviceContact(aci = ACI.from(UUID.randomUUID()), name = "first", avatar = DeviceContactAvatar(ByteArrayInputStream(big), big.size.toLong(), "image/*"))
+    val second = DeviceContact(aci = ACI.from(UUID.randomUUID()), name = "second")
+    val third = DeviceContact(aci = ACI.from(UUID.randomUUID()), name = "third", avatar = DeviceContactAvatar(ByteArrayInputStream(small), small.size.toLong(), "image/*"))
 
     val contacts = readAll(write(first, second, third))
 
@@ -130,17 +128,17 @@ class DeviceContactsInputStreamTest {
   @Test
   fun `round trip - closing an avatar stream does not close the contacts stream`() {
     val avatarData = byteArrayOf(1, 2, 3, 4, 5)
-    val first = deviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1404555555", name = "Teal'c", avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
-    val second = deviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1444555555", name = "Bra'tac")
+    val first = DeviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1404555555", name = "Teal'c", avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
+    val second = DeviceContact(aci = ACI.from(UUID.randomUUID()), e164 = "+1444555555", name = "Bra'tac")
 
-    val input = DeviceContactsInputStream(FailsAfterCloseInputStream(ByteArrayInputStream(write(first, second))))
-    val readFirst = input.read()
+    val contacts = DeviceContactsReader(FailsAfterCloseInputStream(ByteArrayInputStream(write(first, second)))).contacts().iterator()
+    val readFirst = contacts.next()
 
-    val avatarStream = readFirst.avatar.get().inputStream
+    val avatarStream = readFirst.avatar!!.inputStream
     assertThat(avatarStream.readAllBytes().toList()).isEqualTo(avatarData.toList())
     avatarStream.close()
 
-    val readSecond = input.read()
+    val readSecond = contacts.next()
 
     assertThat(readSecond.aci).isEqualTo(second.aci)
     assertThat(readSecond.name).isEqualTo(second.name)
@@ -149,12 +147,12 @@ class DeviceContactsInputStreamTest {
   @Test
   fun `round trip - skips an unread avatar`() {
     val avatarData = byteArrayOf(1, 2, 3, 4, 5)
-    val first = deviceContact(aci = ACI.from(UUID.randomUUID()), avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
-    val second = deviceContact(aci = ACI.from(UUID.randomUUID()), name = "Bra'tac")
+    val first = DeviceContact(aci = ACI.from(UUID.randomUUID()), avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
+    val second = DeviceContact(aci = ACI.from(UUID.randomUUID()), name = "Bra'tac")
 
-    val input = DeviceContactsInputStream(ByteArrayInputStream(write(first, second)))
-    input.read()
-    val readSecond = input.read()
+    val contacts = DeviceContactsReader(ByteArrayInputStream(write(first, second))).contacts().iterator()
+    contacts.next()
+    val readSecond = contacts.next()
 
     assertThat(readSecond.aci).isEqualTo(second.aci)
     assertThat(readSecond.name).isEqualTo(second.name)
@@ -163,14 +161,14 @@ class DeviceContactsInputStreamTest {
   @Test
   fun `round trip - skips the rest of a partially read avatar`() {
     val avatarData = byteArrayOf(1, 2, 3, 4, 5)
-    val first = deviceContact(aci = ACI.from(UUID.randomUUID()), avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
-    val second = deviceContact(aci = ACI.from(UUID.randomUUID()), name = "Bra'tac")
+    val first = DeviceContact(aci = ACI.from(UUID.randomUUID()), avatar = DeviceContactAvatar(ByteArrayInputStream(avatarData), avatarData.size.toLong(), "image/*"))
+    val second = DeviceContact(aci = ACI.from(UUID.randomUUID()), name = "Bra'tac")
 
-    val input = DeviceContactsInputStream(ByteArrayInputStream(write(first, second)))
-    val readFirst = input.read()
-    assertThat(readFirst.avatar.get().inputStream.readNBytes(2).toList()).isEqualTo(listOf<Byte>(1, 2))
+    val contacts = DeviceContactsReader(ByteArrayInputStream(write(first, second))).contacts().iterator()
+    val readFirst = contacts.next()
+    assertThat(readFirst.avatar!!.inputStream.readNBytes(2).toList()).isEqualTo(listOf<Byte>(1, 2))
 
-    val readSecond = input.read()
+    val readSecond = contacts.next()
 
     assertThat(readSecond.aci).isEqualTo(second.aci)
     assertThat(readSecond.name).isEqualTo(second.name)
@@ -210,17 +208,40 @@ class DeviceContactsInputStreamTest {
   }
 
   @Test
-  fun `wire - a contact with no address fails the read`() {
-    assertFailure { readAll(record(ContactDetails(name = "nobody"))) }
-      .isInstanceOf(IOException::class)
-      .messageContains("Missing contact address")
+  fun `wire - an all-zero aci is treated as absent and falls back to the e164`() {
+    val contacts = readAll(record(ContactDetails(aciBinary = ACI.UNKNOWN.toByteString(), number = "+1404555555")))
+
+    assertThat(contacts).hasSize(1)
+    assertThat(contacts[0].aci).isNull()
+    assertThat(contacts[0].e164).isEqualTo("+1404555555")
   }
 
   @Test
-  fun `wire - a contact with an unparseable aci and no e164 fails the read`() {
-    assertFailure { readAll(record(ContactDetails(aci = "not-a-uuid", name = "nobody"))) }
-      .isInstanceOf(IOException::class)
-      .messageContains("Missing contact address")
+  fun `wire - a contact with no address is skipped and counted`() {
+    val reader = DeviceContactsReader(ByteArrayInputStream(record(ContactDetails(name = "nobody"))))
+
+    assertThat(reader.contacts().toList()).isEmpty()
+    assertThat(reader.skippedRecords).isEqualTo(1)
+  }
+
+  @Test
+  fun `wire - a contact with an unparseable aci and no e164 is skipped and counted`() {
+    val reader = DeviceContactsReader(ByteArrayInputStream(record(ContactDetails(aci = "not-a-uuid", name = "nobody"))))
+
+    assertThat(reader.contacts().toList()).isEmpty()
+    assertThat(reader.skippedRecords).isEqualTo(1)
+  }
+
+  @Test
+  fun `wire - a skipped contact's avatar is skipped with it`() {
+    val skipped = record(ContactDetails(name = "nobody", avatar = ContactDetails.Avatar(length = 3)), byteArrayOf(1, 2, 3))
+    val good = record(ContactDetails(aciBinary = randomAciBytes(), name = "good"))
+    val reader = DeviceContactsReader(ByteArrayInputStream(skipped + good))
+
+    val contacts = reader.contacts().toList()
+
+    assertThat(contacts.map { it.name }).isEqualTo(listOf("good"))
+    assertThat(reader.skippedRecords).isEqualTo(1)
   }
 
   @Test
@@ -312,47 +333,122 @@ class DeviceContactsInputStreamTest {
   }
 
   @Test
-  fun `malformed - a bad record stops the read before later good records`() {
+  fun `malformed - a varint truncated by end of input fails the read`() {
+    val contact = ContactDetails(aciBinary = randomAciBytes(), name = "Teal'c")
+    val truncatedVarint = byteArrayOf(0x80.toByte())
+
+    assertFailure { readAll(record(contact) + truncatedVarint) }
+      .isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `malformed - contact details truncated by end of input fail the read`() {
+    val encoded = ContactDetails(aciBinary = randomAciBytes(), name = "Teal'c").encode()
+
+    assertFailure { readAll(varint(encoded.size) + encoded.copyOf(encoded.size - 1)) }
+      .isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `malformed - an avatar truncated by end of input fails the read after the avatar is consumed`() {
+    assertFailure { readAll(record(ContactDetails(aciBinary = randomAciBytes(), avatar = ContactDetails.Avatar(length = 5)), byteArrayOf(1, 2))) }
+      .isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `malformed - an avatar truncated by end of input fails the read even if left unread`() {
+    val contacts = DeviceContactsReader(ByteArrayInputStream(record(ContactDetails(aciBinary = randomAciBytes(), avatar = ContactDetails.Avatar(length = 5)), byteArrayOf(1, 2)))).contacts().iterator()
+    contacts.next()
+
+    assertFailure { contacts.hasNext() }
+      .isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `malformed - an out of range contact details length fails the read`() {
+    val encoded = ContactDetails(aciBinary = randomAciBytes(), name = "Teal'c").encode()
+
+    for (length in listOf(-1, Int.MIN_VALUE, Int.MAX_VALUE, 1024 * 1024 + 1)) {
+      assertFailure { readAll(varint(length) + encoded) }
+        .isInstanceOf(IOException::class)
+    }
+  }
+
+  @Test
+  fun `malformed - an avatar length above the int range fails the read`() {
+    assertFailure { readAll(record(ContactDetails(aciBinary = randomAciBytes(), avatar = ContactDetails.Avatar(length = -1)))) }
+      .isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `malformed - a record with no address does not stop later good records`() {
     val good = record(ContactDetails(aciBinary = randomAciBytes(), name = "good"))
     val bad = record(ContactDetails(name = "no address"))
+    val reader = DeviceContactsReader(ByteArrayInputStream(good + bad + good))
 
-    assertFailure { readAll(good + bad + good) }.isInstanceOf(IOException::class)
+    val contacts = reader.contacts().toList()
 
-    val input = DeviceContactsInputStream(ByteArrayInputStream(good + bad + good))
-    assertThat(input.read().name.get()).isEqualTo("good")
-    assertFailure { input.read() }.isInstanceOf(IOException::class)
+    assertThat(contacts.map { it.name }).isEqualTo(listOf("good", "good"))
+    assertThat(reader.skippedRecords).isEqualTo(1)
+  }
+
+  @Test
+  fun `malformed - a record that does not decode stops the read before later good records`() {
+    val good = record(ContactDetails(aciBinary = randomAciBytes(), name = "good"))
+    val garbage = byteArrayOf(0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte(), 0xFF.toByte())
+    val contacts = DeviceContactsReader(ByteArrayInputStream(good + varint(garbage.size) + garbage + good)).contacts().iterator()
+
+    assertThat(contacts.next().name).isEqualTo("good")
+    assertFailure { contacts.hasNext() }.isInstanceOf(IOException::class)
+  }
+
+  @Test
+  fun `write - the avatar length on the wire is the byte count actually read, not the declared length`() {
+    val avatar = DeviceContactAvatar(ByteArrayInputStream(byteArrayOf(1, 2, 3)), 5, "image/png")
+
+    val read = readAll(write(DeviceContact(e164 = "+1404555555", avatar = avatar))).single()
+
+    assertThat(read.avatar!!.length).isEqualTo(3L)
+    assertThat(read.avatar.bytes).isEqualTo(listOf<Byte>(1, 2, 3))
+  }
+
+  @Test
+  fun `write - an empty avatar is omitted and its stream is still closed`() {
+    val stream = ClosableTrackingInputStream(ByteArrayInputStream(ByteArray(0)))
+    val avatar = DeviceContactAvatar(stream, 0, "image/png")
+
+    val read = readAll(write(DeviceContact(e164 = "+1404555555", avatar = avatar))).single()
+
+    assertThat(read.avatar).isNull()
+    assertThat(stream.closed).isEqualTo(true)
   }
 
   // endregion
 
   // region Helpers
 
-  /** Reads every contact from [bytes], draining each avatar as it goes. The only place that touches the reader's API. */
+  /** Reads every contact from [bytes], draining each avatar as it goes. */
   private fun readAll(bytes: ByteArray): List<ReadContact> {
-    val input = DeviceContactsInputStream(ByteArrayInputStream(bytes))
-    val contacts = mutableListOf<ReadContact>()
-
-    var contact: DeviceContact? = input.read()
-    while (contact != null) {
-      contacts += ReadContact(
-        aci = contact.aci.orElse(null),
-        e164 = contact.e164.orElse(null),
-        name = contact.name.orElse(null),
-        avatar = contact.avatar.orElse(null)?.let { ReadAvatar(it.inputStream.readAllBytes().toList(), it.length, it.contentType) },
-        expireTimer = contact.expirationTimer.orElse(null),
-        expireTimerVersion = contact.expirationTimerVersion.orElse(null),
-        inboxPosition = contact.inboxPosition.orElse(null)
-      )
-      contact = input.read()
-    }
-
-    return contacts
+    return DeviceContactsReader(ByteArrayInputStream(bytes))
+      .contacts()
+      .map { contact ->
+        ReadContact(
+          aci = contact.aci,
+          e164 = contact.e164,
+          name = contact.name,
+          avatar = contact.avatar?.let { ReadAvatar(it.inputStream.readAllBytes().toList(), it.length, it.contentType) },
+          expireTimer = contact.expireTimer,
+          expireTimerVersion = contact.expireTimerVersion,
+          inboxPosition = contact.inboxPosition
+        )
+      }
+      .toList()
   }
 
-  /** Serializes [contacts] with [DeviceContactsOutputStream]. */
+  /** Serializes [contacts] with [DeviceContactsWriter]. */
   private fun write(vararg contacts: DeviceContact): ByteArray {
     val bytes = ByteArrayOutputStream()
-    val output = DeviceContactsOutputStream(bytes)
+    val output = DeviceContactsWriter(bytes)
     contacts.forEach { output.write(it) }
     output.close()
     return bytes.toByteArray()
@@ -364,7 +460,7 @@ class DeviceContactsInputStreamTest {
     return varint(encoded.size) + encoded + avatar
   }
 
-  /** Standard protobuf base-128 varint, written independently of [ChunkedOutputStream]. */
+  /** Standard protobuf base-128 varint, written independently of [DeviceContactsWriter]. */
   private fun varint(value: Int): ByteArray {
     val out = ByteArrayOutputStream()
     var remaining = value
@@ -378,24 +474,14 @@ class DeviceContactsInputStreamTest {
 
   private fun randomAciBytes() = ACI.from(UUID.randomUUID()).toByteString()
 
-  private fun deviceContact(
-    aci: ACI? = null,
-    e164: String? = null,
-    name: String? = null,
-    avatar: DeviceContactAvatar? = null,
-    expireTimer: Int? = null,
-    expireTimerVersion: Int? = null,
-    inboxPosition: Int? = null
-  ): DeviceContact {
-    return DeviceContact(
-      Optional.ofNullable(aci),
-      Optional.ofNullable(e164),
-      Optional.ofNullable(name),
-      Optional.ofNullable(avatar),
-      Optional.ofNullable(expireTimer),
-      Optional.ofNullable(expireTimerVersion),
-      Optional.ofNullable(inboxPosition)
-    )
+  private class ClosableTrackingInputStream(wrapped: InputStream) : FilterInputStream(wrapped) {
+    var closed = false
+      private set
+
+    override fun close() {
+      closed = true
+      super.close()
+    }
   }
 
   private class FailsAfterCloseInputStream(input: InputStream) : FilterInputStream(input) {

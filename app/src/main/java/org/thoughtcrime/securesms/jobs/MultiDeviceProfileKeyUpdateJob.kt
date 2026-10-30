@@ -12,11 +12,10 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.OutgoingContent
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsWriter
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-import java.util.Optional
 import kotlin.time.Duration.Companion.days
 
 class MultiDeviceProfileKeyUpdateJob private constructor(parameters: Parameters) : CoroutineJob(parameters) {
@@ -55,19 +54,9 @@ class MultiDeviceProfileKeyUpdateJob private constructor(parameters: Parameters)
     }
 
     val baos = ByteArrayOutputStream()
-    val out = DeviceContactsOutputStream(baos)
+    val out = DeviceContactsWriter(baos)
 
-    out.write(
-      DeviceContact(
-        Optional.ofNullable(SignalStore.account.aci),
-        Optional.ofNullable(SignalStore.account.e164),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty(),
-        Optional.empty()
-      )
-    )
+    out.write(DeviceContact(aci = SignalStore.account.aci, e164 = SignalStore.account.e164))
 
     out.close()
 
