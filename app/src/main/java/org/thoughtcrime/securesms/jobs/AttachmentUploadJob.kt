@@ -21,6 +21,7 @@ import org.signal.libsignal.net.UploadTooLargeException
 import org.signal.network.api.AttachmentUploadResult
 import org.signal.network.api.CdnApi
 import org.signal.protos.resumableuploads.ResumableUpload
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment

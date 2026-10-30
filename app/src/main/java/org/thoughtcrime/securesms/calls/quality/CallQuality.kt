@@ -6,12 +6,12 @@
 package org.thoughtcrime.securesms.calls.quality
 
 import okio.ByteString.Companion.toByteString
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallSummary
 import org.signal.ringrtc.GroupCall
 import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes

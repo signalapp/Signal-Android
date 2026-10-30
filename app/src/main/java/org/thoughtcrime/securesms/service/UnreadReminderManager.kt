@@ -6,10 +6,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnreadReminderJob
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 

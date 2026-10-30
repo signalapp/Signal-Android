@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.keyvalue
 
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.KeyValueStore
 import org.signal.storage.keyvalue.SignalStoreValueDelegate
 import org.signal.storage.keyvalue.SignalStoreValues
 import org.signal.storage.keyvalue.booleanValue
 import org.signal.storage.keyvalue.map
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {

@@ -8,12 +8,12 @@ package org.thoughtcrime.securesms.jobs
 import arrow.core.Either
 import org.signal.core.util.logging.Log
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Reserves backupIds for both text+media. The intention is that every registered user should be doing this, so it should happen post-registration

@@ -14,6 +14,7 @@ import org.signal.appsettings.home.AppSettingsState
 import org.signal.appsettings.home.BackupFailureState
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalDispatchers
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**

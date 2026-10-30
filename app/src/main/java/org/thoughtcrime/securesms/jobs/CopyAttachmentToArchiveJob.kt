@@ -10,6 +10,7 @@ import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollecti
 import org.thoughtcrime.securesms.jobs.protos.CopyAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.concurrent.TimeUnit
 
 /**

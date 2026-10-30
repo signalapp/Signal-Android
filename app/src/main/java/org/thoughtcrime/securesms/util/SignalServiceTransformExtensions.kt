@@ -20,6 +20,7 @@ import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.network.service.MessageService
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil

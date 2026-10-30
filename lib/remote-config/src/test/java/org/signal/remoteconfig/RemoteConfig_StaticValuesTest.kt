@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util
+package org.signal.remoteconfig
 
 import org.junit.Before
 import org.junit.Test
@@ -14,6 +14,7 @@ class RemoteConfig_StaticValuesTest {
 
   @Before
   fun setup() {
+    RemoteConfig.initDependencies(FakeRemoteConfigDependencies())
     RemoteConfig.initialized = true
     RemoteConfig.underTest = true
   }

@@ -93,17 +93,24 @@ class RemoteConfigApiTest {
   }
 
   @Test
-  fun `unexpected status returns unknown error with status code`() = runTest {
+  fun `5xx returns retryable network error`() = runTest {
     respondWith(status = 500)
 
-    assertThat(api.getRemoteConfig()).isEqualTo(RequestResult.NonSuccess(GetRemoteConfigError.UnknownError(500)))
+    assertThat(api.getRemoteConfig()).isInstanceOf<RequestResult.RetryableNetworkError>()
   }
 
   @Test
-  fun `malformed body returns application error`() = runTest {
+  fun `unexpected status returns retryable network error`() = runTest {
+    respondWith(status = 404)
+
+    assertThat(api.getRemoteConfig()).isInstanceOf<RequestResult.RetryableNetworkError>()
+  }
+
+  @Test
+  fun `malformed body returns retryable network error`() = runTest {
     respondWith(status = 200, body = "not json")
 
-    assertThat(api.getRemoteConfig()).isInstanceOf<RequestResult.ApplicationError>()
+    assertThat(api.getRemoteConfig()).isInstanceOf<RequestResult.RetryableNetworkError>()
   }
 
   @Test

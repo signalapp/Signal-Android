@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.os.Build
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
 import org.signal.spinner.SpinnerLogger
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.PersistentLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AppSignatureUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Locale
 
 class SpinnerApplicationContext : ApplicationContext() {

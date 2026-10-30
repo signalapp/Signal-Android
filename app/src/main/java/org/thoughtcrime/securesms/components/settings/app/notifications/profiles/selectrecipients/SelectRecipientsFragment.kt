@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchViewModel
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.search.SearchRepository
 
 /**

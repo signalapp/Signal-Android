@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.models.recipients.RecipientId
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.contacts.SelectedContact
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsUiState.UserMessage
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult

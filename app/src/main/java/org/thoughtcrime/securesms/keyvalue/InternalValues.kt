@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import org.signal.archive.proto.BackupDebugInfo
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallManager.DataMode
 import org.signal.storage.keyvalue.KeyValueStore
 import org.signal.storage.keyvalue.SignalStoreValueDelegate
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.database.model.IssuePriority
 import org.thoughtcrime.securesms.keyvalue.protos.IssueNotifyTimes
 import org.thoughtcrime.securesms.keyvalue.protos.RemoteConfigOverrides
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class InternalValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {

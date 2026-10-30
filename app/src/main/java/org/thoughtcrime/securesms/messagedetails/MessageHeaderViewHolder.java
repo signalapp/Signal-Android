@@ -23,6 +23,7 @@ import androidx.media3.common.MediaItem;
 import com.bumptech.glide.RequestManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.signal.core.ui.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.video.inline.InlineVideoCell;
 import org.thoughtcrime.securesms.video.inline.InlineVideoHost;

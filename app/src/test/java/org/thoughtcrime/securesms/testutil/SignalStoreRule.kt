@@ -8,9 +8,11 @@ package org.thoughtcrime.securesms.testutil
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import org.junit.rules.ExternalResource
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.KeyValueDataSet
 import org.signal.storage.keyvalue.KeyValueStore
 import org.signal.storage.keyvalue.MockKeyValuePersistentStorage
+import org.thoughtcrime.securesms.dependencies.AppRemoteConfigDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
@@ -23,6 +25,7 @@ class SignalStoreRule : ExternalResource() {
   override fun before() {
     val application = ApplicationProvider.getApplicationContext<Application>()
     SignalStore.testInject(SignalStore(application, KeyValueStore(MockKeyValuePersistentStorage.withDataSet(KeyValueDataSet()), DirectExecutor())))
+    RemoteConfig.initDependencies(AppRemoteConfigDependencies)
   }
 
   override fun after() {

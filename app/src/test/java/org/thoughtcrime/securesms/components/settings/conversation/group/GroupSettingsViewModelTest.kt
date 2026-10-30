@@ -30,6 +30,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.signal.core.models.recipients.RecipientId
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.signal.remoteconfig.SelectionLimits
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsRepository
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.Legacy
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.memberlabel.MemberLabel
 import org.thoughtcrime.securesms.groups.memberlabel.StyledMemberLabel
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason

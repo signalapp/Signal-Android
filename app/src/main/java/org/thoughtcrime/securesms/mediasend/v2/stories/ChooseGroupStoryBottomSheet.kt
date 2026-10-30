@@ -21,6 +21,7 @@ import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.FixedRoundedCornerBottomSheetDialogFragment
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.getParcelableArrayListCompat
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.sharing.ShareContact
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
 

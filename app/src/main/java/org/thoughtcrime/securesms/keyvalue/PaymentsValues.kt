@@ -8,6 +8,7 @@ import com.mobilecoin.lib.Mnemonics
 import com.mobilecoin.lib.exceptions.BadMnemonicException
 import org.signal.core.util.Util
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.KeyValueStore
 import org.signal.storage.keyvalue.SignalStoreValues
 import org.signal.storage.keyvalue.booleanValue
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.payments.Money
 import java.io.IOException
 import java.math.BigDecimal

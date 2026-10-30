@@ -5,10 +5,10 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.models.ServiceId.ACI;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.Cdn;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;

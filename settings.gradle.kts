@@ -129,6 +129,7 @@ include(":lib:ui-components")
 include(":lib:signal-login")
 include(":lib:password-manager")
 include(":lib:storage")
+include(":lib:remote-config")
 
 // Feature modules
 include(":feature:app-settings")

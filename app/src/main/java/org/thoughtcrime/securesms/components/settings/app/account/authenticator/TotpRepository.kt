@@ -15,10 +15,10 @@ import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.TooManyTotpKeysException
 import org.signal.libsignal.net.TotpParameters
 import org.signal.network.api.AccountApiV2
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.net.URLEncoder
 import java.time.Instant
 import org.signal.appsettings.R as AppSettingsR

@@ -18,8 +18,8 @@ import org.junit.Test
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.Closeable
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService

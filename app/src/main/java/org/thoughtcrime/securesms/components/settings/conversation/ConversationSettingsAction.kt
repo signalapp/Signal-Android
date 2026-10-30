@@ -9,10 +9,10 @@ import android.net.Uri
 import androidx.compose.ui.unit.IntRect
 import org.signal.core.models.badges.Badge
 import org.signal.core.models.recipients.RecipientId
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.recipients.Recipient
 

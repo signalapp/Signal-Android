@@ -18,6 +18,7 @@ import org.signal.core.util.toOptional
 import org.signal.emoji.EmojiUtil
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.network.util.Preconditions
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
@@ -99,7 +100,6 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.SignalTrace
 import org.thoughtcrime.securesms.util.hasGiftBadge

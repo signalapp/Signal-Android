@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util
+package org.signal.remoteconfig
 
 import androidx.annotation.GuardedBy
 import androidx.annotation.VisibleForTesting
@@ -14,21 +14,13 @@ import org.signal.core.util.serialization.SignalJson
 import org.signal.libsignal.net.RequestResult
 import org.signal.network.api.RemoteConfigApi.GetRemoteConfigError
 import org.signal.network.api.RemoteConfigApi.RemoteConfigResult
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.SelectionLimits
-import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
-import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
-import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig.REMOTE_VALUES
-import org.thoughtcrime.securesms.util.RemoteConfig.asBoolean
-import org.thoughtcrime.securesms.util.RemoteConfig.asInteger
-import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
-import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
-import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCount
-import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCountResetAge
+import org.signal.remoteconfig.RemoteConfig.REMOTE_VALUES
+import org.signal.remoteconfig.RemoteConfig.asBoolean
+import org.signal.remoteconfig.RemoteConfig.asInteger
+import org.signal.remoteconfig.RemoteConfig.remoteBoolean
+import org.signal.remoteconfig.RemoteConfig.remoteValue
+import org.signal.remoteconfig.RemoteConfig.retryReceiptMaxCount
+import org.signal.remoteconfig.RemoteConfig.retryReceiptMaxCountResetAge
 import java.util.TreeMap
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -98,14 +90,21 @@ object RemoteConfig {
   @Volatile
   var internalUserDisabled: Boolean = false
 
+  private lateinit var dependencies: RemoteConfigDependencies
+
+  @JvmStatic
+  fun initDependencies(dependencies: RemoteConfigDependencies) {
+    this.dependencies = dependencies
+  }
+
   @JvmStatic
   fun init() {
     initLock.withLock {
-      val current = parseStoredConfig(SignalStore.remoteConfig.currentConfig)
-      val pending = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
+      val current = parseStoredConfig(dependencies.currentConfig)
+      val pending = parseStoredConfig(dependencies.pendingConfig)
       val changes = computeChanges(current, pending)
 
-      SignalStore.remoteConfig.currentConfig = mapToJson(pending)
+      dependencies.currentConfig = mapToJson(pending)
       REMOTE_VALUES.putAll(pending)
       loadOverrides()
       triggerFlagChangeListeners(changes)
@@ -118,18 +117,18 @@ object RemoteConfig {
 
   @JvmStatic
   fun refreshIfNecessary() {
-    val timeSinceLastFetch = System.currentTimeMillis() - SignalStore.remoteConfig.lastFetchTime
+    val timeSinceLastFetch = System.currentTimeMillis() - dependencies.lastFetchTime
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL.inWholeMilliseconds) {
       Log.i(TAG, "Scheduling remote config refresh.")
-      AppDependencies.jobManager.add(RemoteConfigRefreshJob())
+      dependencies.enqueueRefresh()
     } else {
       Log.i(TAG, "Skipping remote config refresh. Refreshed $timeSinceLastFetch ms ago.")
     }
   }
 
   suspend fun refresh(): RequestResult<Unit, GetRemoteConfigError> {
-    return SignalNetwork.remoteConfigApi.getRemoteConfig().map { result ->
+    return dependencies.remoteConfigApi.getRemoteConfig().map { result ->
       if (result is RemoteConfigResult.Updated) {
         update(result.config)
       }
@@ -140,7 +139,7 @@ object RemoteConfig {
   @Synchronized
   fun update(config: Map<String, Any?>) {
     val memory: Map<String, Any> = REMOTE_VALUES
-    val disk = parseStoredConfig(SignalStore.remoteConfig.pendingConfig)
+    val disk = parseStoredConfig(dependencies.pendingConfig)
 
     val remoteCapable: Set<String> = configsByKey.filterValues { it.active }.keys
     val hotSwap: Set<String> = configsByKey.filterValues { it.hotSwappable }.keys
@@ -148,12 +147,12 @@ object RemoteConfig {
 
     val result = updateInternal(config, memory, disk, remoteCapable, hotSwap, sticky)
 
-    SignalStore.remoteConfig.pendingConfig = mapToJson(result.disk)
+    dependencies.pendingConfig = mapToJson(result.disk)
     REMOTE_VALUES.clear()
     REMOTE_VALUES.putAll(result.memory)
     triggerFlagChangeListeners(result.memoryChanges)
 
-    SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
+    dependencies.lastFetchTime = System.currentTimeMillis()
 
     Log.i(TAG, "[Memory] Before: $memory")
     Log.i(TAG, "[Memory] After : ${result.memory}")
@@ -170,13 +169,13 @@ object RemoteConfig {
   @JvmStatic
   @get:Synchronized
   val debugDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfig.currentConfig))
+    get() = TreeMap(parseStoredConfig(dependencies.currentConfig))
 
   /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
   val debugPendingDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(SignalStore.remoteConfig.pendingConfig))
+    get() = TreeMap(parseStoredConfig(dependencies.pendingConfig))
 
   @JvmStatic
   @VisibleForTesting
@@ -378,7 +377,7 @@ object RemoteConfig {
       return
     }
 
-    overrideValues = SignalStore.internal.remoteConfigOverrides.filterKeys { isOverridable(it) }
+    overrideValues = dependencies.localOverrides.filterKeys { isOverridable(it) }
 
     if (overrideValues.isNotEmpty()) {
       Log.w(TAG, "[Override] Reading with ${overrideValues.size} local override(s)! $overrideValues")
@@ -516,10 +515,10 @@ object RemoteConfig {
     }
 
     /** What this config resolves to right now, for readers that don't have a property to delegate to. */
-    internal fun resolve(): T = transformer(effectiveRawValue(key))
+    fun resolve(): T = transformer(effectiveRawValue(key))
 
     /** What this config would resolve to if the service hadn't sent us anything. */
-    internal fun resolveDefault(): T = transformer(null)
+    fun resolveDefault(): T = transformer(null)
   }
 
   private fun remoteBoolean(
@@ -744,7 +743,7 @@ object RemoteConfig {
     when {
       internalUserDisabled -> false
       underTest -> value.asBoolean(false)
-      Environment.isInternal() -> true
+      dependencies.isInternalBuild -> true
       else -> value.asBoolean(false)
     }
   }
@@ -986,18 +985,20 @@ object RemoteConfig {
   )
 
   /** Whether or not we should allow PayPal payments for one-time donations */
-  val paypalOneTimeDonations: Boolean by remoteBoolean(
+  val paypalOneTimeDonations: Boolean by remoteValue(
     key = "android.oneTimePayPalDonations.2",
-    defaultValue = Environment.IS_STAGING,
     hotSwappable = false
-  )
+  ) { value ->
+    value.asBoolean(dependencies.isStagingBuild)
+  }
 
   /** Whether or not we should allow PayPal payments for recurring donations */
-  val paypalRecurringDonations: Boolean by remoteBoolean(
+  val paypalRecurringDonations: Boolean by remoteValue(
     key = "android.recurringPayPalDonations.3",
-    defaultValue = Environment.IS_STAGING,
     hotSwappable = false
-  )
+  ) { value ->
+    value.asBoolean(dependencies.isStagingBuild)
+  }
 
   /** Enable/disable RingRTC field trial for "AnyAddressPortsKillSwitch" */
   @JvmStatic
@@ -1211,7 +1212,7 @@ object RemoteConfig {
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",
     hotSwappable = true,
-    onChangeListener = { RoutineMessageFetchReceiver.startOrUpdateAlarm(AppDependencies.application) }
+    onChangeListener = { dependencies.onBackgroundMessageProcessIntervalChanged() }
   ) { value ->
     val inMinutes = value.asLong(6.hours.inWholeMinutes)
     inMinutes.minutes.inWholeMilliseconds
@@ -1229,12 +1230,7 @@ object RemoteConfig {
     key = "global.svr3.phase",
     defaultValue = 0,
     hotSwappable = true,
-    onChangeListener = {
-      if ((it.oldValue == null || it.oldValue == 0) && it.newValue == 1) {
-        Log.w(TAG, "Detected the SVR3 migration phase change to 1! Enqueuing a mirroring job.")
-        AppDependencies.jobManager.add(Svr3MirrorJob())
-      }
-    }
+    onChangeListener = { dependencies.onSvr3MigrationPhaseChanged(it) }
   )
 
   /** JSON object representing some details about how we might want to warn the user around connectivity issues. */
@@ -1600,7 +1596,7 @@ object RemoteConfig {
 
   const val APP_SETTINGS_NAVIGATION_KEY = "android.appSettingsNavigation"
 
-  /** Whether to host app settings in [AppSettingsNavigationActivity] in place of the fragment nav graph. */
+  /** Whether to host app settings in the new navigation activity in place of the fragment nav graph. */
   val useAppSettingsNavigation: Boolean by remoteBoolean(
     key = APP_SETTINGS_NAVIGATION_KEY,
     defaultValue = false,

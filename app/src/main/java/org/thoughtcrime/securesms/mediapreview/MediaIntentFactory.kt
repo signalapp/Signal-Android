@@ -11,11 +11,11 @@ import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
 import org.thoughtcrime.securesms.mediaviewer.MediaViewerActivity
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"

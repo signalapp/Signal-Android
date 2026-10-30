@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.Util;
-import org.thoughtcrime.securesms.util.RemoteConfig;
+import org.signal.remoteconfig.RemoteConfig;
 
 import java.util.Map;
 

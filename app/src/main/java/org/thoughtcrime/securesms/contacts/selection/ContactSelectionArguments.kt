@@ -7,8 +7,8 @@ import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.getParcelableExtraCompat
+import org.signal.remoteconfig.SelectionLimits
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
-import org.thoughtcrime.securesms.groups.SelectionLimits
 
 @Suppress("KotlinConstantConditions")
 data class ContactSelectionArguments(

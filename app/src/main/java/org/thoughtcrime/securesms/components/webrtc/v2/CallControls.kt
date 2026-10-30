@@ -37,12 +37,12 @@ import org.signal.core.ui.compose.Tooltips
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
 import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
 import org.signal.core.ui.compose.spaceBetweenUpTo
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.signal.core.ui.R as CoreUiR
 
 /**

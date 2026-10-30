@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.models.media.Media;
 import org.signal.core.models.recipients.RecipientId;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.Collections;

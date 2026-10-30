@@ -25,6 +25,7 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logTime
 import org.signal.core.util.logging.Log
 import org.signal.mediaviewer.MediaViewerItem
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.uicomponents.styledtext.StyledString
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Data access for [MediaViewerViewModel].

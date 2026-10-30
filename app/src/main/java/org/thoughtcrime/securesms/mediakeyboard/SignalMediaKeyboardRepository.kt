@@ -8,8 +8,8 @@ package org.thoughtcrime.securesms.mediakeyboard
 import android.content.Context
 import org.signal.mediakeyboard.MediaKeyboardTab
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * [MediaKeyboardRepository] backed by the app's real emoji, sticker, and gif data sources.

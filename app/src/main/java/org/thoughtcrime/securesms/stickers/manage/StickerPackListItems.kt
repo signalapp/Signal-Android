@@ -39,13 +39,13 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.stickers.StickerPreviewDataFactory
 import org.thoughtcrime.securesms.stickers.manage.StickerPack.DownloadStatus
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.signal.core.ui.R as CoreUiR
 
 @Composable

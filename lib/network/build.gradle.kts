@@ -46,7 +46,7 @@ dependencies {
   implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
 
-  implementation(libs.libsignal.client)
+  api(libs.libsignal.client)
   api(libs.square.okio)
   implementation(libs.square.okhttp3.coroutines)
 

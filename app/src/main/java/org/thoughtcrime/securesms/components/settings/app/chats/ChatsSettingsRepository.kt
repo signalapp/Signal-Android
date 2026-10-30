@@ -4,6 +4,7 @@ import android.net.Uri
 import kotlinx.coroutines.flow.StateFlow
 import org.signal.core.util.ThrottledDebouncer
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.backup.LocalExportProgress
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 object ChatsSettingsRepository {
 

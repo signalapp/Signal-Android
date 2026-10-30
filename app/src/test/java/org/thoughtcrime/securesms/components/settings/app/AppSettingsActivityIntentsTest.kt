@@ -22,7 +22,7 @@ import org.robolectric.annotation.Config
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)

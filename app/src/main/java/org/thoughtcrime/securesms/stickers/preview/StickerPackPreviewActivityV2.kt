@@ -82,6 +82,7 @@ import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
 import org.signal.glide.compose.GlideImage
 import org.signal.glide.decryptableuri.DecryptableUri
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
@@ -99,7 +100,6 @@ import org.thoughtcrime.securesms.stickers.StickerUrl
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.preview.StickerPackPreviewUiState.UserPrompt
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.text.NumberFormat
 import kotlin.jvm.optionals.getOrElse
 import org.signal.core.ui.R as CoreUiR

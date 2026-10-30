@@ -83,6 +83,7 @@ import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.service.ArchiveError
 import org.signal.network.service.ArchiveService
 import org.signal.network.service.toArchiveResult
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.database.DatabaseSecretProvider
 import org.signal.storage.keyvalue.KeyValueDatabase
 import org.signal.storage.keyvalue.KeyValueStore
@@ -152,7 +153,6 @@ import org.thoughtcrime.securesms.recipients.RecipientIds
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener

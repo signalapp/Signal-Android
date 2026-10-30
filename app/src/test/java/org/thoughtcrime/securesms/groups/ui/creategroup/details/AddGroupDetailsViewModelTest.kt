@@ -35,11 +35,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.signal.core.models.media.Media
 import org.signal.core.models.recipients.RecipientId
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class AddGroupDetailsViewModelTest {

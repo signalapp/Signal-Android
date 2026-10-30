@@ -10,6 +10,8 @@ import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
+import org.signal.remoteconfig.RemoteConfig
+import org.thoughtcrime.securesms.dependencies.AppRemoteConfigDependencies
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.EmojiValues
@@ -108,6 +110,7 @@ class MockSignalStoreRule(private val relaxed: Set<KClass<*>> = emptySet()) : Ex
     notificationProfile = mockk(relaxed = relaxed.contains(NotificationProfileValues::class), relaxUnitFun = true)
 
     mockkObject(SignalStore)
+    RemoteConfig.initDependencies(AppRemoteConfigDependencies)
     every { SignalStore.account } returns account
     every { SignalStore.phoneNumberPrivacy } returns phoneNumberPrivacy
     every { SignalStore.registration } returns registration

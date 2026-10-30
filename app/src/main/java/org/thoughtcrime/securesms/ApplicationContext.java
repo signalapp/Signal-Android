@@ -54,6 +54,7 @@ import org.signal.glide.SignalGlideCodecs;
 import org.signal.libsignal.net.ChatServiceException;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.registration.RegistrationDependencies;
+import org.signal.remoteconfig.RemoteConfig;
 import org.signal.ringrtc.CallManager;
 import org.signal.storage.database.DatabaseSecretProvider;
 import org.signal.storage.database.SqlCipherLibraryLoader;
@@ -70,6 +71,7 @@ import org.thoughtcrime.securesms.crypto.AppAttachmentSecretStore;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.dependencies.AppRemoteConfigDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
 import org.thoughtcrime.securesms.glide.SignalGlideComponents;
@@ -133,7 +135,6 @@ import org.thoughtcrime.securesms.util.BatterySnapshotTracker;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.ProcessExitReasonTracker;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.SqlCipherLogTarget;
@@ -196,6 +197,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
                 Log.i(TAG, "onCreate()");
               })
               .addBlocking("security-provider", this::initializeSecurityProvider)
+              .addBlocking("remote-config-dependencies", this::initializeRemoteConfigDependencies)
               .addBlocking("app-dependencies", this::initializeAppDependencies)
               .addBlocking("anr-detector", this::startAnrDetector)
               .addBlocking("crash-handling", this::initializeCrashHandling)
@@ -442,6 +444,10 @@ public class ApplicationContext extends Application implements AppForegroundObse
     ClockSkewDetector.beginObserving(this);
 
     initializeRegistrationDependencies();
+  }
+
+  private void initializeRemoteConfigDependencies() {
+    RemoteConfig.initDependencies(AppRemoteConfigDependencies.INSTANCE);
   }
 
   private void initializeRegistrationDependencies() {

@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.network.api.ArchiveApiV2
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days

@@ -15,9 +15,9 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.signal.mediasend.MediaRecipientId
 import org.signal.mediasend.MediaSendFlowActivityContract
 import org.signal.mediasend.MediaSendRecipient
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.mediasend.v3.MediaSendV3Activity
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Single entry point for launching the media send flow.

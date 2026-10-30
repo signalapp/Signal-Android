@@ -5,6 +5,7 @@ import org.signal.libsignal.net.KeyTransparency.CheckMode
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.Username
 import org.signal.network.crypto.UnidentifiedAccess
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberD
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours

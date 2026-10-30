@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.text.NumberFormat;
 

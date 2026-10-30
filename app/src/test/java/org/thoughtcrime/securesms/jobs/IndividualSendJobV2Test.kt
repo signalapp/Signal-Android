@@ -43,6 +43,7 @@ import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.UntrustedIdentityException
 import org.signal.network.service.MessageService
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -70,7 +71,6 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.util.DataMessageError
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toDataMessage
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent

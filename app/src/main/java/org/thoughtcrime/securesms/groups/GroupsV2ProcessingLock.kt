@@ -4,10 +4,10 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.groups.GroupChangeBusyException
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.Closeable
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit

@@ -9,6 +9,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.Util;
 import org.signal.core.util.logging.Log;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.notifications.DeviceSpecificNotificationConfig;
 import org.thoughtcrime.securesms.recipients.Recipient;

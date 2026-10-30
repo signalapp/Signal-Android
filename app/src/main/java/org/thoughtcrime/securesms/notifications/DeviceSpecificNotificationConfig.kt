@@ -5,7 +5,7 @@ import androidx.annotation.VisibleForTesting
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.signal.core.util.JsonUtils
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.signal.remoteconfig.RemoteConfig
 import java.io.IOException
 
 /**

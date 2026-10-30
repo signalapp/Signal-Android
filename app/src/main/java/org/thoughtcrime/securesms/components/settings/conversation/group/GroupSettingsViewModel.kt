@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.SelectionLimits
 import org.signal.uicomponents.recentmediarail.RecentMediaRailEvents
 import org.signal.uicomponents.recentmediarail.RecentMediaRailPresenter
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsAction
@@ -32,7 +33,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.shared.CallBa
 import org.thoughtcrime.securesms.components.settings.conversation.shared.SharedMediaLoader
 import org.thoughtcrime.securesms.components.settings.conversation.shared.toConversationSettingsAction
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.recipients.Recipient
 

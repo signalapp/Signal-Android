@@ -31,6 +31,7 @@ import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.network.api.KeysApiV2
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.keyvalue.MiscellaneousValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.io.IOException
 import java.util.UUID
 import kotlin.time.Duration.Companion.hours

@@ -13,10 +13,10 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.net.TooManyMfaKeysException
 import org.signal.libsignal.net.WebAuthnRegistrationUnsuccessfulException
 import org.signal.network.api.AccountApiV2
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.time.Instant
 import java.time.ZoneId
 

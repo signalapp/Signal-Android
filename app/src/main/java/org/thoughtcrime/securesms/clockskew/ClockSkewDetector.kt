@@ -17,8 +17,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.signal.core.util.AppForegroundObserver
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.math.abs
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds

@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.util.concurrent.TimeUnit;
 

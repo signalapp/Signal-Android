@@ -28,6 +28,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.enableEdgeToEdge
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.donations.StripeIntentAccessor
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.visible
 

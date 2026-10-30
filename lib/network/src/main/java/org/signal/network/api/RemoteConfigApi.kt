@@ -5,7 +5,6 @@
 
 package org.signal.network.api
 
-import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.Serializable
 import org.signal.core.util.serialization.SignalJson
 import org.signal.libsignal.net.BadRequestError
@@ -36,33 +35,25 @@ class RemoteConfigApi(private val authWebSocket: SignalWebSocket.AuthenticatedWe
     val headers = if (!eTag.isNullOrEmpty()) mapOf("If-None-Match" to eTag) else emptyMap()
     val request = WebSocketRequestMessage.get("/v2/config", headers = headers)
 
-    return try {
-      val response = authWebSocket.requestSuspend(request)
-
-      when (response.status) {
-        200 -> {
-          SignalJson.decode(RemoteConfigResponse.serializer(), response.body).fold(
-            ifLeft = { RequestResult.ApplicationError(it.cause) },
-            ifRight = { body -> RequestResult.Success(body.toResult(response.serverEpochTimeMilliseconds(), response.getHeader("etag"))) }
-          )
+    return authWebSocket.requestResult(
+      request = request,
+      isSuccess = { it == 200 || it == 304 },
+      parseSuccess = { response ->
+        if (response.status == 304) {
+          RemoteConfigResult.NotModified(response.serverEpochTimeMilliseconds())
+        } else {
+          val body = SignalJson.decode(RemoteConfigResponse.serializer(), response.body).getOrNull()
+            ?: throw IOException("Unparseable remote config response")
+          body.toResult(response.serverEpochTimeMilliseconds(), response.getHeader("etag"))
         }
-        304 -> {
-          RequestResult.Success(RemoteConfigResult.NotModified(response.serverEpochTimeMilliseconds()))
-        }
-        401 -> {
-          RequestResult.NonSuccess(GetRemoteConfigError.Unauthorized)
-        }
-        else -> {
-          RequestResult.NonSuccess(GetRemoteConfigError.UnknownError(response.status))
+      },
+      mapError = { response ->
+        when (response.status) {
+          401 -> GetRemoteConfigError.Unauthorized
+          else -> null
         }
       }
-    } catch (e: CancellationException) {
-      throw e
-    } catch (e: IOException) {
-      RequestResult.RetryableNetworkError(e)
-    } catch (e: Throwable) {
-      RequestResult.ApplicationError(e)
-    }
+    )
   }
 
   private fun WebsocketResponse.serverEpochTimeMilliseconds(): Long {
@@ -96,6 +87,5 @@ class RemoteConfigApi(private val authWebSocket: SignalWebSocket.AuthenticatedWe
 
   sealed interface GetRemoteConfigError : BadRequestError {
     data object Unauthorized : GetRemoteConfigError
-    data class UnknownError(val statusCode: Int) : GetRemoteConfigError
   }
 }

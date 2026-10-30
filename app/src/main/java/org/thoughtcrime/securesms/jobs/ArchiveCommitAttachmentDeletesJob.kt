@@ -11,6 +11,7 @@ import org.signal.core.models.backup.MediaId
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.network.service.ArchiveError
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 

@@ -9,11 +9,11 @@ import kotlinx.coroutines.withContext
 import org.signal.core.models.MasterKey
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.io.IOException
 

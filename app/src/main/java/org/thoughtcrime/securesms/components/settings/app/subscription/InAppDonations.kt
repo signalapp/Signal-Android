@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import android.content.Context
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Currency
 
 /**

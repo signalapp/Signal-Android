@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.ContextUtil;
+import org.signal.remoteconfig.RemoteConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.signal.core.ui.util.SpanUtil;
 import org.signal.core.ui.util.ViewUtil;
 

@@ -17,8 +17,8 @@ import androidx.core.view.children
 import androidx.fragment.app.FragmentActivity
 import org.signal.core.ui.initializeScreenshotSecurity
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds

@@ -59,6 +59,7 @@ import org.signal.core.util.eventbus.RestartableSubscription
 import org.signal.core.util.eventbus.ThreadMode
 import org.signal.core.util.isInMultiWindowModeCompat
 import org.signal.core.util.logging.Log
+import org.signal.remoteconfig.RemoteConfig
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
@@ -87,7 +88,6 @@ import org.thoughtcrime.securesms.service.webrtc.CallLinkDisconnectReason
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.FullscreenHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager

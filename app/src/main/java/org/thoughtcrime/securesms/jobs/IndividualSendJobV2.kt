@@ -21,6 +21,7 @@ import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.network.service.MessageService
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -43,7 +44,6 @@ import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.OutgoingContent
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.isUrgent
 import org.thoughtcrime.securesms.util.toDataMessage

@@ -13,6 +13,7 @@ import org.signal.appsettings.routes.UsernameEditMode
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_ROUTE = "app.settings.args.START_ROUTE"
