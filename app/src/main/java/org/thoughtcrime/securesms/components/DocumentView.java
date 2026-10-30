@@ -138,17 +138,19 @@ public class DocumentView extends FrameLayout {
 
   public void setDocument(final @NonNull Slide documentSlide,
                           final boolean showControls,
-                          final boolean showSingleLineFilename)
+                          final boolean truncateFilename)
   {
     this.showControls = showControls;
     presentTransferControls(documentSlide, showControls);
 
     this.documentSlide = documentSlide;
 
-    // Android OS filenames are limited to 256 characters, so
-    // we don't need an additional max characters/lines constraint when
-    // [showSingleLineFilename] is false.
-    this.fileName.setSingleLine(showSingleLineFilename);
+    // When [truncateFilename] is true the name wraps onto at most two lines and
+    // any remaining text is ellipsized. Android OS filenames are limited to 256
+    // characters, so we don't need an additional max characters/lines constraint
+    // when [truncateFilename] is false.
+    this.fileName.setSingleLine(false);
+    this.fileName.setMaxLines(truncateFilename ? 2 : Integer.MAX_VALUE);
 
     this.fileName.setText(OptionalUtil.or(documentSlide.getFileName(),
                                           documentSlide.getCaption())
