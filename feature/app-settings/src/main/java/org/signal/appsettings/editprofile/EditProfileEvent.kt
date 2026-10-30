@@ -21,6 +21,9 @@ sealed interface EditProfileEvent {
   /** The user tapped their avatar. */
   data object AvatarClicked : EditProfileEvent
 
+  /** The full-screen avatar was closed. */
+  data object AvatarPreviewDismissed : EditProfileEvent
+
   /** The user tapped the edit photo button. */
   data object EditPhotoClicked : EditProfileEvent
 

@@ -39,6 +39,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
+import org.signal.core.ui.compose.DragToDismissState
 import org.signal.emoji.EmojiDependencies
 import org.signal.glide.SignalGlideDependencies
 import org.signal.glide.common.io.InputStreamFactory

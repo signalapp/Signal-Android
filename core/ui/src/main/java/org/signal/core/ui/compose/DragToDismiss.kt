@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.mediaviewer
+package org.signal.core.ui.compose
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -44,14 +44,14 @@ private const val DISMISS_FRACTION = 0.15f
 /** Fraction of the screen height the media must be dragged from center for the backdrop to fully fade and the media to fully scale down. */
 private const val FULL_FADE_FRACTION = 0.5f
 
-internal const val MIN_SCALE = 0.7f
+internal const val DRAG_TO_DISMISS_MIN_SCALE = 0.7f
 
 private const val FLY_AWAY_DURATION_MS = 200
 
 private val FLING_VELOCITY_THRESHOLD = 1000.dp
 
 /**
- * Drag-to-dismiss state for [MediaViewerScreen].
+ * Drag-to-dismiss state for a full-screen viewer. Apply [offsetX], [offsetY] and [scale] to what's being dragged.
  */
 @Stable
 class DragToDismissState {
@@ -74,9 +74,9 @@ class DragToDismissState {
   val progress: Float
     get() = fractionOfFullFade(offset.value.getDistance())
 
-  /** 1 at rest, shrinking to [MIN_SCALE] as the media is dragged away from center. */
+  /** 1 at rest, shrinking to [DRAG_TO_DISMISS_MIN_SCALE] as the media is dragged away from center. */
   val scale: Float
-    get() = 1f - (1f - MIN_SCALE) * fractionOfFullFade(offset.value.getDistance())
+    get() = 1f - (1f - DRAG_TO_DISMISS_MIN_SCALE) * fractionOfFullFade(offset.value.getDistance())
 
   private fun fractionOfFullFade(distance: Float): Float {
     return if (height == 0) 0f else (distance / (height * FULL_FADE_FRACTION)).coerceIn(0f, 1f)
@@ -93,7 +93,7 @@ fun rememberDragToDismissState(): DragToDismissState {
  * when [canStart] at touch down (to allow conditional dismissal). Once claimed, the media follows
  * the finger in any direction, and a release far enough from center dismisses.
  */
-internal fun Modifier.dragToDismiss(
+fun Modifier.dragToDismiss(
   state: DragToDismissState,
   canStart: () -> Boolean,
   canDismissToSharedElement: () -> Boolean,

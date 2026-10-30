@@ -101,7 +101,7 @@ class AvatarPickerFragment : ComposeFragment() {
 
   private fun handleAction(action: AvatarPickerActions, showSaveFailed: () -> Unit) {
     when (action) {
-      AvatarPickerActions.Close -> findNavController().popBackStack()
+      AvatarPickerActions.Close -> exit()
       AvatarPickerActions.ShowSaveFailed -> showSaveFailed()
       AvatarPickerActions.LaunchCameraCapture -> openCameraCapture()
       AvatarPickerActions.LaunchPhotoSelection -> openGallery()
@@ -114,7 +114,17 @@ class AvatarPickerFragment : ComposeFragment() {
 
   private fun finishWithResult(populateResult: Bundle.() -> Unit) {
     setFragmentResult(REQUEST_KEY_SELECT_AVATAR, Bundle().apply(populateResult))
-    findNavController().popBackStack()
+    exit()
+  }
+
+  /** Pops the picker, or hands the exit to the host as a back press when it's the start of its own graph. */
+  private fun exit() {
+    val navController = findNavController()
+    if (navController.previousBackStackEntry != null) {
+      navController.popBackStack()
+    } else {
+      requireActivity().onBackPressedDispatcher.onBackPressed()
+    }
   }
 
   @Deprecated("Deprecated in Java")

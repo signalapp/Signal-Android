@@ -16,7 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 /**
@@ -73,6 +75,20 @@ fun FragmentBackHandler(state: FragmentBackPressedState) {
   BackHandler(enabled = enabled) {
     if (info is FragmentBackPressedInfo.Enabled) {
       info.callback()
+    }
+  }
+}
+
+/**
+ * Lets a nav host fragment's own back stack handle back presses while it has something to pop, and leaves them to the
+ * host otherwise.
+ */
+fun NavController.fragmentBackPressedInfo(): Flow<FragmentBackPressedInfo> {
+  return currentBackStackEntryFlow.map {
+    if (previousBackStackEntry != null) {
+      FragmentBackPressedInfo.Enabled { popBackStack() }
+    } else {
+      FragmentBackPressedInfo.Disabled
     }
   }
 }

@@ -17,7 +17,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavigator
+import org.signal.core.ui.compose.split.detailDepth
 import org.signal.core.ui.compose.split.hasDetail
+import org.signal.core.ui.navigation.ResultEventBus
 
 /**
  * Router which manages what screen we are displaying in app settings. Screen view models are handed [onEvent] as their
@@ -26,15 +28,19 @@ import org.signal.core.ui.compose.split.hasDetail
  * Fragment hosts collect [events] and map them onto their nav graph. [AppSettingsNavigation] instead applies them to
  * [navigator], which owns the app settings back stack.
  */
-class AppSettingsRouter(savedStateHandle: SavedStateHandle) : ViewModel() {
+class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
   companion object {
     private const val BACK_STACK_KEY = "app_settings_back_stack"
+    private const val OPENED_DIRECTLY_KEY = "app_settings_opened_directly"
   }
 
   private val _events = MutableSharedFlow<AppSettingsNavigationEvent>()
 
   val events: SharedFlow<AppSettingsNavigationEvent> = _events.asSharedFlow()
+
+  /** Carries results between screens, such as a picked avatar back to edit profile. */
+  val resultBus = ResultEventBus()
 
   val navigator = ListDetailNavigator<AppSettingsHomeRoute, AppSettingsRoute>(
     savedStateHandle = savedStateHandle,
@@ -49,6 +55,22 @@ class AppSettingsRouter(savedStateHandle: SavedStateHandle) : ViewModel() {
   val selectedRoute: StateFlow<AppSettingsRoute?> = navigator.snapshotsOf(AppSettingsHomeRoute) { getOrNull(1) as? AppSettingsRoute }
     .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+  /**
+   * Whether the section on screen was opened straight from outside of settings, so that going back from it leaves
+   * settings, as though nothing else had been open.
+   */
+  private var openedDirectly: Boolean
+    get() = savedStateHandle[OPENED_DIRECTLY_KEY] ?: false
+    set(value) {
+      savedStateHandle[OPENED_DIRECTLY_KEY] = value
+    }
+
+  /** Opens [route] on its own, for a link into settings from elsewhere in the app. */
+  fun openDirectly(route: AppSettingsRoute) {
+    navigate(AppSettingsNavigationEvent.NavigateToScreen(route, replacesDetail = true))
+    openedDirectly = true
+  }
+
   fun onEvent(event: AppSettingsNavigationEvent) {
     viewModelScope.launch {
       _events.emit(event)
@@ -56,21 +78,29 @@ class AppSettingsRouter(savedStateHandle: SavedStateHandle) : ViewModel() {
   }
 
   /**
-   * Applies [event] to [navigator]. Returns false when it asks to go back from the home screen, which leaves app
-   * settings altogether and so is up to the host.
+   * Applies [event] to [navigator]. Returns false when it asks to go back out of app settings altogether, which is up
+   * to the host.
+   *
+   * @param isSplitPane whether the list is showing beside the detail, so that backing out of the detail's last screen
+   *   would leave an empty pane.
    */
-  internal fun navigate(event: AppSettingsNavigationEvent): Boolean {
+  internal fun navigate(event: AppSettingsNavigationEvent, isSplitPane: Boolean = false): Boolean {
     when (event) {
       is AppSettingsNavigationEvent.NavigateToScreen -> {
-        if (event.route == AppSettingsRoute.Empty) {
+        if (event.replacesDetail || event.route == AppSettingsRoute.Empty) {
           navigator.processEvent(ListDetailEvents.ExitDetail)
-        } else {
+          openedDirectly = false
+        }
+
+        if (event.route != AppSettingsRoute.Empty) {
           navigator.processEvent(ListDetailEvents.Push(event.route))
         }
       }
 
       AppSettingsNavigationEvent.NavigateBack -> {
-        if (!navigator[AppSettingsHomeRoute].hasDetail) {
+        val stack = navigator[AppSettingsHomeRoute]
+        // Beside the list, or opened on its own, a section's first screen is never closed by going back.
+        if (!stack.hasDetail || (stack.detailDepth == 1 && (isSplitPane || openedDirectly))) {
           return false
         }
 

@@ -11,13 +11,13 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.NavGraphHostActivity
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfo
 import org.thoughtcrime.securesms.compose.FragmentBackPressedInfoProvider
+import org.thoughtcrime.securesms.compose.fragmentBackPressedInfo
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ConversationSettingsNavHostFragment : NavHostFragment(), FragmentBackPressedInfoProvider {
@@ -51,13 +51,5 @@ class ConversationSettingsNavHostFragment : NavHostFragment(), FragmentBackPress
     super.onCreate(savedInstanceState)
   }
 
-  override fun getFragmentBackPressedInfo(): Flow<FragmentBackPressedInfo> {
-    return navController.currentBackStackEntryFlow.map {
-      if (navController.previousBackStackEntry != null) {
-        FragmentBackPressedInfo.Enabled { navController.popBackStack() }
-      } else {
-        FragmentBackPressedInfo.Disabled
-      }
-    }
-  }
+  override fun getFragmentBackPressedInfo(): Flow<FragmentBackPressedInfo> = navController.fragmentBackPressedInfo()
 }

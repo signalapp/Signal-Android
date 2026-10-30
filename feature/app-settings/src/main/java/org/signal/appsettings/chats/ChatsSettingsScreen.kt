@@ -77,7 +77,7 @@ fun ChatsSettingsScreen(
     snackbarHost = {
       Snackbars.Host(snackbarHostState)
     },
-    collapseTopBarInSplitPane = true
+    expandableTitle = true
   ) { paddingValues ->
     AppSettingsLazyColumn(
       scaffoldPadding = paddingValues,

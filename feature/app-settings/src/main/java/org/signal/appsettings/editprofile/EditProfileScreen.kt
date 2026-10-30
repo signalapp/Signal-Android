@@ -107,6 +107,7 @@ fun EditProfileScreen(
         onDismissed = { onEvent(EditProfileEvent.SnackbarDismissed) }
       )
     },
+    expandableTitle = true,
     modifier = modifier
   ) { contentPadding ->
     AppSettingsLazyColumn(

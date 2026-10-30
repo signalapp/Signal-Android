@@ -118,7 +118,7 @@ fun AppSettingsScreen(
     },
     containerColor = containerColor,
     contentColor = contentColor,
-    collapseTopBarInSplitPane = true,
+    expandableTitle = true,
     modifier = modifier
   ) { contentPadding ->
     Column(

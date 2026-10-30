@@ -20,12 +20,13 @@ import kotlinx.coroutines.withContext
 import org.signal.appsettings.routes.AppSettingsNavigation
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
-import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
+import org.thoughtcrime.securesms.avatar.picker.registerAvatarPickerScreens
+import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
@@ -33,8 +34,10 @@ import org.thoughtcrime.securesms.components.settings.app.privacy.registerPrivac
 import org.thoughtcrime.securesms.components.settings.app.storage.registerDataAndStorageRoutes
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
+import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
+import org.thoughtcrime.securesms.profiles.manage.editprofile.registerEditProfileScreens
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
@@ -66,7 +69,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
 
     val startRoute = intent.getParcelableExtraCompat(START_ROUTE, AppSettingsRoute::class.java)
     if (savedInstanceState == null && startRoute != null && startRoute != AppSettingsRoute.Empty) {
-      router.navigator.processEvent(ListDetailEvents.Push(startRoute))
+      router.openDirectly(startRoute)
     }
 
     setContent {
@@ -76,11 +79,16 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
           onClose = ::finish,
           home = { selectedRoute -> AppSettingsEntry(parentEventEmitter = router::onEvent, selectedRoute = selectedRoute) },
           emptyDetailContent = { EmptyDetailScreen() },
+          defaultDetailRoute = AppSettingsRoute.AccountRoute.ManageProfile,
           detailEntries = {
             registerAppearanceRoutes(router::onEvent)
             registerChatsRoutes(router::onEvent)
             registerPrivacyRoutes(router::onEvent)
             registerDataAndStorageRoutes(router::onEvent)
+            registerEditProfileScreens(router::onEvent)
+            registerAvatarPickerScreens()
+            registerBadgeScreens(router::onEvent)
+            registerUsernameLinkScreens(router::onEvent)
 
             // TODO Temporary escape hatch while most destinations are unregistered here; remove before the flag ships.
             detailEntry<AppSettingsRoute.InternalRoute.Internal> {

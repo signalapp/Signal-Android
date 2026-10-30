@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.signal.mediaviewer
+package org.signal.core.ui.compose
 
 import android.app.Application
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -128,7 +128,7 @@ class DragToDismissTest {
     composeTestRule.waitForIdle()
 
     assertThat(state.scale).isLessThan(1f)
-    assertThat(state.scale).isGreaterThan(MIN_SCALE)
+    assertThat(state.scale).isGreaterThan(DRAG_TO_DISMISS_MIN_SCALE)
 
     composeTestRule.onNodeWithTag(TAG).performTouchInput { cancel() }
   }

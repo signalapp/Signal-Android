@@ -10,9 +10,6 @@ package org.signal.appsettings.editprofile
  */
 sealed interface EditProfileAction {
 
-  /** Show the user's avatar full screen. */
-  data object OpenAvatarPreview : EditProfileAction
-
   /** Leave the profile for the screen where the user can start a monthly donation. */
   data object OpenSubscriptions : EditProfileAction
 

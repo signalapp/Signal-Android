@@ -23,6 +23,8 @@ data class EditProfileState(
   val canEdit: Boolean = true,
   /** True while an avatar is being saved or the username deleted. */
   val busy: Boolean = false,
+  /** Whether the user's avatar is showing full screen, over the profile. */
+  val showAvatarPreview: Boolean = false,
   /** The badge a Sustainer gets, shown in [Dialog.BecomeASustainer] once it's loaded. */
   val sustainerBadge: Badge? = null,
   val dialog: Dialog = Dialog.None,
@@ -34,7 +36,7 @@ data class EditProfileState(
     get() = username != null && usernameSyncState != UsernameSyncState.USERNAME_AND_LINK_CORRUPTED
 
   override fun toString(): String {
-    return "EditProfileState(profileNameLength=${profileName.length}, aboutLength=${about.length}, hasAboutEmoji=${aboutEmoji.isNotEmpty()}, hasUsername=${username != null}, usernameSyncState=$usernameSyncState, showUsernameLinkTooltip=$showUsernameLinkTooltip, canEdit=$canEdit, busy=$busy, hasSustainerBadge=${sustainerBadge != null}, dialog=$dialog, snackbar=$snackbar)"
+    return "EditProfileState(profileNameLength=${profileName.length}, aboutLength=${about.length}, hasAboutEmoji=${aboutEmoji.isNotEmpty()}, hasUsername=${username != null}, usernameSyncState=$usernameSyncState, showUsernameLinkTooltip=$showUsernameLinkTooltip, canEdit=$canEdit, busy=$busy, showAvatarPreview=$showAvatarPreview, hasSustainerBadge=${sustainerBadge != null}, dialog=$dialog, snackbar=$snackbar)"
   }
 
   /** Whether the username and its link match what the service has. */

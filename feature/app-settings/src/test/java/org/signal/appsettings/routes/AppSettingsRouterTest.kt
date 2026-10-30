@@ -60,10 +60,10 @@ class AppSettingsRouterTest {
   }
 
   @Test
-  fun `when navigating to another section, then it replaces the one displayed`() {
+  fun `when opening another section, then it replaces the screens displayed`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
-    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.PrivacyRoute.Privacy))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.PrivacyRoute.Privacy, replacesDetail = true))
 
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.PrivacyRoute.Privacy)
   }
@@ -102,6 +102,57 @@ class AppSettingsRouterTest {
 
     assertThat(handled).isFalse()
     assertThat(stack).containsExactly(AppSettingsHomeRoute)
+  }
+
+  @Test
+  fun `when navigating from within a section to another section's screen, then it stacks on top`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AccountRoute.ManageProfile))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.UsernameLinkRoute.UsernameLink))
+
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.AccountRoute.ManageProfile, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+  }
+
+  @Test
+  fun `given a section opened directly, when navigating back from it, then it is left to the host`() {
+    router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isFalse()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+  }
+
+  @Test
+  fun `given a section opened directly, when navigating back from a screen within it, then that screen is popped`() {
+    router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.UsernameLinkRoute.QRColorPicker))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+  }
+
+  @Test
+  fun `given a section opened directly, when opening a section from home, then going back from it returns home`() {
+    router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats, replacesDetail = true))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute)
+  }
+
+  @Test
+  fun `given split pane, when navigating back from a section, then it is left to the host`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack, isSplitPane = true)).isFalse()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
+  }
+
+  @Test
+  fun `given split pane, when navigating back from a screen within a section, then that screen is popped`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack, isSplitPane = true)).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
   }
 
   @Test

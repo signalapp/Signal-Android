@@ -161,8 +161,6 @@ internal class DeferredEnterScene(
           CompositionLocalProvider(LocalDeferredEnter provides deferredEnter) {
             entry.Content()
           }
-        } else if (beneathEntry.isListPane) {
-          ListPaneContent { beneathEntry.Content() }
         } else {
           beneathEntry.Content()
         }

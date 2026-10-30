@@ -74,7 +74,7 @@ fun AppearanceSettingsScreen(
     onNavigationClick = { onEvent(AppearanceSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     modifier = modifier,
-    collapseTopBarInSplitPane = true
+    expandableTitle = true
   ) { paddingValues ->
     AppSettingsLazyColumn(
       scaffoldPadding = paddingValues,

@@ -10,8 +10,13 @@ package org.signal.appsettings.routes
  */
 sealed interface AppSettingsNavigationEvent {
 
-  /** Navigate to a specific screen. */
-  data class NavigateToScreen(val route: AppSettingsRoute) : AppSettingsNavigationEvent
+  /**
+   * Navigate to a specific screen.
+   *
+   * @param replacesDetail whether [route] replaces every screen open in the detail pane, as a section opened from the
+   *   settings home does, rather than stacking on top of them.
+   */
+  data class NavigateToScreen(val route: AppSettingsRoute, val replacesDetail: Boolean = false) : AppSettingsNavigationEvent
 
   /** Navigate back one screen. */
   data object NavigateBack : AppSettingsNavigationEvent
@@ -22,6 +27,13 @@ sealed interface AppSettingsNavigationEvent {
  */
 fun ((AppSettingsNavigationEvent) -> Unit).navigateTo(route: AppSettingsRoute) {
   this(AppSettingsNavigationEvent.NavigateToScreen(route))
+}
+
+/**
+ * Convenience function to emit a navigation event that replaces whatever is open in the detail pane with [route].
+ */
+fun ((AppSettingsNavigationEvent) -> Unit).openSection(route: AppSettingsRoute) {
+  this(AppSettingsNavigationEvent.NavigateToScreen(route, replacesDetail = true))
 }
 
 /**

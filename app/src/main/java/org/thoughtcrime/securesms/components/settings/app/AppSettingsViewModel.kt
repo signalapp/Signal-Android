@@ -17,7 +17,7 @@ import org.signal.appsettings.home.BackupFailureState
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.navigateBack
-import org.signal.appsettings.routes.navigateTo
+import org.signal.appsettings.routes.openSection
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -69,37 +69,37 @@ class AppSettingsViewModel(
     when (event) {
       AppSettingsEvent.ScreenResumed -> refresh()
       AppSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
-      AppSettingsEvent.ProfileClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AccountRoute.ManageProfile)
-      AppSettingsEvent.UsernameLinkClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
+      AppSettingsEvent.ProfileClicked -> parentEventEmitter.openSection(AppSettingsRoute.AccountRoute.ManageProfile)
+      AppSettingsEvent.UsernameLinkClicked -> parentEventEmitter.openSection(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
       AppSettingsEvent.BackupWarningClicked -> onBackupWarningClicked()
-      AppSettingsEvent.AccountClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AccountRoute.Account)
-      AppSettingsEvent.LinkedDevicesClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
+      AppSettingsEvent.AccountClicked -> parentEventEmitter.openSection(AppSettingsRoute.AccountRoute.Account)
+      AppSettingsEvent.LinkedDevicesClicked -> parentEventEmitter.openSection(AppSettingsRoute.LinkDeviceRoute.LinkDevice)
       AppSettingsEvent.DonateClicked -> {
         if (_state.value.allowUserToGoToDonationManagementScreen) {
-          parentEventEmitter.navigateTo(AppSettingsRoute.DonationsRoute.Donations())
+          parentEventEmitter.openSection(AppSettingsRoute.DonationsRoute.Donations())
         } else {
           _actions.send(AppSettingsAction.OpenDonateUrl)
         }
       }
       AppSettingsEvent.DonateLongClicked -> copySubscriberId(InAppPaymentSubscriberRecord.Type.DONATION, Snackbar.CopiedDonorSubscriberId)
-      AppSettingsEvent.AppearanceClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AppearanceRoute.Appearance)
-      AppSettingsEvent.ChatsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.ChatsRoute.Chats)
-      AppSettingsEvent.StoriesClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.StoriesRoute.Privacy(titleId = R.string.preferences__stories))
-      AppSettingsEvent.NotificationsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.Notifications)
-      AppSettingsEvent.PrivacyClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.PrivacyRoute.Privacy)
-      AppSettingsEvent.BackupsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.Backups())
+      AppSettingsEvent.AppearanceClicked -> parentEventEmitter.openSection(AppSettingsRoute.AppearanceRoute.Appearance)
+      AppSettingsEvent.ChatsClicked -> parentEventEmitter.openSection(AppSettingsRoute.ChatsRoute.Chats)
+      AppSettingsEvent.StoriesClicked -> parentEventEmitter.openSection(AppSettingsRoute.StoriesRoute.Privacy(titleId = R.string.preferences__stories))
+      AppSettingsEvent.NotificationsClicked -> parentEventEmitter.openSection(AppSettingsRoute.NotificationsRoute.Notifications)
+      AppSettingsEvent.PrivacyClicked -> parentEventEmitter.openSection(AppSettingsRoute.PrivacyRoute.Privacy)
+      AppSettingsEvent.BackupsClicked -> parentEventEmitter.openSection(AppSettingsRoute.BackupsRoute.Backups())
       AppSettingsEvent.BackupsLongClicked -> {
         if (_state.value.isPrimaryDevice) {
           copySubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, Snackbar.CopiedBackupsSubscriberId)
         }
       }
-      AppSettingsEvent.DataAndStorageClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DataAndStorageRoute.DataAndStorage)
-      AppSettingsEvent.AppUpdatesClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AppUpdates)
-      AppSettingsEvent.PaymentsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.Payments)
-      AppSettingsEvent.HelpClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.HelpRoute.Settings())
-      AppSettingsEvent.InviteClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.Invite)
-      AppSettingsEvent.LabsClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.LabsRoute.Labs)
-      AppSettingsEvent.InternalClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.Internal)
+      AppSettingsEvent.DataAndStorageClicked -> parentEventEmitter.openSection(AppSettingsRoute.DataAndStorageRoute.DataAndStorage)
+      AppSettingsEvent.AppUpdatesClicked -> parentEventEmitter.openSection(AppSettingsRoute.AppUpdates)
+      AppSettingsEvent.PaymentsClicked -> parentEventEmitter.openSection(AppSettingsRoute.Payments)
+      AppSettingsEvent.HelpClicked -> parentEventEmitter.openSection(AppSettingsRoute.HelpRoute.Settings())
+      AppSettingsEvent.InviteClicked -> parentEventEmitter.openSection(AppSettingsRoute.Invite)
+      AppSettingsEvent.LabsClicked -> parentEventEmitter.openSection(AppSettingsRoute.LabsRoute.Labs)
+      AppSettingsEvent.InternalClicked -> parentEventEmitter.openSection(AppSettingsRoute.InternalRoute.Internal)
       AppSettingsEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = Snackbar.None) }
     }
   }
@@ -112,7 +112,7 @@ class AppSettingsViewModel(
       BackupFailureState.NONE -> return
     }
 
-    parentEventEmitter.navigateTo(AppSettingsRoute.BackupsRoute.Remote())
+    parentEventEmitter.openSection(AppSettingsRoute.BackupsRoute.Remote())
   }
 
   private suspend fun copySubscriberId(type: InAppPaymentSubscriberRecord.Type, snackbar: Snackbar) {

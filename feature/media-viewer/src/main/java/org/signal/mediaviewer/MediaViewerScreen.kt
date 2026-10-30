@@ -58,7 +58,10 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.DragToDismissState
 import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.dragToDismiss
+import org.signal.core.ui.compose.rememberDragToDismissState
 import org.signal.mediaviewer.components.ExpandingCaption
 import org.signal.mediaviewer.components.MediaViewerBottomBar
 import org.signal.mediaviewer.components.MediaViewerTopBar

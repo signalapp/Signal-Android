@@ -17,7 +17,9 @@ interface ListNavKey : NavKey
  * Describes a location that would sit in the "Detail" portion of a list-detail scaffold.
  */
 interface DetailNavKey : NavKey {
+  /** Whether pushing this replaces the detail content already displayed, rather than stacking on top of it. */
   val isContentRoot: Boolean
+    get() = false
 }
 
 /**
@@ -52,6 +54,12 @@ inline fun <reified D : DetailNavKey> ListDetailBackStack.detailLocation(): D? {
  */
 val ListDetailBackStack.hasDetail: Boolean
   get() = listIndex < lastIndex
+
+/**
+ * How many pieces of detail content are stacked above the current list.
+ */
+val ListDetailBackStack.detailDepth: Int
+  get() = lastIndex - listIndex
 
 /**
  * Pushes [location] into the place its kind belongs

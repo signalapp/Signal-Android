@@ -66,7 +66,8 @@ class EditProfileViewModel(
     when (event) {
       EditProfileEvent.ScreenResumed -> onScreenResumed()
       EditProfileEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
-      EditProfileEvent.AvatarClicked -> ifEditable { _actions.send(EditProfileAction.OpenAvatarPreview) }
+      EditProfileEvent.AvatarClicked -> ifEditable { _state.update { it.copy(showAvatarPreview = true) } }
+      EditProfileEvent.AvatarPreviewDismissed -> _state.update { it.copy(showAvatarPreview = false) }
       EditProfileEvent.EditPhotoClicked -> ifEditable { parentEventEmitter.navigateTo(AppSettingsRoute.AccountRoute.AvatarPicker) }
       is EditProfileEvent.AvatarSelected -> ifEditable { setAvatar(event.media) }
       EditProfileEvent.AvatarCleared -> ifEditable { clearAvatar() }

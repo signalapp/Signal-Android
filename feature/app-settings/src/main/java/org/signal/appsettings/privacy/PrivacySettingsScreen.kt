@@ -115,7 +115,7 @@ fun PrivacySettingsScreen(
       )
     },
     modifier = modifier,
-    collapseTopBarInSplitPane = true
+    expandableTitle = true
   ) { paddingValues ->
     AppSettingsLazyColumn(
       scaffoldPadding = paddingValues,

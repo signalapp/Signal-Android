@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.movableContentOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
@@ -101,17 +103,37 @@ fun ListDetailNavDisplay(
 
   val pendingDeferredEnter = rememberPendingDeferredEnter(entries)
 
+  // Movable so that the chrome follows the list from one scene or tab to the next instead of being rebuilt.
+  val movableListPaneChrome: ListPaneChrome? = remember(listPaneChrome) {
+    listPaneChrome?.let { chrome -> movableContentOf { content: @Composable () -> Unit -> chrome(content) } }
+  }
+
+  // Applied as a decorator so the chrome sits inside the entry's own movable slot, and is only ever placed by the
+  // scene that nav3 hands the list entry to.
+  val listPaneChromeDecorator = remember {
+    NavEntryDecorator<NavKey> { entry ->
+      if (entry.isListPane) {
+        ListPaneContent { entry.Content() }
+      } else {
+        entry.Content()
+      }
+    }
+  }
+
+  val chromeDecoratedEntries = rememberDecoratedNavEntries(entries, listOf(listPaneChromeDecorator))
+
   val paneShift = TransitionSpecs.paneShift()
   val paneShiftPop = TransitionSpecs.paneShift(pop = true)
 
   CompositionLocalProvider(
+    LocalDetailPaneBack provides onBack,
     LocalListDetailPaneLayout provides layout,
-    LocalListPaneChrome provides listPaneChrome,
+    LocalListPaneChrome provides movableListPaneChrome,
     LocalEmptyDetailContent provides emptyDetailContent,
     LocalPendingDeferredEnter provides pendingDeferredEnter
   ) {
     NavDisplay(
-      entries = entries,
+      entries = chromeDecoratedEntries,
       sceneStrategies = listOf(sceneStrategy),
       transitionSpec = { paneShift },
       popTransitionSpec = { paneShiftPop },

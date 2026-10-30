@@ -7,7 +7,6 @@ package org.signal.appsettings.routes
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.models.recipients.RecipientId
@@ -21,42 +20,6 @@ import org.signal.donations.InAppPaymentType
 @Serializable
 @Parcelize
 sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
-
-  /**
-   * The sections opened from [AppSettingsHomeRoute] or directly by a start route. Opening one replaces whatever
-   * detail is displayed, rather than stacking on top of it.
-   */
-  @IgnoredOnParcel
-  override val isContentRoot: Boolean
-    get() = when (this) {
-      AccountRoute.Account,
-      AccountRoute.ManageProfile,
-      is AccountRoute.Username,
-      UsernameLinkRoute.UsernameLink,
-      LinkDeviceRoute.LinkDevice,
-      is DonationsRoute.Donations,
-      AppearanceRoute.Appearance,
-      ChatsRoute.Chats,
-      ChatFoldersRoute.ChatFolders,
-      is ChatFoldersRoute.CreateChatFolders,
-      is StoriesRoute.Privacy,
-      NotificationsRoute.Notifications,
-      NotificationsRoute.NotificationProfiles,
-      PrivacyRoute.Privacy,
-      is BackupsRoute.Backups,
-      is BackupsRoute.Local,
-      is BackupsRoute.Remote,
-      DataAndStorageRoute.DataAndStorage,
-      DataAndStorageRoute.Proxy,
-      ChangeNumberRoute.Start,
-      AppUpdates,
-      Payments,
-      is HelpRoute.Settings,
-      Invite,
-      LabsRoute.Labs,
-      InternalRoute.Internal -> true
-      else -> false
-    }
 
   /**
    * Empty state, displayed when there is no current route. In this case, the "top" of our

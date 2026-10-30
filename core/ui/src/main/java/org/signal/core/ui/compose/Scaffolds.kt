@@ -58,12 +58,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.offset
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.R
+import org.signal.core.ui.WindowBreakpoint
 import org.signal.core.ui.compose.split.LocalIsInDetailPane
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.detailPaneMaxContentWidth
 import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
 import org.signal.core.ui.listPaneDefaultPreferredWidth
 import org.signal.core.ui.rememberIsSplitPane
+import org.signal.core.ui.rememberWindowBreakpoint
 import kotlin.math.roundToInt
 
 /**
@@ -88,9 +90,9 @@ private fun Modifier.expandedTitleInset(state: TopAppBarState): Modifier {
 }
 
 /**
- * Whether settings screens may use their split-pane treatment on a split-pane window: a collapsing top bar where a
- * [Scaffolds.Settings] opts in, no navigation icon in the detail pane, and their split-pane colors. Off by default, so
- * that a screen shared between hosts keeps its current look until its host is ready for the change.
+ * Whether settings screens may use their split-pane treatment on a split-pane window: no navigation icon in the detail
+ * pane, and their split-pane colors. Off by default, so that a screen shared between hosts keeps its current look until
+ * its host is ready for the change.
  */
 val LocalSplitPaneSettingsEnabled = staticCompositionLocalOf { false }
 
@@ -152,9 +154,8 @@ object Scaffolds {
    * Settings scaffold that takes an icon as an ImageVector.
    *
    * @param titleContent The title area content. First parameter is the contentOffset. Unused by the collapsing top bar.
-   * @param collapseTopBarInSplitPane on split-pane windows (foldables, tablets), shows a large top bar that collapses as
-   *   the content scrolls, rather than the pinned one used on phones. Only takes effect under a host that enables
-   *   [LocalSplitPaneSettingsEnabled], which also hides the navigation icon in the detail pane of a split.
+   * @param expandableTitle on windows bigger than a phone's (foldables, tablets), shows a large title that collapses as
+   *   the content scrolls. Phones, in either orientation, always get the pinned top bar.
    */
   @Composable
   fun Settings(
@@ -171,11 +172,11 @@ object Scaffolds {
     snackbarHost: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
-    collapseTopBarInSplitPane: Boolean = false,
+    expandableTitle: Boolean = false,
     content: @Composable (PaddingValues) -> Unit
   ) {
     val isSplitPaneHost = rememberIsSplitPaneSettings()
-    val isCollapsing = collapseTopBarInSplitPane && isSplitPaneHost
+    val isCollapsing = expandableTitle && rememberWindowBreakpoint() !is WindowBreakpoint.Small
     // Beside its list, a detail pane is closed by picking something else from the list rather than by navigating up.
     val visibleNavigationIcon = navigationIcon.takeUnless { isSplitPaneHost && LocalIsInDetailPane.current }
     val scrollBehavior = if (isCollapsing) {

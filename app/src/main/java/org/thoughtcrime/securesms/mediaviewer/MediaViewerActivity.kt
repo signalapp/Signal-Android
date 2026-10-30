@@ -42,9 +42,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.DragToDismissState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
-import org.signal.mediaviewer.DragToDismissState
 import org.signal.mediaviewer.MediaViewerAction
 import org.signal.mediaviewer.MediaViewerEvent
 import org.signal.mediaviewer.MediaViewerScreen
