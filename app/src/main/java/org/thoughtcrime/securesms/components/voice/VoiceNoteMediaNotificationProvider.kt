@@ -77,7 +77,7 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
 
     if (player.isCommandAvailable(Player.COMMAND_STOP)) {
       mediaStyle.setCancelButtonIntent(
-        actionFactory.createMediaActionPendingIntent(mediaSession, Player.COMMAND_STOP.toLong())
+        actionFactory.createMediaActionPendingIntent(mediaSession, Player.COMMAND_STOP)
       )
     }
     val extras = mediaSession.player.mediaMetadata.extras
@@ -95,7 +95,7 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
       Log.w(TAG, "Could not populate notification: request metadata extras were null.")
     }
     builder.setDeleteIntent(
-      actionFactory.createMediaActionPendingIntent(mediaSession, Player.COMMAND_STOP.toLong())
+      actionFactory.createMediaActionPendingIntent(mediaSession, Player.COMMAND_STOP)
     )
       .setOnlyAlertOnce(true)
       .setStyle(mediaStyle)
@@ -297,6 +297,10 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
    */
   override fun handleCustomCommand(session: MediaSession, action: String, extras: Bundle): Boolean {
     throw UnsupportedOperationException("Custom command handler for Notification is unused.")
+  }
+
+  override fun getNotificationChannelInfo(): MediaNotification.Provider.NotificationChannelInfo {
+    return MediaNotification.Provider.NotificationChannelInfo(notificationChannel, context.getString(R.string.NotificationChannel_voice_notes))
   }
 
   companion object {
