@@ -951,7 +951,7 @@
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Resetare</string>
     <!-- Button label for the link button in the username link settings -->
-    <string name="UsernameLinkSettings_link_button_label">link</string>
+    <string name="UsernameLinkSettings_link_button_label">Link</string>
     <!-- Button label for the share button in the username link settings -->
     <string name="UsernameLinkSettings_share_button_label">Distribuie</string>
     <!-- Button label for the color selector button in the username link settings -->
