@@ -85,6 +85,9 @@ fun MessageRecord.getQuote(): Quote? = if (isMms) {
 
 fun MessageRecord.hasLinkPreview(): Boolean = isMms && (this as MmsMessageRecord).linkPreviews.isNotEmpty()
 
+/** If message has both a link preview and an attachment, it should prefer the attachment. */
+fun MessageRecord.shouldDisplayLinkPreview(): Boolean = hasLinkPreview() && !hasNonTextSlide()
+
 fun MessageRecord.hasTextSlide(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri != null
 
 fun MessageRecord.hasUndownloadedTextSlide(): Boolean = isMms && (this as MmsMessageRecord).slideDeck.textSlide != null && this.slideDeck.textSlide?.uri == null
@@ -100,7 +103,7 @@ fun MessageRecord.hasPollTerminate(): Boolean = this.isPollTerminate && this.mes
 fun MessageRecord.hasPinnedMessageUpdate(): Boolean = this.isPinnedMessageUpdate && this.messageExtras != null && this.messageExtras!!.pinnedMessage != null
 
 fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
-  if (!hasLinkPreview()) {
+  if (!shouldDisplayLinkPreview()) {
     return false
   }
 

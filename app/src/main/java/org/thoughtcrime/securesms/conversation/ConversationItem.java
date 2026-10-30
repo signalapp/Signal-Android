@@ -1171,7 +1171,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean hasLinkPreview(MessageRecord messageRecord) {
-    return MessageRecordUtil.hasLinkPreview(messageRecord);
+    return MessageRecordUtil.shouldDisplayLinkPreview(messageRecord);
   }
 
   private boolean hasBigImageLinkPreview(MessageRecord messageRecord) {

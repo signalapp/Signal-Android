@@ -101,11 +101,11 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.hasLinkPreview
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
+import org.thoughtcrime.securesms.util.shouldDisplayLinkPreview
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -804,7 +804,7 @@ class ConversationRepository(
       val contact: Contact = (messageRecord as MmsMessageRecord).sharedContacts.first()
 
       SlideDeck() to contact.quoteText(context)
-    } else if (messageRecord.isMms && messageRecord.hasLinkPreview()) {
+    } else if (messageRecord.isMms && messageRecord.shouldDisplayLinkPreview()) {
       val linkPreview = (messageRecord as MmsMessageRecord).linkPreviews.first()
       val slideDeck = SlideDeck()
 
