@@ -1,16 +1,14 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import org.signal.core.models.MasterKey
 import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.longValue
-import org.signal.storage.keyvalue.stringValue
-import org.whispersystems.signalservice.api.kbs.PinHashUtil.localPinHash
 
-class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class SvrValues(
+  store: KeyValueStore,
+  private val deriveMasterKey: () -> MasterKey,
+  private val hashPin: (String) -> String
+) : SignalStoreValues(store) {
   companion object {
     private val TAG = Log.tag(SvrValues::class)
 
@@ -56,7 +54,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   fun setPin(pin: String) {
     store.beginWrite()
       .putString(PIN, pin)
-      .putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
+      .putString(LOCK_LOCAL_PIN_HASH, hashPin(pin))
       .putBoolean(OPTED_OUT, false)
       .commit()
   }
@@ -66,7 +64,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     if (store.getString(PIN, null) == null) {
       store.beginWrite()
         .putString(PIN, pin)
-        .putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
+        .putString(LOCK_LOCAL_PIN_HASH, hashPin(pin))
         .putBoolean(OPTED_OUT, false)
         .commit()
     }
@@ -90,7 +88,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
 
   /** Returns the Master Key */
   val masterKey: MasterKey
-    get() = SignalStore.account.accountEntropyPool.deriveMasterKey()
+    get() = deriveMasterKey()
 
   /**
    * The [MasterKey] that should be used for our initial syncs with storage service + recovery password.

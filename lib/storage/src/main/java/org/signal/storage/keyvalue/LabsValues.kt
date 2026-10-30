@@ -1,13 +1,6 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
-import org.signal.remoteconfig.RemoteConfig
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValueDelegate
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.map
-
-class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class LabsValues(store: KeyValueStore, private val isInternalUser: () -> Boolean) : SignalStoreValues(store) {
   companion object {
     const val INDIVIDUAL_CHAT_PLAINTEXT_EXPORT: String = "labs.individual_chat_plaintext_export"
     const val STORY_ARCHIVE: String = "labs.story_archive"
@@ -36,6 +29,6 @@ class LabsValues internal constructor(store: KeyValueStore) : SignalStoreValues(
   var improvedMessageDeletion by booleanValue(IMPROVED_MESSAGE_DELETION, true).falseForExternalUsers()
 
   private fun SignalStoreValueDelegate<Boolean>.falseForExternalUsers(): SignalStoreValueDelegate<Boolean> {
-    return this.map { actualValue -> RemoteConfig.internalUser && actualValue }
+    return this.map { actualValue -> isInternalUser() && actualValue }
   }
 }

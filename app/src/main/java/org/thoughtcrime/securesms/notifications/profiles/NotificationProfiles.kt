@@ -7,9 +7,9 @@ import org.signal.core.util.toLocalDateTime
 import org.signal.core.util.toLocalTime
 import org.signal.core.util.toMillis
 import org.signal.core.util.toOffset
+import org.signal.storage.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper

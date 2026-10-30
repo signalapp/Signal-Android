@@ -27,6 +27,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.models.database.AttachmentId
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.util.StorageUtil
+import org.signal.storage.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.Host
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.RequestPermissionResult
 import org.thoughtcrime.securesms.attachments.AttachmentSaver.SaveToStorageWarningResult
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.mms.AudioSlide
 import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.ImageSlide

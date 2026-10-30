@@ -121,6 +121,3 @@ message StorageSyncLoopState {
     uint64 rateLevelAsOf               = 5;
 }
 
-message RemoteConfigOverrides {
-    map<string, string> valueByKey = 1;
-}

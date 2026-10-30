@@ -11,24 +11,24 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
 import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.keyvalue.EmojiValues
+import org.signal.storage.keyvalue.NotificationProfileValues
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
+import org.signal.storage.keyvalue.ReleaseChannelValues
+import org.signal.storage.keyvalue.SvrValues
+import org.signal.storage.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.dependencies.AppRemoteConfigDependencies
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.BackupValues
-import org.thoughtcrime.securesms.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.keyvalue.InAppPaymentValues
 import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.MiscellaneousValues
-import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.RegistrationValues
-import org.thoughtcrime.securesms.keyvalue.ReleaseChannelValues
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorageServiceValues
 import org.thoughtcrime.securesms.keyvalue.StoryValues
-import org.thoughtcrime.securesms.keyvalue.SvrValues
-import org.thoughtcrime.securesms.keyvalue.UiHintValues
 import kotlin.reflect.KClass
 
 /**

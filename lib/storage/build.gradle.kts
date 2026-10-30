@@ -30,6 +30,7 @@ dependencies {
   implementation(project(":core:util"))
   implementation(project(":core:database"))
   implementation(project(":core:util-jvm"))
+  implementation(project(":core:models"))
 
   implementation(libs.signal.android.database.sqlcipher)
   implementation(libs.androidx.sqlite)

@@ -54,7 +54,7 @@ class RemoteConfigOverrideTest {
   @Test
   fun `override wins over the value from the service`() {
     setServiceValues(INTERNAL_USER to true, BOOLEAN_FLAG to false)
-    SignalStore.internal.remoteConfigOverrides = mapOf(BOOLEAN_FLAG to "true")
+    SignalStore.remoteConfig.overrides = mapOf(BOOLEAN_FLAG to "true")
 
     RemoteConfig.init()
 
@@ -64,7 +64,7 @@ class RemoteConfigOverrideTest {
   @Test
   fun `override string is coerced by the config transformer`() {
     setServiceValues(INTERNAL_USER to true, INT_FLAG to 4)
-    SignalStore.internal.remoteConfigOverrides = mapOf(INT_FLAG to "9")
+    SignalStore.remoteConfig.overrides = mapOf(INT_FLAG to "9")
 
     RemoteConfig.init()
 
@@ -74,7 +74,7 @@ class RemoteConfigOverrideTest {
   @Test
   fun `overrides are ignored for non-internal users`() {
     setServiceValues(INTERNAL_USER to false, BOOLEAN_FLAG to false)
-    SignalStore.internal.remoteConfigOverrides = mapOf(BOOLEAN_FLAG to "true")
+    SignalStore.remoteConfig.overrides = mapOf(BOOLEAN_FLAG to "true")
 
     RemoteConfig.init()
 
@@ -85,7 +85,7 @@ class RemoteConfigOverrideTest {
   @Test
   fun `internalUser cannot be overridden`() {
     setServiceValues(INTERNAL_USER to true)
-    SignalStore.internal.remoteConfigOverrides = mapOf(INTERNAL_USER to "false")
+    SignalStore.remoteConfig.overrides = mapOf(INTERNAL_USER to "false")
 
     RemoteConfig.init()
 
@@ -96,7 +96,7 @@ class RemoteConfigOverrideTest {
   @Test
   fun `overrides for unknown keys are dropped`() {
     setServiceValues(INTERNAL_USER to true)
-    SignalStore.internal.remoteConfigOverrides = mapOf("android.notARealFlag" to "true")
+    SignalStore.remoteConfig.overrides = mapOf("android.notARealFlag" to "true")
 
     RemoteConfig.init()
 
@@ -125,9 +125,9 @@ class RemoteConfigOverrideTest {
   fun `persisted overrides round-trip through the store`() {
     val overrides = mapOf(BOOLEAN_FLAG to "true", INT_FLAG to "9")
 
-    SignalStore.internal.remoteConfigOverrides = overrides
+    SignalStore.remoteConfig.overrides = overrides
 
-    assertThat(SignalStore.internal.remoteConfigOverrides).isEqualTo(overrides)
+    assertThat(SignalStore.remoteConfig.overrides).isEqualTo(overrides)
   }
 
   private fun setServiceValues(vararg values: Pair<String, Any>) {

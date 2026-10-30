@@ -253,7 +253,7 @@ class RefreshOwnProfileJob private constructor(parameters: Parameters) : BaseJob
         .map { value -> if (value) PhoneNumberSharingState.ENABLED else PhoneNumberSharingState.DISABLED }
         .orElse(PhoneNumberSharingState.UNKNOWN)
 
-      if (remotePhoneNumberSharing == PhoneNumberSharingState.UNKNOWN || remotePhoneNumberSharing.enabled != SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled()) {
+      if (remotePhoneNumberSharing == PhoneNumberSharingState.UNKNOWN || remotePhoneNumberSharing.enabled != SignalStore.phoneNumberPrivacy.isPhoneNumberSharingEnabled) {
         Log.w(TAG, "Phone number sharing setting did not match! Syncing with storage service, then uploading our profile.")
         syncWithStorageServiceThenUploadProfile()
       }

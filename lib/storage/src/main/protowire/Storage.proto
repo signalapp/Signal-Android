@@ -11,3 +11,32 @@ option java_package = "org.signal.storage.protos";
 message SignalStoreList {
     repeated string contents = 1;
 }
+
+message RemoteConfigOverrides {
+    map<string, string> valueByKey = 1;
+}
+
+// Field-for-field copy of SubmitCallQualitySurveyRequest so previously stored values still decode.
+message CallQualitySurveyRequest {
+    bool           user_satisfied                  = 1;
+    repeated string call_quality_issues            = 2;
+    optional string additional_issues_description  = 3;
+    optional string debug_log_url                  = 4;
+    int64          start_timestamp                 = 5;
+    int64          end_timestamp                   = 6;
+    string         call_type                       = 7;
+    bool           success                         = 8;
+    string         call_end_reason                 = 9;
+    optional float connection_rtt_median           = 10;
+    optional float audio_rtt_median                = 11;
+    optional float video_rtt_median                = 12;
+    optional float audio_recv_jitter_median        = 13;
+    optional float video_recv_jitter_median        = 14;
+    optional float audio_send_jitter_median        = 15;
+    optional float video_send_jitter_median        = 16;
+    optional float audio_recv_packet_loss_fraction = 17;
+    optional float video_recv_packet_loss_fraction = 18;
+    optional float audio_send_packet_loss_fraction = 19;
+    optional float video_send_packet_loss_fraction = 20;
+    optional bytes call_telemetry                  = 21;
+}

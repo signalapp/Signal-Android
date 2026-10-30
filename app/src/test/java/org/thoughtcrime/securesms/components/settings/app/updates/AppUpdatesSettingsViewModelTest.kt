@@ -37,9 +37,9 @@ import org.robolectric.annotation.Config
 import org.signal.appsettings.updates.AppUpdatesSettingsAction
 import org.signal.appsettings.updates.AppUpdatesSettingsEvent
 import org.signal.appsettings.updates.AppUpdatesSettingsState
+import org.signal.storage.keyvalue.ApkUpdateValues
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
-import org.thoughtcrime.securesms.keyvalue.ApkUpdateValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule

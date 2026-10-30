@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.storage.keyvalue.KeyValueStore;
 import org.signal.storage.keyvalue.LegacySharedPrefs;
 import org.signal.storage.keyvalue.SignalStoreValues;
+import org.signal.storage.keyvalue.SvrValues;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;

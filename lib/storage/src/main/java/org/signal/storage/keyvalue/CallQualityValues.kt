@@ -3,14 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.durationValue
-import org.signal.storage.keyvalue.protoValue
-import org.signal.storageservice.protos.calls.quality.SubmitCallQualitySurveyRequest
+import org.signal.storage.protos.CallQualitySurveyRequest
 import kotlin.time.Duration
 
 class CallQualityValues(store: KeyValueStore) : SignalStoreValues(store) {
@@ -22,7 +17,7 @@ class CallQualityValues(store: KeyValueStore) : SignalStoreValues(store) {
     const val LAST_SURVEY_PROMPT_TIME = "callQualityValues.last_survey_prompt_time"
   }
 
-  var surveyRequest: SubmitCallQualitySurveyRequest? by protoValue(SURVEY_REQUEST, SubmitCallQualitySurveyRequest.ADAPTER)
+  var surveyRequest: CallQualitySurveyRequest? by protoValue(SURVEY_REQUEST, CallQualitySurveyRequest.ADAPTER)
   var isQualitySurveyEnabled: Boolean by booleanValue(IS_CALL_QUALITY_SURVEY_ENABLED, true)
   var lastFailureReportTime: Duration? by durationValue(LAST_FAILURE_REPORT_TIME, null)
   var lastSurveyPromptTime: Duration? by durationValue(LAST_SURVEY_PROMPT_TIME, null)

@@ -1,9 +1,6 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValues
-
-class ImageEditorValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class ImageEditorValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
     private const val KEY_IMAGE_EDITOR_MARKER_WIDTH = "image.editor.marker.width"

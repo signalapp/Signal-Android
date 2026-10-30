@@ -489,7 +489,7 @@ class AppRegistrationStorageControllerTest {
 
     controller.commitRegistrationData()
 
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isFalse()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isFalse()
   }
 
   @Test
@@ -504,7 +504,7 @@ class AppRegistrationStorageControllerTest {
 
     controller.commitRegistrationData()
 
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isTrue()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isTrue()
   }
 
   @Test
@@ -515,7 +515,7 @@ class AppRegistrationStorageControllerTest {
     controller.setRestoreDecision(RestoreDecision.COMPLETED)
 
     assertThat(SignalStore.registration.restoreDecisionState).isEqualTo(RestoreDecisionState.Completed)
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isFalse()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isFalse()
   }
 
   @Test
@@ -526,7 +526,7 @@ class AppRegistrationStorageControllerTest {
     controller.setRestoreDecision(RestoreDecision.SKIPPED)
 
     assertThat(SignalStore.registration.restoreDecisionState).isEqualTo(RestoreDecisionState.Skipped)
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isTrue()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isTrue()
   }
 
   @Test
@@ -537,7 +537,7 @@ class AppRegistrationStorageControllerTest {
     controller.setRestoreDecision(RestoreDecision.NEW_ACCOUNT)
 
     assertThat(SignalStore.registration.restoreDecisionState).isEqualTo(RestoreDecisionState.NewAccount)
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isTrue()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isTrue()
   }
 
   @Test
@@ -549,7 +549,7 @@ class AppRegistrationStorageControllerTest {
     controller.setRestoreDecision(RestoreDecision.COMPLETED)
 
     assertThat(SignalStore.registration.restoreDecisionState).isEqualTo(RestoreDecisionState.NewAccount)
-    assertThat(SignalStore.onboarding.hasOnboarding(context)).isTrue()
+    assertThat(SignalStore.onboarding.hasOnboarding()).isTrue()
   }
 
   @Test

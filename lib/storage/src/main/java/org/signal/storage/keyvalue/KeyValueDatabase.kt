@@ -141,7 +141,7 @@ open class KeyValueDatabase @VisibleForTesting internal constructor(
           Type.LONG -> dataSet.putLong(key, cursor.requireLong(VALUE))
           Type.STRING -> dataSet.putString(key, cursor.requireString(VALUE))
         }
-    }
+      }
 
     return dataSet
   }

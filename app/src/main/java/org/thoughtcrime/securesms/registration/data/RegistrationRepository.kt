@@ -32,6 +32,7 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.crypto.UnidentifiedAccess
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.pin.Svr3Migration

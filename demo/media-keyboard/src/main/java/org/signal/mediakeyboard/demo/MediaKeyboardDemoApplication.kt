@@ -18,6 +18,10 @@ import org.signal.mediakeyboard.demo.data.DemoMediaKeyboardRepository
 import org.signal.network.api.RemoteConfigApi
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.remoteconfig.RemoteConfigDependencies
+import org.signal.storage.keyvalue.KeyValueDataSet
+import org.signal.storage.keyvalue.KeyValuePersistentStorage
+import org.signal.storage.keyvalue.KeyValueStore
+import org.signal.storage.keyvalue.RemoteConfigValues
 import org.signal.video.exo.ExoPlayerPool
 import org.thoughtcrime.securesms.mms.RegisterGlideComponents
 import org.thoughtcrime.securesms.mms.SignalGlideModule
@@ -49,10 +53,7 @@ class MediaKeyboardDemoApplication : Application() {
       object : RemoteConfigDependencies {
         override val isStagingBuild: Boolean = false
         override val isInternalBuild: Boolean = true
-        override var currentConfig: String? = null
-        override var pendingConfig: String? = null
-        override var lastFetchTime: Long = 0
-        override val localOverrides: Map<String, String> = emptyMap()
+        override val remoteConfigValues = RemoteConfigValues(KeyValueStore(InMemoryKeyValuePersistentStorage()))
         override val remoteConfigApi: RemoteConfigApi
           get() = error("Not supported in the demo")
 
@@ -72,5 +73,13 @@ class MediaKeyboardDemoApplication : Application() {
     )
 
     repository = DemoMediaKeyboardRepository(this)
+  }
+
+  private class InMemoryKeyValuePersistentStorage : KeyValuePersistentStorage {
+    private val dataSet = KeyValueDataSet()
+
+    override fun getDataSet(): KeyValueDataSet = dataSet
+
+    override fun writeDataSet(dataSet: KeyValueDataSet, removes: Collection<String>) = Unit
   }
 }

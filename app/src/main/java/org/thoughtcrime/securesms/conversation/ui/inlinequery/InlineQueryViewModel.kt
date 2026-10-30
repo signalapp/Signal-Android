@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.getPreferredVariation
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 
 /**

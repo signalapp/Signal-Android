@@ -28,6 +28,8 @@ import org.thoughtcrime.securesms.conversation.ReactionOverlayPlacement
 import org.thoughtcrime.securesms.conversation.ReactionScrubber
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.getPreferredVariation
+import org.thoughtcrime.securesms.keyvalue.reactions
 import org.thoughtcrime.securesms.recipients.Recipient
 import kotlin.math.roundToInt
 

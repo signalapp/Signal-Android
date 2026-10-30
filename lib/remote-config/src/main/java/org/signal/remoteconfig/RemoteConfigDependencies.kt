@@ -6,6 +6,7 @@
 package org.signal.remoteconfig
 
 import org.signal.network.api.RemoteConfigApi
+import org.signal.storage.keyvalue.RemoteConfigValues
 
 /**
  * Injection point for application state and behavior that [RemoteConfig] reads and drives but does not own.
@@ -17,16 +18,8 @@ interface RemoteConfigDependencies {
   /** Whether this build should always be treated as an internal user. */
   val isInternalBuild: Boolean
 
-  /** The serialized config in use for this app session. */
-  var currentConfig: String?
-
-  /** The serialized config that will become [currentConfig] on the next app start. */
-  var pendingConfig: String?
-
-  var lastFetchTime: Long
-
-  /** Persisted internal-user overrides, keyed by config key. */
-  val localOverrides: Map<String, String>
+  /** Where the config, its pending replacement, and any local overrides are persisted. */
+  val remoteConfigValues: RemoteConfigValues
 
   val remoteConfigApi: RemoteConfigApi
 

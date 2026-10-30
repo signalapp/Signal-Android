@@ -6,6 +6,7 @@ import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.Username
 import org.signal.network.crypto.UnidentifiedAccess
 import org.signal.remoteconfig.RemoteConfig
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.KeyTransparencyStore
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CheckKeyTransparencyJobData
 import org.thoughtcrime.securesms.keyvalue.AccountValues
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient

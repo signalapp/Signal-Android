@@ -9,7 +9,7 @@ import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
-import org.thoughtcrime.securesms.keyvalue.CertificateType;
+import org.signal.storage.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.util.ExceptionHelper;

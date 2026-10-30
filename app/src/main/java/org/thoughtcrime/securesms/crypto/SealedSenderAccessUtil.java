@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.database.RecipientTable.SealedSenderAccessMode;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint;
-import org.thoughtcrime.securesms.keyvalue.CertificateType;
+import org.signal.storage.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 

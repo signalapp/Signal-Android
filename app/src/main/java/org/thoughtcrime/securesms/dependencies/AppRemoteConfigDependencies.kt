@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
 import org.signal.network.api.RemoteConfigApi
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.remoteconfig.RemoteConfigDependencies
+import org.signal.storage.keyvalue.RemoteConfigValues
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -28,26 +29,8 @@ object AppRemoteConfigDependencies : RemoteConfigDependencies {
   override val isInternalBuild: Boolean
     get() = Environment.isInternal()
 
-  override var currentConfig: String?
-    get() = SignalStore.remoteConfig.currentConfig
-    set(value) {
-      SignalStore.remoteConfig.currentConfig = value
-    }
-
-  override var pendingConfig: String?
-    get() = SignalStore.remoteConfig.pendingConfig
-    set(value) {
-      SignalStore.remoteConfig.pendingConfig = value
-    }
-
-  override var lastFetchTime: Long
-    get() = SignalStore.remoteConfig.lastFetchTime
-    set(value) {
-      SignalStore.remoteConfig.lastFetchTime = value
-    }
-
-  override val localOverrides: Map<String, String>
-    get() = SignalStore.internal.remoteConfigOverrides
+  override val remoteConfigValues: RemoteConfigValues
+    get() = SignalStore.remoteConfig
 
   override val remoteConfigApi: RemoteConfigApi
     get() = SignalNetwork.remoteConfigApi

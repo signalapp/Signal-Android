@@ -21,6 +21,7 @@ import org.signal.network.exceptions.RequestCanceledException
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.proxy
 import org.thoughtcrime.securesms.net.CustomDns
 import org.thoughtcrime.securesms.net.DeprecatedClientPreventionInterceptor
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor

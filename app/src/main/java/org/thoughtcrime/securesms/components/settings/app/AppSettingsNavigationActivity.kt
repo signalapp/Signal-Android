@@ -107,7 +107,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
     lifecycleScope.launch {
       withContext(Dispatchers.Default) {
         RemoteConfig.overrides -= RemoteConfig.APP_SETTINGS_NAVIGATION_KEY
-        SignalStore.internal.remoteConfigOverrides = RemoteConfig.overrides
+        SignalStore.remoteConfig.overrides = RemoteConfig.overrides
       }
 
       startActivity(AppSettingsActivity.home(this@AppSettingsNavigationActivity))

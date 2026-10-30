@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.setPreferredVariation
 import org.thoughtcrime.securesms.mediakeyboard.SignalEmojiSheetRepository
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity
 import org.thoughtcrime.securesms.util.fragments.findListener

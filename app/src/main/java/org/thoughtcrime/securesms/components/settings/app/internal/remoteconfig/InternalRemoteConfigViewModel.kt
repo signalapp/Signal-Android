@@ -150,7 +150,7 @@ class InternalRemoteConfigViewModel : EventDrivenViewModel<InternalRemoteConfigE
   private suspend fun applyOverrides(updated: Map<String, String>) {
     withContext(Dispatchers.Default) {
       RemoteConfig.overrides = updated
-      SignalStore.internal.remoteConfigOverrides = RemoteConfig.overrides
+      SignalStore.remoteConfig.overrides = RemoteConfig.overrides
     }
   }
 

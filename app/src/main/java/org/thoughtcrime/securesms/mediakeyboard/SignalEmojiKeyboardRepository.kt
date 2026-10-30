@@ -18,6 +18,7 @@ import org.signal.mediakeyboard.data.KeyboardEmoji
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.setPreferredVariation
 
 /**
  * [EmojiKeyboardRepository] backed by the app's emoji data: [EmojiSource], the recent emoji store,
@@ -73,7 +74,7 @@ class SignalEmojiKeyboardRepository(
       val emojiValues = SignalStore.emoji
       EmojiSource.latest.canonicalToVariations.keys
         .mapNotNull { canonical ->
-          val preferred = emojiValues.getPreferredVariation(canonical)
+          val preferred = emojiValues.getPreferredVariation(canonical, canonical)
           if (preferred != canonical) canonical to preferred else null
         }
         .toMap()

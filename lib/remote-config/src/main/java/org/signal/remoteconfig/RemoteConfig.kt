@@ -100,11 +100,11 @@ object RemoteConfig {
   @JvmStatic
   fun init() {
     initLock.withLock {
-      val current = parseStoredConfig(dependencies.currentConfig)
-      val pending = parseStoredConfig(dependencies.pendingConfig)
+      val current = parseStoredConfig(dependencies.remoteConfigValues.currentConfig)
+      val pending = parseStoredConfig(dependencies.remoteConfigValues.pendingConfig)
       val changes = computeChanges(current, pending)
 
-      dependencies.currentConfig = mapToJson(pending)
+      dependencies.remoteConfigValues.currentConfig = mapToJson(pending)
       REMOTE_VALUES.putAll(pending)
       loadOverrides()
       triggerFlagChangeListeners(changes)
@@ -117,7 +117,7 @@ object RemoteConfig {
 
   @JvmStatic
   fun refreshIfNecessary() {
-    val timeSinceLastFetch = System.currentTimeMillis() - dependencies.lastFetchTime
+    val timeSinceLastFetch = System.currentTimeMillis() - dependencies.remoteConfigValues.lastFetchTime
 
     if (timeSinceLastFetch < 0 || timeSinceLastFetch > FETCH_INTERVAL.inWholeMilliseconds) {
       Log.i(TAG, "Scheduling remote config refresh.")
@@ -139,7 +139,7 @@ object RemoteConfig {
   @Synchronized
   fun update(config: Map<String, Any?>) {
     val memory: Map<String, Any> = REMOTE_VALUES
-    val disk = parseStoredConfig(dependencies.pendingConfig)
+    val disk = parseStoredConfig(dependencies.remoteConfigValues.pendingConfig)
 
     val remoteCapable: Set<String> = configsByKey.filterValues { it.active }.keys
     val hotSwap: Set<String> = configsByKey.filterValues { it.hotSwappable }.keys
@@ -147,12 +147,12 @@ object RemoteConfig {
 
     val result = updateInternal(config, memory, disk, remoteCapable, hotSwap, sticky)
 
-    dependencies.pendingConfig = mapToJson(result.disk)
+    dependencies.remoteConfigValues.pendingConfig = mapToJson(result.disk)
     REMOTE_VALUES.clear()
     REMOTE_VALUES.putAll(result.memory)
     triggerFlagChangeListeners(result.memoryChanges)
 
-    dependencies.lastFetchTime = System.currentTimeMillis()
+    dependencies.remoteConfigValues.lastFetchTime = System.currentTimeMillis()
 
     Log.i(TAG, "[Memory] Before: $memory")
     Log.i(TAG, "[Memory] After : ${result.memory}")
@@ -169,13 +169,13 @@ object RemoteConfig {
   @JvmStatic
   @get:Synchronized
   val debugDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(dependencies.currentConfig))
+    get() = TreeMap(parseStoredConfig(dependencies.remoteConfigValues.currentConfig))
 
   /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
   val debugPendingDiskValues: Map<String, Any>
-    get() = TreeMap(parseStoredConfig(dependencies.pendingConfig))
+    get() = TreeMap(parseStoredConfig(dependencies.remoteConfigValues.pendingConfig))
 
   @JvmStatic
   @VisibleForTesting
@@ -377,7 +377,7 @@ object RemoteConfig {
       return
     }
 
-    overrideValues = dependencies.localOverrides.filterKeys { isOverridable(it) }
+    overrideValues = dependencies.remoteConfigValues.overrides.filterKeys { isOverridable(it) }
 
     if (overrideValues.isNotEmpty()) {
       Log.w(TAG, "[Override] Reading with ${overrideValues.size} local override(s)! $overrideValues")

@@ -1,9 +1,4 @@
-package org.thoughtcrime.securesms.keyvalue
-
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.longValue
+package org.signal.storage.keyvalue
 
 /**
  * Values for managing enable/disable state and corresponding alerts for Notification Profiles.

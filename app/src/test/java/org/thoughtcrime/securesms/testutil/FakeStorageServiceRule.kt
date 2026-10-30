@@ -17,8 +17,8 @@ import org.signal.network.NetworkResult
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException
 import org.signal.network.service.StorageServiceService
 import org.signal.remoteconfig.RemoteConfig
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberSharingMode
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
+import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberSharingMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.StorageSyncLoopState
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -159,7 +159,7 @@ class FakeStorageServiceRule(val storageKey: StorageKey = StorageKey(Util.getSec
     every { store.uiHints.hasSeenAdminDeleteEducationDialog() } returns false
     every { store.payments.mobileCoinPaymentsEnabled() } returns false
     every { store.payments.paymentsEntropy } returns null
-    every { store.emoji.reactions } returns emptyList()
+    every { store.emoji.rawReactions } returns emptyList()
     every { store.inAppPayments.getDisplayBadgesOnProfile() } returns false
     every { store.inAppPayments.isDonationSubscriptionManuallyCancelled() } returns false
     every { store.inAppPayments.isBackupSubscriptionManuallyCancelled() } returns false
