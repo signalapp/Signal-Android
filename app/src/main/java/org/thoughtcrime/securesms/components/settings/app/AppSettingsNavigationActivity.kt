@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
 import org.thoughtcrime.securesms.components.settings.app.privacy.registerPrivacyRoutes
+import org.thoughtcrime.securesms.components.settings.app.storage.registerDataAndStorageRoutes
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -79,6 +80,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
             registerAppearanceRoutes(router::onEvent)
             registerChatsRoutes(router::onEvent)
             registerPrivacyRoutes(router::onEvent)
+            registerDataAndStorageRoutes(router::onEvent)
 
             // TODO Temporary escape hatch while most destinations are unregistered here; remove before the flag ships.
             detailEntry<AppSettingsRoute.InternalRoute.Internal> {
