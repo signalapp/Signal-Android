@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.text.InputType
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -98,6 +99,8 @@ object SignalEmojiTextInput : EmojiTextInput {
             onFocusChanged(hasFocus)
             if (hasFocus) {
               ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this)
+            } else {
+              hideKeyboardUnlessFocusMovedToTextField()
             }
           }
 
@@ -143,6 +146,19 @@ object SignalEmojiTextInput : EmojiTextInput {
       },
       modifier = modifier
     )
+  }
+
+  /**
+   * Unlike a Compose text field, a view doesn't close the keyboard it opened when it loses focus, such as when its
+   * screen is navigated away from. Checked a frame later so that moving to the next field keeps the keyboard up.
+   */
+  private fun View.hideKeyboardUnlessFocusMovedToTextField() {
+    val root = rootView
+    root.post {
+      if (root.findFocus()?.onCheckIsTextEditor() != true) {
+        ViewUtil.hideKeyboard(root.context, root)
+      }
+    }
   }
 
   private fun EmojiTextInputParams.inputType(): Int {

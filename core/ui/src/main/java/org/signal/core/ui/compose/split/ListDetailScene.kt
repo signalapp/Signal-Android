@@ -93,7 +93,10 @@ internal class ListDetailScene(
               .background(color = MaterialTheme.colorScheme.surface)
               .minContentWidth(layout.minPaneContentWidth)
           ) {
-            CompositionLocalProvider(LocalIsInDetailPane provides true) {
+            CompositionLocalProvider(
+              LocalIsInDetailPane provides true,
+              LocalDetailPaneRootContentKey provides detailEntries.firstOrNull()?.contentKey
+            ) {
               if (detailEntries.isNotEmpty()) {
                 DetailPaneNavDisplay(detailEntries)
               } else {

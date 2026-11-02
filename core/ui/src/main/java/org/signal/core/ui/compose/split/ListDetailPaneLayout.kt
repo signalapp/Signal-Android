@@ -122,3 +122,13 @@ internal val LocalEmptyDetailContent = compositionLocalOf<@Composable () -> Unit
  * detail content filling a narrow window.
  */
 val LocalIsInDetailPane = compositionLocalOf { false }
+
+/**
+ * Whether content is the bottom of the detail stack beside the list, where back has nothing in the pane to return to.
+ */
+val LocalIsDetailPaneRoot = compositionLocalOf { false }
+
+/**
+ * The content key of the bottom of the detail stack beside the list, or null outside a split.
+ */
+internal val LocalDetailPaneRootContentKey = compositionLocalOf<Any?> { null }

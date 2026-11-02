@@ -120,7 +120,15 @@ fun ListDetailNavDisplay(
     }
   }
 
-  val chromeDecoratedEntries = rememberDecoratedNavEntries(entries, listOf(listPaneChromeDecorator))
+  val detailPaneRootDecorator = remember {
+    NavEntryDecorator<NavKey> { entry ->
+      CompositionLocalProvider(LocalIsDetailPaneRoot provides (entry.contentKey == LocalDetailPaneRootContentKey.current)) {
+        entry.Content()
+      }
+    }
+  }
+
+  val chromeDecoratedEntries = rememberDecoratedNavEntries(entries, listOf(listPaneChromeDecorator, detailPaneRootDecorator))
 
   val paneShift = TransitionSpecs.paneShift()
   val paneShiftPop = TransitionSpecs.paneShift(pop = true)

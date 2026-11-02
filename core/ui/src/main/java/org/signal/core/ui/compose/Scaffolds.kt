@@ -59,7 +59,7 @@ import androidx.compose.ui.unit.offset
 import androidx.window.core.layout.WindowSizeClass
 import org.signal.core.ui.R
 import org.signal.core.ui.WindowBreakpoint
-import org.signal.core.ui.compose.split.LocalIsInDetailPane
+import org.signal.core.ui.compose.split.LocalIsDetailPaneRoot
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.detailPaneMaxContentWidth
 import org.signal.core.ui.horizontalPartitionDefaultSpacerSize
@@ -177,8 +177,8 @@ object Scaffolds {
   ) {
     val isSplitPaneHost = rememberIsSplitPaneSettings()
     val isCollapsing = expandableTitle && rememberWindowBreakpoint() !is WindowBreakpoint.Small
-    // Beside its list, a detail pane is closed by picking something else from the list rather than by navigating up.
-    val visibleNavigationIcon = navigationIcon.takeUnless { isSplitPaneHost && LocalIsInDetailPane.current }
+    // Beside its list, the bottom of a detail stack is closed by picking something else from the list rather than by navigating up.
+    val visibleNavigationIcon = navigationIcon.takeUnless { isSplitPaneHost && LocalIsDetailPaneRoot.current }
     val scrollBehavior = if (isCollapsing) {
       TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     } else {
