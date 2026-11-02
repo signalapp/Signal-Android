@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 /**
- * Shows the user's avatar full screen over edit profile, grown out of the one it shows. Hiding the toolbar hides the
+ * Shows the user's avatar over the whole window, grown out of the one edit profile shows. Hiding the toolbar hides the
  * system bars with it.
  *
  * @param animatedVisibilityScope the scope this is shown and hidden in, which the avatar animates with.

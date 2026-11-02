@@ -23,6 +23,7 @@ import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.LocalResultEventBus
 import org.signal.core.ui.navigation.NavRouter
 import org.signal.core.ui.navigation.TransitionSpecs
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerResult
 import org.thoughtcrime.securesms.avatar.picker.registerAvatarPickerScreens
 import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
@@ -58,7 +59,7 @@ fun EditProfileNavigation(
   val entryProvider = remember(parentEventEmitter) {
     entryProvider {
       registerEditProfileScreens(parentEventEmitter)
-      registerAvatarPickerScreens()
+      registerAvatarPickerScreens(parentEventEmitter, onResult = { router.resultBus.sendResult<AvatarPickerResult>(result = it) })
       registerBadgeScreens(parentEventEmitter)
       registerUsernameLinkScreens(parentEventEmitter)
     }

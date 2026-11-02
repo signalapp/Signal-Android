@@ -38,6 +38,11 @@ public class EmojiEditText extends AppCompatEditText {
     this(context, attrs, androidx.appcompat.R.attr.editTextStyle);
   }
 
+  public EmojiEditText(Context context, boolean forceJumbo) {
+    super(context, null, androidx.appcompat.R.attr.editTextStyle);
+    initialize(forceJumbo);
+  }
+
   public EmojiEditText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
@@ -45,6 +50,10 @@ public class EmojiEditText extends AppCompatEditText {
     boolean    jumboEmoji  = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
     a.recycle();
 
+    initialize(jumboEmoji);
+  }
+
+  private void initialize(boolean jumboEmoji) {
     if (!isInEditMode() && !SignalStore.settings().isPreferSystemEmoji()) {
       setFilters(appendEmojiFilter(this.getFilters(), jumboEmoji));
       setEmojiCompatEnabled(false);

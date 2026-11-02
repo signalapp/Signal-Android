@@ -18,7 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.core.ui.compose.TabbedPagerTestTags
+import org.signal.core.ui.compose.TabRowTestTags
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import java.math.BigDecimal
@@ -71,7 +71,7 @@ class DonationReceiptListScreenTest {
   fun `a tab shows only its kind of donation`() {
     setContent(DonationReceiptListState(receipts = listOf(recurring, gift)))
 
-    composeTestRule.onNodeWithTag(TabbedPagerTestTags.tab(DonationReceiptListState.Tab.FOR_A_FRIEND.ordinal)).performClick()
+    composeTestRule.onNodeWithTag(TabRowTestTags.tab(DonationReceiptListState.Tab.FOR_A_FRIEND.ordinal)).performClick()
     composeTestRule.waitForIdle()
 
     composeTestRule.onNodeWithTag(DonationReceiptListTestTags.list(DonationReceiptListState.Tab.FOR_A_FRIEND)).assertExists()

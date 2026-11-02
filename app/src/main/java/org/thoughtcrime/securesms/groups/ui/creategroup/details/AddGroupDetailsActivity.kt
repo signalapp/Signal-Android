@@ -41,8 +41,10 @@ class AddGroupDetailsActivity : PassphraseRequiredActivity(), AddGroupDetailsFra
       val recipientIds = requireNotNull(intent.getParcelableArrayListExtraCompat(EXTRA_RECIPIENTS, RecipientId::class.java))
       val arguments = AddGroupDetailsFragmentArgs.Builder(recipientIds.toTypedArray()).build()
 
+      val navHostFragment = NavHostFragment.create(R.navigation.create_group, arguments.toBundle())
       supportFragmentManager.commit {
-        replace(R.id.nav_host_fragment, NavHostFragment.create(R.navigation.create_group, arguments.toBundle()))
+        replace(R.id.nav_host_fragment, navHostFragment)
+        setPrimaryNavigationFragment(navHostFragment)
       }
     }
   }

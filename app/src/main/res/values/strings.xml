@@ -5359,6 +5359,10 @@
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Select a color</string>
 
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color's position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
+
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Share</string>
 

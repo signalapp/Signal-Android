@@ -14,6 +14,7 @@ import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.core.ui.compose.WindowOverlayHost
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.navigation.NavRouter
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -66,10 +67,12 @@ class EditProfileActivity : PassphraseRequiredActivity() {
 
     setContent {
       SignalTheme {
-        EditProfileNavigation(
-          router = router,
-          onClose = ::finish
-        )
+        WindowOverlayHost {
+          EditProfileNavigation(
+            router = router,
+            onClose = ::finish
+          )
+        }
       }
     }
   }

@@ -33,6 +33,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.VisualTransformation
+import org.signal.core.util.BreakIteratorCompat
 
 /**
  * The text input inside an [EmojiTextField]: everything that edits and draws the text, without the label, indicator or
@@ -48,7 +49,7 @@ fun interface EmojiTextInput {
     val Default = EmojiTextInput { params, modifier ->
       BasicTextField(
         value = params.value,
-        onValueChange = params.onValueChange,
+        onValueChange = { params.onValueChange(params.maxCharacters?.let(it::takeCharacters) ?: it) },
         enabled = params.enabled,
         singleLine = params.singleLine,
         textStyle = params.textStyle,
@@ -64,9 +65,18 @@ fun interface EmojiTextInput {
   }
 }
 
+private fun String.takeCharacters(max: Int): String {
+  val breakIterator = BreakIteratorCompat.getInstance()
+  breakIterator.setText(this)
+  return breakIterator.take(max).toString()
+}
+
 /**
  * What an [EmojiTextInput] has to honor. [interactionSource] must receive focus interactions, since the label and
  * indicator around the input are driven by it, and a request through [focusRequester] must focus the input itself.
+ *
+ * @param jumboEmoji draws Signal emoji at their larger size, for text that's mostly emoji and set large.
+ * @param maxCharacters the most characters the input accepts, counting each emoji as one, or null for no limit.
  */
 class EmojiTextInputParams(
   val value: String,
@@ -80,7 +90,9 @@ class EmojiTextInputParams(
   val onImeAction: () -> Unit,
   val autofillHint: String?,
   val focusRequester: FocusRequester?,
-  val interactionSource: MutableInteractionSource
+  val interactionSource: MutableInteractionSource,
+  val jumboEmoji: Boolean = false,
+  val maxCharacters: Int? = null
 )
 
 /**

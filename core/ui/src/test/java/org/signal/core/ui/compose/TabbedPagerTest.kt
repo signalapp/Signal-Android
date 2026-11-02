@@ -29,7 +29,7 @@ class TabbedPagerTest {
   fun `the first tab and page show to begin with`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(TabbedPagerTestTags.tab(0)).assertIsSelected()
+    composeTestRule.onNodeWithTag(TabRowTestTags.tab(0)).assertIsSelected()
     composeTestRule.onNodeWithText("Page 0").assertExists()
   }
 
@@ -37,10 +37,10 @@ class TabbedPagerTest {
   fun `tapping a tab selects it and shows its page`() {
     setContent()
 
-    composeTestRule.onNodeWithTag(TabbedPagerTestTags.tab(2)).performClick()
+    composeTestRule.onNodeWithTag(TabRowTestTags.tab(2)).performClick()
     composeTestRule.waitForIdle()
 
-    composeTestRule.onNodeWithTag(TabbedPagerTestTags.tab(2)).assertIsSelected()
+    composeTestRule.onNodeWithTag(TabRowTestTags.tab(2)).assertIsSelected()
     composeTestRule.onNodeWithText("Page 2").assertExists()
   }
 

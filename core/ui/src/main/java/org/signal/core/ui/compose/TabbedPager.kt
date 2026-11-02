@@ -69,7 +69,7 @@ fun TabbedPager(
         selected = selected,
         onClick = { coroutineScope.launch { pagerState.animateScrollToPage(page) } },
         text = { TabTitle(title = title, selected = selected, ellipsize = !scrollable) },
-        modifier = Modifier.testTag(TabbedPagerTestTags.tab(page))
+        modifier = Modifier.testTag(TabRowTestTags.tab(page))
       )
     }
   }
@@ -97,6 +97,40 @@ fun TabbedPager(
       modifier = Modifier.fillMaxSize()
     ) { page ->
       pageContent(page)
+    }
+  }
+}
+
+/**
+ * A row of tabs sharing the width equally, styled like [TabbedPager]'s, for tabs that switch something other than a
+ * page beneath them.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TitledTabRow(
+  tabTitles: List<String>,
+  selectedTabIndex: Int,
+  onTabClick: (Int) -> Unit,
+  modifier: Modifier = Modifier
+) {
+  SecondaryTabRow(
+    selectedTabIndex = selectedTabIndex,
+    indicator = {
+      TabRowDefaults.SecondaryIndicator(
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier.tabIndicatorOffset(selectedTabIndex, matchContentSize = true)
+      )
+    },
+    modifier = modifier
+  ) {
+    tabTitles.forEachIndexed { index, title ->
+      val selected = selectedTabIndex == index
+      Tab(
+        selected = selected,
+        onClick = { onTabClick(index) },
+        text = { TabTitle(title = title, selected = selected, ellipsize = true) },
+        modifier = Modifier.testTag(TabRowTestTags.tab(index))
+      )
     }
   }
 }
@@ -138,10 +172,10 @@ private fun TabTitle(
 }
 
 @VisibleForTesting
-object TabbedPagerTestTags {
-  private const val TAB_PREFIX = "tabbed-pager-tab-"
+object TabRowTestTags {
+  private const val TAB_PREFIX = "tab-row-tab-"
 
-  fun tab(page: Int): String = TAB_PREFIX + page
+  fun tab(index: Int): String = TAB_PREFIX + index
 }
 
 @PreviewWrapper(SignalPreviewWrapper::class)

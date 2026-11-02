@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.profiles.manage.editprofile
 import android.content.Intent
 import androidx.activity.compose.LocalActivity
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Box
@@ -32,6 +31,8 @@ import org.signal.appsettings.editprofile.EditProfileScreen
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.compose.LocalSharedTransitionScope
+import org.signal.core.ui.compose.WindowOverlay
 import org.signal.core.ui.navigation.ResultEffect
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerResult
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -53,6 +54,7 @@ fun EditProfileEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   val featuredBadge by rememberRecipientField(self) { featuredBadge?.takeIf { it.visible && !it.isExpired() } }
   val context = LocalContext.current
   val activity = LocalActivity.current
+  val sharedTransitionScope = checkNotNull(LocalSharedTransitionScope.current) { "EditProfileEntry needs a WindowOverlayHost above it." }
 
   ResultEffect<AvatarPickerResult> { result ->
     viewModel.onEvent(
@@ -74,28 +76,29 @@ fun EditProfileEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
     }
   }
 
-  SharedTransitionLayout {
-    EditProfileScreen(
-      state = state,
-      onEvent = viewModel::onEvent,
-      modifier = if (state.showAvatarPreview) Modifier.clearAndSetSemantics { } else Modifier,
-      avatar = {
-        SelfAvatar(badge = featuredBadge, badgeSize = 36.dp, badgeOffsetY = 8.dp) { avatarModifier ->
-          AnimatedVisibility(visible = !state.showAvatarPreview) {
-            SelfAvatarImage(modifier = avatarModifier.selfAvatarSharedBounds(this@SharedTransitionLayout, this))
-          }
+  EditProfileScreen(
+    state = state,
+    onEvent = viewModel::onEvent,
+    modifier = if (state.showAvatarPreview) Modifier.clearAndSetSemantics { } else Modifier,
+    avatar = {
+      SelfAvatar(badge = featuredBadge, badgeSize = 36.dp, badgeOffsetY = 8.dp) { avatarModifier ->
+        AnimatedVisibility(visible = !state.showAvatarPreview) {
+          SelfAvatarImage(modifier = avatarModifier.selfAvatarSharedBounds(sharedTransitionScope, this))
         }
-      },
-      sustainerBadgePreview = { SelfAvatar(badge = state.sustainerBadge, badgeSize = 32.dp) }
-    )
+      }
+    },
+    sustainerBadgePreview = { SelfAvatar(badge = state.sustainerBadge, badgeSize = 32.dp) }
+  )
 
+  // TODO Move the avatar preview to a nav entry of its own once the next Navigation 3 release is stable.
+  WindowOverlay {
     AnimatedVisibility(
       visible = state.showAvatarPreview,
       enter = fadeIn(),
       exit = fadeOut()
     ) {
       AvatarPreviewOverlay(
-        sharedTransitionScope = this@SharedTransitionLayout,
+        sharedTransitionScope = sharedTransitionScope,
         animatedVisibilityScope = this,
         onDismiss = { viewModel.onEvent(EditProfileEvent.AvatarPreviewDismissed) }
       )

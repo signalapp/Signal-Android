@@ -20,11 +20,13 @@ import kotlinx.coroutines.withContext
 import org.signal.appsettings.routes.AppSettingsNavigation
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
+import org.signal.core.ui.compose.WindowOverlayHost
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerResult
 import org.thoughtcrime.securesms.avatar.picker.registerAvatarPickerScreens
 import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
@@ -74,28 +76,30 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
 
     setContent {
       SignalTheme {
-        AppSettingsNavigation(
-          router = router,
-          onClose = ::finish,
-          home = { selectedRoute -> AppSettingsEntry(parentEventEmitter = router::onEvent, selectedRoute = selectedRoute) },
-          emptyDetailContent = { EmptyDetailScreen() },
-          defaultDetailRoute = AppSettingsRoute.AccountRoute.ManageProfile,
-          detailEntries = {
-            registerAppearanceRoutes(router::onEvent)
-            registerChatsRoutes(router::onEvent)
-            registerPrivacyRoutes(router::onEvent)
-            registerDataAndStorageRoutes(router::onEvent)
-            registerEditProfileScreens(router::onEvent)
-            registerAvatarPickerScreens()
-            registerBadgeScreens(router::onEvent)
-            registerUsernameLinkScreens(router::onEvent)
+        WindowOverlayHost {
+          AppSettingsNavigation(
+            router = router,
+            onClose = ::finish,
+            home = { selectedRoute -> AppSettingsEntry(parentEventEmitter = router::onEvent, selectedRoute = selectedRoute) },
+            emptyDetailContent = { EmptyDetailScreen() },
+            defaultDetailRoute = AppSettingsRoute.AccountRoute.ManageProfile,
+            detailEntries = {
+              registerAppearanceRoutes(router::onEvent)
+              registerChatsRoutes(router::onEvent)
+              registerPrivacyRoutes(router::onEvent)
+              registerDataAndStorageRoutes(router::onEvent)
+              registerEditProfileScreens(router::onEvent)
+              registerAvatarPickerScreens(router::onEvent, onResult = { router.resultBus.sendResult<AvatarPickerResult>(result = it) })
+              registerBadgeScreens(router::onEvent)
+              registerUsernameLinkScreens(router::onEvent)
 
-            // TODO Temporary escape hatch while most destinations are unregistered here; remove before the flag ships.
-            detailEntry<AppSettingsRoute.InternalRoute.Internal> {
-              LaunchedEffect(Unit) { disableAppSettingsNavigation() }
+              // TODO Temporary escape hatch while most destinations are unregistered here; remove before the flag ships.
+              detailEntry<AppSettingsRoute.InternalRoute.Internal> {
+                LaunchedEffect(Unit) { disableAppSettingsNavigation() }
+              }
             }
-          }
-        )
+          )
+        }
       }
     }
 

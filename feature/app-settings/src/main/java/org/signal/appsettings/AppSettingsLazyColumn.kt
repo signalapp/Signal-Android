@@ -19,10 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.fullWidthDividers
 
 /**
  * A [LazyColumn] that scrolls across its full width while keeping its items within the same max width as
- * [appSettingsScreen].
+ * [appSettingsScreen], and drawing its dividers across its full width.
  *
  * @param scaffoldPadding Padding from the enclosing scaffold, applied around the list.
  * @param contentPadding Padding applied within the list, on top of the gutters that center its items.
@@ -52,7 +53,7 @@ fun AppSettingsLazyColumn(
         bottom = contentPadding.calculateBottomPadding()
       ),
       horizontalAlignment = horizontalAlignment,
-      modifier = modifier,
+      modifier = modifier.fullWidthDividers(),
       content = content
     )
   }

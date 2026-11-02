@@ -46,6 +46,18 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data object AvatarPicker : AccountRoute
 
+    /**
+     * [colorCode] is an `Avatars.ColorPair` code. [databaseId] is the saved avatar's row id, or -1 if it isn't saved.
+     */
+    @Serializable
+    data class TextAvatarEditor(val text: String, val colorCode: String, val databaseId: Long = -1L) : AccountRoute {
+      override fun toString(): String = "TextAvatarEditor"
+    }
+
+    /** [colorCode] is an `Avatars.ColorPair` code. [databaseId] is the saved avatar's row id, or -1 if it isn't saved. */
+    @Serializable
+    data class VectorAvatarEditor(val key: String, val colorCode: String, val databaseId: Long = -1L) : AccountRoute
+
     @Serializable
     data object AdvancedPinSettings : AccountRoute
 
