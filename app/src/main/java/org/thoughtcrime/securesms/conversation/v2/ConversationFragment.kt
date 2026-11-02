@@ -1198,6 +1198,8 @@ class ConversationFragment :
       // Bug: ConstraintLayout can provide a negative value for the toolbar causing RV layout problems
       if (bottom < 0) return@addOnLayoutChangeListener
 
+      inputPanel.setReservedTopSpace(bottom)
+
       // Bug: LinearLayoutManger can get stuck and not layout children under Compose's AndroidFragment if updated too quickly.
       val rv = binding.conversationItemRecycler
       applyToolbarPaddingRunnable?.let { rv.removeCallbacks(it) }

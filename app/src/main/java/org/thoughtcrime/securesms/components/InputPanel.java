@@ -118,6 +118,7 @@ public class InputPanel extends ConstraintLayout
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
   private           boolean  wallpaperEnabled;
+  private           int      reservedTopSpace;
 
   private boolean hideForMessageRequestState;
   private boolean hideForGroupState;
@@ -188,6 +189,36 @@ public class InputPanel extends ConstraintLayout
     editMessageCancel.setOnClickListener(v -> exitEditMessageMode());
 
     quickCameraToggle.setVisibility(View.GONE);
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    if (!linkPreviewStub.resolved() || linkPreviewStub.getVisibility() != VISIBLE || MeasureSpec.getMode(heightMeasureSpec) == MeasureSpec.UNSPECIFIED) {
+      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+      return;
+    }
+
+    LinkPreviewView linkPreview = linkPreviewStub.get();
+    linkPreview.setMaxDescriptionHeight(LinkPreviewView.NO_MAX_DESCRIPTION_HEIGHT);
+    super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+    int overflow          = getMeasuredHeight() - (MeasureSpec.getSize(heightMeasureSpec) - reservedTopSpace);
+    int descriptionHeight = linkPreview.getDescriptionHeight();
+    if (overflow > 0 && descriptionHeight > 0) {
+      linkPreview.setMaxDescriptionHeight(descriptionHeight - overflow);
+    }
+
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+  }
+
+  /**
+   * Space at the top of the parent this panel shouldn't grow into, such as a toolbar it is laid out beneath.
+   */
+  public void setReservedTopSpace(int reservedTopSpace) {
+    if (this.reservedTopSpace != reservedTopSpace) {
+      this.reservedTopSpace = reservedTopSpace;
+      requestLayout();
+    }
   }
 
   public void setListener(final @NonNull Listener listener) {

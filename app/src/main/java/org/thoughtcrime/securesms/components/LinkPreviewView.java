@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
@@ -46,10 +47,12 @@ public class LinkPreviewView extends FrameLayout {
   private static final int TYPE_CONVERSATION = 0;
   private static final int TYPE_COMPOSE      = 1;
 
+  public static final int NO_MAX_DESCRIPTION_HEIGHT = -1;
+
   private ViewGroup                   container;
   private Stub<OutlinedThumbnailView> thumbnail;
   private TextView                    title;
-  private TextView                    description;
+  private EmojiTextView               description;
   private TextView                    site;
   private View                        divider;
   private View                        closeButton;
@@ -99,7 +102,7 @@ public class LinkPreviewView extends FrameLayout {
       divider.setVisibility(VISIBLE);
       closeButton.setVisibility(VISIBLE);
       title.setMaxLines(2);
-      description.setMaxLines(2);
+      description.bindGestureListener();
 
       closeButton.setOnClickListener(v -> {
         if (closeClickedListener != null) {
@@ -159,6 +162,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
+      description.scrollTo(0, 0);
     } else if (callLinkRootKey != null) {
       description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
@@ -281,6 +285,30 @@ public class LinkPreviewView extends FrameLayout {
     description.setMaxLines(stackBesideThumbnail ? 1 : 15);
     site.setLayoutParams(siteParams);
     site.setMaxLines(stackBesideThumbnail ? 1 : 2);
+  }
+
+  public int getDescriptionHeight() {
+    return description.getVisibility() == VISIBLE ? description.getMeasuredHeight() : 0;
+  }
+
+  /**
+   * Limits the description to the given height, scrolling within it, without requesting a layout so it can be called
+   * while the parent is measuring.
+   */
+  public void setMaxDescriptionHeight(int maxHeight) {
+    ViewGroup.LayoutParams params = description.getLayoutParams();
+    int                    height = maxHeight == NO_MAX_DESCRIPTION_HEIGHT ? ViewGroup.LayoutParams.WRAP_CONTENT : Math.max(maxHeight, getMinDescriptionHeight());
+
+    if (params.height != height) {
+      params.height = height;
+      description.forceLayout();
+      container.forceLayout();
+      forceLayout();
+    }
+  }
+
+  private int getMinDescriptionHeight() {
+    return description.getLineHeight() + description.getCompoundPaddingTop() + description.getCompoundPaddingBottom();
   }
 
   public void setCorners(int topStart, int topEnd) {
