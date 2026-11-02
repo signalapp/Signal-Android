@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSh
 import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsRepository
 import org.thoughtcrime.securesms.components.settings.app.account.signallogin.verify.SignalLoginVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.verify.TwoFactorVerifyActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
@@ -1053,6 +1054,14 @@ class MainActivity :
 
     override fun onSettingsClick() {
       openSettings.launch(AppSettingsActivity.home(this@MainActivity))
+    }
+
+    override fun onDonateClick() {
+      if (AppSettingsRepository.likelyCanManageDonations()) {
+        openSettings.launch(AppSettingsActivity.manageSubscriptions(this@MainActivity))
+      } else {
+        CommunicationActions.openBrowserLink(this@MainActivity, getString(R.string.donate_url))
+      }
     }
 
     override fun onNotificationProfileClick() {

@@ -8095,6 +8095,8 @@
     <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
     <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string>
 

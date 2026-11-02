@@ -96,6 +96,7 @@ interface MainToolbarCallback {
   fun onClearUnreadChatsFilterClick()
   fun onOpenArchiveClick()
   fun onSettingsClick()
+  fun onDonateClick()
   fun onNotificationProfileClick()
   fun onProxyClick()
   fun onSearchClick()
@@ -120,6 +121,7 @@ interface MainToolbarCallback {
     override fun onClearUnreadChatsFilterClick() = Unit
     override fun onOpenArchiveClick() = Unit
     override fun onSettingsClick() = Unit
+    override fun onDonateClick() = Unit
     override fun onNotificationProfileClick() = Unit
     override fun onProxyClick() = Unit
     override fun onSearchClick() = Unit
@@ -577,6 +579,22 @@ private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modif
 }
 
 @Composable
+private fun DonateDropdownItem(callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
+  DropdownMenus.Item(
+    leadingIconResId = R.drawable.symbol_heart_24,
+    text = {
+      Text(
+        text = stringResource(R.string.MainToolbar__donate_to_signal)
+      )
+    },
+    onClick = {
+      callback.onDonateClick()
+      onOptionSelected()
+    }
+  )
+}
+
+@Composable
 private fun StoryDropDownItems(callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
   DropdownMenus.Item(
     leadingIconResId = CoreUiR.drawable.symbol_lock_24,
@@ -590,6 +608,8 @@ private fun StoryDropDownItems(callback: MainToolbarCallback, onOptionSelected: 
       onOptionSelected()
     }
   )
+
+  DonateDropdownItem(callback, onOptionSelected)
 }
 
 @Composable
@@ -647,6 +667,8 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
       onOptionSelected()
     }
   )
+
+  DonateDropdownItem(callback, onOptionSelected)
 
   DropdownMenus.Item(
     leadingIconResId = CoreUiR.drawable.symbol_settings_android_24,
@@ -773,6 +795,8 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
       }
     )
   }
+
+  DonateDropdownItem(callback, onOptionSelected)
 
   DropdownMenus.Item(
     leadingIconResId = CoreUiR.drawable.symbol_settings_android_24,
