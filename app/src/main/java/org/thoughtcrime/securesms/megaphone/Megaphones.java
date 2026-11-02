@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.signal.storage.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.thoughtcrime.securesms.keyvalue.PinValuesUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
@@ -278,7 +279,7 @@ public final class Megaphones {
             public void onReminderDismissed(boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
 
-              SignalStore.pin().onEntrySkip(includedFailure);
+              PinValuesUtil.onEntrySkip(SignalStore.pin(), includedFailure);
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);
               controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getNextReminderInterval())));
             }
@@ -287,9 +288,9 @@ public final class Megaphones {
             public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
               if (includedFailure) {
-                SignalStore.pin().onEntrySuccessWithWrongGuess(pin);
+                PinValuesUtil.onEntrySuccessWithWrongGuess(SignalStore.pin(), pin);
               } else {
-                SignalStore.pin().onEntrySuccess(pin);
+                PinValuesUtil.onEntrySuccess(SignalStore.pin(), pin);
               }
 
               controller.onMegaphoneSnooze(Event.PIN_REMINDER);

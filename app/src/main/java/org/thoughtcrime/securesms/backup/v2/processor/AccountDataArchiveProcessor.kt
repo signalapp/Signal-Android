@@ -131,7 +131,7 @@ object AccountDataArchiveProcessor {
               documents = getRemoteAutoDownloadOption("documents", mobileAutoDownload, wifiAutoDownload)
             ),
             screenLockTimeoutMinutes = screenLockTimeoutMinutes,
-            pinReminders = signalStore.pinValues.arePinRemindersEnabled(),
+            pinReminders = signalStore.pinValues.pinRemindersEnabled,
             appTheme = signalStore.settingsValues.theme.toRemoteAppTheme(),
             callsUseLessDataSetting = signalStore.settingsValues.callDataMode.toRemoteCallsUseLessDataSetting(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
@@ -309,7 +309,7 @@ object AccountDataArchiveProcessor {
 
     val pinReminders = settings.pinReminders
     if (pinReminders != null) {
-      SignalStore.pin.setPinRemindersEnabled(pinReminders)
+      SignalStore.pin.pinRemindersEnabled = pinReminders
     }
 
     settings.customChatColors

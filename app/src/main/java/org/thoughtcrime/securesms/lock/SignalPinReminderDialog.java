@@ -27,6 +27,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
+import org.thoughtcrime.securesms.keyvalue.PinValuesUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
@@ -72,7 +73,7 @@ public final class SignalPinReminderDialog {
 
     ViewUtil.focusAndShowKeyboard(pinEditText);
 
-    SignalStore.pin().getKeyboardType().applyInputTypeTo(pinEditText);
+    PinValuesUtil.getKeyboardType(SignalStore.pin()).applyInputTypeTo(pinEditText);
 
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override

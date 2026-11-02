@@ -802,7 +802,6 @@ class RegistrationViewModel : ViewModel() {
 
   fun verifyCodeAndRegisterAccountWithRegistrationLock(context: Context, pin: String) {
     Log.v(TAG, "verifyCodeAndRegisterAccountWithRegistrationLock()")
-    SignalStore.pin.keyboardType = store.value.pinKeyboardType
 
     store.update {
       it.copy(

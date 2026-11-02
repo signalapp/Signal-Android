@@ -11,6 +11,7 @@ import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.keyboardType
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository
@@ -32,9 +33,11 @@ class AccountSettingsRepository(
 
   fun hasRestoredAep(): Boolean = SignalStore.account.restoredAccountEntropyPool
 
-  fun arePinRemindersEnabled(): Boolean = SignalStore.pin.arePinRemindersEnabled() && SignalStore.svr.hasPin()
+  fun arePinRemindersEnabled(): Boolean = SignalStore.pin.pinRemindersEnabled && SignalStore.svr.hasPin()
 
-  fun setPinRemindersEnabled(enabled: Boolean) = SignalStore.pin.setPinRemindersEnabled(enabled)
+  fun setPinRemindersEnabled(enabled: Boolean) {
+    SignalStore.pin.pinRemindersEnabled = enabled
+  }
 
   fun isRegistrationLockEnabled(): Boolean = SignalStore.svr.isRegistrationLockEnabled
 
