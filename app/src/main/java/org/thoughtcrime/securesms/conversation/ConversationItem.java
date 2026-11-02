@@ -415,9 +415,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     conversationRecipient = conversationRecipient.resolve();
 
-    // Rebinding the same message keeps its ended playback.
+    // Rebinding the same message keeps its ended playback and pending video launch.
     if (messageRecord == null || messageRecord.getId() != conversationMessage.getMessageRecord().getId()) {
       inlinePlaybackEnded = false;
+      playVideoClickListener.cleanup();
     }
 
     this.conversationMessage   = conversationMessage;
@@ -543,6 +544,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   protected void onDetachedFromWindow() {
     ConversationSwipeAnimationHelper.update(this, 0f, 1f);
+    playVideoClickListener.cleanup();
     unbind();
     super.onDetachedFromWindow();
   }
