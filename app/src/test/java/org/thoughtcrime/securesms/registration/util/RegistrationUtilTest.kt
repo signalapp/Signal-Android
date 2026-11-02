@@ -28,10 +28,10 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log.initialize
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.signal.storage.keyvalue.Skipped
+import org.signal.storage.keyvalue.Start
+import org.signal.storage.protos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.Skipped
-import org.thoughtcrime.securesms.keyvalue.Start
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.LogRecorder

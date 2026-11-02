@@ -12,9 +12,9 @@ import org.signal.core.util.requireString
 import org.signal.spinner.ColumnTransformer
 import org.signal.spinner.DefaultColumnTransformer
 import org.signal.storage.keyvalue.KeyValueDatabase
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.signal.storage.keyvalue.RegistrationValues
+import org.signal.storage.protos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.BackupValues
-import org.thoughtcrime.securesms.keyvalue.RegistrationValues
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 
 /**

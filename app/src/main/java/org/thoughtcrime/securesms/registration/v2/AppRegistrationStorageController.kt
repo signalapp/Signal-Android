@@ -51,7 +51,12 @@ import org.signal.registration.proto.RegistrationData
 import org.signal.registration.screens.localbackuprestore.LocalBackupInfo
 import org.signal.registration.screens.messagesync.LinkAndSyncProgress
 import org.signal.registration.screens.remotebackuprestore.RemoteBackupRestoreProgress
+import org.signal.storage.keyvalue.Completed
+import org.signal.storage.keyvalue.NewAccount
 import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
+import org.signal.storage.keyvalue.Skipped
+import org.signal.storage.keyvalue.isDecisionPending
+import org.signal.storage.protos.RestoreDecisionState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.backup.FullBackupImporter
@@ -69,7 +74,6 @@ import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
@@ -80,11 +84,7 @@ import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
-import org.thoughtcrime.securesms.keyvalue.Completed
-import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.Skipped
-import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.megaphone.SignalLoginReminderSchedule
 import org.thoughtcrime.securesms.megaphone.TwoFactorReminderSchedule
 import org.thoughtcrime.securesms.pin.SvrRepository

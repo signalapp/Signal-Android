@@ -14,14 +14,14 @@ import org.signal.benchmark.setup.Harness
 import org.signal.benchmark.setup.TestMessages
 import org.signal.benchmark.setup.TestUsers
 import org.signal.core.util.logging.Log
+import org.signal.storage.keyvalue.Skipped
+import org.signal.storage.protos.RestoreDecisionState
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.TestDbUtils
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient

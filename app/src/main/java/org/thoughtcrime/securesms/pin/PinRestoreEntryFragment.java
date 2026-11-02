@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
-import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
+import org.signal.storage.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;

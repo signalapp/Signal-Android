@@ -17,6 +17,7 @@ import org.signal.storage.keyvalue.OnboardingValues
 import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
 import org.signal.storage.keyvalue.PinValues
 import org.signal.storage.keyvalue.ProxyValues
+import org.signal.storage.keyvalue.RegistrationValues
 import org.signal.storage.keyvalue.ReleaseChannelValues
 import org.signal.storage.keyvalue.RemoteConfigValues
 import org.signal.storage.keyvalue.SignalPreferenceDataStore
@@ -24,6 +25,7 @@ import org.signal.storage.keyvalue.StorageServiceValues
 import org.signal.storage.keyvalue.SvrValues
 import org.signal.storage.keyvalue.TooltipValues
 import org.signal.storage.keyvalue.UiHintValues
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
 
@@ -38,7 +40,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     deriveMasterKey = { account.accountEntropyPool.deriveMasterKey() },
     hashPin = PinHashUtil::localPinHash
   )
-  val registrationValues = RegistrationValues(store, context)
+  val registrationValues = RegistrationValues(store, context) { AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade() }
   val pinValues = PinValues(store, context, RegistrationLockReminders.INITIAL_INTERVAL)
   val remoteConfigValues = RemoteConfigValues(store)
   val storageServiceValues = StorageServiceValues(store, svrValues)

@@ -1,21 +1,17 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import android.content.Context
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.LegacySharedPrefs
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.longValue
-import org.signal.storage.keyvalue.protoValue
-import org.signal.storage.keyvalue.stringValue
-import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.signal.storage.protos.LocalRegistrationMetadata
+import org.signal.storage.protos.RestoreDecisionState
 
-class RegistrationValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
+class RegistrationValues(
+  store: KeyValueStore,
+  context: Context,
+  private val onRestoreDecisionMade: () -> Unit
+) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(RegistrationValues::class)
@@ -131,7 +127,7 @@ class RegistrationValues internal constructor(store: KeyValueStore, context: Con
           .apply()
 
         if (newValue.isTerminal) {
-          AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade()
+          onRestoreDecisionMade()
         }
       }
     }

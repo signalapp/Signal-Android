@@ -5,9 +5,9 @@
 
 @file:JvmName("RestoreDecisionStateUtil")
 
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
-import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.signal.storage.protos.RestoreDecisionState
 
 /** Are we still awaiting a final decision about restore. */
 val RestoreDecisionState.isDecisionPending: Boolean

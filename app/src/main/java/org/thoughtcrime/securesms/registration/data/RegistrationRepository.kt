@@ -33,6 +33,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.network.NetworkResult
 import org.signal.network.crypto.UnidentifiedAccess
 import org.signal.storage.keyvalue.PhoneNumberPrivacyValues
+import org.signal.storage.protos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.jobmanager.runJobBlocking
@@ -167,9 +167,10 @@ object RegistrationRepository {
   @JvmStatic
   suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) = withContext(Dispatchers.IO) {
     Log.v(TAG, "registerAccountLocally()")
-    if (data.linkedDeviceInfo != null) {
-      SignalStore.account.deviceId = data.linkedDeviceInfo.deviceId
-      SignalStore.account.deviceName = data.linkedDeviceInfo.deviceName
+    val linkedDeviceInfo = data.linkedDeviceInfo
+    if (linkedDeviceInfo != null) {
+      SignalStore.account.deviceId = linkedDeviceInfo.deviceId
+      SignalStore.account.deviceName = linkedDeviceInfo.deviceName
     }
 
     val aciIdentityKeyPair = data.getAciIdentityKeyPair()
@@ -221,13 +222,13 @@ object RegistrationRepository {
     saveOwnIdentityKey(selfId, aci, aciProtocolStore, now)
     saveOwnIdentityKey(selfId, pni, pniProtocolStore, now)
 
-    if (data.linkedDeviceInfo != null) {
-      if (data.linkedDeviceInfo.accountEntropyPool != null) {
-        SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(data.linkedDeviceInfo.accountEntropyPool))
+    if (linkedDeviceInfo != null) {
+      linkedDeviceInfo.accountEntropyPool?.let {
+        SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(it))
       }
 
-      if (data.linkedDeviceInfo.mediaRootBackupKey != null) {
-        SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(data.linkedDeviceInfo.mediaRootBackupKey.toByteArray())
+      linkedDeviceInfo.mediaRootBackupKey?.let {
+        SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(it.toByteArray())
       }
     }
 
@@ -236,7 +237,7 @@ object RegistrationRepository {
     SignalStore.registration.hasPromptedPushRegistration = true
     SignalStore.account.isUnauthorizedReceived = false
 
-    val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
+    val masterKey = data.masterKey?.let { MasterKey(it.toByteArray()) }
     SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled, SignalStore.account.restoredAccountEntropyPool)
 
     AppDependencies.resetNetwork()
