@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.manifest
 
 /**
  * Remove local unknown storage ids not in local storage service manifest.

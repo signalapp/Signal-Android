@@ -112,12 +112,3 @@ message BackupDownloadNotifierState {
 message IssueNotifyTimes {
     map<string, uint64> lastNotifyTimeByName = 1;
 }
-
-message StorageSyncLoopState {
-    repeated sint32 recentFingerprints = 1;
-    uint32 contentLevel                = 2;
-    uint64 contentLevelAsOf            = 3;
-    uint32 rateLevel                   = 4;
-    uint64 rateLevelAsOf               = 5;
-}
-

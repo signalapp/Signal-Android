@@ -19,6 +19,7 @@ import org.signal.storage.keyvalue.ProxyValues
 import org.signal.storage.keyvalue.ReleaseChannelValues
 import org.signal.storage.keyvalue.RemoteConfigValues
 import org.signal.storage.keyvalue.SignalPreferenceDataStore
+import org.signal.storage.keyvalue.StorageServiceValues
 import org.signal.storage.keyvalue.SvrValues
 import org.signal.storage.keyvalue.TooltipValues
 import org.signal.storage.keyvalue.UiHintValues
@@ -38,7 +39,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val registrationValues = RegistrationValues(store, context)
   val pinValues = PinValues(store, context)
   val remoteConfigValues = RemoteConfigValues(store)
-  val storageServiceValues = StorageServiceValues(store)
+  val storageServiceValues = StorageServiceValues(store, svrValues)
   val uiHintValues = UiHintValues(store, context)
   val tooltipValues = TooltipValues(store, context)
   val miscValues = MiscellaneousValues(store, context)

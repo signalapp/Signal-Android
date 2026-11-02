@@ -40,3 +40,11 @@ message CallQualitySurveyRequest {
     optional float video_send_packet_loss_fraction = 20;
     optional bytes call_telemetry                  = 21;
 }
+
+message StorageSyncLoopState {
+    repeated sint32 recentFingerprints = 1;
+    uint32 contentLevel                = 2;
+    uint64 contentLevelAsOf            = 3;
+    uint32 rateLevel                   = 4;
+    uint64 rateLevelAsOf               = 5;
+}

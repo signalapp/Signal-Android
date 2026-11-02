@@ -1,20 +1,10 @@
-package org.thoughtcrime.securesms.keyvalue
+package org.signal.storage.keyvalue
 
 import org.signal.core.models.storageservice.StorageKey
-import org.signal.core.util.logging.Log
-import org.signal.storage.keyvalue.KeyValueStore
-import org.signal.storage.keyvalue.SignalStoreValues
-import org.signal.storage.keyvalue.SvrValues
-import org.signal.storage.keyvalue.booleanValue
-import org.signal.storage.keyvalue.longValue
-import org.signal.storage.keyvalue.protoValue
-import org.thoughtcrime.securesms.keyvalue.protos.StorageSyncLoopState
-import org.whispersystems.signalservice.api.storage.SignalStorageManifest
+import org.signal.storage.protos.StorageSyncLoopState
 
-class StorageServiceValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class StorageServiceValues(store: KeyValueStore, private val svrValues: SvrValues) : SignalStoreValues(store) {
   companion object {
-    private val TAG = Log.tag(StorageServiceValues::class)
-
     private const val LAST_SYNC_TIME = "storage.last_sync_time"
     private const val NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore"
     private const val MANIFEST = "storage.manifest"
@@ -30,7 +20,7 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
 
   val storageKey: StorageKey
     get() {
-      return SignalStore.svr.masterKey.deriveStorageServiceKey()
+      return svrValues.masterKey.deriveStorageServiceKey()
     }
 
   var lastSyncTime: Long by longValue(LAST_SYNC_TIME, 0)
@@ -43,22 +33,11 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
 
   var needsAccountRestore: Boolean by booleanValue(NEEDS_ACCOUNT_RESTORE, false)
 
-  /** Owned by [org.thoughtcrime.securesms.storage.StorageSyncLoopDetector] */
+  /** Owned by StorageSyncLoopDetector */
   var syncLoopState: StorageSyncLoopState by protoValue(SYNC_LOOP_STATE, StorageSyncLoopState(), StorageSyncLoopState.ADAPTER)
 
-  var manifest: SignalStorageManifest
-    get() {
-      val data = getBlob(MANIFEST, null)
-
-      return if (data != null) {
-        SignalStorageManifest.deserialize(data)
-      } else {
-        SignalStorageManifest.EMPTY
-      }
-    }
-    set(manifest) {
-      putBlob(MANIFEST, manifest.serialize())
-    }
+  /** The serialized local storage service manifest, or null if we don't have one. */
+  var manifestBytes: ByteArray? by nullableBlobValue(MANIFEST, null)
 
   /**
    * The [StorageKey] that should be used for our initial storage service data restore.
@@ -66,5 +45,5 @@ class StorageServiceValues internal constructor(store: KeyValueStore) : SignalSt
    * Once there has been *any* write to storage service, [SvrValues.masterKeyForInitialDataRestore] needs to be cleared.
    */
   val storageKeyForInitialDataRestore: StorageKey?
-    get() = SignalStore.svr.masterKeyForInitialDataRestore?.deriveStorageServiceKey()
+    get() = svrValues.masterKeyForInitialDataRestore?.deriveStorageServiceKey()
 }
