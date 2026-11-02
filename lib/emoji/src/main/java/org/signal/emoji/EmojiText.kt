@@ -5,6 +5,7 @@
 
 package org.signal.emoji
 
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +25,7 @@ fun EmojiText(
   textAlign: TextAlign? = null,
   maxLines: Int = Int.MAX_VALUE
 ) {
-  Emojifier(text = text) { annotatedText, inlineContent ->
+  Emojifier(text = text, fontSize = LocalTextStyle.current.merge(style).fontSize) { annotatedText, inlineContent ->
     Text(
       text = annotatedText,
       inlineContent = inlineContent,
