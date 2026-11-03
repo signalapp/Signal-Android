@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.models
+package org.signal.appsettings.notifications
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -18,17 +18,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.R as CoreUiR
 
 /**
- * Replicates the Banner DSL preference for use in compose components.
+ * An outlined card with a message and an action, such as the one asking to turn notifications back on.
  */
 @Composable
-fun Banner(
+internal fun Banner(
   text: String,
   action: String,
   onActionClick: () -> Unit
@@ -62,14 +63,13 @@ fun Banner(
   }
 }
 
+@PreviewWrapper(SignalPreviewWrapper::class)
 @DayNightPreviews
 @Composable
 private fun BannerPreview() {
-  Previews.Preview {
-    Banner(
-      text = "Banner text will go here and probably be about something important",
-      action = "Action",
-      onActionClick = {}
-    )
-  }
+  Banner(
+    text = "Banner text will go here and probably be about something important",
+    action = "Action",
+    onActionClick = {}
+  )
 }

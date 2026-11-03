@@ -18,6 +18,10 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
  * Registers the routes within the notifications section of app settings.
  */
 fun EntryProviderScope<NavKey>.registerNotificationsRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  detailEntry<AppSettingsRoute.NotificationsRoute.Notifications> {
+    NotificationsSettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
   detailEntry<AppSettingsRoute.NotificationsRoute.NotificationProfiles> {
     NotificationProfilesEntry(parentEventEmitter = parentEventEmitter)
   }

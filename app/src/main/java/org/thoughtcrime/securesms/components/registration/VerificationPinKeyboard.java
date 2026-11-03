@@ -98,7 +98,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.failureView.setVisibility(View.GONE);
     this.lockedView.setVisibility(View.GONE);
 
-    this.successView.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
+    this.successView.getBackground().setColorFilter(getResources().getColor(org.signal.core.ui.R.color.green_500), PorterDuff.Mode.SRC_IN);
 
     ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1,
                                                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
@@ -130,7 +130,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.failureView.setVisibility(View.GONE);
     this.lockedView.setVisibility(View.GONE);
 
-    this.failureView.getBackground().setColorFilter(getResources().getColor(R.color.red_500), PorterDuff.Mode.SRC_IN);
+    this.failureView.getBackground().setColorFilter(getResources().getColor(org.signal.core.ui.R.color.red_500), PorterDuff.Mode.SRC_IN);
     this.failureView.setVisibility(View.VISIBLE);
 
     TranslateAnimation shake = new TranslateAnimation(0, 30, 0, 0);
@@ -162,7 +162,7 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.failureView.setVisibility(View.GONE);
     this.lockedView.setVisibility(View.GONE);
 
-    this.lockedView.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.SRC_IN);
+    this.lockedView.getBackground().setColorFilter(getResources().getColor(org.signal.core.ui.R.color.green_500), PorterDuff.Mode.SRC_IN);
 
     ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1,
                                                        ScaleAnimation.RELATIVE_TO_SELF, 0.5f,

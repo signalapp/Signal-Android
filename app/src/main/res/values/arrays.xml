@@ -1,57 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <string-array name="pref_led_color_entries">
-    <item>@string/preferences__green</item>
-    <item>@string/preferences__red</item>
-    <item>@string/preferences__blue</item>
-    <item>@string/preferences__orange</item>
-    <item>@string/preferences__cyan</item>
-    <item>@string/preferences__magenta</item>
-    <item>@string/preferences__white</item>
-    <item>@string/preferences__none</item>
-  </string-array>
 
-  <string-array name="pref_led_color_values" translatable="false">
-    <item>green</item>
-    <item>red</item>
-    <item>blue</item>
-    <item>yellow</item>
-    <item>cyan</item>
-    <item>magenta</item>
-    <item>white</item>
-    <item>none</item>
-  </string-array>
 
-  <string-array name="pref_led_blink_pattern_entries">
-    <item>@string/preferences__fast</item>
-    <item>@string/preferences__normal</item>
-    <item>@string/preferences__slow</item>
-  </string-array>
 
-  <string-array name="pref_led_blink_pattern_values" translatable="false">
-    <item>300,300</item>
-    <item>500,2000</item>
-    <item>3000,3000</item>
-  </string-array>
 
-  <string-array name="pref_repeat_alerts_entries">
-      <item>@string/preferences__never</item>
-      <item>@string/preferences__one_time</item>
-      <item>@string/preferences__two_times</item>
-      <item>@string/preferences__three_times</item>
-      <item>@string/preferences__five_times</item>
-      <item>@string/preferences__ten_times</item>
-  </string-array>
 
-  <string-array name="pref_repeat_alerts_values" translatable="false">
-      <item>0</item>
-      <item>1</item>
-      <item>2</item>
-      <item>3</item>
-      <item>5</item>
-      <item>10</item>
-  </string-array>
 
   <string-array name="default_or_custom_values" translatable="false">
       <item>default</item>
@@ -77,17 +31,7 @@
       <item>@string/arrays__disabled</item>
   </string-array>
 
-  <string-array name="pref_notification_privacy_entries">
-      <item>@string/arrays__name_and_message</item>
-      <item>@string/arrays__name_only</item>
-      <item>@string/arrays__no_name_or_message</item>
-  </string-array>
 
-  <string-array name="pref_notification_privacy_values">
-      <item>all</item>
-      <item>contact</item>
-      <item>none</item>
-  </string-array>
 
   <!-- discrete MIME type (the part before the "/") -->
 
@@ -114,17 +58,7 @@
         <item>22</item>
     </integer-array>
 
-    <string-array name="pref_notification_priority_entries">
-        <item>@string/arrays__default</item>
-        <item>@string/arrays__high</item>
-        <item>@string/arrays__max</item>
-    </string-array>
 
-    <string-array name="pref_notification_priority_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
     <string-array name="MediaOverviewActivity_Sort_by">
         <item>@string/MediaOverviewActivity_Newest</item>

@@ -177,7 +177,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     FloatingRecordButton(Context context, ImageView recordButtonFab) {
       this.recordButtonFab = recordButtonFab;
       this.recordButtonFab.getBackground().setColorFilter(context.getResources()
-                                                                 .getColor(R.color.red_500),
+                                                                 .getColor(org.signal.core.ui.R.color.red_500),
                                                           PorterDuff.Mode.SRC_IN);
     }
 
