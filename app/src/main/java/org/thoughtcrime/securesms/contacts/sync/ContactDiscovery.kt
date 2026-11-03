@@ -249,6 +249,7 @@ object ContactDiscovery {
     val localNumber: String = SignalStore.account.e164 ?: ""
 
     val contactInfos = LinkedList<ContactInfo>()
+    var readIncomplete = false
     try {
       contactsProvider().use { iterator ->
         while (iterator.hasNext()) {
@@ -283,13 +284,20 @@ object ContactDiscovery {
             )
           }
         }
+
+        readIncomplete = iterator.stoppedEarly
       }
     } catch (e: IllegalStateException) {
       Log.w(TAG, "Hit an issue with the cursor while reading!", e)
+      readIncomplete = true
+    }
+
+    if (readIncomplete && clearInfoForMissingContacts) {
+      Log.w(TAG, "Contact read stopped early. Not clearing info for contacts that weren't read.")
     }
 
     if (contactInfos.isNotEmpty()) {
-      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts)
+      val handle = SignalDatabase.recipients.beginBulkSystemContactUpdate(clearInfoForMissingContacts && !readIncomplete)
       try {
         for (contactInfo in contactInfos) {
           handle.setSystemContactInfo(
