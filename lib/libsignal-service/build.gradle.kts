@@ -118,7 +118,6 @@ dependencies {
 
   api(project(":core:network"))
   implementation(project(":core:util-jvm"))
-  implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
 
   testImplementation(testLibs.junit.junit)

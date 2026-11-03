@@ -12,6 +12,8 @@ android {
 dependencies {
   api(project(":core:util-jvm"))
 
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.androidx.compose.runtime.annotation)
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.documentfile)
   implementation(libs.google.jsr305)

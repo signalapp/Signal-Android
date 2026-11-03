@@ -39,7 +39,6 @@ dependencies {
   // Project dependencies
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
-  implementation(project(":core:models"))
   implementation(project(":lib:glide"))
   implementation(project(":lib:ui-components"))
   implementation(project(":lib:video"))

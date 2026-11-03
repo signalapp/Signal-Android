@@ -43,7 +43,6 @@ dependencies {
   api(project(":lib:libsignal-service"))
   api(project(":core:network"))
   implementation(project(":core:util-jvm"))
-  implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
 
   api(libs.libsignal.client)

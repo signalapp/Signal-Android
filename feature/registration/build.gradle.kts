@@ -56,7 +56,6 @@ dependencies {
   api(project(":lib:network"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))
-  implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
   implementation(project(":lib:billing"))
   implementation(project(":lib:device-transfer"))

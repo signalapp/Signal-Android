@@ -689,8 +689,6 @@ dependencies {
   coreLibraryDesugaring(libs.android.tools.desugar)
 
   implementation(project(":core:database"))
-  implementation(project(":core:models"))
-  implementation(project(":core:models-jvm"))
   implementation(project(":core:serialization"))
   implementation(project(":core:ui"))
   implementation(project(":core:util"))

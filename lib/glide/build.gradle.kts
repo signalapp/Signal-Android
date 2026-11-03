@@ -14,7 +14,6 @@ android {
 
 dependencies {
   implementation(project(":core:util"))
-  implementation(project(":core:models"))
   implementation(project(":lib:blurhash"))
 
   api(libs.glide.glide)

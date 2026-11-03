@@ -98,8 +98,6 @@ include(":app")
 // Core modules
 include(":core:util")
 include(":core:util-jvm")
-include(":core:models")
-include(":core:models-jvm")
 include(":core:network")
 include(":core:ui")
 include(":core:serialization")
