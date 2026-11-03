@@ -5,16 +5,18 @@
 
 package org.signal.appsettings.routes
 
+import androidx.compose.runtime.snapshots.Snapshot
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.split.ListDetailBackStack
 import org.signal.core.ui.compose.split.ListDetailEvents
 import org.signal.core.ui.compose.split.ListDetailNavigator
 import org.signal.core.ui.compose.split.detailDepth
@@ -35,9 +37,10 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
     private const val OPENED_DIRECTLY_KEY = "app_settings_opened_directly"
   }
 
-  private val _events = MutableSharedFlow<AppSettingsNavigationEvent>()
+  private val _events = Channel<AppSettingsNavigationEvent>(Channel.BUFFERED)
 
-  val events: SharedFlow<AppSettingsNavigationEvent> = _events.asSharedFlow()
+  /** Buffered until collected, so that navigation sent while the host isn't listening is still carried out. */
+  val events: Flow<AppSettingsNavigationEvent> = _events.receiveAsFlow()
 
   /** Carries results between screens, such as a picked avatar back to edit profile. */
   val resultBus = ResultEventBus()
@@ -73,7 +76,7 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
 
   fun onEvent(event: AppSettingsNavigationEvent) {
     viewModelScope.launch {
-      _events.emit(event)
+      _events.send(event)
     }
   }
 
@@ -86,11 +89,13 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
    */
   internal fun navigate(event: AppSettingsNavigationEvent, isSplitPane: Boolean = false): Boolean {
     when (event) {
-      is AppSettingsNavigationEvent.NavigateToScreen -> {
+      is AppSettingsNavigationEvent.NavigateToScreen -> Snapshot.withMutableSnapshot {
         if (event.replacesDetail || event.route == AppSettingsRoute.Empty) {
           navigator.processEvent(ListDetailEvents.ExitDetail)
           openedDirectly = false
         }
+
+        event.popUpTo?.let { navigator[AppSettingsHomeRoute].popUpTo(it) }
 
         if (event.route != AppSettingsRoute.Empty) {
           navigator.processEvent(ListDetailEvents.Push(event.route))
@@ -109,5 +114,19 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
     }
 
     return true
+  }
+}
+
+/** Pops the detail screens [popUpTo] names, never reaching the list beneath them. */
+private fun ListDetailBackStack.popUpTo(popUpTo: PopUpTo) {
+  val firstDetailIndex = lastIndex - detailDepth + 1
+  val index = indexOfLast { popUpTo.route.isInstance(it) }
+  if (index < firstDetailIndex) {
+    return
+  }
+
+  val retained = if (popUpTo.inclusive) index else index + 1
+  while (size > retained) {
+    removeAt(lastIndex)
   }
 }

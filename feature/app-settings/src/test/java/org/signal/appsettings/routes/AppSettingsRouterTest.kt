@@ -16,8 +16,10 @@ import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
@@ -153,6 +155,74 @@ class AppSettingsRouterTest {
 
     assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack, isSplitPane = true)).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
+  }
+
+  @Test
+  fun `when navigating with an inclusive pop up to, then that screen and those above it are replaced`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.NotificationProfiles))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.AddAllowedMembers(1)))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditSchedule(1, createMode = true)))
+
+    router.navigate(
+      AppSettingsNavigationEvent.NavigateToScreen(
+        route = AppSettingsRoute.NotificationsRoute.Created(1),
+        popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.AddAllowedMembers::class, inclusive = true)
+      )
+    )
+
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.NotificationsRoute.NotificationProfiles, AppSettingsRoute.NotificationsRoute.Created(1))
+  }
+
+  @Test
+  fun `when navigating with an exclusive pop up to, then only the screens above it are replaced`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+
+    router.navigate(
+      AppSettingsNavigationEvent.NavigateToScreen(
+        route = AppSettingsRoute.ChatFoldersRoute.ChatFolders,
+        popUpTo = PopUpTo(AppSettingsRoute.ChatsRoute.Chats::class)
+      )
+    )
+
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatFoldersRoute.ChatFolders)
+  }
+
+  @Test
+  fun `when navigating to a screen already open with a pop up to it, then it is returned to`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatFoldersRoute.ChatFolders))
+
+    router.navigate(
+      AppSettingsNavigationEvent.NavigateToScreen(
+        route = AppSettingsRoute.ChatsRoute.Chats,
+        popUpTo = PopUpTo(AppSettingsRoute.ChatsRoute.Chats::class)
+      )
+    )
+
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
+  }
+
+  @Test
+  fun `when navigating with a pop up to a screen that is not open, then the screen is pushed`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
+
+    router.navigate(
+      AppSettingsNavigationEvent.NavigateToScreen(
+        route = AppSettingsRoute.ChatsRoute.Reactions,
+        popUpTo = PopUpTo(AppSettingsRoute.PrivacyRoute.Privacy::class, inclusive = true)
+      )
+    )
+
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats, AppSettingsRoute.ChatsRoute.Reactions)
+  }
+
+  @Test
+  fun `when an event is sent before anything collects, then it is delivered once collected`() = runTest {
+    router.onEvent(AppSettingsNavigationEvent.NavigateBack)
+
+    assertThat(router.events.first()).isEqualTo(AppSettingsNavigationEvent.NavigateBack)
   }
 
   @Test
