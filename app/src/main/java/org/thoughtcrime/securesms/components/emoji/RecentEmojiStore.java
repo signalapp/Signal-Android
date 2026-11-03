@@ -2,20 +2,16 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.R;
 import org.signal.core.util.JsonUtils;
 
 import java.io.IOException;
@@ -24,26 +20,19 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import org.signal.emoji.Emoji;
-import org.signal.emoji.EmojiPageModel;
 
-public class RecentEmojiPageModel implements EmojiPageModel {
-  private static final String TAG            = Log.tag(RecentEmojiPageModel.class);
+public class RecentEmojiStore {
+  private static final String TAG            = Log.tag(RecentEmojiStore.class);
   private static final int    EMOJI_LRU_SIZE = 50;
-  public static final  String KEY            = "Recents";
 
-  /** The shared-prefs entry this model persists its LRU into. */
+  /** The shared-prefs entry this store persists its LRU into. */
   public static final String RECENT_STORAGE_KEY = "pref_recent_emoji2";
 
   private final SharedPreferences     prefs;
   private final String                preferenceName;
   private final LinkedHashSet<String> recentlyUsed;
 
-  public static boolean hasRecents(Context context, @NonNull String preferenceName) {
-    return PreferenceManager.getDefaultSharedPreferences(context).contains(preferenceName);
-  }
-
-  public RecentEmojiPageModel(Context context, @NonNull String preferenceName) {
+  public RecentEmojiStore(Context context, @NonNull String preferenceName) {
     this.prefs          = PreferenceManager.getDefaultSharedPreferences(context);
     this.preferenceName = preferenceName;
     this.recentlyUsed   = getPersistedCache();
@@ -61,31 +50,10 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     }
   }
 
-  @Override
-  public String getKey() {
-    return KEY;
-  }
-
-  @Override public int getIconAttr() {
-    return org.signal.emoji.R.attr.emoji_category_recent;
-  }
-
-  @Override public List<String> getEmoji() {
+  public List<String> getEmoji() {
     List<String> emoji = new ArrayList<>(recentlyUsed);
     Collections.reverse(emoji);
     return emoji;
-  }
-
-  @Override public List<Emoji> getDisplayEmoji() {
-    return getEmoji().stream().map(Emoji::new).collect(Collectors.toList());
-  }
-
-  @Override public @Nullable Uri getSpriteUri() {
-    return null;
-  }
-
-  @Override public boolean isDynamic() {
-    return true;
   }
 
   @MainThread

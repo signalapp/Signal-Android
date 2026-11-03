@@ -7,12 +7,12 @@ package org.thoughtcrime.securesms.mediakeyboard
 
 import android.content.Context
 import org.signal.mediakeyboard.data.MediaKeyboardRepository
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 
 /**
  * [MediaKeyboardRepository] backed by the app's real emoji, sticker, and gif data sources.
  */
-class SignalMediaKeyboardRepository(context: Context, recentEmoji: RecentEmojiPageModel) : MediaKeyboardRepository {
+class SignalMediaKeyboardRepository(context: Context, recentEmoji: RecentEmojiStore) : MediaKeyboardRepository {
 
   private val appContext: Context = context.applicationContext
 

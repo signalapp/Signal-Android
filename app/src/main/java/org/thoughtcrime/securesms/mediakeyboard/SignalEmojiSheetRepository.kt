@@ -15,7 +15,7 @@ import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.EmojiKeyboardRepository
 import org.signal.mediakeyboard.data.KeyboardEmoji
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -29,14 +29,14 @@ import org.thoughtcrime.securesms.sms.MessageSender
  */
 class SignalEmojiSheetRepository private constructor(
   private val context: Context,
-  private val recentEmoji: RecentEmojiPageModel,
+  private val recentEmoji: RecentEmojiStore,
   private val messageId: MessageId?,
   private val delegate: SignalEmojiKeyboardRepository = SignalEmojiKeyboardRepository(context, recentEmoji)
 ) : EmojiKeyboardRepository by delegate {
 
   constructor(context: Context, recentsStorageKey: String, messageId: MessageId?) : this(
     context = context,
-    recentEmoji = RecentEmojiPageModel(context, recentsStorageKey),
+    recentEmoji = RecentEmojiStore(context, recentsStorageKey),
     messageId = messageId
   )
 

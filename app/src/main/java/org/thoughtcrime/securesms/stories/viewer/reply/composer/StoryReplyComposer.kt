@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
@@ -182,7 +182,7 @@ class StoryReplyComposer @JvmOverloads constructor(
   private fun getReactionEmojis(): List<MappingModel<*>> {
     val reactionDisplayEmoji: List<Emoji> = SignalStore.emoji.reactions.map { Emoji(it) }
     val canonicalReactionEmoji: List<String> = reactionDisplayEmoji.map { EmojiSource.latest.variationsToCanonical[it.value] ?: it.value }
-    val canonicalRecentReactionEmoji: Set<String> = LinkedHashSet(RecentEmojiPageModel(context, ReactWithAnyEmojiBottomSheetDialogFragment.REACTION_STORAGE_KEY).emoji) - canonicalReactionEmoji.toSet()
+    val canonicalRecentReactionEmoji: Set<String> = LinkedHashSet(RecentEmojiStore(context, ReactWithAnyEmojiBottomSheetDialogFragment.REACTION_STORAGE_KEY).emoji) - canonicalReactionEmoji.toSet()
 
     val recentDisplayEmoji: List<Emoji> = canonicalRecentReactionEmoji
       .mapNotNull { canonical -> EmojiSource.latest.canonicalToVariations[canonical] }

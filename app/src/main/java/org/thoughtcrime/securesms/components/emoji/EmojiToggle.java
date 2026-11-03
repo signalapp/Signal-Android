@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 import org.signal.core.util.ContextUtil;
+import org.signal.mediakeyboard.MediaKeyboardTab;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -60,8 +60,8 @@ public class EmojiToggle extends AppCompatImageButton implements EmojiKeyboardVi
     drawer.setVisibilityListener(this);
   }
 
-  public void setStickerMode(@NonNull KeyboardPage page) {
-    switch (page) {
+  public void setStickerMode(@NonNull MediaKeyboardTab tab) {
+    switch (tab) {
       case EMOJI:
         mediaToggle = emojiToggle;
         break;
@@ -90,9 +90,9 @@ public class EmojiToggle extends AppCompatImageButton implements EmojiKeyboardVi
     setToMedia();
   }
 
-  public void onKeyboardChanged(@NonNull KeyboardPage page) {
-    setStickerMode(page);
-    switch (page) {
+  public void onKeyboardChanged(@NonNull MediaKeyboardTab tab) {
+    setStickerMode(tab);
+    switch (tab) {
       case EMOJI:
         SignalStore.settings().setMediaKeyboardMode(SettingsValues.MediaKeyboardMode.EMOJI);
         break;

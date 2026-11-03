@@ -289,14 +289,6 @@
         <attr name="ccpv_chat_bubble_count" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="KeyboardPageSearchView">
-        <attr name="show_always" format="boolean" />
-        <attr name="search_bar_tint" format="color|reference" />
-        <attr name="search_icon_tint" format="color|reference" />
-        <attr name="search_hint" format="string|reference" />
-        <attr name="click_only" format="boolean" />
-    </declare-styleable>
-
     <declare-styleable name="ButtonStripItemView">
         <attr name="bsiv_icon" format="reference" />
         <attr name="bsiv_label" format="string" />

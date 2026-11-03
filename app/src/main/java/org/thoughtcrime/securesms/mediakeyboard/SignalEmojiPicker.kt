@@ -13,7 +13,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.signal.core.ui.compose.rememberViewModelStoreOwner
 import org.signal.mediakeyboard.screens.emojisheet.EmojiSheet
 import org.signal.mediakeyboard.screens.emojisheet.EmojiSheetAction
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 
 /**
  * The emoji sheet's content for picking a single emoji outside of a conversation, such as for a profile's about or a
@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 @Composable
 fun SignalEmojiPicker(onEmojiSelected: (String) -> Unit) {
   val context = LocalContext.current
-  val repository = remember(context) { SignalEmojiSheetRepository(context.applicationContext, RecentEmojiPageModel.RECENT_STORAGE_KEY, messageId = null) }
+  val repository = remember(context) { SignalEmojiSheetRepository(context.applicationContext, RecentEmojiStore.RECENT_STORAGE_KEY, messageId = null) }
 
   // A fresh picker each time the sheet opens, rather than one left mid-search from the last time.
   CompositionLocalProvider(LocalViewModelStoreOwner provides rememberViewModelStoreOwner()) {

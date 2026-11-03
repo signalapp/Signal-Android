@@ -51878,7 +51878,7 @@ HSPLorg/thoughtcrime/securesms/components/InputPanel;->onFinishInflate()V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setHideForMessageRequestState(Z)V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setLinkPreview(Lcom/bumptech/glide/RequestManager;Lj$/util/Optional;)V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setListener(Lorg/thoughtcrime/securesms/components/InputPanel$Listener;)V
-HSPLorg/thoughtcrime/securesms/components/InputPanel;->setMediaKeyboardToggleMode(Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;)V
+HSPLorg/thoughtcrime/securesms/components/InputPanel;->setMediaKeyboardToggleMode(Lorg/signal/mediakeyboard/MediaKeyboardTab;)V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setStickerSuggestions(Ljava/util/List;)V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setVoiceNoteDraft(Lorg/thoughtcrime/securesms/database/DraftTable$Draft;)V
 HSPLorg/thoughtcrime/securesms/components/InputPanel;->setWallpaperEnabled(Z)V
@@ -52158,14 +52158,14 @@ HSPLorg/thoughtcrime/securesms/components/emoji/EmojiTextView$LineFitInputs;->eq
 Lorg/thoughtcrime/securesms/components/emoji/EmojiToggle;
 HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle;->initialize()V
-HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle;->setStickerMode(Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;)V
+HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle;->setStickerMode(Lorg/signal/mediakeyboard/MediaKeyboardTab;)V
 HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle;->setToMedia()V
 Lorg/thoughtcrime/securesms/components/emoji/EmojiToggle$1;
 HSPLorg/thoughtcrime/securesms/components/emoji/EmojiToggle$1;-><clinit>()V
-Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;
-HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;-><clinit>()V
-HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;-><init>(Landroid/content/Context;Ljava/lang/String;)V
-HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;->getPersistedCache()Ljava/util/LinkedHashSet;
+Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;
+HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;-><clinit>()V
+HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;-><init>(Landroid/content/Context;Ljava/lang/String;)V
+HSPLorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;->getPersistedCache()Ljava/util/LinkedHashSet;
 Lorg/thoughtcrime/securesms/components/emoji/SimpleEmojiTextView;
 HSPLorg/thoughtcrime/securesms/components/emoji/SimpleEmojiTextView;-><clinit>()V
 HSPLorg/thoughtcrime/securesms/components/emoji/SimpleEmojiTextView;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
@@ -53830,8 +53830,8 @@ HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryResultsCon
 Lorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryResultsPopup$Callback;
 Lorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;
 HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;-><clinit>()V
-HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;-><init>(Lorg/thoughtcrime/securesms/conversation/v2/ConversationRecipientRepository;Lorg/thoughtcrime/securesms/conversation/ui/mentions/MentionsPickerRepositoryV2;Lorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;)V
-HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;-><init>(Lorg/thoughtcrime/securesms/conversation/v2/ConversationRecipientRepository;Lorg/thoughtcrime/securesms/conversation/ui/mentions/MentionsPickerRepositoryV2;Lorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;-><init>(Lorg/thoughtcrime/securesms/conversation/v2/ConversationRecipientRepository;Lorg/thoughtcrime/securesms/conversation/ui/mentions/MentionsPickerRepositoryV2;Lorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;)V
+HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;-><init>(Lorg/thoughtcrime/securesms/conversation/v2/ConversationRecipientRepository;Lorg/thoughtcrime/securesms/conversation/ui/mentions/MentionsPickerRepositoryV2;Lorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;->getResults()Lio/reactivex/rxjava3/core/Observable;
 HSPLorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2;->getSelection()Lio/reactivex/rxjava3/core/Observable;
 Lorg/thoughtcrime/securesms/conversation/ui/inlinequery/InlineQueryViewModelV2$1;
@@ -54200,7 +54200,7 @@ HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getMessage
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getMinimumVisibleContentPx()I
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getMotionEventRelay()Lorg/thoughtcrime/securesms/conversation/v2/MotionEventRelay;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getReactionOverlay()Lorg/thoughtcrime/securesms/conversation/v2/ChatReactionOverlayController;
-HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getRecentEmojis()Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;
+HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getRecentEmojis()Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getScheduledMessagesStub()Lorg/signal/core/ui/view/Stub;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getSearchNav()Lorg/thoughtcrime/securesms/components/ConversationSearchBottomBar;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->getSearchViewModel()Lorg/thoughtcrime/securesms/conversation/ConversationSearchViewModel;
@@ -54258,7 +54258,7 @@ HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->onViewCrea
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->onViewCreated$lambda$7(Lorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;Landroid/view/View;IIIIIIII)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->onViewCreated(Landroid/view/View;Landroid/os/Bundle;)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->onViewStateRestored(Landroid/os/Bundle;)V
-HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->preferredKeyboardPage()Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;
+HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->preferredKeyboardTab()Lorg/signal/mediakeyboard/MediaKeyboardTab;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentActionBarMenu()V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentChatColors(Lorg/thoughtcrime/securesms/conversation/colors/ChatColors;)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentConversationTitle(Lorg/thoughtcrime/securesms/recipients/Recipient;)V
@@ -54275,7 +54275,7 @@ HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentSto
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentTypingIndicator()V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->presentWallpaper(Lorg/thoughtcrime/securesms/recipients/Recipient;)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->reactionOverlay_delegate$lambda$0(Lorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;)Lorg/thoughtcrime/securesms/conversation/v2/ChatReactionOverlayController;
-HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->recentEmojis_delegate$lambda$0()Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;
+HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->recentEmojis_delegate$lambda$0()Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->recomputeMessageDates$lambda$0(Lorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;Ljava/lang/Boolean;)Lkotlin/Unit;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->recomputeMessageDates(Z)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->registerForResults()V
@@ -54291,7 +54291,6 @@ HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->subscribeT
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->subscribeToEventsWhileResumed$lambda$2(Lorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;)Lorg/signal/core/util/eventbus/EventBus$Subscription;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->subscribeToEventsWhileResumed$lambda$3(Lorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;)Lorg/signal/core/util/eventbus/EventBus$Subscription;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->subscribeToEventsWhileResumed()V
-HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->toMediaKeyboardTab(Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;)Lorg/signal/mediakeyboard/MediaKeyboardTab;
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->updateMessageRequestAcceptedState(Z)V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->updateMinimumVisibleContent()V
 HSPLorg/thoughtcrime/securesms/conversation/v2/ConversationFragment;->updateNavigationIconForNormal(Z)V
@@ -61566,11 +61565,6 @@ HSPLorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData$Companion$ADAPTER$
 HSPLorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData$Companion$ADAPTER$1;->decode(Lcom/squareup/wire/ProtoReader;)Lorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData;
 HSPLorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData$Companion$ADAPTER$1;->encode(Lcom/squareup/wire/ReverseProtoWriter;Ljava/lang/Object;)V
 HSPLorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData$Companion$ADAPTER$1;->encode(Lcom/squareup/wire/ReverseProtoWriter;Lorg/thoughtcrime/securesms/jobs/protos/StorageSyncJobData;)V
-Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;
-HSPLorg/thoughtcrime/securesms/keyboard/KeyboardPage;->$values()[Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;
-HSPLorg/thoughtcrime/securesms/keyboard/KeyboardPage;-><clinit>()V
-HSPLorg/thoughtcrime/securesms/keyboard/KeyboardPage;-><init>(Ljava/lang/String;I)V
-HSPLorg/thoughtcrime/securesms/keyboard/KeyboardPage;->values()[Lorg/thoughtcrime/securesms/keyboard/KeyboardPage;
 Lorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;
 HSPLorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;-><clinit>()V
 HSPLorg/thoughtcrime/securesms/keyboard/emoji/search/EmojiSearchRepository;-><init>(Landroid/content/Context;)V
@@ -63137,7 +63131,7 @@ HSPLorg/thoughtcrime/securesms/main/MainToolbarViewModel$refresh$1$self$1;->invo
 Lorg/thoughtcrime/securesms/main/Material3OnScrollHelperBinder;
 Lorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository;
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository;-><clinit>()V
-HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository;-><init>(Landroid/content/Context;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;)V
+HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository;-><init>(Landroid/content/Context;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;)V
 Lorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository$Companion;
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository$Companion;-><init>()V
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalEmojiKeyboardRepository$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -63153,7 +63147,7 @@ Lorg/thoughtcrime/securesms/mediakeyboard/SignalGifKeyboardRepository$imagesById
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalGifKeyboardRepository$imagesById$1;-><init>()V
 Lorg/thoughtcrime/securesms/mediakeyboard/SignalMediaKeyboardRepository;
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalMediaKeyboardRepository;-><clinit>()V
-HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalMediaKeyboardRepository;-><init>(Landroid/content/Context;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiPageModel;)V
+HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalMediaKeyboardRepository;-><init>(Landroid/content/Context;Lorg/thoughtcrime/securesms/components/emoji/RecentEmojiStore;)V
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalMediaKeyboardRepository;->getStickers()Lorg/thoughtcrime/securesms/mediakeyboard/SignalStickerKeyboardRepository;
 Lorg/thoughtcrime/securesms/mediakeyboard/SignalStickerKeyboardRepository;
 HSPLorg/thoughtcrime/securesms/mediakeyboard/SignalStickerKeyboardRepository;-><clinit>()V

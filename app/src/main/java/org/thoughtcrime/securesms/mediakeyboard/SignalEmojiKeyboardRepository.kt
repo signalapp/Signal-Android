@@ -15,7 +15,7 @@ import org.signal.mediakeyboard.data.EmojiCategoryPage
 import org.signal.mediakeyboard.data.EmojiKeyboardCategory
 import org.signal.mediakeyboard.data.EmojiKeyboardRepository
 import org.signal.mediakeyboard.data.KeyboardEmoji
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.setPreferredVariation
@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.keyvalue.setPreferredVariation
  */
 class SignalEmojiKeyboardRepository(
   private val context: Context,
-  private val recentEmoji: RecentEmojiPageModel
+  private val recentEmoji: RecentEmojiStore
 ) : EmojiKeyboardRepository {
 
   companion object {
@@ -45,7 +45,7 @@ class SignalEmojiKeyboardRepository(
     }
   }
 
-  /** Stays on the caller's thread, since [RecentEmojiPageModel] is main-thread-only and shared with the host. */
+  /** Stays on the caller's thread, since [RecentEmojiStore] is main-thread-only and shared with the host. */
   override suspend fun getRecentEmoji(): List<KeyboardEmoji> {
     return recentEmoji.emoji.map { KeyboardEmoji(canonical = it) }
   }

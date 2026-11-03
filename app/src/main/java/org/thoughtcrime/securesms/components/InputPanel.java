@@ -46,6 +46,7 @@ import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.glide.decryptableuri.DecryptableUri;
+import org.signal.mediakeyboard.MediaKeyboardTab;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.animation.AnimationStartListener;
@@ -62,7 +63,6 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -420,8 +420,8 @@ public class InputPanel extends ConstraintLayout
     mediaKeyboard.setVisibility(show ? View.VISIBLE : GONE);
   }
 
-  public void setMediaKeyboardToggleMode(@NonNull KeyboardPage page) {
-    mediaKeyboard.setStickerMode(page);
+  public void setMediaKeyboardToggleMode(@NonNull MediaKeyboardTab tab) {
+    mediaKeyboard.setStickerMode(tab);
   }
 
   public boolean isStickerMode() {

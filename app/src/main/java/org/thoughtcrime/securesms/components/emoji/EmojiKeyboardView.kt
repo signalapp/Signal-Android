@@ -81,7 +81,7 @@ class EmojiKeyboardView @JvmOverloads constructor(
 
   private val repository by lazy {
     val applicationContext = context.applicationContext
-    SignalEmojiKeyboardRepository(applicationContext, RecentEmojiPageModel(applicationContext, RecentEmojiPageModel.RECENT_STORAGE_KEY))
+    SignalEmojiKeyboardRepository(applicationContext, RecentEmojiStore(applicationContext, RecentEmojiStore.RECENT_STORAGE_KEY))
   }
 
   init {
