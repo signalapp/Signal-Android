@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.network.service.SentTranscripts
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -77,24 +78,17 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
   }
 
   private fun buildSentTranscript(recipientsSet: Set<SignalServiceStoryMessageRecipient>): SyncMessage.Sent {
-    val self = Recipient.self().requireAci().toByteString()
-
-    return SyncMessage.Sent(
-      destinationServiceIdBinary = self,
+    return SentTranscripts.forStory(
+      storyMessage = null,
       timestamp = sentTimestamp,
-      unidentifiedStatus = listOf(
-        SyncMessage.Sent.UnidentifiedDeliveryStatus(
-          destinationServiceIdBinary = self,
-          unidentified = false
-        )
-      ),
-      storyMessageRecipients = recipientsSet.map {
+      localAci = Recipient.self().requireAci(),
+      manifest = recipientsSet.map {
         SyncMessage.Sent.StoryMessageRecipient(
           distributionListIds = it.distributionListIds,
           destinationServiceIdBinary = it.signalServiceAddress.serviceId.toByteString(),
           isAllowedToReply = it.isAllowedToReply
         )
-      }.distinct(),
+      },
       isRecipientUpdate = true
     )
   }

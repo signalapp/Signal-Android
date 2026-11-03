@@ -73,6 +73,26 @@ sealed class SealedSenderAccess {
   }
 
   /**
+   * For sending a story. Anyone may send a story to anyone, so the send carries no access key or token, only the sealed
+   * [senderCertificate]. [preKeyAccess] is a real access to try for prekey fetches, which a story send can't authorize.
+   */
+  class Story(
+    override val senderCertificate: SenderCertificate,
+    val preKeyAccess: SealedSenderAccess? = null
+  ) : SealedSenderAccess() {
+
+    override val headerName: String
+      get() = throw UnsupportedOperationException("Story sends have no access header")
+
+    override val headerValue: String
+      get() = throw UnsupportedOperationException("Story sends have no access header")
+
+    override fun switchToFallback(): SealedSenderAccess? = null
+
+    override fun applyHeader(): Boolean = false
+  }
+
+  /**
    * Provide a lazy way to create a group send token.
    */
   fun interface CreateGroupSendToken {
@@ -132,7 +152,8 @@ sealed class SealedSenderAccess {
       return when (sealedSenderAccess) {
         is IndividualGroupSendTokenFirst -> sealedSenderAccess.unidentifiedAccess?.isUnrestrictedForStory ?: false
         is IndividualUnidentifiedAccessFirst -> sealedSenderAccess.unidentifiedAccess.isUnrestrictedForStory
-        else -> false
+        is Story -> true
+        null -> false
       }
     }
   }

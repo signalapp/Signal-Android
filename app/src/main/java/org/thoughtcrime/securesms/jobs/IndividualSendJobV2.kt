@@ -11,16 +11,16 @@ import arrow.core.Either
 import arrow.core.getOrElse
 import arrow.core.raise.Raise
 import arrow.core.raise.either
-import okio.ByteString
-import okio.ByteString.Companion.toByteString
+import arrow.core.right
 import okio.utf8Size
-import org.signal.core.models.ServiceId
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
+import org.signal.network.service.SentTranscripts
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -57,7 +57,6 @@ import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.ProofRequiredResponse
-import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
@@ -424,51 +423,28 @@ class IndividualSendJobV2 private constructor(parameters: Parameters, private va
 
     return SignalNetwork.messageService.sendMessage(
       serviceId = recipient.requireServiceId(),
-      envelopeContent = envelopeContent,
-      timestamp = dataMessage.timestamp!!,
       sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
-      story = false,
-      isOnline = false,
-      urgent = content.isUrgent(),
+      request = SendRequest(envelopeContent, timestamp = dataMessage.timestamp!!, urgent = content.isUrgent()),
       onEncrypted = { SignalLocalMetrics.IndividualMessageSend.onMessageEncrypted(messageId) }
     ).bind()
   }
 
   private suspend fun Raise<MessageService.SendError>.sendSyncMessage(targetRecipient: Recipient, primaryResult: MessageService.SendSuccess): MessageService.SendSuccess {
-    val dataMessage = primaryResult.envelopeContent.content.get().dataMessage?.let { if (it.isViewOnce == true) it.copy(attachments = emptyList()) else it }
-    val editMessage = primaryResult.envelopeContent.content.get().editMessage
-    val timestamp = dataMessage?.timestamp ?: editMessage?.dataMessage?.timestamp ?: raise(MessageService.SendError.ApplicationError(IllegalStateException("No timestamp on primary message send!")))
-
+    val content = primaryResult.envelopeContent.content.get()
+    val timestamp = content.dataMessage?.timestamp ?: content.editMessage?.dataMessage?.timestamp ?: raise(MessageService.SendError.ApplicationError(IllegalStateException("No timestamp on primary message send!")))
     val recipientServiceId = targetRecipient.requireServiceId()
-    val pniIdentityKey: ByteString? = if (recipientServiceId is ServiceId.PNI) {
-      AppDependencies
-        .protocolStore
-        .aci()
-        .identities()
-        .getIdentity(SignalProtocolAddress(recipientServiceId.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID))?.publicKey?.serialize()?.toByteString()
-    } else {
-      null
-    }
 
-    val syncEnvelope = OutgoingContent.syncSent(
-      SyncMessage.Sent(
-        destinationServiceIdBinary = recipientServiceId.toByteString(),
-        timestamp = timestamp,
-        message = dataMessage,
-        editMessage = editMessage,
-        expirationStartTimestamp = if ((dataMessage?.expireTimer ?: 0) > 0) System.currentTimeMillis() else null,
-        unidentifiedStatus = listOf(
-          SyncMessage.Sent.UnidentifiedDeliveryStatus(
-            destinationServiceIdBinary = recipientServiceId.toByteString(),
-            unidentified = primaryResult.sentSealedSender,
-            destinationPniIdentityKey = pniIdentityKey
-          )
-        )
-      )
+    val transcript = SentTranscripts.forMessage(
+      content = content,
+      timestamp = timestamp,
+      results = listOf(MessageService.RecipientSendResult(recipientServiceId, primaryResult.right())),
+      destination = recipientServiceId,
+      isRecipientUpdate = false,
+      pniIdentityKey = { pni -> AppDependencies.protocolStore.aci().identities().getIdentity(SignalProtocolAddress(pni.toString(), SignalServiceAddress.DEFAULT_DEVICE_ID)) }
     )
 
     return SignalNetwork.messageService.sendSyncMessage(
-      envelopeContent = syncEnvelope,
+      envelopeContent = OutgoingContent.syncSent(transcript),
       timestamp = timestamp,
       urgent = true,
       onEncrypted = { SignalLocalMetrics.IndividualMessageSend.onSyncMessageEncrypted(messageId) }

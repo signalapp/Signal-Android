@@ -11,6 +11,7 @@ import org.signal.libsignal.protocol.groups.GroupSessionBuilder
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
@@ -22,6 +23,7 @@ import org.whispersystems.signalservice.internal.push.NullMessage
 import org.whispersystems.signalservice.internal.push.PniSignatureMessage
 import org.whispersystems.signalservice.internal.push.ReceiptMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
+import org.whispersystems.signalservice.internal.push.TypingMessage
 import org.whispersystems.signalservice.internal.push.Verified
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
@@ -45,6 +47,11 @@ object OutgoingContent {
       pniSignatureMessage = if (includePniSignature) pniSignature() else null
     )
     return EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty())
+  }
+
+  fun typing(action: TypingMessage.Action, timestamp: Long, groupId: GroupId.V2?): EnvelopeContent.Encrypted {
+    val content = Content(typingMessage = TypingMessage(timestamp = timestamp, action = action, groupId = groupId?.decodedId?.toByteString()))
+    return EnvelopeContent.encrypted(content, ContentHint.IMPLICIT)
   }
 
   fun pniSignature(): PniSignatureMessage? {

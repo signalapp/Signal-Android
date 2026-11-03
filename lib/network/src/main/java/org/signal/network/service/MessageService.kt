@@ -10,26 +10,36 @@ import org.signal.core.models.ServiceId
 import org.signal.libsignal.net.ChallengeOption
 import org.signal.libsignal.protocol.UntrustedIdentityException
 import org.signal.network.crypto.SealedSenderAccess
+import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent
 import java.io.IOException
 import kotlin.time.Duration
 
 /**
- * Entry point for sending messages. Sends to a single recipient and to our linked devices go through [IndividualMessageService].
+ * Entry point for sending messages. Sends to a single recipient and to our linked devices go through [IndividualMessageService], group and story
+ * sends through [GroupMessageService].
  */
-class MessageService(private val individualMessageService: IndividualMessageService) {
+class MessageService(
+  private val individualMessageService: IndividualMessageService,
+  private val groupMessageService: GroupMessageService,
+  private val dependencies: MessageSendDependencies
+) {
 
   suspend fun sendMessage(
     serviceId: ServiceId,
-    envelopeContent: EnvelopeContent,
-    timestamp: Long,
     sealedSenderAccess: SealedSenderAccess?,
-    story: Boolean,
-    isOnline: Boolean,
-    urgent: Boolean = true,
+    request: SendRequest<EnvelopeContent>,
     onEncrypted: (() -> Unit)? = null
   ): Either<SendError, SendSuccess> {
-    return individualMessageService.sendMessage(serviceId, envelopeContent, timestamp, sealedSenderAccess, story, isOnline, urgent, onEncrypted)
+    return individualMessageService.sendMessage(serviceId, request.content, request.timestamp, sealedSenderAccess, request.isOnline, request.urgent, onEncrypted)
+  }
+
+  /** For callers that build one [SendRequest] and may send it to someone else or ourselves. */
+  suspend fun sendSyncMessage(
+    request: SendRequest<EnvelopeContent>,
+    onEncrypted: (() -> Unit)? = null
+  ): Either<SendError, SendSuccess> {
+    return sendSyncMessage(request.timestamp, request.content, request.urgent, onEncrypted)
   }
 
   suspend fun sendSyncMessage(
@@ -40,6 +50,44 @@ class MessageService(private val individualMessageService: IndividualMessageServ
   ): Either<SendError, SendSuccess> {
     return individualMessageService.sendSyncMessage(timestamp, envelopeContent, urgent, onEncrypted)
   }
+
+  /**
+   * Sends [request] to a group or story audience. With a [messageId], every result is recorded in one message send log entry.
+   *
+   * The group id on [request] is not used, [destination]'s is.
+   */
+  suspend fun sendGroupMessage(
+    destination: GroupSendDestination,
+    recipients: List<GroupSendRecipient>,
+    request: SendRequest<EnvelopeContent.Encrypted>,
+    messageId: Long? = null
+  ): Either<GroupSendError, List<RecipientSendResult>> {
+    val content = request.content.content.get()
+    val contentHint = request.content.contentHint
+    val log = messageId?.let { SendLogEntry(it, recipients, request.timestamp, contentHint, request.urgent) }
+    return groupMessageService.sendMessage(destination, recipients, content, contentHint, request.timestamp, request.isOnline, request.urgent, onResult = { log?.record(it) })
+  }
+
+  private inner class SendLogEntry(
+    private val messageId: Long,
+    recipients: List<GroupSendRecipient>,
+    private val timestamp: Long,
+    private val contentHint: ContentHint,
+    private val urgent: Boolean
+  ) {
+    private val recipientIds: Map<ServiceId, Long> = recipients.associate { it.serviceId to it.id }
+    private var entryId = -1L
+
+    fun record(result: RecipientSendResult) {
+      val success = result.result.getOrNull() ?: return
+      val recipientId = recipientIds[result.serviceId] ?: return
+      synchronized(this) {
+        entryId = dependencies.logSendResult(entryId, recipientId, result.serviceId, success, timestamp, contentHint, messageId, urgent)
+      }
+    }
+  }
+
+  data class RecipientSendResult(val serviceId: ServiceId, val result: Either<SendError, SendSuccess>)
 
   /**
    * Send completed successfully.

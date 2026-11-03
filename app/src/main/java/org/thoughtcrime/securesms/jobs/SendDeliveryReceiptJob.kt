@@ -5,6 +5,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -111,12 +112,12 @@ class SendDeliveryReceiptJob private constructor(
 
     val result = SignalNetwork.messageService.sendMessage(
       serviceId = serviceId,
-      envelopeContent = OutgoingContent.receipt(ReceiptMessage.Type.DELIVERY, messageSentTimestamps, recipient.needsPniSignature),
-      timestamp = receiptSentTimestamp,
       sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient) { getGroupSendFullToken() },
-      story = false,
-      isOnline = false,
-      urgent = false
+      request = SendRequest(
+        content = OutgoingContent.receipt(ReceiptMessage.Type.DELIVERY, messageSentTimestamps, recipient.needsPniSignature),
+        timestamp = receiptSentTimestamp,
+        urgent = false
+      )
     )
 
     return result.fold(

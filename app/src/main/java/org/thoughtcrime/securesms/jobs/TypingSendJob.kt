@@ -1,27 +1,33 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
+import org.signal.libsignal.zkgroup.groups.GroupIdentifier
+import org.signal.network.service.GroupSendDestination
+import org.signal.network.service.SendRequest
+import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SealedSenderConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messages.GroupSendUtil
-import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.messages.AppMessageSendDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
-import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage
-import java.util.Optional
+import org.thoughtcrime.securesms.util.OutgoingContent
+import org.whispersystems.signalservice.internal.push.TypingMessage
 import java.util.concurrent.TimeUnit
 
+/** Sends a best-effort, online-only typing indicator to the recipient of [threadId]. Results are not tracked. */
 class TypingSendJob private constructor(
   parameters: Parameters,
   private val threadId: Long,
   private val typing: Boolean
-) : BaseJob(parameters) {
+) : CoroutineJob(parameters) {
 
   companion object {
     const val KEY: String = "TypingSendJob"
@@ -59,14 +65,18 @@ class TypingSendJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
-  @Throws(Exception::class)
-  override fun onRun() {
+  override val cancelCoroutineOnJobCancel: Boolean = true
+
+  override fun onFailure() = Unit
+
+  override suspend fun doRun(): Result {
     if (!Recipient.self().isRegistered) {
-      throw NotPushRegisteredException()
+      Log.w(TAG, "Not registered.")
+      return Result.failure()
     }
 
     if (!SignalStore.settings.isTypingIndicatorsEnabled) {
-      return
+      return Result.success()
     }
 
     Log.d(TAG, "Sending typing " + (if (typing) "started" else "stopped") + " for thread " + threadId)
@@ -75,58 +85,68 @@ class TypingSendJob private constructor(
 
     if (recipient == null) {
       Log.w(TAG, "Tried to send a typing indicator to a non-existent thread.")
-      return
+      return Result.success()
     }
 
     if (recipient.isBlocked) {
       Log.w(TAG, "Not sending typing indicators to blocked recipients.")
-      return
+      return Result.success()
     }
 
     if (recipient.isSelf) {
       Log.w(TAG, "Not sending typing indicators to self.")
-      return
+      return Result.success()
     }
 
     if (recipient.isPushV1Group || recipient.isMmsGroup) {
       Log.w(TAG, "Not sending typing indicators to unsupported groups.")
-      return
+      return Result.success()
     }
 
     if (recipient.isPushV2Group && !SignalDatabase.groups.isActive(recipient.requireGroupId())) {
       Log.w(TAG, "Not sending typing indicators to terminated or inactive groups.")
-      return
+      return Result.success()
     }
 
     if (!recipient.isRegistered) {
       Log.w(TAG, "Not sending typing indicators to non-Signal recipients.")
-      return
+      return Result.success()
     }
 
-    var recipients: List<Recipient> = listOf(recipient)
-    var groupId: Optional<ByteArray> = Optional.empty()
+    val groupId = recipient.groupId.orNull()?.requireV2()
 
-    if (recipient.isGroup) {
-      recipients = SignalDatabase.groups.getGroupMembers(recipient.requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
-      groupId = Optional.of(recipient.requireGroupId().decodedId)
+    val timestamp = System.currentTimeMillis()
+    val action = if (typing) TypingMessage.Action.STARTED else TypingMessage.Action.STOPPED
+    val request = SendRequest(OutgoingContent.typing(action, timestamp, groupId), timestamp = timestamp, urgent = false, isOnline = true)
+
+    val error = if (groupId != null) {
+      val members = SignalDatabase.groups.getGroupMembers(groupId, memberSet = GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)
+      val targets = RecipientUtil.getEligibleForSending(members)
+
+      if (targets.isEmpty()) {
+        Log.w(TAG, "No eligible recipients.")
+        return Result.success()
+      }
+
+      SignalNetwork.messageService.sendGroupMessage(
+        destination = GroupSendDestination.Group(GroupIdentifier(groupId.decodedId)),
+        recipients = AppMessageSendDependencies.toGroupSendRecipients(targets),
+        request = request
+      ).leftOrNull()
+    } else {
+      SignalNetwork.messageService.sendMessage(
+        serviceId = recipient.requireServiceId(),
+        sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
+        request = request
+      ).leftOrNull()
     }
 
-    recipients = RecipientUtil.getEligibleForSending(recipients.map { it.resolve() })
+    if (error != null) {
+      Log.w(TAG, "[$timestamp] Failed to send typing indicator: $error")
+    }
 
-    val typingMessage = SignalServiceTypingMessage(if (typing) SignalServiceTypingMessage.Action.STARTED else SignalServiceTypingMessage.Action.STOPPED, System.currentTimeMillis(), groupId)
-
-    GroupSendUtil.sendTypingMessage(
-      context,
-      recipient.groupId.map(GroupId::requireV2).orElse(null),
-      recipients,
-      typingMessage,
-      this::isCanceled
-    )
+    return Result.success()
   }
-
-  override fun onFailure() = Unit
-
-  override fun onShouldRetry(exception: Exception): Boolean = false
 
   class Factory : Job.Factory<TypingSendJob> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): TypingSendJob {

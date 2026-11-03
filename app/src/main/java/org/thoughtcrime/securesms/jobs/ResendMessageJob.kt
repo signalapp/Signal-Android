@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.InvalidSessionException
 import org.signal.libsignal.protocol.NoSessionException
 import org.signal.network.crypto.SealedSenderAccess
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -155,19 +156,15 @@ class ResendMessageJob private constructor(
       contentToSend = contentToSend.newBuilder().senderKeyDistributionMessage(senderKeyDistributionMessage.serialize().toByteString()).build()
     }
 
-    val envelopeContent = EnvelopeContent.encrypted(contentToSend, contentHint, Optional.ofNullable(groupId?.decodedId))
+    val request = SendRequest(EnvelopeContent.encrypted(contentToSend, contentHint, Optional.ofNullable(groupId?.decodedId)), timestamp = sentTimestamp, urgent = urgent)
 
     val result = if (serviceId == SignalStore.account.aci) {
-      SignalNetwork.messageService.sendSyncMessage(sentTimestamp, envelopeContent, urgent, null)
+      SignalNetwork.messageService.sendSyncMessage(request)
     } else {
       SignalNetwork.messageService.sendMessage(
         serviceId = serviceId,
-        envelopeContent = envelopeContent,
-        timestamp = sentTimestamp,
         sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient, createGroupSendToken),
-        story = false,
-        isOnline = false,
-        urgent = urgent
+        request = request
       )
     }
 

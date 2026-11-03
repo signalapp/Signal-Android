@@ -28,8 +28,14 @@ data class GroupSendEndorsements(
 
   @Throws(IOException::class)
   fun toFullToken(addresses: List<SignalServiceAddress>): GroupSendFullToken {
+    return toFullToken(addresses.map { it.serviceId })
+  }
+
+  @Throws(IOException::class)
+  @JvmName("toFullTokenForServiceIds")
+  fun toFullToken(serviceIds: List<ServiceId>): GroupSendFullToken {
     val combined = GroupSendEndorsement.combine(
-      addresses.map { endorsements[it.serviceId] ?: throw IOException("Missing group send endorsement for a group-send recipient") }
+      serviceIds.map { endorsements[it] ?: throw IOException("Missing group send endorsement for a group-send recipient") }
     )
     return combined.toFullToken(groupSecretParams, expiration)
   }

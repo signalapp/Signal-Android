@@ -105,6 +105,16 @@ class MessageApiV2Test {
     assertThat(sentWith).containsExactly(UserBasedAuthorization.AccessKey(accessKey))
   }
 
+  @Test
+  fun `story access uses Story auth and is not retried when rejected`() = runTest {
+    val api = apiReturning(unauthorized)
+
+    val result = api.sendSealedSenderMessage(recipient, 1L, emptyList(), SealedSenderAccess.Story(mockk()), onlineOnly = false, urgent = true)
+
+    assertThat(result).isEqualTo(unauthorized)
+    assertThat(sentWith).containsExactly(UserBasedSendAuthorization.Story)
+  }
+
   private fun apiReturning(vararg results: RequestResult<Unit, SealedSendFailure>): MessageApiV2 {
     val api = spyk(MessageApiV2(mockk(), mockk()))
     val remaining = ArrayDeque(results.toList())

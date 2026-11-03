@@ -7,6 +7,7 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage
 import org.signal.libsignal.protocol.message.PlaintextContent
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -98,12 +99,8 @@ class SendRetryReceiptJob private constructor(
 
     val result = SignalNetwork.messageService.sendMessage(
       serviceId = serviceId,
-      envelopeContent = envelopeContent,
-      timestamp = timestamp,
       sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
-      story = false,
-      isOnline = false,
-      urgent = false
+      request = SendRequest(envelopeContent, timestamp = timestamp, urgent = false)
     )
 
     return result.fold(

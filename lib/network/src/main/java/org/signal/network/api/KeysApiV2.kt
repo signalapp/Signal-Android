@@ -5,7 +5,9 @@
 
 package org.signal.network.api
 
+import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.Serializable
+import org.jetbrains.annotations.VisibleForTesting
 import org.signal.core.util.serialization.ByteArrayToBase64NoPaddingSerializer
 import org.signal.core.util.serialization.ByteArrayToBase64Serializer
 import org.signal.core.util.serialization.SignalJson
@@ -157,12 +159,40 @@ class KeysApiV2(
     }
   }
 
+  /**
+   * A [SealedSenderAccess.Story] can't authorize a prekey fetch, so its [SealedSenderAccess.Story.preKeyAccess] is tried
+   * first if there is one, and the fetch falls back to authenticated if that is missing or rejected.
+   */
   private suspend fun getPreKeysBySpecifier(
     identifier: String,
     deviceSpecifier: String,
     sealedSenderAccess: SealedSenderAccess?
   ): RequestResult<PreKeyResponse, GetPreKeysError> {
+    return when (sealedSenderAccess) {
+      is SealedSenderAccess.Story -> {
+        val preKeyAccess = sealedSenderAccess.preKeyAccess
+        if (preKeyAccess != null) {
+          val result = requestPreKeys(identifier, deviceSpecifier, preKeyAccess)
+          if (result !is RequestResult.NonSuccess || result.error !is GetPreKeysError.Unauthorized) {
+            return result
+          }
+        }
+        requestPreKeys(identifier, deviceSpecifier, sealedSenderAccess = null)
+      }
+      is SealedSenderAccess.IndividualGroupSendTokenFirst,
+      is SealedSenderAccess.IndividualUnidentifiedAccessFirst,
+      null -> requestPreKeys(identifier, deviceSpecifier, sealedSenderAccess)
+    }
+  }
+
+  @VisibleForTesting
+  internal suspend fun requestPreKeys(
+    identifier: String,
+    deviceSpecifier: String,
+    sealedSenderAccess: SealedSenderAccess?
+  ): RequestResult<PreKeyResponse, GetPreKeysError> {
     val request = WebSocketRequestMessage.get("/v2/keys/$identifier/$deviceSpecifier")
+    val authenticated = sealedSenderAccess == null
 
     return try {
       val response = if (sealedSenderAccess != null) {
@@ -176,13 +206,15 @@ class KeysApiV2(
           ifLeft = { RequestResult.ApplicationError(it.cause) },
           ifRight = { RequestResult.Success(it) }
         )
-        401 -> RequestResult.NonSuccess(GetPreKeysError.Unauthorized)
-        404 -> RequestResult.NonSuccess(GetPreKeysError.NotFound)
+        401 -> RequestResult.NonSuccess(GetPreKeysError.Unauthorized(authenticated))
+        404 -> RequestResult.NonSuccess(GetPreKeysError.NotFound(authenticated))
         429 -> RequestResult.NonSuccess(GetPreKeysError.RateLimited(response.retryAfter()))
         else -> RequestResult.ApplicationError(IllegalStateException("Unexpected response code: ${response.status}"))
       }
     } catch (e: IOException) {
       RequestResult.RetryableNetworkError(e)
+    } catch (e: CancellationException) {
+      throw e
     } catch (e: Throwable) {
       RequestResult.ApplicationError(e)
     }
@@ -246,8 +278,10 @@ class KeysApiV2(
   }
 
   sealed interface GetPreKeysError : BadRequestError {
-    data object Unauthorized : GetPreKeysError
-    data object NotFound : GetPreKeysError
+    data class Unauthorized(val authenticated: Boolean) : GetPreKeysError
+
+    /** Only an [authenticated] 404 means not registered. */
+    data class NotFound(val authenticated: Boolean) : GetPreKeysError
     data class RateLimited(val retryAfter: Duration?) : GetPreKeysError
   }
 }

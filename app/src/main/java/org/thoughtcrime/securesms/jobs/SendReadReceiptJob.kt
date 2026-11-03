@@ -4,6 +4,7 @@ import androidx.annotation.VisibleForTesting
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
@@ -162,12 +163,12 @@ class SendReadReceiptJob private constructor(
 
     val result = SignalNetwork.messageService.sendMessage(
       serviceId = serviceId,
-      envelopeContent = OutgoingContent.receipt(ReceiptMessage.Type.READ, messageSentTimestamps, recipient.needsPniSignature),
-      timestamp = timestamp,
       sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient) { SignalDatabase.groups.getGroupSendFullToken(threadId, recipientId) },
-      story = false,
-      isOnline = false,
-      urgent = false
+      request = SendRequest(
+        content = OutgoingContent.receipt(ReceiptMessage.Type.READ, messageSentTimestamps, recipient.needsPniSignature),
+        timestamp = timestamp,
+        urgent = false
+      )
     )
 
     return result.fold(

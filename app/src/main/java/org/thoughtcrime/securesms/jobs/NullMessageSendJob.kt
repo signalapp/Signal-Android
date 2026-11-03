@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.logging.Log
 import org.signal.network.service.MessageService
+import org.signal.network.service.SendRequest
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -92,22 +93,14 @@ class NullMessageSendJob private constructor(
       return Result.failure()
     }
 
+    val request = SendRequest(OutgoingContent.nullMessage(), timestamp = System.currentTimeMillis(), urgent = false)
     val result = if (serviceId == SignalStore.account.aci) {
-      SignalNetwork.messageService.sendSyncMessage(
-        timestamp = System.currentTimeMillis(),
-        envelopeContent = OutgoingContent.nullMessage(),
-        urgent = false,
-        onEncrypted = null
-      )
+      SignalNetwork.messageService.sendSyncMessage(request)
     } else {
       SignalNetwork.messageService.sendMessage(
         serviceId = serviceId,
-        envelopeContent = OutgoingContent.nullMessage(),
-        timestamp = System.currentTimeMillis(),
         sealedSenderAccess = SealedSenderAccessUtil.getSealedSenderAccessFor(recipient),
-        story = false,
-        isOnline = false,
-        urgent = false
+        request = request
       )
     }
 

@@ -54,6 +54,7 @@ import org.signal.network.rest.SignalRestClient;
 import org.signal.network.util.Tls12SocketFactory;
 import org.signal.network.service.ArchiveService;
 import org.signal.network.service.CdnService;
+import org.signal.network.service.GroupMessageService;
 import org.signal.network.service.IndividualMessageService;
 import org.signal.network.service.MessageService;
 import org.signal.network.service.StorageServiceService;
@@ -98,6 +99,7 @@ import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
+import org.thoughtcrime.securesms.messages.AppMessageSendDependencies;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor;
@@ -253,12 +255,13 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull MessageService provideMessageService(@NonNull SignalServiceDataStore protocolStore,
                                                        @NonNull MessageApiV2 messageApiV2,
                                                        @NonNull KeysApiV2 keysApiV2) {
-    SignalServiceAddress          localAddress  = new SignalServiceAddress(SignalStore.account().requireAci(), SignalStore.account().getE164());
-    int                           localDeviceId = SignalStore.account().getDeviceId();
-    SignalServiceAccountDataStore aciStore      = protocolStore.aci();
-    SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, localDeviceId, aciStore, ReentrantSessionLock.INSTANCE, null);
+    SignalServiceAccountDataStore store        = protocolStore.aci();
+    AppMessageSendDependencies    dependencies = new AppMessageSendDependencies(context);
+    SignalServiceCipher           cipher       = new SignalServiceCipher(new SignalServiceAddress(dependencies.getLocalAci()), dependencies.getLocalDeviceId(), store, ReentrantSessionLock.INSTANCE, null);
+    IndividualMessageService      individual   = new IndividualMessageService(messageApiV2, keysApiV2, store, ReentrantSessionLock.INSTANCE, cipher, dependencies);
+    GroupMessageService           group        = new GroupMessageService(individual, messageApiV2, store, ReentrantSessionLock.INSTANCE, cipher, dependencies);
 
-    return new MessageService(new IndividualMessageService(localAddress, localDeviceId, messageApiV2, keysApiV2, aciStore, ReentrantSessionLock.INSTANCE, cipher, RemoteConfig.maxEnvelopeSizeBytes()));
+    return new MessageService(individual, group, dependencies);
   }
 
   @Override
