@@ -26,8 +26,13 @@ sealed interface AppSettingsNavigationEvent {
     val popUpTo: PopUpTo? = null
   ) : AppSettingsNavigationEvent
 
-  /** Navigate back one screen. */
-  data object NavigateBack : AppSettingsNavigationEvent
+  /**
+   * Navigate back one screen.
+   *
+   * @param popUpTo the screens to close instead of only the top one, for a screen that has to close itself whatever is
+   *   open above it. Nothing is closed when no such screen is open.
+   */
+  data class NavigateBack(val popUpTo: PopUpTo? = null) : AppSettingsNavigationEvent
 }
 
 /**
@@ -53,6 +58,6 @@ fun ((AppSettingsNavigationEvent) -> Unit).openSection(route: AppSettingsRoute) 
 /**
  * Convenience function to emit a navigate-back event to a parent emitter.
  */
-fun ((AppSettingsNavigationEvent) -> Unit).navigateBack() {
-  this(AppSettingsNavigationEvent.NavigateBack)
+fun ((AppSettingsNavigationEvent) -> Unit).navigateBack(popUpTo: PopUpTo? = null) {
+  this(AppSettingsNavigationEvent.NavigateBack(popUpTo))
 }

@@ -57,7 +57,7 @@ private class AppSettingsRouterDelegate(
         owner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
           fragmentRouter.value.events.collect { event ->
             when (event) {
-              AppSettingsNavigationEvent.NavigateBack -> onNavigateBack()
+              is AppSettingsNavigationEvent.NavigateBack -> onNavigateBack()
               is AppSettingsNavigationEvent.NavigateToScreen -> onNavigateToScreen(event.route)
             }
           }

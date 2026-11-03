@@ -32,10 +32,10 @@ fun TextAvatarCreationEntry(initialAvatar: Avatar.Text, parentEventEmitter: (App
     when (action) {
       is TextAvatarCreationAction.Finish -> {
         resultBus.sendResult(result = AvatarEditorResult(action.avatar))
-        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
       }
 
-      TextAvatarCreationAction.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+      TextAvatarCreationAction.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
     }
   }
 

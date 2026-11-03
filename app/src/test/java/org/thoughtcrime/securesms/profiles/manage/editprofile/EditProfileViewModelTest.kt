@@ -351,7 +351,7 @@ class EditProfileViewModelTest {
 
     viewModel.onEvent(EditProfileEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(): EditProfileViewModel = EditProfileViewModel(parentEventEmitter = { navigationEvents += it })

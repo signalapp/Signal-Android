@@ -6,16 +6,18 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.transformWhile
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
@@ -24,7 +26,8 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
  * Drives [NotificationProfileDetailsScreen].
  */
 class NotificationProfileDetailsViewModel(
-  private val profileId: Long
+  private val profileId: Long,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<NotificationProfileDetailsEvent>(TAG) {
 
   companion object {
@@ -32,10 +35,8 @@ class NotificationProfileDetailsViewModel(
   }
 
   private val _state = MutableStateFlow(NotificationProfileDetailsState())
-  private val _actions = Channel<NotificationProfileDetailsAction>(Channel.BUFFERED)
 
   val state: StateFlow<NotificationProfileDetailsState> = _state.asStateFlow()
-  val actions: Flow<NotificationProfileDetailsAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
@@ -47,7 +48,7 @@ class NotificationProfileDetailsViewModel(
         .catch { Log.w(TAG, "Unable to read profile.", it) }
         .collect { details ->
           if (details == null) {
-            _actions.send(NotificationProfileDetailsAction.NavigateBack)
+            parentEventEmitter.navigateBack(popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.ProfileDetails::class, inclusive = true))
           } else {
             _state.update { it.copy(profile = details.profile, members = details.members, activeStatus = details.activeStatus) }
           }
@@ -57,15 +58,15 @@ class NotificationProfileDetailsViewModel(
 
   override suspend fun processEvent(event: NotificationProfileDetailsEvent) {
     when (event) {
-      NotificationProfileDetailsEvent.NavigateBackClicked -> _actions.send(NotificationProfileDetailsAction.NavigateBack)
-      NotificationProfileDetailsEvent.EditClicked -> _actions.send(NotificationProfileDetailsAction.NavigateToEdit(profileId))
+      NotificationProfileDetailsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      NotificationProfileDetailsEvent.EditClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.EditProfile(profileId))
       NotificationProfileDetailsEvent.ProfileToggled -> {
         val profile = _state.value.profile ?: return
         NotificationProfileDetailsRepository.toggleProfile(profile)
       }
       NotificationProfileDetailsEvent.AddMembersClicked -> {
         val profile = _state.value.profile ?: return
-        _actions.send(NotificationProfileDetailsAction.NavigateToSelectRecipients(profile.id, profile.allowedMembers))
+        parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.SelectRecipients(profile.id, profile.allowedMembers.toTypedArray()))
       }
       is NotificationProfileDetailsEvent.RemoveMemberClicked -> {
         val removed = NotificationProfileEdits.removeMember(profileId, event.recipientId)
@@ -73,7 +74,7 @@ class NotificationProfileDetailsViewModel(
       }
       is NotificationProfileDetailsEvent.UndoRemoveMemberClicked -> NotificationProfileEdits.addMember(profileId, event.recipientId)
       NotificationProfileDetailsEvent.SeeAllMembersClicked -> _state.update { it.copy(expanded = true) }
-      NotificationProfileDetailsEvent.ScheduleClicked -> _actions.send(NotificationProfileDetailsAction.NavigateToSchedule(profileId))
+      NotificationProfileDetailsEvent.ScheduleClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.EditSchedule(profileId, createMode = false))
       is NotificationProfileDetailsEvent.AllowAllCallsToggled -> NotificationProfileEdits.setAllowAllCalls(profileId, event.enabled)
       is NotificationProfileDetailsEvent.NotifyForAllMentionsToggled -> NotificationProfileEdits.setAllowAllMentions(profileId, event.enabled)
       NotificationProfileDetailsEvent.DeleteClicked -> _state.update { it.copy(dialog = NotificationProfileDetailsState.Dialog.ConfirmDelete) }

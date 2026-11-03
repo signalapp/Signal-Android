@@ -148,7 +148,7 @@ class AppSettingsViewModelTest {
 
     viewModel.onEvent(AppSettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

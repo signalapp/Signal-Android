@@ -21,11 +21,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -34,6 +30,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
 import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
@@ -57,6 +56,8 @@ class NotificationProfileDetailsViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   private val details = MutableSharedFlow<NotificationProfileDetailsRepository.ProfileDetails?>()
   private val alice = recipient(ALICE)
@@ -103,14 +104,15 @@ class NotificationProfileDetailsViewModelTest {
   }
 
   @Test
-  fun `the screen closes once the profile no longer exists`() = runTest(testDispatcher) {
+  fun `the screen closes along with anything above it once the profile no longer exists`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     details.emit(loaded())
     details.emit(null)
 
-    assertThat(actions).containsExactly(NotificationProfileDetailsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(
+      AppSettingsNavigationEvent.NavigateBack(popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.ProfileDetails::class, inclusive = true))
+    )
   }
 
   @Test
@@ -166,32 +168,31 @@ class NotificationProfileDetailsViewModelTest {
   @Test
   fun `EditClicked opens the editor`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(NotificationProfileDetailsEvent.EditClicked)
 
-    assertThat(actions).containsExactly(NotificationProfileDetailsAction.NavigateToEdit(PROFILE_ID))
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile(PROFILE_ID)))
   }
 
   @Test
   fun `AddMembersClicked opens the picker with the current members selected`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
     details.emit(loaded())
 
     viewModel.onEvent(NotificationProfileDetailsEvent.AddMembersClicked)
 
-    assertThat(actions).containsExactly(NotificationProfileDetailsAction.NavigateToSelectRecipients(PROFILE_ID, setOf(ALICE, BOB)))
+    assertThat(navigationEvents).containsExactly(
+      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.SelectRecipients(PROFILE_ID, arrayOf(ALICE, BOB)))
+    )
   }
 
   @Test
   fun `AddMembersClicked does nothing before the profile loads`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(NotificationProfileDetailsEvent.AddMembersClicked)
 
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
   }
 
   @Test
@@ -226,11 +227,10 @@ class NotificationProfileDetailsViewModelTest {
   @Test
   fun `ScheduleClicked opens the schedule editor`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(NotificationProfileDetailsEvent.ScheduleClicked)
 
-    assertThat(actions).containsExactly(NotificationProfileDetailsAction.NavigateToSchedule(PROFILE_ID))
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditSchedule(PROFILE_ID, createMode = false)))
   }
 
   @Test
@@ -279,15 +279,14 @@ class NotificationProfileDetailsViewModelTest {
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(NotificationProfileDetailsEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(NotificationProfileDetailsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(): NotificationProfileDetailsViewModel {
-    return NotificationProfileDetailsViewModel(profileId = PROFILE_ID)
+    return NotificationProfileDetailsViewModel(profileId = PROFILE_ID, parentEventEmitter = { navigationEvents += it })
   }
 
   private fun loaded(): NotificationProfileDetailsRepository.ProfileDetails {
@@ -298,11 +297,5 @@ class NotificationProfileDetailsViewModelTest {
     return mockk<Recipient> {
       every { this@mockk.id } returns id
     }
-  }
-
-  private fun TestScope.collectActions(actions: Flow<NotificationProfileDetailsAction>): List<NotificationProfileDetailsAction> {
-    val collected = mutableListOf<NotificationProfileDetailsAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
   }
 }

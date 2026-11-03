@@ -365,7 +365,7 @@ class PrivacySettingsViewModelTest {
 
     viewModel.onEvent(PrivacySettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

@@ -142,7 +142,7 @@ class EditAboutViewModelTest {
     viewModel.onEvent(EditAboutEvent.SaveClicked)
 
     coVerify { EditAboutRepository.setAbout(about = "Out to lunch", emoji = "👋") }
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -153,7 +153,7 @@ class EditAboutViewModelTest {
     viewModel.onEvent(EditAboutEvent.SaveClicked)
 
     coVerify { EditAboutRepository.setAbout(about = "", emoji = "") }
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -185,7 +185,7 @@ class EditAboutViewModelTest {
 
     viewModel.onEvent(EditAboutEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
     coVerify(exactly = 0) { EditAboutRepository.setAbout(any(), any()) }
   }
 

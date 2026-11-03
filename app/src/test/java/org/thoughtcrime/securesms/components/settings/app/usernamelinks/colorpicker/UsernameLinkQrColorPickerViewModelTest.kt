@@ -113,7 +113,7 @@ class UsernameLinkQrColorPickerViewModelTest {
 
     viewModel.onEvent(UsernameLinkQrColorPickerEvent.DoneClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -122,6 +122,6 @@ class UsernameLinkQrColorPickerViewModelTest {
 
     viewModel.onEvent(UsernameLinkQrColorPickerEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 }

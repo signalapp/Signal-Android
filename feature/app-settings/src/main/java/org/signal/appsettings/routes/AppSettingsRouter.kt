@@ -95,21 +95,38 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
           openedDirectly = false
         }
 
-        event.popUpTo?.let { navigator[AppSettingsHomeRoute].popUpTo(it) }
+        if (event.popUpTo != null) {
+          val stack = navigator[AppSettingsHomeRoute]
+          stack.retainedSize(event.popUpTo)?.let { stack.dropTo(it) }
+        }
 
         if (event.route != AppSettingsRoute.Empty) {
           navigator.processEvent(ListDetailEvents.Push(event.route))
         }
       }
 
-      AppSettingsNavigationEvent.NavigateBack -> {
+      is AppSettingsNavigationEvent.NavigateBack -> {
         val stack = navigator[AppSettingsHomeRoute]
+        val retainedSize = if (event.popUpTo != null) {
+          stack.retainedSize(event.popUpTo) ?: return true
+        } else {
+          stack.size - 1
+        }
+
         // Beside the list, or opened on its own, a section's first screen is never closed by going back.
-        if (!stack.hasDetail || (stack.detailDepth == 1 && (isSplitPane || openedDirectly))) {
+        val closesSection = retainedSize <= stack.size - stack.detailDepth
+        if (!stack.hasDetail || (closesSection && (isSplitPane || openedDirectly))) {
           return false
         }
 
-        navigator.processEvent(ListDetailEvents.Back)
+        if (event.popUpTo == null) {
+          navigator.processEvent(ListDetailEvents.Back)
+        } else {
+          stack.dropTo(retainedSize)
+          if (!stack.hasDetail) {
+            navigator.processEvent(ListDetailEvents.RevealList)
+          }
+        }
       }
     }
 
@@ -117,16 +134,19 @@ class AppSettingsRouter(private val savedStateHandle: SavedStateHandle) : ViewMo
   }
 }
 
-/** Pops the detail screens [popUpTo] names, never reaching the list beneath them. */
-private fun ListDetailBackStack.popUpTo(popUpTo: PopUpTo) {
-  val firstDetailIndex = lastIndex - detailDepth + 1
+/** The size this stack is left at once [popUpTo] closes its screens, or null when none of its detail screens match. */
+private fun ListDetailBackStack.retainedSize(popUpTo: PopUpTo): Int? {
+  val firstDetailIndex = size - detailDepth
   val index = indexOfLast { popUpTo.route.isInstance(it) }
   if (index < firstDetailIndex) {
-    return
+    return null
   }
 
-  val retained = if (popUpTo.inclusive) index else index + 1
-  while (size > retained) {
+  return if (popUpTo.inclusive) index else index + 1
+}
+
+private fun ListDetailBackStack.dropTo(size: Int) {
+  while (this.size > size) {
     removeAt(lastIndex)
   }
 }

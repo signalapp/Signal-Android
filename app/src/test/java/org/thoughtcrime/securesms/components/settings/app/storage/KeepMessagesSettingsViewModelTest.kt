@@ -69,7 +69,7 @@ class KeepMessagesSettingsViewModelTest {
 
     viewModel.onEvent(KeepMessagesSettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

@@ -115,7 +115,7 @@ class EditProfileNameViewModelTest {
     viewModel.onEvent(EditProfileNameEvent.SaveClicked)
 
     coVerify { EditProfileNameRepository.setProfileName(ProfileName.fromParts("Sam", "Hart")) }
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -147,7 +147,7 @@ class EditProfileNameViewModelTest {
 
     viewModel.onEvent(EditProfileNameEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
     coVerify(exactly = 0) { EditProfileNameRepository.setProfileName(any()) }
   }
 

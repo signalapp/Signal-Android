@@ -306,7 +306,7 @@ class UsernameLinkSettingsViewModelTest {
 
     viewModel.onEvent(UsernameLinkSettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

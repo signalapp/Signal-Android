@@ -29,10 +29,10 @@ fun VectorAvatarCreationEntry(initialAvatar: Avatar.Vector, parentEventEmitter: 
     when (action) {
       is VectorAvatarCreationAction.Finish -> {
         resultBus.sendResult(result = AvatarEditorResult(action.avatar))
-        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
       }
 
-      VectorAvatarCreationAction.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+      VectorAvatarCreationAction.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
     }
   }
 

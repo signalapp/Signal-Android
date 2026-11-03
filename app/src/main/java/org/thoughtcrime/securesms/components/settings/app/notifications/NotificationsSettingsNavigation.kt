@@ -10,6 +10,7 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.split.detailEntry
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details.NotificationProfileDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.list.NotificationProfilesEntry
 
 /**
@@ -18,5 +19,9 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 fun EntryProviderScope<NavKey>.registerNotificationsRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   detailEntry<AppSettingsRoute.NotificationsRoute.NotificationProfiles> {
     NotificationProfilesEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.NotificationsRoute.ProfileDetails> { route ->
+    NotificationProfileDetailsEntry(profileId = route.profileId, parentEventEmitter = parentEventEmitter)
   }
 }

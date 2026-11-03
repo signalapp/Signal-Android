@@ -173,7 +173,7 @@ class BadgesOverviewViewModelTest {
     viewModel.onEvent(BadgesOverviewEvent.DisplayBadgesOnProfileToggled(false))
     viewModel.onEvent(BadgesOverviewEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -206,7 +206,7 @@ class BadgesOverviewViewModelTest {
 
     viewModel.onEvent(BadgesOverviewEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(): BadgesOverviewViewModel = BadgesOverviewViewModel(parentEventEmitter = { navigationEvents += it })

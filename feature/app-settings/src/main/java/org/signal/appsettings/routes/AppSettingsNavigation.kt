@@ -138,7 +138,7 @@ fun AppSettingsNavigation(
         entries = entries,
         isSplitPane = isSplitPane,
         paneAnchor = PaneAnchor.SPLIT,
-        onBack = { navigate(AppSettingsNavigationEvent.NavigateBack) },
+        onBack = { navigate(AppSettingsNavigationEvent.NavigateBack()) },
         onExitDetail = { navigator.processEvent(ListDetailEvents.ExitDetail) },
         layout = rememberListDetailPaneLayout(
           paneAnchor = PaneAnchor.SPLIT,

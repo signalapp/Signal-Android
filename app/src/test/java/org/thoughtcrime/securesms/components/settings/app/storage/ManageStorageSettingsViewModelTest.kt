@@ -145,7 +145,7 @@ class ManageStorageSettingsViewModelTest {
 
     viewModel.onEvent(ManageStorageSettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

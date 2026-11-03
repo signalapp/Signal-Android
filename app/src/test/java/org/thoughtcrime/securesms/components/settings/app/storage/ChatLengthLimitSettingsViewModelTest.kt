@@ -65,7 +65,7 @@ class ChatLengthLimitSettingsViewModelTest {
 
     viewModel.onEvent(ChatLengthLimitSettingsEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

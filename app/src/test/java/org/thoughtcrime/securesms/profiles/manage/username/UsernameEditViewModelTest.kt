@@ -219,7 +219,7 @@ class UsernameEditViewModelTest {
     coVerify { UsernameEditRepository.confirmUsernameAndCreateNewLink(Username("spider.42")) }
     verify { UsernameEditRepository.markUsernameSet() }
     assertThat(actions).containsExactly(UsernameEditAction.UsernameSaved)
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -237,7 +237,7 @@ class UsernameEditViewModelTest {
 
     assertThat(viewModel.state.value.dialog).isEqualTo(UsernameEditState.Dialog.None)
     coVerify { UsernameEditRepository.confirmUsernameAndCreateNewLink(Username("venom.42")) }
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -303,7 +303,7 @@ class UsernameEditViewModelTest {
 
     coVerify { UsernameEditRepository.deleteUsernameAndLink() }
     assertThat(actions).containsExactly(UsernameEditAction.UsernameDeleted)
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test

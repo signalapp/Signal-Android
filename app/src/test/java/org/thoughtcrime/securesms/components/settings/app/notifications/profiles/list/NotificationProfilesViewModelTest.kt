@@ -77,7 +77,7 @@ class NotificationProfilesViewModelTest {
   }
 
   @Test
-  fun `NavigateBackClicked navigates back`() = assertEventNavigates(NotificationProfilesEvent.NavigateBackClicked, AppSettingsNavigationEvent.NavigateBack)
+  fun `NavigateBackClicked navigates back`() = assertEventNavigates(NotificationProfilesEvent.NavigateBackClicked, AppSettingsNavigationEvent.NavigateBack())
 
   @Test
   fun `NewProfileClicked starts the create flow`() = assertEventNavigates(

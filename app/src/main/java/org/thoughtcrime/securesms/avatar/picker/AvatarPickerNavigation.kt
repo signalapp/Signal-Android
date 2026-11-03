@@ -52,7 +52,7 @@ fun AvatarPickerNavigation(
     { event ->
       when (event) {
         is AppSettingsNavigationEvent.NavigateToScreen -> router.navigateTo(event.route)
-        AppSettingsNavigationEvent.NavigateBack -> router.navigateBack()
+        is AppSettingsNavigationEvent.NavigateBack -> router.navigateBack()
       }
     }
   }

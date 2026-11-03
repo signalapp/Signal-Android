@@ -38,6 +38,8 @@ class AppSettingsRouterTest {
   private val stack
     get() = router.navigator[AppSettingsHomeRoute]
 
+  private val closeDetails = PopUpTo(AppSettingsRoute.NotificationsRoute.ProfileDetails::class, inclusive = true)
+
   @Before
   fun setUp() {
     Dispatchers.setMain(UnconfinedTestDispatcher())
@@ -92,7 +94,7 @@ class AppSettingsRouterTest {
   fun `when navigating back from a section, then it is popped`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
 
-    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack)
+    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack())
 
     assertThat(handled).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute)
@@ -100,7 +102,7 @@ class AppSettingsRouterTest {
 
   @Test
   fun `when navigating back from home, then it is left to the host`() {
-    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack)
+    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack())
 
     assertThat(handled).isFalse()
     assertThat(stack).containsExactly(AppSettingsHomeRoute)
@@ -118,7 +120,7 @@ class AppSettingsRouterTest {
   fun `given a section opened directly, when navigating back from it, then it is left to the host`() {
     router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
 
-    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isFalse()
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack())).isFalse()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
   }
 
@@ -127,7 +129,7 @@ class AppSettingsRouterTest {
     router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.UsernameLinkRoute.QRColorPicker))
 
-    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isTrue()
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack())).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.UsernameLinkRoute.UsernameLink)
   }
 
@@ -136,7 +138,7 @@ class AppSettingsRouterTest {
     router.openDirectly(AppSettingsRoute.UsernameLinkRoute.UsernameLink)
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats, replacesDetail = true))
 
-    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack)).isTrue()
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack())).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute)
   }
 
@@ -144,7 +146,7 @@ class AppSettingsRouterTest {
   fun `given split pane, when navigating back from a section, then it is left to the host`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
 
-    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack, isSplitPane = true)).isFalse()
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack(), isSplitPane = true)).isFalse()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
   }
 
@@ -153,7 +155,7 @@ class AppSettingsRouterTest {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Reactions))
 
-    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack, isSplitPane = true)).isTrue()
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack(), isSplitPane = true)).isTrue()
     assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.ChatsRoute.Chats)
   }
 
@@ -219,10 +221,60 @@ class AppSettingsRouterTest {
   }
 
   @Test
-  fun `when an event is sent before anything collects, then it is delivered once collected`() = runTest {
-    router.onEvent(AppSettingsNavigationEvent.NavigateBack)
+  fun `when navigating back with a pop up to, then that screen and those above it are closed`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.NotificationProfiles))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.ProfileDetails(1)))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile(1)))
 
-    assertThat(router.events.first()).isEqualTo(AppSettingsNavigationEvent.NavigateBack)
+    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack(popUpTo = closeDetails))
+
+    assertThat(handled).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.NotificationsRoute.NotificationProfiles)
+  }
+
+  @Test
+  fun `when navigating back with a pop up to a screen that is not open, then nothing is closed`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.NotificationProfiles))
+
+    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack(popUpTo = closeDetails))
+
+    assertThat(handled).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.NotificationsRoute.NotificationProfiles)
+  }
+
+  @Test
+  fun `when navigating back with a pop up to that closes every screen, then home is left on its own`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.ProfileDetails(1)))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile(1)))
+
+    val handled = router.navigate(AppSettingsNavigationEvent.NavigateBack(popUpTo = closeDetails))
+
+    assertThat(handled).isTrue()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute)
+  }
+
+  @Test
+  fun `given a screen opened directly, when navigating back with a pop up to it, then it is left to the host`() {
+    router.openDirectly(AppSettingsRoute.NotificationsRoute.ProfileDetails(1))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile(1)))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack(popUpTo = closeDetails))).isFalse()
+    assertThat(stack).containsExactly(AppSettingsHomeRoute, AppSettingsRoute.NotificationsRoute.ProfileDetails(1), AppSettingsRoute.NotificationsRoute.EditProfile(1))
+  }
+
+  @Test
+  fun `given split pane, when navigating back with a pop up to the first screen beside the list, then it is left to the host`() {
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.ProfileDetails(1)))
+    router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile(1)))
+
+    assertThat(router.navigate(AppSettingsNavigationEvent.NavigateBack(popUpTo = closeDetails), isSplitPane = true)).isFalse()
+  }
+
+  @Test
+  fun `when an event is sent before anything collects, then it is delivered once collected`() = runTest {
+    router.onEvent(AppSettingsNavigationEvent.NavigateBack())
+
+    assertThat(router.events.first()).isEqualTo(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -243,7 +295,7 @@ class AppSettingsRouterTest {
   fun `when navigating back from a section, then nothing is selected`() {
     router.navigate(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.ChatsRoute.Chats))
     Snapshot.sendApplyNotifications()
-    router.navigate(AppSettingsNavigationEvent.NavigateBack)
+    router.navigate(AppSettingsNavigationEvent.NavigateBack())
     Snapshot.sendApplyNotifications()
 
     assertThat(router.selectedRoute.value).isNull()

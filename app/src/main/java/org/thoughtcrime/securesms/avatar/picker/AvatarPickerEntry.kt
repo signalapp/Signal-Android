@@ -90,7 +90,7 @@ fun AvatarPickerEntry(
 
   CollectActions(viewModel.actions) { action ->
     when (action) {
-      AvatarPickerActions.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+      AvatarPickerActions.Close -> parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
       AvatarPickerActions.ShowSaveFailed -> scope.launch { snackbarHostState.showSnackbar(saveFailedMessage) }
       AvatarPickerActions.LaunchCameraCapture -> photoSelectionLauncher.launch(AvatarSelectionActivity.getIntentForCameraCapture(context))
       AvatarPickerActions.LaunchPhotoSelection -> photoSelectionLauncher.launch(AvatarSelectionActivity.getIntentForGallery(context))
@@ -103,11 +103,11 @@ fun AvatarPickerEntry(
       }
       is AvatarPickerActions.FinishWithAvatar -> {
         onResult(AvatarPickerResult.Selected(action.media))
-        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
       }
       AvatarPickerActions.FinishWithClearedAvatar -> {
         onResult(AvatarPickerResult.Cleared)
-        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack)
+        parentEventEmitter(AppSettingsNavigationEvent.NavigateBack())
       }
     }
   }

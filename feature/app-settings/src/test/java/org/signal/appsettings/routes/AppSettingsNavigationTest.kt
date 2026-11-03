@@ -63,7 +63,7 @@ class AppSettingsNavigationTest {
   fun `a split-pane window leaves settings rather than emptying the detail pane`() {
     setContent(defaultDetailRoute = AppSettingsRoute.ChatsRoute.Chats)
 
-    router.onEvent(AppSettingsNavigationEvent.NavigateBack)
+    router.onEvent(AppSettingsNavigationEvent.NavigateBack())
     composeTestRule.waitForIdle()
 
     assertThat(closed).isEqualTo(1)
@@ -77,7 +77,7 @@ class AppSettingsNavigationTest {
     router.navigator.processEvent(ListDetailEvents.Push(AppSettingsRoute.ChatsRoute.Reactions))
     composeTestRule.waitForIdle()
 
-    router.onEvent(AppSettingsNavigationEvent.NavigateBack)
+    router.onEvent(AppSettingsNavigationEvent.NavigateBack())
     composeTestRule.waitForIdle()
 
     assertThat(closed).isEqualTo(0)
@@ -90,7 +90,7 @@ class AppSettingsNavigationTest {
     router.navigator.processEvent(ListDetailEvents.Push(AppSettingsRoute.ChatsRoute.Chats))
     setContent(defaultDetailRoute = AppSettingsRoute.ChatsRoute.Chats)
 
-    router.onEvent(AppSettingsNavigationEvent.NavigateBack)
+    router.onEvent(AppSettingsNavigationEvent.NavigateBack())
     composeTestRule.waitForIdle()
 
     assertThat(closed).isEqualTo(0)

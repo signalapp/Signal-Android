@@ -7,8 +7,6 @@ package org.thoughtcrime.securesms.components.settings.app.notifications.profile
 
 import android.text.format.DateFormat
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,6 +20,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
@@ -93,14 +92,14 @@ fun NotificationProfileDetailsScreen(
         }
       }
     },
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = state.profile != null
   ) { contentPadding ->
     val profile = state.profile ?: return@Settings
 
-    LazyColumn(
-      modifier = Modifier
-        .padding(contentPadding)
-        .testTag(NotificationProfileDetailsTestTags.LIST)
+    AppSettingsLazyColumn(
+      scaffoldPadding = contentPadding,
+      modifier = Modifier.testTag(NotificationProfileDetailsTestTags.LIST)
     ) {
       item {
         NotificationProfileRow(

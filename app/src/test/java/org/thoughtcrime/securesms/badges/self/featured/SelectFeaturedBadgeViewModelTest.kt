@@ -115,7 +115,7 @@ class SelectFeaturedBadgeViewModelTest {
     viewModel.onEvent(SelectFeaturedBadgeEvent.SaveClicked)
 
     coVerify(exactly = 1) { BadgeRepository.setFeaturedBadge(second) }
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -141,7 +141,7 @@ class SelectFeaturedBadgeViewModelTest {
 
     viewModel.onEvent(SelectFeaturedBadgeEvent.NavigateBackClicked)
 
-    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
