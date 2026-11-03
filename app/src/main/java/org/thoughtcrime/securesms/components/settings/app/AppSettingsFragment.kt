@@ -3,14 +3,9 @@ package org.thoughtcrime.securesms.components.settings.app
 import android.os.Bundle
 import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
-import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -21,18 +16,14 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class AppSettingsFragment : ComposeFragment() {
 
-  private val appSettingsRouter by viewModels<AppSettingsRouter>()
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { requireActivity().finishAfterTransition() },
+    onNavigateToScreen = ::navigateToScreen
+  )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     viewLifecycleOwner.lifecycle.addObserver(InAppPaymentsBottomSheetDelegate(childFragmentManager, viewLifecycleOwner))
-
-    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
-      when (event) {
-        AppSettingsNavigationEvent.NavigateBack -> requireActivity().finishAfterTransition()
-        is AppSettingsNavigationEvent.NavigateToScreen -> navigateToScreen(event.route)
-      }
-    }
   }
 
   @Composable

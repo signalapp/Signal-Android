@@ -33,11 +33,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.appsettings.routes.navigateTo
@@ -52,10 +49,10 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.viewModel
-import org.signal.core.util.collectFlowOnViewLifecycle
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.models.Banner
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.TurnOnNotificationsBottomSheet
@@ -69,7 +66,7 @@ class NotificationsSettingsFragment : ComposeFragment() {
     NotificationsSettingsViewModel.Factory().create(NotificationsSettingsViewModel::class.java)
   }
 
-  private val appSettingsRouter: AppSettingsRouter by viewModels()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   private lateinit var callbacks: DefaultNotificationsSettingsCallbacks
 
@@ -77,22 +74,13 @@ class NotificationsSettingsFragment : ComposeFragment() {
     super.onViewCreated(view, savedInstanceState)
 
     callbacks = DefaultNotificationsSettingsCallbacks(requireActivity(), viewModel, appSettingsRouter, DefaultNotificationsSettingsCallbacks.ActivityResultRegisterer.ForFragment(this))
+  }
 
-    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
-      when (event) {
-        AppSettingsNavigationEvent.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-        is AppSettingsNavigationEvent.NavigateToScreen -> when (event.route) {
-          AppSettingsRoute.NotificationsRoute.NotificationProfiles -> {
-            findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
-          }
-
-          AppSettingsRoute.NotificationsRoute.MutedNotifications -> {
-            findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_mutedNotificationsFragment)
-          }
-
-          else -> error("Unexpected route: ${event.route.javaClass.name}")
-        }
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.NotificationsRoute.NotificationProfiles -> findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
+      AppSettingsRoute.NotificationsRoute.MutedNotifications -> findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_mutedNotificationsFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 

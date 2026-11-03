@@ -9,24 +9,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.signal.appsettings.managestorage.ManageStorageSettingsAction
 import org.signal.appsettings.managestorage.ManageStorageSettingsEvent
 import org.signal.appsettings.managestorage.ManageStorageSettingsScreen
-import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
-import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.compose.CollectActions
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.viewModel
-import org.signal.core.util.collectFlowOnViewLifecycle
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -35,7 +31,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class ManageStorageSettingsFragment : ComposeFragment() {
 
-  private val appSettingsRouter by viewModels<AppSettingsRouter>()
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   private val viewModel: ManageStorageSettingsViewModel by viewModel {
     ManageStorageSettingsViewModel(parentEventEmitter = appSettingsRouter::onEvent)
@@ -46,13 +42,6 @@ class ManageStorageSettingsFragment : ComposeFragment() {
 
     UpgradeToPaidTierBottomSheet.addResultListener(this) {
       viewModel.onEvent(ManageStorageSettingsEvent.PaidTierUpgradeCompleted)
-    }
-
-    collectFlowOnViewLifecycle(appSettingsRouter.events, Lifecycle.State.RESUMED) { event ->
-      when (event) {
-        AppSettingsNavigationEvent.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-        is AppSettingsNavigationEvent.NavigateToScreen -> navigateToScreen(event.route)
-      }
     }
   }
 
