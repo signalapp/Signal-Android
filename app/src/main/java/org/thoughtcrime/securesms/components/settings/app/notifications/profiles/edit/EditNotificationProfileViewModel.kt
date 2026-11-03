@@ -6,14 +6,16 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.logging.Log
@@ -22,7 +24,8 @@ import org.signal.core.util.logging.Log
  * Drives [EditNotificationProfileScreen], for creating a profile when [profileId] is [NEW_PROFILE] and editing it otherwise.
  */
 class EditNotificationProfileViewModel(
-  private val profileId: Long
+  private val profileId: Long,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<EditNotificationProfileEvent>(TAG) {
 
   companion object {
@@ -34,10 +37,8 @@ class EditNotificationProfileViewModel(
   private val createMode = profileId == NEW_PROFILE
 
   private val _state = MutableStateFlow(EditNotificationProfileState(createMode = createMode, isLoaded = createMode))
-  private val _actions = Channel<EditNotificationProfileAction>(Channel.BUFFERED)
 
   val state: StateFlow<EditNotificationProfileState> = _state.asStateFlow()
-  val actions: Flow<EditNotificationProfileAction> = _actions.receiveAsFlow()
 
   init {
     if (!createMode) {
@@ -45,7 +46,7 @@ class EditNotificationProfileViewModel(
         val profile = EditNotificationProfileRepository.getProfile(profileId)
         if (profile == null) {
           Log.w(TAG, "Profile no longer exists.")
-          _actions.send(EditNotificationProfileAction.NavigateBack)
+          parentEventEmitter.navigateBack()
         } else {
           _state.update { it.copy(isLoaded = true, name = profile.name, emoji = profile.emoji) }
         }
@@ -55,7 +56,7 @@ class EditNotificationProfileViewModel(
 
   override suspend fun processEvent(event: EditNotificationProfileEvent) {
     when (event) {
-      EditNotificationProfileEvent.NavigateBackClicked -> _actions.send(EditNotificationProfileAction.NavigateBack)
+      EditNotificationProfileEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       EditNotificationProfileEvent.EmojiButtonClicked -> _state.update { it.copy(showEmojiPicker = true) }
       is EditNotificationProfileEvent.EmojiSelected -> _state.update { it.copy(emoji = event.emoji, showEmojiPicker = false) }
       EditNotificationProfileEvent.EmojiPickerDismissed -> _state.update { it.copy(showEmojiPicker = false) }
@@ -94,7 +95,14 @@ class EditNotificationProfileViewModel(
 
     when (result) {
       is EditNotificationProfileRepository.SaveResult.Success -> {
-        _actions.send(if (createMode) EditNotificationProfileAction.NavigateToAllowedMembers(result.profileId) else EditNotificationProfileAction.NavigateBack)
+        if (createMode) {
+          parentEventEmitter.navigateTo(
+            route = AppSettingsRoute.NotificationsRoute.AddAllowedMembers(result.profileId),
+            popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.EditProfile::class, inclusive = true)
+          )
+        } else {
+          parentEventEmitter.navigateBack()
+        }
       }
       EditNotificationProfileRepository.SaveResult.DuplicateName -> {
         _state.update { it.copy(nameError = EditNotificationProfileState.NameError.Duplicate) }

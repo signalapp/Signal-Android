@@ -6,14 +6,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.util.ViewUtil
-import org.signal.core.ui.viewModel
-import org.thoughtcrime.securesms.mediakeyboard.SignalEmojiPicker
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -22,31 +18,25 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class EditNotificationProfileFragment : ComposeFragment() {
 
-  private val viewModel: EditNotificationProfileViewModel by viewModel {
-    EditNotificationProfileViewModel(EditNotificationProfileFragmentArgs.fromBundle(requireArguments()).profileId)
-  }
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { findNavController().navigateUp() },
+    onNavigateToScreen = ::navigateToScreen
+  )
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    EditNotificationProfileScreen(
-      state = state,
-      onEvent = viewModel::onEvent,
-      emojiPicker = { onEmojiSelected -> SignalEmojiPicker(onEmojiSelected) }
+    EditNotificationProfileEntry(
+      profileId = EditNotificationProfileFragmentArgs.fromBundle(requireArguments()).profileId,
+      parentEventEmitter = appSettingsRouter::onEvent
     )
   }
 
-  private fun handleAction(action: EditNotificationProfileAction) {
-    ViewUtil.hideKeyboard(requireContext(), requireView())
-
-    when (action) {
-      EditNotificationProfileAction.NavigateBack -> findNavController().navigateUp()
-      is EditNotificationProfileAction.NavigateToAllowedMembers -> {
-        findNavController().safeNavigate(EditNotificationProfileFragmentDirections.actionEditNotificationProfileFragmentToAddAllowedMembersFragment(action.profileId))
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.NotificationsRoute.AddAllowedMembers -> findNavController().safeNavigate(
+        EditNotificationProfileFragmentDirections.actionEditNotificationProfileFragmentToAddAllowedMembersFragment(route.profileId)
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

@@ -18,10 +18,6 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -30,6 +26,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit.EditNotificationProfileRepository.SaveResult
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
@@ -49,6 +48,8 @@ class EditNotificationProfileViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   private val profile = NotificationProfile(
     id = PROFILE_ID,
@@ -97,11 +98,10 @@ class EditNotificationProfileViewModelTest {
     coEvery { EditNotificationProfileRepository.getProfile(PROFILE_ID) } coAnswers { loaded.await() }
 
     val viewModel = createViewModel(PROFILE_ID)
-    val actions = collectActions(viewModel.actions)
     loaded.complete(null)
 
     assertThat(viewModel.state.value.isLoaded).isFalse()
-    assertThat(actions).containsExactly(EditNotificationProfileAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -196,25 +196,28 @@ class EditNotificationProfileViewModelTest {
   @Test
   fun `creating a profile continues to its allowed members`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileEvent.PresetClicked(name = "Sleep", emoji = "😴"))
     viewModel.onEvent(EditNotificationProfileEvent.SaveClicked)
 
     coVerify(exactly = 1) { EditNotificationProfileRepository.createProfile("Sleep", "😴") }
-    assertThat(actions).containsExactly(EditNotificationProfileAction.NavigateToAllowedMembers(CREATED_ID))
+    assertThat(navigationEvents).containsExactly(
+      AppSettingsNavigationEvent.NavigateToScreen(
+        route = AppSettingsRoute.NotificationsRoute.AddAllowedMembers(CREATED_ID),
+        popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.EditProfile::class, inclusive = true)
+      )
+    )
   }
 
   @Test
   fun `saving an edit goes back`() = runTest(testDispatcher) {
     val viewModel = createViewModel(PROFILE_ID)
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileEvent.EmojiSelected("🔥"))
     viewModel.onEvent(EditNotificationProfileEvent.SaveClicked)
 
     coVerify(exactly = 1) { EditNotificationProfileRepository.updateProfile(PROFILE_ID, "Work", "🔥") }
-    assertThat(actions).containsExactly(EditNotificationProfileAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -222,12 +225,11 @@ class EditNotificationProfileViewModelTest {
     coEvery { EditNotificationProfileRepository.updateProfile(PROFILE_ID, any(), any()) } returns SaveResult.DuplicateName
 
     val viewModel = createViewModel(PROFILE_ID)
-    val actions = collectActions(viewModel.actions)
     viewModel.onEvent(EditNotificationProfileEvent.SaveClicked)
 
     assertThat(viewModel.state.value.nameError).isEqualTo(EditNotificationProfileState.NameError.Duplicate)
     assertThat(viewModel.state.value.isSaving).isFalse()
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
   }
 
   @Test
@@ -258,20 +260,13 @@ class EditNotificationProfileViewModelTest {
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(EditNotificationProfileAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(profileId: Long = EditNotificationProfileViewModel.NEW_PROFILE): EditNotificationProfileViewModel {
-    return EditNotificationProfileViewModel(profileId)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<EditNotificationProfileAction>): List<EditNotificationProfileAction> {
-    val collected = mutableListOf<EditNotificationProfileAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    return EditNotificationProfileViewModel(profileId, parentEventEmitter = { navigationEvents += it })
   }
 }

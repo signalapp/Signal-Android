@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardActions
@@ -51,6 +50,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.appsettings.AppSettingsLazyColumn
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.DayNightPreviews
@@ -137,12 +138,10 @@ fun EditNotificationProfileScreen(
         .imePadding()
         .fillMaxSize()
     ) {
-      LazyColumn(
+      AppSettingsLazyColumn(
         state = listState,
         contentPadding = PaddingValues(bottom = 80.dp),
-        modifier = Modifier
-          .fillMaxSize()
-          .testTag(EditNotificationProfileTestTags.LIST)
+        modifier = Modifier.testTag(EditNotificationProfileTestTags.LIST)
       ) {
         item(key = "title") {
           Text(
@@ -183,18 +182,23 @@ fun EditNotificationProfileScreen(
         }
       }
 
-      CircularProgressWrapper(
-        isLoading = state.isSaving,
+      Box(
+        contentAlignment = Alignment.BottomEnd,
         modifier = Modifier
-          .align(Alignment.BottomEnd)
-          .padding(16.dp)
+          .align(Alignment.BottomCenter)
+          .appSettingsScreen()
       ) {
-        Buttons.LargeTonal(
-          onClick = { onEvent(EditNotificationProfileEvent.SaveClicked) },
-          enabled = state.isLoaded && !state.isSaving,
-          modifier = Modifier.testTag(EditNotificationProfileTestTags.BUTTON_SAVE)
+        CircularProgressWrapper(
+          isLoading = state.isSaving,
+          modifier = Modifier.padding(16.dp)
         ) {
-          Text(text = stringResource(if (state.createMode) R.string.EditNotificationProfileFragment__create else R.string.EditNotificationProfileFragment__save))
+          Buttons.LargeTonal(
+            onClick = { onEvent(EditNotificationProfileEvent.SaveClicked) },
+            enabled = state.isLoaded && !state.isSaving,
+            modifier = Modifier.testTag(EditNotificationProfileTestTags.BUTTON_SAVE)
+          ) {
+            Text(text = stringResource(if (state.createMode) R.string.EditNotificationProfileFragment__create else R.string.EditNotificationProfileFragment__save))
+          }
         }
       }
     }
