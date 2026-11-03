@@ -24,6 +24,7 @@ import org.signal.core.models.ServiceId.PNI
 import org.signal.core.models.backup.MediaRootBackupKey
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.Base64
+import org.signal.core.util.PinHashUtil
 import org.signal.core.util.crypto.DeviceNameCipher
 import org.signal.core.util.eventbus.EventBus
 import org.signal.core.util.logging.Log
@@ -76,7 +77,6 @@ import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.DeviceAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
-import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.registration.RegistrationApi

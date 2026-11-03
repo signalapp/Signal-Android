@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.crypto;
+package org.signal.core.util.crypto;
 
 public class InvalidCiphertextException extends Exception {
   public InvalidCiphertextException(Exception nested) {

@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.api.crypto;
+package org.signal.core.util.crypto;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;

@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.signal.network.NetworkResult;
 import org.signal.network.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.NetworkResultUtil;
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
+import org.signal.core.util.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;

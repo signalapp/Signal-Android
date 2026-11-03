@@ -5,6 +5,7 @@ import org.signal.core.models.badges.Badge
 import org.signal.core.util.Base64
 import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Util
+import org.signal.core.util.crypto.InvalidCiphertextException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile

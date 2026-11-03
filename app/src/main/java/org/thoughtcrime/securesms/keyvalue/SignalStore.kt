@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceDataStore
+import org.signal.core.util.PinHashUtil
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.ApkUpdateValues
 import org.signal.storage.keyvalue.CallQualityValues
@@ -27,7 +28,6 @@ import org.signal.storage.keyvalue.TooltipValues
 import org.signal.storage.keyvalue.UiHintValues
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders
-import org.whispersystems.signalservice.api.kbs.PinHashUtil
 
 /**
  * Simple, encrypted key-value store.

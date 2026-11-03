@@ -2,13 +2,13 @@
  * Copyright 2023 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
-package org.whispersystems.signalservice.api.kbs
+package org.signal.core.util
 
 import org.signal.core.models.MasterKey
+import org.signal.core.util.crypto.HmacSIV
+import org.signal.core.util.crypto.InvalidCiphertextException
 import org.signal.libsignal.svr2.Pin
 import org.signal.libsignal.svr2.PinHash
-import org.whispersystems.signalservice.api.crypto.HmacSIV
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import java.nio.charset.StandardCharsets
 import java.text.Normalizer
 
@@ -53,7 +53,7 @@ object PinHashUtil {
    */
   @JvmStatic
   @Throws(InvalidCiphertextException::class)
-  fun decryptSvrDataIVCipherText(pinHash: PinHash, ivc: ByteArray?): KbsData {
+  fun decryptSvrDataIVCipherText(pinHash: PinHash, ivc: ByteArray): KbsData {
     val masterKey = HmacSIV.decrypt(pinHash.encryptionKey(), ivc)
     return KbsData(MasterKey(masterKey), pinHash.accessKey(), ivc)
   }

@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.logging.LoggingFragment
 import org.signal.core.ui.util.ViewUtil
+import org.signal.core.util.PinHashUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.signalservice.api.kbs.PinHashUtil
 import java.util.concurrent.TimeUnit
 
 /**

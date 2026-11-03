@@ -10,6 +10,7 @@ import org.signal.core.util.ExpiringProfileCredentialUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.crypto.InvalidCiphertextException
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
-import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.profiles.ProfileRepository
 import org.whispersystems.signalservice.api.profiles.ProfileRepository.IdProfilePair
