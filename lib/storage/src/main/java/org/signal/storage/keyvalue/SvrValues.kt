@@ -1,13 +1,13 @@
 package org.signal.storage.keyvalue
 
 import org.signal.core.models.MasterKey
+import org.signal.core.util.PinHashUtil
 import org.signal.core.util.StringStringSerializer
 import org.signal.core.util.logging.Log
 
 class SvrValues(
   store: KeyValueStore,
-  private val deriveMasterKey: () -> MasterKey,
-  private val hashPin: (String) -> String
+  private val deriveMasterKey: () -> MasterKey
 ) : SignalStoreValues(store) {
   companion object {
     private val TAG = Log.tag(SvrValues::class)
@@ -54,7 +54,7 @@ class SvrValues(
   fun setPin(pin: String) {
     store.beginWrite()
       .putString(PIN, pin)
-      .putString(LOCK_LOCAL_PIN_HASH, hashPin(pin))
+      .putString(LOCK_LOCAL_PIN_HASH, PinHashUtil.localPinHash(pin))
       .putBoolean(OPTED_OUT, false)
       .commit()
   }
@@ -64,7 +64,7 @@ class SvrValues(
     if (store.getString(PIN, null) == null) {
       store.beginWrite()
         .putString(PIN, pin)
-        .putString(LOCK_LOCAL_PIN_HASH, hashPin(pin))
+        .putString(LOCK_LOCAL_PIN_HASH, PinHashUtil.localPinHash(pin))
         .putBoolean(OPTED_OUT, false)
         .commit()
     }

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.keyvalue
 import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceDataStore
-import org.signal.core.util.PinHashUtil
 import org.signal.remoteconfig.RemoteConfig
 import org.signal.storage.keyvalue.ApkUpdateValues
 import org.signal.storage.keyvalue.CallQualityValues
@@ -37,8 +36,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val accountValues = AccountValues(store, context)
   val svrValues = SvrValues(
     store = store,
-    deriveMasterKey = { account.accountEntropyPool.deriveMasterKey() },
-    hashPin = PinHashUtil::localPinHash
+    deriveMasterKey = { account.accountEntropyPool.deriveMasterKey() }
   )
   val registrationValues = RegistrationValues(store, context) { AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade() }
   val pinValues = PinValues(store, context, RegistrationLockReminders.INITIAL_INTERVAL)
