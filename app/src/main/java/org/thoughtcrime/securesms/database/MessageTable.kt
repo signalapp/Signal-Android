@@ -448,7 +448,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID
         WHERE 
           $THREAD_ID = ? AND 
-          $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} AND 
+          ($TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} OR $TYPE & ${MessageTypes.BASE_TYPE_MASK} != ${MessageTypes.BASE_INBOX_TYPE}) AND 
           $STORY_TYPE = 0 AND 
           $PARENT_STORY_ID <= 0 AND
           $SCHEDULED_DATE = -1 AND
@@ -1942,15 +1942,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .forEach { threadId ->
         notifyConversationListeners(threadId)
       }
-  }
-
-  fun isGroupQuitMessage(messageId: Long): Boolean {
-    val type = MessageTypes.getOutgoingEncryptedMessageType() or MessageTypes.GROUP_LEAVE_BIT
-
-    return readableDatabase
-      .exists(TABLE_NAME)
-      .where("$ID = ? AND $TYPE & $type = $type AND $TYPE & ${MessageTypes.GROUP_V2_BIT} = 0", messageId)
-      .run()
   }
 
   fun getLatestGroupQuitTimestamp(threadId: Long, quitTimeBarrier: Long): Long {
@@ -4775,7 +4766,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$outgoingSecureMessageClause AND $THREAD_ID = ? AND ($TYPE & ${MessageTypes.GROUP_LEAVE_BIT} = 0 OR $TYPE & ${MessageTypes.GROUP_V2_BIT} = ${MessageTypes.GROUP_V2_BIT})", threadId)
+      .where("$outgoingSecureMessageClause AND $THREAD_ID = ? AND ($TYPE & ${MessageTypes.GROUP_UPDATE_BIT or MessageTypes.GROUP_LEAVE_BIT}) = 0", threadId)
       .run()
       .readToSingleInt()
   }

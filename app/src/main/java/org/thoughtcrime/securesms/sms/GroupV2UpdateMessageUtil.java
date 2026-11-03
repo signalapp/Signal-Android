@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.signal.storageservice.storage.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.signal.core.models.ServiceId;
+import org.signal.core.models.ServiceId.ACI;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupExtensions;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeField;
 
@@ -31,6 +32,17 @@ public final class GroupV2UpdateMessageUtil {
 
       return changeEditorOnlyWasRemoved(decryptedGroupChange) &&
              noChangesOtherThanDeletes(decryptedGroupChange);
+    }
+
+    return false;
+  }
+
+  public static boolean isSelfLeave(@NonNull MessageGroupContext groupContext, @NonNull ACI selfAci) {
+    if (isGroupV2(groupContext) && isUpdate(groupContext)) {
+      DecryptedGroupChange decryptedGroupChange = groupContext.requireGroupV2Properties()
+                                                              .getChange();
+
+      return decryptedGroupChange.deleteMembers.contains(selfAci.toByteString());
     }
 
     return false;

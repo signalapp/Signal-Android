@@ -90,6 +90,67 @@ public class GroupV2UpdateMessageUtilTest {
   }
 
   @Test
+  public void isSelfLeave_whenSelfIsRemoved_shouldReturnTrue() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .deleteMember(alice)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertTrue(isSelfLeave);
+  }
+
+  @Test
+  public void isSelfLeave_whenSelfIsRemovedAndPromotesNewAdmin_shouldReturnTrue() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .promoteToAdmin(bob)
+                                               .deleteMember(alice)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertTrue(isSelfLeave);
+  }
+
+  @Test
+  public void isSelfLeave_whenOtherIsRemoved_shouldReturnFalse() {
+    ACI  alice = ACI.from(UUID.randomUUID());
+    ACI  bob   = ACI.from(UUID.randomUUID());
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .deleteMember(bob)
+                                               .build();
+
+    DecryptedGroupV2Context context = new DecryptedGroupV2Context.Builder()
+                                                                 .context(new GroupContextV2.Builder().masterKey(ByteString.of(randomBytes())).build())
+                                                                 .change(change)
+                                                                 .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    boolean isSelfLeave = GroupV2UpdateMessageUtil.isSelfLeave(messageGroupContext, alice);
+
+    assertFalse(isSelfLeave);
+  }
+
+  @Test
   public void isJoinRequestCancel_whenChangeRemovesRequestingMembers_shouldReturnTrue() {
     // GIVEN
     ACI  alice = ACI.from(UUID.randomUUID());

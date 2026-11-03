@@ -2228,8 +2228,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(record.threadId, threadRecipient)
     val isHidden = threadRecipient?.isHidden ?: false
     val authorId = record.fromRecipient.id
+    val isBlockedGroup = threadRecipient?.isGroup == true && threadRecipient.isBlocked
+    val isSelfGroupLeave = record.isOutgoing && MessageTypes.isGroupV2LeaveOnly(record.type)
 
-    if (!messageRequestAccepted && threadRecipient != null) {
+    if (!messageRequestAccepted && threadRecipient != null && !isBlockedGroup && !isSelfGroupLeave) {
       if (threadRecipient.isPushGroup) {
         if (threadRecipient.isPushV2Group) {
           val inviteAddState = record.gv2AddInviteState
