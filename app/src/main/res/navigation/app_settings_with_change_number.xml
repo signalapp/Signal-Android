@@ -1234,7 +1234,7 @@
 
     <fragment
         android:id="@+id/mutedNotificationsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.GlobalMutedNotificationsFragment" />
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.muted.GlobalMutedNotificationsFragment" />
 
     <!-- Notification Profiles -->
     <fragment

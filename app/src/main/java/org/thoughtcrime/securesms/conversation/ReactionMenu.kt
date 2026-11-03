@@ -51,7 +51,7 @@ object ReactionMenu {
     }
 
     if (menuState.shouldShowReplyAction()) {
-      add(R.drawable.symbol_reply_24, R.string.conversation_selection__menu_reply, ReactionAction.REPLY)
+      add(CoreUiR.drawable.symbol_reply_24, R.string.conversation_selection__menu_reply, ReactionAction.REPLY)
     }
 
     if (menuState.shouldShowEditAction()) {

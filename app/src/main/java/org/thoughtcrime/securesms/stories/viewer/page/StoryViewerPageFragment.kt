@@ -1185,10 +1185,10 @@ class StoryViewerPageFragment :
     } else if (post.replyCount > 0) {
       presentViewsAndRepliesWithChevron(replies)
     } else if (post.group != null) {
-      setViewsAndRepliesIcon(R.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
+      setViewsAndRepliesIcon(CoreUiR.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
-      setViewsAndRepliesIcon(R.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
+      setViewsAndRepliesIcon(CoreUiR.drawable.symbol_reply_24, 20.dp, MaterialButton.ICON_GRAVITY_TEXT_START)
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
     }
   }

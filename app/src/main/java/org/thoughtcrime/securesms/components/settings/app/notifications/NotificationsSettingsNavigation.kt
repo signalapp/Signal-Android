@@ -10,6 +10,7 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.split.detailEntry
+import org.thoughtcrime.securesms.components.settings.app.notifications.muted.MutedNotificationsEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details.NotificationProfileDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit.EditNotificationProfileEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.list.NotificationProfilesEntry
@@ -20,6 +21,10 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 fun EntryProviderScope<NavKey>.registerNotificationsRoutes(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
   detailEntry<AppSettingsRoute.NotificationsRoute.Notifications> {
     NotificationsSettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.NotificationsRoute.MutedNotifications> {
+    MutedNotificationsEntry(recipientId = null, parentEventEmitter = parentEventEmitter)
   }
 
   detailEntry<AppSettingsRoute.NotificationsRoute.NotificationProfiles> {

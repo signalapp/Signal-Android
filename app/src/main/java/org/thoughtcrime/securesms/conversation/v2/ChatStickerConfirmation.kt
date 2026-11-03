@@ -321,7 +321,7 @@ private fun ReplyHeader(
     modifier = modifier
   ) {
     Icon(
-      imageVector = ImageVector.vectorResource(R.drawable.symbol_reply_24),
+      imageVector = ImageVector.vectorResource(CoreUiR.drawable.symbol_reply_24),
       contentDescription = null,
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
       modifier = Modifier.size(16.dp)

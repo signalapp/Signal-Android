@@ -236,7 +236,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.addAction(replyAction)
 
         if (remoteReply != null) {
-          val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.symbol_reply_24, actionName, remoteReply)
+          val wearableReplyAction = NotificationCompat.Action.Builder(CoreUiR.drawable.symbol_reply_24, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .build()
 

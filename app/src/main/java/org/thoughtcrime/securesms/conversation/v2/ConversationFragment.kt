@@ -3151,7 +3151,7 @@ class ConversationFragment :
 
     if (menuState.shouldShowReplyAction()) {
       items.add(
-        ActionItem(R.drawable.symbol_reply_24, resources.getString(R.string.conversation_selection__menu_reply)) {
+        ActionItem(CoreUiR.drawable.symbol_reply_24, resources.getString(R.string.conversation_selection__menu_reply)) {
           maybeShowSwipeToReplyTooltip()
           handleReplyToMessage(getSelectedConversationMessage())
           finishActionMode()
