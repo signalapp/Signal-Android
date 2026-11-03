@@ -10,13 +10,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -36,6 +36,8 @@ import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
@@ -82,12 +84,13 @@ fun NotificationProfilesScreen(
     onNavigationClick = { onEvent(NotificationProfilesEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = !profiles.isNullOrEmpty()
   ) { paddingValues ->
     when {
       profiles == null -> Unit
       profiles.isEmpty() -> NoNotificationProfilesEmpty(onEvent = onEvent, modifier = Modifier.padding(paddingValues))
-      else -> ProfileList(profiles = profiles, activeProfileId = state.activeProfileId, activeStatus = state.activeStatus, onEvent = onEvent, modifier = Modifier.padding(paddingValues))
+      else -> ProfileList(profiles = profiles, activeProfileId = state.activeProfileId, activeStatus = state.activeStatus, onEvent = onEvent, scaffoldPadding = paddingValues)
     }
   }
 }
@@ -98,10 +101,11 @@ private fun ProfileList(
   activeProfileId: Long?,
   activeStatus: NotificationProfiles.ActiveStatus?,
   onEvent: (NotificationProfilesEvent) -> Unit,
-  modifier: Modifier = Modifier
+  scaffoldPadding: PaddingValues
 ) {
-  LazyColumn(
-    modifier = modifier.testTag(NotificationProfilesTestTags.LIST)
+  AppSettingsLazyColumn(
+    scaffoldPadding = scaffoldPadding,
+    modifier = Modifier.testTag(NotificationProfilesTestTags.LIST)
   ) {
     item {
       Texts.SectionHeader(
@@ -148,6 +152,7 @@ private fun NoNotificationProfilesEmpty(
   Column(
     modifier = modifier
       .fillMaxSize()
+      .appSettingsScreen()
       .horizontalGutters(),
     horizontalAlignment = Alignment.CenterHorizontally
   ) {

@@ -13,11 +13,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -26,6 +22,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -42,6 +40,7 @@ class NotificationProfilesViewModelTest {
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
   private val profileLists = MutableSharedFlow<NotificationProfilesListRepository.ProfileList>()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -59,14 +58,14 @@ class NotificationProfilesViewModelTest {
 
   @Test
   fun `profiles are unknown until the repository emits`() = runTest(testDispatcher) {
-    val viewModel = NotificationProfilesViewModel()
+    val viewModel = NotificationProfilesViewModel(parentEventEmitter = { navigationEvents += it })
 
     assertThat(viewModel.state.value).isEqualTo(NotificationProfilesState())
   }
 
   @Test
   fun `each emission replaces the profiles and the active profile with its status`() = runTest(testDispatcher) {
-    val viewModel = NotificationProfilesViewModel()
+    val viewModel = NotificationProfilesViewModel(parentEventEmitter = { navigationEvents += it })
     val work = profile(id = 1)
     val sleep = profile(id = 2)
 
@@ -78,21 +77,26 @@ class NotificationProfilesViewModelTest {
   }
 
   @Test
-  fun `NavigateBackClicked navigates back`() = assertEventEmits(NotificationProfilesEvent.NavigateBackClicked, NotificationProfilesAction.NavigateBack)
+  fun `NavigateBackClicked navigates back`() = assertEventNavigates(NotificationProfilesEvent.NavigateBackClicked, AppSettingsNavigationEvent.NavigateBack)
 
   @Test
-  fun `NewProfileClicked starts the create flow`() = assertEventEmits(NotificationProfilesEvent.NewProfileClicked, NotificationProfilesAction.NavigateToNewProfile)
+  fun `NewProfileClicked starts the create flow`() = assertEventNavigates(
+    NotificationProfilesEvent.NewProfileClicked,
+    AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.EditProfile())
+  )
 
   @Test
-  fun `ProfileClicked opens that profile's details`() = assertEventEmits(NotificationProfilesEvent.ProfileClicked(7), NotificationProfilesAction.NavigateToProfileDetails(7))
+  fun `ProfileClicked opens that profile's details`() = assertEventNavigates(
+    NotificationProfilesEvent.ProfileClicked(7),
+    AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.ProfileDetails(7))
+  )
 
-  private fun assertEventEmits(event: NotificationProfilesEvent, expected: NotificationProfilesAction) = runTest(testDispatcher) {
-    val viewModel = NotificationProfilesViewModel()
-    val actions = collectActions(viewModel.actions)
+  private fun assertEventNavigates(event: NotificationProfilesEvent, expected: AppSettingsNavigationEvent) = runTest(testDispatcher) {
+    val viewModel = NotificationProfilesViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(event)
 
-    assertThat(actions).containsExactly(expected)
+    assertThat(navigationEvents).containsExactly(expected)
   }
 
   private fun profile(id: Long): NotificationProfile {
@@ -104,11 +108,5 @@ class NotificationProfilesViewModelTest {
       schedule = NotificationProfileSchedule(id = id),
       notificationProfileId = NotificationProfileId(UUID(0L, id))
     )
-  }
-
-  private fun TestScope.collectActions(actions: Flow<NotificationProfilesAction>): List<NotificationProfilesAction> {
-    val collected = mutableListOf<NotificationProfilesAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
   }
 }
