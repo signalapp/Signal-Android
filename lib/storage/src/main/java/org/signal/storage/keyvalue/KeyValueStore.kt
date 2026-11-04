@@ -11,6 +11,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
 
@@ -32,6 +33,8 @@ class KeyValueStore @VisibleForTesting constructor(
   constructor(storage: KeyValuePersistentStorage) : this(storage, SignalExecutors.newCachedSingleThreadExecutor("signal-KeyValueStore", ThreadUtil.PRIORITY_BACKGROUND_THREAD))
 
   private var dataSet: KeyValueDataSet? = null
+
+  private val changeListeners = CopyOnWriteArrayList<KeyedChangeListener>()
 
   @AnyThread
   @Synchronized
@@ -127,6 +130,30 @@ class KeyValueStore @VisibleForTesting constructor(
   }
 
   /**
+   * Registers [listener] to be told whenever a write changes the value of [key], where an absent key is treated as [defaultValue].
+   * It is called synchronously on the writing thread with the new value, after the in-memory cache has been updated.
+   */
+  @AnyThread
+  fun <T> addChangeListener(key: String, defaultValue: T, listener: ChangeListener<T>) {
+    addChangeListener(key, defaultValue, { it }, listener)
+  }
+
+  /**
+   * Like [addChangeListener], but the stored value is passed through [mapper] before being handed to [listener].
+   * Changes are still detected on the stored value, so [mapper] only runs when the stored value actually changes.
+   */
+  @AnyThread
+  fun <S, T> addChangeListener(key: String, defaultValue: S, mapper: (S) -> T, listener: ChangeListener<T>) {
+    @Suppress("UNCHECKED_CAST")
+    changeListeners += KeyedChangeListener(key, defaultValue, mapper as (Any?) -> Any?, listener as ChangeListener<Any?>)
+  }
+
+  @AnyThread
+  fun removeChangeListener(listener: ChangeListener<*>) {
+    changeListeners.removeAll { it.listener == listener }
+  }
+
+  /**
    * Forces the store to re-fetch all of its data from the database.
    */
   @Synchronized
@@ -135,14 +162,73 @@ class KeyValueStore @VisibleForTesting constructor(
     loadedDataSet()
   }
 
-  @Synchronized
   private fun write(newDataSet: KeyValueDataSet, removes: Collection<String>) {
-    val current = loadedDataSet()
+    val changes: List<Change> = synchronized(this) {
+      val current = loadedDataSet()
+      val changes = findChanges(current, newDataSet, removes)
 
-    current.putAll(newDataSet)
-    current.removeAll(removes)
+      current.putAll(newDataSet)
+      current.removeAll(removes)
 
-    executor.execute { storage.writeDataSet(newDataSet, removes) }
+      executor.execute { storage.writeDataSet(newDataSet, removes) }
+
+      changes
+    }
+
+    for (change in changes) {
+      change.keyedListener.notify(change.value)
+    }
+  }
+
+  private fun findChanges(current: KeyValueDataSet, newDataSet: KeyValueDataSet, removes: Collection<String>): List<Change> {
+    if (changeListeners.isEmpty()) {
+      return emptyList()
+    }
+
+    val currentValues = current.values
+    val newValues = newDataSet.values
+
+    return changeListeners.mapNotNull { keyedListener ->
+      val key = keyedListener.key
+
+      val newValue = when {
+        newValues.containsKey(key) -> {
+          newValues[key]
+        }
+        key in removes -> {
+          keyedListener.defaultValue
+        }
+        else -> {
+          return@mapNotNull null
+        }
+      }
+
+      val oldValue = if (currentValues.containsKey(key)) {
+        currentValues[key]
+      } else {
+        keyedListener.defaultValue
+      }
+
+      if (valuesEqual(oldValue, newValue)) {
+        null
+      } else {
+        Change(keyedListener, newValue)
+      }
+    }
+  }
+
+  private fun valuesEqual(a: Any?, b: Any?): Boolean {
+    return when {
+      a is ByteArray && b is ByteArray -> {
+        a.contentEquals(b)
+      }
+      (a is Int || a is Long) && (b is Int || b is Long) -> {
+        (a as Number).toLong() == (b as Number).toLong()
+      }
+      else -> {
+        a == b
+      }
+    }
   }
 
   private fun loadedDataSet(): KeyValueDataSet {
@@ -203,6 +289,23 @@ class KeyValueStore @VisibleForTesting constructor(
       blockUntilAllWritesFinished()
     }
   }
+
+  fun interface ChangeListener<T> {
+    fun onChanged(value: T)
+  }
+
+  private class KeyedChangeListener(
+    val key: String,
+    val defaultValue: Any?,
+    val mapper: (Any?) -> Any?,
+    val listener: ChangeListener<Any?>
+  ) {
+    fun notify(value: Any?) {
+      listener.onChanged(mapper(value))
+    }
+  }
+
+  private class Change(val keyedListener: KeyedChangeListener, val value: Any?)
 
   companion object {
     private val TAG = Log.tag(KeyValueStore::class.java)

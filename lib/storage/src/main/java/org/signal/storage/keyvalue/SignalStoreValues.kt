@@ -5,6 +5,7 @@
 
 package org.signal.storage.keyvalue
 
+import com.squareup.wire.ProtoAdapter
 import org.signal.core.util.ByteSerializer
 import org.signal.core.util.StringSerializer
 import org.signal.storage.protos.SignalStoreList
@@ -15,6 +16,21 @@ abstract class SignalStoreValues protected constructor(val store: KeyValueStore)
   abstract fun onFirstEverAppLaunch()
 
   abstract val keysToIncludeInBackup: List<String>
+
+  /** See [KeyValueStore.addChangeListener]. */
+  fun <T> addChangeListener(key: String, defaultValue: T, listener: KeyValueStore.ChangeListener<T>) {
+    store.addChangeListener(key, defaultValue, listener)
+  }
+
+  /** See [KeyValueStore.addChangeListener]. */
+  fun <S, T> addChangeListener(key: String, defaultValue: S, mapper: (S) -> T, listener: KeyValueStore.ChangeListener<T>) {
+    store.addChangeListener(key, defaultValue, mapper, listener)
+  }
+
+  /** Listens for changes to a proto stored at [key], decoding it with [adapter]. The listener receives [defaultValue] when the key is absent. */
+  fun <M : Any> addChangeListener(key: String, defaultValue: M, adapter: ProtoAdapter<M>, listener: KeyValueStore.ChangeListener<M>) {
+    store.addChangeListener<ByteArray?, M>(key, null, { blob -> blob?.let { adapter.decode(it) } ?: defaultValue }, listener)
+  }
 
   protected fun getString(key: String, defaultValue: String?): String? {
     return store.getString(key, defaultValue)

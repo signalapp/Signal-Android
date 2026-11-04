@@ -25,7 +25,6 @@ import org.signal.storage.keyvalue.StorageServiceValues
 import org.signal.storage.keyvalue.SvrValues
 import org.signal.storage.keyvalue.TooltipValues
 import org.signal.storage.keyvalue.UiHintValues
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders
 
 /**
@@ -38,7 +37,7 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     store = store,
     deriveMasterKey = { account.accountEntropyPool.deriveMasterKey() }
   )
-  val registrationValues = RegistrationValues(store, context) { AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade() }
+  val registrationValues = RegistrationValues(store, context)
   val pinValues = PinValues(store, context, RegistrationLockReminders.INITIAL_INTERVAL)
   val remoteConfigValues = RemoteConfigValues(store)
   val storageServiceValues = StorageServiceValues(store, svrValues)
@@ -65,6 +64,10 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
   val backupValues = BackupValues(store, context)
   val callQualityValues = CallQualityValues(store)
   val labsValues = LabsValues(store) { RemoteConfig.internalUser }
+
+  init {
+    SignalStoreChangeListeners.register(this)
+  }
 
   companion object {
 

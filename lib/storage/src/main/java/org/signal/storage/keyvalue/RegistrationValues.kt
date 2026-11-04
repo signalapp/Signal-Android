@@ -2,16 +2,11 @@ package org.signal.storage.keyvalue
 
 import android.content.Context
 import androidx.annotation.CheckResult
-import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
 import org.signal.storage.protos.LocalRegistrationMetadata
 import org.signal.storage.protos.RestoreDecisionState
 
-class RegistrationValues(
-  store: KeyValueStore,
-  context: Context,
-  private val onRestoreDecisionMade: () -> Unit
-) : SignalStoreValues(store) {
+class RegistrationValues(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(RegistrationValues::class)
@@ -31,7 +26,6 @@ class RegistrationValues(
 
     private const val HAS_PROMPTED_PUSH_REGISTRATION = "registration.has_prompted_push_registration"
 
-    @VisibleForTesting
     const val RESTORE_DECISION_STATE = "registration.restore_decision_state.2"
   }
 
@@ -125,10 +119,6 @@ class RegistrationValues(
         store.beginWrite()
           .putBlob(RESTORE_DECISION_STATE, newValue.encode())
           .apply()
-
-        if (newValue.isTerminal) {
-          onRestoreDecisionMade()
-        }
       }
     }
 }
