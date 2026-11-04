@@ -48,7 +48,7 @@
     <!-- Title of the sheet warning the user not to share their Signal Login. -->
     <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login">Нікому не повідомляйте Signal Login</string>
     <!-- Body of the warning sheet. The text inside the <b> tags is shown in bold; keep the tags around the equivalent phrase. -->
-    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">Нікому не повідомляйте свій Signal Login. Знаючи ці дані, інша людина може вкрасти ваш акаунт. <b>Представники Signal ніколи не питатимуть у вас</b> ID акаунту чи ключ відновлення. Ніколи не відповідайте на повідомлення нібито від Signal.</string>
+    <string name="DoNotShareLoginBottomSheet__do_not_share_your_signal_login_with_anyone">Нікому не повідомляйте свій Signal Login. Знаючи ці дані, інша людина може вкрасти ваш акаунт. <b>Представники Signal ніколи не питатимуть у вас</b> ні ID акаунту, ні ключ відновлення. Ніколи не відповідайте на повідомлення нібито від Signal.</string>
     <!-- Button acknowledging the warning and continuing with the copy or save the user started. -->
     <string name="DoNotShareLoginBottomSheet__got_it">Зрозуміло</string>
     <!-- Button opening a help article with more information about keeping the Signal Login safe. -->

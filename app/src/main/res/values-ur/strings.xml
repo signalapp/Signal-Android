@@ -3694,16 +3694,9 @@
     <string name="arrays__enabled">فعال ہونا</string>
     <string name="arrays__disabled">معطل ہونا</string>
 
-    <string name="arrays__name_and_message">نام اور پیغام</string>
-    <string name="arrays__name_only">صرف نام</string>
-    <string name="arrays__no_name_or_message">پیغام اور نام نہیں</string>
 
 
 
-    <string name="arrays__default">پہلے سے طے شدہ</string>
-    <string name="arrays__high">اونچا</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">زیادہ سے زیادہ</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3726,46 +3719,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">اسکرین سیکیورٹی آف ہے</string>
     <string name="preferences__notifications">اطلاعات</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">اطلاعات فعال کریں</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">کال کی اطلاعات</string>
-    <string name="preferences__led_color">LED رنگ</string>
     <string name="preferences__led_color_unknown">نامعلوم</string>
-    <string name="preferences__pref_led_blink_title">LED بلنک پیٹرن</string>
-    <string name="preferences__customize">حسب ضرورت بنائیں</string>
-    <string name="preferences__change_sound_and_vibration">آواز اور وائبریشن تبدیل کریں</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">آواز</string>
     <string name="preferences__silent">خاموش</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">پہلے سے طے شدہ</string>
-    <string name="preferences__repeat_alerts">انتباہات دہرائیں</string>
-    <string name="preferences__never">کبھی نہیں</string>
-    <string name="preferences__one_time">ایک مرتبہ</string>
-    <string name="preferences__two_times">دو مرتبہ</string>
-    <string name="preferences__three_times">تین مرتبہ</string>
-    <string name="preferences__five_times">پانچ مرتبہ</string>
-    <string name="preferences__ten_times">دس مرتبہ</string>
-    <string name="preferences__vibrate">وائبریٹ</string>
-    <string name="preferences__green">سبز</string>
-    <string name="preferences__red">سرخ</string>
-    <string name="preferences__blue">نیلا</string>
-    <string name="preferences__orange">اورینج</string>
-    <string name="preferences__cyan">سبزی مائل نیلا</string>
-    <string name="preferences__magenta">قرمزی رنگ</string>
-    <string name="preferences__white">سفید</string>
-    <string name="preferences__fast">تیز</string>
-    <string name="preferences__normal">عام</string>
-    <string name="preferences__slow">آہستہ</string>
     <string name="preferences__advanced">اعلی\' درجے کی</string>
     <string name="preferences__donate_to_signal">Signal کے لیے عطیہ کریں</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">سٹوریز</string>
-    <string name="preferences__storage">اسٹوریج</string>
     <string name="preferences__payments">ادائیگی</string>
-    <string name="preferences__conversation_length_limit">چیٹ کی طوالت کی حد</string>
-    <string name="preferences__keep_messages">پیغامات رکھیں</string>
     <string name="preferences__linked_devices">منسلک مشینیں</string>
     <string name="preferences__disable_pin">PIN کو غیر فعال کریں</string>
     <string name="preferences__enable_pin">PIN کو فعال کریں</string>
@@ -3774,69 +3734,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">اعلی درجے کی PIN کی ترتیبات</string>
     <string name="preferences__submit_debug_log">ڈی بَگ لاگ پیش کریں</string>
-    <string name="preferences_storage__storage_usage">اسٹوریج استعمال</string>
-    <string name="preferences_storage__photos">فوٹوز</string>
-    <string name="preferences_storage__videos">ویڈیوز</string>
-    <string name="preferences_storage__files">فائلز</string>
-    <string name="preferences_storage__audio">آڈیو</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">میسجز</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">اسٹیکرز</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">دوسرے</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">جانچ کی جا رہی ہے…</string>
-    <string name="preferences_storage__review_storage">اسٹورج جائزہ</string>
-    <string name="preferences_storage__delete_older_messages">پرانے پیغامات کو حذف کریں؟</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">میسج کی ہسٹری حذف کریں؟</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کر دے گا جو %1$s سے زیادہ پرانے ہیں۔</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">اس سے تمام چیٹس مستقل طور پر حالیہ ترین میسج تک کم ہو جائیں گی۔</item>
-        <item quantity="other">اس سے تمام چیٹس مستقل طور پر %1$s حالیہ ترین میسجز تک کم ہو جائیں گی۔</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کردے گا۔</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">یہ اس ڈیوائس اور کسی بھی لنک کردہ ڈیوائسز سے میسج کی تمام تر ہسٹری اور میڈیا کو مستقل طور پر حذف کر دے گا۔</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">کیا آپ واقعی میسج کی ساری ہسٹری کو ڈیلیٹ کرنا چاہتے ہیں؟</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">میسج کی ساری ہسٹری کو مستقل طور پر ختم کر دیا جائے گا۔ اس کارروائی کو کالعدم نہیں کیا جا سکتا۔</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">میسج کی تمام ہسٹری تمام ڈیوائسز سے مستقل طور پر ہٹا دی جائے گی۔ یہ ایکشن کالعدم نہیں کیا جا سکتا۔</string>
-    <string name="preferences_storage__delete_all_now">اب سب کو حذف کریں</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">ہمیشہ کے لئے</string>
-    <string name="preferences_storage__one_year">1 سال</string>
-    <string name="preferences_storage__six_months">6 ماہ</string>
-    <string name="preferences_storage__thirty_days">30 دن</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">کوئی نہیں</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s پيغام</item>
-        <item quantity="other">%1$s پيغامات</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">اپنی مرضی کے مطابق</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">اپنے رابطوں پر اپنا IP ایڈریس ظاہر کرنے سے بچنے کیلئے Signal سرور کے ذریعے تمام کالوں کو ریلے کریں۔ فعال کرنے سے کال کا معیار کم ہوجائے گا۔</string>
     <string name="preferences_advanced__always_relay_calls">ہمیشہ کالیں نشر کریں</string>
-    <string name="preferences_notifications__in_chat_sounds">درونِ ایپ آوازیں</string>
-    <string name="preferences_notifications__show">دکھائیں</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">میوٹ ہونے کے دوران</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">ری ایکشن کی اطلاعات</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">اپنے بھیجے گئے میسجز پر ری ایکشنز کے لیے اطلاعات دکھائیں</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">غیر پڑھے ہوئے پیغامات کی یاد دہانیاں</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">میوٹ کردہ چیٹس میں غیر پڑھے ہوئے میسجز ہونے پر کبھی کبھار اطلاع دیں</string>
-    <string name="preferences_notifications__ringtone">رنگ ٹون</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">ترجیح دینا</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">اطلاعات کی نقص ازالہ کاری کریں</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">سنسرشپ کی حکمت عملی</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5105,45 +5007,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">ہو گیا</string>
 
-    <string name="NotificationsSettingsFragment__calls">کالز</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">آوازیں</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">رابطہ Signal میں شامل ہوتا ہے</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">جب فون کا کوئی رابطہ Signal میں شامل ہو تو اطلاع دکھائیں</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">اطلاعات کی سیٹنگز ری سیٹ کریں</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">اطلاعات کی سیٹنگز کو ڈیفالٹ پر ری سیٹ کریں، بشمول اپنی چیٹس کے لیے مقرر کردہ حسبِ ضرورت سیٹنگز</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">تمام چیٹس کے لیے اطلاعات کی تمام سیٹنگز ڈیفالٹ پر ری سیٹ کریں؟</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">ری سیٹ کریں</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">اطلاع کی پروفائلز</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">صرف اپنے منتخب افراد اور گروپس کی اطلاعات موصول کرنے کے لیے پروفائل تخلیق کریں۔</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">میوٹ ہونے کے دوران</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">کالز</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">میوٹ کردہ چیٹس میں کال شروع ہونے پر گھنٹی بجائیں یا اطلاع دیں۔</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">ذکر</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">میوٹ کردہ چیٹس میں آپ کو مینشن کیے جانے پر اطلاع دیں۔</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">جوابات</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">میوٹ کردہ چیٹس میں کوئی آپ کے میسج کا جواب دے تو اطلاع دیں۔</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">جب یہ چیٹ میوٹ ہو تو کال شروع ہونے پر گھنٹی بجائیں یا اطلاع دیں۔</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">اس چیٹ کے میوٹ ہونے کے دوران جب کوئی آپ کو مینشن کرے تو اطلاع دیں۔</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">اس چیٹ کے میوٹ ہونے کے دوران جب کوئی آپ کے میسج کا جواب دے تو اطلاع دیں۔</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">اس چیٹ کے میوٹ ہونے پر نا پڑھے ہوئے میسجز کے لیے کبھی کبھار اطلاع دے۔</string>
 
@@ -5227,12 +5099,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">عطیہ گزار بنیں</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">ایموجی تلاش کریں</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">واپس ایموجی پر</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">صاف اندراج صاف کریں</string>
     <string name="KeyboardPagerFragment_search_giphy">GIPHY تلاش کریں</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">نامعلوم رنگ ٹون</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5401,6 +5269,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">ایک رنگ منتخب کریں</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">اشتراک کریں</string>
@@ -5779,8 +5651,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">تمام مینشنز کے لیے اطلاع دیں</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">شامل کریں</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">صرف ان افراد اور گروپس سے اطلاعات اور کالز وصول کرنے کے لیے پروفائل تخلیق کریں جن سے آپ سننا چاہتے ہیں۔</string>
@@ -5856,12 +5726,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">آن ہے تاوقتیکہ %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">پکر کھولنے میں ناکامی ہوئی۔</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">اطلاعات کو فعال بنانے کے لیے، Signal کو انہیں ڈسپلے کرنے کی اجازت درکار ہے۔</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">آن کریں</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">یہ Signal کی آفیشل اور واحد چیٹ ہے</string>
@@ -7146,28 +7010,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">ہم ایک ہفتے میں آپ سے دوبارہ رابطہ کریں گے۔</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">اپنے دو مرحلہ جاتی طریقہ کار کی تصدیق کریں</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">ہم وقتاً فوقتاً آپ سے اپنے دو مرحلہ جاتی طریقے کی تصدیق کرنے کو کہیں گے، تاکہ یقینی بنایا جا سکے کہ یہ اب بھی درست طریقے سے ترتیب میں ہے۔</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">تصدیق کریں</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">ابھی نہیں</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">اپنی توثیق کار ایپ کی تصدیق کرنے کا شکریہ۔</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">اپنی پاس کیی کی تصدیق کرنے کا شکریہ۔</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">اپنے Signal Login کی تصدیق کریں</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">ہم وقتاً فوقتاً آپ سے آپ کی login کی معلومات کی تصدیق کرنے کو کہیں گے، تاکہ یقینی بنایا جا سکے کہ آپ کو وہ اب بھی یاد ہیں۔</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">تصدیق کریں</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">ابھی نہیں</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">اپنے Signal Login کی تصدیق کرنے کا شکریہ۔</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">پوری اسکرین کی اطلاعات کو آن کریں؟</string>
@@ -7488,34 +7352,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">مزید جانیں</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">آپ Signal کے محفوظ بیک اپس کو سبسکرائب نہیں کر سکتے کیونکہ آپ کا فون Google Play کی سروسز کو سپورٹ نہیں کرتا۔ مدد کے لیے فون تیار کرنے والے ادارے سے رابطہ کریں۔</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">چیٹ کی حدود</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">میسج کی ہسٹری حذف کریں</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">منتخب کردہ وقت سے پرانے میسجز کو مستقل طور پر حذف کر دیا جائے گا۔</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">منتخب کردہ لمبائی سے تجاوز کرنے والے میسجز کو مستقل طور پر حذف کر دیا جائے گا۔</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">لنک کردہ ڈیوائسز پر حدود کا اطلاق کریں</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">اہل ہونے پر، چیٹ کی حدود آپ کی لنک کردہ ڈیوائسز سے میسجز کو بھی حذف کر دیں گی۔</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal کی اسٹوریج</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal کی اسٹوریج کو بہتر کریں</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">غیر استعمال شدہ میڈیا کو آف لوڈ کر دیا جائے گا، لیکن آپ کے بیک اپ سے کسی بھی وقت ڈاؤن لوڈ کیا جا سکتا ہے۔</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">اسٹوریج کی کارکردگی کو صرف Signal کے محفوظ بیک اپس کے ادا شدہ درجے کے ساتھ ہی استعمال کیا جا سکتا ہے۔ آپ کی بیک اپس کی سبسکرپشن ابھی بھی زیرِ عمل ہے اور ابھی فعال نہیں ہوئی۔ براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">آپ کے آن ڈیوائس بیک اپ سے میڈیا ہٹا دیا جائے گا</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal کی اسٹوریج کو بہتر بنائیں\" کو آن کرنے پر آپ کی ڈیوائس سے پرانا میڈیا آف لوڈ کر دیا جائے گا۔ آپ اسے کسی بھی وقت دوبارہ ڈاؤن لوڈ کر سکتے ہیں۔ یہ آپ کے آن ڈیوائس بیک اپ سے پرانے میڈیا کو بھی ہٹا دے گا۔</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">آن کریں</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8162,6 +7998,8 @@
     <string name="MainToolbar__notification_profile_content_description">اطلاعات کی پروفائل</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">پراکسی</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

@@ -623,7 +623,7 @@
     <!-- Error shown when Signal Login cannot be purchased on this device, for example because the Google Play Store is unavailable. -->
     <string name="SignalLoginPaymentScreen__signal_login_cant_be_purchased">En este momento, no es posible comprar el Signal Login en este dispositivo. Inténtalo de nuevo más tarde.</string>
     <!-- Message shown when the user\'s payment has gone through but has not finished processing yet. -->
-    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Seguimos procesando tu pago. Cuando se efectúe, abre Signal, toca &lt;strong&gt;Continuar&lt;/strong&gt; y no se te volverá a cobrar.</string>
+    <string name="SignalLoginPaymentScreen__your_payment_is_still_processing">Seguimos procesando tu pago. Cuando se efectúe, abre Signal y toca &lt;strong&gt;Continuar&lt;/strong&gt;. No se cobrará de nuevo.</string>
     <!-- Label for the internal-testing text field where a receipt credential can be pasted to skip payment. Not shown to real users. -->
   <!-- Removed by excludeNonTranslatables <string name="SignalLoginPaymentScreen__paste_a_receipt_credential" translatable="false">Paste a receipt credential (testing)</string> -->
     <!-- Error shown when a manually-pasted receipt credential can\'t be parsed or is rejected. Internal testing only. -->
@@ -643,17 +643,17 @@
     <!-- Title of the dialog shown while Google Play services is updating itself. -->
     <string name="SignalLoginPaymentScreen__google_play_services_are_updating">Los Servicios de Google Play se están actualizando</string>
     <!-- Body of the dialog shown while Google Play services is updating itself. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Para comprar un Signal Login, espera a que se terminen de actualizar los Servicios de Google Play.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_wait_for_google_play_services">Para comprar un Signal Login, espera a que se terminen de actualizar los Servicios de Google Play.</string>
     <!-- Title of the dialog shown when Google Play cannot be used to take a payment. -->
     <string name="SignalLoginPaymentScreen__google_play_is_required">Se necesita Google Play</string>
     <!-- Body of the dialog shown when Google Play services is installed but turned off. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Para comprar un Signal Login, habilita los Servicios de Google Play en este dispositivo e inicia sesión en Google Play Store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_enable_google_play_services">Para comprar un Signal Login, habilita los Servicios de Google Play en este dispositivo e inicia sesión en Google Play Store.</string>
     <!-- Body of the dialog shown when the device cannot run Google Play services at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">No puedes comprar un Signal Login porque este dispositivo no es compatible con los Servicios de Google Play. Ponte en contacto con el fabricante del teléfono para obtener ayuda.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_on_this_device">No puedes comprar un Signal Login porque este dispositivo no es compatible con los Servicios de Google Play. Ponte en contacto con el fabricante del teléfono para obtener ayuda.</string>
     <!-- Body of the dialog shown when Google Play services works but nobody is signed into the Play Store. -->
-    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Para comprar un Signal Login, inicia sesión en Google Play Store.</string>
+    <string name="SignalLoginPaymentScreen__to_purchase_a_signal_login_sign_into_the_google_play_store">Para comprar un Signal Login, inicia sesión en Google Play Store.</string>
     <!-- Body of the dialog shown when this version of Signal cannot make Google Play purchases at all. -->
-    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">No puedes comprar un Signal Login en esta versión de Signal. Para hacerlo, actualiza Signal desde Google Play Store.</string>
+    <string name="SignalLoginPaymentScreen__you_cant_purchase_a_signal_login_in_this_version">No puedes comprar un Signal Login en esta versión de Signal. Para hacerlo, actualiza Signal desde Google Play Store.</string>
     <!-- Button that opens the Google Play store so the user can sign into it. -->
     <string name="SignalLoginPaymentScreen__open_play_store">Abrir Google Play Store</string>
 
@@ -673,7 +673,7 @@
     <!-- Error shown when the Signal Login could not be stored in the password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_saved">No se ha podido guardar tu Signal Login. Guárdalo de forma manual.</string>
     <!-- Title of the dialog shown when the Signal Login could not be found in the password manager after saving it. -->
-    <string name="SignalLoginInfoScreen__error_confirming_login_info">Error al confirmar información de acceso</string>
+    <string name="SignalLoginInfoScreen__error_confirming_login_info">No se ha podido confirmar la información de acceso</string>
     <!-- Description telling the user that the Signal Login we saved could not be read back out of their password manager. -->
     <string name="SignalLoginInfoScreen__your_signal_login_could_not_be_confirmed">No se ha podido confirmar tu Signal Login. Comprueba que lo has guardado en tu gestor de contraseñas o manualmente.</string>
 
@@ -737,7 +737,7 @@
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">La información no coincide con el Signal Login que te hemos mostrado</string>
     <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Introduce tu Signal Login para verificar que aún lo recuerdas.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -811,9 +811,9 @@
     <!-- Subtitle telling the user to pick one of the methods listed below -->
     <string name="TwoFactorSelectionScreen__choose_a_method_below">Elige uno de los siguientes métodos para verificar tu cuenta.</string>
     <!-- Title of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__passkey">Llave de acceso</string>
+    <string name="TwoFactorSelectionScreen__passkey">Clave de acceso</string>
     <!-- Description of the card for verifying with a passkey -->
-    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Toca para usar los datos biométricos de tu dispositivo o la llave de acceso FIDO2</string>
+    <string name="TwoFactorSelectionScreen__tap_to_use_your_device_biometrics">Toca para usar los datos biométricos de tu dispositivo o la clave de acceso FIDO2</string>
     <!-- Title of the card for verifying with a code from an authenticator app -->
     <string name="TwoFactorSelectionScreen__authenticator_app">Aplicación de autenticación</string>
     <!-- Description of the card for verifying with a code from an authenticator app -->
@@ -827,7 +827,7 @@
     <!-- Title of the screen asking the user to verify their account with their passkey -->
     <string name="PasskeyVerificationScreen__two_factor_authentication">Autenticación de dos factores</string>
     <!-- Subtitle telling the user to verify their account with their passkey -->
-    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
+    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">Para continuar, verifica tu cuenta con tu clave de acceso.</string>
     <!-- Button text to start verifying with a passkey -->
     <string name="PasskeyVerificationScreen__continue">Continuar</string>
     <!-- Button text to cancel two-factor authentication -->

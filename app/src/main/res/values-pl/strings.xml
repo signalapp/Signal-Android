@@ -3918,16 +3918,9 @@
     <string name="arrays__enabled">Włączone</string>
     <string name="arrays__disabled">Wyłączone</string>
 
-    <string name="arrays__name_and_message">Imię i wiadomość</string>
-    <string name="arrays__name_only">Tylko imię</string>
-    <string name="arrays__no_name_or_message">Bez imienia ani wiadomości</string>
 
 
 
-    <string name="arrays__default">Domyślny</string>
-    <string name="arrays__high">Wysoki</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Maksymalny</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3952,46 +3945,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Ochrona ekranu jest wyłączona</string>
     <string name="preferences__notifications">Powiadomienia</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Włącz powiadomienia</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Powiadomienia o połączeniach</string>
-    <string name="preferences__led_color">Kolor powiadomień LED</string>
     <string name="preferences__led_color_unknown">Nieznany</string>
-    <string name="preferences__pref_led_blink_title">Miganie diody LED</string>
-    <string name="preferences__customize">Dostosuj</string>
-    <string name="preferences__change_sound_and_vibration">Zmień dźwięk i wibracje</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Dźwięk</string>
     <string name="preferences__silent">Wyciszony</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Domyślny</string>
-    <string name="preferences__repeat_alerts">Powtarzaj powiadomienia</string>
-    <string name="preferences__never">Nigdy</string>
-    <string name="preferences__one_time">Tylko raz</string>
-    <string name="preferences__two_times">2 razy</string>
-    <string name="preferences__three_times">3 razy</string>
-    <string name="preferences__five_times">5 razy</string>
-    <string name="preferences__ten_times">10 razy</string>
-    <string name="preferences__vibrate">Wibracje</string>
-    <string name="preferences__green">Zielony</string>
-    <string name="preferences__red">Czerwony</string>
-    <string name="preferences__blue">Niebieski</string>
-    <string name="preferences__orange">Pomarańczowy</string>
-    <string name="preferences__cyan">Cyjan</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__white">Biały</string>
-    <string name="preferences__fast">Szybkie</string>
-    <string name="preferences__normal">Normalne</string>
-    <string name="preferences__slow">Wolne</string>
     <string name="preferences__advanced">Zaawansowane</string>
     <string name="preferences__donate_to_signal">Wesprzyj Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Relacje</string>
-    <string name="preferences__storage">Pamięć</string>
     <string name="preferences__payments">Płatności</string>
-    <string name="preferences__conversation_length_limit">Maksymalna liczba wiadomości w czacie</string>
-    <string name="preferences__keep_messages">Przechowuj wiadomości</string>
     <string name="preferences__linked_devices">Połączone urządzenia</string>
     <string name="preferences__disable_pin">Wyłącz PIN</string>
     <string name="preferences__enable_pin">Włącz PIN</string>
@@ -4000,73 +3960,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Zaawansowane ustawienia PIN-u</string>
     <string name="preferences__submit_debug_log">Prześlij dziennik debugowania</string>
-    <string name="preferences_storage__storage_usage">Wykorzystana pamięć</string>
-    <string name="preferences_storage__photos">Zdjęcia</string>
-    <string name="preferences_storage__videos">Wideo</string>
-    <string name="preferences_storage__files">Pliki</string>
-    <string name="preferences_storage__audio">Audio</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Wiadomości</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Naklejki</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Coś innego</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Obliczanie…</string>
-    <string name="preferences_storage__review_storage">Przejrzyj pamięć</string>
-    <string name="preferences_storage__delete_older_messages">Usunąć starsze wiadomości?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Usunąć historię wiadomości?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Spowoduje to trwałe usunięcie z Twojego urządzenia historii wiadomości i multimediów, które mają więcej niż %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">Historia wszystkich czatów zostanie trwale skrócona do najnowszej wiadomości.</item>
-        <item quantity="few">Historia wszystkich czatów zostanie trwale skrócona do %1$s najnowszych wiadomości.</item>
-        <item quantity="many">Historia wszystkich czatów zostanie trwale skrócona do %1$s najnowszych wiadomości.</item>
-        <item quantity="other">Historia wszystkich czatów zostanie trwale skrócona do %1$s najnowszej wiadomości.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Spowoduje to trwałe usunięcie z Twojego urządzenia całej historii wiadomości i multimediów.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Spowoduje to trwałe usunięcie całej historii wiadomości i multimediów z tego urządzenia oraz wszystkich połączonych urządzeń.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Czy chcesz usunąć całą historię wiadomości?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Cała historia wiadomości zostanie trwale usunięta. Nie będzie można tego cofnąć.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Spowoduje to trwałe usunięcie całej historii wiadomości ze wszystkich urządzeń. Nie będzie można tego cofnąć.</string>
-    <string name="preferences_storage__delete_all_now">Usuń wszystko teraz</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Na zawsze</string>
-    <string name="preferences_storage__one_year">1 rok</string>
-    <string name="preferences_storage__six_months">6 miesięcy</string>
-    <string name="preferences_storage__thirty_days">30 dni</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">Brak</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s wiadomość</item>
-        <item quantity="few">%1$s wiadomości</item>
-        <item quantity="many">%1$s wiadomości</item>
-        <item quantity="other">%1$s wiadomości</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Własny</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Aby nie ujawniać swojego adresu IP kontaktom, realizuj wszystkie połączenia za pośrednictwem serwera Signal. Gdy ta opcja jest włączona, połączenia mają gorszą jakość.</string>
     <string name="preferences_advanced__always_relay_calls">Zawsze pośrednicz w połączeniach</string>
-    <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy na czacie</string>
-    <string name="preferences_notifications__show">Pokazuj</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">Podczas wyciszenia</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Powiadomienia o reakcjach</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Powiadamiaj o reakcjach na wysyłane przez Ciebie wiadomości</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Przypomnienia o nieprzeczytanych</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Od czasu do czasu wysyłaj powiadomienie o nieprzeczytanych wiadomościach w wyciszonych czatach</string>
-    <string name="preferences_notifications__ringtone">Dzwonek</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priorytet</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Rozwiąż problemy z powiadomieniami</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Obchodzenie cenzury</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5383,45 +5281,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Gotowe</string>
 
-    <string name="NotificationsSettingsFragment__calls">Połączenia</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Dźwięki</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt zaczyna korzystać z aplikacji Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Powiadamiaj, gdy kontakt z telefonu dołączy do Signal</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Zresetuj ustawienia powiadomień</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Przywróć domyślne ustawienia powiadomień, w tym niestandardowe ustawienia czatów</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Przywrócić wszystkie ustawienia powiadomień do domyślnych dla wszystkich czatów?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Zresetuj</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profile powiadomień</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Utwórz profil, aby otrzymywać powiadomienia tylko od wybranych przez Ciebie osób i grup.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">Podczas wyciszenia</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Połączenia</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Dzwoń lub powiadamiaj, gdy w wyciszonych czatach ktoś rozpocznie połączenie.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Wzmianki</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Powiadamiaj, gdy w wyciszonym czacie ktoś Cię oznaczy.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Odpowiedzi</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Powiadamiaj, gdy w wyciszonym czacie ktoś odpowie na Twoją wiadomość.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Dzwoń lub powiadamiaj o rozpoczęciu połączenia, gdy ten czat jest wyciszony.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Powiadamiaj o tym, że ktoś Cię oznaczy, gdy ten czat jest wyciszony.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Powiadamiaj o tym, że ktoś odpowiedział na Twoją wiadomość, gdy ten czat jest wyciszony.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Od czasu do czasu wysyłaj powiadomienie o nieprzeczytanych wiadomościach, gdy ten czat jest wyciszony.</string>
 
@@ -5509,12 +5377,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Wesprzyj nas</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">Wyszukaj emoji</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Wróć do emoji</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Wyczyść wyszukiwanie</string>
     <string name="KeyboardPagerFragment_search_giphy">Wyszukaj w GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Nieznany dzwonek</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5687,6 +5551,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Wybierz kolor</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Udostępnij</string>
@@ -6073,8 +5941,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Powiadamiaj o wszystkich wzmiankach</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Dodaj</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Utwórz profil, aby otrzymywać powiadomienia i połączenia tylko od wybranych przez siebie osób i grup.</string>
@@ -6150,12 +6016,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Włączony do %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">Aby włączyć powiadomienia, Signal potrzebuje uprawnienia do ich wyświetlania.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Włącz</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">To oficjalny i jedyny czat twórców aplikacji Signal</string>
@@ -7496,28 +7356,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">Przypomnimy Ci kolejny raz za tydzień.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Zweryfikuj metodę uwierzytelniania dwuskładnikowego</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">Co jakiś czas prosimy Cię o weryfikację metody uwierzytelniania dwuskładnikowego, aby pomóc Ci się upewnić, że wciąż ją znasz.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">Zweryfikuj</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">Nie teraz</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Dziękujemy za potwierdzenie aplikacji uwierzytelniającej.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Dziękujemy za potwierdzenie klucza dostępu.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Zweryfikuj swój Signal Login</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">Co jakiś czas prosimy Cię o weryfikację danych logowania, aby pomóc Ci się upewnić, że wciąż je znasz.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">Zweryfikuj</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">Nie teraz</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Dziękujemy za potwierdzenie Signal Loginu.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Włączyć powiadomienia pełnoekranowe?</string>
@@ -7844,34 +7704,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Dowiedz się więcej</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">Nie możesz subskrybować bezpiecznych kopii zapasowych Signal, ponieważ Twój telefon nie obsługuje Usług Google Play. Aby otrzymać pomoc, skontaktuj się z producentem telefonu.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Limity w czatach</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Usuń historię wiadomości</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Wiadomości, które są w czacie dłużej niż przez wybrany wyżej czas, zostaną trwale usunięte.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Wiadomości, które wykraczają poza wybrany wyżej limit, zostaną trwale usunięte.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Stosuj limity do połączonych urządzeń</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Gdy ta opcja jest włączona, limity w czatach powodują usuwanie wiadomości również na połączonych urządzeniach.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Pamięć, którą zajmuje Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optymalizuj pamięć, którą zajmuje Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nieużywane multimedia będą usuwane z urządzenia, ale w każdej chwili można je pobrać z kopii zapasowej.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal. Twoja subskrypcja kopii zapasowych jest jeszcze przetwarzana i nieaktywna. Spróbuj ponownie później.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Multimedia zostaną usunięte z lokalnej kopii zapasowej</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Jeśli włączysz opcję „Optymalizuj pamięć, którą zajmuje Signal”, spowoduje to usunięcie starszych multimediów z urządzenia. W każdej chwili możesz je pobrać z powrotem. Starsze multimedia zostaną również usunięte z lokalnej kopii zapasowej.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Włącz</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8536,6 +8368,8 @@
     <string name="MainToolbar__notification_profile_content_description">Profil powiadomień</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

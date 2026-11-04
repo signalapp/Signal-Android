@@ -3918,16 +3918,9 @@
     <string name="arrays__enabled">מאופשר</string>
     <string name="arrays__disabled">מושבת</string>
 
-    <string name="arrays__name_and_message">שם והודעה</string>
-    <string name="arrays__name_only">שם בלבד</string>
-    <string name="arrays__no_name_or_message">ללא שם או הודעה</string>
 
 
 
-    <string name="arrays__default">ברירת מחדל</string>
-    <string name="arrays__high">גבוה</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">מרבי</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3952,46 +3945,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">אבטחת מסך כבויה</string>
     <string name="preferences__notifications">התראות</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">אפשר התראות</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">התראות שיחה</string>
-    <string name="preferences__led_color">צבע LED</string>
     <string name="preferences__led_color_unknown">בלתי ידוע</string>
-    <string name="preferences__pref_led_blink_title">תבנית הבהוב LED</string>
-    <string name="preferences__customize">התאם אישית</string>
-    <string name="preferences__change_sound_and_vibration">שנה צליל ורטט</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">קול</string>
     <string name="preferences__silent">שקט</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">ברירת מחדל</string>
-    <string name="preferences__repeat_alerts">חזור על התרעות</string>
-    <string name="preferences__never">אף פעם</string>
-    <string name="preferences__one_time">פעם אחת</string>
-    <string name="preferences__two_times">פעמיים</string>
-    <string name="preferences__three_times">שלוש פעמים</string>
-    <string name="preferences__five_times">חמש פעמים</string>
-    <string name="preferences__ten_times">עשר פעמים</string>
-    <string name="preferences__vibrate">הרטט</string>
-    <string name="preferences__green">ירוק</string>
-    <string name="preferences__red">אדום</string>
-    <string name="preferences__blue">כחול</string>
-    <string name="preferences__orange">כתום</string>
-    <string name="preferences__cyan">ציאן</string>
-    <string name="preferences__magenta">מג\'נטה</string>
-    <string name="preferences__white">לבן</string>
-    <string name="preferences__fast">מהיר</string>
-    <string name="preferences__normal">רגיל</string>
-    <string name="preferences__slow">איטי</string>
     <string name="preferences__advanced">מתקדם</string>
     <string name="preferences__donate_to_signal">ביצוע תרומה ל–Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">סטוריז</string>
-    <string name="preferences__storage">אחסון</string>
     <string name="preferences__payments">תשלומים</string>
-    <string name="preferences__conversation_length_limit">מגבלת אורך צ׳אט</string>
-    <string name="preferences__keep_messages">שמור הודעות</string>
     <string name="preferences__linked_devices">מכשירים מקושרים</string>
     <string name="preferences__disable_pin">השבת PIN</string>
     <string name="preferences__enable_pin">אפשר PIN</string>
@@ -4000,73 +3960,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">הגדרות PIN מתקדמות</string>
     <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
-    <string name="preferences_storage__storage_usage">שימוש באחסון</string>
-    <string name="preferences_storage__photos">תמונות</string>
-    <string name="preferences_storage__videos">סרטונים</string>
-    <string name="preferences_storage__files">קבצים</string>
-    <string name="preferences_storage__audio">שמע</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">הודעות</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">מדבקות</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">אחר</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">מתבצע חישוב…</string>
-    <string name="preferences_storage__review_storage">סקור אחסון</string>
-    <string name="preferences_storage__delete_older_messages">למחוק הודעות ישנות יותר?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">למחוק היסטוריית הודעות?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך שישנים יותר מ%1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">זה יקצץ לצמיתות את כל הצ׳אטים שלך להודעה האחרונה בלבד.</item>
-        <item quantity="two">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
-        <item quantity="many">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
-        <item quantity="other">זה יקצץ לצמיתות את כל הצ׳אטים שלך ל–%1$s ההודעות האחרונות.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר שלך.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">זה ימחק לצמיתות את כל היסטוריית ההודעות והמדיה מהמכשיר הזה ומכל מכשיר מקושר.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">בטוח שבא לך למחוק את כל היסטוריית ההודעות?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">כל היסטוריית ההודעות תימחק לצמיתות. פעולה זו אינה ניתנת לביטול.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">כל היסטוריית ההודעות תוסר לצמיתות מכל המכשירים. פעולה זו לא ניתנת לביטול.</string>
-    <string name="preferences_storage__delete_all_now">למחוק הכל עכשיו</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">לנצח</string>
-    <string name="preferences_storage__one_year">שנה 1</string>
-    <string name="preferences_storage__six_months">6 חודשים</string>
-    <string name="preferences_storage__thirty_days">30 ימים</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">אין</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">הודעה %1$s</item>
-        <item quantity="two">%1$s הודעות</item>
-        <item quantity="many">%1$s הודעות</item>
-        <item quantity="other">%1$s הודעות</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">מותאם אישית</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
     <string name="preferences_advanced__always_relay_calls">שדר מחדש שיחות תמיד</string>
-    <string name="preferences_notifications__in_chat_sounds">צלילים בתוך צ׳אט</string>
-    <string name="preferences_notifications__show">הראה</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">כאשר הצליל מושתק</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">התראות על תגובות</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">הצגת התראות על תגובות להודעות ששלחת</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">תזכורות על הודעות שלא נקראו</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">התראות מזדמנות על הודעות שלא נקראו בצ׳אטים מושתקים</string>
-    <string name="preferences_notifications__ringtone">צלצול</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">עדיפות</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">פתרון תקלות של התראות</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">עקיפת צנזורה</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5383,45 +5281,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">סיום</string>
 
-    <string name="NotificationsSettingsFragment__calls">שיחות</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">צלילים</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">איש קשר מצטרף אל Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">הצגת התראה בעת הצטרפות אנשי קשר מהטלפון אל Signal</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">איפוס הגדרות ההתראות</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">איפוס הגדרות ההתראות לברירת המחדל, כולל הגדרות מותאמות אישית עבור הצ׳אטים שלך</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">לאפס את כל הגדרות ההתראות לברירת המחדל עבור כל הצ׳אטים?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">איפוס</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">פרופילי התראות</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">צור פרופיל כדי לקבל התראות רק מהאנשים ומהקבוצות שאתה בוחר.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">כאשר הצליל מושתק</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">שיחות</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">צלצול או התראה כשמתחילה שיחה בצ׳אטים מושתקים.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">אזכורים</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">התראה כשהוזכרת בצ׳אטים מושתקים.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">תשובות</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">התראה כשמשיבים להודעות שלך בצ׳אטים מושתקים.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">צלצול או התראה כשמתחילה שיחה בזמן שהצ׳אט הזה מושתק.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">התראה כשהוזכרת בזמן שהצ׳אט הזה מושתק.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">התראה כשמשיבים להודעות שלך בזמן שהצ׳אט הזה מושתק.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">התראות מזדמנות על הודעות שלא נקראו בזמן שהצ׳אט הזה מושתק.</string>
 
@@ -5509,12 +5377,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">הפוך אל מחזיק</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">חפש אימוג’י</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">חזור אל אימוג’י</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">נקה רשומת חיפוש</string>
     <string name="KeyboardPagerFragment_search_giphy">חפש GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5687,6 +5551,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">בחר צבע</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">שתף</string>
@@ -6073,8 +5941,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">להתריע על כל האזכורים</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">הוסף</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">צור פרופיל כדי לקבל התראות ושיחות רק מהאנשים ומהקבוצות שאתה רוצה לשמוע מהם.</string>
@@ -6150,12 +6016,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">מופעל עד %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">נכשל בפתיחת בורר.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">כדי לאפשר התראות, Signal צריכה הרשאה להציג אותן.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">הפעלה</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">זה הצ׳אט הרשמי והיחיד של Signal</string>
@@ -7496,28 +7356,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">נשאל אותך שוב בעוד שבוע.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">יש לאמת את אמצעי האימות הדו–שלבי שלך</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">מדי פעם נבקש ממך לאמת את אמצעי האימות הדו–שלבי שלך כדי לוודא שהוא עדיין מוגדר כראוי.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">אימות</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">לא עכשיו</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">תודה שאישרת את אפליקציית האימות שלך.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">תודה על אישור מפתח הגישה שלך.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">יש לאמת את Signal Login שלך</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">מדי פעם נבקש ממך לאמת את פרטי Signal Login שלך כדי לוודא שהם עדיין זכורים לך.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">אימות</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">לא עכשיו</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">תודה על אישור Signal Login שלך.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">להפעיל התראות במסך מלא?</string>
@@ -7844,34 +7704,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">למידע נוסף</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">לא ניתן להירשם לגיבויי Signal מאובטחים מכיוון שהטלפון שלך אינו תומך בשירותי Google Play. יש ליצור קשר עם יצרן הטלפון לקבלת עזרה.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">מגבלות אורך צ׳אט</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">מחיקת היסטוריית הודעות</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">הודעות ישנות יותר מטווח הזמן שנבחר יימחקו לצמיתות.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">הודעות החורגות מהאורך שנבחר יימחקו לצמיתות.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">החלת מגבלות על מכשירים מקושרים</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">כשאפשרות זו מופעלת, מגבלות הצ׳אט ימחקו הודעות גם מהמכשירים המקושרים שלך.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">אחסון Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">אופטימיזציה של אחסון Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">מדיה שאינה בשימוש תוסר, אך ניתן להוריד אותה מהגיבוי שלך בכל עת.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ניתן להשתמש באופטימיזציה של אחסון רק עם התכנית בתשלום של הגיבויים המאובטחים של Signal. מנוי הגיבויים שלך נמצא בעיבוד ואינו פעיל עדיין. נא לנסות שוב מאוחר יותר.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">מדיה תוסר מהגיבוי שבמכשיר שלך</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">הפעלת ״אופטימיזציה של אחסון Signal״ תנקה מדיה ישנה מהמכשיר שלך. אפשר להוריד אותה שוב בכל עת. זה גם יסיר מדיה ישנה מהגיבוי שבמכשיר שלך.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">הפעלה</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8536,6 +8368,8 @@
     <string name="MainToolbar__notification_profile_content_description">פרופיל התראות</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">יפוי כוח</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

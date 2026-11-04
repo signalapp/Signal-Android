@@ -236,8 +236,8 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="one">Gif %1$d</item>
-        <item quantity="other">Gifs %1$d</item>
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="other">%1$d GIFs</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">

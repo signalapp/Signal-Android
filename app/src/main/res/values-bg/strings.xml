@@ -3694,16 +3694,9 @@
     <string name="arrays__enabled">Разрешено</string>
     <string name="arrays__disabled">Деактивирано</string>
 
-    <string name="arrays__name_and_message">Име и съобщение</string>
-    <string name="arrays__name_only">Само име</string>
-    <string name="arrays__no_name_or_message">Няма име или съобщения</string>
 
 
 
-    <string name="arrays__default">По подразбиране</string>
-    <string name="arrays__high">Високо</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Максимално</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3726,46 +3719,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">„Сигурност на екрана“ е изключена</string>
     <string name="preferences__notifications">Известия</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Активиране на известия</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Известия за разговори</string>
-    <string name="preferences__led_color">LED цвят</string>
     <string name="preferences__led_color_unknown">Непознат</string>
-    <string name="preferences__pref_led_blink_title">LED известяване</string>
-    <string name="preferences__customize">Персонализиране</string>
-    <string name="preferences__change_sound_and_vibration">Промяна на звук и вибрация</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Мелодия</string>
     <string name="preferences__silent">Тих</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">По подразбиране</string>
-    <string name="preferences__repeat_alerts">Повтарящи се аларми</string>
-    <string name="preferences__never">Никога</string>
-    <string name="preferences__one_time">Само веднъж</string>
-    <string name="preferences__two_times">Два пъти</string>
-    <string name="preferences__three_times">Три пъти</string>
-    <string name="preferences__five_times">Пет пъти</string>
-    <string name="preferences__ten_times">Десет пъти</string>
-    <string name="preferences__vibrate">Вибрация</string>
-    <string name="preferences__green">Зелен</string>
-    <string name="preferences__red">Червен</string>
-    <string name="preferences__blue">Син</string>
-    <string name="preferences__orange">Оранжево</string>
-    <string name="preferences__cyan">Циан</string>
-    <string name="preferences__magenta">Маджента</string>
-    <string name="preferences__white">Бял</string>
-    <string name="preferences__fast">Бързо</string>
-    <string name="preferences__normal">Нормално</string>
-    <string name="preferences__slow">Бавно</string>
     <string name="preferences__advanced">Допълнителни</string>
     <string name="preferences__donate_to_signal">Дарете на Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Истории</string>
-    <string name="preferences__storage">Съхранение</string>
     <string name="preferences__payments">Плащания</string>
-    <string name="preferences__conversation_length_limit">Максимум съобщения в чата</string>
-    <string name="preferences__keep_messages">Съхранявай съобщенията</string>
     <string name="preferences__linked_devices">Свързани устройства</string>
     <string name="preferences__disable_pin">Деактивиране на ПИН</string>
     <string name="preferences__enable_pin">Активиране на ПИН</string>
@@ -3774,69 +3734,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Разширени настройки за ПИН</string>
     <string name="preferences__submit_debug_log">Изпращане на доклад</string>
-    <string name="preferences_storage__storage_usage">Използвана част от хранилището</string>
-    <string name="preferences_storage__photos">Снимки</string>
-    <string name="preferences_storage__videos">Видео</string>
-    <string name="preferences_storage__files">Файлове</string>
-    <string name="preferences_storage__audio">Аудио</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Съобщения</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Стикери</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Друго</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Изчисляване…</string>
-    <string name="preferences_storage__review_storage">Преглед на хранилището</string>
-    <string name="preferences_storage__delete_older_messages">Да се изтрият ли по-старите съобщения?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Изтриване на историята на съобщенията?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Това ще изтрие завинаги цялата история на съобщенията и медиите от вашето устройство, които са по-стари от %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">Това ще скъси за постоянно всички чатове до последното съобщение.</item>
-        <item quantity="other">Това ще скъси за постоянно всички чатове до последните %1$s най-нови съобщения.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Това ще изтрие завинаги цялата история на съобщенията и медиите от вашето устройство.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Това ще изтрие перманентно цялата история на съобщенията и мултимедията от това устройство и всички свързани устройства.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Наистина ли искате да изтриете цялата история на съобщенията?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Цялата история на съобщенията ще бъде завинаги изтрита. Това действие не може да бъде отменено.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Цялата история на съобщенията ще бъде изтрита перманентно. Това действие не може да бъде върнато назад.</string>
-    <string name="preferences_storage__delete_all_now">Изтриване на всички сега</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Завинаги</string>
-    <string name="preferences_storage__one_year">1 година</string>
-    <string name="preferences_storage__six_months">6 месеца</string>
-    <string name="preferences_storage__thirty_days">30 дни</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">Нищо</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s съобщение</item>
-        <item quantity="other">%1$s съобщения</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Персонализирано</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контакта Ви. Активирането ще намали качеството на връзката.</string>
     <string name="preferences_advanced__always_relay_calls">Винаги да се използва прехвърляне на обажданията</string>
-    <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
-    <string name="preferences_notifications__show">Показване</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">При заглушени чатове</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Известия за реакции</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Показване на известия за реакции на съобщенията, които изпращате</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Непрочетени напомняния</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Изпращане на известия от време на време, когато в чатовете без звук има непрочетени съобщения</string>
-    <string name="preferences_notifications__ringtone">Мелодия</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Приоритет</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Известия за отстраняване на неизправности</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Заобикаляне на цензурата</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5105,45 +5007,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Готово</string>
 
-    <string name="NotificationsSettingsFragment__calls">Обаждания</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Звуци</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Ваш контакт се присъедини към Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Показване на известия, когато контакт на телефона се присъедини към Signal</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Нулиране на настройките за известия</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Нулиране на настройките за известия до тези по подразбиране, включително персонализираните настройки за вашите чатове</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Нулиране на всички настройки за известия до тези по подразбиране за всички чатове?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Нулиране</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Профили за известия</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Създайте профил, за да получавате известия само от избрани от вас хора и групи.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">При заглушени чатове</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Повиквания</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Позвъняване или изпращане на известие, когато има започнато обаждане в чатове без звук.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Споменавания</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Изпращане на известие, когато ви споменат в чатове без звук.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Отговори</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Изпращане на известие, когато някой отговори на вашето съобщение в чатове без звук.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Позвъняване или изпращане на известие, когато има започнато обаждане, докато този чат е без звук.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Известяване, когато ви споменат, докато този чат е без звук.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Известяване, когато някой отговори на вашето съобщение, докато този чат е без звук.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Изпращане на известия от време на време, когато в този чат без звук има непрочетени съобщения.</string>
 
@@ -5227,12 +5099,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Станете поддръжник</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">Търси емоджи</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Връщане към емоджи</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Изчисти търсенето</string>
     <string name="KeyboardPagerFragment_search_giphy">Търси из GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Неизвестна мелодия</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5401,6 +5269,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Изберете цвят</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Споделяне</string>
@@ -5779,8 +5651,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Известяване за всички споменавания</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Добави</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Създайте профил, за да получавате известия и повиквания само от хората и групите, от които искате.</string>
@@ -5856,12 +5726,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Включено до %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Неуспешно отваряне на инструмента за избор.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">За да активира известията, Signal има нужда от разрешение за показването им.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Включване</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Това е официалният и единствен чат от Signal</string>
@@ -7146,28 +7010,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">Ще ви попитаме отново след една седмица.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Потвърдете своя двуфакторен метод</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">От време на време ще ви молим да потвърждавате своя метод за двуфакторно удостоверяване, за да се гарантира, че е настроен правилно.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">Потвърждаване</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">Не сега</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Благодарим, че потвърдихте приложението си за удостоверяване.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Благодарим, че потвърдихте своя ключ за достъп.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Потвърдете своя Signal Login</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">От време на време ще ви молим да потвърждавате своята информация за вход, за да се уверим, че все още я знаете.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">Потвърждаване</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">Не сега</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Благодарим, че потвърдихте своя Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Включване на известията на цял екран?</string>
@@ -7488,34 +7352,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Научете повече</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">Не можете да се абонирате за „Сигурни резервни копия на Signal“, защото вашият телефон не поддържа услуги на Google Play. Свържете се с производителя на телефона за съдействие.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Лимити за чат</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Изтриване на историята на съобщенията</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Съобщенията, по-стари от избраното време, ще бъдат изтрити за постоянно.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Съобщенията, надвишаващи избраната дължина, ще бъдат изтрити за постоянно.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Прилагане на лимитите към свързаните устройства</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Когато е активирано, ограниченията за чат ще изтриват съобщенията и от свързаните ви устройства.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Хранилище на Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Оптимизация на хранилището на Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Неизползваната мултимедия ще бъде премахната, но може да бъде изтеглена от вашето резервно копие по всяко време.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Оптимизацията на съхранението може да се използва само с платената версия на „Сигурни резервни копия на Signal“. Абонаментът ви за резервни копия все още се обработва и още не е активен. Моля, опитайте отново по-късно.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Мултимедийните файлове ще бъдат премахнати от вашето резервно копие на устройството</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Ако включите „Оптимизация на хранилището на Signal“, това ще разтовари старите мултимедийни файлове от вашето устройство. Можете да ги изтеглите отново по всяко време. Това също ще премахне старите мултимедийни файлове от вашето резервно копие на устройството.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Включване</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8162,6 +7998,8 @@
     <string name="MainToolbar__notification_profile_content_description">Профил за известия</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Прокси</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

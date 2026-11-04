@@ -3694,16 +3694,9 @@
     <string name="arrays__enabled">E aktivizuar</string>
     <string name="arrays__disabled">E çaktivizuar</string>
 
-    <string name="arrays__name_and_message">Emër dhe mesazh</string>
-    <string name="arrays__name_only">Vetëm emrin</string>
-    <string name="arrays__no_name_or_message">Pa emër ose mesazh</string>
 
 
 
-    <string name="arrays__default">Parazgjedhje</string>
-    <string name="arrays__high">Lartësi</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Maks.</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3726,46 +3719,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Siguria e ekranit është çaktivizuar</string>
     <string name="preferences__notifications">Njoftime</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Aktivizo njoftime</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Njoftimet e thirrjes</string>
-    <string name="preferences__led_color">Ngjyrë LED-i</string>
     <string name="preferences__led_color_unknown">E panjohur</string>
-    <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
-    <string name="preferences__customize">Përshtateni</string>
-    <string name="preferences__change_sound_and_vibration">Ndryshoni tingull dhe dridhje</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Tingull</string>
     <string name="preferences__silent">Heshtazi</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Parazgjedhje</string>
-    <string name="preferences__repeat_alerts">Alarme të përsëritur</string>
-    <string name="preferences__never">Kurrë</string>
-    <string name="preferences__one_time">Një herë</string>
-    <string name="preferences__two_times">Dy herë</string>
-    <string name="preferences__three_times">Tri herë</string>
-    <string name="preferences__five_times">Pesë herë</string>
-    <string name="preferences__ten_times">Dhjetë herë</string>
-    <string name="preferences__vibrate">Dridhu</string>
-    <string name="preferences__green">E gjelbër</string>
-    <string name="preferences__red">E kuqe</string>
-    <string name="preferences__blue">E kaltër</string>
-    <string name="preferences__orange">Portokalli</string>
-    <string name="preferences__cyan">Gurkali</string>
-    <string name="preferences__magenta">E purpurt</string>
-    <string name="preferences__white">E bardhë</string>
-    <string name="preferences__fast">I shpejtë</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__slow">I ngadaltë</string>
     <string name="preferences__advanced">Të mëtejshme</string>
     <string name="preferences__donate_to_signal">Dhuro për Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Postime të përkohshme</string>
-    <string name="preferences__storage">Hapësirë</string>
     <string name="preferences__payments">Pagesa</string>
-    <string name="preferences__conversation_length_limit">Kufiri i gjatësisë së bisedës</string>
-    <string name="preferences__keep_messages">Mbaji mesazhet</string>
     <string name="preferences__linked_devices">Pajisje të lidhura</string>
     <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
     <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
@@ -3774,69 +3734,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Parametrat e mëtejshme të PIN</string>
     <string name="preferences__submit_debug_log">Parashtro regjistër diagnostikimi</string>
-    <string name="preferences_storage__storage_usage">Përdorim hapësire</string>
-    <string name="preferences_storage__photos">Foto</string>
-    <string name="preferences_storage__videos">Video</string>
-    <string name="preferences_storage__files">Kartela</string>
-    <string name="preferences_storage__audio">Audio</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Mesazhe</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Ngjitëse</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Tjetër</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Llogaritja…</string>
-    <string name="preferences_storage__review_storage">Shqyrtoni hapësirën</string>
-    <string name="preferences_storage__delete_older_messages">Të fshihen mesazhet e vjetra?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Të fshihet historiku i mesazheve?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe mediat nga pajisja jote, që janë më të vjetra se %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">Kjo do t\'i shkurtojë përgjithmonë të gjitha bisedat te mesazhet më të fundit.</item>
-        <item quantity="other">Kjo do t\'i shkurtojë përgjithmonë të gjitha bisedat te %1$s mesazhet më të fundit.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe mediat nga pajisja jote.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Kjo do të fshijë përgjithmonë të gjithë historikun e mesazheve dhe median e kësaj pajisjeje dhe çdo pajisjeje tjetër të lidhur.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Je i sigurt se dëshiron të fshish krejt historikun e mesazheve?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">I gjithë historiku i mesazheve do të hiqet përgjithmonë. Ky veprim nuk mund të zhbëhet.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">I gjithë historiku i mesazheve do të fshihet përgjithmonë nga të gjitha pajisjet. Ky veprim nuk mund të zhbëhet.</string>
-    <string name="preferences_storage__delete_all_now">Fshije krejt tani</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Përgjithmonë</string>
-    <string name="preferences_storage__one_year">1 vit</string>
-    <string name="preferences_storage__six_months">6 muaj</string>
-    <string name="preferences_storage__thirty_days">30 ditë</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">Asnjë</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s mesazh</item>
-        <item quantity="other">%1$s mesazhe</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Rregullo</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
     <string name="preferences_advanced__always_relay_calls">Kaloji përherë thirrjet përmes releje</string>
-    <string name="preferences_notifications__in_chat_sounds">Tingujt në bisedë</string>
-    <string name="preferences_notifications__show">Shfaq</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">Ndërkohë që është pa zë</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Njoftimet për reagimet</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Shfaq njoftime për reagimet ndaj mesazheve që dërgon</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Përkujtues për mesazhet e palexuara</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Herë pas here shfaq një njoftim kur ka mesazhe të palexuara në bisedat që i ke bërë pa zë</string>
-    <string name="preferences_notifications__ringtone">Zile</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Përparësi</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Diagnostikim i njoftimeve</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Anashkalim censurimi</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5105,45 +5007,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">U bë</string>
 
-    <string name="NotificationsSettingsFragment__calls">Thirrje</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Tingujt</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakti vjen në Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Shfaq njoftim kur një kontakt i telefonit bashkohet me Signal</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Rikthe parametrat e njoftimeve</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Rikthe parametrat e njoftimeve me parazgjedhje, duke përfshirë parametrat e personalizuara për bisedat</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Të rikthehen të gjitha parametrat e njoftimeve në parazgjedhje për të gjitha bisedat?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Riktheje</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profile njoftimesh</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Krijoni një profil që të merrni njoftime vetëm nga persona dhe grupe që zgjidhni ju.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">Ndërkohë që është pa zë</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Thirrjet</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Bëj që të bjerë zilja ose shfaq një njoftim kur nis një thirrje në bisedat që i ke bërë pa zë.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Përmendje</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Njoftohu kur të përmendin në bisedat që i ke bërë pa zë.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Përgjigje</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Njoftohu kur dikush i përgjigjet mesazhit tënd në bisedat që i ke bërë pa zë.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Bëj që të bjerë zilja ose shfaq një njoftim kur nis një thirrje ndërkohë që kjo bisedë është pa zë.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Njoftohu kur të përmendin ndërkohë që kjo bisedë është pa zë.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Njoftohu kur dikush i përgjigjet mesazhit ndërkohë që kjo bisedë është bërë pa zë.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Herë pas here njofto për mesazhet e palexuara kur kjo bisedë është vendosur në heshtje.</string>
 
@@ -5227,12 +5099,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bëhuni një Mbështetës</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">Kërkoni emoji</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Mbrapsht te emoji</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Spastro zë kërkimi</string>
     <string name="KeyboardPagerFragment_search_giphy">Kërkoni GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Zile e panjohur</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5401,6 +5269,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Përzgjidhni një ngjyrë</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Ndajeni Me të Tjerë</string>
@@ -5779,8 +5651,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Njofto për të gjitha përmendjet</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Shtoje</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Krijoni një profil që të merrni njoftime dhe thirrje vetëm prej personash dhe grupesh prej të cilëve doni.</string>
@@ -5856,12 +5726,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Aktiv deri më %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">S\\’u arrit të hapet zgjedhësi.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">Për të aktivizuar njoftimet, Signal ka nevojë për leje për t\'i shfaqur ato.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Aktivizo</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Kjo është biseda zyrtare dhe e vetme nga Signal</string>
@@ -7146,28 +7010,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">Do të pyesim përsëri pas një jave.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verifiko metodën e verifikimit me dy faktorë</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">Herë pas here do të të kërkojmë të verifikosh metodën e autentifikimit me dy faktorë për t\'u siguruar që është ende e konfiguruar siç duhet.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">Verifiko</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">Jo tani</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Faleminderit për konfirmimin e aplikacionit të autentifikimit.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Faleminderit për konfirmimin e çelësit të hyrjes.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verifiko Signal Login</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">Herë pas here do të të kërkojmë të verifikosh të dhënat e hyrjes për t\'u siguruar që ende i di.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">Verifiko</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">Jo tani</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Faleminderit për konfirmimin e Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Të aktivizohen njoftimet me ekran të plotë?</string>
@@ -7488,34 +7352,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Mëso më shumë</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">Nuk mund të abonohesh në \"Kopjeruajtjet e sigurta të Signal\" sepse telefoni yt nuk mbështet shërbimet e Google Play. Kontakto prodhuesin e telefonit për ndihmë.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Kufijtë e bisedës</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Fshi historikun e mesazheve</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Mesazhet më të vjetra se koha e zgjedhur do të fshihen përgjithmonë.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Mesazhet që tejkalojnë gjatësinë e zgjedhur do të fshihen përgjithmonë.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Vendos kufizime për pajisjet e lidhura</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Kur aktivizohen, kufijtë e bisedës do të fshijnë edhe mesazhet e pajisjeve të lidhura.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Hapësira ruajtëse e Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizo hapësirën ruajtëse të Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Media e papërdorur do të shkarkohet, por mund të shkarkohet nga kopjeruajtja në çdo kohë.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimizimi i hapësirës ruajtëse mund të përdoret vetëm me nivelin e paguar të kopjeruajtjeve të Signal. Abonimi i kopjeruajtjeve është ende në përpunim dhe nuk është ende aktiv. Të lutem, provo sërish më vonë.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media do të hiqet nga kopjeruajtja e ruajtur në pajisjen tënde</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Kur aktivizon \"Optimizo hapësirën e Signal\", media e vjetër do të shkarkohet nga pajisja. Mund ta shkarkosh përsëri në çdo kohë. Gjithashtu, do ta heqë median e vjetër nga kopjeruajtja në pajisjen tënde.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Aktivizo</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8162,6 +7998,8 @@
     <string name="MainToolbar__notification_profile_content_description">Profili i njoftimit</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Ndërmjetës</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

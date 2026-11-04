@@ -3918,16 +3918,9 @@
     <string name="arrays__enabled">Povoleno</string>
     <string name="arrays__disabled">Zakázáno</string>
 
-    <string name="arrays__name_and_message">Jméno a zpráva</string>
-    <string name="arrays__name_only">Pouze jméno</string>
-    <string name="arrays__no_name_or_message">Žádné jméno ani zprávy</string>
 
 
 
-    <string name="arrays__default">Výchozí</string>
-    <string name="arrays__high">Vysoká</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3952,46 +3945,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Zabezpečení obrazovky je vypnuto</string>
     <string name="preferences__notifications">Upozornění</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Povolit oznámení</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Oznámení o hovorech</string>
-    <string name="preferences__led_color">Barva LED</string>
     <string name="preferences__led_color_unknown">Neznámý</string>
-    <string name="preferences__pref_led_blink_title">Schéma blikání LED</string>
-    <string name="preferences__customize">Upravit</string>
-    <string name="preferences__change_sound_and_vibration">Změnit zvuk a vibrace</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Zvuk</string>
     <string name="preferences__silent">Ticho</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Výchozí</string>
-    <string name="preferences__repeat_alerts">Opakovat upozornění</string>
-    <string name="preferences__never">Nikdy</string>
-    <string name="preferences__one_time">Jednou</string>
-    <string name="preferences__two_times">Dvakrát</string>
-    <string name="preferences__three_times">Třikrát</string>
-    <string name="preferences__five_times">Pětkrát</string>
-    <string name="preferences__ten_times">Desetkrát</string>
-    <string name="preferences__vibrate">Vibrovat</string>
-    <string name="preferences__green">Zelená</string>
-    <string name="preferences__red">Červená</string>
-    <string name="preferences__blue">Modrá</string>
-    <string name="preferences__orange">Oranžová</string>
-    <string name="preferences__cyan">Tyrkysová</string>
-    <string name="preferences__magenta">Purpurová</string>
-    <string name="preferences__white">Bílá</string>
-    <string name="preferences__fast">Rychle</string>
-    <string name="preferences__normal">Normálně</string>
-    <string name="preferences__slow">Pomalu</string>
     <string name="preferences__advanced">Rozšířené možnosti</string>
     <string name="preferences__donate_to_signal">Podpořte Signal finančně</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Příběhy</string>
-    <string name="preferences__storage">Úložiště</string>
     <string name="preferences__payments">Platby</string>
-    <string name="preferences__conversation_length_limit">Omezení délky chatu</string>
-    <string name="preferences__keep_messages">Zachovat zprávy</string>
     <string name="preferences__linked_devices">Propojená zařízení</string>
     <string name="preferences__disable_pin">Deaktivovat PIN</string>
     <string name="preferences__enable_pin">Povolit PIN</string>
@@ -4000,73 +3960,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Rozšířené nastavení PIN</string>
     <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
-    <string name="preferences_storage__storage_usage">Využití úložiště</string>
-    <string name="preferences_storage__photos">Fotografie</string>
-    <string name="preferences_storage__videos">Videa</string>
-    <string name="preferences_storage__files">Soubory</string>
-    <string name="preferences_storage__audio">Audio</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Zprávy</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Nálepky</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Jiné</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Probíhá výpočet…</string>
-    <string name="preferences_storage__review_storage">Zkontrolovat úložiště</string>
-    <string name="preferences_storage__delete_older_messages">Odstranit starší zprávy?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Smazat historii zpráv?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení, které jsou starší než %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">Tím se trvale zkrátí všechny chaty na nejnovější zprávu.</item>
-        <item quantity="few">Tím se trvale zkrátí všechny chaty na %1$s nejnovější zprávy.</item>
-        <item quantity="many">Tím se trvale zkrátí všechny chaty na %1$s nejnovějších zpráv.</item>
-        <item quantity="other">Tím se trvale zkrátí všechny chaty na %1$s nejnovějších zpráv.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tímto trvale odstraníte veškerou historii zpráv a mediální soubory z vašeho zařízení.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Trvale se tak odstraní veškerá historie zpráv a médií z tohoto zařízení a všech propojených zařízení.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Opravdu chcete odstranit veškerou historii zpráv?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Veškerá historie zpráv bude trvale odstraněna. Tuto akci nelze vrátit zpět.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Ze všech zařízení bude trvale odstraněna veškerá historie zpráv. Tuto operaci nelze vzít zpět.</string>
-    <string name="preferences_storage__delete_all_now">Vše nyní odstranit</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Navždy</string>
-    <string name="preferences_storage__one_year">1 rok</string>
-    <string name="preferences_storage__six_months">6 měsíců</string>
-    <string name="preferences_storage__thirty_days">30 dní</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">Žádný</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s zpráva</item>
-        <item quantity="few">%1$s zprávy</item>
-        <item quantity="many">%1$s zpráv</item>
-        <item quantity="other">%1$s zpráv</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Vlastní</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Přenášet všechna volání přes servery Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.</string>
     <string name="preferences_advanced__always_relay_calls">Vždy předávat hovory</string>
-    <string name="preferences_notifications__in_chat_sounds">Zvuky v chatu</string>
-    <string name="preferences_notifications__show">Zobrazit</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">Při ztlumení</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Oznámení o reakcích</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Zobrazovat oznámení o reakcích na vámi odeslané zprávy</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Připomínky nepřečtených zpráv</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Občas upozornit na nepřečtené zprávy ve ztlumených chatech</string>
-    <string name="preferences_notifications__ringtone">Vyzvánění</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priorita</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Řešení problémů s oznámeními</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Obcházení cenzury</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -5383,45 +5281,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Hotovo</string>
 
-    <string name="NotificationsSettingsFragment__calls">Volání</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Zvuky</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt se připojil na Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Zobrazit oznámení, když se k aplikaci Signal připojí telefonní kontakt</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Obnovit nastavení oznámení</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Obnovit výchozí nastavení oznámení včetně vlastních nastavení pro jednotlivé chaty</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Obnovit výchozí nastavení oznámení pro všechny chaty?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Obnovit</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profily oznámení</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Vytvořte si profil a přijímejte oznámení pouze od lidí a skupin, které si vyberete.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">Při ztlumení</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Hovory</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Vyzvánět nebo upozornit při zahájení hovoru ve ztlumených chatech.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Zmínky</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Upozornit na zmínku ve ztlumených chatech.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Odpovědi</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Upozornit na odpověď na vaši zprávu ve ztlumených chatech.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Vyzvánět nebo upozornit při zahájení hovoru, i když je tento chat ztlumený.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Upozornit na zmínku, i když je tento chat ztlumený.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Upozornit na odpověď na vaši zprávu, i když je tento chat ztlumený.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Občas upozornit na nepřečtené zprávy, i když je tento chat ztlumený.</string>
 
@@ -5509,12 +5377,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Staňte se podporovatelem</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">Hledat smajlíka</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Zpět ke smajlíkům</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Vymazat hledání</string>
     <string name="KeyboardPagerFragment_search_giphy">Hledat v GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Neznámé vyzvánění</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5687,6 +5551,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Vyberte barvu</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Sdílet</string>
@@ -6073,8 +5941,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Upozornit na všechny zmínky</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Přidat</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Vytvořte si profil a přijímejte oznámení a hovory pouze od lidí a skupin, které chcete slyšet.</string>
@@ -6150,12 +6016,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Zapnuto do %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Nepodařilo se otevřít picker.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">Aby bylo možné oznámení zapnout, Signal potřebuje povolení k jejich zobrazování.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Zapnout</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Toto je jediný oficiální chat od Signal</string>
@@ -7496,28 +7356,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">Zeptáme se vás znovu za týden.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Ověřte svou dvoufázovou metodu</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">Občas vás požádáme o ověření vaší dvoufázové metody ověření, abychom se ujistili, že je stále správně nastavena.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">Ověřit</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">Nyní ne</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Děkujeme za potvrzení vaší ověřovací aplikace.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Děkujeme za potvrzení vašeho přístupového klíče.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Ověřte svůj Signal Login</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">Občas vás požádáme o ověření vašich přihlašovacích údajů, abychom se ujistili, že je stále znáte.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">Ověřit</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">Nyní ne</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Děkujeme za potvrzení vašeho Signal Login.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Zapnout oznámení na celou obrazovku?</string>
@@ -7844,34 +7704,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Zjistit více</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">Nemůžete si předplatit zabezpečené zálohy Signal, protože váš telefon nepodporuje služby Google Play. Obraťte se na výrobce telefonu a požádejte o pomoc.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Limity délky historie chatu</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Smazat historii zpráv</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Zprávy starší než zvolené období budou trvale odstraněny.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Zprávy přesahující zvolenou délku budou trvale odstraněny.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Použít limity u propojených zařízení</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Pokud jsou limity chatu povoleny, budou se mazat i zprávy z propojených zařízení.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Úložiště Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimalizovat úložiště Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nepoužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimalizaci úložiště lze použít pouze s placenou verzí zabezpečeného zálohování služby Signal. Vaše předplatné zálohování se stále zpracovává a není ještě aktivní. Zkuste to prosím znovu později.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Ze zálohy ve vašem zařízení budou odebrána média</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Zapnutím funkce Optimalizovat úložiště Signal dojde k odložení starších médií z vašeho zařízení. Kdykoliv si je můžete opět stáhnout. Tím se stará média odeberou i ze zálohy ve vašem zařízení.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Zapnout</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8536,6 +8368,8 @@
     <string name="MainToolbar__notification_profile_content_description">Profil oznámení</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

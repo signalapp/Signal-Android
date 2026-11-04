@@ -244,12 +244,12 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="zero">%1$d صور متحركة</item>
-        <item quantity="one">%1$d صورة متحركة</item>
-        <item quantity="two">%1$d صورتان متحركتان</item>
-        <item quantity="few">%1$d صور متحركة</item>
-        <item quantity="many">%1$d صورة متحركة</item>
-        <item quantity="other">%1$d صورة متحركة</item>
+        <item quantity="zero">%1$d GIFs</item>
+        <item quantity="one">%1$d GIF</item>
+        <item quantity="two">%1$d GIFs</item>
+        <item quantity="few">%1$d GIFs</item>
+        <item quantity="many">%1$d GIFs</item>
+        <item quantity="other">%1$d GIFs</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">

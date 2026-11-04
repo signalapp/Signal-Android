@@ -3582,16 +3582,9 @@
     <string name="arrays__enabled">Aktif</string>
     <string name="arrays__disabled">Nonaktif</string>
 
-    <string name="arrays__name_and_message">Nama dan pesan</string>
-    <string name="arrays__name_only">Nama saja</string>
-    <string name="arrays__no_name_or_message">Tidak ada nama atau pesan</string>
 
 
 
-    <string name="arrays__default">Standar</string>
-    <string name="arrays__high">Tinggi</string>
-    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Maks</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -3613,46 +3606,13 @@
     <!-- Snackbar shown after the user turns off screen security -->
     <string name="AssistantScreenSecurityTurnOffDialog__screen_security_is_off">Keamanan layar nonaktif</string>
     <string name="preferences__notifications">Notifikasi</string>
-    <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Aktifkan notifikasi</string>
-    <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Notifikasi panggilan</string>
-    <string name="preferences__led_color">Warna LED</string>
     <string name="preferences__led_color_unknown">Tidak dikenal</string>
-    <string name="preferences__pref_led_blink_title">Pola kedip LED</string>
-    <string name="preferences__customize">Kustomisasi</string>
-    <string name="preferences__change_sound_and_vibration">Ubah suara dan getaran</string>
-    <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Bunyi</string>
     <string name="preferences__silent">Diam</string>
-    <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Standar</string>
-    <string name="preferences__repeat_alerts">Ulangi peringatan</string>
-    <string name="preferences__never">Tidak pernah</string>
-    <string name="preferences__one_time">Sekali saja</string>
-    <string name="preferences__two_times">Dua kali</string>
-    <string name="preferences__three_times">Tiga kali</string>
-    <string name="preferences__five_times">Lima kali</string>
-    <string name="preferences__ten_times">Sepuluh kali</string>
-    <string name="preferences__vibrate">Getar</string>
-    <string name="preferences__green">Hijau</string>
-    <string name="preferences__red">Merah</string>
-    <string name="preferences__blue">Biru</string>
-    <string name="preferences__orange">Oranye</string>
-    <string name="preferences__cyan">Cyan</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__white">Putih</string>
-    <string name="preferences__fast">Cepat</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__slow">Lambat</string>
     <string name="preferences__advanced">Lanjutan</string>
     <string name="preferences__donate_to_signal">Donasi ke Signal</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Cerita</string>
-    <string name="preferences__storage">Penyimpanan</string>
     <string name="preferences__payments">Pembayaran</string>
-    <string name="preferences__conversation_length_limit">Batas panjang obrolan</string>
-    <string name="preferences__keep_messages">Simpan pesan</string>
     <string name="preferences__linked_devices">Perangkat terhubung</string>
     <string name="preferences__disable_pin">Nonaktifkan PIN</string>
     <string name="preferences__enable_pin">Aktifkan PIN</string>
@@ -3661,67 +3621,11 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Pengaturan PIN lanjutan</string>
     <string name="preferences__submit_debug_log">Kirim log awakutu</string>
-    <string name="preferences_storage__storage_usage">Penggunaan media penyimpanan</string>
-    <string name="preferences_storage__photos">Foto</string>
-    <string name="preferences_storage__videos">Video</string>
-    <string name="preferences_storage__files">Berkas</string>
-    <string name="preferences_storage__audio">Audio</string>
-    <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Pesan</string>
-    <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stiker</string>
-    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Lainnya</string>
-    <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Menghitung …</string>
-    <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
-    <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
-    <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Hapus riwayat pesan?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen dari perangkat Anda semua riwayat pesan dan media yang lebih lama dari %1$s.</string>
-    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
-    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="other">Ini akan secara permanen memangkas semua obrolan ke %1$s pesan terbaru.</item>
-    </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
-    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Ini akan menghapus secara permanen semua riwayat pesan dan media dari perangkat ini dan perangkat terhubung lainnya.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Yakin ingin menghapus semua riwayat pesan?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus secara permanen. Tindakan ini tidak dapat diurungkan.</string>
-    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Semua riwayat pesan akan dihapus dari semua perangkat secara permanen. Tindakan ini tidak dapat dibatalkan.</string>
-    <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>
-    <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Selamanya</string>
-    <string name="preferences_storage__one_year">1 tahun</string>
-    <string name="preferences_storage__six_months">6 bulan</string>
-    <string name="preferences_storage__thirty_days">30 hari</string>
-    <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">Kosong</string>
-    <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="other">%1$s pesan</item>
-    </plurals>
 
-    <string name="preferences_storage__custom">Spesifik</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
     <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
-    <string name="preferences_notifications__in_chat_sounds">Suara dalam obrolan</string>
-    <string name="preferences_notifications__show">Tampilkan</string>
-    <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">Saat disenyapkan</string>
-    <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Notifikasi tanggapan</string>
-    <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Tampilkan notifikasi saat ada tanggapan untuk pesan yang Anda kirim</string>
     <!-- Option in settings to turn on unread reminders -->
     <string name="preferences_notifications__unread">Pengingat pesan belum dibaca</string>
-    <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Sesekali kirimkan notifikasi ketika ada pesan yang belum dibaca di chat yang disenyapkan.</string>
-    <string name="preferences_notifications__ringtone">Nada dering</string>
-    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Prioritas</string>
-    <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Pemecahan masalah terkait notifikasi</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Hindari penyensoran</string>
     <!-- Title of the \'censorship circumvention\' toggle switch -->
@@ -4966,45 +4870,15 @@
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Selesai</string>
 
-    <string name="NotificationsSettingsFragment__calls">Panggilan</string>
-    <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Suara</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
-    <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Tampilkan notifikasi saat ada kontak telepon Anda yang bergabung di Signal</string>
-    <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset pengaturan notifikasi</string>
-    <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset pengaturan notifikasi ke default, termasuk pengaturan kustom untuk chat Anda</string>
-    <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset semua pengaturan notifikasi ke default untuk semua chat?</string>
-    <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profil notifikasi</string>
-    <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Buat profil untuk menerima notifikasi hanya dari orang dan grup yang Anda pilih.</string>
 
-    <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">Saat disenyapkan</string>
     <!-- Title for toggle row to control call settings while muted -->
     <string name="MutedNotificationsFragment__calls">Panggilan</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Berdering atau tampilkan notifikasi saat panggilan dimulai di chat yang disenyapkan.</string>
     <!-- Title for toggle row to control mentions settings while muted -->
     <string name="MutedNotificationsFragment__mentions">Penyebutan</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Tampilkan notifikasi saat Anda disebut dalam chat yang disenyapkan.</string>
     <!-- Title for toggle row to control replies settings while muted -->
     <string name="MutedNotificationsFragment__replies">Balasan</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Tampilkan notifikasi saat seseorang membalas pesan Anda di chat yang disenyapkan.</string>
-    <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Berdering atau tampilkan notifikasi saat panggilan dimulai meskipun chat ini disenyapkan.</string>
-    <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Tampilkan notifikasi saat Anda disebut meskipun chat ini disenyapkan.</string>
-    <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Tampilkan notifikasi saat seseorang membalas pesan Anda meskipun chat ini disenyapkan.</string>
     <!-- Description for toggle row to control unread reminders while muted -->
     <string name="MutedNotificationsFragment__unread_body">Sesekali beri notifikasi saat ada pesan yang belum dibaca meskipun chat ini disenyapkan.</string>
 
@@ -5086,12 +4960,8 @@
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_search_emoji">Cari emoji</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Kembali ke emoji</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Bersihkan daftar pencarian</string>
     <string name="KeyboardPagerFragment_search_giphy">Cari GIPHY</string>
 
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Nada dering tidak dikenal</string>
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
@@ -5258,6 +5128,10 @@
 
     <!-- VectorAvatarCreationFragment -->
     <string name="VectorAvatarCreationFragment__select_a_color">Pilih warna</string>
+
+    <!-- AvatarColorGrid -->
+    <!-- Accessibility label for one of the colors an avatar can be drawn in. %1$d is the color\'s position in the list, %2$d is how many colors there are. -->
+    <string name="AvatarColorGrid__color_d_of_d">Color %1$d of %2$d</string>
 
     <!-- Displayed in the toolbar when externally sharing text to multiple recipients -->
     <string name="ShareInterstitialActivity__share">Bagikan</string>
@@ -5632,8 +5506,6 @@
     <!-- List preference to toggle that allows mentions through the notification profile during create flow -->
     <string name="AddAllowedMembers__notify_for_all_mentions">Notifikasi untuk semua penyebutan</string>
 
-    <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Tambahkan</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
     <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Buat sebuah profil untuk menerima notifikasi dan panggilan hanya dari orang dan grup yang Anda inginkan.</string>
@@ -5709,12 +5581,6 @@
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Nyalakan sampai %1$s</string>
 
-    <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal membuka pemilih dering.</string>
-    <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">Untuk mengaktifkan notifikasi, Signal memerlukan izin untuk menampilkannya.</string>
-    <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Aktifkan</string>
 
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat">Ini chat resmi dan satu-satunya dari Signal</string>
@@ -6971,28 +6837,28 @@
     <string name="VerifyBackupKey__we_will_ask_again">Akan kami tanya lagi dalam seminggu.</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verify your two-factor method</string>
+    <string name="TwoFactorReminderMegaphone__verify_your_two_factor_method">Verifikasi metode autentikasi dua faktor Anda</string>
     <!-- Body of a megaphone shown to prompt the user to verify one of their two-factor authentication methods -->
-    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your two-factor authentication method to ensure it\'s still set up correctly.</string>
+    <string name="TwoFactorReminderMegaphone__well_occasionally_ask_you_to_verify">Sesekali kami akan meminta Anda memverifikasi metode autentikasi dua faktor untuk memastikan metode tersebut masih dikonfigurasi dengan benar.</string>
     <!-- Button of a megaphone that will take users to the screen where they verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__verify">Verifikasi</string>
     <!-- Button of a megaphone that will snooze the reminder to verify a two-factor method -->
     <string name="TwoFactorReminderMegaphone__not_now">Tidak sekarang</string>
     <!-- Snackbar text shown after the user verified their authenticator app from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Thanks for confirming your authenticator app.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_authenticator_app">Terima kasih telah mengonfirmasi aplikasi autentikator Anda.</string>
     <!-- Snackbar text shown after the user verified their passkey from the reminder -->
-    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Thanks for confirming your passkey.</string>
+    <string name="TwoFactorReminderMegaphone__thanks_for_confirming_your_passkey">Terima kasih telah mengonfirmasi kunci sandi Anda.</string>
 
     <!-- Title of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login (their account ID and recovery key) -->
-    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verify your Signal Login</string>
+    <string name="SignalLoginReminderMegaphone__verify_your_signal_login">Verifikasi Signal Login Anda</string>
     <!-- Body of a megaphone shown to prompt a user without a phone number to verify they still know their Signal Login -->
-    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">We\'ll occasionally ask you to verify your login info to ensure you still know it.</string>
+    <string name="SignalLoginReminderMegaphone__well_occasionally_ask_you_to_verify">Sesekali kami akan meminta Anda memverifikasi info login untuk memastikan Anda masih mengingatnya.</string>
     <!-- Button of a megaphone that will take users to the screen where they enter their Signal Login to verify it -->
     <string name="SignalLoginReminderMegaphone__verify">Verifikasi</string>
     <!-- Button of a megaphone that will snooze the reminder to verify the Signal Login -->
     <string name="SignalLoginReminderMegaphone__not_now">Tidak sekarang</string>
     <!-- Snackbar text shown after the user verified their Signal Login from the reminder -->
-    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Thanks for confirming your Signal Login.</string>
+    <string name="SignalLoginReminderMegaphone__thanks_for_confirming_your_signal_login">Terima kasih telah mengonfirmasi Signal Login Anda.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Aktifkan notifikasi layar penuh?</string>
@@ -7310,34 +7176,6 @@
     <string name="GooglePlayServicesAvailability__learn_more">Pelajari selengkapnya</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">Anda tidak dapat berlangganan Signal Secure Backups karena ponsel Anda tidak mendukung layanan Google Play. Hubungi produsen ponsel untuk mendapatkan bantuan.</string>
-
-    <!-- ManageStorageSettingsFragment -->
-    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Batas pesan</string>
-    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Hapus riwayat pesan</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Pesan yang sudah melewati batas waktu yang dipilih akan dihapus permanen.</string>
-    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Pesan yang melebihi batas panjang obrolan yang dipilih akan dihapus permanen.</string>
-    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Terapkan batas untuk perangkat terhubung</string>
-    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">Jika diaktifkan, batas pesan juga akan menghapus pesan di perangkat terhubung.</string>
-    <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Penyimpanan Signal</string>
-    <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimalkan penyimpanan Signal</string>
-    <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Media yang tidak digunakan akan di-offload, tetapi dapat diunduh dari cadangan Anda kapan saja.</string>
-    <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Pengoptimalan penyimpanan hanya dapat dimanfaatkan saat paket berbayar Signal Secure Backups aktif. Langganan pencadangan Anda masih diproses dan belum aktif. Coba lagi nanti.</string>
-    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media akan dihapus dari cadangan di perangkat Anda</string>
-    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Mengaktifkan \"Optimalkan penyimpanan Signal\" akan meng-offload media lama dari perangkat Anda. Anda dapat mengunduhnya kembali kapan saja. Media lama juga akan dihapus dari cadangan di perangkat Anda.</string>
-    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Aktifkan</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7975,6 +7813,8 @@
     <string name="MainToolbar__notification_profile_content_description">Profil Notifikasi</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <!-- Overflow menu item in MainToolbar that opens donation settings -->
+    <string name="MainToolbar__donate_to_signal">Donate to Signal</string>
     <!-- Accessibility label for search filter button in MainToolbar -->
   <!-- Removed by excludeNonTranslatables <string name="MainToolbar__search_filter_content_description" translatable="false">Search filter</string> -->
 

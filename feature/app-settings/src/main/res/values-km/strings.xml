@@ -316,9 +316,9 @@
     <!-- Bullet point on the delete account screen, shown in place of the plain one when the account has a username. Placeholder is the username. -->
     <string name="DeleteAccountScreen__delete_your_account_info_and_profile_photo_including_your_username_s">លុបព័ត៌មានគណនី និងរូបភាពប្រូហ្វាល់របស់អ្នក រួមទាំងឈ្មោះអ្នកប្រើ \"%1$s\" របស់អ្នក</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, telling the user their account ID and recovery key will be deleted -->
-    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key.</string>
+    <string name="DeleteAccountScreen__delete_your_account_id_and_recovery_key">Delete your account ID and recovery key</string>
     <!-- Bullet point on the delete account screen for an account with no phone number, warning the user that the account can\'t be registered again or restored afterwards -->
-    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">You won\'t be able to re-register or restore your account.</string>
+    <string name="DeleteAccountScreen__you_wont_be_able_to_re_register_or_restore_your_account">Prevent you from re-registering or restoring your account</string>
     <!-- Bullet point on the delete account screen warning the user that the deletion is permanent -->
     <string name="DeleteAccountScreen__this_action_can_not_be_undone">សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ</string>
     <!-- Message of the deletion confirmation dialog, shown when the account has a username. Placeholder is the username. -->
@@ -594,10 +594,10 @@
 
     <!-- PrivacySettingsScreen -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់បានកំណត់ឃ្លាសម្ងាត់ទេ!</string>
-    <string name="ApplicationPreferencesActivity_disable">បិទចោល</string>
+    <string name="ApplicationPreferencesActivity_disable">បិទ</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">បិទឃ្លាសម្ងាត់?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">វានឹងដោះសោ Signal និងសារជូនដំណឹងជាអចិន្ត្រៃយ៍។</string>
-    <string name="PrivacySettingsFragment__app_security">សន្តិសុខកម្មវិធី</string>
+    <string name="PrivacySettingsFragment__app_security">សុវត្ថិភាពកម្មវិធី</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ទប់ស្កាត់រូបថតអេក្រង់នៅក្នុងបញ្ជីថ្មីៗនេះ និងក្នុងកម្មវិធី</string>
     <string name="PrivacySettingsFragment__blocked">បានទប់ស្កាត់</string>
@@ -609,47 +609,47 @@
     <plurals name="PrivacySettingsFragment__d_contacts">
         <item quantity="other">%1$d ទំនាក់ទំនង ឬក្រុម</item>
     </plurals>
-    <string name="PrivacySettingsFragment__default_timer_for_new_changes">ពេលវេលាតាមលំនាំដើមសម្រាប់ការសន្ទនាថ្មីៗ</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">មុខងារកំណត់ម៉ោងលំនាំដើមសម្រាប់ការជជែកថ្មី</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">មិនអាចរុករកទៅការកំណត់ប្រព័ន្ធ</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">មិនអាចចូលទៅការកំណត់ប្រព័ន្ធបាន</string>
     <string name="PrivacySettingsFragment__messaging">ការផ្ញើសារ</string>
     <!-- Description for the payment lock toggle in privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">តម្រូវឲ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់</string>
-    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅ Signal តែងតែបញ្ជូនការហៅទូរសព្ទ និងអ្នកផ្ញើដែលបិទជិត</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">តម្រូវឱ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ម៉ោងឱ្យបាត់សារទៅវិញសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលអ្នកចាប់ផ្ដើម។</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅតាម Signal, មុខងារបញ្ជូនការហៅជានិច្ច និងមុខងារការពារអ្នកផ្ញើ</string>
     <!-- Text shown when screen lock is not enabled -->
     <string name="ScreenLockSettingsFragment__off">បិទ</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោSignalដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោ Signal ដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>
     <string name="preferences__change_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់</string>
     <string name="preferences__change_your_passphrase">ផ្លាស់ប្តូរឃ្លាសម្ងាត់របស់អ្នក</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">បើកឃ្លាសម្ងាត់ចាក់សោរអេក្រង់</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
+    <string name="preferences__enable_passphrase">បើកការចាក់សោអេក្រង់តាមឃ្លាសម្ងាត់</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើមុខងារអានសារត្រូវបានបិទ អ្នកនឹងមិនអាចមើលដឹងថាអ្នកផ្សេងបានអានសារហើយឬអត់ទេ។</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើសញ្ញាវាយអក្សរត្រូវបានបិទ អ្នកនឹងមិនអាចមើលដឹងថាអ្នកផ្សេងកំពុងវាយបញ្ចូលអក្សរនោះទេ។</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">ចន្លោះពេលអសកម្ម</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">ឃ្លាសម្ងាត់ពេលអសកម្ម</string>
     <string name="preferences__incognito_keyboard">ក្តារចុចអនាមឹក</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោរអេក្រង់ និងការជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោអេក្រង់ និងការជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">មុខងារចាក់សោការបង់ប្រាក់</string>
-    <string name="preferences__read_receipts">ទទួលបានការអាន</string>
-    <string name="preferences__request_keyboard_to_disable">ស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាបុគ្គល។</string>
-    <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">ការកំណត់នេះ មិនធានាទេ ហើយក្តារចុចរបស់អ្នកប្រហែលជាមិនអើពើវា។</string>
-    <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
+    <string name="preferences__read_receipts">មុខងារអានសារ</string>
+    <string name="preferences__request_keyboard_to_disable">ស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាដែលស្របតាមបុគ្គល។</string>
+    <string name="preferences__screen_security">សុវត្ថិភាពអេក្រង់</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">ការកំណត់នេះមិនអាចធានាបានទេ ហើយក្តារចុចរបស់អ្នកប្រហែលជាមិនអើពើនឹងវា។</string>
+    <string name="preferences__typing_indicators">សញ្ញាវាយអក្សរ</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">ជ្រើសរើសអ្នកដែលអាចមើលឃើញលេខទូរសព្ទរបស់អ្នក និងអ្នកណាដែលអាចប្រើវាទាក់ទងអ្នកបាននៅលើ Signal។</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">ការទូទាត់</string>
+    <string name="preferences_app_protection__payments">ការបង់ប្រាក់</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
     <string name="preferences_app_protection__to_use_screen_lock">ដើម្បីប្រើការចាក់សោអេក្រង់ សូមកំណត់លេខកូដសម្ងាត់ លំនាំគំនូស ឬពាក្យសម្ងាត់នៅលើឧបករណ៍នេះ។</string>
     <!-- Title of the privacy settings screen -->
     <string name="PrivacySettingsScreen__privacy">ឯកជនភាព</string>
     <!-- Section header in privacy settings for disappearing message defaults -->
-    <string name="PrivacySettingsScreen__disappearing_messages">សារបាត់ទៅវិញ</string>
+    <string name="PrivacySettingsScreen__disappearing_messages">សារដែលបាត់ដោយស្វ័យប្រវត្តិ</string>
     <!-- Row in privacy settings that opens advanced privacy settings -->
     <string name="PrivacySettingsScreen__advanced">កម្រិតខ្ពស់</string>
     <!-- Confirm button on the dialog explaining payment lock needs a device screen lock; opens the system settings -->
@@ -667,7 +667,7 @@
     <!-- String displayed in a snackbar when we successfully copy the backups subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវបម្រុងទុក ដាក់ទៅឃ្លីបបត</string>
     <!-- String displayed in a snackbar when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវជាម្ចាស់ជំនួយ ដាក់ទៅឃ្លីបបត</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">បានចម្លងលេខសម្គាល់អ្នកជាវជាអ្នកបរិច្ចាគ ដាក់ទៅឃ្លីបបត</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">មិនអាចបញ្ចប់ការបម្រុងទុកបានទេ</string>
     <!-- String displayed telling user to invite their friends to Signal -->
@@ -681,21 +681,21 @@
     <!-- Content description for the back button on the top level app settings screen -->
     <string name="AppSettingsScreen__go_back">ត្រឡប់ក្រោយ</string>
     <!-- Warning row in app settings shown when the user\'s backups subscription was already redeemed -->
-    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">មិនអាចប្ដូរនូវការជាវការបម្រុងទុករបស់អ្នកបានទេ</string>
+    <string name="AppSettingsScreen__couldnt_redeem_your_backups_subscription">មិនអាចប្ដូរយកការជាវការបម្រុងទុករបស់អ្នកបានទេ</string>
     <!-- App settings row that opens donations -->
     <string name="AppSettingsScreen__donate_to_signal">បរិច្ចាគទៅ Signal</string>
     <!-- App settings row that opens internal-only preferences -->
-    <string name="AppSettingsScreen__internal_preferences">Internal Preferences</string>
+    <string name="AppSettingsScreen__internal_preferences">ចំណូលចិត្តផ្ទៃក្នុង</string>
     <!-- App settings row that opens linked devices -->
-    <string name="AppSettingsScreen__linked_devices">ភ្ជាប់ឧបករណ៍</string>
+    <string name="AppSettingsScreen__linked_devices">ឧបករណ៍ដែលបានភ្ជាប់</string>
     <!-- App settings row that opens notification settings -->
     <string name="AppSettingsScreen__notifications">ការជូនដំណឹង</string>
     <!-- App settings row that opens payments -->
-    <string name="AppSettingsScreen__payments">ការទូទាត់</string>
+    <string name="AppSettingsScreen__payments">ការបង់ប្រាក់</string>
     <!-- App settings row that opens story settings -->
     <string name="AppSettingsScreen__stories">រឿងរ៉ាវ</string>
     <!-- App settings row that opens backup settings -->
-    <string name="AppSettingsScreen__backups">បម្រុងទុក</string>
+    <string name="AppSettingsScreen__backups">ការបម្រុងទុក</string>
 
     <!-- Navigation bar size dialog, in appearance settings -->
     <!-- Dialog title, displayed below the header image -->
@@ -707,6 +707,21 @@
 
     <!-- Content description for the back button on the chats settings screen -->
     <string name="ChatsSettingsScreen__go_back">ត្រឡប់ក្រោយ</string>
+
+    <!-- StorageUsageOverview -->
+    <string name="preferences_storage__photos">Photos</string>
+    <string name="preferences_storage__videos">Videos</string>
+    <string name="preferences_storage__files">Files</string>
+    <string name="preferences_storage__audio">Audio</string>
+    <!-- Storage usage legend label for the size of the main message database -->
+    <string name="preferences_storage__messages">Messages</string>
+    <!-- Storage usage legend label for the size of downloaded sticker packs -->
+    <string name="preferences_storage__stickers">Stickers</string>
+    <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
+    <string name="preferences_storage__other">Other</string>
+    <!-- Shown in place of the total storage size while usage is still being computed -->
+    <string name="preferences_storage__calculating">Calculating…</string>
+    <string name="preferences_storage__review_storage">Review storage</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -736,31 +751,60 @@
     <!-- Title of the screen for editing your profile name -->
     <string name="EditProfileNameFragment_your_name">ឈ្មោះរបស់អ្នក</string>
     <!-- Hint for the first name field when editing your profile name -->
-    <string name="EditProfileNameFragment_first_name">ឈ្មោះ</string>
+    <string name="EditProfileNameFragment_first_name">នាមខ្លួន</string>
     <!-- Hint for the last name field when editing your profile name -->
-    <string name="EditProfileNameFragment_last_name_optional">ត្រកូល (ជម្រើស)</string>
+    <string name="EditProfileNameFragment_last_name_optional">ត្រកូល (មិនតម្រូវ)</string>
     <!-- Button that saves your edited profile name -->
     <string name="EditProfileNameScreen__save">រក្សាទុក</string>
     <!-- Snackbar shown when your profile name couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">បរាជ័យក្នុងការរក្សាទុកដោយសារបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
+    <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">មិនអាចរក្សាទុកបានដោយសារបញ្ហាបណ្តាញ។ ព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
+
+    <!-- KeepMessagesSettingsScreen -->
+    <string name="preferences__keep_messages">Keep messages</string>
+    <!-- Option for keeping messages forever when managing storage -->
+    <string name="preferences_storage__forever">Forever</string>
+    <string name="preferences_storage__one_year">1 year</string>
+    <string name="preferences_storage__six_months">6 months</string>
+    <string name="preferences_storage__thirty_days">30 days</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
+    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <!-- Dialog action that confirms deleting older messages -->
+    <string name="preferences_storage__delete">Delete</string>
+
+    <!-- ChatLengthLimitSettingsScreen -->
+    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <plurals name="preferences_storage__s_messages_plural">
+        <item quantity="other">%1$s messages</item>
+    </plurals>
+    <!-- Option for setting no limit of the length of chat messages -->
+    <string name="preferences_storage__none">None</string>
+    <string name="preferences_storage__custom">Custom</string>
+    <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
+    <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+    </plurals>
 
     <!-- EditAboutScreen -->
     <!-- Title of the screen for editing the about text on your profile -->
     <string name="EditAboutFragment_about">អំពី</string>
     <!-- Placeholder in the about field when it is empty -->
-    <string name="EditAboutFragment_write_a_few_words_about_yourself">សរសេរពាក្យមួយចំនួនអំពីខ្លួនអ្នក…</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">សរសេរខ្លះៗអំពីខ្លួនអ្នក…</string>
     <!-- How many characters of the about text are used, out of the maximum, e.g. 125/140 -->
     <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <!-- Preset about text -->
     <string name="EditAboutFragment_speak_freely">និយាយដោយសេរី</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_encrypted">បានធ្វើកូដនីយកម្ម</string>
+    <string name="EditAboutFragment_encrypted">បានអ៊ីនគ្រីប</string>
     <!-- Preset about text -->
     <string name="EditAboutFragment_be_kind">មានចិត្តល្អ</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_coffee_lover">អ្នកស្រលាញ់កាហ្វេ</string>
+    <string name="EditAboutFragment_coffee_lover">អ្នកចូលចិត្តកាហ្វេ</string>
     <!-- Preset about text -->
-    <string name="EditAboutFragment_free_to_chat">ឥតគិតថ្លៃសម្រាប់ការឈែត</string>
+    <string name="EditAboutFragment_free_to_chat">ជជែកដោយសេរី</string>
     <!-- Preset about text -->
     <string name="EditAboutFragment_taking_a_break">សម្រាកបន្ថិច</string>
     <!-- Preset about text -->
@@ -772,7 +816,7 @@
     <!-- Content description for the button that opens the emoji picker for the about text -->
     <string name="EditAboutScreen__choose_emoji">ជ្រើសរើសរូបអារម្មណ៍</string>
     <!-- Snackbar shown when your about text couldn\'t be saved because of a network problem -->
-    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">បរាជ័យក្នុងការរក្សាទុកដោយសារបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
+    <string name="EditAboutScreen__failed_to_save_due_to_network_issues">មិនអាចរក្សាទុកបានដោយសារបញ្ហាបណ្តាញ។ ព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
 
     <!-- UsernameEditScreen -->
     <!-- Placeholder text for custom discriminator -->
@@ -796,7 +840,7 @@
     <!-- Shown when the service rejects a username -->
     <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើមិនត្រឹមត្រូវទេ។</string>
     <!-- Shown when a username is too short or too long. %1$d is the minimum length and %2$d the maximum -->
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើត្រូវតែនៅចន្លោះតួអក្សរ %1$d និង %2$d។</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើត្រូវតែមានចន្លោះពី %1$d និង %2$d តួអក្សរ។</string>
     <!-- Explanation about what usernames provide, ending in a link to learn more. %1$s is that link, UsernameEditScreen__learn_more -->
     <string name="UsernameEditScreen__usernames_let_others_message">អ្នកផ្សេងអាចផ្ញើសារមកអ្នកដោយប្រើប្រាស់ឈ្មោះអ្នកប្រើតាមជម្រើសរបស់អ្នក ជំនួសឱ្យលេខទូរសព្ទ។ ឈ្មោះអ្នកប្រើតែងតែត្រូវបានផ្គូផ្គងជាមួយលេខប៉ុន្មានខ្ទង់។ %1$s</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
@@ -825,11 +869,11 @@
     <!-- Explanation below the name, about and badges rows on the profile screen, saying who can see your profile -->
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រូហ្វាល់ និងការផ្លាស់ប្តូររបស់អ្នកនឹងមើលឃើញដោយមនុស្សដែលអ្នកផ្ញើសារ បញ្ជីទំនាក់ទំនង និងក្រុម។</string>
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_title">ដំឡើង Signal</string>
+    <string name="EditProfileFragment_deprecated_dialog_title">ដំឡើងកំណែ Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_body">កំណែ Signal នេះបានផុតកំណត់ហើយ។ ដំឡើងកំណែឥឡូវនេះដើម្បីបន្តប្រើប្រាស់ Signal។</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
-    <string name="EditProfileFragment_deprecated_dialog_update_button">បច្ចុប្បន្នភាព</string>
+    <string name="EditProfileFragment_deprecated_dialog_update_button">ដំឡើងកំណែ</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
     <string name="EditProfileFragment_unregistered_dialog_title">ឧបករណ៍មិនបានចុះឈ្មោះទេ</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
@@ -837,7 +881,7 @@
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
     <string name="EditProfileFragment_unregistered_dialog_reregister_button">ចុះឈ្មោះម្តងទៀត</string>
     <!-- Snackbar shown when your new avatar couldn\'t be saved because of a network problem -->
-    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">បរាជ័យក្នុងការរក្សាទុកដោយសារបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">មិនអាចរក្សាទុកបានដោយសារបញ្ហាបណ្តាញ។ ព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">មិនអាចលុបឈ្មោះអ្នកប្រើបានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
@@ -845,11 +889,11 @@
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_body">"ការធ្វើបែបនេះនឹងលុបឈ្មោះអ្នកប្រើរបស់អ្នកចេញ ហើយបិទកូដ QR និងតំណរបស់អ្នក។ អ្នកផ្សេងទៀតនឹងអាចទាមទារយក %1$s ទៅប្រើបាន។ តើអ្នកប្រាកដឬទេ?"</string>
     <!-- Button below your avatar on the profile screen that lets you change it -->
-    <string name="ManageProfileFragment__edit_photo">កែប្រែរូបភាព</string>
+    <string name="ManageProfileFragment__edit_photo">កែរូបថត</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_title">ចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នក</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
-    <string name="ManageProfileFragment__link_tooltip_body">អនុញ្ញាតឲ្យអ្នកដទៃចាប់ផ្តើមជជែកជាមួយអ្នកបាន ដោយចែករំលែកកូដ QR ឬតំណតែមួយគត់របស់អ្នក។</string>
+    <string name="ManageProfileFragment__link_tooltip_body">ឱ្យអ្នកផ្សេងចាប់ផ្តើមជជែកជាមួយអ្នកបាន ដោយចែករំលែកកូដ QR ឬតំណតែមួយគត់របស់អ្នក។</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">បានបង្កើតឈ្មោះអ្នកប្រើ</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -857,15 +901,15 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
     <string name="ManageProfileFragment__username_footer_no_username">អ្នកផ្សេងអាចផ្ញើសារមកអ្នកដោយប្រើប្រាស់ឈ្មោះអ្នកប្រើតាមជម្រើសរបស់អ្នក ជំនួសឱ្យលេខទូរសព្ទ។ ឈ្មោះអ្នកប្រើមានកូដ QR និងតំណតែមួយគត់ដែលអ្នកអាចចែករំលែកជាមួយមិត្តភក្តិបាន។</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
-    <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
+    <string name="ManageProfileFragment__your_username">ឈ្មោះអ្នកប្រើ កូដ QR និងតំណរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទេ។ ចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកតែជាមួយមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
     <!-- Row on the profile screen that opens your about, shown when you haven\'t set one -->
     <string name="ManageProfileFragment_about">អំពី</string>
     <!-- Snackbar shown when the photo you chose for your avatar couldn\'t be read -->
-    <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">មិនអាចកំណត់រូបតំណាងបាន</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">កូដ QR ឬតំណ</string>
     <!-- Row on the profile screen that opens your name, shown when you haven\'t set one -->
-    <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រវត្តិរូប</string>
+    <string name="ManageProfileFragment_profile_name">ឈ្មោះប្រូហ្វាល់</string>
     <!-- Row on the profile screen that opens your username, shown when you don\'t have one -->
     <string name="ManageProfileFragment_username">ឈ្មោះអ្នកប្រើ</string>
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -873,7 +917,7 @@
     <!-- Option to delete username displayed as a list item in a dialog -->
     <string name="UsernameEditDialog__delete_username">លុបឈ្មោះអ្នកប្រើ</string>
     <!-- Title of the screen showing your own profile -->
-    <string name="EditProfileScreen__profile">ប្រវត្តិរូប</string>
+    <string name="EditProfileScreen__profile">ប្រូហ្វាល់</string>
     <!-- Content description for your avatar on the profile screen, which opens it full screen -->
     <string name="EditProfileScreen__set_avatar">កំណត់រូបតំណាង</string>
     <!-- Row on the profile screen that opens your badges -->
@@ -885,9 +929,9 @@
     <!-- Title of the sheet shown when someone without badges taps Badges on their profile -->
     <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្រាប់ប្រូហ្វាល់របស់អ្នកតាមរយៈការគាំទ្រដល់ Signal។</string>
     <!-- Explanation in the sheet shown when someone without badges taps Badges on their profile -->
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាកម្មវិធីដែលមិនរកប្រាក់ចំនូល មិនអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែជាកម្មវិធីដែលគាំទ្រដោយមនុស្សដូចជាអ្នក</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាស្ថាប័នមិនរកប្រាក់ចំណេញ ហើយគ្មានអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកវិនិយោគទេ គឺទទួលបានការឧបត្ថម្ភគាំទ្រពីក្រុមមនុស្សដូចជាអ្នកប៉ុណ្ណោះ។</string>
     <!-- Button in the sheet shown when someone without badges taps Badges on their profile, which opens monthly donations -->
-    <string name="EditProfileScreen__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
+    <string name="EditProfileScreen__become_a_sustainer">ក្លាយជាអ្នកទ្រទ្រង់</string>
 
     <!-- BadgesOverviewScreen -->
     <!-- Title of the screen listing the badges you\'ve unlocked -->
@@ -899,7 +943,7 @@
     <!-- Row that opens the screen for choosing which badge is shown on your profile; the badge\'s name is shown beneath it -->
     <string name="BadgesOverviewScreen__featured_badge">ស្លាកពិសេស</string>
     <!-- Snackbar shown when showing or hiding your badges on your profile couldn\'t be saved -->
-    <string name="BadgesOverviewFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
+    <string name="BadgesOverviewFragment__failed_to_update_profile">មិនអាចធ្វើបច្ចុប្បន្នភាពប្រូហ្វាល់បាន</string>
 
     <!-- SelectFeaturedBadgeScreen -->
     <!-- Title of the screen for choosing which of your badges shows on your profile -->
@@ -909,7 +953,7 @@
     <!-- Button that saves the badge you chose to feature on your profile -->
     <string name="SelectFeaturedBadgeScreen__save">រក្សាទុក</string>
     <!-- Snackbar shown when the badge you chose to feature couldn\'t be saved to your profile -->
-    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">មិនអាចធ្វើបច្ចុប្បន្នភាពប្រូហ្វាល់បាន</string>
 
     <!-- UsernameLinkShareSheet -->
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
@@ -972,4 +1016,157 @@
     <string name="UsernameLinkSettingsScreen__allow_access">អនុញ្ញាតឱ្យចូលប្រើ</string>
     <!-- Shown when the camera permission was denied, or permanently denied, and a QR code can\'t be scanned -->
     <string name="UsernameLinkSettingsScreen__camera_needed">Signal ត្រូវការសិទ្ធិចូលប្រើកាមេរ៉ាដើម្បីស្គែនកូដ QR</string>
+
+    <!-- ManageStorageSettingsScreen -->
+    <string name="preferences__storage">Storage</string>
+    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <!-- Setting section title header for storage optimization -->
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <!-- Setting row title for storage optimization -->
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <!-- Setting row explanation for storage optimization -->
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
+    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
+    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
+    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <!-- Dialog title shown when selecting delete message history from manage storage -->
+    <string name="preferences_storage__delete_message_history">Delete message history?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
+    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
+    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+
+    <!-- MutedNotificationsScreen -->
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <!-- Description for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <!-- Description for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <!-- Description for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <!-- Header to describe screen that shows while muted settings -->
+    <string name="MutedNotificationsFragment__while">While muted</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="MutedNotificationsScreen__replies">Replies</string>
+
+    <!-- NotificationsSettingsScreen -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <!-- Banner title when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <!-- Banner action when notification permission is disabled -->
+    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
+    <string name="NotificationsSettingsFragment__calls">Calls</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <!-- Notification body to get notified when someone joins Signal -->
+    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <!-- Option to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <!-- Dialog to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <!-- Confirmation button to reset dialog -->
+    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <!-- Option body to reset their notification settings -->
+    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <!-- Notification header for sounds -->
+    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <!-- Title for toggle row to control call settings while muted -->
+    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <!-- Title for toggle row to control mentions settings while muted -->
+    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
+    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <!-- Title for toggle row to control replies settings while muted -->
+    <string name="NotificationsSettingsScreen__replies">Replies</string>
+    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <!-- Option in settings to turn on unread reminders -->
+    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
+    <string name="arrays__default">Default</string>
+    <string name="arrays__high">High</string>
+    <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
+    <string name="arrays__max">Max</string>
+    <string name="arrays__name_and_message">Name and message</string>
+    <string name="arrays__name_only">Name only</string>
+    <string name="arrays__no_name_or_message">No name or message</string>
+    <string name="preferences__blue">Blue</string>
+    <!-- Preference header for call notifications -->
+    <string name="preferences__call_notifications">Call notifications</string>
+    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
+    <string name="preferences__customize">Customize</string>
+    <string name="preferences__cyan">Cyan</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Default</string>
+    <!-- Preference item menu to enable notifications -->
+    <string name="preferences__enable_notifications">Enable notifications</string>
+    <string name="preferences__fast">Fast</string>
+    <string name="preferences__five_times">Five times</string>
+    <string name="preferences__green">Green</string>
+    <string name="preferences__led_color">LED color</string>
+    <string name="preferences__magenta">Magenta</string>
+    <string name="preferences__never">Never</string>
+    <string name="preferences__normal">Normal</string>
+    <string name="preferences__one_time">One time</string>
+    <string name="preferences__orange">Orange</string>
+    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
+    <string name="preferences__red">Red</string>
+    <string name="preferences__repeat_alerts">Repeat alerts</string>
+    <string name="preferences__slow">Slow</string>
+    <!-- Preference menu item to control the sound of notifications -->
+    <string name="preferences__sound">Sound</string>
+    <string name="preferences__ten_times">Ten times</string>
+    <string name="preferences__three_times">Three times</string>
+    <string name="preferences__two_times">Two times</string>
+    <string name="preferences__vibrate">Vibrate</string>
+    <string name="preferences__white">White</string>
+    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <!-- Body option in settings to turn on reaction notifications    -->
+    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <!-- Body option to turn on unread reminders -->
+    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
+    <string name="preferences_notifications__priority">Priority</string>
+    <!-- Option in settings to turn on reaction notifications -->
+    <string name="preferences_notifications__reaction">Reaction notifications</string>
+    <string name="preferences_notifications__ringtone">Ringtone</string>
+    <string name="preferences_notifications__show">Show</string>
+    <!-- Option in settings to trouble shoot delayed notifications -->
+    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <!-- Preference item to set notification settings when chats are muted -->
+    <string name="preferences_notifications__while_muted">While muted</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Add</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
 </resources>

@@ -735,7 +735,7 @@
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">သင့်အား ပြသခဲ့သော Signal Login နှင့် ကိုက်ညီမှုမရှိပါ</string>
     <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">သင့် Signal Login ကို ရိုက်ထည့်ပြီး မှတ်မိနေသေးကြောင်း အတည်ပြုပါ။</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -825,7 +825,7 @@
     <!-- Title of the screen asking the user to verify their account with their passkey -->
     <string name="PasskeyVerificationScreen__two_factor_authentication">နှစ်ဆင့် အတည်ပြုခြင်း</string>
     <!-- Subtitle telling the user to verify their account with their passkey -->
-    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
+    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">ဆက်လက်လုပ်ဆောင်ရန် သင့် Passkey ဖြင့် အကောင့်ကို အတည်ပြုပါ။</string>
     <!-- Button text to start verifying with a passkey -->
     <string name="PasskeyVerificationScreen__continue">ရှေ့ဆက်ရန်</string>
     <!-- Button text to cancel two-factor authentication -->

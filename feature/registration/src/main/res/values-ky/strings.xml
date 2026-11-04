@@ -737,7 +737,7 @@
     <!-- Error shown when what the user typed back doesn\'t match the Signal Login they were given. -->
     <string name="SignalLoginCredentialEntryScreen__that_doesnt_match_the_signal_login_you_were_shown">Сизге көрүнүп турган Signal Login\'ге дал келген жок</string>
     <!-- Subtitle on the Signal Login entry screen when the user opened it from a reminder to check they still know their login -->
-    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Enter your Signal Login to verify you still know it.</string>
+    <string name="SignalLoginCredentialEntryScreen__enter_your_signal_login_to_verify_you_still_know_it">Signal Login маалымат унутуп калбаганыңызды текшерүү үчүн аны киргизиңиз.</string>
 
     <!-- Add username screen -->
     <!-- Title of the screen offering the user an optional username. -->
@@ -827,7 +827,7 @@
     <!-- Title of the screen asking the user to verify their account with their passkey -->
     <string name="PasskeyVerificationScreen__two_factor_authentication">Эки этаптуу авторизация</string>
     <!-- Subtitle telling the user to verify their account with their passkey -->
-    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">To continue, verify your account with your passkey.</string>
+    <string name="PasskeyVerificationScreen__to_continue_verify_your_account">Улантуу үчүн аккаунтуңузду киргизүүчү ачкыч менен тастыктаңыз.</string>
     <!-- Button text to start verifying with a passkey -->
     <string name="PasskeyVerificationScreen__continue">Улантуу</string>
     <!-- Button text to cancel two-factor authentication -->

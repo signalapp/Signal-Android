@@ -20,7 +20,7 @@
 
     <!-- ListDetailPane -->
     <!-- Content description for the draggable divider between the list and detail panes on large screens -->
-    <string name="ListDetailPane__accessibility_pane_divider">Cambiar el tamaño de los paneles</string>
+    <string name="ListDetailPane__accessibility_pane_divider">Cambiar tamaño de los paneles</string>
     <!-- Accessibility action label for moving the divider between the list and detail panes to its next position -->
     <string name="ListDetailPane__accessibility_move_pane_divider">Mover divisor</string>
 
