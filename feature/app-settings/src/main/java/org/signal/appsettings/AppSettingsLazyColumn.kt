@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.LocalSplitPaneSettingsEnabled
 import org.signal.core.ui.compose.fullWidthDividers
 
 /**
@@ -42,7 +43,11 @@ fun AppSettingsLazyColumn(
     modifier = Modifier.padding(scaffoldPadding)
   ) {
     val layoutDirection = LocalLayoutDirection.current
-    val gutter = ((maxWidth - AppSettingsMaxContentWidth) / 2).coerceAtLeast(0.dp)
+    val gutter = if (LocalSplitPaneSettingsEnabled.current) {
+      ((maxWidth - AppSettingsMaxContentWidth) / 2).coerceAtLeast(0.dp)
+    } else {
+      0.dp
+    }
 
     LazyColumn(
       state = state,

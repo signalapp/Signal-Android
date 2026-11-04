@@ -90,9 +90,9 @@ private fun Modifier.expandedTitleInset(state: TopAppBarState): Modifier {
 }
 
 /**
- * Whether settings screens may use their split-pane treatment on a split-pane window: no navigation icon in the detail
- * pane, and their split-pane colors. Off by default, so that a screen shared between hosts keeps its current look until
- * its host is ready for the change.
+ * Whether settings screens may use their split-pane treatment: a collapsing top bar and a max content width on large
+ * windows, and on a split-pane window no navigation icon in the detail pane, and their split-pane colors. Off by default,
+ * so that a screen shared between hosts keeps its current look until its host is ready for the change.
  */
 val LocalSplitPaneSettingsEnabled = staticCompositionLocalOf { false }
 
@@ -155,7 +155,8 @@ object Scaffolds {
    *
    * @param titleContent The title area content. First parameter is the contentOffset. Unused by the collapsing top bar.
    * @param expandableTitle on windows bigger than a phone's (foldables, tablets), shows a large title that collapses as
-   *   the content scrolls. Phones, in either orientation, always get the pinned top bar.
+   *   the content scrolls, under a host that enables [LocalSplitPaneSettingsEnabled]. Phones, in either orientation,
+   *   always get the pinned top bar.
    */
   @Composable
   fun Settings(
@@ -176,7 +177,7 @@ object Scaffolds {
     content: @Composable (PaddingValues) -> Unit
   ) {
     val isSplitPaneHost = rememberIsSplitPaneSettings()
-    val isCollapsing = expandableTitle && rememberWindowBreakpoint() !is WindowBreakpoint.Small
+    val isCollapsing = expandableTitle && LocalSplitPaneSettingsEnabled.current && rememberWindowBreakpoint() !is WindowBreakpoint.Small
     // Beside its list, the bottom of a detail stack is closed by picking something else from the list rather than by navigating up.
     val visibleNavigationIcon = navigationIcon.takeUnless { isSplitPaneHost && LocalIsDetailPaneRoot.current }
     val scrollBehavior = if (isCollapsing) {
