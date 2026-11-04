@@ -76,6 +76,18 @@ class HelpSettingsScreenTest {
     assertThat(events).isEmpty()
   }
 
+  @Test
+  fun `the version copied snackbar is shown and reports when it is dismissed`() {
+    setContent(HelpSettingsState(versionName = "8.33.0", snackbar = HelpSettingsState.Snackbar.VersionCopied))
+
+    composeTestRule.onNodeWithText("Copied to clipboard").assertIsDisplayed()
+
+    composeTestRule.mainClock.advanceTimeBy(10_000)
+    composeTestRule.waitForIdle()
+
+    assertThat(events).containsExactly(HelpSettingsEvent.SnackbarDismissed)
+  }
+
   private fun assertClickEmits(tag: String, expected: HelpSettingsEvent) {
     setContent(HelpSettingsState(versionName = "8.33.0"))
 

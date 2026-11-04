@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
@@ -55,7 +56,14 @@ fun HelpSettingsScreen(
     onNavigationClick = { onEvent(HelpSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
-    modifier = modifier
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(HelpSettingsEvent.SnackbarDismissed) }
+      )
+    },
+    modifier = modifier,
+    expandableTitle = true
   ) { contentPadding ->
     AppSettingsLazyColumn(
       scaffoldPadding = contentPadding,
@@ -121,6 +129,14 @@ fun HelpSettingsScreen(
         LegalNotice()
       }
     }
+  }
+}
+
+@Composable
+private fun HelpSettingsState.Snackbar.message(): String? {
+  return when (this) {
+    HelpSettingsState.Snackbar.None -> null
+    HelpSettingsState.Snackbar.VersionCopied -> stringResource(R.string.HelpSettingsFragment__copied_to_clipboard)
   }
 }
 

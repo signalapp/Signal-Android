@@ -16,7 +16,4 @@ sealed interface InviteAction {
   data class ShareInvite(val inviteText: String) : InviteAction {
     override fun toString(): String = "ShareInvite"
   }
-
-  /** Leave the screen. */
-  data object NavigateBack : InviteAction
 }

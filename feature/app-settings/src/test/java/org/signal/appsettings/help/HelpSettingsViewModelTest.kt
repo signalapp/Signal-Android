@@ -7,6 +7,7 @@ package org.signal.appsettings.help
 
 import assertk.assertThat
 import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,6 +22,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HelpSettingsViewModelTest {
@@ -30,6 +33,7 @@ class HelpSettingsViewModelTest {
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -49,25 +53,46 @@ class HelpSettingsViewModelTest {
   }
 
   @Test
-  fun `NavigateBackClicked navigates back`() = assertEventEmits(HelpSettingsEvent.NavigateBackClicked, HelpSettingsAction.NavigateBack)
+  fun `NavigateBackClicked navigates back`() = assertEventNavigates(HelpSettingsEvent.NavigateBackClicked, AppSettingsNavigationEvent.NavigateBack())
+
+  @Test
+  fun `ContactUsClicked opens the contact form`() = assertEventNavigates(
+    HelpSettingsEvent.ContactUsClicked,
+    AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.HelpRoute.Help())
+  )
+
+  @Test
+  fun `DebugLogClicked opens the debug log`() = assertEventNavigates(
+    HelpSettingsEvent.DebugLogClicked,
+    AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.HelpRoute.DebugLog)
+  )
+
+  @Test
+  fun `LicensesClicked opens the licenses`() = assertEventNavigates(
+    HelpSettingsEvent.LicensesClicked,
+    AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.HelpRoute.Licenses)
+  )
 
   @Test
   fun `SupportCenterClicked opens the support center`() = assertEventEmits(HelpSettingsEvent.SupportCenterClicked, HelpSettingsAction.OpenSupportCenter)
 
   @Test
-  fun `ContactUsClicked navigates to contact us`() = assertEventEmits(HelpSettingsEvent.ContactUsClicked, HelpSettingsAction.NavigateToContactUs)
-
-  @Test
-  fun `VersionLongClicked copies the version name`() = assertEventEmits(HelpSettingsEvent.VersionLongClicked, HelpSettingsAction.CopyVersionToClipboard(VERSION_NAME))
-
-  @Test
-  fun `DebugLogClicked navigates to the debug log`() = assertEventEmits(HelpSettingsEvent.DebugLogClicked, HelpSettingsAction.NavigateToDebugLog)
-
-  @Test
-  fun `LicensesClicked navigates to licenses`() = assertEventEmits(HelpSettingsEvent.LicensesClicked, HelpSettingsAction.NavigateToLicenses)
-
-  @Test
   fun `TermsAndPrivacyPolicyClicked opens the terms and privacy policy`() = assertEventEmits(HelpSettingsEvent.TermsAndPrivacyPolicyClicked, HelpSettingsAction.OpenTermsAndPrivacyPolicy)
+
+  @Test
+  fun `VersionLongClicked copies the version name and says so until the snackbar is dismissed`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(HelpSettingsEvent.VersionLongClicked)
+
+    assertThat(actions).containsExactly(HelpSettingsAction.CopyVersionToClipboard(VERSION_NAME))
+    assertThat(viewModel.state.value.snackbar).isEqualTo(HelpSettingsState.Snackbar.VersionCopied)
+
+    viewModel.onEvent(HelpSettingsEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(HelpSettingsState.Snackbar.None)
+  }
 
   private fun assertEventEmits(event: HelpSettingsEvent, expected: HelpSettingsAction) = runTest(testDispatcher) {
     val viewModel = createViewModel()
@@ -76,9 +101,20 @@ class HelpSettingsViewModelTest {
     viewModel.onEvent(event)
 
     assertThat(actions).containsExactly(expected)
+    assertThat(navigationEvents).isEmpty()
   }
 
-  private fun createViewModel(): HelpSettingsViewModel = HelpSettingsViewModel(versionName = VERSION_NAME)
+  private fun assertEventNavigates(event: HelpSettingsEvent, expected: AppSettingsNavigationEvent) = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+    val actions = collectActions(viewModel.actions)
+
+    viewModel.onEvent(event)
+
+    assertThat(navigationEvents).containsExactly(expected)
+    assertThat(actions).isEmpty()
+  }
+
+  private fun createViewModel(): HelpSettingsViewModel = HelpSettingsViewModel(versionName = VERSION_NAME, parentEventEmitter = { navigationEvents += it })
 
   private fun TestScope.collectActions(actions: Flow<HelpSettingsAction>): List<HelpSettingsAction> {
     val collected = mutableListOf<HelpSettingsAction>()

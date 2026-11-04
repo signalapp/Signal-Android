@@ -23,6 +23,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class InviteViewModelTest {
@@ -32,6 +33,7 @@ class InviteViewModelTest {
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -106,7 +108,8 @@ class InviteViewModelTest {
 
     viewModel.onEvent(InviteEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(InviteAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
+    assertThat(actions).isEmpty()
   }
 
   @Test
@@ -119,7 +122,7 @@ class InviteViewModelTest {
   }
 
   private fun createViewModel(defaultInviteText: String = DEFAULT_INVITE_TEXT): InviteViewModel {
-    return InviteViewModel(defaultInviteText)
+    return InviteViewModel(defaultInviteText, parentEventEmitter = { navigationEvents += it })
   }
 
   private fun TestScope.collectActions(actions: Flow<InviteAction>): List<InviteAction> {

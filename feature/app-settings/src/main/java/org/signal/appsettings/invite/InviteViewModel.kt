@@ -12,11 +12,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 class InviteViewModel(
-  defaultInviteText: String
+  defaultInviteText: String,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<InviteEvent>(TAG, shouldLogEvents = true) {
   companion object {
     private val TAG = Log.tag(InviteViewModel::class)
@@ -39,7 +42,7 @@ class InviteViewModel(
       }
 
       is InviteEvent.NavigateBackClicked -> {
-        _actions.send(InviteAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
     }
   }

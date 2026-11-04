@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.util.ResourceUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
@@ -22,7 +24,8 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 
 class HelpViewModel(
   startCategoryIndex: Int,
-  application: Application
+  application: Application,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : AndroidViewModel(application) {
 
   private val internalState = MutableStateFlow(
@@ -44,6 +47,7 @@ class HelpViewModel(
       is HelpScreenEvents.FeelingSelected -> onFeelingSelected(event.feeling)
       is HelpScreenEvents.DebugLogsToggled -> onDebugLogsToggled(event.toggle)
       is HelpScreenEvents.OnNextClick -> onNextClick()
+      HelpScreenEvents.NavigationClick -> parentEventEmitter.navigateBack()
       else -> error("Unhandled event: $event")
     }
   }

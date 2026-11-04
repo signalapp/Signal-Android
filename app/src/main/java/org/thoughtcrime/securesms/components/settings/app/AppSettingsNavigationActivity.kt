@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
+import org.thoughtcrime.securesms.components.settings.app.help.registerHelpRoutes
+import org.thoughtcrime.securesms.components.settings.app.invite.registerInviteRoutes
 import org.thoughtcrime.securesms.components.settings.app.labs.registerLabsRoutes
 import org.thoughtcrime.securesms.components.settings.app.notifications.registerNotificationsRoutes
 import org.thoughtcrime.securesms.components.settings.app.privacy.registerPrivacyRoutes
@@ -41,6 +43,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.profiles.manage.editprofile.registerEditProfileScreens
@@ -94,6 +97,8 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerNotificationsRoutes(router::onEvent)
               registerLabsRoutes(router::onEvent)
               registerAppUpdatesRoutes(router::onEvent)
+              registerHelpRoutes(router::onEvent)
+              registerInviteRoutes(router::onEvent)
               registerPrivacyRoutes(router::onEvent)
               registerDataAndStorageRoutes(router::onEvent)
               registerEditProfileScreens(router::onEvent)
@@ -118,6 +123,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
   private fun tryLaunchActivity(route: AppSettingsRoute): Boolean {
     val intent = when (route) {
       AppSettingsRoute.Payments -> Intent(this, PaymentsActivity::class.java)
+      AppSettingsRoute.HelpRoute.DebugLog -> Intent(this, SubmitDebugLogActivity::class.java)
       else -> return false
     }
 

@@ -53,7 +53,7 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
             AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
           }
         }
-        is AppSettingsRoute.HelpRoute.Settings -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
+        is AppSettingsRoute.HelpRoute.Help -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
           .setStartCategoryIndex(appSettingsRoute.startCategoryIndex)
         AppSettingsRoute.DataAndStorageRoute.Proxy -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         AppSettingsRoute.NotificationsRoute.Notifications -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
@@ -133,7 +133,7 @@ class AppSettingsActivity : NavGraphHostActivity(), GooglePayComponent {
 
     @JvmStatic
     fun help(context: Context, startCategoryIndex: Int = 0): Intent {
-      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Settings(startCategoryIndex = startCategoryIndex))
+      return getIntentForStartLocation(context, AppSettingsRoute.HelpRoute.Help(startCategoryIndex = startCategoryIndex))
         .putExtra(HelpFragment.START_CATEGORY_INDEX, startCategoryIndex)
     }
 

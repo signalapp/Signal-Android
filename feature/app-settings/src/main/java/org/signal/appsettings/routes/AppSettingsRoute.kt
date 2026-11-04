@@ -295,13 +295,13 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
   @Serializable
   @Parcelize
   sealed interface HelpRoute : AppSettingsRoute {
+    /** The help section, listing the support center, contact form, debug log and licenses. */
     @Serializable
-    data class Settings(
-      val startCategoryIndex: Int = 0
-    ) : HelpRoute
+    data object Settings : HelpRoute
 
+    /** The contact form, with category [startCategoryIndex] preselected. */
     @Serializable
-    data object Help : HelpRoute
+    data class Help(val startCategoryIndex: Int = 0) : HelpRoute
 
     @Serializable
     data object DebugLog : HelpRoute

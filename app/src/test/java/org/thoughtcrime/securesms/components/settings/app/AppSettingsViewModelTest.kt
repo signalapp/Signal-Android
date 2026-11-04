@@ -187,7 +187,7 @@ class AppSettingsViewModelTest {
       AppSettingsRoute.DataAndStorageRoute.DataAndStorage,
       AppSettingsRoute.AppUpdates,
       AppSettingsRoute.Payments,
-      AppSettingsRoute.HelpRoute.Settings(),
+      AppSettingsRoute.HelpRoute.Settings,
       AppSettingsRoute.Invite,
       AppSettingsRoute.LabsRoute.Labs,
       AppSettingsRoute.InternalRoute.Internal

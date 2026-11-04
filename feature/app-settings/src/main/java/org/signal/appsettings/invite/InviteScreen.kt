@@ -6,17 +6,11 @@
 package org.signal.appsettings.invite
 
 import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -31,17 +25,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
-import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.AllDevicePreviews
-import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object InviteTestTags {
+  const val SCROLLER = "scroller"
   const val INPUT_INVITE_TEXT = "input-invite-text"
   const val ROW_SHARE = "row-share"
 }
@@ -62,51 +60,42 @@ fun InviteScreen(
     onNavigationClick = { onEvent(InviteEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description),
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = true
   ) { paddingValues ->
-    Column(
-      modifier = Modifier
-        .padding(paddingValues)
-        .appSettingsScreen()
-        .padding(16.dp)
-        .fillMaxHeight()
+    AppSettingsLazyColumn(
+      scaffoldPadding = paddingValues,
+      modifier = Modifier.testTag(InviteTestTags.SCROLLER)
     ) {
-      TextField(
-        value = inviteTextFieldValue,
-        onValueChange = { newValue ->
-          inviteTextFieldValue = newValue
-          onEvent(InviteEvent.InviteTextChanged(newValue.text))
-        },
-        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
-        colors = TextFieldDefaults.colors(
-          focusedIndicatorColor = Color.Transparent,
-          unfocusedIndicatorColor = Color.Transparent,
-          unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-          focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
-        ),
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(bottom = 16.dp)
-          .testTag(InviteTestTags.INPUT_INVITE_TEXT),
-        shape = RoundedCornerShape(12.dp)
-      )
-
-      Row(
-        modifier = Modifier
-          .clickable(onClick = { onEvent(InviteEvent.ShareClicked) })
-          .fillMaxWidth()
-          .padding(vertical = 16.dp)
-          .testTag(InviteTestTags.ROW_SHARE)
-      ) {
-        Icon(
-          imageVector = SignalIcons.Share.imageVector,
-          contentDescription = stringResource(R.string.InviteScreen__share)
+      item {
+        TextField(
+          value = inviteTextFieldValue,
+          onValueChange = { newValue ->
+            inviteTextFieldValue = newValue
+            onEvent(InviteEvent.InviteTextChanged(newValue.text))
+          },
+          keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+          colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
+          ),
+          modifier = Modifier
+            .fillMaxWidth()
+            .horizontalGutters()
+            .padding(vertical = 16.dp)
+            .testTag(InviteTestTags.INPUT_INVITE_TEXT),
+          shape = RoundedCornerShape(12.dp)
         )
+      }
 
-        Text(
+      item {
+        Rows.TextRow(
           text = stringResource(id = R.string.InviteScreen__share),
-          style = MaterialTheme.typography.bodyLarge,
-          modifier = Modifier.padding(horizontal = 16.dp)
+          icon = SignalIcons.Share.imageVector,
+          onClick = { onEvent(InviteEvent.ShareClicked) },
+          modifier = Modifier.testTag(InviteTestTags.ROW_SHARE)
         )
       }
     }
@@ -114,12 +103,11 @@ fun InviteScreen(
 }
 
 @AllDevicePreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun InviteScreenPreview() {
-  Previews.Preview {
-    InviteScreen(
-      state = InviteState(inviteText = "Join me on Signal!"),
-      onEvent = {}
-    )
-  }
+  InviteScreen(
+    state = InviteState(inviteText = "Join me on Signal!"),
+    onEvent = {}
+  )
 }
