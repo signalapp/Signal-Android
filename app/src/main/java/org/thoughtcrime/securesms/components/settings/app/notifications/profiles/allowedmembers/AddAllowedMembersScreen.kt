@@ -6,10 +6,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.allowedmembers
 
 import androidx.annotation.VisibleForTesting
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.AppSettingsLazyColumn
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
@@ -77,90 +79,94 @@ fun AddAllowedMembersScreen(
     Column(
       modifier = Modifier.padding(contentPadding)
     ) {
-      LazyColumn(
-        modifier = Modifier
-          .weight(1f)
-          .testTag(AddAllowedMembersTestTags.LIST)
-      ) {
-        item {
-          Text(
-            text = stringResource(R.string.AddAllowedMembers__allowed_notifications),
-            style = MaterialTheme.typography.headlineMedium.copy(hyphens = Hyphens.Auto),
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-              .horizontalGutters()
-              .padding(top = 20.dp)
-              .fillMaxWidth()
-          )
+      Box(modifier = Modifier.weight(1f)) {
+        AppSettingsLazyColumn(
+          modifier = Modifier.testTag(AddAllowedMembersTestTags.LIST)
+        ) {
+          item {
+            Text(
+              text = stringResource(R.string.AddAllowedMembers__allowed_notifications),
+              style = MaterialTheme.typography.headlineMedium.copy(hyphens = Hyphens.Auto),
+              textAlign = TextAlign.Center,
+              fontWeight = FontWeight.Bold,
+              modifier = Modifier
+                .horizontalGutters()
+                .padding(top = 20.dp)
+                .fillMaxWidth()
+            )
 
-          Text(
-            text = stringResource(R.string.AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on),
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-              .horizontalGutters()
-              .padding(top = 12.dp, bottom = 24.dp)
-              .fillMaxWidth()
-          )
-        }
+            Text(
+              text = stringResource(R.string.AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on),
+              style = MaterialTheme.typography.bodyLarge,
+              textAlign = TextAlign.Center,
+              modifier = Modifier
+                .horizontalGutters()
+                .padding(top = 12.dp, bottom = 24.dp)
+                .fillMaxWidth()
+            )
+          }
 
-        item {
-          Texts.SectionHeader(
-            text = stringResource(R.string.AddAllowedMembers__allowed_notifications)
-          )
-        }
+          item {
+            Texts.SectionHeader(
+              text = stringResource(R.string.AddAllowedMembers__allowed_notifications)
+            )
+          }
 
-        item {
-          NotificationProfileAddMembers(
-            onClick = { onEvent(AddAllowedMembersEvent.AddMembersClicked) },
-            modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_ADD_MEMBERS)
-          )
-        }
+          item {
+            NotificationProfileAddMembers(
+              onClick = { onEvent(AddAllowedMembersEvent.AddMembersClicked) },
+              modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_ADD_MEMBERS)
+            )
+          }
 
-        items(state.members, key = { it.id.toLong() }) { member ->
-          NotificationProfileRecipient(
-            recipient = member,
-            onRemoveClick = { onEvent(AddAllowedMembersEvent.RemoveMemberClicked(it)) },
-            modifier = Modifier.testTag(AddAllowedMembersTestTags.member(member.id))
-          )
-        }
+          items(state.members, key = { it.id.toLong() }) { member ->
+            NotificationProfileRecipient(
+              recipient = member,
+              onRemoveClick = { onEvent(AddAllowedMembersEvent.RemoveMemberClicked(it)) },
+              modifier = Modifier.testTag(AddAllowedMembersTestTags.member(member.id))
+            )
+          }
 
-        item {
-          Texts.SectionHeader(
-            text = stringResource(R.string.AddAllowedMembers__exceptions)
-          )
-        }
+          item {
+            Texts.SectionHeader(
+              text = stringResource(R.string.AddAllowedMembers__exceptions)
+            )
+          }
 
-        item {
-          Rows.ToggleRow(
-            checked = profile.allowAllCalls,
-            text = stringResource(R.string.AddAllowedMembers__allow_all_calls),
-            icon = SignalIcons.Phone.imageVector,
-            onCheckChanged = { onEvent(AddAllowedMembersEvent.AllowAllCallsToggled(it)) },
-            modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_ALLOW_ALL_CALLS)
-          )
-        }
+          item {
+            Rows.ToggleRow(
+              checked = profile.allowAllCalls,
+              text = stringResource(R.string.AddAllowedMembers__allow_all_calls),
+              icon = SignalIcons.Phone.imageVector,
+              onCheckChanged = { onEvent(AddAllowedMembersEvent.AllowAllCallsToggled(it)) },
+              modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_ALLOW_ALL_CALLS)
+            )
+          }
 
-        item {
-          Rows.ToggleRow(
-            checked = profile.allowAllMentions,
-            text = stringResource(R.string.AddAllowedMembers__notify_for_all_mentions),
-            icon = SignalIcons.At.imageVector,
-            onCheckChanged = { onEvent(AddAllowedMembersEvent.NotifyForAllMentionsToggled(it)) },
-            modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_NOTIFY_FOR_ALL_MENTIONS)
-          )
+          item {
+            Rows.ToggleRow(
+              checked = profile.allowAllMentions,
+              text = stringResource(R.string.AddAllowedMembers__notify_for_all_mentions),
+              icon = SignalIcons.At.imageVector,
+              onCheckChanged = { onEvent(AddAllowedMembersEvent.NotifyForAllMentionsToggled(it)) },
+              modifier = Modifier.testTag(AddAllowedMembersTestTags.ROW_NOTIFY_FOR_ALL_MENTIONS)
+            )
+          }
         }
       }
 
-      Buttons.LargeTonal(
-        onClick = { onEvent(AddAllowedMembersEvent.NextClicked) },
-        modifier = Modifier
-          .align(Alignment.End)
-          .padding(16.dp)
-          .testTag(AddAllowedMembersTestTags.BUTTON_NEXT)
+      Box(
+        contentAlignment = Alignment.CenterEnd,
+        modifier = Modifier.appSettingsScreen()
       ) {
-        Text(text = stringResource(R.string.EditNotificationProfileFragment__next))
+        Buttons.LargeTonal(
+          onClick = { onEvent(AddAllowedMembersEvent.NextClicked) },
+          modifier = Modifier
+            .padding(16.dp)
+            .testTag(AddAllowedMembersTestTags.BUTTON_NEXT)
+        ) {
+          Text(text = stringResource(R.string.EditNotificationProfileFragment__next))
+        }
       }
     }
   }

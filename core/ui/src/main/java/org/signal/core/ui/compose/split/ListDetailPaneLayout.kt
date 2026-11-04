@@ -28,7 +28,8 @@ class ListDetailPaneLayout internal constructor(
   internal val detailPaddingEnd: Dp,
   internal val shape: Shape,
   internal val hasDragHandle: Boolean,
-  internal val minPaneContentWidth: Dp
+  internal val minListContentWidth: Dp,
+  internal val minDetailContentWidth: Dp
 )
 
 /**
@@ -87,7 +88,7 @@ fun rememberListDetailPaneLayout(
     expansion.goTo(paneAnchor)
   }
 
-  return remember(expansion, metrics, isSplitPane, splitWidth, isResizable) {
+  return remember(expansion, metrics, isSplitPane, splitWidth, maxWidth, isResizable) {
     ListDetailPaneLayout(
       expansion = expansion,
       partitionWidth = metrics.partitionWidth,
@@ -95,7 +96,8 @@ fun rememberListDetailPaneLayout(
       detailPaddingEnd = metrics.detailPaddingEnd,
       shape = metrics.shape,
       hasDragHandle = isSplitPane && isResizable,
-      minPaneContentWidth = splitWidth
+      minListContentWidth = if (isSplitPane) metrics.listContentWidthAtSplit(splitWidth) else splitWidth,
+      minDetailContentWidth = if (isSplitPane) metrics.detailWidthAtSplit(maxWidth, splitWidth) else splitWidth
     )
   }
 }
@@ -132,3 +134,20 @@ val LocalIsDetailPaneRoot = compositionLocalOf { false }
  * The content key of the bottom of the detail stack beside the list, or null outside a split.
  */
 internal val LocalDetailPaneRootContentKey = compositionLocalOf<Any?> { null }
+
+/**
+ * The list pane's content width while both panes are visible: the list's [splitListWidth] less the padding at its start,
+ * such as the inset the main screen's search bar needs.
+ */
+internal fun ListDetailPaneMetrics.listContentWidthAtSplit(splitListWidth: Dp): Dp {
+  return (splitListWidth - listPaddingStart).coerceAtLeast(0.dp)
+}
+
+/**
+ * The detail pane's width while both panes are visible: whatever the list, the gap between them and the detail's end
+ * padding leave of [maxWidth]. This is narrower than the list on a window that is only just wide enough for the list's
+ * fixed width, such as an open foldable.
+ */
+internal fun ListDetailPaneMetrics.detailWidthAtSplit(maxWidth: Dp, splitListWidth: Dp): Dp {
+  return (maxWidth - splitListWidth - partitionWidth - detailPaddingEnd).coerceAtLeast(0.dp)
+}

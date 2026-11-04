@@ -11,6 +11,7 @@ import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.split.detailEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.muted.MutedNotificationsEntry
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.allowedmembers.AddAllowedMembersEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details.NotificationProfileDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit.EditNotificationProfileEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.list.NotificationProfilesEntry
@@ -37,5 +38,9 @@ fun EntryProviderScope<NavKey>.registerNotificationsRoutes(parentEventEmitter: (
 
   detailEntry<AppSettingsRoute.NotificationsRoute.EditProfile> { route ->
     EditNotificationProfileEntry(profileId = route.profileId, parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.NotificationsRoute.AddAllowedMembers> { route ->
+    AddAllowedMembersEntry(profileId = route.profileId, parentEventEmitter = parentEventEmitter)
   }
 }

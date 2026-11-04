@@ -5,6 +5,7 @@
 
 package org.signal.core.ui.compose.split
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
@@ -26,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -69,15 +71,18 @@ internal class ListDetailScene(
     if (layout == null) {
       listEntry.Content()
     } else {
+      val listPaddingStart by animateDpAsState(targetValue = layout.listPaddingStart, label = "list-padding-start")
+
       Box(modifier = Modifier.fillMaxSize()) {
         Row(modifier = Modifier.fillMaxSize()) {
           Box(
             modifier = Modifier
               .width(layout.expansion.listWidth)
               .fillMaxHeight()
-              .padding(start = layout.listPaddingStart)
+              .padding(start = listPaddingStart)
               .clip(layout.shape)
-              .minContentWidth(layout.minPaneContentWidth)
+              // Follows the inset as it animates, so the list reflows with it instead of clipping.
+              .minContentWidth(layout.minListContentWidth + layout.listPaddingStart - listPaddingStart)
           ) {
             listEntry.Content()
           }
@@ -91,7 +96,7 @@ internal class ListDetailScene(
               .padding(end = layout.detailPaddingEnd)
               .clip(layout.shape)
               .background(color = MaterialTheme.colorScheme.surface)
-              .minContentWidth(layout.minPaneContentWidth)
+              .minContentWidth(layout.minDetailContentWidth)
           ) {
             CompositionLocalProvider(
               LocalIsInDetailPane provides true,

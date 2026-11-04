@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.allowedmembers
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -14,34 +12,25 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class AddAllowedMembersFragment : ComposeFragment() {
 
-  private val viewModel: AddAllowedMembersViewModel by viewModel {
-    AddAllowedMembersViewModel(AddAllowedMembersFragmentArgs.fromBundle(requireArguments()).profileId)
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    AddAllowedMembersScreen(
-      state = state,
-      onEvent = viewModel::onEvent
+    AddAllowedMembersEntry(
+      profileId = AddAllowedMembersFragmentArgs.fromBundle(requireArguments()).profileId,
+      parentEventEmitter = appSettingsRouter::onEvent
     )
   }
 
-  private fun handleAction(action: AddAllowedMembersAction) {
-    when (action) {
-      AddAllowedMembersAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-      is AddAllowedMembersAction.NavigateToSelectRecipients -> {
-        findNavController().safeNavigate(
-          AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToSelectRecipientsFragment(action.profileId)
-            .setCurrentSelection(action.currentSelection.toTypedArray())
-        )
-      }
-      is AddAllowedMembersAction.NavigateToSchedule -> {
-        findNavController().safeNavigate(AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToEditNotificationProfileScheduleFragment(action.profileId, true))
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.NotificationsRoute.SelectRecipients -> findNavController().safeNavigate(
+        AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToSelectRecipientsFragment(route.profileId).setCurrentSelection(route.currentSelection)
+      )
+      is AppSettingsRoute.NotificationsRoute.EditSchedule -> findNavController().safeNavigate(
+        AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToEditNotificationProfileScheduleFragment(route.profileId, route.createMode)
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

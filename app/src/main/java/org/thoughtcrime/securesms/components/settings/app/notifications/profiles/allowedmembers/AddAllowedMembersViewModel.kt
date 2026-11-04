@@ -6,15 +6,16 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.allowedmembers
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfileEdits
@@ -23,7 +24,8 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
  * Drives [AddAllowedMembersScreen].
  */
 class AddAllowedMembersViewModel(
-  private val profileId: Long
+  private val profileId: Long,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<AddAllowedMembersEvent>(TAG) {
 
   companion object {
@@ -31,10 +33,8 @@ class AddAllowedMembersViewModel(
   }
 
   private val _state = MutableStateFlow(AddAllowedMembersState())
-  private val _actions = Channel<AddAllowedMembersAction>(Channel.BUFFERED)
 
   val state: StateFlow<AddAllowedMembersState> = _state.asStateFlow()
-  val actions: Flow<AddAllowedMembersAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
@@ -48,10 +48,10 @@ class AddAllowedMembersViewModel(
 
   override suspend fun processEvent(event: AddAllowedMembersEvent) {
     when (event) {
-      AddAllowedMembersEvent.NavigateBackClicked -> _actions.send(AddAllowedMembersAction.NavigateBack)
+      AddAllowedMembersEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       AddAllowedMembersEvent.AddMembersClicked -> {
         val profile = _state.value.profile ?: return
-        _actions.send(AddAllowedMembersAction.NavigateToSelectRecipients(profile.id, profile.allowedMembers))
+        parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.SelectRecipients(profile.id, profile.allowedMembers.toTypedArray()))
       }
       is AddAllowedMembersEvent.RemoveMemberClicked -> {
         val removed = NotificationProfileEdits.removeMember(profileId, event.recipientId)
@@ -60,7 +60,7 @@ class AddAllowedMembersViewModel(
       is AddAllowedMembersEvent.UndoRemoveMemberClicked -> NotificationProfileEdits.addMember(profileId, event.recipientId)
       is AddAllowedMembersEvent.AllowAllCallsToggled -> NotificationProfileEdits.setAllowAllCalls(profileId, event.enabled)
       is AddAllowedMembersEvent.NotifyForAllMentionsToggled -> NotificationProfileEdits.setAllowAllMentions(profileId, event.enabled)
-      AddAllowedMembersEvent.NextClicked -> _actions.send(AddAllowedMembersAction.NavigateToSchedule(profileId))
+      AddAllowedMembersEvent.NextClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.EditSchedule(profileId, createMode = true))
       AddAllowedMembersEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = AddAllowedMembersState.Snackbar.None) }
     }
   }

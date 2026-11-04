@@ -22,6 +22,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -580,12 +585,18 @@ class MainActivity :
     }
 
     Row(modifier = modifier.fillMaxSize()) {
-      if (navigationType == NavigationType.RAIL && mainToolbarState.mode != MainToolbarMode.SEARCH) {
-        MainNavigationRail(
-          state = mainNavigationState,
-          mainFloatingActionButtonsCallback = mainBottomChromeCallback,
-          onDestinationSelected = mainNavigationCallback
-        )
+      if (navigationType == NavigationType.RAIL) {
+        AnimatedVisibility(
+          visible = mainToolbarState.mode != MainToolbarMode.SEARCH,
+          enter = expandHorizontally(expandFrom = Alignment.Start) + fadeIn(),
+          exit = shrinkHorizontally(shrinkTowards = Alignment.Start) + fadeOut()
+        ) {
+          MainNavigationRail(
+            state = mainNavigationState,
+            mainFloatingActionButtonsCallback = mainBottomChromeCallback,
+            onDestinationSelected = mainNavigationCallback
+          )
+        }
       }
 
       Column(
