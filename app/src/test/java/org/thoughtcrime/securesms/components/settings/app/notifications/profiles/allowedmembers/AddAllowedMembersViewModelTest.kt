@@ -169,7 +169,7 @@ class AddAllowedMembersViewModelTest {
     viewModel.onEvent(AddAllowedMembersEvent.AddMembersClicked)
 
     assertThat(navigationEvents).containsExactly(
-      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.SelectRecipients(PROFILE_ID, arrayOf(ALICE, BOB)))
+      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.NotificationsRoute.SelectRecipients(PROFILE_ID, listOf(ALICE, BOB)))
     )
   }
 

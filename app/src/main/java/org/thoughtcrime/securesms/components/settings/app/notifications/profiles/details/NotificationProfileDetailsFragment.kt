@@ -28,7 +28,7 @@ class NotificationProfileDetailsFragment : ComposeFragment() {
         NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(route.profileId)
       )
       is AppSettingsRoute.NotificationsRoute.SelectRecipients -> findNavController().safeNavigate(
-        NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToSelectRecipientsFragment(route.profileId).setCurrentSelection(route.currentSelection)
+        NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToSelectRecipientsFragment(route.profileId).setCurrentSelection(route.currentSelection.toTypedArray())
       )
       is AppSettingsRoute.NotificationsRoute.EditSchedule -> findNavController().safeNavigate(
         NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileScheduleFragment(route.profileId, route.createMode)

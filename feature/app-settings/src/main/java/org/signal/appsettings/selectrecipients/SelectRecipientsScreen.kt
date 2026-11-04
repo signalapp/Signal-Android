@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.selectrecipients
+package org.signal.appsettings.selectrecipients
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Box
@@ -20,6 +20,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
+import org.signal.appsettings.R
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
@@ -27,7 +29,6 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
-import org.thoughtcrime.securesms.R
 
 @VisibleForTesting
 object SelectRecipientsTestTags {
@@ -49,7 +50,7 @@ fun SelectRecipientsScreen(
   contactPicker: @Composable (listContentPadding: PaddingValues, modifier: Modifier) -> Unit = { _, _ -> }
 ) {
   Scaffolds.Settings(
-    title = stringResource(R.string.AddAllowedMembers__allowed_notifications),
+    title = stringResource(R.string.SelectRecipientsScreen__allowed_notifications),
     onNavigationClick = { onEvent(SelectRecipientsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     modifier = modifier
@@ -60,6 +61,7 @@ fun SelectRecipientsScreen(
         .consumeWindowInsets(contentPadding)
         .imePadding()
         .fillMaxSize()
+        .appSettingsScreen()
     ) {
       contactPicker(
         PaddingValues(bottom = 80.dp),

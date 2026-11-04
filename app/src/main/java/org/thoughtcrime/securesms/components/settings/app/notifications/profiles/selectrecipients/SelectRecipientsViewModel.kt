@@ -5,13 +5,15 @@
 
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.selectrecipients
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.selectrecipients.SelectRecipientsEvent
+import org.signal.appsettings.selectrecipients.SelectRecipientsScreen
+import org.signal.appsettings.selectrecipients.SelectRecipientsState
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
@@ -22,7 +24,8 @@ import org.signal.core.util.logging.Log
  */
 class SelectRecipientsViewModel(
   private val profileId: Long,
-  currentMembers: Set<RecipientId>
+  currentMembers: Set<RecipientId>,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<SelectRecipientsEvent>(TAG) {
 
   companion object {
@@ -30,14 +33,12 @@ class SelectRecipientsViewModel(
   }
 
   private val _state = MutableStateFlow(SelectRecipientsState(currentMembers = currentMembers))
-  private val _actions = Channel<SelectRecipientsAction>(Channel.BUFFERED)
 
   val state: StateFlow<SelectRecipientsState> = _state.asStateFlow()
-  val actions: Flow<SelectRecipientsAction> = _actions.receiveAsFlow()
 
   override suspend fun processEvent(event: SelectRecipientsEvent) {
     when (event) {
-      SelectRecipientsEvent.NavigateBackClicked -> _actions.send(SelectRecipientsAction.NavigateBack)
+      SelectRecipientsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       is SelectRecipientsEvent.SelectionChanged -> _state.update { it.copy(selection = event.selection) }
       SelectRecipientsEvent.AddClicked -> save()
     }
@@ -53,6 +54,6 @@ class SelectRecipientsViewModel(
     SelectRecipientsRepository.setAllowedMembers(profileId, state.allowedMembers)
     _state.update { it.copy(isSaving = false) }
 
-    _actions.send(SelectRecipientsAction.NavigateBack)
+    parentEventEmitter.navigateBack()
   }
 }

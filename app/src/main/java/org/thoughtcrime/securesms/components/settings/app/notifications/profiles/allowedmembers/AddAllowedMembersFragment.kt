@@ -25,7 +25,7 @@ class AddAllowedMembersFragment : ComposeFragment() {
   private fun navigateToScreen(route: AppSettingsRoute) {
     when (route) {
       is AppSettingsRoute.NotificationsRoute.SelectRecipients -> findNavController().safeNavigate(
-        AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToSelectRecipientsFragment(route.profileId).setCurrentSelection(route.currentSelection)
+        AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToSelectRecipientsFragment(route.profileId).setCurrentSelection(route.currentSelection.toTypedArray())
       )
       is AppSettingsRoute.NotificationsRoute.EditSchedule -> findNavController().safeNavigate(
         AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToEditNotificationProfileScheduleFragment(route.profileId, route.createMode)

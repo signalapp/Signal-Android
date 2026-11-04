@@ -171,25 +171,7 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     data class AddAllowedMembers(val profileId: Long) : NotificationsRoute
 
     @Serializable
-    data class SelectRecipients(val profileId: Long, val currentSelection: Array<RecipientId>? = null) : NotificationsRoute {
-      override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as SelectRecipients
-
-        if (profileId != other.profileId) return false
-        if (!currentSelection.contentEquals(other.currentSelection)) return false
-
-        return true
-      }
-
-      override fun hashCode(): Int {
-        var result = profileId.hashCode()
-        result = 31 * result + (currentSelection?.contentHashCode() ?: 0)
-        return result
-      }
-    }
+    data class SelectRecipients(val profileId: Long, val currentSelection: List<RecipientId> = emptyList()) : NotificationsRoute
 
     @Serializable
     data class EditSchedule(val profileId: Long, val createMode: Boolean) : NotificationsRoute

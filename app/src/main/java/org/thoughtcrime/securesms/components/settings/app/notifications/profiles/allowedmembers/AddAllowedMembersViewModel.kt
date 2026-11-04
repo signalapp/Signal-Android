@@ -51,7 +51,7 @@ class AddAllowedMembersViewModel(
       AddAllowedMembersEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       AddAllowedMembersEvent.AddMembersClicked -> {
         val profile = _state.value.profile ?: return
-        parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.SelectRecipients(profile.id, profile.allowedMembers.toTypedArray()))
+        parentEventEmitter.navigateTo(AppSettingsRoute.NotificationsRoute.SelectRecipients(profile.id, profile.allowedMembers.toList()))
       }
       is AddAllowedMembersEvent.RemoveMemberClicked -> {
         val removed = NotificationProfileEdits.removeMember(profileId, event.recipientId)

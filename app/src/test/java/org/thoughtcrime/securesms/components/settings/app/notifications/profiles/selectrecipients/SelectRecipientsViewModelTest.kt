@@ -19,10 +19,6 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -31,6 +27,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.selectrecipients.SelectRecipientsEvent
 import org.signal.core.models.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
@@ -48,6 +46,8 @@ class SelectRecipientsViewModelTest {
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
+
   @Before
   fun setUp() {
     Dispatchers.setMain(testDispatcher)
@@ -64,25 +64,23 @@ class SelectRecipientsViewModelTest {
   @Test
   fun `nothing can be added until someone is picked`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     assertThat(viewModel.state.value.canSave).isFalse()
     viewModel.onEvent(SelectRecipientsEvent.AddClicked)
 
     coVerify(exactly = 0) { SelectRecipientsRepository.setAllowedMembers(any(), any()) }
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
   }
 
   @Test
   fun `adding saves the picks and goes back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(SelectRecipientsEvent.SelectionChanged(setOf(ALICE, BOB)))
     viewModel.onEvent(SelectRecipientsEvent.AddClicked)
 
     coVerify(exactly = 1) { SelectRecipientsRepository.setAllowedMembers(PROFILE_ID, setOf(ALICE, BOB)) }
-    assertThat(actions).containsExactly(SelectRecipientsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -115,11 +113,10 @@ class SelectRecipientsViewModelTest {
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(SelectRecipientsEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(SelectRecipientsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -135,22 +132,15 @@ class SelectRecipientsViewModelTest {
   @Test
   fun `a profile with members can be saved before anything new is picked`() = runTest(testDispatcher) {
     val viewModel = createViewModel(currentMembers = setOf(ALICE))
-    val actions = collectActions(viewModel.actions)
 
     assertThat(viewModel.state.value.canSave).isTrue()
     viewModel.onEvent(SelectRecipientsEvent.AddClicked)
 
     coVerify(exactly = 1) { SelectRecipientsRepository.setAllowedMembers(PROFILE_ID, setOf(ALICE)) }
-    assertThat(actions).containsExactly(SelectRecipientsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(currentMembers: Set<RecipientId> = emptySet()): SelectRecipientsViewModel {
-    return SelectRecipientsViewModel(profileId = PROFILE_ID, currentMembers = currentMembers)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<SelectRecipientsAction>): List<SelectRecipientsAction> {
-    val collected = mutableListOf<SelectRecipientsAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    return SelectRecipientsViewModel(profileId = PROFILE_ID, currentMembers = currentMembers, parentEventEmitter = { navigationEvents += it })
   }
 }

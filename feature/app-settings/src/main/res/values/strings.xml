@@ -1167,4 +1167,10 @@
     <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
     <!-- Preference item to set notification settings when chats are muted -->
     <string name="preferences_notifications__while_muted">While muted</string>
+
+    <!-- SelectRecipientsScreen -->
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Add</string>
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
 </resources>

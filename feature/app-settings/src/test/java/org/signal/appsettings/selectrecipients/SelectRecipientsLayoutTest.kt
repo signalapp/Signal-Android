@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.selectrecipients
+package org.signal.appsettings.selectrecipients
 
 import org.junit.Test
 import org.signal.core.models.recipients.RecipientId
