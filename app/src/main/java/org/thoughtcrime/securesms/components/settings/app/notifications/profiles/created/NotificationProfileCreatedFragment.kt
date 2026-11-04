@@ -1,14 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.created
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedAction
-import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedScreen
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -16,27 +12,22 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class NotificationProfileCreatedFragment : ComposeFragment() {
 
-  private val viewModel: NotificationProfileCreatedViewModel by viewModel {
-    NotificationProfileCreatedViewModel(NotificationProfileCreatedFragmentArgs.fromBundle(requireArguments()).profileId)
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    NotificationProfileCreatedScreen(
-      state = state,
-      onEvent = viewModel::onEvent
+    NotificationProfileCreatedEntry(
+      profileId = NotificationProfileCreatedFragmentArgs.fromBundle(requireArguments()).profileId,
+      parentEventEmitter = appSettingsRouter::onEvent
     )
   }
 
-  private fun handleAction(action: NotificationProfileCreatedAction) {
-    when (action) {
-      is NotificationProfileCreatedAction.NavigateToProfileDetails -> {
-        findNavController().safeNavigate(NotificationProfileCreatedFragmentDirections.actionNotificationProfileCreatedFragmentToNotificationProfileDetailsFragment(action.profileId))
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.NotificationsRoute.ProfileDetails -> findNavController().safeNavigate(
+        NotificationProfileCreatedFragmentDirections.actionNotificationProfileCreatedFragmentToNotificationProfileDetailsFragment(route.profileId)
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

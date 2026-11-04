@@ -6,18 +6,18 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.created
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedAction
 import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedEvent
 import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedScreen
 import org.signal.appsettings.notificationprofilecreated.NotificationProfileCreatedState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
@@ -25,7 +25,8 @@ import org.signal.core.util.logging.Log
  * Drives [NotificationProfileCreatedScreen].
  */
 class NotificationProfileCreatedViewModel(
-  private val profileId: Long
+  private val profileId: Long,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<NotificationProfileCreatedEvent>(TAG) {
 
   companion object {
@@ -33,10 +34,8 @@ class NotificationProfileCreatedViewModel(
   }
 
   private val _state = MutableStateFlow(NotificationProfileCreatedState())
-  private val _actions = Channel<NotificationProfileCreatedAction>(Channel.BUFFERED)
 
   val state: StateFlow<NotificationProfileCreatedState> = _state.asStateFlow()
-  val actions: Flow<NotificationProfileCreatedAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
@@ -47,7 +46,10 @@ class NotificationProfileCreatedViewModel(
 
   override suspend fun processEvent(event: NotificationProfileCreatedEvent) {
     when (event) {
-      NotificationProfileCreatedEvent.DoneClicked -> _actions.send(NotificationProfileCreatedAction.NavigateToProfileDetails(profileId))
+      NotificationProfileCreatedEvent.DoneClicked -> parentEventEmitter.navigateTo(
+        route = AppSettingsRoute.NotificationsRoute.ProfileDetails(profileId),
+        popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.Created::class, inclusive = true)
+      )
     }
   }
 }

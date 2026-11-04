@@ -63,8 +63,8 @@ fun NotificationProfileCreatedScreen(
       Row(
         horizontalArrangement = Arrangement.End,
         modifier = Modifier
-          .fillMaxWidth()
           .navigationBarsPadding()
+          .appSettingsScreen()
           .padding(24.dp)
       ) {
         Buttons.LargeTonal(
