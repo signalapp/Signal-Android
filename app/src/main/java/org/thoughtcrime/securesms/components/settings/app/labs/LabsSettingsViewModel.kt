@@ -5,38 +5,36 @@
 
 package org.thoughtcrime.securesms.components.settings.app.labs
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
-import org.signal.appsettings.labs.LabsSettingsAction
 import org.signal.appsettings.labs.LabsSettingsEvent
 import org.signal.appsettings.labs.LabsSettingsScreen
 import org.signal.appsettings.labs.LabsSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 /**
  * Drives [LabsSettingsScreen].
  */
-class LabsSettingsViewModel : EventDrivenViewModel<LabsSettingsEvent>(TAG) {
+class LabsSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<LabsSettingsEvent>(TAG) {
 
   companion object {
     private val TAG = Log.tag(LabsSettingsViewModel::class)
   }
 
   private val _state = MutableStateFlow(LabsSettingsRepository.getState())
-  private val _actions = Channel<LabsSettingsAction>(Channel.BUFFERED)
 
   val state: StateFlow<LabsSettingsState> = _state.asStateFlow()
-  val actions: Flow<LabsSettingsAction> = _actions.receiveAsFlow()
 
   override suspend fun processEvent(event: LabsSettingsEvent) {
     when (event) {
-      LabsSettingsEvent.NavigateBackClicked -> _actions.send(LabsSettingsAction.NavigateBack)
+      LabsSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       is LabsSettingsEvent.IndividualChatPlaintextExportToggled -> {
         LabsSettingsRepository.setIndividualChatPlaintextExport(event.enabled)
         _state.update { it.copy(individualChatPlaintextExport = event.enabled) }

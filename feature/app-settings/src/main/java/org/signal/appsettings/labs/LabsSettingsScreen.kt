@@ -56,7 +56,8 @@ fun LabsSettingsScreen(
     navigationContentDescription = "Go back",
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     onNavigationClick = { onEvent(LabsSettingsEvent.NavigateBackClicked) },
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = true
   ) { contentPadding ->
     AppSettingsLazyColumn(
       contentPadding = contentPadding,

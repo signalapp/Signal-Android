@@ -16,10 +16,6 @@ import io.mockk.unmockkObject
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -28,9 +24,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.signal.appsettings.labs.LabsSettingsAction
 import org.signal.appsettings.labs.LabsSettingsEvent
 import org.signal.appsettings.labs.LabsSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -44,6 +40,8 @@ class LabsSettingsViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -67,14 +65,14 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `initial state is read out of the repository`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     assertThat(viewModel.state.value).isEqualTo(INITIAL_STATE)
   }
 
   @Test
   fun `IndividualChatPlaintextExportToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.IndividualChatPlaintextExportToggled(true))
 
@@ -84,7 +82,7 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `StoryArchiveToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.StoryArchiveToggled(false))
 
@@ -94,7 +92,7 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `IncognitoToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.IncognitoToggled(true))
 
@@ -104,7 +102,7 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `BetterSearchToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.BetterSearchToggled(false))
 
@@ -114,7 +112,7 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `StarredMessagesToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.StarredMessagesToggled(true))
 
@@ -124,7 +122,7 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `ImprovedMessageDeletionToggled persists and updates state`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.ImprovedMessageDeletionToggled(true))
 
@@ -134,17 +132,10 @@ class LabsSettingsViewModelTest {
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
-    val viewModel = LabsSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+    val viewModel = LabsSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(LabsSettingsEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(LabsSettingsAction.NavigateBack)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<LabsSettingsAction>): List<LabsSettingsAction> {
-    val collected = mutableListOf<LabsSettingsAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 }
