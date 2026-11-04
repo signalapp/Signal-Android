@@ -1489,11 +1489,10 @@ object SyncMessageProcessor {
     if (call != null) {
       val typeMismatch = call.type != type
       val directionMismatch = call.direction != direction
-      val eventDowngrade = call.event == CallTable.Event.ACCEPTED && event != CallTable.Event.ACCEPTED && event != CallTable.Event.DELETE
       val peerMismatch = call.peer != recipientId
 
-      if (typeMismatch || directionMismatch || peerMismatch || eventDowngrade) {
-        warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: $type direction: $direction  event: $event peerMismatch: $peerMismatch")
+      if (typeMismatch || directionMismatch || peerMismatch) {
+        warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: $type direction: $direction event: $event peerMismatch: $peerMismatch")
       } else if (event == CallTable.Event.DELETE) {
         SignalDatabase.calls.markCallDeletedFromSyncEvent(call)
       } else {

@@ -142,6 +142,26 @@ object MessageContentFuzzer {
   }
 
   /**
+   * Create a 1:1 call event sync message.
+   */
+  fun syncCallEventMessage(callId: Long, timestamp: Long, peer: RecipientId, type: SyncMessage.CallEvent.Type, direction: SyncMessage.CallEvent.Direction, event: SyncMessage.CallEvent.Event): Content {
+    return Content
+      .Builder()
+      .syncMessage(
+        SyncMessage.Builder().buildWith {
+          callEvent = SyncMessage.CallEvent.Builder().buildWith {
+            this.conversationId = Recipient.resolved(peer).requireAci().toByteString()
+            this.callId = callId
+            this.timestamp = timestamp
+            this.type = type
+            this.direction = direction
+            this.event = event
+          }
+        }
+      ).build()
+  }
+
+  /**
    * Create a sync reads message for the given [RecipientId] and message timestamp pairings.
    */
   fun syncReadsMessage(timestamps: List<Pair<RecipientId, Long>>): Content {

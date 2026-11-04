@@ -1052,6 +1052,99 @@ class CallTableTest {
     assertNotEquals(0L, message.expireStarted)
   }
 
+  @Test
+  fun givenAnAcceptedOneToOneCall_whenIUpdateToMissed_thenIExpectAccepted() {
+    assertAcceptedOneToOneCallIsNotUpdatedTo(CallTable.Event.MISSED)
+  }
+
+  @Test
+  fun givenAnAcceptedOneToOneCall_whenIUpdateToMissedNotificationProfile_thenIExpectAccepted() {
+    assertAcceptedOneToOneCallIsNotUpdatedTo(CallTable.Event.MISSED_NOTIFICATION_PROFILE)
+  }
+
+  @Test
+  fun givenAnAcceptedOneToOneCall_whenIUpdateToNotAccepted_thenIExpectAccepted() {
+    assertAcceptedOneToOneCallIsNotUpdatedTo(CallTable.Event.NOT_ACCEPTED)
+  }
+
+  @Test
+  fun givenADeletedOneToOneCall_whenIUpdateToMissed_thenIExpectDeleted() {
+    val callId = 1L
+    val peer = harness.others[0]
+
+    SignalDatabase.calls.insertDeletedCallFromSyncEvent(callId, peer, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, System.currentTimeMillis())
+
+    val updated = SignalDatabase.calls.updateOneToOneCall(callId, CallTable.Event.MISSED)
+    assertEquals(CallTable.Event.DELETE, (updated as? CallTable.OneToOneCallUpdate.Rejected)?.call?.event)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(CallTable.Event.DELETE, call?.event)
+    assertEquals(0L, SignalDatabase.calls.getUnreadMissedCallCount())
+  }
+
+  @Test
+  fun givenAReadAcceptedOneToOneCall_whenIUpdateToAccepted_thenIExpectStillRead() {
+    val callId = 1L
+    val peer = harness.others[0]
+
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED, true)
+    SignalDatabase.calls.markAllCallEventsRead()
+
+    val updated = SignalDatabase.calls.updateOneToOneCall(callId, CallTable.Event.ACCEPTED)
+    assertEquals(CallTable.Event.ACCEPTED, (updated as? CallTable.OneToOneCallUpdate.Success)?.call?.event)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(CallTable.Event.ACCEPTED, call?.event)
+    assertEquals(true, call?.read)
+  }
+
+  @Test
+  fun givenALocallyAcceptedExpiringOneToOneCall_whenIUpdateToAccepted_thenTimerIsStarted() {
+    val callId = 1L
+    val peer = harness.others[0]
+
+    insertExpiringThread(peer)
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(0L, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).expireStarted)
+
+    val updated = SignalDatabase.calls.updateOneToOneCall(callId, CallTable.Event.ACCEPTED)
+    assertEquals(CallTable.Event.ACCEPTED, (updated as? CallTable.OneToOneCallUpdate.Success)?.call?.event)
+    assertNotEquals(0L, SignalDatabase.messages.getMessageRecord(call.messageId!!).expireStarted)
+  }
+
+  private fun assertAcceptedOneToOneCallIsNotUpdatedTo(event: CallTable.Event) {
+    val callId = 1L
+    val peer = harness.others[0]
+
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED, true)
+    SignalDatabase.calls.markAllCallEventsRead()
+
+    val updated = SignalDatabase.calls.updateOneToOneCall(callId, event)
+    assertEquals(CallTable.Event.ACCEPTED, (updated as? CallTable.OneToOneCallUpdate.Rejected)?.call?.event)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(CallTable.Event.ACCEPTED, call?.event)
+    assertEquals(true, call?.read)
+    assertEquals(MessageTypes.INCOMING_VIDEO_CALL_TYPE, SignalDatabase.messages.getMessageRecord(call!!.messageId!!).type)
+    assertEquals(0L, SignalDatabase.calls.getUnreadMissedCallCount())
+  }
+
+  @Test
+  fun givenAMissedOneToOneCall_whenIUpdateToAccepted_thenIExpectAccepted() {
+    val callId = 1L
+    val peer = harness.others[0]
+
+    SignalDatabase.calls.insertOneToOneCall(callId, System.currentTimeMillis(), peer, CallTable.Type.VIDEO_CALL, CallTable.Direction.INCOMING, CallTable.Event.MISSED)
+
+    val updated = SignalDatabase.calls.updateOneToOneCall(callId, CallTable.Event.ACCEPTED)
+    assertEquals(CallTable.Event.ACCEPTED, (updated as? CallTable.OneToOneCallUpdate.Success)?.call?.event)
+
+    val call = SignalDatabase.calls.getCallById(callId, peer)
+    assertEquals(CallTable.Event.ACCEPTED, call?.event)
+  }
+
   private fun insertTwoCallEvents() {
     SignalDatabase.calls.insertAcceptedGroupCall(
       1,

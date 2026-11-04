@@ -218,8 +218,32 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     Log.i(TAG, "Inserted call: $callId type: $type direction: $direction event:$event")
   }
 
-  fun updateOneToOneCall(callId: Long, event: Event): Call? {
+  fun updateOneToOneCall(callId: Long, event: Event): OneToOneCallUpdate {
     return writableDatabase.withinTransaction {
+      val existingCall = readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$CALL_ID = ?", callId)
+        .run()
+        .readToSingleObject(Call.Deserializer)
+
+      if (existingCall == null) {
+        return@withinTransaction OneToOneCallUpdate.NotFound
+      }
+
+      if (existingCall.event == event) {
+        Log.i(TAG, "Call $callId is already $event, leaving event as is")
+        if (existingCall.messageId != null) {
+          SignalDatabase.messages.updateOneToOneCallLog(existingCall.messageId, existingCall.messageType)
+        }
+        return@withinTransaction OneToOneCallUpdate.Success(existingCall)
+      }
+
+      if (!canUpdateOneToOneCall(existingCall.event, event)) {
+        Log.i(TAG, "Call $callId is ${existingCall.event} (possibly on a linked device), not updating event to $event")
+        return@withinTransaction OneToOneCallUpdate.Rejected(existingCall)
+      }
+
       writableDatabase
         .update(TABLE_NAME)
         .values(
@@ -229,27 +253,30 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
         .where("$CALL_ID = ?", callId)
         .run()
 
-      val call = readableDatabase
-        .select()
-        .from(TABLE_NAME)
-        .where("$CALL_ID = ?", callId)
-        .run()
-        .readToSingleObject(Call.Deserializer)
+      val call = existingCall.copy(event = event, read = false)
+      Log.i(TAG, "Updated call: $callId event: $event")
 
-      if (call != null) {
-        Log.i(TAG, "Updated call: $callId event: $event")
-
-        if (call.messageId == null) {
-          Log.w(TAG, "Call does not have an associated message id! No message to update.")
-        } else {
-          SignalDatabase.messages.updateOneToOneCallLog(call.messageId, call.messageType)
-        }
-
-        AppDependencies.messageNotifier.updateNotification(context)
-        AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      if (call.messageId == null) {
+        Log.w(TAG, "Call does not have an associated message id! No message to update.")
+      } else {
+        SignalDatabase.messages.updateOneToOneCallLog(call.messageId, call.messageType)
       }
 
-      call
+      AppDependencies.messageNotifier.updateNotification(context)
+      AppDependencies.databaseObserver.notifyCallUpdateObservers()
+
+      OneToOneCallUpdate.Success(call)
+    }
+  }
+
+  /**
+   * Whether a 1:1 call may move from [current] to [next].
+   */
+  private fun canUpdateOneToOneCall(current: Event, next: Event): Boolean {
+    return when {
+      current == Event.DELETE -> false
+      current == Event.ACCEPTED -> next == Event.DELETE
+      else -> true
     }
   }
 
@@ -1399,6 +1426,17 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .run()
 
     Log.d(TAG, "Deleted recipient: $deletedPeer $deletedRinger")
+  }
+
+  sealed interface OneToOneCallUpdate {
+    /** No call with the given id exists. */
+    data object NotFound : OneToOneCallUpdate
+
+    /** The call is now in the requested state. */
+    data class Success(val call: Call) : OneToOneCallUpdate
+
+    /** The call may not move to the requested state and was left as is. */
+    data class Rejected(val call: Call) : OneToOneCallUpdate
   }
 
   /**

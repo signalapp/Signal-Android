@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.util.UUID
 import kotlin.random.Random
 
@@ -198,6 +199,20 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
         destination = harness.self.id,
         groupId = if (destination == group.recipientId) group.groupId else null
       ),
+      serverDeliveredTimestamp = messageData.timestamp + 10
+    )
+
+    return messageData
+  }
+
+  fun syncCallEvent(callId: Long, callTimestamp: Long, peer: RecipientId, type: SyncMessage.CallEvent.Type, direction: SyncMessage.CallEvent.Direction, event: SyncMessage.CallEvent.Event): MessageData {
+    startTime = nextStartTime()
+    val messageData = MessageData(timestamp = startTime)
+
+    processor.process(
+      envelope = MessageContentFuzzer.envelope(messageData.timestamp, serverGuid = messageData.serverGuid),
+      content = MessageContentFuzzer.syncCallEventMessage(callId, callTimestamp, peer, type, direction, event),
+      metadata = MessageContentFuzzer.envelopeMetadata(harness.self.id, harness.self.id, sourceDeviceId = 2),
       serverDeliveredTimestamp = messageData.timestamp + 10
     )
 

@@ -1146,10 +1146,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer, @NonNull CallTable.Event missedEvent) {
-    CallTable.Call call = SignalDatabase.calls()
-                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), missedEvent);
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls()
+                                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), missedEvent);
 
-    if (call == null) {
+    if (update instanceof CallTable.OneToOneCallUpdate.NotFound) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
@@ -1158,10 +1158,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean isVideoOffer) {
-    CallTable.Call call = SignalDatabase.calls()
-                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls()
+                                                        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
-    if (call == null) {
+    if (update instanceof CallTable.OneToOneCallUpdate.NotFound) {
       CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
 
       SignalDatabase.calls()
@@ -1371,9 +1371,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
-    SignalDatabase
-        .calls()
-        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+    long                         callId = remotePeer.getCallId().longValue();
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls().updateOneToOneCall(callId, CallTable.Event.ACCEPTED);
+
+    if (update instanceof CallTable.OneToOneCallUpdate.Rejected rejected) {
+      Log.i(TAG, "Call " + callId + " is " + rejected.getCall().getEvent() + ", not sending accepted sync message");
+      return;
+    }
 
     if (SignalStore.account().isMultiDevice()) {
       SignalExecutors.BOUNDED_IO.execute(() -> {
@@ -1388,9 +1392,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void sendNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
-    SignalDatabase
-        .calls()
-        .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
+    long                         callId = remotePeer.getCallId().longValue();
+    CallTable.OneToOneCallUpdate update = SignalDatabase.calls().updateOneToOneCall(callId, CallTable.Event.NOT_ACCEPTED);
+
+    if (update instanceof CallTable.OneToOneCallUpdate.Rejected rejected) {
+      Log.i(TAG, "Call " + callId + " is " + rejected.getCall().getEvent() + ", not sending not accepted sync message");
+      return;
+    }
 
     if (SignalStore.account().isMultiDevice()) {
       SignalExecutors.BOUNDED_IO.execute(() -> {
