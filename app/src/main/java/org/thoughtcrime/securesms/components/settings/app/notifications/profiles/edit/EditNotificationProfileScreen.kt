@@ -61,6 +61,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.requestFocusWhenReady
 import org.signal.emoji.EmojiButton
 import org.signal.emoji.EmojiPickerSheet
 import org.signal.emoji.EmojiText
@@ -106,7 +107,7 @@ fun EditNotificationProfileScreen(
 
   LaunchedEffect(state.isLoaded) {
     if (state.isLoaded) {
-      focusRequester.requestFocus()
+      focusRequester.requestFocusWhenReady()
       systemKeyboard?.show()
     }
   }
