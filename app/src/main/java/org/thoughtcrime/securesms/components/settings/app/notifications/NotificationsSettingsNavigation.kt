@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.details.NotificationProfileDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.edit.EditNotificationProfileEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.list.NotificationProfilesEntry
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.schedule.EditNotificationProfileScheduleEntry
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.selectrecipients.SelectRecipientsEntry
 
 /**
@@ -47,5 +48,9 @@ fun EntryProviderScope<NavKey>.registerNotificationsRoutes(parentEventEmitter: (
 
   detailEntry<AppSettingsRoute.NotificationsRoute.SelectRecipients> { route ->
     SelectRecipientsEntry(profileId = route.profileId, currentMembers = route.currentSelection.toSet(), parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.NotificationsRoute.EditSchedule> { route ->
+    EditNotificationProfileScheduleEntry(profileId = route.profileId, createMode = route.createMode, parentEventEmitter = parentEventEmitter)
   }
 }

@@ -47,6 +47,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.CircularProgressWrapper
 import org.signal.core.ui.compose.DayNightPreviews
@@ -107,6 +108,7 @@ fun EditNotificationProfileScheduleScreen(
         modifier = Modifier
           .weight(1f)
           .verticalScroll(rememberScrollState())
+          .appSettingsScreen()
           .testTag(EditNotificationProfileScheduleTestTags.SCROLLER)
       ) {
         if (state.createMode) {
@@ -138,19 +140,23 @@ fun EditNotificationProfileScheduleScreen(
         }
       }
 
-      CircularProgressWrapper(
-        isLoading = state.isSaving,
-        modifier = Modifier
-          .align(Alignment.End)
-          .horizontalGutters()
-          .padding(bottom = 16.dp)
+      Box(
+        contentAlignment = Alignment.CenterEnd,
+        modifier = Modifier.appSettingsScreen()
       ) {
-        Buttons.LargeTonal(
-          onClick = { onEvent(EditNotificationProfileScheduleEvent.NextClicked) },
-          enabled = state.canSave,
-          modifier = Modifier.testTag(EditNotificationProfileScheduleTestTags.BUTTON_NEXT)
+        CircularProgressWrapper(
+          isLoading = state.isSaving,
+          modifier = Modifier
+            .horizontalGutters()
+            .padding(bottom = 16.dp)
         ) {
-          Text(text = stringResource(nextLabel(state)))
+          Buttons.LargeTonal(
+            onClick = { onEvent(EditNotificationProfileScheduleEvent.NextClicked) },
+            enabled = state.canSave,
+            modifier = Modifier.testTag(EditNotificationProfileScheduleTestTags.BUTTON_NEXT)
+          ) {
+            Text(text = stringResource(nextLabel(state)))
+          }
         }
       }
     }

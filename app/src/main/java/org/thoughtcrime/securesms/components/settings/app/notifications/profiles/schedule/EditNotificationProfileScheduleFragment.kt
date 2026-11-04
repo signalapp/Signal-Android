@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.schedule
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -14,29 +12,28 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class EditNotificationProfileScheduleFragment : ComposeFragment() {
 
-  private val viewModel: EditNotificationProfileScheduleViewModel by viewModel {
-    val args = EditNotificationProfileScheduleFragmentArgs.fromBundle(requireArguments())
-    EditNotificationProfileScheduleViewModel(profileId = args.profileId, createMode = args.createMode)
-  }
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { findNavController().navigateUp() },
+    onNavigateToScreen = ::navigateToScreen
+  )
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val args = EditNotificationProfileScheduleFragmentArgs.fromBundle(requireArguments())
 
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    EditNotificationProfileScheduleScreen(
-      state = state,
-      onEvent = viewModel::onEvent
+    EditNotificationProfileScheduleEntry(
+      profileId = args.profileId,
+      createMode = args.createMode,
+      parentEventEmitter = appSettingsRouter::onEvent
     )
   }
 
-  private fun handleAction(action: EditNotificationProfileScheduleAction) {
-    when (action) {
-      EditNotificationProfileScheduleAction.NavigateBack -> findNavController().navigateUp()
-      is EditNotificationProfileScheduleAction.NavigateToProfileCreated -> {
-        findNavController().safeNavigate(EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(action.profileId))
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.NotificationsRoute.Created -> findNavController().safeNavigate(
+        EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(route.profileId)
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

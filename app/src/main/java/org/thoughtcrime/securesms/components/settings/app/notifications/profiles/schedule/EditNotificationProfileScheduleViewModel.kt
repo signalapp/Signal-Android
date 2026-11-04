@@ -6,14 +6,16 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles.schedule
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -24,7 +26,8 @@ import java.time.LocalTime
  */
 class EditNotificationProfileScheduleViewModel(
   private val profileId: Long,
-  createMode: Boolean
+  createMode: Boolean,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<EditNotificationProfileScheduleEvent>(TAG) {
 
   companion object {
@@ -32,10 +35,8 @@ class EditNotificationProfileScheduleViewModel(
   }
 
   private val _state = MutableStateFlow(EditNotificationProfileScheduleState(createMode = createMode))
-  private val _actions = Channel<EditNotificationProfileScheduleAction>(Channel.BUFFERED)
 
   val state: StateFlow<EditNotificationProfileScheduleState> = _state.asStateFlow()
-  val actions: Flow<EditNotificationProfileScheduleAction> = _actions.receiveAsFlow()
 
   init {
     viewModelScope.launch {
@@ -46,7 +47,7 @@ class EditNotificationProfileScheduleViewModel(
 
   override suspend fun processEvent(event: EditNotificationProfileScheduleEvent) {
     when (event) {
-      EditNotificationProfileScheduleEvent.NavigateBackClicked -> _actions.send(EditNotificationProfileScheduleAction.NavigateBack)
+      EditNotificationProfileScheduleEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
       is EditNotificationProfileScheduleEvent.ScheduleToggled -> updateSchedule { it.copy(enabled = event.enabled) }
       is EditNotificationProfileScheduleEvent.DayToggled -> {
         updateSchedule { schedule ->
@@ -89,16 +90,22 @@ class EditNotificationProfileScheduleViewModel(
       schedule.enabled && schedule.daysEnabled.isEmpty() -> {
         _state.update { it.copy(snackbar = EditNotificationProfileScheduleState.Snackbar.NoDaysSelected) }
       }
-      state.createMode && !schedule.enabled -> {
-        _actions.send(EditNotificationProfileScheduleAction.NavigateToProfileCreated(profileId))
-      }
+      state.createMode && !schedule.enabled -> navigateToProfileCreated()
       else -> {
         _state.update { it.copy(isSaving = true) }
         EditNotificationProfileScheduleRepository.saveSchedule(profileId, schedule)
         _state.update { it.copy(isSaving = false) }
 
-        _actions.send(if (state.createMode) EditNotificationProfileScheduleAction.NavigateToProfileCreated(profileId) else EditNotificationProfileScheduleAction.NavigateBack)
+        if (state.createMode) navigateToProfileCreated() else parentEventEmitter.navigateBack()
       }
     }
+  }
+
+  /** Finishes the create flow, closing its screens so that going back from the "created" screen returns to the profiles. */
+  private fun navigateToProfileCreated() {
+    parentEventEmitter.navigateTo(
+      route = AppSettingsRoute.NotificationsRoute.Created(profileId),
+      popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.AddAllowedMembers::class, inclusive = true)
+    )
   }
 }

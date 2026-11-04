@@ -21,10 +21,6 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -33,6 +29,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import java.time.DayOfWeek
@@ -50,6 +49,14 @@ class EditNotificationProfileScheduleViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
+
+  /** Finishing the create flow opens the "created" screen in place of every screen the flow opened. */
+  private val profileCreated = AppSettingsNavigationEvent.NavigateToScreen(
+    route = AppSettingsRoute.NotificationsRoute.Created(PROFILE_ID),
+    popUpTo = PopUpTo(AppSettingsRoute.NotificationsRoute.AddAllowedMembers::class, inclusive = true)
+  )
 
   @Before
   fun setUp() {
@@ -142,13 +149,12 @@ class EditNotificationProfileScheduleViewModelTest {
   @Test
   fun `an enabled schedule with no days can't be saved`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileScheduleEvent.DayToggled(DayOfWeek.MONDAY))
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NextClicked)
 
     assertThat(viewModel.state.value.snackbar).isEqualTo(EditNotificationProfileScheduleState.Snackbar.NoDaysSelected)
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
     coVerify(exactly = 0) { EditNotificationProfileScheduleRepository.saveSchedule(any(), any()) }
   }
 
@@ -166,36 +172,33 @@ class EditNotificationProfileScheduleViewModelTest {
   @Test
   fun `skipping the schedule in create mode finishes the flow without saving`() = runTest(testDispatcher) {
     val viewModel = createViewModel(createMode = true)
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileScheduleEvent.ScheduleToggled(false))
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NextClicked)
 
     coVerify(exactly = 0) { EditNotificationProfileScheduleRepository.saveSchedule(any(), any()) }
-    assertThat(actions).containsExactly(EditNotificationProfileScheduleAction.NavigateToProfileCreated(PROFILE_ID))
+    assertThat(navigationEvents).containsExactly(profileCreated)
   }
 
   @Test
   fun `saving in create mode finishes the flow`() = runTest(testDispatcher) {
     val viewModel = createViewModel(createMode = true)
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NextClicked)
 
     coVerify(exactly = 1) { EditNotificationProfileScheduleRepository.saveSchedule(PROFILE_ID, SCHEDULE) }
-    assertThat(actions).containsExactly(EditNotificationProfileScheduleAction.NavigateToProfileCreated(PROFILE_ID))
+    assertThat(navigationEvents).containsExactly(profileCreated)
   }
 
   @Test
   fun `saving outside create mode goes back, even with the schedule off`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileScheduleEvent.ScheduleToggled(false))
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NextClicked)
 
     coVerify(exactly = 1) { EditNotificationProfileScheduleRepository.saveSchedule(PROFILE_ID, SCHEDULE.copy(enabled = false)) }
-    assertThat(actions).containsExactly(EditNotificationProfileScheduleAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
@@ -219,31 +222,23 @@ class EditNotificationProfileScheduleViewModelTest {
     coEvery { EditNotificationProfileScheduleRepository.getSchedule(PROFILE_ID) } coAnswers { loaded.await() }
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NextClicked)
 
     assertThat(viewModel.state.value.schedule).isNull()
     assertThat(viewModel.state.value.canSave).isFalse()
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
   }
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(EditNotificationProfileScheduleEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(EditNotificationProfileScheduleAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(createMode: Boolean = false): EditNotificationProfileScheduleViewModel {
-    return EditNotificationProfileScheduleViewModel(profileId = PROFILE_ID, createMode = createMode)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<EditNotificationProfileScheduleAction>): List<EditNotificationProfileScheduleAction> {
-    val collected = mutableListOf<EditNotificationProfileScheduleAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    return EditNotificationProfileScheduleViewModel(profileId = PROFILE_ID, createMode = createMode, parentEventEmitter = { navigationEvents += it })
   }
 }
