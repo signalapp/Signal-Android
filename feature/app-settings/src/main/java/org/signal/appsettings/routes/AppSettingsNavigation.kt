@@ -66,6 +66,9 @@ import org.signal.core.ui.rememberIsSplitPane
  * @param defaultDetailRoute opened whenever the window becomes split-pane with no [AppSettingsRoute] open, including
  *   when a foldable is unfolded.
  * @param detailEntries registers the content for each [AppSettingsRoute], with `detailEntry`.
+ * @param tryLaunchActivity called for each route navigated to before it is opened. Returns true when the host has
+ *   opened it as an activity of its own instead, which keeps it off the back stack, for screens that are still
+ *   self-contained activities.
  */
 @Composable
 fun AppSettingsNavigation(
@@ -75,16 +78,19 @@ fun AppSettingsNavigation(
   home: @Composable (selectedRoute: AppSettingsRoute?) -> Unit,
   emptyDetailContent: @Composable () -> Unit = {},
   defaultDetailRoute: AppSettingsRoute? = null,
+  tryLaunchActivity: (AppSettingsRoute) -> Boolean = { false },
   detailEntries: EntryProviderScope<NavKey>.() -> Unit
 ) {
   val currentOnClose by rememberUpdatedState(onClose)
+  val currentTryLaunchActivity by rememberUpdatedState(tryLaunchActivity)
   val navigator = router.navigator
   val isSplitPane = LocalResources.current.rememberIsSplitPane()
   val currentIsSplitPane by rememberUpdatedState(isSplitPane)
 
   val navigate: (AppSettingsNavigationEvent) -> Unit = remember(router) {
     { event ->
-      if (!router.navigate(event, currentIsSplitPane)) {
+      val launched = event is AppSettingsNavigationEvent.NavigateToScreen && currentTryLaunchActivity(event.route)
+      if (!launched && !router.navigate(event, currentIsSplitPane)) {
         currentOnClose()
       }
     }

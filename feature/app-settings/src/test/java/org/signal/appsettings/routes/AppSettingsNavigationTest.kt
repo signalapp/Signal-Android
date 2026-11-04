@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.lifecycle.SavedStateHandle
 import assertk.assertThat
+import assertk.assertions.containsExactly
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import org.junit.Rule
@@ -31,6 +32,7 @@ class AppSettingsNavigationTest {
   private val router = AppSettingsRouter(SavedStateHandle())
 
   private var closed = 0
+  private val launched = mutableListOf<AppSettingsRoute>()
 
   @Test
   @Config(qualifiers = "w800dp-h700dp")
@@ -97,6 +99,19 @@ class AppSettingsNavigationTest {
     assertThat(router.navigator.detail.value).isNull()
   }
 
+  @Test
+  @Config(qualifiers = "w800dp-h700dp")
+  fun `a route the host opens as an activity stays off the back stack`() {
+    setContent(defaultDetailRoute = AppSettingsRoute.ChatsRoute.Chats)
+
+    router.onEvent(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.Payments, replacesDetail = true))
+    composeTestRule.waitForIdle()
+
+    assertThat(launched).containsExactly(AppSettingsRoute.Payments)
+    assertThat(router.navigator.detail.value).isEqualTo(AppSettingsRoute.ChatsRoute.Chats)
+    assertThat(closed).isEqualTo(0)
+  }
+
   private fun setContent(defaultDetailRoute: AppSettingsRoute) {
     composeTestRule.setContent {
       SignalTheme(incognitoKeyboardEnabled = false) {
@@ -105,6 +120,9 @@ class AppSettingsNavigationTest {
           onClose = { closed++ },
           home = { Text("Home") },
           defaultDetailRoute = defaultDetailRoute,
+          tryLaunchActivity = { route ->
+            (route == AppSettingsRoute.Payments).also { if (it) launched += route }
+          },
           detailEntries = {
             detailEntry<AppSettingsRoute.ChatsRoute.Chats> { Text("Chats") }
             detailEntry<AppSettingsRoute.AppearanceRoute.Appearance> { Text("Appearance") }

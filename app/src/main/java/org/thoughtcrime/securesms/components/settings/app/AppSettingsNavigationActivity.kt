@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.profiles.manage.editprofile.registerEditProfileScreens
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -84,6 +85,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
             home = { selectedRoute -> AppSettingsEntry(parentEventEmitter = router::onEvent, selectedRoute = selectedRoute) },
             emptyDetailContent = { EmptyDetailScreen() },
             defaultDetailRoute = AppSettingsRoute.AccountRoute.ManageProfile,
+            tryLaunchActivity = ::tryLaunchActivity,
             detailEntries = {
               registerAppearanceRoutes(router::onEvent)
               registerChatsRoutes(router::onEvent)
@@ -107,6 +109,16 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
 
     recreateOnThemeChange()
     performActionOnCreate(savedInstanceState)
+  }
+
+  private fun tryLaunchActivity(route: AppSettingsRoute): Boolean {
+    val intent = when (route) {
+      AppSettingsRoute.Payments -> Intent(this, PaymentsActivity::class.java)
+      else -> return false
+    }
+
+    startActivity(intent)
+    return true
   }
 
   private fun disableAppSettingsNavigation() {
