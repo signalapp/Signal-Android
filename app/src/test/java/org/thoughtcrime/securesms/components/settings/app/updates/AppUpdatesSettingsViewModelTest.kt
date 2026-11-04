@@ -19,10 +19,6 @@ import io.mockk.unmockkAll
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -34,7 +30,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.appsettings.updates.AppUpdatesSettingsAction
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.updates.AppUpdatesSettingsEvent
 import org.signal.appsettings.updates.AppUpdatesSettingsState
 import org.signal.storage.keyvalue.ApkUpdateValues
@@ -59,6 +55,8 @@ class AppUpdatesSettingsViewModelTest {
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val appDependencies = MockAppDependenciesRule()
@@ -148,31 +146,23 @@ class AppUpdatesSettingsViewModelTest {
   @Test
   fun `CheckForUpdatesClicked enqueues an update check`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppUpdatesSettingsEvent.CheckForUpdatesClicked)
 
     verify(exactly = 1) { AppDependencies.jobManager.add(ofType<ApkUpdateJob>()) }
-    assertThat(actions).isEmpty()
+    assertThat(navigationEvents).isEmpty()
   }
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppUpdatesSettingsEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(AppUpdatesSettingsAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   private fun createViewModel(isAutoUpdateSupported: Boolean = true): AppUpdatesSettingsViewModel {
-    return AppUpdatesSettingsViewModel(isAutoUpdateSupported = isAutoUpdateSupported)
-  }
-
-  private fun TestScope.collectActions(actions: Flow<AppUpdatesSettingsAction>): List<AppUpdatesSettingsAction> {
-    val collected = mutableListOf<AppUpdatesSettingsAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
+    return AppUpdatesSettingsViewModel(parentEventEmitter = { navigationEvents += it }, isAutoUpdateSupported = isAutoUpdateSupported)
   }
 }

@@ -6,13 +6,11 @@
 package org.thoughtcrime.securesms.components.settings.app.updates
 
 import android.os.Build
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import org.signal.appsettings.updates.AppUpdatesSettingsAction
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.appsettings.updates.AppUpdatesSettingsEvent
 import org.signal.appsettings.updates.AppUpdatesSettingsState
 import org.signal.core.ui.compose.EventDrivenViewModel
@@ -23,6 +21,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import kotlin.time.Duration.Companion.milliseconds
 
 class AppUpdatesSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val isAutoUpdateSupported: Boolean = Build.VERSION.SDK_INT >= 31
 ) : EventDrivenViewModel<AppUpdatesSettingsEvent>(TAG) {
 
@@ -31,16 +30,14 @@ class AppUpdatesSettingsViewModel(
   }
 
   private val _state = MutableStateFlow(readState())
-  private val _actions = Channel<AppUpdatesSettingsAction>(Channel.BUFFERED)
 
   val state: StateFlow<AppUpdatesSettingsState> = _state.asStateFlow()
-  val actions: Flow<AppUpdatesSettingsAction> = _actions.receiveAsFlow()
 
   override suspend fun processEvent(event: AppUpdatesSettingsEvent) {
     when (event) {
       AppUpdatesSettingsEvent.ScreenResumed -> refresh()
 
-      AppUpdatesSettingsEvent.NavigateBackClicked -> _actions.send(AppUpdatesSettingsAction.NavigateBack)
+      AppUpdatesSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
 
       is AppUpdatesSettingsEvent.AutoUpdateToggled -> {
         SignalStore.apkUpdate.autoUpdate = event.enabled

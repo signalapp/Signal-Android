@@ -51,7 +51,8 @@ fun AppUpdatesSettingsScreen(
     title = stringResource(R.string.preferences_app_updates__title),
     onNavigationClick = { onEvent(AppUpdatesSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = true
   ) { paddingValues ->
     AppSettingsLazyColumn(
       scaffoldPadding = paddingValues,
