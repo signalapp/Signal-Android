@@ -64,6 +64,7 @@ import org.signal.mediakeyboard.data.KeyboardSticker
 import org.thoughtcrime.securesms.R
 import kotlin.coroutines.cancellation.CancellationException
 import org.signal.core.ui.R as CoreUiR
+import org.signal.mediakeyboard.R as MediaKeyboardR
 
 private const val PANEL_ALPHA = 0.6f
 
@@ -138,6 +139,7 @@ fun ChatStickerConfirmation(
       onBack = controller::dismiss,
       onSend = controller::send,
       onToggleFavorite = controller::toggleFavorite,
+      onMoveFavoriteToTop = controller::moveFavoriteToTop,
       onViewPack = controller::viewPack,
       modifier = modifier.graphicsLayer { alpha = fade.value }
     )
@@ -178,6 +180,7 @@ private fun StickerConfirmationPanel(
   onBack: () -> Unit,
   onSend: () -> Unit,
   onToggleFavorite: () -> Unit,
+  onMoveFavoriteToTop: () -> Unit,
   onViewPack: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -247,7 +250,9 @@ private fun StickerConfirmationPanel(
     StickerActionsPill(
       sticker = confirmation.sticker,
       favoritesEnabled = favoritesEnabled,
+      canMoveToTop = confirmation.isInFavorites && confirmation.sticker.isFavorite,
       onToggleFavorite = onToggleFavorite,
+      onMoveFavoriteToTop = onMoveFavoriteToTop,
       onViewPack = onViewPack,
       modifier = Modifier
         .align(Alignment.BottomCenter)
@@ -260,7 +265,9 @@ private fun StickerConfirmationPanel(
 private fun StickerActionsPill(
   sticker: KeyboardSticker,
   favoritesEnabled: Boolean,
+  canMoveToTop: Boolean,
   onToggleFavorite: () -> Unit,
+  onMoveFavoriteToTop: () -> Unit,
   onViewPack: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -294,6 +301,19 @@ private fun StickerActionsPill(
             contentDescription = stringResource(CoreUiR.string.StickerFavorites__add_to_favorites)
           )
         }
+      }
+    }
+
+    if (favoritesEnabled && canMoveToTop) {
+      IconButton(
+        onClick = onMoveFavoriteToTop,
+        colors = buttonColors,
+        modifier = Modifier.size(ButtonSize)
+      ) {
+        Icon(
+          imageVector = SignalIcons.Transfer.imageVector,
+          contentDescription = stringResource(MediaKeyboardR.string.MediaKeyboard__move_to_top)
+        )
       }
     }
 
@@ -348,6 +368,7 @@ private fun StickerConfirmationPanelPreview() {
     onBack = {},
     onSend = {},
     onToggleFavorite = {},
+    onMoveFavoriteToTop = {},
     onViewPack = {},
     modifier = Modifier.size(width = 412.dp, height = 409.dp)
   )
@@ -358,12 +379,13 @@ private fun StickerConfirmationPanelPreview() {
 @Composable
 private fun StickerConfirmationPanelReplyPreview() {
   StickerConfirmationPanel(
-    confirmation = StickerConfirmation(sticker = previewSticker.copy(isFavorite = true), replyHeader = "Reply to Maya Johnson"),
+    confirmation = StickerConfirmation(sticker = previewSticker.copy(isFavorite = true), replyHeader = "Reply to Maya Johnson", isInFavorites = true),
     sendColor = Color(0xFF315FF4),
     favoritesEnabled = true,
     onBack = {},
     onSend = {},
     onToggleFavorite = {},
+    onMoveFavoriteToTop = {},
     onViewPack = {},
     modifier = Modifier.size(width = 412.dp, height = 409.dp)
   )

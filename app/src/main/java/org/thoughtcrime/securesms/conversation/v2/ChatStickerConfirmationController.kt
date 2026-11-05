@@ -17,6 +17,7 @@ import org.signal.mediakeyboard.data.KeyboardSticker
  * @param favoritesEnabled Whether the sticker can be added to or removed from favorites from here.
  * @param onToggleFavorite Called to flip the sticker's favorite state, once the user has confirmed a
  *   removal. The host reports the outcome back through [onFavoriteChanged].
+ * @param onMoveFavoriteToTop Called to move a favorite sticker to the top of the favorites.
  * @param onViewPack Called to open the sticker's pack, after the confirmation has gone away.
  * @param onShowingChanged Called as a confirmation appears or goes away, for the host to get the
  *   input panel out of the way while one shows.
@@ -25,6 +26,7 @@ class ChatStickerConfirmationController(
   val favoritesEnabled: Boolean,
   private val onSend: (KeyboardSticker) -> Unit,
   private val onToggleFavorite: (KeyboardSticker) -> Unit,
+  private val onMoveFavoriteToTop: (KeyboardSticker) -> Unit,
   private val onViewPack: (KeyboardSticker) -> Unit,
   private val onShowingChanged: (Boolean) -> Unit
 ) {
@@ -41,9 +43,12 @@ class ChatStickerConfirmationController(
   val isShowing: Boolean
     get() = confirmation != null
 
-  /** @param replyHeader Header text saying who the sticker will reply to, or null when it is not a reply. */
-  fun show(sticker: KeyboardSticker, replyHeader: String?) {
-    update(StickerConfirmation(sticker, replyHeader))
+  /**
+   * @param replyHeader Header text saying who the sticker will reply to, or null when it is not a reply.
+   * @param isInFavorites Whether the sticker was long pressed in the favorites section.
+   */
+  fun show(sticker: KeyboardSticker, replyHeader: String?, isInFavorites: Boolean = false) {
+    update(StickerConfirmation(sticker, replyHeader, isInFavorites))
   }
 
   fun dismiss() {
@@ -84,6 +89,12 @@ class ChatStickerConfirmationController(
     confirmingRemoveFavorite = false
   }
 
+  fun moveFavoriteToTop() {
+    val sticker = confirmation?.sticker ?: return
+    update(null)
+    onMoveFavoriteToTop(sticker)
+  }
+
   fun viewPack() {
     val sticker = confirmation?.sticker ?: return
     update(null)
@@ -110,5 +121,6 @@ class ChatStickerConfirmationController(
 
 data class StickerConfirmation(
   val sticker: KeyboardSticker,
-  val replyHeader: String?
+  val replyHeader: String?,
+  val isInFavorites: Boolean = false
 )

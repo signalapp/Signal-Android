@@ -103,7 +103,7 @@ class StickerPageViewModel(
       }
 
       is StickerPageScreenEvents.StickerLongPressed -> {
-        emitAction(MediaKeyboardAction.StickerSelected(event.sticker))
+        emitAction(MediaKeyboardAction.StickerSelected(event.sticker, event.isInFavorites))
       }
 
       is StickerPageScreenEvents.StickerSendClicked -> {

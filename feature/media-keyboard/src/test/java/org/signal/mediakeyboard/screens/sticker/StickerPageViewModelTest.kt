@@ -181,6 +181,15 @@ class StickerPageViewModelTest {
   }
 
   @Test
+  fun `sticker long pressed in favorites - reports that it is in favorites`() {
+    val viewModel = createViewModel()
+    viewModel.onEvent(StickerPageScreenEvents.StickerLongPressed(sticker, isInFavorites = true))
+    testDispatcher.scheduler.advanceUntilIdle()
+
+    assertThat(actions).isEqualTo(listOf(MediaKeyboardAction.StickerSelected(sticker, isInFavorites = true)))
+  }
+
+  @Test
   fun `sticker send clicked - records the use and asks for a send`() {
     val viewModel = createViewModel()
     viewModel.onEvent(StickerPageScreenEvents.StickerSendClicked(sticker))

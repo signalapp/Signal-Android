@@ -28,8 +28,10 @@ sealed interface MediaKeyboardAction {
   /**
    * The user long pressed a sticker. Nothing is sent or recorded yet, so the host can offer it up
    * with what can be done to it, then report a send through [StickerKeyboardRepository.onStickerUsed].
+   *
+   * @param isInFavorites Whether it was long pressed in the favorites section, where it can be moved to the top.
    */
-  data class StickerSelected(val sticker: KeyboardSticker) : MediaKeyboardAction
+  data class StickerSelected(val sticker: KeyboardSticker, val isInFavorites: Boolean = false) : MediaKeyboardAction
 
   /** @param sticker The sticker to send right away, from a tap. */
   data class StickerSendClicked(val sticker: KeyboardSticker) : MediaKeyboardAction

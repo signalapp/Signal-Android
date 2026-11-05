@@ -694,6 +694,7 @@ class ConversationFragment :
         sendKeyboardSticker(sticker)
       },
       onToggleFavorite = { sticker -> setStickerFavorite(sticker, favorited = !sticker.isFavorite) },
+      onMoveFavoriteToTop = ::moveFavoriteStickerToTop,
       onViewPack = { sticker ->
         sticker.packKey?.let { packKey ->
           startActivity(StickerPackPreviewActivityV2.createIntent(StickerPackId(sticker.packId), StickerPackKey(packKey)))
@@ -801,6 +802,14 @@ class ConversationFragment :
     }
   }
 
+  /** Moves favorited sticker to the top by refavoriting it. */
+  private fun moveFavoriteStickerToTop(sticker: KeyboardSticker) {
+    val packKey = sticker.packKey ?: return
+    viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.IO) {
+      StickerFavoriteRepository.setFavorite(sticker.packId, packKey, sticker.stickerId.toInt(), favorited = true)
+    }
+  }
+
   private fun onMediaKeyboardAction(action: MediaKeyboardAction) {
     when (action) {
       is MediaKeyboardAction.EmojiSelected -> inputPanel.onEmojiSelected(action.emoji)
@@ -809,7 +818,7 @@ class ConversationFragment :
 
       is MediaKeyboardAction.StickerSelected -> {
         viewLifecycleOwner.lifecycleScope.launch {
-          stickerConfirmation.show(action.sticker, stickerReplyHeader())
+          stickerConfirmation.show(action.sticker, stickerReplyHeader(), action.isInFavorites)
         }
       }
 
@@ -866,12 +875,7 @@ class ConversationFragment :
 
       is MediaKeyboardAction.RemoveStickerFromFavoritesConfirmed -> setStickerFavorite(action.sticker, favorited = false)
 
-      is MediaKeyboardAction.MoveFavoriteToTopClicked -> {
-        val packKey = action.sticker.packKey ?: return
-        viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.IO) {
-          StickerFavoriteRepository.setFavorite(action.sticker.packId, packKey, action.sticker.stickerId.toInt(), favorited = true)
-        }
-      }
+      is MediaKeyboardAction.MoveFavoriteToTopClicked -> moveFavoriteStickerToTop(action.sticker)
 
       MediaKeyboardAction.EmptyFavoritesClicked -> {
         snackbar(R.string.ConversationFragment__press_and_hold_a_sticker_to_add_to_favorites, duration = Snackbar.LENGTH_SHORT)

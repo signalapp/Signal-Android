@@ -558,7 +558,7 @@ private fun StickerCell(
           if (longPressMenu) {
             controller.show()
           } else {
-            onEvent(StickerPageScreenEvents.StickerLongPressed(sticker))
+            onEvent(StickerPageScreenEvents.StickerLongPressed(sticker, isInFavorites))
           }
         }
       )
