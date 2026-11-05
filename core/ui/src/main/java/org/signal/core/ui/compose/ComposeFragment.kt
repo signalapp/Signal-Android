@@ -11,7 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.fragment.compose.content
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.ui.logging.LoggingFragment
 
@@ -31,8 +34,13 @@ abstract class ComposeFragment : LoggingFragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val view = content {
-      SignalTheme {
-        FragmentContent()
+      CompositionLocalProvider(
+        LocalViewModelStoreOwner provides this,
+        LocalLifecycleOwner provides viewLifecycleOwner
+      ) {
+        SignalTheme {
+          FragmentContent()
+        }
       }
     }
 

@@ -1,71 +1,117 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.app.privacy.expire
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
+import org.signal.appsettings.expiretimer.ExpireTimerSettingsAction
+import org.signal.appsettings.expiretimer.ExpireTimerSettingsEvent
+import org.signal.appsettings.expiretimer.ExpireTimerSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.models.recipients.RecipientId
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.livedata.ProcessState
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
+import kotlin.time.Duration.Companion.seconds
 
-class ExpireTimerSettingsViewModel(val config: Config, private val repository: ExpireTimerSettingsRepository) : ViewModel() {
+/**
+ * Drives [org.signal.appsettings.expiretimer.ExpireTimerSettingsScreen].
+ */
+class ExpireTimerSettingsViewModel(
+  private val config: Config,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<ExpireTimerSettingsEvent>(TAG) {
 
-  private val store = Store<ExpireTimerSettingsState>(ExpireTimerSettingsState(isGroupCreate = config.forResultMode))
-  private val recipientId: RecipientId? = config.recipientId
+  companion object {
+    private val TAG = Log.tag(ExpireTimerSettingsViewModel::class)
+  }
 
-  val state: LiveData<ExpireTimerSettingsState> = store.stateLiveData
+  private val _state = MutableStateFlow(
+    ExpireTimerSettingsState(
+      mode = config.mode,
+      initialTimer = if (config.recipientId == null) (config.initialValue ?: ExpireTimerSettingsRepository.getUniversalExpireTimer()).seconds else 0.seconds
+    )
+  )
+  private val _actions = Channel<ExpireTimerSettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<ExpireTimerSettingsState> = _state.asStateFlow()
+  val actions: Flow<ExpireTimerSettingsAction> = _actions.receiveAsFlow()
 
   init {
-    if (recipientId != null) {
-      store.update(Recipient.live(recipientId).liveData) { r, s -> s.copy(initialTimer = r.expiresInSeconds, isForRecipient = true) }
-    } else {
-      store.update { it.copy(initialTimer = config.initialValue ?: SignalStore.settings.universalExpireTimer) }
+    if (config.recipientId != null) {
+      ExpireTimerSettingsRepository.observeExpiration(config.recipientId)
+        .onEach { seconds -> _state.update { it.copy(initialTimer = seconds.seconds) } }
+        .launchIn(viewModelScope)
     }
   }
 
-  fun select(time: Int) {
-    store.update { it.copy(userSetTimer = time) }
+  override suspend fun processEvent(event: ExpireTimerSettingsEvent) {
+    when (event) {
+      ExpireTimerSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      is ExpireTimerSettingsEvent.TimerSelected -> _state.update { it.copy(selectedTimer = event.timer) }
+      ExpireTimerSettingsEvent.CustomTimeClicked -> _state.update { it.copy(dialog = ExpireTimerSettingsState.Dialog.CustomTimer) }
+      is ExpireTimerSettingsEvent.CustomTimerSelected -> _state.update { it.copy(selectedTimer = event.timer, dialog = ExpireTimerSettingsState.Dialog.None) }
+      ExpireTimerSettingsEvent.DialogDismissed -> _state.update { it.copy(dialog = ExpireTimerSettingsState.Dialog.None) }
+      ExpireTimerSettingsEvent.SaveClicked -> save()
+      ExpireTimerSettingsEvent.SnackbarDismissed -> _state.update { it.copy(snackbar = ExpireTimerSettingsState.Snackbar.None) }
+    }
   }
 
-  fun save() {
-    val userSetTimer: Int = store.state.currentTimer
+  private suspend fun save() {
+    val state = _state.value
+    val timer = state.currentTimer
 
-    if (userSetTimer == store.state.initialTimer) {
-      store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
+    if (config.mode == ExpireTimerSettingsState.Mode.GROUP_CREATE) {
+      _actions.send(ExpireTimerSettingsAction.ReturnResult(timer))
       return
     }
 
-    store.update { it.copy(saveState = ProcessState.Working()) }
-    if (recipientId != null) {
-      repository.setExpiration(recipientId, userSetTimer) { result ->
-        store.update { it.copy(saveState = ProcessState.fromResult(result)) }
+    if (timer == state.initialTimer) {
+      parentEventEmitter.navigateBack()
+      return
+    }
+
+    _state.update { it.copy(isSaving = true) }
+    val seconds = timer.inWholeSeconds.toInt()
+
+    if (config.recipientId != null) {
+      when (val result = ExpireTimerSettingsRepository.setExpiration(config.recipientId, seconds)) {
+        ExpireTimerSettingsRepository.SetExpirationResult.Success -> parentEventEmitter.navigateBack()
+        is ExpireTimerSettingsRepository.SetExpirationResult.Failure -> {
+          _state.update { it.copy(isSaving = false, snackbar = ExpireTimerSettingsState.Snackbar.SaveFailed(result.message)) }
+        }
       }
-    } else if (config.forResultMode) {
-      store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
     } else {
-      repository.setUniversalExpireTimerSeconds(userSetTimer) {
-        store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
-      }
+      ExpireTimerSettingsRepository.setUniversalExpireTimer(seconds)
+      parentEventEmitter.navigateBack()
     }
   }
 
-  fun resetError() {
-    store.update { it.copy(saveState = ProcessState.Idle()) }
-  }
-
-  class Factory(context: Context, private val config: Config) : ViewModelProvider.Factory {
-    val repository = ExpireTimerSettingsRepository(context.applicationContext)
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(ExpireTimerSettingsViewModel(config, repository)))
-    }
-  }
-
+  /**
+   * What the timer is for: the default for new chats when [recipientId] is null and [forResultMode] is false, one chat
+   * when [recipientId] is set, or a group being created when [forResultMode] is true, starting from [initialValue].
+   */
   data class Config(
     val recipientId: RecipientId? = null,
     val forResultMode: Boolean = false,
     val initialValue: Int? = null
-  )
+  ) {
+    val mode: ExpireTimerSettingsState.Mode
+      get() = when {
+        recipientId != null -> ExpireTimerSettingsState.Mode.RECIPIENT
+        forResultMode -> ExpireTimerSettingsState.Mode.GROUP_CREATE
+        else -> ExpireTimerSettingsState.Mode.UNIVERSAL
+      }
+  }
 }
