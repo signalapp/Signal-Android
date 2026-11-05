@@ -925,8 +925,9 @@ class ConversationFragment :
   private val searchNav: ConversationSearchBottomBar
     get() = binding.conversationSearchBottomBar.root
 
+  private val actionModeTopBarStub: Stub<ActionModeTopBarView> by lazy { Stub(binding.actionModeTopBarStub) }
   private val actionModeTopBarView: ActionModeTopBarView
-    get() = binding.actionModeTopBar
+    get() = actionModeTopBarStub.get()
 
   private val scheduledMessagesStub: Stub<View> by lazy { Stub(binding.scheduledMessagesStub) }
 
@@ -1568,13 +1569,15 @@ class ConversationFragment :
   }
 
   private fun isActionModeStarted(): Boolean {
-    return actionModeTopBarView.isVisible
+    return actionModeTopBarStub.resolved() && actionModeTopBarView.isVisible
   }
 
   private fun finishActionMode() {
     viewModel.setIsInActionMode(false)
 
-    actionModeTopBarView.isVisible = false
+    if (actionModeTopBarStub.resolved()) {
+      actionModeTopBarView.isVisible = false
+    }
 
     adapter.clearSelection()
     setBottomActionBarVisibility(false)

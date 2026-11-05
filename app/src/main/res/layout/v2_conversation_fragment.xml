@@ -108,8 +108,10 @@
 
     </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
-    <org.thoughtcrime.securesms.components.compose.ActionModeTopBarView
-        android:id="@+id/action_mode_top_bar"
+    <ViewStub
+        android:id="@+id/action_mode_top_bar_stub"
+        android:layout="@layout/v2_conversation_action_mode_top_bar"
+        android:inflatedId="@+id/action_mode_top_bar"
         android:layout_width="0dp"
         android:layout_height="@dimen/signal_m3_toolbar_height"
         android:visibility="gone"
