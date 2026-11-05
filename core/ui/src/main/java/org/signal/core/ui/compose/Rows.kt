@@ -11,6 +11,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -74,6 +76,8 @@ object Rows {
       modifier = modifier
         .fillMaxWidth()
         .clickable(
+          interactionSource = null,
+          indication = RowPressIndication,
           enabled = enabled,
           onClick = onClick ?: {}
         )
@@ -131,20 +135,27 @@ object Rows {
     modifier: Modifier = Modifier,
     enabled: Boolean = true
   ) {
-    Row(
-      modifier = modifier
-        .fillMaxWidth()
-        .padding(defaultPadding()),
-      verticalAlignment = CenterVertically
-    ) {
-      RadioButton(
-        enabled = enabled,
-        selected = selected,
-        onClick = null,
-        modifier = Modifier.padding(end = 24.dp)
-      )
+    val contentIndication = LocalIndication.current
 
-      content()
+    // The caller's clickable on [modifier] picks up the row indication; content keeps the outer one.
+    CompositionLocalProvider(LocalIndication provides RowPressIndication) {
+      Row(
+        modifier = modifier
+          .fillMaxWidth()
+          .padding(defaultPadding()),
+        verticalAlignment = CenterVertically
+      ) {
+        CompositionLocalProvider(LocalIndication provides contentIndication) {
+          RadioButton(
+            enabled = enabled,
+            selected = selected,
+            onClick = null,
+            modifier = Modifier.padding(end = 24.dp)
+          )
+
+          content()
+        }
+      }
     }
   }
 
@@ -338,7 +349,12 @@ object Rows {
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = isEnabled) { onCheckChanged(!checked) }
+        .clickable(
+          interactionSource = null,
+          indication = RowPressIndication,
+          enabled = isEnabled,
+          onClick = { onCheckChanged(!checked) }
+        )
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {
@@ -541,6 +557,8 @@ object Rows {
       modifier = modifier
         .fillMaxWidth()
         .combinedClickable(
+          interactionSource = null,
+          indication = RowPressIndication,
           enabled = clickAction != null || longClickAction != null,
           onClick = clickAction ?: {},
           onLongClick = {
