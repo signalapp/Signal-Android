@@ -107,6 +107,9 @@ public class ThumbnailView extends FrameLayout {
   private final CornerMask cornerMask;
 
   private final Stub<TransferControlView> transferControlViewStub;
+  private       Boolean                   pendingControlsFocusable    = null;
+  private       Boolean                   pendingControlsClickable    = null;
+  private       Slide                     pendingControlsSlide        = null;
   private       SlideClickListener        thumbnailClickListener      = null;
   private       SlidesClickedListener     startTransferClickListener  = null;
   private       SlidesClickedListener     cancelTransferClickListener = null;
@@ -304,13 +307,52 @@ public class ThumbnailView extends FrameLayout {
   @Override
   public void setFocusable(boolean focusable) {
     super.setFocusable(focusable);
-    transferControlViewStub.get().setFocusable(focusable);
+    if (transferControlViewStub.resolved()) {
+      transferControlViewStub.get().setFocusable(focusable);
+    } else {
+      pendingControlsFocusable = focusable;
+    }
   }
 
   @Override
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    transferControlViewStub.get().setClickable(clickable);
+    if (transferControlViewStub.resolved()) {
+      transferControlViewStub.get().setClickable(clickable);
+    } else {
+      pendingControlsClickable = clickable;
+    }
+  }
+
+  private @NonNull TransferControlView transferControls() {
+    boolean inflating = !transferControlViewStub.resolved();
+    TransferControlView controls = transferControlViewStub.get();
+
+    if (inflating) {
+      if (pendingControlsFocusable != null) {
+        controls.setFocusable(pendingControlsFocusable);
+      }
+      if (pendingControlsClickable != null) {
+        controls.setClickable(pendingControlsClickable);
+      }
+      if (pendingControlsSlide != null) {
+        attachControls(controls, pendingControlsSlide);
+      }
+      pendingControlsFocusable = null;
+      pendingControlsClickable = null;
+      pendingControlsSlide     = null;
+    }
+
+    return controls;
+  }
+
+  private void attachControls(@NonNull TransferControlView controls, @NonNull Slide slide) {
+    controls.setTransferClickListener(new DownloadClickDispatcher());
+    controls.setCancelClickListener(new CancelClickDispatcher());
+    if (MediaUtil.isInstantVideoSupported(slide)) {
+      controls.setInstantPlaybackClickListener(new InstantVideoClickDispatcher());
+    }
+    controls.setSlides(List.of(slide));
   }
 
   public @Nullable Drawable getImageDrawable() {
@@ -387,24 +429,24 @@ public class ThumbnailView extends FrameLayout {
       errorImage.setVisibility(View.GONE);
     }
 
-    if (showControls) {
-      transferControlViewStub.get().setTransferClickListener(new DownloadClickDispatcher());
-      transferControlViewStub.get().setCancelClickListener(new CancelClickDispatcher());
-      if (MediaUtil.isInstantVideoSupported(slide)) {
-        transferControlViewStub.get().setInstantPlaybackClickListener(new InstantVideoClickDispatcher());
-      }
-      transferControlViewStub.get().setSlides(List.of(slide));
-    }
     int     transferState    = TransferControls.getTransferState(List.of(slide));
     boolean isOffloadedImage = (transferState == AttachmentTable.TRANSFER_RESTORE_OFFLOADED && MediaUtil.isImageType(slide.getContentType())) && AttachmentUtil.isRestoreOnOpenPermitted(getContext(), slide.asAttachment());
+    boolean controlsNeeded   = showControls &&
+                               transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
+                               transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE &&
+                               !isOffloadedImage;
 
-    if (!showControls ||
-        transferState == AttachmentTable.TRANSFER_PROGRESS_DONE ||
-        transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE ||
-        isOffloadedImage) {
+    if (showControls && (controlsNeeded || transferControlViewStub.resolved())) {
+      pendingControlsSlide = null;
+      attachControls(transferControls(), slide);
+    } else if (showControls) {
+      pendingControlsSlide = slide;
+    }
+
+    if (controlsNeeded) {
+      transferControls().setVisible(true);
+    } else if (transferControlViewStub.resolved()) {
       transferControlViewStub.get().setVisible(false);
-    } else {
-      transferControlViewStub.get().setVisible(true);
     }
 
     slideHasPlayOverlay = slide.getUri() != null && slide.hasPlayOverlay() &&
@@ -704,6 +746,7 @@ public class ThumbnailView extends FrameLayout {
     requestManager.clear(image);
     image.setImageDrawable(null);
 
+    pendingControlsSlide = null;
     if (transferControlViewStub.resolved()) {
       transferControlViewStub.get().clear();
     }
@@ -715,11 +758,11 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public void showSecondaryText(boolean showSecondaryText) {
-    transferControlViewStub.get().setShowSecondaryText(showSecondaryText);
+    transferControls().setShowSecondaryText(showSecondaryText);
   }
 
   public void showProgressSpinner() {
-    transferControlViewStub.get().setVisible(true);
+    transferControls().setVisible(true);
   }
 
   public void setScaleType(@NonNull ImageView.ScaleType scaleType) {
