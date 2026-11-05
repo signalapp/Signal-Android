@@ -18,6 +18,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerEventPass
@@ -30,6 +31,7 @@ import androidx.navigation3.runtime.metadata
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import org.signal.core.ui.navigation.TransitionSpecs
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -120,11 +122,14 @@ private class KeyHistory {
 }
 
 /**
- * Single-pane scene for a deferred-enter [entry]. When it has been pushed, [beneathEntry] keeps being rendered here
- * while [entry] composes in its pre-enter state, then the two pane shift once [entry] starts its enter or
+ * Scene for a deferred-enter [entry]. When it has been pushed, [beneathEntry] keeps being rendered here while [entry]
+ * composes in its pre-enter state, then the two run [transform] once [entry] starts its enter or
  * [DEFERRED_ENTER_TIMEOUT] passes. Otherwise it's just [entry].
  *
  * [beneathEntry] is included in [entries] so nav3 moves it here rather than tearing it down when the push swaps scenes.
+ *
+ * @param transform how the two trade places, or null for a pane shift.
+ * @param onEntered called once [entry] has finished entering. Not part of the scene's equality.
  */
 @OptIn(ExperimentalDeferredTransitionApi::class)
 @Immutable
@@ -132,7 +137,9 @@ internal class DeferredEnterScene(
   override val key: Any,
   override val previousEntries: List<NavEntry<NavKey>>,
   private val beneathEntry: NavEntry<NavKey>,
-  private val entry: NavEntry<NavKey>
+  private val entry: NavEntry<NavKey>,
+  private val transform: ContentTransform? = null,
+  private val onEntered: () -> Unit = {}
 ) : Scene<NavKey> {
 
   override val entries: List<NavEntry<NavKey>> = listOf(beneathEntry, entry)
@@ -159,11 +166,16 @@ internal class DeferredEnterScene(
       }
     }
 
-    val paneShift = TransitionSpecs.paneShift()
+    LaunchedEffect(transition) {
+      snapshotFlow { transition.currentState && !transition.isRunning }.first { it }
+      onEntered()
+    }
+
+    val swap = transform ?: TransitionSpecs.paneShift()
 
     Box(modifier = Modifier.fillMaxSize()) {
       transition.DeferredAnimatedContent(
-        transitionSpec = { ContentTransform(paneShift.targetContentEnter, paneShift.initialContentExit, sizeTransform = null) },
+        transitionSpec = { ContentTransform(swap.targetContentEnter, swap.initialContentExit, sizeTransform = null) },
         modifier = Modifier.fillMaxSize()
       ) { entered ->
         if (entered) {
@@ -199,6 +211,7 @@ internal class DeferredEnterScene(
     return key == other.key &&
       beneathEntry == other.beneathEntry &&
       entry == other.entry &&
+      transform == other.transform &&
       previousEntries == other.previousEntries
   }
 
@@ -206,6 +219,7 @@ internal class DeferredEnterScene(
     var result = key.hashCode()
     result = 31 * result + beneathEntry.hashCode()
     result = 31 * result + entry.hashCode()
+    result = 31 * result + transform.hashCode()
     result = 31 * result + previousEntries.hashCode()
     return result
   }

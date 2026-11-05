@@ -1626,7 +1626,7 @@ class ConversationFragment :
 
           if (firstRender) {
             firstRender = false
-            binding.conversationItemRecycler.doAfterNextLayout {
+            doAfterSettledLayout {
               SignalLocalMetrics.ConversationOpen.onRenderFinished()
               (context as? MainActivity)?.onFirstRender()
               doAfterFirstRender()
@@ -1641,6 +1641,22 @@ class ConversationFragment :
           }
         }
       })
+  }
+
+  /**
+   * Runs [action] after the next layout that leaves the thread header where it belongs, relaying out if the header was
+   * placed from a stale scroll extent.
+   */
+  private fun doAfterSettledLayout(remainingRelayouts: Int = 2, action: () -> Unit) {
+    val recycler = binding.conversationItemRecycler
+    recycler.doAfterNextLayout {
+      if (remainingRelayouts > 0 && conversationHeaderPositionDecoration.isHeaderMarginStale(recycler)) {
+        doAfterSettledLayout(remainingRelayouts - 1, action)
+        recycler.invalidateItemDecorations()
+      } else {
+        action()
+      }
+    }
   }
 
   private fun doAfterFirstRender() {
