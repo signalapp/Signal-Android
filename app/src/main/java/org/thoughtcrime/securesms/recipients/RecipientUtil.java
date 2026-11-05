@@ -398,7 +398,7 @@ public class RecipientUtil {
   private static boolean isCallRequestAccepted(@Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing() ||
            threadRecipient.isSystemContact() ||
-           hasSentMessageInThread(threadId);
+           (!threadRecipient.isHidden() && hasSentMessageInThread(threadId));
   }
 
   @WorkerThread
