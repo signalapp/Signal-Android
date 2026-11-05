@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerResult
 import org.thoughtcrime.securesms.avatar.picker.registerAvatarPickerScreens
 import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
+import org.thoughtcrime.securesms.blocked.BlockedUsersActivity
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
@@ -125,6 +126,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
     val intent = when (route) {
       AppSettingsRoute.Payments -> Intent(this, PaymentsActivity::class.java)
       AppSettingsRoute.AppearanceRoute.Wallpaper -> ChatWallpaperActivity.createIntent(this)
+      AppSettingsRoute.PrivacyRoute.BlockedUsers -> Intent(this, BlockedUsersActivity::class.java)
       AppSettingsRoute.HelpRoute.DebugLog -> Intent(this, SubmitDebugLogActivity::class.java)
       else -> return false
     }
