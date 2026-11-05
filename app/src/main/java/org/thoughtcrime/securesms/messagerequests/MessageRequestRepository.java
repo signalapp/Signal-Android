@@ -18,9 +18,11 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.ReportSpamJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
@@ -187,11 +189,16 @@ public final class MessageRequestRepository {
       Recipient recipient = Recipient.resolved(recipientId);
       if (recipient.isPushV2Group()) {
         try {
+          GroupId.V2 groupId = recipient.requireGroupId().requireV2();
+
           Log.i(TAG, "GV2 accepting invite");
-          GroupManager.acceptInvite(context, recipient.requireGroupId().requireV2());
+          GroupManager.acceptInvite(context, groupId);
 
           RecipientTable recipientTable = SignalDatabase.recipients();
           recipientTable.setProfileSharing(recipientId, true);
+
+          Log.i(TAG, "Ensuring our profile key is up to date in the accepted group");
+          AppDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId));
 
           insertMessageRequestAccept(recipient, threadId);
           onMessageRequestAccepted.run();

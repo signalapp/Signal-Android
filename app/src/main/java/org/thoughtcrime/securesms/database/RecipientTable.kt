@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.groups.GroupId.V1
 import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1117,6 +1118,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     if (update.old.proto.blocked && !update.new.proto.blocked) {
       groups.clearGroupIfLeftAndDeleted(recipient.id)
+    }
+
+    if (!update.old.proto.whitelisted && update.new.proto.whitelisted) {
+      Log.i(TAG, "Profile sharing was enabled for $groupId via storage sync. Ensuring our profile key is up to date in the group.")
+      AppDependencies.jobManager.add(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(groupId))
     }
   }
 

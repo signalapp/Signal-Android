@@ -235,6 +235,11 @@ public final class PushGroupSendJob extends PushSendJob {
 
       if (!groupRecipient.resolve().isProfileSharing() && !isSelfLeave) {
         RecipientUtil.shareProfileIfFirstSecureMessage(groupRecipient);
+
+        if (groupRecipient.isPushV2Group() && Recipient.resolved(groupRecipient.getId()).isProfileSharing()) {
+          log(TAG, String.valueOf(message.getSentTimeMillis()), "Profile sharing was enabled by this send. Ensuring our profile key is up to date in the group.");
+          AppDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupRecipient.requireGroupId().requireV2()));
+        }
       }
 
       List<Recipient>   target;
