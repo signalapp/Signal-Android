@@ -7,8 +7,11 @@ import java.util.Locale
 
 object LocaleUtil {
 
+  private var cachedLanguage: String? = null
+  private var cachedSignalLocale: Locale? = null
+
   fun getFirstLocale(): Locale {
-    return getLocaleDefaults().firstOrNull() ?: Locale.getDefault()
+    return getSignalLocale() ?: LocaleListCompat.getDefault().get(0) ?: Locale.getDefault()
   }
 
   /**
@@ -17,7 +20,7 @@ object LocaleUtil {
    */
   fun getLocaleDefaults(): List<Locale> {
     val locales: MutableList<Locale> = mutableListOf()
-    val signalLocale: Locale? = LanguageString.parseLocale(PlainTextKeyValueStore.language)
+    val signalLocale: Locale? = getSignalLocale()
     val localeList: LocaleListCompat = LocaleListCompat.getDefault()
 
     if (signalLocale != null) {
@@ -29,5 +32,17 @@ object LocaleUtil {
     }
 
     return locales
+  }
+
+  /** Parsing the language setting is surprisingly expensive and this is called for every timestamp we format. */
+  private fun getSignalLocale(): Locale? {
+    val language = PlainTextKeyValueStore.language
+    synchronized(this) {
+      if (language != cachedLanguage) {
+        cachedSignalLocale = LanguageString.parseLocale(language)
+        cachedLanguage = language
+      }
+      return cachedSignalLocale
+    }
   }
 }
