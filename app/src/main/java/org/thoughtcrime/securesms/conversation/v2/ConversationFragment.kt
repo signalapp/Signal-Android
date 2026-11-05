@@ -381,6 +381,7 @@ import org.thoughtcrime.securesms.stickers.preview.StickerPreviewBottomSheet
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
+import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -987,7 +988,11 @@ class ConversationFragment :
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     conversationBackground = inflater.inflate(R.layout.v2_conversation_background, container, false)
-    conversationContent = inflater.inflate(R.layout.v2_conversation_fragment, container, false)
+    conversationContent = if (args.conversationScreenType == ConversationScreenType.NORMAL) {
+      CachedInflater.from(requireContext()).inflate(R.layout.v2_conversation_fragment, container, false)
+    } else {
+      inflater.inflate(R.layout.v2_conversation_fragment, container, false)
+    }
 
     // Read once here rather than in composition: it only matters when the keyboard's view model is
     // first created, and it comes from disk.
@@ -1639,6 +1644,10 @@ class ConversationFragment :
     if (!isAdded || view == null) {
       Log.w(TAG, "Bailing, fragment no longer added")
       return
+    }
+
+    if (args.conversationScreenType == ConversationScreenType.NORMAL) {
+      CachedInflater.from(requireContext()).cacheUntilLimit(R.layout.v2_conversation_fragment, chatHost, 1)
     }
 
     activity?.supportStartPostponedEnterTransition()
