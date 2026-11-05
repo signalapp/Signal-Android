@@ -2940,28 +2940,15 @@
     <string name="KeyCachingService_lock">Lock Signal</string>
 
     <!-- MediaPreviewActivity -->
-    <string name="MediaPreviewActivity_you">You</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
-    <string name="MediaPreviewActivity_draft">Draft</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
-    <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_you_to_s">You to %1$s</string>
-    <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
-    <string name="MediaPreviewActivity_s_to_you">%1$s to you</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Media no longer available.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Error finding message.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Can\'t find an app able to share this media.</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Close</string>
     <string name="MediaPreviewFragment_edit_media_error">Media Error</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Error Deleting Message, Message May Still Exist</string>
-    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Read More</string>
     <string name="MediaPreviewFragment_share">Share</string>
 
     <!-- MessageNotifier -->
@@ -4131,11 +4118,6 @@
     <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
-
-    <!-- media_preview -->
-    <string name="media_preview__save_title">Save</string>
-    <string name="media_preview__edit_title">Edit</string>
-
 
     <!-- media_preview_activity -->
     <!-- Content description of images or videos when viewing media -->

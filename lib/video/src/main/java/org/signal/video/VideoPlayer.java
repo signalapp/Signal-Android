@@ -35,7 +35,6 @@ import androidx.media3.exoplayer.source.LoadEventInfo;
 import androidx.media3.exoplayer.source.MediaLoadData;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.ui.AspectRatioFrameLayout;
-import androidx.media3.ui.LegacyPlayerControlView;
 import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
@@ -57,7 +56,6 @@ public class VideoPlayer extends FrameLayout {
 
   private ExoPlayer                           exoPlayer;
   private ExoPlayerPool<ExoPlayer>            exoPlayerPool;
-  private LegacyPlayerControlView             exoControls;
   private Window                              window;
   private PlayerStateCallback                 playerStateCallback;
   private PlayerPositionDiscontinuityCallback playerPositionDiscontinuityCallback;
@@ -92,7 +90,6 @@ public class VideoPlayer extends FrameLayout {
 
     this.exoView     = findViewById(R.id.video_view);
     this.progressBar = findViewById(R.id.progress_bar);
-    this.exoControls = createPlayerControls(getContext());
 
     final AudioManager      audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     if (Build.VERSION.SDK_INT >= 26) {
@@ -215,14 +212,6 @@ public class VideoPlayer extends FrameLayout {
     };
   }
 
-  private LegacyPlayerControlView createPlayerControls(Context context) {
-    final LegacyPlayerControlView playerControlView = new LegacyPlayerControlView(context);
-    playerControlView.setShowTimeoutMs(-1);
-    playerControlView.setShowNextButton(false);
-    playerControlView.setShowPreviousButton(false);
-    return playerControlView;
-  }
-
   private MediaItem mediaItem;
 
   public void setExoPlayerPool(ExoPlayerPool<ExoPlayer> exoPlayerPool) {
@@ -240,7 +229,6 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer.addListener(playerListener);
       exoPlayer.addAnalyticsListener(analyticsListener);
       exoView.setPlayer(exoPlayer);
-      exoControls.setPlayer(exoPlayer);
       if (muted) {
         mute();
       }
@@ -333,15 +321,6 @@ public class VideoPlayer extends FrameLayout {
     super.setOnClickListener(l);
   }
 
-  public @Nullable LegacyPlayerControlView getControlView() {
-    return this.exoControls;
-  }
-
-  public void setControlView(LegacyPlayerControlView controller) {
-    exoControls = controller;
-    exoControls.setPlayer(exoPlayer);
-  }
-
   public void stop() {
     if (this.exoPlayer != null) {
       exoPlayer.stop();
@@ -354,10 +333,6 @@ public class VideoPlayer extends FrameLayout {
 
     if (this.exoPlayer != null) {
       exoView.setPlayer(null);
-
-      if (exoPlayer.equals(exoControls.getPlayer())) {
-        exoControls.setPlayer(null);
-      }
 
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);

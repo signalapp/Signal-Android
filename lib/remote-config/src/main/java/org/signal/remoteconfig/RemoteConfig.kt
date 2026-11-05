@@ -1580,13 +1580,6 @@ object RemoteConfig {
     durationUnit = DurationUnit.SECONDS
   )
 
-  /** Whether to use the new Compose media viewer in place of MediaPreviewActivity. */
-  val useNewMediaViewer: Boolean by remoteBoolean(
-    key = "android.newMediaViewer.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether to automatically turn on screen security when an assistant app requests the contents of the screen. */
   val automaticScreenSecurity: Boolean by remoteBoolean(
     key = "android.automaticScreenSecurity.2",

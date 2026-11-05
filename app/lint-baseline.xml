@@ -232,16 +232,6 @@
             column="41"/>
     </issue>
 
-    <issue
-        id="ThreadConstraint"
-        message="Call must be from `@WorkerThread`, but super method `Fragment.onCreateView(…)` is allowing `@{Main,Ui}Thread`"
-        errorLine1="    zoomingImageView.setImageUri(requestManager, uri, contentType, () -> events.onMediaReady());"
-        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/ImageMediaPreviewPageFragment.java"
-            line="56"
-            column="22"/>
-    </issue>
 
     <issue
         id="ThreadConstraint"
@@ -265,38 +255,8 @@
             column="7"/>
     </issue>
 
-    <issue
-        id="ThreadConstraint"
-        message="Call must be from `@WorkerThread`, but super method `Fragment.onViewCreated(…)` is allowing `@{Main,Ui}Thread`"
-        errorLine1="    bindToolbar(args.fromRecipientId, args.threadRecipientId, args.outgoing, args.showThread, args.date, args.messageId)"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="124"
-            column="5"/>
-    </issue>
 
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="    bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="252"
-            column="5"/>
-    </issue>
 
-    <issue
-        id="ThreadConstraint"
-        message="Statement must run from `@WorkerThread`, incompatible with earlier code that must run from `@{Main,Ui}Thread`"
-        errorLine1="    bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/org/thoughtcrime/securesms/mediapreview/MediaPreviewFragment.kt"
-            line="277"
-            column="5"/>
-    </issue>
 
     <issue
         id="ThreadConstraint"

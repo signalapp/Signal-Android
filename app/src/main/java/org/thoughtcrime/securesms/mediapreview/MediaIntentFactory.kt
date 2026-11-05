@@ -11,7 +11,6 @@ import org.signal.core.models.parcelers.NullableCharSequenceParceler
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.dp
 import org.signal.core.util.getParcelableCompat
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord
@@ -19,9 +18,6 @@ import org.thoughtcrime.securesms.mediaviewer.MediaViewerActivity
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"
-
-  const val NOT_IN_A_THREAD = -2
-  const val UNKNOWN_TIMESTAMP = -2
 
   @Parcelize
   data class SharedElementArgs(
@@ -64,14 +60,7 @@ object MediaIntentFactory {
   fun requireArguments(bundle: Bundle): MediaPreviewArgs = bundle.getParcelableCompat(ARGS_KEY, MediaPreviewArgs::class.java)!!
 
   @JvmStatic
-  fun create(context: Context, args: MediaPreviewArgs): Intent {
-    val activityClass = if (RemoteConfig.useNewMediaViewer) {
-      MediaViewerActivity::class.java
-    } else {
-      MediaPreviewActivity::class.java
-    }
-    return Intent(context, activityClass).putExtra(ARGS_KEY, args)
-  }
+  fun create(context: Context, args: MediaPreviewArgs): Intent = Intent(context, MediaViewerActivity::class.java).putExtra(ARGS_KEY, args)
 
   fun intentFromMediaRecord(
     context: Context,

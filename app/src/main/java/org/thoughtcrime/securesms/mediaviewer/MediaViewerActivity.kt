@@ -49,7 +49,6 @@ import org.signal.mediaviewer.MediaViewerAction
 import org.signal.mediaviewer.MediaViewerEvent
 import org.signal.mediaviewer.MediaViewerScreen
 import org.signal.mediaviewer.MediaViewerState
-import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
@@ -59,7 +58,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
-import org.thoughtcrime.securesms.mediapreview.MediaPreviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache
 import org.thoughtcrime.securesms.mediapreview.RecycledBitmapGuardDrawable
 import org.thoughtcrime.securesms.mediasend.MediaSendLauncher
@@ -70,8 +68,7 @@ import org.thoughtcrime.securesms.util.WindowUtil
 import kotlin.math.roundToInt
 
 /**
- * Compose re-implementation of [MediaPreviewActivity], gated by [RemoteConfig.useNewMediaViewer]. Hosts
- * [MediaViewerScreen] and owns everything window-level: the shared element transition, the HDR
+ * Hosts [MediaViewerScreen] and owns everything window-level: the shared element transition, the HDR
  * window color mode, and system bar visibility.
  */
 class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
@@ -167,7 +164,7 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   private fun buildContainerTransform(startShape: ShapeAppearanceModel, endShape: ShapeAppearanceModel, isEnter: Boolean): MaterialContainerTransform {
     return MaterialContainerTransform().apply {
-      addTarget(MediaPreviewActivity.SHARED_ELEMENT_TRANSITION_NAME)
+      addTarget(SHARED_ELEMENT_TRANSITION_NAME)
       drawingViewId = R.id.transition_container
       startShapeAppearanceModel = startShape
       endShapeAppearanceModel = endShape
@@ -395,6 +392,8 @@ class MediaViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   companion object {
     private val TAG = Log.tag(MediaViewerActivity::class)
+
+    const val SHARED_ELEMENT_TRANSITION_NAME = "thumb"
 
     private const val TRANSITION_DURATION_MS = 250L
     private const val TRANSITION_IMAGE_FADE_DURATION_MS = 200L

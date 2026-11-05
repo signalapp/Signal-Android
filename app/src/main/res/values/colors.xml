@@ -43,7 +43,6 @@
     <color name="conversation_compose_divider">#32000000</color>
 
     <color name="touch_highlight">#400099cc</color>
-    <color name="touch_highlight_material3">#14E2E1E5</color>
 
     <color name="ConversationListTabs__unread">#FFCE4A40</color>
 

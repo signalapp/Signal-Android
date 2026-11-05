@@ -644,15 +644,6 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".mediapreview.MediaPreviewActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="false"
-            android:label="@string/AndroidManifest__media_preview"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-
-        <activity
             android:name=".mediaviewer.MediaViewerActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"
