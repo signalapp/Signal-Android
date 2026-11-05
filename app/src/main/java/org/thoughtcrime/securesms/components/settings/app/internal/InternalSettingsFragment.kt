@@ -1163,7 +1163,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setMessage("Are you sure? You'll have to re-register to use Signal again -- no promises that the process will go smoothly.")
       .setPositiveButton(android.R.string.ok) { _, _ ->
         lifecycleScope.launch {
-          when (AdvancedPrivacySettingsRepository().disablePushMessages()) {
+          when (AdvancedPrivacySettingsRepository.disablePushMessages()) {
             AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
               SignalStore.account.setRegistered(false)
               SignalStore.registration.clearRegistrationComplete()

@@ -1,156 +1,83 @@
+/*
+ * Copyright 2026 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import org.signal.core.util.concurrent.SignalDispatchers
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
-import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
-import org.thoughtcrime.securesms.keyvalue.SettingsValues
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.SignalE164Util
-import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.signal.appsettings.advancedprivacy.AdvancedPrivacySettingsAction
+import org.signal.appsettings.advancedprivacy.AdvancedPrivacySettingsEvent
+import org.signal.appsettings.advancedprivacy.AdvancedPrivacySettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
+import org.signal.core.ui.compose.EventDrivenViewModel
+import org.signal.core.util.logging.Log
 
+/**
+ * Drives [org.signal.appsettings.advancedprivacy.AdvancedPrivacySettingsScreen].
+ */
 class AdvancedPrivacySettingsViewModel(
-  private val repository: AdvancedPrivacySettingsRepository
-) : ViewModel() {
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
+  connectionChanges: Flow<Unit> = AdvancedPrivacySettingsRepository.connectionChanges()
+) : EventDrivenViewModel<AdvancedPrivacySettingsEvent>(TAG) {
 
-  private val store = MutableStateFlow(getState())
-  private val singleEvents = MutableSharedFlow<Event>()
+  companion object {
+    private val TAG = Log.tag(AdvancedPrivacySettingsViewModel::class)
+  }
 
-  val state: StateFlow<AdvancedPrivacySettingsState> = store
-  val events: SharedFlow<Event> = singleEvents
-  val disposables: CompositeDisposable = CompositeDisposable()
+  private val _state = MutableStateFlow(AdvancedPrivacySettingsRepository.getState())
+  private val _actions = Channel<AdvancedPrivacySettingsAction>(Channel.BUFFERED)
+
+  val state: StateFlow<AdvancedPrivacySettingsState> = _state.asStateFlow()
+  val actions: Flow<AdvancedPrivacySettingsAction> = _actions.receiveAsFlow()
 
   init {
-    disposables.add(
-      AppDependencies.webSocketObserver
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { refresh() }
-    )
+    connectionChanges
+      .onEach { refresh() }
+      .launchIn(viewModelScope)
   }
 
-  fun setAlwaysRelayCalls(enabled: Boolean) {
-    SignalStore.settings.isTurnOnly = enabled
-    refresh()
-  }
-
-  fun setShowStatusIconForSealedSender(enabled: Boolean) {
-    SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled = enabled
-    repository.syncShowSealedSenderIconState()
-    refresh()
-  }
-
-  fun setAllowSealedSenderFromAnyone(enabled: Boolean) {
-    SignalStore.settings.isUniversalUnidentifiedAccess = enabled
-    AppDependencies.jobManager.startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
-    refresh()
-  }
-
-  fun setCensorshipCircumventionEnabled(enabled: Boolean) {
-    SignalStore.settings.setCensorshipCircumventionEnabled(enabled)
-    SignalStore.misc.isServiceReachableWithoutCircumvention = false
-    AppDependencies.resetNetwork()
-    refresh()
-  }
-
-  fun setAllowAutomaticVerification(enabled: Boolean) {
-    SignalStore.settings.automaticVerificationEnabled = enabled
-    SignalStore.misc.hasKeyTransparencyFailure = false
-    SignalStore.misc.hasSeenKeyTransparencyFailure = false
-    refresh()
-    viewModelScope.launch(SignalDispatchers.Default) {
-      if (!enabled) {
-        SignalDatabase.recipients.clearAllKeyTransparencyData()
-        SignalStore.account.distinguishedHead = null
+  override suspend fun processEvent(event: AdvancedPrivacySettingsEvent) {
+    when (event) {
+      AdvancedPrivacySettingsEvent.ScreenResumed -> refresh()
+      AdvancedPrivacySettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      is AdvancedPrivacySettingsEvent.AlwaysRelayCallsToggled -> {
+        AdvancedPrivacySettingsRepository.setAlwaysRelayCalls(event.enabled)
+        refresh()
       }
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
+      is AdvancedPrivacySettingsEvent.CensorshipCircumventionToggled -> {
+        AdvancedPrivacySettingsRepository.setCensorshipCircumventionEnabled(event.enabled)
+        refresh()
+      }
+      is AdvancedPrivacySettingsEvent.SealedSenderStatusIconToggled -> {
+        AdvancedPrivacySettingsRepository.setShowSealedSenderStatusIcon(event.enabled)
+        refresh()
+      }
+      is AdvancedPrivacySettingsEvent.SealedSenderFromAnyoneToggled -> {
+        AdvancedPrivacySettingsRepository.setAllowSealedSenderFromAnyone(event.enabled)
+        refresh()
+      }
+      AdvancedPrivacySettingsEvent.SealedSenderLearnMoreClicked -> _actions.send(AdvancedPrivacySettingsAction.OpenSealedSenderLearnMore)
+      is AdvancedPrivacySettingsEvent.AutomaticKeyVerificationToggled -> {
+        AdvancedPrivacySettingsRepository.setAutomaticKeyVerificationEnabled(event.enabled)
+        refresh()
+        viewModelScope.launch { AdvancedPrivacySettingsRepository.syncAutomaticKeyVerification(event.enabled) }
+      }
+      AdvancedPrivacySettingsEvent.AutomaticKeyVerificationLearnMoreClicked -> _actions.send(AdvancedPrivacySettingsAction.OpenAutomaticKeyVerificationLearnMore)
     }
   }
 
-  fun refresh() {
-    store.update { getState().copy(showProgressSpinner = it.showProgressSpinner) }
-  }
-
-  override fun onCleared() {
-    disposables.dispose()
-  }
-
-  private fun getState(): AdvancedPrivacySettingsState {
-    val censorshipCircumventionState = getCensorshipCircumventionState()
-
-    return AdvancedPrivacySettingsState(
-      isPushEnabled = SignalStore.account.isRegistered,
-      alwaysRelayCalls = SignalStore.settings.isTurnOnly,
-      censorshipCircumventionState = censorshipCircumventionState,
-      censorshipCircumventionEnabled = getCensorshipCircumventionEnabled(censorshipCircumventionState),
-      showSealedSenderStatusIcon = SignalStore.settings.isShowUnidentifiedDeliveryIndicatorsEnabled,
-      allowSealedSenderFromAnyone = SignalStore.settings.isUniversalUnidentifiedAccess,
-      showProgressSpinner = false,
-      allowAutomaticKeyVerification = SignalStore.settings.automaticVerificationEnabled,
-      isPrimaryDevice = SignalStore.account.isPrimaryDevice
-    )
-  }
-
-  private fun getCensorshipCircumventionState(): CensorshipCircumventionState {
-    val countryCode: Int = SignalE164Util.getLocalCountryCode()
-    val isCountryCodeCensoredByDefault: Boolean = AppDependencies.signalServiceNetworkAccess.isCountryCodeCensoredByDefault(countryCode)
-    val enabledState: SettingsValues.CensorshipCircumventionEnabled = SignalStore.settings.censorshipCircumventionEnabled
-    val hasInternet: Boolean = NetworkConstraint.isMet(AppDependencies.application)
-    val websocketConnected: Boolean = AppDependencies.authWebSocket.state.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
-
-    return when {
-      SignalStore.internal.allowChangingCensorshipSetting -> {
-        CensorshipCircumventionState.AVAILABLE
-      }
-      isCountryCodeCensoredByDefault && enabledState == SettingsValues.CensorshipCircumventionEnabled.DISABLED -> {
-        CensorshipCircumventionState.AVAILABLE_MANUALLY_DISABLED
-      }
-      isCountryCodeCensoredByDefault -> {
-        CensorshipCircumventionState.AVAILABLE_AUTOMATICALLY_ENABLED
-      }
-      !hasInternet && enabledState != SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
-        CensorshipCircumventionState.UNAVAILABLE_NO_INTERNET
-      }
-      websocketConnected && enabledState != SettingsValues.CensorshipCircumventionEnabled.ENABLED -> {
-        CensorshipCircumventionState.UNAVAILABLE_CONNECTED
-      }
-      else -> {
-        CensorshipCircumventionState.AVAILABLE
-      }
-    }
-  }
-
-  private fun getCensorshipCircumventionEnabled(state: CensorshipCircumventionState): Boolean {
-    return when (state) {
-      CensorshipCircumventionState.UNAVAILABLE_CONNECTED,
-      CensorshipCircumventionState.UNAVAILABLE_NO_INTERNET,
-      CensorshipCircumventionState.AVAILABLE_MANUALLY_DISABLED -> {
-        false
-      }
-      CensorshipCircumventionState.AVAILABLE_AUTOMATICALLY_ENABLED -> {
-        true
-      }
-      else -> {
-        SignalStore.settings.censorshipCircumventionEnabled == SettingsValues.CensorshipCircumventionEnabled.ENABLED
-      }
-    }
-  }
-
-  enum class Event {
-    DISABLE_PUSH_FAILED
+  private fun refresh() {
+    _state.value = AdvancedPrivacySettingsRepository.getState()
   }
 }

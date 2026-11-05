@@ -10,6 +10,7 @@ import androidx.navigation3.runtime.NavKey
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.split.detailEntry
+import org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.pnp.PhoneNumberPrivacySettingsEntry
 import org.thoughtcrime.securesms.components.settings.app.privacy.screenlock.ScreenLockSettingsEntry
 
@@ -27,5 +28,9 @@ fun EntryProviderScope<NavKey>.registerPrivacyRoutes(parentEventEmitter: (AppSet
 
   detailEntry<AppSettingsRoute.PrivacyRoute.ScreenLock> {
     ScreenLockSettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.PrivacyRoute.Advanced> {
+    AdvancedPrivacySettingsEntry(parentEventEmitter = parentEventEmitter)
   }
 }
