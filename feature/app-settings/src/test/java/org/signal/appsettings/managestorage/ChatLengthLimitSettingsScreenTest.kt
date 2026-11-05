@@ -40,7 +40,7 @@ class ChatLengthLimitSettingsScreenTest {
   fun `clicking the navigation icon emits NavigateBackClicked`() {
     setContent(ChatLengthLimitSettingsState())
 
-    composeTestRule.onNodeWithContentDescription("Navigate up").performClick()
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
 
     assertThat(events).containsExactly(ChatLengthLimitSettingsEvent.NavigateBackClicked)
   }

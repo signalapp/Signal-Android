@@ -16,7 +16,6 @@ import androidx.core.app.ShareCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -58,11 +57,7 @@ public class EditProxyFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     Toolbar toolbar = view.findViewById(R.id.toolbar);
-    toolbar.setNavigationOnClickListener(v -> {
-      if (!Navigation.findNavController(v).popBackStack()) {
-        requireActivity().finish();
-      }
-    });
+    toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
     toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
     SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());

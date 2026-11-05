@@ -47,6 +47,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import java.text.NumberFormat
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object ChatLengthLimitSettingsTestTags {
@@ -72,6 +73,7 @@ fun ChatLengthLimitSettingsScreen(
     title = stringResource(R.string.preferences__conversation_length_limit),
     onNavigationClick = { onEvent(ChatLengthLimitSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
     modifier = modifier
   ) { contentPadding ->
     Column(

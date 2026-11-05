@@ -20,11 +20,7 @@ import io.mockk.unmockkObject
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -35,10 +31,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.signal.appsettings.dataandstorage.AutoDownloadMediaType
 import org.signal.appsettings.dataandstorage.AutoDownloadNetwork
-import org.signal.appsettings.dataandstorage.DataAndStorageSettingsAction
 import org.signal.appsettings.dataandstorage.DataAndStorageSettingsEvent
 import org.signal.appsettings.dataandstorage.DataAndStorageSettingsState
 import org.signal.appsettings.dataandstorage.DataAndStorageSettingsState.Dialog
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.models.calls.CallDataMode
 import org.signal.core.models.media.SentMediaQuality
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
@@ -47,6 +44,7 @@ import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 class DataAndStorageSettingsViewModelTest {
 
   private val testDispatcher = UnconfinedTestDispatcher()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
@@ -91,7 +89,7 @@ class DataAndStorageSettingsViewModelTest {
     forceWebsocket = true
     every { DataAndStorageSettingsRepository.isProxyEnabled() } returns true
 
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     assertThat(viewModel.state.value).isEqualTo(
       DataAndStorageSettingsState(
@@ -111,7 +109,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `storage usage is collected as it is calculated`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     storageUse.value = 1_000
 
@@ -120,7 +118,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `ScreenResumed re-reads settings and recalculates storage usage`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
     every { DataAndStorageSettingsRepository.isProxyEnabled() } returns true
 
     viewModel.onEvent(DataAndStorageSettingsEvent.ScreenResumed)
@@ -130,24 +128,23 @@ class DataAndStorageSettingsViewModelTest {
   }
 
   @Test
-  fun `navigation events emit the matching actions`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
-    val actions = collectActions(viewModel.actions)
+  fun `navigation events navigate to the matching screens`() = runTest(testDispatcher) {
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.NavigateBackClicked)
     viewModel.onEvent(DataAndStorageSettingsEvent.ManageStorageClicked)
     viewModel.onEvent(DataAndStorageSettingsEvent.UseProxyClicked)
 
-    assertThat(actions).containsExactly(
-      DataAndStorageSettingsAction.NavigateBack,
-      DataAndStorageSettingsAction.NavigateToManageStorage,
-      DataAndStorageSettingsAction.NavigateToProxy
+    assertThat(navigationEvents).containsExactly(
+      AppSettingsNavigationEvent.NavigateBack(),
+      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.DataAndStorageRoute.Storage),
+      AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.DataAndStorageRoute.Proxy)
     )
   }
 
   @Test
   fun `AutoDownloadChanged stores the selection for that network only`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.AutoDownloadChanged(AutoDownloadNetwork.ROAMING, setOf(AutoDownloadMediaType.AUDIO)))
 
@@ -158,7 +155,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `SentMediaQualitySelected stores the quality`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.SentMediaQualitySelected(SentMediaQuality.HIGH))
 
@@ -168,7 +165,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `CallDataModeSelected stores the mode`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.CallDataModeSelected(CallDataMode.HIGH_ON_WIFI))
 
@@ -178,7 +175,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `turning on stay connected in background asks for confirmation first`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
 
@@ -188,7 +185,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `confirming stay connected in background enables it and closes the dialog`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed)
@@ -200,7 +197,7 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `StayConnectedInBackgroundConfirmed is ignored without the confirmation dialog`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed)
 
@@ -210,7 +207,7 @@ class DataAndStorageSettingsViewModelTest {
   @Test
   fun `turning off stay connected in background disables it without asking`() = runTest(testDispatcher) {
     forceWebsocket = true
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(false))
 
@@ -221,18 +218,12 @@ class DataAndStorageSettingsViewModelTest {
 
   @Test
   fun `DialogDismissed closes the dialog without changing anything`() = runTest(testDispatcher) {
-    val viewModel = DataAndStorageSettingsViewModel()
+    val viewModel = DataAndStorageSettingsViewModel(parentEventEmitter = { navigationEvents += it })
 
     viewModel.onEvent(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
     viewModel.onEvent(DataAndStorageSettingsEvent.DialogDismissed)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     coVerify(exactly = 0) { DataAndStorageSettingsRepository.setForceWebsocketModeEnabled(any()) }
-  }
-
-  private fun TestScope.collectActions(actions: Flow<DataAndStorageSettingsAction>): List<DataAndStorageSettingsAction> {
-    val collected = mutableListOf<DataAndStorageSettingsAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
   }
 }

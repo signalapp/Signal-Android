@@ -1,16 +1,11 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.dataandstorage.DataAndStorageSettingsAction
-import org.signal.appsettings.dataandstorage.DataAndStorageSettingsEvent
-import org.signal.appsettings.dataandstorage.DataAndStorageSettingsScreen
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -18,30 +13,18 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class DataAndStorageSettingsFragment : ComposeFragment() {
 
-  private val viewModel: DataAndStorageSettingsViewModel by viewModels()
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.onEvent(DataAndStorageSettingsEvent.ScreenResumed)
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    DataAndStorageSettingsScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
+    DataAndStorageSettingsEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
 
-  private fun handleAction(action: DataAndStorageSettingsAction) {
-    when (action) {
-      DataAndStorageSettingsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-      DataAndStorageSettingsAction.NavigateToManageStorage -> findNavController().safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_storagePreferenceFragment)
-      DataAndStorageSettingsAction.NavigateToProxy -> findNavController().safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_editProxyFragment)
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.DataAndStorageRoute.Storage -> findNavController().safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_storagePreferenceFragment)
+      AppSettingsRoute.DataAndStorageRoute.Proxy -> findNavController().safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_editProxyFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

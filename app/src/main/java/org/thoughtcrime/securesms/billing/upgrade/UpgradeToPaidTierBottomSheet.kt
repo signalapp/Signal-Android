@@ -13,9 +13,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -47,7 +48,12 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
     const val RESULT_KEY = "UpgradeToPaidTierBottomSheet.RESULT_KEY"
 
     fun addResultListener(fragment: Fragment, onUpgradedToPaidTier: () -> Unit) {
-      fragment.setFragmentResultListener(RESULT_KEY) { key, bundle ->
+      addResultListener(fragment.parentFragmentManager, fragment, onUpgradedToPaidTier)
+    }
+
+    /** Listens on [fragmentManager], the one the sheet was shown on. Results are delivered while [lifecycleOwner] is started, and the listener is removed when it is destroyed. */
+    fun addResultListener(fragmentManager: FragmentManager, lifecycleOwner: LifecycleOwner, onUpgradedToPaidTier: () -> Unit) {
+      fragmentManager.setFragmentResultListener(RESULT_KEY, lifecycleOwner) { key, bundle ->
         if (RESULT_KEY == key) {
           val didCompleteSignup = bundle.getBoolean(RESULT_KEY, false)
 

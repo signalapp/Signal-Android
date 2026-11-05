@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import org.signal.appsettings.R
 import org.signal.appsettings.appSettingsScreen
 import org.signal.appsettings.managestorage.ManageStorageSettingsState.Dialog
@@ -28,6 +29,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object ManageStorageSettingsTestTags {
@@ -53,11 +55,18 @@ fun ManageStorageSettingsScreen(
   onEvent: (ManageStorageSettingsEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  LifecycleResumeEffect(Unit) {
+    onEvent(ManageStorageSettingsEvent.ScreenResumed)
+    onPauseOrDispose {}
+  }
+
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__storage),
     onNavigationClick = { onEvent(ManageStorageSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    modifier = modifier
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    modifier = modifier,
+    expandableTitle = true
   ) { contentPadding ->
     Column(
       modifier = Modifier

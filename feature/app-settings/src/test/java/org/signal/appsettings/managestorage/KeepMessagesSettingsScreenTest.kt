@@ -34,7 +34,7 @@ class KeepMessagesSettingsScreenTest {
   fun `clicking the navigation icon emits NavigateBackClicked`() {
     setContent(KeepMessagesSettingsState())
 
-    composeTestRule.onNodeWithContentDescription("Navigate up").performClick()
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
 
     assertThat(events).containsExactly(KeepMessagesSettingsEvent.NavigateBackClicked)
   }

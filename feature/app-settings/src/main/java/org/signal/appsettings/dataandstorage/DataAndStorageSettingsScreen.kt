@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewWrapper
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import org.signal.appsettings.AppSettingsLazyColumn
 import org.signal.appsettings.R
 import org.signal.core.models.calls.CallDataMode
@@ -53,11 +54,18 @@ fun DataAndStorageSettingsScreen(
   onEvent: (DataAndStorageSettingsEvent) -> Unit,
   modifier: Modifier = Modifier
 ) {
+  LifecycleResumeEffect(Unit) {
+    onEvent(DataAndStorageSettingsEvent.ScreenResumed)
+    onPauseOrDispose {}
+  }
+
   Scaffolds.Settings(
     title = stringResource(R.string.preferences__data_and_storage),
     onNavigationClick = { onEvent(DataAndStorageSettingsEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
-    modifier = modifier
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    modifier = modifier,
+    expandableTitle = true
   ) { paddingValues ->
     AppSettingsLazyColumn(
       scaffoldPadding = paddingValues,

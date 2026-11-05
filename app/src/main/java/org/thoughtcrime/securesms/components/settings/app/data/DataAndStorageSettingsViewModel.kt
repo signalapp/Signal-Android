@@ -6,36 +6,36 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import org.signal.appsettings.dataandstorage.AutoDownloadNetwork
-import org.signal.appsettings.dataandstorage.DataAndStorageSettingsAction
 import org.signal.appsettings.dataandstorage.DataAndStorageSettingsEvent
 import org.signal.appsettings.dataandstorage.DataAndStorageSettingsState
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
 /**
  * Drives [org.signal.appsettings.dataandstorage.DataAndStorageSettingsScreen].
  */
-class DataAndStorageSettingsViewModel : EventDrivenViewModel<DataAndStorageSettingsEvent>(TAG) {
+class DataAndStorageSettingsViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : EventDrivenViewModel<DataAndStorageSettingsEvent>(TAG) {
 
   companion object {
     private val TAG = Log.tag(DataAndStorageSettingsViewModel::class)
   }
 
   private val _state = MutableStateFlow(DataAndStorageSettingsState())
-  private val _actions = Channel<DataAndStorageSettingsAction>(Channel.BUFFERED)
 
   val state: StateFlow<DataAndStorageSettingsState> = _state.asStateFlow()
-  val actions: Flow<DataAndStorageSettingsAction> = _actions.receiveAsFlow()
 
   init {
     refresh()
@@ -52,9 +52,9 @@ class DataAndStorageSettingsViewModel : EventDrivenViewModel<DataAndStorageSetti
         DataAndStorageSettingsRepository.refreshStorageUsage()
       }
 
-      DataAndStorageSettingsEvent.NavigateBackClicked -> _actions.send(DataAndStorageSettingsAction.NavigateBack)
+      DataAndStorageSettingsEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
 
-      DataAndStorageSettingsEvent.ManageStorageClicked -> _actions.send(DataAndStorageSettingsAction.NavigateToManageStorage)
+      DataAndStorageSettingsEvent.ManageStorageClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DataAndStorageRoute.Storage)
 
       is DataAndStorageSettingsEvent.AutoDownloadChanged -> {
         DataAndStorageSettingsRepository.setAutoDownload(event.network, event.mediaTypes)
@@ -87,7 +87,7 @@ class DataAndStorageSettingsViewModel : EventDrivenViewModel<DataAndStorageSetti
         refresh()
       }
 
-      DataAndStorageSettingsEvent.UseProxyClicked -> _actions.send(DataAndStorageSettingsAction.NavigateToProxy)
+      DataAndStorageSettingsEvent.UseProxyClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.DataAndStorageRoute.Proxy)
 
       DataAndStorageSettingsEvent.DialogDismissed -> _state.update { it.copy(dialog = DataAndStorageSettingsState.Dialog.None) }
     }

@@ -38,14 +38,23 @@ class DataAndStorageSettingsScreenTest {
   val composeTestRule = createComposeRule()
 
   private val events = mutableListOf<DataAndStorageSettingsEvent>()
+  private val interactionEvents: List<DataAndStorageSettingsEvent>
+    get() = events.filterNot { it == DataAndStorageSettingsEvent.ScreenResumed }
+
+  @Test
+  fun `showing the screen emits ScreenResumed and nothing else`() {
+    setContent(DataAndStorageSettingsState())
+
+    assertThat(events).containsExactly(DataAndStorageSettingsEvent.ScreenResumed)
+  }
 
   @Test
   fun `clicking the navigation icon emits NavigateBackClicked`() {
     setContent(DataAndStorageSettingsState())
 
-    composeTestRule.onNodeWithContentDescription("Navigate up").performClick()
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
 
-    assertThat(events).containsExactly(DataAndStorageSettingsEvent.NavigateBackClicked)
+    assertThat(interactionEvents).containsExactly(DataAndStorageSettingsEvent.NavigateBackClicked)
   }
 
   @Test
@@ -61,7 +70,7 @@ class DataAndStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_MANAGE_STORAGE).performClick()
 
-    assertThat(events).containsExactly(DataAndStorageSettingsEvent.ManageStorageClicked)
+    assertThat(interactionEvents).containsExactly(DataAndStorageSettingsEvent.ManageStorageClicked)
   }
 
   /** The multi-select dialog caps its height at the screen height minus 200dp, which pushes its buttons offscreen on Robolectric's default screen. */
@@ -76,7 +85,7 @@ class DataAndStorageSettingsScreenTest {
     composeTestRule.onNodeWithText("Video").performClick()
     composeTestRule.onNodeWithText("OK").performClick()
 
-    assertThat(events).containsExactly(
+    assertThat(interactionEvents).containsExactly(
       DataAndStorageSettingsEvent.AutoDownloadChanged(AutoDownloadNetwork.WIFI, setOf(AutoDownloadMediaType.IMAGES, AutoDownloadMediaType.VIDEO))
     )
   }
@@ -89,7 +98,7 @@ class DataAndStorageSettingsScreenTest {
     composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_SENT_MEDIA_QUALITY).performClick()
     composeTestRule.onNodeWithText("High").performClick()
 
-    assertThat(events).contains(DataAndStorageSettingsEvent.SentMediaQualitySelected(SentMediaQuality.HIGH))
+    assertThat(interactionEvents).contains(DataAndStorageSettingsEvent.SentMediaQualitySelected(SentMediaQuality.HIGH))
   }
 
   @Test
@@ -100,7 +109,7 @@ class DataAndStorageSettingsScreenTest {
     composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_CALL_DATA_MODE).performClick()
     composeTestRule.onNodeWithText("WiFi and mobile data").performClick()
 
-    assertThat(events).contains(DataAndStorageSettingsEvent.CallDataModeSelected(CallDataMode.LOW_ALWAYS))
+    assertThat(interactionEvents).contains(DataAndStorageSettingsEvent.CallDataModeSelected(CallDataMode.LOW_ALWAYS))
   }
 
   @Test
@@ -112,7 +121,7 @@ class DataAndStorageSettingsScreenTest {
       .assertIsEnabled()
       .performClick()
 
-    assertThat(events).containsExactly(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
+    assertThat(interactionEvents).containsExactly(DataAndStorageSettingsEvent.StayConnectedInBackgroundToggled(true))
   }
 
   @Test
@@ -131,7 +140,7 @@ class DataAndStorageSettingsScreenTest {
     scrollTo(DataAndStorageSettingsTestTags.ROW_USE_PROXY)
     composeTestRule.onNodeWithTag(DataAndStorageSettingsTestTags.ROW_USE_PROXY).performClick()
 
-    assertThat(events).containsExactly(DataAndStorageSettingsEvent.UseProxyClicked)
+    assertThat(interactionEvents).containsExactly(DataAndStorageSettingsEvent.UseProxyClicked)
   }
 
   @Test
@@ -141,7 +150,7 @@ class DataAndStorageSettingsScreenTest {
     composeTestRule.onNodeWithText("Enable").performClick()
     composeTestRule.onNodeWithText("Cancel").performClick()
 
-    assertThat(events).containsExactly(
+    assertThat(interactionEvents).containsExactly(
       DataAndStorageSettingsEvent.StayConnectedInBackgroundConfirmed,
       DataAndStorageSettingsEvent.DialogDismissed
     )

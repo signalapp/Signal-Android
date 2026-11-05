@@ -33,14 +33,23 @@ class ManageStorageSettingsScreenTest {
   val composeTestRule = createComposeRule()
 
   private val events = mutableListOf<ManageStorageSettingsEvent>()
+  private val interactionEvents: List<ManageStorageSettingsEvent>
+    get() = events.filterNot { it == ManageStorageSettingsEvent.ScreenResumed }
+
+  @Test
+  fun `showing the screen emits ScreenResumed and nothing else`() {
+    setContent(ManageStorageSettingsState())
+
+    assertThat(events).containsExactly(ManageStorageSettingsEvent.ScreenResumed)
+  }
 
   @Test
   fun `clicking the navigation icon emits NavigateBackClicked`() {
     setContent(ManageStorageSettingsState())
 
-    composeTestRule.onNodeWithContentDescription("Navigate up").performClick()
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.NavigateBackClicked)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.NavigateBackClicked)
   }
 
   @Test
@@ -56,7 +65,7 @@ class ManageStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithTag(ManageStorageSettingsTestTags.BUTTON_REVIEW_STORAGE).performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.ReviewStorageClicked)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.ReviewStorageClicked)
   }
 
   @Test
@@ -73,7 +82,7 @@ class ManageStorageSettingsScreenTest {
     scrollTo(ManageStorageSettingsTestTags.ROW_OPTIMIZE_STORAGE)
     composeTestRule.onNodeWithTag(ManageStorageSettingsTestTags.ROW_OPTIMIZE_STORAGE).performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.OptimizeStorageToggled(true))
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.OptimizeStorageToggled(true))
   }
 
   @Test
@@ -85,7 +94,7 @@ class ManageStorageSettingsScreenTest {
     scrollTo(ManageStorageSettingsTestTags.ROW_CHAT_LENGTH_LIMIT)
     composeTestRule.onNodeWithTag(ManageStorageSettingsTestTags.ROW_CHAT_LENGTH_LIMIT).performClick()
 
-    assertThat(events).containsExactly(
+    assertThat(interactionEvents).containsExactly(
       ManageStorageSettingsEvent.KeepMessagesClicked,
       ManageStorageSettingsEvent.ChatLengthLimitClicked
     )
@@ -107,7 +116,7 @@ class ManageStorageSettingsScreenTest {
     scrollTo(ManageStorageSettingsTestTags.ROW_SYNC_TRIM_DELETES)
     composeTestRule.onNodeWithTag(ManageStorageSettingsTestTags.ROW_SYNC_TRIM_DELETES).performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.SyncTrimDeletesToggled(true))
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.SyncTrimDeletesToggled(true))
   }
 
   @Test
@@ -124,7 +133,7 @@ class ManageStorageSettingsScreenTest {
     scrollTo(ManageStorageSettingsTestTags.ROW_DELETE_CHAT_HISTORY)
     composeTestRule.onNodeWithTag(ManageStorageSettingsTestTags.ROW_DELETE_CHAT_HISTORY).performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.DeleteChatHistoryClicked)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.DeleteChatHistoryClicked)
   }
 
   @Test
@@ -133,7 +142,7 @@ class ManageStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithText("Delete").performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.DeleteChatHistoryConfirmed)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.DeleteChatHistoryConfirmed)
   }
 
   @Test
@@ -142,7 +151,7 @@ class ManageStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithText("Cancel").performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.DialogDismissed)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.DialogDismissed)
   }
 
   @Test
@@ -158,7 +167,7 @@ class ManageStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithText("Turn on").performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.OptimizeStorageWithLocalBackupConfirmed)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.OptimizeStorageWithLocalBackupConfirmed)
   }
 
   @Test
@@ -167,7 +176,7 @@ class ManageStorageSettingsScreenTest {
 
     composeTestRule.onNodeWithText("OK").performClick()
 
-    assertThat(events).containsExactly(ManageStorageSettingsEvent.DialogDismissed)
+    assertThat(interactionEvents).containsExactly(ManageStorageSettingsEvent.DialogDismissed)
   }
 
   private fun setContent(state: ManageStorageSettingsState) {
