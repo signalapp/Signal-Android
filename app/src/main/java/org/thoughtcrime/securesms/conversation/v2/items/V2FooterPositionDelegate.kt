@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.conversation.v2.items
 
 import android.view.View
 import android.widget.Space
+import android.widget.TextView
 import org.signal.core.ui.util.ViewUtil
 import org.signal.core.ui.view.Stub
 import org.signal.core.util.BidiUtil
@@ -66,11 +67,33 @@ class V2FooterPositionDelegate private constructor(
 
   private var displayState: DisplayState = DisplayState.NONE
 
-  override fun onPreMeasure() {
+  private var decidedWidthMeasureSpec: Int = 0
+  private var decidedBodyText: CharSequence? = null
+  private var decidedFooterSignature: Int = 0
+  private var skipDecision: Boolean = false
+
+  override fun onPreMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    skipDecision = displayState != DisplayState.NONE &&
+      widthMeasureSpec == decidedWidthMeasureSpec &&
+      body.text === decidedBodyText &&
+      footerSignature() == decidedFooterSignature
+
+    if (skipDecision) {
+      return
+    }
+
     displayTuckedIntoBody()
   }
 
-  override fun onPostMeasure(): Boolean {
+  override fun onPostMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): Boolean {
+    if (skipDecision) {
+      return false
+    }
+
+    decidedWidthMeasureSpec = widthMeasureSpec
+    decidedBodyText = body.text
+    decidedFooterSignature = footerSignature()
+
     val maxWidth = if (thumbnailView?.isVisible == true) {
       thumbnailView.get().layoutParams.width
     } else {
@@ -142,6 +165,21 @@ class V2FooterPositionDelegate private constructor(
 
     body.padding(right = 0, left = 0, bottom = 0)
     displayState = DisplayState.TUCKED
+  }
+
+  /**
+   * Everything other than the body text and the width that can move the footer. The same signature on a later
+   * measure pass means the earlier decision still holds, so the layout is measured once rather than twice.
+   */
+  private fun footerSignature(): Int {
+    var signature = if (thumbnailView?.isVisible == true) thumbnailView.get().layoutParams.width else -1
+    for (view in footerViews) {
+      signature = signature * 31 + (if (view.visible) 1 else 0)
+      if (view is TextView) {
+        signature = signature * 31 + view.text.hashCode()
+      }
+    }
+    return signature
   }
 
   private fun getFooterWidth(): Int {

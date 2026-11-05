@@ -133,9 +133,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   protected lateinit var shape: V2ConversationItemShape.MessageShape
 
   private val replyDelegate = object : V2ConversationItemLayout.OnMeasureListener {
-    override fun onPreMeasure() = Unit
+    override fun onPreMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) = Unit
 
-    override fun onPostMeasure(): Boolean {
+    override fun onPostMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): Boolean {
       return false
     }
   }
@@ -863,9 +863,9 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
   }
 
   private inner class ReactionMeasureListener : V2ConversationItemLayout.OnMeasureListener {
-    override fun onPreMeasure() = Unit
+    override fun onPreMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) = Unit
 
-    override fun onPostMeasure(): Boolean {
+    override fun onPostMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int): Boolean {
       return binding.reactions.setBubbleWidth(binding.bodyWrapper.measuredWidth)
     }
   }
