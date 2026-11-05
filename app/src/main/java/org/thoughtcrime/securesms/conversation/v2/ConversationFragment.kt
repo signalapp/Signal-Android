@@ -925,6 +925,7 @@ class ConversationFragment :
   private val searchNav: ConversationSearchBottomBar
     get() = binding.conversationSearchBottomBar.root
 
+  private var lastPresentedTitleRecipient: Recipient? = null
   private val actionModeTopBarStub: Stub<ActionModeTopBarView> by lazy { Stub(binding.actionModeTopBarStub) }
   private val actionModeTopBarView: ActionModeTopBarView
     get() = actionModeTopBarStub.get()
@@ -2285,9 +2286,10 @@ class ConversationFragment :
   }
 
   private fun presentConversationTitle(recipient: Recipient?) {
-    if (recipient == null) {
+    if (recipient == null || recipient === lastPresentedTitleRecipient) {
       return
     }
+    lastPresentedTitleRecipient = recipient
 
     val titleView = binding.conversationTitleView.root
 
