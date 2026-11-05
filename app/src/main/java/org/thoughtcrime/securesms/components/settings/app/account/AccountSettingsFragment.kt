@@ -5,257 +5,55 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.stringResource
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
-import org.signal.appsettings.account.AccountSettingsAction
-import org.signal.appsettings.account.AccountSettingsEvent
-import org.signal.appsettings.account.AccountSettingsScreen
 import org.signal.appsettings.account.TwoFactorMethod
-import org.signal.core.ui.ViewModelFactory
-import org.signal.core.ui.biometrics.BiometricsAuthentication
-import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.util.ServiceUtil
-import org.signal.passwordmanager.SignalPasskeyManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNavArgs
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
-import org.thoughtcrime.securesms.registration.ui.RegistrationIntents
-import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.signal.appsettings.R as AppSettingsR
 
 /**
- * Account settings shown on a primary device. Carries out the [AccountSettingsAction]s that need an Activity or the
- * legacy nav graph.
+ * Account settings shown on a primary device, under the legacy nav graph.
  */
 class AccountSettingsFragment : ComposeFragment() {
 
-  private val viewModel: AccountSettingsViewModel by viewModels(
-    factoryProducer = ViewModelFactory.factoryProducer {
-      AccountSettingsViewModel(
-        accountRepository = AccountSettingsRepository(),
-        arePasskeysSupported = SignalPasskeyManager.isSupported(requireContext())
-      )
-    }
-  )
-
-  private lateinit var pinFlowLauncher: ActivityResultLauncher<Intent>
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    pinFlowLauncher = registerForActivityResult(StartActivityForResult()) { result ->
-      if (result.resultCode == Activity.RESULT_OK) {
-        viewModel.onEvent(AccountSettingsEvent.PinCreated)
-      }
-    }
-  }
-
-  override fun onResume() {
-    super.onResume()
-    viewModel.onEvent(AccountSettingsEvent.ScreenResumed)
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    val addMethodBiometrics = rememberBiometricsAuthentication(
-      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_add_two_factor_method),
-      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_add_this_method_confirm_its_you),
-      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
-    )
-
-    val removalBiometrics = rememberBiometricsAuthentication(
-      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_remove_two_factor_method),
-      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_remove_this_method_confirm_its_you),
-      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
-    )
-
-    val signalLoginBiometrics = rememberBiometricsAuthentication(
-      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_view_signal_login),
-      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_view_your_signal_login_confirm_its_you),
-      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
-    )
-
-    val deleteAccountBiometrics = rememberBiometricsAuthentication(
-      promptTitle = stringResource(AppSettingsR.string.AccountSettingsFragment__unlock_to_confirm_its_you),
-      educationSheetMessage = stringResource(AppSettingsR.string.AccountSettingsFragment__to_delete_your_account_confirm_its_you),
-      onAuthenticationFailed = { viewModel.onEvent(AccountSettingsEvent.AuthenticationFailed) }
-    )
-
-    CollectActions(viewModel.actions) { action -> handleAction(action, addMethodBiometrics, removalBiometrics, signalLoginBiometrics, deleteAccountBiometrics) }
-
-    AccountSettingsScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
+    AccountSettingsEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
 
-  private fun handleAction(
-    action: AccountSettingsAction,
-    addMethodBiometrics: BiometricsAuthentication,
-    removalBiometrics: BiometricsAuthentication,
-    signalLoginBiometrics: BiometricsAuthentication,
-    deleteAccountBiometrics: BiometricsAuthentication
-  ) {
-    when (action) {
-      AccountSettingsAction.NavigateBack -> {
-        requireActivity().onBackPressedDispatcher.onBackPressed()
-      }
-
-      AccountSettingsAction.LaunchCreatePinFlow -> {
-        pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinCreate(requireContext()))
-      }
-
-      AccountSettingsAction.LaunchChangePinFlow -> {
-        pinFlowLauncher.launch(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()))
-      }
-
-      AccountSettingsAction.ShowPinCreatedConfirmation -> {
-        Snackbar.make(requireView(), R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show()
-      }
-
-      AccountSettingsAction.AuthenticateToViewSignalLoginDetails -> {
-        signalLoginBiometrics.withBiometricsAuthentication {
-          viewModel.onEvent(AccountSettingsEvent.SignalLoginDetailsAuthenticated)
-        }
-      }
-
-      AccountSettingsAction.NavigateToSignalLoginDetails -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment)
-      }
-
-      AccountSettingsAction.AuthenticateToAddTotpApp -> {
-        addMethodBiometrics.withBiometricsAuthentication {
-          viewModel.onEvent(AccountSettingsEvent.AddTotpAppAuthenticated)
-        }
-      }
-
-      AccountSettingsAction.NavigateToTotpSetup -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
-      }
-
-      AccountSettingsAction.AuthenticateToAddPasskey -> {
-        addMethodBiometrics.withBiometricsAuthentication {
-          viewModel.onEvent(AccountSettingsEvent.AddPasskeyAuthenticated)
-        }
-      }
-
-      AccountSettingsAction.NavigateToPasskeySetup -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_passkeySetupFragment)
-      }
-
-      is AccountSettingsAction.NavigateToRenameMethod -> {
-        findNavController().safeNavigate(
-          R.id.action_accountSettingsFragment_to_twoFactorNameFragment,
-          Bundle().apply { TwoFactorNavArgs.putRenamedMethod(this, action.method) }
-        )
-      }
-
-      is AccountSettingsAction.AuthenticateToRemoveMethod -> {
-        removalBiometrics.withBiometricsAuthentication {
-          viewModel.onEvent(AccountSettingsEvent.MethodRemovalAuthenticated(action.method))
-        }
-      }
-
-      AccountSettingsAction.ShowAuthenticationFailed -> {
-        toast(AppSettingsR.string.AccountSettingsFragment__authentication_required)
-      }
-
-      is AccountSettingsAction.ShowMethodRemoved -> {
-        toast(
-          when (action.kind) {
-            TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.AccountSettingsFragment__authenticator_app_removed
-            TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.AccountSettingsFragment__passkey_removed
-            TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__two_factor_method_removed
-          }
-        )
-      }
-
-      is AccountSettingsAction.ShowMethodRemovalFailed -> toast(
-        when (action.kind) {
-          TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_authenticator_app
-          TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_passkey
-          TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.AccountSettingsFragment__couldnt_remove_two_factor_method
-        }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    val navController = findNavController()
+    when (route) {
+      AppSettingsRoute.AccountRoute.SignalLoginDetails -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_settingsSignalLoginDetailsFragment)
+      AppSettingsRoute.AccountRoute.TotpSetup -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_authenticatorSetupFragment)
+      AppSettingsRoute.AccountRoute.PasskeySetup -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_passkeySetupFragment)
+      is AppSettingsRoute.AccountRoute.RenameTwoFactorMethod -> navController.safeNavigate(
+        R.id.action_accountSettingsFragment_to_twoFactorNameFragment,
+        Bundle().apply { TwoFactorNavArgs.putRenamedMethod(this, route.toTwoFactorMethod()) }
       )
-
-      is AccountSettingsAction.OpenSupportArticle -> {
-        CommunicationActions.openBrowserLink(requireContext(), action.url)
-      }
-
-      AccountSettingsAction.NavigateToAdvancedPinSettings -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_advancedPinSettingsActivity)
-      }
-
-      AccountSettingsAction.NavigateToChangePhoneNumber -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
-      }
-
-      AccountSettingsAction.NavigateToDeviceTransfer -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
-      }
-
-      AccountSettingsAction.NavigateToExportAccountData -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_exportAccountFragment)
-      }
-
-      AccountSettingsAction.AuthenticateToDeleteAccount -> {
-        deleteAccountBiometrics.withBiometricsAuthentication {
-          viewModel.onEvent(AccountSettingsEvent.DeleteAccountAuthenticated)
-        }
-      }
-
-      AccountSettingsAction.NavigateToDeleteAccount -> {
-        findNavController().safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
-      }
-
-      AccountSettingsAction.OpenPlayStore -> {
-        PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
-      }
-
-      AccountSettingsAction.LaunchReRegistration -> {
-        startActivity(RegistrationIntents.newIntentForReRegistration(requireContext()))
-      }
-
-      AccountSettingsAction.WipeAllData -> {
-        if (!ServiceUtil.getActivityManager(AppDependencies.application).clearApplicationUserData()) {
-          viewModel.onEvent(AccountSettingsEvent.DataWipeFailed)
-        }
-      }
-
-      AccountSettingsAction.ShowDataWipeFailed -> {
-        toast(R.string.preferences_account_delete_all_data_failed)
-      }
-
-      AccountSettingsAction.ShowRegistrationLockEnableFailed -> {
-        toast(R.string.preferences_app_protection__failed_to_enable_registration_lock)
-      }
-
-      AccountSettingsAction.ShowRegistrationLockDisableFailed -> {
-        toast(R.string.preferences_app_protection__failed_to_disable_registration_lock)
-      }
+      AppSettingsRoute.AccountRoute.AdvancedPinSettings -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_advancedPinSettingsActivity)
+      AppSettingsRoute.ChangeNumberRoute.Start -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_changePhoneNumberFragment)
+      AppSettingsRoute.AccountRoute.OldDeviceTransfer -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
+      AppSettingsRoute.AccountRoute.ExportAccountData -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_exportAccountFragment)
+      AppSettingsRoute.AccountRoute.DeleteAccount -> navController.safeNavigate(R.id.action_accountSettingsFragment_to_deleteAccountFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
+}
 
-  private fun toast(@StringRes message: Int) {
-    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-  }
+/** The method a [AppSettingsRoute.AccountRoute.RenameTwoFactorMethod] identifies, rebuilt from the fields it carries. */
+private fun AppSettingsRoute.AccountRoute.RenameTwoFactorMethod.toTwoFactorMethod(): TwoFactorMethod {
+  return TwoFactorMethod(
+    id = methodId,
+    kind = TwoFactorMethod.Kind.entries.firstOrNull { it.name == methodKind } ?: TwoFactorMethod.Kind.OTHER,
+    name = methodName,
+    createdAt = methodCreatedAt
+  )
 }

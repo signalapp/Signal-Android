@@ -4310,8 +4310,6 @@
     <string name="BackupUtil_never">Never</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Unknown</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">Failed to disable registration lock.</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Your PIN has at least %d digits or characters</string>
     <string name="RegistrationActivity_too_many_attempts">Too many attempts</string>

@@ -16,7 +16,9 @@ data class AccountSettingsState(
   val isPhoneNumberless: Boolean = false,
   val arePasskeysSupported: Boolean = false,
   val signalLogin: SignalLogin? = null,
-  val dialog: Dialog = Dialog.None
+  val dialog: Dialog = Dialog.None,
+  /** The snackbar to show, or [Snackbar.None]. */
+  val snackbar: Snackbar = Snackbar.None
 ) {
 
   val isNotDeprecatedOrUnregistered: Boolean
@@ -54,6 +56,32 @@ data class AccountSettingsState(
 
     /** We couldn't reach the service, which is worth another try. */
     NETWORK_FAILURE
+  }
+
+  /** Whichever snackbar the screen is showing, if any. */
+  sealed interface Snackbar {
+    data object None : Snackbar
+
+    /** A PIN was just created. */
+    data object PinCreated : Snackbar
+
+    /** The user didn't confirm it was them, so the action that needed it didn't happen. */
+    data object AuthenticationRequired : Snackbar
+
+    /** A second factor of [kind] was removed. */
+    data class MethodRemoved(val kind: TwoFactorMethod.Kind) : Snackbar
+
+    /** A second factor of [kind] couldn't be removed. */
+    data class MethodRemovalFailed(val kind: TwoFactorMethod.Kind) : Snackbar
+
+    /** Deleting all of the app's data didn't work. */
+    data object DeleteAllDataFailed : Snackbar
+
+    /** Turning registration lock on didn't work. */
+    data object RegistrationLockEnableFailed : Snackbar
+
+    /** Turning registration lock off didn't work. */
+    data object RegistrationLockDisableFailed : Snackbar
   }
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */

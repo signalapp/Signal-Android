@@ -113,4 +113,7 @@ sealed interface AccountSettingsEvent {
 
   /** Dismisses whatever is in [AccountSettingsState.dialog]. */
   data object DialogDismissed : AccountSettingsEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : AccountSettingsEvent
 }

@@ -11,6 +11,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.DetailNavKey
+import org.signal.core.util.censor
 import org.signal.donations.InAppPaymentType
 
 /**
@@ -63,6 +64,29 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
 
     @Serializable
     data object DeleteAccount : AccountRoute
+
+    /** The account's Signal login: its username and recovery key. */
+    @Serializable
+    data object SignalLoginDetails : AccountRoute
+
+    /** Adding an authenticator app as a second factor. */
+    @Serializable
+    data object TotpSetup : AccountRoute
+
+    /** Adding a passkey as a second factor. */
+    @Serializable
+    data object PasskeySetup : AccountRoute
+
+    /** Renaming the second factor identified by [methodId], whose current details are carried so the screen needn't refetch them. */
+    @Serializable
+    data class RenameTwoFactorMethod(
+      val methodId: Long,
+      val methodKind: String,
+      val methodName: String?,
+      val methodCreatedAt: Long?
+    ) : AccountRoute {
+      override fun toString(): String = "RenameTwoFactorMethod(methodId=$methodId, methodKind=$methodKind, methodName=${methodName?.censor()}, methodCreatedAt=$methodCreatedAt)"
+    }
 
     @Serializable
     data object ExportAccountData : AccountRoute

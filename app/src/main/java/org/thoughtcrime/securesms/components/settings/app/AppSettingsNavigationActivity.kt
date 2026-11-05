@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.avatar.picker.registerAvatarPickerScreens
 import org.thoughtcrime.securesms.badges.self.registerBadgeScreens
 import org.thoughtcrime.securesms.blocked.BlockedUsersActivity
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
+import org.thoughtcrime.securesms.components.settings.app.account.registerAccountRoutes
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
 import org.thoughtcrime.securesms.components.settings.app.help.registerHelpRoutes
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
@@ -94,6 +96,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
             defaultDetailRoute = AppSettingsRoute.AccountRoute.ManageProfile,
             tryLaunchActivity = ::tryLaunchActivity,
             detailEntries = {
+              registerAccountRoutes(router::onEvent)
               registerAppearanceRoutes(router::onEvent)
               registerChatsRoutes(router::onEvent)
               registerNotificationsRoutes(router::onEvent)
@@ -127,6 +130,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
       AppSettingsRoute.Payments -> Intent(this, PaymentsActivity::class.java)
       AppSettingsRoute.AppearanceRoute.Wallpaper -> ChatWallpaperActivity.createIntent(this)
       AppSettingsRoute.PrivacyRoute.BlockedUsers -> Intent(this, BlockedUsersActivity::class.java)
+      AppSettingsRoute.AccountRoute.OldDeviceTransfer -> Intent(this, OldDeviceTransferActivity::class.java)
       AppSettingsRoute.HelpRoute.DebugLog -> Intent(this, SubmitDebugLogActivity::class.java)
       else -> return false
     }
