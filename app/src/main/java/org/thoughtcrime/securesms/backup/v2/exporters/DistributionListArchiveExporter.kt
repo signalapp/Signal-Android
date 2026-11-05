@@ -69,10 +69,11 @@ class DistributionListArchiveExporter(
       )
     } else {
       val members = record.members.toRemoteMemberList(selfRecipientId, exportState)
+      val name = if (record.distributionId == DistributionId.MY_STORY) "" else record.name
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         distributionList = DistributionList(
-          name = record.name,
+          name = name,
           allowReplies = record.allowsReplies,
           privacyMode = record.privacyMode.toBackupPrivacyMode(members.size),
           memberRecipientIds = members

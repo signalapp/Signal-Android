@@ -48,9 +48,10 @@ object DistributionListArchiveImporter {
 
     val distributionId = DistributionId.from(UuidUtil.fromByteString(dlistItem.distributionId))
     val privacyMode = dlist.privacyMode.toLocalPrivacyMode()
+    val name = if (distributionId == DistributionId.MY_STORY) DistributionId.MY_STORY.toString() else dlist.name
 
     val dlistId = SignalDatabase.distributionLists.createList(
-      name = dlist.name,
+      name = name,
       members = members,
       distributionId = distributionId,
       allowsReplies = dlist.allowReplies,

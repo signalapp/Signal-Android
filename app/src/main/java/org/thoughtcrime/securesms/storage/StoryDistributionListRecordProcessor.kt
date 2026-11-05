@@ -29,7 +29,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
    * At a minimum, we require:
    *
    *  - A valid identifier
-   *  - A non-visually-empty name field OR a deleted at timestamp
+   *  - A non-visually-empty name field OR a deleted at timestamp (My Story is exempt)
    */
   override fun isInvalid(remote: SignalStoryDistributionListRecord): Boolean {
     val remoteUuid = UuidUtil.parseOrNull(remote.proto.identifier)
@@ -55,7 +55,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
       }
     }
 
-    if (StringUtil.isVisuallyEmpty(remote.proto.name)) {
+    if (!isMyStory && StringUtil.isVisuallyEmpty(remote.proto.name)) {
       Log.d(TAG, "Bad distribution list name (visually empty) -- marking as invalid")
       return true
     }
