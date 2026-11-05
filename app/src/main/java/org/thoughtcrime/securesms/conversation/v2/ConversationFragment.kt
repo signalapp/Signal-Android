@@ -926,6 +926,7 @@ class ConversationFragment :
     get() = binding.conversationSearchBottomBar.root
 
   private var lastPresentedTitleRecipient: Recipient? = null
+  private var isOptionsMenuInvalidationPending = false
   private val actionModeTopBarStub: Stub<ActionModeTopBarView> by lazy { Stub(binding.actionModeTopBarStub) }
   private val actionModeTopBarView: ActionModeTopBarView
     get() = actionModeTopBarStub.get()
@@ -2216,7 +2217,17 @@ class ConversationFragment :
 
   private fun invalidateOptionsMenu() {
     if (searchMenuItem?.isActionViewExpanded != true || !isSearchRequested) {
-      binding.toolbar.invalidateMenu()
+      if (isOptionsMenuInvalidationPending) {
+        return
+      }
+
+      isOptionsMenuInvalidationPending = true
+      binding.toolbar.post {
+        isOptionsMenuInvalidationPending = false
+        if (view != null) {
+          binding.toolbar.invalidateMenu()
+        }
+      }
     }
   }
 
@@ -2225,7 +2236,7 @@ class ConversationFragment :
       optionsMenuCallback = ConversationOptionsMenuCallback()
       menuProvider = ConversationOptionsMenu.Provider(optionsMenuCallback, disposables)
       binding.toolbar.addMenuProvider(menuProvider!!)
-      invalidateOptionsMenu()
+      binding.toolbar.invalidateMenu()
     }
 
     when (args.conversationScreenType) {
