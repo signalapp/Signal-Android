@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.profiles.manage.editprofile.registerEditProfileScreens
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
 
 /**
  * Hosts app settings in [AppSettingsNavigation] rather than the fragment nav graph, gated by
@@ -123,6 +124,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
   private fun tryLaunchActivity(route: AppSettingsRoute): Boolean {
     val intent = when (route) {
       AppSettingsRoute.Payments -> Intent(this, PaymentsActivity::class.java)
+      AppSettingsRoute.AppearanceRoute.Wallpaper -> ChatWallpaperActivity.createIntent(this)
       AppSettingsRoute.HelpRoute.DebugLog -> Intent(this, SubmitDebugLogActivity::class.java)
       else -> return false
     }

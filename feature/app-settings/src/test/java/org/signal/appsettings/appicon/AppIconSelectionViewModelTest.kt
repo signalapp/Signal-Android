@@ -15,10 +15,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -26,6 +22,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class AppIconSelectionViewModelTest {
@@ -33,6 +31,7 @@ class AppIconSelectionViewModelTest {
   private val testDispatcher = UnconfinedTestDispatcher()
 
   private val appIconUtility = mockk<AppIconUtility>()
+  private val navigationEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -110,28 +109,20 @@ class AppIconSelectionViewModelTest {
   @Test
   fun `LearnMoreClicked opens the tutorial`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppIconSelectionEvent.LearnMoreClicked)
 
-    assertThat(actions).containsExactly(AppIconSelectionAction.NavigateToTutorial)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AppearanceRoute.AppIconTutorial))
   }
 
   @Test
   fun `NavigateBackClicked navigates back`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(AppIconSelectionEvent.NavigateBackClicked)
 
-    assertThat(actions).containsExactly(AppIconSelectionAction.NavigateBack)
+    assertThat(navigationEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
-  private fun createViewModel(): AppIconSelectionViewModel = AppIconSelectionViewModel(appIconUtility)
-
-  private fun TestScope.collectActions(actions: Flow<AppIconSelectionAction>): List<AppIconSelectionAction> {
-    val collected = mutableListOf<AppIconSelectionAction>()
-    backgroundScope.launch { actions.toList(collected) }
-    return collected
-  }
+  private fun createViewModel(): AppIconSelectionViewModel = AppIconSelectionViewModel(appIconUtility, parentEventEmitter = { navigationEvents += it })
 }

@@ -6,39 +6,26 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance.appicon
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.appicon.AppIconSelectionAction
-import org.signal.appsettings.appicon.AppIconSelectionScreen
-import org.signal.appsettings.appicon.AppIconSelectionViewModel
-import org.signal.appsettings.appicon.AppIconUtility
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class AppIconSelectionFragment : ComposeFragment() {
 
-  private val viewModel: AppIconSelectionViewModel by viewModel { AppIconSelectionViewModel(AppIconUtility(requireContext())) }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { handleAction(it) }
-
-    AppIconSelectionScreen(
-      state = state,
-      onEvent = viewModel::onEvent
-    )
+    AppIconSelectionEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
 
-  private fun handleAction(action: AppIconSelectionAction) {
-    when (action) {
-      AppIconSelectionAction.NavigateBack -> findNavController().popBackStack()
-      AppIconSelectionAction.NavigateToTutorial -> findNavController().safeNavigate(R.id.action_appIconSelectionFragment_to_appIconTutorialFragment)
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.AppearanceRoute.AppIconTutorial -> findNavController().safeNavigate(R.id.action_appIconSelectionFragment_to_appIconTutorialFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

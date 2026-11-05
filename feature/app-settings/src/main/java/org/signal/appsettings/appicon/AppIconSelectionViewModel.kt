@@ -5,13 +5,14 @@
 
 package org.signal.appsettings.appicon
 
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
@@ -19,7 +20,8 @@ import org.signal.core.util.logging.Log
  * Drives [AppIconSelectionScreen].
  */
 class AppIconSelectionViewModel(
-  private val appIconUtility: AppIconUtility
+  private val appIconUtility: AppIconUtility,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
 ) : EventDrivenViewModel<AppIconSelectionEvent>(TAG) {
 
   companion object {
@@ -27,15 +29,13 @@ class AppIconSelectionViewModel(
   }
 
   private val _state = MutableStateFlow(AppIconSelectionState(currentIcon = appIconUtility.currentAppIcon))
-  private val _actions = Channel<AppIconSelectionAction>(Channel.BUFFERED)
 
   val state: StateFlow<AppIconSelectionState> = _state.asStateFlow()
-  val actions: Flow<AppIconSelectionAction> = _actions.receiveAsFlow()
 
   override suspend fun processEvent(event: AppIconSelectionEvent) {
     when (event) {
-      AppIconSelectionEvent.NavigateBackClicked -> _actions.send(AppIconSelectionAction.NavigateBack)
-      AppIconSelectionEvent.LearnMoreClicked -> _actions.send(AppIconSelectionAction.NavigateToTutorial)
+      AppIconSelectionEvent.NavigateBackClicked -> parentEventEmitter.navigateBack()
+      AppIconSelectionEvent.LearnMoreClicked -> parentEventEmitter.navigateTo(AppSettingsRoute.AppearanceRoute.AppIconTutorial)
       is AppIconSelectionEvent.IconClicked -> {
         if (event.preset != _state.value.selectedIcon) {
           _state.update { it.copy(dialog = AppIconSelectionState.Dialog.ConfirmIconChange(event.preset)) }

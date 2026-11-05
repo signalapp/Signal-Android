@@ -86,7 +86,8 @@ fun AppIconSelectionScreen(
     onNavigationClick = { onEvent(AppIconSelectionEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
-    modifier = modifier
+    modifier = modifier,
+    expandableTitle = true
   ) { contentPadding ->
     Column(
       modifier = Modifier
