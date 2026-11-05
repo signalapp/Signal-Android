@@ -5,15 +5,10 @@
 
 package org.thoughtcrime.securesms.components.settings.app.privacy.advanced
 
-import android.net.ConnectivityManager
-import android.net.Network
-import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.installations.FirebaseInstallations
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.rx3.asFlow
@@ -35,6 +30,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.io.IOException
@@ -148,20 +144,9 @@ object AdvancedPrivacySettingsRepository {
     }
   }
 
-  private fun networkChanges(): Flow<Unit> = callbackFlow {
-    val connectivityManager = ContextCompat.getSystemService(AppDependencies.application, ConnectivityManager::class.java)!!
-    val callback = object : ConnectivityManager.NetworkCallback() {
-      override fun onAvailable(network: Network) {
-        trySend(Unit)
-      }
-
-      override fun onLost(network: Network) {
-        trySend(Unit)
-      }
-    }
-
-    connectivityManager.registerDefaultNetworkCallback(callback)
-    awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
+  /** [InternetConnectionObserver] handles the API 24+ network callback and the broadcast receiver fallback for older devices. */
+  private fun networkChanges(): Flow<Unit> {
+    return InternetConnectionObserver.observe().asFlow().map { }
   }
 
   private fun getCensorshipCircumventionState(): CensorshipCircumventionState {
