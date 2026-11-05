@@ -52,6 +52,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -134,7 +135,7 @@ public class MediaUtil {
       if (TextUtils.isEmpty(extension) && fileExtension != null) {
         extension = fileExtension;
       }
-      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
+      type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase(Locale.ROOT));
       return getCorrectedMimeType(type, fileExtension);
     }
 

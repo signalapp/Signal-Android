@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.IntentCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.locale.AppLocale
 
 /**
  * Activity entry point for the registration flow.
@@ -51,6 +52,11 @@ class RegistrationActivity : ComponentActivity() {
         putExtra(START_FRESH_EXTRA, startFresh)
       }
     }
+  }
+
+  override fun attachBaseContext(newBase: Context) {
+    super.attachBaseContext(newBase)
+    applyOverrideConfiguration(AppLocale.createOverrideConfiguration())
   }
 
   @OptIn(ExperimentalPermissionsApi::class)

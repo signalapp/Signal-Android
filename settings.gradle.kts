@@ -128,6 +128,7 @@ include(":lib:signal-login")
 include(":lib:password-manager")
 include(":lib:storage")
 include(":lib:remote-config")
+include(":lib:locale")
 
 // Feature modules
 include(":feature:app-settings")

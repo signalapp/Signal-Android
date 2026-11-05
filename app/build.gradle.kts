@@ -704,6 +704,7 @@ dependencies {
   implementation(project(":lib:glide"))
   implementation(project(":lib:image-editor"))
   implementation(project(":lib:libsignal-service"))
+  implementation(project(":lib:locale"))
   implementation(project(":lib:network"))
   implementation(project(":lib:paging"))
   implementation(project(":lib:password-manager"))

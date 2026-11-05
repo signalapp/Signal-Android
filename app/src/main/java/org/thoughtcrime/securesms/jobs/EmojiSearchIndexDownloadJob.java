@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.signal.storage.keyvalue.EmojiValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.s3.S3;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.signal.locale.AppLocale;
 import org.signal.network.exceptions.NonSuccessfulResponseCodeException;
 import org.signal.network.util.JsonUtil;
 
@@ -95,7 +95,7 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
   protected void onRun() throws Exception {
     Manifest manifest = downloadManifest();
 
-    Locale locale         = DynamicLanguageContextWrapper.getUsersSelectedLocale();
+    Locale locale         = AppLocale.getResolvedLocale();
     String remoteLanguage = findMatchingLanguage(locale, manifest.getLanguages());
 
     if (manifest.getVersion() == SignalStore.emoji().getSearchVersion() &&

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util
 
 import android.content.Context
 import android.text.format.DateFormat
+import org.signal.locale.AppLocale
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -10,7 +11,7 @@ import java.util.Locale
  * Formats [LocalTime] as localized time. For example, "1:45 PM" or "13:45"
  */
 fun LocalTime.formatHours(context: Context): String {
-  return formatHours(is24Hour = DateFormat.is24HourFormat(context), locale = LocaleUtil.getFirstLocale())
+  return formatHours(is24Hour = DateFormat.is24HourFormat(context), locale = AppLocale.resolvedLocale)
 }
 
 /**

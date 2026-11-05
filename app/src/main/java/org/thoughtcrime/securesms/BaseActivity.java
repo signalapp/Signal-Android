@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.signal.core.util.ConfigurationUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.signal.locale.AppLocale;
 
 import java.util.Objects;
 
@@ -87,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Override
   public void applyOverrideConfiguration(@NonNull Configuration overrideConfiguration) {
-    DynamicLanguageContextWrapper.prepareOverrideConfiguration(overrideConfiguration);
+    AppLocale.prepareOverrideConfiguration(overrideConfiguration);
     super.applyOverrideConfiguration(overrideConfiguration);
   }
 

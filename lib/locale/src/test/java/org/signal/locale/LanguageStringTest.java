@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.dynamiclanguage;
+package org.signal.locale;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

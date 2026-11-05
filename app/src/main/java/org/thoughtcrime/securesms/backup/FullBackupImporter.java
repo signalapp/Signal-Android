@@ -59,6 +59,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
@@ -205,9 +206,9 @@ public class FullBackupImporter extends FullBackupBase {
 
     boolean isForMmsFtsSecretTable    = statement.statement.contains(SearchTable.FTS_TABLE_NAME + "_");
     boolean isForEmojiSecretTable     = statement.statement.contains(EmojiSearchTable.TABLE_NAME + "_");
-    boolean isForSqliteSecretTable    = statement.statement.toLowerCase().startsWith("create table sqlite_");
-    boolean isForRemoteMegaphoneTable = statement.statement.toLowerCase().startsWith("insert into remote_megaphone");
-    boolean isForExcludedKeyTable     = excludeKeyTables && KEY_TABLES.stream().anyMatch(table -> statement.statement.toLowerCase().contains(table));
+    boolean isForSqliteSecretTable    = statement.statement.toLowerCase(Locale.ROOT).startsWith("create table sqlite_");
+    boolean isForRemoteMegaphoneTable = statement.statement.toLowerCase(Locale.ROOT).startsWith("insert into remote_megaphone");
+    boolean isForExcludedKeyTable     = excludeKeyTables && KEY_TABLES.stream().anyMatch(table -> statement.statement.toLowerCase(Locale.ROOT).contains(table));
 
     if (isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable || isForRemoteMegaphoneTable || isForExcludedKeyTable) {
       Log.i(TAG, "Ignoring import for statement: " + statement.statement);

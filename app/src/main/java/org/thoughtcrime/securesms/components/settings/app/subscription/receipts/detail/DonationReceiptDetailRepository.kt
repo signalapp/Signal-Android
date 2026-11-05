@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper
 
 object DonationReceiptDetailRepository {
   suspend fun getDonationReceiptRecord(id: Long): InAppPaymentReceiptRecord {
@@ -17,6 +16,6 @@ object DonationReceiptDetailRepository {
   }
 
   suspend fun renderReceiptImage(record: InAppPaymentReceiptRecord): Uri {
-    return ReceiptImageRenderer.renderPng(DynamicLanguageContextWrapper.createLocalizedContext(AppDependencies.application), record)
+    return ReceiptImageRenderer.renderPng(AppDependencies.application, record)
   }
 }
