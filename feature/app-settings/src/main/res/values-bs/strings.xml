@@ -715,19 +715,19 @@
     <string name="ChatsSettingsScreen__go_back">Nazad</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">Slike</string>
+    <string name="preferences_storage__videos">Videozapisi</string>
+    <string name="preferences_storage__files">Datoteke</string>
+    <string name="preferences_storage__audio">Zvuk</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">Poruke</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">Naljepnice</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">Ostalo</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">Izračunavanje…</string>
+    <string name="preferences_storage__review_storage">Provjerite memoriju</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -766,38 +766,38 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Neuspjelo pohranjivanje usljed greške u mreži. Pokušajte ponovo kasnije.</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">Zadrži poruke</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">Zauvijek</string>
+    <string name="preferences_storage__one_year">1 godinu</string>
+    <string name="preferences_storage__six_months">6 mjeseci</string>
+    <string name="preferences_storage__thirty_days">30 dana</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Poruke starije od odabranog vremena bit će trajno izbrisane.</string>
+    <string name="preferences_storage__delete_older_messages">Izbrisati starije poruke?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ovime će se trajno izbrisati sva historija poruka i datoteke s vašeg uređaja koji su stariji od %1$s.</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">Izbriši</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Ograničenje dužine chata</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="few">%1$s messages</item>
-        <item quantity="many">%1$s messages</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s poruka</item>
+        <item quantity="few">%1$s poruke</item>
+        <item quantity="many">%1$s poruka</item>
+        <item quantity="other">%1$s poruka</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">Neograničeno</string>
+    <string name="preferences_storage__custom">Drugo</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Poruke koje premašuju odabranu dužinu bit će trajno izbrisane.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Ovo će trajno smanjiti sve chatove na %1$s najnoviju poruku.</item>
+        <item quantity="few">Ovo će trajno smanjiti sve chatove na %1$s najnovije poruke.</item>
+        <item quantity="many">Ovo će trajno smanjiti sve chatove na %1$s najnovijih poruka.</item>
+        <item quantity="other">Ovo će trajno smanjiti sve chatove na %1$s najnovijih poruka.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1030,155 +1030,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">Signalu treba pristup kameri za skeniranje QR kodova</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">Memorija</string>
+    <string name="preferences_storage__storage_usage">Korištenje memorije</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Pohrana Signala</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizirajte pohranu Signala</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Neiskorišteni medijski sadržaji će biti uklonjeni, ali se mogu preuzeti iz vaše sigurnosne kopije u bilo koje vrijeme.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Ograničenja dužine razgovora</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Primijenite ograničenja na povezane uređaje</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Kada je omogućeno, ograničenja chata će također izbrisati poruke sa vaših povezanih uređaja.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Izbriši historiju poruka</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">Izbrisati historiju poruka?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ovime će se trajno izbrisati sva historija poruka i datoteke s vašeg uređaja.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Na ovaj način će se trajno izbrisati sva historiju poruka i medija sa ovog uređaja i svih povezanih uređaja.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Jeste li sigurni da želite izbrisati historiju poruka?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Cijela historija poruka bit će trajno uklonjena. Ova se radnja ne može poništiti.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Sva historija poruka će biti trajno uklonjena sa svih uređaja. Ova radnja ne može se poništiti.</string>
+    <string name="preferences_storage__delete_all_now">Izbriši sve odmah</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimizacija pohrane može se koristiti samo s plaćenim nivoom usluge Signal Secure Backups. Vaša pretplata na sigurnosne kopije se još uvijek obrađuje i još nije aktivna. Pokušajte ponovo kasnije.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Medijski sadržaji će biti uklonjeni iz sigurnosne kopije na uređaju.</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Uključivanjem opcije \"Optimiziraj pohranu Signala\" stari medijski sadržaji bit će uklonjeni s uređaja. Možete ga ponovo preuzeti u bilo kojem trenutku. Time će se stari medijski sadržaji ukloniti i iz sigurnosne kopije na uređaju.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">Uključi</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">Zvoni ili pošalji obavještenje kada se poziv započne dok je ovaj razgovor utišan.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Zvoni ili pošalji obavještenje kada se poziv započne u utišanim razgovorima.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">Pošalji obavještenje kada ste spomenuti dok je ovaj razgovor utišan.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Pošalji obavještenje kada ste spomenuti u utišanim razgovorima.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">Pošalji obavještenje kada neko odgovori na vašu poruku dok je ovaj razgovor utišan.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Pošalji obavještenje kada neko odgovori na moju poruku u utišanim razgovorima.</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">Dok je utišano</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">Pozivi</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">Spomen</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">Odgovori</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Neuspjelo otvaranje birača.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Da bi omogućio obavještenja, Signal treba dozvolu da ih prikaže.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">Uključi</string>
+    <string name="NotificationsSettingsFragment__calls">Pozivi</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt je počeo koristiti Signal</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Kreirajte profil da biste primali obavještenja samo od onih osoba i grupa koje izaberete.</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">Prikaži obavještenje kada kontakt iz telefona pristupi Signalu</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">Resetiraj postavke obavještenja</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Resetirati sve postavke obavještenja na zadane za sve razgovore?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">Poništi</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Resetirajte postavke obavještenja na zadane, uključujući prilagođene postavke za vaše razgovore</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">Zvukovi</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Nepoznat zvuk zvona</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">Pozivi</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">Spomen</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">Profili obavještenja</string>
+    <string name="NotificationsSettingsScreen__notifications">Obavještenja</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">Odgovori</string>
+    <string name="NotificationsSettingsScreen__silent">Stišan</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">Podsjetnici za nepročitane poruke</string>
+    <string name="arrays__default">Standardno</string>
+    <string name="arrays__high">Visoki</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">Maksimalni</string>
+    <string name="arrays__name_and_message">Ime i poruku</string>
+    <string name="arrays__name_only">Samo ime</string>
+    <string name="arrays__no_name_or_message">Ni ime ni poruku</string>
+    <string name="preferences__blue">Plava</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">Obavijesti o pozivima</string>
+    <string name="preferences__change_sound_and_vibration">Promijeni zvuk i vibraciju</string>
+    <string name="preferences__customize">Prilagodi</string>
+    <string name="preferences__cyan">Zelenkasto-plava</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">Standardno</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__enable_notifications">Omogući obavještenja</string>
+    <string name="preferences__fast">Brza</string>
+    <string name="preferences__five_times">Pet puta</string>
+    <string name="preferences__green">Zelena</string>
+    <string name="preferences__led_color">LED boja</string>
+    <string name="preferences__magenta">Ciklama-crvena</string>
+    <string name="preferences__never">Nikad</string>
+    <string name="preferences__normal">Obična</string>
+    <string name="preferences__one_time">Jednom</string>
+    <string name="preferences__orange">Narandžasta</string>
+    <string name="preferences__pref_led_blink_title">LED treptanja</string>
+    <string name="preferences__red">Crvena</string>
+    <string name="preferences__repeat_alerts">Ponavljanje obavještenja</string>
+    <string name="preferences__slow">Spora</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">Zvuk</string>
+    <string name="preferences__ten_times">Deset puta</string>
+    <string name="preferences__three_times">Triput</string>
+    <string name="preferences__two_times">Dvaput</string>
+    <string name="preferences__vibrate">Vibracija</string>
+    <string name="preferences__white">Bijela</string>
+    <string name="preferences_notifications__in_chat_sounds">Zvukovi u porukama</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">Prikaži obavještenja za reakcije na poruke koje pošaljete</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">Povremeno pošalji obavještenje kada ima nepročitanih poruka u utišanim razgovorima</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">Prioritet</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">Obavještenja o reakcijama</string>
+    <string name="preferences_notifications__ringtone">Zvono</string>
+    <string name="preferences_notifications__show">Prikaži</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Rješavanje problema s obavijestima</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">Dok je utišano</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">Dodaj</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">Dopuštena obavještenja</string>
 </resources>

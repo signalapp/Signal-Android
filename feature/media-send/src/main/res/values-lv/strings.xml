@@ -238,9 +238,9 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="zero">%1$d GIFs</item>
-        <item quantity="one">%1$d GIF</item>
-        <item quantity="other">%1$d GIFs</item>
+        <item quantity="zero">%1$d GIF attēli</item>
+        <item quantity="one">%1$d GIF attēls</item>
+        <item quantity="other">%1$d GIF attēli</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">

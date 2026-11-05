@@ -711,19 +711,19 @@
     <string name="ChatsSettingsScreen__go_back">Siirry takaisin</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">Kuvat</string>
+    <string name="preferences_storage__videos">Videot</string>
+    <string name="preferences_storage__files">Tiedostot</string>
+    <string name="preferences_storage__audio">Äänitiedosto</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">Viestit</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">Tarrat</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">Muu</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">Lasketaan…</string>
+    <string name="preferences_storage__review_storage">Tarkista tallennustila</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -762,34 +762,34 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Tallennus epäonnistui verkko-ongelmien takia. Yritä myöhemmin uudelleen.</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">Säilytä viestit</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">Pysyvästi</string>
+    <string name="preferences_storage__one_year">1 vuosi</string>
+    <string name="preferences_storage__six_months">6 kuukautta</string>
+    <string name="preferences_storage__thirty_days">30 päivää</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Määriteltyä aikaa vanhemmat viestit poistetaan pysyvästi.</string>
+    <string name="preferences_storage__delete_older_messages">Poistetaanko vanhemmat viestit?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tämä poistaa pysyvästi koko viestihistorian ja mediatiedostot laitteeltasi. Tämä koskee viestejä ja tiedostoja, jotka ovat vanhempia kuin %1$s.</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">Poista</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Keskustelun viestien enimmäismäärä</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s viesti</item>
+        <item quantity="other">%1$s viestiä</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">Ei mitään</string>
+    <string name="preferences_storage__custom">Mukautettu</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Määritellyn pituuden ylittävät viestit poistetaan pysyvästi.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Keskustelut rajataan pysyvästi viimeisimpään viestiin.</item>
+        <item quantity="other">Keskustelut rajataan pysyvästi %1$s viimeisimpään viestiin.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1022,155 +1022,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">Signal tarvitsee kameran käyttöoikeuden QR-koodien skannaamiseksi</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">Tallennustila</string>
+    <string name="preferences_storage__storage_usage">Tallennustilan käyttö</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal-tallennustila</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimoi Signalin tallennustila</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Käyttämätön media poistetaan, mutta se voidaan ladata varmuuskopiosta milloin tahansa.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Keskustelun rajoitukset</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Käytä rajoituksia yhdistetyille laitteille</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Kun keskustelurajoitukset ovat käytössä, ne poistavat viestit myös yhdistetyistä laitteistasi.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Poista viestihistoria</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">Poistetaanko viestihistoria?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Koko viestihistoria ja kaikki mediatiedostot poistetaan laitteesta.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Koko viestihistoria ja kaikki mediatiedostot poistetaan laitteesta ja kaikista yhdistetyistä laitteista.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Haluatko varmasti poistaa koko viestihistorian?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Koko viestihistoria poistetaan pysyvästi. Toimintoa ei voi kumota.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Koko viestihistoria poistetaan pysyvästi kaikista laitteista. Toimintoa ei voi kumota. Tätä toimintoa ei voi perua.</string>
+    <string name="preferences_storage__delete_all_now">Poista kaikki nyt</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Tallennustilan optimointia voidaan käyttää vain maksullisen Signal Secure -varmuuskopiointitilauksen yhteydessä. Varmuuskopiotilaustasi käsitellään, eikä se ole vielä aktiivinen. Yritä myöhemmin uudelleen.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Mediasisältö poistetaan laitteessa olevasta varmuuskopiosta</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Laittamalla Signalin tallennustilan optimoinnin pois päältä voit siirtää vanhan mediasisällön sivuun. Voi ladata sen takaisin laitteellesi milloin vain. Tämä poistaa myös vanhan mediasisällön laitteessa olevasta varmuuskopiosta.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">Ota käyttöön</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">Soita tai ilmoita puhelun alkamisesta, kun keskustelu on mykistetty.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Soita tai ilmoita, kun mykistetyssä keskustelussa aloitetaan puhelu.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">Ilmoita, kun sinut mainitaan, kun keskustelu on mykistetty.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Ilmoita, kun sinut mainitaan mykistetyssä keskustelussa.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">Ilmoita, kun joku vastaa viestiisi, kun keskustelu on mykistetty.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Ilmoita, kun joku vastaa viestiisi mykistetyssä keskustelussa.</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">Kun mykistetty</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">Puhelut</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">Maininnat</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">Vastaukset</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Valitsimen avaus epäonnistui.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Signal tarvitsee luvan ilmoitusten näyttämiseen, jotta ne voidaan ottaa käyttöön.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">Ota käyttöön</string>
+    <string name="NotificationsSettingsFragment__calls">Puhelut</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Yhteystieto liittyy Signaliin</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Luo oma profiili vastaanottaaksesi ilmoituksia vain valitsemiltasi yhteystiedoilta ja ryhmiltä.</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">Näytä ilmoitus, kun puhelimesi yhteystieto liittyy Signaliin</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">Palauta ilmoitusten asetukset</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Palautetaanko kaikki ilmoitusten asetukset oletusasetuksiin kaikissa keskusteluissa?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">Palauta alkuasetuksiin</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Palauta ilmoitusten asetukset oletusarvoihin, mukaan lukien keskusteluiden muokatut asetukset</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">Äänet</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Tuntematon soittoääni</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">Puhelut</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">Maininnat</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">Ilmoitusprofiilit</string>
+    <string name="NotificationsSettingsScreen__notifications">Ilmoitukset</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">Vastaukset</string>
+    <string name="NotificationsSettingsScreen__silent">Ei ääntä</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">Lukemattomat muistutukset</string>
+    <string name="arrays__default">Oletus</string>
+    <string name="arrays__high">Korkea</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">Maksimi</string>
+    <string name="arrays__name_and_message">Nimi ja viesti</string>
+    <string name="arrays__name_only">Vain nimi</string>
+    <string name="arrays__no_name_or_message">Ei nimeä eikä viestiä</string>
+    <string name="preferences__blue">Sininen</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">Puheluilmoitukset</string>
+    <string name="preferences__change_sound_and_vibration">Muuta ääni- ja värinäasetuksia</string>
+    <string name="preferences__customize">Mukauta</string>
+    <string name="preferences__cyan">Syaani</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">Oletus</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
+    <string name="preferences__enable_notifications">Kytke ilmoitukset päälle</string>
+    <string name="preferences__fast">Nopea</string>
+    <string name="preferences__five_times">Neljästi</string>
+    <string name="preferences__green">Vihreä</string>
+    <string name="preferences__led_color">LED:in väri</string>
     <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__never">Älä toista</string>
+    <string name="preferences__normal">Normaali</string>
+    <string name="preferences__one_time">Kerran</string>
+    <string name="preferences__orange">Oranssi</string>
+    <string name="preferences__pref_led_blink_title">LED:in vilkkumistahti</string>
+    <string name="preferences__red">Punainen</string>
+    <string name="preferences__repeat_alerts">Hälytysten toisto</string>
+    <string name="preferences__slow">Hidas</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">Ääni</string>
+    <string name="preferences__ten_times">10 kertaa</string>
+    <string name="preferences__three_times">Kolmesti</string>
+    <string name="preferences__two_times">Kahdesti</string>
+    <string name="preferences__vibrate">Värinä</string>
+    <string name="preferences__white">Valkoinen</string>
+    <string name="preferences_notifications__in_chat_sounds">Äänet keskusteluissa</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">Näytä ilmoitukset lähettämiisi viesteihin tulleista reaktioista</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">Ilmoita silloin tällöin lukemattomista viesteistä mykistetyissä keskusteluissa</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">Prioriteetti</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">Reaktioiden ilmoitukset</string>
+    <string name="preferences_notifications__ringtone">Soittoääni</string>
+    <string name="preferences_notifications__show">Näytä</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Ilmoitusten vianetsintä</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">Kun mykistetty</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">Lisää</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">Sallitut ilmoitukset</string>
 </resources>

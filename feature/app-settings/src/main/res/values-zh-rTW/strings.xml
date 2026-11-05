@@ -709,19 +709,19 @@
     <string name="ChatsSettingsScreen__go_back">返回</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">照片</string>
+    <string name="preferences_storage__videos">影片</string>
+    <string name="preferences_storage__files">檔案</string>
+    <string name="preferences_storage__audio">音訊</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">訊息</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">貼圖</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">其他</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">計算中…</string>
+    <string name="preferences_storage__review_storage">檢視儲存空間</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -760,32 +760,32 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">由於網路問題，儲存失敗。請稍後再試。</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">保留訊息</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">永久</string>
+    <string name="preferences_storage__one_year">1年</string>
+    <string name="preferences_storage__six_months">6個月</string>
+    <string name="preferences_storage__thirty_days">30天</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">訊息早於所選時間將被永久刪除。</string>
+    <string name="preferences_storage__delete_older_messages">刪除舊訊息?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">這將從裝置中永久刪除所有早於%1$s時間的訊息歷史記錄和媒體檔案。</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">刪除</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">聊天長度上限</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="other">%1$s messages</item>
+        <item quantity="other">%1$s 則訊息</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">無</string>
+    <string name="preferences_storage__custom">自訂</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">訊息超過所選數量將被永久刪除。</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="other">這將會永久刪減所有聊天至最近 %1$s 則訊息。</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1018,155 +1018,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">Signal 需要相機存取權限以掃描二維碼</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">儲存空間</string>
+    <string name="preferences_storage__storage_usage">已使用的儲存容量</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal 儲存空間</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">最佳化 Signal 儲存空間</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">未使用的媒體將被卸載，但可以隨時從備份中下載。</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">聊天訊息量上限</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">為已連結裝置設定上限</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">啟用後，聊天訊息量上限也會應用在已連結裝置並刪除訊息。</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">刪除訊息紀錄</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">要刪除訊息紀錄嗎？</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">這將從你的裝置中永久刪除所有訊息歷史記錄和媒體檔案。</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">這將永久刪除此裝置和任何已連結裝置上的所有訊息紀錄和多媒體。</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">你確定要刪除所有訊息歷史記錄嗎?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">所有訊息歷史記錄將被永久刪除。 此操作無法取消。</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">所有訊息紀錄將會從所有裝置中永久移除。此動作無法復原。</string>
+    <string name="preferences_storage__delete_all_now">立即刪除全部</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">儲存最佳化只可供 Signal 安全備份付費級別使用。你的備份定期贊助仍在處理中，且尚未啟用。請稍後再試。</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">將從你的裝置上備份中移除媒體</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">開啟「最佳化 Signal 儲存空間」後，系統將會把舊媒體從你的裝置中移除。你可以隨時再次下載。系統也會從你的裝置上備份中移除舊媒體。</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">開啟</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">當此聊天設為靜音時，若開始通話，系統會響鈴或發送通知。</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">當靜音聊天中開始通話時響鈴或發送通知。</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">當此聊天設為靜音時，若你被提及，系統會發送通知。</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">當靜音聊天中有人提及你時發送通知。</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">當此聊天設為靜音時，若有人回覆你的訊息，系統會發送通知。</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">當靜音聊天中有人回覆你的訊息時發送通知。</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">靜音時</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">通話</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">提及</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">回覆</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟選擇器。</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">要啟用通知，Signal 需要顯示通知的權限。</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">開啟</string>
+    <string name="NotificationsSettingsFragment__calls">通話</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人加入 Signal</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">建立描述以僅接收來自你選擇的人和群組的通知。</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">當手機通訊錄中的聯絡人加入 Signal 時顯示通知</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">重設通知設定</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">要為所有聊天的通知設定重設為預設值嗎？</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">重設</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">將通知設定重設為預設值，包括聊天的自訂設定</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">音效</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">未知的鈴聲</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">通話</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">提及</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">通知描述</string>
+    <string name="NotificationsSettingsScreen__notifications">通知</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">回覆</string>
+    <string name="NotificationsSettingsScreen__silent">靜音</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">未讀提示</string>
+    <string name="arrays__default">預設</string>
+    <string name="arrays__high">高</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">最高</string>
+    <string name="arrays__name_and_message">名字與訊息</string>
+    <string name="arrays__name_only">僅名字</string>
+    <string name="arrays__no_name_or_message">不顯示名字或訊息</string>
+    <string name="preferences__blue">藍色</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">來電通知</string>
+    <string name="preferences__change_sound_and_vibration">變更音效及震動</string>
+    <string name="preferences__customize">客製化</string>
+    <string name="preferences__cyan">青色</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">預設</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__enable_notifications">啟動通知</string>
+    <string name="preferences__fast">快速</string>
+    <string name="preferences__five_times">五次</string>
+    <string name="preferences__green">綠色</string>
+    <string name="preferences__led_color">LED 色彩</string>
+    <string name="preferences__magenta">洋紅色</string>
+    <string name="preferences__never">永不</string>
+    <string name="preferences__normal">正常</string>
+    <string name="preferences__one_time">一次</string>
+    <string name="preferences__orange">橘色</string>
+    <string name="preferences__pref_led_blink_title">LED 閃爍模式</string>
+    <string name="preferences__red">紅色</string>
+    <string name="preferences__repeat_alerts">重複通知</string>
+    <string name="preferences__slow">緩慢</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">提示音效</string>
+    <string name="preferences__ten_times">十次</string>
+    <string name="preferences__three_times">三次</string>
+    <string name="preferences__two_times">兩次</string>
+    <string name="preferences__vibrate">震動</string>
+    <string name="preferences__white">白色</string>
+    <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">顯示你所發訊息的心情回應通知</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">當靜音聊天中有未讀訊息時偶爾通知</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">優先順序</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">心情回應通知</string>
+    <string name="preferences_notifications__ringtone">鈴聲</string>
+    <string name="preferences_notifications__show">顯示</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">疑難排解通知</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">靜音時</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">新增</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">允許通知</string>
 </resources>

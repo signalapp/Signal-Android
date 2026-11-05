@@ -711,19 +711,19 @@
     <string name="ChatsSettingsScreen__go_back">ಹಿಂದಕ್ಕೆ ಹೋಗಿ</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">ಫೋಟೋಗಳು</string>
+    <string name="preferences_storage__videos">ವೀಡಿಯೊಗಳು</string>
+    <string name="preferences_storage__files">ಫೈಲುಗಳು</string>
+    <string name="preferences_storage__audio">ಆಡಿಯೊ</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">ಮೆಸೇಜ್‌ಗಳು</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">ಸ್ಟಿಕ್ಕರ್‌‌ ಗಳು</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">ಇತರೆ</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">ಲೆಕ್ಕಾಚಾರ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -762,34 +762,34 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">ನೆಟ್‌ವರ್ಕ್ ಸಮಸ್ಯೆಯಿಂದ ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">ಎಂದೆಂದಿಗೂ</string>
+    <string name="preferences_storage__one_year">1 ವರ್ಷ</string>
+    <string name="preferences_storage__six_months">6 ತಿಂಗಳು</string>
+    <string name="preferences_storage__thirty_days">30 ದಿನಗಳು</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಮಯಕ್ಕಿಂತ ಹಳೆಯದಾದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಮೆಸೇಜ್‌ನ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">ಅಳಿಸಿ</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">ಚಾಟ್ ಉದ್ದದ ಮಿತಿ</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s ಮೆಸೇಜ್</item>
+        <item quantity="other">%1$s ಮೆಸೇಜ್‌ಗಳು</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <string name="preferences_storage__custom">ಅಗತ್ಯಾನುಗುಣ</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">ಆಯ್ಕೆ ಮಾಡಲಾದ ಉದ್ದವನ್ನು ಮೀರಿದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</item>
+        <item quantity="other">ಇದು ಎಲ್ಲಾ ಚಾಟ್‌ಗಳನ್ನು %1$s ಅತ್ಯಂತ ಇತ್ತೀಚಿನ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1022,155 +1022,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಆ್ಯಕ್ಸೆಸ್ ಅಗತ್ಯವಿದೆ</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">ಸ್ಟೊರೇಜ್</string>
+    <string name="preferences_storage__storage_usage">ಸ್ಟೊರೇಜ್ ಬಳಕೆ</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal ಸಂಗ್ರಹಣೆ</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಸ್ ಮಾಡಿ</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ಬಳಕೆಯಾಗದ ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ, ಆದರೆ ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನಿಂದ ಯಾವಾಗ ಬೇಕಾದರೂ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">ಚಾಟ್ ಮಿತಿಗಳು</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಮಿತಿಗಳನ್ನು ಅನ್ವಯಿಸಿ</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ಸಂವಹನ ಉದ್ದದ ಮಿತಿಗಳು ಸಹ ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಅಳಿಸುತ್ತವೆ.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಿ</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಮೆಸೇಜ್‌ಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ಇದು ಈ ಸಾಧನ ಮತ್ತು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಲು ಬಯಸುವಿರಾ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ಎಲ್ಲಾ ಸಾಧನಗಳಿಂದ ಎಲ್ಲಾ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಮವನ್ನು ರದ್ದುಪಡಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+    <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನೂ ಈಗಲೇ ಅಳಿಸಿ</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳ ಪಾವತಿಸಿದ ಶ್ರೇಣಿಯೊಂದಿಗೆ ಮಾತ್ರ ಸಂಗ್ರಹಣೆ ಆಪ್ಟಿಮೈಸೇಶನ್ ಅನ್ನು ಬಳಸಬಹುದು. ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರಿಕೆಯು ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ ಮತ್ತು ಈವರೆಗೂ ಸಕ್ರಿಯವಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">ಮೀಡಿಯಾವನ್ನು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ನಿಂದ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal ಸಂಗ್ರಹಣೆಯನ್ನು ಆಪ್ಟಿಮೈಸ್ ಮಾಡಿ\" ಅನ್ನು ಆನ್ ಮಾಡುವುದರಿಂದ ನಿಮ್ಮ ಸಾಧನದಿಂದ ಹಳೆಯ ಮೀಡಿಯಾವನ್ನು ಆಫ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು. ಇದು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಬ್ಯಾಕಪ್‌ನಿಂದ ಹಳೆಯ ಮೀಡಿಯಾವನ್ನು ಸಹ ತೆಗೆದುಹಾಕುತ್ತದೆ.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">ಆನ್‌ ಮಾಡಿ</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ಕರೆ ಪ್ರಾರಂಭವಾದಾಗ ರಿಂಗ್ ಮಾಡಿ ಅಥವಾ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ಕರೆ ಪ್ರಾರಂಭವಾದಾಗ ರಿಂಗ್ ಮಾಡಿ ಅಥವಾ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">ಈ ಚಾಟ್ ಅನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ ಯಾರಾದರೂ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗೆ ಉತ್ತರಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">ಮ್ಯೂಟ್ ಮಾಡಿರುವ ಚಾಟ್‌ಗಳಲ್ಲಿ ಯಾರಾದರೂ ನಿಮ್ಮ ಮೆಸೇಜ್‌ಗೆ ಉತ್ತರಿಸಿದರೆ ಸೂಚನೆ ನೀಡಿ.</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">ಕರೆಗಳು</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">ಉಲ್ಲೇಖಗಳು</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">ಪಿಕರ್ ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು, ಅವುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">ಆನ್‌ ಮಾಡಿ</string>
+    <string name="NotificationsSettingsFragment__calls">ಕರೆಗಳು</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">ಸಂಪರ್ಕದವರು Signal ಗೆ ಸೇರಿದ್ದಾರೆ</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಂದ ಮಾತ್ರ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಒಂದು ಪ್ರೊಫೈಲ್ ರಚಿಸಿ.</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">ಫೋನ್ ಸಂಪರ್ಕವು Signal ಗೆ ಸೇರಿದಾಗ ನೋಟಿಫಿಕೇಷನ್ ಅನ್ನು ತೋರಿಸಿ</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">ಎಲ್ಲಾ ಚಾಟ್‌ಗಳಿಗೂ ಎಲ್ಲಾ ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸುವುದೇ?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">ಮರುಹೊಂದಿಸಿ</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">ನಿಮ್ಮ ಚಾಟ್‌ಗಳಿಗಾಗಿನ ಕಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಸೇರಿದಂತೆ, ನೋಟಿಫಿಕೇಷನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸಿ</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">ಶಬ್ದಗಳು</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">ಅನಾಮಿಕ ರಿಂಗ್‌ಟೋನ್</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">ಕರೆಗಳು</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">ಉಲ್ಲೇಖಗಳು</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್‌ಗಳು</string>
+    <string name="NotificationsSettingsScreen__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
+    <string name="NotificationsSettingsScreen__silent">ಮೌನ</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">ಓದದಿರುವ ರಿಮೈಂಡರ್‌ಗಳು</string>
+    <string name="arrays__default">ಡೀಫಾಲ್ಟ್</string>
+    <string name="arrays__high">ಹೆಚ್ಚು</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">ಗರಿಷ್ಠ</string>
+    <string name="arrays__name_and_message">ಹೆಸರು ಮತ್ತು ಸಂದೇಶ</string>
+    <string name="arrays__name_only">ಹೆಸರು ಮಾತ್ರ</string>
+    <string name="arrays__no_name_or_message">ಹೆಸರು ಅಥವಾ ಸಂದೇಶವಿಲ್ಲ</string>
+    <string name="preferences__blue">ನೀಲಿ</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">ಕರೆ ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="preferences__change_sound_and_vibration">ಶಬ್ದ ಮತ್ತು ವೈಬ್ರೇಶನ್ ಬದಲಾಯಿಸಿ</string>
+    <string name="preferences__customize">ಕಸ್ಟಮೈಝ್ ಮಾಡಿ</string>
+    <string name="preferences__cyan">ಹಸುರುನೀಲಿ</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">ಡೀಫಾಲ್ಟ್</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__enable_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="preferences__fast">ತ್ವರಿತ</string>
+    <string name="preferences__five_times">ಐದು ಬಾರಿ</string>
+    <string name="preferences__green">ಹಸಿರು</string>
+    <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
+    <string name="preferences__magenta">ಕಡುಗೆಂಪು</string>
+    <string name="preferences__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
+    <string name="preferences__normal">ಸಾಧಾರಣ</string>
+    <string name="preferences__one_time">ಒಂದು ಬಾರಿ</string>
+    <string name="preferences__orange">ಕಿತ್ತಳೆ</string>
+    <string name="preferences__pref_led_blink_title">ಎಲ್‌ಇಡಿ ಮಿನುಗುವ ಪ್ಯಾಟರ್ನ್‌</string>
+    <string name="preferences__red">ಕೆಂಪು</string>
+    <string name="preferences__repeat_alerts">ಪುನರಾವರ್ತಿತ ಅಲರ್ಟ್‌‌ಗಳು</string>
+    <string name="preferences__slow">ನಿಧಾನ</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">ಶಬ್ದ</string>
+    <string name="preferences__ten_times">ಹತ್ತು ಬಾರಿ</string>
+    <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>
+    <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
+    <string name="preferences__vibrate">ವೈಬ್ರೇಟ್ ಮಾಡು</string>
+    <string name="preferences__white">ಬಿಳಿ</string>
+    <string name="preferences_notifications__in_chat_sounds">ಚಾಟ್‌ ನಲ್ಲಿನ ಶಬ್ದಗಳು</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">ನೀವು ಕಳುಹಿಸುವ ಮೆಸೇಜ್‌ಗಳ ಪ್ರತಿಕ್ರಿಯೆಗಳಿಗಾಗಿನ ನೋಟಿಫಿಕೇಷನ್‌ಗಳನ್ನು ತೋರಿಸಿ</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">ಮ್ಯೂಟ್ ಮಾಡಲಾದ ಚಾಟ್‌ಗಳಲ್ಲಿನ ಓದದಿರುವ ಮೆಸೇಜ್‌ಗಳಿದ್ದಾಗ ಸಾಂದರ್ಭಿಕವಾಗಿ ಸೂಚನೆ ನೀಡಿ</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">ಆದ್ಯತೆ</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">ಪ್ರತಿಕ್ರಿಯೆ ನೋಟಿಫಿಕೇಷನ್‌ಗಳು</string>
+    <string name="preferences_notifications__ringtone">ರಿಂಗ್ಟೋನ್</string>
+    <string name="preferences_notifications__show">ತೋರಿಸು</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">ಅಧಿಸೂಚನೆಗಳ ಸಮಸ್ಯೆ ಪರಿಹರಿಸಿ</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">ಮ್ಯೂಟ್ ಮಾಡಿರುವಾಗ</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">ಸೇರಿಸಿ</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಅನುಮತಿಸಲಾಗಿದೆ</string>
 </resources>

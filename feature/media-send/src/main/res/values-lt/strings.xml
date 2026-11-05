@@ -240,10 +240,10 @@
 
     <!-- Gif label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__gif">
-        <item quantity="one">%1$d GIF</item>
-        <item quantity="few">%1$d GIFs</item>
-        <item quantity="many">%1$d GIFs</item>
-        <item quantity="other">%1$d GIFs</item>
+        <item quantity="one">%1$d GIF atvaizdas</item>
+        <item quantity="few">%1$d GIF atvaizdai</item>
+        <item quantity="many">%1$d GIF atvaizdo</item>
+        <item quantity="other">%1$d atvaizdų</item>
     </plurals>
     <!-- Photo label displayed in a pill in the editor specifying the type of media being sent. -->
     <plurals name="MediaEditScreen__photo">

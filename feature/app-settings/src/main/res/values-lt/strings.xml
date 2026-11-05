@@ -715,19 +715,19 @@
     <string name="ChatsSettingsScreen__go_back">Grįžti</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">Nuotraukos</string>
+    <string name="preferences_storage__videos">Vaizdo įrašai</string>
+    <string name="preferences_storage__files">Failai</string>
+    <string name="preferences_storage__audio">Garso įrašai</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">Žinutės</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">Lipdukai</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">Kitas</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">Skaičiuojama…</string>
+    <string name="preferences_storage__review_storage">Peržiūrėti saugyklą</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -766,38 +766,38 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">Nepavyko įrašyti dėl tinklo problemų. Vėliau bandykite dar kartą.</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">Saugoti žinutes</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">Amžinai</string>
+    <string name="preferences_storage__one_year">1 metus</string>
+    <string name="preferences_storage__six_months">6 mėnesius</string>
+    <string name="preferences_storage__thirty_days">30 dienų</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Už pasirinktą laiką senesnės žinutės bus visam laikui ištrintos.</string>
+    <string name="preferences_storage__delete_older_messages">Ištrinti senesnes žinutes?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus, kurie senesni nei %1$s.</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">Ištrinti</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">Pokalbio ilgio ribojimas</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="few">%1$s messages</item>
-        <item quantity="many">%1$s messages</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s žinutė</item>
+        <item quantity="few">%1$s žinutės</item>
+        <item quantity="many">%1$s žinutės</item>
+        <item quantity="other">%1$s žinučių</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">Nėra</string>
+    <string name="preferences_storage__custom">Tinkintai</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Pasirinktą ilgį viršijančios žinutės bus visam laikui ištrintos.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="few">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="many">This will permanently trim all chats to the %1$s most recent messages.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">Visi pokalbiai bus negrįžtamai apkarpyti iki naujausios žinutės.</item>
+        <item quantity="few">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausių žinučių.</item>
+        <item quantity="many">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausios žinutės.</item>
+        <item quantity="other">Visi pokalbiai bus negrįžtamai apkarpyti iki %1$s naujausių žinučių.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1030,155 +1030,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">Kad būtų galima nuskaityti QR kodus, „Signal“ reikalinga prieiga prie kameros</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">Saugykla</string>
+    <string name="preferences_storage__storage_usage">Saugyklos naudojimas</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">„Signal“ saugykla</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizuoti „Signal“ saugyklą</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nepanaudoti įrašai bus išimti, tačiau juos bet kada galėsite atsisiųsti iš atsarginės kopijos.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">Pokalbio ilgio ribojimai</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">Taikyti apribojimus susietiems įrenginiams</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">Kai įjungta, pokalbio ilgio ribojimo funkcija ištrins žinutes iš susietų įrenginių.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">Ištrinti žinučių istoriją</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">Ištrinti žinučių istoriją?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Tai visam laikui iš šio įrenginio ir bet kokių susietų įrenginių ištrins visą žinučių istoriją ir įrašus.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ar tikrai nori ištrinti visą žinučių istoriją?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Visa žinučių istorija bus pašalinta visam laikui. Šio veiksmo nebus galima atšaukti.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Iš visų įrenginių visam laikui bus pašalinta visa žinučių istorija. Šio veiksmo bus neįmanoma atšaukti.</string>
+    <string name="preferences_storage__delete_all_now">Ištrinti viską dabar</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Saugyklos optimizavimą galima naudoti tik įsigijus mokamą „Signal“ saugiųjų atsarginių kopijų planą. Jūsų atsarginių kopijų prenumerata vis dar apdorojama ir dar neaktyvi. Bandykite dar kartą vėliau.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Įrašai bus pašalinti iš jūsų atsarginės kopijos įrenginyje</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Įjungus „Optimizuoti „Signal“ saugyklą“, seni įrašai bus perkelti iš jūsų įrenginio. Juos bet kada galėsite vėl atsisiųsti. Ši funkcija taip pat pašalins senus įrašus iš jūsų atsarginės kopijos įrenginyje.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">Įjungti</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">Skambinti arba pranešti, kai gaunamas skambutis nutildytame pokalbyje.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">Skambinti arba pranešti, kai pradedamas skambutis nutildytuose pokalbiuose.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">Pranešti, kai jus paminėjo nutildytame pokalbyje.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">Pranešti, kai jus pamini nutildytuose pokalbiuose.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">Pranešti, kai kas nors atsako į jūsų žinutę nutildytame pokalbyje.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">Pranešti, kai kas nors atsako į jūsų žinutes nutildytuose pokalbiuose.</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">Kai nutildyta</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">Skambučiai</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">Paminėjimai</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">Atsakymai</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">Kad įgalintų pranešimus, „Signal“ reikalingas leidimas juos rodyti.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">Įjungti</string>
+    <string name="NotificationsSettingsFragment__calls">Skambučiai</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Adresatas prisijungia prie Signal</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Sukurkite profilį, kad gautumėte pranešimus tik iš jūsų pasirinktų žmonių ir grupių</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">Rodyti pranešimą telefono adresatui prisijungus prie „Signal“.</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">Atstatyti pranešimų nustatymus</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">Visuose pokalbiuose atstatyti visus pranešimų nustatymus į numatytuosius?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">Nustatyti iš naujo</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">Atstatyti pranešimų nustatymus į numatytuosius, įskaitant tinkintus jūsų pokalbių nustatymus.</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">Garsai</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Nežinoma skambučio melodija</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">Skambučiai</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">Paminėjimai</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">Pranešimų profiliai</string>
+    <string name="NotificationsSettingsScreen__notifications">Pranešimai</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">Atsakymai</string>
+    <string name="NotificationsSettingsScreen__silent">Tyliai</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">Pranešimai apie neperskaitytas žinutes</string>
+    <string name="arrays__default">Numatytoji</string>
+    <string name="arrays__high">Aukšta</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">Maksimali</string>
+    <string name="arrays__name_and_message">Vardą ir žinutę</string>
+    <string name="arrays__name_only">Tik vardą</string>
+    <string name="arrays__no_name_or_message">Jokio vardo ar žinutės</string>
+    <string name="preferences__blue">Mėlyna</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">Skambučių pranešimai</string>
+    <string name="preferences__change_sound_and_vibration">Keisti garsą ir vibraciją</string>
+    <string name="preferences__customize">Tinkinti</string>
+    <string name="preferences__cyan">Žydra</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">Numatytoji</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__enable_notifications">Įjungti pranešimus</string>
+    <string name="preferences__fast">Greitas</string>
+    <string name="preferences__five_times">Penkis kartus</string>
+    <string name="preferences__green">Žalia</string>
+    <string name="preferences__led_color">Šviesos diodo spalva</string>
+    <string name="preferences__magenta">Purpurinė</string>
+    <string name="preferences__never">Niekada</string>
+    <string name="preferences__normal">Normalus</string>
+    <string name="preferences__one_time">Vieną kartą</string>
+    <string name="preferences__orange">Oranžinė</string>
+    <string name="preferences__pref_led_blink_title">Šviesos diodo mirksėjimo šablonas</string>
+    <string name="preferences__red">Raudona</string>
+    <string name="preferences__repeat_alerts">Kartoti įspėjimus</string>
+    <string name="preferences__slow">Lėtas</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">Garsas</string>
+    <string name="preferences__ten_times">Dešimt kartų</string>
+    <string name="preferences__three_times">Tris kartus</string>
+    <string name="preferences__two_times">Du kartus</string>
+    <string name="preferences__vibrate">Vibruoti</string>
+    <string name="preferences__white">Balta</string>
+    <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">Rodyti pranešimus, kai sureaguojama į jūsų išsiųstas žinutes.</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">Retkarčiais pranešti, kai nutildytuose pokalbiuose yra neperskaitytų žinučių.</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">Pirmenybė</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">Reakcijų pranešimai</string>
+    <string name="preferences_notifications__ringtone">Skambučio melodija</string>
+    <string name="preferences_notifications__show">Rodyti</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">Šalinti pranešimų nesklandumus</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">Kai nutildyta</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">Pridėti</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">Leidžiami pranešimai</string>
 </resources>

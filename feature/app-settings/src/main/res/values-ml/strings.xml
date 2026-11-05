@@ -711,19 +711,19 @@
     <string name="ChatsSettingsScreen__go_back">മടങ്ങിപ്പോവുക</string>
 
     <!-- StorageUsageOverview -->
-    <string name="preferences_storage__photos">Photos</string>
-    <string name="preferences_storage__videos">Videos</string>
-    <string name="preferences_storage__files">Files</string>
-    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__photos">ചിത്രങ്ങൾ</string>
+    <string name="preferences_storage__videos">വീഡിയോ</string>
+    <string name="preferences_storage__files">ഫയലുകൾ</string>
+    <string name="preferences_storage__audio">ഓഡിയോ</string>
     <!-- Storage usage legend label for the size of the main message database -->
-    <string name="preferences_storage__messages">Messages</string>
+    <string name="preferences_storage__messages">സന്ദേശങ്ങൾ</string>
     <!-- Storage usage legend label for the size of downloaded sticker packs -->
-    <string name="preferences_storage__stickers">Stickers</string>
+    <string name="preferences_storage__stickers">സ്റ്റിക്കറുകൾ</string>
     <!-- Storage usage legend label for all remaining app storage, such as other databases, caches and temporary files -->
-    <string name="preferences_storage__other">Other</string>
+    <string name="preferences_storage__other">മറ്റുള്ളവ</string>
     <!-- Shown in place of the total storage size while usage is still being computed -->
-    <string name="preferences_storage__calculating">Calculating…</string>
-    <string name="preferences_storage__review_storage">Review storage</string>
+    <string name="preferences_storage__calculating">കണക്കാക്കുന്നു…</string>
+    <string name="preferences_storage__review_storage">സ്റ്റോറജ് അവലോകനം ചെയ്യുക</string>
 
     <!-- TwoFactorVerifyScreen -->
     <!-- Title of the screens where the user verifies one of their two-factor authentication methods -->
@@ -762,34 +762,34 @@
     <string name="EditProfileNameScreen__failed_to_save_due_to_network_issues">നെറ്റ്‌വർക്ക് പ്രശ്‌നങ്ങൾ കാരണം സംരക്ഷിക്കുന്നതിൽ പരാജയം. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
 
     <!-- KeepMessagesSettingsScreen -->
-    <string name="preferences__keep_messages">Keep messages</string>
+    <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">Forever</string>
-    <string name="preferences_storage__one_year">1 year</string>
-    <string name="preferences_storage__six_months">6 months</string>
-    <string name="preferences_storage__thirty_days">30 days</string>
+    <string name="preferences_storage__forever">എന്നേക്കും</string>
+    <string name="preferences_storage__one_year">1 വർഷം</string>
+    <string name="preferences_storage__six_months">6 മാസം</string>
+    <string name="preferences_storage__thirty_days">30 ദിവസം</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (time is a range like 30 days or 1 year etc) -->
-    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">Messages older than the selected time will be permanently deleted.</string>
-    <string name="preferences_storage__delete_older_messages">Delete older messages?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media from your device that are older than %1$s.</string>
+    <string name="ManageStorageSettingsFragment_keep_messages_duration_warning">തിരഞ്ഞെടുത്ത സമയത്തിലും പഴയ സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
+    <string name="preferences_storage__delete_older_messages">പഴയ സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">നിങ്ങളുടെ ഉപകരണത്തിലെ %1$s-ൽ കൂടുതൽ പഴക്കമുള്ള എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ഇത് ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
     <!-- Dialog action that confirms deleting older messages -->
-    <string name="preferences_storage__delete">Delete</string>
+    <string name="preferences_storage__delete">ഇല്ലാതാക്കൂ</string>
 
     <!-- ChatLengthLimitSettingsScreen -->
-    <string name="preferences__conversation_length_limit">Chat length limit</string>
+    <string name="preferences__conversation_length_limit">ചാറ്റിന്‍റെ നീള പരിധി</string>
     <plurals name="preferences_storage__s_messages_plural">
-        <item quantity="one">%1$s message</item>
-        <item quantity="other">%1$s messages</item>
+        <item quantity="one">%1$s സന്ദേശം</item>
+        <item quantity="other">%1$s സന്ദേശങ്ങൾ</item>
     </plurals>
     <!-- Option for setting no limit of the length of chat messages -->
-    <string name="preferences_storage__none">None</string>
-    <string name="preferences_storage__custom">Custom</string>
+    <string name="preferences_storage__none">ഒന്നുമില്ല</string>
+    <string name="preferences_storage__custom">ഇഷ്‌ടാനുസൃതം</string>
     <!-- Warning message at the bottom of a settings screen indicating how messages will be deleted based on user\'s selection (limit is a number like 500 or 5,000) -->
-    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">Messages exceeding the selected length will be permanently deleted.</string>
+    <string name="ManageStorageSettingsFragment_chat_length_limit_warning">തിരഞ്ഞെടുത്ത ദൈർഘ്യത്തിൽ കൂടുതലുള്ള സന്ദേശങ്ങൾ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will permanently trim all chats to the most recent message.</item>
-        <item quantity="other">This will permanently trim all chats to the %1$s most recent messages.</item>
+        <item quantity="one">ഇത് എല്ലാ ചാറ്റുകളും ഏറ്റവും പുതിയ സന്ദേശങ്ങളിലേക്ക് ശാശ്വതമായി ട്രിം ചെയ്യും.</item>
+        <item quantity="other">ഇത് എല്ലാ ചാറ്റുകളും ഏറ്റവും പുതിയ %1$s സന്ദേശങ്ങളിലേക്ക് ശാശ്വതമായി ട്രിം ചെയ്യും.</item>
     </plurals>
 
     <!-- EditAboutScreen -->
@@ -1022,155 +1022,155 @@
     <string name="UsernameLinkSettingsScreen__camera_needed">QR കോഡുകൾ സ്കാൻ ചെയ്യാൻ Signal-ന് ക്യാമറ ആക്സസ് ആവശ്യമാണ്</string>
 
     <!-- ManageStorageSettingsScreen -->
-    <string name="preferences__storage">Storage</string>
-    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences__storage">സ്റ്റോറേജ്</string>
+    <string name="preferences_storage__storage_usage">സ്റ്റോറേജ് ഉപയോഗം</string>
     <!-- Setting section title header for storage optimization -->
-    <string name="ManageStorageSettingsFragment__on_device_storage">Signal storage</string>
+    <string name="ManageStorageSettingsFragment__on_device_storage">Signal സംഭരണം</string>
     <!-- Setting row title for storage optimization -->
-    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimize Signal storage</string>
+    <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Signal സംഭരണം ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Unused media will be offloaded, but can be downloaded from your backup anytime.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ഉപയോഗിക്കാത്ത മീഡിയ ഓഫ്‌ലോഡ് ചെയ്യപ്പെടും, എന്നാൽ നിങ്ങളുടെ ബാക്കപ്പിൽ നിന്ന് എപ്പോൾ വേണമെങ്കിലും ഡൗൺലോഡ് ചെയ്യാം.</string>
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
-    <string name="ManageStorageSettingsFragment_chat_limit">Chat limits</string>
+    <string name="ManageStorageSettingsFragment_chat_limit">ചാറ്റ് പരിധികൾ</string>
     <!-- Setting title for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_title">Apply limits to linked devices</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_title">ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങൾക്ക് പരിധികൾ ബാധകമാക്കുക</string>
     <!-- Setting description for syncing automated chat limit trimming (deleting messages automatically by length or date) to linked devices -->
-    <string name="ManageStorageSettingsFragment_apply_limits_description">When enabled, chat limits will also delete messages from your linked devices.</string>
+    <string name="ManageStorageSettingsFragment_apply_limits_description">പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ, നിങ്ങളുടെ ലിങ്ക് ചെയ്‌ത ഉപകരണങ്ങളിൽ നിന്നുള്ള സന്ദേശങ്ങളും ചാറ്റ് പരിധികൾ ഇല്ലാതാക്കും.</string>
     <!-- Settings row title text that can be clicked to delete all messages and associated data from the device -->
-    <string name="ManageStorageSettingsFragment_delete_message_history">Delete message history</string>
+    <string name="ManageStorageSettingsFragment_delete_message_history">സന്ദേശ ചരിത്രം ഇല്ലാതാക്കുക</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">Delete message history?</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media from your device.</string>
+    <string name="preferences_storage__delete_message_history">സന്ദേശ ചരിത്രം ഇല്ലാതാക്കണോ?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ഇത് നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ശാശ്വതമായി ഇല്ലാതാക്കും</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">This will permanently delete all message history and media from this device and any linked devices.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Are you sure you want to delete all message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">ഇത് ഈ ഉപകരണത്തിൽ നിന്നും ലിങ്ക് ചെയ്‌തിരിക്കുന്ന എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">എല്ലാ സന്ദേശ ചരിത്രവും നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">എല്ലാ സന്ദേശ ചരിത്രവും ശാശ്വതമായി നീക്കം ചെയ്യും. പിന്നീടിത് പഴയപടിയാക്കാൻ കഴിയില്ല.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">All message history will be permanently removed from all devices. This action cannot be undone.</string>
-    <string name="preferences_storage__delete_all_now">Delete all now</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">എല്ലാ സന്ദേശ ചരിത്രവും എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും ശാശ്വതമായി നീക്കം ചെയ്യപ്പെടും. ഈ പ്രവൃത്തി പഴയപടിയാക്കാനാകില്ല.</string>
+    <string name="preferences_storage__delete_all_now">എല്ലാം ഇപ്പോൾ ഇല്ലാതാക്കുക</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">പണമടച്ചുള്ള Signal സുരക്ഷിത ബാക്കപ്പുകളുടെ ശ്രേണിയിൽ മാത്രമേ സ്റ്റോറേജ് ഒപ്റ്റിമൈസേഷൻ ഉപയോഗിക്കാൻ കഴിയൂ. നിങ്ങളുടെ ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ ഇപ്പോഴും പ്രോസസ്സ് ചെയ്യുകയാണ്, ഇതുവരെ സജീവമായിട്ടില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കൂ.</string>
     <!-- Title of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">Media will be removed from your on-device backup</string>
+    <string name="ManageStorageSettingsFragment__media_will_be_removed_from_your_on_device_backup">നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പിൽ നിന്ന് മീഡിയ നീക്കം ചെയ്യപ്പെടും</string>
     <!-- Body of a dialog shown when turning on "Optimize Signal storage" while on-device backups are enabled -->
-    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">Turning on \"Optimize Signal storage\" will offload old media from your device. You can download it again any time. It will also remove old media from your on-device backup.</string>
+    <string name="ManageStorageSettingsFragment__turning_on_optimize_signal_storage_will_offload">\"Signal സംഭരണം ഒപ്റ്റിമൈസ് ചെയ്യുക\" ഓൺ ചെയ്യുന്നത് നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്നുള്ള പഴയ മീഡിയ ഓഫ് ലോഡ് ചെയ്യാൻ ഇടയാക്കും. നിങ്ങൾക്ക് ഇത് എപ്പോൾ വേണമെങ്കിലും വീണ്ടും ഡൗൺലോഡ് ചെയ്യാം. ഇത് നിങ്ങളുടെ ഉപകരണത്തിലെ ബാക്കപ്പിൽ നിന്നും പഴയ മീഡിയയും നീക്കം ചെയ്യും.</string>
     <!-- Dialog action to confirm turning on "Optimize Signal storage" -->
-    <string name="ManageStorageSettingsFragment__turn_on">Turn on</string>
+    <string name="ManageStorageSettingsFragment__turn_on">ഓൺ ചെയ്യുക</string>
 
     <!-- MutedNotificationsScreen -->
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body">Ring or notify when a call is started while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__calls_body">ഈ ചാറ്റ് മ്യൂട്ട് ചെയ്‌തിരിക്കുമ്പോൾ ഒരു കോൾ ആരംഭിച്ചാൽ റിംഗ് ചെയ്യുക അല്ലെങ്കിൽ അറിയിക്കുക.</string>
     <!-- Description for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsFragment__calls_body_global">Ring or notify when a call is started in muted chats.</string>
+    <string name="MutedNotificationsFragment__calls_body_global">മ്യൂട്ട് ചെയ്ത ചാറ്റുകളിൽ ഒരു കോൾ ആരംഭിച്ചാൽ റിംഗ് ചെയ്യുക അല്ലെങ്കിൽ അറിയിക്കുക.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body">Notify when you are mentioned while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__mentions_body">ഈ ചാറ്റ് മ്യൂട്ട് ചെയ്തിരിക്കുമ്പോൾ നിങ്ങളെ പരാമർശിച്ചാൽ അറിയിക്കുക.</string>
     <!-- Description for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsFragment__mentions_body_global">Notify when you are mentioned in muted chats.</string>
+    <string name="MutedNotificationsFragment__mentions_body_global">മ്യൂട്ട് ചെയ്ത ചാറ്റുകളിൽ നിങ്ങളെ പരാമർശിക്കുമ്പോൾ അറിയിക്കുക.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body">Notify when someone replies to your message while this chat is muted.</string>
+    <string name="MutedNotificationsFragment__replies_body">ഈ ചാറ്റ് മ്യൂട്ട് ചെയ്തിരിക്കുമ്പോൾ ആരെങ്കിലും നിങ്ങളുടെ സന്ദേശത്തിന് മറുപടി നൽകിയാൽ അറിയിക്കുക.</string>
     <!-- Description for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsFragment__replies_body_global">Notify when someone replies to your message in muted chats.</string>
+    <string name="MutedNotificationsFragment__replies_body_global">മ്യൂട്ട് ചെയ്ത ചാറ്റുകളിൽ ആരെങ്കിലും നിങ്ങളുടെ സന്ദേശത്തിന് മറുപടി നൽകുമ്പോൾ അറിയിക്കുക.</string>
     <!-- Header to describe screen that shows while muted settings -->
-    <string name="MutedNotificationsFragment__while">While muted</string>
+    <string name="MutedNotificationsFragment__while">മ്യൂട്ട് ചെയ്‌തിരിക്കുമ്പോൾ</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="MutedNotificationsScreen__calls">Calls</string>
+    <string name="MutedNotificationsScreen__calls">കോളുകൾ</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="MutedNotificationsScreen__mentions">Mentions</string>
+    <string name="MutedNotificationsScreen__mentions">സൂചനകൾ</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="MutedNotificationsScreen__replies">Replies</string>
+    <string name="MutedNotificationsScreen__replies">മറുപടികൾ</string>
 
     <!-- NotificationsSettingsScreen -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
     <!-- Banner title when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__to_enable_notifications">To enable notifications, Signal needs permission to display them.</string>
+    <string name="NotificationSettingsFragment__to_enable_notifications">അറിയിപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കാൻ, Signal-ന് അവ പ്രദർശിപ്പിക്കാനുള്ള അനുമതി വേണം.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">Turn on</string>
-    <string name="NotificationsSettingsFragment__calls">Calls</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <string name="NotificationSettingsFragment__turn_on">ഓൺ ചെയ്യുക</string>
+    <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal-ലിൽ ചേരുന്നു</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ ലഭിക്കുന്നതിന് ഒരു രൂപരേഖ സൃഷ്‌ടിക്കുക.</string>
     <!-- Notification body to get notified when someone joins Signal -->
-    <string name="NotificationsSettingsFragment__notify_contact">Show a notification when a phone contact joins Signal</string>
+    <string name="NotificationsSettingsFragment__notify_contact">ഒരു ഫോൺ കോൺടാക്റ്റ് Signal-ൽ ചേരുമ്പോൾ അറിയിപ്പ് കാണിക്കുക</string>
     <!-- Option to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset">Reset notification settings</string>
+    <string name="NotificationsSettingsFragment__reset">അറിയിപ്പ് ക്രമീകരണങ്ങൾ പുനഃക്രമീകരിക്കുക</string>
     <!-- Dialog to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_body">Reset all notification settings to default for all chats?</string>
+    <string name="NotificationsSettingsFragment__reset_body">എല്ലാ ചാറ്റുകൾക്കുമുള്ള അറിയിപ്പ് ക്രമീകരണങ്ങൾ ഡിഫോൾട്ടിലേക്ക് പുനഃക്രമീകരിക്കണോ?</string>
     <!-- Confirmation button to reset dialog -->
-    <string name="NotificationsSettingsFragment__reset_confirm">Reset</string>
+    <string name="NotificationsSettingsFragment__reset_confirm">പുനഃക്രമീകരിക്കുക</string>
     <!-- Option body to reset their notification settings -->
-    <string name="NotificationsSettingsFragment__reset_notifications">Reset notification settings to default, including custom settings for your chats</string>
+    <string name="NotificationsSettingsFragment__reset_notifications">നിങ്ങളുടെ ചാറ്റുകൾക്കായുള്ള ഇഷ്‌ടാനുസൃത ക്രമീകരണങ്ങൾ ഉൾപ്പെടെയുള്ള അറിയിപ്പ് ക്രമീകരണങ്ങൾ ഡിഫോൾട്ടിലേക്ക് പുനഃക്രമീകരിക്കുക</string>
     <!-- Notification header for sounds -->
-    <string name="NotificationsSettingsFragment__sounds">Sounds</string>
-    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+    <string name="NotificationsSettingsFragment__sounds">ശബ്ദങ്ങൾ</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">അജ്ഞാത റിംഗ്ടോൺ</string>
     <!-- Title for toggle row to control call settings while muted -->
-    <string name="NotificationsSettingsScreen__calls">Calls</string>
+    <string name="NotificationsSettingsScreen__calls">കോളുകൾ</string>
     <!-- Title for toggle row to control mentions settings while muted -->
-    <string name="NotificationsSettingsScreen__mentions">Mentions</string>
+    <string name="NotificationsSettingsScreen__mentions">സൂചനകൾ</string>
     <!-- Notification preference header -->
-    <string name="NotificationsSettingsScreen__notification_profiles">Notification profiles</string>
-    <string name="NotificationsSettingsScreen__notifications">Notifications</string>
+    <string name="NotificationsSettingsScreen__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
+    <string name="NotificationsSettingsScreen__notifications">അറിയിപ്പുകൾ</string>
     <!-- Title for toggle row to control replies settings while muted -->
-    <string name="NotificationsSettingsScreen__replies">Replies</string>
-    <string name="NotificationsSettingsScreen__silent">Silent</string>
+    <string name="NotificationsSettingsScreen__replies">മറുപടികൾ</string>
+    <string name="NotificationsSettingsScreen__silent">നിശബ്ദത</string>
     <!-- Option in settings to turn on unread reminders -->
-    <string name="NotificationsSettingsScreen__unread_reminders">Unread reminders</string>
-    <string name="arrays__default">Default</string>
-    <string name="arrays__high">High</string>
+    <string name="NotificationsSettingsScreen__unread_reminders">വായിക്കാത്ത ഓർമ്മപ്പെടുത്തലുകൾ</string>
+    <string name="arrays__default">സ്ഥിരസ്ഥിതി</string>
+    <string name="arrays__high">ഉയർന്നത്</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">Max</string>
-    <string name="arrays__name_and_message">Name and message</string>
-    <string name="arrays__name_only">Name only</string>
-    <string name="arrays__no_name_or_message">No name or message</string>
-    <string name="preferences__blue">Blue</string>
+    <string name="arrays__max">പരമാവധി</string>
+    <string name="arrays__name_and_message">പേരും സന്ദേശവും</string>
+    <string name="arrays__name_only">പേര് മാത്രം</string>
+    <string name="arrays__no_name_or_message">പേരോ സന്ദേശമോ വേണ്ട</string>
+    <string name="preferences__blue">നീല</string>
     <!-- Preference header for call notifications -->
-    <string name="preferences__call_notifications">Call notifications</string>
-    <string name="preferences__change_sound_and_vibration">Change sound and vibration</string>
-    <string name="preferences__customize">Customize</string>
-    <string name="preferences__cyan">Cyan</string>
+    <string name="preferences__call_notifications">കോൾ അറിയിപ്പുകൾ</string>
+    <string name="preferences__change_sound_and_vibration">ശബ്ദവും വൈബ്രേഷനും മാറ്റുക</string>
+    <string name="preferences__customize">ഇഷ്ടാനുസൃതമാക്കുക</string>
+    <string name="preferences__cyan">സിയാൻ</string>
     <!-- Preference menu item to use the default sound for notifications -->
-    <string name="preferences__default">Default</string>
+    <string name="preferences__default">സ്ഥിരസ്ഥിതി</string>
     <!-- Preference item menu to enable notifications -->
-    <string name="preferences__enable_notifications">Enable notifications</string>
-    <string name="preferences__fast">Fast</string>
-    <string name="preferences__five_times">Five times</string>
-    <string name="preferences__green">Green</string>
-    <string name="preferences__led_color">LED color</string>
-    <string name="preferences__magenta">Magenta</string>
-    <string name="preferences__never">Never</string>
-    <string name="preferences__normal">Normal</string>
-    <string name="preferences__one_time">One time</string>
-    <string name="preferences__orange">Orange</string>
-    <string name="preferences__pref_led_blink_title">LED blink pattern</string>
-    <string name="preferences__red">Red</string>
-    <string name="preferences__repeat_alerts">Repeat alerts</string>
-    <string name="preferences__slow">Slow</string>
+    <string name="preferences__enable_notifications">നോട്ടിഫിക്കേഷനുകൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
+    <string name="preferences__fast">വേഗത്തിൽ</string>
+    <string name="preferences__five_times">അഞ്ച് തവണ</string>
+    <string name="preferences__green">പച്ച</string>
+    <string name="preferences__led_color">LED നിറം</string>
+    <string name="preferences__magenta">മജന്ത</string>
+    <string name="preferences__never">ഒരിക്കലും വേണ്ട</string>
+    <string name="preferences__normal">സാധാരണ</string>
+    <string name="preferences__one_time">ഒരിക്കൽ</string>
+    <string name="preferences__orange">ഓറഞ്ച്</string>
+    <string name="preferences__pref_led_blink_title">LED ബ്ലിങ്ക് പാറ്റേൺ</string>
+    <string name="preferences__red">ചുവപ്പ്</string>
+    <string name="preferences__repeat_alerts">അലേർട്ടുകൾ ആവർത്തിക്കുക</string>
+    <string name="preferences__slow">പതുക്കെ</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Sound</string>
-    <string name="preferences__ten_times">Ten times</string>
-    <string name="preferences__three_times">Three times</string>
-    <string name="preferences__two_times">Two times</string>
-    <string name="preferences__vibrate">Vibrate</string>
-    <string name="preferences__white">White</string>
-    <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>
+    <string name="preferences__sound">ശബ്ദം</string>
+    <string name="preferences__ten_times">പത്ത് തവണ</string>
+    <string name="preferences__three_times">മൂന്ന് തവണ</string>
+    <string name="preferences__two_times">രണ്ടു തവണ</string>
+    <string name="preferences__vibrate">വൈബ്രേറ്റ്</string>
+    <string name="preferences__white">വെള്ള</string>
+    <string name="preferences_notifications__in_chat_sounds">ഇൻ-ചാറ്റ് ശബ്‌ദങ്ങള്‍</string>
     <!-- Body option in settings to turn on reaction notifications    -->
-    <string name="preferences_notifications__notify_reaction">Show notifications for reactions to messages you send</string>
+    <string name="preferences_notifications__notify_reaction">നിങ്ങൾ അയയ്ക്കുന്ന സന്ദേശങ്ങൾക്കുള്ള പ്രതികരണങ്ങളുടെ അറിയിപ്പുകൾ കാണിക്കുക</string>
     <!-- Body option to turn on unread reminders -->
-    <string name="preferences_notifications__notify_unread">Occasionally notify when there are unread messages in muted chats</string>
+    <string name="preferences_notifications__notify_unread">മ്യൂട്ട് ചെയ്ത ചാറ്റുകളിൽ വായിക്കാത്ത സന്ദേശങ്ങൾ ഉള്ളപ്പോൾ ഇടയ്ക്കിടെ അറിയിക്കുക</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
-    <string name="preferences_notifications__priority">Priority</string>
+    <string name="preferences_notifications__priority">മുൻഗണന</string>
     <!-- Option in settings to turn on reaction notifications -->
-    <string name="preferences_notifications__reaction">Reaction notifications</string>
-    <string name="preferences_notifications__ringtone">Ringtone</string>
-    <string name="preferences_notifications__show">Show</string>
+    <string name="preferences_notifications__reaction">പ്രതികരണ അറിയിപ്പുകൾ</string>
+    <string name="preferences_notifications__ringtone">റിംഗ്‌ടോൺ</string>
+    <string name="preferences_notifications__show">കാണിക്കുക</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
-    <string name="preferences_notifications__troubleshoot">Troubleshoot notifications</string>
+    <string name="preferences_notifications__troubleshoot">അറിയിപ്പുകൾ ട്രബിൾഷൂട്ട് ചെയ്യുക</string>
     <!-- Preference item to set notification settings when chats are muted -->
-    <string name="preferences_notifications__while_muted">While muted</string>
+    <string name="preferences_notifications__while_muted">മ്യൂട്ട് ചെയ്‌തിരിക്കുമ്പോൾ</string>
 
     <!-- SelectRecipientsScreen -->
     <!-- Call to action button on contact picker for adding to profile -->
-    <string name="SelectRecipientsFragment__add">Add</string>
+    <string name="SelectRecipientsFragment__add">ചേർക്കുക</string>
     <!-- Title for add recipients to notification profile screen in create flow -->
-    <string name="SelectRecipientsScreen__allowed_notifications">Allowed notifications</string>
+    <string name="SelectRecipientsScreen__allowed_notifications">അനുവദിച്ചിരിക്കുന്ന അറിയിപ്പുകൾ</string>
 </resources>
