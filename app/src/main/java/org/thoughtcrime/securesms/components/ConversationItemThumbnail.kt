@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideClickListener
 import org.thoughtcrime.securesms.mms.SlidesClickedListener
 import org.thoughtcrime.securesms.util.Projection.Corners
+import org.thoughtcrime.securesms.util.views.CachedStubInflater
 import org.thoughtcrime.securesms.video.inline.InlineVideoHost
 
 class ConversationItemThumbnail @JvmOverloads constructor(
@@ -50,7 +51,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
   init {
     inflate(context, R.layout.conversation_item_thumbnail, this)
 
-    thumbnail = Stub(findViewById(R.id.thumbnail_view_stub))
+    thumbnail = Stub(findViewById(R.id.thumbnail_view_stub), CachedStubInflater)
     album = Stub(findViewById(R.id.album_view_stub))
     shade = findViewById(R.id.conversation_thumbnail_shade)
     footer = Stub(findViewById(R.id.footer_view_stub))

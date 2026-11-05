@@ -1045,6 +1045,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
       CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, parent, 25);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_multimedia, parent, 10);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_multimedia, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_thumbnail, parent, 5);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_thumbnail, parent, 5);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_thumbnail_thumbnail_view_stub, parent, 10);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received_audio, parent, 3);
+      CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent_audio, parent, 3);
       CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
       CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
       CachedInflater.from(context).cacheUntilLimit(R.layout.v2_conversation_fragment, parent, 1);

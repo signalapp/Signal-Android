@@ -1651,7 +1651,19 @@ class ConversationFragment :
     }
 
     if (args.conversationScreenType == ConversationScreenType.NORMAL) {
-      CachedInflater.from(requireContext()).cacheUntilLimit(R.layout.v2_conversation_fragment, chatHost, 1)
+      CachedInflater.from(requireContext()).apply {
+        cacheUntilLimit(R.layout.v2_conversation_fragment, chatHost, 1)
+        cacheUntilLimit(R.layout.v2_conversation_item_text_only_incoming, binding.conversationItemRecycler, 15)
+        cacheUntilLimit(R.layout.v2_conversation_item_text_only_outgoing, binding.conversationItemRecycler, 15)
+        cacheUntilLimit(R.layout.conversation_item_received_multimedia, binding.conversationItemRecycler, 6)
+        cacheUntilLimit(R.layout.conversation_item_sent_multimedia, binding.conversationItemRecycler, 6)
+        cacheUntilLimit(R.layout.conversation_item_received_thumbnail, binding.conversationItemRecycler, 4)
+        cacheUntilLimit(R.layout.conversation_item_sent_thumbnail, binding.conversationItemRecycler, 4)
+        cacheUntilLimit(R.layout.conversation_item_thumbnail_thumbnail_view_stub, binding.conversationItemRecycler, 8)
+        cacheUntilLimit(R.layout.conversation_item_received_audio, binding.conversationItemRecycler, 2)
+        cacheUntilLimit(R.layout.conversation_item_sent_audio, binding.conversationItemRecycler, 2)
+        cacheUntilLimit(R.layout.conversation_item_update, binding.conversationItemRecycler, 3)
+      }
     }
 
     activity?.supportStartPostponedEnterTransition()
