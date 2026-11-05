@@ -20,7 +20,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -45,6 +44,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -57,8 +57,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onPlaced
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -203,17 +203,15 @@ fun MainToolbar(
       MainToolbarMode.CrossFadeKey.FULL -> Box {
         var revealOffset by remember { mutableStateOf(Offset.Zero) }
 
-        BoxWithConstraints {
-          val maxWidth = with(LocalDensity.current) {
-            maxWidth.toPx()
-          }
+        var toolbarWidthPx by remember { mutableIntStateOf(0) }
 
+        Box(modifier = Modifier.onSizeChanged { toolbarWidthPx = it.width }) {
           PrimaryToolbar(
             state = state,
             callback = callback,
             enabled = state.mode != MainToolbarMode.SEARCH
           ) {
-            revealOffset = Offset(it / maxWidth, 0.5f)
+            revealOffset = Offset(if (toolbarWidthPx > 0) it / toolbarWidthPx else 0f, 0.5f)
           }
 
           AnimatedVisibility(
