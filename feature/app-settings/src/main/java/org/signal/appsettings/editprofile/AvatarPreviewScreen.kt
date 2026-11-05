@@ -37,6 +37,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerInputScope
@@ -189,8 +190,9 @@ private suspend fun PointerInputScope.detectPinchAndPan(zoom: ZoomState, scope: 
     do {
       val event = awaitPointerEvent()
       val pressed = event.changes.count { it.pressed }
-      if (pressed > 1 || zoom.scale.value > 1f) {
-        zoom.transform(scope, event.calculateCentroid(), event.calculatePan(), event.calculateZoom(), size)
+      val centroid = event.calculateCentroid()
+      if (centroid.isSpecified && (pressed > 1 || zoom.scale.value > 1f)) {
+        zoom.transform(scope, centroid, event.calculatePan(), event.calculateZoom(), size)
         event.changes.forEach { if (it.positionChanged()) it.consume() }
       }
     } while (event.changes.any { it.pressed })
