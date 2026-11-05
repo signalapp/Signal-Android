@@ -31,7 +31,8 @@ import androidx.navigation3.scene.Scene
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.coroutines.delay
 import org.signal.core.ui.navigation.TransitionSpecs
-import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Marks an entry as one whose enter transition waits for [DeferredEnter.start].
@@ -64,7 +65,14 @@ fun interface DeferredEnter {
 }
 
 /**
- * Provided to every entry; a no-op unless the entry is being held back by a deferred enter.
+ * The longest a deferred enter, or a hold from [ListDetailEvents.HoldNextEnter], waits for [DeferredEnter.start] before
+ * revealing the entry anyway.
+ */
+internal val DEFERRED_ENTER_TIMEOUT: Duration = 500.milliseconds
+
+/**
+ * Provided to every entry, which calls [DeferredEnter.start] once it has drawn. That ends a deferred enter or a hold from
+ * [ListDetailEvents.HoldNextEnter] waiting on the entry, and does nothing otherwise.
  */
 val LocalDeferredEnter = staticCompositionLocalOf { DeferredEnter {} }
 
@@ -88,10 +96,11 @@ internal class PendingDeferredEnter(private val contentKey: Any) {
 internal val LocalPendingDeferredEnter = compositionLocalOf<PendingDeferredEnter?> { null }
 
 /**
- * Watches [entries] for a push that lands on a deferred-enter entry.
+ * Watches [entries] for a push that lands on a deferred-enter entry. A push made while [isHoldingEnter] is never deferred,
+ * since the window isn't drawing what's beneath it.
  */
 @Composable
-internal fun rememberPendingDeferredEnter(entries: List<NavEntry<NavKey>>): PendingDeferredEnter? {
+internal fun rememberPendingDeferredEnter(entries: List<NavEntry<NavKey>>, isHoldingEnter: Boolean): PendingDeferredEnter? {
   val history = remember { KeyHistory() }
   val keys = entries.map { it.contentKey }
 
@@ -102,7 +111,7 @@ internal fun rememberPendingDeferredEnter(entries: List<NavEntry<NavKey>>): Pend
     val isPush = previousKeys != null && keys.size > previousKeys.size && keys.subList(0, previousKeys.size) == previousKeys
     val top = entries.last()
 
-    if (isPush && top.isDeferredEnter) PendingDeferredEnter(top.contentKey) else null
+    if (isPush && !isHoldingEnter && top.isDeferredEnter) PendingDeferredEnter(top.contentKey) else null
   }
 }
 
@@ -201,5 +210,3 @@ internal class DeferredEnterScene(
     return result
   }
 }
-
-private val DEFERRED_ENTER_TIMEOUT = 5.seconds

@@ -262,6 +262,12 @@ class MainActivity :
   private val motionEventRelay: MotionEventRelay by viewModels()
 
   private var onFirstRender = false
+
+  /**
+   * True from creation or [onStop] until the next [onResume]. A conversation opened while this is set is shown without
+   * its enter animation, and the window holds off drawing until it renders.
+   */
+  private var hasBeenOffScreen = true
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val mainBottomChromeCallback = BottomChromeCallback()
@@ -449,6 +455,7 @@ class MainActivity :
 
         val paneAnchor by mainNavigationViewModel.paneAnchor.collectAsStateWithLifecycle()
         val hasDetailContent by mainNavigationViewModel.hasDetailContent.collectAsStateWithLifecycle()
+        val isHoldingEnter by mainNavigationViewModel.navigator.isHoldingEnter.collectAsStateWithLifecycle()
 
         val tabEntries = rememberDecoratedDetailEntries(mainNavigationViewModel, isSplitPane)
 
@@ -491,6 +498,8 @@ class MainActivity :
             layout = paneLayout,
             listPaneChrome = listPaneChrome,
             emptyDetailContent = emptyDetailContent,
+            isHoldingEnter = isHoldingEnter,
+            onTopEntryReady = { mainNavigationViewModel.navigator.processEvent(ListDetailEvents.TopEntryReady) },
             modifier = Modifier.padding(paddingValues)
           )
         }
@@ -715,6 +724,7 @@ class MainActivity :
 
   override fun onResume() {
     super.onResume()
+    hasBeenOffScreen = false
     dynamicTheme.onResume(this)
 
     toolbarViewModel.refresh()
@@ -750,6 +760,7 @@ class MainActivity :
 
   override fun onStop() {
     super.onStop()
+    hasBeenOffScreen = true
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
@@ -920,10 +931,44 @@ class MainActivity :
         return
       }
 
+      if (hasBeenOffScreen) {
+        holdDrawingUntilConversationRenders()
+
+        if (AppForegroundObserver.isForegrounded()) {
+          overridePendingTransition(R.anim.pane_shift_enter, R.anim.stationary)
+        }
+      }
+
       mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(ConversationIntents.readArgsFromBundle(extras))))
       intent.action = null
       setIntent(intent)
     }
+  }
+
+  /**
+   * Keeps the window from drawing until the conversation about to be opened has rendered, so that opening it from off
+   * screen reveals the finished conversation rather than whatever was beneath it.
+   */
+  private fun holdDrawingUntilConversationRenders() {
+    val navigator = mainNavigationViewModel.navigator
+    val wasHolding = navigator.isHoldingEnter.value
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    if (wasHolding) {
+      return
+    }
+
+    val content: View = findViewById(android.R.id.content)
+    content.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+      override fun onPreDraw(): Boolean {
+        if (navigator.isHoldingEnter.value) {
+          return false
+        }
+
+        content.viewTreeObserver.removeOnPreDrawListener(this)
+        return true
+      }
+    })
   }
 
   /**

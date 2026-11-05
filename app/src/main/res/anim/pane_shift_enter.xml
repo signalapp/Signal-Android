@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2026 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<!-- The window version of TransitionSpecs.paneShift, for entering a conversation from another activity. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="200"
+    android:interpolator="@android:interpolator/fast_out_slow_in"
+    android:shareInterpolator="true"
+    android:zAdjustment="top">
+
+    <translate
+        android:fromXDelta="48dp"
+        android:toXDelta="0" />
+
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+</set>

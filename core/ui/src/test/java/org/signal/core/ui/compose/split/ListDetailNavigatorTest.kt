@@ -9,6 +9,7 @@ import android.app.Application
 import androidx.compose.runtime.snapshots.Snapshot
 import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -19,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Robolectric because the stacks are owned by a [SavedStateHandle], which stores them in a `Bundle`.
@@ -255,6 +257,74 @@ class ListDetailNavigatorTest {
 
     assertEquals(otherDetail, navigator.detail.value)
     assertEquals(TestListKey.OTHER, navigator.displayedList.value)
+  }
+
+  @Test
+  fun `given a held enter, when the entry that was already on top is ready, then it stays held`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    navigator.processEvent(ListDetailEvents.TopEntryReady)
+
+    assertTrue(navigator.isHoldingEnter.value)
+  }
+
+  @Test
+  fun `given a held enter, when the pushed entry is ready, then the hold is released`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+
+    navigator.processEvent(ListDetailEvents.TopEntryReady)
+
+    assertFalse(navigator.isHoldingEnter.value)
+  }
+
+  @Test
+  fun `given a held enter, when a push leaves the same entry on top, then the hold is released`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+
+    assertFalse(navigator.isHoldingEnter.value)
+  }
+
+  @Test
+  fun `given a held enter, when going back, then the hold is released`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    navigator.processEvent(ListDetailEvents.Back)
+
+    assertFalse(navigator.isHoldingEnter.value)
+  }
+
+  @Test
+  fun `given a held enter, when going to a list, then the hold is released`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+
+    navigator.processEvent(ListDetailEvents.GoToList(TestListKey.OTHER))
+
+    assertFalse(navigator.isHoldingEnter.value)
+  }
+
+  @Test
+  fun `given a held enter, when the pushed entry never reports ready, then the hold is released after the timeout`() = runTest {
+    val navigator = navigator()
+    navigator.processEvent(ListDetailEvents.HoldNextEnter)
+    navigator.processEvent(ListDetailEvents.Push(detail, TestListKey.ROOT))
+
+    advanceTimeBy(DEFERRED_ENTER_TIMEOUT - 1.milliseconds)
+    assertTrue(navigator.isHoldingEnter.value)
+
+    advanceTimeBy(1.milliseconds)
+    runCurrent()
+    assertFalse(navigator.isHoldingEnter.value)
   }
 
   /** Publishes snapshot writes to `snapshotFlow`, then lets the flows collecting them run. */

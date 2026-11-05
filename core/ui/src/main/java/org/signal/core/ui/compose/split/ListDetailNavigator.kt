@@ -10,6 +10,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.navigation3.runtime.NavKey
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,6 +21,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.signal.core.ui.createBackStack
 
 /**
@@ -36,7 +39,7 @@ import org.signal.core.ui.createBackStack
  */
 class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
   savedStateHandle: SavedStateHandle,
-  scope: CoroutineScope,
+  private val scope: CoroutineScope,
   stackKeys: Map<L, String>,
   initialRoot: L
 ) {
@@ -78,6 +81,14 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
     .flatMapLatest { root -> snapshotsOf(root) { detailLocation() } }
     .stateIn(scope, SharingStarted.Eagerly, currentStack.detailLocation())
 
+  private val internalIsHoldingEnter = MutableStateFlow(false)
+
+  /** Whether the entry about to be pushed is being held back until it's ready, as set by [ListDetailEvents.HoldNextEnter]. */
+  val isHoldingEnter: StateFlow<Boolean> = internalIsHoldingEnter.asStateFlow()
+
+  private var topWhenHeld: NavKey? = null
+  private var holdTimeout: Job? = null
+
   /** Whether the current root's stack is displaying detail content. */
   val hasDetail: StateFlow<Boolean> = detail
     .map { it != null }
@@ -110,7 +121,34 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
       ListDetailEvents.ExitDetail -> exitDetail()
       is ListDetailEvents.AnchorSelected -> onAnchorSelected(event.anchor)
       ListDetailEvents.RevealList -> revealList()
+      ListDetailEvents.HoldNextEnter -> holdNextEnter()
+      ListDetailEvents.TopEntryReady -> onTopEntryReady()
     }
+  }
+
+  /** Holds back the entry the next push displays. See [ListDetailEvents.HoldNextEnter]. */
+  private fun holdNextEnter() {
+    internalIsHoldingEnter.value = true
+    topWhenHeld = currentStack.last()
+    holdTimeout?.cancel()
+    holdTimeout = scope.launch {
+      delay(DEFERRED_ENTER_TIMEOUT)
+      releaseEnterHold()
+    }
+  }
+
+  /** Releases a hold from [holdNextEnter] once the top entry is the one a push brought in, rather than whatever was on top before. */
+  private fun onTopEntryReady() {
+    if (internalIsHoldingEnter.value && currentStack.last() != topWhenHeld) {
+      releaseEnterHold()
+    }
+  }
+
+  private fun releaseEnterHold() {
+    internalIsHoldingEnter.value = false
+    topWhenHeld = null
+    holdTimeout?.cancel()
+    holdTimeout = null
   }
 
   /** The user dragged the pane divider to [anchor]. */
@@ -135,6 +173,10 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
     this[root].push(location)
     internalCurrentRoot.update { root }
 
+    if (internalIsHoldingEnter.value && currentStack.last() == topWhenHeld) {
+      releaseEnterHold()
+    }
+
     if (location is DetailNavKey) {
       paneAnchorController.revealDetailPane()
     }
@@ -144,6 +186,7 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
    * Drops the detail content above the current list, leaving that list displayed on its own.
    */
   private fun exitDetail() {
+    releaseEnterHold()
     currentStack.exitDetail()
     paneAnchorController.revealListPane()
   }
@@ -153,6 +196,7 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
    * covering is gone.
    */
   private fun popCurrentDetail() {
+    releaseEnterHold()
     val stack = currentStack
     stack.pop()
 
@@ -170,6 +214,7 @@ class ListDetailNavigator<L : ListNavKey, D : DetailNavKey>(
    *   beneath it. Either way the detail content above stays where it is.
    */
   private fun goToList(listRoute: L, root: L = listRoute, push: Boolean = false) {
+    releaseEnterHold()
     val stack = this[root]
 
     if (push) {
