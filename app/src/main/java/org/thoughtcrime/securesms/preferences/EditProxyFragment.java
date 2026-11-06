@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.HostInsets;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -59,9 +60,6 @@ public class EditProxyFragment extends Fragment {
     Toolbar toolbar = view.findViewById(R.id.toolbar);
     toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 
-    toolbar.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-    SystemWindowInsetsSetter.attach(toolbar, getViewLifecycleOwner(), WindowInsetsCompat.Type.statusBars());
-
     this.proxySwitch = view.findViewById(R.id.edit_proxy_switch);
     this.proxyTitle  = view.findViewById(R.id.edit_proxy_address_title);
     this.proxyText   = view.findViewById(R.id.edit_proxy_host);
@@ -69,7 +67,10 @@ public class EditProxyFragment extends Fragment {
     this.saveButton  = view.findViewById(R.id.edit_proxy_save);
     this.shareButton = view.findViewById(R.id.edit_proxy_share);
 
-    SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    if (!HostInsets.isInsetByHost(this)) {
+      HostInsets.insetToolbarForStatusBar(toolbar, getViewLifecycleOwner());
+      SystemWindowInsetsSetter.attach(saveButton, getViewLifecycleOwner(), WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime(), SystemWindowInsetsSetter.ApplyMode.MARGIN);
+    }
 
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(getViewLifecycleOwner());

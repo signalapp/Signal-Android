@@ -12,22 +12,15 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
-import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
-import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.doOnEachLayout
 
 /**
  * The DSL API can be completely replaced by compose.
@@ -109,34 +102,15 @@ abstract class DSLSettingsFragment(
   }
 
   /**
-   * All host windows are edge-to-edge — activities centrally via [org.thoughtcrime.securesms.BaseActivity],
-   * and the full-screen dialog hosts ([org.thoughtcrime.securesms.components.WrapperDialogFragment],
-   * [org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment]) via their own
-   * `enableEdgeToEdge` calls — so the toolbar tint must extend behind the (transparent) status bar and the
-   * list must scroll clear of the navigation bar. Skipped only for fragments embedded directly in
-   * [MainActivity]'s Compose scaffolding, which insets those containers itself — except the
-   * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
-   * fragments so the toolbar scroll tint can reach behind the status bar. Fragments shown inside a dialog have
-   * their own window, which the [MainActivity] scaffolding never insets, so they always apply insets themselves.
-   * Also skipped in the detail pane of a split-pane [AppSettingsNavigationActivity], which insets both panes itself.
+   * The toolbar tint extends behind the status bar and the list scrolls clear of the navigation bar, unless the host
+   * already insets this fragment ([isInsetByHost]).
    */
   private fun applyEdgeToEdgeInsets() {
     if (isInsetByHost()) {
       return
     }
 
-    toolbar?.let { toolbar ->
-      SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
-
-      // Grown by the inset rather than wrapped, which can measure the bar's content shorter than the bar itself after a relaunch.
-      val toolbarHeight = resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height)
-      toolbar.doOnEachLayout {
-        val height = toolbarHeight + toolbar.paddingTop + toolbar.paddingBottom
-        if (toolbar.layoutParams.height != height) {
-          toolbar.post { toolbar.updateLayoutParams { this.height = height } }
-        }
-      }
-    }
+    toolbar?.let { insetToolbarForStatusBar(it, viewLifecycleOwner) }
 
     recyclerView?.let { recycler ->
       val insetTypes = (if (listClearsNavigationBar) WindowInsetsCompat.Type.navigationBars() else 0) or
@@ -151,19 +125,6 @@ abstract class DSLSettingsFragment(
         recycler.clipToPadding = false
         SystemWindowInsetsSetter.attach(recycler, viewLifecycleOwner, insetTypes)
       }
-    }
-  }
-
-  private fun isInsetByHost(): Boolean {
-    val parents = generateSequence(parentFragment) { it.parentFragment }
-    if (parents.any { it is DialogFragment && it.showsDialog }) {
-      return false
-    }
-
-    return when (activity) {
-      is MainActivity -> parents.none { it is ConversationSettingsNavHostFragment }
-      is AppSettingsNavigationActivity -> resources.isSplitPane()
-      else -> false
     }
   }
 
