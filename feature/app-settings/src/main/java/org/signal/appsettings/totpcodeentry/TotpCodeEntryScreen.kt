@@ -21,16 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
 import org.signal.uicomponents.codeentryfield.CodeEntryField
 import org.signal.uicomponents.codeentryfield.CodeEntryFieldState
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object TotpCodeEntryTestTags {
@@ -44,12 +46,15 @@ object TotpCodeEntryTestTags {
 @Composable
 fun TotpCodeEntryScreen(
   state: TotpCodeEntryState,
-  onEvent: (TotpCodeEntryEvent) -> Unit
+  onEvent: (TotpCodeEntryEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.TotpCodeEntryScreen__enter_your_code),
     onNavigationClick = { onEvent(TotpCodeEntryEvent.NavigateBackClicked) },
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    modifier = modifier
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -122,26 +127,24 @@ private fun TotpCodeEntryState.Error.message(): String? = when (this) {
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpCodeEntryScreenPreview() {
-  Previews.Preview {
-    TotpCodeEntryScreen(
-      state = TotpCodeEntryState(codeEntry = CodeEntryFieldState(code = "123456")),
-      onEvent = {}
-    )
-  }
+  TotpCodeEntryScreen(
+    state = TotpCodeEntryState(codeEntry = CodeEntryFieldState(code = "123456")),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpCodeEntryScreenErrorPreview() {
-  Previews.Preview {
-    TotpCodeEntryScreen(
-      state = TotpCodeEntryState(
-        codeEntry = CodeEntryFieldState(code = "123456"),
-        error = TotpCodeEntryState.Error.IncorrectCode
-      ),
-      onEvent = {}
-    )
-  }
+  TotpCodeEntryScreen(
+    state = TotpCodeEntryState(
+      codeEntry = CodeEntryFieldState(code = "123456"),
+      error = TotpCodeEntryState.Error.IncorrectCode
+    ),
+    onEvent = {}
+  )
 }

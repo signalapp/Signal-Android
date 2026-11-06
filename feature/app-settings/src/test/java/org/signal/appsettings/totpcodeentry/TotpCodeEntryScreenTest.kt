@@ -10,6 +10,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -79,6 +80,15 @@ class TotpCodeEntryScreenTest {
 
     composeTestRule.onNodeWithTag(CodeEntryFieldTestTags.ROOT).assertIsNotEnabled()
     composeTestRule.onNodeWithTag(TotpCodeEntryTestTags.BUTTON_NEXT).assertIsNotEnabled()
+  }
+
+  @Test
+  fun whenITapClose_thenIExpectNavigateBackClickedEvent() {
+    setContent(TotpCodeEntryState())
+
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
+
+    assertThat(events).contains(TotpCodeEntryEvent.NavigateBackClicked)
   }
 
   private fun setContent(state: TotpCodeEntryState) {

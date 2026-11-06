@@ -6,16 +6,18 @@
 package org.thoughtcrime.securesms.components.settings.app.account.authenticator
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
-import org.signal.appsettings.totpcodeentry.TotpCodeEntryAction
+import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryEvent
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState
 import org.signal.appsettings.totpcodeentry.TotpCodeEntryState.Error
@@ -29,6 +31,7 @@ import org.signal.uicomponents.codeentryfield.CodeEntryFieldPresenter
  * kept a copy of the key it just handed out.
  */
 class TotpCodeEntryViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val repository: TotpRepository = TotpRepository()
 ) : EventDrivenViewModel<TotpCodeEntryEvent>(TAG, shouldLogEvents = true) {
 
@@ -37,10 +40,8 @@ class TotpCodeEntryViewModel(
   }
 
   private val _state = MutableStateFlow(TotpCodeEntryState())
-  private val _actions = Channel<TotpCodeEntryAction>(Channel.BUFFERED)
 
   val state: StateFlow<TotpCodeEntryState> = _state.asStateFlow()
-  val actions: Flow<TotpCodeEntryAction> = _actions.receiveAsFlow()
 
   private val codeEntryPresenter = CodeEntryFieldPresenter(viewModelScope)
 
@@ -59,7 +60,7 @@ class TotpCodeEntryViewModel(
   override suspend fun processEvent(event: TotpCodeEntryEvent) {
     when (event) {
       TotpCodeEntryEvent.NavigateBackClicked -> {
-        _actions.send(TotpCodeEntryAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
       is TotpCodeEntryEvent.CodeEntryEvent -> {
         _state.update { it.copy(error = Error.None) }
@@ -89,7 +90,13 @@ class TotpCodeEntryViewModel(
   private suspend fun confirmNewApp() {
     when (val result = repository.confirmPendingApp(_state.value.code)) {
       is TotpRepository.ConfirmResult.Success -> {
-        _actions.send(TotpCodeEntryAction.NavigateToNaming(appId = result.appId, createdAt = result.createdAt))
+        parentEventEmitter.navigateTo(
+          AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod(
+            methodId = result.appId,
+            methodKind = TwoFactorMethod.Kind.AUTHENTICATOR_APP,
+            methodCreatedAt = result.createdAt
+          )
+        )
       }
       TotpRepository.ConfirmResult.IncorrectCode -> {
         fail(Error.IncorrectCode)
@@ -97,7 +104,7 @@ class TotpCodeEntryViewModel(
       TotpRepository.ConfirmResult.TooManyApps -> {
         Log.w(TAG, "The account filled up while this key was pending. Going back to setup, which will explain the limit.")
         _state.update { it.copy(submitting = false) }
-        _actions.send(TotpCodeEntryAction.NavigateToSetup)
+        parentEventEmitter.navigateBack(popUpTo = PopUpTo(AppSettingsRoute.AccountRoute.TotpSetup::class))
       }
       TotpRepository.ConfirmResult.NetworkFailure -> {
         fail(Error.NetworkFailure)

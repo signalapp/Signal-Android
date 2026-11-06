@@ -60,10 +60,10 @@ fun TwoFactorNameEntryEntry(
 
 /** The method a [AppSettingsRoute.AccountRoute.RenameTwoFactorMethod] identifies, rebuilt from the fields it carries. */
 fun AppSettingsRoute.AccountRoute.RenameTwoFactorMethod.toTwoFactorMethod(): TwoFactorMethod {
-  return TwoFactorMethod(
-    id = methodId,
-    kind = TwoFactorMethod.Kind.entries.firstOrNull { it.name == methodKind } ?: TwoFactorMethod.Kind.OTHER,
-    name = methodName,
-    createdAt = methodCreatedAt
-  )
+  return TwoFactorMethod(id = methodId, kind = methodKind, name = methodName, createdAt = methodCreatedAt)
+}
+
+/** The method a [AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod] identifies, which has no name yet. */
+fun AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod.toTwoFactorMethod(): TwoFactorMethod {
+  return TwoFactorMethod(id = methodId, kind = methodKind, name = null, createdAt = methodCreatedAt)
 }

@@ -724,7 +724,7 @@ class AccountSettingsViewModelTest {
 
   private fun TwoFactorMethod.toRenameRoute() = AppSettingsRoute.AccountRoute.RenameTwoFactorMethod(
     methodId = id,
-    methodKind = kind.name,
+    methodKind = kind,
     methodName = name,
     methodCreatedAt = createdAt
   )

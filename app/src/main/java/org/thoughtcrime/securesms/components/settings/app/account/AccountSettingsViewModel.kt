@@ -118,7 +118,7 @@ class AccountSettingsViewModel(
         parentEventEmitter.navigateTo(
           AppSettingsRoute.AccountRoute.RenameTwoFactorMethod(
             methodId = event.method.id,
-            methodKind = event.method.kind.name,
+            methodKind = event.method.kind,
             methodName = event.method.name,
             methodCreatedAt = event.method.createdAt
           )

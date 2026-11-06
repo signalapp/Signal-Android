@@ -9,6 +9,7 @@ import android.os.Parcelable
 import androidx.annotation.StringRes
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
+import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.compose.split.DetailNavKey
 import org.signal.core.util.censor
@@ -85,11 +86,19 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data object PasskeySetup : AccountRoute
 
+    /** Naming the second factor identified by [methodId], which was just added and has no name of its own yet. */
+    @Serializable
+    data class NameNewTwoFactorMethod(
+      val methodId: Long,
+      val methodKind: TwoFactorMethod.Kind,
+      val methodCreatedAt: Long?
+    ) : AccountRoute
+
     /** Renaming the second factor identified by [methodId], whose current details are carried so the screen needn't refetch them. */
     @Serializable
     data class RenameTwoFactorMethod(
       val methodId: Long,
-      val methodKind: String,
+      val methodKind: TwoFactorMethod.Kind,
       val methodName: String?,
       val methodCreatedAt: Long?
     ) : AccountRoute {

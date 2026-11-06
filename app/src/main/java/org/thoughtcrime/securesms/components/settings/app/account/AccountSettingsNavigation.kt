@@ -16,6 +16,7 @@ import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.LocalResultEventBus
 import org.thoughtcrime.securesms.components.settings.app.AutofillDisabled
+import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpSetupEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.toTwoFactorMethod
@@ -41,6 +42,25 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
 
   detailEntry<AppSettingsRoute.AccountRoute.TotpSetup> {
     TotpSetupEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.TotpCodeEntry> {
+    AutofillDisabled()
+    TotpCodeEntryEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod> { route ->
+    val resultEventBus = LocalResultEventBus.current
+    val method = route.toTwoFactorMethod()
+    AutofillDisabled()
+    TwoFactorNameEntryEntry(
+      parentEventEmitter = parentEventEmitter,
+      methodId = method.id,
+      kind = method.kind,
+      createdAt = method.createdAt,
+      renamedMethod = null,
+      onMethodNamed = { result -> resultEventBus.sendResult(result = result) }
+    )
   }
 
   detailEntry<AppSettingsRoute.AccountRoute.RenameTwoFactorMethod> { route ->
