@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.database
 
 import android.app.Application
-import android.database.Cursor
 import assertk.assertThat
 import assertk.assertions.containsExactly
 import assertk.assertions.isEmpty
@@ -19,7 +18,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
-import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.database.MediaTable.Sorting
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
@@ -357,16 +355,6 @@ class MediaTableTest_galleryMedia {
 
   private fun viewableIds(threadId: Long, sorting: Sorting = Sorting.Newest, limit: Int = 0, offset: Int = 0): List<Long> {
     return SignalDatabase.media.getViewableGalleryMediaForThread(threadId, sorting, limit, offset).map { it.attachment!!.attachmentId.id }
-  }
-
-  private fun Cursor.readIds(): List<Long> {
-    return use {
-      val ids = mutableListOf<Long>()
-      while (moveToNext()) {
-        ids += requireLong(AttachmentTable.ID)
-      }
-      ids
-    }
   }
 
   // endregion

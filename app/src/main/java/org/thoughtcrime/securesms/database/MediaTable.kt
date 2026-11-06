@@ -25,7 +25,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     private const val THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID"
     private const val MEDIA_MESSAGE_ID = "media_message_id"
 
-    /** Projection used for most queries */
+    /** Projection used for most queries. Only [linkMediaQuery] rows carry link previews. */
     private const val MEDIA_QUERY_PROJECTION = """
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ID} AS ${AttachmentTable.ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CONTENT_TYPE},
@@ -71,7 +71,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID},
         ${MessageTable.TABLE_NAME}.${MessageTable.FROM_RECIPIENT_ID},
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} as $THREAD_RECIPIENT_ID,
-        ${MessageTable.TABLE_NAME}.${MessageTable.LINK_PREVIEWS},
+        NULL AS ${MessageTable.LINK_PREVIEWS},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} as $MEDIA_MESSAGE_ID
       """
 
@@ -104,12 +104,17 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         $THREAD_RECIPIENT_ID > 0
       """
 
-    /** Image and video attachments, excluding SVGs and link previews, that have local data or can be fetched. */
+    /** An image attachment on a message with a link preview. The media views show it only as the link's thumbnail. */
+    private const val LINK_PREVIEW_THUMBNAIL_CONDITION = """
+        (${MessageTable.LINK_PREVIEWS} IS NOT NULL AND ${AttachmentTable.CONTENT_TYPE} LIKE 'image/%')
+      """
+
+    /** Image and video attachments, excluding SVGs and link preview thumbnails, that have local data or can be fetched. */
     private const val GALLERY_MEDIA_CONDITIONS = """
         (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR ${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
+        NOT $LINK_PREVIEW_THUMBNAIL_CONDITION
       """
   }
 
@@ -263,15 +268,15 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${threadSubqueryFilter(threadId)} AND
         (${AttachmentTable.DATA_FILE} IS NOT NULL OR ${AttachmentTable.TRANSFER_STATE} = ${AttachmentTable.TRANSFER_RESTORE_OFFLOADED}) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL AND
+        NOT $LINK_PREVIEW_THUMBNAIL_CONDITION AND
         $MEDIA_QUERY_CONDITIONS
       """
     val linkSubquery = linkMediaQuery(threadId)
 
     val orderBy = when (sorting) {
-      Sorting.Newest -> " ORDER BY $MEDIA_MESSAGE_ID DESC"
-      Sorting.Oldest -> " ORDER BY $MEDIA_MESSAGE_ID ASC"
-      Sorting.Largest -> " ORDER BY ${AttachmentTable.DATA_SIZE} DESC"
+      Sorting.Newest -> " ORDER BY $MEDIA_MESSAGE_ID DESC, ${AttachmentTable.ID} DESC"
+      Sorting.Oldest -> " ORDER BY $MEDIA_MESSAGE_ID ASC, ${AttachmentTable.ID} ASC"
+      Sorting.Largest -> " ORDER BY ${AttachmentTable.DATA_SIZE} DESC, $MEDIA_MESSAGE_ID DESC, ${AttachmentTable.ID} DESC"
     }
 
     var query = "$allMediaSubquery UNION ALL $linkSubquery$orderBy"
@@ -401,6 +406,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
           LEFT JOIN ${AttachmentTable.TABLE_NAME} ON ${AttachmentTable.TABLE_NAME}.${AttachmentTable.MESSAGE_ID} = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
             AND ${AttachmentTable.TABLE_NAME}.${AttachmentTable.QUOTE} = 0
             AND ${AttachmentTable.TABLE_NAME}.${AttachmentTable.STICKER_PACK_ID} IS NULL
+            AND $LINK_PREVIEW_THUMBNAIL_CONDITION
           LEFT JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} = ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID}
         WHERE
           ${threadFilter(threadId)} AND
@@ -455,6 +461,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
     val messageId: Long,
     val date: Long,
     val isOutgoing: Boolean,
+    /** Set only when this row is the message's link preview rather than one of its other attachments. */
     val linkPreviewJson: String? = null,
     val dateReceived: Long = 0
   ) {

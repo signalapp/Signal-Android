@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
+import android.database.Cursor
 import org.signal.core.database.update
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.RecipientTestRule
@@ -66,4 +67,20 @@ class GalleryMediaFixtures(private val recipients: RecipientTestRule) {
       }
     )
   }
+}
+
+/** Drains the cursor into [MediaTable.MediaRecord]s. */
+fun Cursor.readRecords(): List<MediaTable.MediaRecord> {
+  return use {
+    val records = mutableListOf<MediaTable.MediaRecord>()
+    while (moveToNext()) {
+      records += MediaTable.MediaRecord.from(this)
+    }
+    records
+  }
+}
+
+/** Drains the cursor into attachment ids. */
+fun Cursor.readIds(): List<Long> {
+  return readRecords().map { it.attachment!!.attachmentId.id }
 }
