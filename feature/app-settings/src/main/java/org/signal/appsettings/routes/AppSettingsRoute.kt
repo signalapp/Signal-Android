@@ -274,6 +274,15 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
 
     @Serializable
     data object ConversationTestFragment : InternalRoute
+
+    @Serializable
+    data object DataSeedingPlayground : InternalRoute
+
+    @Serializable
+    data object Issues : InternalRoute
+
+    @Serializable
+    data object RemoteConfig : InternalRoute
   }
 
   @Serializable

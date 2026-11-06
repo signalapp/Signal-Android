@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EdgeEffect
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -19,13 +18,16 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.ui.isSplitPane
 import org.signal.core.ui.logging.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsNavigationActivity
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsNavHostFragment
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.doOnEachLayout
 
 /**
  * The DSL API can be completely replaced by compose.
@@ -116,15 +118,24 @@ abstract class DSLSettingsFragment(
    * conversation-settings detail entry ([ConversationSettingsNavHostFragment]), which leaves insets to these
    * fragments so the toolbar scroll tint can reach behind the status bar. Fragments shown inside a dialog have
    * their own window, which the [MainActivity] scaffolding never insets, so they always apply insets themselves.
+   * Also skipped in the detail pane of a split-pane [AppSettingsNavigationActivity], which insets both panes itself.
    */
   private fun applyEdgeToEdgeInsets() {
-    if (isInsetByMainActivityHost()) {
+    if (isInsetByHost()) {
       return
     }
 
     toolbar?.let { toolbar ->
-      toolbar.updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
       SystemWindowInsetsSetter.attach(toolbar, viewLifecycleOwner, WindowInsetsCompat.Type.statusBars())
+
+      // Grown by the inset rather than wrapped, which can measure the bar's content shorter than the bar itself after a relaunch.
+      val toolbarHeight = resources.getDimensionPixelSize(R.dimen.signal_m3_toolbar_height)
+      toolbar.doOnEachLayout {
+        val height = toolbarHeight + toolbar.paddingTop + toolbar.paddingBottom
+        if (toolbar.layoutParams.height != height) {
+          toolbar.post { toolbar.updateLayoutParams { this.height = height } }
+        }
+      }
     }
 
     recyclerView?.let { recycler ->
@@ -143,11 +154,17 @@ abstract class DSLSettingsFragment(
     }
   }
 
-  private fun isInsetByMainActivityHost(): Boolean {
-    if (activity !is MainActivity) {
+  private fun isInsetByHost(): Boolean {
+    val parents = generateSequence(parentFragment) { it.parentFragment }
+    if (parents.any { it is DialogFragment && it.showsDialog }) {
       return false
     }
-    return generateSequence(parentFragment) { it.parentFragment }.none { it is ConversationSettingsNavHostFragment || (it is DialogFragment && it.showsDialog) }
+
+    return when (activity) {
+      is MainActivity -> parents.none { it is ConversationSettingsNavHostFragment }
+      is AppSettingsNavigationActivity -> resources.isSplitPane()
+      else -> false
+    }
   }
 
   open fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {

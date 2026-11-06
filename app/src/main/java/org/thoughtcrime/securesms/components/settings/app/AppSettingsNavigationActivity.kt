@@ -10,18 +10,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.lifecycleScope
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.signal.appsettings.routes.AppSettingsNavigation
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
 import org.signal.core.ui.compose.WindowOverlayHost
-import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.remoteconfig.RemoteConfig
@@ -35,6 +29,7 @@ import org.thoughtcrime.securesms.components.settings.app.account.registerAccoun
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
 import org.thoughtcrime.securesms.components.settings.app.help.registerHelpRoutes
+import org.thoughtcrime.securesms.components.settings.app.internal.registerInternalRoutes
 import org.thoughtcrime.securesms.components.settings.app.invite.registerInviteRoutes
 import org.thoughtcrime.securesms.components.settings.app.labs.registerLabsRoutes
 import org.thoughtcrime.securesms.components.settings.app.notifications.registerNotificationsRoutes
@@ -45,7 +40,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
@@ -110,11 +104,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerAvatarPickerScreens(router::onEvent, onResult = { router.resultBus.sendResult<AvatarPickerResult>(result = it) })
               registerBadgeScreens(router::onEvent)
               registerUsernameLinkScreens(router::onEvent)
-
-              // TODO Temporary escape hatch while most destinations are unregistered here; remove before the flag ships.
-              detailEntry<AppSettingsRoute.InternalRoute.Internal> {
-                LaunchedEffect(Unit) { disableAppSettingsNavigation() }
-              }
+              registerInternalRoutes(router::onEvent)
             }
           )
         }
@@ -137,18 +127,6 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
 
     startActivity(intent)
     return true
-  }
-
-  private fun disableAppSettingsNavigation() {
-    lifecycleScope.launch {
-      withContext(Dispatchers.Default) {
-        RemoteConfig.overrides -= RemoteConfig.APP_SETTINGS_NAVIGATION_KEY
-        SignalStore.remoteConfig.overrides = RemoteConfig.overrides
-      }
-
-      startActivity(AppSettingsActivity.home(this@AppSettingsNavigationActivity))
-      finish()
-    }
   }
 
   override fun onResume() {
