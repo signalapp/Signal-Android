@@ -89,6 +89,9 @@ class BiometricsAuthentication internal constructor(
  *
  * [deviceCredentialTitle] titles the device credential screen shown when biometrics aren't available, and defaults to
  * [promptTitle].
+ *
+ * [fallbackToDeviceCredentialOnCancel] shows the device credential screen instead of failing when the system cancels
+ * the prompt ([BiometricPrompt.ERROR_CANCELED]), rather than the user.
  */
 @Composable
 fun rememberBiometricsAuthentication(
@@ -96,7 +99,8 @@ fun rememberBiometricsAuthentication(
   educationSheetMessage: String? = null,
   onAuthenticationFailed: (() -> Unit)? = null,
   proceedWhenUnavailable: Boolean = true,
-  deviceCredentialTitle: String? = null
+  deviceCredentialTitle: String? = null,
+  fallbackToDeviceCredentialOnCancel: Boolean = false
 ): BiometricsAuthentication {
   if (LocalInspectionMode.current) {
     return remember {
@@ -133,7 +137,7 @@ fun rememberBiometricsAuthentication(
 
   val biometricManager = remember(context) { BiometricManager.from(context) }
 
-  val biometricPrompt = remember(host.activity, host.fragment, context, pendingHolder) {
+  val biometricPrompt = remember(host.activity, host.fragment, context, pendingHolder, fallbackToDeviceCredentialOnCancel) {
     val executor = ContextCompat.getMainExecutor(context)
     val callback = object : BiometricPrompt.AuthenticationCallback() {
       override fun onAuthenticationFailed() {
@@ -145,7 +149,11 @@ fun rememberBiometricsAuthentication(
       }
 
       override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-        pendingHolder.take()?.onAuthenticationFailed?.invoke()
+        if (errorCode == BiometricPrompt.ERROR_CANCELED && fallbackToDeviceCredentialOnCancel && pendingHolder.peek() != null) {
+          deviceCredentialLauncher.launch(deviceCredentialTitle?.takeIf { it.isNotBlank() } ?: resolvedTitle)
+        } else {
+          pendingHolder.take()?.onAuthenticationFailed?.invoke()
+        }
       }
     }
 

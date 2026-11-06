@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.content.DialogInterface
+import android.os.Bundle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -22,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.ComposeBottomSheetDialogFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -35,6 +36,11 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
  */
 class LinkDeviceSyncBottomSheet : ComposeBottomSheetDialogFragment() {
 
+  companion object {
+    /** Set once the user links from the sheet, so the scanner beneath it can close too. */
+    const val REQUEST_KEY = "LinkDeviceSyncBottomSheet"
+  }
+
   private val viewModel: LinkDeviceViewModel by activityViewModels()
 
   @Composable
@@ -42,7 +48,8 @@ class LinkDeviceSyncBottomSheet : ComposeBottomSheetDialogFragment() {
     SyncSheet(
       onLink = { shouldSync ->
         viewModel.addDevice(shouldSync)
-        findNavController().popBackStack(R.id.linkDeviceFragment, false)
+        setFragmentResult(REQUEST_KEY, Bundle())
+        dismissAllowingStateLoss()
       },
       enabledMediaBackups = SignalStore.backup.backsUpMedia
     )

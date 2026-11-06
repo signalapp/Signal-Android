@@ -113,6 +113,10 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).conf
   if (isTestTask && name.contains("AndroidTest")) {
     source("$projectDir/src/benchmarkShared/java")
   }
+  val usesReleaseStubs = android.buildTypes.names.any { it != "debug" && it != "release" && name.endsWith("${it.replaceFirstChar(Char::uppercase)}Kotlin") }
+  if (!isTestTask && usesReleaseStubs) {
+    source("$projectDir/src/release/java")
+  }
 }
 
 wire {
@@ -525,7 +529,7 @@ android {
   val debugDir = "$projectDir/src/debug/java"
 
   android.buildTypes.configureEach {
-    val path = if (name == "release") releaseDir else debugDir
+    val path = if (name == "debug") debugDir else releaseDir
     sourceSets.named(name) {
       java.directories += path
     }

@@ -1,11 +1,8 @@
 package org.thoughtcrime.securesms.linkdevice
 
-import android.os.Bundle
-import android.view.View
+import android.content.Context
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,7 +32,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,6 +40,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLocale
+import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -53,14 +51,18 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import org.signal.core.ui.biometrics.BiometricDeviceAuthentication
-import org.signal.core.ui.biometrics.BiometricDeviceLockContract
-import org.signal.core.ui.biometrics.DevicePinAuthEducationSheet
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
+import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -73,6 +75,7 @@ import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.logging.Log
 import org.signal.remoteconfig.RemoteConfig
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
@@ -81,201 +84,171 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.signal.core.ui.R as CoreUiR
 
 private const val PLACEHOLDER = "__ICON_PLACEHOLDER__"
+private const val FINISHED_SHEET_TAG = "LinkDeviceFinishedSheet"
+private val TAG = Log.tag(LinkDeviceFragment::class)
 
 /**
  * Fragment that shows current linked devices
  */
 class LinkDeviceFragment : ComposeFragment() {
 
-  companion object {
-    private val TAG = Log.tag(LinkDeviceFragment::class)
-  }
-
-  private val viewModel: LinkDeviceViewModel by activityViewModels()
-  private lateinit var biometricAuth: BiometricDeviceAuthentication
-  private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
-  private lateinit var linkDeviceWakeLock: LinkDeviceWakeLock
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-
-    viewModel.initialize()
-
-    biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
-      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
-        findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-      }
-    }
-
-    val promptInfo = BiometricDeviceAuthentication.createPromptInfoBuilder()
-      .setTitle(requireContext().getString(R.string.LinkDeviceFragment__unlock_to_link))
-      .setConfirmationRequired(true)
-      .build()
-    biometricAuth = BiometricDeviceAuthentication(
-      BiometricManager.from(requireActivity()),
-      BiometricPrompt(requireActivity(), BiometricAuthenticationListener()),
-      promptInfo
-    )
-
-    linkDeviceWakeLock = LinkDeviceWakeLock(requireActivity())
-  }
-
-  override fun onPause() {
-    super.onPause()
-    biometricAuth.cancelAuthentication()
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController: NavController by remember { mutableStateOf(findNavController()) }
-    val context = LocalContext.current
-    val atDeviceLimit = state.devices.size >= RemoteConfig.maxLinkedDevices
+    LinkDeviceEntry(parentEventEmitter = appSettingsRouter::onEvent)
+  }
 
-    LaunchedEffect(state.dialogState) {
-      when (state.dialogState) {
-        DialogState.None, is DialogState.SyncingFailed, DialogState.SyncingTimedOut -> {
-          Log.i(TAG, "Releasing wake lock for linked device")
-          linkDeviceWakeLock.release()
-        }
-        is DialogState.SyncingMessages, DialogState.Linking -> {
-          Log.i(TAG, "Acquiring wake lock for linked device")
-          linkDeviceWakeLock.acquire()
-        }
-        DialogState.Unlinking, is DialogState.DeviceUnlinked, DialogState.ContactSupport, DialogState.LoadingDebugLog -> Unit
-      }
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      AppSettingsRoute.LinkDeviceRoute.Add -> findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+      AppSettingsRoute.LinkDeviceRoute.EditName -> findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_editDeviceNameFragment)
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
+  }
+}
 
-    LaunchedEffect(state.oneTimeEvent) {
-      when (val event = state.oneTimeEvent) {
-        LinkDeviceSettingsState.OneTimeEvent.None -> {
-          Unit
-        }
-        is LinkDeviceSettingsState.OneTimeEvent.ToastLinked -> {
-          Toast.makeText(requireContext(), getString(R.string.LinkDeviceFragment__s_linked, event.name), Toast.LENGTH_LONG).show()
-        }
-        is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked -> {
-          Toast.makeText(requireContext(), getString(R.string.LinkDeviceFragment__s_unlinked, event.name), Toast.LENGTH_LONG).show()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> {
-          Snackbar.make(requireView(), getString(R.string.LinkDeviceFragment__linking_cancelled), Snackbar.LENGTH_LONG).show()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached -> {
-          Snackbar.make(requireView(), getString(R.string.LinkDeviceFragment__you_can_only_have_d_linked_devices, RemoteConfig.maxLinkedDevices), Snackbar.LENGTH_LONG).show()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> {
-          Toast.makeText(requireContext(), getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> {
-          navController.navigateToQrScannerIfAuthed()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> {
-          navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
-        }
-        LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet -> {
-          if (navController.currentDestination?.id == R.id.linkDeviceFinishedSheet) {
-            navController.popBackStack()
-          }
-        }
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeSuccess -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.LaunchEmail -> {
-          val subject = getString(R.string.LinkDeviceFragment__link_sync_failure_support_email)
-          val body = getEmailBody(state.debugLogUrl)
-          CommunicationActions.openEmail(requireContext(), SupportEmailUtil.getSupportEmailAddress(requireContext()), subject, body)
-        }
+/**
+ * The linked device list, wired to the view model it shares with the rest of the linking flow, leaving through
+ * [parentEventEmitter]. Its sheets are shown on the activity's fragment manager, where the sheets find the same view model.
+ */
+@Composable
+fun LinkDeviceEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val context = LocalContext.current
+  val resources = LocalResources.current
+  val view = LocalView.current
+  val activity = requireNotNull(LocalActivity.current) as FragmentActivity
+  val viewModel = linkDeviceViewModel()
+  val state by viewModel.state.collectAsStateWithLifecycle()
+  val atDeviceLimit = state.devices.size >= RemoteConfig.maxLinkedDevices
+  val linkDeviceWakeLock = remember(activity) { LinkDeviceWakeLock(activity) }
+  val learnMoreUrl = stringResource(R.string.LinkDeviceFragment__learn_more_url)
+  val supportEmailSubject = stringResource(R.string.LinkDeviceFragment__link_sync_failure_support_email)
+  val debugLogLabel = stringResource(R.string.HelpFragment__debug_log)
+  val biometrics = rememberBiometricsAuthentication(
+    promptTitle = stringResource(R.string.LinkDeviceFragment__unlock_to_link),
+    educationSheetMessage = stringResource(R.string.LinkDeviceFragment__before_linking),
+    fallbackToDeviceCredentialOnCancel = true
+  )
+  val openQrScanner = { biometrics.withBiometricsAuthentication { parentEventEmitter.navigateTo(AppSettingsRoute.LinkDeviceRoute.Add) } }
+
+  LaunchedEffect(viewModel) {
+    viewModel.initialize()
+  }
+
+  LifecycleResumeEffect(biometrics) {
+    onPauseOrDispose { biometrics.cancelAuthentication() }
+  }
+
+  LaunchedEffect(state.dialogState) {
+    when (state.dialogState) {
+      DialogState.None, is DialogState.SyncingFailed, DialogState.SyncingTimedOut -> {
+        Log.i(TAG, "Releasing wake lock for linked device")
+        linkDeviceWakeLock.release()
       }
-
-      if (state.oneTimeEvent != LinkDeviceSettingsState.OneTimeEvent.None) {
-        viewModel.clearOneTimeEvent()
+      is DialogState.SyncingMessages, DialogState.Linking -> {
+        Log.i(TAG, "Acquiring wake lock for linked device")
+        linkDeviceWakeLock.acquire()
       }
-    }
-
-    Scaffolds.Settings(
-      title = stringResource(id = R.string.preferences__linked_devices),
-      onNavigationClick = { navController.popOrFinish() },
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) { contentPadding: PaddingValues ->
-      DeviceListScreen(
-        state = state,
-        modifier = Modifier.padding(contentPadding),
-        atDeviceLimit = atDeviceLimit,
-        onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
-        onLinkNewDeviceClicked = {
-          if (atDeviceLimit) {
-            viewModel.onDeviceLimitReached()
-          } else {
-            viewModel.stopExistingPolling()
-            navController.navigateToQrScannerIfAuthed()
-          }
-        },
-        onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
-        onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
-        onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
-        onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
-        onSyncFailureLearnMore = { CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.LinkDeviceFragment__learn_more_url)) },
-        onSyncFailureContactSupport = { viewModel.onSyncErrorContactSupport() },
-        onSyncCancelled = { viewModel.onSyncCancelled() },
-        onEditDevice = { device ->
-          viewModel.setDeviceToEdit(device)
-          navController.safeNavigate(R.id.action_linkDeviceFragment_to_editDeviceNameFragment)
-        },
-        onDialogDismissed = { viewModel.onDialogDismissed() },
-        onContactWithLogs = { viewModel.onContactSupport(includeLogs = true) },
-        onContactWithoutLogs = { viewModel.onContactSupport(includeLogs = false) }
-      )
+      DialogState.Unlinking, is DialogState.DeviceUnlinked, DialogState.ContactSupport, DialogState.LoadingDebugLog -> Unit
     }
   }
 
-  private fun getEmailBody(debugLog: String?): String {
-    val filter = R.string.LinkDeviceFragment__link_sync_failure_support_email_filter
-    val prefix = StringBuilder()
-    if (debugLog != null) {
-      prefix.append("\n")
-      prefix.append(getString(R.string.HelpFragment__debug_log)).append(" ").append(debugLog).append("\n\n")
+  LaunchedEffect(state.oneTimeEvent) {
+    when (val event = state.oneTimeEvent) {
+      LinkDeviceSettingsState.OneTimeEvent.None -> {
+        Unit
+      }
+      is LinkDeviceSettingsState.OneTimeEvent.ToastLinked -> {
+        Toast.makeText(context, resources.getString(R.string.LinkDeviceFragment__s_linked, event.name), Toast.LENGTH_LONG).show()
+      }
+      is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked -> {
+        Toast.makeText(context, resources.getString(R.string.LinkDeviceFragment__s_unlinked, event.name), Toast.LENGTH_LONG).show()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> {
+        Snackbar.make(view, resources.getString(R.string.LinkDeviceFragment__linking_cancelled), Snackbar.LENGTH_LONG).show()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached -> {
+        Snackbar.make(view, resources.getString(R.string.LinkDeviceFragment__you_can_only_have_d_linked_devices, RemoteConfig.maxLinkedDevices), Snackbar.LENGTH_LONG).show()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> {
+        Toast.makeText(context, resources.getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> {
+        openQrScanner()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> {
+        LinkDeviceFinishedSheet().show(activity.supportFragmentManager, FINISHED_SHEET_TAG)
+      }
+      LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet -> {
+        (activity.supportFragmentManager.findFragmentByTag(FINISHED_SHEET_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> Unit
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeSuccess -> Unit
+      LinkDeviceSettingsState.OneTimeEvent.LaunchEmail -> {
+        val body = getEmailBody(context, debugLogLabel, state.debugLogUrl)
+        CommunicationActions.openEmail(context, SupportEmailUtil.getSupportEmailAddress(context), supportEmailSubject, body)
+      }
     }
-    return SupportEmailUtil.generateSupportEmailBody(requireContext(), filter, prefix.toString(), null)
+
+    if (state.oneTimeEvent != LinkDeviceSettingsState.OneTimeEvent.None) {
+      viewModel.clearOneTimeEvent()
+    }
   }
 
-  private fun NavController.navigateToQrScannerIfAuthed() {
-    if (biometricAuth.shouldShowEducationSheet(requireContext())) {
-      DevicePinAuthEducationSheet.show(getString(R.string.LinkDeviceFragment__before_linking), parentFragmentManager)
-      parentFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, viewLifecycleOwner) { _, _ ->
-        if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
-          this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+  Scaffolds.Settings(
+    title = stringResource(id = R.string.preferences__linked_devices),
+    onNavigationClick = { parentEventEmitter.navigateBack() },
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
+  ) { contentPadding: PaddingValues ->
+    DeviceListScreen(
+      state = state,
+      modifier = Modifier.padding(contentPadding),
+      atDeviceLimit = atDeviceLimit,
+      onLearnMoreClicked = { LinkDeviceLearnMoreBottomSheetFragment().show(activity.supportFragmentManager, null) },
+      onLinkNewDeviceClicked = {
+        if (atDeviceLimit) {
+          viewModel.onDeviceLimitReached()
+        } else {
+          viewModel.stopExistingPolling()
+          openQrScanner()
         }
-      }
-    } else if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
-      this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-    }
+      },
+      onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
+      onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
+      onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
+      onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
+      onSyncFailureLearnMore = { CommunicationActions.openBrowserLink(context, learnMoreUrl) },
+      onSyncFailureContactSupport = { viewModel.onSyncErrorContactSupport() },
+      onSyncCancelled = { viewModel.onSyncCancelled() },
+      onEditDevice = { device ->
+        viewModel.setDeviceToEdit(device)
+        parentEventEmitter.navigateTo(AppSettingsRoute.LinkDeviceRoute.EditName)
+      },
+      onDialogDismissed = { viewModel.onDialogDismissed() },
+      onContactWithLogs = { viewModel.onContactSupport(includeLogs = true) },
+      onContactWithoutLogs = { viewModel.onContactSupport(includeLogs = false) }
+    )
   }
+}
 
-  private fun NavController.popOrFinish() {
-    if (!popBackStack()) {
-      requireActivity().finishAfterTransition()
-    }
+/**
+ * The view model the linked device screens and sheets share. Scoped to the activity, where the sheets' `activityViewModels()` find it.
+ */
+@Composable
+internal fun linkDeviceViewModel(): LinkDeviceViewModel {
+  return viewModel(viewModelStoreOwner = requireNotNull(LocalActivity.current) as FragmentActivity)
+}
+
+private fun getEmailBody(context: Context, debugLogLabel: String, debugLog: String?): String {
+  val filter = R.string.LinkDeviceFragment__link_sync_failure_support_email_filter
+  val prefix = StringBuilder()
+  if (debugLog != null) {
+    prefix.append("\n")
+    prefix.append(debugLogLabel).append(" ").append(debugLog).append("\n\n")
   }
-
-  private inner class BiometricAuthenticationListener : BiometricPrompt.AuthenticationCallback() {
-    override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
-      Log.w(TAG, "Authentication error: $errorCode")
-      if (errorCode == BiometricPrompt.ERROR_CANCELED) {
-        biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link))
-      } else {
-        onAuthenticationFailed()
-      }
-    }
-
-    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-      Log.i(TAG, "Authentication succeeded")
-      findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-    }
-
-    override fun onAuthenticationFailed() {
-      Log.w(TAG, "Unable to authenticate")
-    }
-  }
+  return SupportEmailUtil.generateSupportEmailBody(context, filter, prefix.toString(), null)
 }
 
 @Composable

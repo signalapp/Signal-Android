@@ -22,16 +22,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
@@ -40,6 +40,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -51,50 +52,61 @@ class EditDeviceNameFragment : ComposeFragment() {
     const val MAX_LENGTH = 50
   }
 
-  private val viewModel: LinkDeviceViewModel by activityViewModels()
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val navController: NavController by remember { mutableStateOf(findNavController()) }
+    EditDeviceNameEntry(parentEventEmitter = appSettingsRouter::onEvent)
+  }
+}
 
-    LaunchedEffect(state.oneTimeEvent) {
-      when (state.oneTimeEvent) {
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeSuccess -> {
-          Snackbar.make(requireView(), getString(R.string.EditDeviceNameFragment__device_name_updated), Snackbar.LENGTH_LONG).show()
-          navController.popBackStack()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> {
-          Snackbar.make(requireView(), getString(R.string.EditDeviceNameFragment__unable_to_change), Snackbar.LENGTH_LONG).show()
-        }
-        LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet,
-        LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner,
-        LinkDeviceSettingsState.OneTimeEvent.None,
-        LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet,
-        is LinkDeviceSettingsState.OneTimeEvent.ToastLinked,
-        LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed,
-        is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked,
-        LinkDeviceSettingsState.OneTimeEvent.LaunchEmail,
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached,
-        LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> Unit
+/**
+ * Renames the linked device picked from the device list, leaving through [parentEventEmitter] once it saves.
+ */
+@Composable
+fun EditDeviceNameEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val view = LocalView.current
+  val viewModel = linkDeviceViewModel()
+  val state by viewModel.state.collectAsStateWithLifecycle()
+  val nameUpdated = stringResource(R.string.EditDeviceNameFragment__device_name_updated)
+  val unableToChange = stringResource(R.string.EditDeviceNameFragment__unable_to_change)
+
+  LaunchedEffect(state.oneTimeEvent) {
+    when (state.oneTimeEvent) {
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeSuccess -> {
+        Snackbar.make(view, nameUpdated, Snackbar.LENGTH_LONG).show()
+        parentEventEmitter.navigateBack()
       }
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> {
+        Snackbar.make(view, unableToChange, Snackbar.LENGTH_LONG).show()
+      }
+      LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet,
+      LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner,
+      LinkDeviceSettingsState.OneTimeEvent.None,
+      LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet,
+      is LinkDeviceSettingsState.OneTimeEvent.ToastLinked,
+      LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed,
+      is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked,
+      LinkDeviceSettingsState.OneTimeEvent.LaunchEmail,
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarDeviceLimitReached,
+      LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> Unit
     }
+  }
 
-    Scaffolds.Settings(
-      title = stringResource(id = R.string.EditDeviceNameFragment__edit),
-      onNavigationClick = { navController.popBackStack() },
-      navigationIcon = SignalIcons.ArrowStart.imageVector,
-      navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
-    ) { contentPadding: PaddingValues ->
-      EditNameScreen(
-        state = state,
-        modifier = Modifier
-          .padding(contentPadding)
-          .consumeWindowInsets(contentPadding)
-          .imePadding(),
-        onSave = { viewModel.saveName(it) }
-      )
-    }
+  Scaffolds.Settings(
+    title = stringResource(id = R.string.EditDeviceNameFragment__edit),
+    onNavigationClick = { parentEventEmitter.navigateBack() },
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(id = CoreUiR.string.CloseButton__content_description)
+  ) { contentPadding: PaddingValues ->
+    EditNameScreen(
+      state = state,
+      modifier = Modifier
+        .padding(contentPadding)
+        .consumeWindowInsets(contentPadding)
+        .imePadding(),
+      onSave = { viewModel.saveName(it) }
+    )
   }
 }
 

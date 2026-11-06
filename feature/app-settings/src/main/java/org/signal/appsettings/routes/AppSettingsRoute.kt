@@ -431,25 +431,10 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     data object LinkDevice : LinkDeviceRoute
 
     @Serializable
-    data object Finished : LinkDeviceRoute
-
-    @Serializable
-    data object LearnMore : LinkDeviceRoute
-
-    @Serializable
-    data object Education : LinkDeviceRoute
-
-    @Serializable
     data object EditName : LinkDeviceRoute
 
     @Serializable
     data object Add : LinkDeviceRoute
-
-    @Serializable
-    data object Intro : LinkDeviceRoute
-
-    @Serializable
-    data object Sync : LinkDeviceRoute
   }
 
   @Serializable

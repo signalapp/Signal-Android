@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.settings.app.updates.registerAppUpdatesRoutes
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.registerUsernameLinkScreens
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
+import org.thoughtcrime.securesms.linkdevice.registerLinkDeviceRoutes
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.main.EmptyDetailScreen
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
@@ -105,6 +106,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerBadgeScreens(router::onEvent)
               registerUsernameLinkScreens(router::onEvent)
               registerInternalRoutes(router::onEvent)
+              registerLinkDeviceRoutes(router::onEvent)
             }
           )
         }
