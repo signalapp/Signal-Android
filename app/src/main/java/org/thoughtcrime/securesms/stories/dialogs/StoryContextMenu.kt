@@ -54,7 +54,7 @@ object StoryContextMenu {
         messageRecords = setOf(record),
         title = context.getString(R.string.MyStories__delete_story),
         message = context.getString(R.string.MyStories__delete_story_terminated_group)
-      ).map { (_, deletedThread) -> deletedThread }
+      ).map { it is DeleteDialog.DeleteResult.DeletedForMe && it.threadDeleted }
     } else {
       DeleteDialog.show(
         context = context,
@@ -62,7 +62,7 @@ object StoryContextMenu {
         title = context.getString(R.string.MyStories__delete_story),
         message = context.getString(R.string.MyStories__this_story_will_be_deleted),
         forceRemoteDelete = true
-      ).map { (_, deletedThread) -> deletedThread }
+      ).map { it is DeleteDialog.DeleteResult.DeletedForMe && it.threadDeleted }
     }
   }
 

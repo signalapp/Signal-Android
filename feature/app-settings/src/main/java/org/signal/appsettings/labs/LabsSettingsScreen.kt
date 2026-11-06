@@ -121,7 +121,7 @@ fun LabsSettingsScreen(
         Rows.ToggleRow(
           checked = state.improvedMessageDeletion,
           text = "Improved message deletion",
-          label = "Show a temporary tombstone when you delete a message, allowing you to promote it to a remote deletion.",
+          label = "After deleting a message for yourself, show a snackbar that lets you also delete it for everyone.",
           onCheckChanged = { onEvent(LabsSettingsEvent.ImprovedMessageDeletionToggled(it)) },
           modifier = Modifier.testTag(LabsSettingsTestTags.ROW_IMPROVED_MESSAGE_DELETION)
         )

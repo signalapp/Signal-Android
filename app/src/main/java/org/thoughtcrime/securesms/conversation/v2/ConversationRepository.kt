@@ -24,12 +24,14 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.withContext
 import org.signal.core.models.database.StickerRecord
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.util.DrawableUtil
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.Util
 import org.signal.core.util.concurrent.MaybeCompat
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
 import org.signal.core.util.groups.GroupNotAMemberException
@@ -99,6 +101,7 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.AdaptiveBitmapMetrics
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.hasSharedContact
@@ -452,6 +455,40 @@ class ConversationRepository(
     return Completable.fromAction {
       SignalDatabase.messages.setStarred(messageIds, starred)
     }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Restores a minimal placeholder for each already-deleted outgoing message and sends a remote delete for it.
+   */
+  suspend fun deleteLocallyDeletedMessagesForEveryone(messages: List<LocallyDeletedMessage>) {
+    withContext(SignalDispatchers.Default) {
+      val currentTime = System.currentTimeMillis()
+
+      for (message in messages) {
+        if (!MessageConstraintsUtil.isValidRemoteDeleteSend(message.dateSent, currentTime)) {
+          Log.w(TAG, "Message ${message.messageId} is no longer eligible for a remote delete. Skipping.")
+          continue
+        }
+
+        val restored = SignalDatabase.messages.restoreDeletedOutgoingMessage(
+          messageId = message.messageId,
+          threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(message.threadRecipientId)),
+          toRecipientId = message.threadRecipientId,
+          dateSent = message.dateSent,
+          dateReceived = message.dateReceived,
+          type = message.type,
+          expiresIn = message.expiresIn,
+          expireStarted = message.expireStarted,
+          expireTimerVersion = message.expireTimerVersion
+        )
+
+        if (restored) {
+          MessageSender.sendRemoteDelete(message.messageId)
+        } else {
+          Log.w(TAG, "Failed to restore message ${message.messageId} for a remote delete.")
+        }
+      }
+    }
   }
 
   private fun applyUniversalExpireTimerIfNecessary(context: Context, recipient: Recipient, outgoingMessage: OutgoingMessage, threadId: Long): OutgoingMessage {

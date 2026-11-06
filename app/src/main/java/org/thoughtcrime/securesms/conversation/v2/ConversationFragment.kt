@@ -273,7 +273,6 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewMod
 import org.thoughtcrime.securesms.conversation.v2.computed.ConversationMessageComputeWorkers
 import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
-import org.thoughtcrime.securesms.conversation.v2.data.DeletedMessageTombstoneCache
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
@@ -1341,7 +1340,6 @@ class ConversationFragment :
 
     if (!requireActivity().isChangingConfigurations) {
       (requireActivity().supportFragmentManager.findFragmentByTag(MESSAGE_DETAILS_TAG) as? DialogFragment)?.dismissAllowingStateLoss()
-      DeletedMessageTombstoneCache.clearThread(args.threadId)
     }
 
     super.onDestroyView()
@@ -3662,13 +3660,46 @@ class ConversationFragment :
       message = requireContext().resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_body, records.size, records.size),
       isAdmin = conversationGroupViewModel.isAdmin()
     ).observeOn(AndroidSchedulers.mainThread())
-      .subscribe { (deleted: Boolean, _: Boolean) ->
-        if (!deleted) return@subscribe
+      .subscribe { result ->
+        if (result == DeleteDialog.DeleteResult.Cancelled) return@subscribe
         val editMessageId = inputPanel.editMessageId?.id
         if (editMessageId != null && records.any { it.id == editMessageId }) {
           inputPanel.exitEditMessageMode()
         }
+
+        if (result is DeleteDialog.DeleteResult.DeletedForMe) {
+          maybeShowDeletedForMeSnackbar(records)
+        }
       }
+  }
+
+  private fun maybeShowDeletedForMeSnackbar(records: Set<MessageRecord>) {
+    if (!SignalStore.labs.improvedMessageDeletion) {
+      return
+    }
+
+    if (records.any { it.toRecipient.isSelf } || !MessageConstraintsUtil.isValidRemoteDeleteSend(records, System.currentTimeMillis())) {
+      return
+    }
+
+    val deletedMessages = records.map(LocallyDeletedMessage::from)
+
+    Snackbar.make(binding.conversationItemRecycler, R.string.ConversationFragment__deleted_for_me, Snackbar.LENGTH_LONG)
+      .setAction(R.string.ConversationFragment_delete_for_everyone) {
+        showDeleteLocallyDeletedMessagesForEveryoneDialog(deletedMessages)
+      }
+      .show()
+  }
+
+  private fun showDeleteLocallyDeletedMessagesForEveryoneDialog(deletedMessages: List<LocallyDeletedMessage>) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.ConversationFragment_delete_for_everyone_title)
+      .setMessage(R.string.ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation)
+      .setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
+        viewModel.deleteLocallyDeletedMessagesForEveryone(deletedMessages)
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .show()
   }
 
   private fun handleEndPoll(pollId: Long?) {
@@ -4387,9 +4418,7 @@ class ConversationFragment :
       adapter.playInlineContent(conversationMessage)
     }
 
-    override fun onInMemoryMessageClicked(messageRecord: InMemoryMessageRecord) {
-      ConversationDialogs.displayInMemoryMessageDialog(requireContext(), messageRecord)
-    }
+    override fun onInMemoryMessageClicked(messageRecord: InMemoryMessageRecord) = Unit
 
     override fun onViewGroupDescriptionChange(groupId: GroupId?, description: String, isMessageRequestAccepted: Boolean) {
       if (groupId != null) {

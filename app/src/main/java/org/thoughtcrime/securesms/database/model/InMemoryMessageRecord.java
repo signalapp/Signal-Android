@@ -33,41 +33,14 @@ public class InMemoryMessageRecord extends MessageRecord {
                                 long threadId,
                                 long type)
   {
-    this(id,
-         body,
-         author,
-         author,
-         System.currentTimeMillis(),
-         System.currentTimeMillis(),
-         threadId,
-         type,
-         0,
-         System.currentTimeMillis(),
-         1,
-         null);
-  }
-
-  private InMemoryMessageRecord(long id,
-                                String body,
-                                Recipient fromRecipient,
-                                Recipient toRecipient,
-                                long dateSent,
-                                long dateReceived,
-                                long threadId,
-                                long type,
-                                long expiresIn,
-                                long expireStarted,
-                                int expireTimerVersion,
-                                @Nullable RecipientId deletedBy)
-  {
     super(id,
           body,
-          fromRecipient,
+          author,
           1,
-          toRecipient,
-          dateSent,
-          dateReceived,
-          dateReceived,
+          author,
+          System.currentTimeMillis(),
+          System.currentTimeMillis(),
+          System.currentTimeMillis(),
           threadId,
           0,
           false,
@@ -75,9 +48,9 @@ public class InMemoryMessageRecord extends MessageRecord {
           Collections.emptySet(),
           Collections.emptySet(),
           -1,
-          expiresIn,
-          expireStarted,
-          expireTimerVersion,
+          0,
+          System.currentTimeMillis(),
+          1,
           false,
           false,
           Collections.emptyList(),
@@ -87,7 +60,7 @@ public class InMemoryMessageRecord extends MessageRecord {
           null,
           0,
           0,
-          deletedBy,
+          null,
           CollapsedState.NONE,
           0,
           null,
@@ -170,26 +143,6 @@ public class InMemoryMessageRecord extends MessageRecord {
   public static final class ForceConversationBubble extends InMemoryMessageRecord {
     public ForceConversationBubble(Recipient author, long threadId) {
       super(FORCE_BUBBLE_ID, "", author, threadId, 0);
-    }
-  }
-
-  /**
-   * A stand-in for a message that was recently deleted locally but can still be promoted to a
-   * remote delete. Uses the original message id so it can be restored in place.
-   */
-  public static final class DeletedMessageTombstone extends InMemoryMessageRecord {
-    public DeletedMessageTombstone(long id,
-                                   @NonNull Recipient self,
-                                   @NonNull Recipient toRecipient,
-                                   long dateSent,
-                                   long dateReceived,
-                                   long threadId,
-                                   long type,
-                                   long expiresIn,
-                                   long expireStarted,
-                                   int expireTimerVersion)
-    {
-      super(id, "", self, toRecipient, dateSent, dateReceived, threadId, type, expiresIn, expireStarted, expireTimerVersion, self.getId());
     }
   }
 }
