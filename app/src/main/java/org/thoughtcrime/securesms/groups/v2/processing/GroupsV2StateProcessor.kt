@@ -333,6 +333,7 @@ class GroupsV2StateProcessor private constructor(
     Log.i(TAG, "$logPrefix Paging from server targetRevision: ${if (targetRevision == LATEST) "latest" else targetRevision}")
 
     if (currentLocalState != null && canPageFromLocalRevision(currentLocalState)) {
+      // The server's log range is inclusive and we already have the change at our current revision.
       val result = updateViaServerChangeLogs(
         targetRevision = targetRevision,
         timestamp = timestamp,
@@ -340,7 +341,7 @@ class GroupsV2StateProcessor private constructor(
         groupRecord = groupRecord,
         receivedTime = receivedTime,
         initialLocalState = currentLocalState,
-        initialLogsNeededFrom = currentLocalState.revision,
+        initialLogsNeededFrom = currentLocalState.revision + 1,
         initialIncludeFirstState = false,
         allowJoinedAtFallback = true
       )
@@ -373,7 +374,11 @@ class GroupsV2StateProcessor private constructor(
       currentLocalState.needsServerSnapshot ||
       !GroupProtoUtil.isMember(serviceIds.aci, currentLocalState.members)
 
-    val logsNeededFrom = if (currentLocalState != null) max(currentLocalState.revision, joinedAtRevision) else joinedAtRevision
+    val logsNeededFrom = when {
+      currentLocalState == null -> joinedAtRevision
+      includeFirstState -> max(currentLocalState.revision, joinedAtRevision)
+      else -> currentLocalState.revision + 1
+    }
 
     return updateViaServerChangeLogs(
       targetRevision = targetRevision,

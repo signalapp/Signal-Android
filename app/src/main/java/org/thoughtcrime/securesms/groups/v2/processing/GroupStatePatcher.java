@@ -80,7 +80,10 @@ final class GroupStatePatcher {
     for (int revision = from; revision >= 0 && revision <= to; revision++) {
       DecryptedGroupChangeLog entry = statesToApplyNow.get(revision);
       if (entry == null) {
-        Log.w(TAG, "Could not find group log on server V" + revision);
+        if (current == null || revision != current.revision) {
+          // Callers usually request logs starting after the local revision, so its absence is expected.
+          Log.w(TAG, "Could not find group log on server V" + revision);
+        }
         continue;
       }
 
