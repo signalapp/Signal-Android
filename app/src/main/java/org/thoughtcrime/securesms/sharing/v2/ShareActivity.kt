@@ -284,8 +284,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
             action = ConversationIntents.ACTION
             putExtras(conversationIntent)
           }
-          finish()
           startActivity(mainActivityIntent)
+          finish()
         },
         onError = { throwable ->
           Log.w(TAG, "Failed to build conversation intent for share target.", throwable)

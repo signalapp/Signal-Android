@@ -135,6 +135,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.NewConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
@@ -188,6 +189,7 @@ import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.TopToastPopup
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
 class MainActivity :
@@ -198,6 +200,7 @@ class MainActivity :
   ConversationListFragment.Callback,
   MainNavigationEventSink,
   CallLogFragment.Callback,
+  ConversationFragment.MediaEditorHandoffListener,
   GooglePayComponent {
 
   companion object {
@@ -209,6 +212,9 @@ class MainActivity :
 
     /** Width the navigation rail occupies inside the list pane. */
     private val RAIL_WIDTH = 80.dp
+
+    /** Longest [holdDrawingUntilCovered] waits for another activity to be launched. */
+    private val COVER_LAUNCH_TIMEOUT = 1.seconds
 
     @JvmStatic
     fun clearTop(context: Context): Intent {
@@ -268,6 +274,9 @@ class MainActivity :
    * its enter animation, and the window holds off drawing until it renders.
    */
   private var hasBeenOffScreen = true
+
+  private var coverHold = CoverHold.NONE
+  private val coverLaunchTimeout = Runnable { coverHold = CoverHold.NONE }
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val mainBottomChromeCallback = BottomChromeCallback()
@@ -724,6 +733,9 @@ class MainActivity :
 
   override fun onResume() {
     super.onResume()
+    if (coverHold == CoverHold.AWAITING_STOP) {
+      coverHold = CoverHold.NONE
+    }
     hasBeenOffScreen = false
     dynamicTheme.onResume(this)
 
@@ -758,9 +770,18 @@ class MainActivity :
     }
   }
 
+  override fun onPause() {
+    super.onPause()
+    if (coverHold == CoverHold.AWAITING_LAUNCH) {
+      findViewById<View>(android.R.id.content).removeCallbacks(coverLaunchTimeout)
+      coverHold = CoverHold.AWAITING_STOP
+    }
+  }
+
   override fun onStop() {
     super.onStop()
     hasBeenOffScreen = true
+    coverHold = CoverHold.NONE
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
@@ -931,15 +952,19 @@ class MainActivity :
         return
       }
 
+      val conversationArgs = ConversationIntents.readArgsFromBundle(extras)
+
       if (hasBeenOffScreen) {
         holdDrawingUntilConversationRenders()
 
-        if (AppForegroundObserver.isForegrounded()) {
+        if (conversationArgs.mayOpenMediaEditor()) {
+          holdDrawingUntilCovered()
+        } else if (AppForegroundObserver.isForegrounded()) {
           overridePendingTransition(R.anim.pane_shift_enter, R.anim.stationary)
         }
       }
 
-      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(ConversationIntents.readArgsFromBundle(extras))))
+      mainNavigationViewModel.onEvent(MainNavigationEvents.GoToDetail(MainDetailRoute.Conversation(conversationArgs)))
       intent.action = null
       setIntent(intent)
     }
@@ -958,10 +983,42 @@ class MainActivity :
       return
     }
 
+    holdDrawingWhile { navigator.isHoldingEnter.value }
+  }
+
+  /**
+   * Keeps the window from drawing until another activity covers it, so that a conversation which immediately hands off to
+   * the media editor isn't flashed on screen first. Ends early if the conversation reports it isn't opening one, and gives
+   * up after [COVER_LAUNCH_TIMEOUT] if nothing is launched.
+   */
+  private fun holdDrawingUntilCovered() {
+    if (coverHold != CoverHold.NONE) {
+      return
+    }
+
+    coverHold = CoverHold.AWAITING_LAUNCH
+    holdDrawingWhile { coverHold != CoverHold.NONE }
+
+    val content: View = findViewById(android.R.id.content)
+    content.removeCallbacks(coverLaunchTimeout)
+    content.postDelayed(coverLaunchTimeout, COVER_LAUNCH_TIMEOUT.inWholeMilliseconds)
+  }
+
+  override fun onMediaEditorNotOpened() {
+    if (coverHold == CoverHold.AWAITING_LAUNCH) {
+      findViewById<View>(android.R.id.content).removeCallbacks(coverLaunchTimeout)
+      coverHold = CoverHold.NONE
+    }
+  }
+
+  /**
+   * Cancels every window draw while [isHolding] returns true.
+   */
+  private fun holdDrawingWhile(isHolding: () -> Boolean) {
     val content: View = findViewById(android.R.id.content)
     content.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
       override fun onPreDraw(): Boolean {
-        if (navigator.isHoldingEnter.value) {
+        if (isHolding()) {
           return false
         }
 
@@ -1243,4 +1300,14 @@ class MainActivity :
   }
 
   override fun onEvent(event: MainNavigationEvents) = mainNavigationViewModel.onEvent(event)
+}
+
+/**
+ * Progress of [MainActivity.holdDrawingUntilCovered]. Once another activity has been launched the hold lasts until it
+ * covers this one, or until this one resumes again if it never does.
+ */
+private enum class CoverHold {
+  NONE,
+  AWAITING_LAUNCH,
+  AWAITING_STOP
 }

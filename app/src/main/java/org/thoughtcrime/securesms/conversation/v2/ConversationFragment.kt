@@ -399,6 +399,7 @@ import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.UriUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.getPoll
 import org.thoughtcrime.securesms.util.getQuote
@@ -476,6 +477,14 @@ class ConversationFragment :
       "image/heif",
       "image/avif"
     )
+  }
+
+  /**
+   * Notified when a conversation opened with share data that [ConversationArgs.mayOpenMediaEditor] flagged won't be
+   * opening an editor after all.
+   */
+  interface MediaEditorHandoffListener {
+    fun onMediaEditorNotOpened()
   }
 
   private val args: ConversationArgs by lazy {
@@ -1890,12 +1899,19 @@ class ConversationFragment :
 
     viewModel
       .inputReadyState
-      .take(1)
-      .flatMapMaybe { inputReadyState ->
+      .firstElement()
+      .flatMap { inputReadyState ->
         draftViewModel.loadShareOrDraftData()
           .map { inputReadyState to it }
       }
-      .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
+      .subscribeBy(
+        onSuccess = { (inputReadyState, data) ->
+          if (!handleShareOrDraftData(inputReadyState, data)) {
+            findListener<MediaEditorHandoffListener>()?.onMediaEditorNotOpened()
+          }
+        },
+        onComplete = { findListener<MediaEditorHandoffListener>()?.onMediaEditorNotOpened() }
+      )
       .addTo(disposables)
 
     disposables.add(
@@ -2626,14 +2642,17 @@ class ConversationFragment :
     }
   }
 
-  private fun handleShareOrDraftData(inputReadyState: InputReadyState, data: ShareOrDraftData) {
+  /**
+   * @return whether [data] was handed off to an editor.
+   */
+  private fun handleShareOrDraftData(inputReadyState: InputReadyState, data: ShareOrDraftData): Boolean {
     if (inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false) {
       Toast.makeText(requireContext(), R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group, Toast.LENGTH_SHORT).show()
       draftViewModel.clearDraft()
-      return
+      return false
     } else if (inputReadyState.shouldClearDraft()) {
       draftViewModel.clearDraft()
-      return
+      return false
     }
 
     when (data) {
@@ -2664,10 +2683,12 @@ class ConversationFragment :
       }
 
       is ShareOrDraftData.StartSendMedia -> {
-        val recipientId = viewModel.recipientSnapshot?.id ?: return
+        val recipientId = viewModel.recipientSnapshot?.id ?: return false
         conversationActivityResultContracts.launchMediaEditor(data.mediaList, recipientId, data.text)
       }
     }
+
+    return data is ShareOrDraftData.SetMedia || data is ShareOrDraftData.StartSendMedia
   }
 
   private fun handleScheduledMessagesCountChange(count: Int) {
