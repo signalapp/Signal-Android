@@ -28,12 +28,25 @@ data class DeleteAccountState(
   val username: String? = null,
   /** The user's payments balance, formatted for display, or null when they have nothing in there. */
   val walletBalance: String? = null,
-  val dialog: Dialog = Dialog.None
+  val dialog: Dialog = Dialog.None,
+  /** The snackbar to show, or [Snackbar.None]. */
+  val snackbar: Snackbar = Snackbar.None
 ) {
 
-  override fun toString(): String = "DeleteAccountState(hasPhoneNumber=$hasPhoneNumber, regionCode=$regionCode, countryDisplayName=$countryDisplayName, countryCode=$countryCode, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, username=${username?.censor()}, walletBalance=${walletBalance?.censor()}, dialog=$dialog)"
+  override fun toString(): String = "DeleteAccountState(hasPhoneNumber=$hasPhoneNumber, regionCode=$regionCode, countryDisplayName=$countryDisplayName, countryCode=$countryCode, nationalNumber=${nationalNumber.censor()}, formattedNumber=${formattedNumber.censor()}, username=${username?.censor()}, walletBalance=${walletBalance?.censor()}, dialog=$dialog, snackbar=$snackbar)"
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */
+  /** Whichever snackbar the screen is showing, if any. */
+  sealed interface Snackbar {
+    data object None : Snackbar
+
+    /** The number can't be checked because no country code was entered. */
+    data object NoCountryCode : Snackbar
+
+    /** The number can't be checked because no phone number was entered. */
+    data object NoNationalNumber : Snackbar
+  }
+
   sealed interface Dialog {
     data object None : Dialog
 

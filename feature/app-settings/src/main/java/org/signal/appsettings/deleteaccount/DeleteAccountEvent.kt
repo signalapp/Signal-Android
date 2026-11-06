@@ -43,4 +43,7 @@ sealed interface DeleteAccountEvent {
 
   /** Dismisses whatever is in [DeleteAccountState.dialog]. */
   data object DialogDismissed : DeleteAccountEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : DeleteAccountEvent
 }

@@ -20,6 +20,10 @@ import org.signal.appsettings.deleteaccount.DeleteAccountEvent
 import org.signal.appsettings.deleteaccount.DeleteAccountState
 import org.signal.appsettings.deleteaccount.DeleteAccountState.Companion.UNKNOWN_REGION
 import org.signal.appsettings.deleteaccount.DeleteAccountState.Dialog
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 
@@ -28,6 +32,7 @@ import org.signal.core.util.logging.Log
  * keyed back in before anything is torn down; a numberless one has a box ticked instead.
  */
 class DeleteAccountViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val repository: DeleteAccountRepository = DeleteAccountRepository()
 ) : EventDrivenViewModel<DeleteAccountEvent>(TAG, shouldLogEvents = true) {
 
@@ -57,10 +62,10 @@ class DeleteAccountViewModel(
   override suspend fun processEvent(event: DeleteAccountEvent) {
     when (event) {
       DeleteAccountEvent.NavigateBackClicked -> {
-        _actions.send(DeleteAccountAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
       DeleteAccountEvent.CountryPickerClicked -> {
-        _actions.send(DeleteAccountAction.NavigateToCountryPicker)
+        parentEventEmitter.navigateTo(AppSettingsRoute.AccountRoute.DeleteAccountCountryCode)
       }
       is DeleteAccountEvent.CountrySelected -> {
         applyRegionSelected(event.regionCode)
@@ -86,6 +91,9 @@ class DeleteAccountViewModel(
       }
       DeleteAccountEvent.DialogDismissed -> {
         _state.update { it.copy(dialog = Dialog.None) }
+      }
+      DeleteAccountEvent.SnackbarDismissed -> {
+        _state.update { it.copy(snackbar = DeleteAccountState.Snackbar.None) }
       }
     }
   }
@@ -156,13 +164,13 @@ class DeleteAccountViewModel(
     val countryCode = state.countryCode.toIntOrNull() ?: 0
 
     if (countryCode == 0) {
-      _actions.send(DeleteAccountAction.ShowNoCountryCode)
+      _state.update { it.copy(snackbar = DeleteAccountState.Snackbar.NoCountryCode) }
       return
     }
 
     val nationalNumber = state.nationalNumber.toLongOrNull()
     if (nationalNumber == null) {
-      _actions.send(DeleteAccountAction.ShowNoNationalNumber)
+      _state.update { it.copy(snackbar = DeleteAccountState.Snackbar.NoNationalNumber) }
       return
     }
 

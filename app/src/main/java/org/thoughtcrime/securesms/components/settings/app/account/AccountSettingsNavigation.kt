@@ -11,8 +11,13 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
+import org.signal.core.ui.navigation.LocalResultEventBus
+import org.thoughtcrime.securesms.delete.DeleteAccountCountryCodeEntry
+import org.thoughtcrime.securesms.delete.DeleteAccountCountrySelected
+import org.thoughtcrime.securesms.delete.DeleteAccountEntry
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.preferences.AdvancedPinSettingsEntry
 
@@ -32,5 +37,20 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
 
   detailEntry<AppSettingsRoute.AccountRoute.AdvancedPinSettings> {
     AdvancedPinSettingsEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.DeleteAccount> {
+    DeleteAccountEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.DeleteAccountCountryCode> {
+    val resultEventBus = LocalResultEventBus.current
+    DeleteAccountCountryCodeEntry(
+      onCountrySelected = { country ->
+        resultEventBus.sendResult(result = DeleteAccountCountrySelected(country.regionCode))
+        parentEventEmitter.navigateBack()
+      },
+      onDismissed = { parentEventEmitter.navigateBack() }
+    )
   }
 }

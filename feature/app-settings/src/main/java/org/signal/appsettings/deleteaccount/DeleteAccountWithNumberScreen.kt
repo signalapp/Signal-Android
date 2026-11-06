@@ -56,7 +56,9 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Lets a user with a phone number delete their account, which they confirm by keying that number back in.
@@ -71,6 +73,13 @@ fun DeleteAccountWithNumberScreen(
     title = stringResource(R.string.preferences__delete_account),
     onNavigationClick = { onEvent(DeleteAccountEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(DeleteAccountEvent.SnackbarDismissed) }
+      )
+    },
     modifier = modifier
   ) { contentPadding ->
     Column(
@@ -292,6 +301,15 @@ private fun DeleteButton(
     modifier = modifier.testTag(DeleteAccountTestTags.BUTTON_DELETE)
   ) {
     Text(text = stringResource(R.string.DeleteAccountFragment__delete_account))
+  }
+}
+
+@Composable
+private fun DeleteAccountState.Snackbar.message(): String? {
+  return when (this) {
+    DeleteAccountState.Snackbar.None -> null
+    DeleteAccountState.Snackbar.NoCountryCode -> stringResource(R.string.DeleteAccountFragment__no_country_code)
+    DeleteAccountState.Snackbar.NoNationalNumber -> stringResource(R.string.DeleteAccountFragment__no_number)
   }
 }
 

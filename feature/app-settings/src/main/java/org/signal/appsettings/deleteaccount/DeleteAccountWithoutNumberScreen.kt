@@ -44,6 +44,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Lets a user with no phone number delete their account. There's no number for them to key in, so they confirm by
@@ -60,6 +61,7 @@ fun DeleteAccountWithoutNumberScreen(
     title = "",
     onNavigationClick = { onEvent(DeleteAccountEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
     modifier = modifier
   ) { contentPadding ->
     Column(

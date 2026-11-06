@@ -65,6 +65,10 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data object DeleteAccount : AccountRoute
 
+    /** Picking the country for the number the user confirms when deleting their account. */
+    @Serializable
+    data object DeleteAccountCountryCode : AccountRoute
+
     /** The account's Signal login: its username and recovery key. */
     @Serializable
     data object SignalLoginDetails : AccountRoute
