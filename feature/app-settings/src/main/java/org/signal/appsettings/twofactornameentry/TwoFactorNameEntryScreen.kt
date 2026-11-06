@@ -31,16 +31,19 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.account.TwoFactorMethod
 import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object TwoFactorNameEntryTestTags {
@@ -55,7 +58,8 @@ object TwoFactorNameEntryTestTags {
 @Composable
 fun TwoFactorNameEntryScreen(
   state: TwoFactorNameEntryState,
-  onEvent: (TwoFactorNameEntryEvent) -> Unit
+  onEvent: (TwoFactorNameEntryEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   val focusRequester = remember { FocusRequester() }
   val interactionSource = remember { MutableInteractionSource() }
@@ -67,7 +71,16 @@ fun TwoFactorNameEntryScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.TwoFactorNameEntryScreen__choose_a_name),
     onNavigationClick = { onEvent(TwoFactorNameEntryEvent.NavigateBackClicked) },
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(TwoFactorNameEntryEvent.SnackbarDismissed) },
+        duration = Snackbars.Duration.LONG
+      )
+    },
+    modifier = modifier
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -121,6 +134,14 @@ fun TwoFactorNameEntryScreen(
   }
 }
 
+@Composable
+private fun TwoFactorNameEntryState.Snackbar.message(): String? {
+  return when (this) {
+    TwoFactorNameEntryState.Snackbar.None -> null
+    TwoFactorNameEntryState.Snackbar.NameNotSaved -> stringResource(R.string.TwoFactorNameEntryScreen__couldnt_save_name)
+  }
+}
+
 /** The copy below the field is the only thing that changes between the kinds, and between naming and renaming. */
 @StringRes
 private fun instructionsFor(kind: TwoFactorMethod.Kind, renaming: Boolean): Int {
@@ -144,34 +165,31 @@ private fun instructionsFor(kind: TwoFactorMethod.Kind, renaming: Boolean): Int 
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TwoFactorNameEntryScreenPreview() {
-  Previews.Preview {
-    TwoFactorNameEntryScreen(
-      state = TwoFactorNameEntryState(name = "Bitwarden Authenticator"),
-      onEvent = {}
-    )
-  }
+  TwoFactorNameEntryScreen(
+    state = TwoFactorNameEntryState(name = "Bitwarden Authenticator"),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TwoFactorNameEntryScreenRenamePreview() {
-  Previews.Preview {
-    TwoFactorNameEntryScreen(
-      state = TwoFactorNameEntryState(name = "Twilio Authy", renaming = true),
-      onEvent = {}
-    )
-  }
+  TwoFactorNameEntryScreen(
+    state = TwoFactorNameEntryState(name = "Twilio Authy", renaming = true),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TwoFactorNameEntryScreenPasskeyPreview() {
-  Previews.Preview {
-    TwoFactorNameEntryScreen(
-      state = TwoFactorNameEntryState(name = "Pixel Phone", kind = TwoFactorMethod.Kind.PASSKEY),
-      onEvent = {}
-    )
-  }
+  TwoFactorNameEntryScreen(
+    state = TwoFactorNameEntryState(name = "Pixel Phone", kind = TwoFactorMethod.Kind.PASSKEY),
+    onEvent = {}
+  )
 }

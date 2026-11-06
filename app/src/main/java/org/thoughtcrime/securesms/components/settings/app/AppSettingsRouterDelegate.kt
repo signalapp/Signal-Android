@@ -15,16 +15,18 @@ import kotlinx.coroutines.launch
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.routes.AppSettingsRouter
+import org.signal.appsettings.routes.PopUpTo
 
 /**
  * Provides the [AppSettingsRouter] a settings fragment hands its screen as the parent event emitter.
  *
  * Under [AppSettingsNavigationActivity] this is the activity's router, which applies navigation to the activity's back
  * stack, so the fragment does nothing with it. Under any other host, the fragment owns its router and turns each event
- * into nav graph navigation with [onNavigateBack] and [onNavigateToScreen] while resumed.
+ * into nav graph navigation with [onNavigateBack] and [onNavigateToScreen] while resumed. [onNavigateBack] gets the
+ * event's [PopUpTo], which the default ignores.
  */
 fun Fragment.appSettingsRouter(
-  onNavigateBack: () -> Unit = { requireActivity().onBackPressedDispatcher.onBackPressed() },
+  onNavigateBack: (PopUpTo?) -> Unit = { requireActivity().onBackPressedDispatcher.onBackPressed() },
   onNavigateToScreen: (AppSettingsRoute) -> Unit = { error("Unexpected route: ${it.javaClass.name}") }
 ): Lazy<AppSettingsRouter> {
   return AppSettingsRouterDelegate(this, onNavigateBack, onNavigateToScreen)
@@ -32,7 +34,7 @@ fun Fragment.appSettingsRouter(
 
 private class AppSettingsRouterDelegate(
   private val fragment: Fragment,
-  private val onNavigateBack: () -> Unit,
+  private val onNavigateBack: (PopUpTo?) -> Unit,
   private val onNavigateToScreen: (AppSettingsRoute) -> Unit
 ) : Lazy<AppSettingsRouter> {
 
@@ -57,7 +59,7 @@ private class AppSettingsRouterDelegate(
         owner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
           fragmentRouter.value.events.collect { event ->
             when (event) {
-              is AppSettingsNavigationEvent.NavigateBack -> onNavigateBack()
+              is AppSettingsNavigationEvent.NavigateBack -> onNavigateBack(event.popUpTo)
               is AppSettingsNavigationEvent.NavigateToScreen -> onNavigateToScreen(event.route)
             }
           }

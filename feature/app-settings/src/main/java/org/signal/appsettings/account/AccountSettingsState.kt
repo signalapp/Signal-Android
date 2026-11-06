@@ -71,6 +71,12 @@ data class AccountSettingsState(
     /** A second factor of [kind] was removed. */
     data class MethodRemoved(val kind: TwoFactorMethod.Kind) : Snackbar
 
+    /** A second factor of [kind] was just set up and named. */
+    data class MethodSetUp(val kind: TwoFactorMethod.Kind) : Snackbar
+
+    /** A second factor of [kind] was renamed. */
+    data class MethodRenamed(val kind: TwoFactorMethod.Kind) : Snackbar
+
     /** A second factor of [kind] couldn't be removed. */
     data class MethodRemovalFailed(val kind: TwoFactorMethod.Kind) : Snackbar
 

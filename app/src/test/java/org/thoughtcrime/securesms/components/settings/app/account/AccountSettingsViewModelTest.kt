@@ -39,6 +39,7 @@ import org.signal.appsettings.account.AccountSettingsState
 import org.signal.appsettings.account.AccountSettingsState.Dialog
 import org.signal.appsettings.account.AccountSettingsState.LoadState
 import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.account.TwoFactorMethodNamed
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.models.MasterKey
@@ -571,6 +572,24 @@ class AccountSettingsViewModelTest {
     coVerify { twoFactorMethodService.removeMethod(TOTP_APP.id) }
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
     assertThat(viewModel.state.value.snackbar).isEqualTo(AccountSettingsState.Snackbar.MethodRemoved(TwoFactorMethod.Kind.AUTHENTICATOR_APP))
+  }
+
+  @Test
+  fun `MethodNamed for a new method says it was set up`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AccountSettingsEvent.MethodNamed(TwoFactorMethodNamed(TwoFactorMethod.Kind.PASSKEY, renamed = false)))
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(AccountSettingsState.Snackbar.MethodSetUp(TwoFactorMethod.Kind.PASSKEY))
+  }
+
+  @Test
+  fun `MethodNamed for a rename says it was renamed`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(AccountSettingsEvent.MethodNamed(TwoFactorMethodNamed(TwoFactorMethod.Kind.AUTHENTICATOR_APP, renamed = true)))
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(AccountSettingsState.Snackbar.MethodRenamed(TwoFactorMethod.Kind.AUTHENTICATOR_APP))
   }
 
   /** The dialog dismisses itself before it confirms, so the removal has to survive the dismissal that lands first. */

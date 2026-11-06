@@ -13,6 +13,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.account.TwoFactorMethodNamed
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
+import org.signal.appsettings.routes.navigateBack
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryAction
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryEvent
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryState
@@ -31,6 +36,7 @@ import java.time.Instant
  * could not read has no name to start from, so renaming it starts from an empty field.
  */
 class TwoFactorNameEntryViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val methodId: Long?,
   private val kind: TwoFactorMethod.Kind,
   private val createdAt: Long,
@@ -62,7 +68,7 @@ class TwoFactorNameEntryViewModel(
   override suspend fun processEvent(event: TwoFactorNameEntryEvent) {
     when (event) {
       TwoFactorNameEntryEvent.NavigateBackClicked -> {
-        _actions.send(TwoFactorNameEntryAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
       is TwoFactorNameEntryEvent.NameChanged -> {
         _state.update { it.copy(name = StringUtil.trimToFit(event.name, MAX_NAME_LENGTH_GRAPHEMES, TwoFactorMethodService.MAX_NAME_LENGTH_BYTES)) }
@@ -73,6 +79,9 @@ class TwoFactorNameEntryViewModel(
           stateEmitter = { _state.value = it },
           actionEmitter = { _actions.send(it) }
         )
+      }
+      TwoFactorNameEntryEvent.SnackbarDismissed -> {
+        _state.update { it.copy(snackbar = TwoFactorNameEntryState.Snackbar.None) }
       }
     }
   }
@@ -95,7 +104,7 @@ class TwoFactorNameEntryViewModel(
     val id = renamedMethod?.id ?: methodId
     if (id == null) {
       Log.w(TAG, "Asked to name a method without being told which one. Going back to account settings rather than stranding the user here.")
-      actionEmitter(TwoFactorNameEntryAction.NavigateToAccountSettings)
+      navigateToAccountSettings()
       return
     }
 
@@ -103,18 +112,20 @@ class TwoFactorNameEntryViewModel(
 
     when (service.setName(id = id, name = name, createdAt = Instant.ofEpochMilli(stamp), masterKey = masterKeyProvider())) {
       is RequestResult.Success -> {
-        actionEmitter(if (renamedMethod != null) TwoFactorNameEntryAction.ShowMethodRenamed(kind) else TwoFactorNameEntryAction.ShowMethodSetUp(kind))
-        actionEmitter(TwoFactorNameEntryAction.NavigateToAccountSettings)
+        actionEmitter(TwoFactorNameEntryAction.MethodNamed(TwoFactorMethodNamed(kind = kind, renamed = renamedMethod != null)))
       }
       is RequestResult.NonSuccess -> {
         Log.w(TAG, "Asked to name a method the service doesn't have. Going back to account settings rather than stranding the user here.")
-        actionEmitter(TwoFactorNameEntryAction.NavigateToAccountSettings)
+        navigateToAccountSettings()
       }
       is RequestResult.RetryableNetworkError, is RequestResult.ApplicationError -> {
-        state = state.copy(submitting = false)
+        state = state.copy(submitting = false, snackbar = TwoFactorNameEntryState.Snackbar.NameNotSaved)
         stateEmitter(state)
-        actionEmitter(TwoFactorNameEntryAction.ShowNameNotSaved)
       }
     }
+  }
+
+  private fun navigateToAccountSettings() {
+    parentEventEmitter.navigateBack(popUpTo = PopUpTo(AppSettingsRoute.AccountRoute.Account::class))
   }
 }

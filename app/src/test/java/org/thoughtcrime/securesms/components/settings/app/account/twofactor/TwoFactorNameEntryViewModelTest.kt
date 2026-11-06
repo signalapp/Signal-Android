@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.settings.app.account.twofactor
 
 import assertk.assertThat
-import assertk.assertions.contains
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
@@ -31,8 +30,13 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.appsettings.account.TwoFactorMethod
+import org.signal.appsettings.account.TwoFactorMethodNamed
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.PopUpTo
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryAction
 import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryEvent
+import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryState
 import org.signal.core.models.MasterKey
 import org.signal.libsignal.net.MfaKeyNotFoundException
 import org.signal.libsignal.net.RequestResult
@@ -56,10 +60,13 @@ class TwoFactorNameEntryViewModelTest {
     private const val NOW = 9000L
 
     private val MASTER_KEY = MasterKey(ByteArray(32) { (it + 100).toByte() })
+
+    private val BACK_TO_ACCOUNT_SETTINGS = AppSettingsNavigationEvent.NavigateBack(popUpTo = PopUpTo(AppSettingsRoute.AccountRoute.Account::class))
   }
 
   private val testDispatcher = UnconfinedTestDispatcher()
   private val service: TwoFactorMethodService = mockk(relaxed = true)
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
@@ -115,8 +122,7 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
     coVerify { service.setName(NEW_METHOD_ID, "Bitwarden Authenticator", Instant.ofEpochMilli(NEW_METHOD_CREATED_AT), MASTER_KEY) }
-    assertThat(actions).contains(TwoFactorNameEntryAction.ShowMethodSetUp(TwoFactorMethod.Kind.AUTHENTICATOR_APP))
-    assertThat(actions.last()).isEqualTo(TwoFactorNameEntryAction.NavigateToAccountSettings)
+    assertThat(actions).isEqualTo(listOf(TwoFactorNameEntryAction.MethodNamed(TwoFactorMethodNamed(TwoFactorMethod.Kind.AUTHENTICATOR_APP, renamed = false))))
   }
 
   @Test
@@ -128,12 +134,11 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
     coVerify { service.setName(EXISTING_APP.id, "Work Authenticator", Instant.ofEpochMilli(EXISTING_APP.createdAt!!), MASTER_KEY) }
-    assertThat(actions).contains(TwoFactorNameEntryAction.ShowMethodRenamed(TwoFactorMethod.Kind.AUTHENTICATOR_APP))
-    assertThat(actions.last()).isEqualTo(TwoFactorNameEntryAction.NavigateToAccountSettings)
+    assertThat(actions).isEqualTo(listOf(TwoFactorNameEntryAction.MethodNamed(TwoFactorMethodNamed(TwoFactorMethod.Kind.AUTHENTICATOR_APP, renamed = true))))
   }
 
   @Test
-  fun `renaming a passkey reports the passkey toast`() = runTest(testDispatcher) {
+  fun `renaming a passkey reports a passkey rename`() = runTest(testDispatcher) {
     val viewModel = createViewModel(methodId = EXISTING_PASSKEY.id, renamedMethod = EXISTING_PASSKEY)
     val actions = collectActions(viewModel.actions)
 
@@ -143,17 +148,16 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
     coVerify { service.setName(EXISTING_PASSKEY.id, "Work Phone", Instant.ofEpochMilli(EXISTING_PASSKEY.createdAt!!), MASTER_KEY) }
-    assertThat(actions).contains(TwoFactorNameEntryAction.ShowMethodRenamed(TwoFactorMethod.Kind.PASSKEY))
+    assertThat(actions).isEqualTo(listOf(TwoFactorNameEntryAction.MethodNamed(TwoFactorMethodNamed(TwoFactorMethod.Kind.PASSKEY, renamed = true))))
   }
 
   @Test
   fun `NavigateBackClicked leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel(methodId = NEW_METHOD_ID)
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TwoFactorNameEntryEvent.NavigateBackClicked)
 
-    assertThat(actions.last()).isEqualTo(TwoFactorNameEntryAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
@@ -203,8 +207,22 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NameChanged("Aegis"))
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
-    assertThat(actions.last()).isEqualTo(TwoFactorNameEntryAction.ShowNameNotSaved)
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).isEmpty()
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TwoFactorNameEntryState.Snackbar.NameNotSaved)
     assertThat(viewModel.state.value.submitting).isFalse()
+  }
+
+  @Test
+  fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
+    coEvery { service.setName(any(), any(), any(), any()) } returns RequestResult.RetryableNetworkError(IOException("offline"))
+    val viewModel = createViewModel(methodId = NEW_METHOD_ID)
+
+    viewModel.onEvent(TwoFactorNameEntryEvent.NameChanged("Aegis"))
+    viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
+    viewModel.onEvent(TwoFactorNameEntryEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TwoFactorNameEntryState.Snackbar.None)
   }
 
   /** A method whose metadata we couldn't read has no date to preserve, so it gets stamped with the current time. */
@@ -230,10 +248,12 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NameChanged("Aegis"))
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
-    assertThat(actions).isEqualTo(listOf(TwoFactorNameEntryAction.NavigateToAccountSettings))
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).isEqualTo(listOf(BACK_TO_ACCOUNT_SETTINGS))
   }
 
   private fun createViewModel(methodId: Long?, renamedMethod: TwoFactorMethod? = null) = TwoFactorNameEntryViewModel(
+    parentEventEmitter = { parentEvents += it },
     methodId = methodId,
     kind = renamedMethod?.kind ?: TwoFactorMethod.Kind.AUTHENTICATOR_APP,
     createdAt = NEW_METHOD_CREATED_AT,
@@ -252,7 +272,8 @@ class TwoFactorNameEntryViewModelTest {
     viewModel.onEvent(TwoFactorNameEntryEvent.NameChanged("Aegis"))
     viewModel.onEvent(TwoFactorNameEntryEvent.NextClicked)
 
-    assertThat(actions.last()).isEqualTo(TwoFactorNameEntryAction.NavigateToAccountSettings)
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).isEqualTo(listOf(BACK_TO_ACCOUNT_SETTINGS))
     coVerify(exactly = 0) { service.setName(any(), any(), any(), any()) }
   }
 

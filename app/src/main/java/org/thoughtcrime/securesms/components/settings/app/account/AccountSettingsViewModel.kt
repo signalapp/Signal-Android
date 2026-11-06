@@ -173,6 +173,10 @@ class AccountSettingsViewModel(
       AccountSettingsEvent.DialogDismissed -> {
         _state.update { it.copy(dialog = Dialog.None) }
       }
+      is AccountSettingsEvent.MethodNamed -> {
+        val kind = event.result.kind
+        _state.update { it.copy(snackbar = if (event.result.renamed) AccountSettingsState.Snackbar.MethodRenamed(kind) else AccountSettingsState.Snackbar.MethodSetUp(kind)) }
+      }
       AccountSettingsEvent.SnackbarDismissed -> {
         _state.update { it.copy(snackbar = AccountSettingsState.Snackbar.None) }
       }

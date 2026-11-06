@@ -20,4 +20,7 @@ sealed interface TwoFactorNameEntryEvent {
 
   /** The user submitted the name they entered. */
   data object NextClicked : TwoFactorNameEntryEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : TwoFactorNameEntryEvent
 }

@@ -15,6 +15,9 @@ import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
 import org.signal.core.ui.navigation.LocalResultEventBus
+import org.thoughtcrime.securesms.components.settings.app.AutofillDisabled
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryEntry
+import org.thoughtcrime.securesms.components.settings.app.account.twofactor.toTwoFactorMethod
 import org.thoughtcrime.securesms.delete.DeleteAccountCountryCodeEntry
 import org.thoughtcrime.securesms.delete.DeleteAccountCountrySelected
 import org.thoughtcrime.securesms.delete.DeleteAccountEntry
@@ -33,6 +36,20 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
     } else {
       Fragments.Fragment<LinkedDeviceAccountSettingsFragment>(modifier = Modifier.fillMaxSize())
     }
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.RenameTwoFactorMethod> { route ->
+    val resultEventBus = LocalResultEventBus.current
+    val method = route.toTwoFactorMethod()
+    AutofillDisabled()
+    TwoFactorNameEntryEntry(
+      parentEventEmitter = parentEventEmitter,
+      methodId = method.id,
+      kind = method.kind,
+      createdAt = method.createdAt,
+      renamedMethod = method,
+      onMethodNamed = { result -> resultEventBus.sendResult(result = result) }
+    )
   }
 
   detailEntry<AppSettingsRoute.AccountRoute.AdvancedPinSettings> {

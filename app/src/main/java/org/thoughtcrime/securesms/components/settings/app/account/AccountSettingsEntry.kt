@@ -17,9 +17,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.signal.appsettings.account.AccountSettingsAction
 import org.signal.appsettings.account.AccountSettingsEvent
 import org.signal.appsettings.account.AccountSettingsScreen
+import org.signal.appsettings.account.TwoFactorMethodNamed
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.core.ui.biometrics.rememberBiometricsAuthentication
 import org.signal.core.ui.compose.CollectActions
+import org.signal.core.ui.navigation.ResultEffect
 import org.signal.core.util.ServiceUtil
 import org.signal.passwordmanager.SignalPasskeyManager
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -31,7 +33,7 @@ import org.signal.appsettings.R as AppSettingsR
 
 /**
  * Account settings on a primary device, wired to their view model and to the PIN flow, screen lock prompts and other
- * activities they open.
+ * activities they open. A second factor named on the name screen comes back as a [TwoFactorMethodNamed] result.
  */
 @Composable
 fun AccountSettingsEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
@@ -44,6 +46,10 @@ fun AccountSettingsEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Uni
     )
   }
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  ResultEffect<TwoFactorMethodNamed> { result ->
+    viewModel.onEvent(AccountSettingsEvent.MethodNamed(result))
+  }
 
   val pinFlowLauncher = rememberLauncherForActivityResult(StartActivityForResult()) { result ->
     if (result.resultCode == Activity.RESULT_OK) {

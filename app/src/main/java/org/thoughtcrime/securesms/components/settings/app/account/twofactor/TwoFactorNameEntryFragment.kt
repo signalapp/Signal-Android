@@ -5,85 +5,51 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.twofactor
 
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import org.signal.appsettings.account.TwoFactorMethod
-import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryAction
-import org.signal.appsettings.twofactornameentry.TwoFactorNameEntryScreen
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
 import org.thoughtcrime.securesms.R
-import org.signal.appsettings.R as AppSettingsR
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 
 /**
- * Wrapper around [TwoFactorNameEntryScreen].
+ * Names or renames a second factor under the legacy nav graph. The result goes back to account settings as a fragment
+ * result under [RESULT_KEY].
  */
 class TwoFactorNameEntryFragment : ComposeFragment() {
+
+  companion object {
+    const val RESULT_KEY = "two_factor_method_named"
+    const val RESULT_KIND = "kind"
+    const val RESULT_RENAMED = "renamed"
+  }
 
   /** The name the user gives a second factor is not a credential, so there's nothing here worth offering to save. */
   override val autofillEnabled: Boolean = false
 
-  private val viewModel: TwoFactorNameEntryViewModel by viewModel {
-    TwoFactorNameEntryViewModel(
-      methodId = TwoFactorNavArgs.methodId(arguments),
-      kind = TwoFactorNavArgs.methodKind(arguments),
-      createdAt = TwoFactorNavArgs.createdAt(arguments) ?: System.currentTimeMillis(),
-      renamedMethod = TwoFactorNavArgs.renamedMethod(arguments)
-    )
-  }
+  private val appSettingsRouter by appSettingsRouter(
+    onNavigateBack = { popUpTo ->
+      if (popUpTo?.route == AppSettingsRoute.AccountRoute.Account::class) {
+        findNavController().popBackStack(R.id.accountSettingsFragment, false)
+      } else {
+        requireActivity().onBackPressedDispatcher.onBackPressed()
+      }
+    }
+  )
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    CollectActions(viewModel.actions) { action -> handleAction(action) }
-
-    TwoFactorNameEntryScreen(
-      state = state,
-      onEvent = viewModel::onEvent
+    TwoFactorNameEntryEntry(
+      parentEventEmitter = appSettingsRouter::onEvent,
+      methodId = TwoFactorNavArgs.methodId(arguments),
+      kind = TwoFactorNavArgs.methodKind(arguments),
+      createdAt = TwoFactorNavArgs.createdAt(arguments),
+      renamedMethod = TwoFactorNavArgs.renamedMethod(arguments),
+      onMethodNamed = { result ->
+        setFragmentResult(RESULT_KEY, bundleOf(RESULT_KIND to result.kind.name, RESULT_RENAMED to result.renamed))
+      }
     )
-  }
-
-  private fun handleAction(action: TwoFactorNameEntryAction) {
-    when (action) {
-      TwoFactorNameEntryAction.NavigateBack -> {
-        requireActivity().onBackPressedDispatcher.onBackPressed()
-      }
-
-      TwoFactorNameEntryAction.NavigateToAccountSettings -> {
-        findNavController().popBackStack(R.id.accountSettingsFragment, false)
-      }
-
-      is TwoFactorNameEntryAction.ShowMethodSetUp -> {
-        val stringId = when (action.kind) {
-          TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.TwoFactorNameEntryScreen__authenticator_app_set_up
-          TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.TwoFactorNameEntryScreen__passkey_set_up
-          TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.TwoFactorNameEntryScreen__two_factor_method_set_up
-        }
-        toast(stringId)
-      }
-
-      is TwoFactorNameEntryAction.ShowMethodRenamed -> {
-        val stringId = when (action.kind) {
-          TwoFactorMethod.Kind.AUTHENTICATOR_APP -> AppSettingsR.string.TwoFactorNameEntryScreen__authenticator_app_renamed
-          TwoFactorMethod.Kind.PASSKEY -> AppSettingsR.string.TwoFactorNameEntryScreen__passkey_renamed
-          TwoFactorMethod.Kind.OTHER -> AppSettingsR.string.TwoFactorNameEntryScreen__two_factor_method_renamed
-        }
-        toast(stringId)
-      }
-
-      TwoFactorNameEntryAction.ShowNameNotSaved -> {
-        toast(AppSettingsR.string.TwoFactorNameEntryScreen__couldnt_save_name)
-      }
-    }
-  }
-
-  private fun toast(@StringRes message: Int) {
-    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
   }
 }

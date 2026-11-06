@@ -871,6 +871,20 @@ private fun AccountSettingsState.Snackbar.message(): String? {
         TwoFactorMethod.Kind.OTHER -> R.string.AccountSettingsFragment__two_factor_method_removed
       }
     )
+    is AccountSettingsState.Snackbar.MethodSetUp -> stringResource(
+      when (kind) {
+        TwoFactorMethod.Kind.AUTHENTICATOR_APP -> R.string.TwoFactorNameEntryScreen__authenticator_app_set_up
+        TwoFactorMethod.Kind.PASSKEY -> R.string.TwoFactorNameEntryScreen__passkey_set_up
+        TwoFactorMethod.Kind.OTHER -> R.string.TwoFactorNameEntryScreen__two_factor_method_set_up
+      }
+    )
+    is AccountSettingsState.Snackbar.MethodRenamed -> stringResource(
+      when (kind) {
+        TwoFactorMethod.Kind.AUTHENTICATOR_APP -> R.string.TwoFactorNameEntryScreen__authenticator_app_renamed
+        TwoFactorMethod.Kind.PASSKEY -> R.string.TwoFactorNameEntryScreen__passkey_renamed
+        TwoFactorMethod.Kind.OTHER -> R.string.TwoFactorNameEntryScreen__two_factor_method_renamed
+      }
+    )
     is AccountSettingsState.Snackbar.MethodRemovalFailed -> stringResource(
       when (kind) {
         TwoFactorMethod.Kind.AUTHENTICATOR_APP -> R.string.AccountSettingsFragment__couldnt_remove_authenticator_app

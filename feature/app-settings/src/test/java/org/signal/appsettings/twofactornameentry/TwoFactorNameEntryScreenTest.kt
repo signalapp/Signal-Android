@@ -10,7 +10,9 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextReplacement
 import assertk.assertThat
@@ -64,6 +66,22 @@ class TwoFactorNameEntryScreenTest {
       .performClick()
 
     assertThat(events).contains(TwoFactorNameEntryEvent.NextClicked)
+  }
+
+  @Test
+  fun whenITapClose_thenIExpectNavigateBackClickedEvent() {
+    setContent(TwoFactorNameEntryState())
+
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
+
+    assertThat(events).contains(TwoFactorNameEntryEvent.NavigateBackClicked)
+  }
+
+  @Test
+  fun givenANameNotSavedSnackbar_whenIDisplayScreen_thenIExpectTheMessage() {
+    setContent(TwoFactorNameEntryState(name = "Aegis", snackbar = TwoFactorNameEntryState.Snackbar.NameNotSaved))
+
+    composeTestRule.onNodeWithText("Couldn't save name. Check your connection and try again.").assertIsDisplayed()
   }
 
   private fun setContent(state: TwoFactorNameEntryState) {

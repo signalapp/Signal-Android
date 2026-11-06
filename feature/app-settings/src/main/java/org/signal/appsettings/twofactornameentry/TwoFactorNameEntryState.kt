@@ -18,11 +18,20 @@ data class TwoFactorNameEntryState(
   val kind: TwoFactorMethod.Kind = TwoFactorMethod.Kind.AUTHENTICATOR_APP,
   /** True when an already-configured method is being renamed, false when one is being named for the first time. */
   val renaming: Boolean = false,
-  val submitting: Boolean = false
+  val submitting: Boolean = false,
+  val snackbar: Snackbar = Snackbar.None
 ) {
 
   val canSubmit: Boolean
     get() = name.isNotBlank() && !submitting
 
-  override fun toString(): String = "TwoFactorNameEntryState(nameLength=${name.length}, kind=$kind, renaming=$renaming, submitting=$submitting)"
+  override fun toString(): String = "TwoFactorNameEntryState(nameLength=${name.length}, kind=$kind, renaming=$renaming, submitting=$submitting, snackbar=$snackbar)"
+
+  /** Whichever snackbar the screen is showing, if any. */
+  sealed interface Snackbar {
+    data object None : Snackbar
+
+    /** The name didn't stick, so the user knows to try again. */
+    data object NameNotSaved : Snackbar
+  }
 }
