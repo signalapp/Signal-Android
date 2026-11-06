@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.internal.donor
 
+import android.app.Activity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,8 +17,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.models.badges.Badge
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
@@ -27,6 +31,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.donations.StripeDeclineCode
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
 
 /**
@@ -34,56 +39,71 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Un
  */
 class InternalDonorErrorConfigurationFragment : ComposeFragment() {
 
-  private val viewModel: InternalDonorErrorConfigurationViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    InternalDonorErrorConfigurationEntry(parentEventEmitter = appSettingsRouter::onEvent)
+  }
+}
 
-    SignalTheme {
-      InternalDonorErrorConfigurationScreen(
-        state = state,
-        callback = remember { DefaultInternalDonorErrorConfigurationCallback() }
-      )
+/**
+ * Configures the donor error state, wired to its view model, leaving through [parentEventEmitter].
+ */
+@Composable
+fun InternalDonorErrorConfigurationEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  val activity = LocalActivity.current
+  val viewModel: InternalDonorErrorConfigurationViewModel = viewModel()
+  val state by viewModel.state.collectAsStateWithLifecycle()
+  val callback = remember(viewModel, activity, parentEventEmitter) { DefaultInternalDonorErrorConfigurationCallback(viewModel, activity, parentEventEmitter) }
+
+  SignalTheme {
+    InternalDonorErrorConfigurationScreen(
+      state = state,
+      callback = callback
+    )
+  }
+}
+
+/**
+ * Default callback that bridges UI interactions to ViewModel updates.
+ */
+private class DefaultInternalDonorErrorConfigurationCallback(
+  private val viewModel: InternalDonorErrorConfigurationViewModel,
+  private val activity: Activity?,
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit
+) : InternalDonorErrorConfigurationScreenCallback {
+  override fun onNavigationClick() {
+    parentEventEmitter.navigateBack()
+  }
+
+  override fun onSelectedBadgeChanged(badgeId: String) {
+    val index = viewModel.state.value.badges.indexOfFirst { it.id == badgeId }
+    if (index >= 0) {
+      viewModel.setSelectedBadge(index)
     }
   }
 
-  /**
-   * Default callback that bridges UI interactions to ViewModel updates.
-   */
-  inner class DefaultInternalDonorErrorConfigurationCallback : InternalDonorErrorConfigurationScreenCallback {
-    override fun onNavigationClick() {
-      requireActivity().onBackPressedDispatcher.onBackPressed()
+  override fun onSelectedCancellationChanged(status: String) {
+    val index = UnexpectedSubscriptionCancellation.entries.indexOfFirst { it.status == status }
+    if (index >= 0) {
+      viewModel.setSelectedUnexpectedSubscriptionCancellation(index)
     }
+  }
 
-    override fun onSelectedBadgeChanged(badgeId: String) {
-      val index = viewModel.state.value.badges.indexOfFirst { it.id == badgeId }
-      if (index >= 0) {
-        viewModel.setSelectedBadge(index)
-      }
+  override fun onSelectedDeclineCodeChanged(code: String) {
+    val index = StripeDeclineCode.Code.entries.indexOfFirst { it.code == code }
+    if (index >= 0) {
+      viewModel.setStripeDeclineCode(index)
     }
+  }
 
-    override fun onSelectedCancellationChanged(status: String) {
-      val index = UnexpectedSubscriptionCancellation.entries.indexOfFirst { it.status == status }
-      if (index >= 0) {
-        viewModel.setSelectedUnexpectedSubscriptionCancellation(index)
-      }
-    }
+  override fun onSaveClick() {
+    viewModel.save().subscribe { activity?.finish() }
+  }
 
-    override fun onSelectedDeclineCodeChanged(code: String) {
-      val index = StripeDeclineCode.Code.entries.indexOfFirst { it.code == code }
-      if (index >= 0) {
-        viewModel.setStripeDeclineCode(index)
-      }
-    }
-
-    override fun onSaveClick() {
-      viewModel.save().subscribe { requireActivity().finish() }
-    }
-
-    override fun onClearClick() {
-      viewModel.clearErrorState().subscribe()
-    }
+  override fun onClearClick() {
+    viewModel.clearErrorState().subscribe()
   }
 }
 

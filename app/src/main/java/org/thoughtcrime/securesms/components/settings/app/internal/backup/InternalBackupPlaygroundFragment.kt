@@ -54,12 +54,12 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.appsettings.backups.BackupCreationProgressRow
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -95,6 +96,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
   private val viewModel: InternalBackupPlaygroundViewModel by viewModels()
+  private val appSettingsRouter by appSettingsRouter()
   private lateinit var saveEncryptedBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var savePlaintextBackupToDiskLauncher: ActivityResultLauncher<Intent>
   private lateinit var importEncryptedBackupFromDiskLauncher: ActivityResultLauncher<Intent>
@@ -153,7 +155,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
     }
 
     Tabs(
-      onBack = { findNavController().popBackStack() },
+      onBack = { (appSettingsRouter::onEvent).navigateBack() },
       mainContent = {
         Screen(
           state = state,

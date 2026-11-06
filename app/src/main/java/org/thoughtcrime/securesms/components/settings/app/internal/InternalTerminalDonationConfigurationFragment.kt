@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.fragment.findNavController
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.navigateBack
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.ComposeFragment
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
@@ -34,15 +36,25 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
  */
 class InternalTerminalDonationConfigurationFragment : ComposeFragment() {
 
+  private val appSettingsRouter by appSettingsRouter()
+
   @Composable
   override fun FragmentContent() {
-    InternalTerminalDonationConfigurationContent(
-      onAddClick = {
-        SignalStore.inAppPayments.appendToTerminalDonationQueue(it)
-        findNavController().popBackStack()
-      }
-    )
+    InternalTerminalDonationConfigurationEntry(parentEventEmitter = appSettingsRouter::onEvent)
   }
+}
+
+/**
+ * Queues the configured terminal donation, then leaves through [parentEventEmitter].
+ */
+@Composable
+fun InternalTerminalDonationConfigurationEntry(parentEventEmitter: (AppSettingsNavigationEvent) -> Unit) {
+  InternalTerminalDonationConfigurationContent(
+    onAddClick = {
+      SignalStore.inAppPayments.appendToTerminalDonationQueue(it)
+      parentEventEmitter.navigateBack()
+    }
+  )
 }
 
 @Preview

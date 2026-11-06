@@ -10,9 +10,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -59,7 +59,7 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
   private val binding by ViewBinderDelegate(ConversationTestFragmentBinding::bind)
   private val viewModel: InternalConversationTestViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
-  private val springboardViewModel: InternalConversationSpringboardViewModel by navGraphViewModels(R.id.app_settings)
+  private val springboardViewModel: InternalConversationSpringboardViewModel by activityViewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val adapter = ConversationAdapterV2(

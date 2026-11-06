@@ -25,6 +25,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.appsettings.routes.AppSettingsNavigationEvent
 import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.BottomSheetUtil
 import org.signal.core.ui.permissions.PermissionDeniedBottomSheet
 import org.signal.core.ui.permissions.RationaleDialog
@@ -101,6 +103,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   }
 
   private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit = { appSettingsRouter.onEvent(it) }
 
   private lateinit var viewModel: InternalSettingsViewModel
   private var searchMenuItem: MenuItem? = null
@@ -157,12 +160,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
     if (searchMenuItem?.isActionViewExpanded == true) {
       searchMenuItem?.collapseActionView()
     } else {
-      appSettingsRouter.onEvent(AppSettingsNavigationEvent.NavigateBack())
+      parentEventEmitter.navigateBack()
     }
-  }
-
-  private fun navigateTo(route: AppSettingsRoute) {
-    appSettingsRouter.onEvent(AppSettingsNavigationEvent.NavigateToScreen(route))
   }
 
   private fun navigateToScreen(route: AppSettingsRoute) {
@@ -260,7 +259,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Override remote config"),
         summary = DSLSettingsText.from("View every remote config flag and locally override any of them."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.RemoteConfig)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.RemoteConfig)
         }
       )
 
@@ -310,7 +309,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("App Issues"),
         summary = DSLSettingsText.from("View recorded app issues, like slow reads and writes."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.Issues)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.Issues)
         }
       )
 
@@ -331,7 +330,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("SQLite Playground"),
         summary = DSLSettingsText.from("Run raw SQLite queries."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.SqlitePlayground)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.SqlitePlayground)
         }
       )
 
@@ -339,7 +338,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Backup Playground"),
         summary = DSLSettingsText.from("Test backup import/export."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.BackupPlayground)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.BackupPlayground)
         }
       )
 
@@ -347,7 +346,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Storage Service Playground"),
         summary = DSLSettingsText.from("Test and view storage service stuff."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.StorageServicePlayground)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.StorageServicePlayground)
         }
       )
 
@@ -355,7 +354,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("SVR Playground"),
         summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.SvrPlayground)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.SvrPlayground)
         }
       )
 
@@ -363,7 +362,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Data Seeding Playground"),
         summary = DSLSettingsText.from("Seed conversations with media files from a folder."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.DataSeedingPlayground)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.DataSeedingPlayground)
         }
       )
 
@@ -415,7 +414,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Search for a recipient"),
         summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.Search)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.Search)
         }
       )
 
@@ -945,7 +944,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Set error state."),
           onClick = {
-            navigateTo(AppSettingsRoute.InternalRoute.DonorErrorConfiguration)
+            parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.DonorErrorConfiguration)
           }
         )
 
@@ -970,7 +969,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Set pending one-time donation."),
           onClick = {
-            navigateTo(AppSettingsRoute.InternalRoute.OneTimeDonationConfiguration)
+            parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.OneTimeDonationConfiguration)
           }
         )
       }
@@ -978,7 +977,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Enqueue terminal donation"),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.TerminalDonationConfiguration)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.TerminalDonationConfiguration)
         }
       )
 
@@ -1102,7 +1101,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Stories dialog launcher"),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.StoryDialogs)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.StoryDialogs)
         }
       )
 
@@ -1173,7 +1172,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       clickPref(
         title = DSLSettingsText.from("Launch Conversation Test Springboard "),
         onClick = {
-          navigateTo(AppSettingsRoute.InternalRoute.ChatSpringboard)
+          parentEventEmitter.navigateTo(AppSettingsRoute.InternalRoute.ChatSpringboard)
         }
       )
 
