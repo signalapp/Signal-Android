@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.websocket
 
 import io.mockk.Runs
 import io.mockk.clearAllMocks
-import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
@@ -60,7 +59,6 @@ class LibSignalChatConnectionTest {
   fun before() {
     clearAllMocks()
     every { healthMonitor.onMessageError(any(), any()) }
-    every { healthMonitor.onKeepAliveResponse(any(), any()) }
     every { healthMonitor.onReceivedAlerts(any(), any()) }
     every { healthMonitor.onServerTimestamp(any(), any()) } just Runs
 
@@ -221,100 +219,6 @@ class LibSignalChatConnectionTest {
     observer.assertNoConsecutiveDuplicates()
   }
 
-  // Test a successful keepAlive, i.e. we get a 200 OK in response to the keepAlive request,
-  // which triggers healthMonitor.onKeepAliveResponse(...) and not onMessageError.
-  @Test
-  fun keepAliveSuccess() {
-    setupConnectedConnection()
-
-    sendLatch = CountDownLatch(1)
-
-    connection.sendKeepAlive()
-    sendLatch!!.await(100, TimeUnit.MILLISECONDS)
-
-    verify(exactly = 1) {
-      healthMonitor.onKeepAliveResponse(any(), false)
-    }
-    verify(exactly = 0) {
-      healthMonitor.onMessageError(any(), any())
-    }
-  }
-
-  // Test keepAlive failures: we get 4xx or 5xx, which triggers healthMonitor.onMessageError(...) but not onKeepAliveResponse.
-  @Test
-  fun keepAliveFailure() {
-    for (response in listOf(RESPONSE_ERROR, RESPONSE_SERVER_ERROR)) {
-      clearMocks(healthMonitor)
-
-      every { chatConnection.send(any()) } answers {
-        delay {
-          it.complete(response)
-          sendLatch?.countDown()
-        }
-      }
-
-      setupConnectedConnection()
-
-      sendLatch = CountDownLatch(1)
-
-      connection.sendKeepAlive()
-      sendLatch!!.await(100, TimeUnit.MILLISECONDS)
-
-      verify(exactly = 1) {
-        healthMonitor.onMessageError(response.status, false)
-      }
-      verify(exactly = 0) {
-        healthMonitor.onKeepAliveResponse(any(), any())
-      }
-    }
-  }
-
-  // Test keepAlive that fails at the transport layer (send() throws),
-  // which disconnects the underlying chat connection before transitioning to DISCONNECTED.
-  @Test
-  fun keepAliveConnectionFailure() {
-    val connectionFailure = RuntimeException("Sending keep-alive failed")
-
-    val keepAliveFailureLatch = CountDownLatch(1)
-    disconnectLatch = CountDownLatch(1)
-
-    every { chatConnection.send(any()) } answers {
-      delay {
-        it.completeExceptionally(connectionFailure)
-        keepAliveFailureLatch.countDown()
-      }
-    }
-
-    setupConnectedConnection()
-
-    val observer = TestObserver<WebSocketConnectionState>()
-    connection.state.subscribe(observer)
-
-    connection.sendKeepAlive()
-
-    keepAliveFailureLatch.await(100, TimeUnit.MILLISECONDS)
-    disconnectLatch!!.await(100, TimeUnit.MILLISECONDS)
-    observer.awaitCount(3)
-
-    observer.assertNotComplete()
-    observer.assertValues(
-      // We start in the connected state
-      WebSocketConnectionState.CONNECTED,
-      // Starts an underlying disconnect as a result of keep-alive failure
-      WebSocketConnectionState.DISCONNECTING,
-      // Disconnects once libsignal confirms the connection was interrupted
-      WebSocketConnectionState.DISCONNECTED
-    )
-    observer.assertNoConsecutiveDuplicates()
-    verify(exactly = 1) {
-      chatConnection.disconnect()
-    }
-    verify(exactly = 0) {
-      healthMonitor.onKeepAliveResponse(any(), any())
-      healthMonitor.onMessageError(any(), any())
-    }
-  }
-
   // Test that an incoming "connection interrupted" event from ChatConnection sets our state to DISCONNECTED.
   @Test
   fun connectionInterruptedTest() {
@@ -336,7 +240,6 @@ class LibSignalChatConnectionTest {
     )
     observer.assertNoConsecutiveDuplicates()
     verify(exactly = 0) {
-      healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
     }
   }
@@ -645,9 +548,6 @@ class LibSignalChatConnectionTest {
   }
 
   companion object {
-    // For verifying success / error scenarios in keepAlive tests, etc.
     private val RESPONSE_SUCCESS = ChatConnection.Response(200, "", emptyMap(), byteArrayOf())
-    private val RESPONSE_ERROR = ChatConnection.Response(400, "", emptyMap(), byteArrayOf())
-    private val RESPONSE_SERVER_ERROR = ChatConnection.Response(500, "", emptyMap(), byteArrayOf())
   }
 }

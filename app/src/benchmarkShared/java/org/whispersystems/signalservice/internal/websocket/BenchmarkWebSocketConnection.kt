@@ -168,8 +168,6 @@ class BenchmarkWebSocketConnection : WebSocketConnection {
     return Single.error(okio.IOException("fake timeout"))
   }
 
-  override fun sendKeepAlive() = Unit
-
   fun addQueueEmptyMessage() {
     addPendingMessages(
       listOf(

@@ -54,9 +54,6 @@ interface WebSocketConnection {
     throw UnsupportedOperationException("This connection does not support suspend sendRequest")
   }
 
-  @Throws(IOException::class)
-  fun sendKeepAlive()
-
   fun readRequestIfAvailable(): Optional<WebSocketRequestMessage>
 
   @Throws(TimeoutException::class, IOException::class)

@@ -482,7 +482,6 @@ class DemoNetworkController(
     val network = Network(Network.Environment.STAGING, USER_AGENT, emptyMap(), Network.BuildVariant.PRODUCTION)
     val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, deviceId, password)
     val healthMonitor = object : HealthMonitor {
-      override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
       override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
       override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
@@ -698,7 +697,6 @@ class DemoNetworkController(
       val network = Network(Network.Environment.STAGING, "Signal-Android-Registration-Sample", emptyMap(), Network.BuildVariant.PRODUCTION)
       val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, currentDeviceId(), password)
       val healthMonitor = object : HealthMonitor {
-        override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
         override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
         override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
         override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
@@ -1155,7 +1153,6 @@ class DemoNetworkController(
     val network = Network(Network.Environment.STAGING, "Signal-Android-Registration-Sample", emptyMap(), Network.BuildVariant.PRODUCTION)
     val credentialsProvider = StaticCredentialsProvider(aci, pni, e164, currentDeviceId(), password)
     val healthMonitor = object : HealthMonitor {
-      override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {}
       override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {}
       override fun onReceivedAlerts(alerts: Array<out String>, isIdentifiedWebSocket: Boolean) {}
       override fun onServerTimestamp(serverTimestamp: Long, isIdentifiedWebSocket: Boolean) {}

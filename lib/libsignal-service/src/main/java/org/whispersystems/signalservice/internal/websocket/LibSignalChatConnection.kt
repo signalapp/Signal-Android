@@ -37,7 +37,6 @@ import org.whispersystems.signalservice.internal.util.awaitRequest
 import org.whispersystems.signalservice.internal.util.whenComplete
 import java.io.IOException
 import java.net.SocketException
-import java.time.Instant
 import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
@@ -59,7 +58,6 @@ import org.signal.libsignal.net.ChatConnection.Request as LibSignalRequest
  *
  * Notable implementation choices:
  * - [chatConnection] contains either an authenticated or an unauthenticated connections
- * - keep-alive requests are sent on both authenticated and unauthenticated connections, mirroring the existing OkHttp behavior
  * - [org.whispersystems.signalservice.api.websocket.WebSocketConnectionState] reporting is implemented
  *   as close as possible to the original implementation in
  *   [org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection].
@@ -120,14 +118,6 @@ class LibSignalChatConnection(
     const val SIGNAL_SERVICE_ENVELOPE_TIMESTAMP_HEADER_KEY = "X-Signal-Timestamp"
 
     private val TAG = Log.tag(LibSignalChatConnection::class.java)
-
-    private val KEEP_ALIVE_REQUEST = LibSignalRequest(
-      "GET",
-      "/v1/keepalive",
-      emptyMap(),
-      ByteArray(0),
-      WebSocketConnection.DEFAULT_SEND_TIMEOUT.inWholeMilliseconds.toInt()
-    )
 
     private fun WebSocketRequestMessage.toLibSignalRequest(timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT): LibSignalRequest {
       return LibSignalRequest(
@@ -445,68 +435,6 @@ class LibSignalChatConnection(
       healthMonitor.onMessageError(status = response.status, isIdentifiedWebSocket = !isUnidentified)
     }
     return response.toWebsocketResponse(isUnidentified = isUnidentified)
-  }
-
-  override fun sendKeepAlive() {
-    CHAT_SERVICE_LOCK.withLock {
-      if (isDead()) {
-        // This matches the behavior of OkHttpWebSocketConnection, where if a keep alive is sent
-        //   while we are not connected, we simply drop the keep alive.
-        return
-      }
-
-      if (state.value == WebSocketConnectionState.CONNECTING) {
-        // Handle the special case where we are connecting, so we cannot (yet) send the keep-alive.
-        // OkHttpWebSocketConnection buffers the keep alive request, and sends it when the connection
-        //   completes.
-        // We just checked that we are in the CONNECTING state, and we hold the CHAT_SERVICE_LOCK, so
-        //   our state cannot change, thus there is no nullability concern with chatConnectionFuture.
-        Log.i(TAG, "$name Buffering keep alive to send after connection establishment")
-        chatConnectionFuture!!.whenComplete(
-          onSuccess = {
-            Log.i(TAG, "$name Sending buffered keep alive")
-            // sendKeepAlive() will internally grab the CHAT_SERVICE_LOCK and check to ensure we are
-            //   still in the CONNECTED state when this callback runs, so we do not need to worry about
-            //   any state here.
-            sendKeepAlive()
-          },
-          onFailure = {
-            // OkHttpWebSocketConnection did not report a keep alive failure to the healthMonitor
-            //   when a buffered keep alive failed to send because the underlying connection
-            //   establishment failed, so neither do we.
-          }
-        )
-        return
-      }
-
-      Log.i(TAG, "$name Sending keep alive...")
-      chatConnection!!.send(KEEP_ALIVE_REQUEST)
-        .whenComplete(
-          onSuccess = { response ->
-            Log.d(TAG, "$name [sendKeepAlive] Success")
-            when (response!!.status) {
-              in 200..299 -> {
-                healthMonitor.onKeepAliveResponse(
-                  sentTimestamp = Instant.now().toEpochMilli(), // ignored. can be any value
-                  isIdentifiedWebSocket = chatConnection is AuthenticatedChatConnection
-                )
-              }
-
-              in 400..599 -> {
-                healthMonitor.onMessageError(response.status, (chatConnection is AuthenticatedChatConnection))
-              }
-
-              else -> {
-                Log.w(TAG, "$name [sendKeepAlive] Unsupported keep alive response status: ${response.status}")
-              }
-            }
-          },
-          onFailure = { throwable ->
-            Log.w(TAG, "$name [sendKeepAlive] Failure:", throwable)
-            disconnect()
-          }
-        )
-    }
   }
 
   override fun readRequestIfAvailable(): Optional<WebSocketRequestMessage> {

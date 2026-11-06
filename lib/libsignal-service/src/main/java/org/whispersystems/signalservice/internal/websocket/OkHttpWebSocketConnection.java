@@ -26,13 +26,11 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -61,12 +59,11 @@ import okio.ByteString;
 
 public class OkHttpWebSocketConnection extends WebSocketListener implements WebSocketConnection {
 
-  private static final String TAG                         = OkHttpWebSocketConnection.class.getSimpleName();
-  public static final  int    KEEPALIVE_FREQUENCY_SECONDS = 30;
+  private static final String TAG             = OkHttpWebSocketConnection.class.getSimpleName();
+  private static final int    TIMEOUT_SECONDS = 40;
 
   private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
   private final Map<Long, OutgoingRequest>          outgoingRequests = new HashMap<>();
-  private final Set<Long>                           keepAlives       = new HashSet<>();
 
   private final String                                    name;
   private final TrustStore                                trustStore;
@@ -142,9 +139,9 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
       OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder().sslSocketFactory(new Tls12SocketFactory(socketFactory.getFirst()),
                                                                                        socketFactory.getSecond())
                                                                      .connectionSpecs(serviceUrl.getConnectionSpecs().orElse(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
-                                                                     .readTimeout(KEEPALIVE_FREQUENCY_SECONDS + 10, TimeUnit.SECONDS)
+                                                                     .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
                                                                      .dns(dns.orElse(Dns.SYSTEM))
-                                                                     .connectTimeout(KEEPALIVE_FREQUENCY_SECONDS + 10, TimeUnit.SECONDS);
+                                                                     .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
 
       for (Interceptor interceptor : interceptors) {
         clientBuilder.addInterceptor(interceptor);
@@ -275,27 +272,6 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
   }
 
   @Override
-  public synchronized void sendKeepAlive() throws IOException {
-    if (client != null) {
-      log("Sending keep alive...");
-      long id = System.currentTimeMillis();
-      byte[] message = new WebSocketMessage.Builder()
-                                           .type(WebSocketMessage.Type.REQUEST)
-                                           .request(new WebSocketRequestMessage.Builder()
-                                                                               .id(id)
-                                                                               .path("/v1/keepalive")
-                                                                               .verb("GET")
-                                                                               .build())
-                                           .build()
-                                           .encode();
-      keepAlives.add(id);
-      if (!client.send(ByteString.of(message))) {
-        throw new IOException("Write failed!");
-      }
-    }
-  }
-
-  @Override
   public synchronized void onOpen(WebSocket webSocket, Response response) {
     if (client != null) {
       log("onOpen() connected");
@@ -320,8 +296,6 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
           if (message.response.status >= 400) {
             healthMonitor.onMessageError(message.response.status, credentialsProvider.isPresent());
           }
-        } else if (keepAlives.remove(message.response.id)) {
-          healthMonitor.onKeepAliveResponse(message.response.id, credentialsProvider.isPresent());
         }
       }
 

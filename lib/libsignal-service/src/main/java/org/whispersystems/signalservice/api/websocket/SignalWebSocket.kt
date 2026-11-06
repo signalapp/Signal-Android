@@ -117,16 +117,7 @@ sealed class SignalWebSocket(
     }
   }
 
-  @Synchronized
-  @Throws(IOException::class)
-  fun sendKeepAlive() {
-    if (canConnect.canConnect()) {
-      Log.v(TAG, "$connectionName keepAliveTokens: $keepAliveTokens")
-      getWebSocket().sendKeepAlive()
-    }
-  }
-
-  fun shouldSendKeepAlives(): Boolean {
+  fun hasKeepAliveTokens(): Boolean {
     return keepAliveTokens.isNotEmpty()
   }
 
@@ -277,7 +268,7 @@ sealed class SignalWebSocket(
       delayedDisconnectJob = scope.launch {
         Log.v(TAG, "$connectionName Disconnect scheduled in $disconnectTimeout")
         delay(disconnectTimeout)
-        if (!shouldSendKeepAlives()) {
+        if (!hasKeepAliveTokens()) {
           disconnect()
         }
       }

@@ -13,31 +13,20 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.signal.core.util.AppForegroundObserver
-import org.signal.core.util.SleepTimer
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.clockskew.ClockSkewDetector
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
-import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
-class SignalWebSocketHealthMonitor(
-  private val sleepTimer: SleepTimer,
-  private val sendKeepAlives: Boolean = true
-) : HealthMonitor {
+class SignalWebSocketHealthMonitor : HealthMonitor {
 
   companion object {
     private val TAG = Log.tag(SignalWebSocketHealthMonitor::class)
-
-    private val KEEP_ALIVE_SEND_CADENCE: Duration = OkHttpWebSocketConnection.KEEPALIVE_FREQUENCY_SECONDS.seconds
-    private val KEEP_ALIVE_SEND_CADENCE_BACKGROUND: Duration = 60.seconds
 
     private const val ALERT_IDLE_PRIMARY_DEVICE = "idle-primary-device"
   }
@@ -45,10 +34,6 @@ class SignalWebSocketHealthMonitor(
   private val executor: Executor = Executors.newSingleThreadExecutor()
 
   private var webSocket: SignalWebSocket? = null
-
-  private var keepAliveSender: KeepAliveSender? = null
-  private var needsKeepAlive = false
-  private var lastKeepAliveReceived: Duration = 0.seconds
 
   private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
   private var connectingTimeoutJob: Job? = null
@@ -67,10 +52,6 @@ class SignalWebSocketHealthMonitor(
         .observeOn(Schedulers.computation())
         .distinctUntilChanged()
         .subscribeBy { onStateChanged(it) }
-
-      if (sendKeepAlives) {
-        webSocket.addKeepAliveChangeListener { executor.execute(this::updateKeepAliveSenderStatus) }
-      }
     }
   }
 
@@ -107,23 +88,12 @@ class SignalWebSocketHealthMonitor(
         else -> Unit
       }
 
-      needsKeepAlive = connectionState == WebSocketConnectionState.CONNECTED && sendKeepAlives
-
       if (connectionState != WebSocketConnectionState.CONNECTING) {
         connectingTimeoutJob?.let {
           it.cancel()
           connectingTimeoutJob = null
         }
       }
-
-      updateKeepAliveSenderStatus()
-    }
-  }
-
-  override fun onKeepAliveResponse(sentTimestamp: Long, isIdentifiedWebSocket: Boolean) {
-    val keepAliveTime = System.currentTimeMillis().milliseconds
-    executor.execute {
-      lastKeepAliveReceived = keepAliveTime
     }
   }
 
@@ -162,77 +132,6 @@ class SignalWebSocketHealthMonitor(
     executor.execute {
       webSocket?.forceNewWebSocket()
       failedInConnecting = true
-    }
-  }
-
-  private fun updateKeepAliveSenderStatus() {
-    if (keepAliveSender == null && sendKeepAlives()) {
-      keepAliveSender = KeepAliveSender().also { it.start() }
-    } else if (keepAliveSender != null && !sendKeepAlives()) {
-      keepAliveSender?.shutdown()
-      keepAliveSender = null
-    }
-  }
-
-  private fun sendKeepAlives(): Boolean {
-    return needsKeepAlive && webSocket?.shouldSendKeepAlives() == true
-  }
-
-  /**
-   * Sends periodic heartbeats/keep-alives over the WebSocket to prevent connection timeouts. If
-   * the WebSocket fails to get a return heartbeat before the next keep alive is sent, it is forced to be recreated.
-   */
-  private inner class KeepAliveSender : Thread() {
-
-    @Volatile
-    private var shouldKeepRunning = true
-
-    override fun run() {
-      Log.d(TAG, "[KeepAliveSender($id)] started")
-      lastKeepAliveReceived = System.currentTimeMillis().milliseconds
-
-      var keepAliveSentTime = System.currentTimeMillis().milliseconds
-      var hasSentKeepAlive = false
-      while (shouldKeepRunning && sendKeepAlives()) {
-        try {
-          val cadence = if (AppForegroundObserver.isForegrounded()) KEEP_ALIVE_SEND_CADENCE else KEEP_ALIVE_SEND_CADENCE_BACKGROUND
-          sleepUntil(keepAliveSentTime + cadence)
-
-          if (shouldKeepRunning && sendKeepAlives()) {
-            if (hasSentKeepAlive && lastKeepAliveReceived < keepAliveSentTime) {
-              Log.w(TAG, "Missed keep alive, last: ${lastKeepAliveReceived.inWholeMilliseconds} needed by: ${keepAliveSentTime.inWholeMilliseconds}")
-              webSocket?.forceNewWebSocket()
-            }
-
-            keepAliveSentTime = System.currentTimeMillis().milliseconds
-            webSocket?.sendKeepAlive()
-            hasSentKeepAlive = true
-          }
-        } catch (e: InterruptedException) {
-          // Stopped
-        } catch (e: Throwable) {
-          Log.w(TAG, e)
-        }
-      }
-      Log.d(TAG, "[KeepAliveSender($id)] ended")
-    }
-
-    fun sleepUntil(time: Duration) {
-      while (shouldKeepRunning && System.currentTimeMillis().milliseconds < time) {
-        val waitTime = time - System.currentTimeMillis().milliseconds
-        if (waitTime.isPositive()) {
-          try {
-            sleepTimer.sleep(waitTime.inWholeMilliseconds)
-          } catch (e: InterruptedException) {
-            Log.w(TAG, e)
-          }
-        }
-      }
-    }
-
-    fun shutdown() {
-      shouldKeepRunning = false
-      interrupt()
     }
   }
 }
