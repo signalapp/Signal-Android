@@ -169,8 +169,9 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data class Remote(val forQuickRestore: Boolean = false) : BackupsRoute
 
+    /** The backup key, optionally starting straight into rotating it when [startWithKeyRotation] is set. */
     @Serializable
-    data object DisplayKey : BackupsRoute
+    data class DisplayKey(val startWithKeyRotation: Boolean = false) : BackupsRoute
   }
 
   @Serializable

@@ -14,6 +14,7 @@ import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.ui.compose.split.detailEntry
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.preferences.AdvancedPinSettingsEntry
 
 /**
  * Registers the routes within the account section of app settings. A linked device gets its own, simpler account
@@ -27,5 +28,9 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
     } else {
       Fragments.Fragment<LinkedDeviceAccountSettingsFragment>(modifier = Modifier.fillMaxSize())
     }
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.AdvancedPinSettings> {
+    AdvancedPinSettingsEntry(parentEventEmitter = parentEventEmitter)
   }
 }
