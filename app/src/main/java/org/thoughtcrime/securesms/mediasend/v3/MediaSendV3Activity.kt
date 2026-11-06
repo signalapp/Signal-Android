@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.models.recipients.RecipientId
 import org.signal.core.ui.WindowBreakpoint
+import org.signal.core.ui.compose.KeepScreenOnEffect
 import org.signal.core.ui.compose.LocalChatColorProvider
 import org.signal.core.ui.compose.LocalDisplayNameProvider
 import org.signal.core.ui.getWindowBreakpoint
@@ -115,6 +116,8 @@ class MediaSendV3Activity :
       val context = LocalContext.current
       val isOnCaptureScreen = viewModel.backStack.lastOrNull() is MediaSendRoute.Capture
       val noteToSelf = stringResource(R.string.note_to_self)
+
+      KeepScreenOnEffect()
 
       LaunchedEffect(isOnCaptureScreen) {
         onCaptureScreenChanged(isOnCaptureScreen)
