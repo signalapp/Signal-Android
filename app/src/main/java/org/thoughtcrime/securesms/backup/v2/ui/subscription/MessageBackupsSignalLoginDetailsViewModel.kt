@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.account.signallogin.Si
 
 /**
  * Backs [SignalLoginViewDetailsScreen] within the backup setup flow, where the credentials are only ever shown and
- * saved. Resets belong to account settings, so this only ever emits [SignalLoginViewDetailsAction.Shared].
+ * saved. Resets belong to account settings.
  */
 class MessageBackupsSignalLoginDetailsViewModel(
   repository: SignalLoginViewDetailsRepository = SignalLoginViewDetailsRepository(),
@@ -42,10 +42,10 @@ class MessageBackupsSignalLoginDetailsViewModel(
       isGooglePasswordManagerDefault = isGooglePasswordManagerDefault
     )
   )
-  private val _actions = Channel<SignalLoginViewDetailsAction.Shared>(Channel.BUFFERED)
+  private val _actions = Channel<SignalLoginViewDetailsAction>(Channel.BUFFERED)
 
   val state: StateFlow<SignalLoginViewDetailsState> = _state.asStateFlow()
-  val actions: Flow<SignalLoginViewDetailsAction.Shared> = _actions.receiveAsFlow()
+  val actions: Flow<SignalLoginViewDetailsAction> = _actions.receiveAsFlow()
 
   override suspend fun processEvent(event: SignalLoginViewDetailsScreenEvents) {
     when (event) {

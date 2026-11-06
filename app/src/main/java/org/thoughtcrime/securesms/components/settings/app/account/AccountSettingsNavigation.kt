@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.components.settings.app.AutofillDisabled
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpSetupEntry
 import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupEntry
+import org.thoughtcrime.securesms.components.settings.app.account.signallogin.SettingsSignalLoginDetailsEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.toTwoFactorMethod
 import org.thoughtcrime.securesms.delete.DeleteAccountCountryCodeEntry
@@ -39,6 +40,10 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
     } else {
       Fragments.Fragment<LinkedDeviceAccountSettingsFragment>(modifier = Modifier.fillMaxSize())
     }
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.SignalLoginDetails> {
+    SettingsSignalLoginDetailsEntry(parentEventEmitter = parentEventEmitter)
   }
 
   detailEntry<AppSettingsRoute.AccountRoute.TotpSetup> {

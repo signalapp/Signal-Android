@@ -127,7 +127,8 @@ private fun rememberLayout(): Layout {
 fun SignalLoginViewDetailsScreen(
   state: SignalLoginViewDetailsState,
   onEvent: (SignalLoginViewDetailsScreenEvents) -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  snackbarHost: @Composable () -> Unit = {}
 ) {
   val layout = rememberLayout()
   val firstPaneScrollState = rememberScrollState()
@@ -139,6 +140,7 @@ fun SignalLoginViewDetailsScreen(
     navigationIcon = SignalIcons.ArrowStart.imageVector,
     navigationContentDescription = stringResource(R.string.SignalLoginViewDetailsScreen__navigate_back),
     titleContent = { _, title -> TitleWithBetaTag(title) },
+    snackbarHost = snackbarHost,
     bottomBar = {
       Footer(
         maxButtonWidth = layout.maxButtonWidth,

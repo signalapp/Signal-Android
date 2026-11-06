@@ -28,6 +28,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.models.AccountEntropyPool
 import org.signal.core.models.ServiceId.ACI
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreenEvents
@@ -37,9 +39,14 @@ import java.util.UUID
 @OptIn(ExperimentalCoroutinesApi::class)
 class SettingsSignalLoginDetailsViewModelTest {
 
+  companion object {
+    private const val PDF_FAILURE_MESSAGE = 1234
+  }
+
   private val testDispatcher = UnconfinedTestDispatcher()
 
   private val repository = mockk<SignalLoginViewDetailsRepository>()
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -64,7 +71,7 @@ class SettingsSignalLoginDetailsViewModelTest {
     every { repository.getAci() } returns ACI.from(UUID.fromString("a6b28482-2e32-83d0-7f23-91360a4c2b91"))
     every { repository.getAccountEntropyPool() } returns aep
 
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
 
     assertThat(viewModel.state.value.accountKey).isEqualTo("A6B28482-2E32-83D0-7F23-91360A4C2B91")
     assertThat(viewModel.state.value.recoveryKey).isEqualTo(aep.displayValue)
@@ -72,7 +79,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `initial state is empty when there are no stored credentials`() {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
 
     assertThat(viewModel.state.value.accountKey).isEqualTo("")
     assertThat(viewModel.state.value.recoveryKey).isEqualTo("")
@@ -80,18 +87,19 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `BackClicked navigates back`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.BackClicked))
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.NavigateBack)
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
   }
 
   @Test
   fun `SaveToPasswordManagerClicked asks the user to confirm the save`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -103,18 +111,32 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `SaveToPasswordManagerClicked without a password manager tells the user there isn't one`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, isPasswordManagerAvailable = false)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, isPasswordManagerAvailable = false)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.SaveToPasswordManagerClicked))
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable)
+    assertThat(actions).isEmpty()
+    assertThat(viewModel.snackbar.value).isEqualTo(SettingsSignalLoginDetailsSnackbar.NoPasswordManagerAvailable)
+  }
+
+  @Test
+  fun `SaveAsPdfFailed says why and SnackbarDismissed clears it`() = runTest(testDispatcher) {
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
+
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.SaveAsPdfFailed(PDF_FAILURE_MESSAGE))
+
+    assertThat(viewModel.snackbar.value).isEqualTo(SettingsSignalLoginDetailsSnackbar.SaveAsPdfFailed(PDF_FAILURE_MESSAGE))
+
+    viewModel.onEvent(SettingsSignalLoginDetailsEvent.SnackbarDismissed)
+
+    assertThat(viewModel.snackbar.value).isEqualTo(SettingsSignalLoginDetailsSnackbar.None)
   }
 
   @Test
   fun `SaveToPasswordManagerConfirmed hides the confirmation and launches the save`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -127,7 +149,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `SaveToPasswordManagerConfirmationDismissed hides the confirmation without saving`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -140,7 +162,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `SaveAsPdfClicked raises the do-not-share warning before saving`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -152,7 +174,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `acknowledging the warning after SaveAsPdfClicked launches the save as PDF flow`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -165,7 +187,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `CopyAccountIdClicked raises the do-not-share warning before copying`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -178,7 +200,7 @@ class SettingsSignalLoginDetailsViewModelTest {
   @Test
   fun `acknowledging the warning after CopyAccountIdClicked copies the account key to the clipboard`() = runTest(testDispatcher) {
     every { repository.getAci() } returns ACI.from(UUID.fromString("a6b28482-2e32-83d0-7f23-91360a4c2b91"))
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -193,7 +215,7 @@ class SettingsSignalLoginDetailsViewModelTest {
   fun `acknowledging the warning after CopyRecoveryKeyClicked copies the recovery key to the clipboard`() = runTest(testDispatcher) {
     val aep = AccountEntropyPool.generate()
     every { repository.getAccountEntropyPool() } returns aep
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -206,7 +228,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `DoNotShareWarningLearnMoreClicked drops the warning and opens the help article without copying`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -219,7 +241,7 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `DoNotShareWarningDismissed drops the warning without copying`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -232,13 +254,13 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `the reset button is hidden unless the caller asks for it`() {
-    assertThat(SettingsSignalLoginDetailsViewModel(repository).state.value.showResetRecoveryKeyButton).isFalse()
-    assertThat(SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true).state.value.showResetRecoveryKeyButton).isTrue()
+    assertThat(SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository).state.value.showResetRecoveryKeyButton).isFalse()
+    assertThat(SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true).state.value.showResetRecoveryKeyButton).isTrue()
   }
 
   @Test
   fun `ResetRecoveryKeyClicked shows the confirmation sheet`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked))
 
@@ -248,7 +270,7 @@ class SettingsSignalLoginDetailsViewModelTest {
   @Test
   fun `ResetRecoveryKeyClicked shows the limit dialog when there are no resets left`() = runTest(testDispatcher) {
     coEvery { repository.canResetRecoveryKey() } returns false
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked))
 
@@ -257,20 +279,21 @@ class SettingsSignalLoginDetailsViewModelTest {
 
   @Test
   fun `confirming the reset launches the reset flow`() = runTest(testDispatcher) {
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.ResetRecoveryKeyConfirmed)
 
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.LaunchRecoveryKeyReset)
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).containsExactly(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.BackupsRoute.DisplayKey(startWithKeyRotation = true)))
     assertThat(viewModel.resetRecoveryKeyState.value.dialog).isEqualTo(ResetRecoveryKeyState.Dialog.NONE)
   }
 
   @Test
   fun `confirming the reset asks the user to download offloaded media first`() = runTest(testDispatcher) {
     every { repository.isOptimizedStorageEnabled() } returns true
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
@@ -283,14 +306,15 @@ class SettingsSignalLoginDetailsViewModelTest {
   @Test
   fun `turning off optimized storage starts the download and leaves the screen`() = runTest(testDispatcher) {
     every { repository.isOptimizedStorageEnabled() } returns true
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
     val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.TurnOffOptimizedStorageClicked)
 
     verify { repository.turnOffOptimizedStorageAndDownloadMedia() }
-    assertThat(actions).containsExactly(SignalLoginViewDetailsAction.NavigateBack)
+    assertThat(actions).isEmpty()
+    assertThat(parentEvents).containsExactly(AppSettingsNavigationEvent.NavigateBack())
     assertThat(viewModel.resetRecoveryKeyState.value.dialog).isEqualTo(ResetRecoveryKeyState.Dialog.NONE)
   }
 
@@ -300,7 +324,7 @@ class SettingsSignalLoginDetailsViewModelTest {
     val replacement = AccountEntropyPool.generate()
     every { repository.getAccountEntropyPool() } returns original
 
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
     assertThat(viewModel.state.value.recoveryKey).isEqualTo(original.displayValue)
 
     every { repository.getAccountEntropyPool() } returns replacement
@@ -314,7 +338,7 @@ class SettingsSignalLoginDetailsViewModelTest {
     val limit = CompletableDeferred<Boolean>()
     coEvery { repository.canResetRecoveryKey() } coAnswers { limit.await() }
 
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
 
     assertThat(viewModel.state.value.resetRecoveryKeyButtonLoading).isTrue()
 
@@ -326,7 +350,7 @@ class SettingsSignalLoginDetailsViewModelTest {
   @Test
   fun `ResetRecoveryKeyClicked is ignored while the reset limit is unknown`() = runTest(testDispatcher) {
     coEvery { repository.canResetRecoveryKey() } coAnswers { CompletableDeferred<Boolean>().await() }
-    val viewModel = SettingsSignalLoginDetailsViewModel(repository, showResetRecoveryKeyButton = true)
+    val viewModel = SettingsSignalLoginDetailsViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, showResetRecoveryKeyButton = true)
 
     viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(SignalLoginViewDetailsScreenEvents.ResetRecoveryKeyClicked))
 

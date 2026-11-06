@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.blocked.BlockedUsersActivity
 import org.thoughtcrime.securesms.components.enableSettingsEdgeToEdge
 import org.thoughtcrime.securesms.components.settings.app.account.registerAccountRoutes
 import org.thoughtcrime.securesms.components.settings.app.appearance.registerAppearanceRoutes
+import org.thoughtcrime.securesms.components.settings.app.backups.registerBackupsRoutes
 import org.thoughtcrime.securesms.components.settings.app.chats.registerChatsRoutes
 import org.thoughtcrime.securesms.components.settings.app.help.registerHelpRoutes
 import org.thoughtcrime.securesms.components.settings.app.internal.registerInternalRoutes
@@ -101,6 +102,7 @@ class AppSettingsNavigationActivity : PassphraseRequiredActivity(), GooglePayCom
               registerInviteRoutes(router::onEvent)
               registerPrivacyRoutes(router::onEvent)
               registerDataAndStorageRoutes(router::onEvent)
+              registerBackupsRoutes(router::onEvent)
               registerEditProfileScreens(router::onEvent)
               registerAvatarPickerScreens(router::onEvent, onResult = { router.resultBus.sendResult<AvatarPickerResult>(result = it) })
               registerBadgeScreens(router::onEvent)

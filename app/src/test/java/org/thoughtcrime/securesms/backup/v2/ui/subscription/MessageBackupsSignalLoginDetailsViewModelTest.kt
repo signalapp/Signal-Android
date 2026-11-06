@@ -231,8 +231,8 @@ class MessageBackupsSignalLoginDetailsViewModelTest {
     assertThat(actions).isEmpty()
   }
 
-  private fun TestScope.collectActions(viewModel: MessageBackupsSignalLoginDetailsViewModel): List<SignalLoginViewDetailsAction.Shared> {
-    val actions = mutableListOf<SignalLoginViewDetailsAction.Shared>()
+  private fun TestScope.collectActions(viewModel: MessageBackupsSignalLoginDetailsViewModel): List<SignalLoginViewDetailsAction> {
+    val actions = mutableListOf<SignalLoginViewDetailsAction>()
     backgroundScope.launch { viewModel.actions.toList(actions) }
     return actions
   }

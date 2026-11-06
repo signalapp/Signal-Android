@@ -347,7 +347,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     }
   }
 
-  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction.Shared) {
+  private fun handleSignalLoginViewDetailsAction(action: SignalLoginViewDetailsAction) {
     when (action) {
       SignalLoginViewDetailsAction.NavigateBack -> viewModel.goToPreviousStage()
       SignalLoginViewDetailsAction.LaunchSaveToPasswordManager -> {

@@ -5,135 +5,53 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.signallogin
 
-import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.launch
-import org.signal.core.ui.compose.CollectActions
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.core.ui.compose.ComposeFragment
-import org.signal.core.ui.viewModel
-import org.signal.core.util.Result
-import org.signal.core.util.Util
-import org.signal.passwordmanager.SignalCredentialManager
-import org.signal.signallogin.pdf.SignalLoginPdfRenderer
-import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreen
-import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.DownloadMediaDialog
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.KeyLimitExceededDialog
-import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
+import org.signal.core.ui.navigation.LocalResultEventBus
+import org.signal.core.ui.navigation.ResultEventBus
+import org.thoughtcrime.securesms.components.settings.app.appSettingsRouter
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyDisplayFragment
-import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyRotated
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.signal.signallogin.R as SignalLoginR
 
 /**
- * Shows the account and recovery keys that make up the user's Signal Login, the same way registration does.
+ * Shows the account and recovery keys that make up the user's Signal Login, under the legacy nav graph.
  */
 class SettingsSignalLoginDetailsFragment : ComposeFragment() {
 
-  private val viewModel: SettingsSignalLoginDetailsViewModel by viewModel {
-    SettingsSignalLoginDetailsViewModel(
-      showResetRecoveryKeyButton = true,
-      isPasswordManagerAvailable = SignalCredentialManager.isSupported(requireContext()),
-      isGooglePasswordManagerDefault = SignalCredentialManager.isGooglePasswordManagerDefault(requireContext())
-    )
-  }
+  private val appSettingsRouter by appSettingsRouter(onNavigateToScreen = ::navigateToScreen)
 
-  private val savePdfLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri: Uri? ->
-    if (uri != null) {
-      val context = requireContext().applicationContext
-      lifecycleScope.launch {
-        val result = SignalLoginPdfRenderer.renderTo(context, uri, viewModel.state.value.accountKey, viewModel.state.value.recoveryKeyGroups)
-        if (result is Result.Failure) {
-          Toast.makeText(context, result.failure.userMessageRes, Toast.LENGTH_LONG).show()
-        }
-      }
-    }
-  }
+  /** Stands in for the Nav3 host's bus, so the backup key screen's fragment result reaches the Entry the same way. */
+  private val resultEventBus = ResultEventBus()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
       if (bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)) {
-        viewModel.onEvent(SettingsSignalLoginDetailsEvent.RecoveryKeyRotated)
+        resultEventBus.sendResult(result = BackupKeyRotated)
       }
     }
   }
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    val resetRecoveryKeyState by viewModel.resetRecoveryKeyState.collectAsStateWithLifecycle()
-
-    TemporaryScreenshotSecurity.bind()
-
-    CollectActions(viewModel.actions) { action -> handleAction(action) }
-
-    SignalLoginViewDetailsScreen(
-      state = state,
-      onEvent = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.Screen(it)) }
-    )
-
-    when (resetRecoveryKeyState.dialog) {
-      ResetRecoveryKeyState.Dialog.NONE -> Unit
-
-      ResetRecoveryKeyState.Dialog.CONFIRMATION -> {
-        ResetRecoveryKeyBottomSheet(
-          onContinueClick = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.ResetRecoveryKeyConfirmed) },
-          onDismissRequest = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.ResetRecoveryKeyDismissed) }
-        )
-      }
-
-      ResetRecoveryKeyState.Dialog.DOWNLOAD_MEDIA -> {
-        DownloadMediaDialog(
-          onTurnOffAndDownloadClick = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.TurnOffOptimizedStorageClicked) },
-          onCancelClick = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.ResetRecoveryKeyDismissed) }
-        )
-      }
-
-      ResetRecoveryKeyState.Dialog.KEY_LIMIT_REACHED -> {
-        KeyLimitExceededDialog(
-          areBackupsEnabled = resetRecoveryKeyState.areBackupsEnabled,
-          onClick = { viewModel.onEvent(SettingsSignalLoginDetailsEvent.ResetRecoveryKeyDismissed) }
-        )
-      }
+    CompositionLocalProvider(LocalResultEventBus provides resultEventBus) {
+      SettingsSignalLoginDetailsEntry(parentEventEmitter = appSettingsRouter::onEvent)
     }
   }
 
-  private fun handleAction(action: SignalLoginViewDetailsAction) {
-    when (action) {
-      SignalLoginViewDetailsAction.NavigateBack -> requireActivity().onBackPressedDispatcher.onBackPressed()
-      SignalLoginViewDetailsAction.LaunchSaveToPasswordManager -> {
-        lifecycleScope.launch {
-          SignalCredentialManager.saveCredential(
-            activityContext = requireActivity(),
-            username = viewModel.state.value.accountKey,
-            password = viewModel.state.value.recoveryKey
-          )
-        }
-      }
-
-      SignalLoginViewDetailsAction.ShowNoPasswordManagerAvailable -> {
-        Toast.makeText(requireContext(), SignalLoginR.string.SignalLoginViewDetailsScreen__no_password_manager_available, Toast.LENGTH_LONG).show()
-      }
-
-      SignalLoginViewDetailsAction.LaunchSaveAsPdf -> savePdfLauncher.launch(SignalLoginPdfRenderer.suggestedFileName(requireContext()))
-      SignalLoginViewDetailsAction.OpenDoNotShareLearnMoreArticle -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.recovery_key_phishing_support_url))
-      SignalLoginViewDetailsAction.LaunchRecoveryKeyReset -> {
-        findNavController().safeNavigate(
-          SettingsSignalLoginDetailsFragmentDirections.actionSettingsSignalLoginDetailsFragmentToBackupKeyDisplayFragment().setStartWithKeyRotation(true)
-        )
-      }
-
-      is SignalLoginViewDetailsAction.CopyTextToClipboard -> Util.copyToClipboardSensitive(requireContext(), action.text)
+  private fun navigateToScreen(route: AppSettingsRoute) {
+    when (route) {
+      is AppSettingsRoute.BackupsRoute.DisplayKey -> findNavController().safeNavigate(
+        SettingsSignalLoginDetailsFragmentDirections.actionSettingsSignalLoginDetailsFragmentToBackupKeyDisplayFragment().setStartWithKeyRotation(route.startWithKeyRotation)
+      )
+      else -> error("Unexpected route: ${route.javaClass.name}")
     }
   }
 }

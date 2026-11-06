@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.account.signallogin
 
+import androidx.annotation.StringRes
 import org.signal.signallogin.viewdetails.SignalLoginViewDetailsScreenEvents
 
 /**
@@ -27,4 +28,10 @@ sealed interface SettingsSignalLoginDetailsEvent {
 
   /** The reset flow finished and generated a new recovery key. */
   data object RecoveryKeyRotated : SettingsSignalLoginDetailsEvent
+
+  /** Writing the login PDF to the file the user picked didn't work, for the reason [messageRes] gives. */
+  data class SaveAsPdfFailed(@StringRes val messageRes: Int) : SettingsSignalLoginDetailsEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : SettingsSignalLoginDetailsEvent
 }
