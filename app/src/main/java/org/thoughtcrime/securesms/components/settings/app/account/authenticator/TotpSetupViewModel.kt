@@ -15,6 +15,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.appsettings.totpsetup.TotpSetupAction
 import org.signal.appsettings.totpsetup.TotpSetupEvent
 import org.signal.appsettings.totpsetup.TotpSetupState
@@ -25,6 +29,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class TotpSetupViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val repository: TotpRepository = TotpRepository(),
   private val accountName: String = accountNameFor(LocalDateTime.now())
 ) : EventDrivenViewModel<TotpSetupEvent>(TAG, shouldLogEvents = true) {
@@ -53,24 +58,27 @@ class TotpSetupViewModel(
   override suspend fun processEvent(event: TotpSetupEvent) {
     when (event) {
       TotpSetupEvent.NavigateBackClicked -> {
-        _actions.send(TotpSetupAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
       TotpSetupEvent.OpenTotpAppClicked -> {
         _actions.send(TotpSetupAction.LaunchTotpApp(setupUri))
       }
       TotpSetupEvent.CopyKeyClicked -> {
         _actions.send(TotpSetupAction.CopyKeyToClipboard(clipboardKey))
-        _actions.send(TotpSetupAction.ShowKeyCopied)
+        _state.update { it.copy(snackbar = TotpSetupState.Snackbar.KeyCopied) }
       }
       TotpSetupEvent.NoTotpAppFound -> {
-        _actions.send(TotpSetupAction.ShowNoTotpAppFound)
+        _state.update { it.copy(snackbar = TotpSetupState.Snackbar.NoTotpAppFound) }
       }
       TotpSetupEvent.ContinueClicked -> {
-        _actions.send(TotpSetupAction.NavigateToCodeEntry)
+        parentEventEmitter.navigateTo(AppSettingsRoute.AccountRoute.TotpCodeEntry)
       }
       TotpSetupEvent.DialogDismissed -> {
         _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(TotpSetupAction.NavigateBack)
+        parentEventEmitter.navigateBack()
+      }
+      TotpSetupEvent.SnackbarDismissed -> {
+        _state.update { it.copy(snackbar = TotpSetupState.Snackbar.None) }
       }
     }
   }

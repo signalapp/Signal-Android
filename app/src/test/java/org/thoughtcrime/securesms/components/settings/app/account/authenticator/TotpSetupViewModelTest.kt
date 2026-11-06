@@ -26,8 +26,11 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.appsettings.totpsetup.TotpSetupAction
 import org.signal.appsettings.totpsetup.TotpSetupEvent
+import org.signal.appsettings.totpsetup.TotpSetupState
 import org.signal.appsettings.totpsetup.TotpSetupState.Dialog
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import java.time.LocalDateTime
@@ -50,6 +53,7 @@ class TotpSetupViewModelTest {
 
   private val testDispatcher = UnconfinedTestDispatcher()
   private val repository: TotpRepository = mockk(relaxed = true)
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @get:Rule
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
@@ -93,38 +97,45 @@ class TotpSetupViewModelTest {
 
     viewModel.onEvent(TotpSetupEvent.CopyKeyClicked)
 
-    assertThat(actions.first()).isEqualTo(TotpSetupAction.CopyKeyToClipboard(CLIPBOARD_KEY))
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.ShowKeyCopied)
+    assertThat(actions).isEqualTo(listOf(TotpSetupAction.CopyKeyToClipboard(CLIPBOARD_KEY)))
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.KeyCopied)
+  }
+
+  @Test
+  fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(TotpSetupEvent.CopyKeyClicked)
+    viewModel.onEvent(TotpSetupEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.None)
   }
 
   @Test
   fun `ContinueClicked moves on to code entry`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.ContinueClicked)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateToCodeEntry)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateToScreen(AppSettingsRoute.AccountRoute.TotpCodeEntry)))
   }
 
   @Test
   fun `NoTotpAppFound reports the failure`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.NoTotpAppFound)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.ShowNoTotpAppFound)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(TotpSetupState.Snackbar.NoTotpAppFound)
   }
 
   @Test
   fun `backing out leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.NavigateBackClicked)
 
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
@@ -152,12 +163,11 @@ class TotpSetupViewModelTest {
     coEvery { repository.beginSetup(any()) } returns TotpRepository.BeginSetupResult.NetworkFailure
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(TotpSetupEvent.DialogDismissed)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(TotpSetupAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
@@ -174,7 +184,7 @@ class TotpSetupViewModelTest {
     assertThat(TotpSetupViewModel.accountNameFor(time)).isEqualTo("2026-01-02")
   }
 
-  private fun createViewModel() = TotpSetupViewModel(repository = repository, accountName = ACCOUNT_NAME)
+  private fun createViewModel() = TotpSetupViewModel(parentEventEmitter = { parentEvents += it }, repository = repository, accountName = ACCOUNT_NAME)
 
   private fun TestScope.collectActions(actions: Flow<TotpSetupAction>): List<TotpSetupAction> {
     val collected = mutableListOf<TotpSetupAction>()

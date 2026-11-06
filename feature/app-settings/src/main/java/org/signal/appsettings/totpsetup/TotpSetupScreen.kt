@@ -40,6 +40,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,10 +49,12 @@ import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object TotpSetupTestTags {
@@ -69,12 +72,21 @@ object TotpSetupTestTags {
 @Composable
 fun TotpSetupScreen(
   state: TotpSetupState,
-  onEvent: (TotpSetupEvent) -> Unit
+  onEvent: (TotpSetupEvent) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.TotpSetupScreen__set_up_your_authenticator_app),
     onNavigationClick = { onEvent(TotpSetupEvent.NavigateBackClicked) },
-    navigationIcon = SignalIcons.ArrowStart.imageVector
+    navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(TotpSetupEvent.SnackbarDismissed) }
+      )
+    },
+    modifier = modifier
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -205,6 +217,15 @@ fun TotpSetupScreen(
     }
 
     SetupDialog(dialog = state.dialog, onEvent = onEvent)
+  }
+}
+
+@Composable
+private fun TotpSetupState.Snackbar.message(): String? {
+  return when (this) {
+    TotpSetupState.Snackbar.None -> null
+    TotpSetupState.Snackbar.KeyCopied -> stringResource(R.string.TotpSetupScreen__copied_to_clipboard)
+    TotpSetupState.Snackbar.NoTotpAppFound -> stringResource(R.string.TotpSetupScreen__no_authenticator_app_found)
   }
 }
 
@@ -349,12 +370,11 @@ private fun SurfaceButton(
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun TotpSetupScreenPreview() {
-  Previews.Preview {
-    TotpSetupScreen(
-      state = TotpSetupState(setupKey = "KVZ7 WL3F DDWJ ZMTO B7PL ZPKV RFD4 LYSX", loading = false),
-      onEvent = {}
-    )
-  }
+  TotpSetupScreen(
+    state = TotpSetupState(setupKey = "KVZ7 WL3F DDWJ ZMTO B7PL ZPKV RFD4 LYSX", loading = false),
+    onEvent = {}
+  )
 }

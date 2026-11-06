@@ -77,6 +77,10 @@ sealed interface AppSettingsRoute : Parcelable, DetailNavKey {
     @Serializable
     data object TotpSetup : AccountRoute
 
+    /** Entering a code from the authenticator app being added. */
+    @Serializable
+    data object TotpCodeEntry : AccountRoute
+
     /** Adding a passkey as a second factor. */
     @Serializable
     data object PasskeySetup : AccountRoute
