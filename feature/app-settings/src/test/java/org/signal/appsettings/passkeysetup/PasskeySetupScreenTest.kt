@@ -12,7 +12,9 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performSemanticsAction
@@ -76,6 +78,29 @@ class PasskeySetupScreenTest {
 
     assertThat(events).contains(PasskeySetupEvent.LearnMoreClicked)
     assertThat(events).contains(PasskeySetupEvent.DialogDismissed)
+  }
+
+  @Test
+  fun whenITapClose_thenIExpectNavigateBackClickedEvent() {
+    setContent()
+
+    composeTestRule.onNodeWithContentDescription("Close").performClick()
+
+    assertThat(events).contains(PasskeySetupEvent.NavigateBackClicked)
+  }
+
+  @Test
+  fun givenACreationFailedSnackbar_whenIDisplayScreen_thenIExpectTheMessage() {
+    setContent(PasskeySetupState(snackbar = PasskeySetupState.Snackbar.PasskeyCreationFailed))
+
+    composeTestRule.onNodeWithText("Couldn't create passkey. Try again.").assertIsDisplayed()
+  }
+
+  @Test
+  fun givenANoProviderSnackbar_whenIDisplayScreen_thenIExpectTheMessage() {
+    setContent(PasskeySetupState(snackbar = PasskeySetupState.Snackbar.NoPasskeyProvider))
+
+    composeTestRule.onNodeWithText("Set up a password manager that supports passkeys on this device, then try again.").assertIsDisplayed()
   }
 
   private fun setContent(state: PasskeySetupState = PasskeySetupState()) {

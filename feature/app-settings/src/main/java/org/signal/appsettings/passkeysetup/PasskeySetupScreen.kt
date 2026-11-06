@@ -33,15 +33,18 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withLink
+import androidx.compose.ui.tooling.preview.PreviewWrapper
 import androidx.compose.ui.unit.dp
 import org.signal.appsettings.R
 import org.signal.appsettings.appSettingsScreen
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
-import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalIcons
+import org.signal.core.ui.compose.SignalPreviewWrapper
+import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.R as CoreUiR
 
 @VisibleForTesting
 object PasskeySetupTestTags {
@@ -64,6 +67,14 @@ fun PasskeySetupScreen(
     title = stringResource(R.string.PasskeySetupScreen__passkeys),
     onNavigationClick = { onEvent(PasskeySetupEvent.NavigateBackClicked) },
     navigationIcon = SignalIcons.ArrowStart.imageVector,
+    navigationContentDescription = stringResource(CoreUiR.string.CloseButton__content_description),
+    snackbarHost = {
+      Snackbars.Host(
+        message = state.snackbar.message(),
+        onDismissed = { onEvent(PasskeySetupEvent.SnackbarDismissed) },
+        duration = Snackbars.Duration.LONG
+      )
+    },
     modifier = modifier
   ) { contentPadding ->
     Column(
@@ -207,35 +218,41 @@ private fun MaxTwoFactorMethodsReachedDialog(
   )
 }
 
+@Composable
+private fun PasskeySetupState.Snackbar.message(): String? {
+  return when (this) {
+    PasskeySetupState.Snackbar.None -> null
+    PasskeySetupState.Snackbar.NoPasskeyProvider -> stringResource(R.string.AccountSettingsFragment__no_passkey_provider)
+    PasskeySetupState.Snackbar.PasskeyCreationFailed -> stringResource(R.string.AccountSettingsFragment__couldnt_create_passkey)
+  }
+}
+
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun PasskeySetupScreenPreview() {
-  Previews.Preview {
-    PasskeySetupScreen(
-      state = PasskeySetupState(),
-      onEvent = {}
-    )
-  }
+  PasskeySetupScreen(
+    state = PasskeySetupState(),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun PasskeySetupScreenInProgressPreview() {
-  Previews.Preview {
-    PasskeySetupScreen(
-      state = PasskeySetupState(dialog = PasskeySetupState.Dialog.InProgress),
-      onEvent = {}
-    )
-  }
+  PasskeySetupScreen(
+    state = PasskeySetupState(dialog = PasskeySetupState.Dialog.InProgress),
+    onEvent = {}
+  )
 }
 
 @DayNightPreviews
+@PreviewWrapper(SignalPreviewWrapper::class)
 @Composable
 private fun PasskeySetupScreenMaxTwoFactorMethodsReachedPreview() {
-  Previews.Preview {
-    PasskeySetupScreen(
-      state = PasskeySetupState(dialog = PasskeySetupState.Dialog.MaxTwoFactorMethodsReached(maxTwoFactorMethods = 10)),
-      onEvent = {}
-    )
-  }
+  PasskeySetupScreen(
+    state = PasskeySetupState(dialog = PasskeySetupState.Dialog.MaxTwoFactorMethodsReached(maxTwoFactorMethods = 10)),
+    onEvent = {}
+  )
 }

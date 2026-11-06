@@ -26,4 +26,7 @@ sealed interface PasskeySetupEvent {
 
   /** Dismisses whatever is in [PasskeySetupState.dialog]. */
   data object DialogDismissed : PasskeySetupEvent
+
+  /** The snackbar finished showing. */
+  data object SnackbarDismissed : PasskeySetupEvent
 }

@@ -18,6 +18,7 @@ import org.signal.core.ui.navigation.LocalResultEventBus
 import org.thoughtcrime.securesms.components.settings.app.AutofillDisabled
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpCodeEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.authenticator.TotpSetupEntry
+import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.TwoFactorNameEntryEntry
 import org.thoughtcrime.securesms.components.settings.app.account.twofactor.toTwoFactorMethod
 import org.thoughtcrime.securesms.delete.DeleteAccountCountryCodeEntry
@@ -47,6 +48,10 @@ fun EntryProviderScope<NavKey>.registerAccountRoutes(parentEventEmitter: (AppSet
   detailEntry<AppSettingsRoute.AccountRoute.TotpCodeEntry> {
     AutofillDisabled()
     TotpCodeEntryEntry(parentEventEmitter = parentEventEmitter)
+  }
+
+  detailEntry<AppSettingsRoute.AccountRoute.PasskeySetup> {
+    PasskeySetupEntry(parentEventEmitter = parentEventEmitter)
   }
 
   detailEntry<AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod> { route ->

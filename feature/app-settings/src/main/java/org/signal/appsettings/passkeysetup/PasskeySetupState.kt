@@ -6,8 +6,20 @@
 package org.signal.appsettings.passkeysetup
 
 data class PasskeySetupState(
-  val dialog: Dialog = Dialog.None
+  val dialog: Dialog = Dialog.None,
+  val snackbar: Snackbar = Snackbar.None
 ) {
+
+  /** Whichever snackbar the screen is showing, if any. */
+  sealed interface Snackbar {
+    data object None : Snackbar
+
+    /** There's no passkey provider on the device to create a credential with. */
+    data object NoPasskeyProvider : Snackbar
+
+    /** The ceremony didn't produce a passkey the service accepted. */
+    data object PasskeyCreationFailed : Snackbar
+  }
 
   /** Whichever dialog the screen is showing, if any. Only one is ever up at a time. */
   sealed interface Dialog {

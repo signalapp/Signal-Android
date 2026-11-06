@@ -32,6 +32,9 @@ import org.signal.appsettings.passkeysetup.PasskeyCreationParameters
 import org.signal.appsettings.passkeysetup.PasskeySetupAction
 import org.signal.appsettings.passkeysetup.PasskeySetupEvent
 import org.signal.appsettings.passkeysetup.PasskeySetupState.Dialog
+import org.signal.appsettings.passkeysetup.PasskeySetupState.Snackbar
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
 import org.signal.passwordmanager.PasskeyCreationResult
 import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupRepository.FinishPasskeyRegistrationResult
 import org.thoughtcrime.securesms.components.settings.app.account.passkey.PasskeySetupRepository.StartPasskeyRegistrationResult
@@ -45,7 +48,6 @@ class PasskeySetupViewModelTest {
 
     private const val NEW_PASSKEY_ID = 9L
     private const val NEW_PASSKEY_CREATED_AT = 1_700_000_000_000L
-    private val NEW_PASSKEY = TwoFactorMethod(id = NEW_PASSKEY_ID, kind = TwoFactorMethod.Kind.PASSKEY, name = null, createdAt = NEW_PASSKEY_CREATED_AT)
 
     private val CREATION_PARAMETERS = PasskeyCreationParameters(
       relyingPartyId = "login.signal.org",
@@ -67,6 +69,7 @@ class PasskeySetupViewModelTest {
   val dispatcherRule = CoroutineDispatcherRule(testDispatcher)
 
   private val repository = mockk<PasskeySetupRepository>()
+  private val parentEvents = mutableListOf<AppSettingsNavigationEvent>()
 
   @Before
   fun setUp() {
@@ -92,11 +95,10 @@ class PasskeySetupViewModelTest {
   @Test
   fun `NavigateBackClicked leaves the screen`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.NavigateBackClicked)
 
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.NavigateBack)
+    assertThat(parentEvents).isEqualTo(listOf(AppSettingsNavigationEvent.NavigateBack()))
   }
 
   @Test
@@ -153,23 +155,27 @@ class PasskeySetupViewModelTest {
     coEvery { repository.startPasskeyRegistration() } returns StartPasskeyRegistrationResult.NetworkFailure
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.SetUpPasskeyClicked)
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.ShowPasskeyCreationFailed)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.PasskeyCreationFailed)
   }
 
   @Test
   fun `PasskeyCeremonyCompleted registers the credential and sends the user on to name it`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(CEREMONY_SUCCESS))
 
     coVerify { repository.finishPasskeyRegistration(ATTESTATION_OBJECT, CLIENT_DATA_JSON) }
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.NavigateToNameNewPasskey(NEW_PASSKEY))
+    assertThat(parentEvents).isEqualTo(
+      listOf(
+        AppSettingsNavigationEvent.NavigateToScreen(
+          AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod(methodId = NEW_PASSKEY_ID, methodKind = TwoFactorMethod.Kind.PASSKEY, methodCreatedAt = NEW_PASSKEY_CREATED_AT)
+        )
+      )
+    )
   }
 
   /** The account can fill up while the provider's sheet is open, leaving a credential that has nowhere to land. */
@@ -191,12 +197,11 @@ class PasskeySetupViewModelTest {
     coEvery { repository.finishPasskeyRegistration(any(), any()) } returns FinishPasskeyRegistrationResult.CeremonyRejected
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(CEREMONY_SUCCESS))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.ShowPasskeyCreationFailed)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.PasskeyCreationFailed)
   }
 
   @Test
@@ -204,11 +209,10 @@ class PasskeySetupViewModelTest {
     coEvery { repository.finishPasskeyRegistration(any(), any()) } returns FinishPasskeyRegistrationResult.NetworkFailure
 
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(CEREMONY_SUCCESS))
 
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.ShowPasskeyCreationFailed)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.PasskeyCreationFailed)
   }
 
   /** Backing out of the provider's sheet is a choice, not a failure, so there is nothing to tell the user about. */
@@ -221,29 +225,38 @@ class PasskeySetupViewModelTest {
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.UserCanceled))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.None)
     assertThat(actions).containsExactly(PasskeySetupAction.CreatePasskey(CREATION_PARAMETERS))
   }
 
   @Test
   fun `a device with no passkey provider is told as much`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.NoProviderAvailable))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.ShowNoPasskeyProvider)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.NoPasskeyProvider)
   }
 
   @Test
   fun `a failed ceremony says so`() = runTest(testDispatcher) {
     val viewModel = createViewModel()
-    val actions = collectActions(viewModel.actions)
 
     viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.CeremonyFailed))
 
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
-    assertThat(actions.last()).isEqualTo(PasskeySetupAction.ShowPasskeyCreationFailed)
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.PasskeyCreationFailed)
+  }
+
+  @Test
+  fun `SnackbarDismissed clears the snackbar`() = runTest(testDispatcher) {
+    val viewModel = createViewModel()
+
+    viewModel.onEvent(PasskeySetupEvent.PasskeyCeremonyCompleted(PasskeyCreationResult.CeremonyFailed))
+    viewModel.onEvent(PasskeySetupEvent.SnackbarDismissed)
+
+    assertThat(viewModel.state.value.snackbar).isEqualTo(Snackbar.None)
   }
 
   @Test
@@ -258,7 +271,7 @@ class PasskeySetupViewModelTest {
     assertThat(viewModel.state.value.dialog).isEqualTo(Dialog.None)
   }
 
-  private fun createViewModel(): PasskeySetupViewModel = PasskeySetupViewModel(repository)
+  private fun createViewModel(): PasskeySetupViewModel = PasskeySetupViewModel(parentEventEmitter = { parentEvents += it }, repository = repository)
 
   private fun TestScope.collectActions(actions: Flow<PasskeySetupAction>): List<PasskeySetupAction> {
     val collected = mutableListOf<PasskeySetupAction>()

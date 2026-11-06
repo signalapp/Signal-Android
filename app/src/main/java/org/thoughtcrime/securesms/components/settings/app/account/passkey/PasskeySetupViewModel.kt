@@ -17,6 +17,11 @@ import org.signal.appsettings.passkeysetup.PasskeySetupAction
 import org.signal.appsettings.passkeysetup.PasskeySetupEvent
 import org.signal.appsettings.passkeysetup.PasskeySetupState
 import org.signal.appsettings.passkeysetup.PasskeySetupState.Dialog
+import org.signal.appsettings.passkeysetup.PasskeySetupState.Snackbar
+import org.signal.appsettings.routes.AppSettingsNavigationEvent
+import org.signal.appsettings.routes.AppSettingsRoute
+import org.signal.appsettings.routes.navigateBack
+import org.signal.appsettings.routes.navigateTo
 import org.signal.core.ui.compose.EventDrivenViewModel
 import org.signal.core.util.logging.Log
 import org.signal.passwordmanager.PasskeyCreationResult
@@ -27,6 +32,7 @@ import org.thoughtcrime.securesms.components.settings.app.account.passkey.Passke
  * Drives the screen that explains passkeys and runs the ceremony that adds one to the account.
  */
 class PasskeySetupViewModel(
+  private val parentEventEmitter: (AppSettingsNavigationEvent) -> Unit,
   private val repository: PasskeySetupRepository
 ) : EventDrivenViewModel<PasskeySetupEvent>(TAG) {
 
@@ -45,7 +51,7 @@ class PasskeySetupViewModel(
   override suspend fun processEvent(event: PasskeySetupEvent) {
     when (event) {
       PasskeySetupEvent.NavigateBackClicked -> {
-        _actions.send(PasskeySetupAction.NavigateBack)
+        parentEventEmitter.navigateBack()
       }
       PasskeySetupEvent.LearnMoreClicked -> {
         _actions.send(PasskeySetupAction.OpenSupportArticle(SUPPORT_URL))
@@ -58,6 +64,9 @@ class PasskeySetupViewModel(
       }
       PasskeySetupEvent.DialogDismissed -> {
         _state.update { it.copy(dialog = Dialog.None) }
+      }
+      PasskeySetupEvent.SnackbarDismissed -> {
+        _state.update { it.copy(snackbar = Snackbar.None) }
       }
     }
   }
@@ -77,8 +86,7 @@ class PasskeySetupViewModel(
         showMaxTwoFactorMethodsReached()
       }
       StartPasskeyRegistrationResult.NetworkFailure -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(PasskeySetupAction.ShowPasskeyCreationFailed)
+        _state.update { it.copy(dialog = Dialog.None, snackbar = Snackbar.PasskeyCreationFailed) }
       }
     }
   }
@@ -93,12 +101,10 @@ class PasskeySetupViewModel(
         Log.i(TAG, "The user backed out of the passkey provider's sheet.")
       }
       PasskeyCreationResult.NoProviderAvailable -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(PasskeySetupAction.ShowNoPasskeyProvider)
+        _state.update { it.copy(dialog = Dialog.None, snackbar = Snackbar.NoPasskeyProvider) }
       }
       PasskeyCreationResult.CeremonyFailed -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(PasskeySetupAction.ShowPasskeyCreationFailed)
+        _state.update { it.copy(dialog = Dialog.None, snackbar = Snackbar.PasskeyCreationFailed) }
       }
     }
   }
@@ -113,9 +119,11 @@ class PasskeySetupViewModel(
     when (result) {
       is FinishPasskeyRegistrationResult.Success -> {
         _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(
-          PasskeySetupAction.NavigateToNameNewPasskey(
-            TwoFactorMethod(id = result.passkeyId, kind = TwoFactorMethod.Kind.PASSKEY, name = null, createdAt = result.createdAt)
+        parentEventEmitter.navigateTo(
+          AppSettingsRoute.AccountRoute.NameNewTwoFactorMethod(
+            methodId = result.passkeyId,
+            methodKind = TwoFactorMethod.Kind.PASSKEY,
+            methodCreatedAt = result.createdAt
           )
         )
       }
@@ -124,8 +132,7 @@ class PasskeySetupViewModel(
       }
       FinishPasskeyRegistrationResult.CeremonyRejected,
       FinishPasskeyRegistrationResult.NetworkFailure -> {
-        _state.update { it.copy(dialog = Dialog.None) }
-        _actions.send(PasskeySetupAction.ShowPasskeyCreationFailed)
+        _state.update { it.copy(dialog = Dialog.None, snackbar = Snackbar.PasskeyCreationFailed) }
       }
     }
   }
